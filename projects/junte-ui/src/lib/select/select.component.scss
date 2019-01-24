@@ -1,6 +1,21 @@
-@import "~src/variables";
+@import "../variables";
 
 :host {
   display: block;
+}
+
+select {
   border-radius: $select-corner;
+  padding: $select-padding-x $select-padding-y;
+  //background: $select-bg $select-indicator no-repeat right $select-padding-x center;
+  //background: url(../assets/images/icons/arrow-down.svg);
+  background-size: $select-bg-size;
+  border: $select-border-width solid $select-border-color;
+  font-size: $select-font-size;
+  color: $select-color;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: $select-border-color-focus;
+  }
 }
