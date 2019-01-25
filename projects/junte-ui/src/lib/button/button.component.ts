@@ -10,6 +10,7 @@ export class ButtonComponent implements OnInit {
 
   @Input()
   size: Size = Size.default;
+  disabled = false;
 
   @HostBinding('class.small')
   get small() {

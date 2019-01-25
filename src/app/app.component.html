@@ -1,37 +1,75 @@
-<div class="container" style="padding-left: 30px; width: 30%">
+<div class="container"
+     style="padding-left: 30px; padding-top: 10px; display: block; background-color: #e5e5e5; height: 100vh">
 
   <h3>Button</h3>
 
+  <div style="display: flex">
 
-  <ju-button class="secondary">Button</ju-button>
+    <div style="width: 30%;">
+      <ju-button class="secondary">Button</ju-button>
 
-  <div style="height: 10px"></div>
+      <div style="height: 10px"></div>
 
-  <ju-button class="primary" [size]="size.small">Button small</ju-button>
+      <ju-button class="primary" [size]="size.small">Button small</ju-button>
 
-  <div style="height: 10px"></div>
+      <div style="height: 10px"></div>
 
-  <ju-button class="success" [size]="size.large">Button large</ju-button>
+      <ju-button class="success" [size]="size.large">Button large</ju-button>
 
-  <div style="height: 10px"></div>
+      <div style="height: 10px"></div>
+    </div>
 
-  <ju-button class="outline-secondary">Button</ju-button>
+    <div style="width: 30%;">
+      <ju-button class="outline-secondary">Button</ju-button>
 
-  <div style="height: 10px"></div>
+      <div style="height: 10px"></div>
 
-  <ju-button class="outline-primary" [size]="size.small">Button small</ju-button>
+      <ju-button class="outline-primary" [size]="size.small">Button small</ju-button>
 
-  <div style="height: 10px"></div>
+      <div style="height: 10px"></div>
 
-  <ju-button class="outline-success" [size]="size.large">Button large</ju-button>
+      <ju-button class="outline-success" [size]="size.large">Button large</ju-button>
+
+      <div style="height: 10px"></div>
+    </div>
+
+
+    <div style="width: 30%;">
+      <ju-button class="primary disabled">Button disabled</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="outline-primary disabled">Button disabled</ju-button>
+    </div>
+
+  </div>
+
+  <h3>Input</h3>
+
+  <div style="width: 30%">
+
+    <ju-input></ju-input>
+
+    <div style="height: 10px"></div>
+
+    <ju-input [disabled]="true"></ju-input>
+
+  </div>
 
   <h3>Select</h3>
 
-
+  <div style="width: 30%">
     <ju-select [options]="options"
                labelField="label"
                valueField="value">
     </ju-select>
+  </div>
+
+  <div style="height: 10px"></div>
+
+  <h3>Checkbox</h3>
+
+  <ju-checkbox></ju-checkbox>
 
 
 </div>

@@ -3,12 +3,16 @@ import {JunteUiComponent} from './junte-ui.component';
 import {CommonModule} from '@angular/common';
 import {SelectComponent} from './select/select.component';
 import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
     JunteUiComponent,
     SelectComponent,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent,
+    CheckboxComponent
   ],
   imports: [
     CommonModule
@@ -16,7 +20,9 @@ import { ButtonComponent } from './button/button.component';
   exports: [
     JunteUiComponent,
     SelectComponent,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent,
+    CheckboxComponent
   ]
 })
 export class JunteUiModule {

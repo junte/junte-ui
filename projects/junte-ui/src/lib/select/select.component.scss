@@ -1,7 +1,8 @@
 @import "../variables";
 
 :host {
-  display: block;
+  display: inline-block;
+  width: 100%;
 }
 
 select {
@@ -17,5 +18,7 @@ select {
   &:focus {
     outline: none;
     border-color: $select-border-color-focus;
+    color: $select-focus-color;
+    background-color: $select-focus-bg;
   }
 }

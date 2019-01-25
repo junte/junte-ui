@@ -9,10 +9,18 @@
   transition: $button-transition;
   background-color: $gray-400;
   outline: 0;
-  cursor: pointer;
   text-align: center;
   white-space: nowrap;
   user-select: none;
+
+  &.disabled,
+  &:disabled {
+    opacity: $button-disabled-opacity;
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
 
   @each $color, $value in $theme-colors {
     &.#{$color} {
@@ -26,14 +34,14 @@
     }
   }
 
-  @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-border-radius);
+  @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
 
   &.small {
-    @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $line-height-sm, $button-border-radius-sm)
+    @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $line-height-sm, $button-corner-sm)
   }
 
   &.large {
-    @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $line-height-lg, $button-border-radius-lg)
+    @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $line-height-lg, $button-corner-lg)
   }
 
 

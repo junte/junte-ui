@@ -10,6 +10,7 @@ $purple: #3949AB;
 $purple-dark: #00227B;
 $purple-light: #6F74DD;
 
+$gray-300: #F2F2F2;
 $gray-400: #E9E9E9;
 $gray-500: #F3F4FC;
 $gray-600: #C4C4C4;
@@ -106,9 +107,9 @@ $button-line-height: $line-height-base;
 $button-line-height-sm: $line-height-sm;
 $button-line-height-lg: $line-height-lg;
 
-$button-border-radius: $corner-lg;
-$button-border-radius-sm: $corner-lg;
-$button-border-radius-lg: $corner-lg;
+$button-corner: $corner-lg;
+$button-corner-sm: $corner-lg;
+$button-corner-lg: $corner-lg;
 
 $button-color: white;
 
@@ -122,21 +123,57 @@ $button-border-color: transparent;
 $button-active-box-shadow: none;
 $button-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
+$button-disabled-opacity: .65;
+
 /*Input*/
 
 $input-bg: white;
 
+$input-padding-y: $gutter-3;
+$input-padding-x: $gutter-2;
+$input-line-height: normal;
+
+//$input-padding-y-sm: ;
+//$input-padding-x-sm: ;
+//$input-line-height-sm: ;
+//
+//$input-padding-y-lg: ;
+//$input-padding-x-lg: ;
+//$input-line-height-lg: ;
+
+$input-disabled-bg: $gray-300;
+
+$input-color: $gray-700;
+$input-border-color: $gray-600;
+$input-border-width: 1px;
+$input-box-shadow: none;
+
+$input-corner: $corner-sm;
+$input-border-radius-lg: $corner-sm;
+$input-border-radius-sm: $corner-sm;
+
+$input-focus-bg: $input-bg;
+$input-focus-border-color: $primary;
+$input-focus-color: $text-color;
+
+$input-font-size: $font-size-base;
+
+$input-height: 38px;
+
 
 /*Select*/
 
-$select-corner: $corner-sm;
-$select-padding-x: $gutter-2;
-$select-padding-y: $gutter-3;
+$select-corner: $input-corner;
+$select-padding-x: $input-padding-x;
+$select-padding-y: $input-padding-y;
 $select-bg: $input-bg;
 //$select-indicator: url(/images/icons/arrow-down.svg);
 $select-bg-size: 8px 10px;
-$select-color: $gray-700;
-$select-font-size: $font-size-base;
-$select-border-color: $gray-600;
-$select-border-width: 1px;
-$select-border-color-focus: $primary;
+$select-color: $input-color;
+$select-font-size: $input-font-size;
+$select-border-color: $input-border-color;
+$select-border-width: $input-border-width;
+
+$select-border-color-focus: $input-focus-border-color;
+$select-focus-bg: $input-focus-bg;
+$select-focus-color: $input-focus-color;
