@@ -14,8 +14,9 @@ $gray-300: #F2F2F2;
 $gray-400: #E9E9E9;
 $gray-500: #F3F4FC;
 $gray-600: #C4C4C4;
-$gray-700: #828282;
-$gray-800: #4F4F4F;
+$gray-700: #D0D0D0;
+$gray-800: #828282;
+$gray-900: #4F4F4F;
 
 
 $primary: $purple;
@@ -25,7 +26,7 @@ $warning: $orange;
 $danger: $red;
 $primary-light: $purple-light;
 $primary-dark: $purple-dark;
-$text-color: $gray-800;
+$text-color: $gray-900;
 
 
 $theme-colors: ();
@@ -41,7 +42,7 @@ $theme-colors: map-merge((
 ), $theme-colors);
 
 $yiq-contrasted-threshold:  150;
-$yiq-text-dark: $gray-800;
+$yiq-text-dark: $gray-900;
 $yiq-text-light: white;
 
 
@@ -141,9 +142,9 @@ $input-line-height: normal;
 //$input-padding-x-lg: ;
 //$input-line-height-lg: ;
 
-$input-disabled-bg: $gray-300;
+$input-disabled-bg: $gray-700;
 
-$input-color: $gray-700;
+$input-color: $gray-800;
 $input-border-color: $gray-600;
 $input-border-width: 1px;
 $input-box-shadow: none;
@@ -177,3 +178,25 @@ $select-border-width: $input-border-width;
 $select-border-color-focus: $input-focus-border-color;
 $select-focus-bg: $input-focus-bg;
 $select-focus-color: $input-focus-color;
+
+
+/*Form control*/
+
+$control-indicator-size: 1.125rem;
+$control-gutter: 10px;
+$control-indicator-bg: white;
+$control-indicator-border-color: $primary;
+$control-indicator-border-width: 1px;
+$control-indicator-bg-size: 50% 50%;
+$control-indicator-disabled-bg: $input-disabled-bg;
+$control-label-disabled-color: $input-disabled-bg;
+$control-label-color: $text-color;
+$control-indicator-checked-bg: white;
+$control-indicator-checked-border-color: $primary;
+$control-indicator-checked-disabled-bg: $input-disabled-bg;
+
+
+/*Checkbox*/
+
+$checkbox-indicator-border-radius: 3px;
+$checkbox-indicator: url(/images/icons/check.svg);
