@@ -1,15 +1,53 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, forwardRef} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'ju-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true
+    }
+  ]
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements ControlValueAccessor {
 
-  constructor() { }
+  private _value: string;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  get value() {
+    return this._value;
+  }
+
+  set value(val) {
+    this._value = val;
+    this.onChange(val);
+  }
+
+  writeValue(value) {
+    if (!value || typeof(value) !== 'string') {
+      return;
+    }
+    this.value = value;
+    this.onChange(value);
+  }
+
+  onChange: any = () => {
+  };
+
+  onTouched: any = () => {
+  };
+
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
+  }
 }

@@ -48,22 +48,29 @@
 
   <div style="width: 30%">
 
-    <ju-input></ju-input>
+    <p>Reactive Forms:</p>
+    <form [formGroup]="form">
+      <ju-input formControlName="value"></ju-input>
+    </form>
+    <pre>{{ form.value | json }}</pre>
 
     <div style="height: 10px"></div>
+    <p>[(ngModel)]:</p>
+    <ju-input [(ngModel)]="inputValue"></ju-input>
 
-    <ju-input></ju-input>
+    {{inputValue}}
 
   </div>
 
   <h3>Select</h3>
 
   <div style="width: 30%">
+    Option: {{selectedOption}}
     <ju-select [options]="options"
                labelField="label"
-               valueField="value">
+               valueField="value"
+               [(ngModel)]="selectedOption">
     </ju-select>
-  </div>
 
   <div style="height: 10px"></div>
 

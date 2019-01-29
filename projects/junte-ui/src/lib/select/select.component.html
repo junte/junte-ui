@@ -1,4 +1,9 @@
-<select>
-  <option *ngFor="let option of options"
-          [value]="option[valueField]">{{option[labelField]}}</option>
-</select>
+<div class="select">
+  <div>
+    <ul>
+      <li *ngFor="let option of options" (click)="optionSelect(option)">
+        {{option[labelField]}}
+      </li>
+    </ul>
+  </div>
+</div>
