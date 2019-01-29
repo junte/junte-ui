@@ -3,51 +3,91 @@
 
 :host {
   display: inline-block;
-  color: $button-color;
-  border: $button-border-width solid $button-border-color;
-  box-shadow: $button-active-box-shadow;
-  transition: $button-transition;
-  background-color: $gray-400;
-  outline: 0;
-  text-align: center;
-  white-space: nowrap;
-  user-select: none;
+  position: relative;
+  min-height: $button-height;
+
+  button {
+    color: $button-color;
+    border: $button-border-width solid $button-border-color;
+    box-shadow: $button-active-box-shadow;
+    transition: $button-transition;
+    background-color: $gray-400;
+    outline: 0;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+
+    @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
+  }
 
   &.disabled,
   &:disabled {
-    opacity: $button-disabled-opacity;
+
+    button {
+      opacity: $button-disabled-opacity;
+    }
+
   }
 
   &:not(:disabled):not(.disabled) {
-    cursor: pointer;
+
+    button {
+      cursor: pointer;
+    }
+
   }
 
   @each $color, $value in $theme-colors {
     &.#{$color} {
-      @include button-variant($value, $value);
+      button {
+        @include button-variant($value, $value);
+      }
     }
   }
 
   @each $color, $value in $theme-colors {
     &.outline-#{$color} {
-      @include button-outline-variant($value);
+      button {
+        @include button-outline-variant($value);
+      }
     }
   }
 
-  @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
+
 
   &.small {
-    @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $line-height-sm, $button-corner-sm)
+
+    button {
+      @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $line-height-sm, $button-corner-sm)
+    }
+
+    min-height: $button-height-sm;
+
   }
 
   &.large {
-    @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $line-height-lg, $button-corner-lg)
+
+    button {
+      @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $line-height-lg, $button-corner-lg)
+    }
+
+    min-height: $button-height-lg;
+
   }
 
 
   //fix!
   &.secondary {
-    color: $text-color;
+    button {
+      color: $text-color;
+    }
+
   }
 }
 

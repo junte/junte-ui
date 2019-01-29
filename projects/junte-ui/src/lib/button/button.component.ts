@@ -1,5 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Size} from '../models/size';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ju-button',
@@ -7,20 +6,6 @@ import {Size} from '../models/size';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-
-  @Input()
-  size: Size = Size.default;
-  disabled = false;
-
-  @HostBinding('class.small')
-  get small() {
-    return this.size === Size.small;
-  }
-
-  @HostBinding('class.large')
-  get large() {
-    return this.size === Size.large;
-  }
 
   constructor() {
   }

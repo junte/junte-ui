@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ju-input',
@@ -6,9 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-
-  @Input()
-  disabled = false;
 
   constructor() { }
 

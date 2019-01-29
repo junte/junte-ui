@@ -10,11 +10,11 @@
 
       <div style="height: 10px"></div>
 
-      <ju-button class="primary" [size]="size.small">Button small</ju-button>
+      <ju-button class="primary small">Button small</ju-button>
 
       <div style="height: 10px"></div>
 
-      <ju-button class="success" [size]="size.large">Button large</ju-button>
+      <ju-button class="success large">Button large</ju-button>
 
       <div style="height: 10px"></div>
     </div>
@@ -24,11 +24,11 @@
 
       <div style="height: 10px"></div>
 
-      <ju-button class="outline-primary" [size]="size.small">Button small</ju-button>
+      <ju-button class="outline-primary">Button small</ju-button>
 
       <div style="height: 10px"></div>
 
-      <ju-button class="outline-success" [size]="size.large">Button large</ju-button>
+      <ju-button class="outline-success">Button large</ju-button>
 
       <div style="height: 10px"></div>
     </div>
@@ -52,7 +52,7 @@
 
     <div style="height: 10px"></div>
 
-    <ju-input [disabled]="true"></ju-input>
+    <ju-input></ju-input>
 
   </div>
 
@@ -73,7 +73,7 @@
 
   <div style="height: 10px"></div>
 
-  <ju-checkbox class="disabled" disabled>Checkbox disabled</ju-checkbox>
+  <ju-checkbox>Checkbox disabled</ju-checkbox>
 
   <div style="height: 10px"></div>
 
@@ -90,15 +90,21 @@
     <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
 
       <ng-template #cardHeader>
-        Headline
+        <div>
+          Headline
+        </div>
       </ng-template>
 
       <ng-template #cardBody>
-        Body
+        <div>
+          Body
+        </div>
       </ng-template>
 
       <ng-template #cardFooter>
-        Footer
+        <div>
+          Footer
+        </div>
       </ng-template>
 
     </ju-card>

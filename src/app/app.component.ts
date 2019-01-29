@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Size} from '../../projects/junte-ui/src/lib/models/size';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +6,6 @@ import {Size} from '../../projects/junte-ui/src/lib/models/size';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  size = Size;
 
   selectedOption: any;
   options: any[] = [
