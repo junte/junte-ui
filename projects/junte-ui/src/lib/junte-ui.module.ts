@@ -5,6 +5,8 @@ import {SelectComponent} from './select/select.component';
 import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { RadioComponent } from './radio/radio.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     SelectComponent,
     ButtonComponent,
     InputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RadioComponent,
+    CardComponent
   ],
   imports: [
     CommonModule
@@ -22,7 +26,9 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     SelectComponent,
     ButtonComponent,
     InputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    RadioComponent,
+    CardComponent
   ]
 })
 export class JunteUiModule {
