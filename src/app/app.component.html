@@ -85,17 +85,25 @@
 
   <h3>Card</h3>
 
-  <ju-card>
+  <div style="width: 30%">
 
-    <div class="head">
-      <div class="title">Title</div>
-    </div>
+    <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
 
-    <div class="body">
-      Card
-    </div>
+      <ng-template #cardHeader>
+        Headline
+      </ng-template>
 
-  </ju-card>
+      <ng-template #cardBody>
+        Body
+      </ng-template>
+
+      <ng-template #cardFooter>
+        Footer
+      </ng-template>
+
+    </ju-card>
+
+  </div>
 
 </div>
 
