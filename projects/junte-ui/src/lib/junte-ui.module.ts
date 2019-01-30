@@ -2,18 +2,36 @@ import {NgModule} from '@angular/core';
 import {JunteUiComponent} from './junte-ui.component';
 import {CommonModule} from '@angular/common';
 import {SelectComponent} from './select/select.component';
+import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { RadioComponent } from './radio/radio.component';
+import { CardComponent } from './card/card.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     JunteUiComponent,
-    SelectComponent
+    SelectComponent,
+    ButtonComponent,
+    InputComponent,
+    CheckboxComponent,
+    RadioComponent,
+    CardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     JunteUiComponent,
-    SelectComponent
+    SelectComponent,
+    ButtonComponent,
+    InputComponent,
+    CheckboxComponent,
+    RadioComponent,
+    CardComponent
   ]
 })
 export class JunteUiModule {

@@ -1,0 +1,35 @@
+@import "../variables";
+
+:host {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: $input-height;
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 0;
+    outline: none;
+    background-color: $input-bg;
+    color: $input-color;
+    font-size: $input-font-size;
+    width: 100%;
+    padding: $input-padding-x $input-padding-y;
+    border-radius: $input-corner;
+    border: $input-border-width solid $input-border-color;
+    box-sizing: border-box;
+    &:focus,
+    &.focus {
+      outline: none;
+      color: $input-focus-color;
+      border-color: $input-focus-border-color;
+      background-color: $input-focus-bg;
+    }
+    &:disabled {
+      background-color: $input-disabled-bg;
+    }
+  }
+}

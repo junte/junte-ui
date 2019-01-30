@@ -1,5 +1,125 @@
-Select:
-<ju-select [options]="options"
-           labelField="label"
-           valueField="value">
-</ju-select>
+<div class="container"
+     style="padding: 10px 10px 30px 30px; display: block; background-color: #e5e5e5; min-height: 100vh">
+
+  <h3>Button</h3>
+
+  <div style="display: flex">
+
+    <div style="width: 30%;">
+      <ju-button class="secondary">Button</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="primary small">Button small</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="success large">Button large</ju-button>
+
+      <div style="height: 10px"></div>
+    </div>
+
+    <div style="width: 30%;">
+      <ju-button class="outline-secondary">Button</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="outline-primary">Button small</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="outline-success">Button large</ju-button>
+
+      <div style="height: 10px"></div>
+    </div>
+
+
+    <div style="width: 30%;">
+      <ju-button class="primary disabled">Button disabled</ju-button>
+
+      <div style="height: 10px"></div>
+
+      <ju-button class="outline-primary disabled">Button disabled</ju-button>
+    </div>
+
+  </div>
+
+  <h3>Input</h3>
+
+  <div style="width: 30%">
+
+    <p>Reactive Forms:</p>
+    <form [formGroup]="form">
+      <ju-input formControlName="value"></ju-input>
+    </form>
+    <pre>{{ form.value | json }}</pre>
+
+    <div style="height: 10px"></div>
+    <p>[(ngModel)]:</p>
+    <ju-input [(ngModel)]="inputValue"></ju-input>
+
+    {{inputValue}}
+
+  </div>
+
+  <h3>Select</h3>
+
+  <div style="width: 30%">
+    Option: {{selectedOption}}
+    <ju-select [options]="options"
+               labelField="label"
+               valueField="value"
+               [(ngModel)]="selectedOption">
+    </ju-select>
+
+  <div style="height: 10px"></div>
+
+  <h3>Checkbox</h3>
+
+  <ju-checkbox>Checkbox</ju-checkbox>
+
+  <div style="height: 10px"></div>
+
+  <ju-checkbox>Checkbox disabled</ju-checkbox>
+
+  <div style="height: 10px"></div>
+
+  <h3>Radio</h3>
+
+  <ju-radio>Radio</ju-radio>
+
+  <div style="height: 10px"></div>
+
+  <h3>Card</h3>
+
+  <div style="width: 30%">
+
+    <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
+
+      <ng-template #cardHeader>
+        <div>
+          Headline
+        </div>
+      </ng-template>
+
+      <ng-template #cardBody>
+        <div>
+          Body
+        </div>
+      </ng-template>
+
+      <ng-template #cardFooter>
+        <div>
+          Footer
+        </div>
+      </ng-template>
+
+    </ju-card>
+
+  </div>
+
+</div>
+
+
+
+
