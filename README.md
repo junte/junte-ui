@@ -28,5 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ##Run 
 
-ng build junte-ui --watch
-ng serve
+`ng build junte-ui --watch`
+`ng build`
+`ng serve`
