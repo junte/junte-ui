@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ju-col',
@@ -8,6 +8,8 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 export class ColComponent implements OnInit {
 
   @Input() span = 1;
+  @Input() alignSelf = 'auto';
+  @Input() order = 0;
 
   constructor() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ju-row',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RowComponent implements OnInit {
 
-  constructor() { }
+  @Input() align = 'stretch';
+  @Input() justify  = 'start';
+  @Input() direction  = 'row';
+  @Input() wrap  = 'wrap';
+  @Input() alignContent  = 'start';
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

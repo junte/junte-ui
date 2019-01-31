@@ -11,4 +11,38 @@
       max-width: percentage($i/$grid-columns);
     }
   }
+
+  @each $breakpoints, $value in $grid-breakpoints {
+    @media screen and (min-width: $value) {
+      @for $i from 1 through $grid-columns {
+        &[#{$breakpoints} = '#{$i}'] {
+          flex: 0 0 percentage($i/$grid-columns);
+          max-width: percentage($i/$grid-columns);
+        }
+      }
+    }
+  }
+
+  &[alignSelf='auto'] {
+    align-self: auto;
+  }
+  &[alignSelf='start'] {
+    align-self: flex-start;
+  }
+  &[alignSelf='center'] {
+    align-self: center;
+  }
+  &[alignSelf='end'] {
+    align-self: flex-end;
+  }
+  &[alignSelf='baseline'] {
+    align-self: baseline;
+  }
+  &[alignSelf='stretch'] {
+    align-self: stretch;
+  }
+
+  //&[order=#{$i}] {
+  //  order: $i;
+  //}
 }
