@@ -1,2 +1,4 @@
-<button><ng-content></ng-content></button>
-
+<i *ngIf="loading"></i>
+<button [class.loading]="loading">
+  <ng-content></ng-content>
+</button>
