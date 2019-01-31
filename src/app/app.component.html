@@ -5,7 +5,7 @@
   <div style="display: flex">
 
     <div style="width: 30%;">
-      <ju-button class="secondary">Button</ju-button>
+      <ju-button class="secondary" [loading]="true">Button 11</ju-button>
 
       <div style="height: 10px"></div>
 
@@ -27,7 +27,9 @@
 
       <div style="height: 10px"></div>
 
-      <ju-button class="outline-success">Button large</ju-button>
+      <ju-button [type]="ui.types.primary" [size]="ui.sizes.small" outline="ghost"
+                 [icon]="ui.icons.home"
+                 text="Button large"></ju-button>
 
       <div style="height: 10px"></div>
     </div>

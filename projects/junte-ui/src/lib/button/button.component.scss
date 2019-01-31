@@ -2,41 +2,24 @@
 @import "../mixins";
 
 :host {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   min-height: $button-height;
 
-  button {
-    color: $button-color;
-    border: $button-border-width solid $button-border-color;
-    box-shadow: $button-active-box-shadow;
-    transition: $button-transition;
-    background-color: $gray-400;
-    outline: 0;
-    text-align: center;
-    white-space: nowrap;
-    user-select: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-sizing: border-box;
-
-    @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
+  &.loading {
+    span {
+      visibility: collapse;
+    }
   }
 
   &.disabled,
   &:disabled {
-
     button {
       opacity: $button-disabled-opacity;
     }
-
   }
 
   &:not(:disabled):not(.disabled) {
-
     button {
       cursor: pointer;
     }
@@ -59,28 +42,19 @@
     }
   }
 
-
-
   &.small {
-
+    min-height: $button-height-sm;
     button {
       @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $button-line-height-sm, $button-corner-sm)
     }
-
-    min-height: $button-height-sm;
-
   }
 
   &.large {
-
+    min-height: $button-height-lg;
     button {
       @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $button-line-height-lg, $button-corner-lg)
     }
-
-    min-height: $button-height-lg;
-
   }
-
 
   //fix!
   &.secondary {
@@ -91,4 +65,17 @@
   }
 }
 
+button {
+  color: $button-color;
+  border: $button-border-width solid $button-border-color;
+  box-shadow: $button-active-box-shadow;
+  transition: $button-transition;
+  background-color: $gray-400;
+  outline: 0;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
 
+  @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
+}
