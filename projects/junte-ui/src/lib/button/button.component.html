@@ -1,2 +1,7 @@
-<button><ng-content></ng-content></button>
-
+<button [disabled]="disabled || loading">
+  <div *ngIf="loading" class="loading">
+    <ju-icon icon="loading"></ju-icon>
+  </div>
+  <ju-icon *ngIf="icon" [icon]="icon"></ju-icon>
+  <span>{{text}}</span>
+</button>

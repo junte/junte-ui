@@ -8,6 +8,10 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { RadioComponent } from './radio/radio.component';
 import { CardComponent } from './card/card.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ContainerComponent } from './container/container.component';
+import { RowComponent } from './row/row.component';
+import { ColComponent } from './col/col.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     InputComponent,
     CheckboxComponent,
     RadioComponent,
-    CardComponent
+    CardComponent,
+    ContainerComponent,
+    RowComponent,
+    ColComponent,
+    IconComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +39,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     InputComponent,
     CheckboxComponent,
     RadioComponent,
-    CardComponent
+    CardComponent,
+    ContainerComponent,
+    RowComponent,
+    ColComponent,
+    IconComponent
   ]
 })
 export class JunteUiModule {

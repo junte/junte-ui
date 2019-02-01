@@ -59,6 +59,27 @@ $gutter-4: ($spacer * 6);
 $gutter-5: ($spacer * 8);
 $gutter-6: ($spacer * 12);
 
+/*Grid*/
+
+$grid-breakpoints: (
+  mobile: 576px,
+  tablet: 768px,
+  desktop: 992px,
+  wide: 1200px,
+  xxl: 1600px
+);
+
+$container-max-widths: (
+  sm: 540px, //
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1300px
+);
+
+$grid-gutter: 15px;
+$grid-columns: 12;
+
 
 /*Font*/
 
@@ -98,15 +119,15 @@ $headings-color: inherit;
 /*Button*/
 
 $button-padding-x: 2.7rem;
-$button-padding-y: .65rem;
+//$button-padding-y: .65rem;
 $button-padding-x-sm: 3.7rem;
-$button-padding-y-sm: .5rem;
+//$button-padding-y-sm: .5rem;
 $button-padding-x-lg: 2.5rem;
-$button-padding-y-lg: 1rem;
+//$button-padding-y-lg: 1rem;
 
-$button-line-height: $line-height-base;
-$button-line-height-sm: $line-height-sm;
-$button-line-height-lg: $line-height-lg;
+$button-line-height: 1;
+$button-line-height-sm: 1;
+$button-line-height-lg: 1;
 
 $button-corner: $corner-lg;
 $button-corner-sm: $corner-lg;
@@ -129,6 +150,11 @@ $button-disabled-opacity: .65;
 $button-height: 38px;
 $button-height-sm: 30px;
 $button-height-lg: 50px;
+
+$button-icon-gutter: 10px;
+$button-icon-size: 10px;
+$button-icon-size-sm: 8px;
+$button-icon-size-lg: 14px;
 
 /*Input*/
 
@@ -192,7 +218,7 @@ $control-gutter: 10px;
 $control-indicator-bg: white;
 $control-indicator-border-color: $primary;
 $control-indicator-border-width: 1px;
-$control-indicator-bg-size: 50% 50%;
+$control-indicator-bg-size: auto;
 $control-indicator-disabled-bg: $input-disabled-bg;
 $control-label-disabled-color: $input-disabled-bg;
 $control-label-color: $text-color;
@@ -204,12 +230,12 @@ $control-indicator-checked-disabled-bg: $input-disabled-bg;
 /*Checkbox*/
 
 $checkbox-indicator-corner: 3px;
-$checkbox-indicator: url(./assets/images/icons/check.svg);
+//$checkbox-indicator: url(./assets/images/icons/check.svg);
 
 /*Radio*/
 
 $radio-indicator-corner: 50%;
-$radio-indicator: url(./assets/images/icons/circle.svg);
+//$radio-indicator: url(./assets/images/icons/circle.svg);
 
 /*Card*/
 

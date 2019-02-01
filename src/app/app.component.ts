@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {UI} from 'junte-ui';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  ui = UI;
 
   form: FormGroup;
   inputValue = 'test';

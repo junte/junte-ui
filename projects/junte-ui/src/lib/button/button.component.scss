@@ -2,93 +2,101 @@
 @import "../mixins";
 
 :host {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   min-height: $button-height;
 
-  button {
-    color: $button-color;
-    border: $button-border-width solid $button-border-color;
-    box-shadow: $button-active-box-shadow;
-    transition: $button-transition;
-    background-color: $gray-400;
-    outline: 0;
-    text-align: center;
-    white-space: nowrap;
-    user-select: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-sizing: border-box;
-
-    @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
-  }
-
-  &.disabled,
-  &:disabled {
-
-    button {
-      opacity: $button-disabled-opacity;
+  &[loading='true'] {
+    span {
+      visibility: collapse;
     }
-
-  }
-
-  &:not(:disabled):not(.disabled) {
-
-    button {
-      cursor: pointer;
-    }
-
   }
 
   @each $color, $value in $theme-colors {
-    &.#{$color} {
+    &[scheme='#{$color}'] {
       button {
         @include button-variant($value, $value);
       }
-    }
-  }
-
-  @each $color, $value in $theme-colors {
-    &.outline-#{$color} {
-      button {
-        @include button-outline-variant($value);
+      &[outline='ghost'] {
+        button {
+          @include button-outline-variant($value);
+        }
       }
     }
   }
 
-
-
-  &.small {
-
-    button {
-      @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $line-height-sm, $button-corner-sm)
-    }
-
+  &[size='small'] {
     min-height: $button-height-sm;
-
-  }
-
-  &.large {
-
     button {
-      @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $line-height-lg, $button-corner-lg)
+      @include button-size($button-padding-x-sm, $button-font-size-sm, $button-line-height-sm, $button-corner-sm)
     }
-
-    min-height: $button-height-lg;
-
+    ju-icon {
+      font-size: $button-icon-size-sm;
+    }
   }
 
+  &[size='large'] {
+    min-height: $button-height-lg;
+    button {
+      @include button-size($button-padding-x-lg, $button-font-size-lg, $button-line-height-lg, $button-corner-lg)
+    }
+    ju-icon {
+      font-size: $button-icon-size-lg;
+    }
+  }
 
   //fix!
-  &.secondary {
+  &[scheme='secondary'] {
     button {
       color: $text-color;
     }
 
   }
+
 }
 
+button {
+  color: $button-color;
+  border: $button-border-width solid $button-border-color;
+  box-shadow: $button-active-box-shadow;
+  transition: $button-transition;
+  background-color: $gray-400;
+  outline: 0;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  @include button-size($button-padding-x, $button-font-size, $button-line-height, $button-corner);
+
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ju-icon {
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+
+  &:disabled {
+    opacity: $button-disabled-opacity;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ju-icon {
+    margin-right: $button-icon-gutter;
+    font-size: $button-icon-size;
+  }
+}
