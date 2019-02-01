@@ -6,63 +6,53 @@
   position: relative;
   min-height: $button-height;
 
-  &.loading {
+  &[loading='true'] {
     span {
       visibility: collapse;
     }
   }
 
-  &.disabled,
-  &:disabled {
-    button {
-      opacity: $button-disabled-opacity;
-    }
-  }
-
-  &:not(:disabled):not(.disabled) {
-    button {
-      cursor: pointer;
-    }
-
-  }
-
   @each $color, $value in $theme-colors {
-    &.#{$color} {
+    &[scheme='#{$color}'] {
       button {
         @include button-variant($value, $value);
       }
-    }
-  }
-
-  @each $color, $value in $theme-colors {
-    &.outline-#{$color} {
-      button {
-        @include button-outline-variant($value);
+      &[outline='ghost'] {
+        button {
+          @include button-outline-variant($value);
+        }
       }
     }
   }
 
-  &.small {
+  &[size='small'] {
     min-height: $button-height-sm;
     button {
-      @include button-size($button-padding-y-sm, $button-padding-x-sm, $button-font-size-sm, $button-line-height-sm, $button-corner-sm)
+      @include button-size($button-padding-x-sm, $button-font-size-sm, $button-line-height-sm, $button-corner-sm)
+    }
+    ju-icon {
+      font-size: $button-icon-size-sm;
     }
   }
 
-  &.large {
+  &[size='large'] {
     min-height: $button-height-lg;
     button {
-      @include button-size($button-padding-y-lg, $button-padding-x-lg, $button-font-size-lg, $button-line-height-lg, $button-corner-lg)
+      @include button-size($button-padding-x-lg, $button-font-size-lg, $button-line-height-lg, $button-corner-lg)
+    }
+    ju-icon {
+      font-size: $button-icon-size-lg;
     }
   }
 
   //fix!
-  &.secondary {
+  &[scheme='secondary'] {
     button {
       color: $text-color;
     }
 
   }
+
 }
 
 button {
@@ -76,6 +66,37 @@ button {
   white-space: nowrap;
   user-select: none;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  @include button-size($button-padding-y, $button-padding-x, $button-font-size, $button-line-height, $button-corner);
+  @include button-size($button-padding-x, $button-font-size, $button-line-height, $button-corner);
+
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ju-icon {
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+
+  &:disabled {
+    opacity: $button-disabled-opacity;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ju-icon {
+    margin-right: $button-icon-gutter;
+    font-size: $button-icon-size;
+  }
 }

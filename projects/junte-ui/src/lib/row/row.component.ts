@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from '../enum/ui';
 
 @Component({
   selector: 'ju-row',
@@ -7,11 +8,25 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class RowComponent implements OnInit {
 
-  @Input() align = 'stretch';
-  @Input() justify  = 'start';
-  @Input() direction  = 'row';
-  @Input() wrap  = 'wrap';
-  @Input() alignContent  = 'start';
+  @HostBinding('attr.align')
+  @Input()
+  align: FlexAlign = FlexAlign.stretch;
+
+  @HostBinding('attr.justify')
+  @Input()
+  justify: FlexJustify = FlexJustify.start;
+
+  @HostBinding('attr.direction')
+  @Input()
+  direction: FlexDirection = FlexDirection.row;
+
+  @HostBinding('attr.wrap')
+  @Input()
+  wrap: FlexWrap = FlexWrap.wrap;
+
+  @HostBinding('attr.alignContent')
+  @Input()
+  alignContent: FlexAlignContent = FlexAlignContent.start;
 
   constructor() {
   }

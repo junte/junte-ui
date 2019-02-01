@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Icons, Sizes, Types} from '../enum/ui';
+import {Icons, Outline, Schemes, Sizes} from '../enum/ui';
 
 @Component({
   selector: 'ju-button',
@@ -8,24 +8,32 @@ import {Icons, Sizes, Types} from '../enum/ui';
 })
 export class ButtonComponent implements OnInit {
 
-  @Input() icon: Icons;
-
-  @HostBinding('class.loading')
+  @HostBinding('attr.loading')
   @Input()
   loading = false;
 
+  @HostBinding('attr.icon')
+  @Input() icon: Icons;
+
+  @HostBinding('attr.scheme')
   @Input()
-  type: Types = Types.primary;
+  scheme: Schemes = Schemes.primary;
 
+  @HostBinding('attr.size')
   @Input()
-  size: Sizes = Sizes.small;
+  size: Sizes = null;
 
-  @Input() text: string;
+  @HostBinding('attr.outline')
+  @Input()
+  outline: Outline = Outline.fill;
 
-  @HostBinding('class')
-  get class() {
-    return [this.type, this.size, this.loading ? 'loading' : null].join(' ');
-  }
+  @HostBinding('attr.disabled')
+  @Input()
+  disabled = false;
+
+  @HostBinding('attr.text')
+  @Input()
+  text = '';
 
   constructor() {
   }

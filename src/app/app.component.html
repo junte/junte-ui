@@ -2,48 +2,154 @@
 
   <h3>Button</h3>
 
-  <div style="display: flex">
+  <ju-container>
 
-    <div style="width: 30%;">
-      <ju-button class="secondary" [loading]="true">Button 11</ju-button>
+    <ju-row [align]="ui.flex.align.center">
+      <!--[stack]="ui.stack.horizontal.large"-->
+      <ju-col [alignSelf]="ui.flex.alignSelf.end">
+        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.small" text="Primary small"></ju-button>
 
-      <div style="height: 10px"></div>
+        <div style="height: 10px"></div>
 
-      <ju-button class="primary small">Button small</ju-button>
+        <ju-button [scheme]="ui.schemes.primary" text="Button primary"></ju-button>
 
-      <div style="height: 10px"></div>
+        <div style="height: 10px"></div>
 
-      <ju-button class="success large">Button large</ju-button>
+        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.large" text="Primary large"></ju-button>
 
-      <div style="height: 10px"></div>
-    </div>
+        <div style="height: 10px"></div>
+      </ju-col>
 
-    <div style="width: 30%;">
-      <ju-button class="outline-secondary">Button</ju-button>
+      <ju-col>
+        <ju-button [scheme]="ui.schemes.secondary" [size]="ui.sizes.small" [loading]="false"
+                   text="Secondary small"></ju-button>
 
-      <div style="height: 10px"></div>
+        <div style="height: 10px"></div>
 
-      <ju-button class="outline-primary">Button small</ju-button>
+        <ju-button [scheme]="ui.schemes.secondary" text="Secondary button"></ju-button>
 
-      <div style="height: 10px"></div>
+        <div style="height: 10px"></div>
 
-      <ju-button [type]="ui.types.primary" [size]="ui.sizes.small" outline="ghost"
-                 [icon]="ui.icons.home"
-                 text="Button large"></ju-button>
+        <ju-button [scheme]="ui.schemes.secondary" [size]="ui.sizes.large" text="Secondary large"></ju-button>
 
-      <div style="height: 10px"></div>
-    </div>
+        <div style="height: 10px"></div>
+      </ju-col>
+
+      <ju-col>
+        <ju-button [scheme]="ui.schemes.success" [size]="ui.sizes.small" text="Success small"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.success" text="Success button"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.success" [size]="ui.sizes.large" text="Success large"></ju-button>
+      </ju-col>
+
+      <ju-col>
+        <ju-button [scheme]="ui.schemes.danger" [size]="ui.sizes.small" text="Danger small"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.danger" text="Danger button"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.danger" [size]="ui.sizes.large" text="Danger large"></ju-button>
+      </ju-col>
+
+      <ju-col>
+        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.small" [outline]="ui.outline.ghost"
+                   text="Ghost small"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" text="Ghost button"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.primary"
+                   [outline]="ui.outline.ghost"
+                   [size]="ui.sizes.large"
+                   text="Ghost large"></ju-button>
+      </ju-col>
+
+      <ju-col>
+
+        <ju-button [scheme]="ui.schemes.primary" [loading]="true" text="Primary loading"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.primary" text="Primary disabled" [disabled]="true"></ju-button>
+
+        <div style="height: 10px"></div>
+
+      </ju-col>
+
+      <ju-col>
+
+        <ju-button [scheme]="ui.schemes.secondary" [loading]="true" text="Secondary loading"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.secondary" text="Secondary disabled" [disabled]="true"></ju-button>
+
+        <div style="height: 10px"></div>
+
+      </ju-col>
+
+      <ju-col>
+
+        <ju-button [scheme]="ui.schemes.success" [loading]="true" text="Success loading"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.success" text="Success disabled" [disabled]="true"></ju-button>
+
+        <div style="height: 10px"></div>
+
+      </ju-col>
+
+      <ju-col>
+
+        <ju-button [scheme]="ui.schemes.danger" [loading]="true" text="Danger loading"></ju-button>
+
+        <div style="height: 10px"></div>
+
+        <ju-button [scheme]="ui.schemes.danger" text="Danger disabled" [disabled]="true"></ju-button>
+
+        <div style="height: 10px"></div>
+
+      </ju-col>
 
 
-    <div style="width: 30%;">
-      <ju-button class="primary disabled">Button disabled</ju-button>
+      <ju-col>
 
-      <div style="height: 10px"></div>
+        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" [loading]="true"
+                   text="Ghost loading"></ju-button>
 
-      <ju-button class="outline-primary disabled">Button disabled</ju-button>
-    </div>
+        <div style="height: 10px"></div>
 
-  </div>
+        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" text="Ghost disabled"
+                   [disabled]="true"></ju-button>
+
+        <div style="height: 10px"></div>
+
+      </ju-col>
+
+      <ju-col>
+
+        <ju-button [icon]="ui.icons.plus" [scheme]="ui.schemes.primary" text="Button"></ju-button>
+        <ju-button [icon]="ui.icons.plus" [scheme]="ui.schemes.primary" [size]="ui.sizes.large" text="Button"></ju-button>
+
+      </ju-col>
+
+    </ju-row>
+
+  </ju-container>
+
+
 
   <h3>Input</h3>
 
@@ -73,64 +179,72 @@
                [(ngModel)]="selectedOption">
     </ju-select>
 
-  <div style="height: 10px"></div>
+    <div style="height: 10px"></div>
 
-  <h3>Checkbox</h3>
+    <h3>Checkbox</h3>
 
-  <ju-checkbox>Checkbox</ju-checkbox>
+    <ju-checkbox>Checkbox</ju-checkbox>
 
-  <div style="height: 10px"></div>
+    <div style="height: 10px"></div>
 
-  <ju-checkbox>Checkbox disabled</ju-checkbox>
+    <ju-checkbox>Checkbox disabled</ju-checkbox>
 
-  <div style="height: 10px"></div>
+    <div style="height: 10px"></div>
 
-  <h3>Radio</h3>
+    <h3>Radio</h3>
 
-  <ju-radio>Radio</ju-radio>
+    <ju-radio>Radio</ju-radio>
 
-  <div style="height: 10px"></div>
+    <div style="height: 10px"></div>
 
-  <h3>Card</h3>
+    <h3>Card</h3>
 
-  <div style="width: 30%">
+    <div style="width: 30%">
 
-    <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
+      <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
 
-      <ng-template #cardHeader>
-        <div>
-          Headline
-        </div>
-      </ng-template>
+        <ng-template #cardHeader>
+          <div>
+            Headline
+          </div>
+        </ng-template>
 
-      <ng-template #cardBody>
-        <div>
-          Body
-        </div>
-      </ng-template>
+        <ng-template #cardBody>
+          <div>
+            Body
+          </div>
+        </ng-template>
 
-      <ng-template #cardFooter>
-        <div>
-          Footer
-        </div>
-      </ng-template>
+        <ng-template #cardFooter>
+          <div>
+            Footer
+          </div>
+        </ng-template>
 
-    </ju-card>
+      </ju-card>
+
+    </div>
 
   </div>
-
-</div>
 
   <ju-container>
 
     <ju-row align="center" justify="start" alignContent="center">
 
-      <ju-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo quae quis recusandae repudiandae sint, sunt ullam voluptate!</ju-col>
+      <ju-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo
+        quae quis recusandae repudiandae sint, sunt ullam voluptate!
+      </ju-col>
       <ju-col span="3" alignSelf="start">456</ju-col>
       <ju-col span="3">789</ju-col>
       <ju-col span="3">789</ju-col>
-      <ju-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat. Architecto error libero rem.</ju-col>
-      <ju-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo fugiat ipsum mollitia praesentium rerum saepe temporibus?</ju-col>
+      <ju-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in
+        provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat.
+        Architecto error libero rem.
+      </ju-col>
+      <ju-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo
+        fugiat ipsum mollitia praesentium rerum saepe temporibus?
+      </ju-col>
 
     </ju-row>
 

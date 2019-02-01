@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ContainerComponent } from './container/container.component';
 import { RowComponent } from './row/row.component';
 import { ColComponent } from './col/col.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ColComponent } from './col/col.component';
     CardComponent,
     ContainerComponent,
     RowComponent,
-    ColComponent
+    ColComponent,
+    IconComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { ColComponent } from './col/col.component';
     CardComponent,
     ContainerComponent,
     RowComponent,
-    ColComponent
+    ColComponent,
+    IconComponent
   ]
 })
 export class JunteUiModule {

@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {FlexAlignSelf} from '../enum/ui';
 
 @Component({
   selector: 'ju-col',
@@ -7,9 +8,15 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ColComponent implements OnInit {
 
-  @Input() span = 1;
-  @Input() alignSelf = 'auto';
-  @Input() order = 0;
+  @HostBinding('attr.span')
+  @Input() span = null;
+
+  @HostBinding('attr.alignSelf')
+  @Input()
+  alignSelf: FlexAlignSelf = null;
+
+  @HostBinding('attr.order')
+  @Input() order = null;
 
   constructor() {
   }
