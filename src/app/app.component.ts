@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
     {value: 3, label: 'Option 3'},
   ];
 
+  loading = {};
+
   constructor(private fb: FormBuilder) {
   }
 

@@ -10,19 +10,19 @@ export enum Schemes {
   primary = 'primary',
   secondary = 'secondary',
   success = 'success',
-  warning = 'warning',
-  danger = 'danger'
+  fail = 'fail'
 }
 
 
 export enum Sizes {
   small = 'small',
+  normal = 'normal',
   large = 'large'
 }
 
 export enum Outline {
   ghost = 'ghost',
-  fill = ''
+  fill = 'fill'
 }
 
 export enum FlexAlign {

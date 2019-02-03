@@ -29,22 +29,3 @@
   }
 }
 
-@mixin button-outline-variant($color) {
-  color: $color;
-  background-color: transparent;
-  background-image: none;
-  border-color: $color;
-
-  &:hover,
-  &:focus {
-    background-color: $color;
-    border-color: $color;
-    color: color-yiq($color);
-  }
-
-  &.disabled,
-  &:disabled {
-    color: $color;
-    background-color: transparent;
-  }
-}

@@ -1,12 +1,12 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from '../enum/ui';
+import {Component, HostBinding, Input} from '@angular/core';
+import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from '../../enum/ui';
 
 @Component({
   selector: 'ju-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss']
 })
-export class RowComponent implements OnInit {
+export class RowComponent {
 
   @HostBinding('attr.align')
   @Input()
@@ -27,11 +27,5 @@ export class RowComponent implements OnInit {
   @HostBinding('attr.alignContent')
   @Input()
   alignContent: FlexAlignContent = FlexAlignContent.start;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }

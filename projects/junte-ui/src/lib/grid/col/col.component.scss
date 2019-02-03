@@ -1,5 +1,13 @@
-@import "../variables";
-@import "../mixins";
+@import "../../variables";
+@import "../../mixins";
+
+$grid-breakpoints: (
+  mobile: 576px,
+  tablet: 768px,
+  desktop: 992px,
+  wide: 1200px,
+  xxl: 1600px
+);
 
 :host {
   display: block;
@@ -7,8 +15,9 @@
   box-sizing: border-box;
   @for $i from 1 through $grid-columns {
     &[span = "#{$i}"] {
-      flex: 0 0 percentage($i/$grid-columns);
-      max-width: percentage($i/$grid-columns);
+      $width: $i/$grid-columns;
+      flex: 0 0 percentage($width);
+      max-width: percentage($width);
     }
   }
 
@@ -16,8 +25,9 @@
     @media screen and (min-width: $value) {
       @for $i from 1 through $grid-columns {
         &[#{$breakpoints} = '#{$i}'] {
-          flex: 0 0 percentage($i/$grid-columns);
-          max-width: percentage($i/$grid-columns);
+          $width: $i/$grid-columns;
+          flex: 0 0 percentage($width);
+          max-width: percentage($width);
         }
       }
     }
@@ -41,8 +51,4 @@
   &[alignSelf='stretch'] {
     align-self: stretch;
   }
-
-  //&[order=#{$i}] {
-  //  order: $i;
-  //}
 }

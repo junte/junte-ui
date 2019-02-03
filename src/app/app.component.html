@@ -1,255 +1,139 @@
-<div style="padding: 10px 10px 100px 30px; display: block; background-color: #e5e5e5; min-height: 100vh">
-
-  <h3>Button</h3>
-
-  <ju-container>
-
-    <ju-row [align]="ui.flex.align.center">
-      <!--[stack]="ui.stack.horizontal.large"-->
-      <ju-col [alignSelf]="ui.flex.alignSelf.end">
-        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.small" text="Primary small"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary" text="Button primary"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.large" text="Primary large"></ju-button>
-
-        <div style="height: 10px"></div>
-      </ju-col>
-
-      <ju-col>
-        <ju-button [scheme]="ui.schemes.secondary" [size]="ui.sizes.small" [loading]="false"
-                   text="Secondary small"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.secondary" text="Secondary button"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.secondary" [size]="ui.sizes.large" text="Secondary large"></ju-button>
-
-        <div style="height: 10px"></div>
-      </ju-col>
-
-      <ju-col>
-        <ju-button [scheme]="ui.schemes.success" [size]="ui.sizes.small" text="Success small"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.success" text="Success button"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.success" [size]="ui.sizes.large" text="Success large"></ju-button>
-      </ju-col>
-
-      <ju-col>
-        <ju-button [scheme]="ui.schemes.danger" [size]="ui.sizes.small" text="Danger small"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.danger" text="Danger button"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.danger" [size]="ui.sizes.large" text="Danger large"></ju-button>
-      </ju-col>
-
-      <ju-col>
-        <ju-button [scheme]="ui.schemes.primary" [size]="ui.sizes.small" [outline]="ui.outline.ghost"
-                   text="Ghost small"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" text="Ghost button"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary"
-                   [outline]="ui.outline.ghost"
-                   [size]="ui.sizes.large"
-                   text="Ghost large"></ju-button>
-      </ju-col>
-
-      <ju-col>
-
-        <ju-button [scheme]="ui.schemes.primary" [loading]="true" text="Primary loading"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary" text="Primary disabled" [disabled]="true"></ju-button>
-
-        <div style="height: 10px"></div>
-
-      </ju-col>
-
-      <ju-col>
-
-        <ju-button [scheme]="ui.schemes.secondary" [loading]="true" text="Secondary loading"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.secondary" text="Secondary disabled" [disabled]="true"></ju-button>
-
-        <div style="height: 10px"></div>
-
-      </ju-col>
-
-      <ju-col>
-
-        <ju-button [scheme]="ui.schemes.success" [loading]="true" text="Success loading"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.success" text="Success disabled" [disabled]="true"></ju-button>
-
-        <div style="height: 10px"></div>
-
-      </ju-col>
-
-      <ju-col>
-
-        <ju-button [scheme]="ui.schemes.danger" [loading]="true" text="Danger loading"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.danger" text="Danger disabled" [disabled]="true"></ju-button>
-
-        <div style="height: 10px"></div>
-
-      </ju-col>
-
-
-      <ju-col>
-
-        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" [loading]="true"
-                   text="Ghost loading"></ju-button>
-
-        <div style="height: 10px"></div>
-
-        <ju-button [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost" text="Ghost disabled"
-                   [disabled]="true"></ju-button>
-
-        <div style="height: 10px"></div>
-
-      </ju-col>
-
-      <ju-col>
-
-        <ju-button [icon]="ui.icons.plus" [scheme]="ui.schemes.primary" text="Button"></ju-button>
-        <ju-button [icon]="ui.icons.plus" [scheme]="ui.schemes.primary" [size]="ui.sizes.large" text="Button"></ju-button>
-
-      </ju-col>
-
-    </ju-row>
-
-  </ju-container>
-
-
-
-  <h3>Input</h3>
-
-  <div style="width: 30%">
-
-    <p>Reactive Forms:</p>
-    <form [formGroup]="form">
-      <ju-input formControlName="value"></ju-input>
-    </form>
-    <pre>{{ form.value | json }}</pre>
-
-    <div style="height: 10px"></div>
-    <p>[(ngModel)]:</p>
-    <ju-input [(ngModel)]="inputValue"></ju-input>
-
-    {{inputValue}}
-
-  </div>
-
-  <h3>Select</h3>
-
-  <div style="width: 30%">
-    Option: {{selectedOption}}
-    <ju-select [options]="options"
-               labelField="label"
-               valueField="value"
-               [(ngModel)]="selectedOption">
-    </ju-select>
-
-    <div style="height: 10px"></div>
-
-    <h3>Checkbox</h3>
-
-    <ju-checkbox>Checkbox</ju-checkbox>
-
-    <div style="height: 10px"></div>
-
-    <ju-checkbox>Checkbox disabled</ju-checkbox>
-
-    <div style="height: 10px"></div>
-
-    <h3>Radio</h3>
-
-    <ju-radio>Radio</ju-radio>
-
-    <div style="height: 10px"></div>
-
-    <h3>Card</h3>
-
-    <div style="width: 30%">
-
-      <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
-
-        <ng-template #cardHeader>
-          <div>
-            Headline
-          </div>
-        </ng-template>
-
-        <ng-template #cardBody>
-          <div>
-            Body
-          </div>
-        </ng-template>
-
-        <ng-template #cardFooter>
-          <div>
-            Footer
-          </div>
-        </ng-template>
-
-      </ju-card>
-
-    </div>
-
-  </div>
-
-  <ju-container>
-
-    <ju-row align="center" justify="start" alignContent="center">
-
-      <ju-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo
-        quae quis recusandae repudiandae sint, sunt ullam voluptate!
-      </ju-col>
-      <ju-col span="3" alignSelf="start">456</ju-col>
-      <ju-col span="3">789</ju-col>
-      <ju-col span="3">789</ju-col>
-      <ju-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in
-        provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat.
-        Architecto error libero rem.
-      </ju-col>
-      <ju-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo
-        fugiat ipsum mollitia praesentium rerum saepe temporibus?
-      </ju-col>
-
-    </ju-row>
-
-  </ju-container>
+<ju-container>
+  <h1>Buttons</h1>
+  <ju-row>
+    <ju-col *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+      <ju-stack>
+        <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
+          <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+            <ju-button [scheme]="scheme" [size]="size" [outline]="outline"
+                       [text]="scheme | titlecase"></ju-button>
+            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
+                       [text]="scheme | titlecase"></ju-button>
+            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                       [text]="scheme | titlecase"></ju-button>
+            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                       [text]="scheme | titlecase" [loading]="true"></ju-button>
+            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                       [text]="scheme | titlecase" [badge]="5"></ju-button>
+          </ng-container>
+        </ng-container>
+      </ju-stack>
+    </ju-col>
+  </ju-row>
+</ju-container>
+
+<ju-container>
+  <h1>Grid</h1>
+  <h2>12 columns</h2>
+  <ju-row row>
+    <ju-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
+      Column {{col}}
+    </ju-col>
+  </ju-row>
+  <h2>6 columns</h2>
+  <ju-row row>
+    <ju-col *ngFor="let col of [1, 2, 3, 4, 5, 6]" col [span]="2">
+      Column {{col}}
+    </ju-col>
+  </ju-row>
+</ju-container>
+
+
+<h3>Input</h3>
+
+<div style="width: 30%">
+
+  <p>Reactive Forms:</p>
+  <form [formGroup]="form">
+    <ju-input formControlName="value"></ju-input>
+  </form>
+  <pre>{{ form.value | json }}</pre>
+
+  <div style="height: 10px"></div>
+  <p>[(ngModel)]:</p>
+  <ju-input [(ngModel)]="inputValue"></ju-input>
+
+  {{inputValue}}
 
 </div>
 
+<h3>Select</h3>
 
+<div style="width: 30%">
+  Option: {{selectedOption}}
+  <ju-select [options]="options"
+             labelField="label"
+             valueField="value"
+             [(ngModel)]="selectedOption">
+  </ju-select>
+
+  <div style="height: 10px"></div>
+
+  <h3>Checkbox</h3>
+
+  <ju-checkbox>Checkbox</ju-checkbox>
+
+  <div style="height: 10px"></div>
+
+  <ju-checkbox>Checkbox disabled</ju-checkbox>
+
+  <div style="height: 10px"></div>
+
+  <h3>Radio</h3>
+
+  <ju-radio>Radio</ju-radio>
+
+  <div style="height: 10px"></div>
+
+  <h3>Card</h3>
+
+  <div style="width: 30%">
+
+    <ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
+
+      <ng-template #cardHeader>
+        <div>
+          Headline
+        </div>
+      </ng-template>
+
+      <ng-template #cardBody>
+        <div>
+          Body
+        </div>
+      </ng-template>
+
+      <ng-template #cardFooter>
+        <div>
+          Footer
+        </div>
+      </ng-template>
+
+    </ju-card>
+
+  </div>
+
+</div>
+
+<ju-container>
+
+  <ju-row align="center" justify="start" alignContent="center">
+
+    <ju-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo
+      quae quis recusandae repudiandae sint, sunt ullam voluptate!
+    </ju-col>
+    <ju-col span="3" alignSelf="start">456</ju-col>
+    <ju-col span="3">789</ju-col>
+    <ju-col span="3">789</ju-col>
+    <ju-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in
+      provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat.
+      Architecto error libero rem.
+    </ju-col>
+    <ju-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo
+      fugiat ipsum mollitia praesentium rerum saepe temporibus?
+    </ju-col>
+
+  </ju-row>
+
+</ju-container>

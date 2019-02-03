@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 import {Icons, Outline, Schemes, Sizes} from '../enum/ui';
 
 @Component({
@@ -6,7 +6,7 @@ import {Icons, Outline, Schemes, Sizes} from '../enum/ui';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
 
   @HostBinding('attr.loading')
   @Input()
@@ -21,24 +21,24 @@ export class ButtonComponent implements OnInit {
 
   @HostBinding('attr.size')
   @Input()
-  size: Sizes = null;
+  size: Sizes = Sizes.normal;
 
   @HostBinding('attr.outline')
   @Input()
   outline: Outline = Outline.fill;
 
+  @HostBinding('attr.fluid')
+  @Input()
+  fluid = false;
+
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
-
-  @HostBinding('attr.text')
+  
   @Input()
-  text = '';
+  text: string;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @Input()
+  badge: number;
 
 }

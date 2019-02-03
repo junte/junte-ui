@@ -19,23 +19,36 @@ $gray-800: #828282;
 $gray-900: #4F4F4F;
 
 
-$primary: $purple;
-$secondary: $gray-500;
-$success: $green;
+$primary-color: $purple;
+$secondary-color: $gray-500;
+$success-color: $green;
 $warning: $orange;
-$danger: $red;
+$fail-color: $red;
 $primary-light: $purple-light;
 $primary-dark: $purple-dark;
 $text-color: $gray-900;
 
+$white-color: white;
+
+$scheme-primary: 'primary';
+$scheme-secondary: 'secondary';
+$scheme-success: 'success';
+$scheme-fail: 'fail';
+
+$size-small: 'small';
+$size-normal: 'normal';
+$size-large: 'large';
+
+$outline-ghost: 'ghost';
+
 
 $theme-colors: ();
 $theme-colors: map-merge((
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
+  "primary": $primary-color,
+  "secondary": $secondary-color,
+  "success": $success-color,
   "warning":    $warning,
-  "danger":     $danger,
+  "danger": $fail-color,
   "primary-light": $primary-light,
   "primary-dark": $primary-dark,
   "text-color": $text-color
@@ -60,14 +73,6 @@ $gutter-5: ($spacer * 8);
 $gutter-6: ($spacer * 12);
 
 /*Grid*/
-
-$grid-breakpoints: (
-  mobile: 576px,
-  tablet: 768px,
-  desktop: 992px,
-  wide: 1200px,
-  xxl: 1600px
-);
 
 $container-max-widths: (
   sm: 540px, //
@@ -116,46 +121,6 @@ $headings-font-weight: 500;
 $headings-line-height: 1.2;
 $headings-color: inherit;
 
-/*Button*/
-
-$button-padding-x: 2.7rem;
-//$button-padding-y: .65rem;
-$button-padding-x-sm: 3.7rem;
-//$button-padding-y-sm: .5rem;
-$button-padding-x-lg: 2.5rem;
-//$button-padding-y-lg: 1rem;
-
-$button-line-height: 1;
-$button-line-height-sm: 1;
-$button-line-height-lg: 1;
-
-$button-corner: $corner-lg;
-$button-corner-sm: $corner-lg;
-$button-corner-lg: $corner-lg;
-
-$button-color: white;
-
-$button-font-size: $font-size-base;
-$button-font-size-sm: $font-size-sm;
-$button-font-size-lg: $font-size-lg;
-
-$button-border-width: 1px;
-
-$button-border-color: transparent;
-$button-active-box-shadow: none;
-$button-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
-$button-disabled-opacity: .65;
-
-$button-height: 38px;
-$button-height-sm: 30px;
-$button-height-lg: 50px;
-
-$button-icon-gutter: 10px;
-$button-icon-size: 10px;
-$button-icon-size-sm: 8px;
-$button-icon-size-lg: 14px;
-
 /*Input*/
 
 $input-bg: white;
@@ -184,7 +149,7 @@ $input-corner-lg: $corner-sm;
 $input-corner-sm: $corner-sm;
 
 $input-focus-bg: $input-bg;
-$input-focus-border-color: $primary;
+$input-focus-border-color: $primary-color;
 $input-focus-color: $text-color;
 
 $input-font-size: $font-size-base;
@@ -216,26 +181,26 @@ $select-height: 38px;
 $control-indicator-size: 1.125rem;
 $control-gutter: 10px;
 $control-indicator-bg: white;
-$control-indicator-border-color: $primary;
+$control-indicator-border-color: $primary-color;
 $control-indicator-border-width: 1px;
 $control-indicator-bg-size: auto;
 $control-indicator-disabled-bg: $input-disabled-bg;
 $control-label-disabled-color: $input-disabled-bg;
 $control-label-color: $text-color;
 $control-indicator-checked-bg: white;
-$control-indicator-checked-border-color: $primary;
+$control-indicator-checked-border-color: $primary-color;
 $control-indicator-checked-disabled-bg: $input-disabled-bg;
 
 
 /*Checkbox*/
 
 $checkbox-indicator-corner: 3px;
-//$checkbox-indicator: url(./assets/images/icons/check.svg);
+$checkbox-indicator: url(./assets/images/icons/check.svg);
 
 /*Radio*/
 
 $radio-indicator-corner: 50%;
-//$radio-indicator: url(./assets/images/icons/circle.svg);
+$radio-indicator: url(./assets/images/icons/circle.svg);
 
 /*Card*/
 
