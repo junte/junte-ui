@@ -1,6 +1,6 @@
 ## For development:
 ```
-npm run build:lib (can use flag: --watch)
+npm run build:lib:watch
 npm run dev
 ```
 
