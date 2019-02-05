@@ -1,11 +1,45 @@
 @import "../../variables";
 @import "../../mixins";
 
+$gutter-small: 'small';
+$gutter-normal: 'normal';
+$gutter-large: 'large';
+
+$gutters: (
+  #{$gutter-small}: (
+    gutter: 5px
+  ),
+  #{$gutter-normal}: (
+    gutter: 15px
+  ),
+  #{$gutter-large}: (
+    gutter: 30px
+  )
+);
+
+$type-vertical: 'vertical';
+$type-horizontal: 'horizontal';
+
+
+@mixin stack($property, $gutter) {
+  ::ng-deep > :not(:first-child) {
+    #{$property}: #{map-get($gutter, gutter)};
+  }
+}
+
 :host {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  ::ng-deep > :not(:first-child) {
-    margin-top: 5px;
+  @each $gutter, $value in $gutters {
+    &[gutter = '#{$gutter}'] {
+      &[type = '#{$type-vertical}'] {
+        flex-direction: column;
+        align-items: flex-start;
+        @include stack(margin-top, $value);
+      }
+      &[type = '#{$type-horizontal}'] {
+        flex-direction: row;
+        @include stack(margin-left, $value);
+      }
+    }
   }
 }

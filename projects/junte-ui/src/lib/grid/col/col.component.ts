@@ -9,7 +9,7 @@ import {FlexAlignSelf} from '../../enum/ui';
 export class ColComponent {
 
   @HostBinding('attr.span')
-  @Input() span: number = null;
+  @Input() span: number = 1;
 
   @HostBinding('attr.alignSelf')
   @Input()

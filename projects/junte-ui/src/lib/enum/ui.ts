@@ -74,6 +74,17 @@ export enum FlexAlignSelf {
   auto = 'auto'
 }
 
+export enum StackType {
+  horizontal = 'horizontal',
+  vertical = 'vertical'
+}
+
+export enum StackGutter {
+  small = 'small',
+  normal = 'normal',
+  large = 'large'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -86,6 +97,10 @@ export class UI {
     wrap: FlexWrap,
     alignContent: FlexAlignContent,
     alignSelf: FlexAlignSelf
+  };
+  static stack = {
+    type: StackType,
+    gutter: StackGutter
   };
 }
 

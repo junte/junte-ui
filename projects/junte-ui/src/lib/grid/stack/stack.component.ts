@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {FlexAlignSelf} from '../../enum/ui';
+import {StackType, StackGutter} from '../../enum/ui';
 
 @Component({
   selector: 'ju-stack',
@@ -9,6 +9,8 @@ import {FlexAlignSelf} from '../../enum/ui';
 export class StackComponent {
 
   @HostBinding('attr.gutter')
-  @Input() gutter: number;
+  @Input() gutter:  StackGutter = StackGutter.normal;
 
+  @HostBinding('attr.type')
+  @Input() type: StackType = StackType.vertical;
 }
