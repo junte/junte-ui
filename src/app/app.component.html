@@ -1,91 +1,91 @@
-<ju-container>
+<jnt-container>
   <h1>Buttons</h1>
-  <ju-row>
-    <ju-col [span]="3"
-            *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <ju-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
+  <jnt-row>
+    <jnt-col [span]="3"
+             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
         <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
           <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-            <ju-button [scheme]="scheme" [size]="size" [outline]="outline"
-                       [text]="scheme | titlecase"></ju-button>
-            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
-                       [text]="scheme | titlecase"></ju-button>
-            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                       [text]="scheme | titlecase"></ju-button>
-            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                       [text]="scheme | titlecase" [loading]="true"></ju-button>
-            <ju-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                       [text]="scheme | titlecase" [badge]="5"></ju-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase" [loading]="true"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase" [badge]="5"></jnt-button>
           </ng-container>
         </ng-container>
-      </ju-stack>
-    </ju-col>
-  </ju-row>
-</ju-container>
+      </jnt-stack>
+    </jnt-col>
+  </jnt-row>
+</jnt-container>
 
-<ju-container>
+<jnt-container>
   <h1>Grid</h1>
   <h2>12 columns</h2>
-  <ju-row row>
-    <ju-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
+  <jnt-row row>
+    <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
       Column {{col}}
-    </ju-col>
-  </ju-row>
+    </jnt-col>
+  </jnt-row>
   <h2>6 columns</h2>
-  <ju-row row>
-    <ju-col *ngFor="let col of [1, 2, 3, 4, 5, 6]" col [span]="2">
+  <jnt-row row>
+    <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6]" col [span]="2">
       Column {{col}}
-    </ju-col>
-  </ju-row>
-</ju-container>
+    </jnt-col>
+  </jnt-row>
+</jnt-container>
 
-<ju-container>
+<jnt-container>
   <h1>Stack</h1>
   <h2>Vertical</h2>
-  <ju-row>
-    <ju-col *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <ju-stack [gutter]="gutter">
+  <jnt-row>
+    <jnt-col *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
+      <jnt-stack [gutter]="gutter">
         <div *ngFor="let col of [1, 2, 3, 4, 5]" col>Col</div>
-      </ju-stack>
-    </ju-col>
-  </ju-row>
+      </jnt-stack>
+    </jnt-col>
+  </jnt-row>
 
 
   <h2>Horizontal</h2>
-  <ju-stack>
-    <ju-row *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <ju-stack [gutter]="gutter" [type]="ui.stack.type.horizontal">
+  <jnt-stack>
+    <jnt-row *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
+      <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal">
         <div *ngFor="let col of [1, 2, 3, 4, 5]" col>Col</div>
-      </ju-stack>
-    </ju-row>
-  </ju-stack>
-</ju-container>
+      </jnt-stack>
+    </jnt-row>
+  </jnt-stack>
+</jnt-container>
 
 
-<ju-container>
+<jnt-container>
   <h1>Input</h1>
-  <ju-row>
-    <ju-col span="4">
-      <ju-input placeholder="Test"></ju-input>
-    </ju-col>
-    <ju-col span="4"
-            *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <ju-input [scheme]="scheme" placeholder="Test"></ju-input>
-    </ju-col>
-  </ju-row>
-</ju-container>
+  <jnt-row>
+    <jnt-col span="4">
+      <jnt-input placeholder="Test"></jnt-input>
+    </jnt-col>
+    <jnt-col span="4"
+             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+      <jnt-input [scheme]="scheme" placeholder="Test"></jnt-input>
+    </jnt-col>
+  </jnt-row>
+</jnt-container>
 
 
 <!--<p>Reactive Forms:</p>-->
 <!--<form [formGroup]="form">-->
-<!--<ju-input formControlName="value"></ju-input>-->
+<!--<jnt-input formControlName="value"></jnt-input>-->
 <!--</form>-->
 <!--<pre>{{ form.value | json }}</pre>-->
 
 
 <!--<div style="height: 10px"></div>-->
 <!--<p>[(ngModel)]:</p>-->
-<!--<ju-input [(ngModel)]="inputValue"></ju-input>-->
+<!--<jnt-input [(ngModel)]="inputValue"></jnt-input>-->
 
 <!--{{inputValue}}-->
 
@@ -95,27 +95,27 @@
 
 <!--<div style="width: 30%">-->
 <!--Option: {{selectedOption}}-->
-<!--<ju-select [options]="options"-->
+<!--<jnt-select [options]="options"-->
 <!--labelField="label"-->
 <!--valueField="value"-->
 <!--[(ngModel)]="selectedOption">-->
-<!--</ju-select>-->
+<!--</jnt-select>-->
 
 <!--<div style="height: 10px"></div>-->
 
 <!--<h3>Checkbox</h3>-->
 
-<!--<ju-checkbox>Checkbox</ju-checkbox>-->
+<!--<jnt-checkbox>Checkbox</jnt-checkbox>-->
 
 <!--<div style="height: 10px"></div>-->
 
-<!--<ju-checkbox>Checkbox disabled</ju-checkbox>-->
+<!--<jnt-checkbox>Checkbox disabled</jnt-checkbox>-->
 
 <!--<div style="height: 10px"></div>-->
 
 <!--<h3>Radio</h3>-->
 
-<!--<ju-radio>Radio</ju-radio>-->
+<!--<jnt-radio>Radio</jnt-radio>-->
 
 <!--<div style="height: 10px"></div>-->
 
@@ -123,7 +123,7 @@
 
 <!--<div style="width: 30%">-->
 
-<!--<ju-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">-->
+<!--<jnt-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">-->
 
 <!--<ng-template #cardHeader>-->
 <!--<div>-->
@@ -143,31 +143,31 @@
 <!--</div>-->
 <!--</ng-template>-->
 
-<!--</ju-card>-->
+<!--</jnt-card>-->
 
 <!--</div>-->
 
 <!--</div>-->
 
-<!--<ju-container>-->
+<!--<jnt-container>-->
 
-<!--<ju-row align="center" justify="start" alignContent="center">-->
+<!--<jnt-row align="center" justify="start" alignContent="center">-->
 
-<!--<ju-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing-->
+<!--<jnt-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing-->
 <!--elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo-->
 <!--quae quis recusandae repudiandae sint, sunt ullam voluptate!-->
-<!--</ju-col>-->
-<!--<ju-col span="3" alignSelf="start">456</ju-col>-->
-<!--<ju-col span="3">789</ju-col>-->
-<!--<ju-col span="3">789</ju-col>-->
-<!--<ju-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in-->
+<!--</jnt-col>-->
+<!--<jnt-col span="3" alignSelf="start">456</jnt-col>-->
+<!--<jnt-col span="3">789</jnt-col>-->
+<!--<jnt-col span="3">789</jnt-col>-->
+<!--<jnt-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in-->
 <!--provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat.-->
 <!--Architecto error libero rem.-->
-<!--</ju-col>-->
-<!--<ju-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo-->
+<!--</jnt-col>-->
+<!--<jnt-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo-->
 <!--fugiat ipsum mollitia praesentium rerum saepe temporibus?-->
-<!--</ju-col>-->
+<!--</jnt-col>-->
 
-<!--</ju-row>-->
+<!--</jnt-row>-->
 
-<!--</ju-container>-->
+<!--</jnt-container>-->

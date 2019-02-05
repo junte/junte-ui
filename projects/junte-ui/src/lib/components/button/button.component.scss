@@ -1,0 +1,177 @@
+@import "../../variables";
+@import "../../mixins";
+
+$schemes: (
+  #{$scheme-primary}: (
+    color: $white-color,
+    color-outline: $primary-color,
+    border-outline: $primary-color,
+    background: $primary-color,
+    background-hover: darken($primary-color, 7.5%)
+  ),
+  #{$scheme-secondary}: (
+    color: '#4F4F4F',
+    color-outline: '#4F4F4F',
+    border-outline: '#4F4F4F',
+    background: $secondary-color,
+    background-hover: darken($secondary-color, 7.5%)
+  ),
+  #{$scheme-success}: (
+    color: $white-color,
+    color-outline: $success-color,
+    border-outline: $success-color,
+    background: $success-color,
+    background-hover: darken($success-color, 7.5%)
+  ),
+  #{$scheme-fail}: (
+    color: $white-color,
+    color-outline: $fail-color,
+    border-outline: $fail-color,
+    background: $fail-color,
+    background-hover: darken($fail-color, 7.5%)
+  )
+);
+
+$sizes: (
+  #{$size-small}: (
+    padding: 0 50px,
+    font-size: 12px,
+    min-height: 30px
+  ),
+  #{$size-normal}: (
+    padding: 0 38px,
+    font-size: 14px,
+    min-height: 38px
+  ),
+  #{$size-large}: (
+    padding: 0 36px,
+    font-size: 16px,
+    min-height: 50px
+  )
+);
+
+@mixin scheme($scheme) {
+  button {
+    color: #{map-get($scheme, color)};
+    background: #{map-get($scheme, background)};
+    &:hover, &:focus {
+      background-color: #{map-get($scheme, background-hover)};
+    }
+    &:focus {
+      box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
+    }
+  }
+}
+
+@mixin outline($scheme) {
+
+  button {
+    color: #{map-get($scheme, color-outline)};
+    background-color: $white-color;
+    border-color: #{map-get($scheme, border-outline)};
+    &:hover, &:focus {
+
+    }
+  }
+}
+
+@mixin size($size) {
+  button {
+    padding: #{map-get($size, padding)};
+    font-size: #{map-get($size, font-size)};
+    min-height: #{map-get($size, min-height)};
+  }
+}
+
+:host {
+  display: inline-flex;
+  position: relative;
+
+  @each $scheme, $map in $schemes {
+    &[scheme='#{$scheme}'] {
+      @include scheme($map);
+      &[outline='#{$outline-ghost}'] {
+        button {
+          border: 1px solid transparent;
+        }
+        @include outline($map);
+      }
+    }
+  }
+
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+
+  &[loading='true'] {
+    pointer-events: none;
+    button {
+      cursor: default;
+      [text], > [icon] {
+        visibility: collapse;
+      }
+    }
+  }
+  &[disabled='true'] {
+    opacity: .65;
+    pointer-events: none;
+    button {
+      cursor: default;
+    }
+  }
+  &[fluid='true'] {
+    width: 100%;
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  outline: 0;
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: 40px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  > [icon] {
+    margin-right: 10px;
+  }
+  [text] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  [badge] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    background-color: white;
+    color: $primary-color;
+    border-radius: 50%;
+    min-width: 15px;
+    min-height: 15px;
+    padding: 2.5px;
+  }
+
+  [loading] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    [icon] {
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+}
