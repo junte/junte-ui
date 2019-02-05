@@ -17,7 +17,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppRoutingModule,
     JunteUiModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

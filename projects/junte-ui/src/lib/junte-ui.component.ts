@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ju-junte-ui',
+  selector: 'jnt-junte-ui',
   template: `
     <p>
       junte-ui works!
