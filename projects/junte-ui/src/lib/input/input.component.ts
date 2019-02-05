@@ -1,5 +1,6 @@
-import {Component, forwardRef} from '@angular/core';
+import {Component, forwardRef, HostBinding, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Schemes} from '../enum/ui';
 
 @Component({
   selector: 'ju-input',
@@ -14,6 +15,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   ]
 })
 export class InputComponent implements ControlValueAccessor {
+
+  @HostBinding('attr.scheme')
+  @Input()
+  scheme: Schemes;
+
+  @Input()
+  placeholder: string;
 
   private _value: string;
 
