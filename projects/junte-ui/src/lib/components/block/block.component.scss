@@ -1,0 +1,44 @@
+@import "../../variables";
+@import "../../mixins";
+
+$block-loading-bg: rgba(0,0,0,.85);
+$block-error-bg: $gray-800;
+
+$block-loading-icon-size: 40px;
+$block-error-icon-size: 40px;
+
+:host {
+  display: block;
+  position: relative;
+  min-height: 60px;
+}
+
+[loading], [error] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  [icon] {
+    color: white;
+  }
+}
+
+[loading] {
+  background-color: $block-loading-bg;
+  [icon] {
+    font-size: $block-loading-icon-size;
+  }
+}
+
+[error] {
+  background-color: $block-error-bg;
+  [icon] {
+    font-size: $block-error-icon-size;
+  }
+}
+
+
