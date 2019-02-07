@@ -14,6 +14,7 @@ import { ColComponent } from './components/grid/col/col.component';
 import { IconComponent } from './components/icon/icon.component';
 import {StackDirective} from './directives/stack';
 import {StackComponent} from './components/grid/stack/stack.component';
+import { BlockComponent } from './components/block/block.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {StackComponent} from './components/grid/stack/stack.component';
     ColComponent,
     IconComponent,
     StackDirective,
-    StackComponent
+    StackComponent,
+    BlockComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import {StackComponent} from './components/grid/stack/stack.component';
     ColComponent,
     IconComponent,
     StackDirective,
-    StackComponent
+    StackComponent,
+    BlockComponent
   ]
 })
 export class JunteUiModule {
