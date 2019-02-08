@@ -27,7 +27,7 @@ gulp.task('iconfont', function () {
           fontPath: '../fonts/icons/',
           className: 'icon'
         }))
-        .pipe(rename('_icons.scss'))
+        .pipe(rename('icons.scss'))
         .pipe(gulp.dest('src/lib/assets/styles/'))
     })
     .pipe(gulp.dest('src/lib/assets/fonts/icons/'))
