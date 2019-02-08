@@ -1,16 +1,16 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-$block-loading-bg: rgba(0,0,0,.85);
-$block-error-bg: $gray-800;
+$block-loading-bg: rgba(0,0,0,.75);
+$block-loading-spinner-color: white;
 
-$block-loading-icon-size: 40px;
+$block-error-bg: $gray-800;
 $block-error-icon-size: 40px;
+$block-error-icon-color: white;
 
 :host {
   display: block;
   position: relative;
-  min-height: 60px;
 }
 
 [loading], [error] {
@@ -22,15 +22,16 @@ $block-error-icon-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 60px;
   [icon] {
-    color: white;
+    color: $block-error-icon-color;
   }
 }
 
 [loading] {
   background-color: $block-loading-bg;
-  [icon] {
-    font-size: $block-loading-icon-size;
+  [spinner] {
+    border-color: $block-loading-spinner-color;
   }
 }
 

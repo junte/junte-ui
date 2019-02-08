@@ -34,7 +34,7 @@ export class ButtonComponent {
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
-  
+
   @Input()
   text: string;
 
