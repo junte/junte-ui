@@ -1,4 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Sizes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -14,6 +15,9 @@ export class BlockComponent implements OnInit {
   @HostBinding('attr.error')
   @Input()
   error = false;
+
+  @Input()
+  size: Sizes = Sizes.small;
 
   constructor() { }
 

@@ -78,7 +78,7 @@
 <jnt-container>
   <h1>Block</h1>
   <jnt-stack>
-    <jnt-block [loading]="true">
+    <jnt-block [loading]="true" [size]="ui.sizes.large">
       <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque cupiditate
@@ -104,6 +104,20 @@
   </jnt-stack>
 </jnt-container>
 
+<jnt-container>
+  <h1>Spinner</h1>
+  <jnt-stack [type]="ui.stack.type.horizontal">
+    <jnt-block col>
+      <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
+    </jnt-block>
+    <jnt-block col>
+      <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
+    </jnt-block>
+    <jnt-block col>
+      <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
+    </jnt-block>
+  </jnt-stack>
+</jnt-container>
 
 <!--<p>Reactive Forms:</p>-->
 <!--<form [formGroup]="form">-->
