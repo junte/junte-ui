@@ -1,7 +1,7 @@
 <jnt-container>
   <h1>Buttons</h1>
   <jnt-row>
-    <jnt-col [span]="3"
+    <jnt-col [mobile]="12" [tablet]="3"
              *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
       <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
         <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">

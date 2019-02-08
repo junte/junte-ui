@@ -11,6 +11,18 @@ export class ColComponent {
   @HostBinding('attr.span')
   @Input() span: number = 1;
 
+  @HostBinding('attr.mobile')
+  @Input() mobile: number = null;
+
+  @HostBinding('attr.tablet')
+  @Input() tablet: number = null;
+
+  @HostBinding('attr.desktop')
+  @Input() desktop: number = null;
+
+  @HostBinding('attr.wide')
+  @Input() wide: number = null;
+
   @HostBinding('attr.alignSelf')
   @Input()
   alignSelf: FlexAlignSelf = FlexAlignSelf.auto;
