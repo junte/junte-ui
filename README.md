@@ -8,5 +8,5 @@ npm run dev
 ```
 npm run package
 npm login
-npm publish ./dist/junte-ui/junte-ui-*.*.*.tgz
+npm publish ./dist/junte-ui/junte-ui-0.0.5.tgz
 ```

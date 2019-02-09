@@ -18,7 +18,7 @@ export class InputComponent implements ControlValueAccessor {
 
   @HostBinding('attr.scheme')
   @Input()
-  scheme: Schemes;
+  scheme: Schemes = Schemes.primary;
 
   @Input()
   placeholder: string;

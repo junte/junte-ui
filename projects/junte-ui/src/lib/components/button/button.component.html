@@ -1,7 +1,5 @@
 <button [disabled]="disabled || loading">
-  <div *ngIf="loading" loading>
-    <jnt-spinner></jnt-spinner>
-  </div>
+  <jnt-spinner *ngIf="loading" loading></jnt-spinner>
   <jnt-icon *ngIf="icon" icon [icon]="icon"></jnt-icon>
   <span text>{{text}}</span>
   <span *ngIf="badge" badge>{{badge}}</span>

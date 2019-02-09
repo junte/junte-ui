@@ -28,13 +28,13 @@
   <h2>12 columns</h2>
   <jnt-row row>
     <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
-      Column {{col}}
+      {{col}}
     </jnt-col>
   </jnt-row>
   <h2>6 columns</h2>
   <jnt-row row>
-    <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6]" col [span]="2">
-      Column {{col}}
+    <jnt-col col *ngFor="let col of [1, 2, 3, 4, 5, 6]" [span]="2">
+      {{col}}
     </jnt-col>
   </jnt-row>
 </jnt-container>
@@ -43,21 +43,21 @@
   <h1>Stack</h1>
   <h2>Vertical</h2>
   <jnt-row>
-    <jnt-col *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
+    <jnt-col col [span]="4"
+             *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
       <jnt-stack [gutter]="gutter">
-        <div *ngFor="let col of [1, 2, 3, 4, 5]" col>Col</div>
+        <div block *ngFor="let element of [1, 2, 3, 4, 5]" style="width:100%">{{gutter}}</div>
       </jnt-stack>
     </jnt-col>
   </jnt-row>
 
 
   <h2>Horizontal</h2>
-  <jnt-stack>
-    <jnt-row *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal">
-        <div *ngFor="let col of [1, 2, 3, 4, 5]" col>Col</div>
-      </jnt-stack>
-    </jnt-row>
+  <jnt-stack [gutter]="ui.stack.gutter.large">
+    <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
+               *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
+      <div block *ngFor="let col of [1, 2, 3, 4, 5]">{{gutter}}</div>
+    </jnt-stack>
   </jnt-stack>
 </jnt-container>
 
@@ -81,25 +81,39 @@
     <jnt-block [loading]="true" [size]="ui.sizes.large">
       <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque cupiditate
-        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero voluptas.
-        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio doloremque
-        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati omnis, perspiciatis
-        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore temporibus
-        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio et
-        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.</div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque
+        cupiditate
+        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero
+        voluptas.
+        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio
+        doloremque
+        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati
+        omnis, perspiciatis
+        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore
+        temporibus
+        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio
+        et
+        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
+      </div>
     </jnt-block>
 
     <jnt-block [error]="true">
       <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque cupiditate
-        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero voluptas.
-        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio doloremque
-        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati omnis, perspiciatis
-        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore temporibus
-        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio et
-        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.</div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque
+        cupiditate
+        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero
+        voluptas.
+        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio
+        doloremque
+        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati
+        omnis, perspiciatis
+        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore
+        temporibus
+        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio
+        et
+        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
+      </div>
     </jnt-block>
   </jnt-stack>
 </jnt-container>
@@ -107,15 +121,9 @@
 <jnt-container>
   <h1>Spinner</h1>
   <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-block col>
-      <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
-    </jnt-block>
-    <jnt-block col>
-      <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
-    </jnt-block>
-    <jnt-block col>
-      <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
-    </jnt-block>
+    <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
+    <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
+    <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
   </jnt-stack>
 </jnt-container>
 
