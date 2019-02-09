@@ -13,7 +13,7 @@ import { RowComponent } from './components/grid/row/row.component';
 import { ColComponent } from './components/grid/col/col.component';
 import { IconComponent } from './components/icon/icon.component';
 import {StackDirective} from './directives/stack';
-import {StackComponent} from './components/grid/stack/stack.component';
+import {StackComponent} from './components/stack/stack.component';
 import { BlockComponent } from './components/block/block.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 

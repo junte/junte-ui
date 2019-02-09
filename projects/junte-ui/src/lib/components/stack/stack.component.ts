@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {StackType, StackGutter} from '../../../enum/ui';
+import {StackType, StackGutter} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-stack',
