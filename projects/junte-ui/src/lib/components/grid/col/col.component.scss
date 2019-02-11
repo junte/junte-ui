@@ -12,7 +12,8 @@ $grid-columns: 12;
 
 :host {
   display: block;
-  padding: 0 $grid-gutter;
+  padding-left: $grid-gutter;
+  padding-right: $grid-gutter;
   box-sizing: border-box;
   @for $i from 1 through $grid-columns {
     &[span = "#{$i}"] {

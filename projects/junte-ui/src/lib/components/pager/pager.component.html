@@ -1,0 +1,56 @@
+<ul>
+  <li>
+    <a (click)="setPage(1)"
+       [attr.data-href]="'?page=' + 1"
+       title="First"
+       [class.disabled]="selectedPage === 1"
+       class="pager-link--first">
+      << First
+    </a>
+  </li>
+  <li>
+    <a (click)="setPage(selectedPage - 1)"
+       title="Previous"
+       [class.disabled]="selectedPage === 1"
+       class="pager-link--prev"
+       data-page="1">
+      <
+    </a>
+  </li>
+  <li *ngFor="let page of pages"
+      (click)="setPage(page)">
+    <a [class.active]="page === selectedPage"
+       class="pager-link-number">{{page}}</a>
+  </li>
+
+  <li>
+    <a (click)="setPage(selectedPage + 1)"
+       [class.disabled]="selectedPage >= pagesCount"
+       title="Next"
+       class="pager-link--next">
+      >
+    </a>
+  </li>
+  <li>
+    <a (click)="setPage(pagesCount)"
+       [class.disabled]="selectedPage >= pagesCount"
+       title="Last"
+       class="pager-link--last">
+      >> Last
+    </a>
+  </li>
+</ul>
+<div class="pager">
+  <div class="pager-size" style="width: 70px;">
+    <select #page_size class="pager-size"
+            title="Select page size"
+            [(ngModel)]="pageSize"
+            (ngModelChange)="pageSizeChange.emit($event)">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option selected="selected" value="30">30</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+</div>
