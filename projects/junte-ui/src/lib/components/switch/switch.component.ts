@@ -1,12 +1,12 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Icons, UI} from '../../enum/ui';
+import {UI} from '../../enum/ui';
 
 @Component({
-  selector: 'jnt-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  selector: 'jnt-switch',
+  templateUrl: './switch.component.html',
+  styleUrls: ['./switch.component.scss']
 })
-export class CheckboxComponent implements OnInit {
+export class SwitchComponent implements OnInit {
 
   ui = UI;
 
@@ -18,8 +18,7 @@ export class CheckboxComponent implements OnInit {
   @Input()
   checked = false;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
   }

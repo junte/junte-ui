@@ -16,6 +16,7 @@ import {StackDirective} from './directives/stack';
 import {StackComponent} from './components/stack/stack.component';
 import { BlockComponent } from './components/block/block.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SwitchComponent } from './components/switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     StackDirective,
     StackComponent,
     BlockComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SwitchComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     StackDirective,
     StackComponent,
     BlockComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SwitchComponent
   ]
 })
 export class JunteUiModule {

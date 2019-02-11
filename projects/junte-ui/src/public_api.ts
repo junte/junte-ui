@@ -18,4 +18,5 @@ export * from './lib/enum/ui';
 export * from './lib/components/icon/icon.component';
 export * from './lib/components/block/block.component';
 export * from './lib/components/spinner/spinner.component';
+export * from './lib/components/switch/switch.component';
 export * from './lib/directives/stack';
