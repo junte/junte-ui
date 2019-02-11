@@ -1,19 +1,22 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
+$radio-indicator-corner: 50%;
+$radio-icon-size: 10px;
+$radio-icon-color: $primary-color;
+$radio-indicator-size: 1.125rem;
+$radio-indicator-bg: white;
+$radio-indicator-border-color: $primary-color;
+$radio-indicator-border-width: 1px;
+
+$radio-indicator-disabled-bg: $gray-400;
+$radio-disabled-border-color: $gray-400;
+$radio-indicator-checked-disabled-icon-color: $gray-700;
+
 :host {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   position: relative;
-
-  &:disabled label,
-  &.disabled label {
-    //color: $control-label-disabled-color;
-  }
-
-  &:disabled label:before,
-  &.disabled label:before {
-    //background-color: $control-indicator-disabled-bg;
-  }
 }
 
 input {
@@ -28,43 +31,49 @@ input {
   margin: 0;
   width: 100%;
   height: 100%;
-  &:checked + label:after {
+  &:checked + [switch] > [icon] {
     opacity: 1;
   }
-}
-
-label ::ng-deep {
-  position: relative;
-  left: calc(#{$control-indicator-size} + #{$control-gutter});
-  color: $control-label-color;
+  &:disabled {
+    cursor: default;
+    & ~ label {
+      color: $control-label-disabled-color;
+    }
+    & + [switch] {
+      background-color: $radio-indicator-disabled-bg;
+      border-color: $radio-disabled-border-color;
+    }
+    & + [switch] > [icon] {
+      background-color: $radio-indicator-checked-disabled-icon-color;
+    }
+  }
 }
 
 label {
+  padding-left: $control-gutter;
+  color: $control-label-color;
+}
 
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    top: calc(50% - #{$control-indicator-size} / 2);
-    left: calc(#{-$control-indicator-size} - #{$control-gutter});
-    width: $control-indicator-size;
-    height: $control-indicator-size;
-    border-radius: $radio-indicator-corner;
-  }
+[switch] {
+  position: relative;
+  border-radius: $radio-indicator-corner;
+  background-color: $radio-indicator-bg;
+  border: $radio-indicator-border-width solid $radio-indicator-border-color;
+  width: $radio-indicator-size;
+  height: $radio-indicator-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  &:before {
-    background-color: $control-indicator-bg;
-    border: $control-indicator-border-width solid $control-indicator-border-color;
-  }
-
-  &:after {
-    opacity: 0;
-    //border: $control-indicator-border-width solid $control-indicator-checked-border-color;
-    background: $control-indicator-checked-bg $radio-indicator no-repeat center center;
-    //background-size: $control-indicator-bg-size;
-  }
+[icon] {
+  opacity: 0;
+  border-radius: 50%;
+  width: $radio-icon-size;
+  height: $radio-icon-size;
+  background-color: $radio-icon-color;
 
 }
+
 
 
