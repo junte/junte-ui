@@ -3,7 +3,8 @@ export enum Icons {
   check = 'check',
   circle = 'circle',
   loading = 'loading',
-  plus = 'plus'
+  plus = 'plus',
+  switch = 'switch'
 }
 
 export enum Schemes {

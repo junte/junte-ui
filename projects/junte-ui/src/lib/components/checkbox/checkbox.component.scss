@@ -1,19 +1,22 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
+$checkbox-indicator-corner: 3px;
+$checkbox-icon-size: .8rem;
+$checkbox-icon-color: $text-color;
+
+$checkbox-indicator-bg: white;
+$checkbox-indicator-border-color: $primary-color;
+$checkbox-indicator-border-width: 1px;
+$checkbox-indicator-disabled-bg: $gray-400;
+$checkbox-indicator-disabled-border-color: $gray-400;
+$checkbox-indicator-checked-disabled-icon-color: $gray-700;
+$checkbox-indicator-size: 1.125rem;
+
 :host {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   position: relative;
-
-  &:disabled label,
-  &.disabled label {
-    //color: $control-label-disabled-color;
-  }
-
-  &:disabled label:before,
-  &.disabled label:before {
-    //background-color: $control-indicator-disabled-bg;
-  }
 }
 
 input {
@@ -28,43 +31,47 @@ input {
   margin: 0;
   width: 100%;
   height: 100%;
-  &:checked + label:after {
+  &:checked + [switch] > [icon] {
     opacity: 1;
   }
-}
-
-label ::ng-deep {
-  position: relative;
-  left: calc(#{$control-indicator-size} + #{$control-gutter});
-  color: $control-label-color;
+  &:disabled {
+    cursor: default;
+    & ~ label {
+      color: $control-label-disabled-color;
+    }
+    & + [switch] {
+      background-color: $checkbox-indicator-disabled-bg;
+      border-color: $checkbox-indicator-disabled-border-color;
+    }
+    & + [switch] > [icon] {
+      color: $checkbox-indicator-checked-disabled-icon-color;
+    }
+  }
 }
 
 label {
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    top: calc(50% - #{$control-indicator-size} / 2);
-    left: calc(#{-$control-indicator-size} - #{$control-gutter});
-    width: $control-indicator-size;
-    height: $control-indicator-size;
-    border-radius: $checkbox-indicator-corner;
-  }
-
-  &:before {
-    background-color: $control-indicator-bg;
-    border: $control-indicator-border-width solid $control-indicator-border-color;
-  }
-
-  &:after {
-    opacity: 0;
-    border: $control-indicator-border-width solid $control-indicator-checked-border-color;
-    background: $control-indicator-checked-bg $checkbox-indicator no-repeat center center;
-    background-size: $control-indicator-bg-size;
-  }
-
+  padding-left: $control-gutter;
+  color: $control-label-color;
 }
+
+[switch] {
+  position: relative;
+  width: $checkbox-indicator-size;
+  height: $checkbox-indicator-size;
+  border-radius: $checkbox-indicator-corner;
+  background-color: $checkbox-indicator-bg;
+  border: $checkbox-indicator-border-width solid $checkbox-indicator-border-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[icon] {
+  opacity: 0;
+  line-height: 1;
+  font-size: $checkbox-icon-size;
+  color: $checkbox-icon-color;
+}
+
 
 
