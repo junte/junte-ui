@@ -4,17 +4,16 @@
 $switch-indicator-corner: 35px;
 $switch-icon-size: 1.375rem;
 $switch-icon-color: white;
-$switch-width: 50px;
-$switch-height: 28px;
-$switch-bg: $gray-700;
-$switch-border-color: transparent;
-$switch-padding-x: 3px;
-$switch-padding-y: 3px;
-$switch-border-width: 1px;
+$switch-indicator-width: 50px;
+$switch-indicator-height: 28px;
+$switch-indicator-bg: $gray-700;
+$switch-indicator-border-color: transparent;
+$switch-indicator-padding-x: 3px;
+$switch-indicator-border-width: 1px;
 
-$switch-checked-bg: $primary-color;
-$switch-disabled-bg: $gray-400;
-$switch-disabled-border-color: transparent;
+$switch-indicator-checked-bg: $primary-color;
+$switch-indicator-disabled-bg: $gray-400;
+$switch-indicator-disabled-border-color: transparent;
 
 :host {
   display: flex;
@@ -35,10 +34,10 @@ input {
   width: 100%;
   height: 100%;
   &:checked + [switch] {
-    background-color: $switch-checked-bg;
+    background-color: $switch-indicator-checked-bg;
   }
   &:checked + [switch] > [icon] {
-    left: calc(100% - #{$switch-padding-y} - #{$switch-icon-size});
+    left: calc(100% - #{$switch-indicator-padding-x} - #{$switch-icon-size});
   }
   &:disabled {
     cursor: default;
@@ -46,8 +45,8 @@ input {
       color: $control-label-disabled-color;
     }
     & + [switch] {
-      background-color: $switch-disabled-bg;
-      border-color: $switch-disabled-border-color;
+      background-color: $switch-indicator-disabled-bg;
+      border-color: $switch-indicator-disabled-border-color;
     }
   }
 }
@@ -60,26 +59,22 @@ label {
 [switch] {
   position: relative;
   border-radius: $switch-indicator-corner;
-  background-color: $switch-bg;
-  border: $switch-border-width solid $switch-border-color;
-  min-width: $switch-width;
-  min-height: $switch-height;
-  padding: $switch-padding-x $switch-padding-y;
+  background-color: $switch-indicator-bg;
+  border: $switch-indicator-border-width solid $switch-indicator-border-color;
+  min-width: $switch-indicator-width;
+  min-height: $switch-indicator-height;
   box-sizing: border-box;
   transition: all ease .4s;
 }
 
 [icon] {
-  line-height: 1;
   border-radius: 50%;
-  min-width: $switch-icon-size;
   width: $switch-icon-size;
-  min-height: $switch-icon-size;
   height: $switch-icon-size;
   background-color: $switch-icon-color;
   position: absolute;
-  left: $switch-padding-y;
-  top: $switch-padding-x;
+  left: $switch-indicator-padding-x;
+  top: calc(50% - #{$switch-icon-size} / 2);
   transition: all ease .4s;
 }
 
