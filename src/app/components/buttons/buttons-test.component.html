@@ -1,0 +1,24 @@
+<jnt-container>
+  <h1>Buttons</h1>
+  <jnt-row>
+    <jnt-col [mobile]="12" [tablet]="3"
+             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
+        <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
+          <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase" [loading]="true"></jnt-button>
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+                        [text]="scheme | titlecase" [badge]="5"></jnt-button>
+          </ng-container>
+        </ng-container>
+      </jnt-stack>
+    </jnt-col>
+  </jnt-row>
+</jnt-container>

@@ -1,249 +1,40 @@
-<jnt-container>
-  <h1>Buttons</h1>
-  <jnt-row>
-    <jnt-col [mobile]="12" [tablet]="3"
-             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
-        <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
-          <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                        [text]="scheme | titlecase" [loading]="true"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
-                        [text]="scheme | titlecase" [badge]="5"></jnt-button>
-          </ng-container>
-        </ng-container>
-      </jnt-stack>
-    </jnt-col>
-  </jnt-row>
-</jnt-container>
-
-<jnt-container>
-  <h1>Grid</h1>
-  <h2>12 columns</h2>
-  <jnt-row row>
-    <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
-      {{col}}
-    </jnt-col>
-  </jnt-row>
-  <h2>6 columns</h2>
-  <jnt-row row>
-    <jnt-col col *ngFor="let col of [1, 2, 3, 4, 5, 6]" [span]="2">
-      {{col}}
-    </jnt-col>
-  </jnt-row>
-</jnt-container>
-
-<jnt-container>
-  <h1>Stack</h1>
-  <h2>Vertical</h2>
-  <jnt-row>
-    <jnt-col col [span]="4"
-             *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <jnt-stack [gutter]="gutter">
-        <div block *ngFor="let element of [1, 2, 3, 4, 5]" style="width:100%">{{gutter}}</div>
-      </jnt-stack>
-    </jnt-col>
-  </jnt-row>
-
-
-  <h2>Horizontal</h2>
-  <jnt-stack [gutter]="ui.stack.gutter.large">
-    <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
-               *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <div block *ngFor="let col of [1, 2, 3, 4, 5]">{{gutter}}</div>
+<aside>
+  <ul>
+    <jnt-stack [type]="ui.stack.type.vertical">
+      <li>
+        <a routerLink="components/grid">Grid</a>
+      </li>
+      <li>
+        <a routerLink="components/stack">Stack</a>
+      </li>
+      <li>
+        <a routerLink="components/blocks">Blocks</a>
+      </li>
+      <li>
+        <a routerLink="components/buttons">Buttons</a>
+      </li>
+      <li>
+        <a routerLink="components/input">Input</a>
+      </li>
+      <li>
+        <a routerLink="components/spinner">Spinner</a>
+      </li>
+      <li>
+        <a routerLink="components/checkbox">Checkbox</a>
+      </li>
+      <li>
+        <a routerLink="components/switch">Switch</a>
+      </li>
+      <li>
+        <a routerLink="components/radio">Radio</a>
+      </li>
+      <li>
+        <a routerLink="components/pager">Pager</a>
+      </li>
     </jnt-stack>
-  </jnt-stack>
-</jnt-container>
+  </ul>
+</aside>
 
-
-<jnt-container>
-  <h1>Input</h1>
-  <jnt-row>
-    <jnt-col span="4">
-      <jnt-input placeholder="Test"></jnt-input>
-    </jnt-col>
-    <jnt-col span="4"
-             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <jnt-input [scheme]="scheme" placeholder="Test"></jnt-input>
-    </jnt-col>
-  </jnt-row>
-</jnt-container>
-
-<jnt-container>
-  <h1>Block</h1>
-  <jnt-stack>
-    <jnt-block [loading]="true" [size]="ui.sizes.large">
-      <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque
-        cupiditate
-        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero
-        voluptas.
-        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio
-        doloremque
-        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati
-        omnis, perspiciatis
-        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore
-        temporibus
-        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio
-        et
-        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
-      </div>
-    </jnt-block>
-
-    <jnt-block [error]="true">
-      <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at commodi consequatur consequuntur, cumque
-        cupiditate
-        dignissimos est maxime, molestiae nam neque obcaecati qui quisquam tempore temporibus ut veritatis vero
-        voluptas.
-        Maiores maxime omnis repudiandae sapiente tempora. At blanditiis commodi consequatur corporis distinctio
-        doloremque
-        dolorum eius enim eum eveniet facilis fugiat illo illum incidunt ipsum nemo neque nesciunt nobis obcaecati
-        omnis, perspiciatis
-        placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore
-        temporibus
-        ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio
-        et
-        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
-      </div>
-    </jnt-block>
-  </jnt-stack>
-</jnt-container>
-
-<jnt-container>
-  <h1>Spinner</h1>
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
-    <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
-    <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
-  </jnt-stack>
-</jnt-container>
-
-
-<jnt-container>
-  <h1>Checkbox</h1>
-
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-checkbox>Checkbox</jnt-checkbox>
-    <jnt-checkbox [checked]="true">Checkbox checked</jnt-checkbox>
-    <jnt-checkbox [disabled]="true">Checkbox disabled</jnt-checkbox>
-    <jnt-checkbox [checked]="true" [disabled]="true">Checkbox disabled & checked</jnt-checkbox>
-  </jnt-stack>
-
-</jnt-container>
-
-<jnt-container>
-  <h1>Switch</h1>
-
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-switch>Switch</jnt-switch>
-    <jnt-switch [checked]="true">Switch checked</jnt-switch>
-    <jnt-switch [disabled]="true">Switch disabled</jnt-switch>
-    <jnt-switch [checked]="true" [disabled]="true">Switch disabled & checked</jnt-switch>
-  </jnt-stack>
-
-</jnt-container>
-
-<jnt-container>
-  <h1>Radio</h1>
-
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-radio>Radio</jnt-radio>
-    <jnt-radio [checked]="true">Radio checked</jnt-radio>
-    <jnt-radio [disabled]="true">Radio disabled</jnt-radio>
-    <jnt-radio [checked]="true" [disabled]="true">Radio disabled & checked</jnt-radio>
-  </jnt-stack>
-
-</jnt-container>
-
-
-<!--<p>Reactive Forms:</p>-->
-<!--<form [formGroup]="form">-->
-<!--<jnt-input formControlName="value"></jnt-input>-->
-<!--</form>-->
-<!--<pre>{{ form.value | json }}</pre>-->
-
-
-<!--<div style="height: 10px"></div>-->
-<!--<p>[(ngModel)]:</p>-->
-<!--<jnt-input [(ngModel)]="inputValue"></jnt-input>-->
-
-<!--{{inputValue}}-->
-
-<!--</div>-->
-
-<!--<h3>Select</h3>-->
-
-<!--<div style="width: 30%">-->
-<!--Option: {{selectedOption}}-->
-<!--<jnt-select [options]="options"-->
-<!--labelField="label"-->
-<!--valueField="value"-->
-<!--[(ngModel)]="selectedOption">-->
-<!--</jnt-select>-->
-
-<!--<div style="height: 10px"></div>-->
-
-
-<!--<div style="height: 10px"></div>-->
-
-<!--<h3>Card</h3>-->
-
-<!--<div style="width: 30%">-->
-
-<!--<jnt-card [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">-->
-
-<!--<ng-template #cardHeader>-->
-<!--<div>-->
-<!--Headline-->
-<!--</div>-->
-<!--</ng-template>-->
-
-<!--<ng-template #cardBody>-->
-<!--<div>-->
-<!--Body-->
-<!--</div>-->
-<!--</ng-template>-->
-
-<!--<ng-template #cardFooter>-->
-<!--<div>-->
-<!--Footer-->
-<!--</div>-->
-<!--</ng-template>-->
-
-<!--</jnt-card>-->
-
-<!--</div>-->
-
-<!--</div>-->
-
-<!--<jnt-container>-->
-
-<!--<jnt-row align="center" justify="start" alignContent="center">-->
-
-<!--<jnt-col span="12" xxl="1" xl="2" lg="5" sm="10" md="8" xs="12">Lorem ipsum dolor sit amet, consectetur adipisicing-->
-<!--elit. Culpa deleniti, perferendis. Aliquid aperiam cumque dolor dolorum eaque explicabo illo ipsum minus nemo-->
-<!--quae quis recusandae repudiandae sint, sunt ullam voluptate!-->
-<!--</jnt-col>-->
-<!--<jnt-col span="3" alignSelf="start">456</jnt-col>-->
-<!--<jnt-col span="3">789</jnt-col>-->
-<!--<jnt-col span="3">789</jnt-col>-->
-<!--<jnt-col span="4">456 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore earum esse fugiat, in-->
-<!--provident reprehenderit sit tempora. Aliquid asperiores culpa cupiditate eligendi, labore magnam quo repellat.-->
-<!--Architecto error libero rem.-->
-<!--</jnt-col>-->
-<!--<jnt-col span="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis expedita explicabo-->
-<!--fugiat ipsum mollitia praesentium rerum saepe temporibus?-->
-<!--</jnt-col>-->
-
-<!--</jnt-row>-->
-
-<!--</jnt-container>-->
+<main>
+  <router-outlet></router-outlet>
+</main>

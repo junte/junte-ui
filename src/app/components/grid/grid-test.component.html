@@ -1,0 +1,15 @@
+<jnt-container>
+  <h1>Grid</h1>
+  <h2>12 columns</h2>
+  <jnt-row row>
+    <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
+      {{col}}
+    </jnt-col>
+  </jnt-row>
+  <h2>6 columns</h2>
+  <jnt-row row>
+    <jnt-col col *ngFor="let col of [1, 2, 3, 4, 5, 6]" [span]="2">
+      {{col}}
+    </jnt-col>
+  </jnt-row>
+</jnt-container>
