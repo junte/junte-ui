@@ -86,6 +86,13 @@ export enum StackGutter {
   large = 'large'
 }
 
+export enum FormLayout {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+  inline = 'inline'
+}
+
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -102,6 +109,9 @@ export class UI {
   static stack = {
     type: StackType,
     gutter: StackGutter
+  };
+  static form = {
+    layout: FormLayout
   };
 }
 

@@ -16,6 +16,7 @@ import { PagerTestComponent } from 'components/pager/pager-test.component';
 import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.component';
 import { SwitchTestComponent } from 'components/switch/switch-test.component';
 import { RadioTestComponent } from 'components/radio/radio-test.component';
+import { FormTestComponent } from './form/form-test.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { RadioTestComponent } from 'components/radio/radio-test.component';
     SpinnerTestComponent,
     CheckboxTestComponent,
     RadioTestComponent,
-    SwitchTestComponent
+    SwitchTestComponent,
+    FormTestComponent
   ]
 })
 export class TestsModule {

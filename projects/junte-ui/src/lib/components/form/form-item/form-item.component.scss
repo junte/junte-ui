@@ -1,0 +1,60 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+$layout-vertical: 'vertical';
+$layout-horizontal: 'horizontal';
+$layout-inline: 'inline';
+
+$form-item-gutter: $gutter-5;
+$form-item-inner-gutter: $gutter-1;
+
+$layouts: (
+  #{$layout-vertical}: (
+    display: 'flex',
+    direction: 'column'
+  ),
+  #{$layout-horizontal}: (
+    display: 'flex',
+    direction: 'row',
+    align: 'center'
+  ),
+  #{$layout-inline}: (
+    display: 'inline-flex',
+    direction: 'row',
+    align: 'center'
+  ),
+);
+
+@mixin layout($layout) {
+  display: #{map-get($layout, display)};
+  flex-direction: #{map-get($layout, direction)};
+  align-items: #{map-get($layout, align)};
+}
+
+:host {
+  @each $layout, $map in $layouts {
+    &[layout='#{$layout}'] {
+      @include layout($map);
+    }
+  }
+
+  &[layout = #{$layout-vertical}] {
+    ::ng-deep > :not(:first-child) {
+      margin-top: $form-item-inner-gutter;
+    }
+  }
+
+  &[layout = #{$layout-horizontal}],
+  &[layout = #{$layout-inline}] {
+    ::ng-deep > :not(:first-child) {
+      margin-left: $form-item-inner-gutter;
+    }
+
+    &[layout = #{$layout-inline}]:not(:last-child) {
+      margin-right: $form-item-gutter;
+    }
+  }
+
+  margin-bottom: $form-item-gutter;
+
+}

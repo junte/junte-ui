@@ -9,6 +9,7 @@ import { BlocksTestComponent } from 'components/blocks/blocks-test.component';
 import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.component';
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { InputTestComponent } from 'components/input/input-test.component';
+import {FormTestComponent} from 'components/form/form-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -50,6 +51,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'input',
     component: InputTestComponent
+  },
+  {
+    path: 'form',
+    component: FormTestComponent
   },
   {
     path: '',

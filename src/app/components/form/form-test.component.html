@@ -1,0 +1,31 @@
+<jnt-container>
+  <h1>Form</h1>
+  <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
+    <jnt-form [layout]="layout" [title]="layout" [footer]="footer">
+      <ng-template #title>
+        <h3>Personal details</h3>
+      </ng-template>
+
+      <jnt-form-item>
+        <label>Username</label>
+        <jnt-input placeholder="Name"></jnt-input>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <label>Fullname</label>
+        <jnt-input placeholder="Full name"></jnt-input>
+      </jnt-form-item>
+
+
+      <ng-template #footer>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <jnt-button text="Save changes"></jnt-button>
+          <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+        </jnt-stack>
+      </ng-template>
+    </jnt-form>
+
+    <hr>
+  </ng-container>
+
+</jnt-container>
