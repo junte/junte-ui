@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList, Renderer2, TemplateRef} from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnInit, QueryList, Renderer2, TemplateRef} from '@angular/core';
 import {FormLayout, UI} from '../../enum/ui';
 import {FormItemComponent} from './form-item/form-item.component';
 
@@ -11,10 +11,13 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   ui = UI;
 
-  @ContentChildren(FormItemComponent)
-  set items(items: QueryList<FormItemComponent>) {
-    items.toArray().map(item => item as HTMLElement)
-      .forEach((item: HTMLElement) => this.renderer.setAttribute(item.host.nativeElement, 'layout', this.layout));
+  @ContentChildren(FormItemComponent, {read: ElementRef, descendants: true})
+  set items(items: QueryList<ElementRef>) {
+    setTimeout(() => {
+      items.toArray()
+        .map(item => item.nativeElement)
+        .forEach((item) => this.renderer.setAttribute(item, 'layout', this.layout));
+    }, 0);
   }
 
   @Input()
@@ -24,7 +27,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   footer: TemplateRef<void>;
 
   @Input()
-  layout: FormLayout = FormLayout.vertical;
+  layout: FormLayout;
 
   constructor(private renderer: Renderer2) {
   }

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit} from '@angular/core';
-import {UI} from '../../../enum/ui';
+import {FormLayout, UI} from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-item',
@@ -7,11 +7,11 @@ import {UI} from '../../../enum/ui';
   styleUrls: ['./form-item.component.scss']
 })
 export class FormItemComponent implements OnInit, AfterViewInit {
-  _layout = UI.form.layout.vertical;
+  // _layout = UI.form.layout.vertical;
 
   @HostBinding('attr.layout')
   @Input()
-  layout = UI.form.layout.vertical;
+  layout: FormLayout;
 
   constructor(private host: ElementRef) {
   }
