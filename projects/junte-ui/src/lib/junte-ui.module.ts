@@ -18,9 +18,13 @@ import { BlockComponent } from './components/block/block.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { PagerComponent } from './components/pager/pager.component';
+import {FormComponent} from './components/form/form.component';
+import {StringTemplateOutletDirective} from './directives/string-template-outlet';
+import { FormItemComponent } from './components/form/form-item/form-item.component';
 
 @NgModule({
   declarations: [
+    StringTemplateOutletDirective,
     JunteUiComponent,
     SelectComponent,
     ButtonComponent,
@@ -38,7 +42,9 @@ import { PagerComponent } from './components/pager/pager.component';
     SpinnerComponent,
     SwitchComponent,
     SpinnerComponent,
-    PagerComponent
+    PagerComponent,
+    FormComponent,
+    FormItemComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +68,9 @@ import { PagerComponent } from './components/pager/pager.component';
     BlockComponent,
     PagerComponent,
     SpinnerComponent,
-    SwitchComponent
+    SwitchComponent,
+    FormComponent,
+    FormItemComponent
   ]
 })
 export class JunteUiModule {

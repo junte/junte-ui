@@ -1,0 +1,32 @@
+$layout-vertical: 'vertical';
+$layout-horizontal: 'horizontal';
+$layout-inline: 'inline';
+
+$layouts: (
+  #{$layout-vertical}: (
+    display: 'flex',
+    direction: 'column'
+  ),
+  #{$layout-horizontal}: (
+    display: 'flex',
+    direction: 'row'
+  ),
+  #{$layout-inline}: (
+    display: 'iline-flex',
+    direction: 'row'
+  ),
+);
+
+@mixin layout($layout) {
+    display: #{map-get($layout, display)};
+    flex-direction: #{map-get($layout, direction)};
+}
+
+
+:host {
+  @each $layout, $map in $layouts {
+    &[layout='#{$layout}'] {
+      @include layout($map);
+    }
+  }
+}

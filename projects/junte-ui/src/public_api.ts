@@ -22,3 +22,5 @@ export * from './lib/components/block/block.component';
 export * from './lib/components/spinner/spinner.component';
 export * from './lib/components/switch/switch.component';
 export * from './lib/components/pager/pager.component';
+export * from './lib/components/form/form.component';
+export * from './lib/components/form/form-item/form-item.component';
