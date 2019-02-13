@@ -25,3 +25,4 @@ export * from './lib/components/pager/pager.component';
 export * from './lib/components/form/form.component';
 export * from './lib/components/form/form-item/form-item.component';
 export * from './lib/components/form/form-label/form-label.component';
+export * from './lib/components/form/form-message/form-message.component';
