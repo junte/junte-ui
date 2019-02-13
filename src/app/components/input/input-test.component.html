@@ -1,12 +1,20 @@
 <jnt-container>
   <h1>Input</h1>
-  <jnt-row>
-    <jnt-col span="4">
-      <jnt-input placeholder="Test"></jnt-input>
-    </jnt-col>
-    <jnt-col span="4"
-             *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <jnt-input [scheme]="scheme" placeholder="Test"></jnt-input>
-    </jnt-col>
-  </jnt-row>
+  <form [formGroup]="editForm">
+    <h2>Text</h2>
+    <jnt-stack formArrayName="texts">
+      <ng-container [formGroupName]="i"
+                    *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail];let i = index">
+        <jnt-input [scheme]="scheme" placeholder="Hero name" formControlName="name"></jnt-input>
+      </ng-container>
+    </jnt-stack>
+    <h2>Password</h2>
+    <jnt-stack formArrayName="passwords">
+      <ng-container [formGroupName]="i"
+                    *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail];let i = index">
+        <jnt-input [scheme]="scheme" [type]="ui.form.input.password" placeholder="Hero password"
+                   formControlName="password"></jnt-input>
+      </ng-container>
+    </jnt-stack>
+  </form>
 </jnt-container>

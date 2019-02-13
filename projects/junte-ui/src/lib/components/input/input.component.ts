@@ -1,6 +1,6 @@
 import {Component, forwardRef, HostBinding, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Schemes} from '../../enum/ui';
+import {InputType, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -20,36 +20,26 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   scheme: Schemes = Schemes.primary;
 
+  @HostBinding('attr.type')
+  @Input()
+  type: InputType = InputType.text;
+
   @Input()
   placeholder: string;
 
-  private _value: string;
+  value: string = null;
 
-  constructor() {
+  onChange() {
+    throw new Error('Control is not registered on change');
   }
 
-  get value() {
-    return this._value;
-  }
-
-  set value(val) {
-    this._value = val;
-    this.onChange(val);
+  onTouched() {
+    throw new Error('Control is not registered on touched');
   }
 
   writeValue(value) {
-    if (!value || typeof(value) !== 'string') {
-      return;
-    }
     this.value = value;
-    this.onChange(value);
   }
-
-  onChange: any = () => {
-  };
-
-  onTouched: any = () => {
-  };
 
   registerOnChange(fn) {
     this.onChange = fn;

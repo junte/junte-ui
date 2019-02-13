@@ -92,6 +92,11 @@ export enum FormLayout {
   inline = 'inline'
 }
 
+export enum InputType {
+  text = 'text',
+  password = 'password'
+}
+
 
 export class UI {
   static icons = Icons;
@@ -111,7 +116,8 @@ export class UI {
     gutter: StackGutter
   };
   static form = {
-    layout: FormLayout
+    layout: FormLayout,
+    input: InputType
   };
 }
 
