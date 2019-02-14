@@ -23,6 +23,7 @@ import {StringTemplateOutletDirective} from './directives/string-template-outlet
 import { FormItemComponent } from './components/form/form-item/form-item.component';
 import { FormLabelComponent } from './components/form/form-label/form-label.component';
 import { FormMessageComponent } from './components/form/form-message/form-message.component';
+import { FormControlComponent } from './components/form/form-control/form-control.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FormMessageComponent } from './components/form/form-message/form-messag
     FormComponent,
     FormItemComponent,
     FormLabelComponent,
-    FormMessageComponent
+    FormMessageComponent,
+    FormControlComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +78,8 @@ import { FormMessageComponent } from './components/form/form-message/form-messag
     FormComponent,
     FormItemComponent,
     FormLabelComponent,
-    FormMessageComponent
+    FormMessageComponent,
+    FormControlComponent
   ]
 })
 export class JunteUiModule {
