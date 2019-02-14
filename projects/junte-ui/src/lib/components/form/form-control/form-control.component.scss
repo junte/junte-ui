@@ -1,0 +1,12 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+$form-control-inner-gutter: $gutter-1;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  ::ng-deep > :not(:first-child) {
+    margin-top: $form-control-inner-gutter;
+  }
+}
