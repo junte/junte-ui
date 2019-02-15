@@ -10,6 +10,7 @@ import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.compone
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { InputTestComponent } from 'components/input/input-test.component';
 import {FormTestComponent} from 'components/form/form-test.component';
+import {IconTestComponent} from 'components/icon-test/icon-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -55,6 +56,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'form',
     component: FormTestComponent
+  },
+  {
+    path: 'icon',
+    component: IconTestComponent
   },
   {
     path: '',
