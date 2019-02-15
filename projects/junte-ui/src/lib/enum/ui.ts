@@ -1,10 +1,14 @@
 export enum Icons {
-  arrowDown = 'arrow-down',
   check = 'check',
-  circle = 'circle',
-  loading = 'loading',
   plus = 'plus',
-  switch = 'switch'
+  close = 'close',
+  cancel = 'cancel',
+  search = 'search',
+  arrowRight = 'arrow-right',
+  resize = 'resize',
+  expand = 'expand',
+  sort = 'sort',
+  arrowLast = 'arrow-last'
 }
 
 export enum Schemes {
