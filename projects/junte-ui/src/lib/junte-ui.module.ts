@@ -24,6 +24,7 @@ import { FormItemComponent } from './components/form/form-item/form-item.compone
 import { FormLabelComponent } from './components/form/form-label/form-label.component';
 import { FormMessageComponent } from './components/form/form-message/form-message.component';
 import { FormControlComponent } from './components/form/form-control/form-control.component';
+import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/select/select-option/select-option.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { FormControlComponent } from './components/form/form-control/form-contro
     FormComponent,
     FormItemComponent,
     FormLabelComponent,
+    SelectOptionComponent,
     FormMessageComponent,
     FormControlComponent
   ],
@@ -75,6 +77,7 @@ import { FormControlComponent } from './components/form/form-control/form-contro
     PagerComponent,
     SpinnerComponent,
     SwitchComponent,
+    SelectOptionComponent,
     FormComponent,
     FormItemComponent,
     FormLabelComponent,

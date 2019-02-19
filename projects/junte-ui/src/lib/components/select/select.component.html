@@ -1,9 +1,24 @@
-<div class="select">
-  <div>
-    <ul>
-      <li *ngFor="let option of options" (click)="optionSelect(option)">
-        {{option[labelField]}}
-      </li>
-    </ul>
-  </div>
-</div>
+<label>Selected option</label>
+<ul>
+  <li></li>
+</ul>
+
+<label>List option</label>
+<input type="text" name="query" [ngModel]="q" (ngModelChange)="search$.next($event)">
+<ul>
+  <ng-template #load>
+    <p>Loading data...</p>
+  </ng-template>
+
+  <ng-container *ngIf="!loading; else load">
+    <li *ngFor="let option of options">
+      {{option[labelField]}}
+    </li>
+
+    <li *ngFor="let option of ajaxOptions">
+      {{option[labelField]}}
+    </li>
+  </ng-container>
+</ul>
+
+<ng-content></ng-content>

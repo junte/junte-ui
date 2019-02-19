@@ -101,6 +101,11 @@ export enum InputType {
   password = 'password'
 }
 
+export enum SelectMode {
+  single = 'single',
+  multiple = 'multiple'
+}
+
 
 export class UI {
   static icons = Icons;
@@ -123,5 +128,6 @@ export class UI {
     layout: FormLayout,
     input: InputType
   };
+  static select = SelectMode;
 }
 

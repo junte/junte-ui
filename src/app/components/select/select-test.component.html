@@ -1,0 +1,14 @@
+<jnt-container>
+  <h1>Select</h1>
+  <jnt-stack>
+    <h4>Input property</h4>
+    <jnt-select valueField="value" labelField="label">
+      <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
+      </jnt-select-option>
+    </jnt-select>
+
+    <h4>Ajax query</h4>
+    <jnt-select valueField="value" labelField="label" [loadOptions]="loadOptions()">
+    </jnt-select>
+  </jnt-stack>
+</jnt-container>
