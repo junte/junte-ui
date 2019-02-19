@@ -1,7 +1,7 @@
 <jnt-container>
   <h1>Form</h1>
   <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
-    <jnt-form [layout]="layout" [title]="layout" [footer]="footer">
+    <jnt-form [layout]="layout" [title]="layout | titlecase" [footer]="footer">
       <ng-template #title>
         <h3>Personal details</h3>
       </ng-template>
@@ -30,7 +30,22 @@
       </ng-template>
     </jnt-form>
 
-    <hr>
   </ng-container>
+
+  <jnt-row>
+<pre>
+&lt;jnt-form [layout]="horizontal" [title]="Title" [footer]="footer"&gt;
+  &lt;jnt-form-item&gt;
+    &lt;jnt-form-label for="name"&gt;Username&lt;/jnt-form-label&gt;
+    &lt;jnt-form-control&gt;
+      &lt;jnt-input placeholder="Name"&gt;&lt;/jnt-input&gt;
+      &lt;jnt-form-message&gt;Message&lt;/jnt-form-message&gt;
+    &lt;/jnt-form-control&gt;
+  &lt;/jnt-form-item&gt;
+&lt;/jnt-form&gt;</pre>
+    <pre>&#91;layout&#93; = &#123;horizontal, vertical, inline&#125;</pre>
+    <pre>&#91;title&#93;: string | TemplateRef</pre>
+    <pre>&#91;footer&#93;: TemplateRef</pre>
+  </jnt-row>
 
 </jnt-container>

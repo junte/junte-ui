@@ -1,6 +1,7 @@
 <jnt-container>
   <h1>Block</h1>
   <jnt-stack>
+    <h2>Block with loading</h2>
     <jnt-block [loading]="true" [size]="ui.sizes.large">
       <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
@@ -15,11 +16,20 @@
         placeat porro quaerat quas quos ratione recusandae reiciendis repellat repudiandae sapiente sint sunt, tempore
         temporibus
         ullam ut voluptate voluptatibus. Dolores perspiciatis repellat suscipit voluptates. Architecto, autem distinctio
-        et
-        explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
+        et explicabo id inventore, modi molestias neque officia omnis, quaerat rem totam.
       </div>
     </jnt-block>
 
+    <jnt-row>
+<pre>
+  &lt;jnt-block [loading]="true" [size]="ui.sizes.large"&gt;
+   &lt;div&gt;Content&lt;/div&gt;
+  &lt;/jnt-block&gt;</pre>
+      <pre>
+  &#91;size&#93; = &#123;small, normal, large&#125;</pre>
+    </jnt-row>
+
+    <h2>Block with error</h2>
     <jnt-block [error]="true">
       <div col>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         A animi architecto cupiditate deserunt dolor dolore esse obcaecati ratione, saepe ullam?
@@ -39,4 +49,11 @@
       </div>
     </jnt-block>
   </jnt-stack>
+
+  <jnt-row>
+    <pre>
+  &lt;jnt-block [error]="true"&gt;
+   &lt;div&gt;Content&lt;/div&gt;
+  &lt;/jnt-block&gt;</pre>
+  </jnt-row>
 </jnt-container>

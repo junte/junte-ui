@@ -10,7 +10,6 @@
     </jnt-col>
   </jnt-row>
 
-
   <h2>Horizontal</h2>
   <jnt-stack [gutter]="ui.stack.gutter.large">
     <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
@@ -18,4 +17,15 @@
       <div block *ngFor="let col of [1, 2, 3, 4, 5]" style="width: 100%">{{gutter}}</div>
     </jnt-stack>
   </jnt-stack>
+
+  <jnt-row>
+<pre>
+  &lt;jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small"&gt;
+   &lt;div&gt;small&lt;/div&gt;
+  &lt;/jnt-stack&gt;</pre>
+    <pre>
+  &#91;type&#93; = &#123;vertical, horizontal&#125;</pre>
+    <pre>
+  &#91;gutter&#93; = &#123;small, normal, large&#125;</pre>
+  </jnt-row>
 </jnt-container>
