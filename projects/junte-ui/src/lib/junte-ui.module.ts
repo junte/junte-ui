@@ -24,6 +24,7 @@ import { FormItemComponent } from './components/form/form-item/form-item.compone
 import { FormLabelComponent } from './components/form/form-label/form-label.component';
 import { FormMessageComponent } from './components/form/form-message/form-message.component';
 import { FormControlComponent } from './components/form/form-control/form-control.component';
+import { BadgeComponent } from './components/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FormControlComponent } from './components/form/form-control/form-contro
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    FormControlComponent
+    FormControlComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ import { FormControlComponent } from './components/form/form-control/form-contro
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    FormControlComponent
+    FormControlComponent,
+    BadgeComponent
   ]
 })
 export class JunteUiModule {

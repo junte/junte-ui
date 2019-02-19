@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {Icons, Outline, Schemes, Sizes} from '../../enum/ui';
+import {Icons, Outline, Positions, Schemes, Sizes, UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-button',
@@ -7,6 +7,8 @@ import {Icons, Outline, Schemes, Sizes} from '../../enum/ui';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
+
+  ui = UI;
 
   @HostBinding('attr.loading')
   @Input()

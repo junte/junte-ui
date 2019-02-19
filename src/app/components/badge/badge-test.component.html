@@ -1,0 +1,22 @@
+<jnt-container>
+  <h1>Badge</h1>
+  <jnt-stack>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <ng-container *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+        <jnt-badge [scheme]="scheme" [count]="5">
+          <a href="#" block></a>
+        </jnt-badge>
+      </ng-container>
+    </jnt-stack>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <div block>
+        <jnt-badge [position]="ui.position.inline" [count]="5"></jnt-badge>
+      </div>
+      <ng-container *ngFor="let position of [ui.position.leftTop, ui.position.rightTop]">
+        <jnt-badge [position]="position" [count]="5">
+          <a href="#" block></a>
+        </jnt-badge>
+      </ng-container>
+    </jnt-stack>
+  </jnt-stack>
+</jnt-container>
