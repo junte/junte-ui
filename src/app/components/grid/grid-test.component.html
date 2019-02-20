@@ -27,8 +27,10 @@
         span-6
       </jnt-col>
     </jnt-row>
-    <jnt-row>
-<pre>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row&gt;
       &lt;jnt-col [span]=6&gt;
@@ -39,15 +41,12 @@
       &lt;/jnt-col&gt;
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;</pre>
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
+
   </jnt-stack>
 
-  <h2>Breakpoints</h2>
-  <p>[mobile] < 768px,</p>
-  <p>[tablet] < 992px,</p>
-  <p>[desktop] < 1200px,</p>
-  <p>[wide] >= 1200px</p>
-
+  <h2>Responsive grid</h2>
   <jnt-row row>
     <div line><span>767px</span></div>
     <div line><span>991px</span></div>
@@ -57,9 +56,8 @@
     </jnt-col>
   </jnt-row>
 
-  <jnt-row>
-
-
+  <jnt-block>
+    <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row&gt;
@@ -75,8 +73,8 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-  </jnt-row>
+    </ngx-prism>
+  </jnt-block>
 
   <h2>Horizontal alignment</h2>
 
@@ -91,7 +89,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row [justify]="ui.flex.justify.start"&gt;
@@ -107,12 +106,8 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-      <pre>
-  &#91;justify&#93; = &#123;start, end, around, between, center, evenly&#125;
-</pre>
-
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
 
@@ -129,7 +124,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row [align]="ui.flex.align.start"&gt;
@@ -144,13 +140,9 @@
       &lt;/jnt-col&gt;
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
-</pre>
-
-      <pre>
-  &#91;align&#93; = &#123;start, end, stretch, baseline, center&#125;
-</pre>
-
-    </jnt-row>
+          </pre>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
 
@@ -168,7 +160,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row [direction]="ui.flex.direction.row"&gt;
@@ -184,12 +177,8 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-      <pre>
-  &#91;direction&#93; = &#123;row, column, row-reverse, column-reverse&#125;
-</pre>
-
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
 
@@ -207,7 +196,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row [alignContent]="ui.flex.alignContent.start"&gt;
@@ -223,12 +213,8 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-      <pre>
-  &#91;alignContent&#93; = &#123;start, around, between, center, end, evenly, stretch&#125;
-</pre>
-
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
 
@@ -245,7 +231,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-container&gt;
     &lt;jnt-row [wrap]="ui.flex.wrap.wrap"&gt;
@@ -261,12 +248,8 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-      <pre>
-  &#91;wrap&#93; = &#123;wrap, noWrap, reverse&#125;
-</pre>
-
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
 
@@ -290,7 +273,8 @@
       </jnt-row>
     </ng-container>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 
 
 <pre>
@@ -308,13 +292,105 @@
     &lt;/jnt-row&gt;
   &lt;/jnt-container&gt;
 </pre>
-
-      <pre>
-  &#91;alignSelf&#93; = &#123;center, stretch, start, baseline, end, auto&#125;
-</pre>
-
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
   </jnt-stack>
+
+  <h3>API</h3>
+  <h4>jnt-row</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[justify]</td>
+      <td>-</td>
+      <td>start | end | around | between | evenly</td>
+      <td>start</td>
+    </tr>
+    <tr>
+      <td>[align]</td>
+      <td>-</td>
+      <td>start | end | stretch | baseline | center</td>
+      <td>stretch</td>
+    </tr>
+    <tr>
+      <td>[direction]</td>
+      <td>-</td>
+      <td>row | column | row-reverse | column-reverse</td>
+      <td>row</td>
+    </tr>
+    <tr>
+      <td>[alignContent]</td>
+      <td>-</td>
+      <td>start | around | between | center | end | evenly | stretch</td>
+      <td>start</td>
+    </tr>
+    <tr>
+      <td>[wrap]</td>
+      <td>-</td>
+      <td>wrap | noWrap | reverse</td>
+      <td>wrap</td>
+    </tr>
+    </tbody>
+
+  </table>
+
+  <h4>jnt-col</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[alignSelf]</td>
+      <td>-</td>
+      <td>center | stretch | start | baseline | end | auto</td>
+      <td>auto</td>
+    </tr>
+    <tr>
+      <td>[span]</td>
+      <td>-</td>
+      <td>number</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>[mobile]</td>
+      <td>< 768px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[tablet]</td>
+      <td>< 992px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[desktop]</td>
+      <td>< 1200px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[wide]</td>
+      <td><= 1200px
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    </tbody>
+  </table>
 
 </jnt-container>

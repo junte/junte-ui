@@ -32,7 +32,8 @@
 
   </ng-container>
 
-  <jnt-row>
+  <jnt-block>
+    <ngx-prism language="html">
 <pre>
 &lt;jnt-form [layout]="horizontal" [title]="Title" [footer]="footer"&gt;
   &lt;jnt-form-item&gt;
@@ -43,9 +44,39 @@
     &lt;/jnt-form-control&gt;
   &lt;/jnt-form-item&gt;
 &lt;/jnt-form&gt;</pre>
-    <pre>&#91;layout&#93; = &#123;horizontal, vertical, inline&#125;</pre>
-    <pre>&#91;title&#93;: string | TemplateRef</pre>
-    <pre>&#91;footer&#93;: TemplateRef</pre>
-  </jnt-row>
+    </ngx-prism>
+  </jnt-block>
+  <h3>API</h3>
+  <h4>jnt-form</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[layout]</td>
+      <td>-</td>
+      <td>horizontal | vertical | inline</td>
+      <td>vertical</td>
+    </tr>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string | TemplateRef</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[footer]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
 
 </jnt-container>
