@@ -18,10 +18,43 @@
     </jnt-stack>
   </form>
 
-  <jnt-row>
-    <pre>&lt;jnt-input [scheme]="primary" [type]="password" placeholder="Hero name"&gt;&lt;/jnt-input&gt;</pre>
-    <pre>&#91;scheme&#93; = &#123;primary, secondary, success, fail&#125;</pre>
-    <pre>&#91;type&#93; = &#123;text, password&#125;</pre>
-    <pre>&#91;placeholder&#93;: string</pre>
-  </jnt-row>
+  <jnt-block>
+    <ngx-prism language="html">
+      &lt;jnt-input [scheme]="ui.schemes.primary" [type]="ui.form.input.password" placeholder="Hero name"&gt;&lt;/jnt-input&gt;
+    </ngx-prism>
+
+    <h3>API</h3>
+    <h4>jnt-input</h4>
+    <table api>
+      <thead>
+      <tr>
+        <th>Property</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Default</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>[scheme]</td>
+        <td>-</td>
+        <td>primary | secondary | success | fail</td>
+        <td>primary</td>
+      </tr>
+      <tr>
+        <td>[type]</td>
+        <td>-</td>
+        <td>text | password</td>
+        <td>text</td>
+      </tr>
+      <tr>
+        <td>[placeholder]</td>
+        <td>-</td>
+        <td>string</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </jnt-block>
 </jnt-container>

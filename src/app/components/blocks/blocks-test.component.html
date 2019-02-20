@@ -20,14 +20,14 @@
       </div>
     </jnt-block>
 
-    <jnt-row>
+    <jnt-block>
+      <ngx-prism language="html">
 <pre>
   &lt;jnt-block [loading]="true" [size]="ui.sizes.large"&gt;
    &lt;div&gt;Content&lt;/div&gt;
   &lt;/jnt-block&gt;</pre>
-      <pre>
-  &#91;size&#93; = &#123;small, normal, large&#125;</pre>
-    </jnt-row>
+      </ngx-prism>
+    </jnt-block>
 
     <h2>Block with error</h2>
     <jnt-block [error]="true">
@@ -50,10 +50,45 @@
     </jnt-block>
   </jnt-stack>
 
-  <jnt-row>
+  <jnt-block>
+    <ngx-prism language="html">
     <pre>
   &lt;jnt-block [error]="true"&gt;
    &lt;div&gt;Content&lt;/div&gt;
   &lt;/jnt-block&gt;</pre>
-  </jnt-row>
+    </ngx-prism>
+  </jnt-block>
+
+  <h3>API</h3>
+  <h4>jnt-block</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <td>[error]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>[loading]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
+    </tr>
+    </tbody>
+  </table>
 </jnt-container>
