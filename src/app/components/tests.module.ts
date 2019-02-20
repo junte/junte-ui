@@ -17,7 +17,8 @@ import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.compone
 import { SwitchTestComponent } from 'components/switch/switch-test.component';
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { FormTestComponent } from './form/form-test.component';
-import { IconTestComponent } from './icon-test/icon-test.component';
+import { IconTestComponent } from './icon/icon-test.component';
+import { BadgeTestComponent } from './badge/badge-test.component';
 import {PrismModule} from '@ngx-prism/core';
 
 
@@ -43,7 +44,8 @@ import {PrismModule} from '@ngx-prism/core';
     RadioTestComponent,
     SwitchTestComponent,
     FormTestComponent,
-    IconTestComponent
+    IconTestComponent,
+    BadgeTestComponent
   ]
 })
 export class TestsModule {
