@@ -24,7 +24,6 @@ import {FormItemComponent} from './components/form/form-item/form-item.component
 import {FormLabelComponent} from './components/form/form-label/form-label.component';
 import {FormMessageComponent} from './components/form/form-message/form-message.component';
 import {FormControlComponent} from './components/form/form-control/form-control.component';
-import {PageActiveDirective} from './directives/page-active';
 
 @NgModule({
   declarations: [
