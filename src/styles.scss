@@ -26,3 +26,30 @@ pre {
   width: 100%;
   padding: $gutter-2
 }
+
+table[api] {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  td,th {
+    padding: $gutter-3;
+    border: 1px solid $gray-700;
+  }
+  th {
+    background-color: $gray-400;
+  }
+  td:nth-child(1) {
+    width: 20%;
+  }
+  td:nth-child(4) {
+    width: 20%;
+  }
+  td:nth-child(3) {
+    color: #905;
+    width: 40%;
+  }
+}
+
+pre[class*="language-"] {
+  margin-top: $gutter-4!important;
+}

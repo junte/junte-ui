@@ -1,48 +1,36 @@
 <ul>
-  <li>
-    <a (click)="setPage(1)"
-       [attr.data-href]="'?page=' + 1"
-       title="First"
-       [class.disabled]="selectedPage === 1"
-       class="pager-link--first">
-      << First
+  <li [attr.disabled]="selectedPage === 1"
+      (click)="setPage(1)">
+    <a [attr.data-href]="'?page=' + 1"
+       title="First">
+      First
     </a>
   </li>
-  <li>
-    <a (click)="setPage(selectedPage - 1)"
-       title="Previous"
-       [class.disabled]="selectedPage === 1"
-       class="pager-link--prev"
+  <li [attr.disabled]="selectedPage === 1"
+      (click)="setPage(selectedPage - 1)">
+    <a title="Previous"
        data-page="1">
       <
     </a>
   </li>
   <li *ngFor="let page of pages"
-      (click)="setPage(page)">
-    <a [class.active]="page === selectedPage"
-       class="pager-link-number">{{page}}</a>
+      (click)="setPage(page)"
+      [attr.active]="page === selectedPage">
+    <a>{{page}}</a>
   </li>
 
-  <li>
-    <a (click)="setPage(selectedPage + 1)"
-       [class.disabled]="selectedPage >= pagesCount"
-       title="Next"
-       class="pager-link--next">
-      >
-    </a>
+  <li [attr.disabled]="selectedPage >= pagesCount"
+      (click)="setPage(selectedPage + 1)">
+    <a title="Next">></a>
   </li>
-  <li>
-    <a (click)="setPage(pagesCount)"
-       [class.disabled]="selectedPage >= pagesCount"
-       title="Last"
-       class="pager-link--last">
-      >> Last
-    </a>
+  <li (click)="setPage(pagesCount)"
+      [attr.disabled]="selectedPage >= pagesCount">
+    <a title="Last">Last</a>
   </li>
 </ul>
-<div class="pager">
-  <div class="pager-size" style="width: 70px;">
-    <select #page_size class="pager-size"
+<div>
+  <div>
+    <select #page_size
             title="Select page size"
             [(ngModel)]="pageSize"
             (ngModelChange)="pageSizeChange.emit($event)">
