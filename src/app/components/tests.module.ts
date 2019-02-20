@@ -19,7 +19,6 @@ import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { FormTestComponent } from './form/form-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
-import { IconTestComponent } from './icon/icon-test.component';
 import {PrismModule} from '@ngx-prism/core';
 
 
