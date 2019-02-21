@@ -20,6 +20,7 @@ import { FormTestComponent } from './form/form-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import {PrismModule} from '@ngx-prism/core';
+import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {PrismModule} from '@ngx-prism/core';
     SwitchTestComponent,
     FormTestComponent,
     IconTestComponent,
-    BadgeTestComponent
+    BadgeTestComponent,
+    AppLayoutTestComponent
   ]
 })
 export class TestsModule {

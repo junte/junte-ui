@@ -25,6 +25,12 @@ import { FormLabelComponent } from './components/form/form-label/form-label.comp
 import { FormMessageComponent } from './components/form/form-message/form-message.component';
 import { FormControlComponent } from './components/form/form-control/form-control.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { AppLayoutComponent } from './components/app-layout/app-layout.component';
+import { AppHeaderComponent } from './components/app-layout/app-header/app-header.component';
+import { AppMainComponent } from './components/app-layout/app-main/app-main.component';
+import { AppAsideComponent } from './components/app-layout/app-aside/app-aside.component';
+import { AppContentComponent } from './components/app-layout/app-content/app-content.component';
+import { AppFooterComponent } from './components/app-layout/app-footer/app-footer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,13 @@ import { BadgeComponent } from './components/badge/badge.component';
     FormLabelComponent,
     FormMessageComponent,
     FormControlComponent,
-    BadgeComponent
+    BadgeComponent,
+    AppLayoutComponent,
+    AppHeaderComponent,
+    AppMainComponent,
+    AppAsideComponent,
+    AppContentComponent,
+    AppFooterComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +94,13 @@ import { BadgeComponent } from './components/badge/badge.component';
     FormLabelComponent,
     FormMessageComponent,
     FormControlComponent,
-    BadgeComponent
+    BadgeComponent,
+    AppLayoutComponent,
+    AppHeaderComponent,
+    AppMainComponent,
+    AppAsideComponent,
+    AppContentComponent,
+    AppFooterComponent
   ]
 })
 export class JunteUiModule {
