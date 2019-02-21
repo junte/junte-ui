@@ -1,7 +1,7 @@
 <jnt-container>
   <h1>Form</h1>
   <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
-    <jnt-form [layout]="layout" [title]="layout" [footer]="footer">
+    <jnt-form [layout]="layout" [title]="layout | titlecase" [footer]="footer">
       <ng-template #title>
         <h3>Personal details</h3>
       </ng-template>
@@ -30,7 +30,53 @@
       </ng-template>
     </jnt-form>
 
-    <hr>
   </ng-container>
+
+  <jnt-block>
+    <ngx-prism language="html">
+<pre>
+&lt;jnt-form [layout]="horizontal" [title]="Title" [footer]="footer"&gt;
+  &lt;jnt-form-item&gt;
+    &lt;jnt-form-label for="name"&gt;Username&lt;/jnt-form-label&gt;
+    &lt;jnt-form-control&gt;
+      &lt;jnt-input placeholder="Name"&gt;&lt;/jnt-input&gt;
+      &lt;jnt-form-message&gt;Message&lt;/jnt-form-message&gt;
+    &lt;/jnt-form-control&gt;
+  &lt;/jnt-form-item&gt;
+&lt;/jnt-form&gt;</pre>
+    </ngx-prism>
+  </jnt-block>
+  <h3>API</h3>
+  <h4>jnt-form</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[layout]</td>
+      <td>-</td>
+      <td>horizontal | vertical | inline</td>
+      <td>vertical</td>
+    </tr>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string | TemplateRef</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[footer]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
 
 </jnt-container>

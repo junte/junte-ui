@@ -18,6 +18,7 @@ import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { SelectTestComponent } from 'components/select/select-test.component';
 import { FormTestComponent } from './form/form-test.component';
 import { IconTestComponent } from './icon-test/icon-test.component';
+import {PrismModule} from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 
 
@@ -27,7 +28,8 @@ import { JunteUiModule } from 'junte-ui';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(TESTS_ROUTES),
-    JunteUiModule
+    JunteUiModule,
+    PrismModule
   ],
   declarations: [
     TestsComponent,
