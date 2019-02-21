@@ -1,0 +1,82 @@
+<jnt-container>
+  <h1>Form</h1>
+  <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
+    <jnt-form [layout]="layout" [title]="layout | titlecase" [footer]="footer">
+      <ng-template #title>
+        <h3>Personal details</h3>
+      </ng-template>
+
+      <jnt-form-item>
+        <jnt-form-label for="name">Username</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input placeholder="Name"></jnt-input>
+          <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla tenetur? Earum eius ex illo libero nisi nulla, odio?</jnt-form-message>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label>Fullname</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input placeholder="Full name"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
+
+
+      <ng-template #footer>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <jnt-button text="Save changes"></jnt-button>
+          <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+        </jnt-stack>
+      </ng-template>
+    </jnt-form>
+
+  </ng-container>
+
+  <jnt-block>
+    <ngx-prism language="html">
+<pre>
+&lt;jnt-form [layout]="horizontal" [title]="Title" [footer]="footer"&gt;
+  &lt;jnt-form-item&gt;
+    &lt;jnt-form-label for="name"&gt;Username&lt;/jnt-form-label&gt;
+    &lt;jnt-form-control&gt;
+      &lt;jnt-input placeholder="Name"&gt;&lt;/jnt-input&gt;
+      &lt;jnt-form-message&gt;Message&lt;/jnt-form-message&gt;
+    &lt;/jnt-form-control&gt;
+  &lt;/jnt-form-item&gt;
+&lt;/jnt-form&gt;</pre>
+    </ngx-prism>
+  </jnt-block>
+  <h3>API</h3>
+  <h4>jnt-form</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[layout]</td>
+      <td>-</td>
+      <td>horizontal | vertical | inline</td>
+      <td>vertical</td>
+    </tr>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string | TemplateRef</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[footer]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>
