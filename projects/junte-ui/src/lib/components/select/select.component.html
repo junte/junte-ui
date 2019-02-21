@@ -19,8 +19,7 @@
 </ng-template>
 
 <ng-template #selectedItemsTemp>
-  <label>Selected option</label>
-  <ul>
+  <ul *ngIf="!loading; else loadOptionsTemp">
     <li *ngFor="let item of selectedItems">
       {{labels[item]}}
     </li>
@@ -29,6 +28,10 @@
 
 <ng-template #loadTemp>
   <p>Loading data...</p>
+</ng-template>
+
+<ng-template #loadOptionsTemp>
+  <jnt-spinner></jnt-spinner>
 </ng-template>
 
 <ng-template #itemsNotFoundTemp>
