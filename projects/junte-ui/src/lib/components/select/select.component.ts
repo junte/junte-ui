@@ -1,9 +1,9 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, Input, OnInit, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/select/select-option/select-option.component';
 import { SelectMode } from 'projects/junte-ui/src/lib/enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize } from 'rxjs/operators';
+import { SelectOptionComponent } from './select-option/select-option.component';
 
 const SEARCH_DELAY = 500;
 
@@ -38,7 +38,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   search$: Subject<string> = new Subject<string>();
   selectedItems: any[] = [];
   selected: any = {};
-  names: any = {};
+  labels: any = {};
   loading: boolean;
   toggle: boolean;
 
@@ -52,7 +52,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   set ajaxOptions(options: any[]) {
     this._ajaxOptions = options;
-    this.setNames(options);
+    this.setLabels(options);
   }
 
   get ajaxOptions() {
@@ -61,7 +61,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   set options(options: SelectOptionComponent[]) {
     this._options = options;
-    this.setNames(options);
+    this.setLabels(options);
   }
 
   get options() {
@@ -101,9 +101,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.listOptionComponent.changes.subscribe(list => this.options = list.toArray());
   }
 
-  private setNames(options: any[]) {
+  private setLabels(options: any[]) {
     if (!!options) {
-      options.forEach(option => this.names[option[this.valueField]] = option[this.labelField]);
+      options.forEach(option => this.labels[option[this.valueField]] = option[this.labelField]);
     }
   }
 

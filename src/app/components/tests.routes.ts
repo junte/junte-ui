@@ -10,10 +10,10 @@ import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.compone
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { InputTestComponent } from 'components/input/input-test.component';
 import { FormTestComponent } from 'components/form/form-test.component';
-import { IconTestComponent } from 'components/icon-test/icon-test.component';
 import { SelectTestComponent } from 'components/select/select-test.component';
 import { BadgeTestComponent } from 'components/badge/badge-test.component';
 import { AppLayoutTestComponent } from 'components/app-layout/app-layout-test.component';
+import { IconTestComponent } from 'components/icon/icon-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {

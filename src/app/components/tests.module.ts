@@ -49,7 +49,6 @@ import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
     IconTestComponent,
     SwitchTestComponent,
     SelectTestComponent,
-    IconTestComponent,
     BadgeTestComponent,
     AppLayoutTestComponent
   ]
