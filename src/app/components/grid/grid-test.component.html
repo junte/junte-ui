@@ -1,0 +1,396 @@
+<jnt-container>
+  <h1>Grid</h1>
+  <p>12 Grids System.</p>
+  <jnt-stack style="align-items: stretch">
+    <jnt-row row>
+      <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
+        span-1
+      </jnt-col>
+    </jnt-row>
+    <jnt-row row>
+      <jnt-col col *ngFor="let col of [1, 2, 3, 4, 5, 6]" [span]="2">
+        span-2
+      </jnt-col>
+    </jnt-row>
+    <jnt-row row>
+      <jnt-col col *ngFor="let col of [1, 2, 3, 4]" [span]="3">
+        span-3
+      </jnt-col>
+    </jnt-row>
+    <jnt-row row>
+      <jnt-col col *ngFor="let col of [1, 2, 3]" [span]="4">
+        span-4
+      </jnt-col>
+    </jnt-row>
+    <jnt-row row>
+      <jnt-col col *ngFor="let col of [1, 2]" [span]="6">
+        span-6
+      </jnt-col>
+    </jnt-row>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row&gt;
+      &lt;jnt-col [span]=6&gt;
+        span-6
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=6&gt;
+        span-6
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Responsive grid</h2>
+  <jnt-row row>
+    <div line><span>767px</span></div>
+    <div line><span>991px</span></div>
+    <div line><span>1199px</span></div>
+    <jnt-col col *ngFor="let col of [1, 2, 3, 4]" [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
+      span-4
+    </jnt-col>
+  </jnt-row>
+
+  <jnt-block>
+    <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row&gt;
+      &lt;jnt-col [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3"&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3"&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3"&gt;
+        span-4
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+    </ngx-prism>
+  </jnt-block>
+
+  <h2>Horizontal alignment</h2>
+
+  <jnt-stack style="align-items: stretch">
+    <ng-container *ngFor="let justify of [ui.flex.justify.start, ui.flex.justify.end, ui.flex.justify.around, ui.flex.justify.between,
+                         ui.flex.justify.center, ui.flex.justify.evenly]">
+      <p>{{justify | titlecase}}</p>
+      <jnt-row [justify]="justify" row>
+        <jnt-col col *ngFor="let col of [1, 2, 3]" [span]="3">
+          span-3
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row [justify]="ui.flex.justify.start"&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Vertical alignment</h2>
+
+  <jnt-stack style="align-items: stretch">
+    <ng-container *ngFor="let align of [ui.flex.align.stretch, ui.flex.align.center, ui.flex.align.baseline, ui.flex.align.end,
+                         ui.flex.align.start]">
+      <p>{{align | titlecase}}</p>
+      <jnt-row [align]="align" [justify]="ui.flex.justify.center" row style="min-height: 200px">
+        <jnt-col col *ngFor="let col of [1, 2, 3]" [span]="3">
+          span-3
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row [align]="ui.flex.align.start"&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+          </pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Direction items</h2>
+
+  <jnt-stack style="align-items: stretch">
+
+    <ng-container *ngFor="let direction of [ui.flex.direction.row, ui.flex.direction.rowReverse,
+                          ui.flex.direction.column, ui.flex.direction.columnReverse]">
+      <p>{{direction | titlecase}}</p>
+      <jnt-row [direction]="direction" row>
+        <jnt-col col *ngFor="let col of [1, 2, 3]" [span]="3">
+          span-3 ({{col}})
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row [direction]="ui.flex.direction.row"&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=3&gt;
+        span-3
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Alignment rows</h2>
+
+  <jnt-stack style="align-items: stretch">
+
+    <ng-container *ngFor="let alignContent of [ui.flex.alignContent.start, ui.flex.alignContent.around, ui.flex.alignContent.between,
+    ui.flex.alignContent.center, ui.flex.alignContent.end, ui.flex.alignContent.evenly, ui.flex.alignContent.stretch]">
+      <p>{{alignContent | titlecase}}</p>
+      <jnt-row [alignContent]="alignContent" row style="min-height: 200px">
+        <jnt-col col *ngFor="let col of [1, 2, 3]" [span]="6">
+          span-6
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row [alignContent]="ui.flex.alignContent.start"&gt;
+      &lt;jnt-col [span]=6&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=6&gt;
+        span-3
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=6&gt;
+        span-3
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Wrap</h2>
+
+  <jnt-stack style="align-items: stretch">
+
+    <ng-container *ngFor="let wrap of [ui.flex.wrap.wrap, ui.flex.wrap.noWrap, ui.flex.wrap.reverse]">
+      <p>{{wrap | titlecase}}</p>
+      <jnt-row [wrap]="wrap" row>
+        <jnt-col col *ngFor="let col of [1, 2, 3,4]" [span]="4">
+          span-4
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row [wrap]="ui.flex.wrap.wrap"&gt;
+      &lt;jnt-col [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h2>Alignment single item</h2>
+
+  <jnt-stack style="align-items: stretch">
+
+    <ng-container *ngFor="let alignSelf of [ui.flex.alignSelf.center, ui.flex.alignSelf.stretch, ui.flex.alignSelf.start,
+    ui.flex.alignSelf.baseline, ui.flex.alignSelf.end, ui.flex.alignSelf.auto]">
+      <p>{{alignSelf | titlecase}}</p>
+      <jnt-row row style="min-height: 150px">
+        <jnt-col [alignSelf]="alignSelf" col [span]="4">
+          span-4
+        </jnt-col>
+        <jnt-col col [span]="4">
+          span-4
+        </jnt-col>
+        <jnt-col col [span]="4">
+          span-4
+        </jnt-col>
+      </jnt-row>
+    </ng-container>
+
+    <jnt-block>
+      <ngx-prism language="html">
+
+
+<pre>
+  &lt;jnt-container&gt;
+    &lt;jnt-row&gt;
+      &lt;jnt-col [alignSelf]="center" [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+      &lt;jnt-col [span]=4&gt;
+        span-4
+      &lt;/jnt-col&gt;
+    &lt;/jnt-row&gt;
+  &lt;/jnt-container&gt;
+</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h3>API</h3>
+  <h4>jnt-row</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[justify]</td>
+      <td>-</td>
+      <td>start | end | around | between | evenly</td>
+      <td>start</td>
+    </tr>
+    <tr>
+      <td>[align]</td>
+      <td>-</td>
+      <td>start | end | stretch | baseline | center</td>
+      <td>stretch</td>
+    </tr>
+    <tr>
+      <td>[direction]</td>
+      <td>-</td>
+      <td>row | column | row-reverse | column-reverse</td>
+      <td>row</td>
+    </tr>
+    <tr>
+      <td>[alignContent]</td>
+      <td>-</td>
+      <td>start | around | between | center | end | evenly | stretch</td>
+      <td>start</td>
+    </tr>
+    <tr>
+      <td>[wrap]</td>
+      <td>-</td>
+      <td>wrap | noWrap | reverse</td>
+      <td>wrap</td>
+    </tr>
+    </tbody>
+
+  </table>
+
+  <h4>jnt-col</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[alignSelf]</td>
+      <td>-</td>
+      <td>center | stretch | start | baseline | end | auto</td>
+      <td>auto</td>
+    </tr>
+    <tr>
+      <td>[span]</td>
+      <td>-</td>
+      <td>number</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>[mobile]</td>
+      <td>< 768px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[tablet]</td>
+      <td>< 992px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[desktop]</td>
+      <td>< 1200px</td>
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>[wide]</td>
+      <td><= 1200px
+      <td>number</td>
+      <td>null</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>

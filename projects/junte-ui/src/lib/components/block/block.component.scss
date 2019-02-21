@@ -1,0 +1,45 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+$block-loading-bg: rgba(0,0,0,.75);
+$block-loading-spinner-color: white;
+
+$block-error-bg: rgba($gray-900, 0.8);
+$block-error-icon-size: 40px;
+$block-error-icon-color: white;
+
+:host {
+  display: block;
+  position: relative;
+  min-height: 40px;
+}
+
+[loading], [error] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  [icon] {
+    color: $block-error-icon-color;
+  }
+}
+
+[loading] {
+  background-color: $block-loading-bg;
+  [spinner] {
+    border-color: $block-loading-spinner-color;
+  }
+}
+
+[error] {
+  background-color: $block-error-bg;
+  [icon] {
+    font-size: $block-error-icon-size;
+  }
+}
+
+
