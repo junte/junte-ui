@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, Input, OnInit, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/select/select-option/select-option.component';
-import { UI } from 'projects/junte-ui/src/lib/enum/ui';
+import { SelectMode } from 'projects/junte-ui/src/lib/enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ const SEARCH_DELAY = 500;
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
 
   @Input() loadOptions: Function;
-  @Input() mode = UI.select.single;
+  @Input() mode: SelectMode = SelectMode.single;
   @Input() labelField: string;
   @Input() valueField: string;
   @Input() placeholder: string;
@@ -36,7 +36,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   private _ajaxOptions: any[] = [];
 
   search$: Subject<string> = new Subject<string>();
+  selectedItems: any[] = [];
+  selected: any = {};
+  names: any = {};
   loading: boolean;
+  toggle: boolean;
 
   set q(q: string) {
     this.q$.next(q);
@@ -48,6 +52,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   set ajaxOptions(options: any[]) {
     this._ajaxOptions = options;
+    this.setNames(options);
   }
 
   get ajaxOptions() {
@@ -56,6 +61,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   set options(options: SelectOptionComponent[]) {
     this._options = options;
+    this.setNames(options);
   }
 
   get options() {
@@ -66,7 +72,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   ngOnInit() {
-    const loadAjaxOptions = (q: string = null) => {
+    const loadOptions = (q: string = null) => {
       if (this.fetcher) {
         this.fetcher.unsubscribe();
       }
@@ -77,13 +83,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     };
 
     if (!!this.loadOptions) {
-      loadAjaxOptions();
+      loadOptions();
     }
 
     this.search$.pipe(debounceTime(SEARCH_DELAY)).subscribe(q => {
       this.q = q;
       if (!!this.loadOptions) {
-        loadAjaxOptions(q);
+        loadOptions(q);
       } else {
         this.options = this.listOptionComponent.filter(o => o.label.toLowerCase().indexOf(q) > -1);
       }
@@ -92,16 +98,49 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ngAfterContentInit() {
     this.options = this.listOptionComponent.toArray();
+    this.listOptionComponent.changes.subscribe(list => this.options = list.toArray());
   }
 
-  writeValue(value) {
+  private setNames(options: any[]) {
+    if (!!options) {
+      options.forEach(option => this.names[option[this.valueField]] = option[this.labelField]);
+    }
   }
 
-  onChange: any = () => {
-  };
+  optionSelect(value) {
+    if (this.mode === SelectMode.multiple) {
+      const index = this.selectedItems.findIndex(i => i === value);
+      if (index > -1) {
+        this.selectedItems.splice(index, 1);
+      } else {
+        this.selectedItems.push(value);
+      }
+    } else {
+      this.selectedItems = [value];
+    }
+    this.selected[value] = !this.selected[value];
 
-  onTouched: any = () => {
-  };
+    this.onChange(this.selectedItems);
+  }
+
+  writeValue(value: any) {
+    if (!!value) {
+      this.selectedItems = Array.isArray(value) ? value : [value];
+    } else {
+      this.selectedItems = [];
+    }
+
+    //TODO: @VSmirnov think about it
+    this.selectedItems.forEach(i => this.selected[i] = true);
+  }
+
+  onChange(items: number[]) {
+    throw new Error('Control is not registered on change');
+  }
+
+  onTouched() {
+    throw new Error('Control is not registered on touched');
+  }
 
   registerOnChange(fn) {
     this.onChange = fn;

@@ -1,4 +1,4 @@
-<input [type]="type"
+<input type="text" [type]="type"
        [value]="value"
        [placeholder]="placeholder"
-       (keyup)="onChange">
+       (keyup)="onChange($event.target.value)">

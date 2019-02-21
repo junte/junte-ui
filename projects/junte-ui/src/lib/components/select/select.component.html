@@ -1,24 +1,50 @@
-<label>Selected option</label>
-<ul>
-  <li></li>
-</ul>
+<ng-template #ajaxOptionsTemp>
+  <li *ngFor="let option of ajaxOptions" (click)="optionSelect(option[valueField])">
+    {{option[labelField]}}
+  </li>
+</ng-template>
 
-<label>List option</label>
-<input type="text" name="query" [ngModel]="q" (ngModelChange)="search$.next($event)">
-<ul>
-  <ng-template #load>
-    <p>Loading data...</p>
-  </ng-template>
-
-  <ng-container *ngIf="!loading; else load">
-    <li *ngFor="let option of options">
+<ng-template #optionsTemp>
+  <li *ngFor="let option of options" (click)="optionSelect(option[valueField])">
+    <jnt-checkbox [checked]="!!selected[option[valueField]]">
       {{option[labelField]}}
-    </li>
+    </jnt-checkbox>
+  </li>
+</ng-template>
 
-    <li *ngFor="let option of ajaxOptions">
-      {{option[labelField]}}
+<ng-template #searchTemp>
+  <jnt-input (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)"
+             [placeholder]="placeholder">
+  </jnt-input>
+</ng-template>
+
+<ng-template #selectedItemsTemp>
+  <label>Selected option</label>
+  <ul>
+    <li *ngFor="let item of selectedItems">
+      {{names[item]}}
     </li>
+  </ul>
+</ng-template>
+
+<ng-template #loadTemp>
+  <p>Loading data...</p>
+</ng-template>
+
+<ng-template #itemsNotFoundTemp>
+  <li *ngIf="!!q && !options.length">Items not found</li>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="selectedItemsTemp"></ng-container>
+<ng-container *ngTemplateOutlet="searchTemp"></ng-container>
+<ng-container *ngIf="!!toggle">
+  <ng-container *ngIf="!loading; else loadTemp">
+    <ul>
+      <ng-container *ngTemplateOutlet="itemsNotFoundTemp"></ng-container>
+      <ng-container *ngTemplateOutlet="optionsTemp"></ng-container>
+      <ng-container *ngTemplateOutlet="ajaxOptionsTemp"></ng-container>
+    </ul>
   </ng-container>
-</ul>
+</ng-container>
 
 <ng-content></ng-content>

@@ -1,6 +1,6 @@
-import {Component, forwardRef, HostBinding, Input} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {InputType, Schemes} from '../../enum/ui';
+import { Component, forwardRef, HostBinding, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputType, Schemes } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -29,7 +29,7 @@ export class InputComponent implements ControlValueAccessor {
 
   value: string = null;
 
-  onChange() {
+  onChange(val: any) {
     throw new Error('Control is not registered on change');
   }
 
