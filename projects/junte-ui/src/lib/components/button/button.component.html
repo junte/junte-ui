@@ -2,5 +2,5 @@
   <jnt-spinner *ngIf="loading" loading></jnt-spinner>
   <jnt-icon *ngIf="icon" icon [icon]="icon"></jnt-icon>
   <span text>{{text}}</span>
-  <span *ngIf="badge" badge>{{badge}}</span>
+  <jnt-badge *ngIf="badge" [scheme]="scheme" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
 </button>

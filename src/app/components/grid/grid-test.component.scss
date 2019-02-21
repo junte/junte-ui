@@ -4,6 +4,7 @@
   bottom: 0;
   border-right: 1px dashed black;
   z-index: 1;
+  width: 0;
   &:nth-child(1) {
     left: 767px;
   }
@@ -14,8 +15,9 @@
     left: 1199px;
   }
   span {
-    position: relative;
-    right: -50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
     background-color: #D0D0D0;
     padding: 5px;
     border-radius: 3px;

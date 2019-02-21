@@ -106,12 +106,18 @@ export enum SelectMode {
   multiple = 'multiple'
 }
 
+export enum Positions {
+  rightTop = 'right-top',
+  leftTop = 'left-top',
+  inline = 'inline'
+}
 
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
   static sizes = Sizes;
   static outline = Outline;
+  static position = Positions;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,

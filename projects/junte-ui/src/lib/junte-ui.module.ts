@@ -18,12 +18,19 @@ import { BlockComponent } from './components/block/block.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { PagerComponent } from './components/pager/pager.component';
-import { FormComponent } from './components/form/form.component';
-import { StringTemplateOutletDirective } from './directives/string-template-outlet';
+import {FormComponent} from './components/form/form.component';
+import {StringTemplateOutletDirective} from './directives/string-template-outlet';
 import { FormItemComponent } from './components/form/form-item/form-item.component';
 import { FormLabelComponent } from './components/form/form-label/form-label.component';
 import { FormMessageComponent } from './components/form/form-message/form-message.component';
 import { FormControlComponent } from './components/form/form-control/form-control.component';
+import { BadgeComponent } from './components/badge/badge.component';
+import { AppLayoutComponent } from './components/app-layout/app-layout.component';
+import { AppHeaderComponent } from './components/app-layout/app-header/app-header.component';
+import { AppMainComponent } from './components/app-layout/app-main/app-main.component';
+import { AppAsideComponent } from './components/app-layout/app-aside/app-aside.component';
+import { AppContentComponent } from './components/app-layout/app-content/app-content.component';
+import { AppFooterComponent } from './components/app-layout/app-footer/app-footer.component';
 import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/select/select-option/select-option.component';
 
 @NgModule({
@@ -52,7 +59,14 @@ import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/sele
     FormLabelComponent,
     SelectOptionComponent,
     FormMessageComponent,
-    FormControlComponent
+    FormControlComponent,
+    BadgeComponent,
+    AppLayoutComponent,
+    AppHeaderComponent,
+    AppMainComponent,
+    AppAsideComponent,
+    AppContentComponent,
+    AppFooterComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +96,14 @@ import { SelectOptionComponent } from 'projects/junte-ui/src/lib/components/sele
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    FormControlComponent
+    FormControlComponent,
+    BadgeComponent,
+    AppLayoutComponent,
+    AppHeaderComponent,
+    AppMainComponent,
+    AppAsideComponent,
+    AppContentComponent,
+    AppFooterComponent
   ]
 })
 export class JunteUiModule {

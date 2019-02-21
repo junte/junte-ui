@@ -17,9 +17,11 @@ import { SwitchTestComponent } from 'components/switch/switch-test.component';
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { SelectTestComponent } from 'components/select/select-test.component';
 import { FormTestComponent } from './form/form-test.component';
-import { IconTestComponent } from './icon-test/icon-test.component';
-import {PrismModule} from '@ngx-prism/core';
+import { IconTestComponent } from './icon/icon-test.component';
+import { BadgeTestComponent } from './badge/badge-test.component';
+import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
+import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 
 
 @NgModule({
@@ -46,7 +48,10 @@ import { JunteUiModule } from 'junte-ui';
     FormTestComponent,
     IconTestComponent,
     SwitchTestComponent,
-    SelectTestComponent
+    SelectTestComponent,
+    IconTestComponent,
+    BadgeTestComponent,
+    AppLayoutTestComponent
   ]
 })
 export class TestsModule {

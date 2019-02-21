@@ -1,0 +1,74 @@
+<jnt-container>
+  <h1>Badge</h1>
+  <jnt-stack>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <ng-container *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+        <jnt-badge [scheme]="scheme" [count]="5">
+          <a href="#" block></a>
+        </jnt-badge>
+      </ng-container>
+    </jnt-stack>
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+&lt;jnt-badge [scheme]="ui.schemes.primary" [count]="5"&gt;
+  &lt;a href="#"&gt;&lt;/a&gt;
+&lt;/jnt-badge&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <div block>
+        <jnt-badge [position]="ui.position.inline" [count]="5"></jnt-badge>
+      </div>
+      <ng-container *ngFor="let position of [ui.position.leftTop, ui.position.rightTop]">
+        <jnt-badge [position]="position" [count]="5">
+          <a href="#" block></a>
+        </jnt-badge>
+      </ng-container>
+    </jnt-stack>
+
+    <jnt-block>
+      <ngx-prism language="html">
+<pre>
+&lt;jnt-badge [position]="ui.position.rightTop"&gt;
+  &lt;a href="#"&gt;&lt;/a&gt;
+&lt;/jnt-badge&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h3>API</h3>
+  <h4>jnt-badge</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[scheme]</td>
+      <td>-</td>
+      <td>primary | secondary | success | fail</td>
+      <td>primary</td>
+    </tr>
+    <tr>
+      <td>[count]</td>
+      <td>-</td>
+      <td>number</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[position]</td>
+      <td>-</td>
+      <td>rightTop | leftTop | inline</td>
+      <td>rightTop</td>
+    </tr>
+    </tbody>
+  </table>
+</jnt-container>
