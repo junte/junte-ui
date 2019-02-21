@@ -1,0 +1,52 @@
+<jnt-container>
+  <h1>Pager</h1>
+  <jnt-stack>
+    <p>Selected page is: {{selectedPage}}</p>
+    <p>Pages size: {{pageSize}}</p>
+    <jnt-pager [size]="size"
+               [pagesCount]="pagesCount"
+               [(pageSize)]="pageSize"
+               [(ngModel)]="selectedPage">
+    </jnt-pager>
+    <div class="pages-count">
+      <p>Pages count:</p>
+      <div class="button-group pages">
+        <jnt-button (click)="selectedPage = 1; pagesCount = 2"
+                    [size]="ui.sizes.small"
+                    [disabled]="pagesCount === 2"
+                    text="2">
+        </jnt-button>
+        <jnt-button (click)="selectedPage = 1; pagesCount = 3"
+                    [size]="ui.sizes.small"
+                    [disabled]="pagesCount === 3"
+                    text="3">
+        </jnt-button>
+        <jnt-button (click)="selectedPage = 1; pagesCount = 5"
+                    [size]="ui.sizes.small"
+                    [disabled]="pagesCount === 5"
+                    text="5">
+        </jnt-button>
+        <jnt-button (click)="selectedPage = 1; pagesCount = 10"
+                    [size]="ui.sizes.small"
+                    [disabled]="pagesCount === 10"
+                    text="10">
+        </jnt-button>
+        <jnt-button (click)="selectedPage = 1; pagesCount = 30"
+                    [size]="ui.sizes.small"
+                    [disabled]="pagesCount === 30"
+                    text="30">
+        </jnt-button>
+      </div>
+    </div>
+    <div class="pages-count">
+      <p>Pages size:</p>
+      <div class="button-group pages">
+        <jnt-button (click)="size = 1" [size]="ui.sizes.small" [disabled]="size === 1" text="1"></jnt-button>
+        <jnt-button (click)="size = 2" [size]="ui.sizes.small" [disabled]="size === 2" text="2"></jnt-button>
+        <jnt-button (click)="size = 3" [size]="ui.sizes.small" [disabled]="size === 3" text="3"></jnt-button>
+        <jnt-button (click)="size = 5" [size]="ui.sizes.small" [disabled]="size === 5" text="5"></jnt-button>
+        <jnt-button (click)="size = 10" [size]="ui.sizes.small" [disabled]="size === 10" text="10"></jnt-button>
+      </div>
+    </div>
+  </jnt-stack>
+</jnt-container>
