@@ -32,6 +32,8 @@ import { AppAsideComponent } from './components/app-layout/app-aside/app-aside.c
 import { AppContentComponent } from './components/app-layout/app-content/app-content.component';
 import { AppFooterComponent } from './components/app-layout/app-footer/app-footer.component';
 import { SelectOptionComponent } from './components/select/select-option/select-option.component';
+import { TableComponent } from './components/table/table.component';
+import { TableColumnComponent } from './components/table/column/table-column.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { SelectOptionComponent } from './components/select/select-option/select-
     AppMainComponent,
     AppAsideComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    TableComponent,
+    TableColumnComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +107,9 @@ import { SelectOptionComponent } from './components/select/select-option/select-
     AppMainComponent,
     AppAsideComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    TableComponent,
+    TableColumnComponent
   ]
 })
 export class JunteUiModule {

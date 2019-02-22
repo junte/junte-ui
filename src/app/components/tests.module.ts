@@ -22,6 +22,7 @@ import { BadgeTestComponent } from './badge/badge-test.component';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
+import { TableTestComponent } from './table/table.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
     SwitchTestComponent,
     SelectTestComponent,
     BadgeTestComponent,
-    AppLayoutTestComponent
+    AppLayoutTestComponent,
+    TableTestComponent
   ]
 })
 export class TestsModule {

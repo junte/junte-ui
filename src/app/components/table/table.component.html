@@ -1,0 +1,12 @@
+<jnt-container>
+  <jnt-table #table [filter]="filter">
+    <jnt-table-column title="Label"></jnt-table-column>
+    <jnt-table-column title="Value"></jnt-table-column>
+
+    <ng-template #rowTemplate let-value="label" let-label="value">
+      <td>{{label}}</td>
+      <td>{{value}}</td>
+    </ng-template>
+  </jnt-table>
+</jnt-container>
+

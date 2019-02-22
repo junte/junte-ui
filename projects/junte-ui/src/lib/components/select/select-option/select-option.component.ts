@@ -1,19 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-select-option',
-  templateUrl: './select-option.component.html',
-  styleUrls: ['./select-option.component.scss']
+  template: ''
 })
-export class SelectOptionComponent implements OnInit {
+export class SelectOptionComponent {
 
   @Input() value: any;
   @Input() label: string;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }
