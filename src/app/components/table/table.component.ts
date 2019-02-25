@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TableComponent } from 'projects/junte-ui/src/lib/components/table/table.component';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { TableComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-table',
@@ -10,7 +10,8 @@ import { delay } from 'rxjs/operators';
 })
 export class TableTestComponent implements OnInit {
 
-  @ViewChild('table') table: TableComponent;
+  @ViewChild(TableComponent)
+  table: TableComponent;
 
   ajaxOptions: any = {
     results: [
