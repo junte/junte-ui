@@ -14,6 +14,7 @@ import { SelectTestComponent } from 'components/select/select-test.component';
 import { BadgeTestComponent } from 'components/badge/badge-test.component';
 import { AppLayoutTestComponent } from 'components/app-layout/app-layout-test.component';
 import { IconTestComponent } from 'components/icon/icon-test.component';
+import { TableTestComponent } from 'components/table/table.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -75,6 +76,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'layout',
     component: AppLayoutTestComponent
+  },
+  {
+    path: 'table',
+    component: TableTestComponent
   },
   {
     path: '',

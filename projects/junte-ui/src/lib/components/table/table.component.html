@@ -1,0 +1,43 @@
+<ng-template #loadTemp>
+  <jnt-spinner></jnt-spinner>
+</ng-template>
+
+<button (click)="load()">Reload</button>
+<form [formGroup]="filterForm">
+  <table border="1">
+    <thead>
+    <tr>
+      <th *ngFor="let column of columns"
+          [class.sortable]="!!column.sort"
+          (click)="column.sort ? sorting(column.sort) : null">
+        <span>
+          {{column.title}}
+          <i *ngIf="!!sort && sort == column.sort"
+             [class]="order.value === 'asc' ? 'arrow-up' : 'arrow-down'"></i>
+        </span>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <ng-container *ngIf="!progress.loading; else loadTemp">
+      <tr *ngIf="!source.length">
+        <td [attr.colspan]="columns.length">
+          <p i18n>No data</p>
+        </td>
+      </tr>
+      <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
+        <ng-container *ngTemplateOutlet="rowTemplate;context:row"></ng-container>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <select formControlName="pageSize">
+    <option [value]="10">10</option>
+    <option [value]="20">20</option>
+    <option [value]="50">50</option>
+    <option [value]="100">100</option>
+  </select>
+</form>
+
+<ng-content></ng-content>

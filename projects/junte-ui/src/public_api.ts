@@ -25,6 +25,8 @@ export * from './lib/components/switch/switch.component';
 export * from './lib/components/pager/pager.component';
 export * from './lib/components/form/form.component';
 export * from './lib/components/badge/badge.component';
+export * from './lib/components/table/table.component';
+export * from './lib/components/table/column/table-column.component';
 export * from './lib/components/app-layout/app-layout.component';
 export * from './lib/components/app-layout/app-header/app-header.component';
 export * from './lib/components/app-layout/app-main/app-main.component';
