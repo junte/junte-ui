@@ -62,6 +62,10 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
     return this._count;
   }
 
+  get pagesCount() {
+    return Math.ceil(this.count / this.filterForm.get('pageSize').value);
+  }
+
   constructor(private formBuilder: FormBuilder) {
   }
 
