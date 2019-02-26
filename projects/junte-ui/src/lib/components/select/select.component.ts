@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, Input, OnInit, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode } from 'projects/junte-ui/src/lib/enum/ui';
+import { SelectMode } from '../../enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize } from 'rxjs/operators';
 import { SelectOptionComponent } from './select-option/select-option.component';
