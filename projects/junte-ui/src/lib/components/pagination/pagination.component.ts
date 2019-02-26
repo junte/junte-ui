@@ -15,7 +15,7 @@ export class PaginationComponent {
 
   private _pagesCount: number;
   private _selectedPage = 1;
-  private size = 5;
+  private size = 3;
 
   pages: number[];
 
