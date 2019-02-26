@@ -1,0 +1,6 @@
+<jnt-stack [type]="type" [gutter]="ui.stack.gutter.large">
+  <div item *ngFor="let item of items">
+    <jnt-icon *ngIf="item.icon" [icon]="item.icon" icon></jnt-icon>
+    <a href="{{item.link}}" text>{{item.title}}</a>
+  </div>
+</jnt-stack>

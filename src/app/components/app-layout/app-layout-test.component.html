@@ -1,6 +1,6 @@
 <jnt-container>
 
-<h1>Layout</h1>
+  <h1>Layout</h1>
 
   <jnt-app-layout>
     <jnt-app-header>
@@ -45,5 +45,147 @@
 &lt;/jnt-app-layout&gt;</pre>
     </ngx-prism>
   </jnt-block>
+
+  <h2>App-header</h2>
+
+  <jnt-app-layout>
+    <jnt-app-header [logo]="logo" [userbar]="userbar">
+      <ng-template #logo>
+        <div logo><img src="https://teamprojector.com/assets/images/logo-white.svg" alt=""></div>
+      </ng-template>
+      <jnt-menu #top>
+        <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
+        <jnt-menu-item title="Team Leader"></jnt-menu-item>
+        <jnt-menu-item title="Project Manager"></jnt-menu-item>
+        <jnt-menu-item title="Customer"></jnt-menu-item>
+      </jnt-menu>
+      <ng-template #userbar>
+        <div userbar>
+          <jnt-avatar [size]="ui.sizes.small"
+                      image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          <jnt-menu [type]="ui.type.vertical" usermenu>
+            <jnt-menu-item title="Logout"></jnt-menu-item>
+            <jnt-menu-item title="Profile"></jnt-menu-item>
+            <jnt-menu-item title="Settings"></jnt-menu-item>
+          </jnt-menu>
+        </div>
+      </ng-template>
+
+    </jnt-app-header>
+  </jnt-app-layout>
+
+  <jnt-block>
+    <ngx-prism language="html">
+<pre>
+&lt;jnt-app-layout&gt;
+  &lt;jnt-app-header [logo]="logo" [userbar]="userbar"&gt;
+    &lt;ng-template #logo&gt;
+        &lt;div logo&gt;&lt;img src="path" alt=""&gt;&lt;/div&gt;
+    &lt;/ng-template&gt;
+    &lt;jnt-menu #top&gt;
+      &lt;jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"&gt;&lt;/jnt-menu-item&gt;
+      &lt;jnt-menu-item link="/leader" title="Team Leader"&gt;&lt;/jnt-menu-item&gt;
+      &lt;jnt-menu-item link="/manager" title="Project Manager"&gt;&lt;/jnt-menu-item&gt;
+      &lt;jnt-menu-item link="/customer" title="Customer"&gt;&lt;/jnt-menu-item&gt;
+    &lt;/jnt-menu&gt;
+    &lt;ng-template #userbar&gt;
+      &lt;div userbar&gt;
+        &lt;jnt-avatar [size]="ui.sizes.small" image="path">&lt;/jnt-avatar&gt;
+        &lt;jnt-menu [type]="ui.type.vertical" usermenu&gt;
+          &lt;jnt-menu-item link="/logout" title="Logout">&lt;/jnt-menu-item&gt;
+          &lt;jnt-menu-item link="/profile" title="Profile">&lt;/jnt-menu-item&gt;
+          &lt;jnt-menu-item link="/settings" title="Settings">&lt;/jnt-menu-item&gt;
+        &lt;/jnt-menu&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/jnt-app-header&gt;
+&lt;/jnt-app-layout&gt;</pre>
+    </ngx-prism>
+  </jnt-block>
+
+  <h3>API</h3>
+  <h4>jnt-header</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[logo]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[userbar]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[fixed]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h4>jnt-menu</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[type]</td>
+      <td>-</td>
+      <td>vertical | horizontal</td>
+      <td>horizontal</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h4>jnt-menu-item</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[link]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[icon]</td>
+      <td>-</td>
+      <td>Icons</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
 
 </jnt-container>

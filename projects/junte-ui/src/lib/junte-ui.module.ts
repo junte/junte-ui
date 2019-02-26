@@ -34,6 +34,9 @@ import { AppFooterComponent } from './components/app-layout/app-footer/app-foote
 import { SelectOptionComponent } from './components/select/select-option/select-option.component';
 import { TableComponent } from './components/table/table.component';
 import { TableColumnComponent } from './components/table/column/table-column.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
 
 @NgModule({
@@ -72,7 +75,10 @@ import { PageSizeComponent } from './components/pagination/page-size/page-size.c
     AppContentComponent,
     AppFooterComponent,
     TableComponent,
-    TableColumnComponent
+    TableColumnComponent,
+    MenuComponent,
+    MenuItemComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -112,7 +118,10 @@ import { PageSizeComponent } from './components/pagination/page-size/page-size.c
     AppContentComponent,
     AppFooterComponent,
     TableComponent,
-    TableColumnComponent
+    TableColumnComponent,
+    MenuComponent,
+    MenuItemComponent,
+    AvatarComponent
   ]
 })
 export class JunteUiModule {

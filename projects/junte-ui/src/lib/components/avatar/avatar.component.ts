@@ -1,0 +1,35 @@
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Icons, Shapes, Sizes, UI} from '../../enum/ui';
+
+@Component({
+  selector: 'jnt-avatar',
+  templateUrl: './avatar.component.html',
+  styleUrls: ['./avatar.component.scss']
+})
+export class AvatarComponent implements OnInit {
+
+  ui = UI;
+
+  @HostBinding('attr.size')
+  @Input() size: Sizes = Sizes.normal;
+
+  @HostBinding('attr.shape')
+  @Input() shape: Shapes = Shapes.circle;
+
+  @HostBinding('attr.icon')
+  @Input() icon: Icons;
+
+  @HostBinding('attr.text')
+  @Input() text: string;
+
+  @HostBinding('attr.image')
+  @Input() image: string;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+
+  }
+
+}
