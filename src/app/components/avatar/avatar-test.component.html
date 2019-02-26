@@ -1,0 +1,102 @@
+<jnt-container>
+
+  <h1>Avatar</h1>
+
+  <h3>Size</h3>
+
+  <jnt-stack [gutter]="ui.stack.gutter.large">
+
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+        <jnt-avatar [size]="size">{{size}}</jnt-avatar>
+      </ng-container>
+    </jnt-stack>
+
+    <jnt-block>
+      <ngx-prism language="html">
+    <pre>&lt;jnt-avatar [size]="small"&gt;&lt;/jnt-avatar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <h3>Shape</h3>
+
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <ng-container *ngFor="let shape of [ui.shape.circle, ui.shape.square]">
+        <jnt-avatar [shape]="shape">{{shape}}</jnt-avatar>
+      </ng-container>
+    </jnt-stack>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>&lt;jnt-avatar [shape]="ui.shape.circle"&gt;&lt;/jnt-avatar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <h3>Content</h3>
+
+    <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-avatar text="U"></jnt-avatar>
+        <jnt-avatar [icon]="ui.icons.close"></jnt-avatar>
+        <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+    </jnt-stack>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>&lt;jnt-avatar [icon]="ui.icons.close"&gt;&lt;/jnt-avatar&gt;</pre>
+      </ngx-prism>
+      <ngx-prism language="html">
+        <pre>&lt;jnt-avatar text="U"&gt;&lt;/jnt-avatar&gt;</pre>
+      </ngx-prism>
+      <ngx-prism language="html">
+        <pre>&lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+  </jnt-stack>
+
+  <h3>API</h3>
+  <h4>jnt-avatar</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <td>[shape]</td>
+      <td>-</td>
+      <td>circle | square</td>
+      <td>circle</td>
+    </tr>
+    <tr>
+      <td>[icon]</td>
+      <td>-</td>
+      <td>Icons</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[text]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[image]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>

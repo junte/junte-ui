@@ -1,10 +1,20 @@
 @import "../../../assets/styles/variables";
 @import "../../../assets/styles/mixins";
 
+$app-header-bg: $primary-color;
+$app-header-padding-x: 0;
+$app-header-padding-y: $gutter-4;
+$app-header-height: 70px;
+
 :host {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex: 0 0 auto;
   box-sizing: border-box;
+  background-color: $app-header-bg;
+  padding: $app-header-padding-x $app-header-padding-y;
+  min-height: $app-header-height;
   &[fixed = 'true'] {
     position: fixed;
     top: 0;

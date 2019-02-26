@@ -35,7 +35,7 @@
   <jnt-block>
     <ngx-prism language="html">
 <pre>
-&lt;jnt-form [layout]="horizontal" [title]="Title" [footer]="footer"&gt;
+&lt;jnt-form [layout]="ui.form.layout.horizontal" [title]="Title" [footer]="footer"&gt;
   &lt;jnt-form-item&gt;
     &lt;jnt-form-label for="name"&gt;Username&lt;/jnt-form-label&gt;
     &lt;jnt-form-control&gt;
@@ -43,6 +43,12 @@
       &lt;jnt-form-message&gt;Message&lt;/jnt-form-message&gt;
     &lt;/jnt-form-control&gt;
   &lt;/jnt-form-item&gt;
+  &lt;ng-template #footer&gt;
+    &lt;jnt-stack [type]="ui.stack.type.horizontal"&gt;
+      &lt;jnt-button text="Save changes"&gt;&lt;/jnt-button&gt;
+      &lt;jnt-button [scheme]="ui.schemes.secondary" text="Cancel"&gt;&lt;/jnt-button&gt;
+    &lt;/jnt-stack&gt;
+  &lt;/ng-template&gt;
 &lt;/jnt-form&gt;</pre>
     </ngx-prism>
   </jnt-block>

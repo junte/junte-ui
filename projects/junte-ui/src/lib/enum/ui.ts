@@ -84,6 +84,11 @@ export enum StackType {
   vertical = 'vertical'
 }
 
+export enum MenuType {
+  horizontal = 'horizontal',
+  vertical = 'vertical'
+}
+
 export enum StackGutter {
   small = 'small',
   normal = 'normal',
@@ -112,12 +117,19 @@ export enum Positions {
   inline = 'inline'
 }
 
+export enum Shapes {
+  circle = 'circle',
+  square = 'square'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
   static sizes = Sizes;
   static outline = Outline;
   static position = Positions;
+  static shape = Shapes;
+  static type = MenuType;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,
