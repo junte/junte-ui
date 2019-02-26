@@ -32,9 +32,11 @@
     </ng-container>
     </tbody>
   </table>
-  <jnt-pager *ngIf="count" [pagesCount]="count"
-             formControlName="page">
-  </jnt-pager>
+
+  <ng-container *ngIf="count">
+    <jnt-pagination [pagesCount]="count" formControlName="page"></jnt-pagination>
+    <jnt-page-size formControlName="pageSize"></jnt-page-size>
+  </ng-container>
 </form>
 
 <ng-content></ng-content>
