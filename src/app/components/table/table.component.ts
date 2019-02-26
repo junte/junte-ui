@@ -13,7 +13,7 @@ export class TableTestComponent implements OnInit {
   @ViewChild(TableComponent)
   table: TableComponent;
 
-  ajaxOptions: any = {
+  data: any = {
     results: [
       {value: 4, label: 'FC Manchester City'},
       {value: 5, label: 'FC Liverpool'},
@@ -26,7 +26,7 @@ export class TableTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.table.fetcher = (): Observable<any> => of(this.ajaxOptions).pipe(delay(2000));
+    this.table.fetcher = (): Observable<any> => of(this.data).pipe(delay(2000));
     this.table.load();
   }
 

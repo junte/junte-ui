@@ -23,7 +23,7 @@
     <ng-container *ngIf="!progress.loading; else loadTemp">
       <tr *ngIf="!source.length">
         <td [attr.colspan]="columns.length">
-          <p i18n>No data</p>
+          <p>No data</p>
         </td>
       </tr>
       <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
@@ -32,12 +32,9 @@
     </ng-container>
     </tbody>
   </table>
-  <select formControlName="pageSize">
-    <option [value]="10">10</option>
-    <option [value]="20">20</option>
-    <option [value]="50">50</option>
-    <option [value]="100">100</option>
-  </select>
+  <jnt-pager *ngIf="count" [pagesCount]="count"
+             formControlName="page">
+  </jnt-pager>
 </form>
 
 <ng-content></ng-content>

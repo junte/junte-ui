@@ -23,7 +23,7 @@ import { TableColumnComponent } from './column/table-column.component';
 export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
 
   private subscriptions = new Subscription();
-  private count: number;
+  private _count: number;
 
   columns: TableColumnComponent[] = [];
   progress = {loading: false};
@@ -54,12 +54,21 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
   @Input()
   fetcher: Function;
 
+  set count(count: number) {
+    this._count = count;
+  }
+
+  get count() {
+    return this._count;
+  }
+
   constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.filterForm.valueChanges.pipe((filtering(() => !!this.fetcher)))
       .subscribe(filter => {
+        console.log(filter);
         Object.assign(this.filter, filter);
         this.load();
       });

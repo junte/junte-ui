@@ -15,22 +15,12 @@ export class PagerComponent {
 
   private _pagesCount: number;
   private _selectedPage = 1;
-  private _size = 3;
+  private size = 5;
 
   pages: number[];
 
   @ViewChild('page_size', {read: ElementRef})
   __page_size: ElementRef;
-
-  @Input()
-  set size(size: number) {
-    this._size = size;
-    this.updatePages();
-  }
-
-  get size() {
-    return this._size;
-  }
 
   @Input()
   set pagesCount(pagesCount: number) {
@@ -50,12 +40,6 @@ export class PagerComponent {
   get selectedPage() {
     return this._selectedPage;
   }
-
-  @Input()
-  pageSize: number;
-
-  @Output()
-  pageSizeChange: EventEmitter<number> = new EventEmitter<number>();
 
   onModelChange(value: any) {
   }
