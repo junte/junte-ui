@@ -23,7 +23,6 @@ import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { TableTestComponent } from './table/table.component';
-import { PageSizeComponent } from './pager/page-size/page-size.component';
 
 
 @NgModule({
@@ -53,8 +52,7 @@ import { PageSizeComponent } from './pager/page-size/page-size.component';
     SelectTestComponent,
     BadgeTestComponent,
     AppLayoutTestComponent,
-    TableTestComponent,
-    PageSizeComponent
+    TableTestComponent
   ]
 })
 export class TestsModule {

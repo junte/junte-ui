@@ -17,7 +17,7 @@ import { StackComponent } from './components/stack/stack.component';
 import { BlockComponent } from './components/block/block.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SwitchComponent } from './components/switch/switch.component';
-import { PagerComponent } from './components/pager/pager.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { FormComponent } from './components/form/form.component';
 import { StringTemplateOutletDirective } from './directives/string-template-outlet';
 import { FormItemComponent } from './components/form/form-item/form-item.component';
@@ -34,6 +34,7 @@ import { AppFooterComponent } from './components/app-layout/app-footer/app-foote
 import { SelectOptionComponent } from './components/select/select-option/select-option.component';
 import { TableComponent } from './components/table/table.component';
 import { TableColumnComponent } from './components/table/column/table-column.component';
+import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { TableColumnComponent } from './components/table/column/table-column.com
     SpinnerComponent,
     SwitchComponent,
     SpinnerComponent,
-    PagerComponent,
+    PaginationComponent,
+    PageSizeComponent,
     FormComponent,
     FormItemComponent,
     FormLabelComponent,
@@ -92,7 +94,8 @@ import { TableColumnComponent } from './components/table/column/table-column.com
     StackDirective,
     StackComponent,
     BlockComponent,
-    PagerComponent,
+    PaginationComponent,
+    PageSizeComponent,
     SpinnerComponent,
     SwitchComponent,
     SelectOptionComponent,

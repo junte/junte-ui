@@ -1,26 +1,23 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'jnt-pager',
-  templateUrl: './pager.component.html',
-  styleUrls: ['./pager.component.scss'],
+  selector: 'jnt-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PagerComponent),
+    useExisting: forwardRef(() => PaginationComponent),
     multi: true
   }]
 })
-export class PagerComponent {
+export class PaginationComponent {
 
   private _pagesCount: number;
   private _selectedPage = 1;
   private size = 5;
 
   pages: number[];
-
-  @ViewChild('page_size', {read: ElementRef})
-  __page_size: ElementRef;
 
   @Input()
   set pagesCount(pagesCount: number) {

@@ -11,9 +11,7 @@ export class PagerTestComponent implements OnInit {
   ui = UI;
 
   form: FormGroup;
-  selectedPage = 1;
   pagesCount = 30;
-  pageSize = 10;
 
   constructor(private fb: FormBuilder) {
 
@@ -21,7 +19,8 @@ export class PagerTestComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      page: [1]
+      page: [1],
+      pageSize: [10]
     });
   }
 }

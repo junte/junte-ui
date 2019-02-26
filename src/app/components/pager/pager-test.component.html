@@ -1,42 +1,13 @@
 <jnt-container>
   <h1>Pager</h1>
   <jnt-stack>
-    <p>Selected page is:  {{form.value | json}}</p>
-    <p>Pages size: {{pageSize}}</p>
+    <p>{{form.value | json}}</p>
     <form [formGroup]="form">
-      <jnt-pager [pagesCount]="pagesCount"
+      <jnt-pagination [pagesCount]="pagesCount"
                  formControlName="page">
-      </jnt-pager>
+      </jnt-pagination>
+
+      <jnt-page-size formControlName="pageSize"></jnt-page-size>
     </form>
-    <div class="pages-count">
-      <p>Pages count:</p>
-      <div class="button-group pages">
-        <jnt-button (click)="selectedPage = 1; pagesCount = 2"
-                    [size]="ui.sizes.small"
-                    [disabled]="pagesCount === 2"
-                    text="2">
-        </jnt-button>
-        <jnt-button (click)="selectedPage = 1; pagesCount = 3"
-                    [size]="ui.sizes.small"
-                    [disabled]="pagesCount === 3"
-                    text="3">
-        </jnt-button>
-        <jnt-button (click)="selectedPage = 1; pagesCount = 5"
-                    [size]="ui.sizes.small"
-                    [disabled]="pagesCount === 5"
-                    text="5">
-        </jnt-button>
-        <jnt-button (click)="selectedPage = 1; pagesCount = 10"
-                    [size]="ui.sizes.small"
-                    [disabled]="pagesCount === 10"
-                    text="10">
-        </jnt-button>
-        <jnt-button (click)="selectedPage = 1; pagesCount = 30"
-                    [size]="ui.sizes.small"
-                    [disabled]="pagesCount === 30"
-                    text="30">
-        </jnt-button>
-      </div>
-    </div>
   </jnt-stack>
 </jnt-container>
