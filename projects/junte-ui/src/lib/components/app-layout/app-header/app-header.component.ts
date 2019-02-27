@@ -1,34 +1,26 @@
 import {AfterContentInit, Component, ContentChild, Host, HostBinding, Input, OnInit, TemplateRef} from '@angular/core';
 import {MenuComponent} from '../../menu/menu.component';
 import {Sizes} from '../../../enum/ui';
+import {UserbarComponent} from './userbar/userbar.component';
 
 @Component({
   selector: 'jnt-app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss']
 })
-export class AppHeaderComponent implements OnInit, AfterContentInit {
+export class AppHeaderComponent {
 
   @HostBinding('attr.fixed')
   @Input()
   fixed = false;
 
-  @ContentChild('top')
-  menu: MenuComponent;
+  @ContentChild('topMenu')
+  topMenu: TemplateRef<any>;
 
-  @Input()
-  logo: TemplateRef<void>;
+  @ContentChild('logo')
+  logo: TemplateRef<any>;
 
-  @Input()
-  userbar: TemplateRef<void>;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterContentInit() {
-  }
+  @ContentChild('userbar')
+  userbar: TemplateRef<any>;
 
 }
