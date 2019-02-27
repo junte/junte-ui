@@ -8,28 +8,19 @@ import {UserbarComponent} from './userbar/userbar.component';
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss']
 })
-export class AppHeaderComponent implements OnInit, AfterContentInit {
+export class AppHeaderComponent {
 
   @HostBinding('attr.fixed')
   @Input()
   fixed = false;
 
-  @ContentChild(MenuComponent)
-  menu: MenuComponent;
+  @ContentChild('topMenu')
+  topMenu: TemplateRef<any>;
 
-  @Input()
-  logo: TemplateRef<void>;
+  @ContentChild('logo')
+  logo: TemplateRef<any>;
 
-  @ContentChild(UserbarComponent)
-  userbar: UserbarComponent;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterContentInit() {
-  }
+  @ContentChild('userbar')
+  userbar: TemplateRef<any>;
 
 }

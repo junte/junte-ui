@@ -1,24 +1,16 @@
-import {Component, ContentChild, OnInit} from '@angular/core';
-import {AvatarComponent} from '../../../avatar/avatar.component';
-import {MenuComponent} from '../../../menu/menu.component';
+import {Component, ContentChild, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'jnt-userbar',
   templateUrl: './userbar.component.html',
   styleUrls: ['./userbar.component.scss']
 })
-export class UserbarComponent implements OnInit {
+export class UserbarComponent {
 
-  @ContentChild(AvatarComponent)
-  avatar: AvatarComponent;
+  @ContentChild('avatar')
+  avatar: TemplateRef<any>;
 
-  @ContentChild(MenuComponent)
-  usermenu: MenuComponent;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @ContentChild('userMenu')
+  userMenu: TemplateRef<any>;
 
 }

@@ -80,7 +80,7 @@ import { UserbarComponent } from './components/app-layout/app-header/userbar/use
     MenuComponent,
     MenuItemComponent,
     AvatarComponent,
-    UserbarComponent
+    UserbarComponent,
   ],
   imports: [
     CommonModule,
