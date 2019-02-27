@@ -1,13 +1,20 @@
 <jnt-container>
   <h1>Pager</h1>
   <jnt-stack>
-    <p>{{form.value | json}}</p>
     <form [formGroup]="form">
-      <jnt-pagination [pagesCount]="pagesCount"
-                 formControlName="page">
-      </jnt-pagination>
+      <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.large">
+        <jnt-pagination [pagesCount]="pagesCount"
+                        formControlName="page">
+        </jnt-pagination>
 
-      <jnt-page-size formControlName="pageSize"></jnt-page-size>
+        <jnt-page-size formControlName="pageSize"></jnt-page-size>
+      </jnt-stack>
     </form>
   </jnt-stack>
+
+  <ngx-prism language="html">
+    <pre>
+&lt;jnt-pagination [pagesCount]="pagesCount"&gt;&lt;/jnt-pagination&gt;
+&lt;jnt-page-size&gt;&lt;/jnt-page-size&gt;</pre>
+  </ngx-prism>
 </jnt-container>

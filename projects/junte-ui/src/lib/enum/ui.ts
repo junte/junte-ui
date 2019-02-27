@@ -8,7 +8,8 @@ export enum Icons {
   resize = 'resize',
   expand = 'expand',
   sort = 'sort',
-  arrowLast = 'arrow-last'
+  arrowLast = 'arrow-last',
+  arrowFirst = 'arrow-first'
 }
 
 export enum Schemes {
