@@ -1,7 +1,7 @@
 <jnt-stack [type]="type" [gutter]="spacer">
   <div item *ngFor="let item of items">
     <jnt-icon *ngIf="item.icon" [icon]="item.icon" icon></jnt-icon>
-    <a href="{{item.link}}" text>{{item.title}}</a>
+    <jnt-link [source]="item.link" text>{{item.title}}</jnt-link>
   </div>
 </jnt-stack>
 <ng-content></ng-content>
