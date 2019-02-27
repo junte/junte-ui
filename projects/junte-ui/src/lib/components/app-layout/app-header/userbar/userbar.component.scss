@@ -8,23 +8,15 @@
   display: flex;
   align-items: center;
   &:hover {
-    ::ng-deep jnt-menu {
+    [usermenu] {
       display: block;
     }
   }
-  ::ng-deep jnt-menu {
+  [usermenu] {
+    display: none;
     position: absolute;
     z-index: 1;
-    width: 200px;
     top: 100%;
     right: 0;
-    background-color: white;
-    border: 1px solid $gray-600;
-    border-radius: $corner-sm;
-    padding: 0 $gutter-4;
-    display: none;
-    [item] [text] {
-      color: $text-color!important;
-    }
   }
 }

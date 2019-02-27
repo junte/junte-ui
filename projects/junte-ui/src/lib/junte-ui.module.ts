@@ -39,6 +39,7 @@ import { MenuItemComponent } from './components/menu/menu-item/menu-item.compone
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
 import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
+import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { UserbarComponent } from './components/app-layout/app-header/userbar/use
     MenuItemComponent,
     AvatarComponent,
     UserbarComponent,
+    UserMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -124,7 +126,8 @@ import { UserbarComponent } from './components/app-layout/app-header/userbar/use
     MenuComponent,
     MenuItemComponent,
     AvatarComponent,
-    UserbarComponent
+    UserbarComponent,
+    UserMenuComponent
   ]
 })
 export class JunteUiModule {
