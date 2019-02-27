@@ -49,27 +49,26 @@
   <h2>App-header</h2>
 
   <jnt-app-layout>
-    <jnt-app-header [logo]="logo" [userbar]="userbar">
+    <jnt-app-header [logo]="logo">
       <ng-template #logo>
         <div logo><img src="https://teamprojector.com/assets/images/logo-white.svg" alt=""></div>
       </ng-template>
-      <jnt-menu #top>
+      <jnt-menu>
         <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
         <jnt-menu-item title="Team Leader"></jnt-menu-item>
         <jnt-menu-item title="Project Manager"></jnt-menu-item>
         <jnt-menu-item title="Customer"></jnt-menu-item>
       </jnt-menu>
-      <ng-template #userbar>
-        <div userbar>
-          <jnt-avatar [size]="ui.sizes.small"
-                      image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
-          <jnt-menu [type]="ui.type.vertical" usermenu>
-            <jnt-menu-item title="Logout"></jnt-menu-item>
-            <jnt-menu-item title="Profile"></jnt-menu-item>
-            <jnt-menu-item title="Settings"></jnt-menu-item>
-          </jnt-menu>
-        </div>
-      </ng-template>
+
+      <jnt-userbar>
+        <jnt-avatar [size]="ui.sizes.small"
+                    image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+        <jnt-menu [type]="ui.type.vertical">
+          <jnt-menu-item title="Logout"></jnt-menu-item>
+          <jnt-menu-item title="Profile"></jnt-menu-item>
+          <jnt-menu-item title="Settings"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-userbar>
 
     </jnt-app-header>
   </jnt-app-layout>

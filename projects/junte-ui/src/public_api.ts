@@ -38,6 +38,7 @@ export * from './lib/components/form/form-item/form-item.component';
 export * from './lib/components/menu/menu.component';
 export * from './lib/components/menu/menu-item/menu-item.component';
 export * from './lib/components/avatar/avatar.component';
+export * from './lib/components/app-layout/app-header/userbar/userbar.component';
 export * from './lib/components/form/form-label/form-label.component';
 export * from './lib/components/form/form-message/form-message.component';
 export * from './lib/components/form/form-control/form-control.component';
