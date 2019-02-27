@@ -40,6 +40,8 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
 import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
 import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
+import { LinkComponent } from './components/link/link.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -83,11 +85,13 @@ import { UserMenuComponent } from './components/menu/user-menu/user-menu.compone
     AvatarComponent,
     UserbarComponent,
     UserMenuComponent,
+    LinkComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     JunteUiComponent,
@@ -127,7 +131,8 @@ import { UserMenuComponent } from './components/menu/user-menu/user-menu.compone
     MenuItemComponent,
     AvatarComponent,
     UserbarComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    LinkComponent
   ]
 })
 export class JunteUiModule {

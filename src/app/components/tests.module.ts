@@ -24,6 +24,7 @@ import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { TableTestComponent } from './table/table.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
+import { LinkTestComponent } from './link/link-test.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AvatarTestComponent } from './avatar/avatar-test.component';
     TableTestComponent,
     AvatarTestComponent,
     TableTestComponent,
-    TableTestComponent
+    TableTestComponent,
+    LinkTestComponent
   ]
 })
 export class TestsModule {

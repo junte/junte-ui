@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {JunteUiModule} from 'junte-ui';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     JunteUiModule
   ],
   bootstrap: [AppComponent],
