@@ -3,14 +3,14 @@
       (click)="setPage(1)">
     <a [attr.data-href]="'?page=' + 1"
        title="First">
-      First
+      <jnt-icon [icon]="ui.icons.arrowFirst" icon></jnt-icon>
     </a>
   </li>
   <li [attr.disabled]="selectedPage === 1"
       (click)="setPage(selectedPage - 1)">
     <a title="Previous"
        data-page="1">
-      <
+      <jnt-icon [icon]="ui.icons.arrowRight" icon style="transform: rotate(180deg)"></jnt-icon>
     </a>
   </li>
   <li *ngFor="let page of pages"
@@ -21,10 +21,14 @@
 
   <li [attr.disabled]="selectedPage >= pagesCount"
       (click)="setPage(selectedPage + 1)">
-    <a title="Next">></a>
+    <a title="Next">
+      <jnt-icon [icon]="ui.icons.arrowRight" icon></jnt-icon>
+    </a>
   </li>
   <li (click)="setPage(pagesCount)"
       [attr.disabled]="selectedPage >= pagesCount">
-    <a title="Last">Last</a>
+    <a title="Last">
+      <jnt-icon [icon]="ui.icons.arrowLast" icon></jnt-icon>
+    </a>
   </li>
 </ul>
