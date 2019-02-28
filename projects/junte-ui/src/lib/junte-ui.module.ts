@@ -42,6 +42,7 @@ import { UserbarComponent } from './components/app-layout/app-header/userbar/use
 import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
 import { LinkComponent } from './components/link/link.component';
 import {RouterModule} from '@angular/router';
+import {SmartWidthDirective} from './directives/smart-width';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {RouterModule} from '@angular/router';
     ColComponent,
     IconComponent,
     StackDirective,
+    SmartWidthDirective,
     StackComponent,
     BlockComponent,
     SpinnerComponent,
@@ -106,6 +108,7 @@ import {RouterModule} from '@angular/router';
     ColComponent,
     IconComponent,
     StackDirective,
+    SmartWidthDirective,
     StackComponent,
     BlockComponent,
     PaginationComponent,
