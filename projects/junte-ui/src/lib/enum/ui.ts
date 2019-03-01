@@ -32,6 +32,11 @@ export enum Outline {
   fill = 'fill'
 }
 
+export enum TypeButton {
+  button = 'button',
+  submit = 'submit'
+}
+
 export enum FlexAlign {
   start = 'start',
   center = 'center',
@@ -84,6 +89,11 @@ export enum FlexAlignSelf {
 export enum StackType {
   horizontal = 'horizontal',
   vertical = 'vertical'
+}
+
+export enum ValidationTypeError {
+  required = 'required',
+  minlength = 'minlength'
 }
 
 export enum MenuType {
@@ -146,7 +156,13 @@ export class UI {
   };
   static form = {
     layout: FormLayout,
-    input: InputType
+    input: InputType,
+    button: {
+      type: TypeButton
+    },
+    validators: {
+      typeError: ValidationTypeError
+    }
   };
   static select = SelectMode;
 }

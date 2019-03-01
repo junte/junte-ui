@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input} from '@angular/core';
-import {Icons, Outline, Positions, Schemes, Sizes, UI} from '../../enum/ui';
+import { Component, HostBinding, Input } from '@angular/core';
+import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-button',
@@ -36,6 +36,9 @@ export class ButtonComponent {
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
+
+  @Input()
+  type: TypeButton = TypeButton.button;
 
   @Input()
   text: string;

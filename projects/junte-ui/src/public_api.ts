@@ -8,6 +8,7 @@ export * from './lib/junte-ui.module';
 
 export * from './lib/directives/stack';
 export * from './lib/directives/smart-width';
+export * from './lib/directives/validation';
 export * from './lib/enum/ui';
 export * from './lib/components/select/select.component';
 export * from './lib/components/select/select-option/select-option.component';
