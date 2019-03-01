@@ -16,13 +16,23 @@
 <!--<input input (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">-->
 <!--</ng-template>-->
 
+<script>
+  var $input = $('[input]'),
+    $buffer = $('.input-buffer');
+
+  $input.on('input', function() {
+    $buffer.text($input.val());
+    $input.width($buffer.width());
+  });
+</script>
+
 <ng-template #selectedItemsTemp>
   <ul *ngIf="!loading; else loadOptionsTemp" selected>
     <li chips *ngFor="let item of selectedItems">
       <span>{{labels[item]}}</span><button (click)="optionSelect(item)"><jnt-icon close [icon]="ui.icons.close"></jnt-icon></button>
     </li>
     <li>
-      <input input #searchInput (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)" jntSmartWidth>
+      <input input onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';" #searchInput (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">
     </li>
   </ul>
 </ng-template>

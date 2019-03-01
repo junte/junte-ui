@@ -90,11 +90,31 @@ $chips-spacer: $gutter-1;
     //padding: 0 5px;
     box-sizing: border-box;
     font-size: $font-size-base;
-    //border: 0;
+    border: 0;
+    padding: 0;
+
 
     &:focus {
       outline: 0;
     }
+  }
+  [input],
+  .input-buffer{
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  [input]{
+    width: 15px;
+  }
+
+  .input-buffer{
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+    visibility: hidden;
+    white-space: nowrap;
   }
 }
 
