@@ -1,0 +1,24 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+$link-decoration: 'none';
+$link-color: $primary-light-color;
+$link-font-weight: $font-weight-base;
+$link-hover-color: lighten($link-color, 15%);
+$link-active-color: darken($link-color, 10%);
+
+:host {
+  display: inline;
+}
+
+a {
+  text-decoration: $link-decoration;
+  color: $link-color;
+  font-weight: $link-font-weight;
+  &:hover {
+    color: $link-hover-color;
+  }
+  &:active {
+    color: $link-active-color;
+  }
+}

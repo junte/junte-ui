@@ -1,0 +1,22 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+:host {
+  position: relative;
+  cursor: pointer;
+  min-height: $app-header-height;
+  display: flex;
+  align-items: center;
+  &:hover {
+    [usermenu] {
+      display: block;
+    }
+  }
+  [usermenu] {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 0;
+  }
+}
