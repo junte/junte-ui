@@ -1,36 +1,50 @@
 <jnt-container>
   <h1>Form</h1>
-  <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
-    <jnt-form [layout]="layout" [title]="layout | titlecase" [footer]="footer">
-      <ng-template #title>
-        <h3>Personal details</h3>
-      </ng-template>
+  <!--<ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">-->
+  <jnt-form [formGroup]="form" jntValidation (submitted)="submitForm()" [footer]="footer">
+    <ng-template #title>
+      <h3>Personal details</h3>
+    </ng-template>
 
-      <jnt-form-item>
-        <jnt-form-label for="name">Username</jnt-form-label>
+    <jnt-form-item>
+      <jnt-form-label for="name">Username</jnt-form-label>
+      <jnt-form-control name="name">
+        <jnt-input placeholder="Name" formControlName="name"></jnt-input>
+        <jnt-form-message [type]="ui.form.validators.typeError.required">
+          This field is required
+        </jnt-form-message>
+        <jnt-form-message [type]="ui.form.validators.typeError.minlength">
+          Min. length field is 3
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+
+    <jnt-form-item>
+      <jnt-form-label>Full Name</jnt-form-label>
+      <jnt-form-control name="fullName">
+        <jnt-input placeholder="Full name" formControlName="fullName"></jnt-input>
+        <jnt-form-message [type]="ui.form.validators.typeError.required">
+          This field is required
+        </jnt-form-message>
+        <jnt-form-message [type]="ui.form.validators.typeError.minlength">
+          Min. length field is 5
+        </jnt-form-message>
+      </jnt-form-control>
+    </jnt-form-item>
+
+    <ng-template #footer>
+      <jnt-stack [type]="ui.stack.type.horizontal">
         <jnt-form-control>
-          <jnt-input placeholder="Name"></jnt-input>
-          <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla tenetur? Earum eius ex illo libero nisi nulla, odio?</jnt-form-message>
+          <jnt-button text="Save changes" [type]="ui.form.button.type.submit"></jnt-button>
         </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label>Fullname</jnt-form-label>
         <jnt-form-control>
-          <jnt-input placeholder="Full name"></jnt-input>
-        </jnt-form-control>
-      </jnt-form-item>
-
-
-      <ng-template #footer>
-        <jnt-stack [type]="ui.stack.type.horizontal">
-          <jnt-button text="Save changes"></jnt-button>
           <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
-        </jnt-stack>
-      </ng-template>
-    </jnt-form>
+        </jnt-form-control>
+      </jnt-stack>
+    </ng-template>
+  </jnt-form>
 
-  </ng-container>
+  <!--</ng-container>-->
 
   <jnt-block>
     <ngx-prism language="html">

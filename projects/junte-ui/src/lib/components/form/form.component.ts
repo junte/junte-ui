@@ -1,24 +1,32 @@
-import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnInit, QueryList, Renderer2, TemplateRef} from '@angular/core';
-import {FormLayout, UI} from '../../enum/ui';
-import {FormItemComponent} from './form-item/form-item.component';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
+import { FormLayout, UI } from '../../enum/ui';
+import { FormItemComponent } from './form-item/form-item.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jnt-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, AfterViewInit {
+export class FormComponent implements AfterContentInit {
 
   ui = UI;
 
-  @ContentChildren(FormItemComponent, {read: ElementRef, descendants: true})
-  set items(items: QueryList<ElementRef>) {
-    setTimeout(() => {
-      items.toArray()
-        .map(item => item.nativeElement)
-        .forEach((item) => this.renderer.setAttribute(item, 'layout', this.layout));
-    }, 0);
-  }
+  @ContentChildren(FormItemComponent, {descendants: true})
+  items: QueryList<FormItemComponent>;
+
+  @Input('formGroup')
+  form: FormGroup;
 
   @Input()
   title: string | TemplateRef<void>;
@@ -27,14 +35,38 @@ export class FormComponent implements OnInit, AfterViewInit {
   footer: TemplateRef<void>;
 
   @Input()
-  layout: FormLayout;
+  layout: FormLayout = FormLayout.vertical;
 
-  constructor(private renderer: Renderer2) {
+  @Output()
+  submitted = new EventEmitter();
+
+  @HostListener('submit')
+  onSubmit() {
+    if (!!this.form) {
+      this.check(this.form);
+
+      if (this.form.valid) {
+        this.submitted.emit();
+      }
+    }
   }
 
-  ngOnInit() {
+  ngAfterContentInit() {
+    this.setLayout(this.items);
+    this.items.changes.subscribe(items => this.setLayout(items));
   }
 
-  ngAfterViewInit() {
+  private check(form: any) {
+    for (const i in form.controls) {
+      form.controls[i].markAsDirty();
+      form.controls[i].updateValueAndValidity();
+      this.check(form.controls[i]);
+    }
+  }
+
+  private setLayout(items: QueryList<FormItemComponent>) {
+    if (!!items) {
+      items.toArray().forEach(item => item.layout = this.layout);
+    }
   }
 }

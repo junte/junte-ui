@@ -38,6 +38,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
+import { ValidationDirective } from './directives/validation';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PageSizeComponent } from './components/pagination/page-size/page-size.c
     ColComponent,
     IconComponent,
     StackDirective,
+    ValidationDirective,
     StackComponent,
     BlockComponent,
     SpinnerComponent,
@@ -98,6 +100,7 @@ import { PageSizeComponent } from './components/pagination/page-size/page-size.c
     ColComponent,
     IconComponent,
     StackDirective,
+    ValidationDirective,
     StackComponent,
     BlockComponent,
     PaginationComponent,

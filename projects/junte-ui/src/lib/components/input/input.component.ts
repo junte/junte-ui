@@ -29,13 +29,11 @@ export class InputComponent implements ControlValueAccessor {
 
   value: string = null;
 
-  onChange(val: any) {
-    throw new Error('Control is not registered on change');
-  }
+  onChange = (val: any) => {
+  };
 
-  onTouched() {
-    throw new Error('Control is not registered on touched');
-  }
+  onTouched = () => {
+  };
 
   writeValue(value) {
     this.value = value;

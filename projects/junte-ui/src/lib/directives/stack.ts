@@ -5,16 +5,15 @@ export class Stack {
 }
 
 @Directive({
-  selector: '[juStack]'
+  selector: '[jntStack]'
 })
 export class StackDirective {
 
-  @Input('juStack')
+  @Input('jntStack')
   stack: Stack;
 
   @HostBinding('style.margin')
   get margin() {
-    console.log(this.stack);
     return this.stack.gutter + ' px';
   }
 
