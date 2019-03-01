@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UI} from '../../../../projects/junte-ui/src/lib/enum/ui';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-form-test',
@@ -9,11 +10,20 @@ import {UI} from '../../../../projects/junte-ui/src/lib/enum/ui';
 export class FormTestComponent implements OnInit {
 
   ui = UI;
+  form: FormGroup;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: [ null, [ Validators.required, Validators.minLength(3) ] ],
+      fullName: [ null, [ Validators.required, Validators.minLength(5) ] ]
+    });
+  }
+
+  submitForm(): void {
+    alert('form send');
   }
 
 }

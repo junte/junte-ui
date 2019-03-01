@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
+import { ValidationTypeError } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-message',
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.scss']
 })
-export class FormMessageComponent implements OnInit {
+export class FormMessageComponent {
 
-  constructor() { }
+  show = false;
 
-  ngOnInit() {
+  @HostBinding('style.display')
+  get style() {
+    return !!this.show ? 'inline-block' : 'none';
   }
+
+  @Input()
+  type: ValidationTypeError = null;
 
 }
