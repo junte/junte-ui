@@ -39,6 +39,10 @@ import { MenuItemComponent } from './components/menu/menu-item/menu-item.compone
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
 import { ValidationDirective } from './directives/validation';
+import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
+import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
+import { LinkComponent } from './components/link/link.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -80,12 +84,16 @@ import { ValidationDirective } from './directives/validation';
     TableColumnComponent,
     MenuComponent,
     MenuItemComponent,
-    AvatarComponent
+    AvatarComponent,
+    UserbarComponent,
+    UserMenuComponent,
+    LinkComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     JunteUiComponent,
@@ -124,7 +132,10 @@ import { ValidationDirective } from './directives/validation';
     TableColumnComponent,
     MenuComponent,
     MenuItemComponent,
-    AvatarComponent
+    AvatarComponent,
+    UserbarComponent,
+    UserMenuComponent,
+    LinkComponent
   ]
 })
 export class JunteUiModule {

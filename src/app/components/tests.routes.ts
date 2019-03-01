@@ -16,6 +16,7 @@ import { AppLayoutTestComponent } from 'components/app-layout/app-layout-test.co
 import { IconTestComponent } from 'components/icon/icon-test.component';
 import { TableTestComponent } from 'components/table/table.component';
 import {AvatarTestComponent} from 'components/avatar/avatar-test.component';
+import {LinkTestComponent} from 'components/link/link-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -23,7 +24,7 @@ export const TESTS_ROUTES: Routes = [
     component: PagerTestComponent
   },
   {
-    path: 'buttons',
+    path: 'button',
     component: ButtonsTestComponent
   },
   {
@@ -43,7 +44,7 @@ export const TESTS_ROUTES: Routes = [
     component: SpinnerTestComponent
   },
   {
-    path: 'blocks',
+    path: 'block',
     component: BlocksTestComponent
   },
   {
@@ -85,6 +86,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'avatar',
     component: AvatarTestComponent
+  },
+  {
+    path: 'link',
+    component: LinkTestComponent
   },
   {
     path: '',

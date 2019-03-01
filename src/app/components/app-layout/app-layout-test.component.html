@@ -49,26 +49,35 @@
   <h2>App-header</h2>
 
   <jnt-app-layout>
-    <jnt-app-header [logo]="logo" [userbar]="userbar">
+    <jnt-app-header>
       <ng-template #logo>
         <div logo><img src="https://teamprojector.com/assets/images/logo-white.svg" alt=""></div>
       </ng-template>
-      <jnt-menu #top>
-        <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
-        <jnt-menu-item title="Team Leader"></jnt-menu-item>
-        <jnt-menu-item title="Project Manager"></jnt-menu-item>
-        <jnt-menu-item title="Customer"></jnt-menu-item>
-      </jnt-menu>
+      <ng-template #topMenu>
+        <jnt-menu>
+          <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
+          <jnt-menu-item title="Team Leader"></jnt-menu-item>
+          <jnt-menu-item title="Project Manager"></jnt-menu-item>
+          <jnt-menu-item title="Customer"></jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+
       <ng-template #userbar>
-        <div userbar>
-          <jnt-avatar [size]="ui.sizes.small"
-                      image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
-          <jnt-menu [type]="ui.type.vertical" usermenu>
-            <jnt-menu-item title="Logout"></jnt-menu-item>
-            <jnt-menu-item title="Profile"></jnt-menu-item>
-            <jnt-menu-item title="Settings"></jnt-menu-item>
-          </jnt-menu>
-        </div>
+        <jnt-userbar>
+          <ng-template #avatar>
+            <jnt-avatar [size]="ui.sizes.small"
+                        image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          </ng-template>
+
+          <ng-template #userMenu>
+            <jnt-user-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+              <jnt-menu-item title="Logout"></jnt-menu-item>
+              <jnt-menu-item title="Profile"></jnt-menu-item>
+              <jnt-menu-item title="Settings"></jnt-menu-item>
+              <jnt-button [size]="ui.sizes.small" text="Login"></jnt-button>
+            </jnt-user-menu>
+          </ng-template>
+        </jnt-userbar>
       </ng-template>
 
     </jnt-app-header>
@@ -78,25 +87,31 @@
     <ngx-prism language="html">
 <pre>
 &lt;jnt-app-layout&gt;
-  &lt;jnt-app-header [logo]="logo" [userbar]="userbar"&gt;
+  &lt;jnt-app-header&gt;
     &lt;ng-template #logo&gt;
         &lt;div logo&gt;&lt;img src="path" alt=""&gt;&lt;/div&gt;
     &lt;/ng-template&gt;
-    &lt;jnt-menu #top&gt;
-      &lt;jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"&gt;&lt;/jnt-menu-item&gt;
-      &lt;jnt-menu-item link="/leader" title="Team Leader"&gt;&lt;/jnt-menu-item&gt;
-      &lt;jnt-menu-item link="/manager" title="Project Manager"&gt;&lt;/jnt-menu-item&gt;
-      &lt;jnt-menu-item link="/customer" title="Customer"&gt;&lt;/jnt-menu-item&gt;
-    &lt;/jnt-menu&gt;
+    &lt;ng-template #topMenu&gt;
+      &lt;jnt-menu&gt;
+        &lt;jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"&gt;&lt;/jnt-menu-item&gt;
+        &lt;jnt-menu-item link="/leader" title="Team Leader"&gt;&lt;/jnt-menu-item&gt;
+        &lt;jnt-menu-item link="/manager" title="Project Manager"&gt;&lt;/jnt-menu-item&gt;
+        &lt;jnt-menu-item link="/customer" title="Customer"&gt;&lt;/jnt-menu-item&gt;
+      &lt;/jnt-menu&gt;
+    &lt;/ng-template&gt;
     &lt;ng-template #userbar&gt;
-      &lt;div userbar&gt;
-        &lt;jnt-avatar [size]="ui.sizes.small" image="path">&lt;/jnt-avatar&gt;
-        &lt;jnt-menu [type]="ui.type.vertical" usermenu&gt;
-          &lt;jnt-menu-item link="/logout" title="Logout">&lt;/jnt-menu-item&gt;
-          &lt;jnt-menu-item link="/profile" title="Profile">&lt;/jnt-menu-item&gt;
-          &lt;jnt-menu-item link="/settings" title="Settings">&lt;/jnt-menu-item&gt;
-        &lt;/jnt-menu&gt;
-      &lt;/div&gt;
+      &lt;jnt-userbar&gt;
+        &lt;ng-template #avatar&gt;
+          &lt;jnt-avatar [size]="ui.sizes.small" image="path">&lt;/jnt-avatar&gt;
+        &lt;/ng-template&gt;
+        &lt;ng-template #userMenu&gt;
+          &lt;jnt-menu [type]="ui.type.vertical" [spacer]="ui.size.small"&gt;
+            &lt;jnt-menu-item link="/logout" title="Logout">&lt;/jnt-menu-item&gt;
+            &lt;jnt-menu-item link="/profile" title="Profile">&lt;/jnt-menu-item&gt;
+            &lt;jnt-menu-item link="/settings" title="Settings">&lt;/jnt-menu-item&gt;
+          &lt;/jnt-menu&gt;
+        &lt;/ng-template&gt;
+      &lt;/jnt-userbar&gt;
     &lt;/ng-template&gt;
   &lt;/jnt-app-header&gt;
 &lt;/jnt-app-layout&gt;</pre>
@@ -115,18 +130,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>[logo]</td>
-      <td>-</td>
-      <td>TemplateRef</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[userbar]</td>
-      <td>-</td>
-      <td>TemplateRef</td>
-      <td>-</td>
-    </tr>
     <tr>
       <td>[fixed]</td>
       <td>-</td>
@@ -152,6 +155,12 @@
       <td>-</td>
       <td>vertical | horizontal</td>
       <td>horizontal</td>
+    </tr>
+    <tr>
+      <td>[spacer]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>large</td>
     </tr>
     </tbody>
   </table>

@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, ContentChildren, Input, QueryList} from '@angular/core';
 import {MenuItemComponent} from './menu-item/menu-item.component';
-import {Icons, MenuType, UI} from '../../enum/ui';
+import {MenuType, Sizes, UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-menu',
@@ -10,6 +10,7 @@ import {Icons, MenuType, UI} from '../../enum/ui';
 export class MenuComponent implements AfterContentInit {
 
   @Input() type: MenuType = MenuType.horizontal;
+  @Input() spacer: Sizes = Sizes.large;
 
   ui = UI;
 
