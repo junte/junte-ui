@@ -28,7 +28,7 @@
 </ng-template>
 
 <ng-template #loadTemp>
-  <p>Loading data...</p>
+  <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
 </ng-template>
 
 <ng-template #loadOptionsTemp>
@@ -44,8 +44,8 @@
   <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
 </div>
 <ng-container *ngIf="!!toggle">
-    <ng-container [ngIf]="loading" *ngTemplateOutlet="loadTemp"></ng-container>
     <div options>
+      <div loading><ng-container [ngIf]="loading" *ngTemplateOutlet="loadTemp"></ng-container></div>
       <ul>
         <ng-container *ngTemplateOutlet="itemsNotFoundTemp"></ng-container>
         <ng-container *ngTemplateOutlet="optionsTemp"></ng-container>

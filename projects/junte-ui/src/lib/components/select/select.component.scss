@@ -104,6 +104,7 @@ $chips-spacer: $gutter-1;
   box-shadow: $option-list-shadow;
   margin-top: $option-list-spacer-top;
   padding: $option-list-padding-x $option-list-padding-y;
+  position: relative;
   [item] {
     padding: $option-item-padding-x $option-item-padding-y;
     [checkbox] ::ng-deep [switch] {
@@ -116,6 +117,17 @@ $chips-spacer: $gutter-1;
   }
   [message] {
     padding: $chips-padding-x $chips-padding-y;
+  }
+  [loading] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($gray-500,.2);
   }
 }
 
