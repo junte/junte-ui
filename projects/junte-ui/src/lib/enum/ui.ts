@@ -9,7 +9,8 @@ export enum Icons {
   expand = 'expand',
   sort = 'sort',
   arrowLast = 'arrow-last',
-  arrowFirst = 'arrow-first'
+  arrowFirst = 'arrow-first',
+  sortDown = 'sort-down'
 }
 
 export enum Schemes {
