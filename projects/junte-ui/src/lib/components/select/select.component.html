@@ -12,17 +12,13 @@
   </li>
 </ng-template>
 
-<!--<ng-template #searchTemp>-->
-<!--<input input (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">-->
-<!--</ng-template>-->
-
 <ng-template #selectedItemsTemp>
-  <ul *ngIf="!loading; else loadOptionsTemp" selected>
+  <ul selection *ngIf="!loading; else loadOptionsTemp">
     <li chips *ngFor="let item of selectedItems">
       <span>{{labels[item]}}</span><button (click)="optionSelect(item)"><jnt-icon close [icon]="ui.icons.close"></jnt-icon></button>
     </li>
     <li>
-      <input input #searchInput (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)" jntSmartWidth>
+      <input #search input jntSmartWidth (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">
     </li>
   </ul>
 </ng-template>
@@ -40,8 +36,8 @@
 </ng-template>
 
 <div selectize (click)="input.focus(); toggle = !toggle;">
-  <ng-container *ngTemplateOutlet="selectedItemsTemp"></ng-container>
-  <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
+    <ng-container *ngTemplateOutlet="selectedItemsTemp"></ng-container>
+    <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
 </div>
 <ng-container *ngIf="!!toggle">
     <div options>
