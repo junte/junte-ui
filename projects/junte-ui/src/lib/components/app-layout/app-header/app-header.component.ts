@@ -1,7 +1,7 @@
-import {AfterContentInit, Component, ContentChild, Host, HostBinding, Input, OnInit, TemplateRef} from '@angular/core';
-import {MenuComponent} from '../../menu/menu.component';
-import {Sizes} from '../../../enum/ui';
-import {UserbarComponent} from './userbar/userbar.component';
+import { AfterContentInit, Component, ContentChild, Host, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { MenuComponent } from '../../menu/menu.component';
+import { Sizes, UI } from '../../../enum/ui';
+import { UserbarComponent } from './userbar/userbar.component';
 
 @Component({
   selector: 'jnt-app-header',
@@ -9,6 +9,8 @@ import {UserbarComponent} from './userbar/userbar.component';
   styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent {
+
+  ui = UI;
 
   @HostBinding('attr.fixed')
   @Input()

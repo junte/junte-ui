@@ -4,6 +4,8 @@
 $app-header-bg: $primary-color;
 $app-header-padding-x: 0;
 $app-header-padding-y: $gutter-4;
+$app-header-z-index: 3;
+$app-header-color: white;
 
 :host {
   display: flex;
@@ -14,10 +16,12 @@ $app-header-padding-y: $gutter-4;
   background-color: $app-header-bg;
   padding: $app-header-padding-x $app-header-padding-y;
   min-height: $app-header-height;
+  color: $app-header-color;
   &[fixed = 'true'] {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: $app-header-z-index;
   }
 }

@@ -1,64 +1,95 @@
-<aside>
-  <ul>
-    <jnt-stack [type]="ui.stack.type.vertical">
-      <li>
-        <jnt-link source="components/grid">Grid</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/stack">Stack</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/block">Block</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/button">Button</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/input">Input</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/spinner">Spinner</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/checkbox">Checkbox</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/switch">Switch</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/radio">Radio</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/pager">Pager</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/form">Form</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/icon">Icon</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/select">Select</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/badge">Badge</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/layout">Layout</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/table">Table</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/avatar">Avatar</jnt-link>
-      </li>
-      <li>
-        <jnt-link source="components/link">Link</jnt-link>
-      </li>
-    </jnt-stack>
-  </ul>
-</aside>
+<jnt-app-layout>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <jnt-app-header [fixed]="true">
+    <ng-template #logo>
+      <div logo>
+        <div>Junte UI</div>
+        <small>Very strong framework!</small>
+      </div>
+    </ng-template>
+    <ng-template #topMenu>
+      <jnt-menu>
+        <jnt-menu-item title="Home"></jnt-menu-item>
+        <jnt-menu-item title="Documentation"></jnt-menu-item>
+        <jnt-menu-item title="GitLab"></jnt-menu-item>
+        <jnt-menu-item title="Contacts"></jnt-menu-item>
+      </jnt-menu>
+    </ng-template>
+  </jnt-app-header>
+
+  <jnt-app-main>
+
+    <jnt-app-aside [fixed]="true">
+      <ul aside>
+        <jnt-stack [type]="ui.stack.type.vertical">
+          <li>
+            <jnt-link source="components/grid" [fluid]="true">Grid</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/stack" [fluid]="true">Stack</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/block" [fluid]="true">Block</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/button" [fluid]="true">Button</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/input" [fluid]="true">Input</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/spinner" [fluid]="true">Spinner</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/checkbox" [fluid]="true">Checkbox</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/switch" [fluid]="true">Switch</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/radio" [fluid]="true">Radio</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/pager" [fluid]="true">Pager</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/form" [fluid]="true">Form</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/icon" [fluid]="true">Icon</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/select" [fluid]="true">Select</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/badge" [fluid]="true">Badge</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/layout" [fluid]="true">Layout</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/table" [fluid]="true">Table</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/avatar" [fluid]="true">Avatar</jnt-link>
+          </li>
+          <li>
+            <jnt-link source="components/link" [fluid]="true">Link</jnt-link>
+          </li>
+        </jnt-stack>
+      </ul>
+    </jnt-app-aside>
+
+    <jnt-app-content>
+      <router-outlet></router-outlet>
+    </jnt-app-content>
+
+    <jnt-app-footer>
+      <div footer>
+        <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+      </div>
+    </jnt-app-footer>
+
+  </jnt-app-main>
+
+</jnt-app-layout>
