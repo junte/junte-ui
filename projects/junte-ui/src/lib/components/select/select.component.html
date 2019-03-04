@@ -12,27 +12,13 @@
   </li>
 </ng-template>
 
-<!--<ng-template #searchTemp>-->
-<!--<input input (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">-->
-<!--</ng-template>-->
-
-<script>
-  var $input = $('[input]'),
-    $buffer = $('.input-buffer');
-
-  $input.on('input', function() {
-    $buffer.text($input.val());
-    $input.width($buffer.width());
-  });
-</script>
-
 <ng-template #selectedItemsTemp>
-  <ul *ngIf="!loading; else loadOptionsTemp" selected>
+  <ul selection *ngIf="!loading; else loadOptionsTemp">
     <li chips *ngFor="let item of selectedItems">
       <span>{{labels[item]}}</span><button (click)="optionSelect(item)"><jnt-icon close [icon]="ui.icons.close"></jnt-icon></button>
     </li>
     <li>
-      <input input onkeydown="this.style.width = ((this.value.length + 1) * 8) + 'px';" #searchInput (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">
+      <input #search input jntSmartWidth (click)="toggle = !toggle" [ngModel]="q" (ngModelChange)="search$.next($event)">
     </li>
   </ul>
 </ng-template>
@@ -50,8 +36,8 @@
 </ng-template>
 
 <div selectize (click)="input.focus(); toggle = !toggle;">
-  <ng-container *ngTemplateOutlet="selectedItemsTemp"></ng-container>
-  <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
+    <ng-container *ngTemplateOutlet="selectedItemsTemp"></ng-container>
+    <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
 </div>
 <ng-container *ngIf="!!toggle">
     <div options>
