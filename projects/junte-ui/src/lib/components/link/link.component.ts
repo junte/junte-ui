@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'jnt-link',
@@ -8,6 +8,9 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 export class LinkComponent implements OnInit {
 
   @Input() source: string;
+
+  @HostBinding('attr.fluid')
+  @Input() fluid: false;
 
   constructor() {
   }

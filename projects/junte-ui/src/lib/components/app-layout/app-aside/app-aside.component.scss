@@ -1,4 +1,9 @@
-$app-aside-width: 200px;
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+$app-aside-bg: white;
+$app-aside-border-right-color: $gray-700;
+$app-aside-z-index: 2;
 
 :host {
   display: block;
@@ -7,4 +12,15 @@ $app-aside-width: 200px;
   min-width: $app-aside-width;
   max-width: $app-aside-width;
   box-sizing: border-box;
+  background-color: $app-aside-bg;
+  border-right: 1px solid $app-aside-border-right-color;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &[fixed = 'true'] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: $app-aside-z-index;
+  }
 }
