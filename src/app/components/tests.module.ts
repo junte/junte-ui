@@ -22,7 +22,7 @@ import { BadgeTestComponent } from './badge/badge-test.component';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
-import { TableTestComponent } from './table/table.component';
+import { TableTestComponent } from './table/table-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { LinkTestComponent } from './link/link-test.component';
 

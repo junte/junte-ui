@@ -4,9 +4,9 @@ import { delay } from 'rxjs/operators';
 import { TableComponent } from 'junte-ui';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table-test',
+  templateUrl: './table-test.component.html',
+  styleUrls: ['./table-test.component.scss']
 })
 export class TableTestComponent implements OnInit {
 
