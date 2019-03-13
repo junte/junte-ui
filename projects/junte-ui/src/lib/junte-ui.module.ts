@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { JunteUiComponent } from './junte-ui.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { SelectComponent } from './components/select/select.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
@@ -42,8 +43,18 @@ import { ValidationDirective } from './directives/validation';
 import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
 import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
 import { LinkComponent } from './components/link/link.component';
-import { RouterModule } from '@angular/router';
 import { SmartWidthDirective } from './directives/smart-width';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { WeekComponent } from './components/calendar/week/week.component';
+import { WeekMetricComponent } from './components/calendar/week/week-metric.component';
+import {
+  AddMonthsPipe,
+  FormatPipe,
+  GetDatePipe,
+  GetISOWeekPipe,
+  IsEqualPipe,
+  SubMonthsPipe
+} from './pipes/date-fns.pipe';
 
 @NgModule({
   declarations: [
@@ -89,7 +100,16 @@ import { SmartWidthDirective } from './directives/smart-width';
     AvatarComponent,
     UserbarComponent,
     UserMenuComponent,
-    LinkComponent
+    LinkComponent,
+    CalendarComponent,
+    WeekComponent,
+    WeekMetricComponent,
+    FormatPipe,
+    GetISOWeekPipe,
+    AddMonthsPipe,
+    SubMonthsPipe,
+    GetDatePipe,
+    IsEqualPipe
   ],
   imports: [
     CommonModule,
@@ -138,7 +158,16 @@ import { SmartWidthDirective } from './directives/smart-width';
     AvatarComponent,
     UserbarComponent,
     UserMenuComponent,
-    LinkComponent
+    LinkComponent,
+    CalendarComponent,
+    WeekComponent,
+    WeekMetricComponent,
+    FormatPipe,
+    GetISOWeekPipe,
+    AddMonthsPipe,
+    SubMonthsPipe,
+    GetDatePipe,
+    IsEqualPipe
   ]
 })
 export class JunteUiModule {

@@ -15,6 +15,8 @@ export * from './lib/components/select/select-option/select-option.component';
 export * from './lib/components/button/button.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/checkbox/checkbox.component';
+export * from './lib/components/calendar/calendar.component';
+export * from './lib/components/calendar/week/week.component';
 export * from './lib/components/radio/radio.component';
 export * from './lib/components/card/card.component';
 export * from './lib/components/grid/container/container.component';
