@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+  <h3>Calendar</h3>
+  <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+  </jnt-calendar>
+
+  <h3>Calendar with custom template day</h3>
+  <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+    <ng-template #dayTemplate let-date="date">
+      <i style="color: blue">{{getDate(format(date))}}</i>
+    </ng-template>
+  </jnt-calendar>
+
+  <h3>Calendar with Metrics</h3>
+  <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+    <ng-template #metricTemplate let-metric="metric"
+                 let-date="date">
+      text
+    </ng-template>
+
+    <jnt-week-metric title="Test metric"></jnt-week-metric>
+  </jnt-calendar>
+
+  <h3>Calendar Week</h3>
+  <jnt-calendar-week class="week" [period]="dueDate.value">
+  </jnt-calendar-week>
+
+  <h3>Calendar Week with custom template day</h3>
+  <jnt-calendar-week class="week" [period]="dueDate.value">
+    <ng-template #dayTemplate let-date="date">
+      {{getDate(format(date))}}
+      <i style="border: 2px solid red; border-radius: 5px;">Test</i>
+    </ng-template>
+  </jnt-calendar-week>
+</form>

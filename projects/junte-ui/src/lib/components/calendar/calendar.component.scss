@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+thead {
+  .sortable {
+    cursor: pointer;
+  }
+  .metrics {
+    text-align: center;
+  }
+}
+
+tbody {
+  tr {
+    &[current-week='true'] {
+      background: rgb(161, 236, 161);
+    }
+    td {
+      position: relative;
+      min-width: 50px;
+      text-align: center;
+      &.day {
+        cursor: pointer;
+        &[current-day='true'] {
+          background: red;
+        }
+      }
+    }
+  }
+}
