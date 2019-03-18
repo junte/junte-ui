@@ -25,6 +25,7 @@ import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { TableTestComponent } from './table/table-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { LinkTestComponent } from './link/link-test.component';
+import { CalendarTestComponent } from './calendar/calendar.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { LinkTestComponent } from './link/link-test.component';
     AvatarTestComponent,
     TableTestComponent,
     TableTestComponent,
-    LinkTestComponent
+    LinkTestComponent,
+    CalendarTestComponent
   ]
 })
 export class TestsModule {

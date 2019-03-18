@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {UI} from 'junte-ui';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   options: any[] = [
     {value: 1, label: 'Option 1'},
     {value: 2, label: 'Option 2'},
-    {value: 3, label: 'Option 3'},
+    {value: 3, label: 'Option 3'}
   ];
 
   loading = {};
