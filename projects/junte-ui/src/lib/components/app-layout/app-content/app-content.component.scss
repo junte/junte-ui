@@ -7,11 +7,11 @@ $app-content-padding-left: $app-aside-width;
 $app-content-padding-right: 0;
 
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
   flex: auto;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
-  //padding: $app-content-padding-top $app-content-padding-right $app-content-padding-bottom $app-content-padding-left;
+  padding: $app-content-padding-top $app-content-padding-right $app-content-padding-bottom $app-content-padding-left;
+  min-height: calc(100vh - #{$app-footer-height});
 }
