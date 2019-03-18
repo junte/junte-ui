@@ -11,6 +11,10 @@ export class AppAsideComponent implements OnInit {
   @Input()
   fixed = false;
 
+  @HostBinding('attr.collapsed')
+  @Input()
+  collapsed = true;
+
   constructor() { }
 
   ngOnInit() {
