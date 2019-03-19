@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
-  Component, ContentChild,
+  Component,
+  ContentChild,
   ContentChildren,
   EventEmitter,
   forwardRef,
@@ -21,8 +22,6 @@ import {
   addMonths,
   addWeeks,
   format,
-  getDate,
-  getISOWeek,
   isEqual,
   setDay,
   setMonth,
@@ -51,13 +50,11 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
 
   private year$ = new Subject<number>();
   private month$ = new BehaviorSubject<number>(0);
-  private _period;
+  private _period: Date;
 
-  addMonths = addMonths;
-  subMonths = subMonths;
-
-  current: string = today();
+  current: Date = today();
   metrics: WeekMetricComponent[] = [];
+  weeks = [];
 
   @ContentChildren(WeekMetricComponent)
   metricsComponent: QueryList<WeekMetricComponent>;
@@ -71,8 +68,6 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
   @Output()
   updated = new EventEmitter<Period>();
 
-  weeks = [];
-
   @Input()
   set year(year: number) {
     this.year$.next(year);
@@ -84,7 +79,7 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
   }
 
   set period(period: Date) {
-    this._period = format(period);
+    this._period = period;
     this.update();
   }
 
@@ -92,11 +87,12 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
     return this._period;
   }
 
-  onChange = (date: string) => {
-    if (!isEqual(date, this.current)) {
-      this.current = date;
-    }
-  };
+  format = format;
+  addMonths = addMonths;
+  subMonths = subMonths;
+  isEqual = isEqual;
+
+  onChange: (date: Date) => void;
 
   constructor() {
     combineLatest(this.year$, this.month$)
@@ -115,6 +111,22 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
     this.period = startOfMonth(this.current);
   }
 
+  writeValue(date: Date): void {
+    this.current = date;
+  }
+
+  registerOnChange(callback: (date: Date) => void): void {
+    this.onChange = (date: Date) => {
+      if (!isEqual(date, this.current)) {
+        this.current = date;
+        callback(date);
+      }
+    };
+  }
+
+  registerOnTouched(fn): void {
+  }
+
   private update() {
     const start = format(startOfWeek(this.period, {weekStartsOn: 1}));
     let date = start;
@@ -127,16 +139,6 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
       date = format(addWeeks(date, 1));
     }
     this.updated.emit({start: new Date(start), end: new Date(date)});
-  }
-
-  writeValue(date: string): void {
-    this.current = date;
-  }
-
-  registerOnChange(callback: (date: Date) => void): void {
-  }
-
-  registerOnTouched(fn: () => void): void {
   }
 
 }
