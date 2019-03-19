@@ -19,9 +19,9 @@ const DAYS_IN_WEEK = 7;
 })
 export class WeekComponent implements ControlValueAccessor, OnInit {
 
-  private _period;
+  private _period: Date;
 
-  current: string = today();
+  current: Date = today();
   days: string[] = [];
 
   @ContentChild('dayTemplate')
@@ -29,7 +29,7 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
 
   @Input()
   set period(period: Date) {
-    this._period = format(period);
+    this._period = period;
     this.update();
   }
 
@@ -37,24 +37,26 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
     return this._period;
   }
 
+  onChange: (date: Date) => void;
+
   ngOnInit() {
     this.period = startOfWeek(this.current, {weekStartsOn: 1});
   }
 
-  onChange = (date: string) => {
-    if (!isEqual(date, this.current)) {
-      this.current = date;
-    }
-  };
-
-  writeValue(date: string): void {
+  writeValue(date: Date): void {
     this.current = date;
   }
 
-  registerOnChange(callback: (date: string) => void): void {
+  registerOnChange(callback: (date: Date) => void): void {
+    this.onChange = (date: Date) => {
+      if (!isEqual(date, this.current)) {
+        this.current = date;
+        callback(date);
+      }
+    };
   }
 
-  registerOnTouched(fn: () => void): void {
+  registerOnTouched(fn): void {
   }
 
   private update() {

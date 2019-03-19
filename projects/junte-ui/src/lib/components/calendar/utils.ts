@@ -1,5 +1,5 @@
-import { format, startOfDay } from 'date-fns';
+import { startOfDay } from 'date-fns';
 
-export function today(): string {
-  return format(startOfDay(new Date()));
+export function today(): Date {
+  return startOfDay(new Date());
 }
