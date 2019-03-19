@@ -55,6 +55,7 @@ import {
   IsEqualPipe,
   SubMonthsPipe
 } from './pipes/date-fns.pipe';
+import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import {
     AddMonthsPipe,
     SubMonthsPipe,
     GetDatePipe,
-    IsEqualPipe
+    IsEqualPipe,
+    AppBodyComponent
   ],
   imports: [
     CommonModule,
@@ -167,7 +169,8 @@ import {
     AddMonthsPipe,
     SubMonthsPipe,
     GetDatePipe,
-    IsEqualPipe
+    IsEqualPipe,
+    AppBodyComponent
   ]
 })
 export class JunteUiModule {

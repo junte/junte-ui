@@ -1,0 +1,14 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
+
+$app-body-padding-top: $app-header-height;
+$app-body-padding-bottom: $gutter-5;
+$app-body-padding-left: 0;
+$app-body-padding-right: 0;
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  min-height: calc(100vh - #{$app-footer-height});
+  padding: $app-body-padding-top $app-body-padding-right $app-body-padding-bottom $app-body-padding-left;
+}
