@@ -1,6 +1,12 @@
 @import "../../../../assets/styles/variables";
 @import "../../../../assets/styles/mixins";
 
+$user-menu-max-height: 300px;
+$user-menu-border-radius: 0;
+$user-menu-padding-x: $gutter-3;
+$user-menu-padding-y: $gutter-4;
+$user-menu-bg: $primary-color;
+
 :host {
   position: relative;
   cursor: pointer;
@@ -13,6 +19,11 @@
     }
   }
   [usermenu] {
+    background: $user-menu-bg;
+    border-radius: $user-menu-border-radius;
+    padding: $user-menu-padding-x $user-menu-padding-y;
+    max-height: $user-menu-max-height;
+    overflow-y: auto;
     display: none;
     position: absolute;
     z-index: 1;
