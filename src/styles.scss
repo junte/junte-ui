@@ -32,7 +32,7 @@ table[api] {
   width: 100%;
   border-collapse: collapse;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  td,th {
+  td, th {
     padding: $gutter-3;
     border: 1px solid $gray-700;
   }
@@ -52,5 +52,23 @@ table[api] {
 }
 
 pre[class*="language-"] {
-  margin-top: $gutter-4!important;
+  margin-top: $gutter-4 !important;
+}
+
+@import "../projects/junte-ui/src/lib/assets/styles/theme";
+
+@function host($host, $selector: '') {
+  @return '[host=#{$host}]#{$selector}';
+}
+
+#{host($link-host)} {
+  #{host($link-host)}[link] {
+    color: yellow;
+  }
+}
+
+#{host($link-host)} {
+  #{host($link-host)}[link] {
+    color: red;
+  }
 }

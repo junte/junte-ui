@@ -1,18 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'jnt-link',
-  templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss']
+  templateUrl: './link.component.encapsulated.html',
+  encapsulation: ViewEncapsulation.None
 })
-export class LinkComponent implements OnInit {
+export class LinkComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-link-host';
 
   @Input() source: string;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }

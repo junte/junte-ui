@@ -7,10 +7,10 @@ $link-font-weight: $font-weight-base;
 $link-hover-color: lighten($link-color, 15%);
 $link-active-color: darken($link-color, 10%);
 
-:host {
+[host=#{$link-host}] {
   display: inline;
 
-  [link] {
+  [host=#{$link-host}][link] {
     text-decoration: $link-decoration;
     color: $link-color;
     font-weight: $link-font-weight;
