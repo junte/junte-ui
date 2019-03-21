@@ -8,7 +8,9 @@ export enum Icons {
   resize = 'resize',
   expand = 'expand',
   sort = 'sort',
-  arrowLast = 'arrow-last'
+  arrowLast = 'arrow-last',
+  arrowFirst = 'arrow-first',
+  sortDown = 'sort-down'
 }
 
 export enum Schemes {
@@ -28,6 +30,11 @@ export enum Sizes {
 export enum Outline {
   ghost = 'ghost',
   fill = 'fill'
+}
+
+export enum TypeButton {
+  button = 'button',
+  submit = 'submit'
 }
 
 export enum FlexAlign {
@@ -82,6 +89,11 @@ export enum FlexAlignSelf {
 export enum StackType {
   horizontal = 'horizontal',
   vertical = 'vertical'
+}
+
+export enum ValidationTypeError {
+  required = 'required',
+  minlength = 'minlength'
 }
 
 export enum MenuType {
@@ -144,7 +156,13 @@ export class UI {
   };
   static form = {
     layout: FormLayout,
-    input: InputType
+    input: InputType,
+    button: {
+      type: TypeButton
+    },
+    validators: {
+      typeError: ValidationTypeError
+    }
   };
   static select = SelectMode;
 }

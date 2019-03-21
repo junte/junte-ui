@@ -10,10 +10,16 @@ import {
   TemplateRef
 } from '@angular/core';
 import { filter as filtering, finalize } from 'rxjs/operators';
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from './model';
 import { Subscription } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { TableColumnComponent } from './column/table-column.component';
+import {
+  DEFAULT_PAGE,
+  DEFAULT_PAGE_SIZE,
+  DefaultSearchFilter,
+  Order,
+  SearchFilter
+} from '../../models/table';
 
 @Component({
   selector: 'jnt-table',

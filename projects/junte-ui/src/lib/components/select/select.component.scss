@@ -1,29 +1,141 @@
 @import "../../assets/styles/variables";
 
+$option-list-spacer-top: $gutter-1;
+$option-list-padding-y: 0;
+$option-list-padding-x: $gutter-1;
+$option-list-border-color: transparent;
+$option-list-border-width: 0;
+$option-list-bg: white;
+$option-list-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+$option-item-padding-x: $gutter-2;
+$option-item-padding-y: $gutter-4;
+$option-item-hover-bg: $gray-500;
+
+$select-border-width: 1px;
+$select-border-color: $gray-600;
+$select-corner: $corner-sm;
+$select-height: 38px;
+$select-icon-dropdown-size: 7px;
+$select-icon-dropdown-color: $gray-800;
+$select-padding-bottom: $gutter-1;
+$select-padding-left: $gutter-1;
+$select-padding-right: $gutter-3;
+
+$chips-bg: $gray-500;
+$chips-corner: $select-corner;
+$chips-padding-x: $gutter-1;
+$chips-padding-y: $gutter-1;
+$chips-spacer: $gutter-1;
+
 :host {
   display: inline-block;
   width: 100%;
 }
 
-select {
-  //border-radius: $select-corner;
-  //padding: $select-padding-x $select-padding-y;
-  //min-height: $select-height;
-  //background: $select-bg $select-indicator no-repeat right $select-padding-x center;
-  //background: url(../assets/images/icons/arrow-down.svg);
-  //background-size: $select-bg-size;
-  //border: $select-border-width solid $select-border-color;
-  //font-size: $select-font-size;
-  //color: $select-color;
-  //width: 100%;
-  //&:focus {
-  //  outline: none;
-  //  border-color: $select-border-color-focus;
-  //  color: $select-focus-color;
-  //  background-color: $select-focus-bg;
-  //}
+[selectize] {
+  border: $select-border-width solid $select-border-color;
+  border-radius: $select-corner;
+  min-height: $select-height;
+  box-sizing: border-box;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  position: relative;
+  cursor: pointer;
+  [selection] {
+    margin-bottom: -3px;
+    margin-left: $select-padding-left;
+    margin-right: $select-padding-right;
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      max-width: 100%;
+      margin-bottom: $chips-spacer;
+      display: flex;
+      &[chips] {
+        background-color: $chips-bg;
+        border-radius: $chips-corner;
+        padding: $chips-padding-x $chips-padding-y;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &:not(:last-child) {
+          margin-right: $chips-spacer;
+        }
+        button {
+          border: 0;
+          background-color: transparent;
+          padding: 0 $gutter-2 0 $gutter-3;
+          &:focus {
+            outline: 0;
+          }
+          [close] {
+            font-size: 7px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  [icon] {
+    position: absolute;
+    top: 50%;
+    right: $select-padding-left;
+    transform: translateY(-50%);
+    font-size: $select-icon-dropdown-size;
+    color: $select-icon-dropdown-color;
+  }
+  [input] {
+    max-width: 100%;
+    width: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: $font-size-base;
+    border: 0;
+    padding: 0;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+[options] {
+  border: $option-list-border-width solid $option-list-border-color;
+  background-color: $option-list-bg;
+  box-shadow: $option-list-shadow;
+  margin-top: $option-list-spacer-top;
+  padding: $option-list-padding-x $option-list-padding-y;
+  position: relative;
+  [item] {
+    padding: $option-item-padding-x $option-item-padding-y;
+    [checkbox] ::ng-deep [switch] {
+      border: 0;
+      background-color: transparent;
+    }
+    &:hover {
+      background-color: $option-item-hover-bg;
+    }
+  }
+  [message] {
+    padding: $chips-padding-x $chips-padding-y;
+  }
+  [loading] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
+
+
+

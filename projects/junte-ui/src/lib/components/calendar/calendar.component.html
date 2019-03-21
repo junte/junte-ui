@@ -1,0 +1,55 @@
+<table border="1" cellpadding="1" cellspacing="0">
+  <thead>
+  <tr>
+    <td>
+      <jnt-button (click)="period = subMonths(period, 1)" text="&larr;">
+      </jnt-button>
+    </td>
+    <td colspan="5">
+      {{period | format: 'MMMM'}}, {{period | format: 'YYYY'}}
+    </td>
+    <td>
+      <jnt-button (click)="period = addMonths(period, 1)" text="&rarr;">
+      </jnt-button>
+    </td>
+    <td *ngIf="metrics.length"
+        class="metrics"
+        [attr.colspan]="metrics.length"
+    >Metrics
+    </td>
+  </tr>
+  <tr>
+    <th>Mo</th>
+    <th>Tu</th>
+    <th>We</th>
+    <th>Th</th>
+    <th>Fr</th>
+    <th>Sa</th>
+    <th>Su</th>
+
+    <th *ngFor="let m of metrics">
+      {{m.title}}
+    </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let w of weeks" [attr.current-week]="(current | getISOWeek) === (w.date | getISOWeek)">
+    <td class="day" *ngFor="let d of w.days"
+        [attr.current-day]="(d | format : 'YYYY-MM-DD') | isEqual: (current | format: 'YYYY-MM-DD')"
+        (click)="onChange(d)">
+      <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
+      </ng-container>
+    </td>
+
+    <td *ngFor="let m of metrics;let i = index;">
+      <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
+      </ng-container>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #defaultDayTemplate let-date="date">
+  {{date | getDate}}
+</ng-template>

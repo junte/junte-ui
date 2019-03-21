@@ -3,17 +3,24 @@
 
 $link-decoration: 'none';
 $link-color: $primary-light-color;
-$link-font-weight: $font-weight-base;
+$link-font-weight: $font-weight-light;
+$link-font-size: 1rem;
 $link-hover-color: lighten($link-color, 15%);
 $link-active-color: darken($link-color, 10%);
 
 :host {
-  display: inline;
+  display: inline-block;
+  &[fluid="true"] {
+    width: 100%;
+    a {
+      width: 100%;
+    }
+  }
 
   [link] {
-    text-decoration: $link-decoration;
+    display: inline-block;text-decoration: $link-decoration;
     color: $link-color;
-    font-weight: $link-font-weight;
+    font-weight: $link-font-weight;font-size: $link-font-size;
     &:hover {
       color: $link-hover-color;
     }

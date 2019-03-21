@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { JunteUiComponent } from './junte-ui.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { SelectComponent } from './components/select/select.component';
 import { ButtonComponent } from './components/button/button.component';
 import { InputComponent } from './components/input/input.component';
@@ -38,10 +39,23 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
+import { ValidationDirective } from './directives/validation';
 import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
 import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
 import { LinkComponent } from './components/link/link.component';
-import {RouterModule} from '@angular/router';
+import { SmartWidthDirective } from './directives/smart-width';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { WeekComponent } from './components/calendar/week/week.component';
+import { WeekMetricComponent } from './components/calendar/week/week-metric.component';
+import {
+  AddMonthsPipe,
+  FormatPipe,
+  GetDatePipe,
+  GetISOWeekPipe,
+  IsEqualPipe,
+  SubMonthsPipe
+} from './pipes/date-fns.pipe';
+import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +72,8 @@ import {RouterModule} from '@angular/router';
     ColComponent,
     IconComponent,
     StackDirective,
+    ValidationDirective,
+    SmartWidthDirective,
     StackComponent,
     BlockComponent,
     SpinnerComponent,
@@ -86,6 +102,16 @@ import {RouterModule} from '@angular/router';
     UserbarComponent,
     UserMenuComponent,
     LinkComponent,
+    CalendarComponent,
+    WeekComponent,
+    WeekMetricComponent,
+    FormatPipe,
+    GetISOWeekPipe,
+    AddMonthsPipe,
+    SubMonthsPipe,
+    GetDatePipe,
+    IsEqualPipe,
+    AppBodyComponent
   ],
   imports: [
     CommonModule,
@@ -106,6 +132,8 @@ import {RouterModule} from '@angular/router';
     ColComponent,
     IconComponent,
     StackDirective,
+    ValidationDirective,
+    SmartWidthDirective,
     StackComponent,
     BlockComponent,
     PaginationComponent,
@@ -132,7 +160,17 @@ import {RouterModule} from '@angular/router';
     AvatarComponent,
     UserbarComponent,
     UserMenuComponent,
-    LinkComponent
+    LinkComponent,
+    CalendarComponent,
+    WeekComponent,
+    WeekMetricComponent,
+    FormatPipe,
+    GetISOWeekPipe,
+    AddMonthsPipe,
+    SubMonthsPipe,
+    GetDatePipe,
+    IsEqualPipe,
+    AppBodyComponent
   ]
 })
 export class JunteUiModule {

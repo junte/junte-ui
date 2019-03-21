@@ -1,0 +1,28 @@
+<jnt-container [fluid]="true">
+  <h1>Table</h1>
+  <jnt-table>
+    <jnt-table-column title="Label" sort="label"></jnt-table-column>
+    <jnt-table-column title="Value" sort="value"></jnt-table-column>
+
+    <ng-template #rowTemplate let-label="label" let-value="value">
+      <td>label</td>
+      <td>value</td>
+    </ng-template>
+  </jnt-table>
+
+  <jnt-block>
+    <ngx-prism language="html">
+      <pre>
+&lt;jnt-table&gt;
+  &lt;jnt-table-column title="Label" sort="label">&lt;/jnt-table-column&gt;
+  &lt;jnt-table-column title="Value" sort="value">&lt;/jnt-table-column&gt;
+  &lt;ng-template #rowTemplate let-label="label" let-value="value"&gt;
+    &lt;td&gt;label&lt;/td&gt;
+    &lt;td&gt;value&lt;/td&gt;
+  &lt;/ng-template&gt;
+&lt;/jnt-table&gt;</pre>
+    </ngx-prism>
+  </jnt-block>
+
+</jnt-container>
+

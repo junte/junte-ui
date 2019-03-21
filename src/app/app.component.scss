@@ -4,23 +4,12 @@
   display: block;
 }
 
-ul {
-  list-style: none;
-}
-
-aside {
-  position: fixed;
-  width: 200px;
-  border-right: 1px solid $gray-900;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  background-color: white;
-}
-
-main {
-  padding-left: 300px;
-  position: relative;
-  z-index: 1;
-  overflow-x: hidden;
+ul[aside] {
+  li {
+    padding: $gutter-2 $gutter-2 $gutter-2 $gutter-5;
+    cursor: pointer;
+    &:hover {
+      background-color: $gray-500;
+    }
+  }
 }

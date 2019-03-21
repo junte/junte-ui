@@ -14,9 +14,10 @@ import { SelectTestComponent } from 'components/select/select-test.component';
 import { BadgeTestComponent } from 'components/badge/badge-test.component';
 import { AppLayoutTestComponent } from 'components/app-layout/app-layout-test.component';
 import { IconTestComponent } from 'components/icon/icon-test.component';
-import { TableTestComponent } from 'components/table/table.component';
-import {AvatarTestComponent} from 'components/avatar/avatar-test.component';
-import {LinkTestComponent} from 'components/link/link-test.component';
+import { TableTestComponent } from 'components/table/table-test.component';
+import { AvatarTestComponent } from 'components/avatar/avatar-test.component';
+import { LinkTestComponent } from 'components/link/link-test.component';
+import { CalendarTestComponent } from 'components/calendar/calendar.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -26,6 +27,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'button',
     component: ButtonsTestComponent
+  },
+  {
+    path: 'calendar',
+    component: CalendarTestComponent
   },
   {
     path: 'grid',

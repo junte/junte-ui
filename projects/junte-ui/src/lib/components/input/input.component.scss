@@ -26,7 +26,7 @@ $input-corner-lg: $corner-sm;
 $input-corner-sm: $corner-sm;
 
 $input-focus-bg: $input-bg;
-$input-focus-border-color: $primary-color;
+$input-focus-border-color-primary: $primary-color;
 $input-focus-color: $text-color;
 
 $input-font-size: $font-size-base;
@@ -35,16 +35,21 @@ $input-height: 38px;
 
 $schemes: (
   #{$scheme-primary}: (
-    border-color: $primary-color
+    border-color: $gray-600,
+    border-color-focus: $input-focus-border-color-primary,
+    color-focus: $input-focus-color
   ),
   #{$scheme-secondary}: (
-    border-color: $secondary-color
+    border-color: $secondary-color,
+    color-focus: $input-focus-color
   ),
   #{$scheme-success}: (
-    border-color: $success-color
+    border-color: $success-color,
+    color-focus: $input-focus-color
   ),
   #{$scheme-fail}: (
-    border-color: $fail-color
+    border-color: $fail-color,
+    color-focus: $input-focus-color
   )
 );
 
@@ -52,7 +57,8 @@ $schemes: (
   input {
     border-color: #{map-get($scheme, border-color)};
     &:focus {
-      border-color: #{map-get($scheme, border-color)};
+      border-color: #{map-get($scheme, border-color-focus)};
+      color: #{map-get($scheme, color-focus)};
     }
   }
 }
@@ -81,8 +87,6 @@ $schemes: (
     box-sizing: border-box;
     &:focus {
       outline: none;
-      color: $input-focus-color;
-      border-color: $input-focus-border-color;
       background-color: $input-focus-bg;
     }
     &:disabled {

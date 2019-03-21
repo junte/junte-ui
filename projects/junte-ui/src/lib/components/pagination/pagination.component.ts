@@ -1,5 +1,6 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Component, forwardRef, Input} from '@angular/core';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-pagination',
@@ -12,6 +13,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   }]
 })
 export class PaginationComponent {
+
+  ui = UI;
 
   private _pagesCount: number;
   private _selectedPage = 1;

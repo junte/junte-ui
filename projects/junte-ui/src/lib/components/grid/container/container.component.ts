@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-container',
@@ -6,5 +6,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent {
+
+  @HostBinding('attr.fluid')
+  @Input() fluid = false;
 
 }

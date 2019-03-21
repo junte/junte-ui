@@ -1,9 +1,9 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, Input, OnInit, QueryList } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode } from '../../enum/ui';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
-import { debounceTime, finalize } from 'rxjs/operators';
-import { SelectOptionComponent } from './select-option/select-option.component';
+import {AfterContentInit, Component, ContentChildren, ElementRef, forwardRef, Input, OnInit, QueryList, ViewChild} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {SelectMode, UI} from '../../enum/ui';
+import {BehaviorSubject, Subject, Subscription} from 'rxjs';
+import {debounceTime, finalize} from 'rxjs/operators';
+import {SelectOptionComponent} from './select-option/select-option.component';
 
 const SEARCH_DELAY = 500;
 
@@ -21,6 +21,8 @@ const SEARCH_DELAY = 500;
 })
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
 
+  ui = UI;
+
   @Input() loadOptions: Function;
   @Input() mode: SelectMode = SelectMode.single;
   @Input() labelField: string;
@@ -29,6 +31,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() required = false;
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
+
+  @ViewChild('search')
+  searchInput: ElementRef;
 
   private fetcher: Subscription;
   private q$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
@@ -41,6 +46,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   labels: any = {};
   loading: boolean;
   toggle: boolean;
+
+  get input() {
+    return this.searchInput.nativeElement;
+  }
 
   set q(q: string) {
     this.q$.next(q);

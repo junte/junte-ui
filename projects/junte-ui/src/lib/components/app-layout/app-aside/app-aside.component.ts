@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-aside',
@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-aside.component.scss']
 })
 export class AppAsideComponent implements OnInit {
+
+  @HostBinding('attr.fixed')
+  @Input()
+  fixed = false;
+
+  @HostBinding('attr.collapsed')
+  @Input()
+  collapsed = true;
 
   constructor() { }
 

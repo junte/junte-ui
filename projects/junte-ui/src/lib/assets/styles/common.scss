@@ -4,15 +4,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
-
-html {
-  font-size: $font-size-base;
-}
-
 body {
   margin: 0;
   font-family: $font-family-base;
+  font-weight: $font-weight-base;
   line-height: $line-height-base;
+  font-size: $font-size-base;
   color: $body-color;
   text-align: left;
   background-color: $body-bg;
@@ -33,8 +30,17 @@ h4 {
 
 h1, h2, h3, h4, h5 {
   margin-bottom: $headings-margin-bottom;
+  &:first-child {
+    margin-top: $gutter-3;
+  }
 }
 
 [role=button], a, area, button, input:not([type=range]), label, select, summary, textarea {
   touch-action: manipulation;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
