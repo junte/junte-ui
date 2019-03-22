@@ -1,0 +1,71 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+$calendar-week-day-width: 90px;
+$calendar-week-current-day-width: 130px;
+$calendar-week-day-height: 110px;
+$calendar-week-current-day-height: 150px;
+$calendar-week-day-corner: $corner-md;
+$calendar-week-day-shadow: 0px 5px 16px rgba(0, 80, 199, 0.3);
+
+$calendar-week-number-day-font-size: 1.625rem;
+$calendar-week-number-day-color: $primary-color;
+
+$calendar-week-name-day-color: $text-color;
+$calendar-week-name-day-font-size: $font-size-base;
+
+$calendar-week-metric-bg: $gray-500;
+$calendar-week-metric-padding: $gutter-1;
+
+$calendar-week-metric-time-spend-color: $primary-light-color;
+$calendar-week-metric-time-spend-font-size: $font-size-base;
+
+$calendar-week-metric-full-time-color: $primary-color;
+$calendar-week-metric-full-time-font-size: $font-size-base;
+
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-width: $calendar-week-day-width;
+  min-height: $calendar-week-day-height;
+  border-radius: $calendar-week-day-corner;
+  box-shadow: $calendar-week-day-shadow;
+  [date] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+  }
+  [number-day] {
+    font-size: $calendar-week-number-day-font-size;
+    color: $calendar-week-number-day-color;
+    font-weight: $font-weight-bold;
+  }
+  [name-day] {
+    color: $calendar-week-name-day-color;
+    font-size: $calendar-week-name-day-font-size;
+  }
+  [today] {
+    color: $primary-color;
+  }
+  [metric] {
+    background-color: $calendar-week-metric-bg;
+    padding: $calendar-week-metric-padding;
+    //margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 $calendar-week-day-corner $calendar-week-day-corner;
+    text-align: center;
+    [time-spend] {
+      color: $calendar-week-metric-time-spend-color;
+      font-size: $calendar-week-metric-time-spend-font-size;
+    }
+    [full-time] {
+      color: $calendar-week-metric-full-time-color;
+      font-size: $calendar-week-metric-full-time-font-size;
+    }
+  }
+}

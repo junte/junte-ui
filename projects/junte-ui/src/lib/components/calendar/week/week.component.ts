@@ -2,6 +2,7 @@ import { Component, ContentChild, forwardRef, Input, OnInit, TemplateRef } from 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addDays, format, getDate, isEqual, startOfWeek } from 'date-fns';
 import { today } from '../utils';
+import { UI } from '../../../enum/ui';
 
 const DAYS_IN_WEEK = 7;
 
@@ -18,6 +19,8 @@ const DAYS_IN_WEEK = 7;
   ]
 })
 export class WeekComponent implements ControlValueAccessor, OnInit {
+
+  ui = UI;
 
   private _period: Date;
 
