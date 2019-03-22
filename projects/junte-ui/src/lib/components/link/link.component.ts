@@ -11,4 +11,7 @@ export class LinkComponent {
 
   @Input() source: string;
 
+  @HostBinding('attr.fluid')
+  @Input() fluid = false;
+
 }
