@@ -4,9 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { getDate, format } from 'date-fns';
 
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  selector: 'app-calendar-test',
+  templateUrl: './calendar-test.component.html',
+  styleUrls: ['./calendar-test.component.scss']
 })
 export class CalendarTestComponent implements OnInit {
   getDate = getDate;

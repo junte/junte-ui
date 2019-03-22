@@ -5,6 +5,7 @@ export enum Icons {
   cancel = 'cancel',
   search = 'search',
   arrowRight = 'arrow-right',
+  arrowLeft = 'arrow-left',
   resize = 'resize',
   expand = 'expand',
   sort = 'sort',

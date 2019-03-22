@@ -30,6 +30,7 @@ import {
   startOfWeek,
   subMonths
 } from 'date-fns';
+import { UI } from '../../enum/ui';
 
 const WEEKS_DISPLAYED = 5;
 const DAYS_IN_WEEK = 7;
@@ -47,6 +48,8 @@ const DAYS_IN_WEEK = 7;
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, AfterContentInit, OnInit {
+
+  ui = UI;
 
   private year$ = new Subject<number>();
   private month$ = new BehaviorSubject<number>(0);
