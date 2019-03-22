@@ -17,7 +17,7 @@ import { IconTestComponent } from 'components/icon/icon-test.component';
 import { TableTestComponent } from 'components/table/table-test.component';
 import { AvatarTestComponent } from 'components/avatar/avatar-test.component';
 import { LinkTestComponent } from 'components/link/link-test.component';
-import { CalendarTestComponent } from 'components/calendar/calendar.component';
+import { CalendarTestComponent } from 'components/calendar/calendar-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {

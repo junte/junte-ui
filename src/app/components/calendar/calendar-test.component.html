@@ -1,0 +1,67 @@
+<jnt-container>
+
+  <form [formGroup]="form">
+    <h1>Calendar</h1>
+    <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+    </jnt-calendar>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>
+&lt;jnt-calendar formControlName="dueDate" (updated)="period = $event"&gt;&lt;/jnt-calendar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <h3>Calendar with custom template day</h3>
+    <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+      <ng-template #dayTemplate let-date="date">
+        <span style="color: blue">{{getDate(format(date))}}</span>
+      </ng-template>
+    </jnt-calendar>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>
+&lt;jnt-calendar formControlName="dueDate" (updated)="period = $event"&gt;
+  &lt;ng-template #dayTemplate let-date="date"&gt;
+    &lt;span style="color: blue"&gt;23&lt;/span&gt;
+  &lt;/ng-template&gt;
+&lt;/jnt-calendar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <h3>Calendar with Metrics</h3>
+    <jnt-calendar formControlName="dueDate" (updated)="period = $event">
+      <ng-template #metricTemplate let-metric="metric"
+                   let-date="date">
+        text
+      </ng-template>
+
+      <jnt-week-metric title="Test metric"></jnt-week-metric>
+    </jnt-calendar>
+
+    <jnt-block>
+      <ngx-prism language="html">
+        <pre>
+&lt;jnt-calendar formControlName="dueDate" (updated)="period = $event"&gt;
+  &lt;ng-template #metricTemplate let-metric="metric" let-date="date"&gt;
+    text
+  &lt;/ng-template&gt;
+  &lt;jnt-week-metric title="Test metric"&gt;&lt;/jnt-week-metric&gt;
+&lt;/jnt-calendar&gt;</pre>
+      </ngx-prism>
+    </jnt-block>
+
+    <h3>Calendar Week</h3>
+    <jnt-calendar-week class="week" [period]="dueDate.value">
+    </jnt-calendar-week>
+
+    <h3>Calendar Week with custom template day</h3>
+    <jnt-calendar-week class="week" [period]="dueDate.value">
+      <ng-template #dayTemplate let-date="date">
+        {{getDate(format(date))}}
+        <i style="border: 2px solid red; border-radius: 5px;">Test</i>
+      </ng-template>
+    </jnt-calendar-week>
+  </form>
+</jnt-container>

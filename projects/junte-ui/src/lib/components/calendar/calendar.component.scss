@@ -1,8 +1,78 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+$calendar-corner: $corner-sm;
+$calendar-shadow: 0px 2px 8px rgba(0, 67, 167, 0.25);
+$calendar-arrows-size: 1rem;
+$calendar-arrows-color: $text-color;
+$calendar-arrows-hover-color: lighten($calendar-arrows-color, 10%);
+$calendar-padding: $gutter-3;
+$calendar-name-day-padding-x: $gutter-3;
+$calendar-name-day-padding-y: $gutter-1;
+$calendar-day-padding-y: $gutter-1;
+$calendar-day-padding-x: $gutter-2;
+$calendar-name-day-color: $gray-800;
+$calendar-name-day-font-size: $font-size-sm;
+$calendar-day-font-size: $font-size-sm;
+$calendar-day-width: 38px;
+
+$calendar-current-week-border-color: $primary-light-color;
+$calendar-current-week-corner: $corner-sm;
+
+$calendar-current-day-bg: $primary-light-color;
+$calendar-current-day-color: white;
+
+$calendar-current-day-hover-color: white;
+$calendar-current-day-hover-bg: $primary-light-color;
+
+
 :host {
-  display: block;
+  display: inline-block;
+  border-radius: $calendar-corner;
+  box-shadow: $calendar-shadow;
+  padding: $calendar-padding;
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: auto;
 }
 
 thead {
+  [arrow-left] {
+    text-align: left;
+  }
+  [arrow-right] {
+    text-align: right;
+  }
+  [arrow] {
+    background-color: transparent;
+    border: 0;
+    font-size: $calendar-arrows-size;
+    color: $calendar-arrows-color;
+    cursor: pointer;
+    padding: 0;
+    vertical-align: middle;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $calendar-arrows-hover-color;
+    }
+  }
+  [date] {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base;
+  }
+  [days] {
+    > th {
+      padding: $calendar-name-day-padding-x $calendar-name-day-padding-y;
+      color: $calendar-name-day-color;
+      font-size: $calendar-name-day-font-size;
+      font-weight: $font-weight-bold;
+    }
+  }
   .sortable {
     cursor: pointer;
   }
@@ -14,18 +84,32 @@ thead {
 tbody {
   tr {
     &[current-week='true'] {
-      background: rgb(161, 236, 161);
+      box-shadow: 0 0 0 1.5px $calendar-current-week-border-color;
+      border-radius: $calendar-current-week-corner;
     }
     td {
       position: relative;
-      min-width: 50px;
-      text-align: center;
-      &.day {
+      min-width: $calendar-day-width;
+      padding: $calendar-day-padding-x $calendar-day-padding-y;
+      font-size: $calendar-day-font-size;
+      box-sizing: border-box;
+      &[day] {
         cursor: pointer;
+        &:hover {
+          background-color: $calendar-current-day-hover-bg;
+          color: $calendar-current-day-hover-color;
+        }
         &[current-day='true'] {
-          background: red;
+          background-color: $calendar-current-day-bg;
+          color: $calendar-current-day-color;
         }
       }
     }
   }
 }
+
+td, th {
+  vertical-align: middle;
+  text-align: center;
+}
+
