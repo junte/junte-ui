@@ -1,3 +1,15 @@
-<p>
-  day works!
-</p>
+<ng-container
+  *ngTemplateOutlet="!!dayTemplate ? dayTemplate : defaultDayTemplate;context:{date: date}">
+</ng-container>
+
+<ng-template #defaultDayTemplate let-date="date">
+  <div date>
+    <span number-day>{{date | getDate}}</span>
+    <span name-day>{{date | format: 'dddd'}}</span>
+    <span today *ngIf="day">Today</span>
+  </div>
+
+  <div metric>
+    <span time-spend>4h</span> | <span full-time>8h</span>
+  </div>
+</ng-template>

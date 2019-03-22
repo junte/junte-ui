@@ -172,7 +172,8 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     SubMonthsPipe,
     GetDatePipe,
     IsEqualPipe,
-    AppBodyComponent
+    AppBodyComponent,
+    DayComponent
   ]
 })
 export class JunteUiModule {

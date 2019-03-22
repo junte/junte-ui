@@ -1,33 +1,8 @@
 <ng-content></ng-content>
-<!--<table border="1">-->
-  <!--<thead>-->
-  <!--<tr>-->
-    <!--<th>Mo</th>-->
-    <!--<th>Tu</th>-->
-    <!--<th>We</th>-->
-    <!--<th>Th</th>-->
-    <!--<th>Fr</th>-->
-    <!--<th>Sa</th>-->
-    <!--<th>Su</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
-  <!--<tbody>-->
-  <!--<tr>-->
-    <!--<td *ngFor="let d of days" (click)="!!onChange ? onChange(d) : null">-->
-      <!--<ng-container-->
-        <!--*ngTemplateOutlet="!!dayTemplate ? dayTemplate : defaultDayTemplate;context:{date: d}">-->
-      <!--</ng-container>-->
-    <!--</td>-->
-  <!--</tr>-->
-  <!--</tbody>-->
-<!--</table>-->
 
-<div *ngFor="let d of days" (click)="!!onChange ? onChange(d) : null">
-  <ng-container
-    *ngTemplateOutlet="!!dayTemplate ? dayTemplate : defaultDayTemplate;context:{date: d}">
-  </ng-container>
-</div>
-
-<ng-template #defaultDayTemplate let-date="date">
-  <span>{{date | getDate}}</span>
-</ng-template>
+<jnt-stack [type]="ui.type.horizontal">
+  <jnt-calendar-day *ngFor="let d of days" (click)="!!onChange ? onChange(d) : null"
+                    [current]="current"
+                    [dayTemplate]="dayTemplate" [date]="d">
+  </jnt-calendar-day>
+</jnt-stack>
