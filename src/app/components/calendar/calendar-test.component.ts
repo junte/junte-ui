@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { getDate, format } from 'date-fns';
+import { format, getDate } from 'date-fns';
 
 @Component({
   selector: 'app-calendar-test',
   templateUrl: './calendar-test.component.html',
   styleUrls: ['./calendar-test.component.scss']
 })
-export class CalendarTestComponent implements OnInit {
+export class CalendarTestComponent {
   getDate = getDate;
   format = format;
   period$ = new BehaviorSubject<any>(null);
@@ -23,9 +23,6 @@ export class CalendarTestComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder) {
-  }
-
-  ngOnInit() {
   }
 
 }
