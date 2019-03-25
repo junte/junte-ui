@@ -16,5 +16,4 @@ export class DayComponent {
   get day() {
     return isEqual(format(this.date, 'YYYY-MM-DD'), format(this.current, 'YYYY-MM-DD'));
   }
-
 }
