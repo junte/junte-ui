@@ -9,7 +9,7 @@
     <span today *ngIf="day">Today</span>
   </div>
 
-  <div *ngIf="!!dayTemplate?.elementRef.nativeElement.value" metric>
+  <div *ngIf="!!dayTemplate" metric>
     <ng-container *ngTemplateOutlet="dayTemplate;context:{date: date}"></ng-container>
   </div>
 </ng-template>
