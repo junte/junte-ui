@@ -1,4 +1,15 @@
-import {AfterContentInit, Component, ContentChildren, ElementRef, forwardRef, Input, OnInit, QueryList, ViewChild} from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild
+} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SelectMode, UI} from '../../enum/ui';
 import {BehaviorSubject, Subject, Subscription} from 'rxjs';
@@ -28,11 +39,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelField: string;
   @Input() valueField: string;
   @Input() placeholder: string;
+  @Input() search = true;
   @Input() required = false;
+
+  @HostBinding('attr.chips') chips;
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
-  @ViewChild('search')
+  @ViewChild('searchInput')
   searchInput: ElementRef;
 
   private fetcher: Subscription;
@@ -41,6 +55,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   private _ajaxOptions: any[] = [];
 
   search$: Subject<string> = new Subject<string>();
+  selectMode = SelectMode;
   selectedItems: any[] = [];
   selected: any = {};
   labels: any = {};

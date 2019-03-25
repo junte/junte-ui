@@ -18,6 +18,7 @@ $select-corner: $corner-sm;
 $select-height: 38px;
 $select-icon-dropdown-size: 7px;
 $select-icon-dropdown-color: $gray-800;
+$select-placeholder-color: $gray-600;
 $select-padding-bottom: $gutter-1;
 $select-padding-left: $gutter-1;
 $select-padding-right: $gutter-3;
@@ -42,6 +43,20 @@ $chips-spacer: $gutter-1;
   padding-top: 3px;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  [placeholder] {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: $select-padding-left;
+    color: $select-placeholder-color;
+  }
+
   [selection] {
     margin-bottom: -3px;
     margin-left: $select-padding-left;
@@ -52,7 +67,10 @@ $chips-spacer: $gutter-1;
       max-width: 100%;
       margin-bottom: $chips-spacer;
       display: flex;
-      &[chips] {
+      button {
+        display: none;
+      }
+      &[chips='true'] {
         background-color: $chips-bg;
         border-radius: $chips-corner;
         padding: $chips-padding-x $chips-padding-y;
@@ -63,6 +81,7 @@ $chips-spacer: $gutter-1;
           margin-right: $chips-spacer;
         }
         button {
+          display: inline-block;
           border: 0;
           background-color: transparent;
           padding: 0 $gutter-2 0 $gutter-3;
@@ -103,9 +122,14 @@ $chips-spacer: $gutter-1;
   border: $option-list-border-width solid $option-list-border-color;
   background-color: $option-list-bg;
   box-shadow: $option-list-shadow;
+  box-sizing: border-box;
   margin-top: $option-list-spacer-top;
   padding: $option-list-padding-x $option-list-padding-y;
-  position: relative;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 11;
   [item] {
     padding: $option-item-padding-x $option-item-padding-y;
     [checkbox] ::ng-deep [switch] {
@@ -135,6 +159,15 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+[overlay] {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
 }
 
 

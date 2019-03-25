@@ -10,6 +10,8 @@ export class RadioComponent implements OnInit {
 
   ui = UI;
 
+  @HostBinding('attr.host') readonly host = 'jnt-radio-host';
+
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
