@@ -1,6 +1,6 @@
 import { Component, ContentChild, forwardRef, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addDays, format, getDate, isEqual, startOfWeek } from 'date-fns';
+import { addDays, format, isEqual, startOfWeek } from 'date-fns';
 import { today } from '../utils';
 import { UI } from '../../../enum/ui';
 
