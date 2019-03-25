@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Icons, Shapes, Sizes, UI} from '../../enum/ui';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Icons, Shapes, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-avatar',
@@ -9,6 +9,8 @@ import {Icons, Shapes, Sizes, UI} from '../../enum/ui';
 export class AvatarComponent implements OnInit {
 
   ui = UI;
+
+  @HostBinding('attr.host') readonly host = 'jnt-avatar-host';
 
   @HostBinding('attr.size')
   @Input() size: Sizes = Sizes.normal;
