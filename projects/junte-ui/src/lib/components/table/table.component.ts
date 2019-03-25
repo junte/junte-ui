@@ -3,6 +3,7 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -11,15 +12,9 @@ import {
 } from '@angular/core';
 import { filter as filtering, finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TableColumnComponent } from './column/table-column.component';
-import {
-  DEFAULT_PAGE,
-  DEFAULT_PAGE_SIZE,
-  DefaultSearchFilter,
-  Order,
-  SearchFilter
-} from '../../models/table';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
 
 @Component({
   selector: 'jnt-table',
@@ -33,15 +28,12 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
 
   columns: TableColumnComponent[] = [];
   progress = {loading: false};
-  sort = this.formBuilder.control(null);
-  order = this.formBuilder.control(Order.asc);
 
-  filterForm = this.formBuilder.group({
-    sort: this.sort,
-    order: this.order,
-    page: [DEFAULT_PAGE],
-    pageSize: [DEFAULT_PAGE_SIZE]
-  });
+  @HostBinding('attr.host') readonly host = 'jnt-table-host';
+
+  filterForm: FormGroup;
+  sort: FormControl;
+  order: FormControl;
 
   source: any[] = [];
 
@@ -76,6 +68,15 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.sort = this.formBuilder.control(null);
+    this.order = this.formBuilder.control(Order.asc);
+    this.filterForm = this.formBuilder.group({
+      sort: this.sort,
+      order: this.order,
+      page: [DEFAULT_PAGE],
+      pageSize: [DEFAULT_PAGE_SIZE]
+    });
+
     this.filterForm.valueChanges.pipe((filtering(() => !!this.fetcher)))
       .subscribe(filter => {
         console.log(filter);
