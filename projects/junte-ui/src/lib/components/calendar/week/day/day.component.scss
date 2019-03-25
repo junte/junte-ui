@@ -17,12 +17,6 @@ $calendar-week-name-day-font-size: $font-size-base;
 $calendar-week-metric-bg: $gray-500;
 $calendar-week-metric-padding: $gutter-1;
 
-$calendar-week-metric-time-spend-color: $primary-light-color;
-$calendar-week-metric-time-spend-font-size: $font-size-base;
-
-$calendar-week-metric-full-time-color: $primary-color;
-$calendar-week-metric-full-time-font-size: $font-size-base;
-
 :host {
   display: inline-flex;
   flex-direction: column;
@@ -54,18 +48,9 @@ $calendar-week-metric-full-time-font-size: $font-size-base;
   [metric] {
     background-color: $calendar-week-metric-bg;
     padding: $calendar-week-metric-padding;
-    //margin-top: auto;
     width: 100%;
     box-sizing: border-box;
     border-radius: 0 0 $calendar-week-day-corner $calendar-week-day-corner;
     text-align: center;
-    [time-spend] {
-      color: $calendar-week-metric-time-spend-color;
-      font-size: $calendar-week-metric-time-spend-font-size;
-    }
-    [full-time] {
-      color: $calendar-week-metric-full-time-color;
-      font-size: $calendar-week-metric-full-time-font-size;
-    }
   }
 }
