@@ -10,6 +10,6 @@
   </div>
 
   <div *ngIf="dayTemplate" metric>
-    <ng-container *ngTemplateOutlet="dayTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="dayTemplate;context:{date: date}"></ng-container>
   </div>
 </ng-template>
