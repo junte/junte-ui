@@ -12,6 +12,11 @@ import * as createQueryWrapper from 'query-ast';
 
 const argument = require('minimist')(process.argv.slice(2));
 
+const IDENTIFIER_TYPE = 'identifier';
+const SELECTOR_TYPE = 'selector';
+const PSEUDO_CLASS_TYPE = 'pseudo_class';
+const ATTRIBUTE_TYPE = 'attribute';
+
 @Gulpclass()
 export class Gulpfile {
 
@@ -25,6 +30,42 @@ export class Gulpfile {
       h.childNodes = this.setHost(h.childNodes, host);
     }
     return html;
+  }
+
+  private encapsulateHTML(url: string, dir: string, host: string) {
+    const templateName = path.parse(url).name;
+    const templateContent = fs.readFileSync(`${dir}/${templateName}.html`, 'utf8');
+
+    if (!!templateContent) {
+      const html = parse(templateContent) as HTMLElement;
+
+      html.childNodes = this.setHost(html.childNodes, host);
+      html.set_content(html.toString());
+      fs.writeFileSync(`${dir}/encapsulated.html`, html);
+    }
+  }
+
+  private encapsulateSCSS(urls: string[], dir: string, host: string) {
+    if (!!urls) {
+      urls.forEach(style => {
+        const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
+
+        if (!!styleContent) {
+          const $ = createQueryWrapper(scssParce(styleContent));
+
+          let query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === SELECTOR_TYPE);
+          query.before({value: `[host=#{$${host}}]`});
+
+          query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === PSEUDO_CLASS_TYPE && n.node.value === 'host');
+          query.parent().replace(() => ({value: `[host=#{$${host}}]`}));
+
+          query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === ATTRIBUTE_TYPE);
+          query.parent().before({value: `[host=#{$${host}}]`});
+
+          fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
+        }
+      });
+    }
   }
 
   @Task()
@@ -43,38 +84,9 @@ export class Gulpfile {
           if (component.host) {
             const dir = path.parse(file.path).dir;
             const annotations = context[key].__annotations__[0];
-            const templateName = path.parse(annotations.templateUrl).name;
-            const templateContent = fs.readFileSync(`${dir}/${templateName}.html`, 'utf8');
 
-            if (!!annotations.styleUrls) {
-              annotations.styleUrls.forEach(style => {
-                const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
-
-                if (!!styleContent) {
-                  const $ = createQueryWrapper(scssParce(styleContent));
-
-                  let query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'selector');
-                  query.before({value: `[host=#{$${component.host}}]`});
-
-                  query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'pseudo_class' && n.node.value === 'host');
-                  query.parent().replace(() => ({value: `[host=#{$${component.host}}]`}));
-
-                  query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'attribute');
-                  query.parent().before({value: `[host=#{$${component.host}}]`});
-
-                  // console.log(stringify($().get(0)));
-                  fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
-                }
-              });
-            }
-
-            if (!!templateContent) {
-              const html = parse(templateContent) as HTMLElement;
-
-              html.childNodes = this.setHost(html.childNodes, component.host);
-              html.set_content(html.toString());
-              fs.writeFileSync(`${dir}/encapsulated.html`, html);
-            }
+            this.encapsulateHTML(annotations.templateUrl, dir, component.host);
+            this.encapsulateSCSS(annotations.styleUrls, dir, component.host);
           }
         }
         return cb();
