@@ -16,6 +16,10 @@ export class BlockComponent implements OnInit {
   @Input()
   error = false;
 
+  @HostBinding('attr.fluid')
+  @Input()
+  fluid = false;
+
   @Input()
   size: Sizes = Sizes.small;
 

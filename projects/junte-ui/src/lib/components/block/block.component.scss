@@ -1,6 +1,9 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
+$block-bg: white;
+$block-shadow: 0px 2px 8px rgba(0, 67, 167, 0.25);
+$block-corner: $corner-md;
 $block-loading-bg: rgba(0,0,0,.75);
 $block-loading-spinner-color: white;
 
@@ -9,9 +12,15 @@ $block-error-icon-size: 40px;
 $block-error-icon-color: white;
 
 :host {
-  display: block;
+  display: inline-block;
   position: relative;
   min-height: 40px;
+  background-color: $block-bg;
+  box-shadow: $block-shadow;
+  border-radius: $block-corner;
+  &[fluid="true"] {
+    width: 100%;
+  }
 }
 
 [loading], [error] {
@@ -23,6 +32,7 @@ $block-error-icon-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: $block-corner;
   [icon] {
     color: $block-error-icon-color;
   }
