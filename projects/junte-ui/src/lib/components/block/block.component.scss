@@ -4,6 +4,8 @@
 $block-bg: white;
 $block-shadow: 0px 2px 8px rgba(0, 67, 167, 0.25);
 $block-corner: $corner-md;
+$block-border-width: 1px;
+$block-border-color: $gray-900;
 $block-loading-bg: rgba(0,0,0,.75);
 $block-loading-spinner-color: white;
 
@@ -20,6 +22,9 @@ $block-error-icon-color: white;
   border-radius: $block-corner;
   &[fluid="true"] {
     width: 100%;
+  }
+  &[type="bordered"] {
+    border: $block-border-width solid $block-border-color;
   }
 }
 

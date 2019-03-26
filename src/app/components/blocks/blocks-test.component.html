@@ -4,6 +4,26 @@
     <jnt-block [size]="ui.sizes.large">
       <img src="https://imgplaceholder.com/200x200/transparent/757575/glyphicon-picture">
     </jnt-block>
+
+    <ngx-prism language="html">
+<pre>
+&lt;jnt-block&gt;
+   &lt;div&gt;Content&lt;/div&gt;
+&lt;/jnt-block&gt;</pre>
+    </ngx-prism>
+
+    <h2>Block bordered</h2>
+    <jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large">
+      <img src="https://imgplaceholder.com/200x200/transparent/757575/glyphicon-picture">
+    </jnt-block>
+
+    <ngx-prism language="html">
+<pre>
+&lt;jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large"&gt;
+   &lt;div&gt;Content&lt;/div&gt;
+&lt;/jnt-block&gt;</pre>
+    </ngx-prism>
+
     <h2>Block with loading</h2>
     <jnt-block [loading]="true" [size]="ui.sizes.large">
       <img src="https://imgplaceholder.com/200x200/transparent/757575/glyphicon-picture">
@@ -58,6 +78,12 @@
       <td>-</td>
       <td>true | false</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>[type]</td>
+      <td>-</td>
+      <td>simple | bordered</td>
+      <td>simple</td>
     </tr>
     </tbody>
   </table>
