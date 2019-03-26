@@ -31,12 +31,10 @@ $gutters: (
     &[gutter = '#{$gutter}'] {
       &[type = '#{$type-vertical}'] {
         flex-direction: column;
-        align-items: flex-start;
         @include stack(margin-bottom, $value);
       }
       &[type = '#{$type-horizontal}'] {
         flex-direction: row;
-        align-items: flex-start;
         @include stack(margin-right, $value);
       }
     }
