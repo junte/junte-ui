@@ -14,7 +14,7 @@
   <jnt-stack [gutter]="ui.stack.gutter.large">
     <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
                *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <div block *ngFor="let col of [1, 2, 3, 4, 5]" style="width: 100%">{{gutter}}</div>
+      <div block *ngFor="let col of [1, 2, 3, 4, 5]">{{gutter}}</div>
     </jnt-stack>
   </jnt-stack>
 
@@ -49,6 +49,24 @@
       <td>-</td>
       <td>small | normal | large</td>
       <td>normal</td>
+    </tr>
+    <tr>
+      <td>[justify]</td>
+      <td>-</td>
+      <td>start | end | around | between | evenly</td>
+      <td>start</td>
+    </tr>
+    <tr>
+      <td>[align]</td>
+      <td>-</td>
+      <td>start | end | stretch | baseline | center</td>
+      <td>stretch</td>
+    </tr>
+    <tr>
+      <td>[wrap]</td>
+      <td>-</td>
+      <td>wrap | noWrap | reverse</td>
+      <td>wrap</td>
     </tr>
     </tbody>
   </table>
