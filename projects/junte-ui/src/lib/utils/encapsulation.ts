@@ -1,12 +1,14 @@
-import { Gulpclass, SequenceTask, Task } from 'gulpclass';
+import {Gulpclass, SequenceTask, Task} from 'gulpclass';
 import * as gulp from 'gulp';
 import * as map from 'map-stream';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as debug from 'gulp-debug';
 import 'reflect-metadata';
-import { HTMLElement, Node, parse } from 'node-html-parser';
+import {HTMLElement, Node, parse} from 'node-html-parser';
+import {parse as scssParce, stringify} from 'scss-parser';
 import * as watch from 'gulp-watch';
+import * as createQueryWrapper from 'query-ast';
 
 const argument = require('minimist')(process.argv.slice(2));
 
@@ -41,11 +43,33 @@ export class Gulpfile {
           if (component.host) {
             const dir = path.parse(file.path).dir;
             const annotations = context[key].__annotations__[0];
-            const template = path.parse(annotations.templateUrl).name;
-            const content = fs.readFileSync(`${dir}/${template}.html`, 'utf8');
+            const templateName = path.parse(annotations.templateUrl).name;
+            const templateContent = fs.readFileSync(`${dir}/${templateName}.html`, 'utf8');
 
-            if (!!content) {
-              const html = parse(content) as HTMLElement;
+            if (!!annotations.styleUrls) {
+              annotations.styleUrls.forEach(style => {
+                const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
+
+                if (!!styleContent) {
+                  const $ = createQueryWrapper(scssParce(styleContent));
+
+                  let query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'selector');
+                  query.before({value: `[host=#{$${component.host}}]`});
+
+                  query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'pseudo_class' && n.node.value === 'host');
+                  query.parent().replace(() => ({value: `[host=#{$${component.host}}]`}));
+
+                  query = $(n => n.node.type === 'identifier' && n.parent.node.type === 'attribute');
+                  query.parent().before({value: `[host=#{$${component.host}}]`});
+
+                  // console.log(stringify($().get(0)));
+                  fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
+                }
+              });
+            }
+
+            if (!!templateContent) {
+              const html = parse(templateContent) as HTMLElement;
 
               html.childNodes = this.setHost(html.childNodes, component.host);
               html.set_content(html.toString());
