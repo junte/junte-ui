@@ -38,6 +38,11 @@ export enum TypeButton {
   submit = 'submit'
 }
 
+export enum TypeBlock {
+  simple = 'simple',
+  bordered = 'bordered'
+}
+
 export enum FlexAlign {
   start = 'start',
   center = 'center',
@@ -166,5 +171,8 @@ export class UI {
     }
   };
   static select = SelectMode;
+  static block = {
+    type: TypeBlock
+  };
 }
 

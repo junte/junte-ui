@@ -1,9 +1,7 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-$table-corner: $corner-md;
-$table-bg: white;
-$table-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+$table-padding: $gutter-3;
 $table-head-bg: $gray-500;
 $table-cell-padding-x: $gutter-3;
 $table-cell-padding-y: $gutter-4;
@@ -13,6 +11,7 @@ $table-font-size: $font-size-base;
 
 :host {
   display: block;
+  padding: $table-padding;
 }
 
 button {
@@ -28,9 +27,6 @@ button {
 
 table {
   width: 100%;
-  border-radius: $table-corner;
-  background-color: $table-bg;
-  box-shadow: $table-shadow;
   border-collapse: collapse;
   font-size: $table-font-size;
   thead {

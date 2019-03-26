@@ -5,8 +5,6 @@ $calendar-week-day-width: 90px;
 $calendar-week-current-day-width: 130px;
 $calendar-week-day-height: 110px;
 $calendar-week-current-day-height: 150px;
-$calendar-week-day-corner: $corner-md;
-$calendar-week-day-shadow: 0px 5px 16px rgba(0, 80, 199, 0.3);
 
 $calendar-week-number-day-font-size: 1.625rem;
 $calendar-week-number-day-color: $primary-color;
@@ -25,8 +23,6 @@ $calendar-week-metric-padding: $gutter-1;
   min-width: $calendar-week-day-width;
   max-width: $calendar-week-day-width;
   min-height: $calendar-week-day-height;
-  border-radius: $calendar-week-day-corner;
-  box-shadow: $calendar-week-day-shadow;
   [date] {
     display: flex;
     align-items: center;
@@ -51,7 +47,7 @@ $calendar-week-metric-padding: $gutter-1;
     padding: $calendar-week-metric-padding;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 0 0 $calendar-week-day-corner $calendar-week-day-corner;
+    border-radius: 0 0 $corner-md $corner-md;
     text-align: center;
   }
 }

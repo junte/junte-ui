@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Sizes} from '../../enum/ui';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Sizes, TypeBlock } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -16,10 +16,19 @@ export class BlockComponent implements OnInit {
   @Input()
   error = false;
 
+  @HostBinding('attr.fluid')
+  @Input()
+  fluid = false;
+
+  @HostBinding('attr.type')
+  @Input()
+  type = TypeBlock.simple;
+
   @Input()
   size: Sizes = Sizes.small;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

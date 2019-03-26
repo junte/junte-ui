@@ -1,8 +1,10 @@
 <ng-content></ng-content>
 
 <jnt-stack [type]="ui.type.horizontal" [align]="ui.flex.align.stretch">
-  <jnt-calendar-day *ngFor="let d of days" (click)="!!onChange ? onChange(d) : null"
-                    [current]="current"
-                    [dayTemplate]="dayTemplate" [date]="d">
-  </jnt-calendar-day>
+  <jnt-block *ngFor="let d of days">
+    <jnt-calendar-day (click)="!!onChange ? onChange(d) : null"
+                      [current]="current"
+                      [dayTemplate]="dayTemplate" [date]="d">
+    </jnt-calendar-day>
+  </jnt-block>
 </jnt-stack>
