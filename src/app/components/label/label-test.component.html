@@ -1,0 +1,44 @@
+<jnt-container>
+  <h1>Label</h1>
+
+  <jnt-stack [type]="ui.stack.type.horizontal">
+
+    <ng-container *ngFor="let color of [ui.colors.red, ui.colors.purpleDark, ui.colors.blue, ui.colors.gray, ui.colors.grayDark,
+  ui.colors.grayLight, ui.colors.green, ui.colors.orange, ui.colors.purple, ui.colors.teal, ui.colors.yellow, ui.colors.purpleLight]">
+      <jnt-label label="Doing" [color]="color"></jnt-label>
+    </ng-container>
+
+  </jnt-stack>
+
+  <ngx-prism language="html">
+    <pre>&lt;jnt-label [label]="Doing" [color]="ui.colors.red"&gt;&lt;/jnt-label&gt;</pre>
+  </ngx-prism>
+
+  <h3>API</h3>
+  <h4>jnt-label</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[label]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[color]</td>
+      <td>-</td>
+      <td>red | purpleDark | blue | gray | grayDark | grayLight | green | orange | purple | teal | yellow | purpleLight</td>
+      <td>purple-dark</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>

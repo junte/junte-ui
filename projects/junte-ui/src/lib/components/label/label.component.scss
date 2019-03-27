@@ -1,0 +1,73 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+$label-corner: 13px;
+$label-height: 16px;
+$label-padding-x: 0;
+$label-padding-y: $gutter-2;
+$label-color: white;
+$label-font-size: 11px;
+$label-bg: $primary-color;
+
+$colors: (
+  #{$blue-color}: (
+    background-color: $blue,
+  ),
+  #{$orange-color}: (
+    background-color: $orange,
+  ),
+  #{$green-color}: (
+    background-color: $green,
+  ),
+  #{$teal-color}: (
+    background-color: $teal,
+  ),
+  #{$red-color}: (
+    background-color: $red,
+  ),
+  #{$yellow-color}: (
+    background-color: $yellow,
+  ),
+  #{$purple-color}: (
+    background-color: $purple,
+  ),
+  #{$purpleDark-color}: (
+    background-color: $purple-dark,
+  ),
+  #{$purpleLight-color}: (
+    background-color: $purple-light,
+  ),
+  #{$gray-color}: (
+    background-color: $gray-600,
+  ),
+  #{$grayLight-color}: (
+    background-color: $gray-300,
+  ),
+  #{$grayDark-color}: (
+    background-color: $gray-900,
+  )
+);
+
+@mixin color($color) {
+  background-color: #{map-get($color, background-color)};
+}
+
+:host {
+  display: inline-block;
+  border-radius: $label-corner;
+  padding: $label-padding-x $label-padding-y;
+  background-color: $label-bg;
+  height: $label-height;
+  line-height: 1;
+  box-sizing: border-box;
+  @each $color, $map in $colors {
+    &[color='#{$color}'] {
+      @include color($map);
+    }
+  }
+}
+
+span {
+  color: $label-color;
+  font-size: $label-font-size;
+}
