@@ -18,6 +18,7 @@ import { TableTestComponent } from 'components/table/table-test.component';
 import { AvatarTestComponent } from 'components/avatar/avatar-test.component';
 import { LinkTestComponent } from 'components/link/link-test.component';
 import { CalendarTestComponent } from 'components/calendar/calendar-test.component';
+import { LabelTestComponent } from 'components/label/label-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -95,6 +96,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'link',
     component: LinkTestComponent
+  },
+  {
+    path: 'label',
+    component: LabelTestComponent
   },
   {
     path: '',

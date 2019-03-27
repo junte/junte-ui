@@ -57,6 +57,7 @@ import {
 } from './pipes/date-fns.pipe';
 import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 import { DayComponent } from './components/calendar/week/day/day.component';
+import { LabelComponent } from './components/label/label.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     GetDatePipe,
     IsEqualPipe,
     AppBodyComponent,
-    DayComponent
+    DayComponent,
+    LabelComponent
   ],
   imports: [
     CommonModule,
@@ -173,7 +175,8 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     GetDatePipe,
     IsEqualPipe,
     AppBodyComponent,
-    DayComponent
+    DayComponent,
+    LabelComponent
   ]
 })
 export class JunteUiModule {

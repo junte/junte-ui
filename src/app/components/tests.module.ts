@@ -26,6 +26,7 @@ import { TableTestComponent } from './table/table-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { LinkTestComponent } from './link/link-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
+import { LabelTestComponent } from './label/label-test.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { CalendarTestComponent } from './calendar/calendar-test.component';
     TableTestComponent,
     TableTestComponent,
     LinkTestComponent,
-    CalendarTestComponent
+    CalendarTestComponent,
+    LabelTestComponent
   ]
 })
 export class TestsModule {

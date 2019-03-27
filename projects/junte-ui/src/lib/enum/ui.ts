@@ -14,6 +14,21 @@ export enum Icons {
   sortDown = 'sort-down'
 }
 
+export enum Colors {
+  blue = 'blue',
+  orange = 'orange',
+  green = 'green',
+  teal = 'teal',
+  red = 'red',
+  yellow = 'yellow',
+  purple = 'purple',
+  purpleDark = 'purple-dark',
+  purpleLight = 'purple-light',
+  gray = 'gray',
+  grayLight = 'gray-light',
+  grayDark = 'gray-dark'
+}
+
 export enum Schemes {
   primary = 'primary',
   secondary = 'secondary',
@@ -174,5 +189,6 @@ export class UI {
   static block = {
     type: TypeBlock
   };
+  static colors = Colors;
 }
 
