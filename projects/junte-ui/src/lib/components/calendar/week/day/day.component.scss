@@ -2,6 +2,9 @@
 @import "../../../../assets/styles/mixins";
 
 $calendar-week-day-width: 90px;
+$calendar-week-day-shadow: $base-shadow;
+$calendar-week-day-bg: white;
+$calendar-week-day-corner: $corner-md;
 $calendar-week-current-day-width: 130px;
 $calendar-week-day-height: 110px;
 $calendar-week-current-day-height: 150px;
@@ -23,6 +26,9 @@ $calendar-week-metric-padding: $gutter-1;
   min-width: $calendar-week-day-width;
   max-width: $calendar-week-day-width;
   min-height: $calendar-week-day-height;
+  box-shadow: $calendar-week-day-shadow;
+  background-color: $calendar-week-day-bg;
+  border-radius: $calendar-week-day-corner;
   [date] {
     display: flex;
     align-items: center;
