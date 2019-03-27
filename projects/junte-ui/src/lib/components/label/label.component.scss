@@ -1,12 +1,12 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/mixins";
 
-$label-corner: 13px;
-$label-height: 16px;
+$label-corner: 3px;
+$label-height: 24px;
 $label-padding-x: 0;
 $label-padding-y: $gutter-2;
 $label-color: white;
-$label-font-size: 11px;
+$label-font-size: 12px;
 $label-bg: $primary-color;
 
 $colors: (
@@ -58,7 +58,6 @@ $colors: (
   padding: $label-padding-x $label-padding-y;
   background-color: $label-bg;
   height: $label-height;
-  line-height: 1;
   box-sizing: border-box;
   @each $color, $map in $colors {
     &[color='#{$color}'] {
@@ -70,4 +69,5 @@ $colors: (
 span {
   color: $label-color;
   font-size: $label-font-size;
+  line-height: $label-height;
 }
