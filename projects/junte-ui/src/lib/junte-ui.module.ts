@@ -58,6 +58,7 @@ import {
 import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 import { DayComponent } from './components/calendar/week/day/day.component';
 import { LabelComponent } from './components/label/label.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { LabelComponent } from './components/label/label.component';
     IsEqualPipe,
     AppBodyComponent,
     DayComponent,
-    LabelComponent
+    LabelComponent,
+    SkeletonComponent
   ],
   imports: [
     CommonModule,
@@ -176,7 +178,8 @@ import { LabelComponent } from './components/label/label.component';
     IsEqualPipe,
     AppBodyComponent,
     DayComponent,
-    LabelComponent
+    LabelComponent,
+    SkeletonComponent
   ]
 })
 export class JunteUiModule {
