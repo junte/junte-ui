@@ -12,7 +12,7 @@ export class LabelComponent implements OnInit {
   @Input() label: string;
 
   @HostBinding('attr.color')
-  @Input() color: Colors.purpleDark;
+  @Input() color: string;
 
   constructor() {
   }
