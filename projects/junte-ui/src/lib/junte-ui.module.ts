@@ -60,6 +60,7 @@ import { DayComponent } from './components/calendar/week/day/day.component';
 import { LabelComponent } from './components/label/label.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
     DayComponent,
     LabelComponent,
     SkeletonComponent,
-    TabsComponent
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     CommonModule,
@@ -182,7 +184,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
     DayComponent,
     LabelComponent,
     SkeletonComponent,
-    TabsComponent
+    TabsComponent,
+    TabComponent
   ]
 })
 export class JunteUiModule {
