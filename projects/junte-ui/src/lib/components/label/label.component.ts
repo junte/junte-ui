@@ -11,8 +11,8 @@ export class LabelComponent implements OnInit {
   @HostBinding('attr.label')
   @Input() label: string;
 
-  @HostBinding('attr.color')
-  @Input() color: Colors.purpleDark;
+  @HostBinding('style.background-color')
+  @Input() color: string = Colors.purpleDark;
 
   constructor() {
   }
