@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, HostBinding } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   }]
 })
 export class PageSizeComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-page-size-host';
+
   private _pageSize = 10;
 
   set pageSize(size: number) {

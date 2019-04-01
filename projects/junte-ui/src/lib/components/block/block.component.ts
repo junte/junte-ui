@@ -8,6 +8,8 @@ import { Sizes, TypeBlock } from '../../enum/ui';
 })
 export class BlockComponent implements OnInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-block-host';
+
   @HostBinding('attr.loading')
   @Input()
   loading = false;

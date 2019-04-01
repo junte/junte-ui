@@ -8,6 +8,8 @@ import {Icons, UI} from '../../enum/ui';
 })
 export class CheckboxComponent implements OnInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-checkbox-host';
+
   ui = UI;
 
   @HostBinding('attr.disabled')

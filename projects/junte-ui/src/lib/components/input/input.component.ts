@@ -16,6 +16,8 @@ import {InputType, Schemes} from '../../enum/ui';
 })
 export class InputComponent implements ControlValueAccessor {
 
+  @HostBinding('attr.host') readonly host = 'jnt-input-host';
+
   @HostBinding('attr.scheme')
   @Input()
   scheme: Schemes = Schemes.primary;

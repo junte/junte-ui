@@ -8,6 +8,8 @@ import { FormLayout } from '../../../enum/ui';
 })
 export class FormItemComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-form-item-host';
+
   @HostBinding('attr.layout')
   @Input()
   layout: FormLayout = null;

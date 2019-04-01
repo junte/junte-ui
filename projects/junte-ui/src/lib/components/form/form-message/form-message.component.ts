@@ -8,6 +8,8 @@ import { ValidationTypeError } from '../../../enum/ui';
 })
 export class FormMessageComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-form-message-host';
+
   show = false;
 
   @HostBinding('style.display')

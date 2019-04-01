@@ -7,6 +7,9 @@ import { Sizes } from '../../enum/ui';
   styleUrls: ['./skeleton.component.scss']
 })
 export class SkeletonComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
+
   private _rows: number[];
 
   @HostBinding('attr.avatar')

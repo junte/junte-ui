@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  EventEmitter,
+  EventEmitter, HostBinding,
   HostListener,
   Input,
   Output,
@@ -19,6 +19,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements AfterContentInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-form-host';
 
   ui = UI;
 

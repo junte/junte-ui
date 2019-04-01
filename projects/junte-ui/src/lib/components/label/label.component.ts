@@ -8,6 +8,8 @@ import { Colors } from '../../enum/ui';
 })
 export class LabelComponent implements OnInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-label-host';
+
   @HostBinding('attr.label')
   @Input() label: string;
 

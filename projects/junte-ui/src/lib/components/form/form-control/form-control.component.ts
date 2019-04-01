@@ -1,4 +1,4 @@
-import { Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { FormMessageComponent } from '../form-message/form-message.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormMessageComponent } from '../form-message/form-message.component';
   styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-form-control-host';
 
   @ContentChildren(FormMessageComponent)
   messages: QueryList<FormMessageComponent>;

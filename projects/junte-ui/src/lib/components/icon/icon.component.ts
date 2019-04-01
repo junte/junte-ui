@@ -8,6 +8,8 @@ import {Icons, Schemes} from '../../enum/ui';
 })
 export class IconComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-icon-host';
+
   @Input()
   icon: Icons = Icons.check;
 

@@ -32,6 +32,8 @@ const SEARCH_DELAY = 500;
 })
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
 
+  @HostBinding('attr.host') readonly host = 'jnt-select-host';
+
   ui = UI;
 
   @Input() loadOptions: Function;

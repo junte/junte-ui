@@ -1,4 +1,4 @@
-import { Component, ContentChild, forwardRef, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addDays, format, isEqual, startOfWeek } from 'date-fns';
 import { today } from '../utils';
@@ -19,6 +19,8 @@ const DAYS_IN_WEEK = 7;
   ]
 })
 export class WeekComponent implements ControlValueAccessor, OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-calendar-week-host';
 
   ui = UI;
 

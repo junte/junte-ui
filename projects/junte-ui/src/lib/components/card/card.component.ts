@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import { Component, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'jnt-card',
@@ -6,6 +6,8 @@ import {Component, Input, OnInit, TemplateRef} from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
   @Input() header: TemplateRef<any>;
   @Input() body: TemplateRef<any>;

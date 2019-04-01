@@ -2,10 +2,12 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-aside',
-  templateUrl: './app-aside.component.html',
-  styleUrls: ['./app-aside.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class AppAsideComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
 
   @HostBinding('attr.fixed')
   @Input()

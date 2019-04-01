@@ -8,6 +8,8 @@ import {UI} from '../../enum/ui';
 })
 export class SwitchComponent implements OnInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-switch-host';
+
   ui = UI;
 
   @HostBinding('attr.disabled')

@@ -8,6 +8,8 @@ import { format, isEqual } from 'date-fns';
 })
 export class DayComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-calendar-day-host';
+
   @Input() date: Date;
   @Input() current: Date;
   @Input() dayTemplate: TemplateRef<any>;

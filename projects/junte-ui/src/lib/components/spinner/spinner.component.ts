@@ -8,6 +8,8 @@ import {Sizes} from '../../enum/ui';
 })
 export class SpinnerComponent implements OnInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-spinner-host';
+
   @HostBinding('attr.size')
   @Input()
   size: Sizes = Sizes.small;

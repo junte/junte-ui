@@ -8,6 +8,8 @@ import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
 })
 export class ButtonComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-button-host';
+
   ui = UI;
 
   @HostBinding('attr.loading')

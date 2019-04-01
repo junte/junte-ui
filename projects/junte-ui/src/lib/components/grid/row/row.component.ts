@@ -8,6 +8,8 @@ import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from 
 })
 export class RowComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-row-host';
+
   @HostBinding('attr.align')
   @Input()
   align: FlexAlign = FlexAlign.stretch;
