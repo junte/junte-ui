@@ -61,6 +61,7 @@ import { LabelComponent } from './components/label/label.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
+import { AttributeDirective } from './directives/attribute';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { TabComponent } from './components/tabs/tab/tab.component';
     ColComponent,
     IconComponent,
     StackDirective,
+    AttributeDirective,
     ValidationDirective,
     SmartWidthDirective,
     StackComponent,

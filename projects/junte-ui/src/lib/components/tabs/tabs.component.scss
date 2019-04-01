@@ -15,18 +15,18 @@ $tabs-item-hover-color: $primary-light-color;
   display: block;
 }
 
-.tabs-nav {
+[tabs] {
   display: flex;
   border-bottom: 1px solid $tabs-border-bottom-color;
   margin-bottom: $gutter-3;
-  .tab {
+  [tab] {
     padding: $tabs-item-padding-top $tabs-item-padding-right $tabs-item-padding-bottom $tabs-item-padding-left;
     cursor: pointer;
     color: $tabs-item-color;
     font-size: $tabs-item-font-size;
     position: relative;
     margin-bottom: -1px;
-    .bar {
+    [bar] {
       display: none;
       position: absolute;
       bottom: 0;
@@ -41,7 +41,7 @@ $tabs-item-hover-color: $primary-light-color;
     }
     &.active {
       color: $tabs-item-active-color;
-      .bar {
+      [bar] {
         display: block;
       }
       //border-bottom: 1px solid $tabs-item-active-color;

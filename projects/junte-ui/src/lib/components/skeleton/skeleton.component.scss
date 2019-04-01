@@ -37,7 +37,7 @@ $sizes: (
 
   @each $size, $map in $sizes {
     &[size='#{$size}'] {
-      .avatar {
+      [avatar] {
         @include width($map);
         > div {
           background-color: $skeleton-bg;
@@ -53,23 +53,23 @@ table {
   width: 100%;
   table-layout: auto;
 
-  .header {
-    .avatar {
+  [header] {
+    [avatar] {
       padding-right: $skeleton-avatar-spacer-right;
       padding-bottom: $skeleton-avatar-spacer-bottom;
     }
-    .title {
+    [title] {
       width: $skeleton-title-width;
       margin-bottom: $skeleton-paragraph-spacer;
       min-height: $skeleton-paragraph-height;
       background-color: $skeleton-bg;
     }
-    .paragraph {
+    [paragraph] {
       margin-bottom: $skeleton-paragraph-spacer;
     }
   }
 
-  .paragraph {
+  [paragraph] {
     min-height: $skeleton-paragraph-height;
     //background-color: $skeleton-bg;
     width: 100%;
@@ -78,9 +78,9 @@ table {
     }
   }
 
-  .avatar > div,
-  .paragraph,
-  .title {
+  [avatar] > div,
+  [paragraph],
+  [title] {
     background: linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
     animation: loading 1.4s ease infinite;
     background-size: 400% 100%;
