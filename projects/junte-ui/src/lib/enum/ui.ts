@@ -15,18 +15,18 @@ export enum Icons {
 }
 
 export enum Colors {
-  blue = 'blue',
-  orange = 'orange',
-  green = 'green',
-  teal = 'teal',
-  red = 'red',
-  yellow = 'yellow',
-  purple = 'purple',
-  purpleDark = 'purple-dark',
-  purpleLight = 'purple-light',
-  gray = 'gray',
-  grayLight = 'gray-light',
-  grayDark = 'gray-dark'
+  blue = '#E7F5FF',
+  orange = '#EE8030',
+  green = '#00CCB1',
+  teal = '#1D2932',
+  red = '#FF6262',
+  yellow = '#F8DB42',
+  purple = '#3949AB',
+  purpleDark = '#00227B',
+  purpleLight = '#6F74DD',
+  gray = '#C4C4C4',
+  grayLight = '#F2F2F2',
+  grayDark = '#4F4F4F'
 }
 
 export enum Schemes {
