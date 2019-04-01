@@ -59,6 +59,9 @@ import { AppBodyComponent } from './components/app-layout/app-body/app-body.comp
 import { DayComponent } from './components/calendar/week/day/day.component';
 import { LabelComponent } from './components/label/label.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
+import { AttributeDirective } from './directives/attribute';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
     ColComponent,
     IconComponent,
     StackDirective,
+    AttributeDirective,
     ValidationDirective,
     SmartWidthDirective,
     StackComponent,
@@ -117,7 +121,9 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
     AppBodyComponent,
     DayComponent,
     LabelComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     CommonModule,
@@ -179,7 +185,9 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
     AppBodyComponent,
     DayComponent,
     LabelComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    TabsComponent,
+    TabComponent
   ]
 })
 export class JunteUiModule {

@@ -20,6 +20,7 @@ import { LinkTestComponent } from 'components/link/link-test.component';
 import { CalendarTestComponent } from 'components/calendar/calendar-test.component';
 import { LabelTestComponent } from 'components/label/label-test.component';
 import { SkeletonTestComponent } from 'components/skeleton/skeleton-test.component';
+import { TabsTestComponent } from 'components/tabs/tabs-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -105,6 +106,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'skeleton',
     component: SkeletonTestComponent
+  },
+  {
+    path: 'tabs',
+    component: TabsTestComponent
   },
   {
     path: '',

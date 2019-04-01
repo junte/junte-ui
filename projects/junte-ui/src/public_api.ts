@@ -49,6 +49,8 @@ export * from './lib/components/avatar/avatar.component';
 export * from './lib/components/link/link.component';
 export * from './lib/components/label/label.component';
 export * from './lib/components/skeleton/skeleton.component';
+export * from './lib/components/tabs/tabs.component';
+export * from './lib/components/tabs/tab/tab.component';
 export * from './lib/components/app-layout/app-header/userbar/userbar.component';
 export * from './lib/components/form/form-label/form-label.component';
 export * from './lib/components/form/form-message/form-message.component';

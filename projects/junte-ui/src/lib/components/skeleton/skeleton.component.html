@@ -1,17 +1,17 @@
 <table>
-  <tr class="header">
-    <td *ngIf="avatar" class="avatar">
+  <tr header>
+    <td *ngIf="avatar" avatar>
       <div></div>
     </td>
     <td>
-      <div [ngClass]="title?'title':'paragraph'"></div>
-      <div class="paragraph"></div>
+      <div [jntAttr]="title ? 'title' : 'paragraph'"></div>
+      <div paragraph></div>
     </td>
   </tr>
-  <tr class="content">
+  <tr>
     <td colspan="2">
       <ul>
-        <li *ngFor="let l of line" class="paragraph"></li>
+        <li *ngFor="let l of line" paragraph></li>
       </ul>
     </td>
   </tr>
