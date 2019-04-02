@@ -53,14 +53,21 @@ export class Gulpfile {
         if (!!styleContent) {
           const $ = createQueryWrapper(scssParce(styleContent));
 
-          let query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === SELECTOR_TYPE);
-          query.before({value: `[host=#{$${host}}]`});
+          let query = $(n => n.node.type === IDENTIFIER_TYPE
+            && !!n.parent
+            && n.parent.node.type === SELECTOR_TYPE);
+          query.after({value: `[host=#{$${host}}]`});
 
-          query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === PSEUDO_CLASS_TYPE && n.node.value === 'host');
+          query = $(n => n.node.type === IDENTIFIER_TYPE
+            && n.parent.node.type === PSEUDO_CLASS_TYPE
+            && n.node.value === 'host');
+          query.parent().before({value: host.replace('-host', '')});
           query.parent().replace(() => ({value: `[host=#{$${host}}]`}));
 
-          query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === ATTRIBUTE_TYPE);
-          query.parent().before({value: `[host=#{$${host}}]`});
+          query = $(n => n.node.type === IDENTIFIER_TYPE
+            && n.parent.node.type === ATTRIBUTE_TYPE
+            && n.parent.parent.node.value[0].value !== '&');
+          query.parent().after({value: `[host=#{$${host}}]`});
 
           fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
         }
