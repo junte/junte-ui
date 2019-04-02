@@ -62,6 +62,7 @@ export class Gulpfile {
           query = $(n => n.node.type === IDENTIFIER_TYPE
             && n.parent.node.type === PSEUDO_CLASS_TYPE
             && n.node.value === 'host');
+          query.parent().before({value: host.replace('-host', '')});
           query.parent().replace(() => ({value: `[host=#{$${host}}]`}));
 
           query = $(n => n.node.type === IDENTIFIER_TYPE
