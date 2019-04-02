@@ -57,6 +57,11 @@ import {
 } from './pipes/date-fns.pipe';
 import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 import { DayComponent } from './components/calendar/week/day/day.component';
+import { LabelComponent } from './components/label/label.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
+import { AttributeDirective } from './directives/attribute';
 
 @NgModule({
   declarations: [
@@ -73,6 +78,7 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     ColComponent,
     IconComponent,
     StackDirective,
+    AttributeDirective,
     ValidationDirective,
     SmartWidthDirective,
     StackComponent,
@@ -113,7 +119,11 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     GetDatePipe,
     IsEqualPipe,
     AppBodyComponent,
-    DayComponent
+    DayComponent,
+    LabelComponent,
+    SkeletonComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     CommonModule,
@@ -173,7 +183,11 @@ import { DayComponent } from './components/calendar/week/day/day.component';
     GetDatePipe,
     IsEqualPipe,
     AppBodyComponent,
-    DayComponent
+    DayComponent,
+    LabelComponent,
+    SkeletonComponent,
+    TabsComponent,
+    TabComponent
   ]
 })
 export class JunteUiModule {

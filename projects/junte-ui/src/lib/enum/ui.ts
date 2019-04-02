@@ -14,6 +14,21 @@ export enum Icons {
   sortDown = 'sort-down'
 }
 
+export enum Colors {
+  blue = '#E7F5FF',
+  orange = '#EE8030',
+  green = '#00CCB1',
+  teal = '#1D2932',
+  red = '#FF6262',
+  yellow = '#F8DB42',
+  purple = '#3949AB',
+  purpleDark = '#00227B',
+  purpleLight = '#6F74DD',
+  gray = '#C4C4C4',
+  grayLight = '#F2F2F2',
+  grayDark = '#4F4F4F'
+}
+
 export enum Schemes {
   primary = 'primary',
   secondary = 'secondary',
@@ -36,6 +51,11 @@ export enum Outline {
 export enum TypeButton {
   button = 'button',
   submit = 'submit'
+}
+
+export enum TypeBlock {
+  simple = 'simple',
+  bordered = 'bordered'
 }
 
 export enum FlexAlign {
@@ -166,5 +186,9 @@ export class UI {
     }
   };
   static select = SelectMode;
+  static block = {
+    type: TypeBlock
+  };
+  static colors = Colors;
 }
 
