@@ -76,9 +76,11 @@ $sizes: (
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
     }
-    ::ng-deep [badge] > sup {
-      color: #{map-get($scheme, badge-color)};
-      background: #{map-get($scheme, badge-background)};
+    [badge] {
+      sup {
+        color: #{map-get($scheme, badge-color)};
+        background: #{map-get($scheme, badge-background)};
+      }
     }
   }
 }
@@ -92,7 +94,7 @@ $sizes: (
     &:hover, &:focus {
 
     }
-    ::ng-deep [badge] > sup {
+    [badge] > sup {
       background: #{map-get($scheme, badge-outline-background)};
       color: #{map-get($scheme, badge-outline-color)};
     }
@@ -148,47 +150,49 @@ $sizes: (
   &[fluid='true'] {
     width: 100%;
   }
-}
 
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  outline: 0;
-  user-select: none;
-  box-sizing: border-box;
-  border-radius: 40px;
-  cursor: pointer;
-  border: none;
-  width: 100%;
-  position: relative;
-  font-family: $font-family-base;
-  [icon] {
-    margin-right: 10px;
-  }
-  [text] {
-    display: inline-block;
-    padding-bottom: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  [badge] {
-    margin-left: $gutter-2;
-  }
-
-  [loading] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    outline: 0;
+    user-select: none;
+    box-sizing: border-box;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    position: relative;
+    font-family: $font-family-base;
     [icon] {
-      margin: 0;
-      font-size: inherit;
+      margin-right: 10px;
+    }
+    [text] {
+      display: inline-block;
+      padding-bottom: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    [badge] {
+      margin-left: $gutter-2;
+    }
+
+    [loading] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      [icon] {
+        margin: 0;
+        font-size: inherit;
+      }
     }
   }
 }
+
+

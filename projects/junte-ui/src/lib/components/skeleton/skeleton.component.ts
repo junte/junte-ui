@@ -3,10 +3,13 @@ import { Sizes } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-skeleton',
-  templateUrl: './skeleton.component.html',
-  styleUrls: ['./skeleton.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class SkeletonComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
+
   private _rows: number[];
 
   @HostBinding('attr.avatar')

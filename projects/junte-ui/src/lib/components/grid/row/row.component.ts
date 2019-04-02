@@ -3,10 +3,12 @@ import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from 
 
 @Component({
   selector: 'jnt-row',
-  templateUrl: './row.component.html',
-  styleUrls: ['./row.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class RowComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-row-host';
 
   @HostBinding('attr.align')
   @Input()

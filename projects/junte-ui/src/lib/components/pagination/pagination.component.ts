@@ -1,11 +1,11 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss'],
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => PaginationComponent),
@@ -13,6 +13,8 @@ import {UI} from '../../enum/ui';
   }]
 })
 export class PaginationComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-pagination-host';
 
   ui = UI;
 

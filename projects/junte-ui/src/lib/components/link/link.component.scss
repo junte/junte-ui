@@ -12,21 +12,21 @@ $link-active-color: darken($link-color, 10%);
   display: inline-block;
   &[fluid="true"] {
     width: 100%;
-    a {
+    [link] {
       width: 100%;
     }
   }
+}
 
-  [link] {
-    display: inline-block;
-    text-decoration: $link-decoration;
-    color: $link-color;
-    font-weight: $link-font-weight;font-size: $link-font-size;
-    &:hover {
-      color: $link-hover-color;
-    }
-    &:active {
-      color: $link-active-color;
-    }
+[link] {
+  display: inline-block;
+  text-decoration: $link-decoration;
+  color: $link-color;
+  font-weight: $link-font-weight;font-size: $link-font-size;
+  &:hover {
+    color: $link-hover-color;
+  }
+  &:active {
+    color: $link-active-color;
   }
 }

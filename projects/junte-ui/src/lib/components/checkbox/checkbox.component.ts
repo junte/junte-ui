@@ -3,10 +3,12 @@ import {Icons, UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class CheckboxComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-checkbox-host';
 
   ui = UI;
 

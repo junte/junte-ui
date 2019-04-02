@@ -1,12 +1,14 @@
-import { AfterContentInit, Component, ContentChildren, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
 import { TabComponent } from './tab/tab.component';
 
 @Component({
   selector: 'jnt-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class TabsComponent implements AfterContentInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
 
   items: TabComponent[] = [];
 

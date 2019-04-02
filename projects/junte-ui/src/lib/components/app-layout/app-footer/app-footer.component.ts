@@ -2,10 +2,12 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'jnt-app-footer',
-  templateUrl: './app-footer.component.html',
-  styleUrls: ['./app-footer.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class AppFooterComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-app-footer-host';
 
   @HostBinding('attr.fixed')
   @Input()

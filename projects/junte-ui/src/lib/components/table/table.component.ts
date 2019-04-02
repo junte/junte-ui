@@ -18,8 +18,8 @@ import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilt
 
 @Component({
   selector: 'jnt-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
 

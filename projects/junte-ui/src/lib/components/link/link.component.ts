@@ -2,8 +2,8 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-link',
-  templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss'],
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss'],
 })
 export class LinkComponent {
 

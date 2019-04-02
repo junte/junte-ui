@@ -3,10 +3,12 @@ import { StackType, StackGutter, FlexAlign, FlexJustify, FlexDirection, FlexWrap
 
 @Component({
   selector: 'jnt-stack',
-  templateUrl: './stack.component.html',
-  styleUrls: ['./stack.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class StackComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
   @HostBinding('attr.gutter')
   @Input() gutter: StackGutter = StackGutter.normal;

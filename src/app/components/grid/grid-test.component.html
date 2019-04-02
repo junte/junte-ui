@@ -1,7 +1,7 @@
 <jnt-container>
   <h1>Grid</h1>
   <p>12 Grids System.</p>
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
     <jnt-row row>
       <jnt-col *ngFor="let col of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" col>
         span-1
@@ -76,7 +76,7 @@
 
   <h2>Horizontal alignment</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
     <ng-container *ngFor="let justify of [ui.flex.justify.start, ui.flex.justify.end, ui.flex.justify.around, ui.flex.justify.between,
                          ui.flex.justify.center, ui.flex.justify.evenly]">
       <h4>{{justify | titlecase}}</h4>
@@ -109,7 +109,7 @@
 
   <h2>Vertical alignment</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
     <ng-container *ngFor="let align of [ui.flex.align.stretch, ui.flex.align.center, ui.flex.align.baseline, ui.flex.align.end,
                          ui.flex.align.start]">
       <h4>{{align | titlecase}}</h4>
@@ -142,7 +142,7 @@
 
   <h2>Direction items</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
 
     <ng-container *ngFor="let direction of [ui.flex.direction.row, ui.flex.direction.rowReverse,
                           ui.flex.direction.column, ui.flex.direction.columnReverse]">
@@ -176,7 +176,7 @@
 
   <h2>Alignment rows</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
 
     <ng-container *ngFor="let alignContent of [ui.flex.alignContent.start, ui.flex.alignContent.around, ui.flex.alignContent.between,
     ui.flex.alignContent.center, ui.flex.alignContent.end, ui.flex.alignContent.evenly, ui.flex.alignContent.stretch]">
@@ -210,7 +210,7 @@
 
   <h2>Wrap</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
 
     <ng-container *ngFor="let wrap of [ui.flex.wrap.wrap, ui.flex.wrap.noWrap, ui.flex.wrap.reverse]">
       <h4>{{wrap | titlecase}}</h4>
@@ -243,7 +243,7 @@
 
   <h2>Alignment single item</h2>
 
-  <jnt-stack style="align-items: stretch">
+  <jnt-stack [align]="ui.flex.align.stretch">
 
     <ng-container *ngFor="let alignSelf of [ui.flex.alignSelf.center, ui.flex.alignSelf.stretch, ui.flex.alignSelf.start,
     ui.flex.alignSelf.baseline, ui.flex.alignSelf.end, ui.flex.alignSelf.auto]">

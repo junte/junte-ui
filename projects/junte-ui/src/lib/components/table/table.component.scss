@@ -12,34 +12,36 @@ $table-font-size: $font-size-base;
 :host {
   display: block;
   padding: $table-padding;
-}
 
-button {
-  margin-bottom: $gutter-3;
-}
+  button {
+    margin-bottom: $gutter-3;
+  }
 
-[pagination] {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: $gutter-3;
-}
+  [pagination] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $gutter-3;
+  }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: $table-font-size;
-  thead {
-    background-color: $table-head-bg;
-    .sortable {
-      cursor: pointer;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $table-font-size;
+    thead {
+      background-color: $table-head-bg;
+      .sortable {
+        cursor: pointer;
+      }
+    }
+    tbody tr {
+      border-bottom: 1px solid $gray-400;
+    }
+    td, th {
+      padding: $table-cell-padding-x $table-cell-padding-y;
+      border: $table-cell-border-width solid $table-cell-border-color;
     }
   }
-  tbody tr {
-    border-bottom: 1px solid $gray-400;
-  }
-  ::ng-deep td, th {
-    padding: $table-cell-padding-x $table-cell-padding-y;
-    border: $table-cell-border-width solid $table-cell-border-color;
-  }
 }
+
+

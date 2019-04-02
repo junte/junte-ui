@@ -1,11 +1,13 @@
-import {Component, ContentChild, TemplateRef} from '@angular/core';
+import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'jnt-userbar',
-  templateUrl: './userbar.component.html',
-  styleUrls: ['./userbar.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class UserbarComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-app-userbar-host';
 
   @ContentChild('avatar')
   avatar: TemplateRef<any>;

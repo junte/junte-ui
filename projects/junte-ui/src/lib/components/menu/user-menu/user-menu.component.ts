@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuComponent} from '../menu.component';
+import { Component, HostBinding } from '@angular/core';
+import { Menu } from '../menu-abstract';
 
 @Component({
   selector: 'jnt-user-menu',
-  templateUrl: './user-menu.component.html',
-  styleUrls: ['./user-menu.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
-export class UserMenuComponent extends MenuComponent {
+export class UserMenuComponent extends Menu {
+
+  @HostBinding('attr.host') readonly host = 'jnt-user-menu-host';
 }

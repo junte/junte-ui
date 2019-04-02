@@ -3,10 +3,12 @@ import {UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class SwitchComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-switch-host';
 
   ui = UI;
 

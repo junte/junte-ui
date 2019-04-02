@@ -1,14 +1,15 @@
-import {Gulpclass, SequenceTask, Task} from 'gulpclass';
+import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as gulp from 'gulp';
 import * as map from 'map-stream';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as debug from 'gulp-debug';
 import 'reflect-metadata';
-import {HTMLElement, Node, parse} from 'node-html-parser';
-import {parse as scssParce, stringify} from 'scss-parser';
+import { HTMLElement, Node, parse } from 'node-html-parser';
+import { parse as scssParce, stringify } from 'scss-parser';
 import * as watch from 'gulp-watch';
 import * as createQueryWrapper from 'query-ast';
+import { readdirSync } from 'fs';
 
 const argument = require('minimist')(process.argv.slice(2));
 
@@ -25,7 +26,7 @@ export class Gulpfile {
     for (let i = 0; i < html.length; i++) {
       const h = html[i];
       if (h['tagName'] && !h['tagName'].startsWith('ng-')) {
-        h['rawAttrs'] += ` host="${host}"`;
+        h['rawAttrs'] = `child-of="${host}" ` + h['rawAttrs'];
       }
       h.childNodes = this.setHost(h.childNodes, host);
     }
@@ -77,7 +78,7 @@ export class Gulpfile {
 
   @Task()
   components() {
-    return gulp.src(['../components/*/*.ts'])
+    return gulp.src(['../components/**/*.ts'])
       .pipe(debug())
       .pipe(map((file, cb) => {
         const context = require(file.path);
@@ -89,11 +90,12 @@ export class Gulpfile {
 
           const component = new context[key]();
           if (component.host) {
-            const dir = path.parse(file.path).dir;
-            const annotations = context[key].__annotations__[0];
-
-            this.encapsulateHTML(annotations.templateUrl, dir, component.host);
-            this.encapsulateSCSS(annotations.styleUrls, dir, component.host);
+            const directory = path.parse(file.path).dir;
+            const readDirectory = readdirSync(directory);
+            const template = readDirectory.filter((elm) => elm.indexOf('.component.html') > -1)[0];
+            const style = readDirectory.filter((elm) => elm.indexOf('.component.scss') > -1);
+             this.encapsulateHTML(template, directory, component.host);
+             this.encapsulateSCSS(style, directory, component.host);
           }
         }
         return cb();
@@ -113,6 +115,6 @@ export class Gulpfile {
 
   @Task()
   watch() {
-    return watch('../components/*/*.component.html', () => this.components());
+    return watch(['../components/**/*.component.html', '../components/**/*.component.scss'], () => this.components());
   }
 }

@@ -3,10 +3,12 @@ import { FormLayout } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-item',
-  templateUrl: './form-item.component.html',
-  styleUrls: ['./form-item.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class FormItemComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-form-item-host';
 
   @HostBinding('attr.layout')
   @Input()

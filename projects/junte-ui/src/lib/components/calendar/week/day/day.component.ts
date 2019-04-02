@@ -3,10 +3,12 @@ import { format, isEqual } from 'date-fns';
 
 @Component({
   selector: 'jnt-calendar-day',
-  templateUrl: './day.component.html',
-  styleUrls: ['./day.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class DayComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-calendar-day-host';
 
   @Input() date: Date;
   @Input() current: Date;

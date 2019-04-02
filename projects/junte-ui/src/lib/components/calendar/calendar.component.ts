@@ -4,7 +4,7 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
-  forwardRef,
+  forwardRef, HostBinding,
   Input,
   OnInit,
   Output,
@@ -37,8 +37,8 @@ const DAYS_IN_WEEK = 7;
 
 @Component({
   selector: 'jnt-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss'],
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -48,6 +48,8 @@ const DAYS_IN_WEEK = 7;
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, AfterContentInit, OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-calendar-host';
 
   ui = UI;
 

@@ -3,10 +3,12 @@ import {Positions, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-badge',
-  templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class BadgeComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-badge-host';
 
   @Input()
   count: number;

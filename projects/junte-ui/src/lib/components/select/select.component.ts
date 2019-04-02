@@ -20,8 +20,8 @@ const SEARCH_DELAY = 500;
 
 @Component({
   selector: 'jnt-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -31,6 +31,8 @@ const SEARCH_DELAY = 500;
   ]
 })
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+
+  @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
   ui = UI;
 

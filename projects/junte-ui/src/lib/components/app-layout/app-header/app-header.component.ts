@@ -1,14 +1,14 @@
-import { AfterContentInit, Component, ContentChild, Host, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
-import { MenuComponent } from '../../menu/menu.component';
-import { Sizes, UI } from '../../../enum/ui';
-import { UserbarComponent } from './userbar/userbar.component';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-app-header',
-  templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class AppHeaderComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-app-header-host';
 
   ui = UI;
 

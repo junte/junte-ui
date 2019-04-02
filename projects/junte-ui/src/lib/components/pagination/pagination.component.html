@@ -19,8 +19,7 @@
     <a>{{page}}</a>
   </li>
 
-  <li [attr.disabled]="selectedPage >= pagesCount"
-      (click)="setPage(selectedPage + 1)">
+  <li [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)">
     <a title="Next">
       <jnt-icon [icon]="ui.icons.arrowRight" icon></jnt-icon>
     </a>

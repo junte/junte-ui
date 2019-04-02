@@ -3,10 +3,12 @@ import { ValidationTypeError } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-message',
-  templateUrl: './form-message.component.html',
-  styleUrls: ['./form-message.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class FormMessageComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-form-message-host';
 
   show = false;
 

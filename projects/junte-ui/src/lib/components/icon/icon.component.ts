@@ -3,10 +3,12 @@ import {Icons, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-icon',
-  templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  template: '',
+  styleUrls: ['./encapsulated.scss']
 })
 export class IconComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-icon-host';
 
   @Input()
   icon: Icons = Icons.check;

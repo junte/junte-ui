@@ -3,10 +3,12 @@ import {Sizes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class SpinnerComponent implements OnInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-spinner-host';
 
   @HostBinding('attr.size')
   @Input()

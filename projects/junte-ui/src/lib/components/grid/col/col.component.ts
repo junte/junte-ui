@@ -3,10 +3,12 @@ import {FlexAlignSelf} from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-col',
-  templateUrl: './col.component.html',
-  styleUrls: ['./col.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class ColComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-col-host';
 
   @HostBinding('attr.span')
   @Input() span: number = 1;
