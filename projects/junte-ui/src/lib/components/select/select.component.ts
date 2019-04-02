@@ -20,8 +20,8 @@ const SEARCH_DELAY = 500;
 
 @Component({
   selector: 'jnt-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

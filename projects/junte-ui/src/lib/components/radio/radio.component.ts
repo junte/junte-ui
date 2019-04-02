@@ -3,8 +3,8 @@ import {UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-radio',
-  templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class RadioComponent implements OnInit {
 

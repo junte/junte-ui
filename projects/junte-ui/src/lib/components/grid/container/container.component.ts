@@ -2,8 +2,8 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-container',
-  templateUrl: './container.component.html',
-  styleUrls: ['./container.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class ContainerComponent {
 

@@ -20,7 +20,7 @@ $gutters: (
 );
 
 @mixin stack($property, $gutter) {
-  ::ng-deep > :not(:last-child) {
+  & > :not(:last-child) {
     #{$property}: #{map-get($gutter, gutter)};
   }
 }

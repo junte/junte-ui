@@ -3,8 +3,8 @@ import { Colors } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-label',
-  templateUrl: './label.component.html',
-  styleUrls: ['./label.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class LabelComponent implements OnInit {
 

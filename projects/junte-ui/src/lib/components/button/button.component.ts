@@ -3,8 +3,8 @@ import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  templateUrl: './encapsulated.html',
+  styleUrls: ['./encapsulated.scss']
 })
 export class ButtonComponent {
 

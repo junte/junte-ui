@@ -148,47 +148,49 @@ $sizes: (
   &[fluid='true'] {
     width: 100%;
   }
-}
 
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  outline: 0;
-  user-select: none;
-  box-sizing: border-box;
-  border-radius: 40px;
-  cursor: pointer;
-  border: none;
-  width: 100%;
-  position: relative;
-  font-family: $font-family-base;
-  [icon] {
-    margin-right: 10px;
-  }
-  [text] {
-    display: inline-block;
-    padding-bottom: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  [badge] {
-    margin-left: $gutter-2;
-  }
-
-  [loading] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    outline: 0;
+    user-select: none;
+    box-sizing: border-box;
+    border-radius: 40px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    position: relative;
+    font-family: $font-family-base;
     [icon] {
-      margin: 0;
-      font-size: inherit;
+      margin-right: 10px;
+    }
+    [text] {
+      display: inline-block;
+      padding-bottom: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    [badge] {
+      margin-left: $gutter-2;
+    }
+
+    [loading] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      [icon] {
+        margin: 0;
+        font-size: inherit;
+      }
     }
   }
 }
+
+
