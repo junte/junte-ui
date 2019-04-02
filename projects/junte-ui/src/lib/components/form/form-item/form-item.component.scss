@@ -31,7 +31,7 @@ $layouts: (
   align-items: #{map-get($layout, align)};
 }
 
-jnt-form-item:host {
+:host {
   @each $layout, $map in $layouts {
     &[layout='#{$layout}'] {
       @include layout($map);
