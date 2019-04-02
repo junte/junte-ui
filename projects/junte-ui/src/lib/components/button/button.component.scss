@@ -76,9 +76,11 @@ $sizes: (
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
     }
-    ::ng-deep [badge] > sup {
-      color: #{map-get($scheme, badge-color)};
-      background: #{map-get($scheme, badge-background)};
+    [badge] {
+      sup {
+        color: #{map-get($scheme, badge-color)};
+        background: #{map-get($scheme, badge-background)};
+      }
     }
   }
 }
@@ -92,7 +94,7 @@ $sizes: (
     &:hover, &:focus {
 
     }
-    ::ng-deep [badge] > sup {
+    [badge] > sup {
       background: #{map-get($scheme, badge-outline-background)};
       color: #{map-get($scheme, badge-outline-color)};
     }
