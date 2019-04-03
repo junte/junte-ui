@@ -28,6 +28,6 @@ export class RowComponent {
 
   @HostBinding('attr.alignContent')
   @Input()
-  alignContent: FlexAlignContent = FlexAlignContent.start;
+  alignContent: FlexAlignContent;
 
 }
