@@ -1,4 +1,4 @@
-<ng-template #loadTemp>
+<ng-template #loadTemplate>
   <jnt-spinner></jnt-spinner>
 </ng-template>
 
@@ -20,14 +20,16 @@
     </thead>
 
     <tbody>
-    <ng-container *ngIf="!progress.loading; else loadTemp">
+    <ng-container *ngIf="!progress.loading; else loadTemplate">
       <tr *ngIf="!source.length">
         <td [attr.colspan]="columns.length">
           <p>No data</p>
         </td>
       </tr>
       <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-        <ng-container *ngTemplateOutlet="rowTemplate;context:row"></ng-container>
+        <td *ngFor="let column of columns">
+          <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
+        </td>
       </tr>
     </ng-container>
     </tbody>
@@ -40,5 +42,3 @@
     </div>
   </ng-container>
 </form>
-
-<ng-content></ng-content>
