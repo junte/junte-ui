@@ -2,8 +2,7 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'jnt-app-footer',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class AppFooterComponent implements OnInit {
 
