@@ -1,6 +1,6 @@
 <div tabs>
-  <div tab item *ngFor="let item of items" [class.active]="item.active">
-    {{item.title}}
+  <div tab item *ngFor="let tab of tabs" [attr.active]="tab.active" (click)="activatedTab(tab)">
+    {{tab.title}}
     <div bar></div>
   </div>
 </div>
