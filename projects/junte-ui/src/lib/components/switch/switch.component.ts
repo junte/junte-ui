@@ -3,8 +3,7 @@ import {UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class SwitchComponent implements OnInit {
 

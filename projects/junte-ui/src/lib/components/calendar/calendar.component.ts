@@ -38,7 +38,6 @@ const DAYS_IN_WEEK = 7;
 @Component({
   selector: 'jnt-calendar',
   templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

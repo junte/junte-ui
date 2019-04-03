@@ -3,8 +3,7 @@ import {FlexAlignSelf} from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-col',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class ColComponent {
 

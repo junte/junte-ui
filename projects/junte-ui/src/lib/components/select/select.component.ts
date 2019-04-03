@@ -21,7 +21,6 @@ const SEARCH_DELAY = 500;
 @Component({
   selector: 'jnt-select',
   templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

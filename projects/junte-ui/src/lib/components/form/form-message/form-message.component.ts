@@ -3,8 +3,7 @@ import { ValidationTypeError } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-message',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class FormMessageComponent {
 
