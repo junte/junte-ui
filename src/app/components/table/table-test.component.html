@@ -2,13 +2,17 @@
   <h1>Table</h1>
   <jnt-block [fluid]="true">
     <jnt-table>
-      <jnt-table-column title="Label" sort="label"></jnt-table-column>
-      <jnt-table-column title="Value" sort="value"></jnt-table-column>
+      <jnt-table-column title="Label" sort="label">
+        <ng-template #cellTemplate let-label="label">
+          {{label}}
+        </ng-template>
+      </jnt-table-column>
 
-      <ng-template #rowTemplate let-label="label" let-value="value">
-        <td>label</td>
-        <td>value</td>
-      </ng-template>
+      <jnt-table-column title="Value" sort="value">
+        <ng-template #cellTemplate let-value="value">
+          {{value}}
+        </ng-template>
+      </jnt-table-column>
     </jnt-table>
   </jnt-block>
 
@@ -16,12 +20,12 @@
       <pre>
 &lt;jnt-block&gt;
   &lt;jnt-table&gt;
-    &lt;jnt-table-column title="Label" sort="label">&lt;/jnt-table-column&gt;
-    &lt;jnt-table-column title="Value" sort="value">&lt;/jnt-table-column&gt;
-    &lt;ng-template #rowTemplate let-label="label" let-value="value"&gt;
-      &lt;td&gt;label&lt;/td&gt;
-      &lt;td&gt;value&lt;/td&gt;
-    &lt;/ng-template&gt;
+    &lt;jnt-table-column title="Label" sort="label">
+        &lt;ng-template #cellTemplate let-label="label"&gt;{{label}}&lt;/ng-template&gt;
+    &lt;/jnt-table-column&gt;
+    &lt;jnt-table-column title="Value" sort="value">
+        &lt;ng-template #cellTemplate let-value="value"&gt;{{value}}&lt;/ng-template&gt;
+    &lt;/jnt-table-column&gt;
   &lt;/jnt-table&gt;
 &lt;/jnt-block&gt;</pre>
     </ngx-prism>
