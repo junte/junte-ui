@@ -1,6 +1,14 @@
 <jnt-container>
   <h1>Link</h1>
-  <jnt-link source="/components/block">Link</jnt-link>
+  <div>
+    <jnt-link [source]="['components', 'block']">Link</jnt-link>
+  </div>
+  <div>
+    <jnt-link source="https://google.com">External Link</jnt-link>
+  </div>
+  <div>
+    <jnt-link source="https://google.com" target="_blank">External Link with target="_blank"</jnt-link>
+  </div>
 
   <ngx-prism language="html">
     &lt;jnt-link source="/components"&gt;Link&lt;/jnt-link&gt;

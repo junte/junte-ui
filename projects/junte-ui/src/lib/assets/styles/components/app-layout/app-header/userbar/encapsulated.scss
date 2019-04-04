@@ -7,20 +7,20 @@ $user-menu-padding-x: $gutter-3;
 $user-menu-padding-y: $gutter-4;
 $user-menu-bg: $primary-dark-color;
 
-jnt-userbar[host=#{$jnt-userbar-host}] {
+jnt-app-userbar[host=#{$jnt-app-userbar-host}] {
   position: relative;
   cursor: pointer;
   min-height: $app-header-height;
   display: flex;
   align-items: center;
   &:hover {
-    [usermenu][host=#{$jnt-userbar-host}] {
+    [usermenu][child-of=#{$jnt-app-userbar-host}] {
       display: block;
     }
   }
 }
 
-[usermenu][host=#{$jnt-userbar-host}] {
+[usermenu][child-of=#{$jnt-app-userbar-host}] {
   background: $user-menu-bg;
   border-radius: $user-menu-border-radius;
   padding: $user-menu-padding-x $user-menu-padding-y;

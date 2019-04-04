@@ -62,6 +62,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { AttributeDirective } from './directives/attribute';
+import { LinkDirective } from './directives/link';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AttributeDirective } from './directives/attribute';
     IconComponent,
     StackDirective,
     AttributeDirective,
+    LinkDirective,
     ValidationDirective,
     SmartWidthDirective,
     StackComponent,

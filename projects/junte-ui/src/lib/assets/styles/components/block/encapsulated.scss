@@ -27,7 +27,7 @@ jnt-block[host=#{$jnt-block-host}] {
     border: $block-border-width solid $block-border-color;
   }
 
-  [loading][host=#{$jnt-block-host}], [error][host=#{$jnt-block-host}] {
+  [loading][child-of=#{$jnt-block-host}], [error][child-of=#{$jnt-block-host}] {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,21 +37,21 @@ jnt-block[host=#{$jnt-block-host}] {
     align-items: center;
     justify-content: center;
     border-radius: $block-corner;
-    [icon][host=#{$jnt-block-host}] {
+    [icon][child-of=#{$jnt-block-host}] {
       color: $block-error-icon-color;
     }
   }
 
-  [loading][host=#{$jnt-block-host}] {
+  [loading][child-of=#{$jnt-block-host}] {
     background-color: $block-loading-bg;
-    [spinner][host=#{$jnt-block-host}] {
+    [spinner][child-of=#{$jnt-block-host}] {
       border-color: $block-loading-spinner-color;
     }
   }
 
-  [error][host=#{$jnt-block-host}] {
+  [error][child-of=#{$jnt-block-host}] {
     background-color: $block-error-bg;
-    [icon][host=#{$jnt-block-host}] {
+    [icon][child-of=#{$jnt-block-host}] {
       font-size: $block-error-icon-size;
     }
   }
