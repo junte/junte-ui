@@ -3,8 +3,7 @@ import { FormLayout } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-form-item',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class FormItemComponent {
 

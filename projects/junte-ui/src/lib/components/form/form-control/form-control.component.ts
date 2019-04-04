@@ -3,8 +3,7 @@ import { FormMessageComponent } from '../form-message/form-message.component';
 
 @Component({
   selector: 'jnt-form-control',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class FormControlComponent {
 

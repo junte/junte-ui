@@ -15,8 +15,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jnt-form',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class FormComponent implements AfterContentInit {
 

@@ -3,8 +3,7 @@ import { Icons, Shapes, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-avatar',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class AvatarComponent implements OnInit {
 

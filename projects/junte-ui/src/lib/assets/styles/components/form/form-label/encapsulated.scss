@@ -1,0 +1,14 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+$form-label-font-size: .75rem;
+$form-label-color: $gray-800;
+
+jnt-form-label[host=#{$jnt-form-label-host}] {
+  display: inline-block;
+}
+
+label[child-of=#{$jnt-form-label-host}] {
+  font-size: $form-label-font-size;
+  color: $form-label-color;
+}

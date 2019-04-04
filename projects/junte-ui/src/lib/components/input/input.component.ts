@@ -4,8 +4,7 @@ import {InputType, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss'],
+  templateUrl: './input.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

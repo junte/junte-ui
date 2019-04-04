@@ -1,0 +1,25 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$menu-item-color: white;
+$menu-item-icon-color: white;
+$menu-item-icon-gutter: $gutter-1;
+$menu-item-padding-x: $gutter-2;
+$menu-item-padding-y: $gutter-2;
+
+jnt-menu[host=#{$jnt-menu-host}] {
+  display: flex;
+  flex: 1;
+}
+
+[item][child-of=#{$jnt-menu-host}] {
+  cursor: pointer;
+  padding: $menu-item-padding-x $menu-item-padding-y;
+  [link][child-of=#{$jnt-menu-host}] ::ng-deep a[child-of=#{$jnt-menu-host}] {
+    color: $menu-item-color;
+  }
+  [icon][child-of=#{$jnt-menu-host}] {
+    color: $menu-item-icon-color;
+    margin-right: $menu-item-icon-gutter;
+  }
+}

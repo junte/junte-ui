@@ -4,7 +4,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'jnt-page-size',
   templateUrl: './page-size.component.html',
-  styleUrls: ['./page-size.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => PageSizeComponent),

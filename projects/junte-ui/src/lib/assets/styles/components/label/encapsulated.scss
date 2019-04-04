@@ -1,0 +1,23 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$label-corner: 3px;
+$label-height: 24px;
+$label-padding-x: 0;
+$label-padding-y: $gutter-2;
+$label-color: white;
+$label-font-size: 12px;
+
+jnt-label[host=#{$jnt-label-host}] {
+  display: inline-block;
+  border-radius: $label-corner;
+  padding: $label-padding-x $label-padding-y;
+  height: $label-height;
+  box-sizing: border-box;
+}
+
+span[child-of=#{$jnt-label-host}] {
+  color: $label-color;
+  font-size: $label-font-size;
+  line-height: $label-height;
+}

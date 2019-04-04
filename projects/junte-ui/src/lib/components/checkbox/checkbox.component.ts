@@ -3,8 +3,7 @@ import {Icons, UI} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class CheckboxComponent implements OnInit {
 

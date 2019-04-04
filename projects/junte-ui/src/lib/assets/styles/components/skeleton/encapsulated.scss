@@ -1,0 +1,99 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$skeleton-bg: $gray-500;
+$skeleton-to-bg: darken($skeleton-bg, 5%);
+$skeleton-paragraph-height: 24px;
+$skeleton-title-width: 38%;
+$skeleton-avatar-spacer-right: $gutter-5;
+$skeleton-avatar-spacer-bottom: $gutter-3;
+$skeleton-paragraph-spacer: $gutter-3;
+
+$sizes: (
+  #{$size-small}: (
+    size: $avatar-size-small,
+  ),
+  #{$size-normal}: (
+    size: $avatar-size-normal,
+  ),
+  #{$size-large}: (
+    size: $avatar-size-large,
+  )
+);
+
+@mixin width($size) {
+  width: #{map-get($size, size)};
+}
+
+@mixin size($size) {
+  min-width: #{map-get($size, size)};
+  width: #{map-get($size, size)};
+  min-height: #{map-get($size, size)};
+  height: #{map-get($size, size)};
+}
+
+jnt-skeleton[host=#{$jnt-skeleton-host}] {
+  display: block;
+
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      [avatar][child-of=#{$jnt-skeleton-host}] {
+        @include width($map);
+        > div[child-of=#{$jnt-skeleton-host}] {
+          background-color: $skeleton-bg;
+          border-radius: 50%;
+          @include size($map);
+        }
+      }
+    }
+  }
+}
+
+table[child-of=#{$jnt-skeleton-host}] {
+  width: 100%;
+  table-layout: auto;
+
+  [header][child-of=#{$jnt-skeleton-host}] {
+    [avatar][child-of=#{$jnt-skeleton-host}] {
+      padding-right: $skeleton-avatar-spacer-right;
+      padding-bottom: $skeleton-avatar-spacer-bottom;
+    }
+    [title][child-of=#{$jnt-skeleton-host}] {
+      width: $skeleton-title-width;
+      margin-bottom: $skeleton-paragraph-spacer;
+      min-height: $skeleton-paragraph-height;
+      background-color: $skeleton-bg;
+    }
+    [paragraph][child-of=#{$jnt-skeleton-host}] {
+      margin-bottom: $skeleton-paragraph-spacer;
+    }
+  }
+
+  [paragraph][child-of=#{$jnt-skeleton-host}] {
+    min-height: $skeleton-paragraph-height;
+    //background-color: $skeleton-bg;
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: $skeleton-paragraph-spacer;
+    }
+  }
+
+  [avatar][child-of=#{$jnt-skeleton-host}] > div[child-of=#{$jnt-skeleton-host}],
+  [paragraph][child-of=#{$jnt-skeleton-host}],
+  [title][child-of=#{$jnt-skeleton-host}] {
+    background: linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+    animation: loading 1.4s ease infinite;
+    background-size: 400% 100%;
+  }
+
+}
+
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

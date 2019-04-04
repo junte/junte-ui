@@ -1,0 +1,95 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+//$avatar-size-small: 40px;
+//$avatar-size-normal: 80px;
+//$avatar-size-large: 120px;
+
+$avatar-icon-size-small: 14px;
+$avatar-icon-size-normal: 24px;
+$avatar-icon-size-large: 40px;
+
+$avatar-text-font-size-small: 14px;
+$avatar-text-font-size-normal: 24px;
+$avatar-text-font-size-large: 40px;
+
+$avatar-text-color: $primary-color;
+$avatar-icon-color: $primary-color;
+
+$avatar-shape-circle: 'circle';
+$avatar-shape-square: 'square';
+
+$avatar-bg: $gray-700;
+
+$sizes: (
+  #{$size-small}: (
+    size: $avatar-size-small,
+    sizeIcon: $avatar-icon-size-small,
+    sizeText: $avatar-text-font-size-small,
+  ),
+  #{$size-normal}: (
+    size: $avatar-size-normal,
+    sizeIcon: $avatar-icon-size-normal,
+    sizeText: $avatar-text-font-size-normal,
+  ),
+  #{$size-large}: (
+    size: $avatar-size-large,
+    sizeIcon: $avatar-icon-size-large,
+    sizeText: $avatar-text-font-size-large,
+  )
+);
+
+$shapes: (
+  #{$avatar-shape-circle}: (
+    border-radius: 50%
+  ),
+  #{$avatar-shape-square}: (
+    border-radius: 0
+  ),
+);
+
+@mixin size($size) {
+  width: #{map-get($size, size)};
+  height: #{map-get($size, size)};
+  [icon][child-of=#{$jnt-avatar-host}] {
+    font-size: #{map-get($size, sizeIcon)};
+  }
+  [text][child-of=#{$jnt-avatar-host}] {
+    font-size: #{map-get($size, sizeText)};
+  }
+}
+
+@mixin shape($property, $shape) {
+  #{$property}: #{map-get($shape, border-radius)};
+
+}
+
+jnt-avatar[host=#{$jnt-avatar-host}] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  background-color: $avatar-bg;
+  overflow: hidden;
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+  @each $shape, $value in $shapes {
+    &[shape='#{$shape}'] {
+      @include shape(border-radius, $value);
+    }
+  }
+}
+
+[text][child-of=#{$jnt-avatar-host}] {
+  color: $avatar-text-color;
+}
+[icon][child-of=#{$jnt-avatar-host}] {
+  color: $avatar-icon-color;
+}
+[image][child-of=#{$jnt-avatar-host}] {
+  width: 100%;
+  height: 100%;
+}

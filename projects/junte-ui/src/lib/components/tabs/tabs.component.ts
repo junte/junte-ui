@@ -3,8 +3,7 @@ import {TabComponent} from './tab/tab.component';
 
 @Component({
   selector: 'jnt-tabs',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class TabsComponent implements AfterContentInit {
 

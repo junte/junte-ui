@@ -3,8 +3,7 @@ import {FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap} from 
 
 @Component({
   selector: 'jnt-row',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class RowComponent {
 
