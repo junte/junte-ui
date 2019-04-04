@@ -12,13 +12,13 @@ jnt-menu[host=#{$jnt-menu-host}] {
   flex: 1;
 }
 
-[item][child-of=#{$jnt-menu-host}] {
+[item][host=#{$jnt-menu-host}] {
   cursor: pointer;
   padding: $menu-item-padding-x $menu-item-padding-y;
-  [link][child-of=#{$jnt-menu-host}] ::ng-deep a[child-of=#{$jnt-menu-host}] {
+  [link][host=#{$jnt-menu-host}] ::ng-deep a[host=#{$jnt-menu-host}] {
     color: $menu-item-color;
   }
-  [icon][child-of=#{$jnt-menu-host}] {
+  [icon][host=#{$jnt-menu-host}] {
     color: $menu-item-icon-color;
     margin-right: $menu-item-icon-gutter;
   }

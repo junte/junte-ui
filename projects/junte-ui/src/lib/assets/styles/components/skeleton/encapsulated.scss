@@ -37,9 +37,9 @@ jnt-skeleton[host=#{$jnt-skeleton-host}] {
 
   @each $size, $map in $sizes {
     &[size='#{$size}'] {
-      [avatar][child-of=#{$jnt-skeleton-host}] {
+      [avatar][host=#{$jnt-skeleton-host}] {
         @include width($map);
-        > div[child-of=#{$jnt-skeleton-host}] {
+        > div[host=#{$jnt-skeleton-host}] {
           background-color: $skeleton-bg;
           border-radius: 50%;
           @include size($map);
@@ -49,27 +49,27 @@ jnt-skeleton[host=#{$jnt-skeleton-host}] {
   }
 }
 
-table[child-of=#{$jnt-skeleton-host}] {
+table[host=#{$jnt-skeleton-host}] {
   width: 100%;
   table-layout: auto;
 
-  [header][child-of=#{$jnt-skeleton-host}] {
-    [avatar][child-of=#{$jnt-skeleton-host}] {
+  [header][host=#{$jnt-skeleton-host}] {
+    [avatar][host=#{$jnt-skeleton-host}] {
       padding-right: $skeleton-avatar-spacer-right;
       padding-bottom: $skeleton-avatar-spacer-bottom;
     }
-    [title][child-of=#{$jnt-skeleton-host}] {
+    [title][host=#{$jnt-skeleton-host}] {
       width: $skeleton-title-width;
       margin-bottom: $skeleton-paragraph-spacer;
       min-height: $skeleton-paragraph-height;
       background-color: $skeleton-bg;
     }
-    [paragraph][child-of=#{$jnt-skeleton-host}] {
+    [paragraph][host=#{$jnt-skeleton-host}] {
       margin-bottom: $skeleton-paragraph-spacer;
     }
   }
 
-  [paragraph][child-of=#{$jnt-skeleton-host}] {
+  [paragraph][host=#{$jnt-skeleton-host}] {
     min-height: $skeleton-paragraph-height;
     //background-color: $skeleton-bg;
     width: 100%;
@@ -78,9 +78,9 @@ table[child-of=#{$jnt-skeleton-host}] {
     }
   }
 
-  [avatar][child-of=#{$jnt-skeleton-host}] > div[child-of=#{$jnt-skeleton-host}],
-  [paragraph][child-of=#{$jnt-skeleton-host}],
-  [title][child-of=#{$jnt-skeleton-host}] {
+  [avatar][host=#{$jnt-skeleton-host}] > div[host=#{$jnt-skeleton-host}],
+  [paragraph][host=#{$jnt-skeleton-host}],
+  [title][host=#{$jnt-skeleton-host}] {
     background: linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
     animation: loading 1.4s ease infinite;
     background-size: 400% 100%;

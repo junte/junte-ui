@@ -15,18 +15,18 @@ jnt-tabs[host=#{$jnt-tabs-host}] {
   display: block;
 }
 
-[tabs][child-of=#{$jnt-tabs-host}] {
+[tabs][host=#{$jnt-tabs-host}] {
   display: flex;
   border-bottom: 1px solid $tabs-border-bottom-color;
   margin-bottom: $gutter-3;
-  [tab][child-of=#{$jnt-tabs-host}] {
+  [tab][host=#{$jnt-tabs-host}] {
     padding: $tabs-item-padding-top $tabs-item-padding-right $tabs-item-padding-bottom $tabs-item-padding-left;
     cursor: pointer;
     color: $tabs-item-color;
     font-size: $tabs-item-font-size;
     position: relative;
     margin-bottom: -1px;
-    [bar][child-of=#{$jnt-tabs-host}] {
+    [bar][host=#{$jnt-tabs-host}] {
       display: none;
       position: absolute;
       bottom: 0;
@@ -41,7 +41,7 @@ jnt-tabs[host=#{$jnt-tabs-host}] {
     }
     &[active='true'] {
       color: $tabs-item-active-color;
-      [bar][child-of=#{$jnt-tabs-host}] {
+      [bar][host=#{$jnt-tabs-host}] {
         display: block;
       }
       //border-bottom: 1px solid $tabs-item-active-color;

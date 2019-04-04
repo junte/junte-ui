@@ -14,7 +14,7 @@ export class LinkDirective implements AfterViewInit {
     const pattern = /^HTTP|HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?$/;
     if (!!link) {
       this.renderer.setAttribute(this.element.nativeElement,
-        !isArray(link) && link.match(pattern) ? 'href' : 'routerLink', link);
+        !isArray(link) && link.match(pattern) ? 'href' : isArray(link) ? '[routerLink]' : 'routerLink', link);
     }
   }
 

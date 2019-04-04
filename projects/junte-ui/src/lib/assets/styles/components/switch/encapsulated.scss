@@ -21,7 +21,7 @@ jnt-switch[host=#{$jnt-switch-host}] {
   position: relative;
 }
 
-input[child-of=#{$jnt-switch-host}] {
+input[host=#{$jnt-switch-host}] {
   position: absolute;
   top: 0;
   z-index: 1;
@@ -41,7 +41,7 @@ input[child-of=#{$jnt-switch-host}] {
   }
   &:disabled {
     cursor: default;
-    & ~ label[child-of=#{$jnt-switch-host}] {
+    & ~ label[host=#{$jnt-switch-host}] {
       color: $control-label-disabled-color;
     }
     & + [switch] {
@@ -51,12 +51,12 @@ input[child-of=#{$jnt-switch-host}] {
   }
 }
 
-label[child-of=#{$jnt-switch-host}] {
+label[host=#{$jnt-switch-host}] {
   padding-left: $control-gutter;
   color: $control-label-color;
 }
 
-[switch][child-of=#{$jnt-switch-host}] {
+[switch][host=#{$jnt-switch-host}] {
   position: relative;
   border-radius: $switch-indicator-corner;
   background-color: $switch-indicator-bg;
@@ -67,7 +67,7 @@ label[child-of=#{$jnt-switch-host}] {
   transition: all ease .4s;
 }
 
-[icon][child-of=#{$jnt-switch-host}] {
+[icon][host=#{$jnt-switch-host}] {
   border-radius: 50%;
   width: $switch-icon-size;
   height: $switch-icon-size;

@@ -31,26 +31,26 @@ jnt-calendar-day[host=#{$jnt-calendar-day-host}] {
   border-radius: $calendar-week-day-corner;
 }
 
-[date][child-of=#{$jnt-calendar-day-host}] {
+[date][host=#{$jnt-calendar-day-host}] {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin: auto;
 }
-[number-day][child-of=#{$jnt-calendar-day-host}] {
+[number-day][host=#{$jnt-calendar-day-host}] {
   font-size: $calendar-week-number-day-font-size;
   color: $calendar-week-number-day-color;
   font-weight: $font-weight-bold;
 }
-[name-day][child-of=#{$jnt-calendar-day-host}] {
+[name-day][host=#{$jnt-calendar-day-host}] {
   color: $calendar-week-name-day-color;
   font-size: $calendar-week-name-day-font-size;
 }
-[today][child-of=#{$jnt-calendar-day-host}] {
+[today][host=#{$jnt-calendar-day-host}] {
   color: $primary-color;
 }
-[metric][child-of=#{$jnt-calendar-day-host}] {
+[metric][host=#{$jnt-calendar-day-host}] {
   background-color: $calendar-week-metric-bg;
   padding: $calendar-week-metric-padding;
   width: 100%;

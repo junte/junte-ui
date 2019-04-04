@@ -17,12 +17,12 @@ jnt-pagination[host=#{$jnt-pagination-host}] {
   display: block;
 }
 
-ul[child-of=#{$jnt-pagination-host}] {
+ul[host=#{$jnt-pagination-host}] {
   list-style: none;
   display: flex;
   padding: 0;
   margin: 0;
-  li[child-of=#{$jnt-pagination-host}] {
+  li[host=#{$jnt-pagination-host}] {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,14 +43,14 @@ ul[child-of=#{$jnt-pagination-host}] {
       border: 1px solid $pager-active-button-border-color;
       background-color: $pager-active-button-bg;
     }
-    &:hover:not([disabled="true"][child-of=#{$jnt-pagination-host}]) {
+    &:hover:not([disabled="true"][host=#{$jnt-pagination-host}]) {
       background-color: $pager-active-button-bg;
     }
     &[disabled="true"] {
       color: $pager-disabled-button-color;
       cursor: default;
     }
-    [icon][child-of=#{$jnt-pagination-host}] {
+    [icon][host=#{$jnt-pagination-host}] {
       font-size: $pager-icon-size;
     }
   }

@@ -51,10 +51,10 @@ $shapes: (
 @mixin size($size) {
   width: #{map-get($size, size)};
   height: #{map-get($size, size)};
-  [icon][child-of=#{$jnt-avatar-host}] {
+  [icon][host=#{$jnt-avatar-host}] {
     font-size: #{map-get($size, sizeIcon)};
   }
-  [text][child-of=#{$jnt-avatar-host}] {
+  [text][host=#{$jnt-avatar-host}] {
     font-size: #{map-get($size, sizeText)};
   }
 }
@@ -83,13 +83,13 @@ jnt-avatar[host=#{$jnt-avatar-host}] {
   }
 }
 
-[text][child-of=#{$jnt-avatar-host}] {
+[text][host=#{$jnt-avatar-host}] {
   color: $avatar-text-color;
 }
-[icon][child-of=#{$jnt-avatar-host}] {
+[icon][host=#{$jnt-avatar-host}] {
   color: $avatar-icon-color;
 }
-[image][child-of=#{$jnt-avatar-host}] {
+[image][host=#{$jnt-avatar-host}] {
   width: 100%;
   height: 100%;
 }

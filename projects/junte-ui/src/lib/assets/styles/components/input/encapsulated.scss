@@ -54,7 +54,7 @@ $schemes: (
 );
 
 @mixin scheme($scheme) {
-  input[child-of=#{$jnt-input-host}] {
+  input[host=#{$jnt-input-host}] {
     border-color: #{map-get($scheme, border-color)};
     &:focus {
       border-color: #{map-get($scheme, border-color-focus)};
@@ -76,7 +76,7 @@ jnt-input[host=#{$jnt-input-host}] {
   }
 }
 
-input[child-of=#{$jnt-input-host}] {
+input[host=#{$jnt-input-host}] {
   border: 0;
   outline: none;
   background-color: $input-bg;

@@ -19,7 +19,7 @@ jnt-checkbox[host=#{$jnt-checkbox-host}] {
   position: relative;
 }
 
-input[child-of=#{$jnt-checkbox-host}] {
+input[host=#{$jnt-checkbox-host}] {
   position: absolute;
   top: 0;
   z-index: 1;
@@ -36,7 +36,7 @@ input[child-of=#{$jnt-checkbox-host}] {
   }
   &:disabled {
     cursor: default;
-    & ~ label[child-of=#{$jnt-checkbox-host}] {
+    & ~ label[host=#{$jnt-checkbox-host}] {
       color: $control-label-disabled-color;
     }
     & + [switch] {
@@ -49,12 +49,12 @@ input[child-of=#{$jnt-checkbox-host}] {
   }
 }
 
-label[child-of=#{$jnt-checkbox-host}] {
+label[host=#{$jnt-checkbox-host}] {
   padding-left: $control-gutter;
   color: $control-label-color;
 }
 
-[switch][child-of=#{$jnt-checkbox-host}] {
+[switch][host=#{$jnt-checkbox-host}] {
   position: relative;
   width: $checkbox-indicator-size;
   height: $checkbox-indicator-size;
@@ -66,7 +66,7 @@ label[child-of=#{$jnt-checkbox-host}] {
   align-items: center;
 }
 
-[icon][child-of=#{$jnt-checkbox-host}] {
+[icon][host=#{$jnt-checkbox-host}] {
   opacity: 0;
   line-height: 1;
   font-size: $checkbox-icon-size;
