@@ -1,0 +1,95 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$badge-size: 16px;
+$badge-font-size: 12px;
+$badge-corner: 8px;
+
+$position-right-top: 'right-top';
+$position-left-top: 'left-top';
+$position-inline: 'inline';
+
+$schemes: (
+  #{$scheme-primary}: (
+    color: $white-color,
+    background: $primary-color
+  ),
+  #{$scheme-secondary}: (
+    color: $text-color,
+    background: $secondary-color
+  ),
+  #{$scheme-success}: (
+    color: $white-color,
+    background: $success-color
+  ),
+  #{$scheme-fail}: (
+    color: $white-color,
+    background: $fail-color
+  )
+);
+
+$positions: (
+  #{$position-right-top}: (
+    position: 'absolute',
+    right: -$badge-size / 2,
+    top: -$badge-size / 2
+  ),
+  #{$position-left-top}: (
+    position: 'absolute',
+    left: -$badge-size / 2,
+    top: -$badge-size / 2
+  ),
+  #{$position-inline}: (
+    position: 'static'
+  )
+);
+
+@mixin scheme($scheme) {
+  sup[child-of=#{$jnt-badge-host}] {
+    color: #{map-get($scheme, color)};
+    background: #{map-get($scheme, background)};
+  }
+}
+
+@mixin position($position) {
+  sup[child-of=#{$jnt-badge-host}] {
+    position: #{map-get($position, position)};
+    top: #{map-get($position, top)};
+    left: #{map-get($position, left)};
+    right: #{map-get($position, right)};
+  }
+}
+
+jnt-badge[host=#{$jnt-badge-host}] {
+  display: inline-block;
+  position: relative;
+  line-height: 0;
+  text-align: center;
+  @each $scheme, $map in $schemes {
+    &[scheme='#{$scheme}'] {
+      @include scheme($map);
+    }
+  }
+  @each $position, $map in $positions {
+    &[position='#{$position}'] {
+      @include position($map);
+    }
+  }
+}
+
+sup[child-of=#{$jnt-badge-host}] {
+  display: inline-block;
+  line-height: $badge-size;
+  min-width: $badge-size;
+  min-height: $badge-size;
+  font-size: $badge-font-size;
+  border-radius: $badge-corner;
+  text-align: center;
+  padding: 0 3px;
+  box-sizing: border-box;
+  span[child-of=#{$jnt-badge-host}] {
+    display: inline-block;
+    height: $badge-size;
+    //line-height: $badge-size;
+  }
+}

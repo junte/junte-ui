@@ -6,7 +6,7 @@ import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core
 })
 export class UserbarComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-app-userbar-host';
+  @HostBinding('attr.host') readonly host = 'jnt-userbar-host';
 
   @ContentChild('avatar')
   avatar: TemplateRef<any>;
