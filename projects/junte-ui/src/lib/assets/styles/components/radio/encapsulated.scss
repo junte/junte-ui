@@ -19,7 +19,7 @@ jnt-radio[host=#{$jnt-radio-host}] {
   position: relative;
 }
 
-input[host=#{$jnt-radio-host}] {
+input[child-of=#{$jnt-radio-host}] {
   position: absolute;
   top: 0;
   z-index: 1;
@@ -36,7 +36,7 @@ input[host=#{$jnt-radio-host}] {
   }
   &:disabled {
     cursor: default;
-    & ~ label[host=#{$jnt-radio-host}] {
+    & ~ label[child-of=#{$jnt-radio-host}] {
       color: $control-label-disabled-color;
     }
     & + [switch] {
@@ -49,12 +49,12 @@ input[host=#{$jnt-radio-host}] {
   }
 }
 
-label[host=#{$jnt-radio-host}] {
+label[child-of=#{$jnt-radio-host}] {
   padding-left: $control-gutter;
   color: $control-label-color;
 }
 
-[switch][host=#{$jnt-radio-host}] {
+[switch][child-of=#{$jnt-radio-host}] {
   position: relative;
   border-radius: $radio-indicator-corner;
   background-color: $radio-indicator-bg;
@@ -66,7 +66,7 @@ label[host=#{$jnt-radio-host}] {
   align-items: center;
 }
 
-[icon][host=#{$jnt-radio-host}] {
+[icon][child-of=#{$jnt-radio-host}] {
   opacity: 0;
   border-radius: 50%;
   width: $radio-icon-size;
