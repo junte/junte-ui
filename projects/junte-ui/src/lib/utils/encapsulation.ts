@@ -1,21 +1,23 @@
-import { Gulpclass, SequenceTask, Task } from 'gulpclass';
+import {Gulpclass, SequenceTask, Task} from 'gulpclass';
 import * as gulp from 'gulp';
 import * as map from 'map-stream';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as debug from 'gulp-debug';
+import {readdirSync} from 'fs';
 import 'reflect-metadata';
-import { HTMLElement, Node, parse } from 'node-html-parser';
-import { parse as scssParce, stringify } from 'scss-parser';
+import {HTMLElement, Node, parse} from 'node-html-parser';
+import {parse as scssParce, stringify} from 'scss-parser';
 import * as watch from 'gulp-watch';
 import * as createQueryWrapper from 'query-ast';
-import { readdirSync } from 'fs';
 
 const argument = require('minimist')(process.argv.slice(2));
 
 const IDENTIFIER_TYPE = 'identifier';
 const SELECTOR_TYPE = 'selector';
+const RULE_TYPE = 'rule';
+const INTERPOLATION_TYPE = 'interpolation';
 const PSEUDO_CLASS_TYPE = 'pseudo_class';
+const CHILD_HOST_CLASS = 'child-host';
 const ATTRIBUTE_TYPE = 'attribute';
 
 @Gulpclass()
@@ -51,24 +53,49 @@ export class Gulpfile {
       urls.forEach(style => {
         const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
 
-        if (!!styleContent) {
+        if (!!styleContent && host === 'jnt-button-host') {
           const $ = createQueryWrapper(scssParce(styleContent));
 
-          let query = $(n => n.node.type === IDENTIFIER_TYPE
+          const query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === SELECTOR_TYPE
+            || (n.node.type === ATTRIBUTE_TYPE && n.parent.node.value[0].value !== '&'));
+
+          query.nodes.forEach((n, index) => {
+            let currentHost = null;
+            const currentQuery = query.eq(index);
+            currentQuery.closest(parent => {
+              if (parent.node.type === RULE_TYPE) {
+                let childs = parent.children[0].node.value.filter(node => node.type === PSEUDO_CLASS_TYPE);
+                if (!!childs.length) {
+                  const childHost = childs[0].value.filter(child => child.value === CHILD_HOST_CLASS);
+                  if (!!childHost.length) {
+                    childs = childs[0].value.filter(child => child.type === INTERPOLATION_TYPE);
+                    if (!!childs.length) {
+                      currentHost = childs[0].value[0].value;
+                      const val = currentQuery.next(node => node.node.type === PSEUDO_CLASS_TYPE).value();
+                      if (val.indexOf(CHILD_HOST_CLASS) !== -1) {
+                        currentQuery.next().replace(() => ({value: `[child-of=#{$${host}}]`}));
+                        currentQuery.after({value: `[host=#{$${currentHost}}]`});
+                        currentHost = 'none';
+                      }
+                    }
+                  }
+                }
+              }
+              return !!currentHost;
+            });
+
+            if (!!currentHost && currentHost !== 'none') {
+              currentQuery.after({value: `[child-of=#{$${currentHost}}]`});
+            } else if (currentHost !== 'none') {
+              currentQuery.after({value: `[host=#{$${host}}]`});
+            }
+          });
+
+          const hostQuery = $(n => n.node.type === IDENTIFIER_TYPE
             && n.parent.node.type === PSEUDO_CLASS_TYPE
             && n.node.value === 'host');
-          query.parent().before({value: host.replace('-host', '')});
-          query.parent().replace(() => ({value: `[host=#{$${host}}]`}));
-
-          query = $(n => n.node.type === IDENTIFIER_TYPE
-            && !!n.parent
-            && n.parent.node.type === SELECTOR_TYPE);
-          query.after({value: `[child-of=#{$${host}}]`});
-
-          query = $(n => n.node.type === IDENTIFIER_TYPE
-            && n.parent.node.type === ATTRIBUTE_TYPE
-            && n.parent.parent.node.value[0].value !== '&');
-          query.parent().after({value: `[child-of=#{$${host}}]`});
+          hostQuery.parent().before({value: host.replace('-host', '')});
+          hostQuery.parent().replace(() => ({value: `[host=#{$${host}}]`}));
 
           fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
         }
@@ -79,8 +106,7 @@ export class Gulpfile {
   @Task()
   components() {
     return gulp.src(['../components/**/*.ts'])
-      .pipe(debug())
-      .pipe(map((file, cb) => {
+      .pipe(/*debug(), */map((file, cb) => {
         const context = require(file.path);
 
         for (const key in context) {
@@ -94,8 +120,8 @@ export class Gulpfile {
             const readDirectory = readdirSync(directory);
             const template = readDirectory.filter((elm) => elm.indexOf('.component.html') > -1)[0];
             const style = readDirectory.filter((elm) => elm.indexOf('.component.scss') > -1);
-             this.encapsulateHTML(template, directory, component.host);
-             this.encapsulateSCSS(style, directory, component.host);
+            this.encapsulateHTML(template, directory, component.host);
+            this.encapsulateSCSS(style, directory, component.host);
           }
         }
         return cb();

@@ -76,7 +76,7 @@ $sizes: (
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
     }
-    [badge] {
+    [badge]:child-host=#{$jnt-badge-host} {
       sup {
         color: #{map-get($scheme, badge-color)};
         background: #{map-get($scheme, badge-background)};
