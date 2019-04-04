@@ -1,0 +1,33 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$link-decoration: none;
+$link-color: $primary-light-color;
+$link-font-weight: $font-weight-light;
+$link-font-size: 1rem;
+$link-hover-color: lighten($link-color, 15%);
+$link-active-color: darken($link-color, 10%);
+
+jnt-link[host=#{$jnt-link-host}] {
+  display: inline-block;
+  &[fluid="true"] {
+    width: 100%;
+    [link][host=#{$jnt-link-host}] {
+      width: 100%;
+    }
+  }
+}
+
+[link][host=#{$jnt-link-host}] {
+  display: inline-block;
+  text-decoration: $link-decoration;
+  color: $link-color;
+  font-weight: $link-font-weight;
+  font-size: $link-font-size;
+  &:hover {
+    color: $link-hover-color;
+  }
+  &:active {
+    color: $link-active-color;
+  }
+}

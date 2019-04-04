@@ -1,0 +1,86 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$gutter-small-name: 'small';
+$gutter-normal-name: 'normal';
+$gutter-large-name: 'large';
+$type-vertical: 'vertical';
+$type-horizontal: 'horizontal';
+
+$gutters: (
+  #{$gutter-small-name}: (
+    gutter: $gutter-small
+  ),
+  #{$gutter-normal-name}: (
+    gutter: $gutter-normal
+  ),
+  #{$gutter-large-name}: (
+    gutter: $gutter-large
+  )
+);
+
+@mixin stack($property, $gutter) {
+  & > :not(:last-child) {
+    #{$property}: #{map-get($gutter, gutter)};
+  }
+}
+
+jnt-stack[host=#{$jnt-stack-host}] {
+  display: flex;
+  @each $gutter, $value in $gutters {
+    &[gutter = '#{$gutter}'] {
+      &[type = '#{$type-vertical}'] {
+        flex-direction: column;
+        @include stack(margin-bottom, $value);
+      }
+      &[type = '#{$type-horizontal}'] {
+        flex-direction: row;
+        @include stack(margin-right, $value);
+      }
+    }
+  }
+  &[align='start'] {
+    align-items: flex-start;
+  }
+  &[align='center'] {
+    align-items: center;
+  }
+  &[align='end'] {
+    align-items: flex-end;
+  }
+  &[align='stretch'] {
+    align-items: stretch;
+  }
+  &[align='baseline'] {
+    align-items: baseline;
+  }
+
+  &[justify='start'] {
+    justify-content: flex-start;
+  }
+  &[justify='center'] {
+    justify-content: center;
+  }
+  &[justify='end'] {
+    justify-content: flex-end;
+  }
+  &[justify='between'] {
+    justify-content: space-between;
+  }
+  &[justify='around'] {
+    justify-content: space-around;
+  }
+  &[justify='evenly'] {
+    justify-content: space-evenly;
+  }
+
+  &[wrap='wrap'] {
+    flex-wrap: wrap;
+  }
+  &[wrap='nowrap'] {
+    flex-wrap: nowrap;
+  }
+  &[wrap='reverse'] {
+    flex-wrap: wrap-reverse;
+  }
+}

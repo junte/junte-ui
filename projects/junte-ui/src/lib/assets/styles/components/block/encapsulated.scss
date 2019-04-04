@@ -1,0 +1,58 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$block-bg: white;
+$block-shadow: $base-shadow;
+$block-corner: $corner-md;
+$block-border-width: 1px;
+$block-border-color: $gray-900;
+$block-loading-bg: rgba(0,0,0,.75);
+$block-loading-spinner-color: white;
+
+$block-error-bg: rgba($gray-900, 0.8);
+$block-error-icon-size: 40px;
+$block-error-icon-color: white;
+
+jnt-block[host=#{$jnt-block-host}] {
+  display: inline-block;
+  position: relative;
+  min-height: 40px;
+  background-color: $block-bg;
+  box-shadow: $block-shadow;
+  border-radius: $block-corner;
+  &[fluid="true"] {
+    width: 100%;
+  }
+  &[type="bordered"] {
+    border: $block-border-width solid $block-border-color;
+  }
+
+  [loading][host=#{$jnt-block-host}], [error][host=#{$jnt-block-host}] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $block-corner;
+    [icon][host=#{$jnt-block-host}] {
+      color: $block-error-icon-color;
+    }
+  }
+
+  [loading][host=#{$jnt-block-host}] {
+    background-color: $block-loading-bg;
+    [spinner][host=#{$jnt-block-host}] {
+      border-color: $block-loading-spinner-color;
+    }
+  }
+
+  [error][host=#{$jnt-block-host}] {
+    background-color: $block-error-bg;
+    [icon][host=#{$jnt-block-host}] {
+      font-size: $block-error-icon-size;
+    }
+  }
+}

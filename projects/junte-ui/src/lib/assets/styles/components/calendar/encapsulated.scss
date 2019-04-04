@@ -1,0 +1,111 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$calendar-arrows-size: 1rem;
+$calendar-arrows-color: $text-color;
+$calendar-arrows-hover-color: lighten($calendar-arrows-color, 10%);
+$calendar-padding: $gutter-3;
+$calendar-name-day-padding-x: $gutter-3;
+$calendar-name-day-padding-y: $gutter-1;
+$calendar-day-padding-y: $gutter-1;
+$calendar-day-padding-x: $gutter-2;
+$calendar-name-day-color: $gray-800;
+$calendar-name-day-font-size: $font-size-sm;
+$calendar-day-font-size: $font-size-sm;
+$calendar-day-width: 38px;
+
+$calendar-current-week-border-color: $primary-light-color;
+$calendar-current-week-corner: $corner-sm;
+
+$calendar-current-day-bg: $primary-light-color;
+$calendar-current-day-color: white;
+
+$calendar-current-day-hover-color: white;
+$calendar-current-day-hover-bg: $primary-light-color;
+
+
+jnt-calendar[host=#{$jnt-calendar-host}] {
+  display: inline-block;
+  padding: $calendar-padding;
+  box-sizing: border-box;
+}
+
+table[host=#{$jnt-calendar-host}] {
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+thead[host=#{$jnt-calendar-host}] {
+  [arrow-left][host=#{$jnt-calendar-host}] {
+    text-align: left;
+  }
+  [arrow-right][host=#{$jnt-calendar-host}] {
+    text-align: right;
+  }
+  [arrow][host=#{$jnt-calendar-host}] {
+    background-color: transparent;
+    border: 0;
+    font-size: $calendar-arrows-size;
+    color: $calendar-arrows-color;
+    cursor: pointer;
+    padding: 0;
+    vertical-align: middle;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $calendar-arrows-hover-color;
+    }
+  }
+  [date][host=#{$jnt-calendar-host}] {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base;
+  }
+  [days][host=#{$jnt-calendar-host}] {
+    > th[host=#{$jnt-calendar-host}] {
+      padding: $calendar-name-day-padding-x $calendar-name-day-padding-y;
+      color: $calendar-name-day-color;
+      font-size: $calendar-name-day-font-size;
+      font-weight: $font-weight-bold;
+    }
+  }
+  .sortable {
+    cursor: pointer;
+  }
+  .metrics {
+    text-align: center;
+  }
+}
+
+tbody[host=#{$jnt-calendar-host}] {
+  tr[host=#{$jnt-calendar-host}] {
+    &[current-week='true'] {
+      box-shadow: 0 0 0 1.5px $calendar-current-week-border-color;
+      border-radius: $calendar-current-week-corner;
+    }
+    td[host=#{$jnt-calendar-host}] {
+      position: relative;
+      min-width: $calendar-day-width;
+      padding: $calendar-day-padding-x $calendar-day-padding-y;
+      font-size: $calendar-day-font-size;
+      box-sizing: border-box;
+      &[day] {
+        cursor: pointer;
+        &:hover {
+          background-color: $calendar-current-day-hover-bg;
+          color: $calendar-current-day-hover-color;
+        }
+        &[current-day='true'] {
+          background-color: $calendar-current-day-bg;
+          color: $calendar-current-day-color;
+        }
+      }
+    }
+  }
+}
+
+td[host=#{$jnt-calendar-host}], th[host=#{$jnt-calendar-host}] {
+  vertical-align: middle;
+  text-align: center;
+}
+

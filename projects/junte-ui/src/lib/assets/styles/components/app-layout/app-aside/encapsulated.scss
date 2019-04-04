@@ -1,0 +1,28 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+$app-aside-bg: white;
+$app-aside-border-right-color: $gray-700;
+$app-aside-z-index: 2;
+
+jnt-app-aside[host=#{$jnt-app-aside-host}] {
+  display: block;
+  flex: 0 0 $app-aside-width;
+  width: $app-aside-width;
+  min-width: $app-aside-width;
+  max-width: $app-aside-width;
+  box-sizing: border-box;
+  background-color: $app-aside-bg;
+  border-right: 1px solid $app-aside-border-right-color;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: $app-header-height 0 0 0;
+  margin: $gutter-2 0;
+  &[fixed = 'true'] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: $app-aside-z-index;
+  }
+}

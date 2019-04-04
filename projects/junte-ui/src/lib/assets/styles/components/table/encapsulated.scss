@@ -1,0 +1,47 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$table-padding: $gutter-3;
+$table-head-bg: $gray-500;
+$table-cell-padding-x: $gutter-3;
+$table-cell-padding-y: $gutter-4;
+$table-cell-border-width: 0;
+$table-cell-border-color: transparent;
+$table-font-size: $font-size-base;
+
+jnt-table[host=#{$jnt-table-host}] {
+  display: block;
+  padding: $table-padding;
+
+  button[host=#{$jnt-table-host}] {
+    margin-bottom: $gutter-3;
+  }
+
+  [pagination][host=#{$jnt-table-host}] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $gutter-3;
+  }
+
+  table[host=#{$jnt-table-host}] {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $table-font-size;
+    thead[host=#{$jnt-table-host}] {
+      background-color: $table-head-bg;
+      .sortable {
+        cursor: pointer;
+      }
+    }
+    tbody[host=#{$jnt-table-host}] tr[host=#{$jnt-table-host}] {
+      border-bottom: 1px solid $gray-400;
+    }
+    td[host=#{$jnt-table-host}], th[host=#{$jnt-table-host}] {
+      padding: $table-cell-padding-x $table-cell-padding-y;
+      border: $table-cell-border-width solid $table-cell-border-color;
+    }
+  }
+}
+
+

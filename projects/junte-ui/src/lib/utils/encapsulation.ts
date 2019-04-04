@@ -3,12 +3,14 @@ import * as gulp from 'gulp';
 import * as map from 'map-stream';
 import * as path from 'path';
 import * as fs from 'fs';
-import {readdirSync} from 'fs';
+import * as fse from 'fs-extra';
+import * as debug from 'gulp-debug';
 import 'reflect-metadata';
-import {HTMLElement, Node, parse} from 'node-html-parser';
-import {parse as scssParce, stringify} from 'scss-parser';
+import { HTMLElement, Node, parse } from 'node-html-parser';
+import { parse as scssParce, stringify } from 'scss-parser';
 import * as watch from 'gulp-watch';
 import * as createQueryWrapper from 'query-ast';
+import { readdirSync } from 'fs';
 
 const argument = require('minimist')(process.argv.slice(2));
 
@@ -52,8 +54,7 @@ export class Gulpfile {
     if (!!urls) {
       urls.forEach(style => {
         const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
-
-        if (!!styleContent && host === 'jnt-button-host') {
+        if (!!styleContent) {
           const $ = createQueryWrapper(scssParce(styleContent));
 
           const query = $(n => n.node.type === IDENTIFIER_TYPE && n.parent.node.type === SELECTOR_TYPE
@@ -62,6 +63,7 @@ export class Gulpfile {
           query.nodes.forEach((n, index) => {
             let currentHost = null;
             const currentQuery = query.eq(index);
+
             currentQuery.closest(parent => {
               if (parent.node.type === RULE_TYPE) {
                 let childs = parent.children[0].node.value.filter(node => node.type === PSEUDO_CLASS_TYPE);
@@ -97,7 +99,22 @@ export class Gulpfile {
           hostQuery.parent().before({value: host.replace('-host', '')});
           hostQuery.parent().replace(() => ({value: `[host=#{$${host}}]`}));
 
-          fs.writeFileSync(`${dir}/encapsulated.scss`, stringify($().get(0)));
+          const sourceScss = stringify($().get(0)).replace(/..\/assets\//g, '../../');
+
+          dir = dir.replace('lib', 'lib/assets/styles');
+
+          // start adding imports  in global style.scss test project
+          const importScss = `@import "../projects/junte-ui/${dir.replace(/\\/g, '/').split('/projects/junte-ui/')[1]}/encapsulated";`;
+          const globalScssPath = '../../../../../src/styles.scss';
+          let globalScssSource = fs.readFileSync(globalScssPath, {encoding: 'utf8'});
+
+          if (!(globalScssSource.indexOf(importScss) > -1)) {
+            globalScssSource = importScss + '\n' + globalScssSource;
+            fs.writeFileSync(globalScssPath, globalScssSource);
+          }
+          // end adding imports
+
+          fse.outputFile(`${dir}/encapsulated.scss`, sourceScss);
         }
       });
     }
@@ -106,7 +123,8 @@ export class Gulpfile {
   @Task()
   components() {
     return gulp.src(['../components/**/*.ts'])
-      .pipe(/*debug(), */map((file, cb) => {
+      .pipe(debug())
+      .pipe(map((file, cb) => {
         const context = require(file.path);
 
         for (const key in context) {

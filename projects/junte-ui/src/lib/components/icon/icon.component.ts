@@ -3,8 +3,7 @@ import {Icons, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-icon',
-  template: '',
-  styleUrls: ['./encapsulated.scss']
+  template: ''
 })
 export class IconComponent {
 

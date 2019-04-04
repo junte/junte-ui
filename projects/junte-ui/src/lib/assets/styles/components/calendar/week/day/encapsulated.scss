@@ -1,0 +1,60 @@
+@import "../../../../../styles/variables";
+@import "../../../../../styles/mixins";
+
+$calendar-week-day-width: 90px;
+$calendar-week-day-shadow: $base-shadow;
+$calendar-week-day-bg: white;
+$calendar-week-day-corner: $corner-md;
+$calendar-week-current-day-width: 130px;
+$calendar-week-day-height: 110px;
+$calendar-week-current-day-height: 150px;
+
+$calendar-week-number-day-font-size: 1.625rem;
+$calendar-week-number-day-color: $primary-color;
+
+$calendar-week-name-day-color: $text-color;
+$calendar-week-name-day-font-size: $font-size-base;
+
+$calendar-week-metric-bg: $gray-500;
+$calendar-week-metric-padding: $gutter-1;
+
+jnt-calendar-day[host=#{$jnt-calendar-day-host}] {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-width: $calendar-week-day-width;
+  max-width: $calendar-week-day-width;
+  min-height: $calendar-week-day-height;
+  box-shadow: $calendar-week-day-shadow;
+  background-color: $calendar-week-day-bg;
+  border-radius: $calendar-week-day-corner;
+}
+
+[date][host=#{$jnt-calendar-day-host}] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+[number-day][host=#{$jnt-calendar-day-host}] {
+  font-size: $calendar-week-number-day-font-size;
+  color: $calendar-week-number-day-color;
+  font-weight: $font-weight-bold;
+}
+[name-day][host=#{$jnt-calendar-day-host}] {
+  color: $calendar-week-name-day-color;
+  font-size: $calendar-week-name-day-font-size;
+}
+[today][host=#{$jnt-calendar-day-host}] {
+  color: $primary-color;
+}
+[metric][host=#{$jnt-calendar-day-host}] {
+  background-color: $calendar-week-metric-bg;
+  padding: $calendar-week-metric-padding;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0 0 $corner-md $corner-md;
+  text-align: center;
+}

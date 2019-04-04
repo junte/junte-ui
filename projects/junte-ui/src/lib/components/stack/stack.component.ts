@@ -3,8 +3,7 @@ import { StackType, StackGutter, FlexAlign, FlexJustify, FlexDirection, FlexWrap
 
 @Component({
   selector: 'jnt-stack',
-  templateUrl: './encapsulated.html',
-  styleUrls: ['./encapsulated.scss']
+  templateUrl: './encapsulated.html'
 })
 export class StackComponent {
 
