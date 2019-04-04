@@ -89,7 +89,7 @@ export class Gulpfile {
             if (!!currentHost && currentHost !== 'none') {
               currentQuery.after({value: `[child-of=#{$${currentHost}}]`});
             } else if (currentHost !== 'none') {
-              currentQuery.after({value: `[host=#{$${host}}]`});
+              currentQuery.after({value: `[child-of=#{$${host}}]`});
             }
           });
 

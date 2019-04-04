@@ -15,7 +15,7 @@ $menu-item-padding-y: $gutter-2;
 [item] {
   cursor: pointer;
   padding: $menu-item-padding-x $menu-item-padding-y;
-  [link] ::ng-deep a {
+  [link]:child-host=#{$jnt-link-host} a {
     color: $menu-item-color;
   }
   [icon] {
