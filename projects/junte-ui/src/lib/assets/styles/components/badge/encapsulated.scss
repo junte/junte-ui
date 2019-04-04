@@ -45,14 +45,14 @@ $positions: (
 );
 
 @mixin scheme($scheme) {
-  sup[child-of=#{$jnt-badge-host}] {
+  sup[host=#{$jnt-badge-host}] {
     color: #{map-get($scheme, color)};
     background: #{map-get($scheme, background)};
   }
 }
 
 @mixin position($position) {
-  sup[child-of=#{$jnt-badge-host}] {
+  sup[host=#{$jnt-badge-host}] {
     position: #{map-get($position, position)};
     top: #{map-get($position, top)};
     left: #{map-get($position, left)};
@@ -77,7 +77,7 @@ jnt-badge[host=#{$jnt-badge-host}] {
   }
 }
 
-sup[child-of=#{$jnt-badge-host}] {
+sup[host=#{$jnt-badge-host}] {
   display: inline-block;
   line-height: $badge-size;
   min-width: $badge-size;
@@ -87,7 +87,7 @@ sup[child-of=#{$jnt-badge-host}] {
   text-align: center;
   padding: 0 3px;
   box-sizing: border-box;
-  span[child-of=#{$jnt-badge-host}] {
+  span[host=#{$jnt-badge-host}] {
     display: inline-block;
     height: $badge-size;
     //line-height: $badge-size;

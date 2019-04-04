@@ -67,7 +67,7 @@ $sizes: (
 );
 
 @mixin scheme($scheme) {
-  button[child-of=#{$jnt-button-host}] {
+  button[host=#{$jnt-button-host}] {
     color: #{map-get($scheme, color)};
     background: #{map-get($scheme, background)};
     &:hover, &:focus {
@@ -76,8 +76,8 @@ $sizes: (
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
     }
-    [badge][child-of=#{$jnt-button-host}]:child-host=#{$jnt-badge-host} {
-      sup[child-of=#{$jnt-button-host}] {
+    [badge][host=#{$jnt-badge-host}][child-of=#{$jnt-button-host}] {
+      sup[child-of=#{$jnt-badge-host}] {
         color: #{map-get($scheme, badge-color)};
         background: #{map-get($scheme, badge-background)};
       }
@@ -87,14 +87,14 @@ $sizes: (
 
 @mixin outline($scheme) {
 
-  button[child-of=#{$jnt-button-host}] {
+  button[host=#{$jnt-button-host}] {
     color: #{map-get($scheme, color-outline)};
     background-color: $white-color;
     border-color: #{map-get($scheme, border-outline)};
     &:hover, &:focus {
 
     }
-    [badge][child-of=#{$jnt-button-host}] > sup[child-of=#{$jnt-button-host}] {
+    [badge][host=#{$jnt-button-host}] > sup[host=#{$jnt-button-host}] {
       background: #{map-get($scheme, badge-outline-background)};
       color: #{map-get($scheme, badge-outline-color)};
     }
@@ -102,7 +102,7 @@ $sizes: (
 }
 
 @mixin size($size) {
-  button[child-of=#{$jnt-button-host}] {
+  button[host=#{$jnt-button-host}] {
     padding: #{map-get($size, padding)};
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, min-height)};
@@ -117,7 +117,7 @@ jnt-button[host=#{$jnt-button-host}] {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
       &[outline='#{$outline-ghost}'] {
-        button[child-of=#{$jnt-button-host}] {
+        button[host=#{$jnt-button-host}] {
           border: 1px solid transparent;
         }
         @include outline($map);
@@ -133,9 +133,9 @@ jnt-button[host=#{$jnt-button-host}] {
 
   &[loading='true'] {
     pointer-events: none;
-    button[child-of=#{$jnt-button-host}] {
+    button[host=#{$jnt-button-host}] {
       cursor: default;
-      [text][child-of=#{$jnt-button-host}], > [icon][child-of=#{$jnt-button-host}] {
+      [text][host=#{$jnt-button-host}], > [icon][host=#{$jnt-button-host}] {
         visibility: collapse;
       }
     }
@@ -143,7 +143,7 @@ jnt-button[host=#{$jnt-button-host}] {
   &[disabled='true'] {
     opacity: .65;
     pointer-events: none;
-    button[child-of=#{$jnt-button-host}] {
+    button[host=#{$jnt-button-host}] {
       cursor: default;
     }
   }
@@ -151,7 +151,7 @@ jnt-button[host=#{$jnt-button-host}] {
     width: 100%;
   }
 
-  button[child-of=#{$jnt-button-host}] {
+  button[host=#{$jnt-button-host}] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,10 +165,10 @@ jnt-button[host=#{$jnt-button-host}] {
     width: 100%;
     position: relative;
     font-family: $font-family-base;
-    [icon][child-of=#{$jnt-button-host}] {
+    [icon][host=#{$jnt-button-host}] {
       margin-right: 10px;
     }
-    [text][child-of=#{$jnt-button-host}] {
+    [text][host=#{$jnt-button-host}] {
       display: inline-block;
       padding-bottom: 1px;
       white-space: nowrap;
@@ -176,18 +176,18 @@ jnt-button[host=#{$jnt-button-host}] {
       text-overflow: ellipsis;
     }
 
-    [badge][child-of=#{$jnt-button-host}] {
+    [badge][host=#{$jnt-button-host}] {
       margin-left: $gutter-2;
     }
 
-    [loading][child-of=#{$jnt-button-host}] {
+    [loading][host=#{$jnt-button-host}] {
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
       right: 0;
       margin: auto;
-      [icon][child-of=#{$jnt-button-host}] {
+      [icon][host=#{$jnt-button-host}] {
         margin: 0;
         font-size: inherit;
       }

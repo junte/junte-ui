@@ -13,31 +13,31 @@ jnt-table[host=#{$jnt-table-host}] {
   display: block;
   padding: $table-padding;
 
-  button[child-of=#{$jnt-table-host}] {
+  button[host=#{$jnt-table-host}] {
     margin-bottom: $gutter-3;
   }
 
-  [pagination][child-of=#{$jnt-table-host}] {
+  [pagination][host=#{$jnt-table-host}] {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: $gutter-3;
   }
 
-  table[child-of=#{$jnt-table-host}] {
+  table[host=#{$jnt-table-host}] {
     width: 100%;
     border-collapse: collapse;
     font-size: $table-font-size;
-    thead[child-of=#{$jnt-table-host}] {
+    thead[host=#{$jnt-table-host}] {
       background-color: $table-head-bg;
       .sortable {
         cursor: pointer;
       }
     }
-    tbody[child-of=#{$jnt-table-host}] tr[child-of=#{$jnt-table-host}] {
+    tbody[host=#{$jnt-table-host}] tr[host=#{$jnt-table-host}] {
       border-bottom: 1px solid $gray-400;
     }
-    td[child-of=#{$jnt-table-host}], th[child-of=#{$jnt-table-host}] {
+    td[host=#{$jnt-table-host}], th[host=#{$jnt-table-host}] {
       padding: $table-cell-padding-x $table-cell-padding-y;
       border: $table-cell-border-width solid $table-cell-border-color;
     }

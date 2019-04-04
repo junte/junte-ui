@@ -34,7 +34,7 @@ jnt-select[host=#{$jnt-select-host}] {
   width: 100%;
 }
 
-[selectize][child-of=#{$jnt-select-host}] {
+[selectize][host=#{$jnt-select-host}] {
   border: $select-border-width solid $select-border-color;
   border-radius: $select-corner;
   min-height: $select-height;
@@ -46,7 +46,7 @@ jnt-select[host=#{$jnt-select-host}] {
   display: flex;
   align-items: center;
 
-  [placeholder][child-of=#{$jnt-select-host}] {
+  [placeholder][host=#{$jnt-select-host}] {
     display: flex;
     position: absolute;
     align-items: center;
@@ -57,17 +57,17 @@ jnt-select[host=#{$jnt-select-host}] {
     color: $select-placeholder-color;
   }
 
-  [selection][child-of=#{$jnt-select-host}] {
+  [selection][host=#{$jnt-select-host}] {
     margin-bottom: -3px;
     margin-left: $select-padding-left;
     margin-right: $select-padding-right;
     display: flex;
     flex-wrap: wrap;
-    li[child-of=#{$jnt-select-host}] {
+    li[host=#{$jnt-select-host}] {
       max-width: 100%;
       margin-bottom: $chips-spacer;
       display: flex;
-      button[child-of=#{$jnt-select-host}] {
+      button[host=#{$jnt-select-host}] {
         display: none;
       }
       &[chips='true'] {
@@ -80,7 +80,7 @@ jnt-select[host=#{$jnt-select-host}] {
         &:not(:last-child) {
           margin-right: $chips-spacer;
         }
-        button[child-of=#{$jnt-select-host}] {
+        button[host=#{$jnt-select-host}] {
           display: inline-block;
           border: 0;
           background-color: transparent;
@@ -88,7 +88,7 @@ jnt-select[host=#{$jnt-select-host}] {
           &:focus {
             outline: 0;
           }
-          [close][child-of=#{$jnt-select-host}] {
+          [close][host=#{$jnt-select-host}] {
             font-size: 7px;
             cursor: pointer;
           }
@@ -96,7 +96,7 @@ jnt-select[host=#{$jnt-select-host}] {
       }
     }
   }
-  [icon][child-of=#{$jnt-select-host}] {
+  [icon][host=#{$jnt-select-host}] {
     position: absolute;
     top: 50%;
     right: $select-padding-left;
@@ -104,7 +104,7 @@ jnt-select[host=#{$jnt-select-host}] {
     font-size: $select-icon-dropdown-size;
     color: $select-icon-dropdown-color;
   }
-  [input][child-of=#{$jnt-select-host}] {
+  [input][host=#{$jnt-select-host}] {
     max-width: 100%;
     width: 10px;
     height: 100%;
@@ -118,7 +118,7 @@ jnt-select[host=#{$jnt-select-host}] {
   }
 }
 
-[options][child-of=#{$jnt-select-host}] {
+[options][host=#{$jnt-select-host}] {
   border: $option-list-border-width solid $option-list-border-color;
   background-color: $option-list-bg;
   box-shadow: $option-list-shadow;
@@ -130,9 +130,9 @@ jnt-select[host=#{$jnt-select-host}] {
   left: 0;
   width: 100%;
   z-index: 11;
-  [item][child-of=#{$jnt-select-host}] {
+  [item][host=#{$jnt-select-host}] {
     padding: $option-item-padding-x $option-item-padding-y;
-    [checkbox][child-of=#{$jnt-select-host}] ::ng-deep [switch][child-of=#{$jnt-select-host}] {
+    [checkbox][host=#{$jnt-select-host}] ::ng-deep [switch][host=#{$jnt-select-host}] {
       border: 0;
       background-color: transparent;
     }
@@ -140,10 +140,10 @@ jnt-select[host=#{$jnt-select-host}] {
       background-color: $option-item-hover-bg;
     }
   }
-  [message][child-of=#{$jnt-select-host}] {
+  [message][host=#{$jnt-select-host}] {
     padding: $chips-padding-x $chips-padding-y;
   }
-  [loading][child-of=#{$jnt-select-host}] {
+  [loading][host=#{$jnt-select-host}] {
     position: absolute;
     top: 0;
     left: 0;
@@ -155,13 +155,13 @@ jnt-select[host=#{$jnt-select-host}] {
   }
 }
 
-ul[child-of=#{$jnt-select-host}] {
+ul[host=#{$jnt-select-host}] {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-[overlay][child-of=#{$jnt-select-host}] {
+[overlay][host=#{$jnt-select-host}] {
   position: fixed;
   top: 0;
   bottom: 0;
