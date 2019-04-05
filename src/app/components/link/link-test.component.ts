@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./link-test.component.scss']
 })
 export class LinkTestComponent implements OnInit {
+  example = `
+    <jnt-link source="/components/block">Link</jnt-link>
+  `;
 
   constructor() { }
 
