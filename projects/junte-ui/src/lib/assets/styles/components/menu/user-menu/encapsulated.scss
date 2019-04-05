@@ -11,13 +11,13 @@ jnt-user-menu[host=#{$jnt-user-menu-host}] {
   display: block;
 }
 
-[item][host=#{$jnt-user-menu-host}]{
+[item][child-of=#{$jnt-user-menu-host}]{
   cursor: pointer;
   padding: $user-menu-item-padding-x $user-menu-item-padding-y;
-  [text][host=#{$jnt-user-menu-host}] a[host=#{$jnt-user-menu-host}] {
+  [text][child-of=#{$jnt-user-menu-host}] a[child-of=#{$jnt-user-menu-host}] {
     color: $user-menu-item-color;
   }
-  [icon][host=#{$jnt-user-menu-host}] {
+  [icon][child-of=#{$jnt-user-menu-host}] {
     color: $user-menu-item-icon-color;
     margin-right: $user-menu-item-icon-gutter;
   }

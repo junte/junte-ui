@@ -14,13 +14,13 @@ jnt-userbar[host=#{$jnt-userbar-host}] {
   display: flex;
   align-items: center;
   &:hover {
-    [usermenu][host=#{$jnt-userbar-host}] {
+    [usermenu][child-of=#{$jnt-userbar-host}] {
       display: block;
     }
   }
 }
 
-[usermenu][host=#{$jnt-userbar-host}] {
+[usermenu][child-of=#{$jnt-userbar-host}] {
   background: $user-menu-bg;
   border-radius: $user-menu-border-radius;
   padding: $user-menu-padding-x $user-menu-padding-y;

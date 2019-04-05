@@ -12,13 +12,13 @@ jnt-link[host=#{$jnt-link-host}] {
   display: inline-block;
   &[fluid="true"] {
     width: 100%;
-    [link][host=#{$jnt-link-host}] {
+    [link][child-of=#{$jnt-link-host}] {
       width: 100%;
     }
   }
 }
 
-[link][host=#{$jnt-link-host}] {
+[link][child-of=#{$jnt-link-host}] {
   display: inline-block;
   text-decoration: $link-decoration;
   color: $link-color;

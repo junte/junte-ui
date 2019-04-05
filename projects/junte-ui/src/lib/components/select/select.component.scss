@@ -132,7 +132,7 @@ $chips-spacer: $gutter-1;
   z-index: 11;
   [item] {
     padding: $option-item-padding-x $option-item-padding-y;
-    [checkbox] ::ng-deep [switch] {
+    [checkbox]:child-host=#{$jnt-checkbox-host} [switch] {
       border: 0;
       background-color: transparent;
     }
