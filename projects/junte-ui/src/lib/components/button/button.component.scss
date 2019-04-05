@@ -8,10 +8,14 @@ $schemes: (
     border-outline: $primary-color,
     background: $primary-color,
     background-hover: darken($primary-color, 7.5%),
+    background-outline-hover: $primary-color,
+    color-outline-hover: white,
     badge-color: $primary-color,
     badge-background: $white-color,
     badge-outline-color: $white-color,
-    badge-outline-background: $primary-color
+    badge-hover-outline-color: $primary-color,
+    badge-outline-background: $primary-color,
+    badge-hover-outline-background: white,
   ),
   #{$scheme-secondary}: (
     color: $text-color,
@@ -19,9 +23,13 @@ $schemes: (
     border-outline: $text-color,
     background: $secondary-color,
     background-hover: darken($secondary-color, 7.5%),
+    background-outline-hover: $text-color,
+    color-outline-hover: $secondary-color,
     badge-color: $secondary-color,
     badge-background: $text-color,
     badge-outline-color: $white-color,
+    badge-hover-outline-background: $secondary-color,
+    badge-hover-outline-color: $text-color,
     badge-outline-background: $text-color
   ),
   #{$scheme-success}: (
@@ -30,10 +38,14 @@ $schemes: (
     border-outline: $success-color,
     background: $success-color,
     background-hover: darken($success-color, 7.5%),
+    background-outline-hover: $success-color,
+    color-outline-hover: $white-color,
     badge-color: $success-color,
     badge-background: $white-color,
     badge-outline-color: $white-color,
-    badge-outline-background: $success-color
+    badge-outline-background: $success-color,
+    badge-hover-outline-background: $white-color,
+    badge-hover-outline-color: $success-color,
   ),
   #{$scheme-fail}: (
     color: $white-color,
@@ -41,10 +53,14 @@ $schemes: (
     border-outline: $fail-color,
     background: $fail-color,
     background-hover: darken($fail-color, 7.5%),
+    background-outline-hover: $fail-color,
+    color-outline-hover: $white-color,
     badge-color: $fail-color,
     badge-background: $white-color,
     badge-outline-color: $white-color,
-    badge-outline-background: $fail-color
+    badge-outline-background: $fail-color,
+    badge-hover-outline-background: $white-color,
+    badge-hover-outline-color: $fail-color,
   )
 );
 
@@ -92,7 +108,12 @@ $sizes: (
     background-color: $white-color;
     border-color: #{map-get($scheme, border-outline)};
     &:hover, &:focus {
-
+      background-color: #{map-get($scheme, background-outline-hover)};
+      color: #{map-get($scheme, color-outline-hover)};
+      [badge]:child-host=#{$jnt-badge-host} > sup {
+      background: #{map-get($scheme, badge-hover-outline-background)};
+      color: #{map-get($scheme, badge-hover-outline-color)};
+    }
     }
     [badge]:child-host=#{$jnt-badge-host} > sup {
       background: #{map-get($scheme, badge-outline-background)};
