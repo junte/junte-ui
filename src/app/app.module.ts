@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +22,11 @@ import { RouterModule } from '@angular/router';
     JunteUiModule
   ],
   bootstrap: [AppComponent],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]
+  providers: [
+    {
+      provide: LocationStrategy, useClass: HashLocationStrategy
+    }
+  ]
 })
 export class AppModule {
 }
