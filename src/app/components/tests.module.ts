@@ -30,7 +30,6 @@ import { LabelTestComponent } from './label/label-test.component';
 import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

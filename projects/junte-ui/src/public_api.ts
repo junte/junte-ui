@@ -10,7 +10,6 @@ export * from './lib/models/table';
 export * from './lib/directives/stack';
 export * from './lib/directives/smart-width';
 export * from './lib/directives/validation';
-export * from './lib/directives/link';
 export * from './lib/enum/ui';
 export * from './lib/components/select/select.component';
 export * from './lib/components/select/select-option/select-option.component';
