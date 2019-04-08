@@ -43,7 +43,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() search = true;
   @Input() required = false;
 
-  @HostBinding('attr.chips') chips;
+  // @HostBinding('attr.chips') chips;
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
