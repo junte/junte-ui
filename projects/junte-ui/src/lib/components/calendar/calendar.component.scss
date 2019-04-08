@@ -1,5 +1,4 @@
 @import "../../assets/styles/variables";
-@import "../../assets/styles/mixins";
 
 $calendar-arrows-size: 1rem;
 $calendar-arrows-color: $text-color;
@@ -31,8 +30,8 @@ $calendar-current-day-hover-bg: $primary-light-color;
 }
 
 table {
-  border-collapse: collapse;
   table-layout: auto;
+  border-spacing: 0;
 }
 
 thead {
@@ -80,8 +79,20 @@ thead {
 tbody {
   tr {
     &[current-week='true'] {
-      box-shadow: 0 0 0 1.5px $calendar-current-week-border-color;
-      border-radius: $calendar-current-week-corner;
+      [day] {
+        border-top: 1px solid $calendar-current-week-border-color;
+        border-bottom: 1px solid $calendar-current-week-border-color;
+        &:first-child {
+          border-top-left-radius: $calendar-current-week-corner;
+          border-bottom-left-radius: $calendar-current-week-corner;
+          border-left: 1px solid $calendar-current-week-border-color;
+        }
+        &:nth-child(7) {
+          border-top-right-radius: $calendar-current-week-corner;
+          border-bottom-right-radius: $calendar-current-week-corner;
+          border-right: 1px solid $calendar-current-week-border-color;
+        }
+      }
     }
     td {
       position: relative;
@@ -91,6 +102,10 @@ tbody {
       box-sizing: border-box;
       &[day] {
         cursor: pointer;
+        &:nth-child(6),
+        &:nth-child(7) {
+          background-color: $gray-500;
+        }
         &:hover {
           background-color: $calendar-current-day-hover-bg;
           color: $calendar-current-day-hover-color;

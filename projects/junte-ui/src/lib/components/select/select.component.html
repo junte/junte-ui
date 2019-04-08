@@ -18,7 +18,7 @@
 
 <ng-template #selectedItemsTemplate>
   <ul selection *ngIf="!loading; else loadOptionsTemplate">
-    <li chips *ngFor="let item of selectedItems">
+    <li *ngFor="let item of selectedItems" [attr.chips]="selectMode.multiple === mode">
       <span>{{labels[item]}}</span>
       <button (click)="optionSelect(item)">
         <jnt-icon close [icon]="ui.icons.close"></jnt-icon>
