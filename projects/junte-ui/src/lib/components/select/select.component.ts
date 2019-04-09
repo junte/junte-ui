@@ -71,6 +71,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this._placeholderVisible = visible;
   }
 
+  get placeholderVisible() {
+    return this._placeholderVisible && !this.selectedItems.length;
+  }
+
+  set placeholderVisible(visible: boolean) {
+    this._placeholderVisible = visible;
+  }
+
   get input() {
     return this.searchInput.nativeElement;
   }
@@ -166,7 +174,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this.selectedItems = [];
     }
 
-    //TODO: @VSmirnov think about it
+    // TODO: @VSmirnov think about it
     this.selectedItems.forEach(i => this.selected[i] = true);
   }
 
