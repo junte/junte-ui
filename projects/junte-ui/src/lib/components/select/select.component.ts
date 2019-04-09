@@ -61,15 +61,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   labels: any = {};
   loading: boolean;
   toggle: boolean;
-  selectedItems: any[] = [];
-
-  get placeholderVisible() {
-    return this._placeholderVisible && !this.selectedItems.length;
-  }
-
-  set placeholderVisible(visible: boolean) {
-    this._placeholderVisible = visible;
-  }
 
   get placeholderVisible() {
     return this._placeholderVisible && !this.selectedItems.length;
