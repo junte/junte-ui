@@ -11,14 +11,17 @@ $menu-item-padding-y: $gutter-2;
   flex: 1;
 }
 
-[item] {
+[link]:child-host=#{$jnt-link-host} a {
+  color: $menu-item-color;
   cursor: pointer;
   padding: $menu-item-padding-x $menu-item-padding-y;
-  [link]:child-host=#{$jnt-link-host} a {
-    color: $menu-item-color;
-  }
-  [icon] {
-    color: $menu-item-icon-color;
-    margin-right: $menu-item-icon-gutter;
+  &[active="true"] span {
+    border-bottom: 1px solid $menu-item-color;
   }
 }
+
+[icon] {
+  color: $menu-item-icon-color;
+  margin-right: $menu-item-icon-gutter;
+}
+
