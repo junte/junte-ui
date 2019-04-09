@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { isArray } from 'util';
 
 const PATTERN = /^HTTP|HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?$/;
@@ -10,7 +9,11 @@ const TARGET_DEFAULT = '_self';
   selector: 'jnt-link',
   templateUrl: './encapsulated.html'
 })
-export class LinkComponent implements AfterViewInit {
+export class LinkComponent implements OnInit {
+
+  externalLink = false;
+  allowTarget = false;
+  targetDefault = TARGET_DEFAULT;
 
   @HostBinding('attr.host') readonly host = 'jnt-link-host';
 
@@ -20,27 +23,15 @@ export class LinkComponent implements AfterViewInit {
   @HostBinding('attr.fluid')
   @Input() fluid = false;
 
-  @ViewChild('a') element: ElementRef;
-
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private renderer: Renderer2) {
-
+  constructor() {
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     if (!!this.source) {
-      this.renderer.setAttribute(this.element.nativeElement, 'href',
-        isArray(this.source) ? this.source.join('/') : this.source);
+      this.externalLink = !isArray(this.source) && !!this.source.match(PATTERN);
     }
-  }
-
-  goTo(event) {
-    event.preventDefault();
-    if (!isArray(this.source) && this.source.match(PATTERN)) {
-      open(this.source, ALLOW_TARGETS.includes(this.target) ? this.target : TARGET_DEFAULT);
-    } else {
-      this.router.navigate(isArray(this.source) ? this.source : [this.source]);
+    if (!!this.target) {
+      this.allowTarget = ALLOW_TARGETS.includes(this.target);
     }
   }
 
