@@ -1,8 +1,9 @@
-import {Gulpclass, SequenceTask, Task} from 'gulpclass';
+import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as gulp from 'gulp';
 import * as map from 'map-stream';
 import * as path from 'path';
 import * as fs from 'fs';
+import { readdirSync } from 'fs';
 import * as fse from 'fs-extra';
 import * as debug from 'gulp-debug';
 import 'reflect-metadata';
@@ -10,7 +11,6 @@ import { HTMLElement, Node, parse } from 'node-html-parser';
 import { parse as scssParce, stringify } from 'scss-parser';
 import * as watch from 'gulp-watch';
 import * as createQueryWrapper from 'query-ast';
-import { readdirSync } from 'fs';
 
 const argument = require('minimist')(process.argv.slice(2));
 
