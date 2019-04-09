@@ -10,11 +10,11 @@ import {
   QueryList,
   ViewChild
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {SelectMode, UI} from '../../enum/ui';
-import {BehaviorSubject, Subject, Subscription} from 'rxjs';
-import {debounceTime, finalize} from 'rxjs/operators';
-import {SelectOptionComponent} from './select-option/select-option.component';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { SelectMode, UI } from '../../enum/ui';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { debounceTime, finalize, tap } from 'rxjs/operators';
+import { SelectOptionComponent } from './select-option/select-option.component';
 
 const SEARCH_DELAY = 500;
 
@@ -40,10 +40,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() labelField: string;
   @Input() valueField: string;
   @Input() placeholder: string;
-  @Input() search = true;
+  @Input() search = false;
   @Input() required = false;
-
-  // @HostBinding('attr.chips') chips;
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
@@ -54,6 +52,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   private q$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   private _options: SelectOptionComponent[] = [];
   private _ajaxOptions: any[] = [];
+  private _placeholderVisible = true;
 
   search$: Subject<string> = new Subject<string>();
   selectMode = SelectMode;
@@ -62,6 +61,15 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   labels: any = {};
   loading: boolean;
   toggle: boolean;
+  selectedItems: any[] = [];
+
+  get placeholderVisible() {
+    return this._placeholderVisible && !this.selectedItems.length;
+  }
+
+  set placeholderVisible(visible: boolean) {
+    this._placeholderVisible = visible;
+  }
 
   get input() {
     return this.searchInput.nativeElement;
@@ -111,7 +119,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       loadOptions();
     }
 
-    this.search$.pipe(debounceTime(SEARCH_DELAY)).subscribe(q => {
+    this.search$.pipe(
+      tap((val) => this.placeholderVisible = !val),
+      debounceTime(SEARCH_DELAY)
+    ).subscribe(q => {
       this.q = q;
       if (!!this.loadOptions) {
         loadOptions(q);
@@ -160,11 +171,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   onChange(items: number[]) {
-    throw new Error('Control is not registered on change');
   }
 
   onTouched() {
-    throw new Error('Control is not registered on touched');
   }
 
   registerOnChange(fn) {
