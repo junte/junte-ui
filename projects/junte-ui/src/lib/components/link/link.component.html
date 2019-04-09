@@ -1,3 +1,16 @@
-<a link #a (click)="goTo($event)">
+<ng-container *ngIf="externalLink; else internalLink">
+  <a link [href]="source" [target]="allowTarget ? target : targetDefault">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </a>
+</ng-container>
+
+<ng-template #internalLink>
+  <a link [routerLink]="source" routerLinkActive #link="routerLinkActive" [attr.active]="link.isActive">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </a>
+</ng-template>
+
+<ng-template #contentTemplate>
   <ng-content></ng-content>
-</a>
+</ng-template>
+
