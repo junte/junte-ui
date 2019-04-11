@@ -8,10 +8,6 @@ export class AppAsideComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
 
-  @HostBinding('attr.fixed')
-  @Input()
-  fixed = false;
-
   @HostBinding('attr.collapsed')
   @Input()
   collapsed = true;
