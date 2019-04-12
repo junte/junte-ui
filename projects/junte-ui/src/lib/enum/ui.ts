@@ -1,6 +1,7 @@
 export enum Icons {
   check = 'check',
   plus = 'plus',
+  burger = 'burger',
   close = 'close',
   cancel = 'cancel',
   search = 'search',

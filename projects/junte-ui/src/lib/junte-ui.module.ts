@@ -62,6 +62,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { AttributeDirective } from './directives/attribute';
+import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { AttributeDirective } from './directives/attribute';
     BadgeComponent,
     AppLayoutComponent,
     AppHeaderComponent,
+    AppSubHeaderComponent,
     AppMainComponent,
     AppAsideComponent,
     AppContentComponent,
@@ -161,6 +163,7 @@ import { AttributeDirective } from './directives/attribute';
     BadgeComponent,
     AppLayoutComponent,
     AppHeaderComponent,
+    AppSubHeaderComponent,
     AppMainComponent,
     AppAsideComponent,
     AppContentComponent,

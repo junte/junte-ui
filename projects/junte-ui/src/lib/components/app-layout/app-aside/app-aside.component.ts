@@ -1,20 +1,18 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-aside',
   templateUrl: './encapsulated.html'
 })
-export class AppAsideComponent implements OnInit {
+export class AppAsideComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
 
-  @HostBinding('attr.collapsed')
+  @HostBinding('attr.opened')
   @Input()
-  collapsed = true;
+  opened = false;
 
-  constructor() { }
-
-  ngOnInit() {
+  toggle() {
+    this.opened = !this.opened;
   }
-
 }
