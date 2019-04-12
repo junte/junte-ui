@@ -2,8 +2,8 @@
 
   <jnt-app-header [fixed]="true">
     <ng-template #logo>
-        <div>Junte UI</div>
-        <small>Very strong framework!</small>
+      <div>Junte UI</div>
+      <small>Very strong framework!</small>
     </ng-template>
     <ng-template #topMenu>
       <jnt-menu>
@@ -14,10 +14,8 @@
       </jnt-menu>
     </ng-template>
   </jnt-app-header>
-
   <jnt-app-main>
-
-    <jnt-app-aside>
+    <jnt-app-aside #aside>
       <ul aside>
         <li>
           <jnt-link source="components/grid" [fluid]="true">Grid</jnt-link>
@@ -88,9 +86,10 @@
       </ul>
     </jnt-app-aside>
 
-    <jnt-app-content>
 
+    <jnt-app-content>
       <jnt-app-body>
+        <jnt-app-sub-header (burger)="aside.toggle()"></jnt-app-sub-header>
         <router-outlet></router-outlet>
       </jnt-app-body>
 

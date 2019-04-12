@@ -1,16 +1,11 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-layout',
   templateUrl: './encapsulated.html'
 })
-export class AppLayoutComponent implements OnInit {
+export class AppLayoutComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-layout-host';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

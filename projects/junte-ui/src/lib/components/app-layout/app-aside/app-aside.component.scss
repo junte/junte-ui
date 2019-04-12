@@ -6,20 +6,61 @@ $app-aside-z-index: 2;
 
 :host {
   display: block;
-  flex: 0 0 $app-aside-width;
-  width: $app-aside-width;
-  min-width: $app-aside-width;
-  max-width: $app-aside-width;
   box-sizing: border-box;
-  background-color: $app-aside-bg;
-  border-right: 1px solid $app-aside-border-right-color;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: $app-header-height 0 0 0;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: $app-aside-z-index;
 
+  @media (max-width: 767px) {
+    &[opened="true"] {
+      width: 100%;
+      [overlay] {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+      }
+      [drawer] {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    &[opened="false"] {
+      width: 0;
+      [overlay] {
+        opacity: 0;
+      }
+      [drawer] {
+        transform: translate3d(-100%, 0, 0);
+      }
+    }
+  }
 }
+
+[overlay] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  content: '';
+  background-color: rgba(0, 0, 0, .4);
+  opacity: 0;
+  z-index: 5;
+  transition: opacity .5s;
+}
+
+[drawer] {
+  position: fixed;
+  padding: $app-header-height 0 0 0;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10;
+  height: 100%;
+  width: 200px;
+  min-width: 200px;
+  background-color: white;
+  border-right: 1px solid $app-aside-border-right-color;
+}
+
