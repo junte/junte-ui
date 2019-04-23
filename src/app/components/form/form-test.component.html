@@ -1,5 +1,16 @@
 <jnt-container>
   <h1>Form</h1>
+
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Form must have various layouts: vertical, horizontal, inline</li>
+    <li>Form must have footer (action), title</li>
+    <li>Form must have error message, form control, form label</li>
+  </ol>
+
+  <hr>
+
   <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
     <jnt-form [layout]="layout" [title]="layout | titlecase" [footer]="footer">
       <ng-template #title>
