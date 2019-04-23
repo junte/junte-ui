@@ -2,6 +2,20 @@
 
   <form [formGroup]="form">
     <h1>Calendar</h1>
+
+    <h3>Requirements</h3>
+
+    <ol>
+      <li>The day and arrows in calendar should respond to mouse hover, click</li>
+      <li>Metrics can be added to the calendar</li>
+      <li>The current day should always be highlighted</li>
+      <li>The current week should be highlighted</li>
+      <li>Selected day should be highlighted</li>
+      <li>Weekend should be highlighted</li>
+    </ol>
+
+    <hr>
+
     <jnt-block>
       <jnt-calendar formControlName="dueDate" (updated)="period = $event">
       </jnt-calendar>
@@ -59,6 +73,17 @@
     </ngx-prism>
 
     <h1>Calendar Week</h1>
+
+    <h3>Requirements</h3>
+
+    <ul>
+      <li>The day in calendar week should respond to mouse hover, click</li>
+      <li>The current day should always be highlighted</li>
+      <li>Change days occur using animation</li>
+    </ul>
+
+    <hr>
+
       <jnt-calendar-week [period]="dueDate.value">
       </jnt-calendar-week>
 
