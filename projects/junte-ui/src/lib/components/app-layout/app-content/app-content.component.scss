@@ -13,6 +13,8 @@ $app-content-padding-left: $app-aside-width;
   }
 
   @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
-    padding-left: 0;
+    &[with-aside="true"] {
+      padding-left: 0;
+    }
   }
 }
