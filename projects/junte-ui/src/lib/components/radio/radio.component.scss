@@ -1,9 +1,9 @@
 @import "../../assets/styles/variables";
 
-$radio-indicator-corner: 50%;
 $radio-icon-size: 10px;
 $radio-icon-color: $primary-color;
 $radio-indicator-size: 18px;
+$radio-indicator-corner: $radio-indicator-size/2;
 $radio-indicator-bg: white;
 $radio-indicator-border-color: $primary-color;
 $radio-indicator-border-width: 1px;
@@ -58,20 +58,22 @@ label {
   border-radius: $radio-indicator-corner;
   background-color: $radio-indicator-bg;
   border: $radio-indicator-border-width solid $radio-indicator-border-color;
-  width: $radio-indicator-size;
-  height: $radio-indicator-size;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-width: $radio-indicator-size;
+  min-height: $radio-indicator-size;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: $radio-indicator-size - $radio-indicator-border-width * 2;
 }
 
 [icon] {
+  display: inline-block;
   opacity: 0;
-  border-radius: 50%;
+  border-radius: $radio-icon-size/2;
+  min-width: $radio-icon-size;
   width: $radio-icon-size;
+  min-height: $radio-icon-size;
   height: $radio-icon-size;
   background-color: $radio-icon-color;
-
 }
 
 

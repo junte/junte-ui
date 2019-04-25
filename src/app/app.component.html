@@ -86,8 +86,7 @@
       </ul>
     </jnt-app-aside>
 
-
-    <jnt-app-content>
+    <jnt-app-content [aside]="aside">
       <jnt-app-body>
         <jnt-app-sub-header (burger)="aside.toggle()"></jnt-app-sub-header>
         <router-outlet></router-outlet>

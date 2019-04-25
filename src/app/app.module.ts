@@ -7,6 +7,7 @@ import { JunteUiModule } from 'junte-ui';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -14,12 +15,13 @@ import { RouterModule } from '@angular/router';
     AppComponent
   ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     RouterModule,
-    JunteUiModule
+    FormsModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    JunteUiModule,
   ],
   bootstrap: [AppComponent],
   providers: [
