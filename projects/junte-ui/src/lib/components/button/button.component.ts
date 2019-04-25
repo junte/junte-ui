@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'jnt-button',
@@ -25,6 +26,11 @@ export class ButtonComponent {
   @HostBinding('attr.size')
   @Input()
   size: Sizes = Sizes.normal;
+
+  @HostBinding('attr.with-text')
+  get withText() {
+    return !!this.text;
+  }
 
   @HostBinding('attr.outline')
   @Input()

@@ -8,7 +8,9 @@ $app-content-padding-left: $app-aside-width;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-left: $app-content-padding-left;
+  &[with-aside="true"] {
+    padding-left: $app-content-padding-left;
+  }
 
   @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
     padding-left: 0;

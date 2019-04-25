@@ -1,5 +1,8 @@
 @import "../../assets/styles/variables";
 
+$button-corner: $corner-lg;
+$button-without-text-corner: $corner-sm;
+
 $schemes: (
   #{$scheme-primary}: (
     color: $white-color,
@@ -66,16 +69,19 @@ $schemes: (
 $sizes: (
   #{$size-small}: (
     padding: 0 50px,
+    padding-without-text: 0 10px,
     font-size: 12px,
     min-height: 30px
   ),
   #{$size-normal}: (
     padding: 0 38px,
+    padding-without-text: 0 13px,
     font-size: 14px,
     min-height: 38px
   ),
   #{$size-large}: (
     padding: 0 36px,
+    padding-without-text: 0 18px,
     font-size: 16px,
     min-height: 50px
   )
@@ -129,6 +135,14 @@ $sizes: (
   }
 }
 
+@mixin size-without-text($size) {
+  button {
+    padding: #{map-get($size, padding-without-text)};
+    font-size: #{map-get($size, font-size)};
+    min-height: #{map-get($size, min-height)};
+  }
+}
+
 :host {
   display: inline-flex;
   position: relative;
@@ -155,7 +169,7 @@ $sizes: (
     pointer-events: none;
     button {
       cursor: default;
-      [text], > [icon] {
+      [title], > [icon] {
         visibility: collapse;
       }
     }
@@ -171,6 +185,20 @@ $sizes: (
     width: 100%;
   }
 
+  &[with-text="false"] {
+    @each $size, $map in $sizes {
+      &[size='#{$size}'] {
+        @include size-without-text($map);
+      }
+    }
+    button {
+      border-radius: $button-without-text-corner;
+      [icon] {
+        margin-right: 0;
+      }
+    }
+  }
+
   button {
     display: flex;
     align-items: center;
@@ -179,7 +207,7 @@ $sizes: (
     outline: 0;
     user-select: none;
     box-sizing: border-box;
-    border-radius: 40px;
+    border-radius: $button-corner;
     cursor: pointer;
     border: none;
     width: 100%;
@@ -188,7 +216,7 @@ $sizes: (
     [icon] {
       margin-right: 10px;
     }
-    [text] {
+    [title] {
       display: inline-block;
       padding-bottom: 1px;
       white-space: nowrap;
