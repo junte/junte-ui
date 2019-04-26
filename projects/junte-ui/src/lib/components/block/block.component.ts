@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Sizes, TypeBlock } from '../../enum/ui';
+import { Paddings, Sizes, TypeBlock } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -12,6 +12,10 @@ export class BlockComponent implements OnInit {
   @HostBinding('attr.loading')
   @Input()
   loading = false;
+
+  @HostBinding('attr.padding')
+  @Input()
+  padding: Paddings;
 
   @HostBinding('attr.error')
   @Input()
