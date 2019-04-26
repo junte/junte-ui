@@ -44,6 +44,12 @@ export enum Sizes {
   large = 'large'
 }
 
+export enum Paddings {
+  small = 'small',
+  normal = 'normal',
+  large = 'large'
+}
+
 export enum Outline {
   ghost = 'ghost',
   fill = 'fill'
@@ -191,5 +197,6 @@ export class UI {
     type: TypeBlock
   };
   static colors = Colors;
+  static padding = Paddings;
 }
 
