@@ -1,8 +1,8 @@
 @import "../../assets/styles/variables";
 
-$radio-icon-size: 10px;
 $radio-icon-color: $primary-color;
 $radio-indicator-size: 18px;
+$radio-icon-size: $radio-indicator-size - 8px;
 $radio-indicator-corner: $radio-indicator-size/2;
 $radio-indicator-bg: white;
 $radio-indicator-border-color: $primary-color;
@@ -62,7 +62,6 @@ label {
   min-height: $radio-indicator-size;
   box-sizing: border-box;
   text-align: center;
-  line-height: $radio-indicator-size - $radio-indicator-border-width * 2;
 }
 
 [icon] {
@@ -74,6 +73,9 @@ label {
   min-height: $radio-icon-size;
   height: $radio-icon-size;
   background-color: $radio-icon-color;
+  position: absolute;
+  top: ($radio-indicator-size - $radio-icon-size) / 2 - 1px;
+  left: ($radio-indicator-size - $radio-icon-size) / 2 - 1px;
 }
 
 
