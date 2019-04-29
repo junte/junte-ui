@@ -1,0 +1,95 @@
+<jnt-container>
+  <h1>Menu</h1>
+
+  <h3>Horizontal menu</h3>
+
+  <jnt-menu>
+    <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
+  </jnt-menu>
+
+  <h3>Vertical menu</h3>
+
+  <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+    <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
+  </jnt-menu>
+
+  <ngx-prism language="html">
+<pre>
+
+&lt;jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small"&gt;
+  &lt;jnt-menu-item link="/home" title="Home" [icon]="ui.icons.check"&gt;&lt;/jnt-menu-item&gt;
+  &lt;jnt-menu-item link="/doc" title="Doc"&gt;&lt;/jnt-menu-item&gt;
+  &lt;jnt-menu-item link="/gitlab" title="GitLab"&gt;&lt;/jnt-menu-item&gt;
+  &lt;jnt-menu-item link="/contacts" title="Contacts"&gt;&lt;/jnt-menu-item&gt;
+&lt;/jnt-menu&gt;
+
+  </pre>
+  </ngx-prism>
+
+  <h3>API</h3>
+
+  <h4>jnt-menu</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[type]</td>
+      <td>-</td>
+      <td>vertical | horizontal</td>
+      <td>horizontal</td>
+    </tr>
+    <tr>
+      <td>[spacer]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>large</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h4>jnt-menu-item</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[link]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[icon]</td>
+      <td>-</td>
+      <td>Icons</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>

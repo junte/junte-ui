@@ -7,12 +7,11 @@ $menu-item-padding-x: $gutter-2;
 $menu-item-padding-y: $gutter-2;
 
 :host {
-  display: flex;
+  display: block;
   flex: 1;
 }
 
 [link]:child-host=#{$jnt-link-host} a {
-  color: $menu-item-color;
   cursor: pointer;
   padding: $menu-item-padding-x $menu-item-padding-y;
   &[active="true"] span {

@@ -3,6 +3,7 @@ import { MenuType, Sizes, UI } from '../../enum/ui';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 
 export abstract class Menu implements AfterContentInit {
+
   @Input() type: MenuType = MenuType.horizontal;
   @Input() spacer: Sizes = Sizes.large;
 

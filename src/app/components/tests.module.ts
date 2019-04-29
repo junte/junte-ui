@@ -29,6 +29,7 @@ import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { LabelTestComponent } from './label/label-test.component';
 import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
+import { MenuTestComponent } from './menu/menu-test.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { TabsTestComponent } from './tabs/tabs-test.component';
     CalendarTestComponent,
     LabelTestComponent,
     SkeletonTestComponent,
-    TabsTestComponent
+    TabsTestComponent,
+    MenuTestComponent
   ]
 })
 export class TestsModule {
