@@ -21,6 +21,7 @@ import { CalendarTestComponent } from 'components/calendar/calendar-test.compone
 import { LabelTestComponent } from 'components/label/label-test.component';
 import { SkeletonTestComponent } from 'components/skeleton/skeleton-test.component';
 import { TabsTestComponent } from 'components/tabs/tabs-test.component';
+import { MenuTestComponent } from 'components/menu/menu-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -110,6 +111,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'tabs',
     component: TabsTestComponent
+  },
+  {
+    path: 'menu',
+    component: MenuTestComponent
   },
   {
     path: '',

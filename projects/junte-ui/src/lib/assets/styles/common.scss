@@ -38,3 +38,10 @@ h1, h2, h3, h4, h5 {
 [role=button], a, area, button, input:not([type=range]), label, select, summary, textarea {
   touch-action: manipulation;
 }
+
+jnt-app-header[host=#{$jnt-app-header-host}]
+jnt-menu[host=#{$jnt-menu-host}]
+jnt-link[child-of=#{$jnt-menu-host}]
+a[child-of=#{$jnt-link-host}] {
+  color: white;
+}
