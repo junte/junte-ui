@@ -39,6 +39,7 @@ export enum Schemes {
 
 
 export enum Sizes {
+  tiny = 'tiny',
   small = 'small',
   normal = 'normal',
   large = 'large'
