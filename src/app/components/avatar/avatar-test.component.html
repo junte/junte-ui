@@ -5,9 +5,11 @@
   <h3>Requirements</h3>
 
   <ol>
-    <li>The avatar must have different sizes: small, normal, large</li>
+    <li>The avatar must have different sizes: tiny, small, normal, large</li>
     <li>The avatar must have different shapes: circle, square</li>
     <li>Avatar can contain icon or text or image</li>
+    <li>If image passed it must replace text</li>
+    <li>If image is null must use first char of text</li>
   </ol>
 
   <hr>
@@ -17,14 +19,14 @@
   <jnt-stack [gutter]="ui.stack.gutter.large">
 
     <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
         <jnt-avatar [size]="size">{{size}}</jnt-avatar>
       </ng-container>
     </jnt-stack>
 
-      <ngx-prism language="html">
-    <pre>&lt;jnt-avatar [size]="small"&gt;&lt;/jnt-avatar&gt;</pre>
-      </ngx-prism>
+    <ngx-prism language="html">
+      <pre>&lt;jnt-avatar [size]="small"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
 
     <h3>Shape</h3>
 
@@ -34,27 +36,32 @@
       </ng-container>
     </jnt-stack>
 
-      <ngx-prism language="html">
-        <pre>&lt;jnt-avatar [shape]="ui.shape.circle"&gt;&lt;/jnt-avatar&gt;</pre>
-      </ngx-prism>
+    <ngx-prism language="html">
+      <pre>&lt;jnt-avatar [shape]="ui.shape.circle"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
 
     <h3>Content</h3>
 
-    <jnt-stack [type]="ui.stack.type.horizontal">
-        <jnt-avatar text="U"></jnt-avatar>
-        <jnt-avatar [icon]="ui.icons.close"></jnt-avatar>
-        <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+    <jnt-stack>
+      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <jnt-avatar text="Julia" [size]="size"></jnt-avatar>
+          <jnt-avatar [icon]="ui.icons.close" [size]="size"></jnt-avatar>
+          <jnt-avatar [size]="size"
+                      image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+        </jnt-stack>
+      </ng-container>
     </jnt-stack>
 
-      <ngx-prism language="html">
-        <pre>&lt;jnt-avatar [icon]="ui.icons.close"&gt;&lt;/jnt-avatar&gt;</pre>
-      </ngx-prism>
-      <ngx-prism language="html">
-        <pre>&lt;jnt-avatar text="U"&gt;&lt;/jnt-avatar&gt;</pre>
-      </ngx-prism>
-      <ngx-prism language="html">
-        <pre>&lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;</pre>
-      </ngx-prism>
+    <ngx-prism language="html">
+      <pre>&lt;jnt-avatar [icon]="ui.icons.close"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
+    <ngx-prism language="html">
+      <pre>&lt;jnt-avatar text="Julia"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
+    <ngx-prism language="html">
+      <pre>&lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
 
   </jnt-stack>
 
