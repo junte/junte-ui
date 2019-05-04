@@ -22,6 +22,7 @@ import { LabelTestComponent } from 'components/label/label-test.component';
 import { SkeletonTestComponent } from 'components/skeleton/skeleton-test.component';
 import { TabsTestComponent } from 'components/tabs/tabs-test.component';
 import { MenuTestComponent } from 'components/menu/menu-test.component';
+import { TypographyTestComponent } from 'components/typography/typography-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -115,6 +116,10 @@ export const TESTS_ROUTES: Routes = [
   {
     path: 'menu',
     component: MenuTestComponent
+  },
+  {
+    path: 'typography',
+    component: TypographyTestComponent
   },
   {
     path: '',
