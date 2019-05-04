@@ -16,80 +16,35 @@
   </jnt-app-header>
   <jnt-app-main>
     <jnt-app-aside #aside>
-      <ul aside>
-        <li>
-          <jnt-link source="components/typography" [fluid]="true">Typography</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/grid" [fluid]="true">Grid</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/stack" [fluid]="true">Stack</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/block" [fluid]="true">Block</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/button" [fluid]="true">Button</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/input" [fluid]="true">Input</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/spinner" [fluid]="true">Spinner</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/checkbox" [fluid]="true">Checkbox</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/switch" [fluid]="true">Switch</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/radio" [fluid]="true">Radio</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/pager" [fluid]="true">Pager</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/form" [fluid]="true">Form</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/icon" [fluid]="true">Icon</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/calendar" [fluid]="true">Calendar</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/select" [fluid]="true">Select</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/badge" [fluid]="true">Badge</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/layout" [fluid]="true">Layout</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/menu" [fluid]="true">Menu</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/table" [fluid]="true">Table</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/avatar" [fluid]="true">Avatar</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/link" [fluid]="true">Link</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/label" [fluid]="true">Label</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/skeleton" [fluid]="true">Skeleton</jnt-link>
-        </li>
-        <li>
-          <jnt-link source="components/tabs" [fluid]="true">Tabs</jnt-link>
-        </li>
-      </ul>
+
+      <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+        <jnt-menu-item link="components/typography" title="Typography"></jnt-menu-item>
+        <jnt-menu-item link="components/grid" title="Grid"></jnt-menu-item>
+        <jnt-menu-item link="components/stack" title="Stack"></jnt-menu-item>
+        <jnt-menu-item link="components/block" title="Block"></jnt-menu-item>
+        <jnt-menu-item link="components/button" title="Button"></jnt-menu-item>
+        <jnt-menu-item link="components/input" title="Input"></jnt-menu-item>
+        <jnt-menu-item link="components/spinner" title="Spinner"></jnt-menu-item>
+        <jnt-menu-item link="components/checkbox" title="Checkbox"></jnt-menu-item>
+        <jnt-menu-item link="components/switch" title="Switch"></jnt-menu-item>
+        <jnt-menu-item link="components/radio" title="Radio"></jnt-menu-item>
+        <jnt-menu-item link="components/pager" title="Pager"></jnt-menu-item>
+        <jnt-menu-item link="components/form" title="Form"></jnt-menu-item>
+        <jnt-menu-item link="components/icon" title="Icon"></jnt-menu-item>
+        <jnt-menu-item link="components/calendar" title="Calendar"></jnt-menu-item>
+        <jnt-menu-item link="components/select" title="Select"></jnt-menu-item>
+        <jnt-menu-item link="components/badge" title="Badge"></jnt-menu-item>
+        <jnt-menu-item link="components/layout" title="Layout"></jnt-menu-item>
+        <jnt-menu-item link="components/menu" title="Menu"></jnt-menu-item>
+        <jnt-menu-item link="components/table" title="Table"></jnt-menu-item>
+        <jnt-menu-item link="components/table" title="Table"></jnt-menu-item>
+        <jnt-menu-item link="components/avatar" title="Avatar"></jnt-menu-item>
+        <jnt-menu-item link="components/link" title="Link"></jnt-menu-item>
+        <jnt-menu-item link="components/label" title="Label"></jnt-menu-item>
+        <jnt-menu-item link="components/skeleton" title="Skeleton"></jnt-menu-item>
+        <jnt-menu-item link="components/tabs" title="Tabs"></jnt-menu-item>
+      </jnt-menu>
+
     </jnt-app-aside>
 
     <jnt-app-content [aside]="aside">

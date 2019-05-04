@@ -24,6 +24,9 @@ $link-active-color: darken($link-color, 10%);
   font-weight: $link-font-weight;
   font-size: $link-font-size;
   box-sizing: border-box;
+  &[active="true"] span {
+    border-bottom: 1px solid $link-color;
+  }
   &:hover {
     color: $link-hover-color;
   }
