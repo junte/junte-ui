@@ -30,6 +30,7 @@ import { LabelTestComponent } from './label/label-test.component';
 import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
+import { TypographyTestComponent } from './typography/typography-test.component';
 
 @NgModule({
   imports: [
@@ -67,7 +68,8 @@ import { MenuTestComponent } from './menu/menu-test.component';
     LabelTestComponent,
     SkeletonTestComponent,
     TabsTestComponent,
-    MenuTestComponent
+    MenuTestComponent,
+    TypographyTestComponent
   ]
 })
 export class TestsModule {
