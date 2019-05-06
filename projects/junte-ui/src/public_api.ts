@@ -48,6 +48,7 @@ export * from './lib/components/menu/menu-item/menu-item.component';
 export * from './lib/components/menu/user-menu/user-menu.component';
 export * from './lib/components/avatar/avatar.component';
 export * from './lib/components/avatar/avatars-group/avatars-group.component';
+export * from './lib/components/avatar/avatars-list/avatars-list.component';
 export * from './lib/components/link/link.component';
 export * from './lib/components/label/label.component';
 export * from './lib/components/skeleton/skeleton.component';

@@ -43,6 +43,7 @@ $jnt-switch-host: 'jnt-switch-host';
 $jnt-table-host: 'jnt-table-host';
 $jnt-tabs-host: 'jnt-tabs-host';
 $jnt-avatars-group-host: 'jnt-avatars-group-host';
+$jnt-avatars-list-host: 'jnt-avatars-list-host';
 
 $blue: #E7F5FF;
 $orange: #EE8030;
@@ -175,7 +176,40 @@ $base-shadow: 0px 2px 8px rgba(0, 67, 167, 0.25);
 /*Avatar*/
 
 
-$avatar-size-tiny: 23px;
+$avatar-size-tiny: 24px;
 $avatar-size-small: 40px;
 $avatar-size-normal: 80px;
 $avatar-size-large: 120px;
+
+$avatar-icon-size-tiny: 10px;
+$avatar-icon-size-small: 14px;
+$avatar-icon-size-normal: 24px;
+$avatar-icon-size-large: 40px;
+
+$avatar-text-font-size-tiny: 10px;
+$avatar-text-font-size-small: 14px;
+$avatar-text-font-size-normal: 26px;
+$avatar-text-font-size-large: 42px;
+
+$sizesAvatar: (
+  #{$size-tiny}: (
+    size: $avatar-size-tiny,
+    sizeIcon: $avatar-icon-size-tiny,
+    sizeText: $avatar-text-font-size-tiny,
+  ),
+  #{$size-small}: (
+    size: $avatar-size-small,
+    sizeIcon: $avatar-icon-size-small,
+    sizeText: $avatar-text-font-size-small,
+  ),
+  #{$size-normal}: (
+    size: $avatar-size-normal,
+    sizeIcon: $avatar-icon-size-normal,
+    sizeText: $avatar-text-font-size-normal,
+  ),
+  #{$size-large}: (
+    size: $avatar-size-large,
+    sizeIcon: $avatar-icon-size-large,
+    sizeText: $avatar-text-font-size-large,
+  )
+);

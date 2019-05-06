@@ -62,6 +62,21 @@
     </jnt-avatars-group>
 
 
+    <h1>Avatars list</h1>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-avatars-list [size]="size">
+        <jnt-avatar
+          image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+        <jnt-avatar
+          image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
+        <jnt-avatar
+          image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1433261/avatar.png"></jnt-avatar>
+        <jnt-avatar
+          image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
+      </jnt-avatars-list>
+    </ng-container>
+
+
     <ngx-prism language="html">
       <pre>&lt;jnt-avatar [icon]="ui.icons.close"&gt;&lt;/jnt-avatar&gt;</pre>
     </ngx-prism>

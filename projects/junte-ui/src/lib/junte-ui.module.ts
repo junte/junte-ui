@@ -64,6 +64,7 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 import { AttributeDirective } from './directives/attribute';
 import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
 import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars-group.component';
+import { AvatarsListComponent } from './components/avatar/avatars-list/avatars-list.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars
     SkeletonComponent,
     TabsComponent,
     TabComponent,
-    AvatarsGroupComponent
+    AvatarsGroupComponent,
+    AvatarsListComponent
   ],
   imports: [
     CommonModule,
@@ -193,7 +195,8 @@ import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars
     SkeletonComponent,
     TabsComponent,
     TabComponent,
-    AvatarsGroupComponent
+    AvatarsGroupComponent,
+    AvatarsListComponent
   ]
 })
 export class JunteUiModule {

@@ -1,0 +1,31 @@
+@import "../../../assets/styles/variables";
+
+:host {
+  display: flex;
+  position: relative;
+  @each $size, $map in $sizesAvatar {
+    &[size='#{$size}'] {
+      min-height: #{map-get($map, size)};
+    }
+  }
+}
+
+@for $i from 0 through 5 {
+  [avatar#{$i}] {
+    position: absolute;
+    border: 2px solid white;
+    cursor: pointer;
+    z-index: 1;
+    transition: all .5s;
+    &:hover {
+      border-color: $purple-light;
+      z-index: 2;
+    }
+    @each $size, $map in $sizesAvatar {
+      &[size='#{$size}'] {
+        left: calc(#{$i} * (#{map-get($map, size)} / 2));
+      }
+    }
+  }
+}
+

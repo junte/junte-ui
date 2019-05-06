@@ -17,5 +17,6 @@ export abstract class Avatar implements AfterContentInit {
   ngAfterContentInit() {
     this.items = this.avatarItems.toArray();
     this.avatarItems.changes.subscribe(items => this.items = items.toArray());
+    console.log(this.items);
   }
 }
