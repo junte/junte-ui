@@ -4,8 +4,7 @@ import { Sizes, UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-avatars-list',
-  templateUrl: './avatars-list.component.html',
-  styleUrls: ['./avatars-list.component.scss']
+  templateUrl: './encapsulated.html'
 })
 export class AvatarsListComponent extends Avatar {
 
