@@ -1,5 +1,13 @@
-<jnt-stack [type]="ui.stack.type.horizontal">
-  <div item *ngFor="let item of items">
-    <jnt-avatar [image]="item.image" [size]="item.size" [icon]="item.icon" [shape]="item.shape" [text]="item.text"></jnt-avatar>
+<div group>
+  <div item *ngFor="let item of items; let index = index"
+       [attr.extra]="count > extra && index + 1 === extra ? '+' + (count - extra) : undefined">
+    <jnt-avatar avatar
+                [image]="item.image"
+                [size]="size"
+                [icon]="item.icon"
+                [shape]="ui.shape.square"
+                [text]="item.text"></jnt-avatar>
   </div>
-</jnt-stack>
+</div>
+
+

@@ -65,12 +65,54 @@
     </ngx-prism>
 
     <h1>Avatars group</h1>
-    <jnt-avatars-group>
-      <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
-      <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
-      <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1433261/avatar.png"></jnt-avatar>
-      <jnt-avatar image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
-    </jnt-avatars-group>
+
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+
+      <jnt-stack [type]="ui.stack.type.horizontal">
+
+        <jnt-avatars-group [size]="size">
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
+        </jnt-avatars-group>
+
+        <jnt-avatars-group [size]="size">
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
+        </jnt-avatars-group>
+
+        <jnt-avatars-group [size]="size">
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1433261/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
+        </jnt-avatars-group>
+
+        <jnt-avatars-group [size]="size">
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1469424/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1433261/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
+          <jnt-avatar
+            image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
+        </jnt-avatars-group>
+
+      </jnt-stack>
+
+    </ng-container>
 
     <h1>Avatars list</h1>
     <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
@@ -83,15 +125,13 @@
           image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1433261/avatar.png"></jnt-avatar>
         <jnt-avatar
           image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
-        <jnt-avatar
-          image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/1601372/avatar.png"></jnt-avatar>
         <jnt-avatar [icon]="ui.icons.user"></jnt-avatar>
       </jnt-avatars-list>
     </ng-container>
 
     <ngx-prism language="html">
       <pre>
-&lt;jnt-avatars-list [size]="size"&gt;
+&lt;jnt-avatars-list [size]="ui.sizes.normal"&gt;
     &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
     &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
     &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;

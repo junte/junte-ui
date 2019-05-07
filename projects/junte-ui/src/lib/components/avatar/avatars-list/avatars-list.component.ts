@@ -10,15 +10,4 @@ export class AvatarsListComponent extends Avatar {
 
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
-  @HostBinding('attr.children')
-  get count() {
-    return this.items.length;
-  }
-
-  ui = UI;
-
-  @HostBinding('attr.size')
-  @Input()
-  size: Sizes = Sizes.tiny;
-
 }

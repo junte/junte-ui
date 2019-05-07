@@ -1,0 +1,100 @@
+@import "../../../assets/styles/variables";
+
+:host {
+  display: block;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 50%;
+  //
+  //[item] {
+  //  @each $size, $map in $sizesAvatar {
+  //    &[size='#{$size}'] {
+  //      width: calc(#{map-get($map, size)} / 2);
+  //      height: calc(#{map-get($map, size)} / 2);
+  //    }
+  //  }
+  //  [avatar] {
+  //    transform: translate(-25%, -25%);
+  //  }
+  //  &[extra]:after {
+  //    content: attr(extra);
+  //    position: absolute;
+  //    top: 0;
+  //    left: 0;
+  //    bottom: 0;
+  //    right: 0;
+  //    background-color: rgba(#000, .5);
+  //  }
+  //}
+
+  @each $size, $map in $sizesAvatar {
+    &[size='#{$size}'] {
+      height: #{map-get($map, size)};
+      width: #{map-get($map, size)};
+      &[children='4'] {
+        [item] {
+          width: calc(#{map-get($map, size)} / 2);
+          height: calc(#{map-get($map, size)} / 2);
+          &:after {
+            display: none;
+          }
+          [avatar] {
+            transform: translate(-25%, -25%);
+          }
+        }
+      }
+      &[children='2'] {
+        [item] {
+          width: calc(#{map-get($map, size)} / 2);
+          &:after {
+            display: none;
+          }
+          [avatar] {
+            transform: translate(-25%, 0);
+          }
+        }
+      }
+      &[children='3'] {
+        [item] {
+          width: calc(#{map-get($map, size)} / 2);
+          height: calc(#{map-get($map, size)} / 2);
+          &:after {
+            display: none;
+          }
+          [avatar] {
+            transform: translate(-25%, -25%);
+          }
+          &:first-child {
+            height: 100%;
+            [avatar] {
+              transform: translate(-25%, 0);
+            }
+          }
+          &:last-child {
+            margin-top: calc(#{map-get($map, size)} / 2 * (-1));
+            margin-left: calc(#{map-get($map, size)} / 2 + 4px);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+[group] {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -4px;
+  margin-bottom: -1px;
+}
+
+[item] {
+  overflow: hidden;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  position: relative;
+}
+
+
+
+

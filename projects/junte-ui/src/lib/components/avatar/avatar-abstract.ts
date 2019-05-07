@@ -1,10 +1,19 @@
-import { AfterContentInit, ContentChildren, QueryList } from '@angular/core';
+import { AfterContentInit, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { AvatarComponent } from './avatar.component';
-import { UI } from '../../enum/ui';
+import { Sizes, UI } from '../../enum/ui';
 
 export abstract class Avatar implements AfterContentInit {
 
   ui = UI;
+
+  @HostBinding('attr.children')
+  get count() {
+    return this.items.length;
+  }
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.tiny;
 
   items: AvatarComponent[] = [];
 
