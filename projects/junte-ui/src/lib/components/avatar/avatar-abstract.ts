@@ -1,11 +1,8 @@
-import { AfterContentInit, ContentChildren, Input, QueryList } from '@angular/core';
-import { MenuType, Sizes, UI } from '../../enum/ui';
+import { AfterContentInit, ContentChildren, QueryList } from '@angular/core';
 import { AvatarComponent } from './avatar.component';
+import { UI } from '../../enum/ui';
 
 export abstract class Avatar implements AfterContentInit {
-  //
-  // @Input() type: MenuType = MenuType.horizontal;
-  // @Input() spacer: Sizes = Sizes.large;
 
   ui = UI;
 
