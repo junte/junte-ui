@@ -6,11 +6,6 @@ export abstract class Avatar implements AfterContentInit {
 
   ui = UI;
 
-  @HostBinding('attr.children')
-  get count() {
-    return this.items.length;
-  }
-
   @HostBinding('attr.size')
   @Input()
   size: Sizes = Sizes.tiny;

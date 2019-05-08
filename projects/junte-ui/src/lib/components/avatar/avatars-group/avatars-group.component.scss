@@ -10,36 +10,44 @@
     &[size='#{$size}'] {
       height: #{map-get($map, size)};
       width: #{map-get($map, size)};
+
       &[children='4'] {
         [item] {
           width: calc(#{map-get($map, size)} / 2);
           height: calc(#{map-get($map, size)} / 2);
-          &:after {
-            display: none;
-          }
           [avatar] {
             transform: translate(-25%, -25%);
           }
         }
+        [extra]:after {
+          content: attr(extra);
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background-color: rgba(#000, .5);
+          color: white;
+          font-weight: $font-weight-bold;
+          font-size: #{map-get($map, sizeTextExtra)};
+          line-height: #{map-get($map, lineHeightTextExtra)};
+          padding-left: calc(#{map-get($map, size)} / 8.5);
+        }
       }
+
       &[children='2'] {
         [item] {
           width: calc(#{map-get($map, size)} / 2);
-          &:after {
-            display: none;
-          }
           [avatar] {
             transform: translate(-25%, 0);
           }
         }
       }
+
       &[children='3'] {
         [item] {
           width: calc(#{map-get($map, size)} / 2);
           height: calc(#{map-get($map, size)} / 2);
-          &:after {
-            display: none;
-          }
           [avatar] {
             transform: translate(-25%, -25%);
           }
@@ -74,26 +82,3 @@
   position: relative;
 }
 
-
-
-//
-//[item] {
-//  @each $size, $map in $sizesAvatar {
-//    &[size='#{$size}'] {
-//      width: calc(#{map-get($map, size)} / 2);
-//      height: calc(#{map-get($map, size)} / 2);
-//    }
-//  }
-//  [avatar] {
-//    transform: translate(-25%, -25%);
-//  }
-//  &[extra]:after {
-//    content: attr(extra);
-//    position: absolute;
-//    top: 0;
-//    left: 0;
-//    bottom: 0;
-//    right: 0;
-//    background-color: rgba(#000, .5);
-//  }
-//}

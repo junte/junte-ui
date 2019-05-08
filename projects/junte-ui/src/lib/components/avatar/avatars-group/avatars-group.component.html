@@ -1,6 +1,6 @@
 <div group>
   <div item *ngFor="let item of items; let index = index"
-       [attr.extra]="count > extra && index + 1 === extra ? '+' + (count - extra) : undefined">
+       [attr.extra]="items.length > extra && index + 1 === extra ? '+' + (items.length - extra) : undefined">
     <jnt-avatar avatar
                 [image]="item.image"
                 [size]="size"

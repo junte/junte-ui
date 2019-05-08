@@ -15,4 +15,9 @@ export class AvatarsGroupComponent extends Avatar {
 
   extra = 4;
 
+  @HostBinding('attr.children')
+  get count() {
+    return this.items.length > this.extra ? this.extra : this.items.length;
+  }
+
 }
