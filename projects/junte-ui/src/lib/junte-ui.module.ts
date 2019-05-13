@@ -64,6 +64,7 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 import { AttributeDirective } from './directives/attribute';
 import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
 import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars-group.component';
+import { RadioGroupComponent } from './components/radio/radio-group/radio-group.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars
     InputComponent,
     CheckboxComponent,
     RadioComponent,
+    RadioGroupComponent,
     CardComponent,
     ContainerComponent,
     RowComponent,
@@ -142,6 +144,7 @@ import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars
     InputComponent,
     CheckboxComponent,
     RadioComponent,
+    RadioGroupComponent,
     CardComponent,
     ContainerComponent,
     RowComponent,

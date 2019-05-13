@@ -20,6 +20,7 @@ export * from './lib/components/calendar/calendar.component';
 export * from './lib/components/calendar/week/week.component';
 export * from './lib/components/calendar/week/day/day.component';
 export * from './lib/components/radio/radio.component';
+export * from './lib/components/radio/radio-group/radio-group.component';
 export * from './lib/components/card/card.component';
 export * from './lib/components/grid/container/container.component';
 export * from './lib/components/grid/row/row.component';
