@@ -8,4 +8,6 @@ import { UI } from 'projects/junte-ui/src/lib/enum/ui';
 })
 export class RadioTestComponent {
   ui = UI;
+
+  selected = 2;
 }

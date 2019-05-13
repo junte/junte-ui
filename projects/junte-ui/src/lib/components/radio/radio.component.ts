@@ -1,11 +1,11 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {UI} from '../../enum/ui';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-radio',
   templateUrl: './encapsulated.html'
 })
-export class RadioComponent implements OnInit {
+export class RadioComponent {
 
   ui = UI;
 
@@ -19,9 +19,13 @@ export class RadioComponent implements OnInit {
   @Input()
   checked = false;
 
-  constructor() { }
+  @Input() value: any;
 
-  ngOnInit() {
+  constructor(private element: ElementRef) {
+  }
+
+  getElement() {
+    return this.element.nativeElement;
   }
 
 }
