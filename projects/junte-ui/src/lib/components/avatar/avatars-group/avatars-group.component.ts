@@ -1,7 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Menu } from '../../menu/menu-abstract';
+import { Component, HostBinding, Input } from '@angular/core';
 import { Avatar } from '../avatar-abstract';
-import { Sizes, UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-avatars-group',

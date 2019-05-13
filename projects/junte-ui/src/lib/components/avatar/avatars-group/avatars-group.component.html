@@ -1,5 +1,5 @@
 <div group>
-  <div item *ngFor="let item of items; let index = index"
+  <div item *ngFor="let item of items.slice(0, extra); let index = index"
        [attr.extra]="items.length > extra && index + 1 === extra ? '+' + (items.length - extra) : undefined">
     <jnt-avatar avatar
                 [image]="item.image"
