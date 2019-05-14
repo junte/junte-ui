@@ -65,6 +65,7 @@ import { AttributeDirective } from './directives/attribute';
 import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
 import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars-group.component';
 import { RadioGroupComponent } from './components/radio/radio-group/radio-group.component';
+import { CheckboxGroupComponent } from './components/checkbox/checkbox-group/checkbox-group.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { RadioGroupComponent } from './components/radio/radio-group/radio-group.
     ButtonComponent,
     InputComponent,
     CheckboxComponent,
+    CheckboxGroupComponent,
     RadioComponent,
     RadioGroupComponent,
     CardComponent,
@@ -143,6 +145,7 @@ import { RadioGroupComponent } from './components/radio/radio-group/radio-group.
     ButtonComponent,
     InputComponent,
     CheckboxComponent,
+    CheckboxGroupComponent,
     RadioComponent,
     RadioGroupComponent,
     CardComponent,
