@@ -1,11 +1,11 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Icons, UI} from '../../enum/ui';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
   templateUrl: './encapsulated.html'
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-checkbox-host';
 
@@ -19,10 +19,13 @@ export class CheckboxComponent implements OnInit {
   @Input()
   checked = false;
 
-  constructor() {
+  @Input() value: any;
+
+  constructor(private element: ElementRef) {
   }
 
-  ngOnInit() {
+  getElement() {
+    return this.element.nativeElement;
   }
 
 }
