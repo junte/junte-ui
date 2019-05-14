@@ -34,7 +34,8 @@ export enum Schemes {
   primary = 'primary',
   secondary = 'secondary',
   success = 'success',
-  fail = 'fail'
+  fail = 'fail',
+  transparent = 'transparent'
 }
 
 
