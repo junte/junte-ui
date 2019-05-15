@@ -1,12 +1,12 @@
 <div group>
-  <div item *ngFor="let item of items.slice(0, extra); let index = index"
-       [attr.extra]="items.length > extra && index + 1 === extra ? '+' + (items.length - extra) : undefined">
+  <div *ngIf="i <= extra - 1" *ngFor="let avatar of avatars; let i = index;" item
+       [attr.extra]="avatars.length > extra && i + 1 === extra ? '+' + (avatars.length - extra) : undefined">
     <jnt-avatar avatar
-                [image]="item.image"
+                [image]="avatar.image"
                 [size]="size"
-                [icon]="item.icon"
-                [shape]="ui.shape.square"
-                [text]="item.text">
+                [icon]="avatar.icon"
+                [shape]="shape"
+                [text]="avatar.text">
     </jnt-avatar>
   </div>
 </div>

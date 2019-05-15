@@ -1,4 +1,6 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/components/avatar/common.encapsulated";
+
 
 :host {
   display: block;
@@ -6,7 +8,7 @@
   overflow: hidden;
   border-radius: 50%;
 
-  @each $size, $map in $sizesAvatar {
+  @each $size, $map in $sizes {
     &[size='#{$size}'] {
       height: #{map-get($map, size)};
       width: #{map-get($map, size)};
@@ -66,19 +68,27 @@
 
     }
   }
+
+  &[children='2'],
+  &[children='3'],
+  &[children='4'] {
+
+    [group] {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -4px;
+      margin-bottom: -1px;
+    }
+
+    [item] {
+      overflow: hidden;
+      margin-left: 2px;
+      margin-bottom: 2px;
+      position: relative;
+    }
+  }
 }
 
-[group] {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -4px;
-  margin-bottom: -1px;
-}
 
-[item] {
-  overflow: hidden;
-  margin-left: 2px;
-  margin-bottom: 2px;
-  position: relative;
-}
+
 
