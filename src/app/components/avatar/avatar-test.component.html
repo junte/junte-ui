@@ -3,77 +3,39 @@
   <h1>Avatar</h1>
 
   <h3>Requirements</h3>
-
   <ol>
-    <li>The avatar must have different sizes: tiny, small, normal, large</li>
-    <li>The avatar must have different shapes: circle, square</li>
-    <li>Avatar can contain icon or text or image</li>
-    <li>If image passed it must replace text</li>
-    <li>If image is null must use first char of text</li>
+    <li>The avatar must have different sizes: <b>tiny, small, normal, large</b>.</li>
+    <li>The avatar must have different shapes: <b>circle, square</b>.</li>
+    <li>Avatar can contains <b>icon, text or image</b>.</li>
+    <li>If image passed it must replace icon or text.</li>
+    <li>If image or icon are not passed avatar must use first char of text.</li>
   </ol>
 
   <hr>
 
-  <h3>Size</h3>
-
+  <h1>Avatar</h1>
   <jnt-stack [gutter]="ui.stack.gutter.large">
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-avatar [size]="size">{{size}}</jnt-avatar>
-      </ng-container>
-    </jnt-stack>
-
-    <ngx-prism language="html">
-      <pre>&lt;jnt-avatar [size]="small"&gt;&lt;/jnt-avatar&gt;</pre>
-    </ngx-prism>
-
-    <h3>Shape</h3>
-
     <jnt-stack [type]="ui.stack.type.horizontal">
       <ng-container *ngFor="let shape of [ui.shape.circle, ui.shape.square]">
-        <jnt-avatar [shape]="shape">{{shape}}</jnt-avatar>
-      </ng-container>
-    </jnt-stack>
-
-    <ngx-prism language="html">
-      <pre>&lt;jnt-avatar [shape]="ui.shape.circle"&gt;&lt;/jnt-avatar&gt;</pre>
-    </ngx-prism>
-
-    <h3>Content</h3>
-
-    <jnt-stack>
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-stack [type]="ui.stack.type.horizontal">
-          <jnt-avatar text="Julia" [size]="size"></jnt-avatar>
-          <jnt-avatar [icon]="ui.icons.user" [size]="size"></jnt-avatar>
-          <jnt-avatar [size]="size"
-                      image="../../../../assets/image/bob.jpeg"></jnt-avatar>
+        <jnt-stack>
+          <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+            <jnt-stack [type]="ui.stack.type.horizontal">
+              <jnt-avatar [icon]="ui.icons.user" [size]="size" [shape]="shape"></jnt-avatar>
+              <jnt-avatar text="Bob" [size]="size" [shape]="shape"></jnt-avatar>
+              <jnt-avatar [size]="size" [shape]="shape" image="../../../../assets/image/bob.jpeg"></jnt-avatar>
+            </jnt-stack>
+          </ng-container>
         </jnt-stack>
       </ng-container>
     </jnt-stack>
 
-
-    <ngx-prism language="html">
-      <pre>&lt;jnt-avatar [icon]="ui.icons.close"&gt;&lt;/jnt-avatar&gt;</pre>
-    </ngx-prism>
-    <ngx-prism language="html">
-      <pre>&lt;jnt-avatar text="Julia"&gt;&lt;/jnt-avatar&gt;</pre>
-    </ngx-prism>
-    <ngx-prism language="html">
-      <pre>&lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;</pre>
-    </ngx-prism>
-
     <h1>Avatars list</h1>
     <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
       <jnt-avatars-list [size]="size">
-        <jnt-avatar
-          image="../../../../assets/image/alex.jpeg"></jnt-avatar>
-        <jnt-avatar text="Anton Breslavsky"></jnt-avatar>
-        <jnt-avatar
-          image="../../../../assets/image/victoria.jpeg"></jnt-avatar>
-        <jnt-avatar
-          image="../../../../assets/image/sofia.jpeg"></jnt-avatar>
+        <jnt-avatar image="../../../../assets/image/alex.jpeg"></jnt-avatar>
+        <jnt-avatar text="Bob Marley"></jnt-avatar>
+        <jnt-avatar image="../../../../assets/image/victoria.jpeg"></jnt-avatar>
+        <jnt-avatar image="../../../../assets/image/sofia.jpeg"></jnt-avatar>
         <jnt-avatar></jnt-avatar>
         <jnt-avatar></jnt-avatar>
       </jnt-avatars-list>
