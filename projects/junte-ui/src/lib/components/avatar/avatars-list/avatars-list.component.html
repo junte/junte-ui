@@ -1,10 +1,9 @@
-<ng-container item *ngFor="let item of items; let i = index;">
-  <jnt-avatar [jntAttr]="'avatar'+ i"
-              [image]="item.image"
-              [size]="size"
-              [icon]="item.icon"
-              [shape]="item.shape"
-              [text]="item.text">
+<ng-container *ngFor="let avatar of avatars; let i = index;">
+  <jnt-avatar *ngIf="i <= 5" [attr.avatar-index]="i"
+              [image]="avatar.image"
+              [icon]="avatar.icon"
+              [text]="avatar.text"
+              [shape]="shape"
+              [size]="size">
   </jnt-avatar>
 </ng-container>
-

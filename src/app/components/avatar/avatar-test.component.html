@@ -48,7 +48,7 @@
           <jnt-avatar text="Julia" [size]="size"></jnt-avatar>
           <jnt-avatar [icon]="ui.icons.user" [size]="size"></jnt-avatar>
           <jnt-avatar [size]="size"
-                      image="https://assets.gitlab-static.net/uploads/-/system/user/avatar/2763000/avatar.png"></jnt-avatar>
+                      image="../../../../assets/image/bob.jpeg"></jnt-avatar>
         </jnt-stack>
       </ng-container>
     </jnt-stack>
@@ -62,6 +62,32 @@
     </ngx-prism>
     <ngx-prism language="html">
       <pre>&lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;</pre>
+    </ngx-prism>
+
+    <h1>Avatars list</h1>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-avatars-list [size]="size">
+        <jnt-avatar
+          image="../../../../assets/image/alex.jpeg"></jnt-avatar>
+        <jnt-avatar text="Anton Breslavsky"></jnt-avatar>
+        <jnt-avatar
+          image="../../../../assets/image/victoria.jpeg"></jnt-avatar>
+        <jnt-avatar
+          image="../../../../assets/image/sofia.jpeg"></jnt-avatar>
+        <jnt-avatar></jnt-avatar>
+        <jnt-avatar></jnt-avatar>
+      </jnt-avatars-list>
+    </ng-container>
+
+    <ngx-prism language="html">
+      <pre>
+&lt;jnt-avatars-list [size]="size"&gt;
+    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
+    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
+    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
+    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
+    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
+&lt;/jnt-avatars-list></pre>
     </ngx-prism>
 
     <h1>Avatars group</h1>

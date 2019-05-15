@@ -1,4 +1,5 @@
 @import "../../assets/styles/variables";
+@import "../../assets/styles/components/avatar/common.encapsulated";
 
 $avatar-text-color: $primary-color;
 $avatar-icon-color: $blue-500;
@@ -17,14 +18,14 @@ $shapes: (
   ),
 );
 
-@mixin size($sizeAvatar) {
-  width: #{map-get($sizeAvatar, size)};
-  height: #{map-get($sizeAvatar, size)};
+@mixin size($size) {
+  width: #{map-get($size, size)};
+  height: #{map-get($size, size)};
   [icon] {
-    font-size: #{map-get($sizeAvatar, sizeIcon)};
+    font-size: #{map-get($size, sizeIcon)};
   }
   [text] {
-    font-size: #{map-get($sizeAvatar, sizeText)};
+    font-size: #{map-get($size, sizeText)};
   }
 }
 
@@ -40,7 +41,7 @@ $shapes: (
   line-height: 0;
   background-color: $avatar-bg;
   overflow: hidden;
-  @each $size, $map in $sizesAvatar {
+  @each $size, $map in $sizes {
     &[size='#{$size}'] {
       @include size($map);
     }

@@ -8,4 +8,6 @@ import { UI } from 'projects/junte-ui/src/lib/enum/ui';
 })
 export class CheckboxTestComponent {
   ui = UI;
+
+  selected = [2, 3];
 }

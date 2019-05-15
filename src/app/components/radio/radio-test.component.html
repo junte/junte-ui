@@ -11,15 +11,38 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
+    <h3>Radio</h3>
     <jnt-radio>Radio</jnt-radio>
     <jnt-radio [checked]="true">Radio checked</jnt-radio>
     <jnt-radio [disabled]="true">Radio disabled</jnt-radio>
     <jnt-radio [checked]="true" [disabled]="true">Radio disabled & checked</jnt-radio>
   </jnt-stack>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
     <pre>&lt;jnt-radio [checked]="true" [disabled]="false"&gt;Radio&lt;/jnt-radio&gt;</pre>
-    </ngx-prism>
+  </ngx-prism>
+
+  <jnt-stack [type]="ui.stack.type.vertical">
+    <h3>Radio Group</h3>
+    Selected: {{selected}}
+    <jnt-radio-group [(ngModel)]="selected">
+      <jnt-stack [gutter]="ui.stack.gutter.small">
+        <jnt-radio [value]="1">Radio 1</jnt-radio>
+        <jnt-radio [value]="2">Radio 2</jnt-radio>
+        <jnt-radio [value]="3">Radio 3</jnt-radio>
+      </jnt-stack>
+    </jnt-radio-group>
+  </jnt-stack>
+
+  <ngx-prism language="html">
+    <pre>
+&lt;jnt-radio-group [(ngModel)]="selected">
+  &lt;jnt-radio [value]="1"&gt;Radio 1&lt;/jnt-radio&gt;
+  &lt;jnt-radio [value]="2"&gt;Radio 2&lt;/jnt-radio&gt;
+  &lt;jnt-radio [value]="3"&gt;Radio 3&lt;/jnt-radio&gt;
+&lt;/jnt-radio-group>
+    </pre>
+  </ngx-prism>
 
   <h3>API</h3>
   <h4>jnt-radio</h4>
