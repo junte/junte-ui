@@ -1,1 +1,5 @@
-<ng-content></ng-content>
+<jnt-stack [type]="ui.stack.type.horizontal">
+  <div item *ngFor="let item of items">
+    <jnt-avatar [image]="item.image" [size]="item.size" [icon]="item.icon" [shape]="item.shape" [text]="item.text"></jnt-avatar>
+  </div>
+</jnt-stack>
