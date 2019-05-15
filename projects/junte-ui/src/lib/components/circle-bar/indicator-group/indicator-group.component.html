@@ -1,0 +1,7 @@
+<jnt-bar-indicator *ngFor="let indicator of indicators;let i = index"
+                   [value]="indicator.value"
+                   [title]="indicator.title"
+                   [color]="indicator.color"
+                   [width]="22.5 + '%'"
+                   [style.transform]="'rotate(' + (3.6 * (i | sum:indicators)) + 'deg)'">
+</jnt-bar-indicator>

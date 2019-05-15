@@ -1,0 +1,58 @@
+@import "../../assets/styles/variables";
+
+$point-size: 14px;
+$point-corner: $point-size/2;
+
+$circle-size: 200px;
+$border-size: 2px;
+$circle-corner: $circle-size/2;
+
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.popover {
+  //display: none;
+}
+
+.point {
+  height: $point-size;
+  width: $point-size;
+  border-radius: $point-corner;
+}
+
+.circle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  border-radius: 100%;
+}
+
+.clip {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.item {
+  border-radius: 100%;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
