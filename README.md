@@ -1,7 +1,9 @@
 ## For development:
 ```
-npm run build:lib:watch
-npm run dev
+Each command to run in a new terminal window.
+1. npm run encapsulation:watch
+2. npm run build:lib:watch
+3. ng serve
 ```
 
 ## For publication:
