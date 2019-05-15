@@ -63,6 +63,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { AttributeDirective } from './directives/attribute';
 import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
+import { VisibleElementPipe } from './pipes/visible-element.pipe';
 import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars-group.component';
 import { AvatarsListComponent } from './components/avatar/avatars-list/avatars-list.component';
 import { RadioGroupComponent } from './components/radio/radio-group/radio-group.component';
@@ -126,6 +127,7 @@ import { CheckboxGroupComponent } from './components/checkbox/checkbox-group/che
     SubMonthsPipe,
     GetDatePipe,
     IsEqualPipe,
+    VisibleElementPipe,
     AppBodyComponent,
     DayComponent,
     LabelComponent,
