@@ -1,26 +1,36 @@
-import { AfterContentInit, Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
-import { AvatarComponent } from '../avatar.component';
-import { UI } from '../../../enum/ui';
+import {Component, ContentChildren, HostBinding, Input, QueryList} from '@angular/core';
+import {AvatarComponent} from '../avatar.component';
+import {Shapes, Sizes, UI} from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-avatars-group',
-  templateUrl: './avatars-group.component.html',
-  styleUrls: ['./avatars-group.component.scss']
+  templateUrl: './encapsulated.html'
 })
-export class AvatarsGroupComponent implements AfterContentInit {
+export class AvatarsGroupComponent {
 
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-avatars-group-host';
+
+  @HostBinding('attr.name')
+  @Input() name: string;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.tiny;
+
+  max = 4;
 
   items: AvatarComponent[] = [];
 
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  ngAfterContentInit() {
-    this.items = this.avatars.toArray();
-    this.avatars.changes.subscribe(items => this.items = items.toArray());
+  @HostBinding('attr.capacity')
+  get capacity() {
+    return Math.min(this.avatars.length, this.max);
   }
 
+  @HostBinding('attr.shape')
+  @Input() shape: Shapes = Shapes.square;
 }
