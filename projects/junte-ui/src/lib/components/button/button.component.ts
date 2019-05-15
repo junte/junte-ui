@@ -1,11 +1,54 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
-import { state, style, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'jnt-button',
-  templateUrl: './encapsulated.html'
+  templateUrl: './encapsulated.html',
+  animations: [
+    trigger('spinner', [
+        state(
+          'void',
+          style({
+            opacity: 0,
+            width: '200px',
+            height: '200px'
+          })
+        ),
+        state(
+          '*',
+          style({
+            opacity: 1,
+            width: '*',
+            height: '*'
+          })
+        ),
+        transition(
+          'void => *',
+          [
+            animate('.5s ease-in-out')
+          ]
+        ),
+      ]
+    ),
+
+    trigger('text', [
+      state('show', style({
+        visibility: 'visible',
+        opacity: 1
+      })),
+      state('hide', style({
+        visibility: 'collapse',
+        opacity: 0
+      })),
+      transition('show <=> hide', [
+        animate('.5s ease-in-out')
+      ]),
+    ])
+  ]
 })
+
+
 export class ButtonComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-button-host';
@@ -41,6 +84,10 @@ export class ButtonComponent {
   fluid = false;
 
   @HostBinding('attr.disabled')
+  get disable() {
+    return this.disabled || this.loading;
+  }
+
   @Input()
   disabled = false;
 
@@ -52,5 +99,4 @@ export class ButtonComponent {
 
   @Input()
   badge: number;
-
 }
