@@ -2,7 +2,7 @@ import {Component, ContentChildren, HostBinding, Input, QueryList} from '@angula
 import {Sizes, UI} from '../../../enum/ui';
 import {AvatarComponent} from '../avatar.component';
 
-const MAX_AVATARS = 5;
+const MAX_CAPACITY = 5;
 
 @Component({
   selector: 'jnt-avatars-list',
@@ -13,13 +13,14 @@ export class AvatarsListComponent {
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
   ui = UI;
+  max = MAX_CAPACITY;
 
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.children')
-  get children() {
-    return Math.min(this.avatars.length, MAX_AVATARS);
+  @HostBinding('attr.capacity')
+  get capacity() {
+    return Math.min(this.avatars.length, MAX_CAPACITY);
   }
 
   @Input() @HostBinding('attr.size')
