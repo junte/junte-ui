@@ -12,7 +12,8 @@ export enum Icons {
   sort = 'sort',
   arrowLast = 'arrow-last',
   arrowFirst = 'arrow-first',
-  sortDown = 'sort-down'
+  sortDown = 'sort-down',
+  user = 'user'
 }
 
 export enum Colors {
