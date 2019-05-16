@@ -80,17 +80,17 @@ tbody {
   tr {
     &[current-week='true'] {
       [day] {
-        border-top: 1px solid $calendar-current-week-border-color;
-        border-bottom: 1px solid $calendar-current-week-border-color;
+        border-top-color: $calendar-current-week-border-color;
+        border-bottom-color: $calendar-current-week-border-color;
         &:first-child {
           border-top-left-radius: $calendar-current-week-corner;
           border-bottom-left-radius: $calendar-current-week-corner;
-          border-left: 1px solid $calendar-current-week-border-color;
+          border-left-color: $calendar-current-week-border-color;
         }
         &:last-child {
           border-top-right-radius: $calendar-current-week-corner;
           border-bottom-right-radius: $calendar-current-week-corner;
-          border-right: 1px solid $calendar-current-week-border-color;
+          border-right-color: $calendar-current-week-border-color;
         }
       }
     }
@@ -100,6 +100,14 @@ tbody {
       padding: $calendar-day-padding-x $calendar-day-padding-y;
       font-size: $calendar-day-font-size;
       box-sizing: border-box;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      &:first-child {
+        border-left: 1px solid transparent;
+      }
+      &:last-child {
+        border-right: 1px solid transparent;
+      }
       &[day] {
         cursor: pointer;
         &:nth-child(6),
