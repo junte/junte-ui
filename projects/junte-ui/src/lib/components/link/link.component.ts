@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { isArray } from 'util';
+import { Icons } from '../../enum/ui';
 
 const PATTERN = /^HTTP|HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?$|^#/;
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
@@ -20,8 +21,8 @@ export class LinkComponent implements OnInit {
   @Input() source: string | any;
   @Input() target: string;
 
-  @HostBinding('attr.fluid')
-  @Input() fluid = false;
+  @HostBinding('attr.icon')
+  @Input() icon: Icons;
 
   constructor() {
   }

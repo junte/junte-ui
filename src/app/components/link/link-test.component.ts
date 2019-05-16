@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-link-test',
@@ -10,7 +11,10 @@ export class LinkTestComponent implements OnInit {
     <jnt-link source="/components/block">Link</jnt-link>
   `;
 
-  constructor() { }
+  ui = UI;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

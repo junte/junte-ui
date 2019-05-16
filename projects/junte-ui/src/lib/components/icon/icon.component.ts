@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input} from '@angular/core';
-import {Icons, Schemes} from '../../enum/ui';
+import { Component, HostBinding, Input } from '@angular/core';
+import { Icons, Schemes } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-icon',
@@ -11,9 +11,6 @@ export class IconComponent {
 
   @Input()
   icon: Icons = Icons.check;
-
-  @Input()
-  scheme: Schemes;
 
   @HostBinding('class')
   get class() {

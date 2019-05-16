@@ -13,6 +13,7 @@ export enum Icons {
   arrowLast = 'arrow-last',
   arrowFirst = 'arrow-first',
   sortDown = 'sort-down',
+  salary = 'salary',
   user = 'user'
 }
 

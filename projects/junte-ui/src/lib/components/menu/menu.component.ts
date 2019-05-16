@@ -8,5 +8,4 @@ import { Menu } from './menu-abstract';
 export class MenuComponent extends Menu {
 
   @HostBinding('attr.host') readonly host = 'jnt-menu-host';
-
 }
