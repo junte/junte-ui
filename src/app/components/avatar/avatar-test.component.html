@@ -27,7 +27,18 @@
           </ng-container>
         </jnt-stack>
       </ng-container>
+
     </jnt-stack>
+
+    <ngx-prism language="html">
+      <pre><![CDATA[
+<jnt-avatar image="path"
+            [size]="ui.sizes.normal"
+            text="Name"
+            [shape]="ui.shape.circle"
+            [icon]="ui.icons.user">
+</jnt-avatar>]]></pre>
+    </ngx-prism>
 
     <h1>Avatars list</h1>
 
@@ -43,14 +54,15 @@
     </ng-container>
 
     <ngx-prism language="html">
-      <pre>
-&lt;jnt-avatars-list [size]="size"&gt;
-    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
-    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
-    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
-    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
-    &lt;jnt-avatar image="path"&gt;&lt;/jnt-avatar&gt;
-&lt;/jnt-avatars-list></pre>
+      <pre><![CDATA[
+  <jnt-avatars-list [size]="size">
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+  </jnt-avatars-list>
+      ]]></pre>
     </ngx-prism>
   </jnt-stack>
 
@@ -92,6 +104,19 @@
 
       </jnt-stack>
     </ng-container>
+
+    <ngx-prism language="html">
+      <pre><![CDATA[
+  <jnt-avatars-group [size]="size">
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+    <jnt-avatar image="path"></jnt-avatar>
+  </jnt-avatars-group>
+      ]]></pre>
+    </ngx-prism>
+
   </jnt-stack>
 
   <h3>API</h3>
