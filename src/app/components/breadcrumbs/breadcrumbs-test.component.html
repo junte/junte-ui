@@ -1,0 +1,33 @@
+<jnt-container>
+  <h1>Breadcrumbs</h1>
+  <jnt-breadcrumb></jnt-breadcrumb>
+  <router-outlet></router-outlet>
+  <jnt-link [source]="['page']">Page First</jnt-link>
+
+  <h3>Usage</h3>
+  <ngx-prism language="html">
+    <pre><![CDATA[
+<jnt-breadcrumb></jnt-breadcrumb>
+]]></pre>
+  </ngx-prism>
+  <p>To each <jnt-label label="route" [color]="ui.colors.orange"></jnt-label> in the property data, you need to add the object <jnt-label label="breadcrumb" [color]="ui.colors.orange"></jnt-label>, in which you need to specify the
+    label:</p>
+  <ngx-prism language="js">
+    <pre><![CDATA[
+export const routes: Routes = [
+  {
+    path: 'test-component',
+    component: TestComponent,
+    data: { breadcrumb: { label: 'Test component' } }
+    loadChildren: [
+      {
+        path: 'child-component',
+        component: ChildComponent,
+        data: { breadcrumb: { label: 'Child Component' } }
+      }
+    ]
+  }
+];]]></pre>
+  </ngx-prism>
+
+</jnt-container>

@@ -32,6 +32,7 @@ import { MenuTestComponent } from './menu/menu-test.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
 import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
 import { JunteUiModule } from 'junte-ui';
+import { BreadcrumbsModule } from 'components/breadcrumbs/breadcrumbs.module';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { JunteUiModule } from 'junte-ui';
     ReactiveFormsModule,
     RouterModule.forChild(TESTS_ROUTES),
     PrismModule,
+    BreadcrumbsModule,
     JunteUiModule
   ],
   declarations: [
