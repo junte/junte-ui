@@ -38,8 +38,7 @@ export enum Schemes {
   primary = 'primary',
   secondary = 'secondary',
   success = 'success',
-  fail = 'fail',
-  transparent = 'transparent'
+  fail = 'fail'
 }
 
 
@@ -58,7 +57,8 @@ export enum Paddings {
 
 export enum Outline {
   ghost = 'ghost',
-  fill = 'fill'
+  fill = 'fill',
+  transparent = 'transparent'
 }
 
 export enum TypeButton {
