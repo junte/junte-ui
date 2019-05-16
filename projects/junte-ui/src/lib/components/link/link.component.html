@@ -1,11 +1,13 @@
 <ng-container *ngIf="externalLink; else internalLink">
   <a link [href]="source" [target]="allowTarget ? target : targetDefault">
+    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
     <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
   </a>
 </ng-container>
 
 <ng-template #internalLink>
   <a link [routerLink]="source" routerLinkActive #link="routerLinkActive" [attr.active]="link.isActive">
+    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
     <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
   </a>
 </ng-template>
