@@ -1,0 +1,32 @@
+@import "../../assets/styles/variables";
+
+$breadcrumb-link-color: $gray-800;
+$breadcrumb-link-font-size: 12px;
+
+$breadcrumb-icon-color: $gray-800;
+$breadcrumb-icon-font-size: 6px;
+$breadcrumb-icon-line-height: 2.5;
+
+:host {
+  display: block;
+}
+
+a {
+  color: $breadcrumb-link-color;
+  font-size: $breadcrumb-link-font-size;
+  text-decoration: none;
+
+  &:last-of-type {
+    color: $gray-dark;
+  }
+}
+
+[icon] {
+  color: $breadcrumb-icon-color;
+  font-size: $breadcrumb-icon-font-size;
+  line-height: $breadcrumb-icon-line-height;
+
+  &:last-child {
+    display: none;
+  }
+}

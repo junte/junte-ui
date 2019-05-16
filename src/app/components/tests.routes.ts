@@ -43,6 +43,10 @@ export const TESTS_ROUTES: Routes = [
     component: GridTestComponent
   },
   {
+    path: 'breadcrumbs',
+    loadChildren: 'components/breadcrumbs/breadcrumbs.module#BreadcrumbsModule'
+  },
+  {
     path: 'switch',
     component: SwitchTestComponent
   },
