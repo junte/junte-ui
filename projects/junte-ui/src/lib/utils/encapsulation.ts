@@ -137,7 +137,7 @@ export class Gulpfile {
             const directory = path.parse(file.path).dir;
             const readDirectory = readdirSync(directory);
             const template = readDirectory.filter((elm) => elm.indexOf('.component.html') > -1)[0];
-            const style = readDirectory.filter((elm) => elm.indexOf('.component.scss') > -1);
+            const style = readDirectory.filter((elm) => elm.indexOf('.scss') > -1);
             this.encapsulateHTML(template, directory, component.host);
             this.encapsulateSCSS(style, directory, component.host);
           }
