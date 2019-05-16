@@ -18,12 +18,15 @@ body {
 h1 {
   font-size: $h1-font-size;
 }
+
 h2 {
   font-size: $h2-font-size;
 }
+
 h3 {
   font-size: $h3-font-size;
 }
+
 h4 {
   font-size: $h4-font-size;
 }
@@ -40,14 +43,79 @@ h1, h2, h3, h4, h5 {
 }
 
 $menu-item-color-in-header: white;
-$menu-border-color-in-header: white;
+$menu-item-active-border-color-in-header: white;
+$menu-item-active-color-in-header: white;
+$menu-item-padding-x-in-header: $gutter-2;
+$menu-item-padding-y-in-header: $gutter-2;
+$menu-item-font-size-in-header: .875rem;
 
-jnt-app-header[host=#{$jnt-app-header-host}]
-jnt-menu[host=#{$jnt-menu-host}]
-jnt-link[child-of=#{$jnt-menu-host}]
-a[child-of=#{$jnt-link-host}] {
-  color: $menu-item-color-in-header;
-  span[child-of=#{$jnt-link-host}] {
-    border-color: $menu-border-color-in-header;
+$menu-item-color-in-aside: $gray-800;
+$menu-item-font-size-in-aside: .875rem;
+$menu-item-active-border-color-in-aside: transparent;
+$menu-item-active-color-in-aside: $primary-color;
+$menu-item-active-border-left-width-in-aside: 4px;
+$menu-item-active-border-left-color-in-aside: $primary-color;
+$menu-item-active-background-color-in-aside: $gray-200;
+$menu-item-hover-color-in-aside: $gray-1000;
+$menu-item-padding-x-in-aside: $gutter-2;
+$menu-item-padding-y-in-aside: $gutter-3;
+$menu-item-hover-background-color-in-aside: $gray-1000;
+$menu-item-hover-color-in-aside: $gray-dark;
+
+jnt-app-header[host=#{$jnt-app-header-host}] {
+  jnt-menu[host=#{$jnt-menu-host}] {
+    jnt-link[child-of=#{$jnt-menu-host}] {
+      padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
+      a[child-of=#{$jnt-link-host}] {
+        span[child-of=#{$jnt-link-host}] {
+          color: $menu-item-color-in-header;
+          font-size: $menu-item-font-size-in-header;
+        }
+        &[active='true'] {
+          color: $menu-item-active-color-in-header;
+          border-bottom-color: $menu-item-active-border-color-in-header;
+        }
+      }
+    }
   }
 }
+
+jnt-app-aside[host=#{$jnt-app-aside-host}] {
+  jnt-menu[host=#{$jnt-menu-host}] {
+    jnt-link[child-of=#{$jnt-menu-host}] {
+      width: 100%;
+      a[child-of=#{$jnt-link-host}] {
+        position: relative;
+        width: 100%;
+        padding: $menu-item-padding-x-in-aside $menu-item-padding-y-in-aside;
+        &:hover {
+          background-color: $menu-item-hover-background-color-in-aside;
+          span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
+            color: $menu-item-hover-color-in-aside;
+          }
+        }
+        span[child-of=#{$jnt-link-host}],[icon][child-of=#{$jnt-link-host}] {
+          color: $menu-item-color-in-aside;
+          font-size: $menu-item-font-size-in-aside;
+        }
+        &[active='true'] {
+          border-bottom-color: $menu-item-active-border-color-in-aside;
+          background-color: $menu-item-active-background-color-in-aside;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 100%;
+            min-width: $menu-item-active-border-left-width-in-aside;
+            background-color: $menu-item-active-border-left-color-in-aside;
+          }
+          span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
+            color: $menu-item-active-color-in-aside;
+            font-weight: $font-weight-bold;
+          }
+        }
+      }
+    }
+  }
+}
+

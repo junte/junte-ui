@@ -1,11 +1,11 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { Icons, Shapes, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-avatar',
   templateUrl: './encapsulated.html'
 })
-export class AvatarComponent implements OnInit {
+export class AvatarComponent {
 
   ui = UI;
 
@@ -18,7 +18,7 @@ export class AvatarComponent implements OnInit {
   @Input() shape: Shapes = Shapes.circle;
 
   @HostBinding('attr.icon')
-  @Input() icon: Icons;
+  @Input() icon: Icons = Icons.user;
 
   @HostBinding('attr.text')
   @Input() text: string;
@@ -27,10 +27,6 @@ export class AvatarComponent implements OnInit {
   @Input() image: string;
 
   constructor() {
-  }
-
-  ngOnInit() {
-
   }
 
 }

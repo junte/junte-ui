@@ -119,13 +119,14 @@ $sizes: (
     color: #{map-get($scheme, color-outline)};
     background-color: $white-color;
     border-color: #{map-get($scheme, border-outline)};
-    &:hover, &:focus {
+    &:hover[desabled='false'], &:focus {
       background-color: #{map-get($scheme, background-outline-hover)};
       color: #{map-get($scheme, color-outline-hover)};
+
       [badge]:child-host=#{$jnt-badge-host} > sup {
-      background: #{map-get($scheme, badge-hover-outline-background)};
-      color: #{map-get($scheme, badge-hover-outline-color)};
-    }
+        background: #{map-get($scheme, badge-hover-outline-background)};
+        color: #{map-get($scheme, badge-hover-outline-color)};
+      }
     }
     [badge]:child-host=#{$jnt-badge-host} > sup {
       background: #{map-get($scheme, badge-outline-background)};
@@ -173,12 +174,8 @@ $sizes: (
   }
 
   &[loading='true'] {
-    pointer-events: none;
     button {
       cursor: default;
-      [title], > [icon] {
-        visibility: collapse;
-      }
     }
   }
   &[disabled='true'] {

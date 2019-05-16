@@ -1,0 +1,41 @@
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/components/avatar/common.encapsulated";
+
+$avatar-border-width-in-avatar-list: 2px;
+$avatar-border-color-in-avatar-list: $white-color;
+$max-avatar-index-in-avatar-list: 4;
+
+:host {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      min-height: calc(#{map-get($map, size)} + #{$avatar-border-width-in-avatar-list});
+      @for $i from 1 through 5 {
+        &[capacity='#{$i}'] {
+          min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{$avatar-border-width-in-avatar-list});
+        }
+      }
+    }
+  }
+}
+
+@for $i from 0 through $max-avatar-index-in-avatar-list {
+  [avatar-index='#{$i}'] {
+    position: absolute;
+    border: $avatar-border-width-in-avatar-list solid $avatar-border-color-in-avatar-list;
+    cursor: pointer;
+    z-index: 1;
+    transition: all .5s;
+    &:hover {
+      border-color: $purple-light;
+      z-index: 2;
+    }
+    @each $size, $map in $sizes {
+      &[size='#{$size}'] {
+        left: calc(#{$i} * (#{map-get($map, size)} / 2));
+      }
+    }
+  }
+}

@@ -10,18 +10,15 @@
 
   <hr>
 
-  <div>
-    <jnt-link [source]="['/components', 'block']">Link</jnt-link>
-  </div>
-  <div>
+  <jnt-stack>
+    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search">Link</jnt-link>
+
     <jnt-link source="#api">Link anchor</jnt-link>
-  </div>
-  <div>
+
     <jnt-link source="https://google.com">External Link</jnt-link>
-  </div>
-  <div>
+
     <jnt-link source="https://google.com" target="_blank">External Link with target="_blank"</jnt-link>
-  </div>
+  </jnt-stack>
 
   <ngx-prism language="html">
     <pre>

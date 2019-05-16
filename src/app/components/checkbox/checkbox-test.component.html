@@ -13,15 +13,28 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
+    <h4>Checkbox</h4>
     <jnt-checkbox>Checkbox</jnt-checkbox>
     <jnt-checkbox [checked]="true">Checkbox checked</jnt-checkbox>
     <jnt-checkbox [disabled]="true">Checkbox disabled</jnt-checkbox>
     <jnt-checkbox [checked]="true" [disabled]="true">Checkbox disabled & checked</jnt-checkbox>
   </jnt-stack>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
     <pre>&lt;jnt-checkbox [checked]="true" [disabled]="false"&gt;Checkbox&lt;/jnt-checkbox&gt;</pre>
-    </ngx-prism>
+  </ngx-prism>
+
+  <jnt-stack [type]="ui.stack.type.vertical">
+    <h4>Checkbox Group</h4>
+    <span>Selected: {{selected | json}}</span>
+    <jnt-checkbox-group [(ngModel)]="selected">
+      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.normal">
+        <jnt-checkbox [value]="1">Checkbox 1</jnt-checkbox>
+        <jnt-checkbox [value]="2">Checkbox 2</jnt-checkbox>
+        <jnt-checkbox [value]="3">Checkbox 3</jnt-checkbox>
+      </jnt-stack>
+    </jnt-checkbox-group>
+  </jnt-stack>
 
   <h3>API</h3>
   <h4>jnt-checkbox</h4>

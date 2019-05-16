@@ -1,11 +1,12 @@
-import {Component, Input} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-tab',
-  templateUrl: 'tab.component.html'
+  templateUrl: './encapsulated.html'
 })
 export class TabComponent {
-  @Input() title: string;
 
+  @HostBinding('attr.host') readonly host = 'jnt-tab-host';
+  @Input() title: string;
   @Input() active: boolean;
 }

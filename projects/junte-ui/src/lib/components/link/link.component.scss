@@ -6,31 +6,36 @@ $link-font-weight: $font-weight-light;
 $link-font-size: 1rem;
 $link-hover-color: lighten($link-color, 15%);
 $link-active-color: darken($link-color, 10%);
+$link-icon-spacing: $gutter-3;
 
 :host {
   display: inline-block;
-  &[fluid="true"] {
-    width: 100%;
-    [link] {
-      width: 100%;
-    }
-  }
 }
 
 [link] {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   text-decoration: $link-decoration;
-  color: $link-color;
-  font-weight: $link-font-weight;
-  font-size: $link-font-size;
   box-sizing: border-box;
-  &[active="true"] span {
+  span, [icon] {
+    color: $link-color;
+    font-weight: $link-font-weight;
+    font-size: $link-font-size;
+  }
+  [icon] {
+    margin-right: $link-icon-spacing;
+  }
+  &[active="true"] {
     border-bottom: 1px solid $link-color;
   }
   &:hover {
-    color: $link-hover-color;
+    span, [icon] {
+      color: $link-hover-color;
+    }
   }
   &:active {
-    color: $link-active-color;
+    span, [icon] {
+      color: $link-active-color;
+    }
   }
 }

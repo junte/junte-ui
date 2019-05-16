@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "npm run encapsulation && ng build",
-    "copy:license": "cp README.md dist/junte-ui",
-    "copy:readme": "cp LICENSE dist/junte-ui",
+    "copy:license": "cp ./projects/junte-ui/README.md ./dist/junte-ui",
+    "copy:readme": "cp ./projects/junte-ui/LICENSE ./dist/junte-ui",
     "copy:files": "npm run copy:license && npm run copy:readme",
     "gulp": "gulp",
     "encapsulation": "cd ./projects/junte-ui && gulp iconfont && cd ../../ && gulp build --gulpfile ./projects/junte-ui/src/lib/utils/encapsulation.ts --cwd ./projects/junte-ui/src/lib/utils",
@@ -19,7 +19,9 @@
     "package": "npm run build:prod && npm run copy:files && npm run npm:pack",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean": "npm cache clean --force && rm -rf -- node_modules doc coverage dist dll package-lock.json",
+    "refresh": "npm run clean && npm install"
   },
   "private": true,
   "dependencies": {

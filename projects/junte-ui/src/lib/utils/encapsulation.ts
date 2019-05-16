@@ -53,7 +53,8 @@ export class Gulpfile {
   private encapsulateSCSS(urls: string[], dir: string, host: string) {
     if (!!urls) {
       urls.forEach(style => {
-        const styleContent = fs.readFileSync(`${dir}/${path.parse(style).name}.scss`, 'utf8');
+        let fileName = path.parse(style).name;
+        const styleContent = fs.readFileSync(`${dir}/${fileName}.scss`, 'utf8');
         if (!!styleContent) {
           const $ = createQueryWrapper(scssParce(styleContent));
 
@@ -100,11 +101,11 @@ export class Gulpfile {
           hostQuery.parent().replace(() => ({value: `[host=#{$${host}}]`}));
 
           const sourceScss = stringify($().get(0)).replace(/..\/assets\//g, '../../');
-
-          dir = dir.replace('lib', 'lib/assets/styles');
+          const assetsDir = dir.replace('lib', 'lib/assets/styles');
+          fileName = fileName.replace('.component', '');
 
           // start adding imports  in global style.scss test project
-          const importScss = `@import "../projects/junte-ui/${dir.replace(/\\/g, '/').split('/projects/junte-ui/')[1]}/encapsulated";`;
+          const importScss = `@import "../projects/junte-ui/${assetsDir.replace(/\\/g, '/').split('/projects/junte-ui/')[1]}/${fileName}.encapsulated";`;
           const globalScssPath = '../../../../../src/styles.scss';
           let globalScssSource = fs.readFileSync(globalScssPath, {encoding: 'utf8'});
 
@@ -113,8 +114,7 @@ export class Gulpfile {
             fs.writeFileSync(globalScssPath, globalScssSource);
           }
           // end adding imports
-
-          fse.outputFile(`${dir}/encapsulated.scss`, sourceScss);
+          fse.outputFile(`${assetsDir}/${fileName}.encapsulated.scss`, sourceScss);
         }
       });
     }
@@ -137,7 +137,7 @@ export class Gulpfile {
             const directory = path.parse(file.path).dir;
             const readDirectory = readdirSync(directory);
             const template = readDirectory.filter((elm) => elm.indexOf('.component.html') > -1)[0];
-            const style = readDirectory.filter((elm) => elm.indexOf('.component.scss') > -1);
+            const style = readDirectory.filter((elm) => elm.indexOf('.scss') > -1);
             this.encapsulateHTML(template, directory, component.host);
             this.encapsulateSCSS(style, directory, component.host);
           }
