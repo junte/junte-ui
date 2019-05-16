@@ -19,25 +19,26 @@
   </iframe>
 
     <ngx-prism language="html">
-<pre>
-&lt;jnt-app-layout&gt;
-  &lt;jnt-app-header&gt;
-    &lt;div&gt;Header&lt;/div&gt;
-  &lt;/jnt-app-header&gt;
-  &lt;jnt-app-main&gt;
-    &lt;jnt-app-aside&gt;
-      &lt;div&gt;Aside&lt;/div&gt;
-    &lt;/jnt-app-aside&gt;
-    &lt;jnt-app-content&gt;
-        &lt;jnt-app-body&gt;
-          &lt;div&gt;Content&lt;/div&gt;
-        &lt;/jnt-app-body&gt;
-        &lt;jnt-app-footer&gt;
+<pre><![CDATA[
+<jnt-app-layout>
+  <jnt-app-header>
+    <div>Header</div>
+  </jnt-app-header>
+  <jnt-app-main>
+    <jnt-app-aside>
+      <div>Aside</div>
+    </jnt-app-aside>
+    <jnt-app-content>
+        <jnt-app-body>
+          <div>Content</div>
+        </jnt-app-body>
+        <jnt-app-footer>
           Footer
-        &lt;/jnt-app-footer&gt;
-    &lt;/jnt-app-content&gt;
-  &lt;/jnt-app-main&gt;
-&lt;/jnt-app-layout&gt;</pre>
+        </jnt-app-footer>
+    </jnt-app-content>
+  </jnt-app-main>
+</jnt-app-layout>
+]]></pre>
     </ngx-prism>
 
   <h2>App-header</h2>
@@ -76,36 +77,37 @@
   </jnt-app-layout>
 
     <ngx-prism language="html">
-<pre>
-&lt;jnt-app-layout&gt;
-  &lt;jnt-app-header&gt;
-    &lt;ng-template #logo&gt;
-        &lt;img src="path" alt=""&gt;
-    &lt;/ng-template&gt;
-    &lt;ng-template #topMenu&gt;
-      &lt;jnt-menu&gt;
-        &lt;jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"&gt;&lt;/jnt-menu-item&gt;
-        &lt;jnt-menu-item link="/leader" title="Team Leader"&gt;&lt;/jnt-menu-item&gt;
-        &lt;jnt-menu-item link="/manager" title="Project Manager"&gt;&lt;/jnt-menu-item&gt;
-        &lt;jnt-menu-item link="/customer" title="Customer"&gt;&lt;/jnt-menu-item&gt;
-      &lt;/jnt-menu&gt;
-    &lt;/ng-template&gt;
-    &lt;ng-template #userbar&gt;
-      &lt;jnt-userbar&gt;
-        &lt;ng-template #avatar&gt;
-          &lt;jnt-avatar [size]="ui.sizes.small" image="path">&lt;/jnt-avatar&gt;
-        &lt;/ng-template&gt;
-        &lt;ng-template #userMenu&gt;
-          &lt;jnt-menu [type]="ui.type.vertical" [spacer]="ui.size.small"&gt;
-            &lt;jnt-menu-item link="/logout" title="Logout">&lt;/jnt-menu-item&gt;
-            &lt;jnt-menu-item link="/profile" title="Profile">&lt;/jnt-menu-item&gt;
-            &lt;jnt-menu-item link="/settings" title="Settings">&lt;/jnt-menu-item&gt;
-          &lt;/jnt-menu&gt;
-        &lt;/ng-template&gt;
-      &lt;/jnt-userbar&gt;
-    &lt;/ng-template&gt;
-  &lt;/jnt-app-header&gt;
-&lt;/jnt-app-layout&gt;</pre>
+<pre><![CDATA[
+<jnt-app-layout>
+  <jnt-app-header>
+    <ng-template #logo>
+        <img src="path" alt="">
+    </ng-template>
+    <ng-template #topMenu>
+      <jnt-menu>
+        <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
+        <jnt-menu-item link="/leader" title="Team Leader"></jnt-menu-item>
+        <jnt-menu-item link="/manager" title="Project Manager"></jnt-menu-item>
+        <jnt-menu-item link="/customer" title="Customer"></jnt-menu-item>
+      </jnt-menu>
+    </ng-template>
+    <ng-template #userbar>
+      <jnt-userbar>
+        <ng-template #avatar>
+          <jnt-avatar [size]="ui.sizes.small" image="path"></jnt-avatar>
+        </ng-template>
+        <ng-template #userMenu>
+          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.size.small">
+            <jnt-menu-item link="/logout" title="Logout"></jnt-menu-item>
+            <jnt-menu-item link="/profile" title="Profile"></jnt-menu-item>
+            <jnt-menu-item link="/settings" title="Settings"></jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+      </jnt-userbar>
+    </ng-template>
+  </jnt-app-header>
+</jnt-app-layout>
+]]></pre>
     </ngx-prism>
 
   <h3>API</h3>
