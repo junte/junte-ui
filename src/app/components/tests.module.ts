@@ -20,7 +20,6 @@ import { FormTestComponent } from './form/form-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import { PrismModule } from '@ngx-prism/core';
-import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { TableTestComponent } from './table/table-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
@@ -31,6 +30,8 @@ import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
+import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
+import { JunteUiModule } from 'junte-ui';
 
 @NgModule({
   imports: [
@@ -38,8 +39,8 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(TESTS_ROUTES),
-    JunteUiModule,
-    PrismModule
+    PrismModule,
+    JunteUiModule
   ],
   declarations: [
     TestsComponent,
@@ -69,7 +70,8 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     SkeletonTestComponent,
     TabsTestComponent,
     MenuTestComponent,
-    TypographyTestComponent
+    TypographyTestComponent,
+    CircleBarTestComponent
   ]
 })
 export class TestsModule {

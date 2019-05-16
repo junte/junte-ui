@@ -1,93 +1,119 @@
 @import "../../../assets/styles/variables";
 @import "../../../assets/styles/components/avatar/common.encapsulated";
 
-
 :host {
-  display: block;
+  display: inline-flex;
+  flex-wrap: wrap-reverse;
   background-color: white;
   overflow: hidden;
   border-radius: 50%;
+  position: relative;
 
-  @each $size, $map in $sizes {
-    &[size='#{$size}'] {
-      height: #{map-get($map, size)};
-      width: #{map-get($map, size)};
-
-      &[children='4'] {
-        [item] {
-          width: calc(#{map-get($map, size)} / 2);
-          height: calc(#{map-get($map, size)} / 2);
-          [avatar] {
-            transform: translate(-25%, -25%);
-          }
-        }
-        [extra]:after {
-          content: attr(extra);
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          background-color: rgba(#000, .5);
-          color: white;
-          font-weight: $font-weight-bold;
-          font-size: #{map-get($map, sizeTextExtra)};
-          line-height: #{map-get($map, lineHeightTextExtra)};
-          text-align: center;
-        }
-      }
-
-      &[children='2'] {
-        [item] {
-          width: calc(#{map-get($map, size)} / 2);
-          [avatar] {
-            transform: translate(-25%, 0);
-          }
-        }
-      }
-
-      &[children='3'] {
-        [item] {
-          width: calc(#{map-get($map, size)} / 2);
-          height: calc(#{map-get($map, size)} / 2);
-          [avatar] {
-            transform: translate(-25%, -25%);
-          }
-          &:first-child {
-            height: 100%;
-            [avatar] {
-              transform: translate(-25%, 0);
-            }
-          }
-          &:last-child {
-            margin-top: calc(#{map-get($map, size)} / 2 * (-1));
-            margin-left: calc(#{map-get($map, size)} / 2 + 4px);
-          }
-        }
-      }
-
-    }
+  [avatar] {
+    overflow: hidden;
+    border: 1px solid $white-color;
+    box-sizing: border-box;
   }
+}
 
-  &[children='2'],
-  &[children='3'],
-  &[children='4'] {
+@each $size, $map in $sizes {
+  &[size='#{$size}'] {
+    height: #{map-get($map, size)};
+    width: #{map-get($map, size)};
 
-    [group] {
+    [overflow] {
       display: flex;
-      flex-wrap: wrap;
-      margin-left: -4px;
-      margin-bottom: -1px;
+      align-items: center;
+      justify-content: center;
+      width: calc(#{map-get($map, size)} / 2);
+      height: calc(#{map-get($map, size)} / 2);
+      box-sizing: border-box;
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      right: 0;
+      color: $white-color;
+      background-color: rgba(black, .5);
+      font-weight: 300;
+      font-size: #{map-get($map, overflowTextSize)};
+      border-top: 1px solid $white-color;
+      border-left: 1px solid $white-color;
     }
 
-    [item] {
-      overflow: hidden;
-      margin-left: 2px;
-      margin-bottom: 2px;
-      position: relative;
+    &[capacity='4'] {
+      [avatar] {
+        width: calc(#{map-get($map, size)} / 2);
+        height: calc(#{map-get($map, size)} / 2);
+        &:nth-child(3) {
+          border-top: none;
+          border-left: none;
+        }
+        &:nth-child(4) {
+          border-top: none;
+          border-right: none;
+        }
+        &:nth-child(2) {
+          border-bottom: none;
+          border-right: none;
+        }
+        &:nth-child(1) {
+          border-bottom: none;
+          border-left: none;
+        }
+      }
+    }
+
+    &[capacity='3'] {
+      flex-direction: column;
+      flex-wrap: wrap;
+      [avatar] {
+        width: calc(#{map-get($map, size)} / 2);
+        height: calc(#{map-get($map, size)} / 2);
+        &:nth-child(1) {
+          border-top: none;
+          border-left: none;
+        }
+        &:nth-child(2) {
+          border-bottom: none;
+          border-left: none;
+        }
+        &:nth-child(3) {
+          width: #{map-get($map, size)};
+          height: #{map-get($map, size)};
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+        }
+      }
+    }
+
+    &[capacity='2'] {
+      flex-direction: column;
+      [avatar] {
+        width: #{map-get($map, size)};
+        height: #{map-get($map, size)};
+        transform: translateX(50%);
+        &:nth-child(1) {
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+        }
+        &:nth-child(2) {
+          border-top: none;
+          border-left: none;
+          border-bottom: none;
+        }
+      }
+    }
+
+    &[capacity='1'] {
+      [avatar] {
+        border: none;
+      }
     }
   }
 }
+
 
 
 

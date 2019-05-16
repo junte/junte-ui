@@ -1,14 +1,11 @@
-<div group>
-  <div *ngIf="i <= extra - 1" *ngFor="let avatar of avatars; let i = index;" item
-       [attr.extra]="avatars.length > extra && i + 1 === extra ? '+' + (avatars.length - extra) : undefined">
-    <jnt-avatar avatar
-                [image]="avatar.image"
-                [size]="size"
-                [icon]="avatar.icon"
-                [shape]="shape"
-                [text]="avatar.text">
-    </jnt-avatar>
-  </div>
-</div>
+<ng-container *ngFor="let avatar of avatars; let i = index;">
+  <jnt-avatar *ngIf="i < max " avatar
+              [image]="avatar.image"
+              [size]="size"
+              [icon]="avatar.icon"
+              [shape]="shape"
+              [text]="avatar.text">
+  </jnt-avatar>
+</ng-container>
 
-
+<div *ngIf="avatars.length > max" overflow>+{{avatars.length - max}}</div>

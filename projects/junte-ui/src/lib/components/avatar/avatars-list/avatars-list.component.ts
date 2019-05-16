@@ -1,6 +1,8 @@
-import { Component, ContentChildren, HostBinding, Input, OnInit, QueryList } from '@angular/core';
-import { Shapes, Sizes, UI } from '../../../enum/ui';
-import { AvatarComponent } from '../avatar.component';
+import {Component, ContentChildren, HostBinding, Input, QueryList} from '@angular/core';
+import {Sizes, UI} from '../../../enum/ui';
+import {AvatarComponent} from '../avatar.component';
+
+const MAX_CAPACITY = 5;
 
 @Component({
   selector: 'jnt-avatars-list',
@@ -8,24 +10,18 @@ import { AvatarComponent } from '../avatar.component';
 })
 export class AvatarsListComponent {
 
-  ui = UI;
-
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
-  maxAvatars = 5;
-
-  items: AvatarComponent[] = [];
+  ui = UI;
+  max = MAX_CAPACITY;
 
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.children')
-  get children() {
-    return this.avatars.length > this.maxAvatars ? this.maxAvatars : this.avatars.length;
+  @HostBinding('attr.capacity')
+  get capacity() {
+    return Math.min(this.avatars.length, MAX_CAPACITY);
   }
-
-  @HostBinding('attr.shape')
-  @Input() shape: Shapes = Shapes.circle;
 
   @Input() @HostBinding('attr.size')
   size: Sizes = Sizes.tiny;

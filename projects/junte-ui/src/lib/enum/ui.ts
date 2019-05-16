@@ -17,6 +17,8 @@ export enum Icons {
 }
 
 export enum Colors {
+  white = '#FFFFFF',
+  black = '#000000',
   blue = '#E7F5FF',
   orange = '#EE8030',
   green = '#00CCB1',
