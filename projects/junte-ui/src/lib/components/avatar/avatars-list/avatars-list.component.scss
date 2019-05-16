@@ -14,7 +14,7 @@ $max-avatar-index-in-avatar-list: 4;
       min-height: calc(#{map-get($map, size)} + #{$avatar-border-width-in-avatar-list});
       @for $i from 1 through 5 {
         &[capacity='#{$i}'] {
-          width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{$avatar-border-width-in-avatar-list});
+          min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{$avatar-border-width-in-avatar-list});
         }
       }
     }
