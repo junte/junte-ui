@@ -19,7 +19,8 @@ export class RadioComponent {
   @Input()
   checked = false;
 
-  @Input() value: any;
+  @Input() label: any;
+  @Input() value: string;
 
   constructor(private element: ElementRef) {
   }
