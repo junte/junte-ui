@@ -14,7 +14,10 @@ export enum Icons {
   arrowFirst = 'arrow-first',
   sortDown = 'sort-down',
   salary = 'salary',
-  user = 'user'
+  user = 'user',
+  home = 'home',
+  reload = 'reload',
+  union = 'union'
 }
 
 export enum Colors {
