@@ -19,7 +19,9 @@
     <jnt-stack formArrayName="texts">
       <ng-container [formGroupName]="i"
                     *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail];let i = index">
-        <jnt-input [scheme]="scheme" placeholder="Hero name" formControlName="name"></jnt-input>
+        <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+          <jnt-input [scheme]="scheme" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
+        </ng-container>
       </ng-container>
     </jnt-stack>
     <h2>Password</h2>

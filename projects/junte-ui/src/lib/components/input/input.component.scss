@@ -3,7 +3,6 @@
 $input-bg: white;
 
 $input-padding-y: $gutter-3;
-$input-padding-x: $gutter-2;
 $input-line-height: normal;
 
 //$input-padding-y-sm: ;
@@ -31,25 +30,43 @@ $input-focus-color: $text-color;
 
 $input-font-size: $font-size-base;
 
-$input-height: 38px;
+$input-small-height: 30px;
+$input-normal-height: 38px;
+$input-large-height: 50px;
+
+$input-small-font-size: 11px;
+$input-normal-font-size: 14px;
+$input-large-font-size: 16px;
+
+
+$sizes: (
+  #{$size-small}: (
+    font-size: $input-small-font-size,
+    min-height: $input-small-height
+  ),
+  #{$size-normal}: (
+    font-size: $input-normal-font-size,
+    min-height: $input-normal-height
+  ),
+  #{$size-large}: (
+    font-size: $input-large-font-size,
+    min-height: $input-large-height
+  )
+);
 
 $schemes: (
   #{$scheme-primary}: (
     border-color: $gray-600,
-    border-color-focus: $input-focus-border-color-primary,
-    color-focus: $input-focus-color
+    border-color-focus: $input-focus-border-color-primary
   ),
   #{$scheme-secondary}: (
     border-color: $secondary-color,
-    color-focus: $input-focus-color
   ),
   #{$scheme-success}: (
-    border-color: $success-color,
-    color-focus: $input-focus-color
+    border-color: $success-color
   ),
   #{$scheme-fail}: (
     border-color: $fail-color,
-    color-focus: $input-focus-color
   )
 );
 
@@ -58,8 +75,14 @@ $schemes: (
     border-color: #{map-get($scheme, border-color)};
     &:focus {
       border-color: #{map-get($scheme, border-color-focus)};
-      color: #{map-get($scheme, color-focus)};
     }
+  }
+};
+
+@mixin size($size) {
+  input {
+    font-size: #{map-get($size, font-size)};
+    min-height: #{map-get($size, min-height)};
   }
 }
 
@@ -68,10 +91,15 @@ $schemes: (
   display: inline-flex;
   position: relative;
   width: 100%;
-  min-height: $input-height;
   @each $scheme, $map in $schemes {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
+    }
+  }
+
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      @include size($map);
     }
   }
 }
@@ -83,7 +111,7 @@ input {
   color: $input-color;
   font-size: $input-font-size;
   width: 100%;
-  padding: $input-padding-x $input-padding-y;
+  padding: 0 $input-padding-y;
   border-radius: $input-corner;
   border: $input-border-width solid $input-border-color;
   box-sizing: border-box;
