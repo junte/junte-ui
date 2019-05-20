@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputType, Schemes } from '../../enum/ui';
+import { Icons, InputState, InputType, Sizes } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -17,13 +17,24 @@ export class InputComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.state')
   @Input()
-  scheme: Schemes = Schemes.primary;
+  state: InputState = InputState.normal;
+
+  @Input()
+  disabled = false;
 
   @HostBinding('attr.type')
   @Input()
   type: InputType = InputType.text;
+
+  @HostBinding('attr.icon')
+  @Input()
+  icon: Icons;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   @Input()
   placeholder: string;

@@ -46,6 +46,12 @@ export enum Schemes {
   fail = 'fail'
 }
 
+export enum InputState {
+  normal = 'normal',
+  failed = 'failed',
+  success = 'success'
+}
+
 
 export enum Sizes {
   tiny = 'tiny',
@@ -209,5 +215,6 @@ export class UI {
   };
   static colors = Colors;
   static padding = Paddings;
+  static state = InputState;
 }
 

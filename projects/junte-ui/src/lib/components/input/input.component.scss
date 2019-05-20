@@ -3,63 +3,89 @@
 $input-bg: white;
 
 $input-padding-y: $gutter-normal;
-$input-padding-x: $gutter-small;
 $input-line-height: normal;
 
-//$input-padding-y-sm: ;
-//$input-padding-x-sm: ;
-//$input-line-height-sm: ;
-//
-//$input-padding-y-lg: ;
-//$input-padding-x-lg: ;
-//$input-line-height-lg: ;
+$input-disabled-bg: $gray-100;
 
-$input-disabled-bg: $gray-700;
-
-$input-color: $gray-800;
+$input-color: $text-color;
 $input-border-color: $gray-600;
 $input-border-width: 1px;
 $input-box-shadow: none;
+
+$input-failed-border-color: $fail-color;
+$input-success-border-color: $success-color;
 
 $input-corner: $corner-sm;
 $input-corner-lg: $corner-sm;
 $input-corner-sm: $corner-sm;
 
 $input-focus-bg: $input-bg;
-$input-focus-border-color-primary: $primary-color;
-$input-focus-color: $text-color;
+$input-focus-shadow: 0px 0px 6px rgba(8, 35, 202, 0.4);
+
+$input-hover-border-color: $primary-color;
+$input-focus-border-color: $primary-color;
 
 $input-font-size: $font-size-base;
 
-$input-height: 38px;
+$input-small-height: 30px;
+$input-normal-height: 38px;
+$input-large-height: 50px;
 
-$schemes: (
-  #{$scheme-primary}: (
-    border-color: $gray-600,
-    border-color-focus: $input-focus-border-color-primary,
-    color-focus: $input-focus-color
+$input-small-font-size: 11px;
+$input-normal-font-size: 14px;
+$input-large-font-size: 16px;
+
+$input-icon-spacing: $gutter-small;
+
+
+$sizes: (
+  #{$size-small}: (
+    font-size: $input-small-font-size,
+    min-height: $input-small-height
   ),
-  #{$scheme-secondary}: (
-    border-color: $secondary-color,
-    color-focus: $input-focus-color
+  #{$size-normal}: (
+    font-size: $input-normal-font-size,
+    min-height: $input-normal-height
   ),
-  #{$scheme-success}: (
-    border-color: $success-color,
-    color-focus: $input-focus-color
-  ),
-  #{$scheme-fail}: (
-    border-color: $fail-color,
-    color-focus: $input-focus-color
+  #{$size-large}: (
+    font-size: $input-large-font-size,
+    min-height: $input-large-height
   )
 );
 
-@mixin scheme($scheme) {
+$states: (
+  #{$state-normal}: (
+    border-color: $input-border-color,
+    bg-focus: $input-focus-bg,
+    shadow-focus: $input-focus-shadow,
+    border-color-hover: $input-hover-border-color,
+    border-color-focus: $input-focus-border-color,
+  ),
+  #{$state-success}: (
+    border-color: $input-success-border-color,
+  ),
+  #{$state-failed}: (
+    border-color: $input-failed-border-color,
+  )
+);
+
+@mixin state($state) {
   input {
-    border-color: #{map-get($scheme, border-color)};
+    border-color: #{map-get($state, border-color)};
     &:focus {
-      border-color: #{map-get($scheme, border-color-focus)};
-      color: #{map-get($scheme, color-focus)};
+      box-shadow: #{map-get($state, shadow-focus)};
+      border-color: #{map-get($state, border-color-focus)};
     }
+    &:hover {
+      border-color: #{map-get($state, border-color-hover)};
+    }
+  }
+};
+
+@mixin size($size) {
+  input {
+    font-size: #{map-get($size, font-size)};
+    min-height: #{map-get($size, min-height)};
   }
 }
 
@@ -68,30 +94,48 @@ $schemes: (
   display: inline-flex;
   position: relative;
   width: 100%;
-  min-height: $input-height;
-  @each $scheme, $map in $schemes {
-    &[scheme='#{$scheme}'] {
-      @include scheme($map);
+  @each $state, $map in $states {
+    &[state='#{$state}'] {
+      @include state($map);
+    }
+  }
+
+  @each $size, $map in $sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+      [icon] {
+        font-size: #{map-get($map, font-size)};
+        & + input {
+          padding-left: calc(#{map-get($map, font-size)} + #{$input-padding-y} + #{$input-icon-spacing});
+        }
+      }
     }
   }
 }
 
 input {
   border: 0;
-  outline: none;
+  outline: 0;
   background-color: $input-bg;
   color: $input-color;
-  font-size: $input-font-size;
   width: 100%;
-  padding: $input-padding-x $input-padding-y;
+  padding: 0 $input-padding-y;
   border-radius: $input-corner;
   border: $input-border-width solid $input-border-color;
   box-sizing: border-box;
-  &:focus {
-    outline: none;
-    background-color: $input-focus-bg;
-  }
+  transition: all .3s;
+  box-shadow: none;
   &:disabled {
     background-color: $input-disabled-bg;
+    pointer-events: none;
   }
+}
+
+[icon] {
+  position: absolute;
+  top: 50%;
+  left: $input-padding-y;
+  transform: translateY(-50%);
+  color: $input-color;
+
 }
