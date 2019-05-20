@@ -17,7 +17,9 @@ export enum Icons {
   user = 'user',
   home = 'home',
   reload = 'reload',
-  union = 'union'
+  union = 'union',
+  like = 'like',
+  dislike = 'dislike'
 }
 
 export enum Colors {
