@@ -12,10 +12,9 @@
 
   <jnt-stack [type]="ui.stack.type.vertical">
     <h3>Radio</h3>
-    <jnt-radio>Radio</jnt-radio>
-    <jnt-radio [checked]="true">Radio checked</jnt-radio>
-    <jnt-radio [disabled]="true">Radio disabled</jnt-radio>
-    <jnt-radio [checked]="true" [disabled]="true">Radio disabled & checked</jnt-radio>
+    <jnt-radio [checked]="true" label="Radio checked"></jnt-radio>
+    <jnt-radio [disabled]="true" label="Radio disabled"></jnt-radio>
+    <jnt-radio [checked]="true" [disabled]="true" label="Radio disabled & checked"></jnt-radio>
   </jnt-stack>
 
   <ngx-prism language="html">
@@ -29,11 +28,31 @@
     Selected: {{selected}}
     <jnt-radio-group [(ngModel)]="selected">
       <jnt-stack [gutter]="ui.stack.gutter.small">
-        <jnt-radio [value]="1">Radio 1</jnt-radio>
-        <jnt-radio [value]="2">Radio 2</jnt-radio>
-        <jnt-radio [value]="3">Radio 3</jnt-radio>
+        <jnt-radio [value]="1" label="Radio 1"></jnt-radio>
+        <jnt-radio [value]="2" label="Radio 2"></jnt-radio>
+        <jnt-radio [value]="3" label="Radio 3"></jnt-radio>
       </jnt-stack>
     </jnt-radio-group>
+
+    <h4>Reactive Forms with sample radio value</h4>
+    Selected: {{form.get('select').value}}
+    <jnt-form [formGroup]="form">
+      <jnt-radio-group formControlName="select">
+        <jnt-stack [gutter]="ui.stack.gutter.small">
+          <jnt-radio [value]="4" label="Radio 4"></jnt-radio>
+          <jnt-radio [value]="5" label="Radio 5"></jnt-radio>
+          <jnt-radio [value]="6" label="Radio 6"></jnt-radio>
+        </jnt-stack>
+      </jnt-radio-group>
+
+      <h4>Reactive Forms with object in value</h4>
+      Age: {{form.get('selectDeveloper').value}}
+      <jnt-radio-group formControlName="selectDeveloper" labelField="developer" valueField="age">
+        <jnt-stack [gutter]="ui.stack.gutter.small">
+          <jnt-radio *ngFor="let d of developers" [value]="d"></jnt-radio>
+        </jnt-stack>
+      </jnt-radio-group>
+    </jnt-form>
   </jnt-stack>
 
   <ngx-prism language="html">

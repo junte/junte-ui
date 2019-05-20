@@ -7,9 +7,11 @@ $schemes: (
   #{$scheme-primary}: (
     color: $white-color,
     color-outline: $primary-color,
+    color-transparent: $primary-color,
+    color-transparent-hover: $purple-dark,
     border-outline: $primary-color,
     background: $primary-color,
-    background-hover: darken($primary-color, 7.5%),
+    background-hover: $purple-dark,
     background-outline-hover: $primary-color,
     color-outline-hover: white,
     badge-color: $primary-color,
@@ -22,9 +24,11 @@ $schemes: (
   #{$scheme-secondary}: (
     color: $text-color,
     color-outline: $text-color,
+    color-transparent: $text-color,
+    color-transparent-hover: $gray-dark-200,
     border-outline: $text-color,
     background: $secondary-color,
-    background-hover: darken($secondary-color, 7.5%),
+    background-hover: $blue-500,
     background-outline-hover: $text-color,
     color-outline-hover: $secondary-color,
     badge-color: $secondary-color,
@@ -37,9 +41,11 @@ $schemes: (
   #{$scheme-success}: (
     color: $white-color,
     color-outline: $success-color,
+    color-transparent: $success-color,
+    color-transparent-hover: $green-dark,
     border-outline: $success-color,
     background: $success-color,
-    background-hover: darken($success-color, 7.5%),
+    background-hover: $green-dark,
     background-outline-hover: $success-color,
     color-outline-hover: $white-color,
     badge-color: $success-color,
@@ -52,9 +58,11 @@ $schemes: (
   #{$scheme-fail}: (
     color: $white-color,
     color-outline: $fail-color,
+    color-transparent: $fail-color,
+    color-transparent-hover: $red-dark,
     border-outline: $fail-color,
     background: $fail-color,
-    background-hover: darken($fail-color, 7.5%),
+    background-hover: $red-dark,
     background-outline-hover: $fail-color,
     color-outline-hover: $white-color,
     badge-color: $fail-color,
@@ -63,7 +71,7 @@ $schemes: (
     badge-outline-background: $fail-color,
     badge-hover-outline-background: $white-color,
     badge-hover-outline-color: $fail-color,
-  )
+  ),
 );
 
 $sizes: (
@@ -128,6 +136,18 @@ $sizes: (
   }
 }
 
+@mixin transparent($scheme) {
+
+  button {
+    color: #{map-get($scheme, color-transparent)};
+    background-color: transparent;
+    border-color: transparent;
+    &:hover, &:focus {
+      color: #{map-get($scheme, color-transparent-hover)};
+    }
+  }
+}
+
 @mixin size($size) {
   button {
     padding: #{map-get($size, padding)};
@@ -156,6 +176,9 @@ $sizes: (
           border: 1px solid transparent;
         }
         @include outline($map);
+      }
+      &[outline='#{$outline-transparent}'] {
+        @include transparent($map);
       }
     }
   }
@@ -222,7 +245,7 @@ $sizes: (
     }
 
     [badge] {
-      margin-left: $gutter-2;
+      margin-left: $gutter-small;
     }
 
     [loading] {

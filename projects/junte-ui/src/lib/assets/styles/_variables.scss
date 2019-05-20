@@ -49,14 +49,18 @@ $jnt-bar-indicator-host: 'jnt-bar-indicator-host';
 $jnt-avatars-group-host: 'jnt-avatars-group-host';
 $jnt-avatars-list-host: 'jnt-avatars-list-host';
 $jnt-breadcrumbs-host: 'jnt-breadcrumbs-host';
+$jnt-actions-host: 'jnt-actions-host';
+$jnt-action-host: 'jnt-action-host';
 
 /*Color*/
 $blue: #E7F5FF;
 $blue-500: #E6E9FA;
 $orange: #EE8030;
 $green: #00CCB1;
+$green-dark: #00B89F;
 $teal: #1D2932;
 $red: #FF6262;
+$red-dark: #DE5B5B;
 $yellow: #F8DB42;
 $purple: #3949AB;
 $purple-dark: #00227B;
@@ -97,9 +101,14 @@ $gray-color: 'gray';
 $grayLight-color: 'gray-light';
 $grayDark-color: 'gray-dark';
 
-$gutter-small: 8px;
-$gutter-normal: 16px;
-$gutter-large: 30px;
+$spacer: 4px;
+
+$gutter-tiny: $spacer;
+$gutter-small: $spacer * 2;
+$gutter-normal: ($spacer * 4);
+$gutter-big: ($spacer * 6);
+$gutter-large: ($spacer * 8);
+$gutter-huge: ($spacer * 12);
 
 $text-color: $gray-900;
 
@@ -120,19 +129,11 @@ $size-normal: 'normal';
 $size-large: 'large';
 
 $outline-ghost: 'ghost';
+$outline-transparent: 'transparent';
 
 $corner-sm: 4px;
 $corner-md: 8px;
 $corner-lg: 40px;
-
-$spacer: 4px;
-
-$gutter-1: $spacer;
-$gutter-2: $spacer * 2;
-$gutter-3: ($spacer * 4);
-$gutter-4: ($spacer * 6);
-$gutter-5: ($spacer * 8);
-$gutter-6: ($spacer * 12);
 
 /*Grid*/
 
@@ -171,7 +172,7 @@ $h4-font-size: $font-size-base * 1.28;
 $h5-font-size: $font-size-base * 1.2;
 $h6-font-size: $font-size-base;
 
-$headings-margin-bottom: $gutter-3;
+$headings-margin-bottom: $gutter-normal;
 
 /*Form name*/
 

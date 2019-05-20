@@ -1,0 +1,31 @@
+@import "../../../../assets/styles/variables";
+
+$action-border-radius: 0;
+$action-padding-x: $gutter-normal;
+$action-padding-y: $gutter-big;
+$action-bg: $primary-dark-color;
+
+:host {
+  position: relative;
+  cursor: pointer;
+  min-height: $app-header-height;
+  display: flex;
+  align-items: center;
+  &:hover {
+    [content] {
+      display: block;
+    }
+  }
+}
+
+[content] {
+  background: $action-bg;
+  border-radius: $action-border-radius;
+  padding: $action-padding-x $action-padding-y;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: 0;
+}

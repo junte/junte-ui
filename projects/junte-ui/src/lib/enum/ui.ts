@@ -17,7 +17,9 @@ export enum Icons {
   user = 'user',
   home = 'home',
   reload = 'reload',
-  union = 'union'
+  union = 'union',
+  like = 'like',
+  dislike = 'dislike'
 }
 
 export enum Colors {
@@ -66,7 +68,8 @@ export enum Paddings {
 
 export enum Outline {
   ghost = 'ghost',
-  fill = 'fill'
+  fill = 'fill',
+  transparent = 'transparent'
 }
 
 export enum TypeButton {

@@ -18,7 +18,7 @@
   <iframe src="../frame.html" frameborder="0" width="100%" height="400px">
   </iframe>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-app-layout>
   <jnt-app-header>
@@ -39,7 +39,7 @@
   </jnt-app-main>
 </jnt-app-layout>
 ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
   <h2>App-header</h2>
 
@@ -56,7 +56,22 @@
           <jnt-menu-item title="Customer"></jnt-menu-item>
         </jnt-menu>
       </ng-template>
-
+      <ng-template #actions>
+        <jnt-actions>
+          <jnt-action>
+            <ng-template #template>Item 1</ng-template>
+            <ng-template #content>Content 1</ng-template>
+          </jnt-action>
+          <jnt-action>
+            <ng-template #template>Item 2</ng-template>
+            <ng-template #content>Content 2</ng-template>
+          </jnt-action>
+          <jnt-action>
+            <ng-template #template>Item 3</ng-template>
+            <ng-template #content>Content 3</ng-template>
+          </jnt-action>
+        </jnt-actions>
+      </ng-template>
       <ng-template #userbar>
         <jnt-userbar>
           <ng-template #avatar>
@@ -76,7 +91,7 @@
     </jnt-app-header>
   </jnt-app-layout>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-app-layout>
   <jnt-app-header>
@@ -91,6 +106,23 @@
         <jnt-menu-item link="/customer" title="Customer"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
+    <ng-template #actions>
+        <jnt-actions>
+          <jnt-action>
+            <ng-template #template>Action 1</ng-template>
+            <ng-template #content>Content 1</ng-template>
+          </jnt-action>
+          <jnt-action>
+            <ng-template #template>Action 2</ng-template>
+            <ng-template #content>Content 2</ng-template>
+          </jnt-action>
+          <jnt-action>
+            <ng-template #template>Action 3</ng-template>
+            <ng-template #content>Content 3</ng-template>
+          </jnt-action>
+          <jnt-action></jnt-action>
+        </jnt-actions>
+      </ng-template>
     <ng-template #userbar>
       <jnt-userbar>
         <ng-template #avatar>
@@ -108,10 +140,9 @@
   </jnt-app-header>
 </jnt-app-layout>
 ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
   <h2>App-aside</h2>
-
 
 
   <h3>API</h3>

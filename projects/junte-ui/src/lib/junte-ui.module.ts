@@ -47,14 +47,7 @@ import { SmartWidthDirective } from './directives/smart-width';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { WeekComponent } from './components/calendar/week/week.component';
 import { WeekMetricComponent } from './components/calendar/week/week-metric.component';
-import {
-  AddMonthsPipe,
-  FormatPipe,
-  GetDatePipe,
-  GetISOWeekPipe,
-  IsEqualPipe,
-  SubMonthsPipe
-} from './pipes/date-fns.pipe';
+import { AddMonthsPipe, FormatPipe, GetDatePipe, GetISOWeekPipe, IsEqualPipe, SubMonthsPipe } from './pipes/date-fns.pipe';
 import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
 import { DayComponent } from './components/calendar/week/day/day.component';
 import { LabelComponent } from './components/label/label.component';
@@ -73,6 +66,8 @@ import { VisibleElementPipe } from './pipes/visible-element.pipe';
 import { CircleBarComponent } from './components/circle-bar/circle-bar.component';
 import { BarIndicatorGroupComponent } from './components/circle-bar/indicator-group/indicator-group.component';
 import { BarIndicatorComponent } from './components/circle-bar/indicator/indicator.component';
+import { ActionsComponent } from './components/app-layout/app-header/actions/actions.component';
+import { ActionComponent } from './components/app-layout/app-header/action/action.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +116,8 @@ import { BarIndicatorComponent } from './components/circle-bar/indicator/indicat
     MenuItemComponent,
     AvatarComponent,
     UserbarComponent,
+    ActionsComponent,
+    ActionComponent,
     UserMenuComponent,
     LinkComponent,
     CalendarComponent,
@@ -198,6 +195,8 @@ import { BarIndicatorComponent } from './components/circle-bar/indicator/indicat
     MenuItemComponent,
     AvatarComponent,
     UserbarComponent,
+    ActionsComponent,
+    ActionComponent,
     UserMenuComponent,
     LinkComponent,
     CalendarComponent,

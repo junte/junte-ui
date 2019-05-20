@@ -3,6 +3,9 @@
 </div>
 
 <ng-container *ngTemplateOutlet="topMenu"></ng-container>
-<ng-container *ngTemplateOutlet="userbar"></ng-container>
+<jnt-stack [type]="ui.type.horizontal" [gutter]="ui.sizes.large">
+  <ng-container *ngTemplateOutlet="actions"></ng-container>
+  <ng-container *ngTemplateOutlet="userbar"></ng-container>
+</jnt-stack>
 <ng-content></ng-content>
 
