@@ -24,4 +24,7 @@ export class AppHeaderComponent {
   @ContentChild('userbar')
   userbar: TemplateRef<any>;
 
+  @ContentChild('actions')
+  actions: TemplateRef<any>;
+
 }
