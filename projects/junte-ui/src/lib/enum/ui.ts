@@ -60,7 +60,8 @@ export enum Paddings {
 
 export enum Outline {
   ghost = 'ghost',
-  fill = 'fill'
+  fill = 'fill',
+  transparent = 'transparent'
 }
 
 export enum TypeButton {
