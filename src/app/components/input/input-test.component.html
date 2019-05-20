@@ -18,18 +18,29 @@
     <h2>Text</h2>
     <jnt-stack formArrayName="texts">
       <ng-container [formGroupName]="i"
-                    *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail];let i = index">
+                    *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index">
         <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-input [scheme]="scheme" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
+          <jnt-input [state]="state" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
         </ng-container>
+      </ng-container>
+      <ng-container [formGroupName]="i" *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
+        <jnt-input [size]="size" placeholder="Hero name" [disabled]="true" formControlName="name"></jnt-input>
       </ng-container>
     </jnt-stack>
     <h2>Password</h2>
     <jnt-stack formArrayName="passwords">
       <ng-container [formGroupName]="i"
-                    *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail];let i = index">
-        <jnt-input [scheme]="scheme" [type]="ui.form.input.password" placeholder="Hero password"
+                    *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index">
+        <jnt-input [state]="state" [type]="ui.form.input.password" placeholder="Hero password"
                    formControlName="password"></jnt-input>
+      </ng-container>
+    </jnt-stack>
+    <h2>Input with icon</h2>
+    <jnt-stack formArrayName="texts">
+      <ng-container [formGroupName]="i"
+                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
+        <jnt-input placeholder="Hero name" [size]="size" [icon]="ui.icons.search"
+                   formControlName="name"></jnt-input>
       </ng-container>
     </jnt-stack>
   </form>
@@ -37,7 +48,7 @@
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-input [scheme]="ui.schemes.primary" [type]="ui.form.input.password" placeholder="Hero name"></jnt-input>
+<jnt-input [state]="ui.state.normal" [type]="ui.form.input.password" placeholder="Hero name" [icon]="ui.icons.search"></jnt-input>
 ]]></pre>
     </ngx-prism>
 
@@ -54,10 +65,10 @@
       </thead>
       <tbody>
       <tr>
-        <td>[scheme]</td>
+        <td>[state]</td>
         <td>-</td>
-        <td>primary | secondary | success | fail</td>
-        <td>primary</td>
+        <td>normal | success | fail</td>
+        <td>normal</td>
       </tr>
       <tr>
         <td>[type]</td>
@@ -69,6 +80,12 @@
         <td>[placeholder]</td>
         <td>-</td>
         <td>string</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>[icon]</td>
+        <td>-</td>
+        <td>Icons</td>
         <td>-</td>
       </tr>
       </tbody>

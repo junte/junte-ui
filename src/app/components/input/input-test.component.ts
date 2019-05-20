@@ -18,8 +18,8 @@ export class InputTestComponent implements OnInit {
 
   inputGroup() {
     return this.formBuilder.group({
-      name: [null],
-      password: [null]
+      name: this.formBuilder.control([null]),
+      password: this.formBuilder.control([null])
     });
   }
 
