@@ -57,6 +57,8 @@ export * from './lib/components/skeleton/skeleton.component';
 export * from './lib/components/tabs/tabs.component';
 export * from './lib/components/tabs/tab/tab.component';
 export * from './lib/components/app-layout/app-header/userbar/userbar.component';
+export * from './lib/components/app-layout/app-header/actions/actions.component';
+export * from './lib/components/app-layout/app-header/action/action.component';
 export * from './lib/components/form/form-label/form-label.component';
 export * from './lib/components/form/form-message/form-message.component';
 export * from './lib/components/form/form-control/form-control.component';

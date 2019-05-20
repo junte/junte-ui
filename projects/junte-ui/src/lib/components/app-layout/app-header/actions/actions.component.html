@@ -1,0 +1,12 @@
+<jnt-stack [type]="type" [gutter]="spacer">
+  <ng-container *ngFor="let action of actions">
+    <jnt-action>
+      <ng-template #template>
+        <ng-container *ngTemplateOutlet="action.template"></ng-container>
+      </ng-template>
+      <ng-template #content>
+        <ng-container *ngTemplateOutlet="action.content"></ng-container>
+      </ng-template>
+    </jnt-action>
+  </ng-container>
+</jnt-stack>
