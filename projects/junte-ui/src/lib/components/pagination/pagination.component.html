@@ -1,33 +1,33 @@
-<ul>
-  <li [attr.disabled]="selectedPage === 1"
+<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small">
+  <div [attr.disabled]="selectedPage === 1"
       (click)="setPage(1)">
     <a [attr.data-href]="'?page=' + 1"
        title="First">
       <jnt-icon [icon]="ui.icons.arrowFirst" icon></jnt-icon>
     </a>
-  </li>
-  <li [attr.disabled]="selectedPage === 1"
+  </div>
+  <div [attr.disabled]="selectedPage === 1"
       (click)="setPage(selectedPage - 1)">
     <a title="Previous"
        data-page="1">
       <jnt-icon [icon]="ui.icons.arrowRight" icon style="transform: rotate(180deg)"></jnt-icon>
     </a>
-  </li>
-  <li *ngFor="let page of pages"
+  </div>
+  <div page *ngFor="let page of pages"
       (click)="setPage(page)"
       [attr.active]="page === selectedPage">
     <a>{{page}}</a>
-  </li>
+  </div>
 
-  <li [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)">
+  <div [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)">
     <a title="Next">
       <jnt-icon [icon]="ui.icons.arrowRight" icon></jnt-icon>
     </a>
-  </li>
-  <li (click)="setPage(pagesCount)"
+  </div>
+  <div (click)="setPage(pagesCount)"
       [attr.disabled]="selectedPage >= pagesCount">
     <a title="Last">
       <jnt-icon [icon]="ui.icons.arrowLast" icon></jnt-icon>
     </a>
-  </li>
-</ul>
+  </div>
+</jnt-stack>

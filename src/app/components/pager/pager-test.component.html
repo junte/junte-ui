@@ -14,17 +14,16 @@
 
   <hr>
 
-  <jnt-stack>
-    <form [formGroup]="form">
-      <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.large">
-        <jnt-pagination [pagesCount]="pagesCount"
-                        formControlName="page">
-        </jnt-pagination>
+  <form [formGroup]="form">
+    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.large" [align]="ui.flex.align.center"
+    [justify]="ui.flex.justify.center">
+      <jnt-pagination [pagesCount]="pagesCount"
+                      formControlName="page">
+      </jnt-pagination>
 
-        <jnt-page-size formControlName="pageSize"></jnt-page-size>
-      </jnt-stack>
-    </form>
-  </jnt-stack>
+      <jnt-page-size formControlName="pageSize"></jnt-page-size>
+    </jnt-stack>
+  </form>
 
   <ngx-prism language="html">
     <pre><![CDATA[

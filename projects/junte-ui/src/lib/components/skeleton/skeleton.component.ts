@@ -1,11 +1,13 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Sizes } from '../../enum/ui';
+import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-skeleton',
   templateUrl: './encapsulated.html'
 })
 export class SkeletonComponent implements OnInit {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 

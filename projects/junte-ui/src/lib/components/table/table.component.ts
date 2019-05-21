@@ -15,12 +15,15 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TableColumnComponent } from './column/table-column.component';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
+import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-table',
   templateUrl: './encapsulated.html'
 })
 export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
+
+  ui = UI;
 
   private subscriptions = new Subscription();
   private _count: number;
@@ -41,6 +44,16 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
 
   @ContentChild('rowTemplate')
   rowTemplate: TemplateRef<any>;
+
+  @ContentChild('actions')
+  actionsTemplate: TemplateRef<any>;
+
+  @ContentChild('filters')
+  filtersTemplate: TemplateRef<any>;
+
+  @HostBinding('attr.search')
+  @Input()
+  search = false;
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({
