@@ -10,7 +10,7 @@ $max-groups: 3;
   margin: auto;
   position: absolute;
 
-  @for $i from 3 through $max-groups {
+  @for $i from 2 through $max-groups {
     @for $j from 0 through $max-groups - 1 {
       &[groups='#{$i}'][index='#{$j}'] {
         $size: percentage(1 - ($j / $i) * .5);
