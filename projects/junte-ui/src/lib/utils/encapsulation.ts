@@ -38,15 +38,17 @@ export class Gulpfile {
   }
 
   private encapsulateHTML(url: string, dir: string, host: string) {
-    const templateName = path.parse(url).name;
-    const templateContent = fs.readFileSync(`${dir}/${templateName}.html`, 'utf8');
+    if (!!url) {
+      const templateName = path.parse(url).name;
+      const templateContent = fs.readFileSync(`${dir}/${templateName}.html`, 'utf8');
 
-    if (!!templateContent) {
-      const html = parse(templateContent) as HTMLElement;
+      if (!!templateContent) {
+        const html = parse(templateContent) as HTMLElement;
 
-      html.childNodes = this.setHost(html.childNodes, host);
-      html.set_content(html.toString());
-      fs.writeFileSync(`${dir}/encapsulated.html`, html);
+        html.childNodes = this.setHost(html.childNodes, host);
+        html.set_content(html.toString());
+        fs.writeFileSync(`${dir}/encapsulated.html`, html);
+      }
     }
   }
 
@@ -122,7 +124,7 @@ export class Gulpfile {
 
   @Task()
   components() {
-    return gulp.src(['../components/**/*.ts'])
+    return gulp.src(['../components/**/*.component.ts'])
       .pipe(debug())
       .pipe(map((file, cb) => {
         const context = require(file.path);
