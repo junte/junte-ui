@@ -2,227 +2,75 @@ import { NgModule } from '@angular/core';
 import { JunteUiComponent } from './junte-ui.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SelectComponent } from './components/select/select.component';
-import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
-import { RadioComponent } from './components/radio/radio.component';
-import { CardComponent } from './components/card/card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ContainerComponent } from './components/grid/container/container.component';
-import { RowComponent } from './components/grid/row/row.component';
-import { ColComponent } from './components/grid/col/col.component';
-import { IconComponent } from './components/icon/icon.component';
-import { StackDirective } from './directives/stack';
-import { StackComponent } from './components/stack/stack.component';
-import { BlockComponent } from './components/block/block.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { SwitchComponent } from './components/switch/switch.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
-import { FormComponent } from './components/form/form.component';
-import { StringTemplateOutletDirective } from './directives/string-template-outlet';
-import { FormItemComponent } from './components/form/form-item/form-item.component';
-import { FormLabelComponent } from './components/form/form-label/form-label.component';
-import { FormMessageComponent } from './components/form/form-message/form-message.component';
-import { FormControlComponent } from './components/form/form-control/form-control.component';
-import { BadgeComponent } from './components/badge/badge.component';
-import { AppLayoutComponent } from './components/app-layout/app-layout.component';
-import { AppHeaderComponent } from './components/app-layout/app-header/app-header.component';
-import { AppMainComponent } from './components/app-layout/app-main/app-main.component';
-import { AppAsideComponent } from './components/app-layout/app-aside/app-aside.component';
-import { AppContentComponent } from './components/app-layout/app-content/app-content.component';
-import { AppFooterComponent } from './components/app-layout/app-footer/app-footer.component';
-import { SelectOptionComponent } from './components/select/select-option/select-option.component';
-import { TableComponent } from './components/table/table.component';
-import { TableColumnComponent } from './components/table/column/table-column.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { MenuItemComponent } from './components/menu/menu-item/menu-item.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
-import { PageSizeComponent } from './components/pagination/page-size/page-size.component';
-import { ValidationDirective } from './directives/validation';
-import { UserbarComponent } from './components/app-layout/app-header/userbar/userbar.component';
-import { UserMenuComponent } from './components/menu/user-menu/user-menu.component';
-import { LinkComponent } from './components/link/link.component';
-import { SmartWidthDirective } from './directives/smart-width';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { WeekComponent } from './components/calendar/week/week.component';
-import { WeekMetricComponent } from './components/calendar/week/week-metric.component';
-import { AddMonthsPipe, FormatPipe, GetDatePipe, GetISOWeekPipe, IsEqualPipe, SubMonthsPipe } from './pipes/date-fns.pipe';
-import { AppBodyComponent } from './components/app-layout/app-body/app-body.component';
-import { DayComponent } from './components/calendar/week/day/day.component';
-import { LabelComponent } from './components/label/label.component';
-import { SkeletonComponent } from './components/skeleton/skeleton.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { TabComponent } from './components/tabs/tab/tab.component';
-import { AttributeDirective } from './directives/attribute';
-import { AppSubHeaderComponent } from './components/app-layout/app-sub-header/app-sub-header.component';
-import { AvatarsGroupComponent } from './components/avatar/avatars-group/avatars-group.component';
-import { AvatarsListComponent } from './components/avatar/avatars-list/avatars-list.component';
-import { RadioGroupComponent } from './components/radio/radio-group/radio-group.component';
-import { CheckboxGroupComponent } from './components/checkbox/checkbox-group/checkbox-group.component';
-import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { SumPipe } from './components/circle-bar/pipes';
-import { VisibleElementPipe } from './pipes/visible-element.pipe';
-import { CircleBarComponent } from './components/circle-bar/circle-bar.component';
-import { BarIndicatorGroupComponent } from './components/circle-bar/indicator-group/indicator-group.component';
-import { BarIndicatorComponent } from './components/circle-bar/indicator/indicator.component';
-import { ActionsComponent } from './components/app-layout/app-header/actions/actions.component';
-import { ActionComponent } from './components/app-layout/app-header/action/action.component';
+import { AppLayoutModule } from './components/app-layout/app-layout.module';
+import { AvatarModule } from './components/avatar/avatar.module';
+import { BadgeModule } from './components/badge/badge.module';
+import { BlockModule } from './components/block/block.module';
+import { CircleBarModule } from './components/circle-bar/circle-bar.module';
+import { BreadcrumbsModule } from './components/breadcrumbs/breadcrumbs.module';
+import { ButtonModule } from './components/button/button.module';
+import { CalendarModule } from './components/calendar/calendar.module';
+import { CardModule } from './components/card/card.module';
+import { FormModule } from './components/form/form.module';
+import { GridModule } from './components/grid/grid.module';
+import { IconModule } from './components/icon/icon.module';
+import { MenuModule } from './components/menu/menu.module';
+import { PaginationModule } from './components/pagination/pagination.module';
+import { SkeletonModule } from './components/skeleton/skeleton.module';
+import { SpinnerModule } from './components/spinner/spinner.module';
+import { StackModule } from './components/stack/stack.module';
+import { TableModule } from './components/table/table.module';
+import { TabsModule } from './components/tabs/tabs.module';
+import { DatePipeModule } from './pipes/date-pipe.module';
+import { AnimationPipeModule } from './pipes/animation-pipe.module';
+import { JunteDirectiveModule } from './directives/junte-directive.module';
+import { InputModule } from './components/input/input.module';
+import { SelectModule } from './components/select/select.module';
+import { CheckboxModule } from './components/checkbox/checkbox.module';
+import { LabelModule } from './components/label/label.module';
+import { LinkModule } from './components/link/link.module';
+import { RadioModule } from './components/radio/radio.module';
+import { SwitchModule } from './components/switch/switch.module';
 
 @NgModule({
   declarations: [
-    StringTemplateOutletDirective,
-    JunteUiComponent,
-    SelectComponent,
-    ButtonComponent,
-    InputComponent,
-    CheckboxComponent,
-    CheckboxGroupComponent,
-    RadioComponent,
-    RadioGroupComponent,
-    CardComponent,
-    ContainerComponent,
-    RowComponent,
-    ColComponent,
-    IconComponent,
-    StackDirective,
-    AttributeDirective,
-    ValidationDirective,
-    SmartWidthDirective,
-    StackComponent,
-    BlockComponent,
-    SpinnerComponent,
-    SwitchComponent,
-    SpinnerComponent,
-    PaginationComponent,
-    PageSizeComponent,
-    FormComponent,
-    FormItemComponent,
-    FormLabelComponent,
-    SelectOptionComponent,
-    FormMessageComponent,
-    FormControlComponent,
-    BadgeComponent,
-    AppLayoutComponent,
-    AppHeaderComponent,
-    AppSubHeaderComponent,
-    AppMainComponent,
-    AppAsideComponent,
-    AppContentComponent,
-    AppFooterComponent,
-    TableComponent,
-    TableColumnComponent,
-    MenuComponent,
-    MenuItemComponent,
-    AvatarComponent,
-    UserbarComponent,
-    ActionsComponent,
-    ActionComponent,
-    UserMenuComponent,
-    LinkComponent,
-    CalendarComponent,
-    WeekComponent,
-    WeekMetricComponent,
-    FormatPipe,
-    SumPipe,
-    GetISOWeekPipe,
-    AddMonthsPipe,
-    SubMonthsPipe,
-    GetDatePipe,
-    IsEqualPipe,
-    VisibleElementPipe,
-    AppBodyComponent,
-    DayComponent,
-    LabelComponent,
-    SkeletonComponent,
-    TabsComponent,
-    AvatarsGroupComponent,
-    AvatarsListComponent,
-    BreadcrumbsComponent,
-    AvatarsListComponent,
-    AvatarsGroupComponent,
-    TabComponent,
-    CircleBarComponent,
-    BarIndicatorGroupComponent,
-    BarIndicatorComponent
+    JunteUiComponent
   ],
-  imports: [
+  exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
-  ],
-  exports: [
-    JunteUiComponent,
-    SelectComponent,
-    ButtonComponent,
-    InputComponent,
-    CheckboxComponent,
-    CheckboxGroupComponent,
-    RadioComponent,
-    RadioGroupComponent,
-    CardComponent,
-    ContainerComponent,
-    RowComponent,
-    ColComponent,
-    IconComponent,
-    StackDirective,
-    ValidationDirective,
-    SmartWidthDirective,
-    StackComponent,
-    BlockComponent,
-    PaginationComponent,
-    PageSizeComponent,
-    SpinnerComponent,
-    SwitchComponent,
-    SelectOptionComponent,
-    FormComponent,
-    FormItemComponent,
-    FormLabelComponent,
-    FormMessageComponent,
-    FormControlComponent,
-    BadgeComponent,
-    AppLayoutComponent,
-    AppHeaderComponent,
-    AppSubHeaderComponent,
-    AppMainComponent,
-    AppAsideComponent,
-    AppContentComponent,
-    AppFooterComponent,
-    TableComponent,
-    TableColumnComponent,
-    MenuComponent,
-    MenuItemComponent,
-    AvatarComponent,
-    UserbarComponent,
-    ActionsComponent,
-    ActionComponent,
-    UserMenuComponent,
-    LinkComponent,
-    CalendarComponent,
-    WeekComponent,
-    WeekMetricComponent,
-    FormatPipe,
-    GetISOWeekPipe,
-    AddMonthsPipe,
-    SubMonthsPipe,
-    GetDatePipe,
-    IsEqualPipe,
-    AppBodyComponent,
-    DayComponent,
-    LabelComponent,
-    SkeletonComponent,
-    TabsComponent,
-    TabComponent,
-    AvatarsGroupComponent,
-    AvatarsListComponent,
-    BreadcrumbsComponent,
-    AvatarsListComponent,
-    AvatarsGroupComponent,
-    TabComponent,
-    CircleBarComponent,
-    BarIndicatorGroupComponent,
-    BarIndicatorComponent
+    RouterModule,
+    AppLayoutModule,
+    AnimationPipeModule,
+    AvatarModule,
+    BadgeModule,
+    BlockModule,
+    BreadcrumbsModule,
+    ButtonModule,
+    CalendarModule,
+    CardModule,
+    CheckboxModule,
+    CircleBarModule,
+    DatePipeModule,
+    FormModule,
+    GridModule,
+    JunteDirectiveModule,
+    IconModule,
+    InputModule,
+    LabelModule,
+    LinkModule,
+    MenuModule,
+    PaginationModule,
+    RadioModule,
+    SelectModule,
+    SkeletonModule,
+    SpinnerModule,
+    StackModule,
+    SwitchModule,
+    TableModule,
+    TabsModule
   ]
 })
 export class JunteUiModule {
