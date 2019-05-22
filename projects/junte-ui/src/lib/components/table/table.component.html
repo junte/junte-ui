@@ -72,7 +72,7 @@
           </tbody>
         </table>
 
-      <ng-container *ngIf="count && !progress.loading && source.length">
+      <ng-container *ngIf="count">
         <div pagination>
           <jnt-pagination [pagesCount]="pagesCount" formControlName="page" pages></jnt-pagination>
           <jnt-page-size formControlName="pageSize" page-size></jnt-page-size>
