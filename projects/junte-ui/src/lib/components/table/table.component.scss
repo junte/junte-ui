@@ -3,6 +3,7 @@
 $table-padding-x: $gutter-normal;
 $table-padding-y: $gutter-normal;
 $table-head-bg: $gray-500;
+$table-row-border-color: $gray-400;
 $table-cell-padding-x: $gutter-normal;
 $table-cell-padding-y: $gutter-big;
 $table-cell-border-width: 0;
@@ -13,6 +14,9 @@ $table-icon-nodata-size: 80px;
 $table-icon-nodata-color: $gray-400;
 $table-message-nodata-color: $gray-800;
 $table-min-height: 200px;
+
+$table-loading-overlay-bg: rgba($gray-500, .6);
+$table-loading-spinner-color: $gray-800;
 
 :host {
   display: block;
@@ -28,6 +32,22 @@ $table-min-height: 200px;
     width: 100%;
     border-collapse: collapse;
     font-size: $table-font-size;
+    position: relative;
+    [spinner] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: $table-loading-overlay-bg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      [icon] {
+        color: $table-loading-spinner-color;
+      }
+    }
     thead {
       background-color: $table-head-bg;
       .sortable {
@@ -35,7 +55,7 @@ $table-min-height: 200px;
       }
     }
     tbody tr {
-      border-bottom: 1px solid $gray-400;
+      border-bottom: 1px solid $table-row-border-color;
       cursor: pointer;
       background-color: white;
       transition: all .3s;
@@ -75,6 +95,9 @@ $table-min-height: 200px;
   [pagination] {
     position: relative;
     margin-bottom: -($table-padding-x);
+    [pages] {
+      margin: auto;
+    }
     [page-size] {
       position: absolute;
       right: 0;

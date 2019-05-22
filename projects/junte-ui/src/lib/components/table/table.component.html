@@ -23,9 +23,12 @@
   <form [formGroup]="filterForm">
     <jnt-stack [align]="ui.flex.align.stretch">
 
-      <div>
-        <jnt-spinner *ngIf="source.length && progress.loading"></jnt-spinner>
+
         <table>
+          <div *ngIf="source.length && progress.loading" spinner>
+            <jnt-spinner [size]="ui.sizes.large" icon></jnt-spinner>
+          </div>
+
           <thead>
           <tr>
             <th *ngFor="let column of columns"
@@ -68,7 +71,6 @@
           </ng-template>
           </tbody>
         </table>
-      </div>
 
       <ng-container *ngIf="count && !progress.loading && source.length">
         <div pagination>
