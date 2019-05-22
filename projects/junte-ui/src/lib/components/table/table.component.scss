@@ -1,32 +1,53 @@
 @import "../../assets/styles/variables";
 
-$table-padding: $gutter-normal;
+$table-padding-x: $gutter-normal;
+$table-padding-y: $gutter-normal;
 $table-head-bg: $gray-500;
+$table-row-border-color: $gray-400;
 $table-cell-padding-x: $gutter-normal;
 $table-cell-padding-y: $gutter-big;
 $table-cell-border-width: 0;
 $table-cell-border-color: transparent;
 $table-font-size: $font-size-base;
+$table-row-hover: $gray-light-100;
+$table-icon-nodata-size: 80px;
+$table-icon-nodata-color: $gray-400;
+$table-message-nodata-color: $gray-800;
+$table-min-height: 200px;
+
+$table-loading-overlay-bg: rgba($gray-500, .6);
+$table-loading-spinner-color: $gray-800;
 
 :host {
   display: block;
-  padding: $table-padding;
+  padding: $table-padding-x $table-padding-y;
 
-  button {
-    margin-bottom: $gutter-normal;
-  }
-
-  [pagination] {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: $gutter-normal;
+  [button]:child-host=#{$jnt-button-host} {
+    button {
+      padding: 0;
+    }
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: $table-font-size;
+    position: relative;
+    [spinner] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: $table-loading-overlay-bg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      [icon] {
+        color: $table-loading-spinner-color;
+      }
+    }
     thead {
       background-color: $table-head-bg;
       .sortable {
@@ -34,11 +55,55 @@ $table-font-size: $font-size-base;
       }
     }
     tbody tr {
-      border-bottom: 1px solid $gray-400;
+      border-bottom: 1px solid $table-row-border-color;
+      cursor: pointer;
+      background-color: white;
+      transition: all .3s;
+      &[nodata] {
+        height: $table-min-height;
+        pointer-events: none;
+        border-bottom: 0;
+        td {
+          vertical-align: middle;
+          text-align: center;
+          [icon] {
+            font-size: $table-icon-nodata-size;
+            color: $table-icon-nodata-color;
+          }
+          [message] {
+            color: $table-message-nodata-color;
+          }
+        }
+      }
+      &[loading] {
+        pointer-events: none;
+        border-bottom: 0;
+        td {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      &:hover {
+        background-color: $table-row-hover;
+      }
     }
     td, th {
       padding: $table-cell-padding-x $table-cell-padding-y;
       border: $table-cell-border-width solid $table-cell-border-color;
+    }
+  }
+
+  [pagination] {
+    position: relative;
+    margin-bottom: -($table-padding-x);
+    [pages] {
+      margin: auto;
+    }
+    [page-size] {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }

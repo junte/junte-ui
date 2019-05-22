@@ -1,18 +1,21 @@
 <table>
-  <tr header>
-    <td *ngIf="avatar" avatar>
+  <tr *ngIf="avatar">
+    <td avatar>
       <div></div>
     </td>
     <td>
-      <div [jntAttr]="title ? 'title' : 'paragraph'"></div>
-      <div paragraph></div>
+      <jnt-stack [gutter]="ui.stack.gutter.big">
+        <div [jntAttr]="title ? 'title' : 'paragraph'"></div>
+        <div paragraph></div>
+      </jnt-stack>
     </td>
   </tr>
   <tr>
     <td colspan="2">
-      <ul>
-        <li *ngFor="let l of line" paragraph></li>
-      </ul>
+      <jnt-stack [gutter]="ui.stack.gutter.big">
+        <div *ngIf="title && !avatar" title></div>
+        <div *ngFor="let l of line" paragraph></div>
+      </jnt-stack>
     </td>
   </tr>
 </table>

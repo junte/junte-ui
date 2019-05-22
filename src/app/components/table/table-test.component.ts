@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { TableComponent } from 'junte-ui';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-table-test',
@@ -9,6 +10,8 @@ import { TableComponent } from 'junte-ui';
   styleUrls: ['./table-test.component.scss']
 })
 export class TableTestComponent implements OnInit {
+
+  ui = UI;
 
   @ViewChild(TableComponent)
   table: TableComponent;

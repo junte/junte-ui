@@ -19,7 +19,8 @@ export enum Icons {
   reload = 'reload',
   union = 'union',
   like = 'like',
-  dislike = 'dislike'
+  dislike = 'dislike',
+  nodata = 'nodata'
 }
 
 export enum Colors {
@@ -147,9 +148,12 @@ export enum MenuType {
 }
 
 export enum StackGutter {
+  tiny = 'tiny',
   small = 'small',
   normal = 'normal',
-  large = 'large'
+  big = 'big',
+  large = 'large',
+  huge = 'huge'
 }
 
 export enum FormLayout {

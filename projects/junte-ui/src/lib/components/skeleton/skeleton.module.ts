@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkeletonComponent } from './skeleton.component';
 import { JunteDirectiveModule } from '../../directives/junte-directive.module';
+import { StackModule } from '../stack';
 
 @NgModule({
   imports: [
     CommonModule,
-    JunteDirectiveModule
+    JunteDirectiveModule,
+    StackModule
   ],
   declarations: [
     SkeletonComponent

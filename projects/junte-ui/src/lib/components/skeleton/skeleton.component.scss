@@ -5,8 +5,7 @@ $skeleton-to-bg: darken($skeleton-bg, 5%);
 $skeleton-paragraph-height: 24px;
 $skeleton-title-width: 38%;
 $skeleton-avatar-spacer-right: $gutter-large;
-$skeleton-avatar-spacer-bottom: $gutter-normal;
-$skeleton-paragraph-spacer: $gutter-normal;
+$skeleton-avatar-spacer-bottom: $gutter-big;
 
 $sizes: (
   #{$size-small}: (
@@ -39,7 +38,6 @@ $sizes: (
       [avatar] {
         @include width($map);
         > div {
-          background-color: $skeleton-bg;
           border-radius: 50%;
           @include size($map);
         }
@@ -52,47 +50,30 @@ table {
   width: 100%;
   table-layout: auto;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  [avatar] {
+    padding-right: $skeleton-avatar-spacer-right;
+    padding-bottom: $skeleton-avatar-spacer-bottom;
   }
 
-  [header] {
-    [avatar] {
-      padding-right: $skeleton-avatar-spacer-right;
-      padding-bottom: $skeleton-avatar-spacer-bottom;
-    }
-    [title] {
-      width: $skeleton-title-width;
-      margin-bottom: $skeleton-paragraph-spacer;
-      min-height: $skeleton-paragraph-height;
-      background-color: $skeleton-bg;
-    }
-    [paragraph] {
-      margin-bottom: $skeleton-paragraph-spacer;
-    }
+  [paragraph], [title] {
+    min-height: $skeleton-paragraph-height;
   }
 
   [paragraph] {
-    min-height: $skeleton-paragraph-height;
-    //background-color: $skeleton-bg;
     width: 100%;
-    &:not(:last-child) {
-      margin-bottom: $skeleton-paragraph-spacer;
-    }
   }
 
-  [avatar] > div,
-  [paragraph],
   [title] {
-    background: linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+    width: $skeleton-title-width;
+  }
+
+  div {
+    background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
     animation: loading 1.4s ease infinite;
     background-size: 400% 100%;
   }
 
 }
-
 
 @keyframes loading {
   0% {
