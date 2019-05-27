@@ -2,6 +2,7 @@
   <a link [href]="source" [target]="allowTarget ? target : targetDefault">
     <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
     <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
+    <jnt-badge *ngIf="badge" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
   </a>
 </ng-container>
 
@@ -11,6 +12,7 @@
      [attr.active]="link.isActive">
     <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
     <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
+    <jnt-badge *ngIf="badge" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
   </a>
 </ng-template>
 

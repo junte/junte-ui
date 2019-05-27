@@ -10,5 +10,6 @@ export class MenuItemComponent {
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string;
+  @Input() badge: number;
 
 }

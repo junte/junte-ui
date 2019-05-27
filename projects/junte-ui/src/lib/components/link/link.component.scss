@@ -8,6 +8,7 @@ $link-hover-color: $primary-color;
 $link-active-color: $primary-color;
 $link-disabled-color: $gray-800;
 $link-icon-spacing: $gutter-small;
+$link-badge-spacing: $gutter-small;
 
 :host {
   display: inline-block;
@@ -32,6 +33,9 @@ $link-icon-spacing: $gutter-small;
   [icon] {
     margin-right: $link-icon-spacing;
   }
+  [badge] {
+    margin-left: $link-badge-spacing;
+  }
   &[active="true"] {
     border-bottom: 1px solid $link-color;
   }
@@ -43,3 +47,4 @@ $link-icon-spacing: $gutter-small;
 
   }
 }
+
