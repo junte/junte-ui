@@ -1,9 +1,15 @@
 @import "../../../../assets/styles/variables";
 
-$action-border-radius: 0;
-$action-padding-x: $gutter-normal;
-$action-padding-y: $gutter-big;
-$action-bg: $primary-dark-color;
+$action-border-radius: 0 0 $corner-sm $corner-sm;
+$action-padding-y: $gutter-normal;
+$action-hover-bg: $primary-color;
+$action-content-padding-x: $gutter-normal;
+$action-content-padding-y: $gutter-big;
+$action-bg: $white-color;
+$action-content-color: $text-color;
+$action-content-width: 400px;
+$action-content-height: 400px;
+$action-content-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 
 :host {
   position: relative;
@@ -11,7 +17,10 @@ $action-bg: $primary-dark-color;
   min-height: $app-header-height;
   display: flex;
   align-items: center;
+  padding-left: $action-padding-y;
+  padding-right: $action-padding-y;
   &:hover {
+    background-color: $action-hover-bg;
     [content] {
       display: block;
     }
@@ -21,7 +30,11 @@ $action-bg: $primary-dark-color;
 [content] {
   background: $action-bg;
   border-radius: $action-border-radius;
-  padding: $action-padding-x $action-padding-y;
+  padding: $action-content-padding-x $action-content-padding-y;
+  color: $action-content-color;
+  min-width: $action-content-width;
+  max-height: $action-content-height;
+  box-shadow: $action-content-shadow;
   overflow-y: auto;
   display: none;
   position: absolute;

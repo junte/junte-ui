@@ -57,7 +57,7 @@
         </jnt-menu>
       </ng-template>
       <ng-template #actions>
-        <jnt-actions>
+        <jnt-actions [spacer]="ui.stack.gutter.small">
           <jnt-action>
             <ng-template #template>Item 1</ng-template>
             <ng-template #content>Content 1</ng-template>
@@ -81,7 +81,6 @@
 
           <ng-template #userMenu>
             <jnt-user-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-              <jnt-menu-item title="Alex"></jnt-menu-item>
               <jnt-button text="Logout"></jnt-button>
             </jnt-user-menu>
           </ng-template>

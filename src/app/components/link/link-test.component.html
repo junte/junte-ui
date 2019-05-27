@@ -18,6 +18,8 @@
     <jnt-link source="https://google.com">External Link</jnt-link>
 
     <jnt-link source="https://google.com" target="_blank">External Link with target="_blank"</jnt-link>
+
+    <jnt-link source="https://google.com" target="_blank" [disabled]="true">Disabled link</jnt-link>
   </jnt-stack>
 
   <ngx-prism language="html">
@@ -26,6 +28,7 @@
 <jnt-link [source]="['components', 'block']">Link</jnt-link>
 <jnt-link source="https://junte.gitlab.io/junte-ui">External Link</jnt-link>
 <jnt-link source="https://junte.gitlab.io/junte-ui" target="_blank">External Link with target attribute</jnt-link>
+<jnt-link source="https://google.com" target="_blank" [disabled]="true">Disabled link</jnt-link>
      ]]></pre>
   </ngx-prism>
 
@@ -46,6 +49,12 @@
       <td>-</td>
       <td>string</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>[disabled]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
     </tr>
     </tbody>
   </table>

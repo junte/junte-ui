@@ -5,6 +5,8 @@ $user-menu-border-radius: 0;
 $user-menu-padding-x: $gutter-normal;
 $user-menu-padding-y: $gutter-big;
 $user-menu-bg: $primary-dark-color;
+$user-menu-hover-bg: $primary-color;
+$user-menu-padding-y: $gutter-normal;
 
 :host {
   position: relative;
@@ -12,7 +14,10 @@ $user-menu-bg: $primary-dark-color;
   min-height: $app-header-height;
   display: flex;
   align-items: center;
+  padding-left: $user-menu-padding-y;
+  padding-right: $user-menu-padding-y;
   &:hover {
+    background-color: $user-menu-hover-bg;
     [usermenu] {
       display: block;
     }
