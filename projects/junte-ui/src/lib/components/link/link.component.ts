@@ -24,6 +24,9 @@ export class LinkComponent implements OnInit {
   @HostBinding('attr.icon')
   @Input() icon: Icons;
 
+  @HostBinding('attr.disabled')
+  @Input() disabled = false;
+
   constructor() {
   }
 
