@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination.component';
 import { PageSizeComponent } from './page-size/page-size.component';
 import { IconModule } from '../icon/icon.module';
-import { StackModule } from '../stack';
+import { StackModule } from '../stack/stack.module';
 
 @NgModule({
   imports: [
