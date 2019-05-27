@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Colors } from '../../enum/ui';
+import { Colors, Icons } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-label',
@@ -11,6 +11,9 @@ export class LabelComponent implements OnInit {
 
   @HostBinding('attr.label')
   @Input() label: string;
+
+  @HostBinding('attr.icon')
+  @Input() icon: Icons;
 
   @HostBinding('style.background-color')
   @Input() color: string = Colors.purpleDark;
