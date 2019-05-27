@@ -6,8 +6,8 @@ $calendar-arrows-hover-color: lighten($calendar-arrows-color, 10%);
 $calendar-padding: $gutter-normal;
 $calendar-name-day-padding-x: $gutter-normal;
 $calendar-name-day-padding-y: $gutter-tiny;
-$calendar-day-padding-y: $gutter-tiny;
-$calendar-day-padding-x: $gutter-small;
+$calendar-day-default-padding-y: $gutter-tiny;
+$calendar-day-default-padding-x: $gutter-small;
 $calendar-name-day-color: $gray-800;
 $calendar-name-day-font-size: $font-size-sm;
 $calendar-day-font-size: $font-size-sm;
@@ -97,11 +97,13 @@ tbody {
     td {
       position: relative;
       min-width: $calendar-day-width;
-      padding: $calendar-day-padding-x $calendar-day-padding-y;
       font-size: $calendar-day-font-size;
       box-sizing: border-box;
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
+      [default] {
+        padding: $calendar-day-default-padding-x $calendar-day-default-padding-y;
+      }
       &:first-child {
         border-left: 1px solid transparent;
       }
