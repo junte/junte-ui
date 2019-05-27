@@ -6,18 +6,24 @@ $label-padding-x: 0;
 $label-padding-y: $gutter-small;
 $label-color: white;
 $label-font-size: 12px;
+$label-icon-spacing: $gutter-small;
 
 :host {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border-radius: $label-corner;
   padding: $label-padding-x $label-padding-y;
   height: $label-height;
+  color: $label-color;
+  font-size: $label-font-size;
   box-sizing: border-box;
 }
 
 span {
-  color: $label-color;
-  font-size: $label-font-size;
   line-height: $label-height;
   white-space: nowrap;
+}
+
+[icon] {
+  margin-right: $label-icon-spacing;
 }
