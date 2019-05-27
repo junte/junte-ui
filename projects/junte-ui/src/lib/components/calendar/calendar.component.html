@@ -15,7 +15,6 @@
       </button>
     </td>
     <td *ngIf="metrics.length"
-        class="metrics"
         [attr.colspan]="metrics.length"
     >Metrics
     </td>
@@ -44,7 +43,7 @@
       </ng-container>
     </td>
 
-    <td day *ngFor="let m of metrics;let i = index;">
+    <td metric *ngFor="let m of metrics;let i = index;">
       <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
       </ng-container>
     </td>

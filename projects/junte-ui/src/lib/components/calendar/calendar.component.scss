@@ -71,15 +71,12 @@ thead {
   .sortable {
     cursor: pointer;
   }
-  .metrics {
-    text-align: center;
-  }
 }
 
 tbody {
   tr {
     &[current-week='true'] {
-      [day] {
+      [day], [metric] {
         border-top-color: $calendar-current-week-border-color;
         border-bottom-color: $calendar-current-week-border-color;
         &:first-child {
