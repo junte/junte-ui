@@ -54,7 +54,7 @@
 
 <div *ngIf="toggle" overlay (click)="toggle = !toggle"></div>
 
-<div selectize (click)="input.focus(); toggle = !toggle;" tabindex="0">
+<div selectize (click)="input.focus(); toggle = !toggle;" [attr.focused]="input.focus" tabindex="0">
   <ng-container *ngTemplateOutlet="selectedItemsTemplate"></ng-container>
   <jnt-icon down [icon]="ui.icons.sortDown"></jnt-icon>
   <ng-container *ngIf="!!toggle">

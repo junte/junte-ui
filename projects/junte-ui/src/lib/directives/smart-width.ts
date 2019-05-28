@@ -1,15 +1,18 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[jntSmartWidth]'
 })
-export class SmartWidthDirective {
+export class SmartWidthDirective implements AfterViewInit {
 
-  private readonly host: HTMLInputElement;
+  private host: HTMLInputElement;
 
   constructor(private element: ElementRef,
               private renderer: Renderer2) {
-    this.host = element.nativeElement;
+  }
+
+  ngAfterViewInit() {
+    this.host = this.element.nativeElement;
   }
 
   @HostListener('keydown') changed() {

@@ -16,27 +16,98 @@
 
   <hr>
 
-    <jnt-form [formGroup]="form">
-      <h4>Input property</h4>
-      <jnt-row>
-        <jnt-col [span]="12">
-          <jnt-select valueField="value"
-                      labelField="label"
-                      [search]="true"
-                      [mode]="selectMode.multiple"
-                      placeholder="Multiple select"
-                      formControlName="select">
-            <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
-            </jnt-select-option>
-          </jnt-select>
-        </jnt-col>
-      </jnt-row>
-      <h4>Ajax query</h4>
-      <jnt-select valueField="value"
-                  labelField="label"
-                  [loadOptions]="loadOptions()"
-                  placeholder="Single select(ajax)"
-                  formControlName="selectAjax">
-      </jnt-select>
-    </jnt-form>
+  <jnt-form [formGroup]="form">
+    <h4>Input property</h4>
+    <jnt-row>
+      <jnt-col [span]="12">
+        <jnt-stack>
+          <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+            <jnt-select valueField="value"
+                        labelField="label"
+                        [search]="true"
+                        [mode]="selectMode.multiple"
+                        placeholder="Multiple select"
+                        formControlName="select" [size]="size">
+              <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
+              </jnt-select-option>
+            </jnt-select>
+          </ng-container>
+        </jnt-stack>
+      </jnt-col>
+    </jnt-row>
+    <h4>Ajax query</h4>
+    <jnt-stack>
+      <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+        <jnt-select valueField="value"
+                    labelField="label"
+                    [loadOptions]="loadOptions()"
+                    placeholder="Single select(ajax)"
+                    formControlName="selectAjax" [size]="size">
+        </jnt-select>
+      </ng-container>
+    </jnt-stack>
+  </jnt-form>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+ <jnt-select valueField="value"
+             labelField="label"
+             [search]="true"
+             [mode]="selectMode.multiple"
+             placeholder="Multiple select"
+             formControlName="select" [size]="ui.sizes.small">
+              <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
+              </jnt-select-option>
+            </jnt-select>]]></pre>
+  </ngx-prism>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+<jnt-select valueField="value"
+            labelField="label"
+            [loadOptions]="loadOptions()"
+            placeholder="Single select(ajax)"
+            formControlName="selectAjax" [size]="ui.sizes.normal">
+        </jnt-select>]]></pre>
+  </ngx-prism>
+
+  <h3>API</h3>
+  <h4>jnt-select</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <td>[search]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>[placeholder]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[mode]</td>
+      <td>-</td>
+      <td>multiple | single</td>
+      <td>single</td>
+    </tr>
+    </tbody>
+  </table>
+
 </jnt-container>

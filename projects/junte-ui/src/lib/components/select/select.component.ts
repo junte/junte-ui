@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode, UI } from '../../enum/ui';
+import { SelectMode, Sizes, UI } from '../../enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize, tap } from 'rxjs/operators';
 import { SelectOptionComponent } from './select-option/select-option.component';
@@ -42,6 +42,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() placeholder: string;
   @Input() search = false;
   @Input() required = false;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
