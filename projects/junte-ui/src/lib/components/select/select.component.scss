@@ -9,8 +9,9 @@ $option-list-bg: white;
 $option-list-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 
 $option-item-padding-x: $gutter-small;
-$option-item-padding-y: $gutter-big;
+$option-item-padding-y: $gutter-normal;
 $option-item-hover-bg: $gray-500;
+$option-item-icon-color: $primary-color;
 
 $select-border-width: 1px;
 $select-border-color: $gray-600;
@@ -22,6 +23,11 @@ $select-placeholder-color: $gray-600;
 $select-padding-bottom: $gutter-tiny;
 $select-padding-left: $gutter-tiny;
 $select-padding-right: $gutter-normal;
+
+$select-focus-shadow: 0px 0px 6px rgba(8, 35, 202, 0.4);
+
+$select-hover-border-color: $primary-color;
+$select-focus-border-color: $primary-color;
 
 $chips-bg: $gray-500;
 $chips-corner: $select-corner;
@@ -46,6 +52,15 @@ $chips-spacer: $gutter-tiny;
   display: flex;
   align-items: center;
   background-color: white;
+  transition: all .3s;
+  &:hover {
+    border-color: $select-hover-border-color;
+  }
+  &:focus {
+    border-color: $select-hover-border-color;
+    box-shadow: $select-focus-shadow;
+    outline: 0;
+  }
 
   [placeholder] {
     display: flex;
@@ -97,13 +112,17 @@ $chips-spacer: $gutter-tiny;
       }
     }
   }
-  [icon] {
+  [down] {
     position: absolute;
     top: 50%;
     right: $select-padding-left;
     transform: translateY(-50%);
     font-size: $select-icon-dropdown-size;
     color: $select-icon-dropdown-color;
+  }
+  [spin] {
+    color: $gray-400;
+    margin-left: $gutter-normal;
   }
   [input] {
     max-width: 100%;
@@ -136,6 +155,11 @@ $chips-spacer: $gutter-tiny;
     [checkbox]:child-host=#{$jnt-checkbox-host} [switch] {
       border: 0;
       background-color: transparent;
+      position: absolute;
+      right: 0;
+      [icon] {
+        color: $option-item-icon-color;
+      }
     }
     &:hover {
       background-color: $option-item-hover-bg;
@@ -143,6 +167,14 @@ $chips-spacer: $gutter-tiny;
   }
   [message] {
     padding: $chips-padding-x $chips-padding-y;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    [icon] {
+      color: $gray-400;
+      font-size: 30px;
+    }
   }
   [loading] {
     position: absolute;
