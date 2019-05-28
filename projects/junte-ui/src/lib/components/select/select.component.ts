@@ -4,7 +4,7 @@ import {
   ContentChildren,
   ElementRef,
   forwardRef,
-  HostBinding,
+  HostBinding, HostListener,
   Input,
   OnInit,
   QueryList,
@@ -52,6 +52,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ViewChild('searchInput')
   searchInput: ElementRef;
 
+  @ViewChild('selectize')
+  selectize: ElementRef;
+
   private fetcher: Subscription;
   private q$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   private _options: SelectOptionComponent[] = [];
@@ -65,6 +68,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   labels: any = {};
   loading: boolean;
   toggle: boolean;
+  focused: boolean;
 
   get placeholderVisible() {
     return this._placeholderVisible && !this.selectedItems.length;
@@ -75,7 +79,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   get input() {
-    return this.searchInput.nativeElement;
+    return !!this.searchInput ? this.searchInput.nativeElement : null;
   }
 
   set q(q: string) {
@@ -185,5 +189,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+
+  // TODO: think about it @VSmirnov17
+  @HostListener('focusin', ['$event.target'])
+  focusIn(target) {
+    this.focused = (target === this.searchInput.nativeElement || target === this.selectize.nativeElement);
+  }
+
+  @HostListener('focusout', ['$event.target'])
+  focusOut() {
+    this.focused = false;
   }
 }
