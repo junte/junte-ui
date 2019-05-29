@@ -15,10 +15,10 @@ export class ValidationDirective implements OnInit {
 
   ngOnInit() {
     this.form.statusChanges.subscribe(() => {
-      const controls = this.controls.toArray();
-      controls.filter(c => !!c.name && !!c.messages.toArray().length).forEach(c => {
+      const controls = this.controls;
+      controls.filter(c => !!c.name && !!c.messages.length).forEach(c => {
         const control = this.form.get(c.name);
-        const messages = c.messages.toArray();
+        const messages = c.messages;
         messages.forEach(m => m.show = !!(control.hasError(m.type) && control.errors && control.dirty));
       });
     });

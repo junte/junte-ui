@@ -67,7 +67,7 @@ export class FormComponent implements AfterContentInit {
 
   private setLayout(items: QueryList<FormItemComponent>) {
     if (!!items) {
-      items.toArray().forEach(item => item.layout = this.layout);
+      items.forEach(item => item.layout = this.layout);
     }
   }
 }
