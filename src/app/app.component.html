@@ -50,7 +50,11 @@
 
     <jnt-app-content [aside]="aside">
       <jnt-app-body>
-        <jnt-app-sub-header (burger)="aside.toggle()"></jnt-app-sub-header>
+        <jnt-container>
+          <jnt-app-sub-header (burger)="aside.toggle()">
+            <jnt-breadcrumb></jnt-breadcrumb>
+          </jnt-app-sub-header>
+        </jnt-container>
         <router-outlet></router-outlet>
       </jnt-app-body>
 

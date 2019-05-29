@@ -28,107 +28,135 @@ import {CircleBarTestComponent} from 'components/circle-bar/circle-bar-test.comp
 export const TESTS_ROUTES: Routes = [
   {
     path: 'pager',
-    component: PagerTestComponent
+    component: PagerTestComponent,
+    data: {breadcrumb: 'Pager'}
   },
   {
     path: 'button',
-    component: ButtonsTestComponent
+    component: ButtonsTestComponent,
+    data: {breadcrumb: 'Button'}
   },
   {
     path: 'calendar',
-    component: CalendarTestComponent
+    component: CalendarTestComponent,
+    data: {breadcrumb: 'Calendar'}
+
   },
   {
     path: 'grid',
-    component: GridTestComponent
+    component: GridTestComponent,
+    data: {breadcrumb: 'Grid'}
   },
   {
     path: 'breadcrumbs',
+    data: {breadcrumb: {label: 'Breadcrumbs'}},
     loadChildren: 'components/breadcrumbs/breadcrumbs.module#BreadcrumbsModule'
   },
   {
     path: 'switch',
-    component: SwitchTestComponent
+    component: SwitchTestComponent,
+    data: {breadcrumb: 'Switch'}
   },
   {
     path: 'stack',
-    component: StackTestComponent
+    component: StackTestComponent,
+    data: {breadcrumb: 'Stack'}
   },
   {
     path: 'spinner',
-    component: SpinnerTestComponent
+    component: SpinnerTestComponent,
+    data: {breadcrumb: 'Spinner'}
   },
   {
     path: 'block',
-    component: BlocksTestComponent
+    component: BlocksTestComponent,
+    data: {breadcrumb: 'Block'}
   },
   {
     path: 'checkbox',
-    component: CheckboxTestComponent
+    component: CheckboxTestComponent,
+    data: {breadcrumb: 'Checkbox'}
   },
   {
     path: 'radio',
-    component: RadioTestComponent
+    component: RadioTestComponent,
+    data: {breadcrumb: 'Radio'}
   },
   {
     path: 'input',
-    component: InputTestComponent
+    component: InputTestComponent,
+    data: {breadcrumb: 'Input'}
   },
   {
     path: 'select',
-    component: SelectTestComponent
+    component: SelectTestComponent,
+    data: {breadcrumb: 'Select'}
   },
   {
     path: 'form',
-    component: FormTestComponent
+    component: FormTestComponent,
+    data: {breadcrumb: 'Form'}
   },
   {
     path: 'icon',
-    component: IconTestComponent
+    component: IconTestComponent,
+    data: {breadcrumb: 'Icon'}
   },
   {
     path: 'badge',
-    component: BadgeTestComponent
+    component: BadgeTestComponent,
+    data: {breadcrumb: 'Badge'}
   },
   {
     path: 'layout',
-    component: AppLayoutTestComponent
+    component: AppLayoutTestComponent,
+    data: {breadcrumb: 'Layout'}
+
   },
   {
     path: 'table',
-    component: TableTestComponent
+    component: TableTestComponent,
+    data: {breadcrumb: 'Table'}
   },
   {
     path: 'avatar',
-    component: AvatarTestComponent
+    component: AvatarTestComponent,
+    data: {breadcrumb: 'Avatar'}
   },
   {
     path: 'link',
-    component: LinkTestComponent
+    component: LinkTestComponent,
+    data: {breadcrumb: 'Link'}
   },
   {
     path: 'label',
-    component: LabelTestComponent
+    component: LabelTestComponent,
+    data: {breadcrumb: 'Label'}
   },
   {
     path: 'skeleton',
-    component: SkeletonTestComponent
+    component: SkeletonTestComponent,
+    data: {breadcrumb: 'Skeleton'}
   },
   {
     path: 'tabs',
-    component: TabsTestComponent
+    component: TabsTestComponent,
+    data: {breadcrumb: 'Tabs'}
   },
   {
     path: 'menu',
-    component: MenuTestComponent
+    component: MenuTestComponent,
+    data: {breadcrumb: 'Menu'}
   },
   {
     path: 'typography',
-    component: TypographyTestComponent
+    component: TypographyTestComponent,
+    data: {breadcrumb: 'Typography'}
   },
   {
     path: 'circle-bar',
-    component: CircleBarTestComponent
+    component: CircleBarTestComponent,
+    data: {breadcrumb: 'Circle-bar'}
   },
   {
     path: '',
