@@ -3,8 +3,8 @@
 
   <jnt-stack [type]="ui.type.horizontal">
     <jnt-dropdown>
-      <ng-template #trigger>
-        <jnt-button text="Dropdown"></jnt-button>
+      <ng-template #trigger let-trigger="trigger">
+        <jnt-button text="Dropdown" (click)="trigger()"></jnt-button>
       </ng-template>
       <ng-template #menu>
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
