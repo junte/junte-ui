@@ -199,7 +199,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   @HostListener('focusout', ['$event.target'])
-  focusOut() {
+  focusOut(target) {
     this.focused = false;
   }
 }
