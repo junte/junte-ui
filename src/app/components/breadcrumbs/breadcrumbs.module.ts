@@ -8,6 +8,7 @@ import { BreadcrumbsRoutingModule } from 'components/breadcrumbs/breadcrumbs-rou
 import { BreadCrumbTest2Component } from 'components/breadcrumbs/tests/test2.component';
 import { JunteUiModule } from 'junte-ui';
 import { PrismModule } from '@ngx-prism/core';
+import { BreadcrumbResolver } from './resolver';
 
 
 @NgModule({
@@ -28,6 +29,9 @@ import { PrismModule } from '@ngx-prism/core';
     BreadcrumbsTestComponent,
     BreadCrumbTest1Component,
     BreadCrumbTest2Component
+  ],
+  providers: [
+    BreadcrumbResolver
   ]
 })
 export class BreadcrumbsModule {

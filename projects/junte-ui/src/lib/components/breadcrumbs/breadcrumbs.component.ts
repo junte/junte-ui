@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
-import { isArray, isObject } from 'util';
+import { isArray, isObject, isString } from 'util';
 import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -65,13 +65,17 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
           (isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(b => {
-            if (isObject(b)) {
-              const title = b.label;
+            if (isString(b)) {
+              if (!!b) {
+                breadcrumbs.push(new Breadcrumb(route, b));
+              }
+            } else if (isObject(b)) {
+              const title = b.label(route.snapshot.data);
               if (!!title) {
                 breadcrumbs.push(new Breadcrumb(route, title, b.url));
               }
             } else {
-              const title = b;
+              const title = b(route.snapshot.data);
               if (!!title) {
                 breadcrumbs.push(new Breadcrumb(route, title, '.'));
               }
