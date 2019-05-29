@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: '',
     component: BreadcrumbsTestComponent,
-    data: {breadcrumb: {label: 'Home'}},
     children: [
       {
         path: 'page',

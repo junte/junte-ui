@@ -20,7 +20,7 @@ class Breadcrumb {
 
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
-  @HostBinding('attr.host') readonly host = 'jnt-breadcrumbs-host';
+  @HostBinding('attr.host') readonly host = 'jnt-breadcrumb-host';
 
   ui = UI;
 

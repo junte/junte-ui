@@ -1,11 +1,16 @@
 @import "../../../assets/styles/variables";
 
+$app-sub-header-padding-x: $gutter-small;
+$app-sub-header-padding-y: 0;
+
 :host {
   display: block;
 
+  padding: $app-sub-header-padding-x $app-sub-header-padding-y;
+
   @media (max-width: 767px) {
     [burger] {
-      display: block;
+      display: inline-block;
     }
   }
 }
@@ -13,3 +18,5 @@
 [burger] {
   display: none;
 }
+
+
