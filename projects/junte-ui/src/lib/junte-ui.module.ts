@@ -32,6 +32,7 @@ import { LabelModule } from './components/label/label.module';
 import { LinkModule } from './components/link/link.module';
 import { RadioModule } from './components/radio/radio.module';
 import { SwitchModule } from './components/switch/switch.module';
+import { DropdownModule } from './components/dropdown/dropdown.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SwitchModule } from './components/switch/switch.module';
     CardModule,
     CheckboxModule,
     CircleBarModule,
+    DropdownModule,
     DatePipeModule,
     FormModule,
     GridModule,

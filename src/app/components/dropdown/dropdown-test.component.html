@@ -1,0 +1,124 @@
+<jnt-container>
+  <h1>Dropdown</h1>
+
+  <jnt-stack [type]="ui.type.horizontal">
+    <jnt-dropdown>
+      <ng-template #trigger>
+        <jnt-button text="Dropdown"></jnt-button>
+      </ng-template>
+      <ng-template #menu>
+        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu-item title="Edit"></jnt-menu-item>
+          <jnt-menu-item title="Delete"></jnt-menu-item>
+          <jnt-menu-item title="Add"></jnt-menu-item>
+          <jnt-menu-item title="Copy"></jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+    </jnt-dropdown>
+
+    <jnt-dropdown>
+      <ng-template #trigger>
+        <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.union"></jnt-button>
+      </ng-template>
+      <ng-template #menu>
+        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu-item title="Edit"></jnt-menu-item>
+          <jnt-menu-item title="Delete"></jnt-menu-item>
+          <jnt-menu-item title="Add"></jnt-menu-item>
+          <jnt-menu-item title="Copy"></jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+    </jnt-dropdown>
+  </jnt-stack>
+
+  <h3>Dropdown positions</h3>
+
+  <jnt-stack [type]="ui.type.horizontal">
+    <ng-container *ngFor="let pos of [ui.dropdown.position.bottomLeft, ui.dropdown.position.bottomCenter, ui.dropdown.position.bottomRight,
+                           ui.dropdown.position.topLeft, ui.dropdown.position.topCenter, ui.dropdown.position.topRight]">
+      <jnt-dropdown [position]="pos">
+        <ng-template #trigger>
+          <jnt-button [text]="pos"></jnt-button>
+        </ng-template>
+        <ng-template #menu>
+          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+            <jnt-menu-item title="Edit item length item"></jnt-menu-item>
+            <jnt-menu-item title="Delete item length item"></jnt-menu-item>
+            <jnt-menu-item title="Add item length item"></jnt-menu-item>
+            <jnt-menu-item title="Copy item length item"></jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+      </jnt-dropdown>
+    </ng-container>
+  </jnt-stack>
+
+  <h3>Dropdown modes</h3>
+
+  <jnt-stack [type]="ui.type.horizontal">
+    <ng-container *ngFor="let mode of [ui.dropdown.mode.hover, ui.dropdown.mode.click]">
+      <jnt-dropdown [mode]="mode">
+        <ng-template #trigger>
+          <jnt-button [text]="mode"></jnt-button>
+        </ng-template>
+        <ng-template #menu>
+          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+            <jnt-menu-item title="Edit"></jnt-menu-item>
+            <jnt-menu-item title="Delete"></jnt-menu-item>
+            <jnt-menu-item title="Add"></jnt-menu-item>
+            <jnt-menu-item title="Copy"></jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+      </jnt-dropdown>
+    </ng-container>
+  </jnt-stack>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+
+<jnt-dropdown [position]="ui.dropdown.position.bottomLeft" [mode]="ui.dropdown.mode.click">
+  <ng-template #trigger>
+    <jnt-button text="Dropdown"></jnt-button>
+  </ng-template>
+  <ng-template #menu>
+    <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+      <jnt-menu-item title="Edit"></jnt-menu-item>
+      <jnt-menu-item title="Delete"></jnt-menu-item>
+      <jnt-menu-item title="Add"></jnt-menu-item>
+      <jnt-menu-item title="Copy"></jnt-menu-item>
+    </jnt-menu>
+  </ng-template>
+</jnt-dropdown>
+
+  ]]></pre>
+  </ngx-prism>
+
+  <h3>API</h3>
+
+  <h4>jnt-dropdown</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[position]</td>
+      <td>-</td>
+      <td>bottomLeft | bottomCenter | bottomRight | topLeft | topCenter | topRight</td>
+      <td>bottomLeft</td>
+    </tr>
+    <tr>
+      <td>[mode]</td>
+      <td>-</td>
+      <td>click | hover</td>
+      <td>hover</td>
+    </tr>
+    </tbody>
+  </table>
+
+</jnt-container>
+

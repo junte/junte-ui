@@ -1,0 +1,6 @@
+<div *ngIf="toggle" overlay (click)="toggle = false"></div>
+<div style="z-index: 10000;" (click)="mode === dropdownMode.click ? toggle = !toggle : undefined">
+  <ng-container *ngTemplateOutlet="trigger"></ng-container>
+  <ng-container *ngTemplateOutlet="menu"></ng-container>
+</div>
+

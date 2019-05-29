@@ -24,6 +24,7 @@ import {TabsTestComponent} from 'components/tabs/tabs-test.component';
 import {MenuTestComponent} from 'components/menu/menu-test.component';
 import {TypographyTestComponent} from 'components/typography/typography-test.component';
 import {CircleBarTestComponent} from 'components/circle-bar/circle-bar-test.component';
+import { DropdownTestComponent } from 'components/dropdown/dropdown-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -91,6 +92,11 @@ export const TESTS_ROUTES: Routes = [
     path: 'select',
     component: SelectTestComponent,
     data: {breadcrumb: 'Select'}
+  },
+  {
+    path: 'dropdown',
+    component: DropdownTestComponent,
+    data: {breadcrumb: 'Dropdown'}
   },
   {
     path: 'form',

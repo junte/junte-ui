@@ -138,3 +138,102 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
   }
 }
 
+$dropdown-bg: $white-color;
+$dropdown-padding-x: $gutter-big;
+$dropdown-padding-y: $gutter-big;
+$dropdown-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+$dropdown-corner: $corner-sm;
+$dropdown-spacing: 4px;
+
+$position-bottom-left-name: 'bottomLeft';
+$position-bottom-center-name: 'bottomCenter';
+$position-bottom-right-name: 'bottomRight';
+$position-top-left-name: 'topLeft';
+$position-top-center-name: 'topCenter';
+$position-top-right-name: 'topRight';
+
+$menu-item-color-in-dropdown: $text-color;
+$menu-item-hover-background-color-in-dropdown: $gray-1000;
+$menu-item-padding-x-in-dropdown: $gutter-normal;
+$menu-item-padding-y-in-dropdown: $gutter-big;
+
+$positionsDropdown: (
+  #{$position-bottom-left-name}: (
+    top: 100%,
+    left: 0,
+    right: auto,
+    bottom: auto
+  ),
+  #{$position-bottom-center-name}: (
+    top: 100%,
+    left: 50%,
+    right: auto,
+    bottom: auto,
+  ),
+  #{$position-bottom-right-name}: (
+    top: 100%,
+    left: auto,
+    right: 0,
+    bottom: auto
+  ),
+  #{$position-top-left-name}: (
+    top: auto,
+    left: 0,
+    right: auto,
+    bottom: 100%
+  ),
+  #{$position-top-center-name}: (
+    top: auto,
+    left: 50%,
+    right: auto,
+    bottom: 100%,
+  ),
+  #{$position-top-right-name}: (
+    top: auto,
+    left: auto,
+    right: 0,
+    bottom: 100%
+  )
+);
+
+@mixin positionDropdown($position) {
+  jnt-menu[host=#{$jnt-menu-host}] {
+    top: #{map-get($position, top)};
+    left: #{map-get($position, left)};
+    right: #{map-get($position, right)};
+    bottom: #{map-get($position, bottom)};
+  }
+}
+
+@mixin opened() {
+  jnt-menu[host=#{$jnt-menu-host}] {
+    transform: scaleY(1);
+  }
+}
+
+jnt-dropdown[host=#{$jnt-dropdown-host}] jnt-menu[host=#{$jnt-menu-host}] {
+  background-color: $dropdown-bg;
+  min-width: 100%;
+  position: absolute;
+  box-shadow: $dropdown-shadow;
+  border-radius: $dropdown-corner;
+  white-space: nowrap;
+  transform: scaleY(0);
+  transition: all .2s ease-in-out;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  z-index: 100;
+  jnt-link[child-of=#{$jnt-menu-host}] {
+    width: 100%;
+    a[child-of=#{$jnt-link-host}] {
+      border: 0;
+      padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
+      &:hover {
+        background-color: $menu-item-hover-background-color-in-dropdown;
+      }
+      span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
+        color: $menu-item-color-in-dropdown;
+      }
+    }
+  }
+}

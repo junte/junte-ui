@@ -1,0 +1,36 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/common";
+
+$mode-hover-name: 'hover';
+$mode-click-name: 'click';
+
+:host {
+  display: inline-block;
+  position: relative;
+  @each $position, $map in $positionsDropdown {
+    &[position='#{$position}'] {
+      @include positionDropdown($map);
+    }
+  }
+  &[mode='#{$mode-hover-name}'] {
+    &:hover {
+      @include opened();
+    }
+  }
+  &[mode='#{$mode-click-name}'] {
+    &[toggle='true'] {
+      @include opened();
+    }
+  }
+}
+
+[overlay] {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+
