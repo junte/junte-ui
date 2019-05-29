@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { SelectMode } from 'projects/junte-ui/src/lib/enum/ui';
+import { SelectMode, UI } from 'projects/junte-ui/src/lib/enum/ui';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./select-test.component.scss']
 })
 export class SelectTestComponent implements OnInit {
+
+  ui = UI;
 
   form: FormGroup;
   selectMode = SelectMode;

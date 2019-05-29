@@ -12,10 +12,6 @@
   </li>
 </ng-template>
 
-<ng-template #singleMode>
-  <li><span></span></li>
-</ng-template>
-
 <ng-template #selectedItemsTemplate>
   <ul selection *ngIf="!loading; else loadOptionsTemplate">
     <li *ngFor="let item of selectedItems" [attr.chips]="selectMode.multiple === mode">
@@ -38,27 +34,25 @@
   <div *ngIf="placeholderVisible" placeholder>{{placeholder}}</div>
 </ng-template>
 
-<ng-template #loadTemplate>
-  <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
-</ng-template>
-
 <ng-template #loadOptionsTemplate>
-  <jnt-spinner></jnt-spinner>
+  <jnt-spinner spin></jnt-spinner>
 </ng-template>
 
 <ng-template #itemsNotFoundTemplate>
-  <li message *ngIf="!!q && !options.length">Items not found</li>
+  <li message *ngIf="!!q && !options.length">
+    <jnt-icon [icon]="ui.icons.nodata" icon></jnt-icon>
+  </li>
 </ng-template>
 
 <div *ngIf="toggle" overlay (click)="toggle = !toggle"></div>
 
-<div selectize (click)="input.focus(); toggle = !toggle;">
+<div #selectize selectize (click)="input.focus(); toggle = !toggle;" [attr.focused]="focused" tabindex="0">
   <ng-container *ngTemplateOutlet="selectedItemsTemplate"></ng-container>
-  <jnt-icon icon [icon]="ui.icons.sortDown"></jnt-icon>
+  <jnt-icon down [icon]="ui.icons.sortDown"></jnt-icon>
   <ng-container *ngIf="!!toggle">
     <div options>
       <div *ngIf="loading" loading>
-        <ng-container *ngTemplateOutlet="loadTemplate"></ng-container>
+        <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
       </div>
       <ul>
         <ng-container *ngTemplateOutlet="itemsNotFoundTemplate"></ng-container>

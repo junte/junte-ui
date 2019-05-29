@@ -4,14 +4,14 @@ import {
   ContentChildren,
   ElementRef,
   forwardRef,
-  HostBinding,
+  HostBinding, HostListener,
   Input,
   OnInit,
   QueryList,
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode, UI } from '../../enum/ui';
+import { SelectMode, Sizes, UI } from '../../enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize, tap } from 'rxjs/operators';
 import { SelectOptionComponent } from './select-option/select-option.component';
@@ -43,10 +43,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() search = false;
   @Input() required = false;
 
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
+
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
   @ViewChild('searchInput')
   searchInput: ElementRef;
+
+  @ViewChild('selectize')
+  selectize: ElementRef;
 
   private fetcher: Subscription;
   private q$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
@@ -61,6 +68,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   labels: any = {};
   loading: boolean;
   toggle: boolean;
+  focused: boolean;
 
   get placeholderVisible() {
     return this._placeholderVisible && !this.selectedItems.length;
@@ -71,7 +79,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   get input() {
-    return this.searchInput.nativeElement;
+    return !!this.searchInput ? this.searchInput.nativeElement : null;
   }
 
   set q(q: string) {
@@ -181,5 +189,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+
+  // TODO: think about it @VSmirnov17
+  @HostListener('focusin', ['$event.target'])
+  focusIn(target) {
+    this.focused = (target === this.searchInput.nativeElement || target === this.selectize.nativeElement);
+  }
+
+  @HostListener('focusout', ['$event.target'])
+  focusOut(target) {
+    this.focused = false;
   }
 }
