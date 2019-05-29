@@ -15,6 +15,10 @@
     <jnt-tab title="Settings">Template Settings</jnt-tab>
   </jnt-tabs>
 
+  <jnt-tabs>
+    <jnt-tab *ngFor="let tab of tabs" [title]="tab.title">{{tab.content}}</jnt-tab>
+  </jnt-tabs>
+
   <ngx-prism language="html">
     <pre><![CDATA[
 <jnt-tabs>

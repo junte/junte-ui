@@ -1,11 +1,11 @@
-import {AfterContentInit, Component, ContentChildren, HostBinding, QueryList} from '@angular/core';
-import {TabComponent} from './tab/tab.component';
+import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
+import { TabComponent } from './tab/tab.component';
 
 @Component({
   selector: 'jnt-tabs',
   templateUrl: './encapsulated.html'
 })
-export class TabsComponent implements AfterContentInit {
+export class TabsComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
 
@@ -17,13 +17,8 @@ export class TabsComponent implements AfterContentInit {
   constructor() {
   }
 
-  ngAfterContentInit() {
-    this.tabs = this.tabItems.toArray();
-    this.tabItems.changes.subscribe(items => this.tabs = items.toArray());
-  }
-
   activatedTab(tab: TabComponent) {
-    this.tabs.forEach(t => t.active = false);
+    this.tabItems.forEach(t => t.active = false);
     tab.active = true;
   }
 

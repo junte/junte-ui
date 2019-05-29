@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ContentChild,
   ContentChildren,
@@ -21,14 +20,13 @@ import { UI } from '../../enum/ui';
   selector: 'jnt-table',
   templateUrl: './encapsulated.html'
 })
-export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy {
 
   ui = UI;
 
   private subscriptions = new Subscription();
   private _count: number;
 
-  columns: TableColumnComponent[] = [];
   progress = {loading: false};
 
   @HostBinding('attr.host') readonly host = 'jnt-table-host';
@@ -40,7 +38,7 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
   source: any[] = [];
 
   @ContentChildren(TableColumnComponent)
-  columnsComponent: QueryList<TableColumnComponent>;
+  columns: QueryList<TableColumnComponent>;
 
   @ContentChild('rowTemplate')
   rowTemplate: TemplateRef<any>;
@@ -95,11 +93,6 @@ export class TableComponent implements OnInit, AfterContentInit, OnDestroy {
         Object.assign(this.filter, filter);
         this.load();
       });
-  }
-
-  ngAfterContentInit() {
-    this.columns = this.columnsComponent.toArray();
-    this.columnsComponent.changes.subscribe(c => this.columns = c.toArray());
   }
 
   load() {

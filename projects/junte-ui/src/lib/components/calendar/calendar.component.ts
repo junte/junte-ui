@@ -1,10 +1,10 @@
 import {
-  AfterContentInit,
   Component,
   ContentChild,
   ContentChildren,
   EventEmitter,
-  forwardRef, HostBinding,
+  forwardRef,
+  HostBinding,
   Input,
   OnInit,
   Output,
@@ -46,7 +46,7 @@ const DAYS_IN_WEEK = 7;
     }
   ]
 })
-export class CalendarComponent implements ControlValueAccessor, AfterContentInit, OnInit {
+export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-calendar-host';
 
@@ -57,11 +57,10 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
   private _period: Date;
 
   current: Date = today();
-  metrics: WeekMetricComponent[] = [];
   weeks = [];
 
   @ContentChildren(WeekMetricComponent)
-  metricsComponent: QueryList<WeekMetricComponent>;
+  metrics: QueryList<WeekMetricComponent>;
 
   @ContentChild('dayTemplate')
   dayTemplate: TemplateRef<any>;
@@ -104,11 +103,6 @@ export class CalendarComponent implements ControlValueAccessor, AfterContentInit
       .subscribe(([year, month]) =>
         this.period = setDay(setMonth(setYear(new Date(), year), month), 1, {weekStartsOn: 1})
       );
-  }
-
-  ngAfterContentInit() {
-    this.metrics = this.metricsComponent.toArray();
-    this.metricsComponent.changes.subscribe(m => this.metrics = m.toArray());
   }
 
   ngOnInit() {
