@@ -8,7 +8,6 @@ import { DropdownMode, DropdownPositions, UI } from '../../enum/ui';
 export class DropdownComponent implements OnInit {
 
   ui = UI;
-  dropdownMode = DropdownMode;
 
   @HostBinding('attr.host') readonly host = 'jnt-dropdown-host';
 
@@ -23,7 +22,7 @@ export class DropdownComponent implements OnInit {
   }
 
   @HostBinding('attr.position')
-  @Input() position = DropdownPositions.bottomLeft;
+  @Input() position: DropdownPositions = DropdownPositions.bottomLeft;
 
   @ContentChild('trigger')
   triggerTemplate: TemplateRef<any>;
