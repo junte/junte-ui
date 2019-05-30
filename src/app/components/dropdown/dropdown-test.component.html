@@ -2,7 +2,7 @@
   <h1>Dropdown</h1>
 
   <jnt-stack [type]="ui.type.horizontal">
-    <jnt-dropdown>
+    <jnt-dropdown [mode]="ui.dropdown.mode.click">
       <ng-template #trigger let-trigger="trigger">
         <jnt-button text="Dropdown" (click)="trigger()"></jnt-button>
       </ng-template>
