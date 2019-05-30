@@ -1,6 +1,5 @@
-<div *ngIf="toggle" overlay (click)="toggle = false"></div>
-<div style="z-index: 10000;" (click)="mode === dropdownMode.click ? toggle = !toggle : undefined">
-  <ng-container *ngTemplateOutlet="trigger"></ng-container>
-  <ng-container *ngTemplateOutlet="menu"></ng-container>
+<div *ngIf="visible" overlay (click)="toggle()"></div>
+<div style="z-index: 10000;">
+  <ng-container *ngTemplateOutlet="triggerTemplate; context: {trigger: toggle.bind(this)}"></ng-container>
+  <ng-container *ngTemplateOutlet="dropdownTemplate; context: {trigger: toggle.bind(this)}"></ng-container>
 </div>
-

@@ -12,19 +12,28 @@ export class DropdownComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-dropdown-host';
 
-  @HostBinding('attr.toggle') toggle: boolean;
+  @HostBinding('attr.toggle') _visible: boolean;
 
-  @HostBinding('attr.mode')
-  @Input() mode = DropdownMode.hover;
+  set visible(visible: boolean) {
+    this._visible = visible;
+  }
+
+  get visible() {
+    return this._visible;
+  }
 
   @HostBinding('attr.position')
   @Input() position = DropdownPositions.bottomLeft;
 
   @ContentChild('trigger')
-  trigger: TemplateRef<any>;
+  triggerTemplate: TemplateRef<any>;
 
-  @ContentChild('menu')
-  menu: TemplateRef<any>;
+  @ContentChild('dropdown')
+  dropdownTemplate: TemplateRef<any>;
+
+  toggle() {
+    this.visible = !this.visible;
+  }
 
   constructor() {
   }

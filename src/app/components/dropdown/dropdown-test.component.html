@@ -2,16 +2,16 @@
   <h1>Dropdown</h1>
 
   <jnt-stack [type]="ui.type.horizontal">
-    <jnt-dropdown [mode]="ui.dropdown.mode.click">
-      <ng-template #trigger let-trigger="trigger">
-        <jnt-button text="Dropdown" (click)="trigger()"></jnt-button>
+    <jnt-dropdown>
+      <ng-template #trigger let-action="trigger">
+        <jnt-button text="Dropdown" (click)="action()"></jnt-button>
       </ng-template>
-      <ng-template #menu>
+      <ng-template #dropdown let-action="trigger">
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-          <jnt-menu-item title="Edit"></jnt-menu-item>
-          <jnt-menu-item title="Delete"></jnt-menu-item>
-          <jnt-menu-item title="Add"></jnt-menu-item>
-          <jnt-menu-item title="Copy"></jnt-menu-item>
+          <jnt-menu-item title="Edit" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Delete" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Add" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Copy" [click]="action"></jnt-menu-item>
         </jnt-menu>
       </ng-template>
     </jnt-dropdown>
@@ -20,7 +20,7 @@
       <ng-template #trigger>
         <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.union"></jnt-button>
       </ng-template>
-      <ng-template #menu>
+      <ng-template #dropdown>
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
           <jnt-menu-item title="Edit"></jnt-menu-item>
           <jnt-menu-item title="Delete"></jnt-menu-item>
@@ -40,7 +40,7 @@
         <ng-template #trigger>
           <jnt-button [text]="pos"></jnt-button>
         </ng-template>
-        <ng-template #menu>
+        <ng-template #dropdown>
           <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
             <jnt-menu-item title="Edit item length item"></jnt-menu-item>
             <jnt-menu-item title="Delete item length item"></jnt-menu-item>
@@ -55,12 +55,11 @@
   <h3>Dropdown modes</h3>
 
   <jnt-stack [type]="ui.type.horizontal">
-    <ng-container *ngFor="let mode of [ui.dropdown.mode.hover, ui.dropdown.mode.click]">
-      <jnt-dropdown [mode]="mode">
-        <ng-template #trigger>
-          <jnt-button [text]="mode"></jnt-button>
+      <jnt-dropdown>
+        <ng-template #trigger let-action="trigger">
+          <jnt-button text="click" (click)="action()"></jnt-button>
         </ng-template>
-        <ng-template #menu>
+        <ng-template #dropdown>
           <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
             <jnt-menu-item title="Edit"></jnt-menu-item>
             <jnt-menu-item title="Delete"></jnt-menu-item>
@@ -69,25 +68,37 @@
           </jnt-menu>
         </ng-template>
       </jnt-dropdown>
-    </ng-container>
+    <jnt-dropdown>
+      <ng-template #trigger let-action="trigger">
+        <jnt-button text="hover" (mouseover)="action()" (mouseout)="action()"></jnt-button>
+      </ng-template>
+      <ng-template #dropdown>
+        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu-item title="Edit"></jnt-menu-item>
+          <jnt-menu-item title="Delete"></jnt-menu-item>
+          <jnt-menu-item title="Add"></jnt-menu-item>
+          <jnt-menu-item title="Copy"></jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+    </jnt-dropdown>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
 
-<jnt-dropdown [position]="ui.dropdown.position.bottomLeft" [mode]="ui.dropdown.mode.click">
-  <ng-template #trigger>
-    <jnt-button text="Dropdown"></jnt-button>
-  </ng-template>
-  <ng-template #menu>
-    <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-      <jnt-menu-item title="Edit"></jnt-menu-item>
-      <jnt-menu-item title="Delete"></jnt-menu-item>
-      <jnt-menu-item title="Add"></jnt-menu-item>
-      <jnt-menu-item title="Copy"></jnt-menu-item>
-    </jnt-menu>
-  </ng-template>
-</jnt-dropdown>
+    <jnt-dropdown>
+      <ng-template #trigger let-action="trigger">
+        <jnt-button text="Dropdown" (click)="action()"></jnt-button>
+      </ng-template>
+      <ng-template #dropdown let-action="trigger">
+        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu-item title="Edit" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Delete" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Add" [click]="action"></jnt-menu-item>
+          <jnt-menu-item title="Copy" [click]="action"></jnt-menu-item>
+        </jnt-menu>
+      </ng-template>
+    </jnt-dropdown>
 
   ]]></pre>
   </ngx-prism>
@@ -110,12 +121,6 @@
       <td>-</td>
       <td>bottomLeft | bottomCenter | bottomRight | topLeft | topCenter | topRight</td>
       <td>bottomLeft</td>
-    </tr>
-    <tr>
-      <td>[mode]</td>
-      <td>-</td>
-      <td>click | hover</td>
-      <td>hover</td>
     </tr>
     </tbody>
   </table>

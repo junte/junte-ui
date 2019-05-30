@@ -12,16 +12,10 @@ $mode-click-name: 'click';
       @include positionDropdown($map);
     }
   }
-  &[mode='#{$mode-hover-name}'] {
-    &:hover {
-      @include opened();
-    }
+  &[toggle='true'] {
+    @include opened();
   }
-  &[mode='#{$mode-click-name}'] {
-    &[toggle='true'] {
-      @include opened();
-    }
-  }
+
 }
 
 [overlay] {

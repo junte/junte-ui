@@ -10,6 +10,7 @@ export class MenuItemComponent {
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string;
+  @Input() click: Function;
   @Input() badge: number;
   @Input() scheme: Schemes = Schemes.primary;
 
