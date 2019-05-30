@@ -3,6 +3,10 @@
 $calendar-arrows-size: 1rem;
 $calendar-arrows-color: $text-color;
 $calendar-arrows-hover-color: lighten($calendar-arrows-color, 10%);
+$calendar-button-arrows-size: 25px;
+$calendar-button-arrows-corner: 50%;
+$calendar-button-arrows-focus-border-color: $primary-color;
+$calendar-button-arrows-focus-shadow: 0px 0px 6px rgba(8, 35, 202, 0.4);
 $calendar-padding: $gutter-normal;
 $calendar-name-day-padding-x: $gutter-normal;
 $calendar-name-day-padding-y: $gutter-tiny;
@@ -43,17 +47,27 @@ thead {
   }
   [arrow] {
     background-color: transparent;
-    border: 0;
+    border-width: 0;
     font-size: $calendar-arrows-size;
     color: $calendar-arrows-color;
     cursor: pointer;
     padding: 0;
     vertical-align: middle;
+    border-radius: $calendar-button-arrows-corner;
+    width: $calendar-button-arrows-size;
+    height: $calendar-button-arrows-size;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow .3s;
     &:focus {
       outline: none;
+      box-shadow: $calendar-button-arrows-focus-shadow;
+      border: 1px solid $calendar-button-arrows-focus-border-color;
     }
     &:hover {
       color: $calendar-arrows-hover-color;
+      border: 1px solid $calendar-button-arrows-focus-border-color;
     }
   }
   [date] {
@@ -92,7 +106,6 @@ tbody {
       }
     }
     td {
-      position: relative;
       min-width: $calendar-day-width;
       font-size: $calendar-day-font-size;
       box-sizing: border-box;
@@ -129,5 +142,7 @@ tbody {
 td, th {
   vertical-align: middle;
   text-align: center;
+  position: relative;
 }
+
 
