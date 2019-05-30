@@ -35,3 +35,4 @@ export * from './lib/components/stack';
 export * from './lib/components/switch';
 export * from './lib/components/table';
 export * from './lib/components/tabs';
+export * from './lib/components/dropdown';

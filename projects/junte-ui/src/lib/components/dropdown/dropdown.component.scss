@@ -1,0 +1,27 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/common";
+
+:host {
+  display: inline-block;
+  position: relative;
+  @each $position, $map in $positionsDropdown {
+    &[position='#{$position}'] {
+      @include positionDropdown($map);
+    }
+  }
+  &[toggle='true'] {
+    @include opened();
+  }
+
+}
+
+[overlay] {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+

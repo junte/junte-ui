@@ -172,10 +172,24 @@ export enum SelectMode {
   multiple = 'multiple'
 }
 
+export enum DropdownMode {
+  click = 'click',
+  hover = 'hover'
+}
+
 export enum Positions {
   rightTop = 'right-top',
   leftTop = 'left-top',
   inline = 'inline'
+}
+
+export enum DropdownPositions {
+  bottomLeft = 'bottomLeft',
+  bottomCenter = 'bottomCenter',
+  bottomRight = 'bottomRight',
+  topLeft = 'topLeft',
+  topCenter = 'topCenter',
+  topRight = 'topRight'
 }
 
 export enum Shapes {
@@ -214,6 +228,10 @@ export class UI {
     }
   };
   static select = SelectMode;
+  static dropdown = {
+    mode: DropdownMode,
+    position: DropdownPositions
+  };
   static block = {
     type: TypeBlock
   };
