@@ -17,8 +17,8 @@
     </jnt-dropdown>
 
     <jnt-dropdown>
-      <ng-template #trigger>
-        <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.union"></jnt-button>
+      <ng-template #trigger let-action="trigger">
+        <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.union" (click)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown>
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
@@ -37,8 +37,8 @@
     <ng-container *ngFor="let pos of [ui.dropdown.position.bottomLeft, ui.dropdown.position.bottomCenter, ui.dropdown.position.bottomRight,
                            ui.dropdown.position.topLeft, ui.dropdown.position.topCenter, ui.dropdown.position.topRight]">
       <jnt-dropdown [position]="pos">
-        <ng-template #trigger>
-          <jnt-button [text]="pos"></jnt-button>
+        <ng-template #trigger let-action="trigger">
+          <jnt-button [text]="pos" (click)="action()"></jnt-button>
         </ng-template>
         <ng-template #dropdown>
           <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
