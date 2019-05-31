@@ -1,5 +1,5 @@
 <jnt-stack [type]="type" [gutter]="spacer">
   <ng-container *ngFor="let item of items">
-    <jnt-link link [source]="item.link" [icon]="item.icon" [badge]="item.badge" [scheme]="item.scheme">{{item.title}}</jnt-link>
+    <jnt-link link (click)="!!item?.click ? item.click() : undefined" [source]="item.link" [icon]="item.icon" [badge]="item.badge" [scheme]="item.scheme">{{item.title}}</jnt-link>
   </ng-container>
 </jnt-stack>
