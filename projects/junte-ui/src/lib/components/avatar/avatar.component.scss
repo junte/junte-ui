@@ -19,7 +19,9 @@ $shapes: (
 );
 
 @mixin size($size) {
+  min-width: #{map-get($size, size)};
   width: #{map-get($size, size)};
+  min-height: #{map-get($size, size)};
   height: #{map-get($size, size)};
   [icon] {
     font-size: #{map-get($size, iconSize)};

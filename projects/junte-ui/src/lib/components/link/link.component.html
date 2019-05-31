@@ -7,8 +7,7 @@
 </ng-container>
 
 <ng-template #internalLink>
-  <a link [routerLink]="source" #link="routerLinkActive"
-     routerLinkActive [routerLinkActiveOptions]="{exact: true}"
+  <a link [routerLink]="source" #link="routerLinkActive" routerLinkActive
      [attr.active]="link.isActive">
     <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
     <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
