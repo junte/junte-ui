@@ -11,6 +11,7 @@ import { StackModule } from '../stack/stack.module';
 import { SkeletonModule } from '../skeleton/skeleton.module';
 import { InputModule } from '../input/input.module';
 import { ButtonModule } from '../button/button.module';
+import { DropdownModule } from '../dropdown/dropdown.module';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ButtonModule } from '../button/button.module';
     ButtonModule,
     SpinnerModule,
     StackModule,
-    SkeletonModule
+    SkeletonModule,
+    DropdownModule
   ],
   declarations: [
     TableComponent,

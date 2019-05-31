@@ -86,10 +86,16 @@ $table-loading-spinner-color: $gray-800;
       &:hover {
         background-color: $table-row-hover;
       }
+      td {
+        &[action] {
+          width: 50px;
+        }
+      }
     }
     td, th {
       padding: $table-cell-padding-x $table-cell-padding-y;
       border: $table-cell-border-width solid $table-cell-border-color;
+      box-sizing: border-box;
     }
   }
 
