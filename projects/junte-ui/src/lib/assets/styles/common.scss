@@ -142,7 +142,7 @@ $dropdown-bg: $white-color;
 $dropdown-padding-x: $gutter-big;
 $dropdown-padding-y: $gutter-big;
 $dropdown-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-$dropdown-corner: $corner-sm;
+$dropdown-corner: $corner-small;
 $dropdown-spacing: 4px;
 
 $position-bottom-left-name: 'bottomLeft';
@@ -154,7 +154,7 @@ $position-top-right-name: 'topRight';
 
 $menu-item-color-in-dropdown: $text-color;
 $menu-item-hover-background-color-in-dropdown: $gray-1000;
-$menu-item-padding-x-in-dropdown: $gutter-normal;
+$menu-item-padding-x-in-dropdown: $gutter-small;
 $menu-item-padding-y-in-dropdown: $gutter-big;
 
 $positionsDropdown: (
@@ -228,8 +228,18 @@ jnt-dropdown[host=#{$jnt-dropdown-host}] jnt-menu[host=#{$jnt-menu-host}] {
     a[child-of=#{$jnt-link-host}] {
       border: 0;
       padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
+      position: relative;
       &:hover {
-        background-color: $menu-item-hover-background-color-in-dropdown;
+        //background-color: $menu-item-hover-background-color-in-dropdown;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 4px;
+          background-color: $primary-color;
+        }
       }
       span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
         color: $menu-item-color-in-dropdown;

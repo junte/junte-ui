@@ -43,6 +43,9 @@ export class TableComponent implements OnInit, OnDestroy {
   @ContentChild('rowTemplate')
   rowTemplate: TemplateRef<any>;
 
+  @ContentChild('rowActions')
+  rowActionsTemplate: TemplateRef<any>;
+
   @ContentChild('actions')
   actionsTemplate: TemplateRef<any>;
 
