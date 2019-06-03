@@ -1,11 +1,11 @@
 @import "../../assets/styles/variables";
 
-$skeleton-bg: $gray-500;
-$skeleton-to-bg: darken($skeleton-bg, 5%);
-$skeleton-paragraph-height: 24px;
-$skeleton-title-width: 38%;
-$skeleton-avatar-spacer-right: $gutter-large;
-$skeleton-avatar-spacer-bottom: $gutter-big;
+$skeleton-bg: $gray-500 !default;
+$skeleton-to-bg: darken($skeleton-bg, 5%) !default;
+$skeleton-paragraph-height: 24px !default;
+$skeleton-title-width: 38% !default;
+$skeleton-avatar-spacer-right: $gutter-large !default;
+$skeleton-avatar-spacer-bottom: $gutter-big !default;
 
 $sizes: (
   #{$size-small}: (
@@ -17,7 +17,7 @@ $sizes: (
   #{$size-large}: (
     size: $avatar-size-large,
   )
-);
+)!default;
 
 @mixin width($size) {
   width: #{map-get($size, size)};

@@ -4,7 +4,7 @@ $spinner-size-small: 1rem;
 $spinner-size-normal: 2rem;
 $spinner-size-large: 3rem;
 
-$sizes: (
+$sizesSpinner: (
   #{$size-small}: (
     size: $spinner-size-small
   ),
@@ -14,7 +14,7 @@ $sizes: (
   #{$size-large}: (
     size: $spinner-size-large
   )
-);
+)!default;
 
 @mixin size($size) {
   width: #{map-get($size, size)};
@@ -34,7 +34,7 @@ $sizes: (
   border-right-color: transparent !important;
   animation: spin .5s infinite linear;
 
-  @each $size, $map in $sizes {
+  @each $size, $map in $sizesSpinner {
     &[size='#{$size}'] {
       @include size($map);
     }

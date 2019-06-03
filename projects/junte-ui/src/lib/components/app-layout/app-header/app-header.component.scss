@@ -1,13 +1,12 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/components/app-layout/common.encapsulated";
 
-$app-header-bg: $primary-dark-color;
-$app-header-padding-x: 0;
-$app-header-padding-y: $gutter-big;
-$app-header-z-index: 3;
-$app-header-color: white;
-$app-logo-margin-right: $gutter-huge;
-
-$menu-item-color: white;
+$app-header-bg: $primary-dark-color !default;
+$app-header-padding-x: 0 !default;
+$app-header-padding-y: $gutter-big !default;
+$app-header-z-index: 3 !default;
+$app-header-color: white !default;
+$app-header-logo-margin-right: $gutter-huge !default;
 
 :host {
   display: flex;
@@ -29,6 +28,6 @@ $menu-item-color: white;
 }
 
 [logo] {
-  margin-right: $app-logo-margin-right;
+  margin-right: $app-header-logo-margin-right;
 }
 

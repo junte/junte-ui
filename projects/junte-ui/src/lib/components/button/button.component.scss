@@ -1,17 +1,17 @@
 @import "../../assets/styles/variables";
 
-$button-corner: $corner-large;
-$button-without-text-corner: $corner-small;
+$button-corner: $corner-large !default;
+$button-without-text-corner: $corner-small !default;
 
-$schemes: (
+$button-schemes: (
   #{$scheme-primary}: (
     color: $white-color,
     color-outline: $primary-color,
     color-transparent: $primary-color,
-    color-transparent-hover: $purple-dark,
+    color-transparent-hover: $primary-dark-color,
     border-outline: $primary-color,
     background: $primary-color,
-    background-hover: $purple-dark,
+    background-hover: $primary-dark-color,
     background-outline-hover: $primary-color,
     color-outline-hover: white,
     badge-color: $primary-color,
@@ -20,6 +20,7 @@ $schemes: (
     badge-hover-outline-color: $primary-color,
     badge-outline-background: $primary-color,
     badge-hover-outline-background: white,
+    shadow-focus: $shadow-focus-primary-small
   ),
   #{$scheme-secondary}: (
     color: $text-color,
@@ -36,7 +37,9 @@ $schemes: (
     badge-outline-color: $white-color,
     badge-hover-outline-background: $secondary-color,
     badge-hover-outline-color: $text-color,
-    badge-outline-background: $text-color
+    badge-outline-background: $text-color,
+    shadow-focus: $shadow-focus-secondary-small
+
   ),
   #{$scheme-success}: (
     color: $white-color,
@@ -54,6 +57,8 @@ $schemes: (
     badge-outline-background: $success-color,
     badge-hover-outline-background: $white-color,
     badge-hover-outline-color: $success-color,
+    shadow-focus: $shadow-focus-success-small
+
   ),
   #{$scheme-fail}: (
     color: $white-color,
@@ -71,10 +76,11 @@ $schemes: (
     badge-outline-background: $fail-color,
     badge-hover-outline-background: $white-color,
     badge-hover-outline-color: $fail-color,
+    shadow-focus: $shadow-focus-fail-small
   ),
-);
+)!default;
 
-$sizes: (
+$button-sizes: (
   #{$size-small}: (
     padding: 0 50px,
     padding-without-text: 0 10px,
@@ -92,8 +98,8 @@ $sizes: (
     padding-without-text: 0 18px,
     font-size: 16px,
     min-height: 50px
-  )
-);
+  ),
+)!default;
 
 @mixin scheme($scheme) {
   button {
@@ -103,7 +109,7 @@ $sizes: (
       background-color: #{map-get($scheme, background-hover)};
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, background-hover)};
+      box-shadow: #{map-get($scheme, shadow-focus)};
     }
     [badge]:child-host=#{$jnt-badge-host} {
       sup {
@@ -169,7 +175,7 @@ $sizes: (
   display: inline-flex;
   position: relative;
 
-  @each $scheme, $map in $schemes {
+  @each $scheme, $map in $button-schemes {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
       &[outline='#{$outline-ghost}'] {
@@ -184,7 +190,7 @@ $sizes: (
     }
   }
 
-  @each $size, $map in $sizes {
+  @each $size, $map in $button-sizes {
     &[size='#{$size}'] {
       @include size($map);
     }
@@ -207,7 +213,7 @@ $sizes: (
   }
 
   &[with-text="false"] {
-    @each $size, $map in $sizes {
+    @each $size, $map in $button-sizes {
       &[size='#{$size}'] {
         @include size-without-text($map);
       }

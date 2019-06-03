@@ -13,6 +13,7 @@ body {
   color: $body-color;
   text-align: left;
   background-color: $body-bg;
+
 }
 
 h1 {
@@ -71,7 +72,7 @@ $menu-item-font-size-in-header: .875rem;
 $menu-item-color-in-aside: $gray-800;
 $menu-item-font-size-in-aside: .875rem;
 $menu-item-active-border-color-in-aside: transparent;
-$menu-item-active-color-in-aside: $primary-color;
+$menu-item-active-color-in-aside: $primary-color !default;
 $menu-item-active-border-left-width-in-aside: 4px;
 $menu-item-active-border-left-color-in-aside: $primary-color;
 $menu-item-active-background-color-in-aside: $gray-200;
@@ -141,7 +142,7 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
 $dropdown-bg: $white-color;
 $dropdown-padding-x: $gutter-big;
 $dropdown-padding-y: $gutter-big;
-$dropdown-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+$dropdown-shadow: $shadow-light;
 $dropdown-corner: $corner-small;
 $dropdown-spacing: 4px;
 
@@ -156,54 +157,6 @@ $menu-item-color-in-dropdown: $text-color;
 $menu-item-hover-background-color-in-dropdown: $gray-1000;
 $menu-item-padding-x-in-dropdown: $gutter-small;
 $menu-item-padding-y-in-dropdown: $gutter-big;
-
-$positionsDropdown: (
-  #{$position-bottom-left-name}: (
-    top: 100%,
-    left: 0,
-    right: auto,
-    bottom: auto
-  ),
-  #{$position-bottom-center-name}: (
-    top: 100%,
-    left: 50%,
-    right: auto,
-    bottom: auto,
-  ),
-  #{$position-bottom-right-name}: (
-    top: 100%,
-    left: auto,
-    right: 0,
-    bottom: auto
-  ),
-  #{$position-top-left-name}: (
-    top: auto,
-    left: 0,
-    right: auto,
-    bottom: 100%
-  ),
-  #{$position-top-center-name}: (
-    top: auto,
-    left: 50%,
-    right: auto,
-    bottom: 100%,
-  ),
-  #{$position-top-right-name}: (
-    top: auto,
-    left: auto,
-    right: 0,
-    bottom: 100%
-  )
-);
-
-@mixin positionDropdown($position) {
-  jnt-menu[host=#{$jnt-menu-host}] {
-    top: #{map-get($position, top)};
-    left: #{map-get($position, left)};
-    right: #{map-get($position, right)};
-    bottom: #{map-get($position, bottom)};
-  }
-}
 
 @mixin opened() {
   jnt-menu[host=#{$jnt-menu-host}] {
