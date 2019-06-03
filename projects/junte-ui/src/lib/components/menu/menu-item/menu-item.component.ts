@@ -12,6 +12,7 @@ export class MenuItemComponent {
   @Input() link: string;
   @Input() click: Function;
   @Input() badge: number;
+  @Input('exact-link') exactLink = true;
   @Input() scheme: Schemes = Schemes.primary;
 
 }
