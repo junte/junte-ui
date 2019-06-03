@@ -38,6 +38,19 @@
                 (click)="value = value - 5"></jnt-button>
   </jnt-stack>
 
+
+  <div circlebar>
+    <svg width="300" height="300" viewBox="0 0 300 300" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+      <g *ngFor="let part of [0, 1, 2, 3, 4, 5]"
+         [style]="safe('transform-origin: top left; transform: rotate(' + part * 45 + 'deg) translate(50px, 50px)')">
+        <rect width="36" height="50" fill="silver"/>
+        <path d="M7.86781e-06 10C11.0457 10 21.0457 14.4772 28.2843 21.7157L35.3553 14.6447C26.3071 5.59644 13.8071 0 7.86781e-06 0V10Z"
+              fill="#FF0000"/>
+      </g>
+    </svg>
+  </div>
+
   <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-circle-bar>

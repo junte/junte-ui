@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {UI} from 'projects/junte-ui/src/lib/enum/ui';
+import { Component } from '@angular/core';
+import { UI } from 'projects/junte-ui/src/lib/enum/ui';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-circle-bar-test',
@@ -12,4 +13,9 @@ export class CircleBarTestComponent {
 
   value = 60;
 
+  constructor(private sanitizer: DomSanitizer) {}
+
+  safe(source: string) {
+    return this.sanitizer.bypassSecurityTrustStyle(source);
+  }
 }
