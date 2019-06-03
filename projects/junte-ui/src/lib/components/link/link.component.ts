@@ -22,6 +22,7 @@ export class LinkComponent implements OnInit {
 
   @Input() source: string | any;
   @Input() target: string;
+  @Input() exact = true;
 
 
   @Input() icon: Icons;
