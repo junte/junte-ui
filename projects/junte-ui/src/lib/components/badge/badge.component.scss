@@ -1,14 +1,14 @@
 @import "../../assets/styles/variables";
 
-$badge-size: 24px;
-$badge-font-size: 12px;
-$badge-corner: 3px;
+$badge-size: 24px !default;
+$badge-font-size: 12px !default;
+$badge-corner: 3px !default;
 
 $position-right-top: 'right-top';
 $position-left-top: 'left-top';
 $position-inline: 'inline';
 
-$schemes: (
+$badge-schemes: (
   #{$scheme-primary}: (
     color: $white-color,
     background: $primary-color
@@ -25,9 +25,9 @@ $schemes: (
     color: $white-color,
     background: $fail-color
   )
-);
+) !default;
 
-$positions: (
+$badge-positions: (
   #{$position-right-top}: (
     position: 'absolute',
     right: -$badge-size / 2,
@@ -41,7 +41,7 @@ $positions: (
   #{$position-inline}: (
     position: 'static'
   )
-);
+) !default;
 
 @mixin scheme($scheme) {
   sup {
@@ -64,12 +64,12 @@ $positions: (
   position: relative;
   line-height: 0;
   text-align: center;
-  @each $scheme, $map in $schemes {
+  @each $scheme, $map in $badge-schemes {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
     }
   }
-  @each $position, $map in $positions {
+  @each $position, $map in $badge-positions {
     &[position='#{$position}'] {
       @include position($map);
     }

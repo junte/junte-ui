@@ -27,11 +27,11 @@ import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { JunteDirectiveModule } from './directives/junte-directive.module';
 import { InputModule } from './components/input/input.module';
 import { SelectModule } from './components/select/select.module';
-import { CheckboxModule } from './components/checkbox/checkbox.module';
+import { CheckboxModule } from './components/form/checkbox/checkbox.module';
 import { LabelModule } from './components/label/label.module';
 import { LinkModule } from './components/link/link.module';
-import { RadioModule } from './components/radio/radio.module';
-import { SwitchModule } from './components/switch/switch.module';
+import { RadioModule } from './components/form/radio/radio.module';
+import { SwitchModule } from './components/form/switch/switch.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
 
 @NgModule({

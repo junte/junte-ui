@@ -1,73 +1,57 @@
 @import "../../assets/styles/variables";
 
-$input-bg: white;
+$input-bg: $white-color !default;
+$input-border-color: $gray-600 !default;
 
-$input-padding-y: $gutter-normal;
-$input-line-height: normal;
+$input-padding-y: $gutter-normal !default;
+$input-line-height: normal !default;
 
-$input-disabled-bg: $gray-100;
+$input-disabled-bg: $gray-100 !default;
 
-$input-color: $text-color;
-$input-border-color: $gray-600;
-$input-border-width: 1px;
-$input-box-shadow: none;
+$input-color: $text-color !default;
+$input-border-width: 1px !default;
+$input-box-shadow: none !default;
 
-$input-failed-border-color: $fail-color;
-$input-success-border-color: $success-color;
 
-$input-corner: $corner-small;
-$input-corner-lg: $corner-small;
-$input-corner-sm: $corner-small;
+$input-corner: $corner-small !default;
+$input-corner-lg: $corner-small !default;
+$input-corner-sm: $corner-small !default;
 
-$input-focus-bg: $input-bg;
-$input-focus-shadow: 0px 0px 6px rgba(8, 35, 202, 0.4);
+$input-font-size: $font-size-base !default;
 
-$input-hover-border-color: $primary-color;
-$input-focus-border-color: $primary-color;
+$input-icon-spacing: $gutter-small !default;
+$input-icon-color: $gray-800 !default;
 
-$input-font-size: $font-size-base;
-
-$input-small-height: 30px;
-$input-normal-height: 38px;
-$input-large-height: 50px;
-
-$input-small-font-size: 11px;
-$input-normal-font-size: 14px;
-$input-large-font-size: 16px;
-
-$input-icon-spacing: $gutter-small;
-$input-icon-color: $gray-800;
-
-$sizes: (
+$input-sizes: (
   #{$size-small}: (
-    font-size: $input-small-font-size,
-    min-height: $input-small-height
+    font-size: 11px,
+    min-height: 30px
   ),
   #{$size-normal}: (
-    font-size: $input-normal-font-size,
-    min-height: $input-normal-height
+    font-size: 14px,
+    min-height: 38px
   ),
   #{$size-large}: (
-    font-size: $input-large-font-size,
-    min-height: $input-large-height
+    font-size: 16px,
+    min-height: 50px
   )
-);
+)!default;
 
 $states: (
   #{$state-normal}: (
-    border-color: $input-border-color,
-    bg-focus: $input-focus-bg,
-    shadow-focus: $input-focus-shadow,
-    border-color-hover: $input-hover-border-color,
-    border-color-focus: $input-focus-border-color,
+    border-color: $gray-600,
+    bg-focus: $input-bg,
+    shadow-focus: $shadow-focus-primary-normal,
+    border-color-hover: $primary-color,
+    border-color-focus: $primary-color,
   ),
   #{$state-success}: (
-    border-color: $input-success-border-color,
+    border-color: $success-color,
   ),
   #{$state-failed}: (
-    border-color: $input-failed-border-color,
+    border-color: $fail-color,
   )
-);
+) !default;
 
 @mixin state($state) {
   input {
@@ -100,7 +84,7 @@ $states: (
     }
   }
 
-  @each $size, $map in $sizes {
+  @each $size, $map in $input-sizes {
     &[size='#{$size}'] {
       @include size($map);
       [icon] {

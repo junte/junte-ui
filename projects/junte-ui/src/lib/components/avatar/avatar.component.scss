@@ -1,22 +1,22 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/components/avatar/common.encapsulated";
 
-$avatar-text-color: $primary-color;
-$avatar-icon-color: $blue-500;
+$avatar-text-color: $primary-color !default;
+$avatar-icon-color: $blue-500 !default;
 
 $avatar-shape-circle: 'circle';
 $avatar-shape-square: 'square';
 
-$avatar-bg: $gray-500;
+$avatar-bg: $gray-500 !default;
 
-$shapes: (
+$avatar-shapes: (
   #{$avatar-shape-circle}: (
     border-radius: 50%
   ),
   #{$avatar-shape-square}: (
     border-radius: 0
   ),
-);
+)!default;
 
 @mixin size($size) {
   min-width: #{map-get($size, size)};
@@ -43,12 +43,12 @@ $shapes: (
   line-height: 0;
   background-color: $avatar-bg;
   overflow: hidden;
-  @each $size, $map in $sizes {
+  @each $size, $map in $avatar-sizes {
     &[size='#{$size}'] {
       @include size($map);
     }
   }
-  @each $shape, $value in $shapes {
+  @each $shape, $value in $avatar-shapes {
     &[shape='#{$shape}'] {
       @include shape(border-radius, $value);
     }

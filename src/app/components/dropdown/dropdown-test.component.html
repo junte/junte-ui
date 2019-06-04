@@ -31,27 +31,6 @@
     </jnt-dropdown>
   </jnt-stack>
 
-  <h3>Dropdown positions</h3>
-
-  <jnt-stack [type]="ui.type.horizontal">
-    <ng-container *ngFor="let pos of [ui.dropdown.position.bottomLeft, ui.dropdown.position.bottomCenter, ui.dropdown.position.bottomRight,
-                           ui.dropdown.position.topLeft, ui.dropdown.position.topCenter, ui.dropdown.position.topRight]">
-      <jnt-dropdown [position]="pos">
-        <ng-template #trigger let-action="trigger">
-          <jnt-button [text]="pos" (click)="action()"></jnt-button>
-        </ng-template>
-        <ng-template #dropdown>
-          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-            <jnt-menu-item title="Edit item length item"></jnt-menu-item>
-            <jnt-menu-item title="Delete item length item"></jnt-menu-item>
-            <jnt-menu-item title="Add item length item"></jnt-menu-item>
-            <jnt-menu-item title="Copy item length item"></jnt-menu-item>
-          </jnt-menu>
-        </ng-template>
-      </jnt-dropdown>
-    </ng-container>
-  </jnt-stack>
-
   <h3>Dropdown modes</h3>
 
   <jnt-stack [type]="ui.type.horizontal">
@@ -70,7 +49,7 @@
       </jnt-dropdown>
     <jnt-dropdown>
       <ng-template #trigger let-action="trigger">
-        <jnt-button text="hover" (mouseover)="action()" (mouseout)="action()"></jnt-button>
+        <jnt-button text="hover" (mouseover)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown>
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
@@ -116,12 +95,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>[position]</td>
-      <td>-</td>
-      <td>bottomLeft | bottomCenter | bottomRight | topLeft | topCenter | topRight</td>
-      <td>bottomLeft</td>
-    </tr>
     </tbody>
   </table>
 

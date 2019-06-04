@@ -1,5 +1,5 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
-import { DropdownMode, DropdownPositions, UI } from '../../enum/ui';
+import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-dropdown',
@@ -20,9 +20,6 @@ export class DropdownComponent implements OnInit {
   get visible() {
     return this._visible;
   }
-
-  @HostBinding('attr.position')
-  @Input() position: DropdownPositions = DropdownPositions.bottomLeft;
 
   @ContentChild('trigger')
   triggerTemplate: TemplateRef<any>;

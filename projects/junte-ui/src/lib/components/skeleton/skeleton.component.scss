@@ -1,23 +1,23 @@
 @import "../../assets/styles/variables";
 
-$skeleton-bg: $gray-500;
-$skeleton-to-bg: darken($skeleton-bg, 5%);
-$skeleton-paragraph-height: 24px;
-$skeleton-title-width: 38%;
-$skeleton-avatar-spacer-right: $gutter-large;
-$skeleton-avatar-spacer-bottom: $gutter-big;
+$skeleton-bg: $gray-500 !default;
+$skeleton-to-bg: darken($skeleton-bg, 5%) !default;
+$skeleton-paragraph-height: 24px !default;
+$skeleton-title-width: 38% !default;
+$skeleton-avatar-spacer-right: $gutter-large !default;
+$skeleton-avatar-spacer-bottom: $gutter-big !default;
 
-$sizes: (
+$skeleton-avatar-sizes: (
   #{$size-small}: (
-    size: $avatar-size-small,
+    size: 40px,
   ),
   #{$size-normal}: (
-    size: $avatar-size-normal,
+    size: 80px,
   ),
   #{$size-large}: (
-    size: $avatar-size-large,
+    size: 120px,
   )
-);
+)!default;
 
 @mixin width($size) {
   width: #{map-get($size, size)};
@@ -33,7 +33,7 @@ $sizes: (
 :host {
   display: block;
 
-  @each $size, $map in $sizes {
+  @each $size, $map in $skeleton-avatar-sizes {
     &[size='#{$size}'] {
       [avatar] {
         @include width($map);

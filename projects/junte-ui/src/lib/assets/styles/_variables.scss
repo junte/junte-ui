@@ -54,43 +54,49 @@ $jnt-action-host: 'jnt-action-host';
 $jnt-dropdown-host: 'jnt-dropdown-host';
 
 /*Color*/
-$blue: #E7F5FF;
-$blue-500: #E6E9FA;
-$orange: #EE8030;
-$green: #00CCB1;
-$green-dark: #00B89F;
-$teal: #1D2932;
-$red: #FF6262;
-$red-dark: #DE5B5B;
-$yellow: #F8DB42;
-$purple: #3949AB;
-$purple-dark: #00227B;
-$purple-light: #6F74DD;
-$purple-lighten: #C4C9E7;
+$blue: #E7F5FF !default;
+$blue-500: #E6E9FA !default;
+$orange: #EE8030 !default;
+$green: #00CCB1 !default;
+$green-dark: #00B89F !default;
+$teal: #1D2932 !default;
+$red: #FF6262 !default;
+$red-dark: #DE5B5B !default;
+$yellow: #F8DB42 !default;
+$purple: #3949AB !default;
+$purple-dark: #00227B !default;
+$purple-light: #6F74DD !default;
+$purple-lighten: #C4C9E7 !default;
 
-$gray-100: #F5F5F5;
-$gray-200: #F7F7F7;
-$gray-300: #F2F2F2;
-$gray-400: #E9E9E9;
-$gray-500: #F3F4FC;
-$gray-600: #C4C4C4;
-$gray-700: #D0D0D0;
-$gray-800: #828282;
-$gray-900: #4F4F4F;
-$gray-1000: #F0F0F0;
-$gray-dark: #343434;
-$gray-dark-200: #1A1A1A;
+$gray-100: #F5F5F5 !default;
+$gray-200: #F7F7F7 !default;
+$gray-300: #F2F2F2 !default;
+$gray-400: #E9E9E9 !default;
+$gray-500: #F3F4FC !default;
+$gray-600: #C4C4C4 !default;
+$gray-700: #D0D0D0 !default;
+$gray-800: #828282 !default;
+$gray-900: #4F4F4F !default;
+$gray-1000: #F0F0F0 !default;
+$gray-dark: #343434 !default;
+$gray-dark-200: #1A1A1A !default;
 
-$gray-light-100: #F9F9F9;
+$gray-light-100: #F9F9F9 !default;
 
-$primary-color: $purple;
-$primary-dark-color: $purple-dark;
-$primary-light-color: $purple-light;
+$primary-color: $purple !default;
+$primary-dark-color: $purple-dark !default;
+$primary-light-color: $purple-light !default;
 
-$secondary-color: $gray-500;
-$success-color: $green;
-$warning: $orange;
-$fail-color: $red;
+$secondary-color: $gray-500 !default;
+$secondary-dark-color: $blue-500 !default;
+
+$success-color: $green !default;
+$success-dark-color: $green-dark !default;
+
+$warning: $orange !default;
+
+$fail-color: $red !default;
+$fail-dark-color: $red-dark !default;
 
 $blue-color: 'blue';
 $orange-color: 'orange';
@@ -105,18 +111,18 @@ $gray-color: 'gray';
 $grayLight-color: 'gray-light';
 $grayDark-color: 'gray-dark';
 
-$spacer: 4px;
+$spacer: 4px !default;
 
-$gutter-tiny: $spacer;
-$gutter-small: $spacer * 2;
-$gutter-normal: ($spacer * 4);
-$gutter-big: ($spacer * 6);
-$gutter-large: ($spacer * 8);
-$gutter-huge: ($spacer * 12);
+$gutter-tiny: $spacer !default;
+$gutter-small: $spacer * 2 !default;
+$gutter-normal: ($spacer * 4) !default;
+$gutter-big: ($spacer * 6) !default;
+$gutter-large: ($spacer * 8) !default;
+$gutter-huge: ($spacer * 12) !default;
 
-$text-color: $gray-900;
+$text-color: $gray-900 !default;
 
-$white-color: white;
+$white-color: white !default;
 
 $scheme-primary: 'primary';
 $scheme-secondary: 'secondary';
@@ -135,66 +141,68 @@ $size-large: 'large';
 $outline-ghost: 'ghost';
 $outline-transparent: 'transparent';
 
-$corner-small: 4px;
-$corner-normal: 8px;
-$corner-large: 40px;
+$corner-small: 4px !default;
+$corner-normal: 8px !default;
+$corner-large: 40px !default;
 
 /*Grid*/
 
-$grid-gutter: 15px;
+$grid-gutter: 15px !default;
 $grid-breakpoints: (
   mobile: 0,
   tablet: 768px,
   desktop: 992px,
   wide: 1200px
-);
+) !default;
 
 /*Font*/
 
-$font-size-sm: 13px;
-$font-size-base: 14px;
-$font-size-lg: 16px;
+$font-size-sm: 13px !default;
+$font-size-base: 14px !default;
+$font-size-lg: 16px !default;
 
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-bold: 600;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 600 !default;
 
-$line-height-base: 1.5;
-$line-height-lg: 1.5;
-$line-height-sm: 1.5;
+$line-height-base: 1.5 !default;
+$line-height-large: 2.5 !default;
+$line-height-small: 1 !default;
 
-$body-color: $text-color;
-$body-bg: $gray-200;
+$font-family-base: Open Sans !default;
+$font-weight-base: $font-weight-normal !default;
 
-$font-family-base: Open Sans;
-$font-weight-base: $font-weight-normal;
-
-$h1-font-size: $font-size-base * 4.85;
-$h2-font-size: $font-size-base * 3;
-$h3-font-size: $font-size-base * 1.85;
-$h4-font-size: $font-size-base * 1.28;
-$h5-font-size: $font-size-base * 1.2;
+$h1-font-size: $font-size-base * 4.85 !default;
+$h2-font-size: $font-size-base * 3 !default;
+$h3-font-size: $font-size-base * 1.85 !default;
+$h4-font-size: $font-size-base * 1.28 !default;
+$h5-font-size: $font-size-base * 1.2 !default;
 $h6-font-size: $font-size-base;
 
-$headings-margin-bottom: $gutter-normal;
+$headings-margin-bottom: $gutter-normal !default;
 
-/*Form name*/
+/*Common styles*/
 
-$control-gutter: 10px;
-$control-label-disabled-color: $gray-700;
-$control-label-color: $text-color;
-
-/*Layout*/
-
-$app-header-height: 70px;
-$app-footer-height: 50px;
-$app-aside-width: 200px;
+$body-color: $text-color !default;
+$body-bg: $gray-200 !default;
+$body-font-family: $font-family-base !default;
+$body-font-weight: $font-weight-base !default;
+$body-line-height: $line-height-base !default;
+$body-font-size: $font-size-base !default;
 
 /*Shadows*/
 
-$base-shadow: 0px 2px 8px rgba(0, 67, 167, 0.25);
+$shadow-primary: 0px 2px 8px rgba(0, 67, 167, 0.25) !default;
+$shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.15) !default;
 
-/*Avatar*/
+$shadow-focus-primary-small: 0px 1px 5px $primary-dark-color !default;
+$shadow-focus-secondary-small: 0px 1px 5px $secondary-dark-color !default;
+$shadow-focus-success-small: 0px 1px 5px $success-dark-color !default;
+$shadow-focus-fail-small: 0px 1px 5px $fail-dark-color !default;
+
+$shadow-primary-light: 2px 1px 10px rgba(0, 67, 167, 0.07) !default;
+
+$shadow-focus-primary-normal: 0px 0px 6px rgba(8, 35, 202, 0.4) !default;
 
 
 

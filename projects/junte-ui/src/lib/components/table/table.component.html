@@ -47,7 +47,7 @@
               <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
             </td>
             <td *ngIf="!!rowActionsTemplate" action>
-              <jnt-dropdown [position]="ui.dropdown.position.bottomRight">
+              <jnt-dropdown>
                 <ng-template #trigger let-action="trigger">
                   <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.union"
                               (click)="action()"></jnt-button>

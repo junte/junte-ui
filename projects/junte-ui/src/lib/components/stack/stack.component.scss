@@ -9,7 +9,7 @@ $gutter-huge-name: 'huge';
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
 
-$gutters: (
+$stack-gutters: (
   #{$gutter-tiny-name}: (
     gutter: $gutter-tiny
   ),
@@ -28,7 +28,7 @@ $gutters: (
   #{$gutter-huge-name}: (
     gutter: $gutter-huge
   )
-);
+)!default;
 
 @mixin stack($property, $gutter) {
   & > :not(:last-child) {
@@ -38,7 +38,7 @@ $gutters: (
 
 :host {
   display: flex;
-  @each $gutter, $value in $gutters {
+  @each $gutter, $value in $stack-gutters {
     &[gutter = '#{$gutter}'] {
       &[type = '#{$type-vertical}'] {
         flex-direction: column;

@@ -1,22 +1,22 @@
 @import "../../assets/styles/variables";
 
-$block-bg: white;
-$block-shadow: $base-shadow;
-$block-corner: $corner-normal;
-$block-border-width: 1px;
-$block-border-color: $gray-900;
-$block-loading-bg: rgba(0, 0, 0, .75);
-$block-loading-spinner-color: white;
+$block-bg: $white-color !default;
+$block-shadow: $shadow-primary !default;
+$block-corner: $corner-normal !default;
+$block-border-width: 1px !default;
+$block-border-color: $gray-900 !default;
+$block-loading-bg: rgba(0, 0, 0, .75) !default;
+$block-loading-spinner-color: $white-color !default;
 
-$block-error-bg: rgba($gray-900, 0.8);
-$block-error-icon-size: 40px;
-$block-error-icon-color: white;
+$block-error-bg: rgba($gray-900, 0.8) !default;
+$block-error-icon-size: 40px !default;
+$block-error-icon-color: $white-color !default;
 
 $padding-small-name: 'small';
 $padding-normal-name: 'normal';
 $padding-large-name: 'large';
 
-$padding: (
+$block-padding: (
   #{$padding-small-name}: (
     padding: $gutter-small
   ),
@@ -26,7 +26,7 @@ $padding: (
   #{$padding-large-name}: (
     padding: $gutter-large
   )
-);
+) !default;
 
 @mixin padding($size) {
   padding: #{map-get($size, padding)};
@@ -47,7 +47,7 @@ $padding: (
     border: $block-border-width solid $block-border-color;
   }
 
-  @each $size, $map in $padding {
+  @each $size, $map in $block-padding {
     &[padding='#{$size}'] {
       @include padding($map);
     }

@@ -4,7 +4,7 @@
 :host {
   display: inline-flex;
   flex-wrap: wrap-reverse;
-  background-color: white;
+  background-color: $white-color;
   overflow: hidden;
   border-radius: 50%;
   position: relative;
@@ -15,7 +15,7 @@
     box-sizing: border-box;
   }
 
-  @each $size, $map in $sizes {
+  @each $size, $map in $avatar-sizes {
     &[size='#{$size}'] {
       height: #{map-get($map, size)};
       width: #{map-get($map, size)};

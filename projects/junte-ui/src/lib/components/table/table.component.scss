@@ -1,22 +1,22 @@
 @import "../../assets/styles/variables";
 
-$table-padding-x: $gutter-normal;
-$table-padding-y: $gutter-normal;
-$table-head-bg: $gray-500;
-$table-row-border-color: $gray-400;
-$table-cell-padding-x: $gutter-normal;
-$table-cell-padding-y: $gutter-big;
-$table-cell-border-width: 0;
-$table-cell-border-color: transparent;
-$table-font-size: $font-size-base;
-$table-row-hover: $gray-light-100;
-$table-icon-nodata-size: 80px;
-$table-icon-nodata-color: $gray-400;
-$table-message-nodata-color: $gray-800;
-$table-min-height: 200px;
+$table-padding-x: $gutter-normal !default;
+$table-padding-y: $gutter-normal !default;
+$table-head-bg: $gray-500 !default;
+$table-row-border-color: $gray-400 !default;
+$table-cell-padding-x: $gutter-normal !default;
+$table-cell-padding-y: $gutter-big !default;
+$table-cell-border-width: 0 !default;
+$table-cell-border-color: transparent !default;
+$table-font-size: $font-size-base !default;
+$table-row-hover: $gray-light-100 !default;
+$table-icon-nodata-size: 80px !default;
+$table-icon-nodata-color: $gray-400 !default;
+$table-message-nodata-color: $gray-800 !default;
+$table-min-height: 200px !default;
 
-$table-loading-overlay-bg: rgba($gray-500, .6);
-$table-loading-spinner-color: $gray-800;
+$table-loading-overlay-bg: rgba($gray-500, .6) !default;
+$table-loading-spinner-color: $gray-800 !default;
 
 :host {
   display: block;
@@ -57,7 +57,7 @@ $table-loading-spinner-color: $gray-800;
     tbody tr {
       border-bottom: 1px solid $table-row-border-color;
       cursor: pointer;
-      background-color: white;
+      background-color: $white-color;
       transition: all .3s;
       &[nodata] {
         height: $table-min-height;
