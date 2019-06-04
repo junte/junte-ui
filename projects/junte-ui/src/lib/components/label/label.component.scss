@@ -1,5 +1,25 @@
 @import "../../assets/styles/variables";
 
+$yiq-contrasted-threshold: 150;
+
+$yiq-text-dark: $gray-900;
+$yiq-text-light: $white-color;
+
+// Color contrast
+@function color-yiq($color) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+  @if ($yiq >= $yiq-contrasted-threshold) {
+    @return $yiq-text-dark;
+  } @else {
+    @return $yiq-text-light;
+  }
+}
+
 $label-corner: 3px !default;
 $label-height: 24px !default;
 $label-padding-x: 0 !default;

@@ -25,6 +25,7 @@ import {MenuTestComponent} from 'components/menu/menu-test.component';
 import {TypographyTestComponent} from 'components/typography/typography-test.component';
 import {CircleBarTestComponent} from 'components/circle-bar/circle-bar-test.component';
 import { DropdownTestComponent } from 'components/dropdown/dropdown-test.component';
+import { ThemingComponent } from 'components/theming/theming.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -163,6 +164,11 @@ export const TESTS_ROUTES: Routes = [
     path: 'circle-bar',
     component: CircleBarTestComponent,
     data: {breadcrumb: 'Circle-bar'}
+  },
+  {
+    path: 'theming',
+    component: ThemingComponent,
+    data: {breadcrumb: 'Theming'}
   },
   {
     path: '',
