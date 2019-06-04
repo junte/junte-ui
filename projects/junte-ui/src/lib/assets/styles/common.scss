@@ -6,10 +6,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: $font-family-base;
-  font-weight: $font-weight-base;
-  line-height: $line-height-base;
-  font-size: $font-size-base;
+  font-family: $body-font-family;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  font-size: $body-font-size;
   color: $body-color;
   text-align: left;
   background-color: $body-bg;
@@ -62,25 +62,24 @@ input, textarea, select, button {
   touch-action: manipulation;
 }
 
-$menu-item-color-in-header: white;
-$menu-item-active-border-color-in-header: white;
-$menu-item-active-color-in-header: white;
-$menu-item-padding-x-in-header: $gutter-small;
-$menu-item-padding-y-in-header: $gutter-small;
-$menu-item-font-size-in-header: .875rem;
+$menu-item-color-in-header: $white-color !default;
+$menu-item-active-border-color-in-header: $white-color !default;
+$menu-item-active-color-in-header: $white-color !default;
+$menu-item-padding-x-in-header: $gutter-small !default;
+$menu-item-padding-y-in-header: $gutter-small !default;
+$menu-item-font-size-in-header: .875rem !default;
 
-$menu-item-color-in-aside: $gray-800;
-$menu-item-font-size-in-aside: .875rem;
-$menu-item-active-border-color-in-aside: transparent;
+$menu-item-color-in-aside: $gray-800 !default;
+$menu-item-font-size-in-aside: .875rem !default;
+$menu-item-active-border-color-in-aside: transparent !default;
 $menu-item-active-color-in-aside: $primary-color !default;
-$menu-item-active-border-left-width-in-aside: 4px;
-$menu-item-active-border-left-color-in-aside: $primary-color;
-$menu-item-active-background-color-in-aside: $gray-200;
-$menu-item-hover-color-in-aside: $gray-1000;
-$menu-item-padding-x-in-aside: $gutter-small;
-$menu-item-padding-y-in-aside: $gutter-normal;
-$menu-item-hover-background-color-in-aside: $gray-1000;
-$menu-item-hover-color-in-aside: $gray-dark;
+$menu-item-active-border-left-width-in-aside: 4px !default;
+$menu-item-active-border-left-color-in-aside: $primary-color !default;
+$menu-item-active-background-color-in-aside: $gray-200 !default;
+$menu-item-padding-x-in-aside: $gutter-small !default;
+$menu-item-padding-y-in-aside: $gutter-normal !default;
+$menu-item-hover-background-color-in-aside: $gray-1000 !default;
+$menu-item-hover-color-in-aside: $gray-dark !default;
 
 jnt-app-header[host=#{$jnt-app-header-host}] {
   jnt-menu[host=#{$jnt-menu-host}] {
@@ -139,24 +138,17 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
   }
 }
 
-$dropdown-bg: $white-color;
-$dropdown-padding-x: $gutter-big;
-$dropdown-padding-y: $gutter-big;
-$dropdown-shadow: $shadow-light;
-$dropdown-corner: $corner-small;
-$dropdown-spacing: 4px;
+$dropdown-bg: $white-color !default;
+$dropdown-padding-x: $gutter-big !default;
+$dropdown-padding-y: $gutter-big !default;
+$dropdown-shadow: $shadow-light !default;
+$dropdown-corner: $corner-small !default;
+$dropdown-spacing: 4px !default;
 
-$position-bottom-left-name: 'bottomLeft';
-$position-bottom-center-name: 'bottomCenter';
-$position-bottom-right-name: 'bottomRight';
-$position-top-left-name: 'topLeft';
-$position-top-center-name: 'topCenter';
-$position-top-right-name: 'topRight';
-
-$menu-item-color-in-dropdown: $text-color;
-$menu-item-hover-background-color-in-dropdown: $gray-1000;
-$menu-item-padding-x-in-dropdown: $gutter-small;
-$menu-item-padding-y-in-dropdown: $gutter-big;
+$menu-item-color-in-dropdown: $text-color !default;
+$menu-item-hover-background-color-in-dropdown: $gray-1000 !default;
+$menu-item-padding-x-in-dropdown: $gutter-small !default;
+$menu-item-padding-y-in-dropdown: $gutter-big !default;
 
 @mixin opened() {
   jnt-menu[host=#{$jnt-menu-host}] {

@@ -1,18 +1,14 @@
 @import "../../assets/styles/variables";
 
-$spinner-size-small: 1rem;
-$spinner-size-normal: 2rem;
-$spinner-size-large: 3rem;
-
-$sizesSpinner: (
+$spinner-sizes: (
   #{$size-small}: (
-    size: $spinner-size-small
+    size: 1rem
   ),
   #{$size-normal}: (
-    size: $spinner-size-normal
+    size: 2rem
   ),
   #{$size-large}: (
-    size: $spinner-size-large
+    size: 3rem
   )
 )!default;
 
@@ -34,7 +30,7 @@ $sizesSpinner: (
   border-right-color: transparent !important;
   animation: spin .5s infinite linear;
 
-  @each $size, $map in $sizesSpinner {
+  @each $size, $map in $spinner-sizes {
     &[size='#{$size}'] {
       @include size($map);
     }

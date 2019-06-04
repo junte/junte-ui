@@ -4,8 +4,8 @@ $layout-vertical: 'vertical';
 $layout-horizontal: 'horizontal';
 $layout-inline: 'inline';
 
-$form-item-gutter: $gutter-large;
-$form-item-inner-gutter: $gutter-tiny;
+$form-item-gutter: $gutter-large !default;
+$form-item-inner-gutter: $gutter-tiny !default;
 
 $layouts: (
   #{$layout-vertical}: (
@@ -22,7 +22,7 @@ $layouts: (
     direction: 'row',
     align: 'baseline'
   ),
-);
+) !default;
 
 @mixin layout($layout) {
   display: #{map-get($layout, display)};
