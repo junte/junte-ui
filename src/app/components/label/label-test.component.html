@@ -9,10 +9,10 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
 
     <ng-container *ngFor="let color of [ui.colors.red, ui.colors.purpleDark, ui.colors.blue, ui.colors.gray, ui.colors.grayDark,
-  ui.colors.grayLight, ui.colors.green, ui.colors.orange, ui.colors.purple, ui.colors.teal, ui.colors.yellow, ui.colors.purpleLight]">
+   ui.colors.green, ui.colors.orange, ui.colors.purple, ui.colors.teal, ui.colors.yellow, ui.colors.purpleLight]">
       <jnt-label label="Doing" [color]="color"></jnt-label>
     </ng-container>
     <jnt-label label="To Do" color="#000"></jnt-label>
@@ -23,13 +23,13 @@
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-label [label]="Doing" [color]="ui.colors.red"></jnt-label>
+<jnt-label label="Doing" [color]="ui.colors.red"></jnt-label>
 ]]></pre>
   </ngx-prism>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-label [label]="To Do" [color]="#000"></jnt-label>
+<jnt-label label="To Do" color="#000"></jnt-label>
 ]]></pre>
   </ngx-prism>
 
