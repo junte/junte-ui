@@ -58,7 +58,7 @@ export class PopoverDirective implements AfterViewInit, OnChanges, OnInit {
       );
       this.renderer.listen(this.elementRef.nativeElement, 'mouseleave', () => {
         this.delayed(() => this.hide(), this.popover.leaveDelay);
-        const element = this.popover.host.nativeElement;
+        const element = this.popover.element.nativeElement;
 
         listeners.forEach(sub => sub());
         listeners = [];
