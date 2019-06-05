@@ -12,20 +12,32 @@ $block-error-bg: rgba($gray-900, 0.8) !default;
 $block-error-icon-size: 40px !default;
 $block-error-icon-color: $white-color !default;
 
+$padding-tiny-name: 'tiny';
 $padding-small-name: 'small';
 $padding-normal-name: 'normal';
+$padding-big-name: 'big';
 $padding-large-name: 'large';
+$padding-huge-name: 'huge';
 
 $block-padding: (
+  #{$padding-tiny-name}: (
+    padding: $gutter-tiny
+  ),
   #{$padding-small-name}: (
     padding: $gutter-small
   ),
   #{$padding-normal-name}: (
     padding: $gutter-normal
   ),
+  #{$padding-big-name}: (
+    padding: $gutter-big
+  ),
   #{$padding-large-name}: (
     padding: $gutter-large
-  )
+  ),
+  #{$padding-huge-name}: (
+    padding: $gutter-huge
+  ),
 ) !default;
 
 @mixin padding($size) {

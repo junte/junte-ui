@@ -10,10 +10,18 @@ export class IconTestComponent implements OnInit {
 
   ui = UI;
 
+  icons: any[] = [];
+
   constructor() {
   }
 
   ngOnInit() {
+    this.icons = Object.keys(UI.icons).map(icon => {
+      return {
+        name: icon,
+        value: UI.icons[icon]
+      };
+    });
   }
 
 }

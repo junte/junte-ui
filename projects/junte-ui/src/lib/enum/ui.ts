@@ -14,13 +14,41 @@ export enum Icons {
   arrowFirst = 'arrow-first',
   sortDown = 'sort-down',
   salary = 'salary',
-  user = 'user',
+  user2 = 'user-2',
   home = 'home',
   reload = 'reload',
   union = 'union',
   like = 'like',
   dislike = 'dislike',
-  nodata = 'nodata'
+  nodata = 'nodata',
+  delete = 'delete',
+  editSimple = 'edit-simple',
+  info = 'info',
+  link = 'link',
+  edit = 'edit',
+  tree = 'tree',
+  user = 'user',
+  addUser = 'add-user',
+  deleteUser = 'delete-user',
+  location = 'location',
+  scissors = 'scissors',
+  mail = 'mail',
+  save = 'save',
+  file = 'file',
+  settings = 'settings',
+  picture = 'picture',
+  photoCamera = 'photo-camera',
+  bell = 'bell',
+  addGroup = 'add-group',
+  deleteGroup = 'delete-group',
+  dashboard = 'dashboard',
+  cloud = 'cloud',
+  creditCard = 'credit-card',
+  download = 'download',
+  filter = 'filter',
+  message = 'message',
+  calendar = 'calendar',
+  qrCode = 'qr-code'
 }
 
 export enum Colors {
@@ -77,9 +105,12 @@ export enum Sizes {
 }
 
 export enum Paddings {
+  tiny = 'tiny',
   small = 'small',
   normal = 'normal',
-  large = 'large'
+  big = 'big',
+  large = 'large',
+  huge = 'huge'
 }
 
 export enum Outline {
