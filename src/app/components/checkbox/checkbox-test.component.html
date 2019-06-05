@@ -14,15 +14,15 @@
 
   <jnt-stack [type]="ui.stack.type.vertical">
     <h4>Checkbox</h4>
-    <jnt-checkbox>Checkbox</jnt-checkbox>
-    <jnt-checkbox [checked]="true">Checkbox checked</jnt-checkbox>
-    <jnt-checkbox [disabled]="true">Checkbox disabled</jnt-checkbox>
-    <jnt-checkbox [checked]="true" [disabled]="true">Checkbox disabled & checked</jnt-checkbox>
+    <jnt-checkbox label="Checkbox"></jnt-checkbox>
+    <jnt-checkbox [checked]="true" label="Checkbox checked"></jnt-checkbox>
+    <jnt-checkbox [disabled]="true" label="Checkbox disabled"></jnt-checkbox>
+    <jnt-checkbox [checked]="true" [disabled]="true" label="Checkbox disabled & checked"></jnt-checkbox>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-  <jnt-checkbox [checked]="true" [disabled]="false">Checkbox</jnt-checkbox>
+  <jnt-checkbox [checked]="true" [disabled]="false" label="Checkbox"></jnt-checkbox>
 ]]></pre>
   </ngx-prism>
 
@@ -31,9 +31,9 @@
     <span>Selected: {{selected | json}}</span>
     <jnt-checkbox-group [(ngModel)]="selected">
       <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.normal">
-        <jnt-checkbox [value]="1">Checkbox 1</jnt-checkbox>
-        <jnt-checkbox [value]="2">Checkbox 2</jnt-checkbox>
-        <jnt-checkbox [value]="3">Checkbox 3</jnt-checkbox>
+        <jnt-checkbox [value]="1" label="Checkbox 1"></jnt-checkbox>
+        <jnt-checkbox [value]="2" label="Checkbox 2"></jnt-checkbox>
+        <jnt-checkbox [value]="3" label="Checkbox 3"></jnt-checkbox>
       </jnt-stack>
     </jnt-checkbox-group>
   </jnt-stack>
@@ -61,6 +61,12 @@
       <td>-</td>
       <td>true | false</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>[label]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
     </tr>
     </tbody>
   </table>

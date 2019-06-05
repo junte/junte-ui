@@ -19,6 +19,10 @@ export class CheckboxComponent {
   @Input()
   checked = false;
 
+  @HostBinding('attr.label')
+  @Input()
+  label: string;
+
   @Input() value: any;
 
   constructor(private element: ElementRef) {

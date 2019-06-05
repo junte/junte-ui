@@ -12,15 +12,15 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-switch>Switch</jnt-switch>
-    <jnt-switch [checked]="true">Switch checked</jnt-switch>
-    <jnt-switch [disabled]="true">Switch disabled</jnt-switch>
-    <jnt-switch [checked]="true" [disabled]="true">Switch disabled & checked</jnt-switch>
+    <jnt-switch label="Switch"></jnt-switch>
+    <jnt-switch [checked]="true" label="Switch checked"></jnt-switch>
+    <jnt-switch [disabled]="true" label="Switch disabled"></jnt-switch>
+    <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked"></jnt-switch>
   </jnt-stack>
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-switch [checked]="true" [disabled]="false">Switch</jnt-switch>
+<jnt-switch [checked]="true" [disabled]="false" label="Switch"></jnt-switch>
 ]]></pre>
     </ngx-prism>
 
@@ -47,6 +47,12 @@
       <td>-</td>
       <td>true | false</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>[label]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
     </tr>
     </tbody>
   </table>

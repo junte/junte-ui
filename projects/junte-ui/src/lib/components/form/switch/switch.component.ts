@@ -19,6 +19,10 @@ export class SwitchComponent implements OnInit {
   @Input()
   checked = false;
 
+  @HostBinding('attr.label')
+  @Input()
+  label: string;
+
   constructor() { }
 
   ngOnInit() {
