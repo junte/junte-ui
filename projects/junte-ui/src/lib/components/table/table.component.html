@@ -20,64 +20,66 @@
     <jnt-stack [align]="ui.flex.align.stretch">
 
 
-      <table>
-        <div *ngIf="source.length && progress.loading" spinner>
-          <jnt-spinner [size]="ui.sizes.large" icon></jnt-spinner>
-        </div>
+      <div table>
+        <table>
+          <div *ngIf="source.length && progress.loading" spinner>
+            <jnt-spinner [size]="ui.sizes.large" icon></jnt-spinner>
+          </div>
 
-        <thead>
-        <tr>
-          <th *ngFor="let column of columns"
-              [class.sortable]="!!column.sort"
-              (click)="column.sort ? sorting(column.sort) : null">
+          <thead>
+          <tr>
+            <th *ngFor="let column of columns"
+                [class.sortable]="!!column.sort"
+                (click)="column.sort ? sorting(column.sort) : null">
         <span>
           {{column.title}}
           <i *ngIf="!!sort && sort.value === column.sort"
              [innerHTML]="order.value === 'asc' ? '&#8593;' : '&#8595;'"></i>
         </span>
-          </th>
-          <th *ngIf="!!rowActionsTemplate"></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <ng-container *ngIf="source.length; else noDataTemplate">
-          <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-            <td *ngFor="let column of columns">
-              <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
-            </td>
-            <td *ngIf="!!rowActionsTemplate" action>
-              <jnt-dropdown>
-                <ng-template #trigger let-action="trigger">
-                  <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.union"
-                              (click)="action()"></jnt-button>
-                </ng-template>
-                <ng-template #dropdown>
-                  <ng-container *ngTemplateOutlet="rowActionsTemplate"></ng-container>
-                </ng-template>
-              </jnt-dropdown>
-            </td>
+            </th>
+            <th *ngIf="!!rowActionsTemplate"></th>
           </tr>
-        </ng-container>
-        <ng-template #noDataTemplate>
-          <ng-container *ngIf="!progress.loading; else skeletonTemplate">
-            <tr nodata>
-              <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
-                <jnt-icon [icon]="ui.icons.nodata" icon></jnt-icon>
-                <div message>No rows here</div>
+          </thead>
+
+          <tbody>
+          <ng-container *ngIf="source.length; else noDataTemplate">
+            <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
+              <td *ngFor="let column of columns">
+                <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
+              </td>
+              <td *ngIf="!!rowActionsTemplate" action>
+                <jnt-dropdown>
+                  <ng-template #trigger let-action="trigger">
+                    <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.union"
+                                (click)="action()"></jnt-button>
+                  </ng-template>
+                  <ng-template #dropdown>
+                    <ng-container *ngTemplateOutlet="rowActionsTemplate"></ng-container>
+                  </ng-template>
+                </jnt-dropdown>
               </td>
             </tr>
           </ng-container>
-          <ng-template #skeletonTemplate>
-            <tr loading>
-              <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
-                <jnt-skeleton [title]="false" [rows]=3></jnt-skeleton>
-              </td>
-            </tr>
+          <ng-template #noDataTemplate>
+            <ng-container *ngIf="!progress.loading; else skeletonTemplate">
+              <tr nodata>
+                <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
+                  <jnt-icon [icon]="ui.icons.nodata" icon></jnt-icon>
+                  <div message>No rows here</div>
+                </td>
+              </tr>
+            </ng-container>
+            <ng-template #skeletonTemplate>
+              <tr loading>
+                <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
+                  <jnt-skeleton [title]="false" [rows]=3></jnt-skeleton>
+                </td>
+              </tr>
+            </ng-template>
           </ng-template>
-        </ng-template>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
 
       <ng-container *ngIf="count">
         <div pagination>
