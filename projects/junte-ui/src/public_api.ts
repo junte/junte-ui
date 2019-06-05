@@ -36,3 +36,4 @@ export * from './lib/components/form/switch';
 export * from './lib/components/table';
 export * from './lib/components/tabs';
 export * from './lib/components/dropdown';
+export * from './lib/components/popover';

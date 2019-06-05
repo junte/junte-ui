@@ -1,0 +1,13 @@
+<div class="popover-content">
+  <div class="popover-arrow"></div>
+  <div class="popover-inner" role="popover">
+    <div>
+      <div class="popover-title" *ngIf="title">
+        <ng-container *stringTemplateOutlet="title">{{ title }}</ng-container>
+      </div>
+      <div class="popover-inner-content">
+        <ng-container *stringTemplateOutlet="content">{{ content }}</ng-container>
+      </div>
+    </div>
+  </div>
+</div>
