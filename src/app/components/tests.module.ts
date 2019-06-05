@@ -34,6 +34,7 @@ import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.co
 import { JunteUiModule } from 'junte-ui';
 import { DropdownTestComponent } from './dropdown/dropdown-test.component';
 import { ThemingComponent } from './theming/theming.component';
+import { PopoverTestComponent } from 'components/popover/popover-test.component';
 
 @NgModule({
   imports: [
@@ -75,7 +76,11 @@ import { ThemingComponent } from './theming/theming.component';
     TypographyTestComponent,
     CircleBarTestComponent,
     DropdownTestComponent,
-    ThemingComponent
+    ThemingComponent,
+    DropdownTestComponent,
+    CircleBarTestComponent,
+    TypographyTestComponent,
+    PopoverTestComponent
   ]
 })
 export class TestsModule {

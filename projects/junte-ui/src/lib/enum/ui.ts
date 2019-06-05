@@ -198,6 +198,27 @@ export enum Positions {
   inline = 'inline'
 }
 
+export enum PopoverPlacements {
+  top = 'top',
+  topLeft = 'top-left',
+  topRight = 'top-right',
+  right = 'right',
+  rightTop = 'right-top',
+  rightBottom = 'right-bottom',
+  bottom = 'bottom',
+  bottomLeft = 'bottom-left',
+  bottomRight = 'bottom-right',
+  left = 'left',
+  leftTop = 'left-top',
+  leftBottom = 'left-bottom'
+}
+
+export enum PopoverTriggers {
+  hover = 'hover',
+  focus = 'focus',
+  click = 'click'
+}
+
 export enum Shapes {
   circle = 'circle',
   square = 'square'
@@ -240,5 +261,9 @@ export class UI {
   static colors = Colors;
   static padding = Paddings;
   static state = InputState;
+  static popover = {
+    position: PopoverPlacements,
+    trigger: PopoverTriggers
+  };
 }
 

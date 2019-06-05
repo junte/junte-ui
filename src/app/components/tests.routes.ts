@@ -26,6 +26,7 @@ import {TypographyTestComponent} from 'components/typography/typography-test.com
 import {CircleBarTestComponent} from 'components/circle-bar/circle-bar-test.component';
 import { DropdownTestComponent } from 'components/dropdown/dropdown-test.component';
 import { ThemingComponent } from 'components/theming/theming.component';
+import { PopoverTestComponent } from 'components/popover/popover-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -169,6 +170,10 @@ export const TESTS_ROUTES: Routes = [
     path: 'theming',
     component: ThemingComponent,
     data: {breadcrumb: 'Theming'}
+  },
+  {
+    path: 'popover',
+    component: PopoverTestComponent
   },
   {
     path: '',

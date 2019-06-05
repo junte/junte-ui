@@ -33,6 +33,7 @@ import { LinkModule } from './components/link/link.module';
 import { RadioModule } from './components/form/radio/radio.module';
 import { SwitchModule } from './components/form/switch/switch.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
+import { PopoverModule } from './components/popover/popover.module';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DropdownModule } from './components/dropdown/dropdown.module';
     StackModule,
     SwitchModule,
     TableModule,
-    TabsModule
+    TabsModule,
+    PopoverModule
   ]
 })
 export class JunteUiModule {
