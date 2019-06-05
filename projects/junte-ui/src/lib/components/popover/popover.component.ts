@@ -26,7 +26,7 @@ export class PopoverComponent implements AfterViewInit {
   trigger = PopoverTriggers.hover;
   visible$ = new BehaviorSubject<boolean>(false);
 
-  @HostBinding('attr.host') readonly host__ = 'jnt-popover-host';
+  @HostBinding('attr.host') readonly host = 'jnt-popover-host';
 
   @Input() enterDelay = 0.15;
   @Input() leaveDelay = 0.15;
@@ -47,18 +47,18 @@ export class PopoverComponent implements AfterViewInit {
   }
 
   constructor(private renderer: Renderer2,
-              public host: ElementRef) {
+              public element: ElementRef) {
   }
 
   ngAfterViewInit(): void {
     this.visible$.subscribe(visible => {
-      this.renderer.setStyle(this.host.nativeElement, 'display', visible ? 'block' : 'none');
+      this.renderer.setStyle(this.element.nativeElement, 'display', visible ? 'block' : 'none');
       if (visible) {
-        this.renderer.addClass(this.host.nativeElement, `${PREFIX}-${this.placement}`);
+        this.renderer.addClass(this.element.nativeElement, `${PREFIX}-${this.placement}`);
         if (!!this.container) {
-          const position = this.getPosition(this.container.element.nativeElement, this.host.nativeElement);
-          this.renderer.setStyle(this.host.nativeElement, 'top', `${position.top}px`);
-          this.renderer.setStyle(this.host.nativeElement, 'left', `${position.left}px`);
+          const position = this.getPosition(this.container.element.nativeElement, this.element.nativeElement);
+          this.renderer.setStyle(this.element.nativeElement, 'top', `${position.top}px`);
+          this.renderer.setStyle(this.element.nativeElement, 'left', `${position.left}px`);
         }
       }
     });
