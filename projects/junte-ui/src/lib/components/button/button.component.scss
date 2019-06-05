@@ -77,23 +77,33 @@ $button-schemes: (
 )!default;
 
 $button-sizes: (
+  #{$size-tiny}: (
+    padding: 0 20px,
+    padding-without-text: 0 7px,
+    font-size: 10px,
+    min-height: 24px,
+    badge-size: 18px
+  ),
   #{$size-small}: (
     padding: 0 50px,
     padding-without-text: 0 10px,
     font-size: 12px,
-    min-height: 30px
+    min-height: 30px,
+    badge-size: 24px
   ),
   #{$size-normal}: (
     padding: 0 38px,
     padding-without-text: 0 13px,
     font-size: 14px,
-    min-height: 38px
+    min-height: 38px,
+    badge-size: 24px
   ),
   #{$size-large}: (
     padding: 0 36px,
     padding-without-text: 0 18px,
     font-size: 16px,
-    min-height: 50px
+    min-height: 50px,
+    badge-size: 24px
   ),
 )!default;
 
@@ -156,6 +166,16 @@ $button-sizes: (
     padding: #{map-get($size, padding)};
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, min-height)};
+  }
+  [badge]:child-host=#{$jnt-badge-host} > sup {
+    min-width: #{map-get($size, badge-size)};
+    width: #{map-get($size, badge-size)};
+    min-height: #{map-get($size, badge-size)};
+    height: #{map-get($size, badge-size)};
+    line-height: #{map-get($size, badge-size)};
+    span {
+      height: #{map-get($size, badge-size)};
+    }
   }
 }
 
