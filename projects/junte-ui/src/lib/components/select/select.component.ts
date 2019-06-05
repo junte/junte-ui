@@ -47,6 +47,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input()
   size: Sizes = Sizes.normal;
 
+  @HostBinding('attr.label')
+  @Input()
+  label: string;
+
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
   @ViewChild('searchInput')

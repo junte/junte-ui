@@ -32,7 +32,7 @@ export class SelectTestComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       select: this.fb.control([1, 3]),
-      selectAjax: this.fb.control([5])
+      selectAjax: this.fb.control([])
     });
     this.form.valueChanges.subscribe(c => console.log(c));
   }

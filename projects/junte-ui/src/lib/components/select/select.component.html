@@ -25,13 +25,9 @@
              [ngModel]="q"
              (ngModelChange)="search$.next($event)"
              [disabled]="!search">
-      <ng-container *ngTemplateOutlet="placeholderTemplate"></ng-container>
+      <div *ngIf="placeholderVisible" placeholder>{{placeholder}}</div>
     </li>
   </ul>
-</ng-template>
-
-<ng-template #placeholderTemplate>
-  <div *ngIf="placeholderVisible" placeholder>{{placeholder}}</div>
 </ng-template>
 
 <ng-template #loadOptionsTemplate>
@@ -47,6 +43,7 @@
 <div *ngIf="toggle" overlay (click)="toggle = !toggle"></div>
 
 <div #selectize selectize (click)="input.focus(); toggle = !toggle;" [attr.focused]="focused" tabindex="0">
+  <div *ngIf="label" label>{{label}}</div>
   <ng-container *ngTemplateOutlet="selectedItemsTemplate"></ng-container>
   <jnt-icon down [icon]="ui.icons.sortDown"></jnt-icon>
   <ng-container *ngIf="!!toggle">

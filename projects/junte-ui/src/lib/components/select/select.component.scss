@@ -16,7 +16,6 @@ $option-item-icon-color: $primary-color !default;
 $select-border-width: 1px !default;
 $select-border-color: $gray-600 !default;
 $select-corner: $corner-small !default;
-$select-height: 38px !default;
 $select-icon-dropdown-size: 7px !default;
 $select-icon-dropdown-color: $gray-800 !default;
 $select-placeholder-color: $gray-600 !default;
@@ -34,6 +33,12 @@ $chips-corner: $select-corner !default;
 $chips-padding-x: $gutter-tiny !default;
 $chips-padding-y: $gutter-tiny !default;
 $chips-spacer: $gutter-tiny !default;
+
+$select-label-bg: $gray-500 !default;
+$select-label-padding-x: 0 !default;
+$select-label-padding-y: $gutter-small !default;
+$select-label-color: $gray-800 !default;
+$select-label-spacing: 0 !default;
 
 $select-sizes: (
   #{$size-small}: (
@@ -90,12 +95,6 @@ $select-sizes: (
 
   [placeholder] {
     display: flex;
-    position: absolute;
-    align-items: center;
-    bottom: 0;
-    top: 0;
-    right: 0;
-    left: $select-padding-left;
     color: $select-placeholder-color;
   }
 
@@ -164,6 +163,19 @@ $select-sizes: (
       outline: 0;
     }
   }
+
+}
+[label] {
+  background-color: $select-label-bg;
+  padding: $select-label-padding-x $select-label-padding-y;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: $select-corner - 1px;
+  border-bottom-left-radius: $select-corner - 1px;
+  color: $select-label-color;
+  margin-right: $select-label-spacing;
 }
 
 [options] {
