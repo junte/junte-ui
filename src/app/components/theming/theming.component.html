@@ -1,0 +1,44 @@
+<jnt-container>
+  <h1>Colors</h1>
+
+  <div colors>
+    <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+      <ng-container *ngFor="let color of colors">
+        <jnt-label [color]="color.value" [label]="color.name" label></jnt-label>
+      </ng-container>
+    </jnt-stack>
+  </div>
+
+  <h1>Gutters</h1>
+
+  <ng-container *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
+                           ui.stack.gutter.large, ui.stack.gutter.huge]">
+    <h5>{{gutter | titlecase}}</h5>
+    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="gutter">
+      <div block></div>
+      <div block></div>
+    </jnt-stack>
+  </ng-container>
+
+  <h1>Corners</h1>
+
+  <jnt-stack [type]="ui.stack.type.horizontal">
+    <div block corner-small>Corner small</div>
+    <div block corner-normal>Corner normal</div>
+    <div block corner-large>Corner large</div>
+  </jnt-stack>
+
+  <h1>Shadows</h1>
+
+  <jnt-stack [type]="ui.stack.type.horizontal">
+    <div shadow primary>Shadow primary</div>
+    <div shadow light>Shadow light</div>
+    <div shadow primary-small>Shadow focus primary small</div>
+    <div shadow secondary-small>Shadow focus secondary small</div>
+    <div shadow success-small>Shadow focus success small</div>
+    <div shadow fail-small>Shadow focus fail small</div>
+    <div shadow primary-light>Shadow primary light</div>
+    <div shadow primary-normal>Shadow focus primary normal</div>
+  </jnt-stack>
+
+</jnt-container>

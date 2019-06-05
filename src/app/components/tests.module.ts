@@ -33,6 +33,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
 import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
 import { JunteUiModule } from 'junte-ui';
 import { DropdownTestComponent } from './dropdown/dropdown-test.component';
+import { ThemingComponent } from './theming/theming.component';
 
 @NgModule({
   imports: [
@@ -73,7 +74,8 @@ import { DropdownTestComponent } from './dropdown/dropdown-test.component';
     MenuTestComponent,
     TypographyTestComponent,
     CircleBarTestComponent,
-    DropdownTestComponent
+    DropdownTestComponent,
+    ThemingComponent
   ]
 })
 export class TestsModule {
