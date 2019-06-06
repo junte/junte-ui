@@ -12,10 +12,12 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-switch label="Switch"></jnt-switch>
-    <jnt-switch [checked]="true" label="Switch checked"></jnt-switch>
-    <jnt-switch [disabled]="true" label="Switch disabled"></jnt-switch>
-    <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked"></jnt-switch>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-switch label="Switch" [size]="size"></jnt-switch>
+      <jnt-switch [checked]="true" label="Switch checked" [size]="size"></jnt-switch>
+      <jnt-switch [disabled]="true" label="Switch disabled" [size]="size"></jnt-switch>
+      <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked" [size]="size"></jnt-switch>
+    </ng-container>
   </jnt-stack>
 
     <ngx-prism language="html">
