@@ -1,40 +1,42 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { TESTS_ROUTES } from 'components/tests.routes';
-import { InputTestComponent } from './input/input-test.component';
-import { TestsComponent } from 'components/tests.component';
-import { ButtonsTestComponent } from 'components/buttons/buttons-test.component';
-import { GridTestComponent } from 'components/grid/grid-test.component';
-import { StackTestComponent } from 'components/stack/stack-test.component';
+import { RouterModule } from '@angular/router';
+import { PrismModule } from '@ngx-prism/core';
 import { BlocksTestComponent } from 'components/blocks/blocks-test.component';
-import { SpinnerTestComponent } from 'components/spinner/spinner-test.component';
-import { PagerTestComponent } from 'components/pager/pager-test.component';
+import { ButtonsTestComponent } from 'components/buttons/buttons-test.component';
 import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.component';
-import { SwitchTestComponent } from 'components/switch/switch-test.component';
+import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
+import { GridTestComponent } from 'components/grid/grid-test.component';
+import { ModalTestComponent } from 'components/modal/modal-test.component';
+import { ModalTestFactoryComponent } from 'components/modal/test.component';
+import { PagerTestComponent } from 'components/pager/pager-test.component';
+import { PopoverTestComponent } from 'components/popover/popover-test.component';
 import { RadioTestComponent } from 'components/radio/radio-test.component';
 import { SelectTestComponent } from 'components/select/select-test.component';
+import { SpinnerTestComponent } from 'components/spinner/spinner-test.component';
+import { StackTestComponent } from 'components/stack/stack-test.component';
+import { SwitchTestComponent } from 'components/switch/switch-test.component';
+import { TestsComponent } from 'components/tests.component';
+
+import { TESTS_ROUTES } from 'components/tests.routes';
+import { JunteUiModule } from 'junte-ui';
+import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
+import { AvatarTestComponent } from './avatar/avatar-test.component';
+import { BadgeTestComponent } from './badge/badge-test.component';
+import { CalendarTestComponent } from './calendar/calendar-test.component';
+import { DropdownTestComponent } from './dropdown/dropdown-test.component';
 import { FormTestComponent } from './form/form-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
-import { BadgeTestComponent } from './badge/badge-test.component';
-import { PrismModule } from '@ngx-prism/core';
-import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
-import { TableTestComponent } from './table/table-test.component';
-import { AvatarTestComponent } from './avatar/avatar-test.component';
-import { LinkTestComponent } from './link/link-test.component';
-import { CalendarTestComponent } from './calendar/calendar-test.component';
+import { InputTestComponent } from './input/input-test.component';
 import { LabelTestComponent } from './label/label-test.component';
-import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
-import { TabsTestComponent } from './tabs/tabs-test.component';
+import { LinkTestComponent } from './link/link-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
-import { TypographyTestComponent } from './typography/typography-test.component';
-import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
-import { JunteUiModule } from 'junte-ui';
-import { DropdownTestComponent } from './dropdown/dropdown-test.component';
+import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
+import { TableTestComponent } from './table/table-test.component';
+import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
-import { PopoverTestComponent } from 'components/popover/popover-test.component';
+import { TypographyTestComponent } from './typography/typography-test.component';
 
 @NgModule({
   imports: [
@@ -63,9 +65,7 @@ import { PopoverTestComponent } from 'components/popover/popover-test.component'
     SelectTestComponent,
     BadgeTestComponent,
     AppLayoutTestComponent,
-    TableTestComponent,
     AvatarTestComponent,
-    TableTestComponent,
     TableTestComponent,
     LinkTestComponent,
     CalendarTestComponent,
@@ -76,11 +76,13 @@ import { PopoverTestComponent } from 'components/popover/popover-test.component'
     TypographyTestComponent,
     CircleBarTestComponent,
     DropdownTestComponent,
+    ModalTestComponent,
     ThemingComponent,
-    DropdownTestComponent,
-    CircleBarTestComponent,
-    TypographyTestComponent,
-    PopoverTestComponent
+    PopoverTestComponent,
+    ModalTestFactoryComponent
+  ],
+  entryComponents: [
+    ModalTestFactoryComponent
   ]
 })
 export class TestsModule {
