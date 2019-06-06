@@ -2,8 +2,6 @@ import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, Te
 import { BehaviorSubject } from 'rxjs';
 import { PopoverPlacements, PopoverTriggers } from '../../enum/ui';
 
-const PREFIX = 'placement';
-
 export class PopoverOptions {
   title: string;
   content: string | TemplateRef<void>;
@@ -54,7 +52,7 @@ export class PopoverComponent implements AfterViewInit {
     this.visible$.subscribe(visible => {
       this.renderer.setStyle(this.element.nativeElement, 'display', visible ? 'block' : 'none');
       if (visible) {
-        this.renderer.addClass(this.element.nativeElement, `${PREFIX}-${this.placement}`);
+        this.renderer.addClass(this.element.nativeElement, `${this.placement}`);
         if (!!this.container) {
           const position = this.getPosition(this.container.element.nativeElement, this.element.nativeElement);
           this.renderer.setStyle(this.element.nativeElement, 'top', `${position.top}px`);
