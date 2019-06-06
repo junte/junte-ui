@@ -1,0 +1,18 @@
+<jnt-block modal [padding]="ui.padding.normal">
+  <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
+      <h5>{{title}}</h5>
+      <jnt-button [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
+                  [icon]="ui.icons.close" (click)="close()">
+      </jnt-button>
+    </jnt-stack>
+
+    <div [ngStyle]="{'max-height': options.maxHeight, 'max-width': options.maxWidth}">
+      <ng-container #container>
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+      </ng-container>
+    </div>
+
+  </jnt-stack>
+</jnt-block>
+<div *ngIf="!!opened" overlay (click)="close()"></div>

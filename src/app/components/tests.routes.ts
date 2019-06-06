@@ -27,6 +27,7 @@ import {CircleBarTestComponent} from 'components/circle-bar/circle-bar-test.comp
 import { DropdownTestComponent } from 'components/dropdown/dropdown-test.component';
 import { ThemingComponent } from 'components/theming/theming.component';
 import { PopoverTestComponent } from 'components/popover/popover-test.component';
+import { ModalTestComponent } from 'components/modal/modal-test.component';
 
 export const TESTS_ROUTES: Routes = [
   {
@@ -89,6 +90,11 @@ export const TESTS_ROUTES: Routes = [
     path: 'input',
     component: InputTestComponent,
     data: {breadcrumb: 'Input'}
+  },
+  {
+    path: 'modal',
+    component: ModalTestComponent,
+    data: {breadcrumb: 'Modal'}
   },
   {
     path: 'select',
