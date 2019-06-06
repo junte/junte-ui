@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './modal.component';
+import { NgModule } from '@angular/core';
 import { SanitizePipeModule } from '../../pipes/sanitize.module';
-import { BlockModule } from '../block';
-import { ButtonModule } from '../button';
-import { StackModule } from '../stack';
+import { BlockModule } from '../block/block.module';
+import { ButtonModule } from '../button/button.module';
+import { StackModule } from '../stack/stack.module';
+import { ModalComponent } from './modal.component';
 
 @NgModule({
   declarations: [
