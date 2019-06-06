@@ -8,12 +8,10 @@
                   (click)="load()">
       </jnt-button>
       <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+      <div filters><ng-container *ngTemplateOutlet="filtersTemplate"></ng-container></div>
     </jnt-stack>
 
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
-      <jnt-input *ngIf="search" [icon]="ui.icons.search" placeholder="Search"></jnt-input>
-    </jnt-stack>
+    <div search><jnt-input *ngIf="search" [icon]="ui.icons.search" placeholder="Search"></jnt-input></div>
   </jnt-stack>
 
   <form [formGroup]="filterForm">

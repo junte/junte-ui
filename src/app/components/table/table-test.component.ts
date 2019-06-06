@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { TableComponent } from 'junte-ui';
 import { UI } from 'junte-ui';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SelectMode } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-table-test',
@@ -12,6 +14,19 @@ import { UI } from 'junte-ui';
 export class TableTestComponent implements OnInit {
 
   ui = UI;
+
+  form: FormGroup;
+  selectMode = SelectMode;
+  options: any[] = [
+    {value: 1, label: 'PFC CSKA Moscow'},
+    {value: 2, label: 'FC Real Madrid'},
+    {value: 3, label: 'FC Manchester United'}
+  ];
+  ajaxOptions: any[] = [
+    {value: 4, label: 'FC Manchester City'},
+    {value: 5, label: 'FC Liverpool'},
+    {value: 6, label: 'FC Barcelona'}
+  ];
 
   @ViewChild('table')
   table: TableComponent;
@@ -32,12 +47,22 @@ export class TableTestComponent implements OnInit {
     count: 10
   };
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.table.fetcher = (): Observable<any> => of(this.data).pipe(delay(2000));
     this.table.load();
+
+    this.form = this.fb.group({
+      select: this.fb.control([1, 3]),
+      selectAjax: this.fb.control([])
+    });
+    this.form.valueChanges.subscribe(c => console.log(c));
+  }
+
+  loadOptions() {
+    return (): Observable<any> => of(this.ajaxOptions).pipe(delay(2000));
   }
 
 }
