@@ -13,12 +13,47 @@ $checkbox-indicator-border-width: 1px !default;
 $checkbox-indicator-disabled-bg: $gray-400 !default;
 $checkbox-indicator-disabled-border-color: $gray-400 !default;
 $checkbox-indicator-checked-disabled-icon-color: $gray-700 !default;
-$checkbox-indicator-size: 1.125rem !default;
+
+$checkbox-sizes: (
+  #{$size-tiny}: (
+    size: 12px,
+    icon-size: .5rem,
+  ),
+  #{$size-small}: (
+    size: 14px,
+    icon-size: .6rem,
+  ),
+  #{$size-normal}: (
+    size: 18px,
+    icon-size: .7rem,
+  ),
+  #{$size-large}: (
+    size: 24px,
+    icon-size: 1rem,
+  ),
+) !default;
+
+@mixin size($size) {
+  [switch] {
+    min-width: #{map-get($size, size)};
+    width: #{map-get($size, size)};
+    min-height: #{map-get($size, size)};
+    height: #{map-get($size, size)};
+  }
+  [icon] {
+    font-size: #{map-get($size, icon-size)};
+  }
+};
 
 :host {
   display: flex;
   align-items: center;
   position: relative;
+  @each $size, $map in $checkbox-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
 }
 
 input {
@@ -49,6 +84,11 @@ input {
       color: $checkbox-indicator-checked-disabled-icon-color;
     }
   }
+  &:focus:checked {
+    & + [switch] {
+      box-shadow: 0px 1px 5px $primary-color;
+    }
+  }
 }
 
 label {
@@ -58,8 +98,6 @@ label {
 
 [switch] {
   position: relative;
-  width: $checkbox-indicator-size;
-  height: $checkbox-indicator-size;
   border-radius: $checkbox-indicator-corner;
   background-color: $checkbox-indicator-bg;
   border: $checkbox-indicator-border-width solid $checkbox-indicator-border-color;
@@ -71,7 +109,6 @@ label {
 [icon] {
   opacity: 0;
   line-height: 1;
-  font-size: $checkbox-icon-size;
   color: $checkbox-icon-color;
 }
 
