@@ -13,16 +13,18 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
-    <h4>Checkbox</h4>
-    <jnt-checkbox label="Checkbox"></jnt-checkbox>
-    <jnt-checkbox [checked]="true" label="Checkbox checked"></jnt-checkbox>
-    <jnt-checkbox [disabled]="true" label="Checkbox disabled"></jnt-checkbox>
-    <jnt-checkbox [checked]="true" [disabled]="true" label="Checkbox disabled & checked"></jnt-checkbox>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-checkbox label="Checkbox" [size]="size"></jnt-checkbox>
+      <jnt-checkbox [checked]="true" label="Checkbox checked" [size]="size"></jnt-checkbox>
+      <jnt-checkbox [disabled]="true" label="Checkbox disabled" [size]="size"></jnt-checkbox>
+      <jnt-checkbox [checked]="true" [disabled]="true" label="Checkbox disabled & checked" [size]="size"></jnt-checkbox>
+      <br>
+    </ng-container>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-  <jnt-checkbox [checked]="true" [disabled]="false" label="Checkbox"></jnt-checkbox>
+  <jnt-checkbox [checked]="true" [disabled]="false" label="Checkbox" [size]="ui.sizes.large"></jnt-checkbox>
 ]]></pre>
   </ngx-prism>
 
@@ -67,6 +69,12 @@
       <td>-</td>
       <td>string</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>tiny | small | normal | large</td>
+      <td>normal</td>
     </tr>
     </tbody>
   </table>

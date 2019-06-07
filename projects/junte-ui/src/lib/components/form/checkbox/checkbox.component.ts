@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
@@ -22,6 +22,10 @@ export class CheckboxComponent {
   @HostBinding('attr.label')
   @Input()
   label: string;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   @Input() value: any;
 

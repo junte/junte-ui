@@ -12,15 +12,18 @@
   <hr>
 
   <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-switch label="Switch"></jnt-switch>
-    <jnt-switch [checked]="true" label="Switch checked"></jnt-switch>
-    <jnt-switch [disabled]="true" label="Switch disabled"></jnt-switch>
-    <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked"></jnt-switch>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-switch label="Switch" [size]="size"></jnt-switch>
+      <jnt-switch [checked]="true" label="Switch checked" [size]="size"></jnt-switch>
+      <jnt-switch [disabled]="true" label="Switch disabled" [size]="size"></jnt-switch>
+      <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked" [size]="size"></jnt-switch>
+      <br>
+    </ng-container>
   </jnt-stack>
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-switch [checked]="true" [disabled]="false" label="Switch"></jnt-switch>
+<jnt-switch [checked]="true" [disabled]="false" label="Switch" [size]="ui.sizes.large"></jnt-switch>
 ]]></pre>
     </ngx-prism>
 
@@ -53,6 +56,12 @@
       <td>-</td>
       <td>string</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>tiny | small | normal | large</td>
+      <td>normal</td>
     </tr>
     </tbody>
   </table>

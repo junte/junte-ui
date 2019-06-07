@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {UI} from '../../../enum/ui';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Sizes, UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',
@@ -22,6 +22,10 @@ export class SwitchComponent implements OnInit {
   @HostBinding('attr.label')
   @Input()
   label: string;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   constructor() { }
 
