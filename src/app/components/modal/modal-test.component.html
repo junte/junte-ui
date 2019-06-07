@@ -4,13 +4,17 @@
   <ng-template #content>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cum delectus dolorem ducimus illum iusto
       nemo nesciunt obcaecati omnis provident, qui quia quis quisquam tempore temporibus totam veniam voluptatem.</p>
-    <jnt-button text="Click"></jnt-button>
-    <jnt-button text="Click 2"></jnt-button>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <jnt-button text="Click"></jnt-button>
+      <jnt-button text="Click 2"></jnt-button>
+    </jnt-stack>
   </ng-template>
 
   <h3>Example</h3>
-  <jnt-button (click)="open()" text="Open modal"></jnt-button>
-  <jnt-button (click)="openCalendar()" text="Open calendar component"></jnt-button>
+  <jnt-stack>
+    <jnt-button (click)="open()" text="Open modal"></jnt-button>
+    <jnt-button (click)="openCalendar()" text="Open calendar component"></jnt-button>
+  </jnt-stack>
 
   <h3>Usage</h3>
 

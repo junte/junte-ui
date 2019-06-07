@@ -2,6 +2,9 @@
 
 $modal-width: 320px !default;
 $modal-height: 210px !default;
+$modal-title-color: $text-color !default;
+$modal-title-font-weight: $font-weight-bold !default;
+$modal-title-font-size: $font-size-base !default;
 
 @keyframes fadein {
   from {
@@ -38,8 +41,9 @@ $modal-height: 210px !default;
   transform: translate(-50%, -50%);
   animation: fadein .5s;
 
-  h5 {
-    margin-bottom: 0;
-    font-weight: $font-weight-bold;
+  [title] {
+    color: $modal-title-color;
+    font-weight: $modal-title-font-weight;
+    font-size: $modal-title-font-size;
   }
 }
