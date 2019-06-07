@@ -3,23 +3,57 @@
 
 
 $switch-indicator-corner: 35px !default;
-$switch-icon-size: 1.375rem !default;
 $switch-icon-color: $white-color !default;
-$switch-indicator-width: 50px !default;
-$switch-indicator-height: 28px !default;
 $switch-indicator-bg: $gray-700 !default;
 $switch-indicator-border-color: transparent !default;
-$switch-indicator-padding-x: 3px !default;
+$switch-indicator-padding: 3px !default;
 $switch-indicator-border-width: 1px !default;
 
 $switch-indicator-checked-bg: $primary-color !default;
 $switch-indicator-disabled-bg: $gray-400 !default;
 $switch-indicator-disabled-border-color: transparent !default;
 
+$switch-sizes: (
+  #{$size-tiny}: (
+    width: 30px,
+    height: 18px,
+  ),
+  #{$size-small}: (
+    width: 38px,
+    height: 22px,
+  ),
+  #{$size-normal}: (
+    width: 50px,
+    height: 28px,
+  ),
+  #{$size-large}: (
+    width: 67px,
+    height: 36px,
+  ),
+) !default;
+
+@mixin size($size) {
+  [switch] {
+    min-width: #{map-get($size, width)};
+    width: #{map-get($size, width)};
+    min-height: #{map-get($size, height)};
+    height: #{map-get($size, height)};
+  }
+  [icon] {
+    width: calc(#{map-get($size, height)} - #{$switch-indicator-padding} * 2);
+    height: calc(#{map-get($size, height)} - #{$switch-indicator-padding} * 2);
+  }
+}
+
 :host {
   display: flex;
   align-items: center;
   position: relative;
+  @each $size, $map in $switch-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
 }
 
 input {
@@ -38,7 +72,8 @@ input {
     background-color: $switch-indicator-checked-bg;
   }
   &:checked + [switch] > [icon] {
-    left: calc(100% - #{$switch-indicator-padding-x} - #{$switch-icon-size});
+    left: auto;
+    right: #{$switch-indicator-padding};
   }
   &:disabled {
     cursor: default;
@@ -48,6 +83,11 @@ input {
     & + [switch] {
       background-color: $switch-indicator-disabled-bg;
       border-color: $switch-indicator-disabled-border-color;
+    }
+  }
+  &:focus:checked {
+    & + [switch] {
+      box-shadow: 0px 1px 5px $primary-color;
     }
   }
 }
@@ -62,21 +102,19 @@ label {
   border-radius: $switch-indicator-corner;
   background-color: $switch-indicator-bg;
   border: $switch-indicator-border-width solid $switch-indicator-border-color;
-  min-width: $switch-indicator-width;
-  min-height: $switch-indicator-height;
   box-sizing: border-box;
   transition: all ease .4s;
 }
 
 [icon] {
   border-radius: 50%;
-  width: $switch-icon-size;
-  height: $switch-icon-size;
   background-color: $switch-icon-color;
   position: absolute;
-  left: $switch-indicator-padding-x;
-  top: calc(50% - #{$switch-icon-size} / 2);
-  transition: all ease .4s;
+  left: $switch-indicator-padding;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all .4s;
 }
 
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-radio',
@@ -18,6 +18,10 @@ export class RadioComponent {
   @HostBinding('attr.checked')
   @Input()
   checked = false;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   @Input() label: any;
   @Input() value: string;

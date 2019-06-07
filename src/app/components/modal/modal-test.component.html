@@ -1,0 +1,122 @@
+<jnt-container>
+  <h1>Modal</h1>
+
+  <ng-template #content>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cum delectus dolorem ducimus illum iusto
+      nemo nesciunt obcaecati omnis provident, qui quia quis quisquam tempore temporibus totam veniam voluptatem.</p>
+    <jnt-button text="Click"></jnt-button>
+    <jnt-button text="Click 2"></jnt-button>
+  </ng-template>
+
+  <h3>Example</h3>
+  <jnt-button (click)="open()" text="Open modal"></jnt-button>
+  <jnt-button (click)="openCalendar()" text="Open calendar component"></jnt-button>
+
+  <h3>Usage</h3>
+
+  <p>To use the modal component, changes are <jnt-label [color]="ui.colors.red" label="required in the main component"></jnt-label> of the application.</p>
+
+  <h6>app.component.ts:</h6>
+  <ngx-prism language="js">
+    <pre><![CDATA[
+  import { Component } from '@angular/core';
+  import { ModalComponent, ModalService } from 'junte-ui';
+
+  @Component({
+    selector: 'my-app',
+    templateUrl: './app.component.html',
+    styleUrls: [ './app.component.css' ]
+  })
+  export class AppComponent implements AfterViewInit {
+
+    @ViewChild('modal') modal: ModalComponent;
+    @ViewChild('layout', {read: ElementRef}) backdrop;
+
+    constructor(private modalService: ModalService) {
+    }
+
+    ngAfterViewInit() {
+      this.modalService.register(this.modal);
+    }
+
+  }]]></pre>
+  </ngx-prism>
+  <h6>app.component.css:</h6>
+  <ngx-prism language="html">
+      <pre><![CDATA[
+  <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
+  <jnt-container #layout>
+    This is the main component of the application
+  </jnt-container>
+]]></pre>
+  </ngx-prism>
+
+  <p>To call the modal window from the components, use the service <jnt-label label="ModalService"></jnt-label></p>
+  <h6>other.component.ts:</h6>
+  <ngx-prism language="js">
+      <pre><![CDATA[
+  import { Component, ComponentFactoryResolver, Injector, TemplateRef, ViewChild } from '@angular/core';
+  import { ModalService, ModalOptions } from 'junte-ui';
+
+  @Component({
+    selector: 'other',
+    templateUrl: './other.component.html',
+    styleUrls: [ './other.component.css' ]
+  })
+  export class OtherComponent  {
+
+    @ViewChild('content') content: TemplateRef<any>;
+
+    constructor(private injector: Injector,
+                private cfr: ComponentFactoryResolver,
+                private modalService: ModalService) {}
+
+    openModalWithTemplate() {
+      this.modalService.open('Title modal', this.content, new ModalOptions({maxHeight: '300px', maxWidth: '500px'}));
+    }
+
+    openModalWithComponent() {
+      const component = this.cfr.resolveComponentFactory(TestComponent).create(this.injector);
+      this.modalService.open('Title modal', component);
+    }
+  }
+]]></pre>
+  </ngx-prism>
+
+  <h6>other.template.html:</h6>
+  <ngx-prism language="html">
+    <pre><![CDATA[
+  <ng-template #content>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cum delectus dolorem ducimus illum iusto
+      nemo nesciunt obcaecati omnis provident, qui quia quis quisquam tempore temporibus totam veniam voluptatem.</p>
+    <jnt-button text="Click"></jnt-button>
+    <jnt-button text="Click 2"></jnt-button>
+  </ng-template>
+
+  <jnt-button (click)="openModalWithTemplate()" text="Open modal with Template"></jnt-button>
+  <jnt-button (click)="openModalWithComponent()" text="Open modal with Component"></jnt-button>
+]]></pre>
+  </ngx-prism>
+
+
+  <h3>API</h3>
+  <h4>jnt-modal</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[backdrop]</td>
+      <td>-</td>
+      <td>ElementRef</td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+</jnt-container>

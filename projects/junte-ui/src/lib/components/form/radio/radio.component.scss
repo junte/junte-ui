@@ -2,9 +2,6 @@
 @import "../../../assets/styles/components/form/common.encapsulated";
 
 $radio-icon-color: $primary-color !default;
-$radio-indicator-size: 18px !default;
-$radio-icon-size: $radio-indicator-size - 8px !default;
-$radio-indicator-corner: $radio-indicator-size/2 !default;
 $radio-indicator-bg: $white-color !default;
 $radio-indicator-border-color: $primary-color !default;
 $radio-indicator-border-width: 1px !default;
@@ -13,10 +10,48 @@ $radio-indicator-disabled-bg: $gray-400 !default;
 $radio-disabled-border-color: $gray-400 !default;
 $radio-indicator-checked-disabled-icon-color: $gray-700 !default;
 
+
+$radio-sizes: (
+  #{$size-tiny}: (
+    size: 12px,
+  ),
+  #{$size-small}: (
+    size: 14px,
+  ),
+  #{$size-normal}: (
+    size: 18px,
+  ),
+  #{$size-large}: (
+    size: 24px,
+  ),
+) !default;
+
+@mixin size($size) {
+  [switch] {
+    min-width: #{map-get($size, size)};
+    width: #{map-get($size, size)};
+    min-height: #{map-get($size, size)};
+    height: #{map-get($size, size)};
+    border-radius: calc(#{map-get($size, size)} / 2);
+  }
+  [icon] {
+    min-width: calc(#{map-get($size, size)} - 8px);
+    width: calc(#{map-get($size, size)} - 8px);
+    min-height: calc(#{map-get($size, size)} - 8px);
+    height: calc(#{map-get($size, size)} - 8px);
+    border-radius: calc((#{map-get($size, size)} - 8px) / 2);
+  }
+};
+
 :host {
   display: flex;
   align-items: center;
   position: relative;
+  @each $size, $map in $radio-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
 }
 
 input {
@@ -47,6 +82,11 @@ input {
       background-color: $radio-indicator-checked-disabled-icon-color;
     }
   }
+  &:focus {
+    & + [switch] {
+      box-shadow: 0px 1px 5px $primary-color;
+    }
+  }
 }
 
 label {
@@ -56,11 +96,8 @@ label {
 
 [switch] {
   position: relative;
-  border-radius: $radio-indicator-corner;
   background-color: $radio-indicator-bg;
   border: $radio-indicator-border-width solid $radio-indicator-border-color;
-  min-width: $radio-indicator-size;
-  min-height: $radio-indicator-size;
   box-sizing: border-box;
   text-align: center;
 }
@@ -68,15 +105,11 @@ label {
 [icon] {
   display: inline-block;
   opacity: 0;
-  border-radius: $radio-icon-size/2;
-  min-width: $radio-icon-size;
-  width: $radio-icon-size;
-  min-height: $radio-icon-size;
-  height: $radio-icon-size;
   background-color: $radio-icon-color;
   position: absolute;
-  top: ($radio-indicator-size - $radio-icon-size) / 2 - 1px;
-  left: ($radio-indicator-size - $radio-icon-size) / 2 - 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
