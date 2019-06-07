@@ -1,7 +1,6 @@
 <jnt-block modal [padding]="ui.padding.normal">
-  <jnt-stack [align]="ui.flex.align.stretch">
     <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
-      <h5>{{title}}</h5>
+      <span title>{{title}}</span>
       <jnt-button [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
                   [icon]="ui.icons.close" (click)="close()">
       </jnt-button>
@@ -13,6 +12,5 @@
       </ng-container>
     </div>
 
-  </jnt-stack>
 </jnt-block>
 <div *ngIf="!!opened" overlay (click)="close()"></div>
