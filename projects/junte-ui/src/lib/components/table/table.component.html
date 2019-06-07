@@ -7,13 +7,16 @@
                   [scheme]="ui.schemes.secondary"
                   (click)="load()">
       </jnt-button>
-      <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+      <div>
+        <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+      </div>
     </jnt-stack>
 
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+    <div>
       <jnt-input *ngIf="search" [icon]="ui.icons.search" placeholder="Search"></jnt-input>
-    </jnt-stack>
+    </div>
+
   </jnt-stack>
 
   <form [formGroup]="filterForm">

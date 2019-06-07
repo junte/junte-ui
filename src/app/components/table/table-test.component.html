@@ -13,6 +13,8 @@
   <hr>
 
   <jnt-block [fluid]="true">
+    <jnt-form [formGroup]="form">
+
     <jnt-table #table [search]="true">
       <jnt-table-column title="Label" sort="label">
         <ng-template #cellTemplate let-label="label">
@@ -32,8 +34,16 @@
           <jnt-menu-item title="Delete"></jnt-menu-item>
         </jnt-menu>
       </ng-template>
-      <!--<ng-template #filters></ng-template>-->
+      <ng-template #filters>
+          <jnt-select valueField="value"
+                      labelField="label"
+                      [loadOptions]="loadOptions()"
+                      placeholder="Single select"
+                      formControlName="selectAjax" label="Filter">
+          </jnt-select>
+      </ng-template>
     </jnt-table>
+    </jnt-form>
   </jnt-block>
 
   <ngx-prism language="html">
