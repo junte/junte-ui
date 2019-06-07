@@ -13,6 +13,8 @@
   <hr>
 
   <jnt-block [fluid]="true">
+    <jnt-form [formGroup]="form">
+
     <jnt-table #table [search]="true">
       <jnt-table-column title="Label" sort="label">
         <ng-template #cellTemplate let-label="label">
@@ -33,16 +35,15 @@
         </jnt-menu>
       </ng-template>
       <ng-template #filters>
-        <jnt-form [formGroup]="form">
           <jnt-select valueField="value"
                       labelField="label"
                       [loadOptions]="loadOptions()"
                       placeholder="Single select"
                       formControlName="selectAjax" label="Filter">
           </jnt-select>
-        </jnt-form>
       </ng-template>
     </jnt-table>
+    </jnt-form>
   </jnt-block>
 
   <ngx-prism language="html">
