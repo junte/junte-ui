@@ -1,13 +1,13 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/components/app-layout/common.encapsulated";
 
-$app-sub-header-padding-x: $gutter-small !default;
-$app-sub-header-padding-y: 0 !default;
-$app-sub-header-burger-spacing: $gutter-normal !default;
+$app-sub-header-burger-margin-right: $gutter-normal !default;
+$app-sub-header-burger-margin-left: $gutter-normal !default;
 
 :host {
   display: flex;
   align-items: center;
-  padding: $app-sub-header-padding-x $app-sub-header-padding-y;
+  min-height: $app-sub-header-height;
 
   @media (max-width: 767px) {
     [burger] {
@@ -18,7 +18,8 @@ $app-sub-header-burger-spacing: $gutter-normal !default;
 
 [burger] {
   display: none;
-  margin-right: $app-sub-header-burger-spacing;
+  margin-right: $app-sub-header-burger-margin-right;
+  margin-left: $app-sub-header-burger-margin-left;
 }
 
 

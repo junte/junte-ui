@@ -2,6 +2,7 @@
 @import "../../../assets/styles/components/app-layout/common.encapsulated";
 
 $app-content-padding-left: $app-aside-width !default;
+$app-content-padding-top: $app-header-height !default;
 
 :host {
   display: block;
@@ -9,6 +10,7 @@ $app-content-padding-left: $app-aside-width !default;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-top: $app-content-padding-top;
   &[with-aside="true"] {
     padding-left: $app-content-padding-left;
   }
