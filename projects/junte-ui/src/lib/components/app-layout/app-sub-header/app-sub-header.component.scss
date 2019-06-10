@@ -2,10 +2,11 @@
 
 $app-sub-header-padding-x: $gutter-small !default;
 $app-sub-header-padding-y: 0 !default;
+$app-sub-header-burger-spacing: $gutter-normal !default;
 
 :host {
-  display: block;
-
+  display: flex;
+  align-items: center;
   padding: $app-sub-header-padding-x $app-sub-header-padding-y;
 
   @media (max-width: 767px) {
@@ -17,6 +18,7 @@ $app-sub-header-padding-y: 0 !default;
 
 [burger] {
   display: none;
+  margin-right: $app-sub-header-burger-spacing;
 }
 
 
