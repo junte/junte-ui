@@ -71,7 +71,6 @@ $menu-item-font-size-in-header: .875rem !default;
 
 $menu-item-color-in-aside: $gray-800 !default;
 $menu-item-font-size-in-aside: .875rem !default;
-$menu-item-active-border-color-in-aside: transparent !default;
 $menu-item-active-color-in-aside: $primary-color !default;
 $menu-item-active-border-left-width-in-aside: 4px !default;
 $menu-item-active-border-left-color-in-aside: $primary-color !default;
@@ -107,6 +106,7 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
         position: relative;
         width: 100%;
         padding: $menu-item-padding-x-in-aside $menu-item-padding-y-in-aside;
+        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
         &:hover {
           background-color: $menu-item-hover-background-color-in-aside;
           span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
@@ -118,16 +118,9 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
           font-size: $menu-item-font-size-in-aside;
         }
         &[active='true'] {
-          border-bottom-color: $menu-item-active-border-color-in-aside;
+          border-bottom: 0;
           background-color: $menu-item-active-background-color-in-aside;
-          &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            height: 100%;
-            min-width: $menu-item-active-border-left-width-in-aside;
-            background-color: $menu-item-active-border-left-color-in-aside;
-          }
+          border-left-color: $menu-item-active-border-left-color-in-aside;
           span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
             color: $menu-item-active-color-in-aside;
             font-weight: $font-weight-bold;
