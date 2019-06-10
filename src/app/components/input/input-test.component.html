@@ -43,6 +43,15 @@
                    formControlName="name"></jnt-input>
       </ng-container>
     </jnt-stack>
+
+    <h2>Input with label</h2>
+    <jnt-stack formArrayName="texts">
+      <ng-container [formGroupName]="i"
+                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
+        <jnt-input placeholder="Hero name" [size]="size" label="Name"
+                   formControlName="name"></jnt-input>
+      </ng-container>
+    </jnt-stack>
   </form>
 
 
@@ -92,6 +101,12 @@
         <td>[icon]</td>
         <td>-</td>
         <td>Icons</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>[label]</td>
+        <td>-</td>
+        <td>string</td>
         <td>-</td>
       </tr>
       </tbody>
