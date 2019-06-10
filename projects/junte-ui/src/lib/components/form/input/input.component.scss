@@ -1,4 +1,5 @@
-@import "../../assets/styles/variables";
+@import "../../../assets/styles/variables";
+@import "../../../assets/styles/components/form/common.encapsulated";
 
 $input-bg: $white-color !default;
 $input-border-color: $gray-600 !default;
@@ -122,4 +123,22 @@ input {
   transform: translateY(-50%);
   color: $input-icon-color;
 
+}
+
+[label] {
+  background-color: $form-control-label-bg;
+  padding: $form-control-label-padding-x $form-control-label-padding-y;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: $input-corner - 1px;
+  border-bottom-left-radius: $input-corner - 1px;
+  color: $form-control-label-color;
+  margin-right: $form-control-label-spacing;
+  position: absolute;
+  top: $input-border-width;
+  left: $input-border-width;
+  bottom: $input-border-width;
+  & ~ input {
+    padding-left: 20px;
+  }
 }

@@ -11,7 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode, Sizes, UI } from '../../enum/ui';
+import { SelectMode, Sizes, UI } from '../../../enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize, tap } from 'rxjs/operators';
 import { SelectOptionComponent } from './select-option/select-option.component';
