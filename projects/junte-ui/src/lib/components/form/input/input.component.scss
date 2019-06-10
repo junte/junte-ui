@@ -2,7 +2,6 @@
 @import "../../../assets/styles/components/form/common.encapsulated";
 
 $input-bg: $white-color !default;
-$input-border-color: $gray-600 !default;
 
 $input-padding-y: $gutter-normal !default;
 $input-line-height: normal !default;
@@ -77,6 +76,7 @@ $states: (
 
 :host {
   display: inline-flex;
+  align-items: stretch;
   position: relative;
   width: 100%;
   @each $state, $map in $states {
@@ -99,17 +99,15 @@ $states: (
 }
 
 input {
-  border: 0;
   outline: 0;
   background-color: $input-bg;
   color: $input-color;
   width: 100%;
   padding: 0 $input-padding-y;
   border-radius: $input-corner;
-  border: $input-border-width solid $input-border-color;
+  border: $input-border-width solid;
   box-sizing: border-box;
   transition: all .3s;
-  box-shadow: none;
   &:disabled {
     background-color: $input-disabled-bg;
     pointer-events: none;
@@ -134,11 +132,10 @@ input {
   border-bottom-left-radius: $input-corner - 1px;
   color: $form-control-label-color;
   margin-right: $form-control-label-spacing;
-  position: absolute;
-  top: $input-border-width;
-  left: $input-border-width;
-  bottom: $input-border-width;
+  border: $input-border-width solid $form-control-label-border-color;
+  border-right: 0;
   & ~ input {
-    padding-left: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
