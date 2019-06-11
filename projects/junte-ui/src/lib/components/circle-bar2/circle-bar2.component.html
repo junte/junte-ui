@@ -1,0 +1,31 @@
+<ng-container *ngTemplateOutlet="indicator; context: {size: size, value: value}"></ng-container>
+
+<ng-template #indicator let-size="size" let-value="value">
+  <div [style.width.px]="size"
+       [style.height.px]="size"
+       [style.line-height.px]="size"
+       [attr.over50]="value > 50" circle>
+  <span [style.width.px]="size"
+        [style.line-height.px]="size">
+        {{value}}
+  </span>
+    <div [style.width.px]="size"
+         [style.height.px]="size"
+         [ngStyle]="{'clip': value < 50 ? 'rect(0, ' + size + 'px, ' + size + 'px, ' + (size/2) + 'px)' : 'rect(auto, auto, auto, auto)'}"
+         left-half>
+      <div [style.width.px]="size"
+           [style.height.px]="size"
+           [ngStyle]="{'clip': value < 50 || 'rect(0, ' + size + 'px, ' + size + 'px, ' + (size/2) + 'px)'}"
+           first50-bar>
+      </div>
+      <div [ngClass]="'p'+ value"
+           [style.width.px]="size"
+           [style.height.px]="size"
+           [ngStyle]="{'clip': 'rect(0, ' + (size/2) + 'px, ' + size +'px, 0)'}" value-bar>
+      </div>
+    </div>
+    <div [style.width.px]="size - 6"
+         [style.height.px]="size - 6" overlay>
+    </div>
+  </div>
+</ng-template>

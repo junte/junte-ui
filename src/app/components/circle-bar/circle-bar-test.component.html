@@ -9,34 +9,45 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-circle-bar *ngFor="let size of ['tiny', 'small', 'normal', 'big']"
-                    [attr.bar-size]="size">
-      <ng-template #content>Content</ng-template>
-      <jnt-bar-indicator-group>
-        <jnt-bar-indicator [value]="10" title="Beer" [color]="ui.colors.purple"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="20" title="Vodka" [color]="ui.colors.red"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="value" title="Absent" [color]="ui.colors.green"></jnt-bar-indicator>
-      </jnt-bar-indicator-group>
-      <jnt-bar-indicator-group>
-        <jnt-bar-indicator [value]="70" title="Vine" [color]="ui.colors.black"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="20" title="Water" [color]="ui.colors.orange"></jnt-bar-indicator>
-      </jnt-bar-indicator-group>
-      <jnt-bar-indicator-group>
-        <jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="20" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="10" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>
-      </jnt-bar-indicator-group>
-    </jnt-circle-bar>
+  <jnt-stack>
+    <jnt-circle-bar2 [size]="200" [value]="10"></jnt-circle-bar2>
+    <jnt-circle-bar2 [size]="200" [value]="60"></jnt-circle-bar2>
+    <jnt-circle-bar2 [size]="200" [value]="15"></jnt-circle-bar2>
+    <jnt-circle-bar2 [size]="200" [value]="99"></jnt-circle-bar2>
+
+
+    <jnt-circle-bar2 [size]="100" [value]="86"></jnt-circle-bar2>
   </jnt-stack>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-button [icon]="ui.icons.arrowLeft"
-                (click)="value = value + 5"></jnt-button>
-    <jnt-button [icon]="ui.icons.arrowRight"
-                (click)="value = value - 5"></jnt-button>
-  </jnt-stack>
+
+  <!--<jnt-stack [type]="ui.stack.type.horizontal">-->
+    <!--<jnt-circle-bar *ngFor="let size of ['tiny', 'small', 'normal', 'big']"-->
+                    <!--[attr.bar-size]="size">-->
+      <!--<ng-template #content>Content</ng-template>-->
+      <!--<jnt-bar-indicator-group>-->
+        <!--<jnt-bar-indicator [value]="10" title="Beer" [color]="ui.colors.purple"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="20" title="Vodka" [color]="ui.colors.red"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="value" title="Absent" [color]="ui.colors.green"></jnt-bar-indicator>-->
+      <!--</jnt-bar-indicator-group>-->
+      <!--<jnt-bar-indicator-group>-->
+        <!--<jnt-bar-indicator [value]="70" title="Vine" [color]="ui.colors.black"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="20" title="Water" [color]="ui.colors.orange"></jnt-bar-indicator>-->
+      <!--</jnt-bar-indicator-group>-->
+      <!--<jnt-bar-indicator-group>-->
+        <!--<jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="20" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>-->
+        <!--<jnt-bar-indicator [value]="10" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>-->
+      <!--</jnt-bar-indicator-group>-->
+    <!--</jnt-circle-bar>-->
+  <!--</jnt-stack>-->
+
+  <!--<jnt-stack [type]="ui.stack.type.horizontal">-->
+    <!--<jnt-button [icon]="ui.icons.arrowLeft"-->
+                <!--(click)="value = value + 5"></jnt-button>-->
+    <!--<jnt-button [icon]="ui.icons.arrowRight"-->
+                <!--(click)="value = value - 5"></jnt-button>-->
+  <!--</jnt-stack>-->
 
   <ngx-prism language="html">
 <pre><![CDATA[
