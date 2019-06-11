@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
-import {UI} from '../../enum/ui';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-pagination',
@@ -14,6 +14,11 @@ import {UI} from '../../enum/ui';
 export class PaginationComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-pagination-host';
+
+  @HostBinding('style.visibility')
+  get visible() {
+    return this.pagesCount > 1 ? 'visible' : 'collapse';
+  }
 
   ui = UI;
 
