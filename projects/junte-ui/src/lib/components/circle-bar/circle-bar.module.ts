@@ -3,23 +3,22 @@ import { CommonModule } from '@angular/common';
 import { CircleBarComponent } from './circle-bar.component';
 import { BarIndicatorComponent } from './indicator/indicator.component';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
-import { SumPipe } from './pipes';
+import { SumPipeModule } from '../../pipes/sum-pipe.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SumPipeModule
   ],
   declarations: [
     CircleBarComponent,
     BarIndicatorComponent,
-    BarIndicatorGroupComponent,
-    SumPipe
+    BarIndicatorGroupComponent
   ],
   exports: [
     CircleBarComponent,
     BarIndicatorComponent,
-    BarIndicatorGroupComponent,
-    SumPipe
+    BarIndicatorGroupComponent
   ]
 })
 export class CircleBarModule {

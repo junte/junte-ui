@@ -11,7 +11,19 @@ export class CircleBar2Component implements OnInit {
   @HostBinding('attr.size')
   @Input() size: number;
 
+  @HostBinding('style.height.px')
+  get height() {
+    return this.size;
+  }
+
+  @HostBinding('style.width.px')
+  get width() {
+    return this.size;
+  }
+
   @Input() value: number;
+
+  indicators: any[] = [{value: 10, color: 'red'}, {value: 20, color: 'green'}, {value: 30, color: 'blue'}];
 
   constructor() {
   }
