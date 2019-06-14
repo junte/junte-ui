@@ -4,11 +4,13 @@ import { CircleBarComponent } from './circle-bar.component';
 import { BarIndicatorComponent } from './indicator/indicator.component';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 import { SumPipeModule } from '../../pipes/sum-pipe.module';
+import { SanitizePipeModule } from '../../pipes/sanitize.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    SumPipeModule
+    SumPipeModule,
+    SanitizePipeModule
   ],
   declarations: [
     CircleBarComponent,

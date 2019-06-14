@@ -5,7 +5,7 @@ import {BarIndicatorComponent} from '../components/circle-bar/indicator/indicato
   name: 'sum'
 })
 export class SumPipe implements PipeTransform {
-  transform(index: number, indicators: any[]): number {
-    return indicators.slice(0, index + 1).reduce((total, i) => total + i.value, 0);
+  transform(index: number, indicators: QueryList<BarIndicatorComponent>): number {
+    return indicators.toArray().slice(0, index + 1).reduce((total, i) => total + i.value, 0);
   }
 }

@@ -18,7 +18,6 @@ export * from './lib/components/button';
 export * from './lib/components/calendar';
 export * from './lib/components/card';
 export * from './lib/components/circle-bar';
-export * from './lib/components/circle-bar2';
 export * from './lib/components/form/checkbox';
 export * from './lib/components/dropdown';
 export * from './lib/components/form/checkbox';
