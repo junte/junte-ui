@@ -17,15 +17,11 @@ export class ModalService {
     }
   }
 
-  open(title: string, content: any, options: ModalOptions = new ModalOptions()) {
-    this.modal.open(title, content, options);
+  open(content: any, options?: ModalOptions) {
+    this.modal.open(content, options);
   }
 
   close() {
     this.modal.close();
-  }
-
-  setTitle(title: string) {
-    this.modal.title = title;
   }
 }

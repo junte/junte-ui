@@ -16,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UI } from '../../enum/ui';
 
 export class ModalOptions {
+  title: string;
   maxWidth = '800px';
   maxHeight = '705px';
 
@@ -49,7 +50,6 @@ export class ModalComponent implements AfterViewInit {
 
   template: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
-  title: string;
 
   @ViewChild('container', {read: ViewContainerRef}) container;
 
@@ -99,10 +99,11 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
-  open(title: string, content: any, options: ModalOptions = new ModalOptions()) {
-    this.title = title;
+  open(content: any, options?: ModalOptions) {
+    if (!!options) {
+      this.options = options;
+    }
     this.content = content;
-    this.options = options;
     this.setBackdropFilter(BackdropFilter.blur);
     this.opened = true;
   }
@@ -110,5 +111,6 @@ export class ModalComponent implements AfterViewInit {
   close() {
     this.setBackdropFilter(BackdropFilter.none);
     this.opened = false;
+    this.options = null;
   }
 }
