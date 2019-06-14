@@ -1,12 +1,12 @@
 <jnt-block modal [padding]="ui.padding.normal">
     <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
-      <span title>{{title}}</span>
+      <span title>{{options?.title}}</span>
       <jnt-button [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
                   [icon]="ui.icons.close" (click)="close()">
       </jnt-button>
     </jnt-stack>
 
-    <div [ngStyle]="{'max-height': options.maxHeight, 'max-width': options.maxWidth}">
+    <div [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
       <ng-container #container>
         <ng-container *ngTemplateOutlet="template"></ng-container>
       </ng-container>
