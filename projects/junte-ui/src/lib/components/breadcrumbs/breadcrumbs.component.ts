@@ -70,7 +70,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 breadcrumbs.push(new Breadcrumb(route, b));
               }
             } else if (isObject(b)) {
-              const title = b.label(route.snapshot.data);
+              const title = b.label;
               if (!!title) {
                 breadcrumbs.push(new Breadcrumb(route, title, b.url));
               }
