@@ -26,11 +26,10 @@ $max-avatar-index-in-avatar-list: 4 !default;
     position: absolute;
     border: $avatar-border-width-in-avatar-list solid $avatar-border-color-in-avatar-list;
     cursor: pointer;
-    z-index: 1;
     transition: all .5s;
     &:hover {
       border-color: $purple-light;
-      z-index: 2;
+      z-index: 1;
     }
     @each $size, $map in $avatar-sizes {
       &[size='#{$size}'] {
