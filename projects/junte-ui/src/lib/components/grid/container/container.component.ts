@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { Width } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-container',
@@ -8,7 +9,7 @@ export class ContainerComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-container-host';
 
-  @HostBinding('attr.fluid')
-  @Input() fluid = false;
+  @HostBinding('attr.width')
+  @Input() width: Width = Width.default;
 
 }

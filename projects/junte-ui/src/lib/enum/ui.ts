@@ -255,6 +255,11 @@ export enum Shapes {
   square = 'square'
 }
 
+export enum Width {
+  fluid = 'fluid',
+  default = 'default'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -263,6 +268,7 @@ export class UI {
   static position = Positions;
   static shape = Shapes;
   static type = MenuType;
+  static width = Width;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,
@@ -287,7 +293,7 @@ export class UI {
   };
   static select = SelectMode;
   static block = {
-    type: TypeBlock
+    type: TypeBlock,
   };
   static colors = Colors;
   static padding = Paddings;

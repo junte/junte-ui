@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Icons, Outline, Schemes, Sizes, TypeButton, UI } from '../../enum/ui';
+import { Icons, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../enum/ui';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -79,9 +79,9 @@ export class ButtonComponent {
   @Input()
   outline: Outline = Outline.fill;
 
-  @HostBinding('attr.fluid')
+  @HostBinding('attr.width')
   @Input()
-  fluid = false;
+  width: Width = Width.default;
 
   @HostBinding('attr.disabled')
   get disable() {
