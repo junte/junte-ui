@@ -9,7 +9,7 @@ import { PaginationModule } from '../pagination/pagination.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { StackModule } from '../stack/stack.module';
 import { SkeletonModule } from '../skeleton/skeleton.module';
-import { InputModule } from '../input/input.module';
+import { InputModule } from '../form/input/input.module';
 import { ButtonModule } from '../button/button.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
 

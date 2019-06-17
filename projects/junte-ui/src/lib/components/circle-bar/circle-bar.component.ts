@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, HostBinding, QueryList, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { UI } from '../../enum/ui';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 
@@ -9,6 +9,9 @@ import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.co
 export class CircleBarComponent {
 
   ui = UI;
+
+  @HostBinding('attr.size')
+  @Input() size: number;
 
   @ContentChildren(BarIndicatorGroupComponent)
   groups: QueryList<BarIndicatorGroupComponent>;

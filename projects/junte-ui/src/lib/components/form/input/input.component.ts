@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Icons, InputState, InputType, Sizes } from '../../enum/ui';
+import { Icons, InputState, InputType, Sizes } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -35,6 +35,10 @@ export class InputComponent implements ControlValueAccessor {
   @HostBinding('attr.size')
   @Input()
   size: Sizes = Sizes.normal;
+
+  @HostBinding('attr.label')
+  @Input()
+  label: string;
 
   @Input()
   placeholder: string;
