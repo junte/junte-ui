@@ -1,12 +1,15 @@
-<ng-template #indicator let-size="size" let-indicator="indicator" let-index="index" let-indicators="indicators">
+<ng-container *ngFor="let v of indicators; let index = index" [ngTemplateOutlet]="indicator"
+              [ngTemplateOutletContext]="{size: size, value: v, indicators: indicators, index: index}"></ng-container>
+
+<ng-template #indicator let-size="size" let-indicator="value" let-index="index" let-indicators="indicators">
   <div [style.width.px]="size"
        [style.height.px]="size"
        [style.line-height.px]="size"
        [attr.over50]="(index | sum: indicators) > 50" circle>
-    <!--<span [style.width.px]="size"-->
-    <!--[style.line-height.px]="size">-->
-    <!--{{indicator.value}}-->
-    <!--</span>-->
+  <!--<span [style.width.px]="size"-->
+        <!--[style.line-height.px]="size">-->
+        <!--{{indicator.value}}-->
+  <!--</span>-->
     <div [style.width.px]="size"
          [style.height.px]="size"
          [style.clip]="((index | sum: indicators) < 50 ? 'rect(0, ' + size + 'px, ' + size + 'px, ' + (size/2) + 'px)' : 'rect(auto, auto, auto, auto)') | sanitizeStyle"

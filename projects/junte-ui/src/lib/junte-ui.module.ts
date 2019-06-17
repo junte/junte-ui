@@ -39,7 +39,7 @@ import { SanitizePipeModule } from './pipes/sanitize.module';
 
 @NgModule({
   declarations: [
-    JunteUiComponent
+    JunteUiComponent,
   ],
   exports: [
     CommonModule,
