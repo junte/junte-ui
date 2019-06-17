@@ -11,12 +11,12 @@ import { ValidationDirective } from '../../directives/validation';
 import { IconModule } from '../icon/icon.module';
 import { JunteDirectiveModule } from '../../directives/junte-directive.module';
 import { SpinnerModule } from '../spinner/spinner.module';
-import { InputModule } from './input/input.module';
-import { CheckboxModule } from './checkbox/checkbox.module';
+import { InputModule } from '../input/input.module';
+import { CheckboxModule } from '../checkbox/checkbox.module';
 import { LabelModule } from '../label/label.module';
-import { RadioModule } from './radio/radio.module';
-import { SelectModule } from './select/select.module';
-import { SwitchModule } from './switch/switch.module';
+import { RadioModule } from '../radio/radio.module';
+import { SelectModule } from '../select/select.module';
+import { SwitchModule } from '../switch/switch.module';
 
 
 @NgModule({
