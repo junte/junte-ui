@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Sizes, UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',

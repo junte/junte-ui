@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { Sizes, UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
