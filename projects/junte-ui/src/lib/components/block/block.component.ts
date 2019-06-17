@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Paddings, Sizes, TypeBlock } from '../../enum/ui';
+import { Paddings, Sizes, TypeBlock, Width } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -21,9 +21,9 @@ export class BlockComponent implements OnInit {
   @Input()
   error = false;
 
-  @HostBinding('attr.fluid')
+  @HostBinding('attr.width')
   @Input()
-  fluid = false;
+  width: Width = Width.default;
 
   @HostBinding('attr.type')
   @Input()
