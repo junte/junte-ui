@@ -10,9 +10,9 @@ $checkbox-indicator-bg: $white-color !default;
 $checkbox-indicator-hover-bg: $gray-500 !default;
 $checkbox-indicator-border-color: $primary-color !default;
 $checkbox-indicator-border-width: 1px !default;
-$checkbox-indicator-disabled-bg: $gray-400 !default;
-$checkbox-indicator-disabled-border-color: $gray-400 !default;
-$checkbox-indicator-checked-disabled-icon-color: $gray-700 !default;
+$checkbox-disabled-indicator-bg: $gray-400 !default;
+$checkbox-disabled-indicator-border-color: $gray-400 !default;
+$checkbox-checked-disabled-indicator-icon-color: $gray-700 !default;
 
 $checkbox-sizes: (
   #{$size-tiny}: (
@@ -77,11 +77,11 @@ input {
       color: $control-label-disabled-color;
     }
     & + [switch] {
-      background-color: $checkbox-indicator-disabled-bg;
-      border-color: $checkbox-indicator-disabled-border-color;
+      background-color: $checkbox-disabled-indicator-bg;
+      border-color: $checkbox-disabled-indicator-border-color;
     }
     & + [switch] > [icon] {
-      color: $checkbox-indicator-checked-disabled-icon-color;
+      color: $checkbox-checked-disabled-indicator-icon-color;
     }
   }
   &:focus:checked {
@@ -104,13 +104,14 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  [icon] {
+    opacity: 0;
+    line-height: 1;
+    color: $checkbox-icon-color;
+  }
 }
 
-[icon] {
-  opacity: 0;
-  line-height: 1;
-  color: $checkbox-icon-color;
-}
+
 
 
 
