@@ -3,26 +3,6 @@
 $button-corner: $corner-large !default;
 $button-without-text-corner: $corner-small !default;
 
-$yiq-contrasted-threshold: 150;
-
-$yiq-text-dark: $gray-900;
-$yiq-text-light: $white-color;
-
-// Color contrast
-@function color-yiq($color) {
-  $r: red($color);
-  $g: green($color);
-  $b: blue($color);
-
-  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
-
-  @if ($yiq >= $yiq-contrasted-threshold) {
-    @return $yiq-text-dark;
-  } @else {
-    @return $yiq-text-light;
-  }
-}
-
 $button-schemes: (
   #{$scheme-primary}: (
     color: $white-color,
@@ -135,7 +115,7 @@ $button-sizes: (
       background-color: #{map-get($scheme, background-hover)};
     }
     &:focus {
-      box-shadow: 0px 1px 5px #{map-get($scheme, background)};
+      box-shadow: 0 1px 5px #{map-get($scheme, background)};
     }
     [badge]:child-host=#{$jnt-badge-host} {
       sup {
@@ -277,7 +257,7 @@ $button-sizes: (
     position: relative;
     font-family: $font-family-base;
     [icon] {
-      margin-right: 10px;
+      margin-right: $gutter-small;
     }
     [title] {
       display: inline-block;

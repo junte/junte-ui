@@ -87,7 +87,7 @@ input {
   }
   &:focus:checked {
     & + [switch] {
-      box-shadow: 0px 1px 5px $primary-color;
+      box-shadow: 0 1px 5px $primary-color;
     }
   }
 }
@@ -104,18 +104,19 @@ label {
   border: $switch-indicator-border-width solid $switch-indicator-border-color;
   box-sizing: border-box;
   transition: all ease .4s;
+  [icon] {
+    border-radius: 50%;
+    background-color: $switch-icon-color;
+    position: absolute;
+    left: $switch-indicator-padding;
+    right: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .4s;
+  }
 }
 
-[icon] {
-  border-radius: 50%;
-  background-color: $switch-icon-color;
-  position: absolute;
-  left: $switch-indicator-padding;
-  right: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all .4s;
-}
+
 
 
 
