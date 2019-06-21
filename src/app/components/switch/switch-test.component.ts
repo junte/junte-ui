@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UI } from 'projects/junte-ui/src/lib/enum/ui';
 
 @Component({
@@ -8,4 +9,12 @@ import { UI } from 'projects/junte-ui/src/lib/enum/ui';
 })
 export class SwitchTestComponent {
   ui = UI;
+  checked = true;
+
+  switchForm = this.fb.group({
+    switch: [false, [Validators.required]]
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
 }

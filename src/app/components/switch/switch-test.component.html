@@ -33,18 +33,25 @@
   <jnt-stack [type]="ui.stack.type.vertical">
     <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
       <jnt-switch label="Switch" [size]="size"></jnt-switch>
-      <jnt-switch [checked]="true" label="Switch checked" [size]="size"></jnt-switch>
-      <jnt-switch [disabled]="true" label="Switch disabled" [size]="size"></jnt-switch>
-      <jnt-switch [checked]="true" [disabled]="true" label="Switch disabled & checked" [size]="size"></jnt-switch>
+      <jnt-switch [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
+      <jnt-switch [disabled]="true" label="Switch disabled" [size]="size" name="disabled"></jnt-switch>
+      <jnt-switch [(ngModel)]="checked" [disabled]="true" name="checked_disabled"
+                  label="Switch disabled & checked" [size]="size">
+      </jnt-switch>
       <br>
     </ng-container>
   </jnt-stack>
 
-    <ngx-prism language="html">
+  <form [formGroup]="switchForm">
+    <jnt-switch label="Switch in reactive forms" formControlName="switch"></jnt-switch>
+    <span>switchForm.get('switch').value: {{switchForm.get('switch').value}}</span>
+  </form>
+
+  <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-switch [checked]="true" [disabled]="false" label="Switch" [size]="ui.sizes.large"></jnt-switch>
+<jnt-switch [(ngModel)]="checked" [disabled]="false" label="Switch" [size]="ui.sizes.large" name="switch"></jnt-switch>
 ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
   <h3>API</h3>
   <h4>jnt-switch</h4>
@@ -59,7 +66,7 @@
     </thead>
     <tbody>
     <tr>
-      <td>[checked]</td>
+      <td>[(ngModel)]</td>
       <td>-</td>
       <td>true | false</td>
       <td>false</td>
