@@ -17,6 +17,7 @@
     "build:prod": "npm run encapsulation && npm run build:lib && rm -rf dist/junte-ui/lib/assets && cd ./projects/junte-ui && gulp iconfont && cd ../../ && mkdir ./dist/junte-ui/lib/assets/ && mkdir ./dist/junte-ui/lib/assets/images && mkdir ./dist/junte-ui/lib/assets/fonts && mkdir ./dist/junte-ui/lib/assets/styles &&  mkdir ./dist/junte-ui/lib/assets/styles/components  && cp -r ./projects/junte-ui/src/lib/assets/fonts/ ./dist/junte-ui/lib/assets/fonts/ && cp -r ./projects/junte-ui/src/lib/assets/styles/components/ ./dist/junte-ui/lib/assets/styles/components/ && cp -r ./projects/junte-ui/src/lib/assets/images/icons ./dist/junte-ui/lib/assets/images/icons/ && cp -r ./projects/junte-ui/src/lib/assets/fonts/icons ./dist/junte-ui/lib/assets/fonts/icons && cp ./projects/junte-ui/src/lib/assets/styles/icons.scss ./dist/junte-ui/lib/assets/styles/ && cp ./projects/junte-ui/src/lib/assets/styles/_variables.scss ./dist/junte-ui/lib/assets/styles/ && cp ./projects/junte-ui/src/lib/assets/styles/common.scss ./dist/junte-ui/lib/assets/styles/",
     "npm:pack": "cd dist/junte-ui && npm pack",
     "package": "npm run build:prod && npm run copy:files && npm run npm:pack",
+    "publish": "npm publish ./dist/junte-ui/junte-ui-0.0.106.tgz",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
