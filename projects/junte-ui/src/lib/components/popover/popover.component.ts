@@ -1,23 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  Renderer2,
-  TemplateRef,
-  ViewContainerRef
-} from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { PopoverPlacements, PopoverTriggers } from '../../enum/ui';
+import {Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
+import {PopoverPlacements, PopoverTriggers} from '../../enum/ui';
 
 export class PopoverOptions {
-  title: string;
+  title: string | TemplateRef<void>;
   content: string | TemplateRef<void>;
-  enterDelay: number;
-  leaveDelay: number;
   trigger: PopoverTriggers;
   placement: PopoverPlacements;
 
@@ -30,14 +16,10 @@ export class PopoverOptions {
   selector: 'jnt-popover',
   templateUrl: './encapsulated.html'
 })
-export class PopoverComponent implements AfterViewInit {
+export class PopoverComponent {
 
-  private elementRelative: HTMLElement;
-  private element: HTMLElement;
-
-  trigger = PopoverTriggers.hover;
-  visible$ = new BehaviorSubject<boolean>(false);
-  hovered$ = new BehaviorSubject<boolean>(false);
+  options = new PopoverOptions();
+  visible = false;
 
   @HostBinding('attr.host') readonly host = 'jnt-popover-host';
 
@@ -46,83 +28,24 @@ export class PopoverComponent implements AfterViewInit {
     return this.visible ? 'block' : 'none';
   }
 
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.visible = true;
-    // this.hovered$.next(true);
-  }
-
-  @HostListener('mouseout')
-  onMouseOut() {
-    // this.hovered$.next(false);
-    this.visible = false;
-    console.log('mouseout in popover');
-  }
-
-  @Input() enterDelay = 0.15;
-  @Input() leaveDelay = 0.15;
-  @Input() title: string | TemplateRef<void>;
-  @Input() content: string | TemplateRef<void>;
-  @Input() container: ViewContainerRef;
-  @Input() placement: PopoverPlacements = PopoverPlacements.top;
-
-  @Input()
-  set visible(visible: boolean) {
-    if (this.visible !== visible) {
-      this.visible$.next(visible);
-    }
-  }
-
-  get visible(): boolean {
-    return this.visible$.getValue();
-  }
-
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {
   }
 
-  ngAfterViewInit(): void {
-    this.element = this.hostRef.nativeElement;
-    this.visible$.pipe(filter(v => !!v))
-      .subscribe(() => {
-        this.renderer.addClass(this.element, this.placement);
-        const position = this.getPosition(this.elementRelative);
-        this.renderer.setStyle(this.element, 'top', `${position.top}px`);
-        this.renderer.setStyle(this.element, 'left', `${position.left}px`);
-      });
-  }
+  private getPosition(target: ElementRef): { top, left } {
+    const rect = target.nativeElement.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  private setOptions(options: PopoverOptions): void {
-    if (!!options.title) {
-      this.title = options.title;
-    }
-    if (!!options.content) {
-      this.content = options.content;
-    }
-    if (!!options.enterDelay) {
-      this.enterDelay = options.enterDelay;
-    }
-    if (!!options.leaveDelay) {
-      this.leaveDelay = options.leaveDelay;
-    }
-    if (!!options.trigger) {
-      this.trigger = options.trigger;
-    }
-    if (!!options.placement) {
-      this.placement = options.placement;
-    }
-  }
-
-  private getPosition(elementRelative: HTMLElement): { top, left } {
-    let top = 0;
-    let left = 0;
-    switch (this.placement) {
-      case PopoverPlacements.topLeft: {
-        top = elementRelative.offsetTop - this.element.clientHeight;
-        left = elementRelative.offsetLeft;
+    let top = rect.top + scrollTop;
+    let left = rect.left + scrollLeft;
+    switch (this.options.placement) {
+      case PopoverPlacements.top: {
+        top -= this.hostRef.nativeElement.clientHeight;
+        left -= this.hostRef.nativeElement.clientWidth / 2;
         break;
       }
-      case PopoverPlacements.top: {
+      /*case PopoverPlacements.top: {
         top = elementRelative.offsetTop - this.element.clientHeight;
         left = elementRelative.offsetLeft + (elementRelative.clientWidth - this.element.clientWidth) / 2;
         break;
@@ -176,18 +99,23 @@ export class PopoverComponent implements AfterViewInit {
         top = elementRelative.offsetTop + (elementRelative.clientHeight - this.element.clientHeight);
         left = elementRelative.offsetLeft + elementRelative.clientWidth;
         break;
-      }
-      default:
-        return {top: 0, left: 0};
+      }*/
     }
 
-    return {top: top, left: left};
+
+    return {top: top, left};
   }
 
-  show(element: HTMLElement, options: PopoverOptions): void {
-    this.elementRelative = element;
-    this.setOptions(options);
+  show(target: ElementRef, options: PopoverOptions): void {
+    this.options = options;
+    const position = this.getPosition(target);
+    this.renderer.setStyle(this.hostRef.nativeElement, 'top', `${position.top}px`);
+    this.renderer.setStyle(this.hostRef.nativeElement, 'left', `${position.left}px`);
     this.visible = true;
+  }
+
+  picked(elements: HTMLElement[]) {
+    return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
 
   hide(): void {

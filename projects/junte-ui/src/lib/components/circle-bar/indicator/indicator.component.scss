@@ -1,15 +1,21 @@
 @import "../../../assets/styles/variables";
 
 :host {
-  display: block;
-  position: relative;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
 }
 
 [circle] {
   position: absolute;
   top: 0;
   left: 0;
-  //background-color: $gray-700;
+  background-color: $gray-700;
   border-radius: 50%;
   [overlay] {
     border: none;
@@ -29,7 +35,7 @@
     [first50-bar] {
       display: block;
       position: absolute;
-      //background-color: $primary-color;
+      background-color: $primary-color;
       border-radius: 50%;
     }
   }
@@ -51,3 +57,4 @@
     }
   }
 }
+

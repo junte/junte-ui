@@ -1,30 +1,21 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { PopoverComponent, PopoverOptions } from './popover.component';
+import {ElementRef, Injectable} from '@angular/core';
+import {PopoverComponent, PopoverOptions} from './popover.component';
 
 @Injectable({providedIn: 'root'})
 export class PopoverService {
 
-  popover: PopoverComponent;
-
-  visible$ = new BehaviorSubject<boolean>(false);
-  hovered$ = new BehaviorSubject<boolean>(false);
+  private popover: PopoverComponent;
 
   constructor() {
   }
 
   register(popover: PopoverComponent): void {
-    if (!popover) {
-      throw new Error('jnt-popover component not found');
-    } else {
-      this.popover = popover;
-      this.popover.visible$.subscribe(opened => this.visible$.next(opened));
-      this.popover.hovered$.subscribe(hovered => this.hovered$.next(hovered));
-    }
+    this.popover = popover;
   }
 
-  show(element: HTMLElement, options: PopoverOptions): void {
-    this.popover.show(element, options);
+  show(target: ElementRef, options: PopoverOptions): PopoverComponent {
+    this.popover.show(target, options);
+    return this.popover;
   }
 
   hide(): void {

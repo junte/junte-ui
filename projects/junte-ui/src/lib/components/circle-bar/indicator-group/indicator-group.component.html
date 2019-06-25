@@ -1,2 +1,6 @@
-<ng-container #group *ngFor="let indicator of indicators; let index = index" [ngTemplateOutlet]="indicator.template"
-              [ngTemplateOutletContext]="{size: size, indicator: indicator, indicators: indicators, index: index}"></ng-container>
+<jnt-bar-indicator *ngFor="let indicator of indicators;let i = index"
+                   [value]="indicator.value"
+                   [color]="indicator.color"
+                   [size]="50">
+</jnt-bar-indicator>
+<!--[style.transform]="'rotate(' + (3.6 * (i | sum:indicators)) + 'deg)'"-->

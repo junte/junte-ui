@@ -246,7 +246,6 @@ export enum PopoverPlacements {
 
 export enum PopoverTriggers {
   hover = 'hover',
-  focus = 'focus',
   click = 'click'
 }
 

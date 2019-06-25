@@ -1,81 +1,63 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
-import { PopoverTriggers } from '../../enum/ui';
-import { PopoverOptions } from './popover.component';
-import { PopoverService } from './popover.service';
+import {Directive, ElementRef, HostListener, Input} from '@angular/core';
+import {PopoverComponent, PopoverOptions} from './popover.component';
+import {PopoverService} from './popover.service';
+import {PopoverTriggers} from '../../enum/ui';
 
 @Directive({
-  selector: '[jnt-popover]',
+  selector: '[jntPopover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective implements AfterViewInit {
+export class PopoverDirective {
 
-  hovered$ = new BehaviorSubject<boolean>(false);
+  @Input('jntPopover') options: PopoverOptions;
 
-  private element: HTMLElement;
-  private visible: boolean;
-
-  @Input('jnt-popover') options: PopoverOptions;
+  reference: PopoverComponent;
 
   @HostListener('mouseenter')
   mouseEnter() {
     if (this.options.trigger === PopoverTriggers.hover) {
-      console.log('directive hovered mouseenter');
-
-      this.hovered$.next(true);
+      this.show();
     }
   }
 
-  @HostListener('mouseleave')
-  mouseLeave() {
+  @HostListener('document:mousemove', ['$event'])
+  documentMouseMove(e: any) {
     if (this.options.trigger === PopoverTriggers.hover) {
-      console.log('directive hovered mouseleave');
-      this.hovered$.next(false);
+      this.hide(e.path);
     }
   }
 
   @HostListener('click')
   click() {
     if (this.options.trigger === PopoverTriggers.click) {
-      this.visible ? this.hovered$.next(false) : this.hovered$.next(true);
+      this.show();
     }
   }
 
-  @HostListener('focus')
-  focus() {
-    if (this.options.trigger === PopoverTriggers.focus) {
-      this.hovered$.next(true);
+  @HostListener('document:click', ['$event'])
+  documentClick(e: any) {
+    if (this.options.trigger === PopoverTriggers.click) {
+      this.hide(e.path);
     }
   }
 
-  @HostListener('blur')
-  blur() {
-    if (this.options.trigger === PopoverTriggers.focus) {
-      this.hovered$.next(false);
-    }
+  constructor(private popover: PopoverService,
+              private hostRef: ElementRef) {
   }
 
-  constructor(private popoverService: PopoverService,
-              private elementRef: ElementRef) {
-  }
-
-  ngAfterViewInit() {
-    this.element = this.elementRef.nativeElement;
-    combineLatest(this.hovered$, this.popoverService.hovered$)
-      .subscribe(([h1, h2]) => {
-        if (!h1 && !h2) {
-          this.hide();
-        }
-      });
-
-    this.popoverService.visible$.subscribe(visible => this.visible = visible);
+  private picked(elements: HTMLElement[]) {
+    return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
 
   private show() {
-    this.popoverService.show(this.element, this.options);
+    this.reference = this.popover.show(this.hostRef, this.options);
   }
 
-  private hide() {
-    this.popoverService.hide();
+  private hide(path: HTMLElement[]) {
+    if (!!this.reference && !this.picked(path)
+      && !this.reference.picked(path)) {
+      this.reference.hide();
+      this.reference = null;
+    }
   }
 }
