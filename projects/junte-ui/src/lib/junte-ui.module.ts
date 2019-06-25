@@ -36,6 +36,7 @@ import { JunteUiComponent } from './junte-ui.component';
 import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { DatePipeModule } from './pipes/date-pipe.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
+import { TextPipeModule } from './pipes/text-pipe.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { SanitizePipeModule } from './pipes/sanitize.module';
     CircleBarModule,
     DropdownModule,
     DatePipeModule,
+    TextPipeModule,
     FormModule,
     GridModule,
     JunteDirectiveModule,
