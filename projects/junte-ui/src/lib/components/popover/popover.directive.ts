@@ -1,124 +1,81 @@
-import {
-  AfterViewInit,
-  ComponentFactoryResolver,
-  Directive,
-  ElementRef,
-  Input,
-  OnChanges,
-  OnInit,
-  Renderer2,
-  SimpleChanges,
-  ViewContainerRef
-} from '@angular/core';
-import { PopoverComponent, PopoverOptions } from './popover.component';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { PopoverTriggers } from '../../enum/ui';
-
-const OPTIONS_KEY = 'options';
+import { PopoverOptions } from './popover.component';
+import { PopoverService } from './popover.service';
 
 @Directive({
   selector: '[jnt-popover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective implements AfterViewInit, OnChanges, OnInit {
+export class PopoverDirective implements AfterViewInit {
 
-  private popover: PopoverComponent;
-  private delayTimer: any;
+  hovered$ = new BehaviorSubject<boolean>(false);
+
+  private element: HTMLElement;
+  private visible: boolean;
 
   @Input('jnt-popover') options: PopoverOptions;
 
-  constructor(public elementRef: ElementRef,
-              public container: ViewContainerRef,
-              public renderer: Renderer2,
-              private cfr: ComponentFactoryResolver) {
-  }
+  @HostListener('mouseenter')
+  mouseEnter() {
+    if (this.options.trigger === PopoverTriggers.hover) {
+      console.log('directive hovered mouseenter');
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!!changes[OPTIONS_KEY] && !!this.popover) {
-      this.setOptions(changes[OPTIONS_KEY].currentValue);
+      this.hovered$.next(true);
     }
   }
 
-  ngOnInit(): void {
-    const factory = this.cfr.resolveComponentFactory(PopoverComponent);
-    const componentRef = this.container.createComponent(factory);
-    this.popover = componentRef.instance;
-
-    if (!!this.popover) {
-      this.setOptions(this.options);
+  @HostListener('mouseleave')
+  mouseLeave() {
+    if (this.options.trigger === PopoverTriggers.hover) {
+      console.log('directive hovered mouseleave');
+      this.hovered$.next(false);
     }
   }
 
-  ngAfterViewInit(): void {
-    let listeners: Function[] = [];
+  @HostListener('click')
+  click() {
+    if (this.options.trigger === PopoverTriggers.click) {
+      this.visible ? this.hovered$.next(false) : this.hovered$.next(true);
+    }
+  }
 
-    this.popover.container = this.container;
-    if (this.popover.trigger === PopoverTriggers.hover) {
-      this.renderer.listen(this.elementRef.nativeElement, 'mouseenter', () =>
-        this.delayed(() => this.show(), this.popover.enterDelay)
-      );
-      this.renderer.listen(this.elementRef.nativeElement, 'mouseleave', () => {
-        this.delayed(() => this.hide(), this.popover.leaveDelay);
-        const element = this.popover.element.nativeElement;
+  @HostListener('focus')
+  focus() {
+    if (this.options.trigger === PopoverTriggers.focus) {
+      this.hovered$.next(true);
+    }
+  }
 
-        listeners.forEach(sub => sub());
-        listeners = [];
+  @HostListener('blur')
+  blur() {
+    if (this.options.trigger === PopoverTriggers.focus) {
+      this.hovered$.next(false);
+    }
+  }
 
-        listeners.push(this.renderer.listen(element, 'mouseenter', () =>
-          this.delayed(() => this.show(), this.popover.enterDelay)
-        ));
-        listeners.push(this.renderer.listen(element, 'mouseleave', () =>
-          this.delayed(() => this.hide(), this.popover.leaveDelay)
-        ));
+  constructor(private popoverService: PopoverService,
+              private elementRef: ElementRef) {
+  }
+
+  ngAfterViewInit() {
+    this.element = this.elementRef.nativeElement;
+    combineLatest(this.hovered$, this.popoverService.hovered$)
+      .subscribe(([h1, h2]) => {
+        if (!h1 && !h2) {
+          this.hide();
+        }
       });
-    } else if (this.popover.trigger === PopoverTriggers.focus) {
-      this.renderer.listen(this.elementRef.nativeElement, 'focus', () => this.show());
-      this.renderer.listen(this.elementRef.nativeElement, 'blur', () => this.hide());
-    } else if (this.popover.trigger === PopoverTriggers.click) {
-      this.renderer.listen(this.elementRef.nativeElement, 'click', e => {
-        e.preventDefault();
-        this.popover.visible ? this.hide() : this.show();
-      });
-    }
+
+    this.popoverService.visible$.subscribe(visible => this.visible = visible);
   }
 
-  private setOptions(options: PopoverOptions): void {
-    if (!!options.title) {
-      this.popover.title = options.title;
-    }
-    if (!!options.content) {
-      this.popover.content = options.content;
-    }
-    if (!!options.enterDelay) {
-      this.popover.enterDelay = options.enterDelay;
-    }
-    if (!!options.leaveDelay) {
-      this.popover.leaveDelay = options.leaveDelay;
-    }
-    if (!!options.trigger) {
-      this.popover.trigger = options.trigger;
-    }
-    if (!!options.placement) {
-      this.popover.placement = options.placement;
-    }
+  private show() {
+    this.popoverService.show(this.element, this.options);
   }
 
-  private show(): void {
-    this.popover.show();
-  }
-
-  private hide(): void {
-    this.popover.hide();
-  }
-
-  private delayed(func: Function, delay: number = -1): void {
-    if (!!this.delayTimer) {
-      clearTimeout(this.delayTimer);
-      this.delayTimer = null;
-    } else if (delay > 0) {
-      this.delayTimer = setTimeout(() => {
-        this.delayTimer = null;
-        func();
-      }, delay * 1000);
-    }
+  private hide() {
+    this.popoverService.hide();
   }
 }
