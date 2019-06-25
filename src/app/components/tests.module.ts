@@ -37,6 +37,7 @@ import { TableTestComponent } from './table/table-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
+import { PipesTestComponent } from 'components/pipes/pipes-test.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
   declarations: [
     TestsComponent,
     PagerTestComponent,
+    PipesTestComponent,
     ButtonsTestComponent,
     GridTestComponent,
     StackTestComponent,
