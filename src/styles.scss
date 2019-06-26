@@ -16,6 +16,7 @@ $app-sub-header-bg: $gray-dark;
 $avatar-bg: $gray-dark-200;
 $block-bg: $gray-dark-200;
 $calendar-weekend-bg: $gray-dark;
+$calendar-week-day-bg: $gray-dark-200;
 
 @import "../projects/junte-ui/src/lib/assets/styles/components";
 @import "../projects/junte-ui/src/lib/assets/styles/common";
@@ -41,11 +42,15 @@ $calendar-weekend-bg: $gray-dark;
   border: 1px solid $primary-color;
 }
 
-pre {
-  background-color: $gray-300;
+pre[class*="language-"] {
+  background-color: $gray-dark !important;
   width: 100%;
-  padding: $gutter-small;
+  padding: $gutter-small !important;
   box-sizing: border-box;
+  margin-top: $gutter-big !important;
+  code[class*="language-"] {
+    text-shadow: none !important;
+  }
 }
 
 table[api] {
@@ -57,7 +62,7 @@ table[api] {
     border: 1px solid $gray-700;
   }
   th {
-    background-color: $gray-400;
+    background-color: $gray-dark-200;
   }
   td:nth-child(1) {
     width: 20%;
@@ -66,21 +71,9 @@ table[api] {
     width: 20%;
   }
   td:nth-child(3) {
-    color: #905;
+    color: $primary-text-color;
     width: 40%;
   }
 }
 
-pre[class*="language-"] {
-  margin-top: $gutter-big !important;
-}
 
-//$red: #c60603;
-//$red-light: #f44744;
-//$red-dark: #720503;
-//
-//$primary-color: $red;
-//$primary-light-color: $red-light;
-//$primary-dark-color: $red-dark;
-//
-//$menu-item-active-color-in-aside: $primary-color;
