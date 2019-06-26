@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables";
 
 $calendar-arrows-size: 1rem !default;
-$calendar-arrows-color: $text-color !default;
+$calendar-arrows-color: $primary-text-color !default;
 $calendar-arrows-hover-color: lighten($calendar-arrows-color, 10%) !default;
 $calendar-button-arrows-size: 25px !default;
 $calendar-button-arrows-corner: 50% !default;
@@ -12,10 +12,11 @@ $calendar-name-day-padding-x: $gutter-normal !default;
 $calendar-name-day-padding-y: $gutter-tiny !default;
 $calendar-day-default-padding-y: $gutter-tiny !default;
 $calendar-day-default-padding-x: $gutter-small !default;
-$calendar-name-day-color: $gray-800 !default;
+$calendar-name-day-color: $primary-light-text-color !default;
 $calendar-name-day-font-size: $font-size-small !default;
 $calendar-day-font-size: $font-size-small !default;
 $calendar-day-width: 38px !default;
+$calendar-weekend-bg: $gray-500;
 
 $calendar-current-week-border-color: $primary-light-color !default;
 $calendar-current-week-corner: $corner-small !default;
@@ -124,7 +125,7 @@ tbody {
         cursor: pointer;
         &:nth-child(6),
         &:nth-child(7) {
-          background-color: $gray-500;
+          background-color: $calendar-weekend-bg;
         }
         &:hover {
           background-color: $calendar-day-hover-bg;
