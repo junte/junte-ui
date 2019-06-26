@@ -1,9 +1,9 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { StackType, StackGutter, FlexAlign, FlexJustify, FlexDirection, FlexWrap } from '../../enum/ui';
+import { FlexAlign, FlexJustify, FlexWrap, StackGutter, StackType } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-stack',
-  templateUrl: './encapsulated.html'
+  templateUrl: './stack.encapsulated.html'
 })
 export class StackComponent {
 

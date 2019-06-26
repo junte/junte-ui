@@ -3,7 +3,7 @@ import { Menu } from '../menu-abstract';
 
 @Component({
   selector: 'jnt-user-menu',
-  templateUrl: './encapsulated.html'
+  templateUrl: './user-menu.encapsulated.html'
 })
 export class UserMenuComponent extends Menu {
 

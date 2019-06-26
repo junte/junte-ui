@@ -3,7 +3,7 @@ import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-checkbox',
-  templateUrl: './encapsulated.html'
+  templateUrl: './checkbox.encapsulated.html'
 })
 export class CheckboxComponent {
 

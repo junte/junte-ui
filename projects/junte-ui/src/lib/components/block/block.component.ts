@@ -3,7 +3,7 @@ import { Paddings, Sizes, TypeBlock, Width } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
-  templateUrl: './encapsulated.html'
+  templateUrl: './block.encapsulated.html'
 })
 export class BlockComponent implements OnInit {
 

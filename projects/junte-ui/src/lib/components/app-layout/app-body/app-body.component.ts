@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-body',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-body.encapsulated.html'
 })
 export class AppBodyComponent implements OnInit {
 

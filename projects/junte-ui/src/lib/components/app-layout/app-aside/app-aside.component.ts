@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-aside',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-aside.encapsulated.html'
 })
 export class AppAsideComponent {
 

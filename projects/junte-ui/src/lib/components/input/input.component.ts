@@ -4,7 +4,7 @@ import { Icons, InputState, InputType, Sizes } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
-  templateUrl: './encapsulated.html',
+  templateUrl: './input.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

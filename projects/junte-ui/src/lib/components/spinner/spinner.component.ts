@@ -3,7 +3,7 @@ import {Sizes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-spinner',
-  templateUrl: './encapsulated.html'
+  templateUrl: './spinner.encapsulated.html'
 })
 export class SpinnerComponent implements OnInit {
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SelectMode, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { SelectMode, UI } from 'projects/junte-ui/src/lib/enum/ui';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-select-test',

@@ -3,7 +3,7 @@ import { UI } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-app-sub-header',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-sub-header.encapsulated.html'
 })
 export class AppSubHeaderComponent {
 

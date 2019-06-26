@@ -3,7 +3,7 @@ import {Positions, Schemes} from '../../enum/ui';
 
 @Component({
   selector: 'jnt-badge',
-  templateUrl: './encapsulated.html'
+  templateUrl: './badge.encapsulated.html'
 })
 export class BadgeComponent implements OnInit {
 

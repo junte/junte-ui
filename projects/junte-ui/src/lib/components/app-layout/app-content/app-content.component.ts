@@ -3,7 +3,7 @@ import { AppAsideComponent } from '../app-aside/app-aside.component';
 
 @Component({
   selector: 'jnt-app-content',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-content.encapsulated.html'
 })
 export class AppContentComponent {
 

@@ -3,7 +3,7 @@ import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-radio',
-  templateUrl: './encapsulated.html'
+  templateUrl: './radio.encapsulated.html'
 })
 export class RadioComponent {
 

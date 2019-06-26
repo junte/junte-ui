@@ -1,22 +1,13 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  Input,
-  OnDestroy,
-  QueryList
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, OnDestroy, QueryList } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioComponent } from '../radio.component';
 import { BehaviorSubject, fromEvent, merge, Subscription } from 'rxjs';
 import { filter, mapTo } from 'rxjs/operators';
 import { isObject, isUndefined } from 'util';
+import { RadioComponent } from '../radio.component';
 
 @Component({
   selector: 'jnt-radio-group',
-  templateUrl: './radio-group.component.html',
+  templateUrl: './radio-group.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

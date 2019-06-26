@@ -2,7 +2,7 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'jnt-form-label',
-  templateUrl: './encapsulated.html'
+  templateUrl: './form-label.encapsulated.html'
 })
 export class FormLabelComponent implements OnInit {
 

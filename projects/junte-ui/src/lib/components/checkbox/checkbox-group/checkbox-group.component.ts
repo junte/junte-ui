@@ -1,21 +1,13 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  OnDestroy,
-  QueryList
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, OnDestroy, QueryList } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, merge, Subscription } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
-import { CheckboxComponent } from '../checkbox.component';
 import { isArray } from 'util';
+import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
   selector: 'jnt-checkbox-group',
-  templateUrl: './checkbox-group.component.html',
+  templateUrl: './checkbox-group.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

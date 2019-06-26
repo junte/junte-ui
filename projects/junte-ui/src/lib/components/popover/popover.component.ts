@@ -14,7 +14,7 @@ export class PopoverOptions {
 
 @Component({
   selector: 'jnt-popover',
-  templateUrl: './encapsulated.html'
+  templateUrl: './popover.encapsulated.html'
 })
 export class PopoverComponent {
 
