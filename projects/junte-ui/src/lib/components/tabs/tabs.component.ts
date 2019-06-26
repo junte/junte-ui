@@ -3,7 +3,7 @@ import { TabComponent } from './tab/tab.component';
 
 @Component({
   selector: 'jnt-tabs',
-  templateUrl: './encapsulated.html'
+  templateUrl: './tabs.encapsulated.html'
 })
 export class TabsComponent {
 

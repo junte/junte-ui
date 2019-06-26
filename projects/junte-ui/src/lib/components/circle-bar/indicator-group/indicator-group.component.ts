@@ -3,7 +3,7 @@ import {BarIndicatorComponent} from '../indicator/indicator.component';
 
 @Component({
   selector: 'jnt-bar-indicator-group',
-  templateUrl: './indicator-group.component.html'
+  templateUrl: './indicator-group.encapsulated.html'
 })
 export class BarIndicatorGroupComponent {
 

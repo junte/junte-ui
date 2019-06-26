@@ -12,32 +12,20 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { addDays, addMonths, addWeeks, format, isEqual, setDay, setMonth, setYear, startOfMonth, startOfWeek, subMonths } from 'date-fns';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { WeekMetricComponent } from './week/week-metric.component';
+import { UI } from '../../enum/ui';
 import { Period } from './models';
 import { today } from './utils';
-import {
-  addDays,
-  addMonths,
-  addWeeks,
-  format,
-  isEqual,
-  setDay,
-  setMonth,
-  setYear,
-  startOfMonth,
-  startOfWeek,
-  subMonths
-} from 'date-fns';
-import { UI } from '../../enum/ui';
+import { WeekMetricComponent } from './week/week-metric.component';
 
 const WEEKS_DISPLAYED = 5;
 const DAYS_IN_WEEK = 7;
 
 @Component({
   selector: 'jnt-calendar',
-  templateUrl: './encapsulated.html',
+  templateUrl: './calendar.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

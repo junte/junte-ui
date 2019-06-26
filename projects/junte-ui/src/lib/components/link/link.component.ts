@@ -8,7 +8,7 @@ const TARGET_DEFAULT = '_self';
 
 @Component({
   selector: 'jnt-link',
-  templateUrl: './encapsulated.html'
+  templateUrl: './link.encapsulated.html'
 })
 export class LinkComponent implements OnInit {
 

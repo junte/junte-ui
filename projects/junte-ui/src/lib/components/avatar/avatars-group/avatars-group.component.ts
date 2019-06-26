@@ -6,7 +6,7 @@ const MAX_CAPACITY = 4;
 
 @Component({
   selector: 'jnt-avatars-group',
-  templateUrl: './encapsulated.html'
+  templateUrl: './avatars-group.encapsulated.html'
 })
 export class AvatarsGroupComponent {
 

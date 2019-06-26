@@ -3,7 +3,7 @@ import { format, isEqual } from 'date-fns';
 
 @Component({
   selector: 'jnt-calendar-day',
-  templateUrl: './encapsulated.html'
+  templateUrl: './day.encapsulated.html'
 })
 export class DayComponent {
 

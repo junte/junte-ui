@@ -4,7 +4,7 @@ import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-pagination',
-  templateUrl: './encapsulated.html',
+  templateUrl: './pagination.encapsulated.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => PaginationComponent),

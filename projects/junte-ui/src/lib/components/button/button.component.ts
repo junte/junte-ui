@@ -4,7 +4,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 @Component({
   selector: 'jnt-button',
-  templateUrl: './encapsulated.html',
+  templateUrl: './button.encapsulated.html',
   animations: [
     trigger('spinner', [
         state(

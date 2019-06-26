@@ -2,7 +2,7 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'jnt-app-footer',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-footer.encapsulated.html'
 })
 export class AppFooterComponent implements OnInit {
 

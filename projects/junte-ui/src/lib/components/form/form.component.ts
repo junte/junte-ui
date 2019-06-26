@@ -2,20 +2,21 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  EventEmitter, HostBinding,
+  EventEmitter,
+  HostBinding,
   HostListener,
   Input,
   Output,
   QueryList,
   TemplateRef
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormLayout, UI } from '../../enum/ui';
 import { FormItemComponent } from './form-item/form-item.component';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jnt-form',
-  templateUrl: './encapsulated.html'
+  templateUrl: './form.encapsulated.html'
 })
 export class FormComponent implements AfterContentInit {
 

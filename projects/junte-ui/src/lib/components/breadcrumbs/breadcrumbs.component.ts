@@ -15,7 +15,7 @@ class Breadcrumb {
 
 @Component({
   selector: 'jnt-breadcrumb',
-  templateUrl: './encapsulated.html'
+  templateUrl: './breadcrumbs.encapsulated.html'
 })
 
 export class BreadcrumbsComponent implements OnInit, OnDestroy {

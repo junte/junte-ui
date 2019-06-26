@@ -8,7 +8,7 @@ const RATIO_RGB = [299, 587, 114];
 
 @Component({
   selector: 'jnt-label',
-  templateUrl: './encapsulated.html'
+  templateUrl: './label.encapsulated.html'
 })
 export class LabelComponent {
 

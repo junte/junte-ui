@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-tab',
-  templateUrl: './encapsulated.html'
+  templateUrl: './tab.encapsulated.html'
 })
 export class TabComponent {
 

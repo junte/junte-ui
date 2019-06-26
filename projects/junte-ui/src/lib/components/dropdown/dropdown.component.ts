@@ -3,7 +3,7 @@ import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-dropdown',
-  templateUrl: './encapsulated.html'
+  templateUrl: './dropdown.encapsulated.html'
 })
 export class DropdownComponent implements OnInit {
 

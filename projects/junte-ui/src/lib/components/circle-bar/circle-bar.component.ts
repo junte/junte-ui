@@ -4,7 +4,7 @@ import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.co
 
 @Component({
   selector: 'jnt-circle-bar',
-  templateUrl: './encapsulated.html'
+  templateUrl: './circle-bar.encapsulated.html'
 })
 export class CircleBarComponent {
 

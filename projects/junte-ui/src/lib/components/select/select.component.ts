@@ -4,23 +4,24 @@ import {
   ContentChildren,
   ElementRef,
   forwardRef,
-  HostBinding, HostListener,
+  HostBinding,
+  HostListener,
   Input,
   OnInit,
   QueryList,
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SelectMode, Sizes, UI } from '../../enum/ui';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize, tap } from 'rxjs/operators';
+import { SelectMode, Sizes, UI } from '../../enum/ui';
 import { SelectOptionComponent } from './select-option/select-option.component';
 
 const SEARCH_DELAY = 500;
 
 @Component({
   selector: 'jnt-select',
-  templateUrl: './encapsulated.html',
+  templateUrl: './select.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -4,7 +4,7 @@ import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',
-  templateUrl: './encapsulated.html',
+  templateUrl: './switch.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

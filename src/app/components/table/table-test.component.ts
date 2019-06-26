@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SelectMode, TableComponent, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { TableComponent } from 'junte-ui';
-import { UI } from 'junte-ui';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { SelectMode } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-table-test',

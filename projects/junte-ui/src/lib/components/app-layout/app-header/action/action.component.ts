@@ -2,7 +2,7 @@ import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core
 
 @Component({
   selector: 'jnt-action',
-  templateUrl: './encapsulated.html'
+  templateUrl: './action.encapsulated.html'
 })
 export class ActionComponent {
 

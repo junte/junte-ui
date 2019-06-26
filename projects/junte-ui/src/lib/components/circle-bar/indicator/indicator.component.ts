@@ -2,7 +2,7 @@ import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
   selector: 'jnt-bar-indicator',
-  templateUrl: './encapsulated.html'
+  templateUrl: './indicator.encapsulated.html'
 })
 export class BarIndicatorComponent {
 

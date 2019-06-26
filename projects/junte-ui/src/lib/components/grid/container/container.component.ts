@@ -3,7 +3,7 @@ import { Width } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-container',
-  templateUrl: './encapsulated.html'
+  templateUrl: './container.encapsulated.html'
 })
 export class ContainerComponent {
 

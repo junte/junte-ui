@@ -2,7 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'jnt-app-main',
-  templateUrl: './encapsulated.html'
+  templateUrl: './app-main.encapsulated.html'
 })
 export class AppMainComponent {
 
