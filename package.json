@@ -22,11 +22,12 @@
     "encapsulation": "npm run copy:encapsulation && npm run encapsulate",
     "encapsulation:watch": "npm run copy:encapsulation && node node_modules/.bin/gulp build --gulpfile ./projects/junte-ui/src/scripts/encapsulation.ts --watch",
     "build:watch": "cd ./projects/junte-ui/ && gulp iconfont && ng build junte-ui --watch",
+    "styles:watch": "wait-on -i 3000 dist/junte-ui/public_api.d.ts && cd ./projects/junte-ui && gulp styles:watch",
     "build:lib": "cd ./projects/junte-ui/ && gulp iconfont && ng build junte-ui",
     "build:prod": "npm run encapsulation && npm run build:lib && npm run copy:files",
     "npm:pack": "cd dist/junte-ui && npm pack",
     "package": "npm run build:prod && npm run npm:pack",
-    "publish": "npm publish ./dist/junte-ui/junte-ui-0.0.107.tgz",
+    "publish": "npm publish ./dist/junte-ui/junte-ui-0.0.111.tgz",
     "clean:package": "npm cache clean --force && rm -rf -- node_modules doc coverage dist dll package-lock.json",
     "refresh": "npm run clean:package && npm install"
   },

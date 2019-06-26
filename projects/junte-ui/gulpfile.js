@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const watch = require('gulp-watch');
 const iconfont = require('gulp-iconfont');
 const consolidate = require('gulp-consolidate');
 const rename = require('gulp-rename');
@@ -48,4 +49,8 @@ gulp.task('styles', function () {
       }
       return cb(null, file);
     }))
+});
+
+gulp.task('styles:watch', function() {
+  return gulp.watch([styleFiles, commonStyleFiles], { ignoreInitial: false }, gulp.series('styles'));
 });
