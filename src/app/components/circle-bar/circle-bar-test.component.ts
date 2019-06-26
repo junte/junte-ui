@@ -10,6 +10,4 @@ export class CircleBarTestComponent {
 
   ui = UI;
 
-  value = 60;
-
 }

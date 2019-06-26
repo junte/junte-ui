@@ -9,7 +9,8 @@ export class BarIndicatorComponent {
   @HostBinding('attr.host') readonly host = 'jnt-bar-indicator-host';
 
   @Input() value: number;
+  @Input() title: string;
   @Input() color: string;
-  @Input() size = 50;
+  @Input() width: string;
 
 }

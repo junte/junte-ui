@@ -1,11 +1,6 @@
 @import "../../assets/styles/variables";
 
-$point-size: 14px !default;
-$point-corner: $point-size/2 !default;
-
-$circle-size: 200px !default;
-$border-width: 2px !default;
-$circle-corner: $circle-size/2 !default;
+$circle-size: 200px;
 
 :host {
   position: relative;
@@ -16,40 +11,7 @@ $circle-corner: $circle-size/2 !default;
   height: $circle-size;
 }
 
-.popover {
-  //display: none;
-}
-
-.point {
-  height: $point-size;
-  width: $point-size;
-  border-radius: $point-corner;
-}
-
-.circle {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: 0;
-  border-radius: $circle-corner;
-}
-
-.clip {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-
-.item {
-  position: absolute;
-  border-radius: 50%;
-  height: 100%;
-  width: 100%;
-}
-
 .content {
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
