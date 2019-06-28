@@ -6,13 +6,15 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
 import { LinkModule } from '../link/link.module';
 import { StackModule } from '../stack/stack.module';
 import { IconModule } from '../icon/icon.module';
+import { BadgeModule } from '../badge';
 
 @NgModule({
   imports: [
     CommonModule,
     LinkModule,
     IconModule,
-    StackModule
+    StackModule,
+    BadgeModule
   ],
   exports: [
     MenuComponent,

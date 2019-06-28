@@ -17,8 +17,11 @@
   <h3>Horizontal menu</h3>
 
   <jnt-menu>
-    <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Doc" [badge]="567"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Home">
+      <jnt-badge [count]="5" [scheme]="ui.schemes.secondary"></jnt-badge>
+      <jnt-badge [count]="5"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
   </jnt-menu>
@@ -27,7 +30,7 @@
 
   <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
     <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Doc" [badge]="5"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
   </jnt-menu>
