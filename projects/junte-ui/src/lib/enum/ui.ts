@@ -55,7 +55,7 @@ export enum Colors {
   white = '#FFFFFF',
   black = '#000000',
   blue = '#E7F5FF',
-  blue500 = '#E6E9FA',
+  blue100 = '#E6E9FA',
   orange = '#EE8030',
   green = '#00CCB1',
   greenDark = '#00B89F',
@@ -79,7 +79,7 @@ export enum Colors {
   gray900 = '#4F4F4F',
   gray1000 = '#F0F0F0',
   grayDark = '#343434',
-  grayDark200 = '#1A1A1A',
+  grayDark100 = '#1A1A1A',
   grayLight100 = '#F9F9F9',
 }
 

@@ -1,24 +1,31 @@
-$gray-200: #F7F7F7;
-$gray-500: #F3F4FC;
-$gray-700: #D0D0D0;
-$gray-600: #C4C4C4;
-$gray-100: #F5F5F5;
-$primary-text-color: $gray-500;
-$primary-dark-text-color: $gray-200;
-$primary-light-text-color: $gray-600;
-$gray-dark: #343434;
-$gray-dark-200: #1A1A1A;
-$app-aside-bg: $gray-dark-200;
-$app-body-bg: $gray-dark;
-$app-sub-header-bg: $gray-dark;
-
-$avatar-bg: $gray-dark-200;
-$block-bg: $gray-dark-200;
-$calendar-weekend-bg: $gray-dark;
-$calendar-week-day-bg: $gray-dark-200;
+//$gray-200: #F7F7F7;
+//$gray-500: #F3F4FC;
+//$gray-700: #D0D0D0;
+//$gray-600: #C4C4C4;
+//$gray-800: #828282;
+//$gray-900: #4F4F4F;
+//$gray-100: #F5F5F5;
+//$primary-text-color: $gray-500;
+//$primary-dark-text-color: $gray-200;
+//$primary-light-text-color: $gray-600;
+//$gray-dark: #343434;
+//$gray-dark-200: #1A1A1A;
+//$app-aside-bg: $gray-dark-200;
+//$app-body-bg: $gray-dark;
+//$app-sub-header-bg: $gray-dark;
+//
+//$avatar-bg: $gray-dark-200;
+//$block-bg: $gray-dark-200;
+//$calendar-weekend-bg: $gray-dark;
+//$calendar-week-day-bg: $gray-dark-200;
+//$checkbox-checked-disabled-indicator-icon-color: $gray-800;
+//$checkbox-disabled-indicator-bg: $gray-600;
+//
+//$dropdown-bg: $gray-dark-200;
 
 @import "components";
 @import "common";
+
 
 [block] {
   color: $white-color;
@@ -29,7 +36,7 @@ $calendar-week-day-bg: $gray-dark-200;
 }
 
 [row] {
-  background-color: $gray-300;
+  background-color: $white-color;
 }
 
 [col] {
@@ -40,9 +47,14 @@ $calendar-week-day-bg: $gray-dark-200;
   border: 1px solid $primary-color;
 }
 
-pre[class*="language-"] {
-  background-color: $gray-dark !important;
+ngx-prism {
   width: 100%;
+}
+
+pre[class*="language-"] {
+  background-color: $gray-300 !important;
+  width: 100%;
+  display: block;
   padding: $gutter-small !important;
   box-sizing: border-box;
   margin-top: $gutter-big !important;
@@ -62,7 +74,7 @@ table[api] {
   }
 
   th {
-    background-color: $gray-dark-200;
+    background-color: $gray-400;
   }
 
   td:nth-child(1) {
