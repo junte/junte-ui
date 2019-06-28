@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Icons, Schemes } from '../../../enum/ui';
 
 @Component({
@@ -10,7 +10,7 @@ export class MenuItemComponent {
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string;
-  @Output() click = new EventEmitter<any>();
+  @Input() click: Function;
   @Input() badge: number;
   @Input('exact-link') exactLink = true;
   @Input() scheme: Schemes = Schemes.primary;
