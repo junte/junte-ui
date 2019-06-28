@@ -57,7 +57,7 @@ $jnt-popover-host: 'jnt-popover-host';
 
 /*Color*/
 $blue: #E7F5FF !default;
-$blue-500: #E6E9FA !default;
+$blue-100: #E6E9FA !default;
 $orange: #EE8030 !default;
 $green: #00CCB1 !default;
 $green-dark: #00B89F !default;
@@ -69,8 +69,10 @@ $purple: #3949AB !default;
 $purple-dark: #00227B !default;
 $purple-light: #6F74DD !default;
 $purple-lighten: #C4C9E7 !default;
+$white-color: white !default;
 
 $gray-100: #F5F5F5 !default;
+$gray-150: #F0F0F0 !default;
 $gray-200: #F7F7F7 !default;
 $gray-300: #F2F2F2 !default;
 $gray-400: #E9E9E9 !default;
@@ -79,9 +81,8 @@ $gray-600: #C4C4C4 !default;
 $gray-700: #D0D0D0 !default;
 $gray-800: #828282 !default;
 $gray-900: #4F4F4F !default;
-$gray-1000: #F0F0F0 !default;
 $gray-dark: #343434 !default;
-$gray-dark-200: #1A1A1A !default;
+$gray-dark-100: #1A1A1A !default;
 
 $gray-light-100: #F9F9F9 !default;
 
@@ -90,12 +91,12 @@ $primary-dark-color: $purple-dark !default;
 $primary-light-color: $purple-light !default;
 
 $secondary-color: $gray-500 !default;
-$secondary-dark-color: $blue-500 !default;
+$secondary-dark-color: $blue-100 !default;
 
 $success-color: $green !default;
 $success-dark-color: $green-dark !default;
 
-$warning: $orange !default;
+$warning-color: $orange !default;
 
 $fail-color: $red !default;
 $fail-dark-color: $red-dark !default;
@@ -122,9 +123,12 @@ $gutter-big: ($spacer * 6) !default;
 $gutter-large: ($spacer * 8) !default;
 $gutter-huge: ($spacer * 12) !default;
 
-$text-color: $gray-900 !default;
+$primary-text-color: $gray-900 !default;
+$primary-text-dark-color: $gray-dark !default;
+$primary-text-light-color: $gray-800 !default;
 
-$white-color: white !default;
+$primary-background: $white-color !default;
+$secondary-background: $secondary-color !default;
 
 $scheme-primary: 'primary';
 $scheme-secondary: 'secondary';
@@ -185,8 +189,8 @@ $headings-margin-bottom: $gutter-normal !default;
 
 /*Common styles*/
 
-$body-color: $text-color !default;
-$body-bg: $gray-200 !default;
+$body-color: $primary-text-color !default;
+//$body-bg: $gray-200 !default;
 $body-font-family: $font-family-base !default;
 $body-font-weight: $font-weight-base !default;
 $body-line-height: $line-height-base !default;

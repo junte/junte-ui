@@ -1,6 +1,6 @@
 <button [type]="type" [disabled]="disabled || loading">
   <jnt-spinner [@spinner]="loading" *ngIf="loading" loading></jnt-spinner>
-  <jnt-icon *ngIf="icon" [@text]="loading | visible" icon [icon]="icon"></jnt-icon>
-  <span text [@text]="loading | visible">{{text}}</span>
+  <jnt-icon *ngIf="icon" [@text]="loading | visible" [icon]="icon" icon></jnt-icon>
+  <span [@text]="loading | visible" text>{{text}}</span>
   <jnt-badge *ngIf="badge" [@text]="loading | visible" [scheme]="scheme" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
 </button>
