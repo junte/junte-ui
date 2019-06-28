@@ -86,11 +86,11 @@ export class ModalComponent implements AfterViewInit {
 
   constructor(private sanitizer: DomSanitizer,
               private renderer: Renderer2,
-              private host: ElementRef) {
+              private element: ElementRef) {
   }
 
   ngAfterViewInit() {
-    this.modal = this.host.nativeElement;
+    this.modal = this.element.nativeElement;
   }
 
   private setBackdropFilter(filter: string) {

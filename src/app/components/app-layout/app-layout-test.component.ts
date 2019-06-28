@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UI} from '../../../../projects/junte-ui/src/lib/enum/ui';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-app-layout-test',
@@ -9,7 +9,8 @@ import {UI} from '../../../../projects/junte-ui/src/lib/enum/ui';
 export class AppLayoutTestComponent implements OnInit {
   ui = UI;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

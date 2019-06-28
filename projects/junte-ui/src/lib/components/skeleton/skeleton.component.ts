@@ -3,7 +3,7 @@ import { Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-skeleton',
-  templateUrl: './encapsulated.html'
+  templateUrl: './skeleton.encapsulated.html'
 })
 export class SkeletonComponent implements OnInit {
 

@@ -1,12 +1,9 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { PopoverPlacements, PopoverTriggers } from '../../enum/ui';
+import {Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
+import {PopoverPlacements, PopoverTriggers} from '../../enum/ui';
 
 export class PopoverOptions {
-  title: string;
+  title: string | TemplateRef<void>;
   content: string | TemplateRef<void>;
-  enterDelay: number;
-  leaveDelay: number;
   trigger: PopoverTriggers;
   placement: PopoverPlacements;
 
@@ -17,127 +14,111 @@ export class PopoverOptions {
 
 @Component({
   selector: 'jnt-popover',
-  templateUrl: './encapsulated.html'
+  templateUrl: './popover.encapsulated.html'
 })
-export class PopoverComponent implements AfterViewInit {
+export class PopoverComponent {
 
-  trigger = PopoverTriggers.hover;
-  visible$ = new BehaviorSubject<boolean>(false);
+  options = new PopoverOptions();
+  visible = false;
 
   @HostBinding('attr.host') readonly host = 'jnt-popover-host';
 
-  @Input() enterDelay = 0.15;
-  @Input() leaveDelay = 0.15;
-  @Input() title: string | TemplateRef<void>;
-  @Input() content: string | TemplateRef<void>;
-  @Input() container: ViewContainerRef;
-  @Input() placement: PopoverPlacements = PopoverPlacements.top;
-
-  @Input()
-  set visible(visible: boolean) {
-    if (this.visible !== visible) {
-      this.visible$.next(visible);
-    }
-  }
-
-  get visible(): boolean {
-    return this.visible$.getValue();
+  @HostBinding('style.display')
+  get display() {
+    return this.visible ? 'block' : 'none';
   }
 
   constructor(private renderer: Renderer2,
-              public element: ElementRef) {
+              private hostRef: ElementRef) {
   }
 
-  ngAfterViewInit(): void {
-    this.visible$.subscribe(visible => {
-      this.renderer.setStyle(this.element.nativeElement, 'display', visible ? 'block' : 'none');
-      if (visible) {
-        this.renderer.addClass(this.element.nativeElement, `${this.placement}`);
-        if (!!this.container) {
-          const position = this.getPosition(this.container.element.nativeElement, this.element.nativeElement);
-          this.renderer.setStyle(this.element.nativeElement, 'top', `${position.top}px`);
-          this.renderer.setStyle(this.element.nativeElement, 'left', `${position.left}px`);
-        }
+  private getPosition(target: ElementRef): { top, left } {
+    const rect = target.nativeElement.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    let top = rect.top + scrollTop;
+    let left = rect.left + scrollLeft;
+    switch (this.options.placement) {
+      case PopoverPlacements.top: {
+        top -= this.hostRef.nativeElement.clientHeight;
+        left -= this.hostRef.nativeElement.clientWidth / 2;
+        break;
       }
-    });
+      /*case PopoverPlacements.top: {
+        top = elementRelative.offsetTop - this.element.clientHeight;
+        left = elementRelative.offsetLeft + (elementRelative.clientWidth - this.element.clientWidth) / 2;
+        break;
+      }
+      case PopoverPlacements.topRight: {
+        top = elementRelative.offsetTop - this.element.clientHeight;
+        left = elementRelative.offsetLeft + (elementRelative.clientWidth - this.element.clientWidth);
+        break;
+      }
+      case PopoverPlacements.leftTop: {
+        top = elementRelative.offsetTop;
+        left = elementRelative.offsetLeft - this.element.clientWidth;
+        break;
+      }
+      case PopoverPlacements.left: {
+        top = elementRelative.offsetTop + (elementRelative.clientHeight - this.element.clientHeight) / 2;
+        left = elementRelative.offsetLeft - this.element.clientWidth;
+        break;
+      }
+      case PopoverPlacements.leftBottom: {
+        top = elementRelative.offsetTop + (elementRelative.clientHeight - this.element.clientHeight);
+        left = elementRelative.offsetLeft - this.element.clientWidth;
+        break;
+      }
+      case PopoverPlacements.bottomLeft: {
+        top = elementRelative.offsetTop + elementRelative.clientHeight;
+        left = elementRelative.offsetLeft;
+        break;
+      }
+      case PopoverPlacements.bottom: {
+        top = elementRelative.offsetTop + elementRelative.clientHeight;
+        left = elementRelative.offsetLeft + (elementRelative.clientWidth - this.element.clientWidth) / 2;
+        break;
+      }
+      case PopoverPlacements.bottomRight: {
+        top = elementRelative.offsetTop + elementRelative.clientHeight;
+        left = elementRelative.offsetLeft + (elementRelative.clientWidth - this.element.clientWidth);
+        break;
+      }
+      case PopoverPlacements.rightTop: {
+        top = elementRelative.offsetTop;
+        left = elementRelative.offsetLeft + elementRelative.clientWidth;
+        break;
+      }
+      case PopoverPlacements.right: {
+        top = elementRelative.offsetTop + (elementRelative.clientHeight - this.element.clientHeight) / 2;
+        left = elementRelative.offsetLeft + elementRelative.clientWidth;
+        break;
+      }
+      case PopoverPlacements.rightBottom: {
+        top = elementRelative.offsetTop + (elementRelative.clientHeight - this.element.clientHeight);
+        left = elementRelative.offsetLeft + elementRelative.clientWidth;
+        break;
+      }*/
+    }
+
+
+    return {top: top, left};
   }
 
-  show(): void {
+  show(target: ElementRef, options: PopoverOptions): void {
+    this.options = options;
+    const position = this.getPosition(target);
+    this.renderer.setStyle(this.hostRef.nativeElement, 'top', `${position.top}px`);
+    this.renderer.setStyle(this.hostRef.nativeElement, 'left', `${position.left}px`);
     this.visible = true;
+  }
+
+  picked(elements: HTMLElement[]) {
+    return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
 
   hide(): void {
     this.visible = false;
-  }
-
-  getPosition(hostEl: HTMLElement, popoverEl: HTMLElement): { top, left } {
-    let top = 0;
-    let left = 0;
-    switch (this.placement) {
-      case PopoverPlacements.topLeft: {
-        top = hostEl.offsetTop - popoverEl.clientHeight;
-        left = hostEl.offsetLeft;
-        break;
-      }
-      case PopoverPlacements.top: {
-        top = hostEl.offsetTop - popoverEl.clientHeight;
-        left = hostEl.offsetLeft + (hostEl.clientWidth - popoverEl.clientWidth) / 2;
-        break;
-      }
-      case PopoverPlacements.topRight: {
-        top = hostEl.offsetTop - popoverEl.clientHeight;
-        left = hostEl.offsetLeft + (hostEl.clientWidth - popoverEl.clientWidth);
-        break;
-      }
-      case PopoverPlacements.leftTop: {
-        top = hostEl.offsetTop;
-        left = hostEl.offsetLeft - popoverEl.clientWidth;
-        break;
-      }
-      case PopoverPlacements.left: {
-        top = hostEl.offsetTop + (hostEl.clientHeight - popoverEl.clientHeight) / 2;
-        left = hostEl.offsetLeft - popoverEl.clientWidth;
-        break;
-      }
-      case PopoverPlacements.leftBottom: {
-        top = hostEl.offsetTop + (hostEl.clientHeight - popoverEl.clientHeight);
-        left = hostEl.offsetLeft - popoverEl.clientWidth;
-        break;
-      }
-      case PopoverPlacements.bottomLeft: {
-        top = hostEl.offsetTop + hostEl.clientHeight;
-        left = hostEl.offsetLeft;
-        break;
-      }
-      case PopoverPlacements.bottom: {
-        top = hostEl.offsetTop + hostEl.clientHeight;
-        left = hostEl.offsetLeft + (hostEl.clientWidth - popoverEl.clientWidth) / 2;
-        break;
-      }
-      case PopoverPlacements.bottomRight: {
-        top = hostEl.offsetTop + hostEl.clientHeight;
-        left = hostEl.offsetLeft + (hostEl.clientWidth - popoverEl.clientWidth);
-        break;
-      }
-      case PopoverPlacements.rightTop: {
-        top = hostEl.offsetTop;
-        left = hostEl.offsetLeft + hostEl.clientWidth;
-        break;
-      }
-      case PopoverPlacements.right: {
-        top = hostEl.offsetTop + (hostEl.clientHeight - popoverEl.clientHeight) / 2;
-        left = hostEl.offsetLeft + hostEl.clientWidth;
-        break;
-      }
-      case PopoverPlacements.rightBottom: {
-        top = hostEl.offsetTop + (hostEl.clientHeight - popoverEl.clientHeight);
-        left = hostEl.offsetLeft + hostEl.clientWidth;
-        break;
-      }
-      default:
-        return {top: 0, left: 0};
-    }
-
-    return {top: top, left: left};
   }
 }

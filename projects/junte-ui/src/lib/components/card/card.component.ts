@@ -2,7 +2,7 @@ import { Component, HostBinding, Input, OnInit, TemplateRef } from '@angular/cor
 
 @Component({
   selector: 'jnt-card',
-  templateUrl: './card.component.html'
+  templateUrl: './card.encapsulated.html'
 })
 export class CardComponent implements OnInit {
 

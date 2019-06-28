@@ -4,7 +4,7 @@ import { MenuType, Sizes } from '../../../../enum/ui';
 
 @Component({
   selector: 'jnt-actions',
-  templateUrl: './encapsulated.html'
+  templateUrl: './actions.encapsulated.html'
 })
 export class ActionsComponent {
 

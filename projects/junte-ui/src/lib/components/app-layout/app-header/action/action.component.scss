@@ -1,5 +1,5 @@
 @import "../../../../assets/styles/variables";
-@import "../../../../assets/styles/components/app-layout/common.encapsulated";
+@import "../../common";
 
 $action-content-border-radius: 0 0 $corner-small $corner-small !default;
 $action-padding-y: $gutter-normal !default;
@@ -20,8 +20,10 @@ $action-content-shadow: $shadow-light !default;
   align-items: center;
   padding-left: $action-padding-y;
   padding-right: $action-padding-y;
+
   &:hover {
     background-color: $action-hover-bg;
+
     [content] {
       display: block;
     }

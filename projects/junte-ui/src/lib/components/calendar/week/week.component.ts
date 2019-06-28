@@ -1,14 +1,14 @@
 import { Component, ContentChild, forwardRef, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addDays, format, isEqual, startOfWeek } from 'date-fns';
-import { today } from '../utils';
 import { UI } from '../../../enum/ui';
+import { today } from '../utils';
 
 const DAYS_IN_WEEK = 7;
 
 @Component({
   selector: 'jnt-calendar-week',
-  templateUrl: './encapsulated.html',
+  templateUrl: './week.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -41,7 +41,7 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
     return this._period;
   }
 
-  onChange: (date: Date) => void;
+  onChange: (date: any) => void;
 
   ngOnInit() {
     this.period = startOfWeek(this.current, {weekStartsOn: 1});

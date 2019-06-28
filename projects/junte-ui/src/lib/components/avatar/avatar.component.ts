@@ -3,7 +3,7 @@ import { Icons, Shapes, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-avatar',
-  templateUrl: './encapsulated.html'
+  templateUrl: './avatar.encapsulated.html'
 })
 export class AvatarComponent {
 

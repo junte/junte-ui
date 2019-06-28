@@ -1,9 +1,10 @@
 <div arrow></div>
 <div wrapper role="popover">
-  <div title *ngIf="title">
-    <ng-container *stringTemplateOutlet="title">{{ title }}</ng-container>
+  <div title *ngIf="options.title">
+    <ng-container *stringTemplateOutlet="options.title">{{ options.title }}</ng-container>
   </div>
   <div content>
-    <ng-container *stringTemplateOutlet="content">{{ content }}</ng-container>
+    <ng-container *stringTemplateOutlet="options.content">{{ options.content }}</ng-container>
   </div>
 </div>
+

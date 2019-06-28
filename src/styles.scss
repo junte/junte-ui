@@ -1,4 +1,3 @@
-
 $gray-200: #F7F7F7;
 $gray-500: #F3F4FC;
 $gray-700: #D0D0D0;
@@ -18,9 +17,8 @@ $block-bg: $gray-dark-200;
 $calendar-weekend-bg: $gray-dark;
 $calendar-week-day-bg: $gray-dark-200;
 
-@import "../projects/junte-ui/src/lib/assets/styles/components";
-@import "../projects/junte-ui/src/lib/assets/styles/common";
-
+@import "components";
+@import "common";
 
 [block] {
   color: $white-color;
@@ -57,19 +55,24 @@ table[api] {
   width: 100%;
   border-collapse: collapse;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
   td, th {
     padding: $gutter-normal;
     border: 1px solid $gray-700;
   }
+
   th {
     background-color: $gray-dark-200;
   }
+
   td:nth-child(1) {
     width: 20%;
   }
+
   td:nth-child(4) {
     width: 20%;
   }
+
   td:nth-child(3) {
     color: $primary-text-color;
     width: 40%;

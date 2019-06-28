@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {UI} from 'projects/junte-ui/src/lib/enum/ui';
+import { Component } from '@angular/core';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-circle-bar-test',
@@ -9,7 +9,5 @@ import {UI} from 'projects/junte-ui/src/lib/enum/ui';
 export class CircleBarTestComponent {
 
   ui = UI;
-
-  value = 60;
 
 }

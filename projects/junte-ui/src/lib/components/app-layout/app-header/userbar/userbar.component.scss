@@ -1,5 +1,5 @@
 @import "../../../../assets/styles/variables";
-@import "../../../../assets/styles/components/app-layout/common.encapsulated";
+@import "../../common";
 
 $user-menu-max-height: 300px !default;
 $user-menu-corner: 0 !default;
@@ -17,8 +17,10 @@ $user-menu-padding-y: $gutter-normal !default;
   align-items: center;
   padding-left: $user-menu-padding-y;
   padding-right: $user-menu-padding-y;
+
   &:hover {
     background-color: $user-menu-hover-bg;
+
     [usermenu] {
       display: block;
     }

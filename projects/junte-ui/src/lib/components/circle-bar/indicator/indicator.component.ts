@@ -1,23 +1,16 @@
-import { AfterViewInit, Component, HostBinding, Input, TemplateRef, ViewChild } from '@angular/core';
+import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
   selector: 'jnt-bar-indicator',
-  templateUrl: './encapsulated.html'
+  templateUrl: './indicator.encapsulated.html'
 })
-export class BarIndicatorComponent implements AfterViewInit {
+export class BarIndicatorComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-bar-indicator-host';
 
-  @ViewChild('indicator')
-  template: TemplateRef<any>;
-
   @Input() value: number;
   @Input() title: string;
-  @Input() color = 'red';
+  @Input() color: string;
   @Input() width: string;
-
-  ngAfterViewInit() {
-    // console.log(this.template);
-  }
 
 }

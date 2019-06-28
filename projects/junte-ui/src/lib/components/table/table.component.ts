@@ -1,24 +1,14 @@
-import {
-  Component,
-  ContentChild,
-  ContentChildren,
-  HostBinding,
-  Input,
-  OnDestroy,
-  OnInit,
-  QueryList,
-  TemplateRef
-} from '@angular/core';
-import { filter as filtering, finalize } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Component, ContentChild, ContentChildren, HostBinding, Input, OnDestroy, OnInit, QueryList, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { TableColumnComponent } from './column/table-column.component';
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
+import { Subscription } from 'rxjs';
+import { filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
+import { TableColumnComponent } from './column/table-column.component';
 
 @Component({
   selector: 'jnt-table',
-  templateUrl: './encapsulated.html'
+  templateUrl: './table.encapsulated.html'
 })
 export class TableComponent implements OnInit, OnDestroy {
 

@@ -1,31 +1,8 @@
-<ng-template #indicator let-size="size" let-indicator="indicator" let-index="index" let-indicators="indicators">
-  <div [style.width.px]="size"
-       [style.height.px]="size"
-       [style.line-height.px]="size"
-       [attr.over50]="(index | sum: indicators) > 50" circle>
-    <!--<span [style.width.px]="size"-->
-    <!--[style.line-height.px]="size">-->
-    <!--{{indicator.value}}-->
-    <!--</span>-->
-    <div [style.width.px]="size"
-         [style.height.px]="size"
-         [style.clip]="((index | sum: indicators) < 50 ? 'rect(0, ' + size + 'px, ' + size + 'px, ' + (size/2) + 'px)' : 'rect(auto, auto, auto, auto)') | sanitizeStyle"
-         left-half>
-      <div [style.width.px]="size"
-           [style.height.px]="size"
-           [style.clip]="(index | sum: indicators) < 50 || ('rect(0, ' + size + 'px, ' + size + 'px, ' + (size/2) + 'px)' | sanitizeStyle)"
-           first50-bar>
-      </div>
-      <div value-bar [style.width.px]="size"
-           [style.height.px]="size"
-           [style.transform]="'rotate(' + (3.6 * (index | sum:indicators)) + 'deg)'"
-           [style.border-color]="indicator.color"
-           [style.z-index]="indicators.length - index"
-           [style.clip]="'rect(0, ' + (size/2) + 'px, ' + size +'px, 0)' | sanitizeStyle">
-      </div>
-    </div>
-    <div [style.width.px]="size - 6"
-         [style.height.px]="size - 6" overlay>
-    </div>
-  </div>
-</ng-template>
+<svg viewBox="0 0 32 32">
+  <circle class="progress"
+          [style.stroke-dasharray]="value + ' 100'"
+          [style.stroke]="color"
+          [style.stroke-width]="width"
+          r="15.925" cx="16" cy="16">
+  </circle>
+</svg>

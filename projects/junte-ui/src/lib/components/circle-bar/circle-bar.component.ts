@@ -1,17 +1,14 @@
-import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, HostBinding, QueryList, TemplateRef } from '@angular/core';
 import { UI } from '../../enum/ui';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 
 @Component({
   selector: 'jnt-circle-bar',
-  templateUrl: './encapsulated.html'
+  templateUrl: './circle-bar.encapsulated.html'
 })
 export class CircleBarComponent {
 
   ui = UI;
-
-  @HostBinding('attr.size')
-  @Input() size: number;
 
   @ContentChildren(BarIndicatorGroupComponent)
   groups: QueryList<BarIndicatorGroupComponent>;

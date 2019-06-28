@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PopoverDirective } from './popover.directive';
-import { PopoverComponent } from './popover.component';
+import { NgModule } from '@angular/core';
 import { JunteDirectiveModule } from '../../directives/junte-directive.module';
+import { PopoverComponent } from './popover.component';
+import { PopoverDirective } from './popover.directive';
 
 @NgModule({
   declarations: [
