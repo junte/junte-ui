@@ -57,7 +57,7 @@
                                 (click)="action()"></jnt-button>
                   </ng-template>
                   <ng-template #dropdown>
-                    <ng-container *ngTemplateOutlet="rowActionsTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="rowActionsTemplate;context: {row: row}"></ng-container>
                   </ng-template>
                 </jnt-dropdown>
               </td>

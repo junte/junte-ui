@@ -49,8 +49,8 @@
 
       <ng-template #rowActions let-row="row">
         <jnt-menu [type]="ui.type.vertical" [spacer]="ui.stack.gutter.small">
-          <jnt-menu-item title="Edit"></jnt-menu-item>
-          <jnt-menu-item title="Delete"></jnt-menu-item>
+          <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
+          <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
         </jnt-menu>
       </ng-template>
       <ng-template #filters>
@@ -77,8 +77,8 @@
     </jnt-table-column>
      <ng-template #rowActions let-row="row">
           <jnt-menu [type]="ui.type.vertical" [spacer]="ui.stack.gutter.small">
-            <jnt-menu-item title="Edit"></jnt-menu-item>
-            <jnt-menu-item title="Delete"></jnt-menu-item>
+            <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
+            <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
           </jnt-menu>
         </ng-template>
   </jnt-table>
