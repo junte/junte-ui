@@ -63,4 +63,11 @@ export class TableTestComponent implements OnInit {
     return (): Observable<any> => of(this.ajaxOptions).pipe(delay(2000));
   }
 
+  edit() {
+    console.log('edit');
+  }
+
+  delete() {
+    console.log('delete');
+  }
 }
