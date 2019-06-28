@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
-import { BreadCrumbTest1Component } from 'components/breadcrumbs/tests/test.component';
-import { BreadCrumbTest2Component } from 'components/breadcrumbs/tests/test2.component';
-import { BreadcrumbResolver } from 'components/breadcrumbs/resolver';
+import { BreadcrumbResolver } from 'src/components/documentation/breadcrumbs/resolver';
+import { BreadCrumbTest1Component } from './tests/test.component';
+import { BreadCrumbTest2Component } from './tests/test2.component';
 
 export function getLabel(data: any) {
   return data.obj.label;
