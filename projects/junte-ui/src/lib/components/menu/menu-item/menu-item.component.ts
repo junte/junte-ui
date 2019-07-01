@@ -1,6 +1,6 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { Icons, Positions, Schemes, UI } from '../../../enum/ui';
-import { BadgeComponent } from '../../badge';
+import { BadgeComponent } from '../../badge/badge.component';
 
 @Component({
   selector: 'jnt-menu-item',
