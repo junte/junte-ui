@@ -9,10 +9,10 @@
     </ng-template>
     <ng-template #topMenu>
       <jnt-menu>
-        <jnt-menu-item title="Home" link="/home" [exact-link]="false"></jnt-menu-item>
-        <jnt-menu-item title="Documentation" link="/documentation" [exact-link]="false"></jnt-menu-item>
-        <jnt-menu-item title="GitLab" link="/gitlab" [exact-link]="false"></jnt-menu-item>
-        <jnt-menu-item title="Contacts" link="/contacts" [exact-link]="false"></jnt-menu-item>
+        <jnt-menu-item title="Home" link="/home" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="Documentation" link="/documentation" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="GitLab" link="/gitlab" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="Contacts" link="/contacts" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
   </jnt-app-header>
