@@ -1,25 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { PrismModule } from '@ngx-prism/core';
-import { BlocksTestComponent } from 'components/blocks/blocks-test.component';
-import { ButtonsTestComponent } from 'components/buttons/buttons-test.component';
-import { CheckboxTestComponent } from 'components/checkbox/checkbox-test.component';
-import { CircleBarTestComponent } from 'components/circle-bar/circle-bar-test.component';
-import { GridTestComponent } from 'components/grid/grid-test.component';
-import { ModalTestComponent } from 'components/modal/modal-test.component';
-import { ModalTestFactoryComponent } from 'components/modal/test.component';
-import { PagerTestComponent } from 'components/pager/pager-test.component';
-import { PopoverTestComponent } from 'components/popover/popover-test.component';
-import { RadioTestComponent } from 'components/radio/radio-test.component';
-import { SelectTestComponent } from 'components/select/select-test.component';
-import { SpinnerTestComponent } from 'components/spinner/spinner-test.component';
-import { StackTestComponent } from 'components/stack/stack-test.component';
-import { SwitchTestComponent } from 'components/switch/switch-test.component';
-import { TestsComponent } from 'components/tests.component';
+import { DocumentationComponent } from 'src/components/documentation/documentation.component';
 
-import { TESTS_ROUTES } from 'components/tests.routes';
+import { DocumentationRoutingModule } from 'src/components/documentation/documentation-routing.module';
 import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
@@ -37,19 +22,33 @@ import { TableTestComponent } from './table/table-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
-import { PipesTestComponent } from 'components/pipes/pipes-test.component';
+import { PagerTestComponent } from './pager/pager-test.component';
+import { PipesTestComponent } from './pipes/pipes-test.component';
+import { ButtonsTestComponent } from './buttons/buttons-test.component';
+import { SelectTestComponent } from './select/select-test.component';
+import { SwitchTestComponent } from './switch/switch-test.component';
+import { RadioTestComponent } from './radio/radio-test.component';
+import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
+import { SpinnerTestComponent } from './spinner/spinner-test.component';
+import { BlocksTestComponent } from './blocks/blocks-test.component';
+import { StackTestComponent } from './stack/stack-test.component';
+import { GridTestComponent } from './grid/grid-test.component';
+import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
+import { ModalTestComponent } from './modal/modal-test.component';
+import { ModalTestFactoryComponent } from './modal/test.component';
+import { PopoverTestComponent } from './popover/popover-test.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(TESTS_ROUTES),
     PrismModule,
-    JunteUiModule
+    JunteUiModule,
+    DocumentationRoutingModule
   ],
   declarations: [
-    TestsComponent,
+    DocumentationComponent,
     PagerTestComponent,
     PipesTestComponent,
     ButtonsTestComponent,
@@ -87,5 +86,5 @@ import { PipesTestComponent } from 'components/pipes/pipes-test.component';
     ModalTestFactoryComponent
   ]
 })
-export class TestsModule {
+export class DocumentationModule {
 }

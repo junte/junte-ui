@@ -259,6 +259,11 @@ export enum Width {
   default = 'default'
 }
 
+export enum Matching {
+  fullMatch = 'fullMatch',
+  wildcard = 'wildcard'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -300,6 +305,9 @@ export class UI {
   static popover = {
     position: PopoverPlacements,
     trigger: PopoverTriggers
+  };
+  static menu = {
+    matching: Matching
   };
 }
 

@@ -1,0 +1,26 @@
+<jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
+<jnt-popover #popover></jnt-popover>
+<jnt-app-layout #layout>
+
+  <jnt-app-header [fixed]="true">
+    <ng-template #logo>
+      <div>Junte UI</div>
+      <small>Very strong framework!</small>
+    </ng-template>
+    <ng-template #topMenu>
+      <jnt-menu>
+        <jnt-menu-item title="Home" link="/home" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="Documentation" link="/documentation" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="GitLab" link="/gitlab" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="Contacts" link="/contacts" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+      </jnt-menu>
+    </ng-template>
+    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.sizes.small">
+      <jnt-button text="Dark" [size]="ui.sizes.tiny"
+                  (click)="themeManager.set('dark-theme')"></jnt-button>
+      <jnt-button text="Light" [size]="ui.sizes.tiny"
+                  (click)="themeManager.clear()"></jnt-button>
+    </jnt-stack>
+  </jnt-app-header>
+  <router-outlet></router-outlet>
+</jnt-app-layout>
