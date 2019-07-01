@@ -7,7 +7,11 @@ export class ThemeManager {
 
   set(theme: string, href: string) {
     this.clear();
-    const link = this.create(theme);
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.classList.add(`theme-${theme}`);
+    document.head.appendChild(link);
     link.setAttribute('href', href);
     this.theme = theme;
   }
@@ -22,14 +26,5 @@ export class ThemeManager {
 
   clear() {
     this.remove(this.theme);
-  }
-
-  private create(theme: string) {
-    const link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('type', 'text/css');
-    link.classList.add(`theme-${theme}`);
-    document.head.appendChild(link);
-    return link;
   }
 }
