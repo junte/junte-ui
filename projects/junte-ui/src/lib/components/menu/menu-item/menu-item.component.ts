@@ -1,5 +1,5 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
-import { Icons, Positions, Schemes, UI } from '../../../enum/ui';
+import { Icons, Matching, Positions, Schemes, UI } from '../../../enum/ui';
 import { BadgeComponent } from '../../badge/badge.component';
 
 @Component({
@@ -13,11 +13,11 @@ export class MenuItemComponent {
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string;
-  @Output() click = new EventEmitter<any>();
-  @Input('exact-link') exactLink = true;
+  @Input() badge: number;
+  @Input() matching: Matching = Matching.fullMatch;
   @Input() scheme: Schemes = Schemes.primary;
   @Input() position: Positions = Positions.rightTop;
-
+  @Output() click = new EventEmitter<any>();
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
