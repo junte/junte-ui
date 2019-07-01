@@ -14,7 +14,7 @@ gulp.task('iconfont', function () {
   return gulp.src([iconFiles])
     .pipe(iconfont({
       fontName: 'icons',
-      prependUnicode: true,
+      prependUnicode: false,
       formats: ['ttf', 'woff', 'svg', 'eot', 'woff2'],
       timestamp: runTimeStamp,
       normalize: true,
