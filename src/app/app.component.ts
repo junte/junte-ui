@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent, PopoverComponent, ModalService, PopoverService, UI } from 'junte-ui';
 import { ThemeManager } from 'projects/junte-ui/src/lib/managers/theme.manager';
 
@@ -7,7 +7,7 @@ import { ThemeManager } from 'projects/junte-ui/src/lib/managers/theme.manager';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   ui = UI;
 
@@ -18,6 +18,10 @@ export class AppComponent implements AfterViewInit {
   constructor(private modalService: ModalService,
               private popoverService: PopoverService,
               public themeManager: ThemeManager) {
+  }
+
+  ngOnInit() {
+    this.themeManager.path = 'assets/themes/';
   }
 
   ngAfterViewInit() {
