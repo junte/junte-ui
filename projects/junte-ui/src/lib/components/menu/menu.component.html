@@ -1,9 +1,15 @@
 <jnt-stack [type]="type" [gutter]="spacer" [align]="ui.flex.align.stretch">
   <ng-container *ngFor="let item of items">
+
     <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
 
     <jnt-link link (click)="item.click.emit($event)" [exact]="item.exactLink" [source]="item.link" [icon]="item.icon" [scheme]="item.scheme">{{item.title}}</jnt-link>
-    <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline" [scheme]="badge.scheme"></jnt-badge>
+
+      <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+
+        <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline" [scheme]="badge.scheme"></jnt-badge>
+
+      </jnt-stack>
 
     </jnt-stack>
 
