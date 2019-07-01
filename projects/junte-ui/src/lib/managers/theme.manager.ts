@@ -2,35 +2,34 @@ import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 export class ThemeManager {
-  setStyle(key: string, href: string) {
-    getLinkElementForKey(key).setAttribute('href', href);
+
+  theme: string;
+
+  set(theme: string, href: string) {
+    this.clear();
+    const link = this.create(theme);
+    link.setAttribute('href', href);
+    this.theme = theme;
   }
 
-  removeStyle(key: string) {
-    const existingLinkElement = getExistingLinkElementByKey(key);
-    if (existingLinkElement) {
-      document.head.removeChild(existingLinkElement);
+  remove(theme: string) {
+    const exist = document.head.querySelector(`link[rel="stylesheet"].${`theme-${theme}`}`);
+    if (exist) {
+      document.head.removeChild(exist);
+      this.theme = null;
     }
   }
-}
 
-function getLinkElementForKey(key: string) {
-  return getExistingLinkElementByKey(key) || createLinkElementWithKey(key);
-}
+  clear() {
+    this.remove(this.theme);
+  }
 
-function getExistingLinkElementByKey(key: string) {
-  return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
-}
-
-function createLinkElementWithKey(key: string) {
-  const linkEl = document.createElement('link');
-  linkEl.setAttribute('rel', 'stylesheet');
-  linkEl.setAttribute('type', 'text/css');
-  linkEl.classList.add(getClassNameForKey(key));
-  document.head.appendChild(linkEl);
-  return linkEl;
-}
-
-function getClassNameForKey(key: string) {
-  return `theme-manager-${key}`;
+  private create(theme: string) {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.classList.add(`theme-${theme}`);
+    document.head.appendChild(link);
+    return link;
+  }
 }
