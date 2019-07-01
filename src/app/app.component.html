@@ -15,8 +15,10 @@
         <jnt-menu-item title="Contacts"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
-    <jnt-button text="Dark" (click)="themeManager.setStyle('dark-theme', 'assets/themes/dark-theme.css')"></jnt-button>
-    <jnt-button text="Default" (click)="themeManager.removeStyle('dark-theme')"></jnt-button>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <jnt-button text="Dark" (click)="themeManager.setStyle('dark-theme', 'assets/themes/dark-theme.css')"></jnt-button>
+      <jnt-button text="Default" (click)="themeManager.removeStyle('dark-theme')"></jnt-button>
+    </jnt-stack>
   </jnt-app-header>
   <jnt-app-main>
     <jnt-app-aside #aside>
