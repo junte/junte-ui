@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BreadCrumbTest1Component } from './tests/test.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BreadcrumbsTestComponent } from 'components/breadcrumbs/breadcrumbs-test.component';
+import { BreadcrumbsTestComponent } from 'src/components/documentation/breadcrumbs/breadcrumbs-test.component';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbsRoutingModule } from 'components/breadcrumbs/breadcrumbs-routing.module';
-import { BreadCrumbTest2Component } from 'components/breadcrumbs/tests/test2.component';
+import { BreadcrumbsRoutingModule } from 'src/components/documentation/breadcrumbs/breadcrumbs-routing.module';
 import { JunteUiModule } from 'junte-ui';
 import { PrismModule } from '@ngx-prism/core';
 import { BreadcrumbResolver } from './resolver';
+import { BreadCrumbTest2Component } from './tests/test2.component';
 
 
 @NgModule({
