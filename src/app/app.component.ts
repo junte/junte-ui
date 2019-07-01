@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ModalComponent, PopoverComponent, ModalService, PopoverService, UI } from 'junte-ui';
+import { ThemeManager } from 'projects/junte-ui/src/lib/managers/theme.manager';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('layout', {read: ElementRef}) backdrop;
 
   constructor(private modalService: ModalService,
-              private popoverService: PopoverService) {
+              private popoverService: PopoverService,
+              public themeManager: ThemeManager) {
   }
 
   ngAfterViewInit() {
