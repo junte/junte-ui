@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ModalComponent, PopoverComponent, ModalService, PopoverService, UI } from 'junte-ui';
-import { ThemeManager } from 'projects/junte-ui/src/lib/managers/theme.manager';
+import { ModalComponent, PopoverComponent, ModalService, PopoverService, UI, ThemeManager } from 'junte-ui';
 
 @Component({
   selector: 'app-root',
