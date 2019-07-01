@@ -4,13 +4,18 @@ import { Injectable } from '@angular/core';
 export class ThemeManager {
 
   theme: string;
+  path: string;
 
-  set(theme: string, href: string) {
+  set(theme: string) {
+    if (this.theme === theme) {
+      return;
+    }
+
     this.clear();
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('type', 'text/css');
-    link.setAttribute('href', href);
+    link.setAttribute('href', `${this.path}/${theme}.css`);
     link.classList.add(`theme-${theme}`);
     document.head.appendChild(link);
     this.theme = theme;
