@@ -10,9 +10,9 @@ export class ThemeManager {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('type', 'text/css');
+    link.setAttribute('href', href);
     link.classList.add(`theme-${theme}`);
     document.head.appendChild(link);
-    link.setAttribute('href', href);
     this.theme = theme;
   }
 
