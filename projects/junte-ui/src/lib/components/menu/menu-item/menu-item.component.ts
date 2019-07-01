@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Icons, Schemes } from '../../../enum/ui';
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { Icons, Positions, Schemes, UI } from '../../../enum/ui';
+import { BadgeComponent } from '../../badge';
 
 @Component({
   selector: 'jnt-menu-item',
@@ -7,12 +8,18 @@ import { Icons, Schemes } from '../../../enum/ui';
 })
 export class MenuItemComponent {
 
+  ui = UI;
+
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string;
   @Output() click = new EventEmitter<any>();
-  @Input() badge: number;
   @Input('exact-link') exactLink = true;
   @Input() scheme: Schemes = Schemes.primary;
+  @Input() position: Positions = Positions.rightTop;
+
+
+  @ContentChildren(BadgeComponent)
+  badges: QueryList<BadgeComponent>;
 
 }

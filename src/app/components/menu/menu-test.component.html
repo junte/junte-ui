@@ -17,8 +17,11 @@
   <h3>Horizontal menu</h3>
 
   <jnt-menu>
-    <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Doc" [badge]="567"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Home">
+      <jnt-badge [count]="5" [scheme]="ui.schemes.success"></jnt-badge>
+      <jnt-badge [count]="5"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
     <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
   </jnt-menu>
@@ -26,9 +29,14 @@
   <h3>Vertical menu</h3>
 
   <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-    <jnt-menu-item link="/developer" title="Home"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Doc" [badge]="5"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Home">
+      <jnt-badge [count]="5"></jnt-badge>
+    </jnt-menu-item>
+    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
+    <jnt-menu-item link="/developer" title="GitLab">
+      <jnt-badge [count]="567" [scheme]="ui.schemes.fail"></jnt-badge>
+      <jnt-badge [count]="5"></jnt-badge>
+    </jnt-menu-item>
     <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
   </jnt-menu>
 
@@ -36,7 +44,10 @@
 <pre><![CDATA[
 
 <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-  <jnt-menu-item link="/home" title="Home" [icon]="ui.icons.check"></jnt-menu-item>
+  <jnt-menu-item link="/home" title="Home" [icon]="ui.icons.check">
+      <jnt-badge [count]="567" [scheme]="ui.schemes.fail"></jnt-badge>
+      <jnt-badge [count]="5"></jnt-badge>
+  </jnt-menu-item>
   <jnt-menu-item link="/doc" title="Doc"></jnt-menu-item>
   <jnt-menu-item link="/gitlab" title="GitLab"></jnt-menu-item>
   <jnt-menu-item link="/contacts" title="Contacts"></jnt-menu-item>
@@ -100,12 +111,6 @@
       <td>[icon]</td>
       <td>-</td>
       <td>Icons</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[badge]</td>
-      <td>-</td>
-      <td>number</td>
       <td>-</td>
     </tr>
     <tr>
