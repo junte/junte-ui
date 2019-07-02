@@ -6,14 +6,15 @@ $option-list-padding-y: 0 !default;
 $option-list-padding-x: $gutter-tiny !default;
 $option-list-border-color: transparent !default;
 $option-list-border-width: 0 !default;
-$option-list-bg: $white-color !default;
+$option-list-bg: $primary-background !default;
 $option-list-shadow: $shadow-light !default;
 
 $option-item-padding-x: $gutter-small !default;
 $option-item-padding-y: $gutter-normal !default;
-$option-item-hover-bg: $gray-500 !default;
+$option-item-hover-bg: $secondary-background !default;
 $option-item-icon-color: $primary-color !default;
 
+$select-background: $primary-background !default;
 $select-border-width: 1px !default;
 $select-border-color: $gray-600 !default;
 $select-corner: $corner-small !default;
@@ -29,7 +30,7 @@ $select-focus-shadow: $shadow-primary-dark !default;
 $select-hover-border-color: $primary-color !default;
 $select-focus-border-color: $primary-color !default;
 
-$chips-bg: $gray-500 !default;
+$chips-bg: $secondary-background !default;
 $chips-corner: $select-corner !default;
 $chips-padding-x: $gutter-tiny !default;
 $chips-padding-y: $gutter-tiny !default;
@@ -81,7 +82,7 @@ $select-sizes: (
   cursor: pointer;
   display: flex;
   align-items: stretch;
-  background-color: $white-color;
+  background-color: $select-background;
   transition: all .3s;
   &:hover {
     border-color: $select-hover-border-color;
@@ -156,6 +157,8 @@ $select-sizes: (
     font-size: $font-size-base;
     border: 0;
     padding: 0;
+    background-color: transparent;
+    color: $primary-text-color;
     &:focus {
       outline: 0;
     }
@@ -210,6 +213,7 @@ $select-sizes: (
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $primary-background;
     [icon] {
       color: $gray-400;
       font-size: 30px;
@@ -224,6 +228,7 @@ $select-sizes: (
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $primary-background;
   }
 }
 

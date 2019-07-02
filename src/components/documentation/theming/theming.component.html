@@ -11,92 +11,6 @@
     </li>
   </ul>
 
-  <h1>Variables</h1>
-
-  <jnt-stack>
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-color:</span>
-      <jnt-label [color]="ui.colors.purple" label="purple"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-dark-color:</span>
-      <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-light-color:</span>
-      <jnt-label [color]="ui.colors.purpleLight" label="purple-light"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$secondary-color:</span>
-      <jnt-label [color]="ui.colors.gray500" label="gray-500"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$secondary-dark-color:</span>
-      <jnt-label [color]="ui.colors.blue100" label="blue-100"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$success-color:</span>
-      <jnt-label [color]="ui.colors.green" label="green"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$success-dark-color:</span>
-      <jnt-label [color]="ui.colors.greenDark" label="green-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$warning-color:</span>
-      <jnt-label [color]="ui.colors.orange" label="orange"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$fail-color:</span>
-      <jnt-label [color]="ui.colors.red" label="red"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$fail-dark-color:</span>
-      <jnt-label [color]="ui.colors.redDark" label="red-dark"></jnt-label>
-    </jnt-stack>
-
-    <hr>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-text-color:</span>
-      <jnt-label [color]="ui.colors.gray900" label="gray-900"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-text-dark-color:</span>
-      <jnt-label [color]="ui.colors.grayDark" label="gray-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-text-light-color:</span>
-      <jnt-label [color]="ui.colors.gray800" label="gray-800"></jnt-label>
-    </jnt-stack>
-
-    <hr>
-
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$primary-background:</span>
-      <jnt-label [color]="ui.colors.white" label="white"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <span>$secondary-background:</span>
-      <jnt-label [color]="ui.colors.gray500" label="secondary-color"></jnt-label>
-    </jnt-stack>
-
-  </jnt-stack>
-
-
   <h1>Colors</h1>
 
   <div colors>
@@ -106,6 +20,96 @@
       </ng-container>
     </jnt-stack>
   </div>
+
+  <h3>Variables</h3>
+
+  <jnt-stack [gutter]="ui.stack.gutter.tiny">
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-color: ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.purple" label="purple"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-dark-color: ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-light-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.purpleLight" label="purple-light"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.gray500" label="gray-500"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-dark-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.blue100" label="blue-100"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $success-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.green" label="green"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $success-dark-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.greenDark" label="green-dark"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $warning-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.orange" label="orange"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $fail-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.red" label="red"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $fail-dark-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.redDark" label="red-dark"></jnt-label>
+    </jnt-stack>
+
+    <hr>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.gray900" label="gray-900"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-dark-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.grayDark" label="gray-dark"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-light-color:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.gray800" label="gray-800"></jnt-label>
+    </jnt-stack>
+
+    <hr>
+
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $primary-background:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.white" label="white"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-background:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.gray500" label="secondary-color"></jnt-label>
+    </jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
+      <span><ngx-prism language="css"><pre><![CDATA[ $page-background:  ]]></pre></ngx-prism></span>
+      <jnt-label [color]="ui.colors.gray200" label="gray-200"></jnt-label>
+    </jnt-stack>
+
+  </jnt-stack>
 
   <h1>Gutters</h1>
 
@@ -118,6 +122,23 @@
     </jnt-stack>
   </ng-container>
 
+  <h3>Variables</h3>
+
+
+  <ngx-prism language="css">
+      <pre><![CDATA[
+  $spacer: 4px;
+
+  $gutter-tiny: $spacer;
+  $gutter-small: $spacer * 2;
+  $gutter-normal: ($spacer * 4);
+  $gutter-big: ($spacer * 6);
+  $gutter-large: ($spacer * 8);
+  $gutter-huge: ($spacer * 12);
+
+        ]]></pre>
+  </ngx-prism>
+
   <h1>Corners</h1>
 
   <jnt-stack [type]="ui.stack.type.horizontal">
@@ -125,6 +146,16 @@
     <div block corner-normal>Normal</div>
     <div block corner-large>Large</div>
   </jnt-stack>
+
+  <h3>Variables</h3>
+
+  <ngx-prism language="css">
+      <pre><![CDATA[
+  $corner-small: 4px;
+  $corner-normal: 8px;
+  $corner-large: 40px;
+        ]]></pre>
+  </ngx-prism>
 
   <h1>Shadows</h1>
 
@@ -134,5 +165,35 @@
     <div shadow primary-light>Primary light</div>
     <div shadow primary-normal>Primary dark</div>
   </jnt-stack>
+
+  <h3>Variables</h3>
+
+
+  <ngx-prism language="css">
+      <pre><![CDATA[
+  $shadow-primary: 0px 2px 8px rgba(0, 67, 167, 0.25);
+  $shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  $shadow-normal: 0px 2px 8px rgba(0, 0, 0, 0.25);
+
+  $shadow-primary-light: 2px 1px 10px rgba(0, 67, 167, 0.07);
+
+  $shadow-primary-dark: 0px 0px 6px rgba(8, 35, 202, 0.4);
+          ]]></pre>
+  </ngx-prism>
+
+  <h1>Grid</h1>
+
+  <h3>Variables</h3>
+
+  <ngx-prism language="css">
+      <pre><![CDATA[
+$grid-gutter: 16px;
+$grid-breakpoints: (
+  mobile: 0,
+  tablet: 768px,
+  desktop: 992px,
+  wide: 1200px
+)]]></pre>
+  </ngx-prism>
 
 </jnt-container>
