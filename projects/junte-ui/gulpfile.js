@@ -24,6 +24,7 @@ gulp.task('iconfont', function () {
     .on('glyphs', function (glyphs, options) {
       glyphs.forEach(function (glyph, idx, arr) {
         arr[idx].unicode[0] = glyph.unicode[0].charCodeAt(0).toString(16);
+        glyph.name = glyph.name.split('-')[0];
       });
       gulp.src('src/lib/assets/styles/_icons-template.scss')
         .pipe(consolidate('lodash', {
