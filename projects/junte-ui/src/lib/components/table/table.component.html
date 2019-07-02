@@ -53,7 +53,7 @@
               <td *ngIf="!!rowActionsTemplate" action>
                 <jnt-dropdown>
                   <ng-template #trigger let-action="trigger">
-                    <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.union"
+                    <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.actions"
                                 (click)="action()"></jnt-button>
                   </ng-template>
                   <ng-template #dropdown>
@@ -67,7 +67,7 @@
             <ng-container *ngIf="!progress.loading; else skeletonTemplate">
               <tr nodata>
                 <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
-                  <jnt-icon [icon]="ui.icons.nodata" icon></jnt-icon>
+                  <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
                   <div message>No rows here</div>
                 </td>
               </tr>
