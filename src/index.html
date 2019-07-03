@@ -10,34 +10,37 @@
 
   <script>
     const themes = {dark: '156c58ca03', light: 'd685b2b465'};
-    let current = localStorage.theme;
 
-    removeTheme = function (name) {
-      const exist = document.head.querySelector(`link[rel="stylesheet"].${`theme-${name}`}`);
+    clearThemes = function () {
+      const exist = document.head.querySelector(`style[theme="true"]`);
       if (exist) {
         document.head.removeChild(exist);
       }
     };
 
     setTheme = function (name) {
-      current = name || 'light';
-      const hash = themes[current];
-      const link = document.createElement('link');
-      link.setAttribute('rel', 'stylesheet');
-      link.setAttribute('type', 'text/css');
-      link.setAttribute('href', `./assets/themes/${current}.${hash}.css`);
-      link.classList.add(`theme-${current}`);
-      document.head.appendChild(link);
-      localStorage.setItem('theme', current)
+      const current = name || 'light';
+
+      const request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          clearThemes();
+          const style = document.createElement('style');
+          style.setAttribute('theme', 'true');
+          style.innerHTML = this.responseText;
+          document.head.appendChild(style);
+          localStorage.setItem('theme', current);
+        }
+      };
+      request.open("GET", `./assets/themes/${name}.${themes[name]}.css`, true);
+      request.send();
     };
 
-    setTheme(current);
+    setTheme(localStorage.theme);
 
     window.addEventListener('message', function (event) {
       if (event.data['type'] === 'theme') {
-        const last = current ? current.slice() : null;
         setTheme(event.data['theme']);
-        setTimeout(() => removeTheme(last), 100);
       }
     }, false);
   </script>
