@@ -25,8 +25,9 @@ $select-padding-bottom: $gutter-tiny !default;
 $select-padding-left: $gutter-tiny !default;
 $select-padding-right: $gutter-normal !default;
 
-$select-disabled-bg: $control-disabled-background !default;
+$select-disabled-bg: $control-disabled-border-color !default;
 $select-disabled-border-color: $control-disabled-border-color !default;
+$select-disabled-chips-color: $muted-color !default;
 
 $select-focus-shadow: $shadow-primary-dark !default;
 
@@ -78,6 +79,10 @@ $select-sizes: (
       background-color: $select-disabled-bg;
       border-color: $select-disabled-border-color;
       pointer-events: none;
+      li[chips='true'] {
+        background-color: $select-disabled-bg;
+        color: $select-disabled-chips-color;
+      }
     }
   }
 }

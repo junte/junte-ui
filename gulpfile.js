@@ -34,3 +34,7 @@ gulp.task('themes:index', function () {
 });
 
 gulp.task('themes', gulp.series(['themes:hash', 'themes:index']));
+
+gulp.task('themes:watch', function() {
+  return gulp.watch([themeFiles], { ignoreInitial: false }, gulp.series('themes'));
+});

@@ -1,4 +1,4 @@
-@import "variables";
+@import "../projects/junte-ui/src/lib/assets/styles/variables";
 
 [block] {
   color: $white-color;
@@ -25,13 +25,16 @@ ngx-prism {
 }
 
 pre[class*="language-"] {
-  background-color: $secondary-background !important;
+  background-color: $primary-background !important;
   width: 100%;
   display: block;
   padding: $gutter-small !important;
   box-sizing: border-box;
   code[class*="language-"] {
     text-shadow: none !important;
+  }
+  .token.operator {
+    background-color: transparent;
   }
 }
 
