@@ -7,8 +7,46 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script>
+    const themes = [{name: 'dark', hash: '156c58ca03'}, {name: 'light', hash: 'd685b2b465'}];
+    let current = localStorage.theme || 'light';
+
+    removeTheme = function (name) {
+      const exist = document.head.querySelector(`link[rel="stylesheet"].${`theme-${name}`}`);
+      if (exist) {
+        document.head.removeChild(exist);
+        current = null;
+      }
+    };
+
+    clean = function () {
+      this.removeTheme(current);
+    };
+
+    setTheme = function (name) {
+      clean();
+      current = name || 'light';
+      const theme = themes.find(theme => theme.name === current);
+      const link = document.createElement('link');
+      link.setAttribute('rel', 'stylesheet');
+      link.setAttribute('type', 'text/css');
+      link.setAttribute('href', `./assets/themes/${theme.name}.${theme.hash}.css`);
+      link.classList.add(`theme-${theme.name}`);
+      document.head.appendChild(link);
+      localStorage.setItem('theme', current)
+    };
+
+    setTheme(current);
+
+    window.addEventListener('message', function (event) {
+      if (event.data['type'] === 'theme') {
+        setTheme(event.data['theme']);
+      }
+    }, false);
+  </script>
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>
