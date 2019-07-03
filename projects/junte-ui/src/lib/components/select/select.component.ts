@@ -44,6 +44,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() search = false;
   @Input() required = false;
 
+  @HostBinding('attr.disabled')
+  @Input()
+  disabled = false;
+
   @HostBinding('attr.size')
   @Input()
   size: Sizes = Sizes.normal;

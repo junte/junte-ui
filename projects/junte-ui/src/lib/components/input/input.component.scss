@@ -1,12 +1,14 @@
 @import "../../assets/styles/variables";
 @import "../form/common";
 
-$input-bg: $primary-background !default;
+$input-bg: $control-background !default;
 
 $input-padding-y: $gutter-normal !default;
 $input-line-height: normal !default;
 
-$input-disabled-bg: $gray-100 !default;
+$input-disabled-bg: $control-disabled-background !default;
+$input-disabled-border-color: $control-disabled-border-color !default;
+
 
 $input-color: $primary-text-color !default;
 $input-border-width: 1px !default;
@@ -37,11 +39,12 @@ $input-sizes: (
 
 $states: (
   #{$state-normal}: (
-    border-color: $gray-600,
+    border-color: $control-border-color,
     bg-focus: $input-bg,
     shadow-focus: $shadow-primary-dark,
     border-color-hover: $primary-color,
     border-color-focus: $primary-color,
+    border-color-disabled: $input-disabled-border-color
   ),
   #{$state-success}: (
     border-color: $success-color,
@@ -60,6 +63,9 @@ $states: (
     }
     &:hover {
       border-color: #{map-get($state, border-color-hover)};
+    }
+    &:disabled {
+      border-color: #{map-get($state, border-color-disabled)};
     }
   }
 };
@@ -122,15 +128,15 @@ input {
 }
 
 [label] {
-  background-color: $form-control-label-bg;
-  padding: $form-control-label-padding-x $form-control-label-padding-y;
+  background-color: $control-field-label-background;
+  padding: $control-field-label-padding-x $control-field-label-padding-y;
   display: flex;
   align-items: center;
   border-top-left-radius: $input-corner - 1px;
   border-bottom-left-radius: $input-corner - 1px;
-  color: $form-control-label-color;
-  margin-right: $form-control-label-spacing;
-  border: $input-border-width solid $form-control-label-border-color;
+  color: $control-field-label-color;
+  margin-right: $control-field-label-spacing;
+  border: $input-border-width solid $control-field-label-border-color;
   border-right: 0;
   & ~ input {
     border-top-left-radius: 0;

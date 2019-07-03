@@ -2,14 +2,15 @@
 @import "../form/common";
 
 $radio-icon-color: $primary-color !default;
-$radio-indicator-bg: $primary-background !default;
-$radio-indicator-border-color: $primary-color !default;
+$radio-indicator-bg: $control-background !default;
+$radio-indicator-border-color: $control-border-color !default;
 $radio-indicator-border-width: 1px !default;
 
-$radio-indicator-disabled-bg: $gray-400 !default;
-$radio-disabled-border-color: $gray-400 !default;
-$radio-indicator-checked-disabled-icon-color: $gray-700 !default;
+$radio-indicator-hover-border-color: $primary-color !default;
 
+$radio-indicator-disabled-bg: $control-disabled-background !default;
+$radio-disabled-border-color: $control-disabled-border-color !default;
+$radio-indicator-checked-disabled-icon-color: $control-disabled-indicator-icon-color !default;
 
 $radio-sizes: (
   #{$size-tiny}: (
@@ -41,7 +42,9 @@ $radio-sizes: (
     height: calc(#{map-get($size, size)} - 8px);
     border-radius: calc((#{map-get($size, size)} - 8px) / 2);
   }
-};
+}
+
+;
 
 :host {
   display: flex;
@@ -66,13 +69,17 @@ input {
   margin: 0;
   width: 100%;
   height: 100%;
-  &:checked + [switch] > [icon] {
-    opacity: 1;
+  &:checked + [switch] {
+    border-color: $radio-indicator-hover-border-color;
+    & > [icon] {
+      opacity: 1;
+    }
   }
   &:disabled {
     cursor: default;
+    pointer-events: none;
     & ~ label {
-      color: $control-label-disabled-color;
+      color: $control-disabled-label-color;
     }
     & + [switch] {
       background-color: $radio-indicator-disabled-bg;
@@ -87,11 +94,16 @@ input {
       box-shadow: 0px 1px 5px $primary-color;
     }
   }
+  &:hover {
+    & + [switch] {
+      border-color: $radio-indicator-hover-border-color;
+    }
+  }
 }
 
 label {
   padding-left: $control-gutter;
-  color: $control-label-color;
+  color: $control-switch-label-color;
 }
 
 [switch] {
@@ -100,6 +112,7 @@ label {
   border: $radio-indicator-border-width solid $radio-indicator-border-color;
   box-sizing: border-box;
   text-align: center;
+  transition: all .3s;
 }
 
 [icon] {
@@ -110,6 +123,7 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all .3s;
 }
 
 

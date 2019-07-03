@@ -10,7 +10,7 @@ $switch-indicator-padding: 3px !default;
 $switch-indicator-border-width: 1px !default;
 
 $switch-indicator-checked-bg: $primary-color !default;
-$switch-indicator-disabled-bg: $gray-400 !default;
+$switch-indicator-disabled-bg: $muted-color !default;
 $switch-indicator-disabled-border-color: transparent !default;
 
 $switch-sizes: (
@@ -78,7 +78,7 @@ input {
   &:disabled {
     cursor: default;
     & ~ label {
-      color: $control-label-disabled-color;
+      color: $control-disabled-label-color;
     }
     & + [switch] {
       background-color: $switch-indicator-disabled-bg;
@@ -94,7 +94,7 @@ input {
 
 label {
   padding-left: $control-gutter;
-  color: $control-label-color;
+  color: $control-switch-label-color;
 }
 
 [switch] {

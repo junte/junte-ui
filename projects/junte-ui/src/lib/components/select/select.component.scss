@@ -11,19 +11,22 @@ $option-list-shadow: $shadow-light !default;
 
 $option-item-padding-x: $gutter-small !default;
 $option-item-padding-y: $gutter-normal !default;
-$option-item-hover-bg: $secondary-background !default;
+$option-item-hover-bg: $highlight-background !default;
 $option-item-icon-color: $primary-color !default;
 
-$select-background: $primary-background !default;
+$select-background: $control-background !default;
 $select-border-width: 1px !default;
-$select-border-color: $gray-600 !default;
+$select-border-color: $control-border-color !default;
 $select-corner: $corner-small !default;
 $select-icon-dropdown-size: 7px !default;
 $select-icon-dropdown-color: $primary-text-light-color !default;
-$select-placeholder-color: $gray-600 !default;
+$select-placeholder-color: $primary-text-light-color !default;
 $select-padding-bottom: $gutter-tiny !default;
 $select-padding-left: $gutter-tiny !default;
 $select-padding-right: $gutter-normal !default;
+
+$select-disabled-bg: $control-disabled-background !default;
+$select-disabled-border-color: $control-disabled-border-color !default;
 
 $select-focus-shadow: $shadow-primary-dark !default;
 
@@ -68,6 +71,13 @@ $select-sizes: (
   @each $size, $map in $select-sizes {
     &[size='#{$size}'] {
       @include size($map);
+    }
+  }
+  &[disabled='true'] {
+    [selectize] {
+      background-color: $select-disabled-bg;
+      border-color: $select-disabled-border-color;
+      pointer-events: none;
     }
   }
 }
@@ -146,7 +156,7 @@ $select-sizes: (
     color: $select-icon-dropdown-color;
   }
   [spin] {
-    color: $gray-400;
+    color: $muted-color;
     margin: auto auto auto $gutter-normal;
   }
   [input] {
@@ -166,16 +176,16 @@ $select-sizes: (
 
 }
 [label] {
-  background-color: $form-control-label-bg;
-  padding: $form-control-label-padding-x $form-control-label-padding-y;
+  background-color: $control-field-label-background;
+  padding: $control-field-label-padding-x $control-field-label-padding-y;
   margin-top: -3px;
   margin-bottom: -3px;
   display: flex;
   align-items: center;
   border-top-left-radius: $select-corner - 1px;
   border-bottom-left-radius: $select-corner - 1px;
-  color: $form-control-label-color;
-  margin-right: $form-control-label-spacing;
+  color: $control-field-label-color;
+  margin-right: $control-field-label-spacing;
 }
 
 [options] {
@@ -215,7 +225,7 @@ $select-sizes: (
     align-items: center;
     background-color: $primary-background;
     [icon] {
-      color: $gray-400;
+      color: $muted-color;
       font-size: 30px;
     }
   }
