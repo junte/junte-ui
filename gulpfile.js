@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const themeFiles = "src/assets/themes/*.scss";
 const indexFile = "src/index.html";
-const fs = require('fs');
 const path = require('path');
 const map = require('map-stream');
 const hash = require('gulp-hash');
@@ -27,8 +26,8 @@ gulp.task('themes:index', function () {
   return gulp.src([indexFile])
     .pipe(map((file, cb) => {
       const content = file.contents.toString();
-      const str = `const themes = [${themes.map(theme => `{name: '${theme.name}', hash: '${theme.hash}'}`).join(', ')}]`;
-      file.contents = new Buffer(content.replace(/const themes = \[.*\]/, str));
+      const str = `const themes = {${themes.map(theme => `${theme.name}: '${theme.hash}'`).join(', ')}}`;
+      file.contents = new Buffer(content.replace(/const themes = \{.*\}/, str));
       return cb(null, file);
     }))
     .pipe(gulp.dest('src/'))
