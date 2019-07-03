@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const themeFiles = "src/assets/themes/*.scss";
-const indexFile = "src/index.html";
+const indexFile = "src/assets/themes/themes.js";
 const path = require('path');
 const map = require('map-stream');
 const hash = require('gulp-hash');
@@ -30,7 +30,7 @@ gulp.task('themes:index', function () {
       file.contents = new Buffer(content.replace(/const themes = \{.*\}/, str));
       return cb(null, file);
     }))
-    .pipe(gulp.dest('src/'))
+    .pipe(gulp.dest('src/assets/themes'))
 });
 
 gulp.task('themes', gulp.series(['themes:hash', 'themes:index']));
