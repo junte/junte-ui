@@ -23,147 +23,268 @@
 
   <h3>Variables</h3>
 
-  <h4>Color variables</h4>
-
-  <jnt-stack [gutter]="ui.stack.gutter.tiny">
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css">$primary-color:</ngx-prism></span>
-      <jnt-label [color]="ui.colors.purple" label="purple"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-dark-color: ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-light-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.purpleLight" label="purple-light"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray500" label="gray-500"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-dark-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.blue100" label="blue-100"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $success-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.green" label="green"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $success-dark-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.greenDark" label="green-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $warning-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.orange" label="orange"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $fail-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.red" label="red"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $fail-dark-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.redDark" label="red-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $muted-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray400" label="gray-400"></jnt-label>
-    </jnt-stack>
-
-    <hr>
-
-    <h4>Text variables</h4>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray900" label="gray-900"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-dark-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.grayDark" label="gray-dark"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-text-light-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray800" label="gray-800"></jnt-label>
-    </jnt-stack>
-
-    <hr>
-
-    <h4>Background variables</h4>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $primary-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.white" label="white"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $secondary-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray500" label="secondary-color"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $page-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray200" label="gray-200"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $highlight-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray300" label="gray-300"></jnt-label>
-    </jnt-stack>
-
-    <hr>
-
-    <h4>Form control variables</h4>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-border-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray700" label="gray-700"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-label-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray900" label="$primary-text-color"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.white" label="$primary-background"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-disabled-border-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray600" label="$gray-600"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-disabled-indicator-icon-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray800" label="$primary-text-light-color"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-disabled-label-color:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray800" label="$primary-text-light-color"></jnt-label>
-    </jnt-stack>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-      <span><ngx-prism language="css"><pre><![CDATA[ $control-disabled-background:  ]]></pre></ngx-prism></span>
-      <jnt-label [color]="ui.colors.gray100" label="$gray-100"></jnt-label>
-    </jnt-stack>
-
-  </jnt-stack>
+  <table>
+    <thead>
+    <tr>
+      <th colspan="2">
+        Color variables
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <span>$primary-color</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.purple" label="purple"></jnt-label>
+      </td>
+    </tr>
+   <tr>
+     <td>
+       <span> $primary-dark-color </span>
+     </td>
+     <td>
+       <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
+     </td>
+   </tr>
+    <tr>
+      <td>
+        <span> $primary-light-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.purpleLight" label="purple-light"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $secondary-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray500" label="gray-500"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $secondary-dark-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.blue100" label="blue-100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $success-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.green" label="green"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $success-dark-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.greenDark" label="green-dark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $warning-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.orange" label="orange"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $fail-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.red" label="red"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $fail-dark-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.redDark" label="red-dark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $muted-color  </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray400" label="gray-400"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="2">
+        Text variables
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <span> $primary-text-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray900" label="gray-900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$primary-text-dark-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.grayDark" label="gray-dark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$primary-text-light-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray800" label="gray-800"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="2">
+        Background variables
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <span>$primary-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.white" label="white"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$secondary-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray500" label="secondary-color"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$page-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray200" label="gray-200"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$highlight-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray300" label="gray-300"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="2">
+        Form control variables
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <span>$control-border-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray700" label="gray-700"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-switch-label-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray900" label="$primary-text-color"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.white" label="$primary-background"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span> $control-disabled-border-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray600" label="$gray-600"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-disabled-indicator-icon-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray800" label="$primary-text-light-color"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-disabled-label-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray800" label="$primary-text-light-color"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-disabled-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray100" label="$gray-100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-field-label-background:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray500" label="$secondary-background"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-field-label-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray800" label="$primary-text-light-color"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>$control-field-label-border-color:</span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.gray600" label="$gray-600"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
   <h1>Gutters</h1>
 
@@ -216,10 +337,9 @@
   <jnt-stack [type]="ui.stack.type.horizontal">
     <div shadow primary>Primary</div>
     <div shadow light>Light</div>
-    <div shadow normal>Light</div>
+    <div shadow normal>Normal</div>
     <div shadow primary-light>Primary light</div>
     <div shadow primary-dark>Primary dark</div>
-    <div shadow primary-dark-new>Primary dark-new</div>
   </jnt-stack>
 
   <h3>Variables</h3>
