@@ -7,40 +7,6 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <script>
-    const themes = {dark: '5d3bfade20', light: 'da7a9d0542'};
-    let current = localStorage.theme;
-
-    removeTheme = function (name) {
-      const exist = document.head.querySelector(`link[rel="stylesheet"].${`theme-${name}`}`);
-      if (exist) {
-        document.head.removeChild(exist);
-      }
-    };
-
-    setTheme = function (name) {
-      current = name || 'light';
-      const hash = themes[current];
-      const link = document.createElement('link');
-      link.setAttribute('rel', 'stylesheet');
-      link.setAttribute('type', 'text/css');
-      link.setAttribute('href', `./assets/themes/${current}.${hash}.css`);
-      link.classList.add(`theme-${current}`);
-      document.head.appendChild(link);
-      localStorage.setItem('theme', current)
-    };
-
-    setTheme(current);
-
-    window.addEventListener('message', function (event) {
-      if (event.data['type'] === 'theme') {
-        const last = current ? current.slice() : null;
-        setTheme(event.data['theme']);
-        setTimeout(() => removeTheme(last), 100);
-      }
-    }, false);
-  </script>
 </head>
 <body>
 <app-root></app-root>
