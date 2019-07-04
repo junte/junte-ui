@@ -1,13 +1,22 @@
 @import "../../assets/styles/variables";
 
+$skeleton-line-height: 24px !default;
 $skeleton-bg: $secondary-background !default;
 $skeleton-to-bg: darken($skeleton-bg, 5%) !default;
-$skeleton-paragraph-height: 24px !default;
-$skeleton-title-width: 38% !default;
-$skeleton-avatar-spacer-right: $gutter-large !default;
-$skeleton-avatar-spacer-bottom: $gutter-big !default;
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
 
 $skeleton-avatar-sizes: (
+  #{$size-tiny}: (
+    size: 24px,
+  ),
   #{$size-small}: (
     size: 40px,
   ),
@@ -17,69 +26,41 @@ $skeleton-avatar-sizes: (
   #{$size-large}: (
     size: 120px,
   )
-)!default;
-
-@mixin width($size) {
-  width: #{map-get($size, size)};
-}
+) !default;
 
 @mixin size($size) {
-  min-width: #{map-get($size, size)};
-  width: #{map-get($size, size)};
-  min-height: #{map-get($size, size)};
-  height: #{map-get($size, size)};
+  [avatar] {
+    min-width: #{map-get($size, size)};
+    width: #{map-get($size, size)};
+    min-height: #{map-get($size, size)};
+    height: #{map-get($size, size)};
+  }
 }
 
 :host {
   display: block;
-
   @each $size, $map in $skeleton-avatar-sizes {
     &[size='#{$size}'] {
-      [avatar] {
-        @include width($map);
-        > div {
-          border-radius: 50%;
-          @include size($map);
-        }
-      }
+      @include size($map);
     }
   }
-}
-
-table {
-  width: 100%;
-  table-layout: auto;
-
-  [avatar] {
-    padding-right: $skeleton-avatar-spacer-right;
-    padding-bottom: $skeleton-avatar-spacer-bottom;
-  }
-
-  [paragraph], [title] {
-    min-height: $skeleton-paragraph-height;
-  }
-
-  [paragraph] {
+  &[type='text'] {
     width: 100%;
   }
-
-  [title] {
-    width: $skeleton-title-width;
-  }
-
-  div {
-    background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
-    animation: loading 1.4s ease infinite;
-    background-size: 400% 100%;
-  }
-
 }
 
-@keyframes loading {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
+[line] {
+  min-height: $skeleton-line-height;
+  background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+  animation: loading 1.4s ease infinite;
+  background-size: 400% 100%;
+  width: 100%;
+}
+
+[avatar] {
+  display: block;
+  background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+  animation: loading 1.4s ease infinite;
+  background-size: 400% 100%;
+  border-radius: 50%;
 }

@@ -153,6 +153,11 @@ export enum TypeButton {
   submit = 'submit'
 }
 
+export enum TypeSkeleton {
+  avatar = 'avatar',
+  text = 'text'
+}
+
 export enum TypeBlock {
   simple = 'simple',
   bordered = 'bordered'
@@ -302,6 +307,9 @@ export class UI {
   static shape = Shapes;
   static type = MenuType;
   static width = Width;
+  static skeleton = {
+    type: TypeSkeleton
+  };
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,

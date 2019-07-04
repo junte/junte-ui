@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Sizes, UI } from '../../enum/ui';
+import { Sizes, TypeSkeleton, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-skeleton',
@@ -11,27 +11,24 @@ export class SkeletonComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
-  private _rows: number[];
-
-  @HostBinding('attr.avatar')
-  @Input() avatar = false;
-
-  @HostBinding('attr.title')
-  @Input() title = true;
-
-  @HostBinding('attr.rows')
-
+  @HostBinding('attr.type')
   @Input()
-  set rows(count: number) {
-    this._rows = new Array(count);
-  }
-
-  get line() {
-    return this._rows;
-  }
+  type: TypeSkeleton = TypeSkeleton.text;
 
   @HostBinding('attr.size')
   @Input() size = Sizes.normal;
+
+  private _lines: number[];
+
+  @HostBinding('attr.lines')
+  @Input()
+  set lines(count: number) {
+    this._lines = new Array(count);
+  }
+
+  get line() {
+    return this._lines;
+  }
 
   constructor() {
   }
