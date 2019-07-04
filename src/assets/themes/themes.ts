@@ -1,6 +1,6 @@
-class Themes {
-  themes = {"dark":"156c58ca03","light":"d685b2b465"};
+const themes = {"dark":"156c58ca03","light":"d685b2b465"};
 
+class Themes {
   constructor() {
     window.addEventListener('message', ({data}) => {
       if (data.type === 'theme') {
@@ -32,7 +32,7 @@ class Themes {
         localStorage.setItem('theme', current);
       }
     };
-    request.open('GET', `./assets/themes/${current}.${this.themes[current]}.css`, true);
+    request.open('GET', `./assets/themes/${current}.${themes[current]}.css`, true);
     request.send();
   };
 }
