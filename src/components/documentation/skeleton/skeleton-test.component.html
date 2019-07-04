@@ -5,9 +5,9 @@
 
   <ol>
 
-    <li>The avatar in skeleton must have different sizes: small, normal, large</li>
-    <li>Skeleton can have avatar, title and paragraphs</li>
-    <li>In the paragraph may change the count of rows</li>
+    <li>Skeleton must have different types: text, avatar</li>
+    <li>Skeleton avatar must have different sizes: tiny, small, normal, large</li>
+    <li>In skeleton text may change the count of lines</li>
     <li>Skeleton may have animation</li>
   </ol>
 
@@ -32,38 +32,67 @@
 
   <hr>
 
-  <jnt-stack>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [avatar]="true" [rows]="3"></jnt-skeleton>
-    </jnt-block>
+  <h1>Skeleton avatar</h1>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [avatar]="true" [size]="ui.sizes.large" [rows]="3"></jnt-skeleton>
-    </jnt-block>
+  <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+        <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="size"></jnt-skeleton>
+      </ng-container>
+    </jnt-stack>
+  </jnt-block>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [title]="false" [avatar]="true" [rows]="3"></jnt-skeleton>
-    </jnt-block>
+  <h1>Skeleton text</h1>
 
+  <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
+    <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="3"></jnt-skeleton>
+  </jnt-block>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [title]="false" [rows]="3"></jnt-skeleton>
-    </jnt-block>
+  <h1>Skeleton</h1>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [rows]="3"></jnt-skeleton>
-    </jnt-block>
+  <h2>Horizontal skeleton</h2>
 
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-        <jnt-skeleton [avatar]="true"></jnt-skeleton>
-    </jnt-block>
+  <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
+    <jnt-stack [align]="ui.flex.align.stretch">
+      <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-skeleton [type]="ui.skeleton.type.avatar"></jnt-skeleton>
+        <jnt-skeleton [lines]="3"></jnt-skeleton>
+      </jnt-stack>
+      <jnt-skeleton [lines]="3"></jnt-skeleton>
+    </jnt-stack>
+  </jnt-block>
 
-  </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-skeleton [title]="true" [avatar]="true" [rows]="5" [size]="ui.sizes.large"></jnt-skeleton>
+  <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.small"></jnt-skeleton>
+      <jnt-skeleton [lines]="3"></jnt-skeleton>
+    </jnt-stack>
+    <jnt-skeleton [lines]="3"></jnt-skeleton>
+  </jnt-stack>
+]]></pre>
+  </ngx-prism>
+
+  <h2>Vertical skeleton</h2>
+
+  <div style="width: 200px">
+    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
+      <jnt-stack [align]="ui.flex.align.center">
+        <jnt-skeleton [type]="ui.skeleton.type.avatar"></jnt-skeleton>
+        <jnt-skeleton [lines]="3"></jnt-skeleton>
+      </jnt-stack>
+    </jnt-block>
+  </div>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+  <jnt-stack [align]="ui.flex.align.center">
+    <jnt-skeleton [type]="ui.skeleton.type.avatar"></jnt-skeleton>
+    <jnt-skeleton [lines]="3"></jnt-skeleton>
+  </jnt-stack>
 ]]></pre>
   </ngx-prism>
 
@@ -80,19 +109,19 @@
     </thead>
     <tbody>
     <tr>
-      <td>[title]</td>
+      <td>[type]</td>
       <td>-</td>
-      <td>true | false</td>
-      <td>true</td>
+      <td>avatar | text</td>
+      <td>text</td>
     </tr>
     <tr>
-      <td>[avatar]</td>
+      <td>[size]</td>
       <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
+      <td>tiny | small | normal | large</td>
+      <td>normal</td>
     </tr>
     <tr>
-      <td>[rows]</td>
+      <td>[lines]</td>
       <td>-</td>
       <td>number</td>
       <td>-</td>
