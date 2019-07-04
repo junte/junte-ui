@@ -1,4 +1,4 @@
-const themes = {"dark":"622f7ff5a7","light":"da7a9d0542"};
+const themes = {"dark":"f16ae63d07","light":"da7a9d0542"};
 
 clearThemes = function () {
   const exist = document.head.querySelector(`style[theme="true"]`);
