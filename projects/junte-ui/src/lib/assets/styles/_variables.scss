@@ -71,20 +71,16 @@ $purple-light: #6F74DD !default;
 $purple-lighten: #C4C9E7 !default;
 $white-color: white !default;
 
-$gray-100: #F5F5F5 !default;
-$gray-150: #F0F0F0 !default;
-$gray-200: #F7F7F7 !default;
-$gray-300: #F2F2F2 !default;
-$gray-400: #E9E9E9 !default;
-$gray-500: #F3F4FC !default;
-$gray-600: #C4C4C4 !default;
-$gray-700: #D0D0D0 !default;
-$gray-800: #828282 !default;
-$gray-900: #4F4F4F !default;
-$gray-dark: #343434 !default;
-$gray-dark-100: #1A1A1A !default;
-
-$gray-light-100: #F9F9F9 !default;
+$gray-100: #F5F5F5 !default; //disabled bg
+$gray-200: #F7F7F7 !default; //page bg
+$gray-300: #F0F0F0 !default; //highlight
+$gray-400: #E9E9E9 !default; //muted
+$gray-500: #F3F4FC !default; //bg
+$gray-600: #C4C4C4 !default; //disabled border
+$gray-700: #D0D0D0 !default; //switch only
+$gray-800: #828282 !default; //disabled color, control border, text light
+$gray-900: #4F4F4F !default; //text
+$gray-dark: #343434 !default; //text dark
 
 $primary-color: $purple !default;
 $primary-dark-color: $purple-dark !default;
@@ -101,6 +97,39 @@ $warning-color: $orange !default;
 $fail-color: $red !default;
 $fail-dark-color: $red-dark !default;
 
+$muted-color: $gray-400 !default;
+
+/* Text color */
+
+$primary-text-color: $gray-900 !default;
+$primary-text-dark-color: $gray-dark !default;
+$primary-text-light-color: $gray-800 !default;
+
+/* Background color */
+
+$primary-background: $white-color !default;
+$secondary-background: $secondary-color !default;
+$page-background: $gray-200 !default;
+$highlight-background: $gray-300 !default;
+
+
+/* Gutters */
+
+$spacer: 4px !default;
+
+$gutter-tiny: $spacer !default;
+$gutter-small: $spacer * 2 !default;
+$gutter-normal: ($spacer * 4) !default;
+$gutter-big: ($spacer * 6) !default;
+$gutter-large: ($spacer * 8) !default;
+$gutter-huge: ($spacer * 12) !default;
+
+/* Corners */
+
+$corner-small: 4px !default;
+$corner-normal: 8px !default;
+$corner-large: 40px !default;
+
 $blue-color: 'blue';
 $orange-color: 'orange';
 $green-color: 'green';
@@ -113,22 +142,6 @@ $purpleLight-color: 'purple-light';
 $gray-color: 'gray';
 $grayLight-color: 'gray-light';
 $grayDark-color: 'gray-dark';
-
-$spacer: 4px !default;
-
-$gutter-tiny: $spacer !default;
-$gutter-small: $spacer * 2 !default;
-$gutter-normal: ($spacer * 4) !default;
-$gutter-big: ($spacer * 6) !default;
-$gutter-large: ($spacer * 8) !default;
-$gutter-huge: ($spacer * 12) !default;
-
-$primary-text-color: $gray-900 !default;
-$primary-text-dark-color: $gray-dark !default;
-$primary-text-light-color: $gray-800 !default;
-
-$primary-background: $white-color !default;
-$secondary-background: $secondary-color !default;
 
 $scheme-primary: 'primary';
 $scheme-secondary: 'secondary';
@@ -143,13 +156,6 @@ $size-tiny: 'tiny';
 $size-small: 'small';
 $size-normal: 'normal';
 $size-large: 'large';
-
-$outline-ghost: 'ghost';
-$outline-transparent: 'transparent';
-
-$corner-small: 4px !default;
-$corner-normal: 8px !default;
-$corner-large: 40px !default;
 
 /*Grid*/
 

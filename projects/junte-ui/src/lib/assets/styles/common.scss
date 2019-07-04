@@ -72,11 +72,11 @@ $menu-item-font-size-in-aside: .875rem !default;
 $menu-item-active-color-in-aside: $primary-color !default;
 $menu-item-active-border-left-width-in-aside: 4px !default;
 $menu-item-active-border-left-color-in-aside: $primary-color !default;
-$menu-item-active-background-color-in-aside: $gray-200 !default;
+$menu-item-active-background-color-in-aside: $secondary-background !default;
 $menu-item-padding-x-in-aside: $gutter-small !default;
 $menu-item-padding-y-in-aside: $gutter-normal !default;
-$menu-item-hover-background-color-in-aside: $gray-150 !default;
-$menu-item-hover-color-in-aside: $gray-dark !default;
+$menu-item-hover-background-color-in-aside: $highlight-background !default;
+$menu-item-hover-color-in-aside: $primary-text-dark-color !default;
 
 jnt-app-header[host=#{$jnt-app-header-host}] {
   jnt-menu[host=#{$jnt-menu-host}] {
@@ -129,7 +129,7 @@ jnt-app-aside[host=#{$jnt-app-aside-host}] {
   }
 }
 
-$dropdown-bg: $white-color !default;
+$dropdown-bg: $primary-background !default;
 $dropdown-padding-x: $gutter-big !default;
 $dropdown-padding-y: $gutter-big !default;
 $dropdown-shadow: $shadow-light !default;
@@ -137,7 +137,7 @@ $dropdown-corner: $corner-small !default;
 $dropdown-spacing: 4px !default;
 
 $menu-item-color-in-dropdown: $primary-text-color !default;
-$menu-item-hover-background-color-in-dropdown: $gray-150 !default;
+$menu-item-hover-background-color-in-dropdown: $highlight-background !default;
 $menu-item-padding-x-in-dropdown: $gutter-small !default;
 $menu-item-padding-y-in-dropdown: $gutter-big !default;
 
@@ -163,19 +163,12 @@ jnt-dropdown[host=#{$jnt-dropdown-host}] jnt-menu[host=#{$jnt-menu-host}] {
     width: 100%;
     a[child-of=#{$jnt-link-host}] {
       border: 0;
+      border-left: 4px solid transparent;
       padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
       position: relative;
       &:hover {
-        //background-color: $menu-item-hover-background-color-in-dropdown;
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 4px;
-          background-color: $primary-color;
-        }
+        background-color: $menu-item-hover-background-color-in-dropdown;
+        border-left-color: $primary-color;
       }
       span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
         color: $menu-item-color-in-dropdown;

@@ -6,30 +6,35 @@ $option-list-padding-y: 0 !default;
 $option-list-padding-x: $gutter-tiny !default;
 $option-list-border-color: transparent !default;
 $option-list-border-width: 0 !default;
-$option-list-bg: $white-color !default;
+$option-list-bg: $primary-background !default;
 $option-list-shadow: $shadow-light !default;
 
 $option-item-padding-x: $gutter-small !default;
 $option-item-padding-y: $gutter-normal !default;
-$option-item-hover-bg: $gray-500 !default;
+$option-item-hover-bg: $highlight-background !default;
 $option-item-icon-color: $primary-color !default;
 
+$select-background: $control-background !default;
 $select-border-width: 1px !default;
-$select-border-color: $gray-600 !default;
+$select-border-color: $control-border-color !default;
 $select-corner: $corner-small !default;
 $select-icon-dropdown-size: 7px !default;
 $select-icon-dropdown-color: $primary-text-light-color !default;
-$select-placeholder-color: $gray-600 !default;
+$select-placeholder-color: $primary-text-light-color !default;
 $select-padding-bottom: $gutter-tiny !default;
 $select-padding-left: $gutter-tiny !default;
 $select-padding-right: $gutter-normal !default;
+
+$select-disabled-bg: $control-disabled-border-color !default;
+$select-disabled-border-color: $control-disabled-border-color !default;
+$select-disabled-chips-color: $muted-color !default;
 
 $select-focus-shadow: $shadow-primary-dark !default;
 
 $select-hover-border-color: $primary-color !default;
 $select-focus-border-color: $primary-color !default;
 
-$chips-bg: $gray-500 !default;
+$chips-bg: $secondary-background !default;
 $chips-corner: $select-corner !default;
 $chips-padding-x: $gutter-tiny !default;
 $chips-padding-y: $gutter-tiny !default;
@@ -69,6 +74,17 @@ $select-sizes: (
       @include size($map);
     }
   }
+  &[disabled='true'] {
+    [selectize] {
+      background-color: $select-disabled-bg;
+      border-color: $select-disabled-border-color;
+      pointer-events: none;
+      li[chips='true'] {
+        background-color: $select-disabled-bg;
+        color: $select-disabled-chips-color;
+      }
+    }
+  }
 }
 
 [selectize] {
@@ -81,7 +97,7 @@ $select-sizes: (
   cursor: pointer;
   display: flex;
   align-items: stretch;
-  background-color: $white-color;
+  background-color: $select-background;
   transition: all .3s;
   &:hover {
     border-color: $select-hover-border-color;
@@ -145,7 +161,7 @@ $select-sizes: (
     color: $select-icon-dropdown-color;
   }
   [spin] {
-    color: $gray-400;
+    color: $muted-color;
     margin: auto auto auto $gutter-normal;
   }
   [input] {
@@ -156,6 +172,8 @@ $select-sizes: (
     font-size: $font-size-base;
     border: 0;
     padding: 0;
+    background-color: transparent;
+    color: $primary-text-color;
     &:focus {
       outline: 0;
     }
@@ -163,16 +181,16 @@ $select-sizes: (
 
 }
 [label] {
-  background-color: $form-control-label-bg;
-  padding: $form-control-label-padding-x $form-control-label-padding-y;
+  background-color: $control-field-label-background;
+  padding: $control-field-label-padding-x $control-field-label-padding-y;
   margin-top: -3px;
   margin-bottom: -3px;
   display: flex;
   align-items: center;
   border-top-left-radius: $select-corner - 1px;
   border-bottom-left-radius: $select-corner - 1px;
-  color: $form-control-label-color;
-  margin-right: $form-control-label-spacing;
+  color: $control-field-label-color;
+  margin-right: $control-field-label-spacing;
 }
 
 [options] {
@@ -210,8 +228,9 @@ $select-sizes: (
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $primary-background;
     [icon] {
-      color: $gray-400;
+      color: $muted-color;
       font-size: 30px;
     }
   }
@@ -224,6 +243,7 @@ $select-sizes: (
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $primary-background;
   }
 }
 

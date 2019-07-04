@@ -1,11 +1,22 @@
-@import "variables";
+@import "../../../../projects/junte-ui/src/lib/assets/styles/variables";
 
-hr {
-  width: 100%;
+table {
+  thead {
+    background-color: $secondary-background;
+    text-align: center;
+    th {
+      padding: $gutter-small $gutter-normal;
+    }
+  }
+  tbody {
+    td {
+      padding: $gutter-small;
+    }
+  }
 }
 
 [colors] {
-  background-color: $white-color;
+  background-color: $primary-background;
   padding: $gutter-small;
   [label] {
     margin-bottom: $gutter-normal;
@@ -28,7 +39,7 @@ hr {
 [shadow] {
   width: 100px;
   height: 100px;
-  background-color: $white-color;
+  background-color: $primary-background;
   padding: $gutter-small;
   border-radius: $corner-normal;
   box-sizing: border-box;
@@ -38,10 +49,17 @@ hr {
   &[light] {
     box-shadow: $shadow-light;
   }
+  &[normal] {
+    box-shadow: $shadow-normal;
+  }
   &[primary-light] {
     box-shadow: $shadow-primary-light;
   }
-  &[primary-normal] {
+  &[primary-dark] {
     box-shadow: $shadow-primary-dark;
   }
+}
+
+pre[class*="language-"] {
+  background-color: transparent;
 }

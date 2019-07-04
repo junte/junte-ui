@@ -39,4 +39,3 @@ export * from './lib/components/switch';
 export * from './lib/components/table';
 export * from './lib/components/tabs';
 export * from './lib/components/popover';
-export * from './lib/managers/theme.manager';

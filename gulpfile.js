@@ -1,12 +1,21 @@
 const gulp = require('gulp');
-const themeFiles = "src/assets/themes/*.scss";
-const indexFile = "src/assets/themes/themes.js";
+const clean = require('gulp-clean');
 const path = require('path');
 const map = require('map-stream');
 const hash = require('gulp-hash');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
+const themeFiles = "src/assets/themes/*.scss";
+const themeCSSFiles = "src/assets/themes/*.css";
+const scriptFile = "src/assets/themes/themes.js";
+const styleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
+
 let themes = {};
+
+gulp.task('themes:clean', function () {
+  return gulp.src([themeCSSFiles], {read: false})
+    .pipe(clean());
+});
 
 gulp.task('themes:hash', function () {
   themes = {};
@@ -23,7 +32,7 @@ gulp.task('themes:hash', function () {
 });
 
 gulp.task('themes:index', function () {
-  return gulp.src([indexFile])
+  return gulp.src([scriptFile])
     .pipe(map((file, cb) => {
       const content = file.contents.toString();
       const str = `const themes = ${JSON.stringify(themes)}`;
@@ -33,4 +42,8 @@ gulp.task('themes:index', function () {
     .pipe(gulp.dest('src/assets/themes'))
 });
 
-gulp.task('themes', gulp.series(['themes:hash', 'themes:index']));
+gulp.task('themes', gulp.series(['themes:clean', 'themes:hash', 'themes:index']));
+
+gulp.task('themes:watch', function() {
+  return gulp.watch([themeFiles, styleFiles], { ignoreInitial: false }, gulp.series('themes'));
+});

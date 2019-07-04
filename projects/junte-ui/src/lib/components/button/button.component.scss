@@ -3,6 +3,9 @@
 $button-corner: $corner-large !default;
 $button-without-text-corner: $corner-small !default;
 
+$outline-ghost: 'ghost';
+$outline-transparent: 'transparent';
+
 $button-schemes: (
   #{$scheme-primary}: (
     color: $white-color,
@@ -19,13 +22,13 @@ $button-schemes: (
     badge-outline-color: $white-color,
     badge-hover-outline-color: $primary-color,
     badge-outline-background: $primary-color,
-    badge-hover-outline-background: $white-color,
+    badge-hover-outline-background: $primary-background,
   ),
   #{$scheme-secondary}: (
     color: $gray-900,
     color-outline: $gray-900,
-    color-transparent: $gray-900,
-    color-transparent-hover: $gray-dark-100,
+    color-transparent: $primary-text-color,
+    color-transparent-hover: $primary-text-dark-color,
     border-outline: $gray-900,
     background: $secondary-color,
     background-hover: $blue-100,
@@ -53,7 +56,7 @@ $button-schemes: (
     badge-background: $white-color,
     badge-outline-color: $white-color,
     badge-outline-background: $success-color,
-    badge-hover-outline-background: $white-color,
+    badge-hover-outline-background: $primary-background,
     badge-hover-outline-color: $success-color,
 
   ),
@@ -71,7 +74,7 @@ $button-schemes: (
     badge-background: $white-color,
     badge-outline-color: $white-color,
     badge-outline-background: $fail-color,
-    badge-hover-outline-background: $white-color,
+    badge-hover-outline-background: $primary-background,
     badge-hover-outline-color: $fail-color,
   ),
 )!default;
@@ -130,7 +133,7 @@ $button-sizes: (
 
   button {
     color: #{map-get($scheme, color-outline)};
-    background-color: $white-color;
+    background-color: $primary-background;
     border-color: #{map-get($scheme, border-outline)};
     &:hover, &:focus {
       background-color: #{map-get($scheme, background-outline-hover)};

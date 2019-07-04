@@ -1,4 +1,4 @@
-@import "variables";
+@import "../projects/junte-ui/src/lib/assets/styles/variables";
 
 [block] {
   color: $white-color;
@@ -9,7 +9,7 @@
 }
 
 [row] {
-  background-color: $white-color;
+  background-color: $primary-background;
 }
 
 [col] {
@@ -25,13 +25,16 @@ ngx-prism {
 }
 
 pre[class*="language-"] {
-  background-color: $gray-300 !important;
+  background-color: $primary-background !important;
   width: 100%;
   display: block;
   padding: $gutter-small !important;
   box-sizing: border-box;
   code[class*="language-"] {
     text-shadow: none !important;
+  }
+  .token.operator {
+    background-color: transparent;
   }
 }
 
@@ -46,7 +49,7 @@ table[api] {
   }
 
   th {
-    background-color: $gray-400;
+    background-color: $secondary-background;
   }
 
   td:nth-child(1) {
