@@ -1,4 +1,4 @@
-const themes = {"dark":"156c58ca03","light":"d685b2b465"};
+const themes = {"dark":"f16ae63d07","light":"da7a9d0542"};
 
 class Themes {
   constructor() {

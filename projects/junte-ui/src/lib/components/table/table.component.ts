@@ -1,10 +1,12 @@
 import { Component, ContentChild, ContentChildren, HostBinding, Input, OnDestroy, OnInit, QueryList, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { filter as filtering, finalize } from 'rxjs/operators';
+import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
 import { TableColumnComponent } from './column/table-column.component';
+
+const FILTER_DELAY = 300;
 
 @Component({
   selector: 'jnt-table',
@@ -76,13 +78,13 @@ export class TableComponent implements OnInit, OnDestroy {
     this.filterForm = this.formBuilder.group({
       sort: this.sort,
       order: this.order,
+      query: [''],
       page: [DEFAULT_PAGE],
       pageSize: [DEFAULT_PAGE_SIZE]
     });
 
-    this.filterForm.valueChanges.pipe((filtering(() => !!this.fetcher)))
+    this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
       .subscribe(filter => {
-        console.log(filter);
         Object.assign(this.filter, filter);
         this.load();
       });

@@ -9,6 +9,7 @@ export enum Order {
 export interface SearchFilter {
   sort?: string;
   order?: Order;
+  query?: string;
   page?: number;
   pageSize?: number;
 }
@@ -17,6 +18,7 @@ export class DefaultSearchFilter implements SearchFilter {
 
   sort?: string;
   order?: Order = Order.asc;
+  query?: string;
   page?: number;
   pageSize?: number;
 

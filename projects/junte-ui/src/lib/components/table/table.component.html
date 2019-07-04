@@ -1,28 +1,26 @@
-<jnt-stack [align]="ui.flex.align.stretch">
-  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-      <jnt-button button text="Reload"
-                  [icon]="ui.icons.reload"
-                  [outline]="ui.outline.transparent"
-                  [scheme]="ui.schemes.secondary"
-                  (click)="load()">
-      </jnt-button>
+<form [formGroup]="filterForm">
+  <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
+      <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+        <jnt-button button text="Reload"
+                    [icon]="ui.icons.reload"
+                    [outline]="ui.outline.transparent"
+                    [scheme]="ui.schemes.secondary"
+                    (click)="load()">
+        </jnt-button>
+        <div>
+          <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+          <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+        </div>
+      </jnt-stack>
+
       <div>
-        <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
-        <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+        <jnt-input *ngIf="search" [icon]="ui.icons.search" placeholder="Search" formControlName="query"></jnt-input>
       </div>
+
     </jnt-stack>
 
-    <div>
-      <jnt-input *ngIf="search" [icon]="ui.icons.search" placeholder="Search"></jnt-input>
-    </div>
-
-  </jnt-stack>
-
-  <form [formGroup]="filterForm">
     <jnt-stack [align]="ui.flex.align.stretch">
-
-
       <div table>
         <table>
           <div *ngIf="source.length && progress.loading" spinner>
@@ -91,5 +89,5 @@
         </div>
       </ng-container>
     </jnt-stack>
-  </form>
-</jnt-stack>
+  </jnt-stack>
+</form>
