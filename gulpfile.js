@@ -1,12 +1,21 @@
 const gulp = require('gulp');
-const themeFiles = "src/assets/themes/*.scss";
-const indexFile = "src/index.html";
+const clean = require('gulp-clean');
 const path = require('path');
 const map = require('map-stream');
 const hash = require('gulp-hash');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
+const themeFiles = "src/assets/themes/*.scss";
+const themeCSSFiles = "src/assets/themes/*.css";
+const indexFile = "src/index.html";
+const styleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
+
 let themes = [];
+
+gulp.task('themes:clean', function () {
+  return gulp.src([themeCSSFiles], {read: false})
+    .pipe(clean());
+});
 
 gulp.task('themes:hash', function () {
   themes = [];
@@ -33,8 +42,8 @@ gulp.task('themes:index', function () {
     .pipe(gulp.dest('src/'))
 });
 
-gulp.task('themes', gulp.series(['themes:hash', 'themes:index']));
+gulp.task('themes', gulp.series(['themes:clean', 'themes:hash', 'themes:index']));
 
 gulp.task('themes:watch', function() {
-  return gulp.watch([themeFiles], { ignoreInitial: false }, gulp.series('themes'));
+  return gulp.watch([themeFiles, styleFiles], { ignoreInitial: false }, gulp.series('themes'));
 });
