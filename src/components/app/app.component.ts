@@ -9,6 +9,7 @@ import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } fr
 export class AppComponent implements AfterViewInit {
 
   ui = UI;
+  loading: { [name: string]: boolean } = {};
 
   @ViewChild('popover') popover: PopoverComponent;
   @ViewChild('modal') modal: ModalComponent;
@@ -24,6 +25,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   setTheme(theme: string = null) {
-    window.postMessage({type: 'theme', theme: theme}, location.origin);
+    this.loading[theme] = true;
+    window['themes'](theme, () => this.loading[theme] = false);
   }
 }

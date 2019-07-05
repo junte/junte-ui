@@ -7,7 +7,7 @@ const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const themeFiles = "src/assets/themes/*.scss";
 const themeCSSFiles = "src/assets/themes/*.css";
-const scriptFile = "src/assets/themes/themes.ts";
+const scriptFile = "src/assets/themes/themes.js";
 const styleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
 
 let themes = {};
