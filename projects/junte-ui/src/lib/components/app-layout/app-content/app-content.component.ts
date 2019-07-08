@@ -1,5 +1,7 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { AppAsideComponent } from '../app-aside/app-aside.component';
+import { AppFooterComponent } from '../app-footer/app-footer.component';
+import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
 
 @Component({
   selector: 'jnt-app-content',
@@ -12,6 +14,17 @@ export class AppContentComponent {
   @HostBinding('attr.with-aside') get withAside() {
     return !!this.aside;
   }
+
+  @HostBinding('attr.with-sub-header') get withSubHeader() {
+    return !!this.subHeader;
+  }
+
+  @HostBinding('attr.with-footer') get withFooter() {
+    return !!this.footer;
+  }
+
+  @ContentChild(AppSubHeaderComponent) subHeader: AppSubHeaderComponent;
+  @ContentChild(AppFooterComponent) footer: AppFooterComponent;
 
   @Input() aside: AppAsideComponent;
 

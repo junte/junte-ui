@@ -1,4 +1,5 @@
 @import "variables";
+@import "../../components/app-layout/common";
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
@@ -177,3 +178,20 @@ jnt-dropdown[host=#{$jnt-dropdown-host}] jnt-menu[host=#{$jnt-menu-host}] {
   }
 }
 
+jnt-app-content[host=#{$jnt-app-content-host}] {
+  &[with-sub-header="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+      min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
+    }
+  }
+  &[with-footer="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+      min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
+    }
+  }
+  &[with-sub-header="false"][with-footer="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+      min-height: calc(100vh - #{$app-header-height});
+    }
+  }
+}
