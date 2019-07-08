@@ -32,10 +32,11 @@
 
   <h2>Vertical</h2>
   <jnt-row>
-    <jnt-col column [span]="4"
-             *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
+    <jnt-col [span]="2"
+             *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
+                ui.stack.gutter.large, ui.stack.gutter.huge]">
       <jnt-stack [gutter]="gutter">
-        <div block *ngFor="let element of [1, 2, 3, 4, 5]" style="width:100%">{{gutter}}</div>
+        <div block *ngFor="let element of [1, 2]">{{gutter}}</div>
       </jnt-stack>
     </jnt-col>
   </jnt-row>
@@ -43,8 +44,9 @@
   <h2>Horizontal</h2>
   <jnt-stack [gutter]="ui.stack.gutter.large">
     <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
-               *ngFor="let gutter of [ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.large]">
-      <div block *ngFor="let col of [1, 2, 3, 4, 5]">{{gutter}}</div>
+               *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
+                ui.stack.gutter.large, ui.stack.gutter.huge]">
+      <div block *ngFor="let col of [1, 2]">{{gutter}}</div>
     </jnt-stack>
   </jnt-stack>
 

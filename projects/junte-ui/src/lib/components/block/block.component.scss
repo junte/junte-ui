@@ -1,14 +1,14 @@
 @import "../../assets/styles/variables";
 
-$block-bg: $primary-background !default;
+$block-background: $primary-background !default;
 $block-shadow: $shadow-primary !default;
 $block-corner: $corner-normal !default;
 $block-border-width: 1px !default;
 $block-border-color: $gray-800 !default;
-$block-loading-bg: rgba(0, 0, 0, .75) !default;
+$block-loading-background: rgba(0, 0, 0, .75) !default;
 $block-loading-spinner-color: $white-color !default;
 
-$block-error-bg: rgba($gray-900, 0.8) !default;
+$block-error-background: rgba($gray-900, 0.8) !default;
 $block-error-icon-size: 40px !default;
 $block-error-icon-color: $white-color !default;
 
@@ -48,7 +48,7 @@ $block-padding: (
   display: inline-block;
   position: relative;
   min-height: 40px;
-  background-color: $block-bg;
+  background-color: $block-background;
   box-shadow: $block-shadow;
   border-radius: $block-corner;
   box-sizing: border-box;
@@ -78,14 +78,14 @@ $block-padding: (
   }
 
   [loading] {
-    background-color: $block-loading-bg;
+    background-color: $block-loading-background;
     [spinner] {
       border-color: $block-loading-spinner-color;
     }
   }
 
   [error] {
-    background-color: $block-error-bg;
+    background-color: $block-error-background;
     [icon] {
       font-size: $block-error-icon-size;
       color: $block-error-icon-color;
