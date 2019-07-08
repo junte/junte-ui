@@ -36,18 +36,16 @@
 
 </jnt-app-aside>
 
-<jnt-app-main>
-  <jnt-app-content [aside]="aside">
-    <jnt-app-sub-header (burger)="aside.toggle()">
-      <jnt-breadcrumb></jnt-breadcrumb>
-    </jnt-app-sub-header>
-    <jnt-app-body>
-      <router-outlet></router-outlet>
-    </jnt-app-body>
-    <jnt-app-footer>
-      <div footer>
-        <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
-      </div>
-    </jnt-app-footer>
-  </jnt-app-content>
-</jnt-app-main>
+<jnt-app-content [aside]="aside">
+  <jnt-app-sub-header (burger)="aside.toggle()">
+    <jnt-breadcrumb></jnt-breadcrumb>
+  </jnt-app-sub-header>
+  <jnt-app-body>
+    <router-outlet></router-outlet>
+  </jnt-app-body>
+  <jnt-app-footer>
+    <div footer>
+      <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+    </div>
+  </jnt-app-footer>
+</jnt-app-content>

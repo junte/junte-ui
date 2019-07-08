@@ -5,7 +5,6 @@ import { AppContentComponent } from './app-content/app-content.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { UserbarComponent } from './app-header/userbar/userbar.component';
-import { AppMainComponent } from './app-main/app-main.component';
 import { AppSubHeaderComponent } from './app-sub-header/app-sub-header.component';
 import { CommonModule } from '@angular/common';
 import { AppLayoutComponent } from './app-layout.component';
@@ -29,7 +28,6 @@ import { ActionsComponent } from './app-header/actions/actions.component';
     AppFooterComponent,
     AppHeaderComponent,
     UserbarComponent,
-    AppMainComponent,
     AppSubHeaderComponent,
     AppLayoutComponent
   ],
@@ -42,7 +40,6 @@ import { ActionsComponent } from './app-header/actions/actions.component';
     AppFooterComponent,
     AppHeaderComponent,
     UserbarComponent,
-    AppMainComponent,
     AppSubHeaderComponent,
     AppLayoutComponent
   ]

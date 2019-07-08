@@ -11,10 +11,6 @@ export class AppHeaderComponent {
 
   ui = UI;
 
-  @HostBinding('attr.fixed')
-  @Input()
-  fixed = false;
-
   @ContentChild('topMenu')
   topMenu: TemplateRef<any>;
 
