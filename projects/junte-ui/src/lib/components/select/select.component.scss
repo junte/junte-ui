@@ -1,18 +1,18 @@
 @import "../../assets/styles/variables";
 @import "../form/common";
 
-$option-list-spacer-top: $gutter-tiny !default;
-$option-list-padding-y: 0 !default;
-$option-list-padding-x: $gutter-tiny !default;
-$option-list-border-color: transparent !default;
-$option-list-border-width: 0 !default;
-$option-list-bg: $primary-background !default;
-$option-list-shadow: $shadow-light !default;
+$select-option-list-spacer-top: $gutter-tiny !default;
+$select-option-list-padding-y: 0 !default;
+$select-option-list-padding-x: $gutter-tiny !default;
+$select-option-list-border-color: transparent !default;
+$select-option-list-border-width: 0 !default;
+$select-option-list-background: $primary-background !default;
+$select-option-list-shadow: $shadow-light !default;
 
-$option-item-padding-x: $gutter-small !default;
-$option-item-padding-y: $gutter-normal !default;
-$option-item-hover-bg: $highlight-background !default;
-$option-item-icon-color: $primary-color !default;
+$select-option-item-padding-x: $gutter-small !default;
+$select-option-item-padding-y: $gutter-normal !default;
+$select-option-item-hover-background: $highlight-background !default;
+$select-option-item-icon-color: $primary-color !default;
 
 $select-background: $control-background !default;
 $select-border-width: 1px !default;
@@ -25,7 +25,7 @@ $select-padding-bottom: $gutter-tiny !default;
 $select-padding-left: $gutter-tiny !default;
 $select-padding-right: $gutter-normal !default;
 
-$select-disabled-bg: $control-disabled-border-color !default;
+$select-disabled-background: $control-disabled-border-color !default;
 $select-disabled-border-color: $control-disabled-border-color !default;
 $select-disabled-chips-color: $muted-color !default;
 
@@ -34,11 +34,11 @@ $select-focus-shadow: $shadow-primary-dark !default;
 $select-hover-border-color: $primary-color !default;
 $select-focus-border-color: $primary-color !default;
 
-$chips-bg: $secondary-background !default;
-$chips-corner: $select-corner !default;
-$chips-padding-x: $gutter-tiny !default;
-$chips-padding-y: $gutter-tiny !default;
-$chips-spacer: $gutter-tiny !default;
+$select-chips-background: $secondary-background !default;
+$select-chips-corner: $select-corner !default;
+$select-chips-padding-x: $gutter-tiny !default;
+$select-chips-padding-y: $gutter-tiny !default;
+$select-chips-spacer: $gutter-tiny !default;
 
 $select-sizes: (
   #{$size-tiny}: (
@@ -76,11 +76,11 @@ $select-sizes: (
   }
   &[disabled='true'] {
     [selectize] {
-      background-color: $select-disabled-bg;
+      background-color: $select-disabled-background;
       border-color: $select-disabled-border-color;
       pointer-events: none;
       li[chips='true'] {
-        background-color: $select-disabled-bg;
+        background-color: $select-disabled-background;
         color: $select-disabled-chips-color;
       }
     }
@@ -121,17 +121,17 @@ $select-sizes: (
     flex-wrap: wrap;
     li {
       max-width: 100%;
-      margin-bottom: $chips-spacer;
+      margin-bottom: $select-chips-spacer;
       display: flex;
       align-items: center;
-      margin-right: $chips-spacer;
+      margin-right: $select-chips-spacer;
       button {
         display: none;
       }
       &[chips="true"] {
-        background-color: $chips-bg;
-        border-radius: $chips-corner;
-        padding: $chips-padding-x $chips-padding-y;
+        background-color: $select-chips-background;
+        border-radius: $select-chips-corner;
+        padding: $select-chips-padding-x $select-chips-padding-y;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -194,12 +194,12 @@ $select-sizes: (
 }
 
 [options] {
-  border: $option-list-border-width solid $option-list-border-color;
-  background-color: $option-list-bg;
-  box-shadow: $option-list-shadow;
+  border: $select-option-list-border-width solid $select-option-list-border-color;
+  background-color: $select-option-list-background;
+  box-shadow: $select-option-list-shadow;
   box-sizing: border-box;
-  margin-top: $option-list-spacer-top;
-  padding: $option-list-padding-x $option-list-padding-y;
+  margin-top: $select-option-list-spacer-top;
+  padding: $select-option-list-padding-x $select-option-list-padding-y;
   position: absolute;
   top: 100%;
   left: 0;
@@ -208,22 +208,22 @@ $select-sizes: (
   max-height: 300px;
   overflow-y: auto;
   [item] {
-    padding: $option-item-padding-x $option-item-padding-y;
+    padding: $select-option-item-padding-x $select-option-item-padding-y;
     [checkbox]:child-host=#{$jnt-checkbox-host} [ switch ] {
       border: 0;
       background-color: transparent;
       position: absolute;
       right: 0;
     [icon] {
-      color: $option-item-icon-color;
+      color: $select-option-item-icon-color;
     }
   }
     &:hover {
-      background-color: $option-item-hover-bg;
+      background-color: $select-option-item-hover-background;
     }
   }
   [message] {
-    padding: $chips-padding-x $chips-padding-y;
+    padding: $select-chips-padding-x $select-chips-padding-y;
     min-height: 80px;
     display: flex;
     justify-content: center;

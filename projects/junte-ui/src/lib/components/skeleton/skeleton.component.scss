@@ -1,8 +1,8 @@
 @import "../../assets/styles/variables";
 
 $skeleton-line-height: 24px !default;
-$skeleton-bg: $secondary-background !default;
-$skeleton-to-bg: darken($skeleton-bg, 5%) !default;
+$skeleton-background: $secondary-background !default;
+$skeleton-to-background: darken($skeleton-background, 5%) !default;
 
 @keyframes loading {
   0% {
@@ -51,7 +51,7 @@ $skeleton-avatar-sizes: (
 
 [line] {
   min-height: $skeleton-line-height;
-  background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
   animation: loading 1.4s ease infinite;
   background-size: 400% 100%;
   width: 100%;
@@ -59,7 +59,7 @@ $skeleton-avatar-sizes: (
 
 [avatar] {
   display: block;
-  background: $skeleton-bg linear-gradient(90deg, $skeleton-bg 25%, $skeleton-to-bg 37%, $skeleton-bg 63%);
+  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
   animation: loading 1.4s ease infinite;
   background-size: 400% 100%;
   border-radius: 50%;

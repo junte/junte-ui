@@ -13,13 +13,11 @@
 
   <h1>Colors</h1>
 
-  <div colors>
-    <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
-      <ng-container *ngFor="let color of colors">
-        <jnt-label [color]="color.value" [label]="color.name" label></jnt-label>
-      </ng-container>
-    </jnt-stack>
-  </div>
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <ng-container *ngFor="let color of colors">
+      <jnt-label [color]="color.value" [label]="color.name" label></jnt-label>
+    </ng-container>
+  </jnt-stack>
 
   <h3>Variables</h3>
 
@@ -40,14 +38,14 @@
         <jnt-label [color]="ui.colors.purple" label="purple"></jnt-label>
       </td>
     </tr>
-   <tr>
-     <td>
-       <span> $primary-dark-color </span>
-     </td>
-     <td>
-       <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
-     </td>
-   </tr>
+    <tr>
+      <td>
+        <span> $primary-dark-color </span>
+      </td>
+      <td>
+        <jnt-label [color]="ui.colors.purpleDark" label="purple-dark"></jnt-label>
+      </td>
+    </tr>
     <tr>
       <td>
         <span> $primary-light-color  </span>
@@ -288,88 +286,242 @@
 
   <h1>Gutters</h1>
 
-  <ng-container *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
+  <jnt-stack>
+
+    <ng-container *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
                            ui.stack.gutter.large, ui.stack.gutter.huge]">
-    <h5>{{gutter | titlecase}}</h5>
-    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="gutter">
-      <div block></div>
-      <div block></div>
-    </jnt-stack>
-  </ng-container>
+      <h5>{{gutter | titlecase}}</h5>
+      <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="gutter">
+        <div block></div>
+        <div block></div>
+      </jnt-stack>
+    </ng-container>
 
-  <h3>Variables</h3>
+    <table>
+      <thead>
+      <tr>
+        <th colspan="2">
+          Gutter variables
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          $gutter-tiny:
+        </td>
+        <td>
+          4px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $gutter-small:
+        </td>
+        <td>
+          8px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $gutter-normal:
+        </td>
+        <td>
+          16px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $gutter-big:
+        </td>
+        <td>
+          24px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $gutter-large:
+        </td>
+        <td>
+          32px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $gutter-huge:
+        </td>
+        <td>
+          48px
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-
-  <ngx-prism language="css">
-      <pre><![CDATA[
-  $spacer: 4px;
-
-  $gutter-tiny: $spacer;
-  $gutter-small: $spacer * 2;
-  $gutter-normal: ($spacer * 4);
-  $gutter-big: ($spacer * 6);
-  $gutter-large: ($spacer * 8);
-  $gutter-huge: ($spacer * 12);
-
-        ]]></pre>
-  </ngx-prism>
+  </jnt-stack>
 
   <h1>Corners</h1>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <div block corner-small>Small</div>
-    <div block corner-normal>Normal</div>
-    <div block corner-large>Large</div>
+  <jnt-stack>
+
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <div block corner-small>Small</div>
+      <div block corner-normal>Normal</div>
+      <div block corner-large>Large</div>
+    </jnt-stack>
+
+    <table>
+      <thead>
+      <tr>
+        <th colspan="2">
+          Corner variables
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          $corner-small:
+        </td>
+        <td>
+          4px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $corner-normal:
+        </td>
+        <td>
+          8px
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $corner-large:
+        </td>
+        <td>
+          40px
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </jnt-stack>
-
-  <h3>Variables</h3>
-
-  <ngx-prism language="css">
-      <pre><![CDATA[
-  $corner-small: 4px;
-  $corner-normal: 8px;
-  $corner-large: 40px;
-        ]]></pre>
-  </ngx-prism>
 
   <h1>Shadows</h1>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <div shadow primary>Primary</div>
-    <div shadow light>Light</div>
-    <div shadow normal>Normal</div>
-    <div shadow primary-light>Primary light</div>
-    <div shadow primary-dark>Primary dark</div>
+  <jnt-stack>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <div shadow primary>Primary</div>
+      <div shadow light>Light</div>
+      <div shadow normal>Normal</div>
+      <div shadow primary-light>Primary light</div>
+      <div shadow primary-dark>Primary dark</div>
+    </jnt-stack>
+
+    <table>
+      <thead>
+      <tr>
+        <th colspan="2">
+          Shadow variables
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          $shadow-primary:
+        </td>
+        <td>
+          0px 2px 8px rgba(0, 67, 167, 0.25)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $shadow-light:
+        </td>
+        <td>
+          0px 4px 10px rgba(0, 0, 0, 0.15)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $shadow-normal:
+        </td>
+        <td>
+          0px 2px 8px rgba(0, 0, 0, 0.25)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $shadow-primary-light:
+        </td>
+        <td>
+          2px 1px 10px rgba(0, 67, 167, 0.07)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          $shadow-primary-dark:
+        </td>
+        <td>
+          0px 0px 6px rgba(8, 35, 202, 0.4)
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </jnt-stack>
-
-  <h3>Variables</h3>
-
-
-  <ngx-prism language="css">
-      <pre><![CDATA[
-  $shadow-primary: 0px 2px 8px rgba(0, 67, 167, 0.25);
-  $shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  $shadow-normal: 0px 2px 8px rgba(0, 0, 0, 0.25);
-
-  $shadow-primary-light: 2px 1px 10px rgba(0, 67, 167, 0.07);
-
-  $shadow-primary-dark: 0px 0px 6px rgba(8, 35, 202, 0.4);
-          ]]></pre>
-  </ngx-prism>
 
   <h1>Grid</h1>
 
-  <h3>Variables</h3>
-
-  <ngx-prism language="css">
-      <pre><![CDATA[
-$grid-gutter: 16px;
-$grid-breakpoints: (
-  mobile: 0,
-  tablet: 768px,
-  desktop: 992px,
-  wide: 1200px
-)]]></pre>
-  </ngx-prism>
+  <table>
+    <thead>
+    <tr>
+      <th colspan="2">
+        Grid variables
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        $grid-gutter:
+      </td>
+      <td>
+        16px
+      </td>
+    </tr>
+    <tr>
+      <td>
+        mobile:
+      </td>
+      <td>
+        0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        tablet:
+      </td>
+      <td>
+        768px
+      </td>
+    </tr>
+    <tr>
+      <td>
+        desktop:
+      </td>
+      <td>
+        992px
+      </td>
+    </tr>
+    <tr>
+      <td>
+        wide:
+      </td>
+      <td>
+        1200px
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
 </jnt-container>

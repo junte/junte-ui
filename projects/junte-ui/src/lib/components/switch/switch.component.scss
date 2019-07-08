@@ -2,16 +2,17 @@
 @import "../form/common";
 
 
-$switch-indicator-corner: 35px !default;
-$switch-icon-color: $white-color !default;
-$switch-indicator-bg: $gray-700 !default;
-$switch-indicator-border-color: transparent !default;
-$switch-indicator-padding: 3px !default;
-$switch-indicator-border-width: 1px !default;
+$switch-corner: 35px !default;
+$switch-slider-background: $white-color !default;
+$switch-background: $gray-700 !default;
+$switch-border-color: transparent !default;
+$switch-padding: 3px !default;
+$switch-border-width: 1px !default;
 
-$switch-indicator-checked-bg: $primary-color !default;
-$switch-indicator-disabled-bg: $gray-400 !default;
-$switch-indicator-disabled-border-color: transparent !default;
+$switch-checked-background: $primary-color !default;
+$switch-disabled-background: $control-disabled-background !default;
+$switch-disabled-checked-background: lighten($switch-checked-background, 30%) !default;
+$switch-disabled-border-color: transparent !default;
 
 $switch-sizes: (
   #{$size-tiny}: (
@@ -40,8 +41,8 @@ $switch-sizes: (
     height: #{map-get($size, height)};
   }
   [icon] {
-    width: calc(#{map-get($size, height)} - #{$switch-indicator-padding} * 2);
-    height: calc(#{map-get($size, height)} - #{$switch-indicator-padding} * 2);
+    width: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
+    height: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
   }
 }
 
@@ -69,11 +70,11 @@ input {
   width: 100%;
   height: 100%;
   &:checked + [switch] {
-    background-color: $switch-indicator-checked-bg;
+    background-color: $switch-checked-background;
   }
   &:checked + [switch] > [icon] {
     left: auto;
-    right: #{$switch-indicator-padding};
+    right: #{$switch-padding};
   }
   &:disabled {
     cursor: default;
@@ -81,8 +82,13 @@ input {
       color: $control-disabled-label-color;
     }
     & + [switch] {
-      background-color: $switch-indicator-disabled-bg;
-      border-color: $switch-indicator-disabled-border-color;
+      background-color: $switch-disabled-background;
+      border-color: $switch-disabled-border-color;
+    }
+    &:checked {
+      & + [switch] {
+        background-color: $switch-disabled-checked-background;
+      }
     }
   }
   &:focus:checked {
@@ -99,16 +105,16 @@ label {
 
 [switch] {
   position: relative;
-  border-radius: $switch-indicator-corner;
-  background-color: $switch-indicator-bg;
-  border: $switch-indicator-border-width solid $switch-indicator-border-color;
+  border-radius: $switch-corner;
+  background-color: $switch-background;
+  border: $switch-border-width solid $switch-border-color;
   box-sizing: border-box;
   transition: all ease .4s;
   [icon] {
     border-radius: 50%;
-    background-color: $switch-icon-color;
+    background-color: $switch-slider-background;
     position: absolute;
-    left: $switch-indicator-padding;
+    left: $switch-padding;
     right: auto;
     top: 50%;
     transform: translateY(-50%);

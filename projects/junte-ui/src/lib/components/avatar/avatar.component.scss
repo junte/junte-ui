@@ -7,7 +7,7 @@ $avatar-icon-color: $blue-100 !default;
 $avatar-shape-circle: 'circle';
 $avatar-shape-square: 'square';
 
-$avatar-bg: $secondary-background !default;
+$avatar-background: $secondary-background !default;
 
 $avatar-shapes: (
   #{$avatar-shape-circle}: (
@@ -41,7 +41,7 @@ $avatar-shapes: (
   justify-content: center;
   align-items: center;
   line-height: 0;
-  background-color: $avatar-bg;
+  background-color: $avatar-background;
   overflow: hidden;
   @each $size, $map in $avatar-sizes {
     &[size='#{$size}'] {

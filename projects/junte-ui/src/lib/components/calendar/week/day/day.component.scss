@@ -1,33 +1,33 @@
 @import "../../../../assets/styles/variables";
 
-$calendar-week-day-width: 90px !default;
-$calendar-week-day-shadow: $shadow-primary !default;
-$calendar-week-day-bg: $primary-background !default;
-$calendar-week-day-corner: $corner-normal !default;
-$calendar-week-current-day-width: 130px !default;
-$calendar-week-day-height: 110px !default;
-$calendar-week-current-day-height: 150px !default;
+$day-week-width: 90px !default;
+$day-week-shadow: $shadow-primary !default;
+$day-week-background: $primary-background !default;
+$day-week-corner: $corner-normal !default;
+$day-week-current-width: 130px !default;
+$day-week-height: 110px !default;
+$day-week-current-height: 150px !default;
 
-$calendar-week-number-day-font-size: 1.625rem !default;
-$calendar-week-number-day-color: $primary-color !default;
+$day-week-number-font-size: 1.625rem !default;
+$day-week-number-color: $primary-color !default;
 
-$calendar-week-name-day-color: $primary-text-color !default;
-$calendar-week-name-day-font-size: $font-size-base !default;
+$week-day-name-color: $primary-text-color !default;
+$day-week-name-font-size: $font-size-base !default;
 
-$calendar-week-metric-bg: $secondary-background !default;
-$calendar-week-metric-padding: $gutter-tiny !default;
+$day-week-metric-background: $secondary-background !default;
+$day-week-metric-padding: $gutter-tiny !default;
 
 :host {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-width: $calendar-week-day-width;
-  max-width: $calendar-week-day-width;
-  min-height: $calendar-week-day-height;
-  box-shadow: $calendar-week-day-shadow;
-  background-color: $calendar-week-day-bg;
-  border-radius: $calendar-week-day-corner;
+  min-width: $day-week-width;
+  max-width: $day-week-width;
+  min-height: $day-week-height;
+  box-shadow: $day-week-shadow;
+  background-color: $day-week-background;
+  border-radius: $day-week-corner;
 }
 
 [date] {
@@ -38,20 +38,20 @@ $calendar-week-metric-padding: $gutter-tiny !default;
   margin: auto;
 }
 [number-day] {
-  font-size: $calendar-week-number-day-font-size;
-  color: $calendar-week-number-day-color;
+  font-size: $day-week-number-font-size;
+  color: $day-week-number-color;
   font-weight: $font-weight-bold;
 }
 [name-day] {
-  color: $calendar-week-name-day-color;
-  font-size: $calendar-week-name-day-font-size;
+  color: $week-day-name-color;
+  font-size: $day-week-name-font-size;
 }
 [today] {
   color: $primary-color;
 }
 [metric] {
-  background-color: $calendar-week-metric-bg;
-  padding: $calendar-week-metric-padding;
+  background-color: $day-week-metric-background;
+  padding: $day-week-metric-padding;
   width: 100%;
   box-sizing: border-box;
   border-radius: 0 0 $corner-normal $corner-normal;

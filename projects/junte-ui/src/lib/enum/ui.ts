@@ -99,17 +99,14 @@ export enum Colors {
   gray = '#C4C4C4',
   gray100 = '#F5F5F5',
   gray200 = '#F7F7F7',
-  gray300 = '#F2F2F2',
+  gray300 = '#F0F0F0',
   gray400 = '#E9E9E9',
   gray500 = '#F3F4FC',
   gray600 = '#C4C4C4',
   gray700 = '#D0D0D0',
   gray800 = '#828282',
   gray900 = '#4F4F4F',
-  gray1000 = '#F0F0F0',
-  grayDark = '#343434',
-  grayDark100 = '#1A1A1A',
-  grayLight100 = '#F9F9F9',
+  grayDark = '#343434'
 }
 
 export enum Schemes {
