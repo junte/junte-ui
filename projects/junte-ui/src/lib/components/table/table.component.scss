@@ -101,16 +101,12 @@ $table-loading-spinner-color: $primary-text-light-color !default;
   }
 
   [pagination] {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: -($table-padding-x);
     [pages] {
-      margin: auto;
-    }
-    [page-size] {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      flex: 1;
     }
   }
 }
