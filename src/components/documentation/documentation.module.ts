@@ -37,6 +37,7 @@ import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { ModalTestComponent } from './modal/modal-test.component';
 import { ModalTestFactoryComponent } from './modal/test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
+import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
 
 @NgModule({
   imports: [
@@ -80,7 +81,8 @@ import { PopoverTestComponent } from './popover/popover-test.component';
     ModalTestComponent,
     ThemingComponent,
     PopoverTestComponent,
-    ModalTestFactoryComponent
+    ModalTestFactoryComponent,
+    ProgressBarTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

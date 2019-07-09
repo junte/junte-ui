@@ -37,6 +37,7 @@ import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { DatePipeModule } from './pipes/date-pipe.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
+import { ProgressBarModule } from './components/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     SwitchModule,
     TableModule,
     TabsModule,
-    PopoverModule
+    PopoverModule,
+    ProgressBarModule
   ]
 })
 export class JunteUiModule {

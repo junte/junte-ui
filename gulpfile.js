@@ -8,7 +8,8 @@ sass.compiler = require('node-sass');
 const themeFiles = "src/assets/themes/*.scss";
 const themeCSSFiles = "src/assets/themes/*.css";
 const scriptFile = "src/assets/themes/themes.js";
-const styleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
+const assetsStyleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
+const styleFiles = 'projects/junte-ui/src/lib/components/**/*.scss';
 
 let themes = {};
 
@@ -45,5 +46,5 @@ gulp.task('themes:script', function () {
 gulp.task('themes', gulp.series(['themes:clean', 'themes:hash', 'themes:script']));
 
 gulp.task('themes:watch', function() {
-  return gulp.watch([themeFiles, styleFiles], { ignoreInitial: false }, gulp.series('themes'));
+  return gulp.watch([themeFiles, assetsStyleFiles, styleFiles], { ignoreInitial: false }, gulp.series('themes'));
 });

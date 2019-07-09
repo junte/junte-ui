@@ -1,0 +1,66 @@
+<jnt-container>
+  <h1>Progress bar</h1>
+
+  <jnt-stack>
+
+    <ng-container *ngFor="let value of [0, 20, 50, 130]">
+      <div style="width: 300px">
+        <jnt-progress-bar [value]="value">
+          <ng-template #legend>
+            <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+              <span>{{value}}%</span>
+              <span [style.color]="value > 100 ? '#FF6262' : '#828282'">{{value > 100 ? '' : 100 - value}}</span>
+            </jnt-stack>
+          </ng-template>
+        </jnt-progress-bar>
+      </div>
+    </ng-container>
+
+    <ngx-prism language="html">
+      <pre><![CDATA[
+<jnt-progress-bar [value]="50">
+  <ng-template #legend>
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+      <span>50%</span>
+      <span [style.color]="value > 100 ? '#FF6262' : '#828282'">50%</span>
+    </jnt-stack>
+  </ng-template>
+</jnt-progress-bar>
+      ]]></pre>
+    </ngx-prism>
+
+    <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+
+      <rect x="10" y="10" width="100" height="100" fill="black"></rect>
+
+
+      <!-- Точки -->
+      <circle cx="10" cy="10" r="2" fill="red"/>
+      <circle cx="110" cy="110" r="2" fill="red"/>
+      <circle cx="110" cy="10" r="2" fill="red"/>
+      <circle cx="10" cy="110" r="2" fill="red"/>
+
+      <rect x="200" y="50" width="100" height="150" fill="red"></rect>
+
+      <!-- Точки -->
+      <circle cx="200" cy="50" r="2" fill="black"/>
+      <circle cx="300" cy="50" r="2" fill="black"/>
+      <circle cx="300" cy="200" r="2" fill="black"/>
+      <circle cx="200" cy="200" r="2" fill="black"/>
+
+      <!--<path d="M 110 10 L 200 50" stroke="blue" stroke-width="3"></path>-->
+      <!--<path d="M 110 110 L 200 200" stroke="blue" stroke-width="3"></path>-->
+
+      <polygon points="110 10 200 50 200 200 110 110" fill="blue"></polygon>
+
+      <rect x="10" y="110" width="100" height="150" fill="green"></rect>
+
+      <rect x="200" y="200" width="100" height="150" fill="yellow"></rect>
+
+    </svg>
+
+  </jnt-stack>
+
+
+
+</jnt-container>
