@@ -1,0 +1,43 @@
+@import "../../assets/styles/variables";
+
+:host {
+  display: flex;
+}
+
+table {
+  box-shadow: $shadow-primary;
+  border-collapse: collapse;
+  min-width: 400px;
+  td, th {
+    vertical-align: middle;
+    min-height: 55px;
+    height: 55px;
+    padding: 0 $gutter-small;
+    &:first-child {
+      padding: 0 $gutter-large;
+    }
+  }
+  thead {
+    background-color: $secondary-background;
+  }
+  tbody {
+    td {
+      background-color: $primary-background;
+      box-sizing: border-box;
+      border-bottom: 1px solid $muted-color;
+      &:not(:first-child) {
+        min-width: 50px;
+        width: 50px;
+        text-align: center;
+      }
+      &:last-child {
+        background-color: rgba($primary-light-color, .5);
+        color: $primary-text-dark-color;
+      }
+    }
+  }
+}
+
+
+
+

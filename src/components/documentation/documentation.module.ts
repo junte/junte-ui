@@ -38,6 +38,7 @@ import { ModalTestComponent } from './modal/modal-test.component';
 import { ModalTestFactoryComponent } from './modal/test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
 import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
+import { ChartTestComponent } from './chart/chart-test.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.compo
     ThemingComponent,
     PopoverTestComponent,
     ModalTestFactoryComponent,
-    ProgressBarTestComponent
+    ProgressBarTestComponent,
+    ChartTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

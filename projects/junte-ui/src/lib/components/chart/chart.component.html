@@ -1,0 +1,48 @@
+<table>
+  <thead>
+  <tr>
+    <th>
+      Project
+    </th>
+    <th colspan="2">
+      Loading
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      Esanum
+    </td>
+    <td>
+      129h
+    </td>
+    <td>
+      30%
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Junte UI
+    </td>
+    <td>
+      200h
+    </td>
+    <td>
+      70%
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<svg width="150" height="165" xmlns="http://www.w3.org/2000/svg">
+
+  <polygon [attr.points]="'0 ' + (heightIndicator) + ' ' + (widthPoligon) + ' 0 ' + (widthPoligon) + ' ' + (value1) + ' 0 ' + (heightIndicator * 2)" fill="#00227B"></polygon>
+  <rect [attr.x]="widthPoligon" y="0" [attr.width]="widthMark" [attr.height]="value1" fill="#6F74DD"></rect>
+
+  <polygon [attr.points]="'0 ' + (heightIndicator * 2) + ' ' + (widthPoligon) + ' ' + value1 + ' ' + widthPoligon + ' ' + (value2 + value1) + ' 0 ' + (heightIndicator * 3)" fill="#DE5B5B"></polygon>
+  <rect [attr.x]="widthPoligon" [attr.y]="value1" [attr.width]="widthMark" [attr.height]="value2" fill="#FF6262"></rect>
+
+</svg>
+
+//viewBox="0 0 100 100" preserveAspectRatio="none"
