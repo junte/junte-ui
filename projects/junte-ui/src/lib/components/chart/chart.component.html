@@ -10,38 +10,33 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
+  <tr *ngFor="let indicator of indicators">
     <td>
-      Esanum
+      {{indicator.title}}
     </td>
     <td>
       129h
     </td>
     <td>
-      30%
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Junte UI
-    </td>
-    <td>
-      200h
-    </td>
-    <td>
-      70%
+      {{indicator.value}}%
     </td>
   </tr>
   </tbody>
 </table>
 
-<svg width="150" height="165" xmlns="http://www.w3.org/2000/svg">
+<svg width="150" height="220" xmlns="http://www.w3.org/2000/svg">
 
-  <polygon [attr.points]="'0 ' + (heightIndicator) + ' ' + (widthPoligon) + ' 0 ' + (widthPoligon) + ' ' + (value1) + ' 0 ' + (heightIndicator * 2)" fill="#00227B"></polygon>
-  <rect [attr.x]="widthPoligon" y="0" [attr.width]="widthMark" [attr.height]="value1" fill="#6F74DD"></rect>
+  <ng-container *ngFor="let indicator of indicators; let i = index; let first = first">
+    <polygon [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : i - 1 | sum: indicators) + ' ' + widthPoligon + ' ' + (i | sum: indicators) + ' 0 ' + heightIndicator * (i + 2)" [attr.fill]="indicator.color"></polygon>
+    <rect [attr.x]="widthPoligon" [attr.y]="first ? 0 : i - 1 | sum: indicators" [attr.width]="widthMark" [attr.height]="indicator.value" [attr.fill]="indicator.color"></rect>
+  </ng-container>
 
-  <polygon [attr.points]="'0 ' + (heightIndicator * 2) + ' ' + (widthPoligon) + ' ' + value1 + ' ' + widthPoligon + ' ' + (value2 + value1) + ' 0 ' + (heightIndicator * 3)" fill="#DE5B5B"></polygon>
-  <rect [attr.x]="widthPoligon" [attr.y]="value1" [attr.width]="widthMark" [attr.height]="value2" fill="#FF6262"></rect>
+
+  <!--<polygon [attr.points]="'0 ' + (heightIndicator) + ' ' + (widthPoligon) + ' 0 ' + (widthPoligon) + ' ' + (value1) + ' 0 ' + (heightIndicator * 2)" fill="#00227B"></polygon>-->
+  <!--<rect [attr.x]="widthPoligon" y="0" [attr.width]="widthMark" [attr.height]="value1" fill="#6F74DD"></rect>-->
+  <!---->
+  <!--<polygon [attr.points]="'0 ' + (heightIndicator * 2) + ' ' + (widthPoligon) + ' ' + value1 + ' ' + widthPoligon + ' ' + (value2 + value1) + ' 0 ' + (heightIndicator * 3)" fill="#DE5B5B"></polygon>-->
+  <!--<rect [attr.x]="widthPoligon" [attr.y]="value1" [attr.width]="widthMark" [attr.height]="value2" fill="#FF6262"></rect>-->
 
 </svg>
 

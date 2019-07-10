@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { UI } from '../../../enum/ui';
 
 @Component({
@@ -11,7 +11,12 @@ export class ChartIndicatorComponent implements OnInit {
 
   ui = UI;
 
-  constructor() { }
+  @Input() value: number;
+  @Input() title: string;
+  @Input() color: string;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
