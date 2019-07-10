@@ -1,6 +1,6 @@
 <ng-container *ngTemplateOutlet="legend"></ng-container>
 <div bar>
   <div progress [style.width.%]="value > 100 ? 100 : value"
-       [style.background-color]="value > 100 ? '#FF6262' : '#3949AB'"></div>
+       [attr.fail]="value > 100"></div>
 </div>
 
