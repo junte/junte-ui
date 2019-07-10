@@ -1,0 +1,29 @@
+@import "../../assets/styles/variables";
+
+$progress-bar-background: $muted-color;
+$progress-bar-height: 3px;
+$progress-bar-inner-background: $primary-color;
+$progress-bar-fail-inner-background: $fail-color;
+$progress-bar-corner: 1px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+[bar] {
+  width: 100%;
+  background-color: $progress-bar-background;
+  min-height: $progress-bar-height;
+  height: $progress-bar-height;
+  border-radius: $progress-bar-corner;
+  box-sizing: border-box;
+  [progress] {
+    background-color: $progress-bar-inner-background;
+    height: 100%;
+    border-radius: $progress-bar-corner;
+    &[fail='true'] {
+      background-color: $progress-bar-fail-inner-background;
+    }
+  }
+}

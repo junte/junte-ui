@@ -1,0 +1,89 @@
+<jnt-container>
+  <h1>Progress bar</h1>
+
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Progress bar should display the percent complete</li>
+    <li>If the percentage exceeds 100, the progress bar should change the background color</li>
+  </ol>
+
+  <hr>
+
+  <h3>Sources</h3>
+
+  <ul>
+    <li>
+      <jnt-link source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/progress-bar"
+                target="_blank">
+        GitLab
+      </jnt-link>
+    </li>
+    <li>
+      <jnt-link source="https://www.figma.com/file/awyH7tq7nZlZATd56otvOzWY/Team-projector?node-id=1893%3A11767"
+                target="_blank">
+        Figma
+      </jnt-link>
+    </li>
+  </ul>
+
+  <hr>
+
+  <jnt-stack>
+
+    <ng-container *ngFor="let value of [0, 20, 50, 130]">
+      <div style="width: 300px">
+        <jnt-progress-bar [value]="value">
+          <ng-template #legend>
+            <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+              <span>{{value}}%</span>
+              <span>{{value > 100 ? '' : (100 - value) + '%'}}</span>
+            </jnt-stack>
+          </ng-template>
+        </jnt-progress-bar>
+      </div>
+    </ng-container>
+
+    <ngx-prism language="html">
+      <pre><![CDATA[
+<jnt-progress-bar [value]="30">
+  <ng-template #legend>
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+      <span>30%</span>
+      <span>70%</span>
+    </jnt-stack>
+  </ng-template>
+</jnt-progress-bar>
+      ]]></pre>
+    </ngx-prism>
+
+    <h3>API</h3>
+    <h4>jnt-progress-bar</h4>
+    <table api>
+      <thead>
+      <tr>
+        <th>Property</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Default</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>[value]</td>
+        <td>-</td>
+        <td>number</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>legend</td>
+        <td>-</td>
+        <td>TemplateRef</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </jnt-stack>
+
+</jnt-container>

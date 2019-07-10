@@ -24,6 +24,7 @@ import { LabelTestComponent } from './label/label-test.component';
 import { LinkTestComponent } from './link/link-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
+import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
@@ -179,6 +180,11 @@ export const routes: Routes = [
         path: 'circle-bar',
         component: CircleBarTestComponent,
         data: {breadcrumb: 'Circle-bar'}
+      },
+      {
+        path: 'progress-bar',
+        component: ProgressBarTestComponent,
+        data: {breadcrumb: 'Progress bar'}
       },
       {
         path: 'theming',
