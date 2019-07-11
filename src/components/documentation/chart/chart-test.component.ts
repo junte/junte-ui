@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-chart-test',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartTestComponent implements OnInit {
 
-  constructor() { }
+  ui = UI;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -1,16 +1,12 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'jnt-chart-indicator',
-  templateUrl: './chart-indicator.encapsulated.html',
+  template: ``,
 })
 export class ChartIndicatorComponent implements OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-chart-indicator-host';
-
-  ui = UI;
-
+  @Input() label: string;
   @Input() value: number;
   @Input() title: string;
   @Input() color: string;

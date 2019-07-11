@@ -1,17 +1,16 @@
 @import "../../assets/styles/variables";
 
 :host {
-  display: flex;
+  display: inline-flex;
+  box-shadow: $shadow-primary;
 }
 
 table {
-  box-shadow: $shadow-primary;
-  border-collapse: collapse;
+  border-spacing: 0;
   min-width: 400px;
   td, th {
+    text-align: left;
     vertical-align: middle;
-    min-height: 55px;
-    height: 55px;
     padding: 0 $gutter-small;
     &:first-child {
       padding: 0 $gutter-large;
@@ -21,23 +20,37 @@ table {
     background-color: $secondary-background;
   }
   tbody {
+    tr {
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        transform: scale(1.01);
+      }
+      &:not(:last-child) {
+        td:not(:last-child) {
+          border-bottom: 1px solid $muted-color;
+        }
+      }
+    }
     td {
       background-color: $primary-background;
       box-sizing: border-box;
-      border-bottom: 1px solid $muted-color;
       &:not(:first-child) {
         min-width: 50px;
         width: 50px;
         text-align: center;
       }
       &:last-child {
-        background-color: rgba($primary-light-color, .5);
-        color: $primary-text-dark-color;
+        color: $gray-900;
       }
     }
   }
 }
 
-
+svg {
+  text {
+    fill: $white-color;
+  }
+}
 
 

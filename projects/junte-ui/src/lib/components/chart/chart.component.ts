@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, HostBinding, OnInit, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, HostBinding, Input, OnInit, QueryList } from '@angular/core';
 import { UI } from '../../enum/ui';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 
@@ -12,13 +12,18 @@ export class ChartComponent implements OnInit, AfterContentInit {
 
   ui = UI;
 
-  value1 = 50;
-  heightIndicator = 55;
-  widthPoligon = 50;
-  widthMark = 100;
+  @HostBinding('attr.heightIndicator')
+  @Input() heightIndicator = 55;
 
-  value2 = 115;
+  @HostBinding('attr.widthPoligon')
+  @Input() widthPoligon = 50;
 
+  @HostBinding('attr.widthMark')
+  @Input() widthMark = 100;
+
+  get heightSvg() {
+    return this.heightIndicator + (this.heightIndicator * this.indicators.length);
+  }
 
   @ContentChildren(ChartIndicatorComponent)
   indicatorsComponents: QueryList<ChartIndicatorComponent>;
