@@ -12,6 +12,8 @@ export class ChartComponent implements OnInit, AfterContentInit {
 
   ui = UI;
 
+  private _widthMark = 100;
+
   @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
 
@@ -19,7 +21,14 @@ export class ChartComponent implements OnInit, AfterContentInit {
   @Input() widthPoligon = 50;
 
   @HostBinding('attr.widthMark')
-  @Input() widthMark = 100;
+  @Input()
+  set widthMark(width: number) {
+    this._widthMark = width < 60 ? 60 : width;
+  }
+
+  get widthMark() {
+    return this._widthMark;
+  }
 
   get heightSvg() {
     return this.heightIndicator + (this.heightIndicator * this.indicators.length);

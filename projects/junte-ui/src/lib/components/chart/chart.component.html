@@ -35,7 +35,7 @@
            [attr.height]="indicator.value | percentToNumber : heightSvg"
            [attr.fill]="indicator.color">
      </rect>
-     <text dominantBaseline="middle"
+     <text *ngIf="(indicator.value | percentToNumber: heightSvg) >= 20" dominantBaseline="middle"
            textAnchor="middle"
            [attr.x]="widthPoligon + widthMark/3"
            [attr.y]="first ? ((indicator.value | percentToNumber : heightSvg)/2) : (((i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + (indicator.value | percentToNumber : heightSvg)/2)">
