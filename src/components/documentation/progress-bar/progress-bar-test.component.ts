@@ -9,6 +9,7 @@ import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 export class ProgressBarTestComponent implements OnInit {
 
   ui = UI;
+  math = Math;
 
   constructor() {
   }
