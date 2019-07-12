@@ -32,6 +32,7 @@ import { PipesTestComponent } from './pipes/pipes-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
 import { DocumentationComponent } from './documentation.component';
 import { NgModule } from '@angular/core';
+import { ChartTestComponent } from './chart/chart-test.component';
 
 
 export const routes: Routes = [
@@ -185,6 +186,11 @@ export const routes: Routes = [
         path: 'progress-bar',
         component: ProgressBarTestComponent,
         data: {breadcrumb: 'Progress bar'}
+      },
+      {
+        path: 'chart',
+        component: ChartTestComponent,
+        data: {breadcrumb: 'Chart'}
       },
       {
         path: 'theming',

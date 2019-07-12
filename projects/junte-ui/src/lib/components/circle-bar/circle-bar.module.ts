@@ -4,7 +4,6 @@ import { CircleBarComponent } from './circle-bar.component';
 import { BarIndicatorComponent } from './indicator/indicator.component';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 import { SumPipe } from './pipes';
-import {SumPipeModule} from '../../pipes/sum-pipe.module';
 import {SanitizePipeModule} from '../../pipes/sanitize.module';
 
 @NgModule({
