@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { SliderTestComponent } from './slider/slider-test.component';
 import { PagerTestComponent } from './pager/pager-test.component';
 import { ButtonsTestComponent } from './buttons/buttons-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
@@ -110,6 +111,11 @@ export const routes: Routes = [
         path: 'select',
         component: SelectTestComponent,
         data: {breadcrumb: 'Select'}
+      },
+      {
+        path: 'slider',
+        component: SliderTestComponent,
+        data: {breadcrumb: 'Slider'}
       },
       {
         path: 'dropdown',

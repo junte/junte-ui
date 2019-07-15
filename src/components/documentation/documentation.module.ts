@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { DocumentationComponent } from 'src/components/documentation/documentation.component';
+import { DocumentationComponent } from './documentation.component';
 
-import { DocumentationRoutingModule } from 'src/components/documentation/documentation-routing.module';
+import { DocumentationRoutingModule } from './documentation-routing.module';
 import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
@@ -39,6 +39,7 @@ import { ModalTestFactoryComponent } from './modal/test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
 import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
 import { ChartTestComponent } from './chart/chart-test.component';
+import { SliderTestComponent } from './slider/slider-test.component';
 
 @NgModule({
   imports: [
@@ -84,7 +85,8 @@ import { ChartTestComponent } from './chart/chart-test.component';
     PopoverTestComponent,
     ModalTestFactoryComponent,
     ProgressBarTestComponent,
-    ChartTestComponent
+    ChartTestComponent,
+    SliderTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

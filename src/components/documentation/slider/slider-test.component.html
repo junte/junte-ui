@@ -1,0 +1,173 @@
+<jnt-container>
+  <h1>Slider</h1>
+  <jnt-block slider [padding]="ui.padding.normal">
+    <jnt-slider-carousel #carousel
+                         [arrows]="true"
+                         [infinite]="true"
+                         [dots]="false"
+                         [autoPlay]="true"
+                         [autoPlaySpeed]="3000">
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="first"></ng-container>
+      </jnt-slider-carousel-item>
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="second"></ng-container>
+      </jnt-slider-carousel-item>
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="third"></ng-container>
+      </jnt-slider-carousel-item>
+    </jnt-slider-carousel>
+
+    <div class="button-group">
+      <jnt-button (click)="carousel.prev()" text="Prev"></jnt-button>
+      <jnt-button (click)="carousel.next()" text="Next"></jnt-button>
+      <jnt-button (click)="carousel.slideTo(0)" text="Set 1"></jnt-button>
+      <jnt-button (click)="carousel.slideTo(1)" text="Set 2"></jnt-button>
+      <jnt-button (click)="carousel.slideTo(2)" text="Set 3"></jnt-button>
+    </div>
+
+  </jnt-block>
+
+  <jnt-block slider [padding]="ui.padding.normal">
+    <jnt-slider-carousel #finiteCarousel
+                         [arrows]="true"
+                         [infinite]="false"
+                         [dots]="true"
+                         [autoPlay]="false">
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="first"></ng-container>
+      </jnt-slider-carousel-item>
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="second"></ng-container>
+      </jnt-slider-carousel-item>
+      <jnt-slider-carousel-item>
+        <ng-container [ngTemplateOutlet]="third"></ng-container>
+      </jnt-slider-carousel-item>
+    </jnt-slider-carousel>
+
+    <div class="button-group">
+      <jnt-button (click)="finiteCarousel.prev()" text="Prev"></jnt-button>
+      <jnt-button (click)="finiteCarousel.next()" text="Next"></jnt-button>
+      <jnt-button (click)="finiteCarousel.slideTo(0)" text="Set 1"></jnt-button>
+      <jnt-button (click)="finiteCarousel.slideTo(1)" text="Set 2"></jnt-button>
+      <jnt-button (click)="finiteCarousel.slideTo(2)" text="Set 3"></jnt-button>
+    </div>
+
+    <ng-template #first>
+      <h1>First slide</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nullam vitae faucibus magna. Quisque eget neque consectetur, facilisis dolor sed, commodo elit.
+        Donec ornare consequat suscipit. Pellentesque consectetur augue vitae orci posuere placerat.
+        Donec lacinia tortor rutrum est hendrerit pharetra. Nam consectetur venenatis nisl lacinia tempus.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Aenean vitae nisl justo. Vestibulum a efficitur nunc. Ut ac sem a arcu hendrerit fermentum.
+        Maecenas aliquam varius ullamcorper. Sed at est risus. Suspendisse non iaculis erat. Nulla facilisi.
+        Praesent rhoncus nunc maximus diam cursus, venenatis dignissim lorem ullamcorper.
+        Vivamus convallis elit molestie dapibus varius.</p>
+    </ng-template>
+    <ng-template #second>
+      <h1>Second slide</h1>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+        explicabo.
+        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+        sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+        sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+        nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit
+        esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+    </ng-template>
+    <ng-template #third>
+      <h1>Third slide</h1>
+      <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+        was born and I will give you a complete account of the system, and expound the actual teachings
+        of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes,
+        or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure
+        rationally encounter consequences that are extremely painful. Nor again is there anyone who loves
+        or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances
+        occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever
+        undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find
+        fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids
+        a pain that produces no resultant pleasure?</p>
+    </ng-template>
+  </jnt-block>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+<jnt-slider-carousel #carousel
+                     [arrows]="true"
+                     [infinite]="true"
+                     [dots]="false"
+                     [autoPlay]="true"
+                     [autoPlaySpeed]="3000">
+  <jnt-slider-carousel-item>
+    <ng-container [ngTemplateOutlet]="first"></ng-container>
+  </jnt-slider-carousel-item>
+
+  <jnt-slider-carousel-item>
+    <ng-container [ngTemplateOutlet]="second"></ng-container>
+  </jnt-slider-carousel-item>
+
+  <jnt-slider-carousel-item>
+    <ng-container [ngTemplateOutlet]="third"></ng-container>
+  </jnt-slider-carousel-item>
+</jnt-slider-carousel>
+
+<ng-template #first>
+  <h1>First slide</h1>
+</ng-template>
+<ng-template #second>
+  <h1>Second slide</h1>
+</ng-template>
+<ng-template #third>
+  <h1>Third slide</h1>
+</ng-template>
+  ]]></pre>
+  </ngx-prism>
+
+  <h3>API</h3>
+  <h4>jnt-slider-carousel</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[arrows]</td>
+      <td>-</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>[infinite]</td>
+      <td>-</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>[dots]</td>
+      <td>-</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>[autoPlay]</td>
+      <td>-</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>[autoPlaySpeed]</td>
+      <td>-</td>
+      <td>number</td>
+      <td>500</td>
+    </tr>
+    </tbody>
+  </table>
+</jnt-container>

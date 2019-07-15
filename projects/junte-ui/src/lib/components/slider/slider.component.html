@@ -1,0 +1,12 @@
+<div (mouseenter)="play(false)" (mouseleave)="play()">
+    <ng-content></ng-content>
+    <jnt-slider-carousel-dots *ngIf="isDotsVisible"
+                       [dots-count]="items.length"
+                       [active-dot]="current"
+                       (on-click)="slideTo($event)">
+    </jnt-slider-carousel-dots>
+    <ng-container *ngIf="isArrowsVisible">
+        <jnt-slider-carousel-arrow dir="left" (on-click)="prev()" [disabled]="false"></jnt-slider-carousel-arrow>
+        <jnt-slider-carousel-arrow dir="right" (on-click)="next()" [disabled]="false"></jnt-slider-carousel-arrow>
+    </ng-container>
+</div>
