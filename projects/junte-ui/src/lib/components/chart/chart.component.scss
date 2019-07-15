@@ -23,7 +23,7 @@ table {
     tr {
       cursor: pointer;
       position: relative;
-      &:hover {
+      &:hover, &[selected='true'] {
         transform: scale(1.01);
       }
       &:not(:last-child) {
@@ -52,5 +52,3 @@ svg {
     fill: $white-color;
   }
 }
-
-
