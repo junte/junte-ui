@@ -1,0 +1,43 @@
+:host {
+  position: absolute;
+  display: inline-block;
+
+  .left {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .right {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .middle {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  background: black;
+  opacity: .6;
+  margin: 0 4px;
+  display: inline-block;
+
+  &:hover {
+    opacity: .8;
+    cursor: pointer;
+  }
+
+  .active {
+    opacity: .8;
+  }
+}
