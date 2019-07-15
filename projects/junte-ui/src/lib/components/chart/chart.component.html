@@ -10,7 +10,10 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let indicator of indicators" [style.height.px]="heightIndicator" [style.min-height.px]="heightIndicator">
+  <tr *ngFor="let indicator of indicators" (click)="selected = indicator.data"
+      [attr.selected]="selected === indicator.data"
+      [style.height.px]="heightIndicator"
+      [style.min-height.px]="heightIndicator">
     <td>
       {{indicator.title}}
     </td>

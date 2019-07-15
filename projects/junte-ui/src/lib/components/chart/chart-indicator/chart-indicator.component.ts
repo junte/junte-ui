@@ -10,6 +10,7 @@ export class ChartIndicatorComponent implements OnInit {
   @Input() value: number;
   @Input() title: string;
   @Input() color: string;
+  @Input() data: any;
 
   constructor() {
   }
