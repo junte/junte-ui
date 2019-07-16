@@ -30,7 +30,11 @@
         </jnt-stack>
         <jnt-form [formGroup]="form">
           <jnt-chart formControlName="selected">
-            <jnt-chart-indicator [data]="{project: 9}" title="Esanum" [value]="2" label="129h" [color]="ui.colors.purple"></jnt-chart-indicator>
+            <jnt-chart-indicator [data]="{project: 9}"
+                                 title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate enim, ipsum iste itaque iusto laboriosam maiores necessitatibus perspiciatis porro suscipit!"
+                                 [value]="2" label="Lorem ipsum dolor sit amet."
+                                 [color]="ui.colors.purple">
+            </jnt-chart-indicator>
             <jnt-chart-indicator [data]="{project: 10}" title="Esanum" [value]="0" label="129h" [color]="ui.colors.yellow"></jnt-chart-indicator>
             <ng-container *ngFor="let chart of charts; let i = index">
               <jnt-chart-indicator
@@ -50,7 +54,6 @@
         <jnt-button text="Remove Chart" [scheme]="ui.schemes.fail" (click)="removeChart()"></jnt-button>
       </jnt-stack>
     </jnt-stack>
-
 
     <ngx-prism language="html">
 <pre><![CDATA[
