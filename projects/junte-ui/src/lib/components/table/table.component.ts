@@ -1,6 +1,6 @@
 import { Component, ContentChild, ContentChildren, HostBinding, Input, OnDestroy, OnInit, QueryList, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscriptions } from 'projects/junte-ui/src/lib/utils/subscriptions';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
@@ -16,8 +16,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   ui = UI;
 
-  private subscriptions = new Subscription();
   private _count: number;
+  private subscriptions = new Subscriptions();
 
   progress = {loading: false};
 
@@ -92,12 +92,12 @@ export class TableComponent implements OnInit, OnDestroy {
 
   load() {
     this.progress.loading = true;
-    this.fetcher(this.filter)
+    this.subscriptions.push('rows', this.fetcher(this.filter)
       .pipe(finalize(() => this.progress.loading = false))
       .subscribe(resp => {
         this.source = resp.results;
         this.count = resp.count;
-      });
+      }));
   }
 
   ngOnDestroy() {
