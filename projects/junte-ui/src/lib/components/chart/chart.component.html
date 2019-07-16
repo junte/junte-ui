@@ -20,7 +20,7 @@
     <td>
       {{indicator.label}}
     </td>
-    <td [style.background-color]="indicator.color | lightenDarkenColor : -30">
+    <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
       {{indicator.value}}%
     </td>
   </tr>
@@ -41,7 +41,7 @@
      <text *ngIf="(indicator.value | percentToNumber: heightSvg) >= 20" dominantBaseline="middle"
            textAnchor="middle"
            [attr.x]="widthPoligon + widthMark/3"
-           [attr.y]="first ? ((indicator.value | percentToNumber : heightSvg)/2) : (((i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + (indicator.value | percentToNumber : heightSvg)/2)">
+           [attr.y]="first ? ((indicator.value | percentToNumber : heightSvg)/2 + 5) : (((i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + (indicator.value | percentToNumber : heightSvg)/2 + 5)">
        {{indicator.label}}
      </text>
   </ng-container>
