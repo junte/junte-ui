@@ -1,6 +1,6 @@
 import { Component, ContentChild, ContentChildren, HostBinding, Input, OnDestroy, OnInit, QueryList, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subscriptions } from 'projects/junte-ui/src/lib/utils/subscriptions';
+import { Subscriptions } from '../../utils/subscriptions';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';

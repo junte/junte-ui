@@ -9,39 +9,33 @@
 
   <hr>
 
-  <h3>Sources</h3>
-
-  <ul>
-    <li>
-      <jnt-link source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/circle-bar"
-                target="_blank">
-        GitLab
-      </jnt-link>
-    </li>
-    <li>
-      <jnt-link source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554"
-                target="_blank">
-        Figma
-      </jnt-link>
-    </li>
-  </ul>
-
-  <hr>
-
   <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-circle-bar>
+    <jnt-circle-bar *ngFor="let size of ['tiny', 'small', 'normal', 'big']"
+                    [attr.bar-size]="size">
       <ng-template #content>Content</ng-template>
       <jnt-bar-indicator-group>
-        <jnt-bar-indicator [value]="70" title="Beer" [color]="ui.colors.yellow"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="10" title="Beer" [color]="ui.colors.purple"></jnt-bar-indicator>
         <jnt-bar-indicator [value]="20" title="Vodka" [color]="ui.colors.red"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="30" title="Absent" [color]="ui.colors.green"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="value" title="Absent" [color]="ui.colors.green"></jnt-bar-indicator>
       </jnt-bar-indicator-group>
       <jnt-bar-indicator-group>
-        <jnt-bar-indicator [value]="10" title="Beer" [color]="ui.colors.yellow"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="40" title="Vodka" [color]="ui.colors.red"></jnt-bar-indicator>
-        <jnt-bar-indicator [value]="50" title="Absent" [color]="ui.colors.green"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="70" title="Vine" [color]="ui.colors.black"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="20" title="Water" [color]="ui.colors.orange"></jnt-bar-indicator>
+      </jnt-bar-indicator-group>
+      <jnt-bar-indicator-group>
+        <jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="20" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.colors.red"></jnt-bar-indicator>
+        <jnt-bar-indicator [value]="10" title="20 percents" [color]="ui.colors.yellow"></jnt-bar-indicator>
       </jnt-bar-indicator-group>
     </jnt-circle-bar>
+  </jnt-stack>
+
+  <jnt-stack [type]="ui.stack.type.horizontal">
+    <jnt-button [icon]="ui.icons.arrowLeft"
+                (click)="value = value + 5"></jnt-button>
+    <jnt-button [icon]="ui.icons.arrowRight"
+                (click)="value = value - 5"></jnt-button>
   </jnt-stack>
 
   <ngx-prism language="html">
