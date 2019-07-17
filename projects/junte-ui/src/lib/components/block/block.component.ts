@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { Paddings, Sizes, TypeBlock, Width } from '../../enum/ui';
 
 @Component({
@@ -9,7 +9,12 @@ export class BlockComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
-  @HostBinding('attr.loading')
+  @Input()
+  title: string;
+
+  @ContentChild('footer')
+  footer: TemplateRef<any>;
+
   @Input()
   loading = false;
 
@@ -17,7 +22,6 @@ export class BlockComponent implements OnInit {
   @Input()
   padding: Paddings;
 
-  @HostBinding('attr.error')
   @Input()
   error = false;
 
