@@ -1,16 +1,21 @@
 @import "../../assets/styles/variables";
 
 $block-background: $primary-background !default;
-$block-shadow: $shadow-primary !default;
+$block-shadow: $shadow-normal !default;
 $block-corner: $corner-normal !default;
 $block-border-width: 1px !default;
 $block-border-color: $gray-800 !default;
-$block-loading-background: rgba(0, 0, 0, .75) !default;
+$block-loading-background: rgba($gray-dark, 0.5) !default;
 $block-loading-spinner-color: $white-color !default;
 
-$block-error-background: rgba($gray-900, 0.8) !default;
+$block-error-background: rgba($gray-dark, 0.5) !default;
 $block-error-icon-size: 40px !default;
 $block-error-icon-color: $white-color !default;
+
+$block-title-color: $primary-color !default;
+$block-title-padding: $gutter-normal !default;
+$block-title-font-weight: $font-weight-bold !default;
+$block-title-border-bottom-color: $muted-color !default;
 
 $padding-tiny-name: 'tiny';
 $padding-small-name: 'small';
@@ -41,7 +46,9 @@ $block-padding: (
 ) !default;
 
 @mixin padding($size) {
-  padding: #{map-get($size, padding)};
+  [body] {
+    padding: #{map-get($size, padding)};
+  }
 }
 
 :host {
@@ -64,31 +71,41 @@ $block-padding: (
       @include padding($map);
     }
   }
+}
 
-  [loading], [error] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: $block-corner;
-  }
+[title] {
+  padding: $block-title-padding;
+  text-align: center;
+  color: $block-title-color;
+  border-bottom: 1px solid $block-title-border-bottom-color;
+  font-weight: $block-title-font-weight;
+}
 
-  [loading] {
-    background-color: $block-loading-background;
-    [spinner] {
-      border-color: $block-loading-spinner-color;
-    }
-  }
+[loading], [error] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $block-corner;
+}
 
-  [error] {
-    background-color: $block-error-background;
-    [icon] {
-      font-size: $block-error-icon-size;
-      color: $block-error-icon-color;
-    }
+[loading] {
+  background-color: $block-loading-background;
+  [spinner] {
+    border-color: $block-loading-spinner-color;
   }
 }
+
+[error] {
+  background-color: $block-error-background;
+  [icon] {
+    font-size: $block-error-icon-size;
+    color: $block-error-icon-color;
+  }
+}
+
+

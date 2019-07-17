@@ -88,7 +88,6 @@
     <jnt-block [error]="true">
       <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
     </jnt-block>
-  </jnt-stack>
 
     <ngx-prism language="html">
     <pre><![CDATA[
@@ -97,6 +96,34 @@
   </jnt-block>
     ]]></pre>
     </ngx-prism>
+
+  <h2>Block with title & footer</h2>
+  <jnt-block title="Block title">
+    <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+    <ng-template #footer>
+      <div footer>
+        <div>Title footer</div>
+        <div>Content footer</div>
+      </div>
+    </ng-template>
+  </jnt-block>
+
+    <ngx-prism language="html">
+    <pre><![CDATA[
+<jnt-block title="Block title">
+  <div>Content</div>
+  <ng-template #footer>
+    <div footer>
+      <div>Title footer</div>
+      <div>Content footer</div>
+    </div>
+  </ng-template>
+</jnt-block>
+    ]]></pre>
+    </ngx-prism>
+
+  </jnt-stack>
+
 
   <h3>API</h3>
   <h4>jnt-block</h4>
@@ -139,6 +166,18 @@
       <td>-</td>
       <td>simple | bordered</td>
       <td>simple</td>
+    </tr>
+    <tr>
+      <td>[title]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[footer]</td>
+      <td>-</td>
+      <td>TemplateRef</td>
+      <td>-</td>
     </tr>
     </tbody>
   </table>
