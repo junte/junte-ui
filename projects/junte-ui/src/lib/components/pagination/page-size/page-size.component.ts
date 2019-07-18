@@ -14,15 +14,15 @@ export class PageSizeComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-page-size-host';
 
-  private _pageSize = 10;
+  private _first = 10;
 
-  set pageSize(size: number) {
-    this._pageSize = size;
+  set first(size: number) {
+    this._first = size;
     this.onChange(size);
   }
 
-  get pageSize() {
-    return this._pageSize;
+  get first() {
+    return this._first;
   }
 
   constructor() {
@@ -35,7 +35,7 @@ export class PageSizeComponent {
   }
 
   writeValue(value: number): void {
-    this.pageSize = value;
+    this.first = value;
   }
 
   registerOnChange(fn) {

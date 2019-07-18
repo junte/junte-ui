@@ -50,8 +50,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({
-    page: DEFAULT_PAGE,
-    pageSize: DEFAULT_PAGE_SIZE
+    offset: DEFAULT_PAGE,
+    first: DEFAULT_PAGE_SIZE
   });
 
   @Input()
@@ -66,7 +66,7 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   get pagesCount() {
-    return Math.ceil(this.count / this.filterForm.get('pageSize').value);
+    return Math.ceil(this.count / this.filterForm.get('first').value);
   }
 
   constructor(private formBuilder: FormBuilder) {
@@ -79,8 +79,8 @@ export class TableComponent implements OnInit, OnDestroy {
       sort: this.sort,
       order: this.order,
       query: [''],
-      page: [DEFAULT_PAGE],
-      pageSize: [DEFAULT_PAGE_SIZE]
+      offset: [DEFAULT_PAGE],
+      first: [DEFAULT_PAGE_SIZE]
     });
 
     this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
