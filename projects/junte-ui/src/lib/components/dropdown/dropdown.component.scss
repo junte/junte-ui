@@ -1,6 +1,24 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/common";
 
+$dropdown-background: $primary-background !default;
+$dropdown-padding-x: $gutter-big !default;
+$dropdown-padding-y: $gutter-big !default;
+$dropdown-shadow: $shadow-light !default;
+$dropdown-corner: $corner-small !default;
+$dropdown-spacing: 4px !default;
+
+$menu-item-color-in-dropdown: $primary-text-color !default;
+$menu-item-hover-background-color-in-dropdown: $highlight-background !default;
+$menu-item-padding-x-in-dropdown: $gutter-small !default;
+$menu-item-padding-y-in-dropdown: $gutter-big !default;
+
+@mixin opened() {
+  jnt-menu[host=#{$jnt-menu-host}] {
+    transform: scaleY(1);
+  }
+}
+
 :host {
   display: inline-block;
   position: relative;
@@ -8,6 +26,35 @@
     @include opened();
   }
 
+  jnt-menu:deep-host=#{$jnt-menu-host} {
+  background-color: $dropdown-background;
+  min-width: 100%;
+  position: absolute;
+  box-shadow: $dropdown-shadow;
+  border-radius: $dropdown-corner;
+  white-space: nowrap;
+  transform: scaleY(0);
+  transition: all .2s ease-in-out;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  z-index: 1;
+  jnt-link:child-host=#{$jnt-link-host} {
+  width: 100%;
+  a {
+    border: 0;
+    border-left: 4px solid transparent;
+    padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
+    position: relative;
+    &:hover {
+      background-color: $menu-item-hover-background-color-in-dropdown;
+      border-left-color: $primary-color;
+    }
+    span, [icon] {
+      color: $menu-item-color-in-dropdown;
+    }
+  }
+}
+}
 }
 
 [overlay] {
@@ -18,5 +65,6 @@
   left: 0;
   z-index: 1;
 }
+
 
 

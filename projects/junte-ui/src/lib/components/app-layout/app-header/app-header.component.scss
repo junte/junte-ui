@@ -8,6 +8,13 @@ $app-header-z-index: 3 !default;
 $app-header-color: $white-color !default;
 $app-header-logo-margin-right: $gutter-huge !default;
 
+$menu-item-color-in-header: $white-color !default;
+$menu-item-active-border-color-in-header: $white-color !default;
+$menu-item-active-color-in-header: $white-color !default;
+$menu-item-padding-x-in-header: $gutter-small !default;
+$menu-item-padding-y-in-header: $gutter-small !default;
+$menu-item-font-size-in-header: .875rem !default;
+
 :host {
   display: flex;
   align-items: center;
@@ -24,9 +31,26 @@ $app-header-logo-margin-right: $gutter-huge !default;
   left: 0;
   right: 0;
   z-index: $app-header-z-index;
+
+  jnt-menu:deep-host=#{$jnt-menu-host} {
+  jnt-link:child-host=#{$jnt-link-host} {
+  padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
+  a {
+    span {
+      color: $menu-item-color-in-header;
+      font-size: $menu-item-font-size-in-header;
+    }
+    &[active='true'] {
+      color: $menu-item-active-color-in-header;
+      border-bottom-color: $menu-item-active-border-color-in-header;
+    }
+  }
+}
+}
 }
 
 [logo] {
   margin-right: $app-header-logo-margin-right;
 }
+
 
