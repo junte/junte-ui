@@ -10,8 +10,8 @@ export interface SearchFilter {
   sort?: string;
   order?: Order;
   query?: string;
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  first?: number;
 }
 
 export class DefaultSearchFilter implements SearchFilter {
@@ -19,8 +19,8 @@ export class DefaultSearchFilter implements SearchFilter {
   sort?: string;
   order?: Order = Order.asc;
   query?: string;
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  first?: number;
 
   constructor(defs: DefaultSearchFilter = null) {
     if (!!defs) {
