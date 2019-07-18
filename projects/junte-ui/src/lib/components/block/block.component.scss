@@ -74,11 +74,14 @@ $block-padding: (
 }
 
 [title] {
-  padding: $block-title-padding;
+  padding: 0 $block-title-padding;
   text-align: center;
   color: $block-title-color;
-  border-bottom: 1px solid $block-title-border-bottom-color;
   font-weight: $block-title-font-weight;
+  > div {
+    padding: $block-title-padding 0;
+    border-bottom: 1px solid $block-title-border-bottom-color;
+  }
 }
 
 [loading], [error] {
