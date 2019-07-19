@@ -1,12 +1,12 @@
 <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [justify]="ui.flex.justify.center">
-  <div [attr.disabled]="selectedPage === 1"
-      (click)="setPage(1)">
+  <div [attr.disabled]="selectedPage === 0"
+      (click)="setPage(0)">
     <a [attr.data-href]="'?page=' + 1"
        title="First">
       <jnt-icon [icon]="ui.icons.arrowFirst" icon></jnt-icon>
     </a>
   </div>
-  <div [attr.disabled]="selectedPage === 1"
+  <div [attr.disabled]="selectedPage === 0"
       (click)="setPage(selectedPage - 1)">
     <a title="Previous"
        data-page="1">
@@ -16,7 +16,7 @@
   <div page *ngFor="let page of pages"
       (click)="setPage(page)"
       [attr.active]="page === selectedPage">
-    <a>{{page}}</a>
+    <a>{{page + 1}}</a>
   </div>
 
   <div [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)">
