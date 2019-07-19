@@ -34,7 +34,7 @@ export class FormComponent implements AfterContentInit {
   title: string | TemplateRef<void>;
 
   @Input()
-  footer: TemplateRef<void>;
+  footerForm: TemplateRef<void>;
 
   @Input()
   layout: FormLayout = FormLayout.vertical;
