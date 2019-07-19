@@ -10,7 +10,7 @@ export class BadgeComponent implements OnInit {
   @HostBinding('attr.host') readonly host = 'jnt-badge-host';
 
   @Input()
-  count: number;
+  count: string;
 
   @HostBinding('attr.scheme')
   @Input()
