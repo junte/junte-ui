@@ -12,8 +12,8 @@ export class BlockComponent implements OnInit {
   @Input()
   title: string;
 
-  @ContentChild('footer')
-  footer: TemplateRef<any>;
+  @ContentChild('footerBlock')
+  footerBlock: TemplateRef<any>;
 
   @Input()
   loading = false;

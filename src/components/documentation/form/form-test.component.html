@@ -30,46 +30,44 @@
 
   <hr>
 
-  <jnt-stack>
-    <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
-      <h3>{{layout | titlecase}}</h3>
-      <jnt-block [padding]="ui.padding.normal">
-        <jnt-form [layout]="layout" [title]="title" [footer]="footer">
-          <ng-template #title>
-            <h3>Personal details</h3>
-          </ng-template>
+  <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
+    <h3>{{layout | titlecase}}</h3>
+    <jnt-block [padding]="ui.padding.normal">
+      <jnt-form [layout]="layout" [title]="title" [footerForm]="footerForm">
+        <ng-template #title>
+          <h3>Personal details</h3>
+        </ng-template>
 
-          <jnt-form-item>
-            <jnt-form-label for="name">Username</jnt-form-label>
-            <jnt-form-control>
-              <jnt-input placeholder="Name"></jnt-input>
-              <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
-                tenetur? Earum eius ex illo libero nisi nulla, odio?
-              </jnt-form-message>
-            </jnt-form-control>
-          </jnt-form-item>
+        <jnt-form-item>
+          <jnt-form-label for="name">Username</jnt-form-label>
+          <jnt-form-control>
+            <jnt-input placeholder="Name"></jnt-input>
+            <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
+              tenetur? Earum eius ex illo libero nisi nulla, odio?
+            </jnt-form-message>
+          </jnt-form-control>
+        </jnt-form-item>
 
-          <jnt-form-item>
-            <jnt-form-label>Fullname</jnt-form-label>
-            <jnt-form-control>
-              <jnt-input placeholder="Full name"></jnt-input>
-            </jnt-form-control>
-          </jnt-form-item>
+        <jnt-form-item>
+          <jnt-form-label>Fullname</jnt-form-label>
+          <jnt-form-control>
+            <jnt-input placeholder="Full name"></jnt-input>
+          </jnt-form-control>
+        </jnt-form-item>
 
 
-          <ng-template #footer>
-            <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
-              <jnt-button text="Save changes"></jnt-button>
-              <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
-            </jnt-stack>
-          </ng-template>
-        </jnt-form>
-      </jnt-block>
-    </ng-container>
-  </jnt-stack>
+        <ng-template #footerForm>
+          <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+            <jnt-button text="Save changes"></jnt-button>
+            <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+          </jnt-stack>
+        </ng-template>
+      </jnt-form>
+    </jnt-block>
+  </ng-container>
 
   <h1>Reactive Forms Validation</h1>
-  <jnt-form [formGroup]="form" jntValidation (submitted)="submitForm()" [footer]="footer">
+  <jnt-form [formGroup]="form" jntValidation (submitted)="submitForm()" [footerForm]="footerForm">
     <ng-template #title>
       <h3>Personal details</h3>
     </ng-template>
@@ -100,7 +98,7 @@
       </jnt-form-control>
     </jnt-form-item>
 
-    <ng-template #footer>
+    <ng-template #footerForm>
       <jnt-stack [type]="ui.stack.type.horizontal">
         <jnt-form-control>
           <jnt-button text="Save changes" [type]="ui.form.button.type.submit"></jnt-button>
@@ -114,7 +112,7 @@
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-form [layout]="ui.form.layout.horizontal" [title]="Title" [footer]="footer">
+<jnt-form [layout]="ui.form.layout.horizontal" [title]="Title">
   <jnt-form-item>
     <jnt-form-label for="name">Username</jnt-form-label>
     <jnt-form-control>
@@ -122,7 +120,7 @@
       <jnt-form-message>Message</jnt-form-message>
     </jnt-form-control>
   </jnt-form-item>
-  <ng-template #footer>
+  <ng-template #footerForm>
     <jnt-stack [type]="ui.stack.type.horizontal">
       <jnt-button text="Save changes"></jnt-button>
       <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
@@ -157,7 +155,7 @@
       <td>-</td>
     </tr>
     <tr>
-      <td>[footer]</td>
+      <td>[footerForm]</td>
       <td>-</td>
       <td>TemplateRef</td>
       <td>-</td>
