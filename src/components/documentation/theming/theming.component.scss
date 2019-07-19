@@ -15,7 +15,12 @@
   }
 }
 
+[color] {
+  margin-bottom: $gutter-normal;
+}
+
 table {
+  border-spacing: 0;
   thead {
     background-color: $secondary-background;
     text-align: center;
@@ -25,14 +30,16 @@ table {
   }
   tbody {
     td {
-      padding: $gutter-small;
+      padding: $gutter-tiny;
+      [label] ::ng-deep {
+        width: 100%;
+      }
+      [block] {
+        padding: $gutter-small;
+        min-height: 30px;
+      }
     }
   }
-}
-
-[label] {
-  margin-bottom: $gutter-normal;
-  color: $primary-text-color;
 }
 
 [corner-small] {
@@ -48,12 +55,11 @@ table {
 }
 
 [shadow] {
-  width: 100px;
-  height: 100px;
   background-color: $primary-background;
   padding: $gutter-small;
   border-radius: $corner-normal;
   box-sizing: border-box;
+  min-height: 30px;
   &[primary] {
     box-shadow: $shadow-primary;
   }
