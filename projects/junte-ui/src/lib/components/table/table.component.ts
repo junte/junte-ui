@@ -50,7 +50,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({
-    offset: DEFAULT_PAGE,
+    offset: DEFAULT_PAGE * DEFAULT_PAGE_SIZE,
     first: DEFAULT_PAGE_SIZE
   });
 
@@ -69,6 +69,10 @@ export class TableComponent implements OnInit, OnDestroy {
     return Math.ceil(this.count / this.filterForm.get('first').value);
   }
 
+  get first() {
+    return this.filterForm.get('first').value;
+  }
+
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -79,7 +83,7 @@ export class TableComponent implements OnInit, OnDestroy {
       sort: this.sort,
       order: this.order,
       query: [''],
-      offset: [DEFAULT_PAGE],
+      offset: [DEFAULT_PAGE * DEFAULT_PAGE_SIZE],
       first: [DEFAULT_PAGE_SIZE]
     });
 

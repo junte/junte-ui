@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SelectMode, TableComponent, UI } from 'junte-ui';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, SelectMode, TableComponent, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -25,6 +25,8 @@ export class TableTestComponent implements OnInit {
     {value: 5, label: 'FC Liverpool'},
     {value: 6, label: 'FC Barcelona'}
   ];
+
+  filter: DefaultSearchFilter = new DefaultSearchFilter({offset: DEFAULT_PAGE * DEFAULT_PAGE_SIZE, first: DEFAULT_PAGE_SIZE});
 
   @ViewChild('table')
   table: TableComponent;
