@@ -1,9 +1,19 @@
-import { Component, ContentChild, ContentChildren, HostBinding, Input, OnDestroy, OnInit, QueryList, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ContentChildren,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscriptions } from '../../utils/subscriptions';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
+import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
 import { TableColumnComponent } from './column/table-column.component';
 
 const FILTER_DELAY = 300;
@@ -50,7 +60,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({
-    offset: DEFAULT_PAGE * DEFAULT_PAGE_SIZE,
+    offset: 0,
     first: DEFAULT_PAGE_SIZE
   });
 
@@ -69,10 +79,6 @@ export class TableComponent implements OnInit, OnDestroy {
     return Math.ceil(this.count / this.filterForm.get('first').value);
   }
 
-  get first() {
-    return this.filterForm.get('first').value;
-  }
-
   constructor(private formBuilder: FormBuilder) {
   }
 
@@ -83,12 +89,13 @@ export class TableComponent implements OnInit, OnDestroy {
       sort: this.sort,
       order: this.order,
       query: [''],
-      offset: [DEFAULT_PAGE * DEFAULT_PAGE_SIZE],
+      offset: [0],
       first: [DEFAULT_PAGE_SIZE]
     });
 
     this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
-      .subscribe(filter => {
+      .subscribe((filter: DefaultSearchFilter) => {
+        filter.offset = filter.offset * filter.first;
         Object.assign(this.filter, filter);
         this.load();
       });
