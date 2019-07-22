@@ -14,7 +14,7 @@ $menu-item-padding-x-in-dropdown: $gutter-small !default;
 $menu-item-padding-y-in-dropdown: $gutter-big !default;
 
 @mixin opened() {
-  jnt-menu[host=#{$jnt-menu-host}] {
+  jnt-menu:deep-host=#{$jnt-menu-host} {
     transform: scaleY(1);
   }
 }
