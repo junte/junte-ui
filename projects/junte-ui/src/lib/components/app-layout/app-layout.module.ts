@@ -12,12 +12,14 @@ import { IconModule } from '../icon/icon.module';
 import { StackModule } from '../stack/stack.module';
 import { ActionComponent } from './app-header/action/action.component';
 import { ActionsComponent } from './app-header/actions/actions.component';
+import { ButtonModule } from '../button/button.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IconModule,
-    StackModule
+    StackModule,
+    ButtonModule
   ],
   declarations: [
     ActionComponent,

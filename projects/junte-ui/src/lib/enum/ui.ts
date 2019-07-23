@@ -77,7 +77,9 @@ export enum Icons {
   playButton = 'play-button',
   pause = 'pause',
   stop = 'stop',
-  share = 'share'
+  share = 'share',
+  chevronDoubleLeft = 'chevron-double-left',
+  chevronDoubleRight = 'chevron-double-right'
 }
 
 export enum Colors {

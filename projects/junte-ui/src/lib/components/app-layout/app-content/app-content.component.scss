@@ -13,14 +13,18 @@ $app-content-padding-top: $app-header-height !default;
   position: relative;
   z-index: 1;
   padding-top: $app-content-padding-top;
-  &[with-aside="true"] {
-    padding-left: $app-content-padding-left;
+  transition: all .3s;
+
+  &[with-aside='full'] {
+    padding-left: $app-aside-width;
+  }
+
+  &[with-aside='collapsed'] {
+    padding-left: $app-aside-collapsed-width;
   }
 
   @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
-    &[with-aside="true"] {
-      padding-left: 0;
-    }
+      padding-left: 0!important;
   }
 
   &[with-sub-header="false"] {
