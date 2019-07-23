@@ -5,11 +5,6 @@
 }
 
 :host-context([theme='dark']) {
-  table {
-    thead {
-      background-color: $gray-800;
-    }
-  }
   [shadow] {
     background-color: #1A1A1A;
   }
@@ -22,7 +17,8 @@
 table {
   border-spacing: 0;
   thead {
-    background-color: $secondary-background;
+    background-color: $primary-color;
+    color: $white-color;
     text-align: center;
     th {
       padding: $gutter-small $gutter-normal;
@@ -37,6 +33,7 @@ table {
       [block] {
         padding: $gutter-small;
         min-height: 30px;
+        width: 100%;
       }
     }
   }

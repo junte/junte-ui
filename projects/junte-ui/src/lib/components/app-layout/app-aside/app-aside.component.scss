@@ -6,13 +6,14 @@ $app-aside-width: 200px !default;
 $app-aside-shadow: $shadow-primary-light !default;
 $app-aside-z-index: 2 !default;
 
+$menu-item-height-in-aside: 50px !default;
 $menu-item-color-in-aside: $primary-text-light-color !default;
 $menu-item-font-size-in-aside: .875rem !default;
+$menu-item-icon-size-in-aside: 20px !default;
 $menu-item-active-color-in-aside: $primary-color !default;
 $menu-item-active-border-left-width-in-aside: 4px !default;
 $menu-item-active-border-left-color-in-aside: $primary-color !default;
 $menu-item-active-background-color-in-aside: $secondary-background !default;
-$menu-item-padding-x-in-aside: $gutter-small !default;
 $menu-item-padding-y-in-aside: $gutter-normal !default;
 $menu-item-hover-background-color-in-aside: $highlight-background !default;
 $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
@@ -26,23 +27,34 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   bottom: 0;
   z-index: $app-aside-z-index;
 
+
   jnt-menu:deep-host=#{$jnt-menu-host} {
   jnt-link:child-host=#{$jnt-link-host} {
   width: 100%;
   a {
     position: relative;
     width: 100%;
-    padding: $menu-item-padding-x-in-aside $menu-item-padding-y-in-aside;
+    padding: 0 $menu-item-padding-y-in-aside;
     border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+    height: $menu-item-height-in-aside;
+    line-height: $menu-item-height-in-aside;
     &:hover {
       background-color: $menu-item-hover-background-color-in-aside;
       span, [icon] {
         color: $menu-item-hover-color-in-aside;
+        opacity: 1;
+        transition: all .4s;
       }
+    }
+    span {
+      white-space: nowrap;
     }
     span,[icon] {
       color: $menu-item-color-in-aside;
       font-size: $menu-item-font-size-in-aside;
+    }
+    [icon] {
+      font-size: $menu-item-icon-size-in-aside;
     }
     &[active='true'] {
       border-bottom: 0;
@@ -56,6 +68,32 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   }
 }
 }
+
+  [button]:child-host=#{$jnt-button-host} {
+      border-bottom: 1px solid $muted-color;
+      button {
+        color: $menu-item-color-in-aside;
+        font-size: $menu-item-font-size-in-aside;
+        padding: 0 $menu-item-padding-y-in-aside;
+        justify-content: flex-start;
+        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+        border-radius: 0;
+        &:hover, &:focus {
+          color: $menu-item-color-in-aside;
+          background-color: $secondary-background;
+        }
+        span {
+          text-overflow: clip;
+          opacity: 1;
+          transition: all .4s;
+        }
+        jnt-icon {
+          font-size: $menu-item-icon-size-in-aside;
+        }
+      }
+  }
+
+
 
   @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
     &[opened="true"] {
@@ -78,6 +116,12 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
       [drawer] {
         transform: translate3d(-100%, 0, 0);
       }
+    }
+  }
+
+  @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+    [button] {
+      display: none;
     }
   }
 }
@@ -103,46 +147,28 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   z-index: 2;
   height: 100%;
   width: $app-aside-width;
-  min-width: $app-aside-width;
   background-color: $app-aside-background;
   box-shadow: $app-aside-shadow;
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
-  transition: transform .5s ease;
+  transition: transform .3s ease, width .3s ease;
+  &[collapsed="true"] {
+    width: $app-aside-collapsed-width;
+    jnt-menu:deep-host=#{$jnt-menu-host} {
+      jnt-link:child-host=#{$jnt-link-host} {
+        a span {
+          max-width: 0;
+          opacity: 0;
+        }
+      }
+    }
+    [button]:child-host=#{$jnt-button-host} {
+      span {
+        max-width: 0;
+        opacity: 0;
+      }
+    }
+  }
 }
 
-
-
-//jnt-app-aside[host=#{$jnt-app-aside-host}] {
-//  jnt-menu[host=#{$jnt-menu-host}] {
-//    jnt-link[child-of=#{$jnt-menu-host}] {
-//      width: 100%;
-//      a[child-of=#{$jnt-link-host}] {
-//        position: relative;
-//        width: 100%;
-//        padding: $menu-item-padding-x-in-aside $menu-item-padding-y-in-aside;
-//        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
-//        &:hover {
-//          background-color: $menu-item-hover-background-color-in-aside;
-//          span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
-//            color: $menu-item-hover-color-in-aside;
-//          }
-//        }
-//        span[child-of=#{$jnt-link-host}],[icon][child-of=#{$jnt-link-host}] {
-//          color: $menu-item-color-in-aside;
-//          font-size: $menu-item-font-size-in-aside;
-//        }
-//        &[active='true'] {
-//          border-bottom: 0;
-//          background-color: $menu-item-active-background-color-in-aside;
-//          border-left-color: $menu-item-active-border-left-color-in-aside;
-//          span[child-of=#{$jnt-link-host}], [icon][child-of=#{$jnt-link-host}] {
-//            color: $menu-item-active-color-in-aside;
-//            font-weight: $font-weight-bold;
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
 

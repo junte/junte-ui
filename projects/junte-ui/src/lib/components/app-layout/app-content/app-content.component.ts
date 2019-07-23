@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input } from '@angular/core';
 import { AppAsideComponent } from '../app-aside/app-aside.component';
 import { AppFooterComponent } from '../app-footer/app-footer.component';
 import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
@@ -12,7 +12,9 @@ export class AppContentComponent {
   @HostBinding('attr.host') readonly host = 'jnt-app-content-host';
 
   @HostBinding('attr.with-aside') get withAside() {
-    return !!this.aside;
+    if (!!this.aside) {
+      return this.aside.collapsed ? 'collapsed' : 'full';
+    }
   }
 
   @HostBinding('attr.with-sub-header') get withSubHeader() {
@@ -27,5 +29,4 @@ export class AppContentComponent {
   @ContentChild(AppFooterComponent) footer: AppFooterComponent;
 
   @Input() aside: AppAsideComponent;
-
 }
