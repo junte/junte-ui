@@ -1,9 +1,9 @@
 <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
 <div *ngIf="label" label>{{label}}</div>
 
-<input [type]="type"
-       [value]="value"
+<input name="input"
+       [type]="type"
+       [(ngModel)]="value"
        [placeholder]="placeholder"
        [disabled]="disabled"
-       (keyup)="onChange($event.target['value'])">
-
+       (keyup)="onChange(value)">
