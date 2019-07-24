@@ -23,20 +23,10 @@ export class PaginationComponent {
   ui = UI;
 
   private _pagesCount: number;
-  private _first: number;
-  private _selectedPage = 0;
+  private _selectedPage = 1;
   private size = 3;
 
   pages: number[];
-
-  @Input()
-  set first(first: number) {
-    this._first = first;
-  }
-
-  get first() {
-    return this._first;
-  }
 
   @Input()
   set pagesCount(pagesCount: number) {
@@ -72,8 +62,8 @@ export class PaginationComponent {
   }
 
   setPage(page: number) {
-    if (page >= 0 && page <= this.pagesCount) {
-      this.onModelChange(page * this.first);
+    if (page >= 1 && page <= this.pagesCount) {
+      this.onModelChange(page);
       this.selectedPage = page;
     }
   }
@@ -85,7 +75,7 @@ export class PaginationComponent {
     const end = Math.min(this.selectedPage + this.size + shift, this.pagesCount);
 
     shift = Math.max(this.selectedPage + this.size - this.pagesCount, 0);
-    const start = Math.max(this.selectedPage - this.size - shift, 0);
+    const start = Math.max(this.selectedPage - this.size - shift, 1);
 
     for (let i = start; i <= end; i++) {
       pages.push(i);

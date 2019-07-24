@@ -20,6 +20,7 @@ export class DefaultSearchFilter implements SearchFilter {
   query?: string;
   offset?: number;
   first?: number;
+  page?: number;
 
   constructor(defs: DefaultSearchFilter = null) {
     if (!!defs) {
