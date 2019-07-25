@@ -102,6 +102,9 @@ export class TableComponent implements OnInit, OnDestroy {
 
     this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
       .subscribe((filter: DefaultSearchFilter) => {
+        if (filter.first !== this.filter.first) {
+          filter.page = 1;
+        }
         filter.offset = (filter.page - 1) * filter.first;
         Object.assign(this.filter, filter);
         this.load();
