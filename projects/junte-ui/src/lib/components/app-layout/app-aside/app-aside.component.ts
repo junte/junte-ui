@@ -11,7 +11,7 @@ export class AppAsideComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
 
-  private _collapsed = false;
+  private _collapsed: boolean;
   ui = UI;
 
   @Input()
