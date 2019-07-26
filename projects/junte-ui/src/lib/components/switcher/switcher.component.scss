@@ -1,0 +1,49 @@
+@import "../../assets/styles/variables";
+
+$switcher-height: 32px;
+$switcher-option-padding-y: $gutter-normal;
+$switcher-corner: $corner-normal;
+$switcher-option-background: $primary-background;
+
+:host {
+  display: inline-flex;
+  min-height: $switcher-height;
+  line-height: $switcher-height;
+  border: 1px solid $gray-700;
+  border-radius: $switcher-corner;
+}
+
+[option] {
+  background-color: $primary-background;
+  padding: 0 $switcher-option-padding-y;
+  color: $primary-text-color;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:first-child {
+    border-top-left-radius: $switcher-corner - 1px;
+    border-bottom-left-radius: $switcher-corner - 1px;
+  }
+
+  &:last-child {
+    border-top-right-radius: $switcher-corner - 1px;
+    border-bottom-right-radius: $switcher-corner - 1px;
+  }
+
+  &:hover {
+    background-color: $highlight-background;
+  }
+
+  &[active="true"] {
+    color: $white-color;
+    [dot] {
+      background-color: rgba(255, 255, 255, .3) !important;
+    }
+  }
+}
+
+[label] {
+  flex: 0 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
