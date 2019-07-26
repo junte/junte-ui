@@ -8,9 +8,9 @@ import {
   OnInit,
   QueryList
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../enum/ui';
-import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {UI} from '../../enum/ui';
+import {ChartIndicatorComponent} from './chart-indicator/chart-indicator.component';
 
 @Component({
   selector: 'jnt-chart',
@@ -31,6 +31,8 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
 
   private _selected: number;
   private _widthMark = 100;
+
+  progress = {loading: false};
 
   @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
