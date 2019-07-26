@@ -3,7 +3,7 @@ import { Colors } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-dot',
-  templateUrl: './dot.encapsulated.html'
+  template: ''
 })
 
 export class DotComponent {

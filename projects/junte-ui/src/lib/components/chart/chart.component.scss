@@ -32,6 +32,22 @@ table {
           border-bottom: 1px solid $muted-color;
         }
       }
+      &[nodata] {
+        height: 200px;
+        pointer-events: none;
+        border-bottom: 0;
+        td {
+          vertical-align: middle;
+          text-align: center;
+          [icon] {
+            font-size: 80px;
+            color: $muted-color;
+          }
+          [message] {
+            color: $primary-text-light-color;
+          }
+        }
+      }
     }
     td {
       background-color: $primary-background;

@@ -1,7 +1,7 @@
 import { Component, ContentChild, Input } from '@angular/core';
 import { Colors } from '../../../enum/ui';
-import { BadgeComponent } from '../../badge';
-import { DotComponent } from '../../dot';
+import { BadgeComponent } from '../../badge/badge.component';
+import { DotComponent } from '../../dot/dot.component';
 
 @Component({
   selector: 'jnt-switcher-option',

@@ -10,40 +10,54 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let indicator of indicators" (click)="selected = indicator.data"
-      [attr.selected]="selected === indicator.data"
-      [style.height.px]="heightIndicator"
-      [style.min-height.px]="heightIndicator">
-    <td>
-      {{indicator.title}}
-    </td>
-    <td>
-      {{indicator.label}}
-    </td>
-    <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
-      {{indicator.value}}%
-    </td>
-  </tr>
+  <ng-container *ngIf="indicators.length; else noDataTemplate">
+    <tr *ngFor="let indicator of indicators" (click)="selected = indicator.data"
+        [attr.selected]="selected === indicator.data"
+        [style.height.px]="heightIndicator"
+        [style.min-height.px]="heightIndicator">
+      <td>
+        {{indicator.title}}
+      </td>
+      <td>
+        {{indicator.label}}
+      </td>
+      <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
+        {{indicator.value}}%
+      </td>
+    </tr>
+  </ng-container>
   </tbody>
 </table>
 
-<svg [attr.width]="widthMark + widthPoligon" [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
+<svg *ngIf="indicators.length" [attr.width]="widthMark + widthPoligon" [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
 
   <ng-container *ngFor="let indicator of indicators; let i = index; let first = first">
-    <polygon [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPoligon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
-             [attr.fill]="indicator.color | lightenDarkenColor: 10"></polygon>
+    <polygon
+      [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPoligon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
+      [attr.fill]="indicator.color | lightenDarkenColor: 10"></polygon>
     <rect [attr.x]="widthPoligon"
-           [attr.y]="first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg"
-           [attr.width]="widthMark"
-           [attr.height]="indicator.value | percentToNumber : heightSvg"
-           [attr.fill]="indicator.color">
-     </rect>
-     <text *ngIf="(indicator.value | percentToNumber: heightSvg) >= 20" dominantBaseline="middle"
-           textAnchor="middle"
-           [attr.x]="widthPoligon + widthMark/3"
-           [attr.y]="first ? ((indicator.value | percentToNumber : heightSvg)/2 + 5) : (((i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + (indicator.value | percentToNumber : heightSvg)/2 + 5)">
-       {{indicator.label}}
-     </text>
+          [attr.y]="first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg"
+          [attr.width]="widthMark"
+          [attr.height]="indicator.value | percentToNumber : heightSvg"
+          [attr.fill]="indicator.color">
+    </rect>
+    <text *ngIf="(indicator.value | percentToNumber: heightSvg) >= 20" dominantBaseline="middle"
+          textAnchor="middle"
+          [attr.x]="widthPoligon + widthMark/3"
+          [attr.y]="first ? ((indicator.value | percentToNumber : heightSvg)/2 + 5) : (((i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + (indicator.value | percentToNumber : heightSvg)/2 + 5)">
+      {{indicator.label}}
+    </text>
   </ng-container>
 
 </svg>
+
+<ng-template #noDataTemplate>
+  <ng-container *ngIf="!progress.loading;">
+    <tr nodata>
+      <td [attr.colspan]="3">
+        <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
+        <div message>No rows here</div>
+      </td>
+    </tr>
+  </ng-container>
+</ng-template>
