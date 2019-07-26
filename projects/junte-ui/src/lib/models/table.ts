@@ -1,13 +1,7 @@
 export const DEFAULT_PAGE_SIZE = 10;
 
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
-}
-
 export interface SearchFilter {
   sort?: string;
-  order?: Order;
   query?: string;
   offset?: number;
   first?: number;
@@ -16,7 +10,6 @@ export interface SearchFilter {
 export class DefaultSearchFilter implements SearchFilter {
 
   sort?: string;
-  order?: Order = Order.asc;
   query?: string;
   offset?: number;
   first?: number;

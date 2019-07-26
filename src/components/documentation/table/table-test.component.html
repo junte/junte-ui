@@ -33,8 +33,6 @@
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-form [formGroup]="form">
-
-      filter: {{filter | json}}
     <jnt-table [filter]="filter" #table [search]="true">
       <jnt-table-column title="Label" sort="label">
         <ng-template #cellTemplate let-label="label">

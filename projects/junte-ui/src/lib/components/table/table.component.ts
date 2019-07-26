@@ -13,7 +13,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscriptions } from '../../utils/subscriptions';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
-import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, Order, SearchFilter } from '../../models/table';
+import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SearchFilter } from '../../models/table';
 import { TableColumnComponent } from './column/table-column.component';
 
 const FILTER_DELAY = 300;
@@ -35,7 +35,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   filterForm: FormGroup;
   sort: FormControl;
-  order: FormControl;
   page: FormControl;
   offset: FormControl;
   first: FormControl;
@@ -87,13 +86,11 @@ export class TableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sort = this.formBuilder.control(null);
-    this.order = this.formBuilder.control(Order.asc);
     this.first = this.formBuilder.control(DEFAULT_PAGE_SIZE);
     this.offset = this.formBuilder.control(0);
     this.page = this.formBuilder.control(((+this.offset.value / +this.first.value) + 1));
     this.filterForm = this.formBuilder.group({
       sort: this.sort,
-      order: this.order,
       query: [''],
       offset: this.offset,
       page: this.page,
@@ -126,8 +123,8 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   sorting(sort: string) {
-    this.filterForm.patchValue(this.sort.value !== sort ?
-      {sort: sort, order: Order.asc}
-      : {order: this.order.value === Order.asc ? Order.desc : Order.asc});
+    this.filterForm.patchValue({
+      sort: this.sort.value === sort ? `-${sort}` : sort
+    });
   }
 }
