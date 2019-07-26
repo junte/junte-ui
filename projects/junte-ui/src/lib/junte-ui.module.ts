@@ -13,6 +13,7 @@ import { CardModule } from './components/card/card.module';
 import { ChartModule } from './components/chart/chart.module';
 import { CheckboxModule } from './components/checkbox/checkbox.module';
 import { CircleBarModule } from './components/circle-bar/circle-bar.module';
+import { DotModule } from './components/dot';
 import { DropdownModule } from './components/dropdown/dropdown.module';
 import { FormModule } from './components/form/form.module';
 import { GridModule } from './components/grid/grid.module';
@@ -32,12 +33,14 @@ import { SliderCarouselModule } from './components/slider/slider.module';
 import { SpinnerModule } from './components/spinner/spinner.module';
 import { StackModule } from './components/stack/stack.module';
 import { SwitchModule } from './components/switch/switch.module';
+import { SwitcherModule } from './components/switcher';
 import { TableModule } from './components/table/table.module';
 import { TabsModule } from './components/tabs/tabs.module';
 import { JunteDirectiveModule } from './directives/junte-directive.module';
 import { JunteUiComponent } from './junte-ui.component';
 import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { DatePipeModule } from './pipes/date-pipe.module';
+import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
 
@@ -63,6 +66,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     CircleBarModule,
     DropdownModule,
     DatePipeModule,
+    DotModule,
+    IsEqualModule,
     TextPipeModule,
     FormModule,
     GridModule,
@@ -82,6 +87,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     SpinnerModule,
     StackModule,
     SwitchModule,
+    SwitcherModule,
     TableModule,
     TabsModule,
     PopoverModule,

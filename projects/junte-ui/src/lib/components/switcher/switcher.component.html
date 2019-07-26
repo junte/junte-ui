@@ -1,0 +1,16 @@
+<jnt-stack option *ngFor="let option of options" (click)="selectOption(option.value)"
+           [attr.active]="(option.value | isEqual : value)"
+           [type]="ui.stack.type.horizontal"
+           [justify]="ui.flex.justify.center"
+           [align]="ui.flex.align.center"
+           [gutter]="ui.stack.gutter.tiny"
+           [style.background-color]="(option.value | isEqual : value) ? option.activeColor : null">
+  <jnt-dot *ngIf="option.dot" [color]="option.dot.color"></jnt-dot>
+  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center"
+             [align]="ui.flex.align.center"
+             [gutter]="ui.stack.gutter.small">
+    <span label>{{option.label}}</span>
+    <jnt-badge *ngIf="option.badge" [scheme]="option.badge.scheme" [position]="ui.position.inline"
+               [count]="option.badge.count"></jnt-badge>
+  </jnt-stack>
+</jnt-stack>
