@@ -12,9 +12,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
-import { debounceTime, finalize, tap } from 'rxjs/operators';
 import { SelectMode, Sizes, UI } from '../../enum/ui';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, finalize, tap } from 'rxjs/operators';
 import { SelectOptionComponent } from './select-option/select-option.component';
 
 const SEARCH_DELAY = 500;
@@ -36,7 +36,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ui = UI;
 
-  @Input() loadOptions: Function;
+  @Input() loadOptions: (q: string) => Observable<any>;
   @Input() mode: SelectMode = SelectMode.single;
   @Input() labelField: string;
   @Input() valueField: string;
@@ -136,7 +136,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
 
     this.search$.pipe(
-      tap((val) => this.placeholderVisible = !val),
+      tap(val => this.placeholderVisible = !val),
       debounceTime(SEARCH_DELAY)
     ).subscribe(q => {
       this.q = q;
@@ -206,8 +206,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.focused = (target === this.searchInput.nativeElement || target === this.selectize.nativeElement);
   }
 
-  @HostListener('focusout', ['$event.target'])
-  focusOut(target) {
+  @HostListener('focusout')
+  focusOut() {
     this.focused = false;
   }
 }
