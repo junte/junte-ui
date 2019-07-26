@@ -22,7 +22,7 @@
         {{indicator.label}}
       </td>
       <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
-        {{math.round(indicator.value)}}%
+        {{indicator.value | number: '1.0-0'}}%
       </td>
     </tr>
   </ng-container>
