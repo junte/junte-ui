@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { UI } from '../../../enum/ui';
 
 const ASIDE_STATE = 'aside_collapsed';
@@ -7,11 +7,11 @@ const ASIDE_STATE = 'aside_collapsed';
   selector: 'jnt-app-aside',
   templateUrl: './app-aside.encapsulated.html'
 })
-export class AppAsideComponent {
+export class AppAsideComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
 
-  private _collapsed = JSON.parse(localStorage.getItem(ASIDE_STATE));
+  private _collapsed = false;
   ui = UI;
 
   @Input()
@@ -26,6 +26,10 @@ export class AppAsideComponent {
 
   @HostBinding('attr.opened')
   @Input() opened = false;
+
+  ngOnInit() {
+    this.collapsed = JSON.parse(localStorage.getItem(ASIDE_STATE));
+  }
 
   toggle() {
     this.opened = !this.opened;
