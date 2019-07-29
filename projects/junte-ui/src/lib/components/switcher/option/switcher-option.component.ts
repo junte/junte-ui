@@ -1,5 +1,4 @@
 import { Component, ContentChild, Input } from '@angular/core';
-import { Colors } from '../../../enum/ui';
 import { BadgeComponent } from '../../badge/badge.component';
 import { DotComponent } from '../../dot/dot.component';
 
@@ -12,7 +11,6 @@ export class SwitcherOptionComponent {
 
   @Input() label: string;
   @Input() value: any;
-  @Input() activeColor = Colors.purpleLight;
 
   active = false;
 
