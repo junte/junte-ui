@@ -2,18 +2,20 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  EventEmitter,
   HostBinding,
   Input,
   OnDestroy,
   OnInit,
+  Output,
   QueryList,
   TemplateRef
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subscriptions } from '../../utils/subscriptions';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
 import { UI } from '../../enum/ui';
 import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SearchFilter } from '../../models/table';
+import { Subscriptions } from '../../utils/subscriptions';
 import { TableColumnComponent } from './column/table-column.component';
 
 const FILTER_DELAY = 300;
@@ -68,6 +70,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @Input()
   fetcher: Function;
+
+  @Output() reloaded = new EventEmitter<any>();
 
   set count(count: number) {
     this._count = count;
