@@ -3,6 +3,7 @@
  */
 
 export * from './lib/enum/ui';
+export * from './lib/utils/form';
 export * from './lib/models/table';
 
 export * from './lib/junte-ui.service';
