@@ -1,12 +1,13 @@
 <form [formGroup]="filterForm">
   <jnt-stack [align]="ui.flex.align.stretch">
-    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
+    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
+               [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
       <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
         <jnt-button button text="Reload"
                     [icon]="ui.icons.reload"
                     [outline]="ui.outline.transparent"
                     [scheme]="ui.schemes.secondary"
-                    (click)="load()">
+                    (click)="load(); reloaded.emit()">
         </jnt-button>
         <div>
           <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
