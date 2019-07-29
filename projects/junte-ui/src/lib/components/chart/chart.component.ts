@@ -29,8 +29,6 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
 
   ui = UI;
 
-  math = Math;
-
   private _selected: number;
   private _widthMark = 100;
 
