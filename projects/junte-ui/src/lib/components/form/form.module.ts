@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FieldTouchedHasErrorPipe } from '../../pipes/form.pipe';
 import { FormComponent } from './form.component';
 import { FormControlComponent } from './form-control/form-control.component';
 import { FormItemComponent } from './form-item/form-item.component';
@@ -41,7 +42,8 @@ import { SwitchModule } from '../switch/switch.module';
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    ValidationDirective
+    ValidationDirective,
+    FieldTouchedHasErrorPipe,
   ],
   exports: [
     FormComponent,
@@ -49,7 +51,8 @@ import { SwitchModule } from '../switch/switch.module';
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    ValidationDirective
+    ValidationDirective,
+    FieldTouchedHasErrorPipe
   ]
 })
 export class FormModule {
