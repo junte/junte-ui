@@ -43,6 +43,7 @@ import { DatePipeModule } from './pipes/date-pipe.module';
 import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
     AppLayoutModule,
     AnimationPipeModule,
     AvatarModule,
@@ -93,7 +95,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     PopoverModule,
     ProgressBarModule,
     ChartModule
-  ]
+  ],
+  providers: [HttpClient]
 })
 export class JunteUiModule {
 }
