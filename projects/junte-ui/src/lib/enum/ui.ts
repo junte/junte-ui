@@ -79,7 +79,14 @@ export enum Icons {
   stop = 'stop',
   share = 'share',
   chevronDoubleLeft = 'chevron-double-left',
-  chevronDoubleRight = 'chevron-double-right'
+  chevronDoubleRight = 'chevron-double-right',
+  time = 'time',
+  team = 'team',
+  solar = 'solar',
+  solarBlack = 'solar-black',
+  moon = 'moon',
+  accessLock = 'access-lock',
+  accessUnlock = 'access-unlock'
 }
 
 export enum Colors {
