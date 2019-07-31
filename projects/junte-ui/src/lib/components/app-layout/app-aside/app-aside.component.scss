@@ -59,10 +59,10 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
           font-size: $menu-item-icon-size-in-aside;
         }
         &[active='true'] {
-          border-bottom: 0;
           background-color: $menu-item-active-background-color-in-aside;
           border-left-color: $menu-item-active-border-left-color-in-aside;
           span, [icon] {
+            border-bottom: 0;
             color: $menu-item-active-color-in-aside;
             font-weight: $font-weight-bold;
           }
@@ -85,6 +85,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         height: $menu-item-height-in-aside;
         line-height: $menu-item-height-in-aside;
         cursor: pointer;
+        user-select: none;
         span {
           white-space: nowrap;
         }
@@ -254,6 +255,11 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
                 }
               }
             }
+          &[only] {
+            span {
+              border-bottom: 0;
+            }
+          }
           }
           [submenuTitle] {
             display: block;
@@ -262,9 +268,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             line-height: $menu-item-height-in-aside;
             border-bottom: 1px solid $muted-color;
             color: $menu-item-color-in-aside;
-            &[only] {
-              border-bottom: 0;
-            }
+
           }
         }
         &:hover {

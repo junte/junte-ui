@@ -31,9 +31,12 @@ $link-badge-spacing: $gutter-small !default;
     font-weight: $link-font-weight;
     font-size: $link-font-size;
     transition: color .3s;
+    text-align: left;
   }
   &[active="true"] {
-    border-bottom: 1px solid $link-color;
+    span {
+      border-bottom: 1px solid $link-color;
+    }
   }
   &:active {
     [icon], span {
