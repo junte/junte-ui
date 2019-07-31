@@ -1,21 +1,25 @@
 <ng-container *ngIf="externalLink; else internalLink">
   <a link [href]="source" [target]="allowTarget ? target : targetDefault">
-    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
-    <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
-    <jnt-badge *ngIf="badge" [scheme]="scheme" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
+    <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-container>
 
 <ng-template #internalLink>
-  <a link [routerLink]="source || null" #link="routerLinkActive" routerLinkActive
+  <a link [routerLink]="source" #link="routerLinkActive" routerLinkActive
      [routerLinkActiveOptions]="{exact: exact}" [attr.active]="link.isActive">
-    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
-    <span><ng-container *ngTemplateOutlet="contentTemplate"></ng-container></span>
-    <jnt-badge *ngIf="badge" [scheme]="scheme" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
+    <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>
 
-<ng-template #contentTemplate>
-  <ng-content></ng-content>
+<ng-template #linkTemplate>
+  <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [align]="ui.flex.align.center">
+    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+      <span>{{title}}</span>
+      <jnt-stack *ngIf="badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny" [align]="ui.flex.align.center">
+        <jnt-badge *ngFor="let badge of badges" [scheme]="badge.scheme" [count]="badge.count"
+                   [position]="ui.position.inline" badge></jnt-badge>
+      </jnt-stack>
+    </jnt-stack>
+  </jnt-stack>
 </ng-template>
-

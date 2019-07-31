@@ -7,6 +7,8 @@ import { LinkModule } from '../link/link.module';
 import { StackModule } from '../stack/stack.module';
 import { IconModule } from '../icon/icon.module';
 import { BadgeModule } from '../badge/badge.module';
+import { SubmenuComponent } from './submenu/submenu.component';
+import { SubmenuDirectiveModule } from '../../directives/submenu-directive.module';
 
 @NgModule({
   imports: [
@@ -14,17 +16,20 @@ import { BadgeModule } from '../badge/badge.module';
     LinkModule,
     IconModule,
     StackModule,
-    BadgeModule
+    BadgeModule,
+    SubmenuDirectiveModule
   ],
   exports: [
     MenuComponent,
     MenuItemComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    SubmenuComponent
   ],
   declarations: [
     MenuComponent,
     MenuItemComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    SubmenuComponent
   ],
 })
 export class MenuModule {

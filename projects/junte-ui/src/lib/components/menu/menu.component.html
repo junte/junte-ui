@@ -1,17 +1,50 @@
 <jnt-stack [type]="type" [gutter]="spacer" [align]="ui.flex.align.stretch" [wrap]="ui.flex.wrap.wrap">
+  <ng-container *ngFor="let submenu of submenus">
+    <div submenu jntSubMenu>
+      <div title (click)="submenu.opened = !submenu.opened" [attr.opened]="submenu.opened">
+        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.small">
+          <jnt-icon *ngIf="submenu.icon" [icon]="submenu.icon" icon></jnt-icon>
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <span>{{submenu.title}}</span>
+            <jnt-stack *ngIf="!!submenu.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center"
+                       [gutter]="ui.stack.gutter.tiny">
+              <jnt-badge badge *ngFor="let badge of submenu.badges" [count]="badge.count"
+                         [position]="ui.position.inline"
+                         [scheme]="badge.scheme"></jnt-badge>
+            </jnt-stack>
+          </jnt-stack>
+        </jnt-stack>
+      </div>
+
+      <div submenuItems jntSubMenuItems>
+        <div submenuTitle>{{submenu.title}}</div>
+        <ng-container *ngFor="let submenuItem of submenu.menuItems">
+          <jnt-link link submenuItem (click)="submenuItem.click.emit($event)"
+                    [exact]="matching.fullMatch === submenuItem.matching" [source]="submenuItem.link"
+                    [icon]="submenuItem.icon" [scheme]="submenuItem.scheme" [title]="submenuItem.title">
+            <jnt-badge *ngFor="let badge of submenuItem.badges" [count]="badge.count"
+                       [position]="ui.position.inline" [scheme]="badge.scheme">
+            </jnt-badge>
+          </jnt-link>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
   <ng-container *ngFor="let item of items">
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-
-    <jnt-link link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching" [source]="item.link" [icon]="item.icon" [scheme]="item.scheme">{{item.title}}</jnt-link>
-
-      <jnt-stack *ngIf="!!item.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.tiny">
-
-        <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline" [scheme]="badge.scheme"></jnt-badge>
-
-      </jnt-stack>
-
-    </jnt-stack>
+    <div submenu jntSubMenu>
+      <jnt-link link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching"
+                [source]="item.link" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title">
+        <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+                   [scheme]="badge.scheme"></jnt-badge>
+      </jnt-link>
+      <div submenuItems jntSubMenuItems>
+        <jnt-link submenuTitle only [source]="item.link" [scheme]="item.scheme" [title]="item.title">
+          <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+                     [scheme]="badge.scheme"></jnt-badge>
+        </jnt-link>
+      </div>
+    </div>
 
   </ng-container>
 </jnt-stack>
