@@ -30,6 +30,7 @@
 
           <thead>
           <tr>
+            <th *ngIf="!!rowActionsTemplate"></th>
             <th *ngFor="let column of columns"
                 [class.sortable]="!!column.sort"
                 (click)="column.sort ? sorting(column.sort) : null">
@@ -39,16 +40,12 @@
              [innerHTML]="(sort.value === column.sort) ? '&#8593;' : '&#8595;'"></i>
         </span>
             </th>
-            <th *ngIf="!!rowActionsTemplate"></th>
           </tr>
           </thead>
 
           <tbody>
           <ng-container *ngIf="source.length; else noDataTemplate">
             <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-              <td *ngFor="let column of columns">
-                <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
-              </td>
               <td *ngIf="!!rowActionsTemplate" action>
                 <jnt-dropdown>
                   <ng-template #trigger let-action="trigger">
@@ -59,6 +56,9 @@
                     <ng-container *ngTemplateOutlet="rowActionsTemplate;context: {row: row}"></ng-container>
                   </ng-template>
                 </jnt-dropdown>
+              </td>
+              <td *ngFor="let column of columns">
+                <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
               </td>
             </tr>
           </ng-container>
