@@ -18,6 +18,9 @@ $menu-item-padding-y-in-aside: $gutter-normal !default;
 $menu-item-hover-background-color-in-aside: $highlight-background !default;
 $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
 
+$submenu-padding-left-in-aside: $gutter-huge !default;
+$submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
+
 :host {
   display: block;
   box-sizing: border-box;
@@ -27,73 +30,107 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   bottom: 0;
   z-index: $app-aside-z-index;
 
-
   jnt-menu:deep-host=#{$jnt-menu-host} {
-  jnt-link:child-host=#{$jnt-link-host} {
-  width: 100%;
-  a {
-    position: relative;
-    width: 100%;
-    padding: 0 $menu-item-padding-y-in-aside;
-    border-left: $menu-item-active-border-left-width-in-aside solid transparent;
-    height: $menu-item-height-in-aside;
-    line-height: $menu-item-height-in-aside;
-    &:hover {
-      background-color: $menu-item-hover-background-color-in-aside;
-      span, [icon] {
-        color: $menu-item-hover-color-in-aside;
+    [link]:child-host=#{$jnt-link-host} {
+      width: 100%;
+      a {
+        position: relative;
+        width: 100%;
+        padding: 0 $menu-item-padding-y-in-aside;
+        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+        height: $menu-item-height-in-aside;
+        line-height: $menu-item-height-in-aside;
+        &:hover {
+          background-color: $menu-item-hover-background-color-in-aside;
+          span, [icon] {
+            color: $menu-item-hover-color-in-aside;
+            opacity: 1;
+            transition: all .4s;
+          }
+        }
+        span {
+          white-space: nowrap;
+        }
+        span,[icon] {
+          color: $menu-item-color-in-aside;
+          font-size: $menu-item-font-size-in-aside;
+        }
+        [icon] {
+          font-size: $menu-item-icon-size-in-aside;
+        }
+        &[active='true'] {
+          border-bottom: 0;
+          background-color: $menu-item-active-background-color-in-aside;
+          border-left-color: $menu-item-active-border-left-color-in-aside;
+          span, [icon] {
+            color: $menu-item-active-color-in-aside;
+            font-weight: $font-weight-bold;
+          }
+        }
+      }
+      &[submenuItem] {
+        a {
+          padding-left: $submenu-padding-left-in-aside;
+          &[active='true'] {
+            border-left-color: transparent;
+          }
+        }
+      }
+    }
+    [submenu] {
+      position: relative;
+      [title] {
+        padding: 0 $menu-item-padding-y-in-aside;
+        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+        height: $menu-item-height-in-aside;
+        line-height: $menu-item-height-in-aside;
+        cursor: pointer;
+        span {
+          white-space: nowrap;
+        }
+        span,[icon] {
+          color: $menu-item-color-in-aside;
+          font-size: $menu-item-font-size-in-aside;
+        }
+        [icon] {
+          font-size: $menu-item-icon-size-in-aside;
+        }
+        &:hover {
+          background-color: $menu-item-hover-background-color-in-aside;
+          span, [icon] {
+            color: $menu-item-hover-color-in-aside;
+          }
+        }
+      }
+      [submenuTitle] {
+        display: none;
+      }
+    }
+  }
+
+  [button]:child-host=#{$jnt-button-host} {
+    border-bottom: 1px solid $muted-color;
+    button {
+      color: $menu-item-color-in-aside;
+      font-size: $menu-item-font-size-in-aside;
+      padding: 0 $menu-item-padding-y-in-aside;
+      justify-content: flex-start;
+      border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+      border-radius: 0;
+      &:hover, &:focus {
+        color: $menu-item-color-in-aside;
+        background-color: $secondary-background;
+      }
+      span {
+        text-overflow: clip;
         opacity: 1;
         transition: all .4s;
       }
-    }
-    span {
-      white-space: nowrap;
-    }
-    span,[icon] {
-      color: $menu-item-color-in-aside;
-      font-size: $menu-item-font-size-in-aside;
-    }
-    [icon] {
-      font-size: $menu-item-icon-size-in-aside;
-    }
-    &[active='true'] {
-      border-bottom: 0;
-      background-color: $menu-item-active-background-color-in-aside;
-      border-left-color: $menu-item-active-border-left-color-in-aside;
-      span, [icon] {
-        color: $menu-item-active-color-in-aside;
-        font-weight: $font-weight-bold;
+      jnt-icon {
+        font-size: $menu-item-icon-size-in-aside;
       }
-    }
+   }
   }
-}
-}
-
-  [button]:child-host=#{$jnt-button-host} {
-      border-bottom: 1px solid $muted-color;
-      button {
-        color: $menu-item-color-in-aside;
-        font-size: $menu-item-font-size-in-aside;
-        padding: 0 $menu-item-padding-y-in-aside;
-        justify-content: flex-start;
-        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
-        border-radius: 0;
-        &:hover, &:focus {
-          color: $menu-item-color-in-aside;
-          background-color: $secondary-background;
-        }
-        span {
-          text-overflow: clip;
-          opacity: 1;
-          transition: all .4s;
-        }
-        jnt-icon {
-          font-size: $menu-item-icon-size-in-aside;
-        }
-      }
-  }
-
-
 
   @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
     &[opened="true"] {
@@ -107,7 +144,6 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
         transform: translate3d(0, 0, 0);
       }
     }
-
     &[opened="false"] {
       width: 0;
       [overlay] {
@@ -117,9 +153,6 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
         transform: translate3d(-100%, 0, 0);
       }
     }
-  }
-
-  @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
     [button] {
       display: none;
     }
@@ -142,8 +175,6 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   padding: $app-header-height 0 0 0;
   top: 0;
   left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   z-index: 2;
   height: 100%;
   width: $app-aside-width;
@@ -152,13 +183,94 @@ $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
   transition: transform .3s ease, width .3s ease;
+  [scroll] {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   &[collapsed="true"] {
     width: $app-aside-collapsed-width;
     jnt-menu:deep-host=#{$jnt-menu-host} {
-      jnt-link:child-host=#{$jnt-link-host} {
-        a span {
+      [link]:child-host=#{$jnt-link-host} {
+        a span, [badge] {
           max-width: 0;
           opacity: 0;
+        }
+        &[submenuItem] {
+          &:first-of-type {
+            a {
+              border-top-right-radius: $corner-small;
+            }
+          }
+          &:last-of-type {
+            a {
+              border-bottom-right-radius: $corner-small;
+            }
+          }
+          a span, [badge] {
+            max-width: 100%;
+            opacity: 1;
+          }
+          a {
+            padding-left: $menu-item-padding-y-in-aside;
+          }
+        }
+      }
+      [title] {
+        span, [badge] {
+          max-width: 0;
+          opacity: 0;
+        }
+      }
+      [submenu] {
+        [submenuItems] {
+          position: fixed;
+          z-index: 3;
+          left: $app-aside-collapsed-width;
+          background-color: $primary-background;
+          box-shadow: $submenu-shadow;
+          border-left: 1px solid $muted-color;
+          border-top-right-radius: $corner-small;
+          border-bottom-right-radius: $corner-small;
+          display: none;
+          min-height: $menu-item-height-in-aside;
+          min-width: 150px;
+          [submenuTitle]:deep-host=#{$jnt-link-host} {
+            display: block;
+            padding: 0 $menu-item-padding-y-in-aside;
+            height: $menu-item-height-in-aside;
+            line-height: $menu-item-height-in-aside;
+            border-bottom: 1px solid $muted-color;
+            a {
+              span {
+                color: $menu-item-color-in-aside;
+              }
+              &[active='true'] {
+                border-bottom: none;
+                span {
+                  color: $menu-item-active-color-in-aside;
+                  font-weight: $font-weight-bold;
+                }
+              }
+            }
+          }
+          [submenuTitle] {
+            display: block;
+            padding: 0 $menu-item-padding-y-in-aside;
+            height: $menu-item-height-in-aside;
+            line-height: $menu-item-height-in-aside;
+            border-bottom: 1px solid $muted-color;
+            color: $menu-item-color-in-aside;
+            &[only] {
+              border-bottom: 0;
+            }
+          }
+        }
+        &:hover {
+          [submenuItems] {
+            display: block !important;
+          }
         }
       }
     }

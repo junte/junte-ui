@@ -4,3 +4,15 @@
   display: block;
   flex: 1;
 }
+
+[submenuItems] {
+  display: none;
+}
+
+[title] {
+  &[opened='true'] {
+    & + [submenuItems] {
+      display: block;
+    }
+  }
+}

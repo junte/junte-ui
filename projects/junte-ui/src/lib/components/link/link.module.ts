@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LinkComponent } from './link.component';
 import { IconModule } from '../icon/icon.module';
 import { BadgeModule } from '../badge/badge.module';
+import {StackModule} from '../stack/stack.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BadgeModule } from '../badge/badge.module';
     CommonModule,
     RouterModule,
     IconModule,
-    BadgeModule
+    BadgeModule,
+    StackModule
   ],
   exports: [
     LinkComponent

@@ -1,12 +1,27 @@
 <jnt-app-aside #aside>
 
   <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-    <jnt-menu-item link="theming" title="Theming" [icon]="ui.icons.home"></jnt-menu-item>
-    <jnt-menu-item link="typography" title="Typography" [icon]="ui.icons.home"></jnt-menu-item>
-    <jnt-menu-item link="avatar" title="Avatar" [icon]="ui.icons.home"></jnt-menu-item>
-    <jnt-menu-item link="badge" title="Badge" [icon]="ui.icons.home"></jnt-menu-item>
-    <jnt-menu-item link="breadcrumbs" title="Breadcrumbs" [icon]="ui.icons.home"></jnt-menu-item>
-    <jnt-menu-item link="block" title="Block" [icon]="ui.icons.home"></jnt-menu-item>
+    <jnt-submenu title="Themes" [icon]="ui.icons.dashboard">
+      <jnt-badge count="5"></jnt-badge>
+      <jnt-badge count="6"></jnt-badge>
+      <jnt-menu-item link="theming" title="Theming">
+        <jnt-badge count="5" [scheme]="ui.schemes.success"></jnt-badge>
+        <jnt-badge count="6" [scheme]="ui.schemes.success"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item link="typography" title="Typography"></jnt-menu-item>
+    </jnt-submenu>
+    <jnt-submenu title="Data display" [icon]="ui.icons.chat">
+      <jnt-menu-item link="avatar" title="Avatar" [icon]="ui.icons.home"></jnt-menu-item>
+      <jnt-menu-item link="badge" title="Badge" [icon]="ui.icons.home">
+        <jnt-badge count="5" [scheme]="ui.schemes.success"></jnt-badge>
+        <jnt-badge count="6" [scheme]="ui.schemes.success"></jnt-badge>
+      </jnt-menu-item>
+      <jnt-menu-item link="breadcrumbs" title="Breadcrumbs" [icon]="ui.icons.home"></jnt-menu-item>
+    </jnt-submenu>
+
+    <jnt-menu-item link="block" title="Block" [icon]="ui.icons.home">
+      <jnt-badge count="5" [scheme]="ui.schemes.success"></jnt-badge>
+    </jnt-menu-item>
     <jnt-menu-item link="button" title="Button" [icon]="ui.icons.home"></jnt-menu-item>
     <jnt-menu-item link="calendar" title="Calendar" [icon]="ui.icons.home"></jnt-menu-item>
     <jnt-menu-item link="chart" title="Chart" [icon]="ui.icons.home"></jnt-menu-item>

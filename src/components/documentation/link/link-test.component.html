@@ -15,14 +15,12 @@
   <ul>
     <li>
       <jnt-link source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/link"
-                target="_blank">
-        GitLab
+                target="_blank" title="GitLab">
       </jnt-link>
     </li>
     <li>
       <jnt-link source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1080%3A1554"
-                target="_blank">
-        Figma
+                target="_blank" title="Figma">
       </jnt-link>
     </li>
   </ul>
@@ -30,32 +28,47 @@
   <hr>
 
   <jnt-stack>
-    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search">Link</jnt-link>
+    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
 
-    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search">Link</jnt-link>
+    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
 
-    <jnt-link [source]="['/components', 'block', 'test']" [icon]="ui.icons.search">Link</jnt-link>
+    <jnt-link [source]="['/components', 'block', 'test']" [icon]="ui.icons.search" title="Link"></jnt-link>
 
-    <jnt-link source="#api">Link anchor</jnt-link>
+    <jnt-link source="#api" title="Link anchor"></jnt-link>
 
-    <jnt-link source="https://google.com">External Link</jnt-link>
+    <jnt-link source="https://google.com" title="External Link"></jnt-link>
 
-    <jnt-link source="https://google.com" target="_blank">External Link with target="_blank"</jnt-link>
+    <jnt-link source="https://google.com" target="_blank" title="External Link with target='_blank'"></jnt-link>
 
-    <jnt-link source="https://google.com" target="_blank" [disabled]="true">Disabled link</jnt-link>
+    <jnt-link source="https://google.com" target="_blank" [disabled]="true" title="Disabled link"></jnt-link>
 
-    <jnt-link source="https://google.com" [badge]="5">Link with badge</jnt-link>
+    <jnt-link source="https://google.com" title="Link with badge" [icon]="ui.icons.home">
+      <jnt-badge count="5"></jnt-badge>
+      <jnt-badge count="5"></jnt-badge>
+    </jnt-link>
 
   </jnt-stack>
 
   <ngx-prism language="html">
     <pre><![CDATA[
-<jnt-link source="/components/block">Link</jnt-link>
-<jnt-link [source]="['components', 'block']">Link</jnt-link>
-<jnt-link source="https://junte.gitlab.io/junte-ui">External Link</jnt-link>
-<jnt-link source="https://junte.gitlab.io/junte-ui" target="_blank">External Link with target attribute</jnt-link>
-<jnt-link source="https://google.com" target="_blank" [disabled]="true">Disabled link</jnt-link>
-<jnt-link source="https://google.com" [badge]="5">Link with badge</jnt-link>
+    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
+
+    <jnt-link [source]="['/components', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
+
+    <jnt-link [source]="['/components', 'block', 'test']" [icon]="ui.icons.search" title="Link"></jnt-link>
+
+    <jnt-link source="#api" title="Link anchor"></jnt-link>
+
+    <jnt-link source="https://google.com" title="External Link"></jnt-link>
+
+    <jnt-link source="https://google.com" target="_blank" title="External Link with target='_blank'"></jnt-link>
+
+    <jnt-link source="https://google.com" target="_blank" [disabled]="true" title="Disabled link"></jnt-link>
+
+    <jnt-link source="https://google.com" title="Link with badge" [icon]="ui.icons.home">
+      <jnt-badge count="5"></jnt-badge>
+      <jnt-badge count="5"></jnt-badge>
+    </jnt-link>
      ]]></pre>
   </ngx-prism>
 
