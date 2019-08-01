@@ -33,7 +33,9 @@ table {
       cursor: pointer;
       position: relative;
       &:hover, &[selected='true'] {
-        transform: scale(1.01);
+        td {
+          background-color: $secondary-background;
+        }
       }
       &:not(:last-child) {
         td:not(:last-child) {
