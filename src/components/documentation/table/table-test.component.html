@@ -31,7 +31,7 @@
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-form [formGroup]="form">
-    <jnt-table [filter]="filter" #table [search]="true">
+    <jnt-table [filter]="filter" #table [features]="[ui.table.features.search]">
       <jnt-table-column title="Label" sort="label">
         <ng-template #cellTemplate let-label="label">
           {{label}}

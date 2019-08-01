@@ -12,6 +12,7 @@ import { SkeletonModule } from '../skeleton/skeleton.module';
 import { InputModule } from '../input/input.module';
 import { ButtonModule } from '../button/button.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
+import { IncludesPipeModule } from '../../pipes/includes-pipe.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { DropdownModule } from '../dropdown/dropdown.module';
     DatePipeModule,
     IconModule,
     InputModule,
+    IncludesPipeModule,
     PaginationModule,
     ButtonModule,
     SpinnerModule,
