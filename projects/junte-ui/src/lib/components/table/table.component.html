@@ -16,7 +16,9 @@
       </jnt-stack>
 
       <div>
-        <jnt-input *ngIf="features == ui.table.features.search" [icon]="ui.icons.search" placeholder="Search" formControlName="query"></jnt-input>
+        <jnt-input *ngIf="features | includes : ui.table.features.search" formControlName="query"
+                   [icon]="ui.icons.search" placeholder="Search">
+        </jnt-input>
       </div>
 
     </jnt-stack>

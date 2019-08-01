@@ -60,7 +60,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   @HostBinding('attr.features')
   @Input()
-  features: TableFeatures;
+  features: TableFeatures[] = [];
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({
