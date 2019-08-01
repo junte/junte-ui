@@ -6,7 +6,7 @@
       <jnt-label label="Selected chart" [color]="ui.colors.red"></jnt-label>
        {{selected | json}}
     </jnt-stack>
-    <jnt-chart [(ngModel)]="selected">
+    <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading">
       <jnt-chart-indicator title="Esanum" [data]="{project: 1}" [value]="32" label="129h" [color]="ui.colors.purple"></jnt-chart-indicator>
       <jnt-chart-indicator title="Junte UI" [data]="{project: 2}" [value]="28" label="95h" [color]="ui.colors.red"></jnt-chart-indicator>
       <jnt-chart-indicator title="Team Projector" [data]="{project: 3}" [value]="22" label="57h"
@@ -14,7 +14,7 @@
       <jnt-chart-indicator title="Junte site" [data]="{project: 4}" [value]="18" label="50h" [color]="ui.colors.yellow"></jnt-chart-indicator>
     </jnt-chart>
 
-    <jnt-chart [heightIndicator]="100" [widthMark]="40" [widthPoligon]="70">
+    <jnt-chart [heightIndicator]="100" [widthMark]="40" [widthPoligon]="70" title="Project" metric="Loading">
       <jnt-chart-indicator title="Esanum" [data]="{project: 5}" [value]="32" label="129h" [color]="ui.colors.purple"></jnt-chart-indicator>
       <jnt-chart-indicator title="Junte UI" [data]="{project: 6}" [value]="28" label="95h" [color]="ui.colors.red"></jnt-chart-indicator>
       <jnt-chart-indicator title="Team Projector" [data]="{project: 7}" [value]="22" label="57h"
@@ -29,7 +29,7 @@
           {{form.value | json}}
         </jnt-stack>
         <jnt-form [formGroup]="form">
-          <jnt-chart formControlName="selected">
+          <jnt-chart formControlName="selected" title="Project" metric="Loading">
             <jnt-chart-indicator [data]="{project: 9}"
                                  title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate enim, ipsum iste itaque iusto laboriosam maiores necessitatibus perspiciatis porro suscipit!"
                                  [value]="2" label="Lorem ipsum dolor sit amet."
@@ -55,11 +55,11 @@
       </jnt-stack>
     </jnt-stack>
 
-    <jnt-chart></jnt-chart>
+    <jnt-chart title="Project" metric="Loading"></jnt-chart>
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-chart>
+<jnt-chart title="Project" metric="Loading">
   <jnt-chart-indicator title="Esanum"
                        [data]="{project: 1}"
                        [value]="32"
@@ -99,6 +99,18 @@
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td>[title]</td>
+        <td>-</td>
+        <td>string</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>[metric]</td>
+        <td>-</td>
+        <td>string</td>
+        <td></td>
+      </tr>
       <tr>
         <td>[heightIndicator]</td>
         <td>-</td>
