@@ -3,6 +3,8 @@
 :host {
   display: inline-flex;
   box-shadow: $shadow-primary;
+  border-radius: $corner-normal;
+  background-color: $secondary-background;
 }
 
 table {
@@ -19,6 +21,12 @@ table {
   }
   thead {
     background-color: $secondary-background;
+    th:first-child {
+      border-top-left-radius: $corner-normal;
+    }
+    th:last-child {
+      border-top-right-radius: $corner-normal;
+    }
   }
   tbody {
     tr {
@@ -32,6 +40,11 @@ table {
           border-bottom: 1px solid $muted-color;
         }
       }
+      &:last-child {
+        td:first-child {
+          border-bottom-left-radius: $corner-normal;
+        }
+      }
       &[nodata] {
         height: 200px;
         pointer-events: none;
@@ -42,6 +55,11 @@ table {
           [icon] {
             font-size: 80px;
             color: $muted-color;
+          }
+        }
+        &:last-child {
+          td:last-child {
+            border-bottom-right-radius: $corner-normal;
           }
         }
       }
@@ -72,6 +90,8 @@ table {
 
 svg {
   background-color: $secondary-background;
+  border-top-right-radius: $corner-normal;
+  border-bottom-right-radius: $corner-normal;
   text {
     fill: $white-color;
   }
