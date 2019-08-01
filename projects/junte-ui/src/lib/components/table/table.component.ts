@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
-import { UI } from '../../enum/ui';
+import { TableFeatures, UI } from '../../enum/ui';
 import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SearchFilter } from '../../models/table';
 import { Subscriptions } from '../../utils/subscriptions';
 import { TableColumnComponent } from './column/table-column.component';
@@ -58,9 +58,9 @@ export class TableComponent implements OnInit, OnDestroy {
   @ContentChild('filters')
   filtersTemplate: TemplateRef<any>;
 
-  @HostBinding('attr.search')
+  @HostBinding('attr.features')
   @Input()
-  search = false;
+  features: TableFeatures;
 
   @Input()
   filter: SearchFilter = new DefaultSearchFilter({

@@ -284,6 +284,10 @@ export enum PopoverPlacements {
   leftBottom = 'left-bottom'
 }
 
+export enum TableFeatures {
+  search = 'search'
+}
+
 export enum PopoverTriggers {
   hover = 'hover',
   click = 'click'
@@ -351,6 +355,9 @@ export class UI {
   };
   static menu = {
     matching: Matching
+  };
+  static table = {
+    features: TableFeatures
   };
 }
 
