@@ -8,9 +8,9 @@ import {
   OnInit,
   QueryList
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {UI} from '../../enum/ui';
-import {ChartIndicatorComponent} from './chart-indicator/chart-indicator.component';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UI } from '../../enum/ui';
+import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 
 @Component({
   selector: 'jnt-chart',
@@ -45,6 +45,9 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
   set widthMark(width: number) {
     this._widthMark = width < 60 ? 60 : width;
   }
+
+  @Input() title: string;
+  @Input() metric: string;
 
   get widthMark() {
     return this._widthMark;
