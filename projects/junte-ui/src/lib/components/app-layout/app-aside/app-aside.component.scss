@@ -8,6 +8,7 @@ $app-aside-z-index: 2 !default;
 
 $menu-item-height-in-aside: 50px !default;
 $menu-item-color-in-aside: $primary-text-light-color !default;
+$menu-item-icon-color-in-aside: $primary-text-color !default;
 $menu-item-font-size-in-aside: .875rem !default;
 $menu-item-icon-size-in-aside: 20px !default;
 $menu-item-active-color-in-aside: $primary-color !default;
@@ -18,7 +19,7 @@ $menu-item-padding-y-in-aside: $gutter-normal !default;
 $menu-item-hover-background-color-in-aside: $highlight-background !default;
 $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
 
-$submenu-padding-left-in-aside: $gutter-huge !default;
+$submenu-padding-left-in-aside: 53px !default;
 $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
 
 :host {
@@ -50,12 +51,11 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         }
         span {
           white-space: nowrap;
-        }
-        span,[icon] {
           color: $menu-item-color-in-aside;
           font-size: $menu-item-font-size-in-aside;
         }
         [icon] {
+          color: $menu-item-icon-color-in-aside;
           font-size: $menu-item-icon-size-in-aside;
         }
         &[active='true'] {
@@ -88,12 +88,11 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         user-select: none;
         span {
           white-space: nowrap;
-        }
-        span,[icon] {
           color: $menu-item-color-in-aside;
           font-size: $menu-item-font-size-in-aside;
         }
         [icon] {
+          color: $menu-item-icon-color-in-aside;
           font-size: $menu-item-icon-size-in-aside;
         }
         &:hover {
@@ -128,7 +127,9 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         transition: all .4s;
       }
       jnt-icon {
+        color: $menu-item-icon-color-in-aside;
         font-size: $menu-item-icon-size-in-aside;
+        margin-right: $gutter-normal;
       }
    }
   }
@@ -245,7 +246,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             border-bottom: 1px solid $muted-color;
             a {
               span {
-                color: $menu-item-color-in-aside;
+                color: $menu-item-icon-color-in-aside;
               }
               &[active='true'] {
                 border-bottom: none;
@@ -267,7 +268,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             height: $menu-item-height-in-aside;
             line-height: $menu-item-height-in-aside;
             border-bottom: 1px solid $muted-color;
-            color: $menu-item-color-in-aside;
+            color: $menu-item-icon-color-in-aside;
 
           }
         }

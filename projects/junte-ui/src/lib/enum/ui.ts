@@ -86,7 +86,13 @@ export enum Icons {
   solarBlack = 'solar-black',
   moon = 'moon',
   accessLock = 'access-lock',
-  accessUnlock = 'access-unlock'
+  accessUnlock = 'access-unlock',
+  documentation = 'documentation',
+  elements = 'elements',
+  forms = 'forms',
+  graphic = 'graphic',
+  layout = 'layout',
+  main = 'main'
 }
 
 export enum Colors {
