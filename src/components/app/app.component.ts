@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
 
 enum Themes {
@@ -11,11 +11,11 @@ enum Themes {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   private _theme = Themes.light;
   ui = UI;
-  loading: { [name: string]: boolean } = {};
+  loading = false;
   themes = Themes;
 
   set theme(theme: Themes) {
@@ -35,13 +35,17 @@ export class AppComponent implements AfterViewInit {
               private popoverService: PopoverService) {
   }
 
+  ngOnInit() {
+    this._theme = localStorage.getItem('theme');
+  }
+
   ngAfterViewInit() {
     this.modalService.register(this.modal);
     this.popoverService.register(this.popover);
   }
 
   private load(theme: Themes) {
-    this.loading[theme] = true;
-    window['themes'](theme, () => this.loading[theme] = false);
+    this.loading = true;
+    window['themes'](theme, () => this.loading = false);
   }
 }

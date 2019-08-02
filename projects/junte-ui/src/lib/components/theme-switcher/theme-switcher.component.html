@@ -1,5 +1,6 @@
-<input type="checkbox" [checked]="checked" (change)="checked = !checked">
-<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny" [align]="ui.flex.align.center" [justify]="ui.flex.justify.center" switch>
+<input type="checkbox" [checked]="checked" (change)="checked = !checked; checkedChange.emit(checked)">
+<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny"
+           [align]="ui.flex.align.center" [justify]="ui.flex.justify.center" switch>
   <span>Dark</span>
   <div icon>
     <jnt-icon [icon]="!!checked ? ui.icons.solar : ui.icons.moon"></jnt-icon>

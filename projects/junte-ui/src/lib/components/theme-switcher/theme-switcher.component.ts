@@ -1,11 +1,11 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-theme-switcher',
   templateUrl: './theme-switcher.encapsulated.html'
 })
-export class ThemeSwitcherComponent implements OnInit {
+export class ThemeSwitcherComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-theme-switcher-host';
 
@@ -13,12 +13,5 @@ export class ThemeSwitcherComponent implements OnInit {
 
   @HostBinding('attr.checked')
   @Input() checked = true;
-
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+  @Output() checkedChange = new EventEmitter<boolean>();
 }
