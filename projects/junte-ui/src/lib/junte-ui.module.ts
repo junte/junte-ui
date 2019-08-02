@@ -44,6 +44,7 @@ import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
 import { IncludesPipeModule } from './pipes/includes-pipe.module';
+import { ThemeSwitcherModule } from './components/theme-switcher/theme-switcher.module';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { IncludesPipeModule } from './pipes/includes-pipe.module';
     TabsModule,
     PopoverModule,
     ProgressBarModule,
-    ChartModule
+    ChartModule,
+    ThemeSwitcherModule
   ]
 })
 export class JunteUiModule {
