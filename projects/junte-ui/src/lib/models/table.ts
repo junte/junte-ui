@@ -1,7 +1,7 @@
 export const DEFAULT_PAGE_SIZE = 10;
 
 export interface SearchFilter {
-  sort?: string;
+  orderBy?: string;
   query?: string;
   offset?: number;
   first?: number;
@@ -9,7 +9,7 @@ export interface SearchFilter {
 
 export class DefaultSearchFilter implements SearchFilter {
 
-  sort?: string;
+  orderBy?: string;
   query?: string;
   offset?: number;
   first?: number;

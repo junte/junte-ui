@@ -94,7 +94,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.offset = this.formBuilder.control(0);
     this.page = this.formBuilder.control(((+this.offset.value / +this.first.value) + 1));
     this.filterForm = this.formBuilder.group({
-      sort: this.sort,
+      orderBy: this.sort,
       query: [''],
       offset: this.offset,
       page: this.page,
@@ -128,7 +128,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   sorting(sort: string) {
     this.filterForm.patchValue({
-      sort: this.sort.value === sort ? `-${sort}` : sort
+      orderBy: this.sort.value === sort ? `-${sort}` : sort
     });
   }
 }
