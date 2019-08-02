@@ -35,10 +35,16 @@
         <jnt-form [formGroup]="form">
           <jnt-chart formControlName="selected" title="Project" metric="Loading">
             <jnt-chart-indicator [data]="{project: 9}"
-                                 title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate enim, ipsum iste itaque iusto laboriosam maiores necessitatibus perspiciatis porro suscipit!"
                                  [value]="2" label="Lorem ipsum dolor sit amet."
                                  [color]="ui.colors.purple">
+              <ng-template #titleTemplate>
+                <h3>Title</h3>
+                <h4>Title</h4>
+                <h4>Title</h4>
+                <h4>Title</h4>
+              </ng-template>
             </jnt-chart-indicator>
+
             <jnt-chart-indicator [data]="{project: 10}" title="Esanum" [value]="0" label="129h" [color]="ui.colors.yellow"></jnt-chart-indicator>
             <ng-container *ngFor="let chart of charts; let i = index">
               <jnt-chart-indicator
