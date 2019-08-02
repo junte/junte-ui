@@ -28,6 +28,10 @@
           <jnt-label label="Selected chart" [color]="ui.colors.red"></jnt-label>
           {{form.value | json}}
         </jnt-stack>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <jnt-button text="Add Chart" (click)="addChart()"></jnt-button>
+          <jnt-button text="Remove Chart" [scheme]="ui.schemes.fail" (click)="removeChart()"></jnt-button>
+        </jnt-stack>
         <jnt-form [formGroup]="form">
           <jnt-chart formControlName="selected" title="Project" metric="Loading">
             <jnt-chart-indicator [data]="{project: 9}"
@@ -47,11 +51,6 @@
             </ng-container>
           </jnt-chart>
         </jnt-form>
-      </jnt-stack>
-
-      <jnt-stack [type]="ui.stack.type.horizontal">
-        <jnt-button text="Add Chart" (click)="addChart()"></jnt-button>
-        <jnt-button text="Remove Chart" [scheme]="ui.schemes.fail" (click)="removeChart()"></jnt-button>
       </jnt-stack>
     </jnt-stack>
 

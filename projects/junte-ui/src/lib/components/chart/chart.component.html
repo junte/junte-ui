@@ -11,7 +11,7 @@
   </thead>
   <tbody>
   <ng-container *ngIf="indicators.length; else noDataTemplate">
-    <tr *ngFor="let indicator of indicators" (click)="selected = indicator.data"
+    <tr *ngFor="let indicator of indicators; trackBy: trackByFn;" (click)="selected = indicator.data"
         [attr.selected]="selected === indicator.data"
         [style.height.px]="heightIndicator"
         [style.min-height.px]="heightIndicator">
@@ -31,7 +31,7 @@
 
 <svg *ngIf="indicators.length" [attr.width]="widthMark + widthPoligon" [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
 
-  <ng-container *ngFor="let indicator of indicators; let i = index; let first = first">
+  <ng-container *ngFor="let indicator of indicators; trackBy: trackByFn; let i = index; let first = first">
     <polygon
       [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPoligon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
       [attr.fill]="indicator.color | lightenDarkenColor: 10"></polygon>

@@ -102,4 +102,8 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
     this.onTouched = fn;
   }
 
+  trackByFn(index, indicator) {
+    return indicator.id;
+  }
+
 }
