@@ -18,7 +18,7 @@ import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SearchFilter } from '../../mode
 import { Subscriptions } from '../../utils/subscriptions';
 import { TableColumnComponent } from './column/table-column.component';
 
-const FILTER_DELAY = 300;
+const FILTER_DELAY = 500;
 
 @Component({
   selector: 'jnt-table',
@@ -95,7 +95,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.page = this.formBuilder.control(((+this.offset.value / +this.first.value) + 1));
     this.filterForm = this.formBuilder.group({
       orderBy: this.sort,
-      query: [''],
+      q: [''],
       offset: this.offset,
       page: this.page,
       first: this.first
