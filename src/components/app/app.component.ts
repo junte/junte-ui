@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this._theme = localStorage.getItem('theme');
+    this._theme = Themes[localStorage.getItem('theme')];
   }
 
   ngAfterViewInit() {
