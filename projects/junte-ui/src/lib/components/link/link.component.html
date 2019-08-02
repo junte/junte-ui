@@ -1,5 +1,5 @@
 <ng-container *ngIf="externalLink; else internalLink">
-  <a link [href]="source" [target]="allowTarget ? target : targetDefault">
+  <a link [href]="source" [target]="target">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-container>
