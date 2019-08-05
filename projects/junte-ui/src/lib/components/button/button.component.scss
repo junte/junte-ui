@@ -23,6 +23,7 @@ $button-schemes: (
     badge-hover-outline-color: $primary-color,
     badge-outline-background: $primary-color,
     badge-hover-outline-background: $primary-background,
+    color-shadow-focus: $primary-color
   ),
   #{$scheme-secondary}: (
     color: $gray-900,
@@ -40,7 +41,7 @@ $button-schemes: (
     badge-hover-outline-background: $secondary-color,
     badge-hover-outline-color: $gray-900,
     badge-outline-background: $gray-900,
-
+    color-shadow-focus: $gray-900
   ),
   #{$scheme-success}: (
     color: $white-color,
@@ -58,7 +59,7 @@ $button-schemes: (
     badge-outline-background: $success-color,
     badge-hover-outline-background: $primary-background,
     badge-hover-outline-color: $success-color,
-
+    color-shadow-focus: $success-color
   ),
   #{$scheme-fail}: (
     color: $white-color,
@@ -76,6 +77,7 @@ $button-schemes: (
     badge-outline-background: $fail-color,
     badge-hover-outline-background: $primary-background,
     badge-hover-outline-color: $fail-color,
+    color-shadow-focus: $fail-color
   ),
 )!default;
 
@@ -118,7 +120,7 @@ $button-sizes: (
       background-color: #{map-get($scheme, background-hover)};
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, background)};
+      box-shadow: 0 1px 5px #{map-get($scheme, color-shadow-focus)};
     }
     [badge]:child-host=#{$jnt-badge-host} {
       sup {
@@ -159,7 +161,6 @@ $button-sizes: (
     border-color: transparent;
     &:hover, &:focus {
       color: #{map-get($scheme, color-transparent-hover)};
-      box-shadow: none;
     }
   }
 }
