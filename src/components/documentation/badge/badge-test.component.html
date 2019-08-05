@@ -31,8 +31,8 @@
 
   <jnt-stack>
     <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-        <jnt-badge [scheme]="scheme" [count]="5">
+      <ng-container *ngFor="let color of [ui.colors.purple, ui.colors.blue100, ui.colors.green, ui.colors.red]">
+        <jnt-badge [color]="color" [count]="5">
           <a href="#" block></a>
         </jnt-badge>
       </ng-container>
@@ -40,7 +40,7 @@
 
       <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-badge [scheme]="ui.schemes.primary" [count]="5">
+<jnt-badge [color]="ui.colors.purple" [count]="5">
   <a href="#"></a>
 </jnt-badge>
 ]]></pre>
