@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubMenuDirective, SubMenuItemsDirective } from './sub-menu.directive';
+import { NgModule } from '@angular/core';
+import { SubMenuDirective, SubMenuItemsDirective, SubMenuTitleDirective } from './sub-menu.directive';
 
 @NgModule({
   imports: [
@@ -8,11 +8,13 @@ import { SubMenuDirective, SubMenuItemsDirective } from './sub-menu.directive';
   ],
   exports: [
     SubMenuDirective,
-    SubMenuItemsDirective
+    SubMenuItemsDirective,
+    SubMenuTitleDirective
   ],
   declarations: [
     SubMenuDirective,
-    SubMenuItemsDirective
+    SubMenuItemsDirective,
+    SubMenuTitleDirective
   ]
 })
 export class SubmenuDirectiveModule {

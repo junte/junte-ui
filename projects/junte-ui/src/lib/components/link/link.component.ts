@@ -1,4 +1,5 @@
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
 import { Icons, Schemes, UI } from '../../enum/ui';
 import { BadgeComponent } from '../badge/badge.component';
 
@@ -21,8 +22,17 @@ export class LinkComponent {
 
   externalLink = false;
 
+  @ViewChild(RouterLinkActive)
+  linkRef: RouterLinkActive;
+
   @HostBinding('attr.disabled')
   @Input() disabled = false;
+
+  @HostBinding('attr.active')
+  get linkActive(): boolean {
+    this.cdr.detectChanges();
+    return !!this.linkRef ? this.linkRef.isActive : false;
+  }
 
   @Input()
   scheme: Schemes = Schemes.primary;
@@ -52,5 +62,8 @@ export class LinkComponent {
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
+
+  constructor(private cdr: ChangeDetectorRef) {
+  }
 
 }
