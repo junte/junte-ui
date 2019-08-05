@@ -56,13 +56,6 @@ export class SubMenuDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.links.forEach(l => {
-        if (l.linkActive) {
-          this.title.active = l.linkActive;
-        }
-      });
-    }, 0);
   }
 }
 
