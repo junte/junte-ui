@@ -1,7 +1,7 @@
 <jnt-stack [type]="type" [gutter]="spacer" [align]="ui.flex.align.stretch" [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let submenu of submenus">
     <div submenu jntSubMenu>
-      <div title jntSubMenuTitle (click)="submenu.opened = !submenu.opened" [attr.opened]="submenu.opened">
+      <div title (click)="submenu.opened = !submenu.opened" [attr.opened]="submenu.opened">
         <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
           <jnt-icon *ngIf="submenu.icon" [icon]="submenu.icon" icon></jnt-icon>
           <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
