@@ -123,7 +123,7 @@ $button-sizes: (
     [badge]:child-host=#{$jnt-badge-host} {
       sup {
         color: #{map-get($scheme, badge-color)};
-        background: #{map-get($scheme, badge-background)};
+        background: #{map-get($scheme, badge-background)} !important;
       }
     }
   }
@@ -145,7 +145,7 @@ $button-sizes: (
       }
     }
     [badge]:child-host=#{$jnt-badge-host} > sup {
-      background: #{map-get($scheme, badge-outline-background)};
+      background: #{map-get($scheme, badge-outline-background)} !important;
       color: #{map-get($scheme, badge-outline-color)};
     }
   }

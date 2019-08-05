@@ -8,25 +8,6 @@ $position-right-top: 'right-top';
 $position-left-top: 'left-top';
 $position-inline: 'inline';
 
-$badge-schemes: (
-  #{$scheme-primary}: (
-    color: $white-color,
-    background: $primary-color
-  ),
-  #{$scheme-secondary}: (
-    color: $gray-900,
-    background: $secondary-color
-  ),
-  #{$scheme-success}: (
-    color: $white-color,
-    background: $success-color
-  ),
-  #{$scheme-fail}: (
-    color: $white-color,
-    background: $fail-color
-  )
-) !default;
-
 $badge-positions: (
   #{$position-right-top}: (
     position: 'absolute',
@@ -43,13 +24,6 @@ $badge-positions: (
   )
 ) !default;
 
-@mixin scheme($scheme) {
-  sup {
-    color: #{map-get($scheme, color)};
-    background: #{map-get($scheme, background)};
-  }
-}
-
 @mixin position($position) {
   sup {
     position: #{map-get($position, position)};
@@ -64,11 +38,6 @@ $badge-positions: (
   position: relative;
   line-height: 0;
   text-align: center;
-  @each $scheme, $map in $badge-schemes {
-    &[scheme='#{$scheme}'] {
-      @include scheme($map);
-    }
-  }
   @each $position, $map in $badge-positions {
     &[position='#{$position}'] {
       @include position($map);

@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Colors, Positions, Schemes } from '../../enum/ui';
+import { Component, HostBinding, Input } from '@angular/core';
+import { Colors, Positions } from '../../enum/ui';
 
 const LIGHT_COLOR = '#FFF';
 const DARK_COLOR = '#4F4F4F';
@@ -21,7 +21,6 @@ export class BadgeComponent {
   @Input()
   position: Positions = Positions.rightTop;
 
-  @HostBinding('style.background-color')
   @Input() color: string = Colors.purple;
 
   @HostBinding('style.color')

@@ -17,7 +17,7 @@
     <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
       <span>{{title}}</span>
       <jnt-stack *ngIf="badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny" [align]="ui.flex.align.center">
-        <jnt-badge *ngFor="let badge of badges" [scheme]="badge.scheme" [count]="badge.count"
+        <jnt-badge *ngFor="let badge of badges" [color]="badge.color" [count]="badge.count"
                    [position]="ui.position.inline" badge></jnt-badge>
       </jnt-stack>
     </jnt-stack>
