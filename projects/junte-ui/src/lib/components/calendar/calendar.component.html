@@ -38,7 +38,7 @@
   <tr *ngFor="let w of weeks" [attr.current-week]="(current | getISOWeek) === (w.date | getISOWeek)">
     <td day *ngFor="let d of w.days"
         [attr.current-day]="(d | format : 'YYYY-MM-DD') | isEqual: (current | format: 'YYYY-MM-DD')"
-        (click)="onChange(d)">
+        (click)="onChange(d)" tabindex="0">
       <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
       </ng-container>
     </td>
