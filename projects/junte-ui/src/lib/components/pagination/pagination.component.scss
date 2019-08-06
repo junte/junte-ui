@@ -17,6 +17,12 @@ $pager-icon-color: $primary-text-light-color !default;
 
 div {
   padding: $gutter-small 0;
+  &:focus {
+    outline: 0;
+    a {
+      box-shadow: $shadow-primary-dark;
+    }
+  }
   a {
     padding: $pager-button-padding-x $pager-button-padding-y;
     border: 1px solid $pager-button-border-color;
