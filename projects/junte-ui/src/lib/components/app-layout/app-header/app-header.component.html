@@ -4,8 +4,8 @@
 
 <ng-container *ngTemplateOutlet="topMenu"></ng-container>
 <jnt-stack [type]="ui.type.horizontal" [gutter]="ui.stack.gutter.small">
+  <ng-content></ng-content>
   <ng-container *ngTemplateOutlet="actions"></ng-container>
   <ng-container *ngTemplateOutlet="userbar"></ng-container>
 </jnt-stack>
-<ng-content></ng-content>
 
