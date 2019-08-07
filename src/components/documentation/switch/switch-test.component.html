@@ -51,6 +51,20 @@
 ]]></pre>
   </ngx-prism>
 
+  <h2>Switch with icon (on,off) & label (on, off)</h2>
+
+  <jnt-stack [type]="ui.stack.type.vertical">
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-switch label="Switch" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" labelOn="On" labelOff="Off" [size]="size"></jnt-switch>
+      <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
+      <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" [disabled]="true" label="Switch disabled" [size]="size" name="disabled"></jnt-switch>
+      <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" [(ngModel)]="checked" [disabled]="true" name="checked_disabled"
+                  label="Switch disabled & checked" [size]="size">
+      </jnt-switch>
+      <br>
+    </ng-container>
+  </jnt-stack>
+
   <h1>Theme switcher</h1>
 
   <jnt-theme-switcher></jnt-theme-switcher>
