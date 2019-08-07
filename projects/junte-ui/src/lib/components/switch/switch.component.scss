@@ -1,35 +1,42 @@
 @import "../../assets/styles/variables";
 @import "../form/common";
 
-
 $switch-corner: 35px !default;
 $switch-slider-background: $white-color !default;
-$switch-background: $gray-700 !default;
+$switch-background: $gray-600 !default;
 $switch-border-color: transparent !default;
-$switch-padding: 3px !default;
+$switch-padding: 2px !default;
 $switch-border-width: 1px !default;
 
 $switch-checked-background: $primary-color !default;
-$switch-disabled-background: $control-disabled-background !default;
-$switch-disabled-checked-background: lighten($switch-checked-background, 30%) !default;
+$switch-disabled-background: rgba($switch-background, .7) !default;
+$switch-disabled-checked-background: rgba($switch-checked-background, .5) !default;
 $switch-disabled-border-color: transparent !default;
 
 $switch-sizes: (
   #{$size-tiny}: (
     width: 30px,
     height: 18px,
+    icon-size: 6px,
+    label-font-size: 6px,
   ),
   #{$size-small}: (
     width: 38px,
     height: 22px,
+    icon-size: 8px,
+    label-font-size: 8px,
   ),
   #{$size-normal}: (
     width: 50px,
     height: 28px,
+    icon-size: 11px,
+    label-font-size: 11px,
   ),
   #{$size-large}: (
     width: 67px,
     height: 36px,
+    icon-size: 15px,
+    label-font-size: 14px,
   ),
 ) !default;
 
@@ -40,9 +47,21 @@ $switch-sizes: (
     min-height: #{map-get($size, height)};
     height: #{map-get($size, height)};
   }
-  [icon] {
+  [label] {
+    margin-left: calc(#{map-get($size, height)} - #{$switch-padding});
+    font-size: #{map-get($size, label-font-size)};
+  }
+  input:checked + [switch] {
+    [label] {
+      margin-right: calc(#{map-get($size, height)} - #{$switch-padding});
+    }
+  }
+  [slider] {
     width: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
     height: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
+    [icon] {
+      font-size: #{map-get($size, icon-size)};
+    }
   }
 }
 
@@ -71,8 +90,15 @@ input {
   height: 100%;
   &:checked + [switch] {
     background-color: $switch-checked-background;
+    [label] {
+      margin-left: 0;
+      text-align: right;
+    }
+    [slider] [icon] {
+      color: $switch-checked-background;
+    }
   }
-  &:checked + [switch] > [icon] {
+  &:checked + [switch] > [slider] {
     left: auto;
     right: #{$switch-padding};
   }
@@ -84,10 +110,16 @@ input {
     & + [switch] {
       background-color: $switch-disabled-background;
       border-color: $switch-disabled-border-color;
+      [slider] [icon] {
+        color: $switch-disabled-background;
+      }
     }
     &:checked {
       & + [switch] {
         background-color: $switch-disabled-checked-background;
+        [slider] [icon] {
+          color: $switch-disabled-checked-background;
+        }
       }
     }
   }
@@ -110,8 +142,12 @@ label {
   background-color: $switch-background;
   border: $switch-border-width solid $switch-border-color;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 $switch-padding;
+  overflow: hidden;
   transition: all ease .4s;
-  [icon] {
+  [slider] {
     border-radius: 50%;
     background-color: $switch-slider-background;
     position: absolute;
@@ -119,7 +155,20 @@ label {
     right: auto;
     top: 50%;
     transform: translateY(-50%);
-    transition: all .4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    [icon] {
+      color: $switch-background;
+    }
+  }
+  [label] {
+    color: $switch-slider-background;
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
   }
 }
 
