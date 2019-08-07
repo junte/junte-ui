@@ -17,6 +17,28 @@ $modal-title-font-size: $font-size-base !default;
 
 :host {
   display: none;
+  &[position='left'] {
+    [modal] {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      min-height: 100%;
+      transform: translate3d(-100%, 0, 0);
+      transform-origin: left;
+      transition: transform 3s;
+      &[left='true'] {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+  &[position='center'] {
+    top: 50%;
+    left: 50%;
+    min-width: $modal-width;
+    min-height: $modal-height;
+    transform: translate(-50%, -50%);
+    animation: fadein .5s;
+  }
 }
 
 [overlay] {
@@ -32,14 +54,8 @@ $modal-title-font-size: $font-size-base !default;
 }
 
 [modal] {
-  position: absolute;
+  position: fixed;
   z-index: 2;
-  top: 50%;
-  left: 50%;
-  min-width: $modal-width;
-  min-height: $modal-height;
-  transform: translate(-50%, -50%);
-  animation: fadein .5s;
 
   [title] {
     color: $modal-title-color;

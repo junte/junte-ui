@@ -314,6 +314,14 @@ export enum Matching {
   wildcard = 'wildcard'
 }
 
+export enum ModalPositions {
+  center = 'center',
+  top = 'top',
+  left = 'left',
+  bottom = 'bottom',
+  right = 'right'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -364,6 +372,9 @@ export class UI {
   };
   static table = {
     features: TableFeatures
+  };
+  static modal = {
+    position: ModalPositions
   };
 }
 

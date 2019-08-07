@@ -13,12 +13,13 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UI } from '../../enum/ui';
+import { ModalPositions, UI } from '../../enum/ui';
 
 export class ModalOptions {
   title: string;
   maxWidth = '800px';
   maxHeight = '705px';
+  position: ModalPositions = ModalPositions.center;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -48,7 +49,11 @@ export class ModalComponent implements AfterViewInit {
   private _opened: boolean;
   private modal: HTMLElement;
 
+  @ViewChild('modal')
+  modalContainer: TemplateRef<any>;
+
   template: TemplateRef<any>;
+  modalPositions = ModalPositions;
   options: ModalOptions = new ModalOptions();
 
   @ViewChild('container', {read: ViewContainerRef}) container;
