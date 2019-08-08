@@ -1,30 +1,25 @@
 <jnt-container>
   <h1>Stack</h1>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/stack"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.externalLink"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2178%3A2453"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+  <p>A stack organizes a list of elements using common rules.<br>
+    The main feature of the stack is gutters - distances between elements are created using UI aesthetics 🚀</p>
 
   <h3>Requirements</h3>
 
   <ol>
-    <li>The stack should be of two types: vertical and horizontal</li>
-    <li>Alignment in stack should be with the use of flexbox</li>
-    <li>The stack must have different gutters: small, normal, large</li>
+    <li>The stack should be of two types: <b>vertical</b> and <b>horizontal</b>.</li>
+    <li>Alignment in stack should be with the use of <b>flexbox</b>.</li>
+    <li>The stack must have different gutters: <b>tiny</b>, <b>small</b>, <b>normal</b>, <b>big</b>, <b>large</b>, <b>huge</b>.</li>
   </ol>
-
-  <hr>
-
-  <h3>Sources</h3>
-
-  <ul>
-    <li>
-      <jnt-link source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/stack"
-                target="_blank" title="GitLab">
-      </jnt-link>
-    </li>
-    <li>
-      <jnt-link source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2178%3A2453"
-                target="_blank" title="Figma">
-      </jnt-link>
-    </li>
-  </ul>
 
   <hr>
 
@@ -48,13 +43,13 @@
     </jnt-stack>
   </jnt-stack>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small">
   <div>small</div>
 </jnt-stack>
 ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
   <h3>API</h3>
   <h4>jnt-stack</h4>
