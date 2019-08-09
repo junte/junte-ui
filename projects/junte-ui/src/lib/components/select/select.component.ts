@@ -150,6 +150,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ngAfterContentInit() {
     this.options = this.listOptionComponent.toArray();
+    this.listOptionComponent.changes
+      .subscribe((opts: QueryList<SelectOptionComponent>) => this.options = opts.toArray());
   }
 
   private setLabels(options: any[]) {
