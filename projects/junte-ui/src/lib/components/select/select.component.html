@@ -6,9 +6,7 @@
 
 <ng-template #optionsTemplate>
   <li item *ngFor="let option of options" (click)="optionSelect(option[valueField])">
-    <jnt-checkbox checkbox [checked]="!!selected[option[valueField]]">
-      {{option[labelField]}}
-    </jnt-checkbox>
+    {{option[labelField]}}
   </li>
 </ng-template>
 
