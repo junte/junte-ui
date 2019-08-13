@@ -31,8 +31,8 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   bottom: 0;
   z-index: $app-aside-z-index;
 
-  jnt-menu:deep-host=#{$jnt-menu-host} {
-    [link]:child-host=#{$jnt-link-host} {
+  jnt-menu[deep-host=#{$jnt-menu-host}] {
+    [link][child-host=#{$jnt-link-host}] {
       width: 100%;
       a {
         position: relative;
@@ -108,7 +108,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
     }
   }
 
-  [button]:child-host=#{$jnt-button-host} {
+  [button][child-host=#{$jnt-button-host}] {
     border-bottom: 1px solid $muted-color;
     button {
       color: $menu-item-color-in-aside;
@@ -193,8 +193,8 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   }
   &[collapsed="true"] {
     width: $app-aside-collapsed-width;
-    jnt-menu:deep-host=#{$jnt-menu-host} {
-      [link]:child-host=#{$jnt-link-host} {
+    jnt-menu[deep-host=#{$jnt-menu-host}] {
+      [link][child-host=#{$jnt-link-host}] {
         a span, [badge] {
           max-width: 0;
           opacity: 0;
@@ -238,7 +238,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
           display: none;
           min-height: $menu-item-height-in-aside;
           min-width: 150px;
-          [submenuTitle]:deep-host=#{$jnt-link-host} {
+          [submenuTitle][deep-host=#{$jnt-link-host}] {
             display: block;
             padding: 0 $menu-item-padding-y-in-aside;
             height: $menu-item-height-in-aside;
@@ -279,7 +279,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         }
       }
     }
-    [button]:child-host=#{$jnt-button-host} {
+    [button][child-host=#{$jnt-button-host}] {
       span {
         max-width: 0;
         opacity: 0;

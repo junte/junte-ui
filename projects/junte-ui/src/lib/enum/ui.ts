@@ -131,6 +131,11 @@ export enum Schemes {
   fail = 'fail'
 }
 
+export enum Themes {
+  light = 'light',
+  dark = 'dark'
+}
+
 export enum InputState {
   normal = 'normal',
   failed = 'failed',
@@ -317,6 +322,7 @@ export enum Matching {
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
+  static themes = Themes;
   static sizes = Sizes;
   static outline = Outline;
   static position = Positions;

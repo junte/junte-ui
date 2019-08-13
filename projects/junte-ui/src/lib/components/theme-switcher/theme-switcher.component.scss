@@ -35,10 +35,12 @@ input {
   margin: 0;
   width: 100%;
   height: 100%;
+
   &:checked {
     & + [switch] {
-      transform: translateX(calc((#{$theme-switcher-width} - (#{$theme-switcher-height}  - #{$theme-switcher-padding}) - #{$gutter-tiny}/2)* (-1)));
+      transform: translateX(calc((#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$gutter-tiny} / 2) * (-1)));
       background-color: $theme-switcher-light-background;
+
       [icon] {
         background-color: $theme-switcher-light-slider-background;
       }
@@ -48,12 +50,13 @@ input {
 
 [switch] {
   display: flex;
-  min-width: calc(#{$theme-switcher-width} + (#{$theme-switcher-width} - (#{$theme-switcher-height}  - #{$theme-switcher-padding}) - #{$gutter-tiny}/2));
+  min-width: calc(#{$theme-switcher-width} + (#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$gutter-tiny} / 2));
   height: $theme-switcher-height;
   background-color: $theme-switcher-dark-background;
   transition: all ease .4s;
+
   [icon] {
-    width: calc(#{$theme-switcher-height}  - #{$theme-switcher-padding} * 2);
+    width: calc(#{$theme-switcher-height} - #{$theme-switcher-padding} * 2);
     height: calc(#{$theme-switcher-height} - #{$theme-switcher-padding} * 2);
     border-radius: 50%;
     background-color: $theme-switcher-dark-slider-background;
@@ -64,6 +67,7 @@ input {
     color: $theme-switcher-icon-color;
     transition: all ease .4s;
   }
+
   span {
     font-size: $theme-switcher-font-size;
     color: $theme-switcher-color;

@@ -32,8 +32,8 @@ $menu-item-font-size-in-header: .875rem !default;
   right: 0;
   z-index: $app-header-z-index;
 
-  jnt-menu:deep-host=#{$jnt-menu-host} {
-  jnt-link:child-host=#{$jnt-link-host} {
+  jnt-menu[deep-host=#{$jnt-menu-host}] {
+  jnt-link[child-host=#{$jnt-link-host}] {
   padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
   user-select: none;
   a {
