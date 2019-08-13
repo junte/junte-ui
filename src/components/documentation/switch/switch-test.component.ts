@@ -15,6 +15,10 @@ export class SwitchTestComponent {
     switch: [false, [Validators.required]]
   });
 
+  themeForm = this.fb.group({
+    theme: [UI.themes.light]
+  });
+
   constructor(private fb: FormBuilder) {
   }
 }

@@ -1,17 +1,56 @@
-import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { UI } from '../../enum/ui';
+import { Component, forwardRef, HostBinding, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Themes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-theme-switcher',
-  templateUrl: './theme-switcher.encapsulated.html'
+  templateUrl: './theme-switcher.encapsulated.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ThemeSwitcherComponent),
+      multi: true
+    }
+  ]
 })
-export class ThemeSwitcherComponent {
+export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-theme-switcher-host';
 
-  ui = UI;
+  @HostBinding('attr.theme') theme = Themes.light;
 
-  @HostBinding('attr.checked')
-  @Input() checked = true;
-  @Output() checkedChange = new EventEmitter<boolean>();
+  ui = UI;
+  themes = Themes;
+  themeControl = new FormControl();
+  form = this.fb.group({
+    theme: this.themeControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.themeControl.valueChanges.subscribe(checked => {
+      this.theme = checked ? Themes.light : Themes.dark;
+      this.onChange(this.theme);
+    });
+  }
+
+  onChange = (val: any) => {
+  };
+
+  onTouched = () => {
+  };
+
+  writeValue(value) {
+    this.themeControl.setValue(value === Themes.light);
+  }
+
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
+  }
 }

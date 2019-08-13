@@ -28,18 +28,18 @@ $app-content-padding-top: $app-header-height !default;
   }
 
   &[with-sub-header="false"] {
-    jnt-app-body:deep-host=#{$jnt-app-body-host} {
+    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
     min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
   }
   }
 
   &[with-footer="false"] {
-    jnt-app-body:deep-host=#{$jnt-app-body-host} {
+    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
     min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
   }
   }
   &[with-sub-header="false"][with-footer="false"] {
-    jnt-app-body:deep-host=#{$jnt-app-body-host} {
+    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
     min-height: calc(100vh - #{$app-header-height});
   }
   }

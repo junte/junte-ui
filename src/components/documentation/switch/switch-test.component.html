@@ -67,7 +67,9 @@
 
   <h1>Theme switcher</h1>
 
-  <jnt-theme-switcher></jnt-theme-switcher>
+  <form [formGroup]="themeForm">
+    <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
+  </form>
 
   <h3>API</h3>
   <h4>jnt-switch</h4>
