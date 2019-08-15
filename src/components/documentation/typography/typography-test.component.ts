@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-typography-test',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./typography-test.component.scss']
 })
 export class TypographyTestComponent implements OnInit {
-
+  ui = UI;
   constructor() { }
 
   ngOnInit() {

@@ -1,7 +1,16 @@
 <jnt-container>
 
   <h1>Layout</h1>
-
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/app-layout"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.externalLink"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
   <h3>Requirements</h3>
 
   <ol>
@@ -12,24 +21,6 @@
     <li>Layout must include parts: header, aside, main, content, body, footer</li>
     <li>Header must include logo, menu and userbar</li>
   </ol>
-
-  <hr>
-
-  <h3>Sources</h3>
-
-  <ul>
-    <li>
-      <jnt-link source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/app-layout"
-                target="_blank" title="GitLab">
-      </jnt-link>
-    </li>
-    <li>
-      <jnt-link source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611"
-                target="_blank" title="Figma">
-      </jnt-link>
-    </li>
-
-  </ul>
 
   <hr>
 
@@ -150,7 +141,7 @@
           <jnt-avatar [size]="ui.sizes.small" image="path"></jnt-avatar>
         </ng-template>
         <ng-template #userMenu>
-          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.size.small">
+          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
             <jnt-menu-item link="/logout" title="Logout"></jnt-menu-item>
             <jnt-menu-item link="/profile" title="Profile"></jnt-menu-item>
             <jnt-menu-item link="/settings" title="Settings"></jnt-menu-item>

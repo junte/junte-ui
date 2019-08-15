@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { format, getDate } from 'date-fns';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-calendar-test',
@@ -11,6 +12,7 @@ import { format, getDate } from 'date-fns';
 export class CalendarTestComponent {
   getDate = getDate;
   format = format;
+  ui = UI;
   period$ = new BehaviorSubject<any>(null);
 
   set period(period: any) {

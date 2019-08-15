@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-tabs-test',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs-test.component.scss']
 })
 export class TabsTestComponent implements OnInit {
-
+  ui = UI;
   tabs = [
     {title: 'Tab 1', content: 'Content Tab 1'},
     {title: 'Tab 2', content: 'Content Tab 2'},
