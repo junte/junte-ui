@@ -8,7 +8,7 @@
 
     <div [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
       <ng-container #container>
-        <ng-container *ngTemplateOutlet="template"></ng-container>
+        <ng-container [ngIf]="template" *ngTemplateOutlet="template"></ng-container>
       </ng-container>
     </div>
 
