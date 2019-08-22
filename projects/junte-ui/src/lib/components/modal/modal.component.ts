@@ -15,10 +15,16 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 import { UI } from '../../enum/ui';
 
+export enum ModalClosingOption {
+  enable = 'enable',
+  disable = 'disable'
+}
+
 export class ModalOptions {
   title: string;
   maxWidth = '800px';
   maxHeight = '705px';
+  closing: ModalClosingOption = ModalClosingOption.enable;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -44,6 +50,7 @@ enum Display {
 export class ModalComponent implements AfterViewInit {
 
   ui = UI;
+  closing = ModalClosingOption;
 
   private _opened: boolean;
   private modal: HTMLElement;
