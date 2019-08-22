@@ -26,7 +26,11 @@ export class ModalTestComponent {
 
   openCalendar() {
     const component = this.cfr.resolveComponentFactory(ModalTestFactoryComponent).create(this.injector);
-    this.modalService.open(component, new ModalOptions({title: 'Calendar', maxHeight: '1024px', maxWidth: '1080px'}));
+    this.modalService.open(component, new ModalOptions({
+      title: 'Calendar',
+      maxHeight: '1024px',
+      maxWidth: '1080px'
+    }));
   }
 
   close() {
