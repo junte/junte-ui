@@ -1,7 +1,7 @@
 <jnt-block modal [padding]="ui.padding.normal">
     <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
       <span title>{{options?.title}}</span>
-      <jnt-button *ngIf="options.closing === closing.enable" [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
+      <jnt-button *ngIf="options?.closing === closing.enable" [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
                   [icon]="ui.icons.close" (click)="close()">
       </jnt-button>
     </jnt-stack>
@@ -13,4 +13,4 @@
     </div>
 
 </jnt-block>
-<div *ngIf="!!opened" overlay (click)="options.closing === closing.enable ? close() : null"></div>
+<div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null"></div>
