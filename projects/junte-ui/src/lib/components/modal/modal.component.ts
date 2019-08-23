@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ComponentRef,
   ElementRef,
@@ -69,6 +69,7 @@ export class ModalComponent implements AfterViewInit {
     } else if (content instanceof ComponentRef) {
       this.container.insert(content.hostView, 0);
     }
+    this.cdr.detectChanges();
   }
 
   @HostBinding('style.display')
@@ -84,6 +85,7 @@ export class ModalComponent implements AfterViewInit {
   @Input()
   set opened(opened: boolean) {
     this._opened = opened;
+    this.cdr.detectChanges();
     this.opened$.emit(opened);
   }
 
@@ -93,7 +95,8 @@ export class ModalComponent implements AfterViewInit {
 
   constructor(private sanitizer: DomSanitizer,
               private renderer: Renderer2,
-              private element: ElementRef) {
+              private element: ElementRef,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngAfterViewInit() {
@@ -109,15 +112,18 @@ export class ModalComponent implements AfterViewInit {
   open(content: any, options?: ModalOptions) {
     if (!!options) {
       this.options = options;
+      this.cdr.detectChanges();
     }
     this.content = content;
     this.setBackdropFilter(BackdropFilter.blur);
     this.opened = true;
+    this.cdr.detectChanges();
   }
 
   close() {
     this.setBackdropFilter(BackdropFilter.none);
     this.opened = false;
     this.options = null;
+    this.cdr.detectChanges();
   }
 }
