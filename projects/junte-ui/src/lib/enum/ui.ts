@@ -319,6 +319,12 @@ export enum Matching {
   wildcard = 'wildcard'
 }
 
+export enum GanttRequestStatuses {
+  accepting = 'accepting',
+  accepted = 'accepted',
+  declined = 'declined'
+}
+
 export class UI {
   static icons = Icons;
   static schemes = Schemes;
@@ -371,5 +377,8 @@ export class UI {
   static table = {
     features: TableFeatures
   };
+  static gantt = {
+    statuses: GanttRequestStatuses
+  }
 }
 
