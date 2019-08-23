@@ -1,0 +1,28 @@
+<jnt-container>
+  <jnt-block>
+    <form [formGroup]="form">
+      <jnt-month-gantt formControlName="gantt" [loading]="loading">
+        <jnt-month-gantt-line *ngFor="let request of requests"
+                              [period]="request"
+                              [from]="request.from"
+                              [to]="request.to"
+                              [title]="request.createdBy.login">
+          <ng-template #indicator let-period="period" let-current="current" let-today="today">
+            <div [attr.accepting]="period['status'] === statuses.accepting"
+                 [attr.accepted]="period['status'] === statuses.accepted"
+                 [attr.declined]="period['status'] === statuses.declined"
+                 [attr.used]="(period['to'] | dateDiff:today) < 0"
+                 [attr.self-expense]="period['selfExpense']"
+                 [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
+                 [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
+                 [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
+            <span label>
+            {{(period['to'] | dateDiff:period['from']) + 1 }} days
+          </span>
+            </div>
+          </ng-template>
+        </jnt-month-gantt-line>
+      </jnt-month-gantt>
+    </form>
+  </jnt-block>
+</jnt-container>
