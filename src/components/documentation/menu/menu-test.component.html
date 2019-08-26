@@ -17,41 +17,41 @@
   <h3>Horizontal menu</h3>
 
   <jnt-menu>
-    <jnt-menu-item link="/developer" title="Home">
+    <jnt-menu-item [link]="['/developer']" title="Home">
       <jnt-badge [count]="5" [color]="ui.colors.purple"></jnt-badge>
       <jnt-badge [count]="5"></jnt-badge>
     </jnt-menu-item>
-    <jnt-menu-item link="/documentation" title="Doc"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="GitLab"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
-    <jnt-menu-item link="" title="Empty Link"></jnt-menu-item>
+    <jnt-menu-item [link]="['/documentation']" title="Doc"></jnt-menu-item>
+    <jnt-menu-item [link]="['/developer']" title="GitLab"></jnt-menu-item>
+    <jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>
+    <jnt-menu-item [link]="['']" title="Empty Link"></jnt-menu-item>
   </jnt-menu>
 
   <h3>Vertical menu</h3>
 
   <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-    <jnt-menu-item link="/developer" title="Home">
+    <jnt-menu-item [link]="['/developer']" title="Home">
       <jnt-badge [count]="5"></jnt-badge>
     </jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Doc"></jnt-menu-item>
-    <jnt-menu-item link="/developer" title="GitLab">
+    <jnt-menu-item [link]="['/developer']" title="Doc"></jnt-menu-item>
+    <jnt-menu-item [link]="['/developer']" title="GitLab">
       <jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>
       <jnt-badge [count]="5"></jnt-badge>
     </jnt-menu-item>
-    <jnt-menu-item link="/developer" title="Contacts"></jnt-menu-item>
+    <jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>
   </jnt-menu>
 
   <ngx-prism language="html">
 <pre><![CDATA[
 
 <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-  <jnt-menu-item link="/home" title="Home" [icon]="ui.icons.check">
+  <jnt-menu-item [link]="['/home']" title="Home" [icon]="ui.icons.check">
       <jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>
       <jnt-badge [count]="5"></jnt-badge>
   </jnt-menu-item>
-  <jnt-menu-item link="/doc" title="Doc"></jnt-menu-item>
-  <jnt-menu-item link="/gitlab" title="GitLab"></jnt-menu-item>
-  <jnt-menu-item link="/contacts" title="Contacts"></jnt-menu-item>
+  <jnt-menu-item [link]="['/doc']" title="Doc"></jnt-menu-item>
+  <jnt-menu-item [link]="['/gitlab']" title="GitLab"></jnt-menu-item>
+  <jnt-menu-item [link]="['/contacts']" title="Contacts"></jnt-menu-item>
 </jnt-menu>
 
   ]]></pre>

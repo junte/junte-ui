@@ -63,7 +63,7 @@
       </ng-template>
       <ng-template #topMenu>
         <jnt-menu>
-          <jnt-menu-item link="/developer" title="Developer"></jnt-menu-item>
+          <jnt-menu-item [link]="['/developer']" title="Developer"></jnt-menu-item>
           <jnt-menu-item title="Team Leader"></jnt-menu-item>
           <jnt-menu-item title="Project Manager"></jnt-menu-item>
           <jnt-menu-item title="Customer"></jnt-menu-item>
@@ -112,10 +112,10 @@
     </ng-template>
     <ng-template #topMenu>
       <jnt-menu>
-        <jnt-menu-item link="/developer" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
-        <jnt-menu-item link="/leader" title="Team Leader"></jnt-menu-item>
-        <jnt-menu-item link="/manager" title="Project Manager"></jnt-menu-item>
-        <jnt-menu-item link="/customer" title="Customer"></jnt-menu-item>
+        <jnt-menu-item [link]="['/developer']" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
+        <jnt-menu-item [link]="['/leader']" title="Team Leader"></jnt-menu-item>
+        <jnt-menu-item [link]="['/manager']" title="Project Manager"></jnt-menu-item>
+        <jnt-menu-item [link]="['/customer']" title="Customer"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
     <ng-template #actions>
@@ -142,9 +142,9 @@
         </ng-template>
         <ng-template #userMenu>
           <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-            <jnt-menu-item link="/logout" title="Logout"></jnt-menu-item>
-            <jnt-menu-item link="/profile" title="Profile"></jnt-menu-item>
-            <jnt-menu-item link="/settings" title="Settings"></jnt-menu-item>
+            <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
+            <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
+            <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
           </jnt-menu>
         </ng-template>
       </jnt-userbar>
