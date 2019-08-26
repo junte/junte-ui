@@ -34,12 +34,12 @@
   <ng-container *ngFor="let item of items">
     <div submenu jntSubMenu>
       <jnt-link link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching"
-                [source]="[item.link]" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title">
+                [source]="item.link" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title">
         <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
                    [color]="badge.color"></jnt-badge>
       </jnt-link>
       <div submenuItems jntSubMenuItems>
-        <jnt-link submenuTitle only [source]="[item.link]" [scheme]="item.scheme" [title]="item.title">
+        <jnt-link submenuTitle only [source]="item.link" [scheme]="item.scheme" [title]="item.title">
           <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
                      [color]="badge.color"></jnt-badge>
         </jnt-link>
