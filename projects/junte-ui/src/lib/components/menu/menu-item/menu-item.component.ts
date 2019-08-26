@@ -12,7 +12,7 @@ export class MenuItemComponent {
 
   @Input() icon: Icons;
   @Input() title: string;
-  @Input() link: string;
+  @Input() link: string | string[];
   @Input() badge: number;
   @Input() matching: Matching = Matching.fullMatch;
   @Input() scheme: Schemes = Schemes.primary;
