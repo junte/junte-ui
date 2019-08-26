@@ -27,7 +27,6 @@ export class MonthGanttComponent implements ControlValueAccessor {
 
   ui = UI;
   today = (today());
-  progress: any = {};
   error: Error;
 
   format = format;

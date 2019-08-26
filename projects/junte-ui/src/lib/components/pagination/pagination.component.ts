@@ -47,7 +47,7 @@ export class PaginationComponent {
     return this._selectedPage;
   }
 
-  onModelChange(value: any) {
+  onModelChange(value: number) {
   }
 
   registerOnChange(fn: any): void {
@@ -57,7 +57,7 @@ export class PaginationComponent {
   registerOnTouched(fn: any): void {
   }
 
-  writeValue(value: any): void {
+  writeValue(value: number): void {
     this.selectedPage = value;
   }
 

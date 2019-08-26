@@ -74,7 +74,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   selectMode = SelectMode;
   selectedItems: any[] = [];
   selected: any = {};
-  labels: any = {};
+  labels: string[] = [];
   loading: boolean;
   toggle: boolean;
   focused: boolean;
