@@ -31,6 +31,8 @@ export class ModalOptions {
   }
 }
 
+export type ModalContent = TemplateRef<any> | ComponentRef<any>;
+
 enum BackdropFilter {
   none = 'none',
   blur = 'blur(5px)'
@@ -60,7 +62,7 @@ export class ModalComponent implements AfterViewInit {
 
   @ViewChild('container', {read: ViewContainerRef}) container;
 
-  set content(content: TemplateRef<any> | ComponentRef<any>) {
+  set content(content: ModalContent) {
     this.template = null;
     this.container.clear();
 
@@ -109,7 +111,7 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
-  open(content: any, options?: ModalOptions) {
+  open(content: ModalContent, options?: ModalOptions) {
     if (!!options) {
       this.options = options;
       this.cdr.detectChanges();

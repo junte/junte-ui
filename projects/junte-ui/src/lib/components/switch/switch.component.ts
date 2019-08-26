@@ -46,7 +46,7 @@ export class SwitchComponent implements ControlValueAccessor {
   @Input()
   size: Sizes = Sizes.normal;
 
-  onChange = (val: any) => {
+  onChange = (val: boolean) => {
   };
 
   onTouched = () => {

@@ -41,7 +41,7 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
     return this._period;
   }
 
-  onChange: (date: any) => void;
+  onChange: (date: Date) => void;
 
   ngOnInit() {
     this.period = startOfWeek(this.current, {weekStartsOn: 1});

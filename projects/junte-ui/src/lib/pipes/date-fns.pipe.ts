@@ -1,13 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { addMonths, format, getDate, getISOWeek, isEqual, subMonths } from 'date-fns';
 
+interface FormatOptions {
+  locale?: Object;
+}
+
 type DateFns = number | string | Date;
 
 @Pipe({
   name: 'format'
 })
 export class FormatPipe implements PipeTransform {
-  transform(date: DateFns, f?: string, o?: any): string {
+  transform(date: DateFns, f?: string, o?: FormatOptions): string {
     return format(date, f, o);
   }
 }
