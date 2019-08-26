@@ -17,4 +17,7 @@ export class IconComponent {
     return `icon-${this.icon}`;
   }
 
+  @Input()
+  @HostBinding('style.font-family') font = 'icons';
+
 }
