@@ -42,6 +42,7 @@ export class LinkComponent {
 
   @Input()
   set source(source: string | string[]) {
+    console.log('source link: ', source);
     this.externalLink = !!source && !Array.isArray(source);
     this._source = !this.externalLink ? (Array.isArray(source) ? source : [source]) : source;
   }
