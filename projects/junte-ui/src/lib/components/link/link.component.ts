@@ -3,7 +3,6 @@ import { RouterLinkActive } from '@angular/router';
 import { Icons, Schemes, UI } from '../../enum/ui';
 import { BadgeComponent } from '../badge/badge.component';
 
-const PATTERN = /^HTTP|HTTP|http(s)?:\/\/(www\.)?[A-Za-z0-9]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,40}(:[0-9]{1,40})?(\/.*)?$|^#/;
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
 const DEFAULT_TARGET = '_self';
 
@@ -18,7 +17,7 @@ export class LinkComponent {
   ui = UI;
 
   private _source: string | string[];
-  private _target: string;
+  private _target: string = DEFAULT_TARGET;
 
   externalLink = false;
 
@@ -43,7 +42,7 @@ export class LinkComponent {
 
   @Input()
   set source(source: string | string[]) {
-    this.externalLink = !!source && !Array.isArray(source) && !!source.match(PATTERN);
+    this.externalLink = !!source && !Array.isArray(source);
     this._source = !this.externalLink ? (Array.isArray(source) ? source : [source]) : source;
   }
 

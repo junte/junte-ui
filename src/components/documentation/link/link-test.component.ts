@@ -8,7 +8,7 @@ import { UI } from 'junte-ui';
 })
 export class LinkTestComponent implements OnInit {
   example = `
-    <jnt-link source="/components/block">Link</jnt-link>
+    <jnt-link [source]="['/components', 'block']">Link</jnt-link>
   `;
 
   ui = UI;
