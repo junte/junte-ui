@@ -37,7 +37,10 @@
   </tbody>
 </table>
 
-<svg *ngIf="indicators.length" [attr.width]="widthMark + widthPoligon" [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
+<svg *ngIf="indicators.length"
+     [style.min-width]="widthMark + widthPoligon"
+     [attr.width]="widthMark + widthPoligon"
+     [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
 
   <ng-container *ngFor="let indicator of indicators; trackBy: trackByFn; let i = index; let first = first">
     <polygon
