@@ -15,6 +15,9 @@ $menu-item-padding-x-in-header: $gutter-small !default;
 $menu-item-padding-y-in-header: $gutter-small !default;
 $menu-item-font-size-in-header: .875rem !default;
 
+$menu-item-icon-font-size-in-header: 18px !default;
+$menu-item-icon-color-in-header: $white-color !default;
+
 :host {
   display: flex;
   align-items: center;
@@ -33,23 +36,27 @@ $menu-item-font-size-in-header: .875rem !default;
   z-index: $app-header-z-index;
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
-  jnt-link[child-host=#{$jnt-link-host}] {
-  padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
-  user-select: none;
-  a {
-    span {
-      color: $menu-item-color-in-header;
-      font-size: $menu-item-font-size-in-header;
-    }
-    &[active='true'] {
-      span {
-        color: $menu-item-active-color-in-header;
-        border-bottom-color: $menu-item-active-border-color-in-header;
+    jnt-link[child-host=#{$jnt-link-host}] {
+      padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
+      user-select: none;
+      a {
+        span {
+          color: $menu-item-color-in-header;
+          font-size: $menu-item-font-size-in-header;
+        }
+        jnt-icon {
+          color: $menu-item-icon-color-in-header;
+          font-size: $menu-item-icon-font-size-in-header;
+        }
+        &[active='true'] {
+          span {
+            color: $menu-item-active-color-in-header;
+            border-bottom-color: $menu-item-active-border-color-in-header;
+          }
+        }
       }
     }
   }
-}
-}
 }
 
 [logo] {

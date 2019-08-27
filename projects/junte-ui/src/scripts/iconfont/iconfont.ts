@@ -7,24 +7,23 @@ import * as rename from 'gulp-rename';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import 'reflect-metadata';
 
-const ICONFONT_INFO = 'A config file(iconfont.json) and template for the iconfont creating'
+const ICONFONT_INFO = 'A config file(iconfont.json) and template for the iconfont creating '
   + 'has been created in the root directory. Set your preferences for the library.';
 const CONFIG_NAME = 'iconfont.json';
-const TEMPLATE_NAME = 'template.scss';
+const TEMPLATE_NAME = 'template';
+const TIMESTAMP = 1000;
 
 class Config {
-  iconsDir: string = '';
-  stylesDir: string = '';
-  fontsDir: string = '';
-  templateDir: string = '';
-  fontName: string = '';
+  iconsDir = '';
+  stylesDir = '';
+  fontsDir = '';
+  fontName = '';
 }
 
 @Gulpclass()
 export class Gulpfile {
 
   private check() {
-    console.log(fs.existsSync('iconfont/' + CONFIG_NAME));
     return fs.existsSync('iconfont/' + CONFIG_NAME) && fs.existsSync('iconfont/' + TEMPLATE_NAME);
   }
 
@@ -45,14 +44,13 @@ export class Gulpfile {
   styles() {
     const config: Config = this.read();
 
-    console.log(config);
-    return gulp.src([config.iconsDir])
+    return gulp.src([`${config.iconsDir}/*.svg`])
       .pipe(debug())
       .pipe(iconfont({
         fontName: config.fontName,
         prependUnicode: true,
         formats: ['ttf', 'woff', 'svg', 'eot', 'woff2'],
-        timestamp: Math.round(Date.now() / 1000),
+        timestamp: Math.round(Date.now() / TIMESTAMP),
         normalize: true,
         fontHeight: 1001
       }))
@@ -60,14 +58,14 @@ export class Gulpfile {
         glyphs.forEach(function (glyph, idx, arr) {
           arr[idx].unicode[0] = glyph.unicode[0].charCodeAt(0).toString(16);
         });
-        gulp.src(config.templateDir)
+        gulp.src('iconfont/template')
           .pipe(consolidate('lodash', {
             glyphs: glyphs,
             fontName: config.fontName,
-            fontPath: '../fonts/icons/',
+            fontPath: config.fontsDir + '/',
             className: 'icon'
           }))
-          .pipe(rename('icons.scss'))
+          .pipe(rename(`${config.fontName}-font.scss`))
           .pipe(gulp.dest(config.stylesDir));
       })
       .pipe(gulp.dest(config.fontsDir));

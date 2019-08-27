@@ -8,12 +8,13 @@
     </ng-template>
     <ng-template #topMenu>
       <jnt-menu>
-        <jnt-menu-item title="Home" [link]="['/home']" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
-        <jnt-menu-item title="Documentation" [link]="['/documentation']"
+        <jnt-menu-item [icon]="ui.icons.home" title="Home" [link]="['/home']" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item [icon]="ui.icons.documentation" title="Documentation" [link]="['/documentation']"
                        [matching]="ui.menu.matching.wildcard">
         </jnt-menu-item>
-        <jnt-menu-item title="GitLab" [link]="['/gitlab']" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
-        <jnt-menu-item title="Contacts" [link]="['/contacts']" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="GitLab" [link]="['/gitlab']" [matching]="ui.menu.matching.wildcard" icon="junte-ui:gitlab"></jnt-menu-item>
+        <jnt-menu-item title="Figma" [link]="['/figma']" [matching]="ui.menu.matching.wildcard"  icon="junte-ui:figma"></jnt-menu-item>
+        <jnt-menu-item [icon]="ui.icons.contacts" title="Contacts" [link]="['/contacts']" [matching]="ui.menu.matching.wildcard"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
     <jnt-form [formGroup]="themeForm">
