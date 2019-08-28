@@ -13,12 +13,14 @@ $table-row-hover: $highlight-background !default;
 $table-icon-nodata-size: 80px !default;
 $table-icon-nodata-color: $muted-color !default;
 $table-min-height: 200px !default;
+$table-min-width: 400px !default;
 
 $table-loading-overlay-background: rgba($secondary-background, .6) !default;
 $table-loading-spinner-color: $primary-text-light-color !default;
 
 :host {
   display: block;
+  min-width: $table-min-width;
   padding: $table-padding-x $table-padding-y;
 
   [button][child-host=#{$jnt-button-host}] {
