@@ -1,6 +1,7 @@
 <table border="0" cellpadding="5" [cellSpacing]="0">
-  <tbody>
+  <thead>
   <tr>
+    <td gutter></td>
     <td empty></td>
     <td controls [attr.colspan]="getDaysInMonth(current)">
       <div>
@@ -16,18 +17,19 @@
       </div>
     </td>
   </tr>
-
-  <tr>
-    <td></td>
+  <tr timeline>
+    <td gutter></td>
+    <td>Developer</td>
     <td day [attr.current]="day === getDate(today) && isSameMonth(current, today)"
         *ngFor="let day of getDaysInMonth(current) | numberArray: 1">
       {{day}}
     </td>
   </tr>
-
+  </thead>
+  <tbody>
   <ng-template #noDataTemplate>
     <tr nodata>
-      <td [attr.colspan]="getDaysInMonth(current) + 1">
+      <td [attr.colspan]="getDaysInMonth(current) + 2">
         <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
       </td>
     </tr>
@@ -35,19 +37,20 @@
   <ng-template #skeletonTemplate>
     <ng-container *ngIf="loading else noDataTemplate">
       <tr loading *ngFor="let i of 5 | mockArray">
-        <td [attr.colspan]="getDaysInMonth(current) + 1">
+        <td [attr.colspan]="getDaysInMonth(current) + 2">
           <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="1"></jnt-skeleton>
         </td>
       </tr>
     </ng-container>
   </ng-template>
 
-  <ng-container *ngIf="!!lines?.length else skeletonTemplate">
+  <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
     <tr *ngFor="let line of lines;let i = index">
       <ng-template #noRequest>
         <td *ngFor="let day of getDaysInMonth(current) | numberArray: 1"></td>
       </ng-template>
 
+      <td gutter></td>
       <td title>{{line.title}}</td>
 
       <ng-container *ngIf="(line.from | same: current) || (line.to | same: current); else noRequest">
