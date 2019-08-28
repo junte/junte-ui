@@ -1,19 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'jnt-animated-icon',
   templateUrl: './animated-icon.component.html',
   styleUrls: ['./animated-icon.component.scss']
 })
-export class AnimatedIconComponent implements OnInit {
+export class AnimatedIconComponent {
 
   @Input() icon: string;
-
-  constructor(public sanitizer: DomSanitizer) {
-  }
-
-  ngOnInit() {
-  }
 
 }
