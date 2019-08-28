@@ -2,6 +2,8 @@ import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } fr
 import { Icons, Matching, Schemes, UI } from '../../../enum/ui';
 import { BadgeComponent } from '../../badge/badge.component';
 
+const DEFAULT_TARGET = '_self';
+
 @Component({
   selector: 'jnt-menu-item',
   template: ''
@@ -13,6 +15,7 @@ export class MenuItemComponent {
   @Input() icon: Icons;
   @Input() title: string;
   @Input() link: string | string[];
+  @Input() target: string = DEFAULT_TARGET;
   @Input() badge: number;
   @Input() matching: Matching = Matching.fullMatch;
   @Input() scheme: Schemes = Schemes.primary;
