@@ -16,7 +16,7 @@ export class LinkComponent {
 
   ui = UI;
 
-  private _source: string | string[] = [null];
+  private _source: string | string[];
   private _target: string = DEFAULT_TARGET;
 
   externalLink = false;
@@ -42,8 +42,10 @@ export class LinkComponent {
 
   @Input()
   set source(source: string | string[]) {
-    this.externalLink = !Array.isArray(source);
-    this._source = !!source ? source : [null];
+    if (!!source) {
+      this.externalLink = !Array.isArray(source);
+      this._source = source;
+    }
   }
 
   get source() {
