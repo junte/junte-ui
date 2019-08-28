@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AnimatedIconComponent implements OnInit {
 
-  private source: string;
+  source: string;
   @Input() icon: string;
   @Input() iconset: string = '';
 
