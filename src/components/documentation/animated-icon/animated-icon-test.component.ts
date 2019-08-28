@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UI } from 'projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-animated-icon-test',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AnimatedIconTestComponent {
 
+  ui = UI;
+  icons = ['running_man'];
 }
