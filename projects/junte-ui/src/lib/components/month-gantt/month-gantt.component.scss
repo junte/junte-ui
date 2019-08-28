@@ -4,14 +4,92 @@ $gantt-icon-nodata-size: 80px !default;
 $gantt-icon-nodata-color: $muted-color !default;
 $gantt-min-height: 200px !default;
 
+$gantt-arrows-size: 1rem !default;
+$gantt-arrows-color: $primary-text-color !default;
+$gantt-arrows-hover-color: lighten($gantt-arrows-color, 10%) !default;
+$gantt-button-arrows-size: 25px !default;
+$gantt-button-arrows-corner: 50% !default;
+$gantt-button-arrows-focus-border-color: $primary-color !default;
+$gantt-button-arrows-focus-shadow: $shadow-primary-dark !default;
+
 :host {
-  padding: $gutter-normal;
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
 }
 
 table {
   width: 100%;
+  table-layout: fixed;
+  thead {
+    tr {
+      &[timeline] {
+        background-color: $secondary-background;
+      }
+      td {
+        text-align: center;
+        &[controls] {
+          border-right: none;
+          padding: $gutter-normal $gutter-tiny;
+          width: 600px;
+
+          [arrow] {
+            background-color: transparent;
+            border-width: 0;
+            font-size: $gantt-arrows-size;
+            color: $gantt-arrows-color;
+            cursor: pointer;
+            padding: 0;
+            vertical-align: middle;
+            border-radius: $gantt-button-arrows-corner;
+            width: $gantt-button-arrows-size;
+            height: $gantt-button-arrows-size;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: box-shadow .3s;
+            &:focus {
+              outline: none;
+              box-shadow: $gantt-button-arrows-focus-shadow;
+              border: 1px solid $gantt-button-arrows-focus-border-color;
+            }
+            &:hover {
+              color: $gantt-arrows-hover-color;
+              border: 1px solid $gantt-button-arrows-focus-border-color;
+            }
+          }
+
+          div {
+            display: flex;
+            justify-content: space-around;
+
+            [month] {
+              flex: 1;
+              text-align: center;
+              font-weight: bold;
+            }
+          }
+        }
+
+        &[day] {
+          text-align: center;
+          font-size: $font-size-small;
+          padding: $gutter-normal $gutter-tiny;
+          width: 20px;
+
+          &[current='true'] {
+            color: $white-color;
+            background-color: $primary-color;
+          }
+        }
+        &[gutter] {
+          width: 4px;
+        }
+        &[empty] {
+          width: 170px;
+        }
+      }
+    }
+  }
 
   tbody {
     tr {
@@ -40,45 +118,31 @@ table {
           border-left: 1px solid $gray-700;
         }
       }
+
+      &:last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
     }
 
     td {
-      border-bottom: 1px solid $gray-700;
-      border-right: 1px solid $gray-700;
+      border-bottom: 1px solid $gray-400;
+      border-right: 1px solid $gray-400;
+      padding: $gutter-tiny;
+      height: 59px;
+      box-sizing: border-box;
 
-      &[controls] {
-        border-right: none;
-        padding: $gutter-tiny 0;
-
-        div {
-          display: flex;
-          justify-content: space-around;
-
-          [month] {
-            flex: 1;
-            text-align: center;
-            font-weight: bold;
-          }
-        }
-      }
-
-      &[day] {
-        text-align: center;
-        font-size: $font-size-small;
-        min-width: 20px;
-
-        &[current='true'] {
-          color: $white-color;
-          background-color: $primary-color;
-        }
-      }
-
-      &[title] {
-        border-left: 1px solid $gray-700;
+      &:last-child {
+        border-right: 0;
       }
 
       &[empty] {
         border: none;
+      }
+
+      &[gutter] {
+        border-right: 0;
       }
     }
   }
