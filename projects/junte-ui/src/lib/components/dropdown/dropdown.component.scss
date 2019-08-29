@@ -1,5 +1,4 @@
 @import "../../assets/styles/variables";
-@import "../../assets/styles/common";
 
 $dropdown-background: $primary-background !default;
 $dropdown-padding-x: $gutter-big !default;
@@ -27,35 +26,35 @@ $menu-item-padding-y-in-dropdown: $gutter-big !default;
   }
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
-  background-color: $dropdown-background;
-  min-width: 100%;
-  position: absolute;
-  top: 100%;
-  box-shadow: $dropdown-shadow;
-  border-radius: $dropdown-corner;
-  white-space: nowrap;
-  transform: scaleY(0);
-  transition: all .2s ease-in-out;
-  transform-origin: 0 0;
-  box-sizing: border-box;
-  z-index: 1;
-  jnt-link[child-host=#{$jnt-link-host}] {
-  width: 100%;
-  a {
-    border: 0;
-    border-left: 4px solid transparent;
-    padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
-    position: relative;
-    &:hover {
-      background-color: $menu-item-hover-background-color-in-dropdown;
-      border-left-color: $primary-color;
-    }
-    span, [icon] {
-      color: $menu-item-color-in-dropdown;
+    background-color: $dropdown-background;
+    min-width: 100%;
+    position: absolute;
+    top: 100%;
+    box-shadow: $dropdown-shadow;
+    border-radius: $dropdown-corner;
+    white-space: nowrap;
+    transform: scaleY(0);
+    transition: all .2s ease-in-out;
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    z-index: 1;
+    jnt-link[child-host=#{$jnt-link-host}] {
+      width: 100%;
+      a {
+        border: 0;
+        border-left: 4px solid transparent;
+        padding: $menu-item-padding-x-in-dropdown $menu-item-padding-y-in-dropdown;
+        position: relative;
+        &:hover {
+          background-color: $menu-item-hover-background-color-in-dropdown;
+          border-left-color: $primary-color;
+        }
+        span, [icon] {
+          color: $menu-item-color-in-dropdown;
+        }
+      }
     }
   }
-}
-}
 }
 
 [overlay] {

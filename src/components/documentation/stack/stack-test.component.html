@@ -30,6 +30,8 @@
                 ui.stack.gutter.large, ui.stack.gutter.huge]">
       <jnt-stack [gutter]="gutter">
         <div block *ngFor="let element of [1, 2]">{{gutter}}</div>
+        <router-outlet></router-outlet>
+        <div block></div>
       </jnt-stack>
     </jnt-col>
   </jnt-row>
