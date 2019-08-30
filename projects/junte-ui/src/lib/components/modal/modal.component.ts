@@ -13,18 +13,23 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UI } from '../../enum/ui';
+import { Icons, UI } from '../../enum/ui';
 
 export enum ModalClosingOption {
   enable = 'enable',
   disable = 'disable'
 }
 
+interface ModalTitle {
+  text?: string;
+  icon?: Icons;
+}
+
 export class ModalOptions {
-  title: string;
   maxWidth = '800px';
   maxHeight = '705px';
   closing: ModalClosingOption = ModalClosingOption.enable;
+  title?: ModalTitle;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -32,6 +37,7 @@ export class ModalOptions {
 }
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;
+export type ModalFooter = TemplateRef<any>;
 
 enum BackdropFilter {
   none = 'none',
@@ -54,24 +60,38 @@ export class ModalComponent implements AfterViewInit {
   ui = UI;
   closing = ModalClosingOption;
 
+  private _footer: ModalFooter;
   private _opened: boolean;
   private modal: HTMLElement;
 
-  template: TemplateRef<any>;
+  contentTemplate: TemplateRef<any>;
+  footerTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
 
   @ViewChild('container', {read: ViewContainerRef}) container;
 
   set content(content: ModalContent) {
-    this.template = null;
+    this.contentTemplate = null;
     this.container.clear();
 
     if (content instanceof TemplateRef) {
-      this.template = content;
+      this.contentTemplate = content;
     } else if (content instanceof ComponentRef) {
       this.container.insert(content.hostView, 0);
     }
     this.cdr.detectChanges();
+  }
+
+  set footer(footer: ModalFooter) {
+    this.footerTemplate = null;
+    if (footer instanceof TemplateRef) {
+      this.footerTemplate = footer;
+    }
+    this.cdr.detectChanges();
+  }
+
+  get footer() {
+    return this._footer;
   }
 
   @HostBinding('style.display')
@@ -111,12 +131,13 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
-  open(content: ModalContent, options?: ModalOptions) {
+  open(content: ModalContent, footer?: TemplateRef<any>, options?: ModalOptions) {
     if (!!options) {
       this.options = options;
       this.cdr.detectChanges();
     }
     this.content = content;
+    this.footer = footer;
     this.setBackdropFilter(BackdropFilter.blur);
     this.opened = true;
     this.cdr.detectChanges();
@@ -125,7 +146,7 @@ export class ModalComponent implements AfterViewInit {
   close() {
     this.setBackdropFilter(BackdropFilter.none);
     this.opened = false;
-    this.options = null;
+    this.options = new ModalOptions();
     this.cdr.detectChanges();
   }
 }

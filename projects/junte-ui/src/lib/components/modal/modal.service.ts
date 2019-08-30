@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { ModalComponent, ModalContent, ModalOptions } from './modal.component';
+import { EventEmitter, Injectable, TemplateRef } from '@angular/core';
+import { ModalComponent, ModalContent, ModalFooter, ModalOptions } from './modal.component';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
@@ -17,8 +17,8 @@ export class ModalService {
     }
   }
 
-  open(content: ModalContent, options?: ModalOptions) {
-    this.modal.open(content, options);
+  open(content: ModalContent, footer?: TemplateRef<any>, options?: ModalOptions) {
+    this.modal.open(content, footer, options);
   }
 
   close() {

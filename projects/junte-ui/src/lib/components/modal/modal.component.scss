@@ -2,9 +2,17 @@
 
 $modal-width: 320px !default;
 $modal-height: 210px !default;
-$modal-title-color: $primary-text-color !default;
-$modal-title-font-weight: $font-weight-bold !default;
-$modal-title-font-size: $font-size-base !default;
+$modal-text-color: $primary-text-color !default;
+$modal-text-font-weight: $font-weight-bold !default;
+$modal-text-font-size: $font-size-base !default;
+
+$modal-title-padding-x: $gutter-normal !default;
+$modal-title-padding-y: $gutter-normal !default;
+$modal-title-background: $page-background !default;
+$modal-title-font-size: 18px !default;
+
+$modal-content-padding-x: $gutter-normal !default;
+$modal-content-padding-y: $gutter-normal !default;
 
 @keyframes fadein {
   from {
@@ -42,8 +50,21 @@ $modal-title-font-size: $font-size-base !default;
   animation: fadein .5s;
 
   [title] {
-    color: $modal-title-color;
-    font-weight: $modal-title-font-weight;
+    border-top-left-radius: $corner-normal;
+    border-top-right-radius: $corner-normal;
+    padding: $modal-title-padding-x $modal-title-padding-y;
+    background-color: $modal-title-background;
     font-size: $modal-title-font-size;
+
+    [text] {
+      color: $modal-text-color;
+      font-weight: $modal-text-font-weight;
+    }
   }
+
+  [content] {
+    padding: $modal-content-padding-x $modal-content-padding-y;
+    font-size: $modal-text-font-size;
+  }
+
 }

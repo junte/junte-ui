@@ -1,16 +1,22 @@
-<jnt-block modal [padding]="ui.padding.normal">
-    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
-      <span title>{{options?.title}}</span>
-      <jnt-button *ngIf="options?.closing === closing.enable" [outline]="ui.outline.transparent" [scheme]="ui.schemes.secondary"
-                  [icon]="ui.icons.close" (click)="close()">
-      </jnt-button>
+<jnt-block modal>
+  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" title>
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.stack.gutter.small">
+      <jnt-icon *ngIf="!!options?.title?.icon" [icon]="options.title.icon"></jnt-icon>
+      <span text *ngIf="!!options?.title?.text">{{options?.title?.text}}</span>
     </jnt-stack>
 
-    <div [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
-      <ng-container #container>
-        <ng-container [ngIf]="template" *ngTemplateOutlet="template"></ng-container>
-      </ng-container>
-    </div>
+    <jnt-button *ngIf="options?.closing === closing.enable" [outline]="ui.outline.transparent"
+                [scheme]="ui.schemes.secondary"
+                [icon]="ui.icons.close" (click)="close()">
+    </jnt-button>
+  </jnt-stack>
+
+  <div [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}" content>
+    <ng-container #container>
+      <ng-container [ngIf]="!!contentTemplate" *ngTemplateOutlet="contentTemplate"></ng-container>
+    </ng-container>
+  </div>
+  <ng-container [ngIf]="!!footerTemplate" *ngTemplateOutlet="footerTemplate"></ng-container>
 
 </jnt-block>
 <div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null"></div>
