@@ -82,3 +82,21 @@ export class RemnantDayPipe implements PipeTransform {
     return Math.min(diff, Math.max(remnant, 0));
   }
 }
+
+@Pipe({
+  name: 'getDaysInMonth'
+})
+export class GetDaysInMonthPipe implements PipeTransform {
+  transform(date: Date): number {
+    return getDaysInMonth(date);
+  }
+}
+
+@Pipe({
+  name: 'isSameMonth'
+})
+export class IsSameMonthPipe implements PipeTransform {
+  transform(date1: Date, date2: Date): boolean {
+    return isSameMonth(date1, date2);
+  }
+}

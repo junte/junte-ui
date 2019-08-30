@@ -1,10 +1,10 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'jnt-month-gantt-line',
+  selector: 'jnt-gantt-line',
   template: ''
 })
-export class MonthGanttLineComponent {
+export class GanttLineComponent {
 
   @Input() title: string;
   @Input() from: Date;
