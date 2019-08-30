@@ -1,30 +1,33 @@
 <table border="0" cellpadding="5" [cellSpacing]="0">
-  <tbody>
+  <thead>
   <tr>
+    <td gutter></td>
     <td empty></td>
     <td controls [attr.colspan]="(current | getDaysInMonth)">
       <div>
-        <jnt-button arrow (click)="current = subMonths(current, 1)"
-                    [icon]="ui.icons.arrowLeft">
-        </jnt-button>
+        <button arrow (click)="current = subMonths(current, 1)">
+          <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
+        </button>
         <div month>
           {{current | format: 'MMMM'}}, {{current | format: 'YYYY'}}
         </div>
-        <jnt-button arrow (click)="current = addMonths(current, 1)"
-                    [icon]="ui.icons.arrowRight">
-        </jnt-button>
+        <button arrow (click)="current = addMonths(current, 1)">
+          <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
+        </button>
       </div>
     </td>
   </tr>
 
-  <tr>
-    <td></td>
+  <tr timeline>
+    <td gutter></td>
+    <td>Developer</td>
     <td day [attr.current]="(day === (today | getDate)) && (current | isSameMonth: today)"
         *ngFor="let day of (current | getDaysInMonth) | numberArray: 1">
       {{day}}
     </td>
   </tr>
-
+  </thead>
+  <tbody>
   <ng-template #noDataTemplate>
     <tr nodata>
       <td [attr.colspan]="(current | getDaysInMonth) + 1">
@@ -48,6 +51,7 @@
         <td *ngFor="let day of (current | getDaysInMonth) | numberArray: 1"></td>
       </ng-template>
 
+      <td gutter></td>
       <td title>{{line.title}}</td>
 
       <ng-container *ngIf="(line.from | same: current) || (line.to | same: current); else noRequest">
