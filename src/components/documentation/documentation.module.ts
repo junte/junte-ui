@@ -25,7 +25,7 @@ import { LinkTestComponent } from './link/link-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
 import { ModalTestComponent } from './modal/modal-test.component';
 import { ModalTestFactoryComponent } from './modal/test.component';
-import { MonthGanttTestComponent } from './month-gantt/month-gantt-test.component';
+import { GanttTestComponent } from './gantt/gantt-test.component';
 import { PagerTestComponent } from './pager/pager-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
@@ -90,7 +90,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     ChartTestComponent,
     SliderTestComponent,
     SwitcherTestComponent,
-    MonthGanttTestComponent,
+    GanttTestComponent,
     AnimatedIconTestComponent
   ],
   entryComponents: [

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnimatedIconTestComponent } from 'src/components/documentation/animated-icon/animated-icon-test.component';
+import { GanttTestComponent } from './gantt/gantt-test.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -20,7 +21,6 @@ import { LabelTestComponent } from './label/label-test.component';
 import { LinkTestComponent } from './link/link-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
 import { ModalTestComponent } from './modal/modal-test.component';
-import { MonthGanttTestComponent } from './month-gantt/month-gantt-test.component';
 import { PagerTestComponent } from './pager/pager-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
@@ -212,9 +212,9 @@ export const routes: Routes = [
         data: {breadcrumb: 'Chart'}
       },
       {
-        path: 'month-gantt',
-        component: MonthGanttTestComponent,
-        data: {breadcrumb: 'Month-gantt'}
+        path: 'gantt',
+        component: GanttTestComponent,
+        data: {breadcrumb: 'Gantt'}
       },
       {
         path: 'theming',

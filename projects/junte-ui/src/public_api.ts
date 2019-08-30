@@ -41,5 +41,5 @@ export * from './lib/components/table';
 export * from './lib/components/tabs';
 export * from './lib/components/popover';
 export * from './lib/components/slider';
-export * from './lib/components/month-gantt';
+export * from './lib/components/gantt';
 export * from './lib/components/animated-icon';
