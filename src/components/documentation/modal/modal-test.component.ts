@@ -15,22 +15,37 @@ export class ModalTestComponent {
   @ViewChild('content')
   content: TemplateRef<any>;
 
+  @ViewChild('footer')
+  footer: TemplateRef<any>;
+
   constructor(private modalService: ModalService,
               private injector: Injector,
               private cfr: ComponentFactoryResolver) {
   }
 
-  open() {
-    this.modalService.open(this.content);
+  openModal() {
+    const options = new ModalOptions({
+      title: {
+        text: 'Login',
+        icon: UI.icons.accessLock
+      },
+      maxWidth: '400px'
+    });
+    this.modalService.open(this.content, this.footer, options);
   }
+
 
   openCalendar() {
     const component = this.cfr.resolveComponentFactory(ModalTestFactoryComponent).create(this.injector);
-    this.modalService.open(component, new ModalOptions({
-      title: 'Calendar',
+    const options = new ModalOptions({
+      title: {
+        text: 'Calendar',
+        icon: UI.icons.calendar
+      },
       maxHeight: '1024px',
-      maxWidth: '1080px'
-    }));
+      maxWidth: '400px'
+    });
+    this.modalService.open(component, this.footer, options);
   }
 
   close() {
