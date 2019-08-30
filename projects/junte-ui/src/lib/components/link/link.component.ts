@@ -19,7 +19,7 @@ export class LinkComponent {
   private _source: string | string[];
   private _target: string = DEFAULT_TARGET;
 
-  externalLink = false;
+  externalLink = true;
 
   @ViewChild(RouterLinkActive)
   linkRef: RouterLinkActive;

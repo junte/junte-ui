@@ -1,7 +1,14 @@
 <ng-container *ngIf="externalLink; else internalLink">
-  <a link [href]="source" [target]="target">
-    <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
-  </a>
+  <ng-container *ngIf="!!source; else noSource">
+    <a link [href]="source" [target]="target">
+      <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
+    </a>
+  </ng-container>
+  <ng-template #noSource>
+    <a link>
+      <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
+    </a>
+  </ng-template>
 </ng-container>
 
 <ng-template #internalLink>
