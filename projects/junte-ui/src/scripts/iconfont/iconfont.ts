@@ -15,7 +15,6 @@ const TIMESTAMP = 1000;
 
 class Config {
   iconsDir = '';
-  stylesDir = '';
   fontsDir = '';
   fontName = '';
 }
@@ -62,13 +61,13 @@ export class Gulpfile {
           .pipe(consolidate('lodash', {
             glyphs: glyphs,
             fontName: config.fontName,
-            fontPath: config.fontsDir + '/',
+            fontPath: './',
             className: 'icon'
           }))
           .pipe(rename(`${config.fontName}-font.scss`))
-          .pipe(gulp.dest(config.stylesDir));
+          .pipe(gulp.dest(`${config.fontsDir}/${config.fontName}`));
       })
-      .pipe(gulp.dest(config.fontsDir));
+      .pipe(gulp.dest(`${config.fontsDir}/${config.fontName}`));
   }
 
   @Task()

@@ -1,0 +1,32 @@
+<jnt-container>
+  <h1>Animated icon</h1>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/svg-icon"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Svg icons must have icon attribute</li>
+    <li>Svg icons must have iconset attribute</li>
+    <li>Icons must be located in 'src/assets/icons' folder</li>
+  </ol>
+
+  <hr>
+
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <div *ngFor="let icon of icons" wrapper>
+      <jnt-svg-icon [icon]="icon" [iconset]="iconset"></jnt-svg-icon>
+      <div name>{{icon}}</div>
+    </div>
+  </jnt-stack>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+<jnt-svg-icon [icon]="icon" [iconset]="iconset"></jnt-svg-icon>
+]]></pre>
+  </ngx-prism>
+
+</jnt-container>

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SvgIconModule } from './components/icon/svg-icon';
 import { GanttModule } from './components/gantt/gantt.module';
-import { AnimatedIconModule } from './components/animated-icon/animated-icon.module';
+import { AnimatedIconModule } from './components/icon/animated-icon/animated-icon.module';
 import { AppLayoutModule } from './components/app-layout/app-layout.module';
 import { AvatarModule } from './components/avatar/avatar.module';
 import { BadgeModule } from './components/badge/badge.module';
@@ -56,7 +58,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   exports: [
     AppLayoutModule,
@@ -79,6 +82,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     GridModule,
     JunteDirectiveModule,
     IconModule,
+    AnimatedIconModule,
+    SvgIconModule,
     IncludesPipeModule,
     InputModule,
     LabelModule,
@@ -101,8 +106,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     ProgressBarModule,
     ChartModule,
     ThemeSwitcherModule,
-    GanttModule,
-    AnimatedIconModule
+    GanttModule
   ]
 })
 export class JunteUiModule {
