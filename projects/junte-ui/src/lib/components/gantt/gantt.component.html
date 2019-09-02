@@ -4,11 +4,11 @@
     <td gutter></td>
     <td empty></td>
     <td controls [attr.colspan]="(current | getDaysInMonth)">
-      <div>
+      <div month>
         <button arrow (click)="current = subMonths(current, 1)">
           <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
         </button>
-        <div month>
+        <div>
           {{current | format: 'MMMM'}}, {{current | format: 'YYYY'}}
         </div>
         <button arrow (click)="current = addMonths(current, 1)">
@@ -37,9 +37,9 @@
   </ng-template>
   <ng-template #skeletonTemplate>
     <ng-container *ngIf="loading; else noDataTemplate">
-      <tr loading *ngFor="let i of 5 | mockArray">
-        <td [attr.colspan]="(current | getDaysInMonth) + 1">
-          <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="1"></jnt-skeleton>
+      <tr loading>
+        <td [attr.colspan]="(current | getDaysInMonth) + 2">
+          <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="7"></jnt-skeleton>
         </td>
       </tr>
     </ng-container>
