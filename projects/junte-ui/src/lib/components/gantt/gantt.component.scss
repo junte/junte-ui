@@ -31,6 +31,18 @@ table {
           border-right: none;
           padding: $gutter-normal $gutter-tiny;
           width: 600px;
+          height: 20px;
+
+          [month] {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 0;
+            height: 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
 
           [arrow] {
             background-color: transparent;
@@ -55,17 +67,6 @@ table {
             &:hover {
               color: $gantt-arrows-hover-color;
               border: 1px solid $gantt-button-arrows-focus-border-color;
-            }
-          }
-
-          div {
-            display: flex;
-            justify-content: space-around;
-
-            [month] {
-              flex: 1;
-              text-align: center;
-              font-weight: bold;
             }
           }
         }
@@ -113,10 +114,6 @@ table {
       &[loading] {
         pointer-events: none;
         border-bottom: 0;
-
-        td {
-          border-left: 1px solid $gray-700;
-        }
       }
 
       &:last-child {
