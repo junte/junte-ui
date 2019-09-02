@@ -34,6 +34,8 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
 
   progress = {loading: false};
 
+  @Input() valueField: string;
+
   @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
 
@@ -103,7 +105,7 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
   }
 
   trackByFn(index, indicator) {
-    return indicator.id;
+    return index;
   }
 
 }

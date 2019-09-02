@@ -81,9 +81,9 @@ export class GetDatePipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'isEqual'
+  name: 'isEqualDate'
 })
-export class IsEqualPipe implements PipeTransform {
+export class IsEqualDatePipe implements PipeTransform {
   transform(dateLeft: DateFns, dateRight: DateFns): boolean {
     return isEqual(dateLeft, dateRight);
   }
