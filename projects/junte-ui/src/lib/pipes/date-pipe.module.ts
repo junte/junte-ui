@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import {
-  AddMonthsPipe, AfterPipe, BeforePipe, DateDiffPipe, DiffDayPipe,
-  FormatPipe, FullMonthPipe,
-  GetDatePipe, GetDaysInMonthPipe,
+  AddMonthsPipe,
+  AfterPipe,
+  BeforePipe,
+  DateDiffPipe,
+  DiffDayPipe,
+  FormatPipe,
+  FullMonthPipe,
+  GetDatePipe,
+  GetDaysInMonthPipe,
   GetISOWeekPipe,
-  IsEqualPipe,
-  IsSameMonthPipe, RemnantDayPipe, SamePipe,
+  IsEqualDatePipe,
+  IsSameMonthPipe,
+  RemnantDayPipe,
+  SamePipe,
   SubMonthsPipe
 } from './date-fns.pipe';
 
@@ -20,7 +28,7 @@ import {
     AddMonthsPipe,
     SubMonthsPipe,
     GetDatePipe,
-    IsEqualPipe,
+    IsEqualDatePipe,
     IsSameMonthPipe,
     GetDaysInMonthPipe,
     AfterPipe,
@@ -37,7 +45,7 @@ import {
     AddMonthsPipe,
     SubMonthsPipe,
     GetDatePipe,
-    IsEqualPipe,
+    IsEqualDatePipe,
     IsSameMonthPipe,
     GetDaysInMonthPipe,
     AfterPipe,
