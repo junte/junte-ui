@@ -10,7 +10,8 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "spec": false
         }
       },
       "architect": {
@@ -30,8 +31,8 @@
             "styles": [
               "./node_modules/prismjs/themes/prism.css",
               "./projects/junte-ui/src/lib/assets/fonts/open-sans/import.scss",
-              "./projects/junte-ui/src/lib/assets/styles/icons.scss",
-              "./src/assets/styles/junte-ui-font.scss"
+              "./projects/junte-ui/src/lib/assets/fonts/icons/icons-font.scss",
+              "./src/assets/fonts/junte-ui/junte-ui-font.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -153,7 +154,8 @@
       "prefix": "jnt",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "styleext": "scss",
+          "spec": false
         }
       },
       "architect": {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnimatedIconTestComponent } from 'src/components/documentation/animated-icon/animated-icon-test.component';
 import { GanttTestComponent } from './gantt/gantt-test.component';
+import { SvgIconTestComponent } from 'src/components/documentation/svg-icon/svg-icon-test.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -144,6 +145,11 @@ export const routes: Routes = [
         path: 'animated-icon',
         component: AnimatedIconTestComponent,
         data: {breadcrumb: 'Animated icon'}
+      },
+      {
+        path: 'svg-icon',
+        component: SvgIconTestComponent,
+        data: {breadcrumb: 'Svg icon'}
       },
       {
         path: 'badge',

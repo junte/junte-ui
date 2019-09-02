@@ -21,12 +21,12 @@ Import style and SVG icon assets file link in ``angular.json``:
 "assets": [
       +     {
       +        "glob": "**/*",
-      +        "input": "node_modules/junte-ui/lib/assets/fonts/icons/",
-      +        "output": "./assets/fonts/icons/"
+      +        "input": "node_modules/junte-ui/lib/assets/fonts/icons-font/",
+      +        "output": "./assets/fonts/icons-font/"
       +     }
           ],
             "styles": [
-      +       "node_modules/junte-ui/lib/assets/styles/icons.scss",
+      +       "node_modules/junte-ui/lib/assets/styles/icons-font.scss",
       +       "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
             ]
 ...

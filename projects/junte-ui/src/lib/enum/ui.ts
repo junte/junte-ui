@@ -170,6 +170,12 @@ export enum TypeButton {
   submit = 'submit'
 }
 
+export enum TypeIcon {
+  font = 'font',
+  svg = 'svg',
+  animated = 'animated'
+}
+
 export enum TypeSkeleton {
   avatar = 'avatar',
   text = 'text'
@@ -327,6 +333,9 @@ export enum GanttRequestStatuses {
 
 export class UI {
   static icons = Icons;
+  static icon = {
+    type: TypeIcon
+  };
   static schemes = Schemes;
   static themes = Themes;
   static sizes = Sizes;
@@ -379,6 +388,6 @@ export class UI {
   };
   static gantt = {
     statuses: GanttRequestStatuses
-  }
+  };
 }
 

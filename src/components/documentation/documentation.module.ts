@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
+import { SvgIconTestComponent } from 'src/components/documentation/svg-icon/svg-icon-test.component';
 import { AnimatedIconTestComponent } from './animated-icon/animated-icon-test.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
@@ -91,7 +92,8 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     SliderTestComponent,
     SwitcherTestComponent,
     GanttTestComponent,
-    AnimatedIconTestComponent
+    AnimatedIconTestComponent,
+    SvgIconTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
