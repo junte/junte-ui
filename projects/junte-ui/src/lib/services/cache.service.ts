@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { isUndefined } from 'util';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CacheService {
 
   private store: any = {};

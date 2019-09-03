@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CacheService } from '../../../services';
 import { SvgIconComponent } from './svg-icon.component';
 
 @NgModule({
@@ -12,9 +11,6 @@ import { SvgIconComponent } from './svg-icon.component';
   ],
   exports: [
     SvgIconComponent
-  ],
-  providers: [
-    CacheService
   ]
 })
 export class SvgIconModule {

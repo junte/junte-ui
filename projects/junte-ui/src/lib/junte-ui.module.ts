@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SvgIconModule } from './components/icon/svg-icon';
+import { SvgIconModule } from './components/icon/svg-icon/svg-icon.module';
 import { GanttModule } from './components/gantt/gantt.module';
 import { AnimatedIconModule } from './components/icon/animated-icon/animated-icon.module';
 import { AppLayoutModule } from './components/app-layout/app-layout.module';
