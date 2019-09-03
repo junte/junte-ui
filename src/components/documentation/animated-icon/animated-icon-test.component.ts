@@ -9,5 +9,14 @@ import { UI } from 'junte-ui';
 export class AnimatedIconTestComponent {
 
   ui = UI;
-  icons = ['running_man'];
+
+  icons: any[] = [];
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.icons = Object.keys(UI.animatedIcons)
+      .map(icon => ({name: icon, value: UI.animatedIcons[icon]}));
+  }
 }

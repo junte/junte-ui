@@ -26,7 +26,18 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/junte-ui/src/lib/assets/fonts/icons/",
+                "output": "./assets/fonts/icons/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/junte-ui/src/lib/assets/icons/",
+                "output": "./assets/icons/"
+              }
+
             ],
             "styles": [
               "./node_modules/prismjs/themes/prism.css",

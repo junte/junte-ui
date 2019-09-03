@@ -95,6 +95,10 @@ export enum Icons {
   main = 'main'
 }
 
+export enum AnimatedIcons {
+  runningMan = 'running_man'
+}
+
 export enum Colors {
   white = '#FFFFFF',
   black = '#000000',
@@ -333,6 +337,7 @@ export enum GanttRequestStatuses {
 
 export class UI {
   static icons = Icons;
+  static animatedIcons = AnimatedIcons;
   static icon = {
     type: TypeIcon
   };
