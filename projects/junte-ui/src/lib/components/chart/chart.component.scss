@@ -7,87 +7,90 @@
   background-color: $secondary-background;
 }
 
-table {
-  border-spacing: 0;
-  width: 100%;
-  max-width: 100%;
-  td, th {
-    text-align: left;
-    vertical-align: middle;
-    padding: 0 $gutter-small;
-    &:first-child {
-      padding: 0 $gutter-large;
-    }
-  }
-  thead {
-    background-color: $secondary-background;
-    th:first-child {
-      border-top-left-radius: $corner-normal;
-    }
-    th:last-child {
-      border-top-right-radius: $corner-normal;
-    }
-  }
-  tbody {
-    tr {
-      cursor: pointer;
-      position: relative;
-      &:hover, &[selected='true'] {
-        td {
-          background-color: $secondary-background;
-        }
+[wrapper] {
+  flex: 1;
+
+  table {
+    border-spacing: 0;
+    width: 100%;
+    td, th {
+      text-align: left;
+      vertical-align: middle;
+      padding: 0 $gutter-small;
+      &:first-child {
+        padding: 0 $gutter-large;
       }
-      &:not(:last-child) {
-        td:not(:last-child) {
-          border-bottom: 1px solid $muted-color;
-        }
+    }
+    thead {
+      background-color: $secondary-background;
+      th:first-child {
+        border-top-left-radius: $corner-normal;
       }
-      &:last-child {
-        td:first-child {
-          border-bottom-left-radius: $corner-normal;
-        }
+      th:last-child {
+        border-top-right-radius: $corner-normal;
       }
-      &[nodata] {
-        height: 200px;
-        pointer-events: none;
-        border-bottom: 0;
-        td {
-          vertical-align: middle;
-          text-align: center;
-          [icon] {
-            font-size: 80px;
-            color: $muted-color;
+    }
+    tbody {
+      tr {
+        cursor: pointer;
+        position: relative;
+        &:hover, &[selected='true'] {
+          td {
+            background-color: $secondary-background;
+          }
+        }
+        &:not(:last-child) {
+          td:not(:last-child) {
+            border-bottom: 1px solid $muted-color;
           }
         }
         &:last-child {
-          td:last-child {
-            border-bottom-right-radius: $corner-normal;
+          td:first-child {
+            border-bottom-left-radius: $corner-normal;
+          }
+        }
+        &[nodata] {
+          height: 200px;
+          pointer-events: none;
+          border-bottom: 0;
+          td {
+            vertical-align: middle;
+            text-align: center;
+            [icon] {
+              font-size: 80px;
+              color: $muted-color;
+            }
+          }
+          &:last-child {
+            td:last-child {
+              border-bottom-right-radius: $corner-normal;
+            }
           }
         }
       }
-    }
-    td {
-      background-color: $primary-background;
-      box-sizing: border-box;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      min-width: 50px;
-      width: 50px;
-      max-width: 100px;
-      text-align: right;
-      user-select: none;
-      &:first-child {
-        text-align: left;
-        width: 300px;
-        max-width: 300px;
-      }
-      &:last-child {
-        color: $gray-900;
-        text-align: center;
-      }
-      [content] {
+      td {
+        background-color: $primary-background;
+        box-sizing: border-box;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         overflow: hidden;
+        min-width: 50px;
+        width: 50px;
+        max-width: 100px;
+        text-align: right;
+        user-select: none;
+        &:first-child {
+          text-align: left;
+          width: 300px;
+          max-width: 300px;
+        }
+        &:last-child {
+          color: $gray-900;
+          text-align: center;
+        }
+        [content] {
+          overflow: hidden;
+        }
       }
     }
   }
