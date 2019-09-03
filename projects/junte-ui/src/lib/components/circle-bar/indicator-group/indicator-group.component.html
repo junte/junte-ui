@@ -2,6 +2,6 @@
                    [value]="indicator.value"
                    [title]="indicator.title"
                    [color]="indicator.color"
-                   [width]="22.5 + '%'"
+                   [width]="!indicator.value ? '0' : 22.5 + '%'"
                    [style.transform]="'rotate(' + (3.6 * (i | sum:indicators)) + 'deg)'">
 </jnt-bar-indicator>
