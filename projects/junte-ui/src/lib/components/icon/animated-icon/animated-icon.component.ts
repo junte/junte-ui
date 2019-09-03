@@ -5,8 +5,7 @@ import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'jnt-animated-icon',
-  template: '',
-  styleUrls: ['./animated-icon.component.scss']
+  template: ''
 })
 export class AnimatedIconComponent implements OnInit, AfterViewInit {
 

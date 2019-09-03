@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Icons } from 'projects/junte-ui/src/lib/enum/ui';
+import { Icons } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-font-icon',

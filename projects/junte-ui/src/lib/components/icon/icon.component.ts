@@ -5,8 +5,7 @@ const DEFAULT_ICONSET = 'icons';
 
 @Component({
   selector: 'jnt-icon',
-  templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  templateUrl: './icon.component.html'
 })
 export class IconComponent {
 
@@ -15,7 +14,10 @@ export class IconComponent {
   type: TypeIcon = TypeIcon.font;
   iconset: string;
 
-  @Input() @HostBinding('style.font-family') fontFamily;
+  @HostBinding('attr.host') readonly host = 'jnt-icon-host';
+
+  @Input()
+  @HostBinding('style.font-family') fontFamily;
 
   @Input()
   set icon(icon: string) {
