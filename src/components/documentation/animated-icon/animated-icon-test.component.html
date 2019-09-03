@@ -20,8 +20,8 @@
 
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of icons" wrapper>
-      <jnt-animated-icon [icon]="icon"></jnt-animated-icon>
-      <div name>{{icon}}</div>
+      <jnt-animated-icon [icon]="icon.value"></jnt-animated-icon>
+      <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
 
