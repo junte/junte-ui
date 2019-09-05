@@ -15,7 +15,7 @@
     <li *ngFor="let item of selectedItems" [attr.chips]="selectMode.multiple === mode">
       <span>{{labels[item]}}</span>
       <button (click)="optionSelect(item)">
-        <jnt-icon close [icon]="ui.icons.close"></jnt-icon>
+        <jnt-icon close [icon]="ui.icons.font.close"></jnt-icon>
       </button>
     </li>
     <li>
@@ -34,7 +34,7 @@
 
 <ng-template #itemsNotFoundTemplate>
   <li message *ngIf="!!q && !options.length">
-    <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
+    <jnt-icon [icon]="ui.icons.font.stopping" icon></jnt-icon>
   </li>
 </ng-template>
 
@@ -43,7 +43,7 @@
 <div #selectize selectize (click)="input.focus(); toggle = !toggle;" [attr.focused]="focused" tabindex="0">
   <div *ngIf="label" label>{{label}}</div>
   <ng-container *ngTemplateOutlet="selectedItemsTemplate"></ng-container>
-  <jnt-icon down [icon]="ui.icons.sortDown"></jnt-icon>
+  <jnt-icon down [icon]="ui.icons.font.sortDown"></jnt-icon>
   <ng-container *ngIf="!!toggle">
     <div options>
       <div *ngIf="loading" loading>

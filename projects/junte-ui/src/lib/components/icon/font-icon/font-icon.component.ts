@@ -10,6 +10,9 @@ export class FontIconComponent {
 
   @Input() icon = Icons.check;
 
+  @Input()
+  @HostBinding('style.font-family') iconset;
+
   @HostBinding('class')
   get class() {
     return `icon-${this.icon}`;

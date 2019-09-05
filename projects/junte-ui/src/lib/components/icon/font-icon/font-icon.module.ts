@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FontIconComponent } from './font-icon.component';
 
 @NgModule({
-  declarations: [FontIconComponent],
+  declarations: [
+    FontIconComponent
+  ],
   exports: [
     FontIconComponent
   ],

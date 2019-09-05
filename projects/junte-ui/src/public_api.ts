@@ -43,6 +43,7 @@ export * from './lib/components/popover';
 export * from './lib/components/slider';
 export * from './lib/components/icon/animated-icon';
 export * from './lib/components/icon/svg-icon';
+export * from './lib/components/icon/font-icon';
 export * from './lib/components/gantt';
 
 export * from './lib/services';

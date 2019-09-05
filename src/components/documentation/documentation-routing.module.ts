@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AnimatedIconTestComponent } from 'src/components/documentation/animated-icon/animated-icon-test.component';
-import { GanttTestComponent } from './gantt/gantt-test.component';
-import { SvgIconTestComponent } from 'src/components/documentation/svg-icon/svg-icon-test.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -15,6 +12,7 @@ import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { DocumentationComponent } from './documentation.component';
 import { DropdownTestComponent } from './dropdown/dropdown-test.component';
 import { FormTestComponent } from './form/form-test.component';
+import { GanttTestComponent } from './gantt/gantt-test.component';
 import { GridTestComponent } from './grid/grid-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { InputTestComponent } from './input/input-test.component';
@@ -140,16 +138,6 @@ export const routes: Routes = [
         path: 'icon',
         component: IconTestComponent,
         data: {breadcrumb: 'Icon'}
-      },
-      {
-        path: 'animated-icon',
-        component: AnimatedIconTestComponent,
-        data: {breadcrumb: 'Animated icon'}
-      },
-      {
-        path: 'svg-icon',
-        component: SvgIconTestComponent,
-        data: {breadcrumb: 'Svg icon'}
       },
       {
         path: 'badge',

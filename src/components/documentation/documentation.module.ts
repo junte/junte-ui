@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
-import { SvgIconTestComponent } from 'src/components/documentation/svg-icon/svg-icon-test.component';
-import { AnimatedIconTestComponent } from './animated-icon/animated-icon-test.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -18,6 +16,7 @@ import { DocumentationRoutingModule } from './documentation-routing.module';
 import { DocumentationComponent } from './documentation.component';
 import { DropdownTestComponent } from './dropdown/dropdown-test.component';
 import { FormTestComponent } from './form/form-test.component';
+import { GanttTestComponent } from './gantt/gantt-test.component';
 import { GridTestComponent } from './grid/grid-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { InputTestComponent } from './input/input-test.component';
@@ -26,7 +25,6 @@ import { LinkTestComponent } from './link/link-test.component';
 import { MenuTestComponent } from './menu/menu-test.component';
 import { ModalTestComponent } from './modal/modal-test.component';
 import { ModalTestFactoryComponent } from './modal/test.component';
-import { GanttTestComponent } from './gantt/gantt-test.component';
 import { PagerTestComponent } from './pager/pager-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
 import { PopoverTestComponent } from './popover/popover-test.component';
@@ -91,9 +89,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     ChartTestComponent,
     SliderTestComponent,
     SwitcherTestComponent,
-    GanttTestComponent,
-    AnimatedIconTestComponent,
-    SvgIconTestComponent
+    GanttTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

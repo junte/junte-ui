@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FontIconModule } from './components/icon/font-icon/font-icon.module';
 import { SvgIconModule } from './components/icon/svg-icon/svg-icon.module';
 import { GanttModule } from './components/gantt/gantt.module';
 import { AnimatedIconModule } from './components/icon/animated-icon/animated-icon.module';
@@ -84,6 +85,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     IconModule,
     AnimatedIconModule,
     SvgIconModule,
+    FontIconModule,
     IncludesPipeModule,
     InputModule,
     LabelModule,

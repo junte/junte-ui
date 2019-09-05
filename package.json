@@ -13,7 +13,7 @@
     "start": "npm run clean && run-p *:watch serve",
     "build": "npm run iconfont && ng build --prod",
     "assets:create:folders": "mkdir ./dist/junte-ui/lib/assets/ && mkdir ./dist/junte-ui/lib/assets/icons && mkdir ./dist/junte-ui/lib/assets/fonts && mkdir ./dist/junte-ui/lib/assets/styles",
-    "assets:copy:folders": "cp -r ./projects/junte-ui/src/lib/assets/fonts/ ./dist/junte-ui/lib/assets/fonts/ && cp -r projects/junte-ui/src/lib/assets/icons/animated ./dist/junte-ui/lib/assets/icons/animated && cp -r ./projects/junte-ui/src/lib/assets/fonts/icons ./dist/junte-ui/lib/assets/fonts/icons",
+    "assets:copy:folders": "cp -r ./projects/junte-ui/src/lib/assets/fonts/ ./dist/junte-ui/lib/assets/fonts/ && cp -r projects/junte-ui/src/lib/assets/icons/animated ./dist/junte-ui/lib/assets/icons/animated && cp -r projects/junte-ui/src/lib/assets/icons/svg ./dist/junte-ui/lib/assets/icons/svg",
     "assets:copy:styles": "cp -r projects/junte-ui/src/lib/assets/styles/ ./dist/junte-ui/lib/assets/styles/",
     "copy:license": "cp ./projects/junte-ui/README.md ./dist/junte-ui",
     "copy:readme": "cp ./projects/junte-ui/LICENSE ./dist/junte-ui",
@@ -30,7 +30,7 @@
     "build:prod": "npm run encapsulation && npm run build:lib && npm run copy:files",
     "npm:pack": "cd dist/junte-ui && npm pack",
     "package": "npm run build:prod && npm run npm:pack",
-    "publish": "npm publish ./dist/junte-ui/junte-ui-0.0.249.tgz",
+    "publish": "npm publish ./dist/junte-ui/junte-ui-0.0.250.tgz",
     "clean:package": "npm cache clean --force && rm -rf -- node_modules doc coverage dist dll package-lock.json",
     "refresh": "npm run clean:package && npm install",
     "processes": "lsof -Pnl +M -i -cmd | grep -E 'LISTEN|TCP|UDP'"

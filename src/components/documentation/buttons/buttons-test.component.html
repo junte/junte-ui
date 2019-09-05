@@ -1,11 +1,11 @@
 <jnt-container>
   <h1>Buttons</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.externalLink"
+    <jnt-link [icon]="ui.icons.font.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/button"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.externalLink"
+    <jnt-link [icon]="ui.icons.font.externalLink"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A0"
               target="_blank" title="Figma">
     </jnt-link>
@@ -35,19 +35,19 @@
                         [text]="scheme | titlecase"></jnt-button>
             <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
                         [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
                         [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
                         [text]="scheme | titlecase" [loading]="true"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
                         [text]="scheme | titlecase" [badge]="5"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.plus"
+            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
                         ></jnt-button>
           </ng-container>
         </ng-container>
         <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.plus" [text]="scheme | titlecase"></jnt-button>
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.plus"></jnt-button>
+          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.font.plus" [text]="scheme | titlecase"></jnt-button>
+          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.font.plus"></jnt-button>
           <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [text]="scheme | titlecase"></jnt-button>
         </ng-container>
       </jnt-stack>
@@ -59,7 +59,7 @@
  <jnt-button [scheme]="ui.schemes.primary"
              [size]="ui.sizes.small"
              [outline]="ui.outline.ghost"
-             [icon]="ui.icons.plus"
+             [icon]="ui.icons.font.plus"
              [badge]="5"
              [loading]="true"
              [disabled]="false"
