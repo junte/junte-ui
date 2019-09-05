@@ -1,6 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { UI } from '../../../enum/ui';
-import { MenuComponent } from '../../menu';
 
 const ASIDE_STATE = 'aside_collapsed';
 
