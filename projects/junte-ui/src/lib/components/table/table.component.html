@@ -4,7 +4,7 @@
                [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
       <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
         <jnt-button button text="Reload"
-                    [icon]="ui.icons.reload"
+                    [icon]="ui.icons.font.reload"
                     [outline]="ui.outline.transparent"
                     [scheme]="ui.schemes.secondary"
                     (click)="load(); reloaded.emit()">
@@ -17,7 +17,7 @@
 
       <div>
         <jnt-input *ngIf="features | includes : ui.table.features.search" formControlName="q"
-                   [icon]="ui.icons.search" placeholder="Search">
+                   [icon]="ui.icons.font.search" placeholder="Search">
         </jnt-input>
       </div>
 
@@ -51,7 +51,7 @@
               <td *ngIf="!!rowActionsTemplate" action>
                 <jnt-dropdown menu>
                   <ng-template #trigger let-action="trigger">
-                    <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.actions"
+                    <jnt-button button [outline]="ui.outline.transparent" [icon]="ui.icons.font.actions"
                                 (click)="action()"></jnt-button>
                   </ng-template>
                   <ng-template #dropdown>
@@ -68,7 +68,7 @@
             <ng-container *ngIf="!progress.loading; else skeletonTemplate">
               <tr nodata>
                 <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
-                  <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
+                  <jnt-icon [icon]="ui.icons.font.stopping" icon></jnt-icon>
                 </td>
               </tr>
             </ng-container>

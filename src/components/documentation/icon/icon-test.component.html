@@ -1,15 +1,16 @@
 <jnt-container>
   <h1>Icon</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.externalLink"
+    <jnt-link [icon]="ui.icons.font.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.externalLink"
+    <jnt-link [icon]="ui.icons.font.externalLink"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=32%3A95"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
+
   <h3>Requirements</h3>
 
   <ol>
@@ -18,18 +19,138 @@
 
   <hr>
 
+  <ngx-prism language="html">
+<pre><![CDATA[
+  <!-- Default is font icon with 'icons' font -->
+  <jnt-icon icon="test"></jnt-icon>
+
+  <!-- First part of icon is Icon name -->
+  <!-- Second part of icon is Icon type -->
+  <!-- Third part of icon is Iconset -->
+  <jnt-icon icon="test:font:iconfont"></jnt-icon>
+  <jnt-icon icon="test:svg:iconset"></jnt-icon>
+  <jnt-icon icon="test:animated"></jnt-icon>
+]]></pre>
+  </ngx-prism>
+
+  <p>To add junte-ui icons need to write to angular.json architect => build => options => assets</p>
+
+  <ngx-prism language="json">
+<pre><![CDATA[
+  {
+    "glob": "**/*",
+    "input": "projects/junte-ui/src/lib/assets/fonts/icons/",
+    "output": "./assets/fonts/icons/"
+  },
+  {
+    "glob": "**/*",
+    "input": "projects/junte-ui/src/lib/assets/icons/animated",
+    "output": "./assets/icons/animated"
+  },
+  {
+    "glob": "**/*",
+    "input": "projects/junte-ui/src/lib/assets/icons/svg",
+    "output": "./assets/icons"
+  }
+]]></pre>
+  </ngx-prism>
+</jnt-container>
+
+<jnt-container>
+  <h2>Font Icon</h2>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.font.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/font-icon"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Font icons must have icon attribute</li>
+    <li>Font icons must have iconset attribute</li>
+    <li>Fonts must be located in 'src/assets/fonts/[iconset]' folder</li>
+  </ol>
+
+  <hr>
+
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of icons" wrapper>
-      <jnt-icon [icon]="icon.value" icon></jnt-icon>
+      <jnt-font-icon [icon]="icon.value" iconset="icons" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-icon [icon]="ui.icons.check"></jnt-icon>
+<jnt-font-icon [icon]="ui.icons.font.check" iconset="icons"></jnt-font-icon>
 ]]></pre>
-    </ngx-prism>
-
+  </ngx-prism>
 </jnt-container>
 
+<jnt-container>
+  <h2>Animated icon</h2>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.font.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/anumated-icon"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Animated icons must have icon attribute</li>
+    <li>Icons must be located in 'src/assets/icons/animated' folder</li>
+    <li>If [iconset]="'iconset'" attribute are provided icon must be located in 'src/assets/icons/animated/iconset'
+      folder
+    </li>
+  </ol>
+
+  <hr>
+
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <div *ngFor="let icon of animated" wrapper>
+      <jnt-animated-icon [icon]="icon.value"></jnt-animated-icon>
+      <div name>{{icon.name}}</div>
+    </div>
+  </jnt-stack>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+<jnt-animated-icon icon="running_man"></jnt-animated-icon>
+]]></pre>
+  </ngx-prism>
+</jnt-container>
+
+<jnt-container>
+  <h2>SVG icon</h2>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.font.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/svg-icon"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Svg icons must have icon attribute</li>
+    <li>Svg icons must have iconset attribute</li>
+    <li>Icons must be located in 'src/assets/icons' folder</li>
+  </ol>
+
+  <hr>
+
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <div *ngFor="let icon of svg" wrapper>
+      <jnt-svg-icon [icon]="icon.value" [iconset]="icon.iconset"></jnt-svg-icon>
+      <div name>{{icon.name}}</div>
+    </div>
+  </jnt-stack>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+<jnt-svg-icon [icon]="icon" [iconset]="iconset"></jnt-svg-icon>
+]]></pre>
+  </ngx-prism>
+
+</jnt-container>

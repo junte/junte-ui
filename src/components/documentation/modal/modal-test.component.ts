@@ -27,7 +27,7 @@ export class ModalTestComponent {
     const options = new ModalOptions({
       title: {
         text: 'Login',
-        icon: UI.icons.accessLock
+        icon: UI.icons.font.accessLock
       },
       maxWidth: '400px'
     });
@@ -40,7 +40,7 @@ export class ModalTestComponent {
     const options = new ModalOptions({
       title: {
         text: 'Calendar',
-        icon: UI.icons.calendar
+        icon: UI.icons.font.calendar
       },
       maxHeight: '1024px',
       maxWidth: '400px'
