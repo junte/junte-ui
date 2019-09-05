@@ -14,4 +14,5 @@ import { AnimatedIconComponent } from './animated-icon.component';
   ]
 })
 export class AnimatedIconModule {
+
 }

@@ -6,10 +6,13 @@ const DEFAULT_ICONSET = 'icons';
 @Component({
   selector: 'jnt-font-icon',
   template: '',
-  styleUrls: ['./font-icon.component.scss']
+  styleUrls: ['./font-icon.encapsulated.scss']
 })
 export class FontIconComponent {
 
+  @HostBinding('attr.host') readonly host = 'jnt-font-icon-host';
+
+  @HostBinding('attr.icon')
   @Input() icon = FontIcons.check;
 
   @Input()

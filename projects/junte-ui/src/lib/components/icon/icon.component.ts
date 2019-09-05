@@ -5,9 +5,12 @@ const DEFAULT_ICONSET = 'icons';
 
 @Component({
   selector: 'jnt-icon',
-  templateUrl: './icon.component.html'
+  templateUrl: './icon.encapsulated.html',
+  styleUrls: ['./icon.encapsulated.scss']
 })
 export class IconComponent {
+
+  @HostBinding('attr.host') readonly host = 'jnt-icon-host';
 
   private _icon: string = FontIcons.check;
   typeIcon = TypeIcon;
@@ -16,8 +19,7 @@ export class IconComponent {
   type: TypeIcon = TypeIcon.font;
   iconset: string = DEFAULT_ICONSET;
 
-  @HostBinding('attr.host') readonly host = 'jnt-icon-host';
-
+  @HostBinding('attr.icon')
   @Input()
   set icon(icon: string) {
     const chunks = icon.split(':');

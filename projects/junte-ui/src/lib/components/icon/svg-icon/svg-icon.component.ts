@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
 import {CacheService} from '../../../services/cache.service';
@@ -9,10 +9,12 @@ const DEFAULT_ICONSET = 'default';
 
 @Component({
   selector: 'jnt-svg-icon',
-  templateUrl: 'svg-icon.template.html',
-  styleUrls: ['./svg-icon.component.scss']
+  templateUrl: './svg-icon.encapsulated.html',
+  styleUrls: ['./svg-icon.encapsulated.scss']
 })
 export class SvgIconComponent implements OnInit, AfterViewInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-svg-icon-host';
 
   private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>(DEFAULT_ICONSET);
   private icon$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
@@ -36,6 +38,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     return this.iconset$.getValue();
   }
 
+  @HostBinding('attr.icon')
   @Input()
   set icon(icon: string) {
     this.icon$.next(icon);
@@ -56,7 +59,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient,
               private cache: CacheService,
               private renderer: Renderer2,
-              private host: ElementRef) {
+              private hostRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -71,7 +74,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.nativeElement = this.host.nativeElement;
+    this.nativeElement = this.hostRef.nativeElement;
   }
 
   private render() {

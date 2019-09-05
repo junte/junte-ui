@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
 import {BehaviorSubject, combineLatest} from 'rxjs';
 import {distinctUntilChanged, filter, map} from 'rxjs/operators';
 
@@ -7,10 +7,12 @@ const DEFAULT_ICONSET = 'default';
 
 @Component({
   selector: 'jnt-animated-icon',
-  templateUrl: 'animated-icon.template.html',
-  styleUrls: ['./animated-icon.component.scss']
+  templateUrl: './animated-icon.encapsulated.html',
+  styleUrls: ['./animated-icon.encapsulated.scss']
 })
 export class AnimatedIconComponent implements OnInit, AfterViewInit {
+
+  @HostBinding('attr.host') readonly host = 'jnt-animated-icon-host';
 
   private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>(DEFAULT_ICONSET);
   private icon$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
@@ -26,6 +28,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
     return this.iconset$.getValue();
   }
 
+  @HostBinding('attr.icon')
   @Input()
   set icon(icon: string) {
     this.icon$.next(icon);
@@ -53,7 +56,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient,
               private renderer: Renderer2,
-              private host: ElementRef) {
+              private hostRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -67,7 +70,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.nativeElement = this.host.nativeElement;
+    this.nativeElement = this.hostRef.nativeElement;
   }
 
   private render() {
