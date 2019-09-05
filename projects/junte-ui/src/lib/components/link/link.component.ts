@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { Icons, Schemes, UI } from '../../enum/ui';
+import { FontIcons, Schemes, UI } from '../../enum/ui';
 import { BadgeComponent } from '../badge/badge.component';
 
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
@@ -37,7 +37,7 @@ export class LinkComponent {
   scheme: Schemes = Schemes.primary;
 
   @Input() exact = true;
-  @Input() icon: Icons;
+  @Input() icon: FontIcons;
   @Input() title: string;
 
   @Input()

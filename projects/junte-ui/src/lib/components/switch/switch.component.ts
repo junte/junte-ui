@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Icons, Sizes, UI } from '../../enum/ui';
+import { FontIcons, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-switch',
@@ -31,10 +31,10 @@ export class SwitchComponent implements ControlValueAccessor {
   label: string;
 
   @Input()
-  iconOn: Icons;
+  iconOn: FontIcons;
 
   @Input()
-  iconOff: Icons;
+  iconOff: FontIcons;
 
   @Input()
   labelOn: string;

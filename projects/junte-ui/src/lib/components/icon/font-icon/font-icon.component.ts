@@ -1,5 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Icons } from '../../../enum/ui';
+import { FontIcons } from '../../../enum/ui';
+
+const DEFAULT_ICONSET = 'icons';
 
 @Component({
   selector: 'jnt-font-icon',
@@ -8,10 +10,10 @@ import { Icons } from '../../../enum/ui';
 })
 export class FontIconComponent {
 
-  @Input() icon = Icons.check;
+  @Input() icon = FontIcons.check;
 
   @Input()
-  @HostBinding('style.font-family') iconset;
+  @HostBinding('style.font-family') iconset = DEFAULT_ICONSET;
 
   @HostBinding('class')
   get class() {

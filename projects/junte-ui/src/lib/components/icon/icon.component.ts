@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { Icons, TypeIcon } from '../../enum/ui';
+import {Component, HostBinding, Input} from '@angular/core';
+import {FontIcons, TypeIcon} from '../../enum/ui';
 
 const DEFAULT_ICONSET = 'icons';
 
@@ -9,33 +9,26 @@ const DEFAULT_ICONSET = 'icons';
 })
 export class IconComponent {
 
-  private _icon: string = Icons.check;
+  private _icon: string = FontIcons.check;
   typeIcon = TypeIcon;
+
+  @HostBinding('attr.type')
   type: TypeIcon = TypeIcon.font;
-  iconset: string;
+  iconset: string = DEFAULT_ICONSET;
 
   @HostBinding('attr.host') readonly host = 'jnt-icon-host';
-
-  @Input()
-  @HostBinding('style.font-family') fontFamily;
 
   @Input()
   set icon(icon: string) {
     const chunks = icon.split(':');
     this._icon = chunks[0];
 
-    if (!!chunks[1]) {
+    if (chunks.length > 1) {
       this.type = TypeIcon[chunks[1]];
     }
 
-    if (!!chunks[2]) {
+    if (chunks.length > 2) {
       this.iconset = chunks[2];
-    } else if (this.type === TypeIcon.font) {
-      this.iconset = DEFAULT_ICONSET;
-    }
-
-    if (this.type === TypeIcon.font) {
-      this.fontFamily = this.iconset;
     }
   }
 

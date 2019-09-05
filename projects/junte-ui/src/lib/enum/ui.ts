@@ -1,4 +1,4 @@
-export enum Icons {
+export enum FontIcons {
   add = 'add',
   check = 'check',
   plus = 'plus',
@@ -95,12 +95,12 @@ export enum Icons {
   main = 'main'
 }
 
-export enum AnimatedIcons {
-  runningMan = 'running_man'
+export enum SvgIcons {
+  question = 'question'
 }
 
-export enum SvgIcons {
-
+export enum AnimatedIcons {
+  runningMan = 'running-man'
 }
 
 export enum Colors {
@@ -341,13 +341,13 @@ export enum GanttRequestStatuses {
 
 export class UI {
   static icons = {
-    font: Icons,
+    font: FontIcons,
+    svg: SvgIcons,
     animated: AnimatedIcons,
-    svg: SvgIcons
-  };
-  static animatedIcons = AnimatedIcons;
-  static icon = {
-    type: TypeIcon
+
+    add: FontIcons.add + ':font',
+    question: SvgIcons.question + ':svg:default',
+    runningMan: AnimatedIcons.runningMan + ':animated:default'
   };
   static schemes = Schemes;
   static themes = Themes;

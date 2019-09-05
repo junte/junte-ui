@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, Icons, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../enum/ui';
+import { Colors, FontIcons, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../enum/ui';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -60,7 +60,7 @@ export class ButtonComponent {
   loading = false;
 
   @HostBinding('attr.icon')
-  @Input() icon: Icons;
+  @Input() icon: FontIcons;
 
   @HostBinding('attr.scheme')
   @Input()

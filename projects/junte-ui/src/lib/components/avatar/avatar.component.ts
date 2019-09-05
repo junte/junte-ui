@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Icons, Shapes, Sizes, UI } from '../../enum/ui';
+import { FontIcons, Shapes, Sizes, UI } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-avatar',
@@ -18,7 +18,7 @@ export class AvatarComponent {
   @Input() shape: Shapes = Shapes.circle;
 
   @HostBinding('attr.icon')
-  @Input() icon: Icons = Icons.user;
+  @Input() icon: FontIcons = FontIcons.user;
 
   @HostBinding('attr.text')
   @Input() text: string;

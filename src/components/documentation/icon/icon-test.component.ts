@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UI } from 'junte-ui';
+import {Component, OnInit} from '@angular/core';
+import {UI} from 'junte-ui';
 
-class ShowIcon {
-  constructor(public name: string, public value: string, public iconset?: string) {
+class IconTest {
+  constructor(public name: string,
+              public value: string) {
   }
 }
 
@@ -15,18 +16,19 @@ export class IconTestComponent implements OnInit {
 
   ui = UI;
 
-  icons: ShowIcon[] = [];
-  animated: ShowIcon[] = [];
-  svg: ShowIcon[] = [];
+  icons: IconTest[] = [];
+  animated: IconTest[] = [];
+  svg: IconTest[] = [];
 
   ngOnInit() {
     this.icons = Object.keys(UI.icons.font)
-      .map(icon => new ShowIcon(icon, UI.icons.font[icon]));
+      .map(icon => new IconTest(icon, UI.icons.font[icon]));
+
+    this.svg = Object.keys(UI.icons.svg)
+      .map(icon => new IconTest(icon, UI.icons.svg[icon]));
 
     this.animated = Object.keys(UI.icons.animated)
-      .map(icon => new ShowIcon(icon, UI.icons.animated[icon]));
-
-    this.svg.push(new ShowIcon('question', 'question', 'standard'))
+      .map(icon => new IconTest(icon, UI.icons.animated[icon]));
   }
 
 }

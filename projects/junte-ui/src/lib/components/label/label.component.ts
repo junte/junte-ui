@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, Icons } from '../../enum/ui';
+import { Colors, FontIcons } from '../../enum/ui';
 
 const LIGHT_COLOR = '#FFF';
 const DARK_COLOR = '#4F4F4F';
@@ -18,7 +18,7 @@ export class LabelComponent {
   @Input() label: string;
 
   @HostBinding('attr.icon')
-  @Input() icon: Icons;
+  @Input() icon: FontIcons;
 
   @HostBinding('style.background-color')
   @Input() color: string = Colors.purpleDark;

@@ -1,17 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map } from 'rxjs/operators';
-import { CacheService } from '../../../services/cache.service';
+import {HttpClient} from '@angular/common/http';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {CacheService} from '../../../services/cache.service';
+import {isUndefined} from 'util';
+
+const DEFAULT_ICONSET = 'default';
 
 @Component({
   selector: 'jnt-svg-icon',
-  template: '',
+  templateUrl: 'svg-icon.template.html',
   styleUrls: ['./svg-icon.component.scss']
 })
 export class SvgIconComponent implements OnInit, AfterViewInit {
 
-  private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>('standard');
+  private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>(DEFAULT_ICONSET);
   private icon$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   private source$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   private nativeElement$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -42,7 +45,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     return this.icon$.getValue();
   }
 
-  private set nativeElement(nativeElement: any) {
+  private set nativeElement(nativeElement: HTMLElement) {
     this.nativeElement$.next(nativeElement);
   }
 
@@ -57,16 +60,14 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    combineLatest(this.iconset$, this.icon$).pipe(
-      map(([iconset, icon]) => !!iconset && !!icon ? iconset + '|' + icon : null),
-      filter(hash => !!hash),
-      distinctUntilChanged()
-    ).subscribe(() => this.load());
+    combineLatest(this.iconset$, this.icon$)
+      .pipe(filter(([iconset, icon]) => !!iconset && !!icon),
+        distinctUntilChanged())
+      .subscribe(() => this.load());
 
-    combineLatest(this.nativeElement$, this.source$).pipe(
-      map(([nativeElement, source]) => !!nativeElement && !!source),
-      filter(ready => ready)
-    ).subscribe(() => this.render());
+    combineLatest(this.nativeElement$, this.source$)
+      .pipe(filter(([nativeElement, source]) => !!nativeElement && !!source))
+      .subscribe(() => this.render());
   }
 
   ngAfterViewInit() {
@@ -77,30 +78,31 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     this.renderer.setProperty(this.nativeElement, 'innerHTML', this.source);
   }
 
+  private extract(iconset) {
+    const icon = iconset.querySelector('[id=' + this.icon + ']');
+    if (!!icon) {
+      this.source = new XMLSerializer().serializeToString(icon);
+    } else {
+      console.log(`icon not found ${this.icon}`);
+    }
+  }
+
   private load() {
-    let extract = (iconset) => {
-      let icon = iconset.querySelector('[id=' + this.icon + ']');
-      if (icon) {
-        this.source = new XMLSerializer().serializeToString(icon);
-      } else {
-        console.log(`icon not found ${this.icon}`);
+    const path = `/assets/icons/svg/${this.iconset}.xml`;
+    const key = `${path}|${this.icon}`;
+
+    const source = this.cache.get<string>(key);
+    if (isUndefined(source)) {
+      let iconset$ = this.cache.get(path);
+      if (isUndefined(iconset$)) {
+        iconset$ = new BehaviorSubject<Document>(null);
+        this.cache.set<Observable<string>>(path, iconset$);
+
+        this.http.get(path, {responseType: 'text'}).subscribe(response =>
+          iconset$.next(new DOMParser().parseFromString(response, 'application/xml')));
       }
-    };
-
-    let path = `/assets/icons/${this.iconset}.svg`;
-    let key = `${path}|${this.icon}`;
-
-    let source = this.cache.get<string>(key);
-    if (source === undefined) {
-      let iconset = this.cache.get(path);
-      if (iconset === undefined) {
-        iconset = new BehaviorSubject<Document>(null);
-        this.cache.set<Observable<string>>(path, iconset);
-
-        this.http.get(path, {responseType: 'text'}).subscribe(source =>
-          iconset.next(new DOMParser().parseFromString(source, 'application/xml')));
-      }
-      iconset.pipe(filter(iconset => !!iconset)).subscribe(iconset => extract(iconset));
+      iconset$.pipe(filter(iconset => !!iconset))
+        .subscribe(iconset => this.extract(iconset));
     } else {
       this.source = source;
     }
