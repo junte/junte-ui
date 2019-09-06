@@ -1,13 +1,33 @@
 image: node:8.11.1
 
+variables:
+  GIT_STRATEGY: none
+
 stages:
+  - build
   - publish
+
+build:
+  stage: build
+  cache:
+    paths:
+    - node_modules/
+  variables:
+    GIT_DEPTH: 5
+  script:
+  - npm install -g @angular/cli@7.1.0
+  - npm install
+  - npm run build:prod
+  artifacts:
+    paths:
+    - dist/junte-ui
+  only:
+  - master
 
 publish_npm:
   stage: publish
   script:
-  - npm install gulp
-  - npm run package
+  - npm run npm:pack
   - npm login
   - npm run publish
   only:
@@ -15,15 +35,12 @@ publish_npm:
 
 pages:
   stage: publish
-  cache:
-    paths:
-    - node_modules/
   script:
-  - npm install -g @angular/cli@7.1.0
-  - npm install
-  - npm run build:prod
-  - npm run build
-  - mv dist/junte-ui-app/* public/
+  # - npm install -g @angular/cli@7.1.0
+  # - npm install
+  # - npm run build:prod
+  # - npm run build
+  - mv dist/junte-ui/* public/
   artifacts:
     paths:
     - public
