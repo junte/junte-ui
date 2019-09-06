@@ -14,8 +14,6 @@ build:
     paths:
       - node_modules/
   script:
-    - export $PACKAGE_VERSION=$(node -p "require('./package.json').version")
-    - echo $PACKAGE_VERSION
     - npm install -g @angular/cli@7.1.0
     - npm install
     - npm run build:prod
@@ -31,11 +29,9 @@ publish_npm:
   script:
     - npm run npm:pack
     - npm set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
-    - export $PACKAGE_VERSION=$(node -p "require('./package.json').version")
-    - echo $PACKAGE_VERSION
     # - npm login
     - ls -l dist/junte-ui/
-    - npm publish ./dist/junte-ui/junte-ui-${PACKAGE_VERSION}.tgz
+    - npm run publish
   only:
     - master
 
