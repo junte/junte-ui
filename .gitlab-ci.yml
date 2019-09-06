@@ -10,6 +10,7 @@ build:
     paths:
     - node_modules/
   script:
+  - echo $NPM_TOKEN
   - npm install -g @angular/cli@7.1.0
   - npm install
   - npm run build:prod
@@ -24,6 +25,8 @@ publish_npm:
   stage: publish
   script:
   - npm run npm:pack
+  - echo $NPM_TOKEN
+  # - export NPM_TOKEN 
   - npm login
   - npm run publish
   only:
