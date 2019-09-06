@@ -91,7 +91,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   private load() {
-    const path = `/assets/icons/svg/${this.iconset}.xml`;
+    const path = `assets/icons/svg/${this.iconset}.xml`;
     const key = `${path}|${this.icon}`;
 
     const source = this.cache.get<string>(key);
