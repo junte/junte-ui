@@ -6,6 +6,7 @@ stages:
 publish_npm:
   stage: publish
   script:
+  - npm install gulp
   - npm run package
   - npm login
   - npm run publish
