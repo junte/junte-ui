@@ -28,9 +28,9 @@ publish_npm:
   stage: publish
   script:
     - npm run npm:pack
-    - echo $NPM_TOKEN
     - npm set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
     # - npm login
+    - ls -l /dist/junte-ui/
     - npm run publish
   only:
     - master
