@@ -1,8 +1,5 @@
 image: node:8.11.1
 
-variables:
-  GIT_STRATEGY: none
-
 stages:
   - build
   - publish
@@ -12,9 +9,6 @@ build:
   cache:
     paths:
     - node_modules/
-  variables:
-    GIT_DEPTH: 5
-    GIT_STRATEGY: fetch
   script:
   - npm install -g @angular/cli@7.1.0
   - npm install
@@ -35,8 +29,10 @@ publish_npm:
   - master
 
 pages:
-  image: alpine:3.9
   stage: publish
+  image: jessie:8
+  variables:
+    GIT_STRATEGY: none
   script:
   # - npm install -g @angular/cli@7.1.0
   # - npm install
