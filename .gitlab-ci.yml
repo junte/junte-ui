@@ -29,7 +29,8 @@ publish_npm:
   script:
     - npm run npm:pack
     - echo $NPM_TOKEN
-    - npm login
+    - npm set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
+    # - npm login
     - npm run publish
   only:
     - master
