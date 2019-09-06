@@ -1,11 +1,22 @@
 image: node:8.11.1
 
+stages:
+  - publish
+
+publish_npm:
+  stage: publish
+  script:
+  - npm run package
+  - npm login
+  - npm run publish
+  only:
+  - master
+
 pages:
+  stage: publish
   cache:
     paths:
     - node_modules/
-
-  stage: deploy
   script:
   - npm install -g @angular/cli@7.1.0
   - npm install
