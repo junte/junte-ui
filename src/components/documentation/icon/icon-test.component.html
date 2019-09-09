@@ -58,7 +58,36 @@
               target="_blank" title="GitLab">
     </jnt-link>
   </jnt-stack>
-  <p>How to build own iconfont?</p>
+  <p>To create custom icon fonts you need install Gulp and add new command to package.json</p>
+  <ngx-prism language="js">
+<pre><![CDATA[
+"iconfont": "gulp build --gulpfile node_modules/junte-ui/iconfont.js --cwd ."
+]]></pre>
+  </ngx-prism>
+
+  <p>After using this command will creating iconfont folder with config file (iconfont.json) and template of output scss font (template)</p>
+  <p>You need edit iconfont.json file for provide paths to your icons, output font and font name</p>
+
+  <ngx-prism language="js">
+<pre><![CDATA[
+[
+  {
+  "iconsDir": "src/assets/image/icons",
+  "fontsDir": "src/assets/fonts",
+  "fontName": "custom"
+  }
+]
+]]></pre>
+  </ngx-prism>
+
+  <p>After editing config file you need reuse "iconfont" command and will get in "src/assets/fonts/custom/custom-font.scss".</p>
+  <p>For implementing your iconfont you need add it to angular.json / architect / build / options / styles</p>
+
+  <ngx-prism language="js">
+<pre><![CDATA[
+"./src/assets/fonts/custom/custom-font.scss"
+]]></pre>
+  </ngx-prism>
 
   <hr>
 
