@@ -21,7 +21,7 @@ export class LinkComponent {
 
   externalLink = true;
 
-  @ViewChild(RouterLinkActive)
+  @ViewChild(RouterLinkActive, {static: false})
   linkRef: RouterLinkActive;
 
   @HostBinding('attr.disabled')

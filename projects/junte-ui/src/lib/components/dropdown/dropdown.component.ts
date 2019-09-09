@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, OnInit, TemplateRef } from '@angular/core';
 import { UI } from '../../enum/ui';
 
 @Component({
@@ -21,10 +21,10 @@ export class DropdownComponent implements OnInit {
     return this._visible;
   }
 
-  @ContentChild('trigger')
+  @ContentChild('trigger', {static: false})
   triggerTemplate: TemplateRef<any>;
 
-  @ContentChild('dropdown')
+  @ContentChild('dropdown', {static: false})
   dropdownTemplate: TemplateRef<any>;
 
   toggle() {

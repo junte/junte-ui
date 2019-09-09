@@ -13,10 +13,14 @@
 
   <div [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}" content>
     <ng-container #container>
-      <ng-container [ngIf]="!!contentTemplate" *ngTemplateOutlet="contentTemplate"></ng-container>
+      <ng-container *ngIf="!!contentTemplate">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+      </ng-container>
     </ng-container>
   </div>
-  <ng-container [ngIf]="!!footerTemplate" *ngTemplateOutlet="footerTemplate"></ng-container>
+  <ng-container *ngIf="!!footerTemplate">
+    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+  </ng-container>
 
 </jnt-block>
 <div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null"></div>

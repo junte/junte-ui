@@ -13,7 +13,7 @@ export class CircleBarComponent {
   @ContentChildren(BarIndicatorGroupComponent)
   groups: QueryList<BarIndicatorGroupComponent>;
 
-  @ContentChild(TemplateRef)
+  @ContentChild(TemplateRef, {static: false})
   content: TemplateRef<any>;
 
   @HostBinding('attr.host') readonly host = 'jnt-circle-bar-host';

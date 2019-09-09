@@ -9,9 +9,9 @@ export class ActionComponent {
   @HostBinding('attr.host')
   readonly host = 'jnt-action-host';
 
-  @ContentChild('template')
+  @ContentChild('template', {static: false})
   template: TemplateRef<any>;
 
-  @ContentChild('content')
+  @ContentChild('content', {static: false})
   content: TemplateRef<any>;
 }

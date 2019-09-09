@@ -8,10 +8,10 @@ export class UserbarComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-userbar-host';
 
-  @ContentChild('avatar')
+  @ContentChild('avatar', {static: false})
   avatar: TemplateRef<any>;
 
-  @ContentChild('userMenu')
+  @ContentChild('userMenu', {static: false})
   userMenu: TemplateRef<any>;
 
 }

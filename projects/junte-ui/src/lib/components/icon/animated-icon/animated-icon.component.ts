@@ -1,7 +1,7 @@
-import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
-import {BehaviorSubject, combineLatest} from 'rxjs';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 const DEFAULT_ICONSET = 'default';
 

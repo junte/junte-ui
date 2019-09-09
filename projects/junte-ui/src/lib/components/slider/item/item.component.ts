@@ -14,8 +14,8 @@ export class SliderCarouselItemComponent implements AfterViewInit {
 
   private _position: number = 0;
 
-  @ViewChild('slide') slide: ElementRef;
-  @ViewChild(SwiperDirective) swiper: SwiperDirective;
+  @ViewChild('slide', {static: false}) slide: ElementRef;
+  @ViewChild(SwiperDirective, {static: false}) swiper: SwiperDirective;
   speed: number;
   currentPosition: number = 0;
   height: number;

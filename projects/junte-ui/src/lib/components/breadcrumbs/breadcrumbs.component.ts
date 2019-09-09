@@ -1,9 +1,9 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
-import { isArray, isObject, isString } from 'util';
 import { Meta, Title } from '@angular/platform-browser';
-import { filter } from 'rxjs/operators';
+import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { isArray, isObject, isString } from 'util';
 import { UI } from '../../enum/ui';
 
 class Breadcrumb {
@@ -45,9 +45,9 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routerState = this.router.routerState;
 
-    this.subscriptions.push(this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => this.routerState = this.router.routerState));
+    this.subscriptions.push(this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.routerState = this.router.routerState));
 
     this.routerState$.pipe(filter(r => !!r))
       .subscribe((router) => this.build(router.root));

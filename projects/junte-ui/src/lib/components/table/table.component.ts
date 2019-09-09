@@ -46,16 +46,16 @@ export class TableComponent implements OnInit, OnDestroy {
   @ContentChildren(TableColumnComponent)
   columns: QueryList<TableColumnComponent>;
 
-  @ContentChild('rowTemplate')
+  @ContentChild('rowTemplate', {static: false})
   rowTemplate: TemplateRef<any>;
 
-  @ContentChild('rowActions')
+  @ContentChild('rowActions', {static: false})
   rowActionsTemplate: TemplateRef<any>;
 
-  @ContentChild('actions')
+  @ContentChild('actions', {static: false})
   actionsTemplate: TemplateRef<any>;
 
-  @ContentChild('filters')
+  @ContentChild('filters', {static: false})
   filtersTemplate: TemplateRef<any>;
 
   @HostBinding('attr.features')
@@ -102,7 +102,7 @@ export class TableComponent implements OnInit, OnDestroy {
     });
 
     this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
-      .subscribe((filter: DefaultSearchFilter) => {
+      .subscribe(filter => {
         if (filter.first !== this.filter.first) {
           filter.page = 1;
         }

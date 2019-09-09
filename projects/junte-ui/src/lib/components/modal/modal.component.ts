@@ -68,7 +68,7 @@ export class ModalComponent implements AfterViewInit {
   footerTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
 
-  @ViewChild('container', {read: ViewContainerRef}) container;
+  @ViewChild('container', {read: ViewContainerRef, static: false}) container;
 
   set content(content: ModalContent) {
     this.contentTemplate = null;

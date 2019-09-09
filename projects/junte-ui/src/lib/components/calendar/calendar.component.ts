@@ -50,10 +50,10 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   @ContentChildren(WeekMetricComponent)
   metrics: QueryList<WeekMetricComponent>;
 
-  @ContentChild('dayTemplate')
+  @ContentChild('dayTemplate', {static: false})
   dayTemplate: TemplateRef<any>;
 
-  @ContentChild('metricTemplate')
+  @ContentChild('metricTemplate', {static: false})
   metricTemplate: TemplateRef<any>;
 
   @Output()

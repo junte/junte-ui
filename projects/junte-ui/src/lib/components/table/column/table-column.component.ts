@@ -6,7 +6,7 @@ import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
 })
 export class TableColumnComponent {
 
-  @ContentChild('cellTemplate')
+  @ContentChild('cellTemplate', {static: false})
   cellTemplate: TemplateRef<any>;
 
   @Input()

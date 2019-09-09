@@ -12,7 +12,7 @@ export class BlockComponent implements OnInit {
   @Input()
   title: string;
 
-  @ContentChild('footerBlock')
+  @ContentChild('footerBlock', {static: false})
   footerBlock: TemplateRef<any>;
 
   @Input()
