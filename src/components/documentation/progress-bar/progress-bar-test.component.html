@@ -22,7 +22,7 @@
   <jnt-stack>
 
     <ng-container *ngFor="let value of [0.1655, 20, 99.6, 130]">
-      <div style="width: 700px">
+      <div style="width: 100%">
         <jnt-progress-bar [value]="value">
           <ng-template #legend>
             <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
@@ -34,7 +34,7 @@
       </div>
     </ng-container>
 
-    <div style="width: 100px">
+    <div style="width: 100%">
       <jnt-progress-bar [value]="20">
         <ng-template #legend>
           <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.stack.gutter.tiny">
@@ -45,7 +45,7 @@
       </jnt-progress-bar>
     </div>
 
-    <div style="width: 500px">
+    <div style="width: 100%">
       <jnt-progress-bar [value]="-20">
         <ng-template #legend>
           <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.stack.gutter.tiny">
