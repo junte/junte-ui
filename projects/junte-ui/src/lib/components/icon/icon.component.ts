@@ -1,7 +1,7 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import {FontIcons, TypeIcon} from '../../enum/ui';
 
-const DEFAULT_ICONSET = 'icons';
+const DEFAULT_ICONSET = 'junte-ui-icons';
 
 @Component({
   selector: 'jnt-icon',
