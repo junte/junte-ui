@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { UI } from '../../../enum/ui';
 
 @Component({
@@ -11,16 +11,16 @@ export class AppHeaderComponent {
 
   ui = UI;
 
-  @ContentChild('topMenu')
+  @ContentChild('topMenu', {static: false})
   topMenu: TemplateRef<any>;
 
-  @ContentChild('logo')
+  @ContentChild('logo', {static: false})
   logo: TemplateRef<any>;
 
-  @ContentChild('userbar')
+  @ContentChild('userbar', {static: false})
   userbar: TemplateRef<any>;
 
-  @ContentChild('actions')
+  @ContentChild('actions', {static: false})
   actions: TemplateRef<any>;
 
 }

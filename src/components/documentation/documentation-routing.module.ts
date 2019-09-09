@@ -67,7 +67,7 @@ export const routes: Routes = [
       {
         path: 'breadcrumbs',
         data: {breadcrumb: {label: 'Breadcrumbs'}},
-        loadChildren: './breadcrumbs/breadcrumbs.module#BreadcrumbsModule'
+        loadChildren: () => import('./breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsModule)
       },
       {
         path: 'switch',

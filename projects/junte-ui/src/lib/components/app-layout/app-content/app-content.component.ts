@@ -25,8 +25,8 @@ export class AppContentComponent {
     return !!this.footer;
   }
 
-  @ContentChild(AppSubHeaderComponent) subHeader: AppSubHeaderComponent;
-  @ContentChild(AppFooterComponent) footer: AppFooterComponent;
+  @ContentChild(AppSubHeaderComponent, {static: false}) subHeader: AppSubHeaderComponent;
+  @ContentChild(AppFooterComponent, {static: false}) footer: AppFooterComponent;
 
   @Input() aside: AppAsideComponent;
 }

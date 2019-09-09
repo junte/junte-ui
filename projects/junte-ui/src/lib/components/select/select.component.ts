@@ -58,10 +58,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
 
-  @ViewChild('searchInput')
+  @ViewChild('searchInput', {static: false})
   searchInput: ElementRef;
 
-  @ViewChild('selectize')
+  @ViewChild('selectize', {static: false})
   selectize: ElementRef;
 
   private fetcher: Subscription;

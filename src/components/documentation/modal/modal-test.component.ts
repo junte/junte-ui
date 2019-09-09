@@ -12,10 +12,10 @@ export class ModalTestComponent {
 
   ui = UI;
 
-  @ViewChild('content')
+  @ViewChild('content', {static: false})
   content: TemplateRef<any>;
 
-  @ViewChild('footer')
+  @ViewChild('footer', {static: false})
   footer: TemplateRef<any>;
 
   constructor(private modalService: ModalService,

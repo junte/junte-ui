@@ -28,7 +28,7 @@ export class TableTestComponent implements OnInit {
 
   filter: DefaultSearchFilter = new DefaultSearchFilter({offset: 0, first: DEFAULT_PAGE_SIZE});
 
-  @ViewChild('table')
+  @ViewChild('table', {static: true})
   table: TableComponent;
 
   data: any = {

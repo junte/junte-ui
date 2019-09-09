@@ -11,7 +11,7 @@ export class ProgressBarComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-progress-bar-host';
 
-  @ContentChild('legend')
+  @ContentChild('legend', {static: false})
   legend: TemplateRef<any>;
 
   @Input() value: number;

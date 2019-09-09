@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectComponent } from './select.component';
-import { SelectOptionComponent } from './select-option/select-option.component';
+import { JunteDirectiveModule } from '../../directives/junte-directive.module';
+import { CheckboxModule } from '../checkbox/checkbox.module';
 import { IconModule } from '../icon/icon.module';
 import { SpinnerModule } from '../spinner/spinner.module';
-import { CheckboxModule } from '../checkbox/checkbox.module';
+import { SelectOptionComponent } from './select-option/select-option.component';
+import { SelectComponent } from './select.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { CheckboxModule } from '../checkbox/checkbox.module';
     ReactiveFormsModule,
     CheckboxModule,
     IconModule,
-    SpinnerModule
+    SpinnerModule,
+    JunteDirectiveModule
   ],
   exports: [
     SelectComponent,

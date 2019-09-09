@@ -1,9 +1,9 @@
-import {HttpClient} from '@angular/common/http';
-import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
-import {CacheService} from '../../../services/cache.service';
-import {isUndefined} from 'util';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { isUndefined } from 'util';
+import { CacheService } from '../../../services/cache.service';
 
 const DEFAULT_ICONSET = 'default';
 

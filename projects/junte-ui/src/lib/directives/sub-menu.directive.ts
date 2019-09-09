@@ -37,10 +37,10 @@ export class SubMenuTitleDirective {
 @Directive({selector: '[jntSubMenu]'})
 export class SubMenuDirective implements AfterViewInit {
 
-  @ContentChild(SubMenuItemsDirective)
+  @ContentChild(SubMenuItemsDirective, {static: false})
   item: SubMenuItemsDirective;
 
-  @ContentChild(SubMenuTitleDirective)
+  @ContentChild(SubMenuTitleDirective, {static: false})
   title: SubMenuTitleDirective;
 
   @ContentChildren(LinkComponent, {descendants: true})

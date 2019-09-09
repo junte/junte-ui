@@ -10,5 +10,5 @@ export class GanttLineComponent {
   @Input() from: Date;
   @Input() to: Date;
   @Input() period: any;
-  @ContentChild('indicator') indicatorTemplate: TemplateRef<any>;
+  @ContentChild('indicator', {static: false}) indicatorTemplate: TemplateRef<any>;
 }

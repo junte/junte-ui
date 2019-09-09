@@ -49,8 +49,8 @@
   })
   export class AppComponent implements AfterViewInit {
 
-    @ViewChild('modal') modal: ModalComponent;
-    @ViewChild('layout', {read: ElementRef}) backdrop;
+    @ViewChild('modal', {static: false}) modal: ModalComponent;
+    @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
 
     constructor(private modalService: ModalService) {
     }
@@ -85,7 +85,7 @@
   })
   export class OtherComponent  {
 
-    @ViewChild('content') content: TemplateRef<any>;
+    @ViewChild('content', {static: false}) content: TemplateRef<any>;
 
     constructor(private injector: Injector,
                 private cfr: ComponentFactoryResolver,
