@@ -8,17 +8,12 @@
 
       <h3>Angular Support</h3>
 
-      Angular ^7.1.0
-
-      <h3>Version</h3>
-
-      <jnt-link source="https://www.npmjs.com/package/junte-ui">npm</jnt-link>
-      v0.0.117
+      Angular ^8.0.0
 
       <h3>Installation</h3>
 
       <p>Install Junte UI with
-        <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank">npm</jnt-link>
+        <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
         :
       </p>
 
@@ -45,28 +40,37 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>Import style and SVG icon assets file link in angular.json</p>
+      <p>Import style and SVG icon assets file link to angular.json</p>
 
       <ngx-prism language="js">
-<pre><![CDATA[
-  {
-...
-"assets": [
-           {
-              "glob": "**/*",
-              "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-font/",
-              "output": "./assets/fonts/junte-ui-icons-font/"
-           }
-          ],
-            "styles": [
-             "src/styles.scss",
-             "node_modules/junte-ui/lib/assets/styles/junte-ui-icons-font.scss",
-             "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
-            ]
-...
+        <pre><![CDATA[
+{
+  ...
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "node_modules/junte-ui/lib/assets/fonts/icons/",
+      "output": "./assets/fonts/icons/"
+    },
+    {
+      "glob": "**/*",
+      "input": "node_modules/junte-ui/lib/assets/icons/animated",
+      "output": "./assets/icons/animated"
+    },
+    {
+      "glob": "**/*",
+      "input": "node_modules/junte-ui/lib/assets/icons/svg",
+      "output": "./assets/icons/svg"
+    }
+  ],
+  "styles": [
+    "src/styles.scss",
+    "node_modules/junte-ui/lib/assets/fonts/junte-ui/junte-ui-icons-font.scss",
+    "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
+  ]
+  ...
 }
-
-]]></pre>
+        ]]></pre>
       </ngx-prism>
 
       <p>Import the style files of the components you need into the global style file style.scss:</p>
@@ -77,7 +81,6 @@ export class AppModule {
 @import "~junte-ui/lib/components/block/block.encapsulated";
 @import "~junte-ui/lib/components/badge/badge.encapsulated";
 ...
-
 ]]></pre>
       </ngx-prism>
 
