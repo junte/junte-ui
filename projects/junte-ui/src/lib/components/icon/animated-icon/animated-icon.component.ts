@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { CacheService } from 'projects/junte-ui/src/lib/services/cache.service';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 const DEFAULT_ICONSET = 'default';
@@ -56,6 +57,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient,
               private renderer: Renderer2,
+              private cache: CacheService,
               private hostRef: ElementRef) {
   }
 
@@ -79,7 +81,16 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
 
   private load() {
     const path = `assets/icons/animated/${this.iconset}/${this.icon}.svg`;
-    this.http.get(path, {responseType: 'text'})
-      .subscribe(response => this.source = response);
+
+    const source = this.cache.get<string>(path);
+    if (source === undefined) {
+      this.http.get(path, {responseType: 'text'})
+        .subscribe(response => {
+          this.source = response;
+          this.cache.set<Observable<string>>(path, response);
+        });
+    } else {
+      this.source = source;
+    }
   }
 }
