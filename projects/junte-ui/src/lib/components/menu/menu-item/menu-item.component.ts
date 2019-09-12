@@ -1,5 +1,5 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
-import { FontIcons, Matching, Schemes, UI } from '../../../enum/ui';
+import {AnimatedIcons, FontIcons, Matching, Schemes, SvgIcons, UI} from '../../../enum/ui';
 import { BadgeComponent } from '../../badge/badge.component';
 
 const DEFAULT_TARGET = '_self';
@@ -12,7 +12,7 @@ export class MenuItemComponent {
 
   ui = UI;
 
-  @Input() icon: FontIcons;
+  @Input() icon: FontIcons | SvgIcons | AnimatedIcons | string;
   @Input() title: string;
   @Input() link: string | string[];
   @Input() target: string = DEFAULT_TARGET;
