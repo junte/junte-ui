@@ -24,16 +24,6 @@ build:
   only:
     - master
 
-publish_npm:
-  stage: publish
-  script:
-    - npm install
-    - npm run package
-    - npm set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
-    - npm run publish
-  only:
-    - master
-
 pages:
   stage: publish
   image: debian:jessie
