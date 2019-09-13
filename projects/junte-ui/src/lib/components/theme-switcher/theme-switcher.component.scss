@@ -21,6 +21,8 @@ $theme-switcher-dark-slider-background: $primary-light-color !default;
   min-width: $theme-switcher-width;
   width: $theme-switcher-width;
   border-radius: $theme-switcher-corner;
+  //for Safari
+  opacity: .99;
 }
 
 input {
@@ -53,7 +55,8 @@ input {
   min-width: calc(#{$theme-switcher-width} + (#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$gutter-tiny} / 2));
   height: $theme-switcher-height;
   background-color: $theme-switcher-dark-background;
-  transition: all ease .4s;
+  -webkit-transition: transform .4s ease-out, background-color .4s;
+  transition: transform .4s ease-out, background-color .4s;
 
   [icon] {
     width: calc(#{$theme-switcher-height} - #{$theme-switcher-padding} * 2);
