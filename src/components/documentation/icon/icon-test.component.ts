@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {UI} from 'junte-ui';
+import { Component, OnInit } from '@angular/core';
+import { UI } from 'junte-ui';
 
 class IconTest {
   constructor(public name: string,
@@ -31,4 +31,8 @@ export class IconTestComponent implements OnInit {
       .map(icon => new IconTest(icon, UI.icons.animated[icon]));
   }
 
+  refresh() {
+    this.animated = Object.keys(UI.icons.animated)
+      .map(icon => new IconTest(icon, UI.icons.animated[icon]));
+  }
 }

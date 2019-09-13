@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { isUndefined } from 'util';
 
 @Injectable({providedIn: 'root'})
 export class CacheService {
@@ -7,7 +6,7 @@ export class CacheService {
   private store: any = {};
 
   contains(key: string) {
-    return !isUndefined(this.store[key]);
+    return this.store[key] !== undefined;
   }
 
   get<T>(key: string) {
