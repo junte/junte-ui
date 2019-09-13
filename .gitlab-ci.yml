@@ -27,7 +27,8 @@ build:
 publish_npm:
   stage: publish
   script:
-    - npm run npm:pack
+    - npm install
+    - npm run package
     - npm set //registry.npmjs.org/:_authToken="${NPM_TOKEN}"
     - npm run publish
   only:
