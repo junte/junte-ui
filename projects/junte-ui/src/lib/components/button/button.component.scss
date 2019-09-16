@@ -8,76 +8,84 @@ $outline-transparent: 'transparent';
 
 $button-schemes: (
   #{$scheme-primary}: (
-    color: $white-color,
-    color-outline: $primary-color,
-    color-transparent: $primary-color,
-    color-transparent-hover: $primary-dark-color,
-    border-outline: $primary-color,
-    background: $primary-color,
-    background-hover: $primary-dark-color,
-    background-outline-hover: $primary-color,
-    color-outline-hover: $white-color,
-    badge-color: $primary-color,
-    badge-background: $white-color,
-    badge-outline-color: $white-color,
-    badge-hover-outline-color: $primary-color,
-    badge-outline-background: $primary-color,
-    badge-hover-outline-background: $primary-background,
-    color-shadow-focus: $primary-color
+    fill-color: $white-color,
+    fill-background-color: $primary-color,
+    fill-hover-background-color: $primary-dark-color,
+    fill-badge-color: $primary-color,
+    fill-badge-background-color: $white-color,
+
+    outline-color: $primary-color,
+    outline-border-color: $primary-color,
+    outline-hover-background-color: $primary-color,
+    outline-hover-color: $white-color,
+    outline-badge-color: $white-color,
+    outline-hover-badge-color: $primary-color,
+    outline-badge-background: $primary-color,
+    outline-hover-badge-background: $primary-background,
+
+    transparent-color: $primary-color,
+    transparent-hover-color: $primary-dark-color,
+    button-focus-shadow-color: $primary-color
   ),
   #{$scheme-secondary}: (
-    color: $gray-900,
-    color-outline: $gray-900,
-    color-transparent: $primary-text-color,
-    color-transparent-hover: $primary-text-dark-color,
-    border-outline: $gray-900,
-    background: $secondary-color,
-    background-hover: $blue-100,
-    background-outline-hover: $gray-900,
-    color-outline-hover: $secondary-color,
-    badge-color: $secondary-color,
-    badge-background: $gray-900,
-    badge-outline-color: $white-color,
-    badge-hover-outline-background: $secondary-color,
-    badge-hover-outline-color: $gray-900,
-    badge-outline-background: $gray-900,
-    color-shadow-focus: $gray-900
+    fill-color: $gray-900,
+    fill-background-color: $secondary-color,
+    fill-hover-background-color: $blue-100,
+    fill-badge-color: $secondary-color,
+    fill-badge-background-color: $gray-900,
+
+    outline-color: $gray-900,
+    outline-border-color: $gray-900,
+    outline-hover-background-color: $gray-900,
+    outline-hover-color: $secondary-color,
+    outline-badge-color: $white-color,
+    outline-hover-badge-background: $secondary-color,
+    outline-hover-badge-color: $gray-900,
+    outline-badge-background: $gray-900,
+
+    transparent-color: $primary-text-color,
+    transparent-hover-color: $primary-text-dark-color,
+    button-focus-shadow-color: $gray-900
   ),
   #{$scheme-success}: (
-    color: $white-color,
-    color-outline: $success-color,
-    color-transparent: $success-color,
-    color-transparent-hover: $green-dark,
-    border-outline: $success-color,
-    background: $success-color,
-    background-hover: $green-dark,
-    background-outline-hover: $success-color,
-    color-outline-hover: $white-color,
-    badge-color: $success-color,
-    badge-background: $white-color,
-    badge-outline-color: $white-color,
-    badge-outline-background: $success-color,
-    badge-hover-outline-background: $primary-background,
-    badge-hover-outline-color: $success-color,
-    color-shadow-focus: $success-color
+    fill-color: $white-color,
+    fill-background-color: $success-color,
+    fill-hover-background-color: $green-dark,
+    fill-badge-color: $success-color,
+    fill-badge-background-color: $white-color,
+
+    outline-color: $success-color,
+    outline-border-color: $success-color,
+    outline-hover-background-color: $success-color,
+    outline-hover-color: $white-color,
+    outline-badge-color: $white-color,
+    outline-badge-background: $success-color,
+    outline-hover-badge-background: $primary-background,
+    outline-hover-badge-color: $success-color,
+
+    transparent-color: $success-color,
+    transparent-hover-color: $green-dark,
+    button-focus-shadow-color: $success-color
   ),
   #{$scheme-fail}: (
-    color: $white-color,
-    color-outline: $fail-color,
-    color-transparent: $fail-color,
-    color-transparent-hover: $red-dark,
-    border-outline: $fail-color,
-    background: $fail-color,
-    background-hover: $red-dark,
-    background-outline-hover: $fail-color,
-    color-outline-hover: $white-color,
-    badge-color: $fail-color,
-    badge-background: $white-color,
-    badge-outline-color: $white-color,
-    badge-outline-background: $fail-color,
-    badge-hover-outline-background: $primary-background,
-    badge-hover-outline-color: $fail-color,
-    color-shadow-focus: $fail-color
+    fill-color: $white-color,
+    fill-background-color: $fail-color,
+    fill-hover-background-color: $red-dark,
+    fill-badge-color: $fail-color,
+    fill-badge-background-color: $white-color,
+
+    outline-color: $fail-color,
+    outline-border-color: $fail-color,
+    outline-hover-background-color: $fail-color,
+    outline-hover-color: $white-color,
+    outline-badge-color: $white-color,
+    outline-badge-background: $fail-color,
+    outline-hover-badge-background: $primary-background,
+    outline-hover-badge-color: $fail-color,
+
+    transparent-color: $fail-color,
+    transparent-hover-color: $red-dark,
+    button-focus-shadow-color: $fail-color
   ),
 )!default;
 
@@ -87,46 +95,53 @@ $button-sizes: (
     padding-without-text: 0 7px,
     font-size: 10px,
     height: 24px,
-    badge-size: 18px
+    badge-size: 18px,
+    icon-size: 14px
   ),
   #{$size-small}: (
     padding: 0 50px,
     padding-without-text: 0 10px,
     font-size: 12px,
     height: 30px,
-    badge-size: 24px
+    badge-size: 24px,
+    icon-size: 16px
   ),
   #{$size-normal}: (
     padding: 0 38px,
     padding-without-text: 0 13px,
     font-size: 14px,
     height: 38px,
-    badge-size: 24px
+    badge-size: 24px,
+    icon-size: 18px
   ),
   #{$size-large}: (
     padding: 0 36px,
     padding-without-text: 0 18px,
     font-size: 16px,
     height: 50px,
-    badge-size: 24px
+    badge-size: 24px,
+    icon-size: 20px
   ),
 )!default;
 
 @mixin scheme($scheme) {
   button {
-    color: #{map-get($scheme, color)};
-    background: #{map-get($scheme, background)};
+    color: #{map-get($scheme, fill-color)};
+    background-color: #{map-get($scheme, fill-background-color)};
     &:hover, &:focus {
-      background-color: #{map-get($scheme, background-hover)};
+      background-color: #{map-get($scheme, fill-hover-background-color)};
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, color-shadow-focus)};
+      box-shadow: 0 1px 5px #{map-get($scheme, button-focus-shadow-color)};
     }
     [badge][child-host=#{$jnt-badge-host}] {
       sup {
-        color: #{map-get($scheme, badge-color)};
-        background: #{map-get($scheme, badge-background)} !important;
+        color: #{map-get($scheme, fill-badge-color)};
+        background: #{map-get($scheme, fill-badge-background-color)} !important;
       }
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      fill: #{map-get($scheme, fill-color)};
     }
   }
 }
@@ -134,21 +149,27 @@ $button-sizes: (
 @mixin outline($scheme) {
 
   button {
-    color: #{map-get($scheme, color-outline)};
+    color: #{map-get($scheme, outline-color)};
     background-color: $primary-background;
-    border-color: #{map-get($scheme, border-outline)};
+    border-color: #{map-get($scheme, outline-border-color)};
     &:hover, &:focus {
-      background-color: #{map-get($scheme, background-outline-hover)};
-      color: #{map-get($scheme, color-outline-hover)};
+      background-color: #{map-get($scheme, outline-hover-background-color)};
+      color: #{map-get($scheme, outline-hover-color)};
 
       [badge][child-host=#{$jnt-badge-host}] > sup {
-        background: #{map-get($scheme, badge-hover-outline-background)} !important;
-        color: #{map-get($scheme, badge-hover-outline-color)} !important;
+        background: #{map-get($scheme, outline-hover-badge-background)} !important;
+        color: #{map-get($scheme, outline-hover-badge-color)} !important;
+      }
+      [icon][child-host=#{$jnt-icon-host}] {
+        fill: #{map-get($scheme, outline-hover-color)};
       }
     }
     [badge][child-host=#{$jnt-badge-host}] > sup {
-      background: #{map-get($scheme, badge-outline-background)} !important;
-      color: #{map-get($scheme, badge-outline-color)};
+      background: #{map-get($scheme, outline-badge-background)} !important;
+      color: #{map-get($scheme, outline-badge-color)};
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      fill: #{map-get($scheme, outline-color)};
     }
   }
 }
@@ -156,11 +177,17 @@ $button-sizes: (
 @mixin transparent($scheme) {
 
   button {
-    color: #{map-get($scheme, color-transparent)};
+    color: #{map-get($scheme, transparent-color)};
     background-color: transparent;
     border-color: transparent;
     &:hover, &:focus {
-      color: #{map-get($scheme, color-transparent-hover)};
+      color: #{map-get($scheme, transparent-hover-color)};
+      [icon][child-host=#{$jnt-icon-host}] {
+        fill: #{map-get($scheme, transparent-hover-color)};
+      }
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      fill: #{map-get($scheme, transparent-color)};
     }
   }
 }
@@ -170,7 +197,6 @@ $button-sizes: (
     padding: #{map-get($size, padding)};
     font-size: #{map-get($size, font-size)};
     height: #{map-get($size, height)};
-    line-height: #{map-get($size, height)};
   }
   [badge][child-host=#{$jnt-badge-host}] > sup {
     min-width: #{map-get($size, badge-size)};
@@ -181,6 +207,10 @@ $button-sizes: (
     span {
       height: #{map-get($size, badge-size)};
     }
+  }
+  [icon][child-host=#{$jnt-icon-host}] {
+    width: #{map-get($size, icon-size)};
+    height: #{map-get($size, icon-size)};
   }
 }
 
@@ -261,13 +291,12 @@ $button-sizes: (
     width: 100%;
     position: relative;
     font-family: $font-family-base;
-    line-height: $line-height-base;
+    line-height: 1;
     [icon] {
       margin-right: $gutter-small;
     }
     [text] {
       display: inline-block;
-      padding-bottom: 1px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

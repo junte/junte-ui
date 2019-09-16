@@ -31,7 +31,8 @@
           <jnt-input [state]="state" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
         </ng-container>
       </ng-container>
-      <ng-container [formGroupName]="i" *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
+      <ng-container [formGroupName]="i"
+                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
         <jnt-input [size]="size" placeholder="Hero name" [disabled]="true" formControlName="name"></jnt-input>
       </ng-container>
     </jnt-stack>
@@ -47,8 +48,20 @@
     <jnt-stack formArrayName="texts">
       <ng-container [formGroupName]="i"
                     *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
-        <jnt-input placeholder="Hero name" [size]="size" [icon]="ui.icons.font.search"
-                   formControlName="name"></jnt-input>
+        <ng-template let-icon="icon" let-type="type" let-iconset="iconset" #input>
+          <jnt-input placeholder="Hero name" [size]="size" [icon]="icon + ':' + type + ':' + iconset"
+                     formControlName="name"></jnt-input>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="input;
+              context:{icon: ui.icons.font.search, type: 'font', iconset: 'junte-ui-icons'}">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="input;
+              context:{icon: ui.icons.svg.question, type: 'svg', iconset: 'default'}">
+        </ng-container>
+        <ng-container *ngTemplateOutlet="input;
+              context:{icon: ui.icons.animated.time, type: 'animated', iconset: 'default'}">
+        </ng-container>
       </ng-container>
     </jnt-stack>
 
@@ -63,62 +76,63 @@
   </form>
 
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-input [state]="ui.state.normal" [type]="ui.form.input.password" placeholder="Hero name" [icon]="ui.icons.font.search"></jnt-input>
+<jnt-input [state]="ui.state.normal" [type]="ui.form.input.password" placeholder="Hero name"
+           [icon]="ui.icons.font.search"></jnt-input>
 ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
-    <h3>API</h3>
-    <h4>jnt-input</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[state]</td>
-        <td>-</td>
-        <td>normal | success | fail</td>
-        <td>normal</td>
-      </tr>
-      <tr>
-        <td>[type]</td>
-        <td>-</td>
-        <td>text | password</td>
-        <td>text</td>
-      </tr>
-      <tr>
-        <td>[size]</td>
-        <td>-</td>
-        <td>small | normal | large</td>
-        <td>normal</td>
-      </tr>
-      <tr>
-        <td>[placeholder]</td>
-        <td>-</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[icon]</td>
-        <td>-</td>
-        <td>Icons</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[label]</td>
-        <td>-</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      </tbody>
+  <h3>API</h3>
+  <h4>jnt-input</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[state]</td>
+      <td>-</td>
+      <td>normal | success | fail</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <td>[type]</td>
+      <td>-</td>
+      <td>text | password</td>
+      <td>text</td>
+    </tr>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>small | normal | large</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <td>[placeholder]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[icon]</td>
+      <td>-</td>
+      <td>Icons</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[label]</td>
+      <td>-</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    </tbody>
 
-    </table>
+  </table>
 
 </jnt-container>

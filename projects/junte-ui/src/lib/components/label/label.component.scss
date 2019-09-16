@@ -6,6 +6,7 @@ $label-padding-x: 0 !default;
 $label-padding-y: $gutter-small !default;
 $label-font-size: 12px !default;
 $label-icon-spacing: $gutter-small !default;
+$label-icon-size: 14px!default;
 
 :host {
   display: inline-flex;
@@ -23,6 +24,8 @@ span {
   white-space: nowrap;
 }
 
-[icon] {
+[icon][child-host=#{$jnt-icon-host}] {
   margin-right: $label-icon-spacing;
+  width: $label-icon-size;
+  height: $label-icon-size;
 }

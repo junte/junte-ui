@@ -31,30 +31,44 @@
       <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
         <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
           <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
-                        [text]="scheme | titlecase"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
-                        [text]="scheme | titlecase" [loading]="true"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
-                        [text]="scheme | titlecase" [badge]="5"></jnt-button>
-            <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="ui.icons.font.plus"
-                        ></jnt-button>
+            <ng-template let-icon="icon" let-type="type" let-iconset="iconset" #buttons>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [text]="scheme | titlecase"></jnt-button>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [disabled]="true"
+                          [text]="scheme | titlecase"></jnt-button>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="icon + ':' + type + ':' + iconset"
+                          [text]="scheme | titlecase"></jnt-button>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="icon + ':' + type + ':' + iconset"
+                          [text]="scheme | titlecase" [loading]="true"></jnt-button>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [icon]="icon + ':' + type + ':' + iconset"
+                          [text]="scheme | titlecase" [badge]="5"></jnt-button>
+              <jnt-button [scheme]="scheme" [size]="size" [outline]="outline"
+                          [icon]="icon + ':' + type + ':' + iconset"></jnt-button>
+            </ng-template>
+
+            <ng-container *ngTemplateOutlet="buttons;
+              context:{icon: ui.icons.font.plus, type: 'font', iconset: 'junte-ui-icons'}">
+            </ng-container>
+            <ng-container *ngTemplateOutlet="buttons;
+              context:{icon: ui.icons.svg.question, type: 'svg', iconset: 'default'}">
+            </ng-container>
+            <ng-container *ngTemplateOutlet="buttons;
+              context:{icon: ui.icons.animated.time, type: 'animated', iconset: 'default'}">
+            </ng-container>
           </ng-container>
         </ng-container>
         <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.font.plus" [text]="scheme | titlecase"></jnt-button>
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [icon]="ui.icons.font.plus"></jnt-button>
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" [text]="scheme | titlecase"></jnt-button>
+          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" icon="settings:animated:default"
+                      [text]="scheme | titlecase"></jnt-button>
+          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent"
+                      icon="question:svg:default"></jnt-button>
+          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent"
+                      [text]="scheme | titlecase"></jnt-button>
         </ng-container>
       </jnt-stack>
     </jnt-col>
   </jnt-row>
 
-    <ngx-prism language="html">
+  <ngx-prism language="html">
     <pre><![CDATA[
  <jnt-button [scheme]="ui.schemes.primary"
              [size]="ui.sizes.small"
@@ -66,7 +80,7 @@
              [text]="Button">
 </jnt-button>
     ]]></pre>
-    </ngx-prism>
+  </ngx-prism>
 
   <h3>API</h3>
   <h4>jnt-button</h4>
