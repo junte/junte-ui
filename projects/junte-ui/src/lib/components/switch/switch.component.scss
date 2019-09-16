@@ -7,8 +7,10 @@ $switch-background: $gray-600 !default;
 $switch-border-color: transparent !default;
 $switch-padding: 2px !default;
 $switch-border-width: 1px !default;
+$switch-icon-color: $switch-background !default;
 
 $switch-checked-background: $primary-color !default;
+$switch-checked-icon-color: $switch-checked-background !default;
 $switch-disabled-background: rgba($switch-background, .7) !default;
 $switch-disabled-checked-background: rgba($switch-checked-background, .5) !default;
 $switch-disabled-border-color: transparent !default;
@@ -17,25 +19,29 @@ $switch-sizes: (
   #{$size-tiny}: (
     width: 30px,
     height: 18px,
-    icon-size: 6px,
+    icon-font-size: 6px,
+    icon-size: 10px,
     label-font-size: 6px,
   ),
   #{$size-small}: (
     width: 38px,
     height: 22px,
-    icon-size: 8px,
+    icon-font-size: 8px,
+    icon-size: 12px,
     label-font-size: 8px,
   ),
   #{$size-normal}: (
     width: 50px,
     height: 28px,
-    icon-size: 11px,
+    icon-font-size: 11px,
+    icon-size: 14px,
     label-font-size: 11px,
   ),
   #{$size-large}: (
     width: 67px,
     height: 36px,
-    icon-size: 15px,
+    icon-font-size: 15px,
+    icon-size: 16px,
     label-font-size: 14px,
   ),
 ) !default;
@@ -60,7 +66,9 @@ $switch-sizes: (
     width: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
     height: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
     [icon] {
-      font-size: #{map-get($size, icon-size)};
+      font-size: #{map-get($size, icon-font-size)};
+      width: #{map-get($size, icon-size)};
+      height: #{map-get($size, icon-size)};
     }
   }
 }
@@ -94,8 +102,11 @@ input {
       margin-left: 0;
       text-align: right;
     }
-    [slider] [icon] {
-      color: $switch-checked-background;
+    [slider] {
+      [icon] {
+        color: $switch-checked-background;
+        fill: $switch-checked-icon-color;
+      }
     }
   }
   &:checked + [switch] > [slider] {
@@ -161,6 +172,7 @@ label {
     transition: all .3s;
     [icon] {
       color: $switch-background;
+      fill: $switch-icon-color;
     }
   }
   [label] {

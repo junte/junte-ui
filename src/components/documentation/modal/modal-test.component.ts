@@ -27,7 +27,7 @@ export class ModalTestComponent {
     const options = new ModalOptions({
       title: {
         text: 'Login',
-        icon: UI.icons.font.accessLock
+        icon: 'settings:animated:default'
       },
       maxWidth: '400px'
     });

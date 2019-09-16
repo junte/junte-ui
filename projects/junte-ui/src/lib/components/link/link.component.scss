@@ -9,6 +9,8 @@ $link-active-color: $primary-color !default;
 $link-disabled-color: $primary-text-light-color !default;
 $link-icon-spacing: $gutter-small !default;
 $link-badge-spacing: $gutter-small !default;
+$link-icon-size: 16px !default;
+$link-icon-color: $link-color !default;
 
 :host {
   display: inline-block;
@@ -33,6 +35,11 @@ $link-badge-spacing: $gutter-small !default;
     font-size: $link-font-size;
     transition: color .3s;
     text-align: left;
+  }
+  [icon] {
+    fill: $link-icon-color;
+    width: $link-icon-size;
+    height: $link-icon-size;
   }
   &[active="true"] {
     span {

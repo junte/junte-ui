@@ -11,6 +11,7 @@ const DEFAULT_ICONSET = 'junte-ui-icons';
 export class IconComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-icon-host';
+  @HostBinding('style.font-family') fontFamily;
 
   private _icon: string = FontIcons.check;
   typeIcon = TypeIcon;
@@ -31,6 +32,10 @@ export class IconComponent {
 
     if (chunks.length > 2) {
       this.iconset = chunks[2];
+    }
+
+    if (this.type === TypeIcon.font) {
+      this.fontFamily = this.iconset;
     }
   }
 
