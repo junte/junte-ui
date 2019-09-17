@@ -98,7 +98,8 @@ export enum FontIcons {
 export enum SvgIcons {
   question = 'question',
   figma = 'figma',
-  gitlab = 'gitlab'
+  gitlab = 'gitlab',
+  angular = 'angular'
 }
 
 export enum AnimatedIcons {
@@ -355,6 +356,7 @@ export class UI {
     question: SvgIcons.question + ':svg:default',
     gitlab: SvgIcons.gitlab + ':svg:default',
     figma: SvgIcons.figma + ':svg:default',
+    angular: SvgIcons.angular + ':svg:default',
     runningMan: AnimatedIcons.runningMan + ':animated:default'
   };
   static schemes = Schemes;
