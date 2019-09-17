@@ -5,12 +5,12 @@ import {
   forwardRef,
   HostBinding,
   Input,
-  OnInit,
   QueryList
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UI } from '../../enum/ui';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
+import { getTextBrightness } from '../../utils/brightness';
 
 @Component({
   selector: 'jnt-chart',
@@ -23,11 +23,12 @@ import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.compo
     }
   ]
 })
-export class ChartComponent implements ControlValueAccessor, OnInit, AfterContentInit {
+export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-chart-host';
 
   ui = UI;
+  getTextBrightness = getTextBrightness;
 
   private _selected: number;
   private _widthMark = 100;
@@ -35,6 +36,8 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
   progress = {loading: false};
 
   @Input() valueField: string;
+  @Input() title: string;
+  @Input() metric: string;
 
   @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
@@ -47,9 +50,6 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
   set widthMark(width: number) {
     this._widthMark = width < 60 ? 60 : width;
   }
-
-  @Input() title: string;
-  @Input() metric: string;
 
   get widthMark() {
     return this._widthMark;
@@ -73,12 +73,6 @@ export class ChartComponent implements ControlValueAccessor, OnInit, AfterConten
 
 
   indicators: ChartIndicatorComponent[] = [];
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   ngAfterContentInit() {
     this.indicators = this.indicatorsComponents.toArray();
