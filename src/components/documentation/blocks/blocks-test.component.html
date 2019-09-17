@@ -22,8 +22,8 @@
   <hr>
 
   <jnt-stack>
-    <jnt-block [size]="ui.sizes.large">
-      <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+    <jnt-block [size]="ui.sizes.large" [padding]="ui.padding.normal">
+      <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     </jnt-block>
 
     <ngx-prism language="html">
@@ -35,7 +35,7 @@
     </ngx-prism>
 
     <jnt-block [size]="ui.sizes.large" [padding]="ui.padding.large">
-      <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+      <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     </jnt-block>
 
     <ngx-prism language="html">
@@ -48,8 +48,8 @@
 
 
     <h2>Block bordered</h2>
-    <jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large">
-      <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+    <jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large" [padding]="ui.padding.normal">
+      <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     </jnt-block>
 
     <ngx-prism language="html">
@@ -61,8 +61,8 @@
     </ngx-prism>
 
     <h2>Block with loading</h2>
-    <jnt-block [loading]="true" [size]="ui.sizes.large">
-      <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+    <jnt-block [loading]="true" [size]="ui.sizes.large" [padding]="ui.padding.normal">
+      <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     </jnt-block>
 
       <ngx-prism language="html">
@@ -74,8 +74,8 @@
       </ngx-prism>
 
     <h2>Block with error</h2>
-    <jnt-block [error]="true">
-      <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+    <jnt-block [error]="true" [padding]="ui.padding.normal">
+      <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     </jnt-block>
 
     <ngx-prism language="html">
@@ -87,8 +87,8 @@
     </ngx-prism>
 
   <h2>Block with title & footer</h2>
-  <jnt-block title="Block title">
-    <img src="https://imgplaceholder.com/400x400/transparent/757575/glyphicon-picture" width="200" height="200">
+  <jnt-block title="Block title" [padding]="ui.padding.normal">
+    <jnt-icon [icon]="ui.icons.font.photoCamera" icon></jnt-icon>
     <ng-template #footerBlock>
       <div footer>
         <div>Title footer</div>
