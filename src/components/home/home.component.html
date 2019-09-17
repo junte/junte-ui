@@ -1,20 +1,36 @@
 <jnt-app-content>
   <jnt-app-body>
     <jnt-container>
-      <h1>Junte UI</h1>
-      <h2>Very strong framework!</h2>
+      <h1>Junte <span>UI</span></h1>
 
-      <h4>Junte UI is a collection of quality UI components for Angular.</h4>
+      <h2>Very strong 😎 framework!</h2>
+      <h4><b>Junte UI</b> is a collection of quality UI components for Angular
+        <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
+        with design system in Figma
+        <jnt-icon [icon]="ui.icons.figma"></jnt-icon>
 
-      <h3>Angular Support</h3>
+      </h4>
 
-      Angular ^8.0.0
+      <p>We love Angular and we want to create beautiful apps like on
+        <jnt-link source="https://dribbble.com/" title="dribbble.com"
+                  target="_blank"
+                  [icon]="ui.icons.font.externalLink"></jnt-link>
+      </p>
+      <p>We believe in brilliant code & design! When it's combined together we are seeing awesome solutions!</p>
+      <p>Using one common design system you can your build brilliant design and prototype of your app and then easily
+        move into code!</p>
+
+      <h3>Compatibility</h3>
+      <p>
+        <jnt-link source="https://angular.io/guide/releases#support-policy-and-schedule"
+                  target="_blank" title="Angular 8">
+        </jnt-link>
+        or higher 🚀
+      </p>
 
       <h3>Installation</h3>
-
-      <p>Install Junte UI with
+      <p>Install <b>Junte UI</b> with
         <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
-        :
       </p>
 
       <ngx-prism language="js">
@@ -23,8 +39,7 @@ npm install junte-ui --save
 ]]></pre>
       </ngx-prism>
 
-      <p>Once installed you need to import our main module.</p>
-
+      <p>Once installed you need to import our main module</p>
       <ngx-prism language="js">
 <pre><![CDATA[
 import { JunteUiModule } from 'junte-ui';
@@ -40,7 +55,26 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>Import style and SVG icon assets file link to angular.json</p>
+      <p>Or you can import only modules of target components to decrease bundle size</p>
+      <ngx-prism language="js">
+<pre><![CDATA[
+import { IconModule } from 'junte-ui';
+
+@NgModule({
+  ...
+  imports: [ IconModule, ... ],
+  ...
+ })
+
+export class AppModule {
+}
+]]></pre>
+      </ngx-prism>
+
+      <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
+        means you have full control over styles, you can customize, build, switch themes or customize components in the
+        context!</p>
+      <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
       <ngx-prism language="js">
         <pre><![CDATA[
@@ -54,13 +88,13 @@ export class AppModule {
     },
     {
       "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/icons/animated",
-      "output": "./assets/icons/animated"
+      "input": "node_modules/junte-ui/lib/assets/icons/animated/",
+      "output": "./assets/icons/animated/"
     },
     {
       "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/icons/svg",
-      "output": "./assets/icons/svg"
+      "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+      "output": "./assets/icons/svg/"
     }
   ],
   "styles": [
@@ -73,7 +107,7 @@ export class AppModule {
         ]]></pre>
       </ngx-prism>
 
-      <p>Import the style files of the components you need into the global style file style.scss:</p>
+      <p>Import the style files of the components you need into the global style file <code>style.scss</code></p>
 
       <ngx-prism language="js">
 <pre><![CDATA[
@@ -84,7 +118,7 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>If you need all the components, then import the file components.scss:</p>
+      <p>If you need all the components, only import the file <code>components.scss</code></p>
 
       <ngx-prism language="js">
 <pre><![CDATA[
@@ -92,7 +126,8 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>Some components use angular animation, you need to import BrowserAnimationsModule to your application</p>
+      <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
+        application</p>
 
       <ngx-prism language="js">
 <pre><![CDATA[
@@ -117,7 +152,7 @@ export class AppModule {
       <h3>Strong HTML</h3>
 
       <p>Junte UI uses multiple enums to set the input parameters of a component.
-        Enums are in the class UI. Create an object of class UI to be able to use enums.</p>
+        Create an alias in your component for using UI enums.</p>
 
       <ngx-prism language="js">
 <pre><![CDATA[
@@ -130,7 +165,7 @@ export class YourComponent {
 ]]></pre>
       </ngx-prism>
 
-      <p>In the component, enter the input parameters using enums:</p>
+      <p>In the template, you can use strong enum values</p>
 
       <ngx-prism language="html">
 <pre><![CDATA[
@@ -141,14 +176,17 @@ export class YourComponent {
             [badge]="5"
             [loading]="true"
             [disabled]="false"
-            [text]="Button">
+            text="Button">
 </jnt-button>
 ]]></pre>
       </ngx-prism>
 
       <h3>Responsive Design</h3>
 
-      <p>Junte UI has responsive design support. Enter the number of columns for the desired control points:</p>
+      <p>Junte UI has responsive design support.
+        <jnt-link [icon]="ui.icons.externalLink" [source]="['/documentation/grid']" title="Grid"></jnt-link>
+        using rows & columns.
+      </p>
 
       <ngx-prism language="html">
 <pre><![CDATA[
@@ -158,7 +196,7 @@ export class YourComponent {
              [tablet]="6"
              [desktop]="4"
              [wide]="3">
-      span-4
+      Content here
     </jnt-col>
   </jnt-row>
 </jnt-container>
@@ -170,20 +208,25 @@ export class YourComponent {
       <p>Style files are stored separately from the components, so any style can be changed and the project can be
         built.</p>
 
-      <p>For development, we use Sass
+      <p>We use
+        <jnt-link source="https://sass-lang.com/"
+                  target="_blank"
+                  [icon]="ui.icons.externalLink" title="SASS"></jnt-link>
         <jnt-link [source]="['/documentation', 'theming']">variables</jnt-link>
-        , which you can customize according to personal preferences.
+        and you can customize according to personal preferences.
       </p>
 
       <h3>Sources</h3>
 
-      <p>Junte UI is an open source project. If you have any problems, you can create a task in the
-        <jnt-link source="https://gitlab.com/junte/junte-ui/issues">Gitlab</jnt-link>
-        .
+      <p>Junte UI is an <b>open source</b> project. If you have any problems, you can create a task or bug using
+        <jnt-link [icon]="ui.icons.gitlab" source="https://gitlab.com/junte/junte-ui/issues"
+                  target="_blank" title="Gitlab"></jnt-link>
       </p>
 
       <p>You can also leave comments in our design system in
-        <jnt-link source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=0%3A1">Figma</jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=0%3A1"
+                  target="_blank" title="Figma"></jnt-link>
       </p>
 
     </jnt-container>
@@ -191,7 +234,7 @@ export class YourComponent {
   </jnt-app-body>
   <jnt-app-footer>
     <div footer>
-      <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+      <small>Junte 2008 - 2021<br> Any rights are NOT reserved, use this as you want ;-)</small>
     </div>
   </jnt-app-footer>
 </jnt-app-content>

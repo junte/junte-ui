@@ -353,6 +353,7 @@ export class UI {
     animated: AnimatedIcons,
 
     add: FontIcons.add + ':font',
+    externalLink: FontIcons.externalLink + ':font',
     question: SvgIcons.question + ':svg:default',
     gitlab: SvgIcons.gitlab + ':svg:default',
     figma: SvgIcons.figma + ':svg:default',
