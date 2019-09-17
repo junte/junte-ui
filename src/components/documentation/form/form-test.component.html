@@ -20,14 +20,43 @@
 
   <hr>
 
-  <ng-container *ngFor="let layout of [ui.form.layout.horizontal, ui.form.layout.vertical, ui.form.layout.inline]">
+  <h3>Horizontal</h3>
+
+  <jnt-block [padding]="ui.padding.normal">
+    <jnt-form [layout]="ui.form.layout.horizontal" [title]="title" [footerForm]="footerForm">
+      <jnt-form-item>
+        <jnt-col [span]="3">
+          <jnt-form-label for="name">Username</jnt-form-label>
+        </jnt-col>
+        <jnt-col [span]="9">
+          <jnt-form-control>
+            <jnt-input placeholder="Name"></jnt-input>
+            <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
+              tenetur? Earum eius ex illo libero nisi nulla, odio?
+            </jnt-form-message>
+          </jnt-form-control>
+        </jnt-col>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-col [span]="3">
+          <jnt-form-label>Fullname</jnt-form-label>
+        </jnt-col>
+        <jnt-col [span]="9">
+          <jnt-form-control>
+            <jnt-input placeholder="Full name"></jnt-input>
+          </jnt-form-control>
+        </jnt-col>
+      </jnt-form-item>
+
+    </jnt-form>
+
+  </jnt-block>
+
+  <ng-container *ngFor="let layout of [ui.form.layout.vertical, ui.form.layout.inline]">
     <h3>{{layout | titlecase}}</h3>
     <jnt-block [padding]="ui.padding.normal">
       <jnt-form [layout]="layout" [title]="title" [footerForm]="footerForm">
-        <ng-template #title>
-          <h3>Personal details</h3>
-        </ng-template>
-
         <jnt-form-item>
           <jnt-form-label for="name">Username</jnt-form-label>
           <jnt-form-control>
@@ -44,17 +73,21 @@
             <jnt-input placeholder="Full name"></jnt-input>
           </jnt-form-control>
         </jnt-form-item>
-
-
-        <ng-template #footerForm>
-          <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
-            <jnt-button text="Save changes"></jnt-button>
-            <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
-          </jnt-stack>
-        </ng-template>
       </jnt-form>
     </jnt-block>
   </ng-container>
+
+  <ng-template #title>
+    <h3>Personal details</h3>
+  </ng-template>
+
+
+  <ng-template #footerForm>
+    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+      <jnt-button text="Save changes"></jnt-button>
+      <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+    </jnt-stack>
+  </ng-template>
 
   <h1>Reactive Forms Validation</h1>
   <jnt-form [formGroup]="form" jntValidation (submitted)="submitForm()" [footerForm]="footerForm">
