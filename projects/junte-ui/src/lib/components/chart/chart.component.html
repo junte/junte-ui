@@ -32,7 +32,9 @@
           {{indicator.label}}
         </td>
         <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
-          {{indicator.value | number: '1.0-0'}}%
+          <span [style.color]="getTextBrightness(indicator.color | lightenDarkenColor : -20)">
+            {{indicator.value | number: '1.0-0'}}%
+          </span>
         </td>
       </tr>
     </ng-container>
