@@ -360,7 +360,7 @@ export class UI {
     gitlab: SvgIcons.gitlab + ':svg:default',
     figma: SvgIcons.figma + ':svg:default',
     angular: SvgIcons.angular + ':svg:default',
-    arnold: SvgIcons.arnold + 'svg:default',
+    arnold: SvgIcons.arnold + ':svg:default',
     dribbble: SvgIcons.dribbble + ':svg:default',
     runningMan: AnimatedIcons.runningMan + ':animated:default'
   };
