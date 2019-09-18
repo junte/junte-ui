@@ -225,6 +225,7 @@ $button-sizes: (
 :host {
   display: inline-flex;
   position: relative;
+  max-width: 100%;
 
   @each $scheme, $map in $button-schemes {
     &[scheme='#{$scheme}'] {
@@ -291,7 +292,7 @@ $button-sizes: (
     width: 100%;
     position: relative;
     font-family: $font-family-base;
-    line-height: 1;
+    line-height: 1.5;
     [icon] {
       margin-right: $gutter-small;
     }
