@@ -6,7 +6,7 @@ $breadcrumb-link-font-size: 12px !default;
 
 $breadcrumb-icon-color: $primary-text-light-color !default;
 $breadcrumb-icon-font-size: 6px !default;
-$breadcrumb-icon-line-height: $line-height-large !default;
+$breadcrumb-icon-line-height: 18px !default;
 
 :host {
   display: block;
@@ -27,9 +27,12 @@ a {
 [icon] {
   color: $breadcrumb-icon-color;
   font-size: $breadcrumb-icon-font-size;
-  line-height: $breadcrumb-icon-line-height;
 
   &:last-child {
     display: none;
   }
+}
+
+[icon][child-host=#{$jnt-icon-host}] {
+  line-height: $breadcrumb-icon-line-height;
 }

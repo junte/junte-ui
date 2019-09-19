@@ -24,10 +24,6 @@
 
   <hr>
 
-
-  <iframe src="../../frame.html" frameborder="0" width="100%" height="400px">
-  </iframe>
-
   <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-app-layout>
@@ -69,37 +65,6 @@
           <jnt-menu-item title="Customer"></jnt-menu-item>
         </jnt-menu>
       </ng-template>
-      <ng-template #actions>
-        <jnt-actions [spacer]="ui.stack.gutter.small">
-          <jnt-action>
-            <ng-template #template>Item 1</ng-template>
-            <ng-template #content>Content 1</ng-template>
-          </jnt-action>
-          <jnt-action>
-            <ng-template #template>Item 2</ng-template>
-            <ng-template #content>Content 2</ng-template>
-          </jnt-action>
-          <jnt-action>
-            <ng-template #template>Item 3</ng-template>
-            <ng-template #content>Content 3</ng-template>
-          </jnt-action>
-        </jnt-actions>
-      </ng-template>
-      <ng-template #userbar>
-        <jnt-userbar>
-          <ng-template #avatar>
-            <jnt-avatar [size]="ui.sizes.small"
-                        image="assets/image/alex.jpeg"></jnt-avatar>
-          </ng-template>
-
-          <ng-template #userMenu>
-            <jnt-user-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
-              <jnt-button text="Logout"></jnt-button>
-            </jnt-user-menu>
-          </ng-template>
-        </jnt-userbar>
-      </ng-template>
-
     </jnt-app-header>
   </jnt-app-layout>
 
