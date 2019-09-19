@@ -26,7 +26,7 @@
   <h1>Skeleton avatar</h1>
 
   <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal">
-    <jnt-stack [type]="ui.stack.type.horizontal">
+    <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap" stack>
       <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
         <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="size"></jnt-skeleton>
       </ng-container>
