@@ -209,8 +209,10 @@ $button-sizes: (
     }
   }
   [icon][child-host=#{$jnt-icon-host}] {
-    width: #{map-get($size, icon-size)};
-    height: #{map-get($size, icon-size)};
+    &[type='animated'], &[type='svg'] {
+      width: #{map-get($size, icon-size)};
+      height: #{map-get($size, icon-size)};
+    }
   }
 }
 
@@ -295,6 +297,9 @@ $button-sizes: (
     line-height: 1.5;
     [icon] {
       margin-right: $gutter-small;
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      line-height: 0;
     }
     [text] {
       display: inline-block;
