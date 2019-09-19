@@ -7,8 +7,8 @@ $link-font-size: 0.875rem !default;
 $link-hover-color: $primary-color !default;
 $link-active-color: $primary-color !default;
 $link-disabled-color: $primary-text-light-color !default;
-$link-icon-spacing: $gutter-small !default;
-$link-badge-spacing: $gutter-small !default;
+$link-icon-spacing: $gutter-tiny !default;
+$link-badges-spacing: $gutter-small !default;
 $link-icon-size: 16px !default;
 $link-icon-color: $link-color !default;
 
@@ -24,7 +24,7 @@ $link-icon-color: $link-color !default;
 }
 
 [link] {
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-decoration: $link-decoration;
   box-sizing: border-box;
@@ -37,9 +37,17 @@ $link-icon-color: $link-color !default;
     text-align: left;
   }
   [icon] {
-    fill: $link-icon-color;
-    width: $link-icon-size;
-    height: $link-icon-size;
+    margin-right: $link-icon-spacing;
+  }
+  [badge] {
+    margin-left: $link-badges-spacing;
+  }
+  [icon][child-host=#{$jnt-icon-host}] {
+    &[type='animated'], &[type='svg'] {
+      fill: $link-icon-color;
+      width: $link-icon-size;
+      height: $link-icon-size;
+    }
   }
   &[active="true"] {
     span {
