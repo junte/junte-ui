@@ -20,7 +20,7 @@
 
   <tr timeline>
     <td gutter></td>
-    <td>Developer</td>
+    <td>{{title || ''}}</td>
     <td day [attr.current]="(day === (today | getDate)) && (current | isSameMonth: today)"
         *ngFor="let day of (current | getDaysInMonth) | numberArray: 1">
       {{day}}
@@ -52,14 +52,19 @@
       </ng-template>
 
       <td gutter></td>
-      <td title>{{line.title}}</td>
+      <td title>
+        <ng-template #title>{{line.title}}</ng-template>
+        <ng-container *ngIf="line.titleTemplate; else title">
+          <ng-container *ngTemplateOutlet="line.titleTemplate; context: {title: line.title}"></ng-container>
+        </ng-container>
+      </td>
 
       <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)
         || ((current | dateDiff:line.from:'months') > 0 && (line.to | dateDiff:current:'months') > 0); else noRequest">
         <td *ngFor="let day of (line.from | before: current) - 1 | numberArray"></td>
         <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
           <ng-container *ngTemplateOutlet="line.indicatorTemplate;
-          context: {period: line.period, current: current, today: today}">
+            context: {period: line.period, current: current, today: today}">
           </ng-container>
         </td>
         <td *ngFor="let day of ((current | getDaysInMonth) - (line.to | after: current)) | numberArray"></td>

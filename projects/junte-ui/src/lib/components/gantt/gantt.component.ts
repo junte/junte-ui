@@ -21,6 +21,7 @@ export class GanttComponent implements ControlValueAccessor {
   private _current: Date;
 
   @Input() loading = false;
+  @Input() title: string;
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
 
