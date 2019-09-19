@@ -10,6 +10,7 @@ export class GanttLineComponent {
   @Input() from: Date;
   @Input() to: Date;
   @Input() period: any;
-  @ContentChild('indicator', {static: false}) indicatorTemplate: TemplateRef<any>;
   @Output() click = new EventEmitter<any>();
+  @ContentChild('indicator', {static: false}) indicatorTemplate: TemplateRef<any>;
+  @ContentChild('title', {static: false}) titleTemplate: TemplateRef<any>;
 }
