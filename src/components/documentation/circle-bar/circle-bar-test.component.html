@@ -18,7 +18,7 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.horizontal">
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <jnt-circle-bar *ngFor="let size of ['tiny', 'small', 'normal', 'big']"
                     [attr.bar-size]="size">
       <ng-template #content>Content</ng-template>
