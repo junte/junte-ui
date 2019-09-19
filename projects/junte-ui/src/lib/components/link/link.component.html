@@ -19,14 +19,14 @@
 </ng-template>
 
 <ng-template #linkTemplate>
-  <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [align]="ui.flex.align.center">
+  <!--<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small" [align]="ui.flex.align.center">-->
     <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+    <!--<jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">-->
       <span>{{title}}</span>
-      <jnt-stack *ngIf="badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny" [align]="ui.flex.align.center">
-        <jnt-badge *ngFor="let badge of badges" [color]="badge.color" [count]="badge.count"
-                   [position]="ui.position.inline" badge></jnt-badge>
-      </jnt-stack>
-    </jnt-stack>
-  </jnt-stack>
+      <!--<jnt-stack *ngIf="badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.tiny" [align]="ui.flex.align.center" badges>-->
+    <jnt-badge *ngFor="let badge of badges" [color]="badge.color" [count]="badge.count"
+               [position]="ui.position.inline" badge></jnt-badge>
+      <!--</jnt-stack>-->
+    <!--</jnt-stack>-->
+  <!--</jnt-stack>-->
 </ng-template>

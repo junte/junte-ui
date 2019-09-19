@@ -48,9 +48,11 @@ $menu-item-icon-color-in-header: $white-color !default;
         jnt-icon {
           color: $menu-item-icon-color-in-header;
           font-size: $menu-item-icon-font-size-in-header;
-          width: $menu-item-icon-size-in-header;
-          height: $menu-item-icon-size-in-header;
-          fill: $menu-item-icon-color-in-header;
+          [icon]:not([type='font']) {
+            width: $menu-item-icon-size-in-header;
+            height: $menu-item-icon-size-in-header;
+            fill: $menu-item-icon-color-in-header;
+          }
         }
         &[active='true'] {
           span {

@@ -8,7 +8,7 @@ $link-hover-color: $primary-color !default;
 $link-active-color: $primary-color !default;
 $link-disabled-color: $primary-text-light-color !default;
 $link-icon-spacing: $gutter-small !default;
-$link-badge-spacing: $gutter-small !default;
+$link-badges-spacing: $gutter-small !default;
 $link-icon-size: 16px !default;
 $link-icon-color: $link-color !default;
 
@@ -24,7 +24,7 @@ $link-icon-color: $link-color !default;
 }
 
 [link] {
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-decoration: $link-decoration;
   box-sizing: border-box;
@@ -37,6 +37,12 @@ $link-icon-color: $link-color !default;
     text-align: left;
   }
   [icon] {
+    margin-right: $link-icon-spacing;
+  }
+  [badge] {
+    margin-left: $link-badges-spacing;
+  }
+  [icon]:not([type='font']) {
     fill: $link-icon-color;
     width: $link-icon-size;
     height: $link-icon-size;
