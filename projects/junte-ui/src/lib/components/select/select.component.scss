@@ -27,7 +27,8 @@ $select-padding-right: $gutter-normal !default;
 
 $select-disabled-background: $control-disabled-background !default;
 $select-disabled-border-color: $control-disabled-border-color !default;
-$select-disabled-chips-color: $muted-color !default;
+$select-disabled-chips-color: $control-disabled-border-color !default;
+$select-disabled-chips-background-color: $muted-color !default;
 
 $select-focus-shadow: $shadow-primary-dark !default;
 
@@ -80,7 +81,7 @@ $select-sizes: (
       border-color: $select-disabled-border-color;
       pointer-events: none;
       li[chips='true'] {
-        background-color: $select-disabled-background;
+        background-color: $select-disabled-chips-background-color;
         color: $select-disabled-chips-color;
       }
     }
