@@ -13,8 +13,6 @@ export class SwitcherTestComponent implements OnInit {
   ui = UI;
   form: FormGroup;
 
-  options = new Array(15);
-
   constructor(private fb: FormBuilder) {
   }
 

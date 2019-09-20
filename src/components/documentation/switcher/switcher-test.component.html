@@ -17,60 +17,65 @@
     </jnt-stack>
     <jnt-form [formGroup]="form">
       <jnt-stack [gutter]="ui.stack.gutter.large">
-        <jnt-switcher formControlName="selected">
-          <jnt-switcher-option label="Lorem $$$$$" [value]="{obj: 10}"></jnt-switcher-option>
-          <jnt-switcher-option label="Lorem ipsum dolor" [value]="{obj: 1}">
-            <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
-            <jnt-badge [color]="ui.colors.purple" [count]="2000"></jnt-badge>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Lorem ipsum dolor sit amet" [value]="{obj: 2}">
-            <jnt-dot [color]="ui.colors.red"></jnt-dot>
-            <jnt-badge [color]="ui.colors.purple" [count]="20"></jnt-badge>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Option" [value]="{obj: 3}">
-            <jnt-dot></jnt-dot>
-          </jnt-switcher-option>
-        </jnt-switcher>
+        <ng-container *ngFor="let type of [ui.type.horizontal, ui.type.vertical]">
+          <h3>{{type | titlecase}}</h3>
+          <jnt-switcher formControlName="selected" [type]="type">
+            <jnt-switcher-option label="Lorem $$$$$" [value]="{obj: 10}"></jnt-switcher-option>
+            <jnt-switcher-option label="Lorem ipsum dolor" [value]="{obj: 1}">
+              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
+              <jnt-badge [color]="ui.colors.purple" [count]="2000"></jnt-badge>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Lorem ipsum dolor sit amet" [value]="{obj: 2}">
+              <jnt-dot [color]="ui.colors.red"></jnt-dot>
+              <jnt-badge [color]="ui.colors.purple" [count]="20"></jnt-badge>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Option" [value]="{obj: 3}">
+              <jnt-dot></jnt-dot>
+            </jnt-switcher-option>
+          </jnt-switcher>
 
-        <jnt-switcher formControlName="selected">
-          <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-            <jnt-badge [color]="ui.colors.purple" [count]="10"></jnt-badge>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Purple Dark active color" [value]="{obj: 20}">
-            <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
-          <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-            <jnt-dot [color]="ui.colors.red"></jnt-dot>
-            <jnt-badge [count]="100000" [color]="ui.colors.red"></jnt-badge>
-          </jnt-switcher-option>
-        </jnt-switcher>
+          <jnt-switcher formControlName="selected" [type]="type">
+            <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
+              <jnt-badge [color]="ui.colors.purple" [count]="10"></jnt-badge>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Purple Dark active color" [value]="{obj: 20}">
+              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
+            <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
+              <jnt-dot [color]="ui.colors.red"></jnt-dot>
+              <jnt-badge [count]="100000" [color]="ui.colors.red"></jnt-badge>
+            </jnt-switcher-option>
+          </jnt-switcher>
 
-        <jnt-switcher formControlName="selected">
-          <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-            <jnt-badge [color]="ui.colors.purple" [count]="10"></jnt-badge>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Purple Dark active color Purple Dark active color Purple Dark active color Purple Dark active color Purple Dark active color"
-                               [value]="{obj: 20}">
-            <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
-          </jnt-switcher-option>
-          <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
-          <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-            <jnt-dot [color]="ui.colors.red"></jnt-dot>
-            <jnt-badge [count]="100000" [color]="ui.colors.red"></jnt-badge>
-          </jnt-switcher-option>
-        </jnt-switcher>
+          <jnt-switcher formControlName="selected" [type]="type">
+            <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
+              <jnt-badge [color]="ui.colors.purple" [count]="10"></jnt-badge>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Purple Dark active color Purple Dark active color"
+                                 [value]="{obj: 20}">
+              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
+            </jnt-switcher-option>
+            <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
+            <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
+              <jnt-dot [color]="ui.colors.red"></jnt-dot>
+              <jnt-badge [count]="100000" [color]="ui.colors.red"></jnt-badge>
+            </jnt-switcher-option>
+          </jnt-switcher>
 
-        <jnt-switcher formControlName="selected">
-          <jnt-switcher-option *ngFor="let i of options" label="Without badge and dot" [value]="1">
-          </jnt-switcher-option>
-        </jnt-switcher>
+          <jnt-switcher formControlName="selected" [type]="type">
+            <jnt-switcher-option label="Without badge and dot" [value]="1"></jnt-switcher-option>
+            <jnt-switcher-option label="Without badge and dot" [value]="2"></jnt-switcher-option>
+            <jnt-switcher-option label="Without badge and dot" [value]="3"></jnt-switcher-option>
+            <jnt-switcher-option label="Without badge and dot" [value]="4"></jnt-switcher-option>
+          </jnt-switcher>
+        </ng-container>
       </jnt-stack>
     </jnt-form>
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-switcher formControlName="switcherValue">
+<jnt-switcher formControlName="switcherValue" [type]="ui.type.vertical">
   <jnt-switcher-option label="Option 1"></jnt-switcher-option>
   <jnt-switcher-option label="Option 2">
     <jnt-dot [color]="ui.colors.red"></jnt-dot>
@@ -104,6 +109,25 @@
       <td>-</td>
       <td>any</td>
       <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+  <h4>jnt-switcher</h4>
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>[type]</td>
+      <td>-</td>
+      <td>vertical | horizontal</td>
+      <td>horizontal</td>
     </tr>
     </tbody>
   </table>
