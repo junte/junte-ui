@@ -5,6 +5,7 @@ import { PaginationComponent } from './pagination.component';
 import { PageSizeComponent } from './page-size/page-size.component';
 import { IconModule } from '../icon/icon.module';
 import { StackModule } from '../stack/stack.module';
+import { SelectModule } from '../select/select.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { StackModule } from '../stack/stack.module';
     FormsModule,
     ReactiveFormsModule,
     IconModule,
-    StackModule
+    StackModule,
+    SelectModule
   ],
   declarations: [
     PaginationComponent,

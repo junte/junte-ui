@@ -13,6 +13,7 @@ $select-option-item-padding-x: $gutter-small !default;
 $select-option-item-padding-y: $gutter-normal !default;
 $select-option-item-hover-background: $highlight-background !default;
 $select-option-item-icon-color: $primary-color !default;
+$select-option-border-radius: $corner-small !default;
 
 $select-background: $control-background !default;
 $select-border-width: 1px !default;
@@ -209,8 +210,10 @@ $select-sizes: (
   z-index: 2;
   max-height: 300px;
   overflow-y: auto;
+  border-radius: $select-option-border-radius;
   [item] {
     padding: $select-option-item-padding-x $select-option-item-padding-y;
+    text-align: left;
     [checkbox][child-host=#{$jnt-checkbox-host}] [ switch ] {
       border: 0;
       background-color: transparent;

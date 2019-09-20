@@ -1,7 +1,11 @@
-<select [(ngModel)]="first" style="border-width: 0; background-color: transparent; color: #828282">
-  <option [ngValue]="10">10</option>
-  <option [ngValue]="20">20</option>
-  <option [ngValue]="30">30</option>
-  <option [ngValue]="50">50</option>
-  <option [ngValue]="100">100</option>
-</select>
+<form [formGroup]="form">
+  <jnt-select valueField="value"
+              labelField="label"
+              formControlName="select"
+              [size]="ui.sizes.small">
+    <jnt-select-option *ngFor="let option of options"
+                       [label]="option.label"
+                       [value]="option.value">
+    </jnt-select-option>
+  </jnt-select>
+</form>
