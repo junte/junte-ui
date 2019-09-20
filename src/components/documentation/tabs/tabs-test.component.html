@@ -18,15 +18,17 @@
 
   <hr>
 
-  <jnt-tabs>
-    <jnt-tab title="Personal" [active]="true">Template Personal</jnt-tab>
-    <jnt-tab title="Security">Template Security</jnt-tab>
-    <jnt-tab title="Settings">Template Settings</jnt-tab>
-  </jnt-tabs>
+  <jnt-stack>
+    <jnt-tabs>
+      <jnt-tab title="Personal" [active]="true">Template Personal</jnt-tab>
+      <jnt-tab title="Security">Template Security</jnt-tab>
+      <jnt-tab title="Settings">Template Settings</jnt-tab>
+    </jnt-tabs>
 
-  <jnt-tabs>
-    <jnt-tab *ngFor="let tab of tabs" [title]="tab.title">{{tab.content}}</jnt-tab>
-  </jnt-tabs>
+    <jnt-tabs>
+      <jnt-tab *ngFor="let tab of tabs" [title]="tab.title">{{tab.content}}</jnt-tab>
+    </jnt-tabs>
+  </jnt-stack>
 
   <ngx-prism language="html">
     <pre><![CDATA[
