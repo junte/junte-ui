@@ -1,50 +1,51 @@
 @import "../../assets/styles/variables";
 
 $tabs-border-bottom-color: $muted-color !default;
-$tabs-item-padding-top: $gutter-small !default;
-$tabs-item-padding-left: $gutter-small !default;
-$tabs-item-padding-right: $gutter-small !default;
-$tabs-item-padding-bottom: $gutter-big !default;
+$tabs-corner: $corner-normal !default;
+$tabs-background-color: $primary-background !default;
+$tabs-item-padding: $gutter-normal !default;
 $tabs-item-color: $primary-text-color !default;
 $tabs-item-font-size: $font-size-base !default;
 $tabs-item-active-color: $primary-color !default;
 $tabs-item-hover-color: $primary-light-color !default;
+$tabs-item-focus-outline-color: $primary-color !default;
+$tabs-item-focus-shadow: $shadow-primary-dark !default;
 
 :host {
   display: block;
+  max-width: 100%;
 }
 
 [tabs] {
   display: flex;
   border-bottom: 1px solid $tabs-border-bottom-color;
   margin-bottom: $gutter-normal;
+  background-color: $tabs-background-color;
+  border-top-left-radius: $tabs-corner;
+  border-top-right-radius: $tabs-corner;
+
   [tab] {
-    padding: $tabs-item-padding-top $tabs-item-padding-right $tabs-item-padding-bottom $tabs-item-padding-left;
+    padding: $tabs-item-padding;
     cursor: pointer;
     color: $tabs-item-color;
     font-size: $tabs-item-font-size;
     position: relative;
-    margin-bottom: -1px;
     user-select: none;
-    [bar] {
-      display: none;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      background-color: $tabs-item-active-color;
-      z-index: 1;
-    }
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid transparent;
     &:hover {
       color: $tabs-item-hover-color;
     }
+    &:focus {
+      outline: 1px solid $tabs-item-focus-outline-color;
+      box-shadow: $tabs-item-focus-shadow;
+    }
     &[active='true'] {
       color: $tabs-item-active-color;
-      [bar] {
-        display: block;
-      }
-      //border-bottom: 1px solid $tabs-item-active-color;
+      border-bottom-color: $tabs-item-active-color;
     }
   }
 }

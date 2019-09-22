@@ -9,10 +9,10 @@ import { UI } from 'junte-ui';
 export class TabsTestComponent implements OnInit {
   ui = UI;
   tabs = [
-    {title: 'Tab 1', content: 'Content Tab 1'},
-    {title: 'Tab 2', content: 'Content Tab 2'},
-    {title: 'Tab 3', content: 'Content Tab 3'},
-    {title: 'Tab 4', content: 'Content Tab 4'}
+    {title: 'Information', content: 'Content Tab 1'},
+    {title: 'Settings', content: 'Content Tab 2'},
+    {title: 'Documentation', content: 'Content Tab 3'},
+    {title: 'General', content: 'Content Tab 4'}
   ];
 
   constructor() { }
