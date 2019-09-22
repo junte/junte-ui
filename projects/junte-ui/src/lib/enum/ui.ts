@@ -255,17 +255,12 @@ export enum FlexAlignSelf {
   auto = 'auto'
 }
 
-export enum StackType {
-  horizontal = 'horizontal',
-  vertical = 'vertical'
-}
-
 export enum ValidationTypeError {
   required = 'required',
   minlength = 'minlength'
 }
 
-export enum MenuType {
+export enum PositionType {
   horizontal = 'horizontal',
   vertical = 'vertical'
 }
@@ -465,7 +460,7 @@ export class UI {
   static outline = Outline;
   static position = Positions;
   static shape = Shapes;
-  static type = MenuType;
+  static type = PositionType;
   static width = Width;
   static skeleton = {
     type: TypeSkeleton
@@ -479,7 +474,7 @@ export class UI {
     alignSelf: FlexAlignSelf
   };
   static stack = {
-    type: StackType,
+    type: PositionType,
     gutter: StackGutter
   };
   static form = {

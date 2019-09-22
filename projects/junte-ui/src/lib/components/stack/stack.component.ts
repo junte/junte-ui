@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { FlexAlign, FlexJustify, FlexWrap, StackGutter, StackType } from '../../enum/ui';
+import { FlexAlign, FlexJustify, FlexWrap, StackGutter, PositionType } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-stack',
@@ -13,7 +13,7 @@ export class StackComponent {
   @Input() gutter: StackGutter = StackGutter.normal;
 
   @HostBinding('attr.type')
-  @Input() type: StackType = StackType.vertical;
+  @Input() type: PositionType = PositionType.vertical;
 
   @HostBinding('attr.align')
   @Input()

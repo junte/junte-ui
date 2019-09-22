@@ -18,6 +18,34 @@ $switcher-option-focus-border-color: $primary-light-color;
   line-height: $switcher-height;
   border: 1px solid $switcher-border-color;
   border-radius: $switcher-corner;
+  &[type='vertical'] {
+    flex-direction: column;
+    [option] {
+      &:first-child {
+        border-top-left-radius: $switcher-corner - 1px;
+        border-top-right-radius: $switcher-corner - 1px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: $switcher-corner - 1px;
+        border-bottom-left-radius: $switcher-corner - 1px;
+      }
+    }
+  }
+  &[type='horizontal'] {
+    flex-direction: row;
+    [option] {
+      &:first-child {
+        border-top-left-radius: $switcher-corner - 1px;
+        border-bottom-left-radius: $switcher-corner - 1px;
+      }
+
+      &:last-child {
+        border-top-right-radius: $switcher-corner - 1px;
+        border-bottom-right-radius: $switcher-corner - 1px;
+      }
+    }
+  }
 }
 
 [option] {
@@ -33,16 +61,6 @@ $switcher-option-focus-border-color: $primary-light-color;
     outline: 0;
     box-shadow: $switcher-option-focus-shadow;
     border-color: $switcher-option-focus-border-color;
-  }
-
-  &:first-child {
-    border-top-left-radius: $switcher-corner - 1px;
-    border-bottom-left-radius: $switcher-corner - 1px;
-  }
-
-  &:last-child {
-    border-top-right-radius: $switcher-corner - 1px;
-    border-bottom-right-radius: $switcher-corner - 1px;
   }
 
   &:hover {
