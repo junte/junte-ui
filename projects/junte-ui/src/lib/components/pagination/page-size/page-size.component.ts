@@ -1,5 +1,13 @@
-import { Component, forwardRef, HostBinding } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UI } from '../../../enum/ui';
+
+const DEFAULT_SIZE = 10;
+
+export class PageSizeOption {
+  constructor(public value: number, public label: string) {
+  }
+}
 
 @Component({
   selector: 'jnt-page-size',
@@ -10,22 +18,31 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }]
 })
-export class PageSizeComponent {
+export class PageSizeComponent implements OnInit {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-page-size-host';
 
-  private _first = 10;
+  @Input() options: PageSizeOption[] = [
+    new PageSizeOption(10, '10'),
+    new PageSizeOption(20, '20'),
+    new PageSizeOption(30, '30'),
+    new PageSizeOption(50, '50'),
+    new PageSizeOption(100, '100')
+  ];
 
-  set first(size: number) {
-    this._first = size;
-    this.onChange(size);
+  selectControl = new FormControl(DEFAULT_SIZE);
+  form = this.fb.group({
+    select: this.selectControl
+  });
+
+  constructor(private fb: FormBuilder) {
   }
 
-  get first() {
-    return this._first;
-  }
-
-  constructor() {
+  ngOnInit() {
+    this.selectControl.valueChanges
+      .subscribe(value => this.onChange(value));
   }
 
   onChange(val: number) {
@@ -35,7 +52,7 @@ export class PageSizeComponent {
   }
 
   writeValue(value: number): void {
-    this.first = value;
+    this.selectControl.patchValue(value);
   }
 
   registerOnChange(fn) {

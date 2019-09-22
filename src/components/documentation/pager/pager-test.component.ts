@@ -20,7 +20,7 @@ export class PagerTestComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       offset: [1],
-      first: [10]
+      pageSize: [10]
     });
   }
 }
