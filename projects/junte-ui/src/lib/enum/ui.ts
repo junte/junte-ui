@@ -96,6 +96,7 @@ export enum FontIcons {
   run = 'run',
   send = 'send',
   half = 'half',
+  query = 'query'
 }
 
 export enum SvgIcons {
