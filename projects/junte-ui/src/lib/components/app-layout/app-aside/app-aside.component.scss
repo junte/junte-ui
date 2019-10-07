@@ -11,6 +11,7 @@ $menu-item-color-in-aside: $primary-text-light-color !default;
 $menu-item-icon-color-in-aside: $primary-text-color !default;
 $menu-item-font-size-in-aside: .875rem !default;
 $menu-item-icon-size-in-aside: 20px !default;
+$menu-item-icon-margin-right-in-aside: $gutter-normal !default;
 $menu-item-active-color-in-aside: $primary-color !default;
 $menu-item-active-border-left-width-in-aside: 4px !default;
 $menu-item-active-border-left-color-in-aside: $primary-color !default;
@@ -41,6 +42,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         border-left: $menu-item-active-border-left-width-in-aside solid transparent;
         height: $menu-item-height-in-aside;
         line-height: $menu-item-height-in-aside;
+        white-space: nowrap;
         &:hover {
           background-color: $menu-item-hover-background-color-in-aside;
           span, [icon] {
@@ -57,6 +59,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         [icon] {
           color: $menu-item-icon-color-in-aside;
           font-size: $menu-item-icon-size-in-aside;
+          margin-right: $menu-item-icon-margin-right-in-aside;
         }
         &[active='true'] {
           background-color: $menu-item-active-background-color-in-aside;
