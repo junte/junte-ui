@@ -3,10 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FontIconModule } from './components/icon/font-icon/font-icon.module';
-import { SvgIconModule } from './components/icon/svg-icon/svg-icon.module';
-import { GanttModule } from './components/gantt/gantt.module';
-import { AnimatedIconModule } from './components/icon/animated-icon/animated-icon.module';
+import { DatePickerModule } from './components/date-picker/date-picker.module';
 import { AppLayoutModule } from './components/app-layout/app-layout.module';
 import { AvatarModule } from './components/avatar/avatar.module';
 import { BadgeModule } from './components/badge/badge.module';
@@ -21,8 +18,12 @@ import { CircleBarModule } from './components/circle-bar/circle-bar.module';
 import { DotModule } from './components/dot/dot.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
 import { FormModule } from './components/form/form.module';
+import { GanttModule } from './components/gantt/gantt.module';
 import { GridModule } from './components/grid/grid.module';
+import { AnimatedIconModule } from './components/icon/animated-icon/animated-icon.module';
+import { FontIconModule } from './components/icon/font-icon/font-icon.module';
 import { IconModule } from './components/icon/icon.module';
+import { SvgIconModule } from './components/icon/svg-icon/svg-icon.module';
 import { InputModule } from './components/input/input.module';
 import { LabelModule } from './components/label/label.module';
 import { LinkModule } from './components/link/link.module';
@@ -108,7 +109,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     ProgressBarModule,
     ChartModule,
     ThemeSwitcherModule,
-    GanttModule
+    GanttModule,
+    DatePickerModule
   ]
 })
 export class JunteUiModule {

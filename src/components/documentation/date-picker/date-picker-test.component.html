@@ -1,0 +1,62 @@
+<jnt-container>
+  <h1>Date-picker</h1>
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.font.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/date-picker"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>The date-picker should have placeholder</li>
+  </ol>
+
+  <hr>
+
+  <jnt-block [padding]="ui.padding.normal">
+    <jnt-form [formGroup]="form">
+      <jnt-form-item>
+        <jnt-form-label>
+          Picked date: {{date | format: 'YYYY.MM.DD'}}
+        </jnt-form-label>
+        <jnt-form-control>
+          <jnt-date-picker placeholder="Select date" formControlName="datePicker"></jnt-date-picker>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label>
+          Picked date1: {{date1 | format: 'YYYY.MM.DD'}}
+        </jnt-form-label>
+        <jnt-form-control>
+          <jnt-date-picker placeholder="Select date" formControlName="datePicker1"></jnt-date-picker>
+        </jnt-form-control>
+      </jnt-form-item>
+    </jnt-form>
+  </jnt-block>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+  <jnt-form [formGroup]="form">
+      <jnt-form-item>
+        <jnt-form-label>
+          Picked date: {{date | format: 'YYYY.MM.DD'}}
+        </jnt-form-label>
+        <jnt-form-control>
+          <jnt-date-picker placeholder="Select date" formControlName="datePicker"></jnt-date-picker>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label>
+          Picked date1: {{date1 | format: 'YYYY.MM.DD'}}
+        </jnt-form-label>
+        <jnt-form-control>
+          <jnt-date-picker placeholder="Select date" formControlName="datePicker1"></jnt-date-picker>
+        </jnt-form-control>
+      </jnt-form-item>
+    </jnt-form>
+      ]]></pre>
+  </ngx-prism>
+</jnt-container>

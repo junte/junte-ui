@@ -42,6 +42,7 @@ import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
 import { AppFooterModule } from '../app-footer/app-footer.module';
+import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { AppFooterModule } from '../app-footer/app-footer.module';
     ChartTestComponent,
     SliderTestComponent,
     SwitcherTestComponent,
-    GanttTestComponent
+    GanttTestComponent,
+    DatePickerTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
