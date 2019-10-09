@@ -81,6 +81,28 @@
     <h3>Personal details</h3>
   </ng-template>
 
+  <h3>Form loading</h3>
+
+  <jnt-block [padding]="ui.padding.normal">
+    <jnt-form [title]="title" [footerForm]="footerForm" [loading]="true">
+      <jnt-form-item>
+        <jnt-form-label for="name">Username</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input placeholder="Name"></jnt-input>
+          <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
+            tenetur? Earum eius ex illo libero nisi nulla, odio?
+          </jnt-form-message>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label>Fullname</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input placeholder="Full name"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
+    </jnt-form>
+  </jnt-block>
 
   <ng-template #footerForm>
     <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
@@ -182,6 +204,12 @@
       <td>-</td>
       <td>TemplateRef</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>[loading]</td>
+      <td>-</td>
+      <td>true | false</td>
+      <td>false</td>
     </tr>
     </tbody>
   </table>
