@@ -1,5 +1,5 @@
 <div arrow></div>
-<div wrapper role="popover">
+<div wrapper role="popover" [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
   <div title *ngIf="options.title">
     <ng-container *stringTemplateOutlet="options.title">{{ options.title }}</ng-container>
   </div>

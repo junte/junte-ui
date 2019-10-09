@@ -55,7 +55,7 @@ export enum FontIcons {
   settings = 'settings',
   warning = 'warning',
   information = 'information',
-  question = 'question',
+  query = 'query',
   stopping = 'stopping',
   project = 'project',
   money = 'money',
@@ -95,8 +95,7 @@ export enum FontIcons {
   stop = 'stop',
   run = 'run',
   send = 'send',
-  half = 'half',
-  query = 'query'
+  half = 'half'
 }
 
 export enum SvgDefaultIcons {
@@ -431,7 +430,7 @@ export class UI {
     sync: FontIcons.sync + ':font',
     profile: FontIcons.profile + ':font',
     project: FontIcons.project + ':font',
-    query: FontIcons.question + ':font',
+    query: FontIcons.query + ':font',
     printer: FontIcons.printer + ':font',
     money: FontIcons.money + ':font',
     webProgramming: FontIcons.webProgramming + ':font',

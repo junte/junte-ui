@@ -22,7 +22,6 @@ $popover-content-color: $white-color !default;
   z-index: 100;
   user-select: text;
   display: block;
-  max-width: $popover-max-width;
 
   [arrow] {
     width: 0;
@@ -36,6 +35,7 @@ $popover-content-color: $white-color !default;
   &.top-left,
   &.top-right {
     padding-bottom: $popover-spacing;
+
     [arrow] {
       top: calc(100% - #{$popover-spacing});
     }
@@ -45,6 +45,7 @@ $popover-content-color: $white-color !default;
   &.right-top,
   &.right-bottom {
     padding-left: $popover-spacing;
+
     [arrow] {
       right: calc(100% - #{$popover-spacing});
     }
@@ -54,6 +55,7 @@ $popover-content-color: $white-color !default;
   &.bottom-left,
   &.bottom-right {
     padding-top: $popover-spacing;
+
     [arrow] {
       bottom: calc(100% - #{$popover-spacing});
     }
@@ -63,6 +65,7 @@ $popover-content-color: $white-color !default;
   &.left-top,
   &.left-bottom {
     padding-right: $popover-spacing;
+
     [arrow] {
       left: calc(100% - #{$popover-spacing});
     }
@@ -154,14 +157,15 @@ $popover-content-color: $white-color !default;
   border-radius: $popover-corner;
   box-shadow: $popover-shadow;
   padding: $popover-padding-x $popover-padding-y;
+  max-width: $popover-max-width;
+
   [title] {
     color: $popover-title-color;
     font-weight: $popover-title-font-weight;
     margin-bottom: $popover-title-spacing;
   }
+
   [content] {
     color: $popover-content-color;
   }
 }
-
-
