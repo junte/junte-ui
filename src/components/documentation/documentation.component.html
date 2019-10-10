@@ -42,6 +42,7 @@
       <jnt-menu-item [link]="['switch']" title="Switch"></jnt-menu-item>
       <jnt-menu-item [link]="['switcher']" title="Switcher"></jnt-menu-item>
       <jnt-menu-item [link]="['calendar']" title="Calendar"></jnt-menu-item>
+      <jnt-menu-item [link]="['date-picker']" title="Date picker"></jnt-menu-item>
     </jnt-submenu>
 
     <jnt-submenu title="Collections" [icon]="ui.icons.font.grid">
@@ -76,9 +77,5 @@
   <jnt-app-body>
     <router-outlet></router-outlet>
   </jnt-app-body>
-  <jnt-app-footer>
-    <div footer>
-      <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
-    </div>
-  </jnt-app-footer>
+  <app-footer #footer></app-footer>
 </jnt-app-content>

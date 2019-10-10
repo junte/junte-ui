@@ -42,5 +42,6 @@ export * from './lib/components/icon/animated-icon/public_api';
 export * from './lib/components/icon/svg-icon/public_api';
 export * from './lib/components/icon/font-icon/public_api';
 export * from './lib/components/gantt/public_api';
+export * from './lib/components/date-picker/public_api';
 
 export * from './lib/services/public_api';

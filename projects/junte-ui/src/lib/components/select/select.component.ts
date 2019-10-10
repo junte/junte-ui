@@ -168,12 +168,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       } else {
         this.selectedItems.push(value);
       }
+      this.onChange(this.selectedItems);
     } else {
       this.selectedItems = [value];
+      this.onChange(value);
     }
     this.selected[value] = !this.selected[value];
-
-    this.onChange(this.selectedItems);
   }
 
   writeValue(value: any) {

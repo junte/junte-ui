@@ -30,6 +30,8 @@ export class FormComponent implements AfterContentInit {
   @Input('formGroup')
   form: FormGroup;
 
+  @Input() loading: false;
+
   @Input()
   title: string | TemplateRef<void>;
 

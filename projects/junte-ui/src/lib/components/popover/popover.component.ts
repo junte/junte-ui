@@ -6,6 +6,8 @@ export class PopoverOptions {
   content: string | TemplateRef<void>;
   trigger: PopoverTriggers;
   placement: PopoverPlacements;
+  maxWidth: string;
+  maxHeight: string;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -112,6 +114,7 @@ export class PopoverComponent {
     this.renderer.setStyle(this.hostRef.nativeElement, 'top', `${position.top}px`);
     this.renderer.setStyle(this.hostRef.nativeElement, 'left', `${position.left}px`);
     this.visible = true;
+
   }
 
   picked(elements: HTMLElement[]) {
@@ -119,6 +122,7 @@ export class PopoverComponent {
   }
 
   hide(): void {
+    this.options = new PopoverOptions();
     this.visible = false;
   }
 }

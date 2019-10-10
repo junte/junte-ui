@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
 import { AppAsideComponent } from '../app-aside/app-aside.component';
 import { AppFooterComponent } from '../app-footer/app-footer.component';
 import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
@@ -26,7 +26,7 @@ export class AppContentComponent {
   }
 
   @ContentChild(AppSubHeaderComponent, {static: false}) subHeader: AppSubHeaderComponent;
-  @ContentChild(AppFooterComponent, {static: false}) footer: AppFooterComponent;
+  @ContentChild('footer', {read: ElementRef, static: true}) footer;
 
   @Input() aside: AppAsideComponent;
 }

@@ -1,7 +1,7 @@
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
-import {PopoverComponent, PopoverOptions} from './popover.component';
-import {PopoverService} from './popover.service';
-import {PopoverTriggers} from '../../enum/ui';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { PopoverTriggers } from '../../enum/ui';
+import { PopoverComponent, PopoverOptions } from './popover.component';
+import { PopoverService } from './popover.service';
 
 @Directive({
   selector: '[jntPopover]',

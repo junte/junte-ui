@@ -1,0 +1,10 @@
+<jnt-form [formGroup]="form">
+  <jnt-input [placeholder]="placeholder" formControlName="input"
+             [jntPopover]="options" [icon]="ui.icons.font.calendar">
+  </jnt-input>
+  <ng-template #calendar>
+    <jnt-block calendar>
+      <jnt-calendar formControlName="calendar"></jnt-calendar>
+    </jnt-block>
+  </ng-template>
+</jnt-form>

@@ -41,6 +41,8 @@ import { TableTestComponent } from './table/table-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
+import { AppFooterModule } from '../app-footer/app-footer.module';
+import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 
 @NgModule({
   imports: [
@@ -49,7 +51,8 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     ReactiveFormsModule,
     PrismModule,
     JunteUiModule,
-    DocumentationRoutingModule
+    DocumentationRoutingModule,
+    AppFooterModule
   ],
   declarations: [
     DocumentationComponent,
@@ -89,7 +92,8 @@ import { TypographyTestComponent } from './typography/typography-test.component'
     ChartTestComponent,
     SliderTestComponent,
     SwitcherTestComponent,
-    GanttTestComponent
+    GanttTestComponent,
+    DatePickerTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

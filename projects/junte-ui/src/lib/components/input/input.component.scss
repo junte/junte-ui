@@ -1,5 +1,4 @@
 @import "../../assets/styles/variables";
-@import "../form/common";
 
 $input-background: $control-background !default;
 $input-padding-y: $gutter-normal !default;
@@ -128,13 +127,12 @@ input {
 
 [label] {
   background-color: $control-field-label-background;
-  padding: $control-field-label-padding-x $control-field-label-padding-y;
+  padding: $control-field-label-padding;
   display: flex;
   align-items: center;
   border-top-left-radius: $input-corner - 1px;
   border-bottom-left-radius: $input-corner - 1px;
   color: $control-field-label-color;
-  margin-right: $control-field-label-spacing;
   border: $input-border-width solid $control-field-label-border-color;
   border-right: 0;
   & ~ input {
