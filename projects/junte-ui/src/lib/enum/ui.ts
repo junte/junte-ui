@@ -523,7 +523,7 @@ export class UI {
     position: PopoverPlacements,
     trigger: PopoverTriggers
   };
-  static menu = {
+  static url = {
     matching: Matching
   };
   static table = {
