@@ -15,6 +15,7 @@
 }
 
 table {
+  width: 100%;
   border-spacing: 0;
   thead {
     background-color: $primary-color;
@@ -27,8 +28,9 @@ table {
   tbody {
     td {
       padding: $gutter-tiny;
-      [label] ::ng-deep {
+      [host=#{$jnt-label-host}] {
         width: 100%;
+        border: 1px solid $white-color;
       }
       [block] {
         padding: $gutter-small;
@@ -77,6 +79,7 @@ table {
 pre[class*="language-"] {
   background-color: transparent;
 }
+
 [resources] {
   position: absolute;
   top: 0;
