@@ -120,7 +120,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {
       this.weeks[i] = {days: [], date: date};
       for (let j = 0; j < DAYS_IN_WEEK; j++) {
-        this.weeks[i].days[j] = format(addDays(date, j));
+        this.weeks[i].days[j] = addDays(date, j);
       }
       date = format(addWeeks(date, 1));
     }
