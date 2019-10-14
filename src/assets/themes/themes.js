@@ -29,7 +29,11 @@ function themes(theme, callback) {
     request.send();
   }
 
-  set(theme, callback);
+  if (theme !== 'light') {
+    set(theme, callback);
+  } else {
+    clear();
+  }
 }
 
 window['themes'](localStorage.theme);
