@@ -1,16 +1,9 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  Input,
-  QueryList
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { isEqual } from '../../utils/equal';
 import { UI } from '../../enum/ui';
-import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 import { getTextBrightness } from '../../utils/brightness';
+import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 
 @Component({
   selector: 'jnt-chart',
@@ -25,19 +18,21 @@ import { getTextBrightness } from '../../utils/brightness';
 })
 export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-chart-host';
-
-  ui = UI;
-  getTextBrightness = getTextBrightness;
-
   private _selected: number;
   private _widthMark = 100;
-
+  ui = UI;
+  getTextBrightness = getTextBrightness;
   progress = {loading: false};
+  indicators: ChartIndicatorComponent[] = [];
 
-  @Input() valueField: string;
+  @HostBinding('attr.host') readonly host = 'jnt-chart-host';
+
+  @Input() keyField: string;
   @Input() title: string;
   @Input() metric: string;
+
+  @ContentChildren(ChartIndicatorComponent)
+  indicatorsComponents: QueryList<ChartIndicatorComponent>;
 
   @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
@@ -48,7 +43,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   @HostBinding('attr.widthMark')
   @Input()
   set widthMark(width: number) {
-    this._widthMark = width < 60 ? 60 : width;
+    this._widthMark = Math.min(width, 60);
   }
 
   get widthMark() {
@@ -56,7 +51,14 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   set selected(value: any) {
-    this._selected = this._selected !== value ? value : null;
+    let isSame = false;
+    if (!!this.keyField && !!this._selected && !!value) {
+      isSame = this._selected[this.keyField] === value[this.keyField];
+    } else {
+      isSame = isEqual(this._selected, value);
+    }
+
+    this._selected = !isSame ? value : null;
     this.onChange(this._selected);
   }
 
@@ -67,12 +69,6 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   get heightSvg() {
     return this.heightIndicator + (this.heightIndicator * this.indicators.length);
   }
-
-  @ContentChildren(ChartIndicatorComponent)
-  indicatorsComponents: QueryList<ChartIndicatorComponent>;
-
-
-  indicators: ChartIndicatorComponent[] = [];
 
   ngAfterContentInit() {
     this.indicators = this.indicatorsComponents.toArray();
