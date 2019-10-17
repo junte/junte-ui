@@ -13,8 +13,10 @@
     <tbody>
     <ng-container *ngIf="indicators.length; else noDataTemplate">
       <tr *ngFor="let indicator of indicators; trackBy: trackByFn"
-          (click)="selected = !!valueField ? indicator.data[valueField] : indicator.data"
-          [attr.selected]="(!!valueField && !!selected ? selected[valueField] === indicator.data[valueField] : (selected | isEqual: indicator.data))"
+          (click)="selected = indicator.data"
+          [attr.selected]="(!!keyField && !!selected
+            ? selected[keyField] === indicator.data[keyField]
+            : (selected | isEqual: indicator.data))"
           [style.height.px]="heightIndicator"
           [style.max-height.px]="heightIndicator"
           [style.min-height.px]="heightIndicator">

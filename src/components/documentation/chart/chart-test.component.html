@@ -12,23 +12,49 @@
   </jnt-stack>
   <jnt-stack>
     <jnt-stack [type]="ui.stack.type.horizontal">
-      <jnt-label label="Selected chart" [color]="ui.colors.red"></jnt-label>
-       {{selected | json}}
+      <jnt-stack>
+        <jnt-label label="Selected chart: {{selected | json}}" [color]="ui.colors.red"></jnt-label>
+        <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading">
+          <jnt-chart-indicator title="Esanum" [data]="{project: 1, id: 10}" [value]="32" label="129h"
+                               [color]="ui.colors.purple">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Junte UI" [data]="{project: 2, id: 20}" [value]="28" label="95h"
+                               [color]="ui.colors.red">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Team Projector" [data]="{project: 3, id: 30}" [value]="22" label="57h"
+                               [color]="ui.colors.green">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Junte site" [data]="{project: 4, id: 40}" [value]="18" label="50h"
+                               [color]="ui.colors.teal"></jnt-chart-indicator>
+        </jnt-chart>
+      </jnt-stack>
+      <jnt-stack>
+        <jnt-label label="Selected chart with keyField: {{selected | json}}" [color]="ui.colors.green"></jnt-label>
+        <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading" keyField="id">
+          <jnt-chart-indicator title="Esanum" [data]="{project: 1, id: 10}" [value]="32" label="129h"
+                               [color]="ui.colors.purple">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Junte UI" [data]="{project: 2, id: 20}" [value]="28" label="95h"
+                               [color]="ui.colors.red">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Team Projector" [data]="{project: 3, id: 30}" [value]="22" label="57h"
+                               [color]="ui.colors.green">
+          </jnt-chart-indicator>
+          <jnt-chart-indicator title="Junte site" [data]="{project: 4, id: 40}" [value]="18" label="50h"
+                               [color]="ui.colors.teal"></jnt-chart-indicator>
+        </jnt-chart>
+      </jnt-stack>
     </jnt-stack>
-    <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading">
-      <jnt-chart-indicator title="Esanum" [data]="{project: 1, id: 10}" [value]="32" label="129h" [color]="ui.colors.purple"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte UI" [data]="{project: 2, id: 20}" [value]="28" label="95h" [color]="ui.colors.red"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Team Projector" [data]="{project: 3, id: 30}" [value]="22" label="57h"
-                           [color]="ui.colors.green"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte site" [data]="{project: 4, id: 40}" [value]="18" label="50h" [color]="ui.colors.teal"></jnt-chart-indicator>
-    </jnt-chart>
 
     <jnt-chart [heightIndicator]="100" [widthMark]="40" [widthPoligon]="70" title="Project" metric="Loading">
-      <jnt-chart-indicator title="Esanum" [data]="1" [value]="32" label="129h" [color]="ui.colors.purple"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte UI" [data]="2" [value]="28" label="95h" [color]="ui.colors.red"></jnt-chart-indicator>
+      <jnt-chart-indicator title="Esanum" [data]="1" [value]="32" label="129h"
+                           [color]="ui.colors.purple"></jnt-chart-indicator>
+      <jnt-chart-indicator title="Junte UI" [data]="2" [value]="28" label="95h"
+                           [color]="ui.colors.red"></jnt-chart-indicator>
       <jnt-chart-indicator title="Team Projector" [data]="3" [value]="22" label="57h"
                            [color]="ui.colors.green"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte site" [data]="4" [value]="18" label="50h" [color]="ui.colors.yellow"></jnt-chart-indicator>
+      <jnt-chart-indicator title="Junte site" [data]="4" [value]="18" label="50h"
+                           [color]="ui.colors.yellow"></jnt-chart-indicator>
     </jnt-chart>
 
     <jnt-stack [align]="ui.flex.align.stretch">
@@ -54,7 +80,8 @@
               </ng-template>
             </jnt-chart-indicator>
 
-            <jnt-chart-indicator [data]="{project: 10}" title="Esanum" [value]="0" label="129h" [color]="ui.colors.yellow"></jnt-chart-indicator>
+            <jnt-chart-indicator [data]="{project: 10}" title="Esanum" [value]="0" label="129h"
+                                 [color]="ui.colors.yellow"></jnt-chart-indicator>
             <ng-container *ngFor="let chart of charts; let i = index">
               <jnt-chart-indicator
                 [data]="{id: i + 10}"
