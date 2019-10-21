@@ -14,8 +14,8 @@ const TEMPLATE_NAME = 'template';
 const TIMESTAMP = 1000;
 
 class FontConfig {
-  svgDir = '';
-  fontsDir = '';
+  svgPath = '';
+  fontsPath = '';
   fontName = '';
 }
 
@@ -43,7 +43,7 @@ export class Gulpfile {
   styles(cb) {
     const fonts: FontConfig[] = this.read();
     fonts.forEach(font => {
-      gulp.src([`${font.svgDir}/*.svg`])
+      gulp.src([`${font.svgPath}/*.svg`])
         .pipe(debug())
         .pipe(iconfont({
           fontName: font.fontName,
@@ -65,9 +65,9 @@ export class Gulpfile {
               className: 'icon'
             }))
             .pipe(rename(`${font.fontName}-font.scss`))
-            .pipe(gulp.dest(`${font.fontsDir}/${font.fontName}`));
+            .pipe(gulp.dest(`${font.fontsPath}/${font.fontName}`));
         })
-        .pipe(gulp.dest(`${font.fontsDir}/${font.fontName}`));
+        .pipe(gulp.dest(`${font.fontsPath}/${font.fontName}`));
     });
     cb();
   }
