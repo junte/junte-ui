@@ -278,7 +278,7 @@ export enum PositionType {
   vertical = 'vertical'
 }
 
-export enum StackGutter {
+export enum Gutter {
   tiny = 'tiny',
   small = 'small',
   normal = 'normal',
@@ -501,8 +501,8 @@ export class UI {
   };
   static stack = {
     type: PositionType,
-    gutter: StackGutter
   };
+  static gutter = Gutter;
   static form = {
     layout: FormLayout,
     input: InputType,

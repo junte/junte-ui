@@ -28,7 +28,7 @@
   <jnt-row>
     <jnt-col [mobile]="12" [tablet]="4" [desktop]="3"
              *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.stack.gutter.small">
+      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.gutter.small">
         <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
           <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
             <ng-template let-icon="icon" let-type="type" let-iconset="iconset" #buttons>

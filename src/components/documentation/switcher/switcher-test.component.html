@@ -1,5 +1,5 @@
 <jnt-container>
-  <jnt-stack [gutter]="ui.stack.gutter.large">
+  <jnt-stack [gutter]="ui.gutter.large">
     <h1>Switcher</h1>
     <jnt-stack resources [type]="ui.stack.type.horizontal">
       <jnt-link [icon]="ui.icons.font.externalLink"
@@ -16,7 +16,7 @@
       <span>{{form.value | json}}</span>
     </jnt-stack>
     <jnt-form [formGroup]="form">
-      <jnt-stack [gutter]="ui.stack.gutter.large">
+      <jnt-stack [gutter]="ui.gutter.large">
         <ng-container *ngFor="let type of [ui.type.horizontal, ui.type.vertical]">
           <h3>{{type | titlecase}}</h3>
           <jnt-switcher formControlName="selected" [type]="type">
