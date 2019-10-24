@@ -39,7 +39,7 @@
     <h3>Radio Group</h3>
     Selected: {{selected}}
     <jnt-radio-group [(ngModel)]="selected">
-      <jnt-stack [gutter]="ui.stack.gutter.small">
+      <jnt-stack [gutter]="ui.gutter.small">
         <jnt-radio [value]="1" label="Radio 1"></jnt-radio>
         <jnt-radio [value]="2" label="Radio 2"></jnt-radio>
         <jnt-radio [value]="3" label="Radio 3"></jnt-radio>
@@ -50,7 +50,7 @@
     Selected: {{form.get('select').value}}
     <jnt-form [formGroup]="form">
       <jnt-radio-group formControlName="select">
-        <jnt-stack [gutter]="ui.stack.gutter.small">
+        <jnt-stack [gutter]="ui.gutter.small">
           <jnt-radio [value]="4" label="Radio 4"></jnt-radio>
           <jnt-radio [value]="5" label="Radio 5"></jnt-radio>
           <jnt-radio [value]="6" label="Radio 6"></jnt-radio>
@@ -60,7 +60,7 @@
       <h4>Reactive Forms with object in value</h4>
       Age: {{form.get('selectDeveloper').value}}
       <jnt-radio-group formControlName="selectDeveloper" labelField="developer" valueField="age">
-        <jnt-stack [gutter]="ui.stack.gutter.small">
+        <jnt-stack [gutter]="ui.gutter.small">
           <jnt-radio *ngFor="let d of developers" [value]="d"></jnt-radio>
         </jnt-stack>
       </jnt-radio-group>

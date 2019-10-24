@@ -7,7 +7,7 @@
           <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
             <span>{{submenu.title}}</span>
             <jnt-stack *ngIf="!!submenu.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center"
-                       [gutter]="ui.stack.gutter.tiny">
+                       [gutter]="ui.gutter.tiny">
               <jnt-badge badge *ngFor="let badge of submenu.badges" [count]="badge.count"
                          [position]="ui.position.inline"
                          [color]="badge.color"></jnt-badge>

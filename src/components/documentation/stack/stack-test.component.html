@@ -26,28 +26,26 @@
   <h2>Vertical</h2>
   <jnt-row>
     <jnt-col [span]="2"
-             *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
-                ui.stack.gutter.large, ui.stack.gutter.huge]">
+             *ngFor="let gutter of [ui.gutter.tiny, ui.gutter.small, ui.gutter.normal, ui.gutter.big,
+                ui.gutter.large, ui.gutter.huge]">
       <jnt-stack [gutter]="gutter">
         <div block *ngFor="let element of [1, 2]">{{gutter}}</div>
-        <router-outlet></router-outlet>
-        <div block></div>
       </jnt-stack>
     </jnt-col>
   </jnt-row>
 
   <h2>Horizontal</h2>
-  <jnt-stack [gutter]="ui.stack.gutter.large">
+  <jnt-stack [gutter]="ui.gutter.large">
     <jnt-stack [gutter]="gutter" [type]="ui.stack.type.horizontal"
-               *ngFor="let gutter of [ui.stack.gutter.tiny, ui.stack.gutter.small, ui.stack.gutter.normal, ui.stack.gutter.big,
-                ui.stack.gutter.large, ui.stack.gutter.huge]">
+               *ngFor="let gutter of [ui.gutter.tiny, ui.gutter.small, ui.gutter.normal, ui.gutter.big,
+                ui.gutter.large, ui.gutter.huge]">
       <div block *ngFor="let col of [1, 2]">{{gutter}}</div>
     </jnt-stack>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.stack.gutter.small">
+<jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small">
   <div>small</div>
 </jnt-stack>
 ]]></pre>
