@@ -28,8 +28,8 @@
   <jnt-row>
     <jnt-col [mobile]="12" [tablet]="4" [desktop]="3"
              *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-      <jnt-stack [type]="ui.stack.type.vertical" [gutter]="ui.gutter.small">
-        <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost]">
+      <jnt-stack [gutter]="ui.gutter.small">
+        <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
           <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
             <ng-template let-icon="icon" let-type="type" let-iconset="iconset" #buttons>
               <jnt-button [scheme]="scheme" [size]="size" [outline]="outline" [text]="scheme | titlecase"></jnt-button>
@@ -55,14 +55,6 @@
               context:{icon: ui.icons.animated.time, type: 'animated', iconset: 'default'}">
             </ng-container>
           </ng-container>
-        </ng-container>
-        <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent" icon="settings:animated:default"
-                      [text]="scheme | titlecase"></jnt-button>
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent"
-                      icon="question:svg:default"></jnt-button>
-          <jnt-button [scheme]="scheme" [size]="size" [outline]="ui.outline.transparent"
-                      [text]="scheme | titlecase"></jnt-button>
         </ng-container>
       </jnt-stack>
     </jnt-col>
