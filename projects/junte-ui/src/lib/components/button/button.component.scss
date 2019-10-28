@@ -25,6 +25,8 @@ $button-schemes: (
 
     transparent-color: $primary-color,
     transparent-hover-color: $primary-dark-color,
+    transparent-badge-color: $white-color,
+    transparent-badge-background: $primary-color,
     button-focus-shadow-color: $primary-color
   ),
   #{$scheme-secondary}: (
@@ -45,6 +47,8 @@ $button-schemes: (
 
     transparent-color: $primary-text-color,
     transparent-hover-color: $primary-text-dark-color,
+    transparent-badge-color: $white-color,
+    transparent-badge-background: $gray-900-color,
     button-focus-shadow-color: $gray-900-color
   ),
   #{$scheme-success}: (
@@ -65,6 +69,8 @@ $button-schemes: (
 
     transparent-color: $success-color,
     transparent-hover-color: $green-dark-color,
+    transparent-badge-color: $white-color,
+    transparent-badge-background: $success-color,
     button-focus-shadow-color: $success-color
   ),
   #{$scheme-fail}: (
@@ -85,6 +91,8 @@ $button-schemes: (
 
     transparent-color: $fail-color,
     transparent-hover-color: $red-dark-color,
+    transparent-badge-color: $white-color,
+    transparent-badge-background: $fail-color,
     button-focus-shadow-color: $fail-color
   ),
 )!default;
@@ -185,6 +193,10 @@ $button-sizes: (
       [icon][child-host=#{$jnt-icon-host}] {
         fill: #{map-get($scheme, transparent-hover-color)};
       }
+    }
+    [badge][child-host=#{$jnt-badge-host}] > sup {
+      background: #{map-get($scheme, transparent-badge-background)} !important;
+      color: #{map-get($scheme, transparent-badge-color)};
     }
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, transparent-color)};

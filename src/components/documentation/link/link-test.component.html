@@ -39,30 +39,57 @@
       <jnt-badge count="5"></jnt-badge>
     </jnt-link>
 
-  </jnt-stack>
 
-  <ngx-prism language="html">
+    <ngx-prism language="html">
     <pre><![CDATA[
-    <jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
-
-    <jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
-
-    <jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
-
-    <jnt-link source="#api" title="Link anchor"></jnt-link>
-
-    <jnt-link source="https://google.com" title="External Link"></jnt-link>
-
-    <jnt-link source="https://google.com" target="_blank" title="External Link with target='_blank'"></jnt-link>
-
-    <jnt-link source="https://google.com" target="_blank" [disabled]="true" title="Disabled link"></jnt-link>
-
-    <jnt-link [source]="['/documentation', 'link']" title="Link with badge" [icon]="gitlab:svg:default">
-      <jnt-badge count="5"></jnt-badge>
-      <jnt-badge count="5"></jnt-badge>
-    </jnt-link>
+<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+<jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+<jnt-link source="#api" title="Link anchor"></jnt-link>
+<jnt-link source="https://google.com" title="External Link"></jnt-link>
+<jnt-link source="https://google.com" target="_blank" title="External Link with target='_blank'"></jnt-link>
+<jnt-link source="https://google.com" target="_blank" [disabled]="true" title="Disabled link"></jnt-link>
+<jnt-link [source]="['/documentation', 'link']" title="Link with badge" [icon]="gitlab:svg:default">
+  <jnt-badge count="5"></jnt-badge>
+  <jnt-badge count="5"></jnt-badge>
+</jnt-link>
      ]]></pre>
-  </ngx-prism>
+    </ngx-prism>
+
+    <h3>Link schemes</h3>
+
+    <jnt-row>
+      <jnt-col [mobile]="12" [tablet]="4" [desktop]="3"
+               *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
+        <jnt-stack>
+          <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
+            <jnt-link [source]="['/documentation', 'link']"
+                      [icon]="ui.icons.font.search"
+                      title="Link"
+                      [scheme]="scheme"
+                      [outline]="outline">
+              <jnt-badge count="5"></jnt-badge>
+              <jnt-badge count="7"></jnt-badge>
+            </jnt-link>
+          </ng-container>
+        </jnt-stack>
+      </jnt-col>
+    </jnt-row>
+
+    <h3>Link in text</h3>
+
+    <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
+      <ng-container *ngFor="let fz of [12, 16, 20]">
+        <span [style.font-size.px]="fz">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ducimus,
+        <jnt-link [source]="['/documentation', 'link']"
+                [icon]="ui.icons.font.search"
+                title="Documentation"
+                [outline]="outline">
+        </jnt-link>
+        eveniet excepturi fugiat hic incidunt ipsam minima nam odio perspiciatis.</span>
+      </ng-container>
+    </ng-container>
+  </jnt-stack>
 
   <h3>API</h3>
   <h4>jnt-link</h4>
@@ -99,6 +126,12 @@
       <td>-</td>
       <td>boolean</td>
       <td>true</td>
+    </tr>
+    <tr>
+      <td>[scheme]</td>
+      <td>-</td>
+      <td>primary | secondary | fail | success</td>
+      <td>primary</td>
     </tr>
     </tbody>
   </table>

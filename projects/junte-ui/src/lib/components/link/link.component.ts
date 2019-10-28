@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { FontIcons, Schemes, UI } from '../../enum/ui';
+import { FontIcons, Outline, Schemes, UI } from '../../enum/ui';
 import { BadgeComponent } from '../badge/badge.component';
 
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
@@ -33,6 +33,11 @@ export class LinkComponent {
     return !!this.linkRef ? this.linkRef.isActive : false;
   }
 
+  @HostBinding('attr.outline')
+  @Input()
+  outline: Outline = Outline.transparent;
+
+  @HostBinding('attr.scheme')
   @Input()
   scheme: Schemes = Schemes.primary;
 
