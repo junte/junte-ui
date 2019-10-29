@@ -25,22 +25,26 @@
       <jnt-label label="Doing" [color]="color"></jnt-label>
     </ng-container>
     <jnt-label label="To Do" color="#FFF"></jnt-label>
-    <!--<jnt-label label="To Do" color="red"></jnt-label>-->
     <jnt-label label="To Do"></jnt-label>
     <jnt-label label="To Do" [icon]="ui.icons.font.reload"></jnt-label>
     <jnt-label label="To Do" icon="settings:animated:default"></jnt-label>
     <jnt-label label="To Do" icon="figma:svg:default"></jnt-label>
+
+  </jnt-stack>
+
+
+  <h3>Label sizes</h3>
+
+  <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+    <ng-container *ngFor="let size of [ui.sizes.normal, ui.sizes.small]">
+      <jnt-label [label]="size" [size]="size"></jnt-label>
+    </ng-container>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-label label="Doing" [color]="ui.colors.red"></jnt-label>
-]]></pre>
-  </ngx-prism>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-label label="To Do" color="#000"></jnt-label>
+<jnt-label label="To Do" color="#000" [size]="ui.sizes.small"></jnt-label>
 ]]></pre>
   </ngx-prism>
 
@@ -67,6 +71,12 @@
       <td>-</td>
       <td>Colors | string</td>
       <td>purple-dark</td>
+    </tr>
+    <tr>
+      <td>[size]</td>
+      <td>-</td>
+      <td>normal | small</td>
+      <td>normal</td>
     </tr>
     </tbody>
   </table>
