@@ -1,0 +1,101 @@
+<jnt-container>
+  <h1>Date period</h1>
+
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.font.externalLink"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/date-period"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5857%3A2331"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>Date period should a timeline with start and end dates</li>
+    <li>Progress should show the number of days elapsed from the current date</li>
+  </ol>
+
+  <hr>
+
+
+  <jnt-stack [align]="ui.flex.align.stretch" wrapper>
+
+    <h3>Test</h3>
+
+    <jnt-form [formGroup]="form" [layout]="ui.form.layout.inline">
+
+      <jnt-form-item>
+        <jnt-form-label for="start">Start</jnt-form-label>
+        <jnt-date-picker formControlName="start"></jnt-date-picker>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="end">End</jnt-form-label>
+        <jnt-date-picker formControlName="end"></jnt-date-picker>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="current">Current</jnt-form-label>
+        <jnt-date-picker formControlName="current"></jnt-date-picker>
+      </jnt-form-item>
+
+      <jnt-date-period [start]="startControl.value"
+                       [end]="endControl.value"
+                       [current]="currentControl.value"></jnt-date-period>
+    </jnt-form>
+
+    <br>
+
+    <ng-container *ngFor="let date of demo">
+      <p><b>Start:</b> {{!!date.start ? (date.start | date: "dd.MM") : '-'}},
+        <b>End:</b> {{!!date.end ? (date.end | date: "dd.MM") : '-'}},
+        <b>Current:</b> {{date.current || current | date: "dd.MM"}}</p>
+      <jnt-date-period [start]="date.start" [end]="date.end" [current]="date.current || current"></jnt-date-period>
+    </ng-container>
+
+    <ngx-prism language="html">
+      <pre><![CDATA[
+<jnt-date-period [start]="start" [end]="end" [current]="current"></jnt-date-period>
+      ]]></pre>
+    </ngx-prism>
+
+    <h3>API</h3>
+    <h4>jnt-date-period</h4>
+    <table api>
+      <thead>
+      <tr>
+        <th>Property</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Default</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>[start]</td>
+        <td>-</td>
+        <td>Date</td>
+        <td>new Date()</td>
+      </tr>
+      <tr>
+        <td>[end]</td>
+        <td>-</td>
+        <td>Date</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>[current]</td>
+        <td>-</td>
+        <td>Date</td>
+        <td>new Date()</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </jnt-stack>
+
+</jnt-container>

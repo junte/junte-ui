@@ -51,10 +51,11 @@ import { IncludesPipeModule } from './pipes/includes-pipe.module';
 import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
+import { DatePeriodModule } from './components/date-period/date-period.module';
 
 @NgModule({
   declarations: [
-    JunteUiComponent,
+    JunteUiComponent
   ],
   imports: [
     CommonModule,
@@ -110,7 +111,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     ChartModule,
     ThemeSwitcherModule,
     GanttModule,
-    DatePickerModule
+    DatePickerModule,
+    DatePeriodModule,
   ]
 })
 export class JunteUiModule {

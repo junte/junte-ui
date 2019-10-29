@@ -43,6 +43,7 @@ import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
 import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
+import { DatePeriodTestComponent } from './date-period/date-period-test.component';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { DatePickerTestComponent } from './date-picker/date-picker-test.componen
     SliderTestComponent,
     SwitcherTestComponent,
     GanttTestComponent,
-    DatePickerTestComponent
+    DatePickerTestComponent,
+    DatePeriodTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

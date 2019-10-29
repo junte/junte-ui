@@ -37,6 +37,7 @@ import { TableTestComponent } from './table/table-test.component';
 import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
+import { DatePeriodTestComponent } from './date-period/date-period-test.component';
 
 
 export const routes: Routes = [
@@ -234,6 +235,11 @@ export const routes: Routes = [
         path: 'date-picker',
         component: DatePickerTestComponent,
         data: {breadcrumb: 'Date picker'}
+      },
+      {
+        path: 'date-period',
+        component: DatePeriodTestComponent,
+        data: {breadcrumb: 'Date period'}
       }
     ]
   }
