@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, FontIcons } from '../../enum/ui';
+import { Colors, FontIcons, Sizes } from '../../enum/ui';
 import { getTextBrightness } from '../../utils/brightness';
 
 @Component({
@@ -18,6 +18,10 @@ export class LabelComponent {
 
   @HostBinding('style.background-color')
   @Input() color: string = Colors.purpleDark;
+
+  @HostBinding('attr.size')
+  @Input()
+  size: Sizes = Sizes.normal;
 
   @HostBinding('style.color')
   get textColor() {
