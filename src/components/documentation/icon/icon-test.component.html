@@ -94,7 +94,7 @@
   <hr>
 
   <h2>Font icons</h2>
-  <h3>Font default icons</h3>
+  <h3>Default</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontDefault" wrapper>
       <jnt-font-icon [icon]="icon.value" icon></jnt-font-icon>
@@ -102,10 +102,10 @@
     </div>
   </jnt-stack>
 
-  <h3>Font gestures icons</h3>
+  <h3>Gestures</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontGestures" wrapper>
-      <jnt-font-icon [icon]="icon.value" icon></jnt-font-icon>
+      <jnt-font-icon [icon]="icon.value" iconset="junte-ui-icons-gestures" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
@@ -127,7 +127,7 @@
 
   <hr>
 
-  <h3>SVG default icons</h3>
+  <h3>Default</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of svgDefault" wrapper>
       <jnt-svg-icon [icon]="icon.value" [iconset]="icon.iconset"></jnt-svg-icon>
@@ -135,7 +135,7 @@
     </div>
   </jnt-stack>
 
-  <h3>SVG flags icons</h3>
+  <h3>Flags</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of svgFlags" wrapper>
       <jnt-svg-icon [icon]="icon.value" [iconset]="icon.iconset"></jnt-svg-icon>
