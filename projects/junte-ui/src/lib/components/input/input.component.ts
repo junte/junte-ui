@@ -30,7 +30,7 @@ export class InputComponent implements ControlValueAccessor {
 
   @HostBinding('attr.icon')
   @Input()
-  icon: FontIcons;
+  icon: string;
 
   @HostBinding('attr.size')
   @Input()

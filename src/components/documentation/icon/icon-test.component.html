@@ -1,11 +1,11 @@
 <jnt-container>
   <h1>Icon</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=32%3A95"
               target="_blank" title="Figma">
     </jnt-link>
@@ -53,7 +53,7 @@
 <jnt-container>
   <h2>Font icon</h2>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/font-icon"
               target="_blank" title="GitLab">
     </jnt-link>
@@ -97,7 +97,7 @@
   <h3>Default</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontDefault" wrapper>
-      <jnt-font-icon [icon]="icon.value" icon></jnt-font-icon>
+      <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
@@ -105,20 +105,20 @@
   <h3>Gestures</h3>
   <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontGestures" wrapper>
-      <jnt-font-icon [icon]="icon.value" iconset="junte-ui-icons-gestures" icon></jnt-font-icon>
+      <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-font-icon [icon]="ui.icons.font.check"></jnt-font-icon>
+<jnt-font-icon [icon]="ui.icons.check"></jnt-font-icon>
 ]]></pre>
   </ngx-prism>
 
   <h2>SVG icons</h2>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/svg-icon"
               target="_blank" title="GitLab">
     </jnt-link>
@@ -145,13 +145,13 @@
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-svg-icon [icon]="ui.icons.svg.question"></jnt-svg-icon>
+<jnt-svg-icon [icon]="ui.icons.svg.default.question"></jnt-svg-icon>
 ]]></pre>
   </ngx-prism>
 
   <h2>Animated icons</h2>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/animated-icon"
               target="_blank" title="GitLab">
     </jnt-link>

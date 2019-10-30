@@ -1,11 +1,11 @@
 <jnt-container>
   <h1>Buttons</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/button"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A0"
               target="_blank" title="Figma">
     </jnt-link>
@@ -46,10 +46,10 @@
             </ng-template>
 
             <ng-container *ngTemplateOutlet="buttons;
-              context:{icon: ui.icons.font.plus, type: 'font', iconset: 'junte-ui-icons-default'}">
+              context:{icon: ui.icons.plus, type: 'font', iconset: 'junte-ui-icons-default'}">
             </ng-container>
             <ng-container *ngTemplateOutlet="buttons;
-              context:{icon: ui.icons.svg.question, type: 'svg', iconset: 'default'}">
+              context:{icon: ui.icons.svg.default.question, type: 'svg', iconset: 'default'}">
             </ng-container>
             <ng-container *ngTemplateOutlet="buttons;
               context:{icon: ui.icons.animated.time, type: 'animated', iconset: 'default'}">
@@ -65,11 +65,11 @@
  <jnt-button [scheme]="ui.schemes.primary"
              [size]="ui.sizes.small"
              [outline]="ui.outline.ghost"
-             [icon]="ui.icons.font.plus"
+             [icon]="ui.icons.plus"
              [badge]="5"
              [loading]="true"
              [disabled]="false"
-             [text]="Button">
+             [text]="'Button'">
 </jnt-button>
     ]]></pre>
   </ngx-prism>

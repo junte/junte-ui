@@ -40,7 +40,7 @@ export class ModalTestComponent {
     const options = new ModalOptions({
       title: {
         text: 'Calendar',
-        icon: UI.icons.font.calendar
+        icon: UI.icons.calendar
       },
       maxHeight: '1024px',
       maxWidth: '400px'

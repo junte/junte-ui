@@ -14,7 +14,7 @@ export class LabelComponent {
   @Input() label: string;
 
   @HostBinding('attr.icon')
-  @Input() icon: FontIcons;
+  @Input() icon: string;
 
   @HostBinding('style.background-color')
   @Input() color: string = Colors.purpleDark;

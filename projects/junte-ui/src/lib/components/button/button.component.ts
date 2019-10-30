@@ -60,7 +60,7 @@ export class ButtonComponent {
   loading = false;
 
   @HostBinding('attr.icon')
-  @Input() icon: FontIcons;
+  @Input() icon: string;
 
   @HostBinding('attr.scheme')
   @Input()
