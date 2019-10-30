@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UI } from 'junte-ui';
+import {Component, OnInit} from '@angular/core';
+import {AnimatedIcons, FontDefaultIcons, FontGesturesIcons, FontIcons, SvgIcons, UI} from 'junte-ui';
 
 class IconTest {
   constructor(public name: string,
-              public value: string,
+              public value: FontIcons | SvgIcons | AnimatedIcons,
               public iconset = 'default') {
   }
 }
@@ -17,14 +17,18 @@ export class IconTestComponent implements OnInit {
 
   ui = UI;
 
-  icons: IconTest[] = [];
+  fontDefault: IconTest[] = [];
+  fontGestures: IconTest[] = [];
   animated: IconTest[] = [];
   svgDefault: IconTest[] = [];
   svgFlags: IconTest[] = [];
 
   ngOnInit() {
-    this.icons = Object.keys(UI.icons.font)
-      .map(icon => new IconTest(icon, UI.icons.font[icon]));
+    this.fontDefault = Object.keys(FontDefaultIcons)
+      .map(icon => new IconTest(icon, FontDefaultIcons[icon]));
+
+    this.fontGestures = Object.keys(FontGesturesIcons)
+      .map(icon => new IconTest(icon, FontGesturesIcons[icon]));
 
     this.svgDefault = Object.keys(UI.icons.svg.default)
       .map(icon => new IconTest(icon, UI.icons.svg.default[icon]));
