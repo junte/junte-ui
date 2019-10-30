@@ -22,11 +22,11 @@ Import style and SVG icon assets file link in ``angular.json``:
       +     {
       +        "glob": "**/*",
       +        "input": "node_modules/junte-ui/lib/assets/fonts/icons-font/",
-      +        "output": "./assets/fonts/junte-ui-icons-font/"
+      +        "output": "./assets/fonts/junte-ui-icons-default-font/"
       +     }
           ],
             "styles": [
-      +       "node_modules/junte-ui/lib/assets/styles/junte-ui-icons-font.scss",
+      +       "node_modules/junte-ui/lib/assets/styles/junte-ui-icons-default-font.scss",
       +       "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
             ]
 ...

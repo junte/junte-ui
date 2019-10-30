@@ -48,7 +48,7 @@
   <jnt-stack [type]="ui.stack.type.vertical">
     <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
       <jnt-switch label="Switch" iconOn="time:animated:default" iconOff="gitlab:svg:default" labelOn="On" labelOff="Off" [size]="size"></jnt-switch>
-      <jnt-switch labelOn="On" labelOff="Off" iconOn="check:font:junte-ui-icons" iconOff="running-man:animated:default" [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
+      <jnt-switch labelOn="On" labelOff="Off" iconOn="check:font:junte-ui-icons-default" iconOff="running-man:animated:default" [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
       <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.font.check" [iconOff]="ui.icons.font.close" [disabled]="true" label="Switch disabled" [size]="size" name="disabled"></jnt-switch>
       <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.font.check" [iconOff]="ui.icons.font.close" [(ngModel)]="checked" [disabled]="true" name="checked_disabled"
                   label="Switch disabled & checked" [size]="size">
