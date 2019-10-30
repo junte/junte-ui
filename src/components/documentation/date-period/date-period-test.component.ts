@@ -15,7 +15,7 @@ export class DatePeriodTestComponent {
     {start: new Date(2019, 9, 10), end: new Date(2019, 9, 30), current: new Date(2019, 9, 15)},
     {start: new Date(2019, 9, 30), end: new Date(2019, 9, 9)},
     {end: new Date(2019, 9, 9)},
-    {end: new Date(2019, 9, 9), current: new Date(2019, 9, 8)},
+    {end: new Date(2019, 9, 31)},
     {start: new Date(2019, 9, 9), current: new Date(2019, 9, 15)},
     {start: new Date(2019, 9, 9), current: new Date(2019, 9, 8)},
     {},

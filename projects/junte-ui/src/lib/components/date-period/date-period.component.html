@@ -8,9 +8,16 @@
     <div line><div arrow></div></div>
   </div>
 </jnt-stack>
+
 <div bar>
-  <div [style.width.%]="(start > end) || (current <= start) ? 0 : current >= end ? 100 :
-  (current | dateDiff:start:base) / (end || current | dateDiff:start:base) * 100" progress></div>
+  <div *ngIf="!!start && !!end && start < end && start <= current && current < end" progress
+       [style.width.%]="(current | dateDiff:start:base) / (end || current | dateDiff:start:base) * 100">
+  </div>
+
+  <div *ngIf="(!!end && !start && current >= end) || (!!start && !end && current > start)" progress full></div>
 </div>
-<div *ngIf="end | dateDiff:start:base" days>{{end | dateDiff:start:base}} {{base}}</div>
+
+<div *ngIf="!!start && !!end && (end | dateDiff:start:base)" days>
+  {{end | dateDiff:start:base}} {{base}}
+</div>
 
