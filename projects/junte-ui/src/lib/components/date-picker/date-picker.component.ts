@@ -56,11 +56,11 @@ export class DatePickerComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  onChange = (val: any) => {
-  };
+  onChange(val: any) {
+  }
 
-  onTouched = () => {
-  };
+  onTouched() {
+  }
 
   writeValue(value: Date) {
     this.calendar.patchValue(value);

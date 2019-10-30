@@ -5,6 +5,7 @@ function themes(theme, callback) {
     var exist = document.head.querySelector('style[theme="true"]');
     if (!!exist) {
       document.head.removeChild(exist);
+      localStorage.removeItem('theme');
     }
   };
 
@@ -27,9 +28,9 @@ function themes(theme, callback) {
     };
     request.open('GET', `./assets/themes/${current}.${themes[current]}.css`, true);
     request.send();
-  }
+  };
 
-  if (theme !== 'light') {
+  if (!!theme && theme !== 'light') {
     set(theme, callback);
   } else {
     clear();

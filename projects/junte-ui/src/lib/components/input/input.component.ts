@@ -45,11 +45,11 @@ export class InputComponent implements ControlValueAccessor {
 
   value: string = null;
 
-  onChange = (val: any) => {
-  };
+  onChange(val: any) {
+  }
 
-  onTouched = () => {
-  };
+  onTouched() {
+  }
 
   writeValue(value) {
     this.value = value;
