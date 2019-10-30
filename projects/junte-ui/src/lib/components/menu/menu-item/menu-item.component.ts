@@ -12,7 +12,7 @@ export class MenuItemComponent {
 
   ui = UI;
 
-  @Input() icon: FontIcons | SvgIcons | AnimatedIcons | string;
+  @Input() icon: string;
   @Input() title: string;
   @Input() link: string | string[];
   @Input() target: string = DEFAULT_TARGET;

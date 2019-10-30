@@ -403,15 +403,8 @@ export enum GanttRequestStatuses {
   declined = 'declined'
 }
 
-export class UI {
+class ShortIcons {
   static icons = {
-    font: FontIcons,
-    svg: {
-      default: SvgDefaultIcons,
-      flags: SvgFlagsIcons,
-    },
-    animated: AnimatedIcons,
-
     add: FontIcons.add + ':font',
     check: FontIcons.check + ':font',
     plus: FontIcons.plus + ':font',
@@ -558,6 +551,18 @@ export class UI {
     spain: SvgFlagsIcons.spain + ':svg:flags',
     sweden: SvgFlagsIcons.sweden + ':svg:flags',
     runningMan: AnimatedIcons.runningMan + ':animated:default'
+  };
+}
+
+export class UI {
+  static icons = {
+    font: FontIcons,
+    svg: {
+      default: SvgDefaultIcons,
+      flags: SvgFlagsIcons,
+    },
+    animated: AnimatedIcons,
+    ...ShortIcons.icons
   };
   static schemes = Schemes;
   static themes = Themes;

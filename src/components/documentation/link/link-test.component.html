@@ -1,11 +1,11 @@
 <jnt-container>
   <h1>Link</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/documentation/link"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.font.externalLink"
+    <jnt-link [icon]="ui.icons.externalLink"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1080%3A1554"
               target="_blank" title="Figma">
     </jnt-link>
@@ -22,9 +22,9 @@
   <jnt-stack>
     <jnt-link [source]="['/documentation', 'block']" icon="download:animated:default" title="Link"></jnt-link>
 
-    <jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+    <jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
 
-    <jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+    <jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.search" title="Link"></jnt-link>
 
     <jnt-link source="#api" title="Link anchor"></jnt-link>
 
@@ -42,9 +42,9 @@
 
     <ngx-prism language="html">
     <pre><![CDATA[
-<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
-<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
-<jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.font.search" title="Link"></jnt-link>
+<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
+<jnt-link [source]="['/documentation', 'block']" [icon]="ui.icons.search" title="Link"></jnt-link>
+<jnt-link [source]="['/documentation', 'block', 'test']" [icon]="ui.icons.search" title="Link"></jnt-link>
 <jnt-link source="#api" title="Link anchor"></jnt-link>
 <jnt-link source="https://google.com" title="External Link"></jnt-link>
 <jnt-link source="https://google.com" target="_blank" title="External Link with target='_blank'"></jnt-link>
@@ -64,7 +64,7 @@
         <jnt-stack>
           <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
             <jnt-link [source]="['/documentation', 'link']"
-                      [icon]="ui.icons.font.search"
+                      [icon]="ui.icons.search"
                       title="Link"
                       [scheme]="scheme"
                       [outline]="outline">
@@ -82,7 +82,7 @@
       <ng-container *ngFor="let fz of [12, 16, 20]">
         <span [style.font-size.px]="fz">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ducimus,
         <jnt-link [source]="['/documentation', 'block']"
-                [icon]="ui.icons.font.externalLink"
+                [icon]="ui.icons.externalLink"
                 title="Documentation"
                 [outline]="outline">
         </jnt-link>

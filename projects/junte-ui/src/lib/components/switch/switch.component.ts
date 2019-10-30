@@ -31,10 +31,10 @@ export class SwitchComponent implements ControlValueAccessor {
   label: string;
 
   @Input()
-  iconOn: FontIcons;
+  iconOn: string;
 
   @Input()
-  iconOff: FontIcons;
+  iconOff: string;
 
   @Input()
   labelOn: string;
