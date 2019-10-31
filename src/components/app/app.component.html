@@ -4,7 +4,7 @@
 
   <jnt-app-header>
     <ng-template #logo>
-      <img [src]="'assets/image/logo-' + theme + '.svg'" logo>
+      <img [src]="'assets/image/logo' + (theme === 'dark' ? '-dark' : '') + '.svg'" logo>
     </ng-template>
     <ng-template #topMenu>
       <jnt-menu>
