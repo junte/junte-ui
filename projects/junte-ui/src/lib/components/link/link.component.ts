@@ -45,6 +45,11 @@ export class LinkComponent {
   @Input() icon: string;
   @Input() title: string;
 
+  @HostBinding('attr.with-title')
+  get withTitle() {
+    return !!this.title;
+  }
+
   @Input()
   set source(source: string | string[]) {
     if (!!source) {

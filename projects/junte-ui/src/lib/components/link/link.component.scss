@@ -21,14 +21,14 @@ $link-schemes: (
     fill-badge-color: $primary-color,
     fill-badge-background-color: $white-color,
 
-    outline-color: $primary-color,
-    outline-border-color: $primary-color,
-    outline-hover-background-color: $primary-color,
-    outline-hover-color: $white-color,
-    outline-badge-color: $white-color,
-    outline-hover-badge-color: $primary-color,
-    outline-badge-background: $primary-color,
-    outline-hover-badge-background: $primary-background,
+    ghost-color: $primary-color,
+    ghost-border-color: $primary-color,
+    ghost-hover-background-color: $primary-color,
+    ghost-hover-color: $white-color,
+    ghost-badge-color: $white-color,
+    ghost-hover-badge-color: $primary-color,
+    ghost-badge-background: $primary-color,
+    ghost-hover-badge-background: $primary-background,
 
     transparent-color: $primary-color,
     transparent-hover-color: $primary-dark-color,
@@ -44,14 +44,14 @@ $link-schemes: (
     fill-badge-color: $secondary-color,
     fill-badge-background-color: $gray-900-color,
 
-    outline-color: $gray-900-color,
-    outline-border-color: $gray-900-color,
-    outline-hover-background-color: $gray-900-color,
-    outline-hover-color: $secondary-color,
-    outline-badge-color: $white-color,
-    outline-hover-badge-background: $secondary-color,
-    outline-hover-badge-color: $gray-900-color,
-    outline-badge-background: $gray-900-color,
+    ghost-color: $gray-900-color,
+    ghost-border-color: $gray-900-color,
+    ghost-hover-background-color: $gray-900-color,
+    ghost-hover-color: $secondary-color,
+    ghost-badge-color: $white-color,
+    ghost-hover-badge-background: $secondary-color,
+    ghost-hover-badge-color: $gray-900-color,
+    ghost-badge-background: $gray-900-color,
 
     transparent-color: $primary-text-color,
     transparent-hover-color: $primary-text-dark-color,
@@ -67,14 +67,14 @@ $link-schemes: (
     fill-badge-color: $success-color,
     fill-badge-background-color: $white-color,
 
-    outline-color: $success-color,
-    outline-border-color: $success-color,
-    outline-hover-background-color: $success-color,
-    outline-hover-color: $white-color,
-    outline-badge-color: $white-color,
-    outline-badge-background: $success-color,
-    outline-hover-badge-background: $primary-background,
-    outline-hover-badge-color: $success-color,
+    ghost-color: $success-color,
+    ghost-border-color: $success-color,
+    ghost-hover-background-color: $success-color,
+    ghost-hover-color: $white-color,
+    ghost-badge-color: $white-color,
+    ghost-badge-background: $success-color,
+    ghost-hover-badge-background: $primary-background,
+    ghost-hover-badge-color: $success-color,
 
     transparent-color: $success-color,
     transparent-hover-color: $green-dark-color,
@@ -90,14 +90,14 @@ $link-schemes: (
     fill-badge-color: $fail-color,
     fill-badge-background-color: $white-color,
 
-    outline-color: $fail-color,
-    outline-border-color: $fail-color,
-    outline-hover-background-color: $fail-color,
-    outline-hover-color: $white-color,
-    outline-badge-color: $white-color,
-    outline-badge-background: $fail-color,
-    outline-hover-badge-background: $primary-background,
-    outline-hover-badge-color: $fail-color,
+    ghost-color: $fail-color,
+    ghost-border-color: $fail-color,
+    ghost-hover-background-color: $fail-color,
+    ghost-hover-color: $white-color,
+    ghost-badge-color: $white-color,
+    ghost-badge-background: $fail-color,
+    ghost-hover-badge-background: $primary-background,
+    ghost-hover-badge-color: $fail-color,
 
     transparent-color: $fail-color,
     transparent-hover-color: $red-dark-color,
@@ -131,31 +131,31 @@ $link-schemes: (
   }
 }
 
-@mixin outline($scheme) {
+@mixin ghost($scheme) {
 
   [link] {
-    color: #{map-get($scheme, outline-color)};
-    background-color: $primary-background;
-    border-color: #{map-get($scheme, outline-border-color)};
+    color: #{map-get($scheme, ghost-color)};
+    background-color: transparent;
+    border-color: #{map-get($scheme, ghost-border-color)};
     padding: $link-padding;
     &:hover, &:focus {
-      background-color: #{map-get($scheme, outline-hover-background-color)};
-      color: #{map-get($scheme, outline-hover-color)};
+      background-color: #{map-get($scheme, ghost-hover-background-color)};
+      color: #{map-get($scheme, ghost-hover-color)};
 
       [badge][child-host=#{$jnt-badge-host}] > sup {
-        background: #{map-get($scheme, outline-hover-badge-background)} !important;
-        color: #{map-get($scheme, outline-hover-badge-color)} !important;
+        background: #{map-get($scheme, ghost-hover-badge-background)} !important;
+        color: #{map-get($scheme, ghost-hover-badge-color)} !important;
       }
       [icon][child-host=#{$jnt-icon-host}] {
-        fill: #{map-get($scheme, outline-hover-color)};
+        fill: #{map-get($scheme, ghost-hover-color)};
       }
     }
     [badge][child-host=#{$jnt-badge-host}] > sup {
-      background: #{map-get($scheme, outline-badge-background)} !important;
-      color: #{map-get($scheme, outline-badge-color)};
+      background: #{map-get($scheme, ghost-badge-background)} !important;
+      color: #{map-get($scheme, ghost-badge-color)};
     }
     [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, outline-color)};
+      fill: #{map-get($scheme, ghost-color)};
     }
   }
 }
@@ -198,6 +198,11 @@ $link-schemes: (
       cursor: default;
     }
   }
+  &[with-title='false'] {
+    [link] [icon] {
+      margin-right: 0;
+    }
+  }
   @each $scheme, $map in $link-schemes {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
@@ -205,7 +210,7 @@ $link-schemes: (
         [link] {
           border: 1px solid transparent;
         }
-        @include outline($map);
+        @include ghost($map);
       }
       &[outline='#{$outline-transparent}'] {
         @include transparent($map);
