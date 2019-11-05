@@ -117,7 +117,7 @@ $link-schemes: (
       background-color: #{map-get($scheme, fill-hover-background-color)};
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, button-focus-shadow-color)};
+      box-shadow: 0 1px 5px #{map-get($scheme, link-focus-shadow-color)};
     }
     [badge][child-host=#{$jnt-badge-host}] {
       sup {
@@ -221,6 +221,9 @@ $link-schemes: (
   cursor: pointer;
   width: 100%;
   border-radius: $link-corner;
+  &:focus {
+    outline: none;
+  }
   [icon], span {
     font-weight: $link-font-weight;
     transition: color .3s;
