@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 
 @Component({
@@ -6,17 +6,8 @@ import { UI } from 'junte-ui';
   templateUrl: './link-test.component.html',
   styleUrls: ['./link-test.component.scss']
 })
-export class LinkTestComponent implements OnInit {
-  example = `
-    <jnt-link [source]="['/components', 'block']">Link</jnt-link>
-  `;
+export class LinkTestComponent {
 
   ui = UI;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }
