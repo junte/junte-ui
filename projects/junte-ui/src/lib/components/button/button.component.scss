@@ -104,7 +104,8 @@ $button-sizes: (
     font-size: 10px,
     height: 24px,
     badge-size: 18px,
-    icon-size: 14px
+    icon-size: 14px,
+    spinner-size: 8px,
   ),
   #{$size-small}: (
     padding: 0 50px,
@@ -112,7 +113,8 @@ $button-sizes: (
     font-size: 12px,
     height: 30px,
     badge-size: 24px,
-    icon-size: 16px
+    icon-size: 16px,
+    spinner-size: 12px,
   ),
   #{$size-normal}: (
     padding: 0 38px,
@@ -120,7 +122,8 @@ $button-sizes: (
     font-size: 14px,
     height: 38px,
     badge-size: 24px,
-    icon-size: 18px
+    icon-size: 18px,
+    spinner-size: 16px,
   ),
   #{$size-large}: (
     padding: 0 36px,
@@ -128,7 +131,8 @@ $button-sizes: (
     font-size: 16px,
     height: 50px,
     badge-size: 24px,
-    icon-size: 20px
+    icon-size: 20px,
+    spinner-size: 16px,
   ),
 )!default;
 
@@ -226,6 +230,12 @@ $button-sizes: (
       height: #{map-get($size, icon-size)};
     }
   }
+  [loading][child-host=#{$jnt-spinner-host}] {
+    width: #{map-get($size, spinner-size)};
+    min-width: #{map-get($size, spinner-size)};
+    height: #{map-get($size, spinner-size)};
+    min-height: #{map-get($size, spinner-size)};
+  }
 }
 
 @mixin size-without-text($size) {
@@ -306,7 +316,7 @@ $button-sizes: (
     width: 100%;
     position: relative;
     font-family: $font-family-base;
-    line-height: 1.5;
+    line-height: $line-height-base;
     [icon] {
       margin-right: $gutter-small;
     }
@@ -326,15 +336,6 @@ $button-sizes: (
 
     [loading] {
       position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      [icon] {
-        margin: 0;
-        font-size: inherit;
-      }
     }
   }
 }
