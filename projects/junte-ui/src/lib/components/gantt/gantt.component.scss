@@ -85,9 +85,6 @@ table {
         &[gutter] {
           width: 4px;
         }
-        &[empty] {
-          width: 170px;
-        }
       }
     }
   }
@@ -114,6 +111,9 @@ table {
       &[loading] {
         pointer-events: none;
         border-bottom: 0;
+        td {
+          padding: $gutter-normal;
+        }
       }
 
       &:last-child {
