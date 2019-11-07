@@ -1,9 +1,13 @@
 ## For development:
+On windows please install cygwin.
+
 ```
 npm i
 npm run iconfont
 npm run encapsulation
+npm run build:lib
 npm start
+ng serve
 ```
 
 ## For publication:
