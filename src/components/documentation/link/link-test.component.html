@@ -63,7 +63,8 @@
                *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
         <jnt-stack>
           <ng-container *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
-            <jnt-link [source]="['/documentation', 'link']"
+            <jnt-link source="https://google.com"
+                      target="_blank"
                       [icon]="ui.icons.search"
                       title="Link"
                       [scheme]="scheme"
