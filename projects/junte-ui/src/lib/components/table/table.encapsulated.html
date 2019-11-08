@@ -1,0 +1,95 @@
+<form child-of="jnt-table-host" [formGroup]="filterForm">
+  <jnt-stack child-of="jnt-table-host" [align]="ui.flex.align.stretch">
+    <jnt-stack child-of="jnt-table-host" [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
+               [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
+      <jnt-stack child-of="jnt-table-host" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
+        <jnt-button child-of="jnt-table-host" button text="Reload"
+                    [icon]="ui.icons.reload"
+                    [outline]="ui.outline.transparent"
+                    [scheme]="ui.schemes.secondary"
+                    (click)="load(); reloaded.emit()">
+        </jnt-button>
+        <div child-of="jnt-table-host" >
+          <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+          <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+        </div>
+      </jnt-stack>
+
+      <div child-of="jnt-table-host" >
+        <jnt-input child-of="jnt-table-host" *ngIf="features | includes : ui.table.features.search" formControlName="q"
+                   [icon]="ui.icons.search" placeholder="Search">
+        </jnt-input>
+      </div>
+
+    </jnt-stack>
+
+    <jnt-stack child-of="jnt-table-host" [align]="ui.flex.align.stretch">
+      <div child-of="jnt-table-host" table>
+        <table child-of="jnt-table-host" >
+          <div child-of="jnt-table-host" *ngIf="source.length && progress.loading" spinner>
+            <jnt-spinner child-of="jnt-table-host" [size]="ui.sizes.large" icon></jnt-spinner>
+          </div>
+
+          <thead child-of="jnt-table-host" >
+          <tr child-of="jnt-table-host" >
+            <th child-of="jnt-table-host" *ngIf="!!rowActionsTemplate"></th>
+            <th child-of="jnt-table-host" *ngFor="let column of columns"
+                [class.sortable]="!!column.sort"
+                (click)="column.sort ? sorting(column.sort) : null">
+        <span child-of="jnt-table-host" >
+          {{column.title}}
+          <i child-of="jnt-table-host" *ngIf="!!sort && (sort.value === '-' + column.sort || sort.value === column.sort)"
+             [innerHTML]="(sort.value === column.sort) ? '&#8593;' : '&#8595;'"></i>
+        </span>
+            </th>
+          </tr>
+          </thead>
+
+          <tbody child-of="jnt-table-host" >
+          <ng-container *ngIf="source.length; else noDataTemplate">
+            <tr child-of="jnt-table-host" *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
+              <td child-of="jnt-table-host" *ngIf="!!rowActionsTemplate" action>
+                <jnt-dropdown child-of="jnt-table-host" menu>
+                  <ng-template #trigger let-action="trigger">
+                    <jnt-button child-of="jnt-table-host" button [outline]="ui.outline.transparent" [icon]="ui.icons.actions"
+                                (click)="action()"></jnt-button>
+                  </ng-template>
+                  <ng-template #dropdown>
+                    <ng-container *ngTemplateOutlet="rowActionsTemplate;context: {row: row}"></ng-container>
+                  </ng-template>
+                </jnt-dropdown>
+              </td>
+              <td child-of="jnt-table-host" *ngFor="let column of columns">
+                <ng-container *ngTemplateOutlet="column.cellTemplate;context:row"></ng-container>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noDataTemplate>
+            <ng-container *ngIf="!progress.loading; else skeletonTemplate">
+              <tr child-of="jnt-table-host" nodata>
+                <td child-of="jnt-table-host" [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
+                  <jnt-icon child-of="jnt-table-host" [icon]="ui.icons.stopping" icon></jnt-icon>
+                </td>
+              </tr>
+            </ng-container>
+            <ng-template #skeletonTemplate>
+              <tr child-of="jnt-table-host" loading>
+                <td child-of="jnt-table-host" [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
+                  <jnt-skeleton child-of="jnt-table-host" [lines]="3"></jnt-skeleton>
+                </td>
+              </tr>
+            </ng-template>
+          </ng-template>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-container *ngIf="count">
+        <div child-of="jnt-table-host" pagination>
+          <jnt-pagination child-of="jnt-table-host" [pagesCount]="pagesCount" formControlName="page" pages></jnt-pagination>
+          <jnt-page-size child-of="jnt-table-host" formControlName="first" page-size></jnt-page-size>
+        </div>
+      </ng-container>
+    </jnt-stack>
+  </jnt-stack>
+</form>

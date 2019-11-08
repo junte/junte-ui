@@ -1,0 +1,11 @@
+<form child-of="jnt-theme-switcher-host" [formGroup]="form">
+  <input child-of="jnt-theme-switcher-host" type="checkbox" formControlName="theme"  />
+  <jnt-stack child-of="jnt-theme-switcher-host" [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny"
+             [align]="ui.flex.align.center" [justify]="ui.flex.justify.center" switch>
+    <span child-of="jnt-theme-switcher-host" >Dark</span>
+    <div child-of="jnt-theme-switcher-host" icon>
+      <jnt-icon child-of="jnt-theme-switcher-host" [icon]="theme === themes.light ? ui.icons.solar : ui.icons.moon"></jnt-icon>
+    </div>
+    <span child-of="jnt-theme-switcher-host" >Light</span>
+  </jnt-stack>
+</form>

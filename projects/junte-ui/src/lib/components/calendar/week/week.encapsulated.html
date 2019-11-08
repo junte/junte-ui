@@ -1,0 +1,8 @@
+<ng-content></ng-content>
+
+<jnt-stack child-of="jnt-calendar-week-host" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.stretch">
+    <jnt-calendar-day child-of="jnt-calendar-week-host" *ngFor="let d of days" (click)="!!onChange ? onChange(d) : null"
+                      [current]="current"
+                      [dayTemplate]="dayTemplate" [date]="d">
+    </jnt-calendar-day>
+</jnt-stack>

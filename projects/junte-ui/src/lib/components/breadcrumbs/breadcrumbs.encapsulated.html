@@ -1,0 +1,6 @@
+<jnt-stack child-of="jnt-breadcrumb-host" *ngIf="breadcrumbs?.length" [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small" [align]="ui.flex.align.end">
+  <ng-container *ngFor="let crumb of breadcrumbs">
+    <a child-of="jnt-breadcrumb-host" (click)="go(crumb)" href="javascript:;">{{crumb.title}}</a>
+    <jnt-icon child-of="jnt-breadcrumb-host" [icon]="ui.icons.arrowRight" icon></jnt-icon>
+  </ng-container>
+</jnt-stack>

@@ -1,0 +1,5 @@
+<div child-of="jnt-dropdown-host" *ngIf="visible" overlay (click)="toggle()"></div>
+<div child-of="jnt-dropdown-host" style="z-index: 1;">
+  <ng-container *ngTemplateOutlet="triggerTemplate; context: {trigger: toggle.bind(this)}"></ng-container>
+  <ng-container *ngTemplateOutlet="dropdownTemplate; context: {trigger: toggle.bind(this)}"></ng-container>
+</div>

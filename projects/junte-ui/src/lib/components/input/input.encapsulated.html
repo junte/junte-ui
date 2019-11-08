@@ -1,0 +1,9 @@
+<jnt-icon child-of="jnt-input-host" *ngIf="icon" [icon]="icon" icon></jnt-icon>
+<div child-of="jnt-input-host" *ngIf="label" label>{{label}}</div>
+
+<input child-of="jnt-input-host" name="input"
+       [type]="type"
+       [(ngModel)]="value"
+       [placeholder]="placeholder"
+       [disabled]="disabled"
+       (keyup)="onChange(value)"  />

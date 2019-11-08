@@ -1,0 +1,10 @@
+<form child-of="jnt-form-host" >
+  <ng-container *stringTemplateOutlet="title"></ng-container>
+
+  <div child-of="jnt-form-host" content>
+    <ng-content></ng-content>
+    <div child-of="jnt-form-host" *ngIf="loading" loading></div>
+  </div>
+
+  <ng-container [ngTemplateOutlet]="footerForm"></ng-container>
+</form>

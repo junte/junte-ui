@@ -1,0 +1,9 @@
+<div child-of="jnt-popover-host" arrow></div>
+<div child-of="jnt-popover-host" wrapper role="popover" [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
+  <div child-of="jnt-popover-host" title *ngIf="options.title">
+    <ng-container *stringTemplateOutlet="options.title">{{ options.title }}</ng-container>
+  </div>
+  <div child-of="jnt-popover-host" content>
+    <ng-container *stringTemplateOutlet="options.content">{{ options.content }}</ng-container>
+  </div>
+</div>

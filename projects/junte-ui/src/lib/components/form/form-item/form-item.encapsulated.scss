@@ -1,0 +1,59 @@
+@import "../../../assets/styles/variables";
+
+$layout-vertical: 'vertical';
+$layout-horizontal: 'horizontal';
+$layout-inline: 'inline';
+
+$form-item-gutter: $gutter-normal !default;
+$form-item-inner-gutter: $gutter-tiny !default;
+
+$layouts: (
+  #{$layout-vertical}: (
+    display: 'flex',
+    direction: 'column'
+  ),
+  #{$layout-horizontal}: (
+    display: 'flex',
+    direction: 'row',
+    align: 'baseline'
+  ),
+  #{$layout-inline}: (
+    display: 'inline-flex',
+    direction: 'row',
+    align: 'baseline'
+  ),
+) !default;
+
+@mixin layout($layout) {
+  display: #{map-get($layout, display)};
+  flex-direction: #{map-get($layout, direction)};
+  align-items: #{map-get($layout, align)};
+}
+
+jnt-form-item[host=#{$jnt-form-item-host}] {
+  @each $layout, $map in $layouts {
+    &[layout='#{$layout}'] {
+      @include layout($map);
+    }
+  }
+
+  &[layout = #{$layout-vertical}] {
+    & > :not(:first-child) {
+      margin-top: $form-item-inner-gutter;
+    }
+  }
+
+  &[layout = #{$layout-horizontal}],
+  &[layout = #{$layout-inline}] {
+    & > :not(:first-child) {
+      margin-left: $form-item-inner-gutter;
+    }
+
+    &[layout = #{$layout-inline}]:not(:last-child) {
+      margin-right: $form-item-gutter;
+    }
+  }
+
+  margin-bottom: $form-item-gutter;
+
+}

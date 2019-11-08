@@ -1,0 +1,10 @@
+<jnt-form child-of="jnt-date-picker-host" [formGroup]="form">
+  <jnt-input child-of="jnt-date-picker-host" [placeholder]="placeholder" formControlName="input"
+             [jntPopover]="options" [icon]="ui.icons.calendar">
+  </jnt-input>
+  <ng-template #calendar>
+    <jnt-block child-of="jnt-date-picker-host" calendar>
+      <jnt-calendar child-of="jnt-date-picker-host" formControlName="calendar"></jnt-calendar>
+    </jnt-block>
+  </ng-template>
+</jnt-form>

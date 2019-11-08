@@ -1,0 +1,5 @@
+<ng-container *ngTemplateOutlet="legend"></ng-container>
+<div child-of="jnt-progress-bar-host" bar>
+  <div child-of="jnt-progress-bar-host" *ngIf="value >= 0" progress [style.width.%]="value > 100 ? 100 : value"
+       [attr.fail]="value > 100"></div>
+</div>

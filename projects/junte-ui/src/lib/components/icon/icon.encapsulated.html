@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="type">
+  <jnt-font-icon child-of="jnt-icon-host" *ngSwitchCase="typeIcon.font" [icon]="icon" [iconset]="iconset"></jnt-font-icon>
+  <jnt-svg-icon child-of="jnt-icon-host" *ngSwitchCase="typeIcon.svg" [icon]="icon" [iconset]="iconset"></jnt-svg-icon>
+  <jnt-animated-icon child-of="jnt-icon-host" *ngSwitchCase="typeIcon.animated" [icon]="icon" [iconset]="iconset"></jnt-animated-icon>
+</ng-container>

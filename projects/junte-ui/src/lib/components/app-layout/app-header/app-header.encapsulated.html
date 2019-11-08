@@ -1,0 +1,10 @@
+<div child-of="jnt-app-header-host" logo>
+  <ng-container *ngTemplateOutlet="logo"></ng-container>
+</div>
+
+<ng-container *ngTemplateOutlet="topMenu"></ng-container>
+<jnt-stack child-of="jnt-app-header-host" [type]="ui.type.horizontal" [gutter]="ui.gutter.small">
+  <ng-content></ng-content>
+  <ng-container *ngTemplateOutlet="actions"></ng-container>
+  <ng-container *ngTemplateOutlet="userbar"></ng-container>
+</jnt-stack>

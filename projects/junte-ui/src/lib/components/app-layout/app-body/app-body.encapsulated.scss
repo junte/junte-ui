@@ -1,0 +1,16 @@
+@import "../../../assets/styles/variables";
+@import "../common";
+
+$app-body-padding-top: $gutter-big !default;
+$app-body-padding-bottom: $gutter-large !default;
+$app-body-padding-left: 0 !default;
+$app-body-padding-right: 0 !default;
+$app-body-background: $page-background !default;
+
+jnt-app-body[host=#{$jnt-app-body-host}] {
+  display: block;
+  box-sizing: border-box;
+  min-height: calc(100vh - #{$app-footer-height} - #{$app-sub-header-height} - #{$app-header-height});
+  padding: $app-body-padding-top $app-body-padding-right $app-body-padding-bottom $app-body-padding-left;
+  background-color: $app-body-background;
+}

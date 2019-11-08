@@ -1,0 +1,56 @@
+<table child-of="jnt-calendar-host" >
+  <thead child-of="jnt-calendar-host" >
+  <tr child-of="jnt-calendar-host" >
+    <td child-of="jnt-calendar-host" arrow-left>
+      <button child-of="jnt-calendar-host" arrow (click)="period = subMonths(period, 1)">
+        <jnt-icon child-of="jnt-calendar-host" [icon]="ui.icons.arrowLeft"></jnt-icon>
+      </button>
+    </td>
+    <td child-of="jnt-calendar-host" colspan="5" date>
+      {{period | format: 'MMMM'}}, {{period | format: 'YYYY'}}
+    </td>
+    <td child-of="jnt-calendar-host" arrow-right>
+      <button child-of="jnt-calendar-host" arrow (click)="period = addMonths(period, 1)">
+        <jnt-icon child-of="jnt-calendar-host" [icon]="ui.icons.arrowRight"></jnt-icon>
+      </button>
+    </td>
+    <td child-of="jnt-calendar-host" *ngIf="metrics.length"
+        [attr.colspan]="metrics.length"
+    >Metrics
+    </td>
+  </tr>
+  <tr child-of="jnt-calendar-host" days>
+    <th child-of="jnt-calendar-host" >Mo</th>
+    <th child-of="jnt-calendar-host" >Tu</th>
+    <th child-of="jnt-calendar-host" >We</th>
+    <th child-of="jnt-calendar-host" >Th</th>
+    <th child-of="jnt-calendar-host" >Fr</th>
+    <th child-of="jnt-calendar-host" >Sa</th>
+    <th child-of="jnt-calendar-host" >Su</th>
+
+    <th child-of="jnt-calendar-host" *ngFor="let m of metrics">
+      {{m.title}}
+    </th>
+  </tr>
+  </thead>
+
+  <tbody child-of="jnt-calendar-host" >
+  <tr child-of="jnt-calendar-host" *ngFor="let w of weeks" [attr.current-week]="(current | getISOWeek) === (w.date | getISOWeek)">
+    <td child-of="jnt-calendar-host" day *ngFor="let d of w.days"
+        [attr.current-day]="(d | format : 'YYYY-MM-DD') | isEqualDate: (current | format: 'YYYY-MM-DD')"
+        (click)="onChange(d)" tabindex="0">
+      <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
+      </ng-container>
+    </td>
+
+    <td child-of="jnt-calendar-host" metric *ngFor="let m of metrics;let i = index;">
+      <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
+      </ng-container>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #defaultDayTemplate let-date="date">
+  <div child-of="jnt-calendar-host" default>{{date | getDate}}</div>
+</ng-template>

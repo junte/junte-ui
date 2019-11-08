@@ -1,0 +1,21 @@
+@import "../../assets/styles/variables";
+
+$circle-size: 200px;
+
+jnt-circle-bar[host=#{$jnt-circle-bar-host}] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $circle-size;
+  height: $circle-size;
+}
+
+[content][child-of=#{$jnt-circle-bar-host}] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}

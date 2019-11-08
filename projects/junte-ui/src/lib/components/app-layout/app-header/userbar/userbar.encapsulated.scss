@@ -1,0 +1,41 @@
+@import "../../../../assets/styles/variables";
+@import "../../common";
+
+$user-menu-max-height: 300px !default;
+$user-menu-corner: 0 !default;
+$user-menu-padding-x: $gutter-normal !default;
+$user-menu-padding-y: $gutter-big !default;
+$user-menu-background: $primary-dark-color !default;
+$user-menu-hover-background: $primary-color !default;
+$user-menu-padding-y: $gutter-normal !default;
+
+jnt-userbar[host=#{$jnt-userbar-host}] {
+  position: relative;
+  cursor: pointer;
+  min-height: $app-header-height;
+  display: flex;
+  align-items: center;
+  padding-left: $user-menu-padding-y;
+  padding-right: $user-menu-padding-y;
+
+  &:hover {
+    background-color: $user-menu-hover-background;
+
+    [usermenu][child-of=#{$jnt-userbar-host}] {
+      display: block;
+    }
+  }
+}
+
+[usermenu][child-of=#{$jnt-userbar-host}] {
+  background: $user-menu-background;
+  border-radius: $user-menu-corner;
+  padding: $user-menu-padding-x $user-menu-padding-y;
+  max-height: $user-menu-max-height;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: 0;
+}

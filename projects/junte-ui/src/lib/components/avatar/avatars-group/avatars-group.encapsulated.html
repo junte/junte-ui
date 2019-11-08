@@ -1,0 +1,11 @@
+<ng-container *ngFor="let avatar of avatars; let i = index;">
+  <jnt-avatar child-of="jnt-avatars-group-host" *ngIf="i < max " avatar
+              [image]="avatar.image"
+              [size]="size"
+              [icon]="avatar.icon"
+              [shape]="shape"
+              [text]="avatar.text">
+  </jnt-avatar>
+</ng-container>
+
+<div child-of="jnt-avatars-group-host" *ngIf="avatars.length > max" overflow>+{{avatars.length - max}}</div>

@@ -1,0 +1,31 @@
+@import "../../../assets/styles/variables";
+@import "../common";
+
+$app-sub-header-content-margin-left: $gutter-normal !default;
+$app-sub-header-burger-margin-left: $gutter-normal !default;
+$app-sub-header-background: $page-background !default;
+
+jnt-app-sub-header[host=#{$jnt-app-sub-header-host}] {
+  display: flex;
+  align-items: center;
+  min-height: $app-sub-header-height;
+  background-color: $app-sub-header-background;
+
+  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+    [burger][child-of=#{$jnt-app-sub-header-host}] {
+      display: inline-block;
+    }
+  }
+}
+
+[burger][child-of=#{$jnt-app-sub-header-host}] {
+  display: none;
+  margin-left: $app-sub-header-burger-margin-left;
+  cursor: pointer;
+}
+
+[content][child-of=#{$jnt-app-sub-header-host}] {
+  margin-left: $app-sub-header-content-margin-left;
+}
+
+

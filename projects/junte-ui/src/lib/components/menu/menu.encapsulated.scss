@@ -1,0 +1,25 @@
+@import "../../assets/styles/variables";
+
+$link-active-color: $primary-color !default;
+
+jnt-menu[host=#{$jnt-menu-host}] {
+  display: block;
+  flex: 1;
+}
+
+[submenuItems][child-of=#{$jnt-menu-host}] {
+  display: none;
+}
+
+[title][child-of=#{$jnt-menu-host}] {
+  &[opened='true'] {
+    & + [submenuItems] {
+      display: block;
+    }
+  }
+
+  &[active='true'] {
+    background-color: $pale-navy-color;
+    color: $link-active-color;
+  }
+}

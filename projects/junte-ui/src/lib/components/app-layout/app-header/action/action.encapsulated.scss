@@ -1,0 +1,48 @@
+@import "../../../../assets/styles/variables";
+@import "../../common";
+
+$action-content-border-radius: 0 0 $corner-small $corner-small !default;
+$action-padding-y: $gutter-normal !default;
+$action-hover-background: $primary-color !default;
+$action-content-padding-x: $gutter-normal !default;
+$action-content-padding-y: $gutter-big !default;
+$action-content-background: $primary-background !default;
+$action-content-color: $primary-text-color !default;
+$action-content-width: 400px !default;
+$action-content-height: 400px !default;
+$action-content-shadow: $shadow-light !default;
+
+jnt-action[host=#{$jnt-action-host}] {
+  position: relative;
+  cursor: pointer;
+  min-height: $app-header-height;
+  display: flex;
+  align-items: center;
+  padding-left: $action-padding-y;
+  padding-right: $action-padding-y;
+
+  &:hover {
+    background-color: $action-hover-background;
+
+    [content][child-of=#{$jnt-action-host}] {
+      display: block;
+    }
+  }
+}
+
+[content][child-of=#{$jnt-action-host}] {
+  background: $action-content-background;
+  border-radius: $action-content-border-radius;
+  padding: $action-content-padding-x $action-content-padding-y;
+  color: $action-content-color;
+  max-width: $action-content-width;
+  width: $action-content-width;
+  max-height: $action-content-height;
+  box-shadow: $action-content-shadow;
+  overflow-y: auto;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: 0;
+}

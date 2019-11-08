@@ -1,0 +1,52 @@
+<jnt-stack child-of="jnt-menu-host" [type]="type" [gutter]="spacer" [align]="ui.flex.align.stretch" [wrap]="ui.flex.wrap.wrap">
+  <ng-container *ngFor="let submenu of submenus">
+    <div child-of="jnt-menu-host" submenu jntSubMenu>
+      <div child-of="jnt-menu-host" title (click)="submenu.opened = !submenu.opened" [attr.opened]="submenu.opened">
+        <jnt-stack child-of="jnt-menu-host" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-icon child-of="jnt-menu-host" *ngIf="submenu.icon" [icon]="submenu.icon" icon></jnt-icon>
+          <jnt-stack child-of="jnt-menu-host" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <span child-of="jnt-menu-host" >{{submenu.title}}</span>
+            <jnt-stack child-of="jnt-menu-host" *ngIf="!!submenu.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center"
+                       [gutter]="ui.gutter.tiny">
+              <jnt-badge child-of="jnt-menu-host" badge *ngFor="let badge of submenu.badges" [count]="badge.count"
+                         [position]="ui.position.inline"
+                         [color]="badge.color"></jnt-badge>
+            </jnt-stack>
+          </jnt-stack>
+        </jnt-stack>
+      </div>
+
+      <div child-of="jnt-menu-host" submenuItems jntSubMenuItems>
+        <div child-of="jnt-menu-host" submenuTitle>{{submenu.title}}</div>
+        <ng-container *ngFor="let submenuItem of submenu.menuItems">
+          <jnt-link child-of="jnt-menu-host" link submenuItem (click)="submenuItem.click.emit($event)"
+                    [exact]="matching.fullMatch === submenuItem.matching" [source]="submenuItem.link"
+                    [icon]="submenuItem.icon" [scheme]="submenuItem.scheme" [title]="submenuItem.title"
+                    [target]="submenuItem.target">
+            <jnt-badge child-of="jnt-menu-host" *ngFor="let badge of submenuItem.badges" [count]="badge.count"
+                       [position]="ui.position.inline" [color]="badge.color">
+            </jnt-badge>
+          </jnt-link>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngFor="let item of items">
+    <div child-of="jnt-menu-host" submenu jntSubMenu>
+      <jnt-link child-of="jnt-menu-host" link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching"
+                [source]="item.link" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title"
+                [target]="item.target">
+        <jnt-badge child-of="jnt-menu-host" *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+                   [color]="badge.color"></jnt-badge>
+      </jnt-link>
+      <div child-of="jnt-menu-host" submenuItems jntSubMenuItems>
+        <jnt-link child-of="jnt-menu-host" submenuTitle only [source]="item.link" [scheme]="item.scheme" [title]="item.title" [target]="item.target">
+          <jnt-badge child-of="jnt-menu-host" *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+                     [color]="badge.color"></jnt-badge>
+        </jnt-link>
+      </div>
+    </div>
+
+  </ng-container>
+</jnt-stack>

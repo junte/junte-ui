@@ -1,0 +1,61 @@
+<ng-template #ajaxOptionsTemplate>
+  <li child-of="jnt-select-host" item *ngFor="let option of ajaxOptions" (click)="optionSelect(option[valueField])">
+    {{option[labelField]}}
+  </li>
+</ng-template>
+
+<ng-template #optionsTemplate>
+  <li child-of="jnt-select-host" item *ngFor="let option of options" (click)="optionSelect(option[valueField])">
+    {{option[labelField]}}
+  </li>
+</ng-template>
+
+<ng-template #selectedItemsTemplate>
+  <ul child-of="jnt-select-host" selection *ngIf="!loading; else loadOptionsTemplate">
+    <li child-of="jnt-select-host" *ngFor="let item of selectedItems" [attr.chips]="selectMode.multiple === mode">
+      <span child-of="jnt-select-host" >{{labels[item]}}</span>
+      <button child-of="jnt-select-host" (click)="optionSelect(item)">
+        <jnt-icon child-of="jnt-select-host" close [icon]="ui.icons.close"></jnt-icon>
+      </button>
+    </li>
+    <li child-of="jnt-select-host" >
+      <input child-of="jnt-select-host" #searchInput input jntSmartWidth (click)="toggle = !toggle"
+             [ngModel]="q"
+             (ngModelChange)="search$.next($event)"
+             [disabled]="!search"  />
+      <div child-of="jnt-select-host" *ngIf="placeholderVisible" placeholder>{{placeholder}}</div>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #loadOptionsTemplate>
+  <jnt-spinner child-of="jnt-select-host" spin></jnt-spinner>
+</ng-template>
+
+<ng-template #itemsNotFoundTemplate>
+  <li child-of="jnt-select-host" message *ngIf="!!q && !options.length">
+    <jnt-icon child-of="jnt-select-host" [icon]="ui.icons.stopping" icon></jnt-icon>
+  </li>
+</ng-template>
+
+<div child-of="jnt-select-host" *ngIf="toggle" overlay (click)="toggle = !toggle"></div>
+
+<div child-of="jnt-select-host" #selectize selectize (click)="input.focus(); toggle = !toggle;" [attr.focused]="focused" tabindex="0">
+  <div child-of="jnt-select-host" *ngIf="label" label>{{label}}</div>
+  <ng-container *ngTemplateOutlet="selectedItemsTemplate"></ng-container>
+  <jnt-icon child-of="jnt-select-host" down [icon]="ui.icons.sortDown"></jnt-icon>
+  <ng-container *ngIf="!!toggle">
+    <div child-of="jnt-select-host" options>
+      <div child-of="jnt-select-host" *ngIf="loading" loading>
+        <jnt-spinner child-of="jnt-select-host" [size]="ui.sizes.normal"></jnt-spinner>
+      </div>
+      <ul child-of="jnt-select-host" >
+        <ng-container *ngTemplateOutlet="itemsNotFoundTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="optionsTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="ajaxOptionsTemplate"></ng-container>
+      </ul>
+    </div>
+  </ng-container>
+</div>
+
+<ng-content></ng-content>

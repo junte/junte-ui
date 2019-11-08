@@ -1,0 +1,48 @@
+@import "../../../assets/styles/variables";
+
+$grid-columns: 12 !default;
+
+jnt-col[host=#{$jnt-col-host}] {
+  display: block;
+  padding-left: $grid-gutter;
+  padding-right: $grid-gutter;
+  box-sizing: border-box;
+  @for $i from 1 through $grid-columns {
+    &[span = "#{$i}"] {
+      $width: $i/$grid-columns;
+      flex: 0 0 percentage($width);
+      max-width: percentage($width);
+    }
+  }
+
+  @each $breakpoints, $value in $grid-breakpoints {
+    @media screen and (min-width: $value) {
+      @for $i from 1 through $grid-columns {
+        &[#{$breakpoints} = '#{$i}'] {
+          $width: $i/$grid-columns;
+          flex: 0 0 percentage($width);
+          max-width: percentage($width);
+        }
+      }
+    }
+  }
+
+  &[alignSelf='auto'] {
+    align-self: auto;
+  }
+  &[alignSelf='start'] {
+    align-self: flex-start;
+  }
+  &[alignSelf='center'] {
+    align-self: center;
+  }
+  &[alignSelf='end'] {
+    align-self: flex-end;
+  }
+  &[alignSelf='baseline'] {
+    align-self: baseline;
+  }
+  &[alignSelf='stretch'] {
+    align-self: stretch;
+  }
+}

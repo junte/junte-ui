@@ -1,0 +1,22 @@
+<jnt-stack child-of="jnt-date-period-host" [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.end">
+  <div child-of="jnt-date-period-host" *ngIf="start" date left>
+    <div child-of="jnt-date-period-host" >{{start | date: "dd.MM"}}</div>
+    <div child-of="jnt-date-period-host" line><div child-of="jnt-date-period-host" arrow></div></div>
+  </div>
+  <div child-of="jnt-date-period-host" *ngIf="end" date right>
+    <div child-of="jnt-date-period-host" >{{end | date: "dd.MM"}}</div>
+    <div child-of="jnt-date-period-host" line><div child-of="jnt-date-period-host" arrow></div></div>
+  </div>
+</jnt-stack>
+
+<div child-of="jnt-date-period-host" bar>
+  <div child-of="jnt-date-period-host" *ngIf="!!start && !!end && start < end && start <= current && current < end" progress
+       [style.width.%]="(current | dateDiff:start:base) / (end || current | dateDiff:start:base) * 100">
+  </div>
+
+  <div child-of="jnt-date-period-host" *ngIf="(!!end && !start && current >= end) || (!!start && !end && current > start)" progress full></div>
+</div>
+
+<div child-of="jnt-date-period-host" *ngIf="!!start && !!end && (end | dateDiff:start:base)" days>
+  {{end | dateDiff:start:base}} {{base}}
+</div>

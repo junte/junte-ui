@@ -1,0 +1,47 @@
+@import "../../../assets/styles/variables";
+@import "../common";
+
+$app-content-padding-left: $app-aside-width !default;
+$app-content-padding-top: $app-header-height !default;
+
+jnt-app-content[host=#{$jnt-app-content-host}] {
+  display: block;
+  flex: auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  padding-top: $app-content-padding-top;
+  transition: all .3s;
+
+  &[with-aside='full'] {
+    padding-left: $app-aside-width;
+  }
+
+  &[with-aside='collapsed'] {
+    padding-left: $app-aside-collapsed-width;
+  }
+
+  @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      padding-left: 0!important;
+  }
+
+  &[with-sub-header="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+    min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
+  }
+  }
+
+  &[with-footer="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+    min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
+  }
+  }
+  &[with-sub-header="false"][with-footer="false"] {
+    jnt-app-body[host=#{$jnt-app-body-host}] {
+    min-height: calc(100vh - #{$app-header-height});
+  }
+  }
+
+}

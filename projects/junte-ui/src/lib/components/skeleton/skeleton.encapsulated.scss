@@ -1,0 +1,66 @@
+@import "../../assets/styles/variables";
+
+$skeleton-line-height: 24px !default;
+$skeleton-background: $secondary-background !default;
+$skeleton-to-background: darken($skeleton-background, 5%) !default;
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+$skeleton-avatar-sizes: (
+  #{$size-tiny}: (
+    size: 24px,
+  ),
+  #{$size-small}: (
+    size: 40px,
+  ),
+  #{$size-normal}: (
+    size: 80px,
+  ),
+  #{$size-large}: (
+    size: 120px,
+  )
+) !default;
+
+@mixin size($size) {
+  [avatar][child-of=#{$jnt-skeleton-host}] {
+    min-width: #{map-get($size, size)};
+    width: #{map-get($size, size)};
+    min-height: #{map-get($size, size)};
+    height: #{map-get($size, size)};
+  }
+}
+
+jnt-skeleton[host=#{$jnt-skeleton-host}] {
+  display: block;
+  @each $size, $map in $skeleton-avatar-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+  &[type='text'] {
+    width: 100%;
+  }
+}
+
+[line][child-of=#{$jnt-skeleton-host}] {
+  min-height: $skeleton-line-height;
+  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
+  animation: loading 1.4s ease infinite;
+  background-size: 400% 100%;
+  width: 100%;
+}
+
+[avatar][child-of=#{$jnt-skeleton-host}] {
+  display: block;
+  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
+  animation: loading 1.4s ease infinite;
+  background-size: 400% 100%;
+  border-radius: 50%;
+}

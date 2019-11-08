@@ -1,0 +1,18 @@
+<div child-of="jnt-block-host" *ngIf="title" title>
+  <div child-of="jnt-block-host" >
+    {{title}}
+  </div>
+</div>
+
+<div child-of="jnt-block-host" body>
+  <ng-content></ng-content>
+</div>
+
+<div child-of="jnt-block-host" *ngIf="loading" loading>
+  <jnt-spinner child-of="jnt-block-host" [size]="size" spinner></jnt-spinner>
+</div>
+<div child-of="jnt-block-host" *ngIf="error" error>
+  <jnt-icon child-of="jnt-block-host" icon="cancel"></jnt-icon>
+</div>
+
+<ng-container *ngTemplateOutlet="footerBlock"></ng-container>

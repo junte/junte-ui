@@ -1,0 +1,17 @@
+@import "../../../assets/styles/variables";
+
+jnt-animated-icon[host=#{$jnt-animated-icon-host}] {
+  display: inline-flex;
+  height: 22px;
+  width: 22px;
+
+  [mock][child-of=#{$jnt-animated-icon-host}] {
+    opacity: .5;
+  }
+
+  > * {
+    width: 100%;
+    max-height: 100%;
+  }
+}
+

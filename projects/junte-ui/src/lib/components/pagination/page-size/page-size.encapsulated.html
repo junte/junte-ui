@@ -1,0 +1,11 @@
+<form child-of="jnt-page-size-host" [formGroup]="form">
+  <jnt-select child-of="jnt-page-size-host" valueField="value"
+              labelField="label"
+              formControlName="select"
+              [size]="ui.sizes.small">
+    <jnt-select-option child-of="jnt-page-size-host" *ngFor="let option of options"
+                       [label]="option.label"
+                       [value]="option.value">
+    </jnt-select-option>
+  </jnt-select>
+</form>

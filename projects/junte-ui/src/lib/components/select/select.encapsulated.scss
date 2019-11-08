@@ -1,0 +1,269 @@
+@import "../../assets/styles/variables";
+
+$select-option-list-spacer-top: $gutter-tiny !default;
+$select-option-list-padding-y: 0 !default;
+$select-option-list-padding-x: $gutter-tiny !default;
+$select-option-list-border-color: transparent !default;
+$select-option-list-border-width: 0 !default;
+$select-option-list-background: $primary-background !default;
+$select-option-list-shadow: $shadow-light !default;
+
+$select-option-item-padding-x: $gutter-small !default;
+$select-option-item-padding-y: $gutter-normal !default;
+$select-option-item-hover-background: $highlight-background !default;
+$select-option-item-icon-color: $primary-color !default;
+$select-option-border-radius: $corner-small !default;
+
+$select-background: $control-background !default;
+$select-border-width: 1px !default;
+$select-border-color: $control-border-color !default;
+$select-corner: $corner-small !default;
+$select-icon-dropdown-size: 7px !default;
+$select-icon-dropdown-color: $primary-text-light-color !default;
+$select-placeholder-color: $primary-text-light-color !default;
+$select-padding-bottom: $gutter-tiny !default;
+$select-padding-left: $gutter-tiny !default;
+$select-padding-right: $gutter-normal !default;
+
+$select-disabled-background: $control-disabled-background !default;
+$select-disabled-border-color: $control-disabled-border-color !default;
+$select-disabled-chips-color: $control-disabled-border-color !default;
+$select-disabled-chips-background-color: $muted-color !default;
+
+$select-focus-shadow: $shadow-primary-dark !default;
+
+$select-hover-border-color: $primary-color !default;
+$select-focus-border-color: $primary-color !default;
+
+$select-chips-background: $secondary-background !default;
+$select-chips-corner: $select-corner !default;
+$select-chips-padding-x: $gutter-tiny !default;
+$select-chips-padding-y: $gutter-tiny !default;
+$select-chips-spacer: $gutter-tiny !default;
+
+$select-sizes: (
+  #{$size-tiny}: (
+    font-size: 10px,
+    min-height: 22px
+  ),
+  #{$size-small}: (
+    font-size: 12px,
+    min-height: 30px
+  ),
+  #{$size-normal}: (
+    font-size: 14px,
+    min-height: 38px
+  ),
+  #{$size-large}: (
+    font-size: 16px,
+    min-height: 50px
+  )
+)!default;
+
+@mixin size($size) {
+  [selectize][child-of=#{$jnt-select-host}] {
+    font-size: #{map-get($size, font-size)};
+    min-height: #{map-get($size, min-height)};
+  }
+}
+
+jnt-select[host=#{$jnt-select-host}] {
+  display: inline-block;
+  width: 100%;
+  @each $size, $map in $select-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+  &[disabled='true'] {
+    [selectize][child-of=#{$jnt-select-host}] {
+      background-color: $select-disabled-background;
+      border-color: $select-disabled-border-color;
+      pointer-events: none;
+      li[child-of=#{$jnt-select-host}][chips='true'][child-of=#{$jnt-select-host}] {
+        background-color: $select-disabled-chips-background-color;
+        color: $select-disabled-chips-color;
+      }
+    }
+  }
+}
+
+[selectize][child-of=#{$jnt-select-host}] {
+  border: $select-border-width solid $select-border-color;
+  border-radius: $select-corner;
+  box-sizing: border-box;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+  background-color: $select-background;
+  transition: all .3s;
+  &:hover {
+    border-color: $select-hover-border-color;
+  }
+  &[focused="true"] {
+    border-color: $select-hover-border-color;
+    box-shadow: $select-focus-shadow;
+    outline: 0;
+  }
+
+  [placeholder][child-of=#{$jnt-select-host}] {
+    display: flex;
+    color: $select-placeholder-color;
+  }
+
+  [selection][child-of=#{$jnt-select-host}] {
+    margin-bottom: -3px;
+    margin-left: $select-padding-left;
+    margin-right: $select-padding-right;
+    display: flex;
+    flex-wrap: wrap;
+    li[child-of=#{$jnt-select-host}] {
+      max-width: 100%;
+      margin-bottom: $select-chips-spacer;
+      display: flex;
+      align-items: center;
+      margin-right: $select-chips-spacer;
+      button[child-of=#{$jnt-select-host}] {
+        display: none;
+      }
+      &[chips="true"] {
+        background-color: $select-chips-background;
+        border-radius: $select-chips-corner;
+        padding: $select-chips-padding-x $select-chips-padding-y;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        user-select: none;
+        button[child-of=#{$jnt-select-host}] {
+          display: inline-block;
+          border: 0;
+          background-color: transparent;
+          padding: 0 $gutter-small 0 $gutter-normal;
+          line-height: 1;
+          &:focus {
+            outline: 0;
+          }
+          [close][child-of=#{$jnt-select-host}] {
+            font-size: 7px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  [down][child-of=#{$jnt-select-host}] {
+    position: absolute;
+    top: 50%;
+    right: $select-padding-left;
+    transform: translateY(-50%);
+    font-size: $select-icon-dropdown-size;
+    color: $select-icon-dropdown-color;
+  }
+  [spin][child-of=#{$jnt-select-host}] {
+    color: $muted-color;
+    margin: auto auto auto $gutter-normal;
+  }
+  [input][child-of=#{$jnt-select-host}] {
+    max-width: 100%;
+    width: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: $font-size-base;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    color: $primary-text-color;
+    &:focus {
+      outline: 0;
+    }
+  }
+
+}
+[label][child-of=#{$jnt-select-host}] {
+  background-color: $control-field-label-background;
+  padding: $control-field-label-padding;
+  margin-top: -3px;
+  margin-bottom: -3px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: $select-corner - 1px;
+  border-bottom-left-radius: $select-corner - 1px;
+  color: $control-field-label-color;
+}
+
+[options][child-of=#{$jnt-select-host}] {
+  border: $select-option-list-border-width solid $select-option-list-border-color;
+  background-color: $select-option-list-background;
+  box-shadow: $select-option-list-shadow;
+  box-sizing: border-box;
+  margin-top: $select-option-list-spacer-top;
+  padding: $select-option-list-padding-x $select-option-list-padding-y;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: $select-option-border-radius;
+  [item][child-of=#{$jnt-select-host}] {
+    padding: $select-option-item-padding-x $select-option-item-padding-y;
+    text-align: left;
+    [checkbox][host=#{$jnt-checkbox-host}][child-of=#{$jnt-select-host}] [ switch ][child-of=#{$jnt-checkbox-host}] {
+      border: 0;
+      background-color: transparent;
+      position: absolute;
+      right: 0;
+    [icon][child-of=#{$jnt-checkbox-host}] {
+      color: $select-option-item-icon-color;
+    }
+  }
+    &:hover {
+      background-color: $select-option-item-hover-background;
+    }
+  }
+  [message][child-of=#{$jnt-select-host}] {
+    padding: $select-chips-padding-x $select-chips-padding-y;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-background;
+    [icon][child-of=#{$jnt-select-host}] {
+      color: $muted-color;
+      font-size: 30px;
+    }
+  }
+  [loading][child-of=#{$jnt-select-host}] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-background;
+  }
+}
+
+ul[child-of=#{$jnt-select-host}] {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+[overlay][child-of=#{$jnt-select-host}] {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+
+

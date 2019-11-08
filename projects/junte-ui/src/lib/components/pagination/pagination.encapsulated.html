@@ -1,0 +1,33 @@
+<jnt-stack child-of="jnt-pagination-host" [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.small" [justify]="ui.flex.justify.center">
+  <div child-of="jnt-pagination-host" [attr.disabled]="selectedPage === 1"
+       (click)="setPage(1)" tabindex="0">
+    <a child-of="jnt-pagination-host" [attr.data-href]="'?page=' + 1"
+       title="First">
+      <jnt-icon child-of="jnt-pagination-host" [icon]="ui.icons.arrowFirst" icon></jnt-icon>
+    </a>
+  </div>
+  <div child-of="jnt-pagination-host" [attr.disabled]="selectedPage === 1"
+       (click)="setPage(selectedPage - 1)" tabindex="0">
+    <a child-of="jnt-pagination-host" title="Previous"
+       data-page="1">
+      <jnt-icon child-of="jnt-pagination-host" [icon]="ui.icons.arrowLeft" icon></jnt-icon>
+    </a>
+  </div>
+  <div child-of="jnt-pagination-host" page *ngFor="let page of pages"
+       (click)="setPage(page)"
+       [attr.active]="page === selectedPage" tabindex="0">
+    <a child-of="jnt-pagination-host" >{{page}}</a>
+  </div>
+
+  <div child-of="jnt-pagination-host" [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)" tabindex="0">
+    <a child-of="jnt-pagination-host" title="Next">
+      <jnt-icon child-of="jnt-pagination-host" [icon]="ui.icons.arrowRight" icon></jnt-icon>
+    </a>
+  </div>
+  <div child-of="jnt-pagination-host" (click)="setPage(pagesCount)"
+       [attr.disabled]="selectedPage >= pagesCount" tabindex="0">
+    <a child-of="jnt-pagination-host" title="Last">
+      <jnt-icon child-of="jnt-pagination-host" [icon]="ui.icons.arrowLast" icon></jnt-icon>
+    </a>
+  </div>
+</jnt-stack>

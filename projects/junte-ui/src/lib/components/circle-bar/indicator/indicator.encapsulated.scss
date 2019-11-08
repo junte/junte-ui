@@ -1,0 +1,18 @@
+@import "../../../assets/styles/variables";
+
+jnt-bar-indicator[host=#{$jnt-bar-indicator-host}] {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+}
+
+svg[child-of=#{$jnt-bar-indicator-host}] {
+  fill: transparent;
+  transform: rotate(-90deg);
+  border-radius: 50%;
+}

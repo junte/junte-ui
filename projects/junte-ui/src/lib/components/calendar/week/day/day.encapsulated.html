@@ -1,0 +1,14 @@
+<ng-container *ngTemplateOutlet="defaultDayTemplate;context:{date: date}">
+</ng-container>
+
+<ng-template #defaultDayTemplate let-date="date">
+  <div child-of="jnt-calendar-day-host" date>
+    <span child-of="jnt-calendar-day-host" number-day>{{date | getDate}}</span>
+    <span child-of="jnt-calendar-day-host" name-day>{{date | format: 'dddd'}}</span>
+    <span child-of="jnt-calendar-day-host" today *ngIf="day">Today</span>
+  </div>
+
+  <div child-of="jnt-calendar-day-host" *ngIf="!!dayTemplate" metric>
+    <ng-container *ngTemplateOutlet="dayTemplate;context:{date: date}"></ng-container>
+  </div>
+</ng-template>

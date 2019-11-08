@@ -1,0 +1,51 @@
+.arrow {
+  position: absolute;
+  top: 50%;
+  height: 50px;
+  width: 30px;
+  opacity: .6;
+  user-select: none;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  &:before, &:after {
+    content: "";
+    height: 4px;
+    width: 17px;
+    background: black;
+    display: block;
+    position: absolute;
+  }
+
+  &:before {
+    top: 18px;
+    transform: rotate(-45deg);
+  }
+
+  &:after {
+    bottom: 18px;
+    transform: rotate(45deg);
+  }
+
+  .right {
+    right: 10px;
+    transform: scaleX(-1) translateY(-50%);
+  }
+
+  .left {
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .disabled {
+    opacity: .6;
+
+    &:hover {
+      opacity: .6;
+      cursor: pointer;
+    }
+  }
+}

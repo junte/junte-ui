@@ -1,0 +1,7 @@
+<jnt-stack child-of="jnt-user-menu-host" [type]="type" [gutter]="spacer">
+  <div child-of="jnt-user-menu-host" item *ngFor="let item of items">
+    <jnt-icon child-of="jnt-user-menu-host" *ngIf="item.icon" [icon]="item.icon" icon></jnt-icon>
+    <jnt-link child-of="jnt-user-menu-host" [source]="[item.link]" text [title]="item.title"></jnt-link>
+  </div>
+</jnt-stack>
+<ng-content></ng-content>

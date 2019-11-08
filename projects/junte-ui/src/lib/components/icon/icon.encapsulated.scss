@@ -1,0 +1,20 @@
+@import "../../assets/styles/variables";
+
+jnt-icon[host=#{$jnt-icon-host}] {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+
+  &[type='svg'], &[type='animated'] {
+    width: 22px;
+    height: 22px;
+    [icon][child-of=#{$jnt-icon-host}] {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &[type='font'] {
+    line-height: inherit;
+  }
+}

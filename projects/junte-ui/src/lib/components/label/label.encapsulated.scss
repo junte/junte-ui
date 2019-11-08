@@ -1,0 +1,57 @@
+@import "../../assets/styles/variables";
+
+$label-corner: 3px !default;
+$label-icon-spacing: $gutter-small !default;
+
+$label-sizes: (
+  #{$size-small}: (
+    padding: 0 $gutter-small,
+    font-size: 10px,
+    height: 20px,
+    icon-size: 12px
+  ),
+  #{$size-normal}: (
+    padding: 0 $gutter-small,
+    font-size: 12px,
+    height: 24px,
+    icon-size: 14px
+  )
+) !default;
+
+@mixin size($size) {
+  padding: #{map-get($size, padding)};
+  font-size: #{map-get($size, font-size)};
+  height: #{map-get($size, height)};
+  [icon][child-of=#{$jnt-label-host}] {
+    &[type='svg'], &[type='animated'] {
+      width: #{map-get($size, icon-size)};
+      height: #{map-get($size, icon-size)};
+    }
+  }
+  [span][child-of=#{$jnt-label-host}] {
+    line-height: #{map-get($size, height)};
+  }
+}
+
+jnt-label[host=#{$jnt-label-host}] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $label-corner;
+  line-height: 0;
+  box-sizing: border-box;
+
+  @each $size, $map in $label-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+}
+
+span[child-of=#{$jnt-label-host}] {
+  white-space: nowrap;
+}
+
+[icon][host=#{$jnt-icon-host}][child-of=#{$jnt-label-host}] {
+  margin-right: $label-icon-spacing;
+}

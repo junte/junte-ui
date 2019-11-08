@@ -1,0 +1,6 @@
+<button child-of="jnt-button-host" [type]="type" [disabled]="disabled || loading">
+  <jnt-spinner child-of="jnt-button-host" [@spinner]="loading" *ngIf="loading" loading></jnt-spinner>
+  <jnt-icon child-of="jnt-button-host" *ngIf="icon" [@text]="loading | visible" [icon]="icon" icon></jnt-icon>
+  <span child-of="jnt-button-host" [@text]="loading | visible" text>{{text}}</span>
+  <jnt-badge child-of="jnt-button-host" *ngIf="badge" [@text]="loading | visible" [count]="badge" [position]="ui.position.inline" badge></jnt-badge>
+</button>

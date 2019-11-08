@@ -1,0 +1,14 @@
+<div child-of="jnt-app-aside-host" drawer [attr.collapsed]="collapsed">
+  <div child-of="jnt-app-aside-host" scroll>
+    <jnt-button child-of="jnt-app-aside-host" [outline]="ui.outline.transparent"
+                text="Hide sidebar"
+                [icon]="collapsed ? ui.icons.chevronDoubleRight : ui.icons.chevronDoubleLeft"
+                [width]="ui.width.fluid"
+                [size]="ui.sizes.large"
+                (click)="collapsed = !collapsed"
+                button>
+    </jnt-button>
+    <ng-content></ng-content>
+  </div>
+</div>
+<div child-of="jnt-app-aside-host" overlay (click)="opened = false"></div>

@@ -1,0 +1,76 @@
+<table child-of="jnt-gantt-host" border="0" cellpadding="5" [cellSpacing]="0">
+  <thead child-of="jnt-gantt-host" >
+  <tr child-of="jnt-gantt-host" >
+    <td child-of="jnt-gantt-host" gutter></td>
+    <td child-of="jnt-gantt-host" empty></td>
+    <td child-of="jnt-gantt-host" controls [attr.colspan]="(current | getDaysInMonth)">
+      <div child-of="jnt-gantt-host" month>
+        <button child-of="jnt-gantt-host" arrow (click)="current = subMonths(current, 1)">
+          <jnt-icon child-of="jnt-gantt-host" [icon]="ui.icons.arrowLeft"></jnt-icon>
+        </button>
+        <div child-of="jnt-gantt-host" >
+          {{current | format: 'MMMM'}}, {{current | format: 'YYYY'}}
+        </div>
+        <button child-of="jnt-gantt-host" arrow (click)="current = addMonths(current, 1)">
+          <jnt-icon child-of="jnt-gantt-host" [icon]="ui.icons.arrowRight"></jnt-icon>
+        </button>
+      </div>
+    </td>
+  </tr>
+
+  <tr child-of="jnt-gantt-host" timeline>
+    <td child-of="jnt-gantt-host" gutter></td>
+    <td child-of="jnt-gantt-host" >{{title || ''}}</td>
+    <td child-of="jnt-gantt-host" day [attr.current]="(day === (today | getDate)) && (current | isSameMonth: today)"
+        *ngFor="let day of (current | getDaysInMonth) | numberArray: 1">
+      {{day}}
+    </td>
+  </tr>
+  </thead>
+  <tbody child-of="jnt-gantt-host" >
+  <ng-template #noDataTemplate>
+    <tr child-of="jnt-gantt-host" nodata>
+      <td child-of="jnt-gantt-host" [attr.colspan]="(current | getDaysInMonth) + 1">
+        <jnt-icon child-of="jnt-gantt-host" [icon]="ui.icons.stopping" icon></jnt-icon>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #skeletonTemplate>
+    <ng-container *ngIf="loading; else noDataTemplate">
+      <tr child-of="jnt-gantt-host" loading>
+        <td child-of="jnt-gantt-host" [attr.colspan]="(current | getDaysInMonth) + 2">
+          <jnt-skeleton child-of="jnt-gantt-host" [type]="ui.skeleton.type.text" [lines]="7"></jnt-skeleton>
+        </td>
+      </tr>
+    </ng-container>
+  </ng-template>
+
+  <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
+    <tr child-of="jnt-gantt-host" *ngFor="let line of lines" (click)="line.click.emit($event)">
+      <ng-template #noRequest>
+        <td child-of="jnt-gantt-host" *ngFor="let day of (current | getDaysInMonth) | numberArray: 1"></td>
+      </ng-template>
+
+      <td child-of="jnt-gantt-host" gutter></td>
+      <td child-of="jnt-gantt-host" title>
+        <ng-template #title>{{line.title}}</ng-template>
+        <ng-container *ngIf="line.titleTemplate; else title">
+          <ng-container *ngTemplateOutlet="line.titleTemplate; context: {title: line.title}"></ng-container>
+        </ng-container>
+      </td>
+
+      <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)
+        || ((current | dateDiff:line.from:'months') > 0 && (line.to | dateDiff:current:'months') > 0); else noRequest">
+        <td child-of="jnt-gantt-host" *ngFor="let day of (line.from | before: current) - 1 | numberArray"></td>
+        <td child-of="jnt-gantt-host" [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
+          <ng-container *ngTemplateOutlet="line.indicatorTemplate;
+            context: {period: line.period, current: current, today: today}">
+          </ng-container>
+        </td>
+        <td child-of="jnt-gantt-host" *ngFor="let day of ((current | getDaysInMonth) - (line.to | after: current)) | numberArray"></td>
+      </ng-container>
+    </tr>
+  </ng-container>
+
+  </tbody>
+</table>

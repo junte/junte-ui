@@ -1,0 +1,38 @@
+@import "../../assets/styles/variables";
+
+$breadcrumb-link-color: $primary-text-light-color !default;
+$breadcrumb-last-link-color: $primary-text-dark-color !default;
+$breadcrumb-link-font-size: 12px !default;
+
+$breadcrumb-icon-color: $primary-text-light-color !default;
+$breadcrumb-icon-font-size: 6px !default;
+$breadcrumb-icon-line-height: 18px !default;
+
+jnt-breadcrumb[host=#{$jnt-breadcrumb-host}] {
+  display: block;
+}
+
+a[child-of=#{$jnt-breadcrumb-host}] {
+  color: $breadcrumb-link-color;
+  font-size: $breadcrumb-link-font-size;
+  text-decoration: none;
+  user-select: none;
+
+  &:last-of-type {
+    color: $breadcrumb-last-link-color;
+    pointer-events: none;
+  }
+}
+
+[icon][child-of=#{$jnt-breadcrumb-host}] {
+  color: $breadcrumb-icon-color;
+  font-size: $breadcrumb-icon-font-size;
+
+  &:last-child {
+    display: none;
+  }
+}
+
+[icon][host=#{$jnt-icon-host}][child-of=#{$jnt-breadcrumb-host}] {
+  line-height: $breadcrumb-icon-line-height;
+}

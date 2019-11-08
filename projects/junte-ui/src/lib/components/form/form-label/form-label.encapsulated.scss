@@ -1,0 +1,13 @@
+@import "../../../assets/styles/variables";
+
+$form-label-font-size: .75rem !default;
+$form-label-color: $primary-text-light-color !default;
+
+jnt-form-label[host=#{$jnt-form-label-host}] {
+  display: inline-block;
+}
+
+label[child-of=#{$jnt-form-label-host}] {
+  font-size: $form-label-font-size;
+  color: $form-label-color;
+}

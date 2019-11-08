@@ -1,0 +1,8 @@
+<input child-of="jnt-switch-host" type="checkbox" [disabled]="disabled" [checked]="checked" (change)="checked = !checked;" (click)="onChange($event.target['checked'])"  />
+<div child-of="jnt-switch-host" switch>
+  <div child-of="jnt-switch-host" slider>
+    <jnt-icon child-of="jnt-switch-host" *ngIf="iconOn || iconOff" [icon]="iconOn && checked ? iconOn : iconOff && !checked ? iconOff : null" icon></jnt-icon>
+  </div>
+  <span child-of="jnt-switch-host" *ngIf="labelOn || labelOff" label>{{labelOn && checked ? labelOn : labelOff && !checked ? labelOff : null}}</span>
+</div>
+<label child-of="jnt-switch-host" *ngIf="label">{{label}}</label>

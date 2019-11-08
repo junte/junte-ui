@@ -1,0 +1,23 @@
+@import "../../../assets/styles/variables";
+
+$user-menu-item-color: $white-color !default;
+$user-menu-item-icon-color: $white-color !default;
+$user-menu-item-icon-gutter: $gutter-tiny !default;
+$user-menu-item-padding-x: $gutter-small !default;
+$user-menu-item-padding-y: $gutter-small !default;
+
+jnt-user-menu[host=#{$jnt-user-menu-host}] {
+  display: block;
+}
+
+[item][child-of=#{$jnt-user-menu-host}]{
+  cursor: pointer;
+  padding: $user-menu-item-padding-x $user-menu-item-padding-y;
+  [text][child-of=#{$jnt-user-menu-host}] a[child-of=#{$jnt-user-menu-host}] {
+    color: $user-menu-item-color;
+  }
+  [icon][child-of=#{$jnt-user-menu-host}] {
+    color: $user-menu-item-icon-color;
+    margin-right: $user-menu-item-icon-gutter;
+  }
+}

@@ -1,0 +1,106 @@
+@import "../../assets/styles/variables";
+
+jnt-chart[host=#{$jnt-chart-host}] {
+  display: flex;
+  box-shadow: $shadow-normal;
+  border-radius: $corner-normal;
+  background-color: $secondary-background;
+}
+
+[wrapper][child-of=#{$jnt-chart-host}] {
+  flex: 1;
+
+  table[child-of=#{$jnt-chart-host}] {
+    border-spacing: 0;
+    width: 100%;
+    td[child-of=#{$jnt-chart-host}], th[child-of=#{$jnt-chart-host}] {
+      text-align: left;
+      vertical-align: middle;
+      padding: 0 $gutter-small;
+      &:first-child {
+        padding: 0 $gutter-large;
+      }
+    }
+    thead[child-of=#{$jnt-chart-host}] {
+      background-color: $secondary-background;
+      th[child-of=#{$jnt-chart-host}]:first-child {
+        border-top-left-radius: $corner-normal;
+      }
+      th[child-of=#{$jnt-chart-host}]:last-child {
+        border-top-right-radius: $corner-normal;
+      }
+    }
+    tbody[child-of=#{$jnt-chart-host}] {
+      tr[child-of=#{$jnt-chart-host}] {
+        cursor: pointer;
+        position: relative;
+        &:hover, &[selected='true'] {
+          td[child-of=#{$jnt-chart-host}] {
+            background-color: $secondary-background;
+          }
+        }
+        &:not(:last-child) {
+          td[child-of=#{$jnt-chart-host}]:not(:last-child) {
+            border-bottom: 1px solid $muted-color;
+          }
+        }
+        &:last-child {
+          td[child-of=#{$jnt-chart-host}]:first-child {
+            border-bottom-left-radius: $corner-normal;
+          }
+        }
+        &[nodata] {
+          height: 200px;
+          pointer-events: none;
+          border-bottom: 0;
+          td[child-of=#{$jnt-chart-host}] {
+            vertical-align: middle;
+            text-align: center;
+            [icon][child-of=#{$jnt-chart-host}] {
+              font-size: 80px;
+              color: $muted-color;
+            }
+          }
+          &:last-child {
+            td[child-of=#{$jnt-chart-host}]:last-child {
+              border-bottom-right-radius: $corner-normal;
+            }
+          }
+        }
+      }
+      td[child-of=#{$jnt-chart-host}] {
+        background-color: $primary-background;
+        box-sizing: border-box;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        min-width: 50px;
+        width: 50px;
+        max-width: 100px;
+        text-align: right;
+        user-select: none;
+        &:first-child {
+          text-align: left;
+          min-width: 150px;
+          width: 300px;
+        }
+        &:last-child {
+          color: $gray-900-color;
+          text-align: center;
+        }
+        [content][child-of=#{$jnt-chart-host}] {
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+svg[child-of=#{$jnt-chart-host}] {
+  background-color: $secondary-background;
+  border-top-right-radius: $corner-normal;
+  border-bottom-right-radius: $corner-normal;
+  text[child-of=#{$jnt-chart-host}] {
+    fill: $white-color;
+  }
+}

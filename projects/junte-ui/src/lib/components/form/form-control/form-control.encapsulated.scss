@@ -1,0 +1,11 @@
+@import "../../../assets/styles/variables";
+
+$form-control-inner-gutter: $gutter-tiny !default;
+
+jnt-form-control[host=#{$jnt-form-control-host}] {
+  display: flex;
+  flex-direction: column;
+  & > :not(:first-child) {
+    margin-top: $form-control-inner-gutter;
+  }
+}

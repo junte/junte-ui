@@ -1,0 +1,27 @@
+@import "../../../assets/styles/variables";
+@import "../common";
+
+$app-footer-background: $primary-dark-color !default;
+$app-footer-padding-x: 0 !default;
+$app-footer-padding-y: $gutter-big !default;
+$app-footer-z-index: 3 !default;
+$app-footer-color: $white-color !default;
+
+jnt-app-footer[host=#{$jnt-app-footer-host}] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  background-color: $app-footer-background;
+  padding: $app-footer-padding-x $app-footer-padding-y;
+  min-height: $app-footer-height;
+  color: $app-footer-color;
+  &[fixed = 'true'] {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $app-footer-z-index;
+  }
+}
