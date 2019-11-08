@@ -27,9 +27,6 @@
         </jnt-link>
         or higher 🚀
       </p>
-
-      <h3>Supported Browsers</h3>
-
       <p>Modern browsers and Internet Explorer 11+</p>
 
       <h3>Installation</h3>
@@ -43,14 +40,16 @@ npm install junte-ui --save
 ]]></pre>
       </ngx-prism>
 
-      <p>Once installed you need to import our main module</p>
+      <p>Once installed you need to import our main module.</p>
+      <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
+        application.</p>
       <ngx-prism language="js">
 <pre><![CDATA[
 import { JunteUiModule } from 'junte-ui';
 
 @NgModule({
   ...
-  imports: [ JunteUiModule, ... ],
+  imports: [ JunteUiModule, BrowserAnimationsModule, ... ],
   ...
  })
 
@@ -59,14 +58,14 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>Or you can import only modules of target components to decrease bundle size</p>
+      <p>Or you can import only modules of target components to decrease bundle size.</p>
       <ngx-prism language="js">
 <pre><![CDATA[
 import { IconModule } from 'junte-ui';
 
 @NgModule({
   ...
-  imports: [ IconModule, ... ],
+  imports: [ IconModule, BrowserAnimationsModule, ... ],
   ...
  })
 
@@ -75,23 +74,6 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
-        application</p>
-
-      <ngx-prism language="js">
-<pre><![CDATA[
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-@NgModule({
-  ...
-  imports: [ BrowserAnimationsModule, ... ],
-  ...
- })
-
-export class AppModule {
-}
-]]></pre>
-    </ngx-prism>
 
       <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
         means you have full control over styles, you can customize, build, switch themes or customize components in the
