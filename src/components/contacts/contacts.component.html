@@ -1,7 +1,49 @@
 <jnt-app-content>
   <jnt-app-body>
     <jnt-container>
-      Contacts works!
+      <p>We love❤️ everybody who helps us create better products.
+        Please offer your merge requests
+        <jnt-link source="https://gitlab.com/junte/junte-ui/merge_requests"
+                  [icon]="ui.icons.externalLink"
+                  [outline]="ui.outline.ghost"
+                  target="_blank"
+                  title="here"></jnt-link>
+      </p>
+      <p>We always search frontend developers or designers to our team.
+        Please,
+        <jnt-link source="mailto:tech@junte.it"
+                  title="contact us"
+                  [icon]="ui.icons.mail"
+                  [outline]="ui.outline.ghost"></jnt-link>
+        for interesting job together!
+      </p>
+      <h2>Our team</h2>
+      <jnt-stack>
+        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-avatar image="assets/image/contributors/selezneva.jpg"></jnt-avatar>
+          <div><h3>Julia Selezneva</h3>
+            <small>Chief markup master</small>
+          </div>
+        </jnt-stack>
+        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-avatar></jnt-avatar>
+          <div>Anton Breslavsky<br>
+            <small>Frontend Expert</small>
+          </div>
+        </jnt-stack>
+        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-avatar></jnt-avatar>
+          <div>Roman Gromov<br>
+            <small>Frontend Developer</small>
+          </div>
+        </jnt-stack>
+        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-avatar></jnt-avatar>
+          <div>Dmitri Yashin<br>
+            <small>Figma Master</small>
+          </div>
+        </jnt-stack>
+      </jnt-stack>
     </jnt-container>
   </jnt-app-body>
   <app-footer #footer></app-footer>
