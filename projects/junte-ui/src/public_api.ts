@@ -3,7 +3,7 @@
  */
 
 export * from './lib/enum/ui';
-export * from './lib/utils/form';
+export * from './lib/utils/public_api';
 export * from './lib/models/table';
 
 export * from './lib/public_api';

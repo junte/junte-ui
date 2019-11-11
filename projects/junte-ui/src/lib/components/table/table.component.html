@@ -1,4 +1,4 @@
-<form [formGroup]="filterForm">
+<form [formGroup]="form">
   <jnt-stack [align]="ui.flex.align.stretch">
     <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
                [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
@@ -38,8 +38,8 @@
                 (click)="column.sort ? sorting(column.sort) : null">
         <span>
           {{column.title}}
-          <i *ngIf="!!sort && (sort.value === '-' + column.sort || sort.value === column.sort)"
-             [innerHTML]="(sort.value === column.sort) ? '&#8593;' : '&#8595;'"></i>
+          <i *ngIf="!!orderBy.value && (orderBy.value === '-' + column.sort || orderBy.value === column.sort)"
+             [innerHTML]="(orderBy.value === column.sort) ? '&#8593;' : '&#8595;'"></i>
         </span>
             </th>
           </tr>
@@ -84,10 +84,10 @@
         </table>
       </div>
 
-      <ng-container *ngIf="count">
+      <ng-container *ngIf="pagesCount > 1">
         <div pagination>
           <jnt-pagination [pagesCount]="pagesCount" formControlName="page" pages></jnt-pagination>
-          <jnt-page-size formControlName="first" page-size></jnt-page-size>
+          <jnt-page-size formControlName="pageSize" page-size></jnt-page-size>
         </div>
       </ng-container>
     </jnt-stack>
