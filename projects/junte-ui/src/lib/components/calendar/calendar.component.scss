@@ -118,6 +118,7 @@ tbody {
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
       user-select: none;
+      padding: 0;
       [default] {
         padding: $calendar-day-default-padding-x $calendar-day-default-padding-y;
       }
@@ -142,8 +143,10 @@ tbody {
           outline: 1px solid $primary-light-color;
         }
         &[current-day='true'] {
-          background-color: $calendar-current-day-background;
-          color: $calendar-current-day-color;
+          [default] {
+            background-color: $calendar-current-day-background;
+            color: $calendar-current-day-color;
+          }
         }
       }
     }
