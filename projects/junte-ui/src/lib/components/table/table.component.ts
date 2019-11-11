@@ -3,6 +3,7 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
+  forwardRef,
   HostBinding,
   Input,
   OnDestroy,
@@ -11,37 +12,48 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
-import { TableFeatures, UI } from '../../enum/ui';
-import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SearchFilter } from '../../models/table';
-import { Subscriptions } from '../../utils/subscriptions';
-import { TableColumnComponent } from './column/table-column.component';
+import {ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {debounceTime, distinctUntilChanged, filter as filtering, finalize} from 'rxjs/operators';
+import {TableFeatures, UI} from '../../enum/ui';
+import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter} from '../../models/table';
+import {isEqual} from '../../utils/equal';
+import {Subscriptions} from '../../utils/subscriptions';
+import {TableColumnComponent} from './column/table-column.component';
 
 const FILTER_DELAY = 500;
 
 @Component({
   selector: 'jnt-table',
-  templateUrl: './table.encapsulated.html'
+  templateUrl: './table.encapsulated.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TableComponent),
+      multi: true
+    }
+  ]
 })
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
-  ui = UI;
-
-  private _count: number;
+  private count: number;
   private subscriptions = new Subscriptions();
 
+  ui = UI;
   progress = {loading: false};
+  source: any[] = [];
+  q = new FormControl(null);
+  orderBy = new FormControl(null);
+  pageSize = new FormControl(DEFAULT_FIRST);
+  page = new FormControl((DEFAULT_OFFSET / DEFAULT_FIRST) + 1);
+
+  form = this.builder.group({
+    q: this.q,
+    orderBy: this.orderBy,
+    page: this.page,
+    pageSize: this.pageSize
+  });
 
   @HostBinding('attr.host') readonly host = 'jnt-table-host';
-
-  filterForm: FormGroup;
-  sort: FormControl;
-  page: FormControl;
-  offset: FormControl;
-  first: FormControl;
-
-  source: any[] = [];
 
   @ContentChildren(TableColumnComponent)
   columns: QueryList<TableColumnComponent>;
@@ -59,76 +71,73 @@ export class TableComponent implements OnInit, OnDestroy {
   filtersTemplate: TemplateRef<any>;
 
   @HostBinding('attr.features')
-  @Input()
-  features: TableFeatures[] = [];
+  @Input() features: TableFeatures[] = [];
 
-  @Input()
-  filter: SearchFilter = new DefaultSearchFilter({
-    offset: 0,
-    first: DEFAULT_PAGE_SIZE
-  });
-
-  @Input()
-  fetcher: Function;
-
+  @Input() fetcher: Function;
   @Output() reloaded = new EventEmitter<any>();
 
-  set count(count: number) {
-    this._count = count;
-  }
-
-  get count() {
-    return this._count;
-  }
-
   get pagesCount() {
-    return Math.ceil(this.count / this.filterForm.get('first').value);
+    return Math.ceil(this.count / this.pageSize.value);
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private builder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.sort = this.formBuilder.control(null);
-    this.first = this.formBuilder.control(DEFAULT_PAGE_SIZE);
-    this.offset = this.formBuilder.control(0);
-    this.page = this.formBuilder.control(((+this.offset.value / +this.first.value) + 1));
-    this.filterForm = this.formBuilder.group({
-      orderBy: this.sort,
-      q: [''],
-      offset: this.offset,
-      page: this.page,
-      first: this.first
-    });
-
-    this.filterForm.valueChanges.pipe(filtering(() => !!this.fetcher), debounceTime(FILTER_DELAY))
-      .subscribe(filter => {
-        if (filter.first !== this.filter.first) {
-          filter.page = 1;
-        }
-        filter.offset = (filter.page - 1) * filter.first;
-        Object.assign(this.filter, filter);
-        this.load();
+    this.form.valueChanges.pipe(
+      filtering(() => !!this.fetcher),
+      debounceTime(FILTER_DELAY),
+      distinctUntilChanged((val1, val2) => isEqual(val1, val2))
+    ).subscribe(state => {
+      this.onChange({
+        q: state.q,
+        sort: state.sort,
+        first: state.pageSize,
+        offset: (state.page - 1) * state.pageSize
       });
-  }
-
-  load() {
-    this.progress.loading = true;
-    this.subscriptions.push('rows', this.fetcher(this.filter)
-      .pipe(finalize(() => this.progress.loading = false))
-      .subscribe(resp => {
-        this.source = resp.results;
-        this.count = resp.count;
-      }));
+    });
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
-  sorting(sort: string) {
-    this.filterForm.patchValue({
-      orderBy: this.sort.value === sort ? `-${sort}` : sort
+  load(filter = this.form.getRawValue()) {
+    if (!!this.fetcher) {
+      this.progress.loading = true;
+      this.subscriptions.push('rows', this.fetcher(filter)
+        .pipe(finalize(() => this.progress.loading = false))
+        .subscribe(resp => {
+          this.source = resp.results;
+          this.count = resp.count;
+        }));
+    }
+  }
+
+  sorting(field: string) {
+    this.orderBy.setValue(this.orderBy.value === field ? `-${field}` : field);
+  }
+
+  writeValue({q, orderBy, first, offset}: DefaultSearchFilter) {
+    this.form.patchValue({
+      q,
+      orderBy,
+      pageSize: first,
+      page: Math.floor(offset / first) + 1
     });
+  }
+
+  onChange(filter: DefaultSearchFilter) {
+  }
+
+  onTouched() {
+  }
+
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
   }
 }

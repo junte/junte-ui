@@ -1,8 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SelectMode, TableComponent, UI } from 'junte-ui';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, isEqual, TableComponent, UI} from 'junte-ui';
+import {Observable, of} from 'rxjs';
+import {delay, distinctUntilChanged, tap} from 'rxjs/operators';
+import merge from 'merge-anything';
+import {defined} from '../../../../projects/junte-ui/src/lib/utils/defined';
+import {fake} from 'faker';
+
+const DEFAULT_DELAY = 1000;
+
+class Filter extends DefaultSearchFilter {
+  job?: string;
+}
 
 @Component({
   selector: 'app-table-test',
@@ -13,56 +23,92 @@ export class TableTestComponent implements OnInit {
 
   ui = UI;
 
-  form: FormGroup;
-  selectMode = SelectMode;
-  options: any[] = [
-    {value: 1, label: 'PFC CSKA Moscow'},
-    {value: 2, label: 'FC Real Madrid'},
-    {value: 3, label: 'FC Manchester United'}
-  ];
-  ajaxOptions: any[] = [
-    {value: 4, label: 'FC Manchester City'},
-    {value: 5, label: 'FC Liverpool'},
-    {value: 6, label: 'FC Barcelona'}
-  ];
-
-  filter: DefaultSearchFilter = new DefaultSearchFilter({offset: 0, first: DEFAULT_PAGE_SIZE});
+  form = this.builder.group({
+    table: [{
+      q: null,
+      sort: null,
+      first: DEFAULT_FIRST,
+      offset: DEFAULT_OFFSET
+    }],
+    job: []
+  });
 
   @ViewChild('table', {static: true})
   table: TableComponent;
 
-  data: any = {
-    results: [
-      {value: 'Value 1', label: 'Label 1'},
-      {value: 'Value 2', label: 'Label 2'},
-      {value: 'Value 3', label: 'Label 3'},
-      {value: 'Value 4', label: 'Label 4'},
-      {value: 'Value 5', label: 'Label 5'},
-      {value: 'Value 6', label: 'Label 6'},
-      {value: 'Value 7', label: 'Label 7'},
-      {value: 'Value 8', label: 'Label 8'},
-      {value: 'Value 9', label: 'Label 9'},
-      {value: 'Value 10', label: 'Label 10'}
-    ],
-    count: 12
-  };
+  mocks = (() => {
+    const data = [];
+    for (let i = 0; i < Math.random() * (300 - 50) + 50; i++) {
+      data.push({
+        id: i + 1,
+        person: fake('{{name.firstName}} {{name.lastName}}'),
+        job: fake('{{name.jobArea}}')
+      });
+    }
+    return data;
+  })();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private builder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.table.fetcher = (): Observable<any> => of(this.data).pipe(delay(2000));
-    this.table.load();
+    this.table.fetcher = (): Observable<any> => {
+      const {table, job} = this.form.getRawValue();
+      const filter: Filter = {...table, job};
+      console.log(filter);
 
-    this.form = this.fb.group({
-      select: this.fb.control([1, 3]),
-      selectAjax: this.fb.control([])
+      let results = this.mocks;
+      if (!!filter.q) {
+        results = results.filter(({person}) => person.indexOf(filter.q) !== -1);
+      }
+
+      return of({
+        results: results.slice(filter.offset, filter.offset + filter.first),
+        count: this.mocks.length
+      }).pipe(delay(DEFAULT_DELAY));
+    };
+
+    this.form.valueChanges.pipe(distinctUntilChanged((val1, val2) => isEqual(val1, val2)),
+      tap(({table: {offset, first, q}, job}) => this.save({offset, first, q, job})))
+      .subscribe(() => this.table.load());
+
+    this.route.params.subscribe(({q, sort, first, offset, job}) => {
+      const filter = merge({extensions: [defined]},
+        this.form.getRawValue(), {table: {q, sort, first, offset}, job});
+      this.form.patchValue(filter);
     });
-    this.form.valueChanges.subscribe(c => console.log(c));
   }
 
-  loadOptions() {
-    return (): Observable<any> => of(this.ajaxOptions).pipe(delay(2000));
+  save(filter: Filter) {
+    const state: { q?, sort?, first?, offset?, job? } = {};
+    if (filter.offset !== DEFAULT_OFFSET) {
+      state.offset = filter.offset;
+    }
+    if (filter.first !== DEFAULT_FIRST) {
+      state.first = filter.first;
+    }
+
+    if (!!filter.q) {
+      state.q = filter.q;
+    }
+
+    if (!!filter.job) {
+      state.job = filter.job;
+    }
+
+    this.router.navigate([state], {
+      relativeTo: this.route
+    }).then(() => null);
+  }
+
+  loadJobs() {
+    return (): Observable<any> => of([
+      {value: 1, label: 'PFC CSKA Moscow'},
+      {value: 2, label: 'FC Real Madrid'},
+      {value: 3, label: 'FC Manchester United'}
+    ]).pipe(delay(DEFAULT_DELAY));
   }
 
   edit() {

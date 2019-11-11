@@ -23,34 +23,42 @@
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-form [formGroup]="form">
-    <jnt-table [filter]="filter" #table [features]="[ui.table.features.search]">
-      <jnt-table-column title="Label" sort="label">
-        <ng-template #cellTemplate let-label="label">
-          {{label}}
-        </ng-template>
-      </jnt-table-column>
+      <jnt-stack [type]="ui.stack.type.vertical" [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+        <jnt-table #table [features]="[ui.table.features.search]" formControlName="table">
+          <jnt-table-column title="#" sort="id">
+            <ng-template #cellTemplate let-id="id">
+              {{id}}
+            </ng-template>
+          </jnt-table-column>
 
-      <jnt-table-column title="Value" sort="value">
-        <ng-template #cellTemplate let-value="value">
-          {{value}}
-        </ng-template>
-      </jnt-table-column>
+          <jnt-table-column title="Person" sort="person">
+            <ng-template #cellTemplate let-person="person">
+              {{person}}
+            </ng-template>
+          </jnt-table-column>
 
-      <ng-template #rowActions let-row="row">
-        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.gutter.small">
-          <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
-          <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-      <ng-template #filters>
-          <jnt-select valueField="value"
-                      labelField="label"
-                      [loadOptions]="loadOptions()"
-                      placeholder="Single select"
-                      formControlName="selectAjax" label="Filter">
-          </jnt-select>
-      </ng-template>
-    </jnt-table>
+          <jnt-table-column title="Job" sort="job">
+            <ng-template #cellTemplate let-job="job">
+              {{job}}
+            </ng-template>
+          </jnt-table-column>
+
+          <ng-template #rowActions let-row="row">
+            <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+              <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
+              <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
+            </jnt-menu>
+          </ng-template>
+          <ng-template #filters>
+            <jnt-select valueField="value"
+                        labelField="label"
+                        [loadOptions]="loadJobs()"
+                        placeholder="Select job"
+                        formControlName="job" label="Job">
+            </jnt-select>
+          </ng-template>
+        </jnt-table>
+      </jnt-stack>
     </jnt-form>
   </jnt-block>
 
@@ -65,7 +73,7 @@
         <ng-template #cellTemplate let-value="value">value</ng-template>
     </jnt-table-column>
      <ng-template #rowActions let-row="row">
-          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.gutter.small">
+          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
             <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
             <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
           </jnt-menu>
