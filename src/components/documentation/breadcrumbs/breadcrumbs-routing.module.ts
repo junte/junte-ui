@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
-import { BreadcrumbResolver } from 'src/components/documentation/breadcrumbs/resolver';
+import { BreadcrumbResolver } from './resolver';
 import { BreadCrumbTest1Component } from './tests/test.component';
 import { BreadCrumbTest2Component } from './tests/test2.component';
 
