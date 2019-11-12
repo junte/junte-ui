@@ -25,6 +25,23 @@
 <jnt-breadcrumb></jnt-breadcrumb>
 ]]></pre>
   </ngx-prism>
+
+  <p>For using Breadcrumbs you need to import <code>RouterModule</code></p>
+  <ngx-prism language="js">
+<pre><![CDATA[
+import { RouterModule } from '@angular/router';
+
+@NgModule({
+  ...
+  imports: [ RouterModule.forRoot([]), ... ],
+  ...
+ })
+
+export class AppModule {
+}
+]]></pre>
+  </ngx-prism>
+
   <p>To each <jnt-label label="route" [color]="ui.colors.orange"></jnt-label> in the property data, you need to add the object <jnt-label label="breadcrumb" [color]="ui.colors.orange"></jnt-label>, in which you need to specify the
     label:</p>
   <ngx-prism language="js">
