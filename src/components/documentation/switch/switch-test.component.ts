@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-switch-test',

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DEFAULT_PAGE_SIZE, DefaultSearchFilter, SelectMode, TableComponent, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { SelectMode, UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
+import { DEFAULT_PAGE_SIZE, DefaultSearchFilter } from '../../../../projects/junte-ui/src/lib/models/table';
+import { TableComponent } from '../../../../projects/junte-ui/src/lib/components/table/table.component';
 
 @Component({
   selector: 'app-table-test',

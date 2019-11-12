@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UI } from 'junte-ui';
 import { FormBuilder } from '@angular/forms';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-input-test',

@@ -1,8 +1,8 @@
+///<reference path="../../../projects/junte-ui/src/lib/junte-ui.module.ts"/>
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { JunteUiModule } from 'junte-ui';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -44,6 +44,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
 import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
+import { JunteUiModule } from '../../../projects/junte-ui/src/lib/junte-ui.module';
 
 @NgModule({
   imports: [

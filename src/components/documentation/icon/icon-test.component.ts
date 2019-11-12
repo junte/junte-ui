@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimatedIcons, FontDefaultIcons, FontGesturesIcons, FontIcons, SvgIcons, UI } from 'junte-ui';
+import { AnimatedIcons, FontDefaultIcons, FontGesturesIcons, FontIcons, SvgIcons, UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 class IconTest {
   constructor(public name: string,

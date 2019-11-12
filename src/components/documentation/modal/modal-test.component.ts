@@ -1,6 +1,8 @@
 import { Component, ComponentFactoryResolver, Injector, TemplateRef, ViewChild } from '@angular/core';
-import { ModalOptions, ModalService, UI } from 'junte-ui';
 import { ModalTestFactoryComponent } from './test.component';
+import { UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
+import { ModalService } from '../../../../projects/junte-ui/src/lib/components/modal/modal.service';
+import { ModalOptions } from '../../../../projects/junte-ui/src/lib/components/modal/modal.component';
 
 @Component({
   selector: 'app-modal-test',

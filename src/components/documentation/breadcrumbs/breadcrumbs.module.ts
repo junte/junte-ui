@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { BreadcrumbsTestComponent } from 'src/components/documentation/breadcrumbs/breadcrumbs-test.component';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbsRoutingModule } from 'src/components/documentation/breadcrumbs/breadcrumbs-routing.module';
-import { JunteUiModule } from 'junte-ui';
 import { PrismModule } from '@ngx-prism/core';
 import { BreadcrumbResolver } from './resolver';
 import { BreadCrumbTest2Component } from './tests/test2.component';
+import { JunteUiModule } from '../../../../projects/junte-ui/src/lib/junte-ui.module';
 
 
 @NgModule({

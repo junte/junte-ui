@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { GanttRequestStatuses, UI } from 'junte-ui';
 import { REQUESTS } from './requests';
+import { GanttRequestStatuses, UI } from '../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-gantt-test',

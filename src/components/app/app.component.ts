@@ -1,6 +1,10 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ModalComponent, ModalService, PopoverComponent, PopoverService, Themes, UI } from 'junte-ui';
+import { Themes, UI } from '../../../projects/junte-ui/src/lib/enum/ui';
+import { PopoverComponent } from '../../../projects/junte-ui/src/lib/components/popover/popover.component';
+import { ModalComponent } from '../../../projects/junte-ui/src/lib/components/modal/modal.component';
+import { ModalService } from '../../../projects/junte-ui/src/lib/components/modal/modal.service';
+import { PopoverService } from '../../../projects/junte-ui/src/lib/components/popover/popover.service';
 
 @Component({
   selector: 'app-root',
