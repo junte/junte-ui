@@ -149,7 +149,8 @@ export class SamePipe implements PipeTransform {
 @Pipe({name: 'dateDiff'})
 export class DateDiffPipe implements PipeTransform {
   transform(date1: Date, date2: Date, base: string = 'days'): number {
-    return getDifference(date1, date2, base);
+    const days = getDifference(date1, date2, base);
+    return days + (days >= 0 ? 1 : -1);
   }
 }
 

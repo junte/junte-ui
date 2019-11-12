@@ -17,7 +17,7 @@
   <div *ngIf="(!!end && !start && current >= end) || (!!start && !end && current > start)" progress full></div>
 </div>
 
-<div *ngIf="!!start && !!end && (end | dateDiff:start:base)" days>
+<div *ngIf="!!start && !!end" days>
   {{end | dateDiff:start:base}} {{base}}
 </div>
 
