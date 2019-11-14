@@ -17,8 +17,8 @@ export class ModalService {
     }
   }
 
-  open(content: ModalContent, footer?: TemplateRef<any>, options?: ModalOptions) {
-    this.modal.open(content, footer, options);
+  open(content: ModalContent, options?: ModalOptions) {
+    this.modal.open(content, options);
   }
 
   close() {
