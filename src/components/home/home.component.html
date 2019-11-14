@@ -55,7 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  })
 
 export class AppModule {
-}
+  }
 ]]></pre>
       </ngx-prism>
 
@@ -72,41 +72,41 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  })
 
 export class AppModule {
-}
-]]></pre>
+    }
+      ]]></pre>
       </ngx-prism>
 
 
       <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
-        means you have full control over styles, you can customize, build, switch themes or customize components in the
-        context!</p>
+      means you have full control over styles, you can customize, build, switch themes or customize components in the
+      context!</p>
       <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
       <ngx-prism language="js">
-        <pre><![CDATA[
-{
-  ...
-  "projects": {
-    "architect": {
+      <pre><![CDATA[
+      {
+      ...
+      "projects": {
+      "architect": {
       "build": {
-        "options": {
-          "assets": [
-          {
-          "glob": "**/*",
-          "input": "node_modules/junte-ui/lib/assets/fonts/icons/",
-          "output": "./assets/fonts/icons/"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/junte-ui/lib/assets/icons/animated/",
-            "output": "./assets/icons/animated/"
-          },
-          {
-            "glob": "**/*",
-              "input": "node_modules/junte-ui/lib/assets/icons/svg/",
-              "output": "./assets/icons/svg/"
-            }
-          ],
+      "options": {
+      "assets": [
+      {
+      "glob": "**/*",
+      "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
+      "output": "./assets/fonts/icons/"
+      },
+    {
+      "glob": "**/*",
+      "input": "node_modules/junte-ui/lib/assets/icons/animated/",
+      "output": "./assets/icons/animated/"
+    },
+    {
+      "glob": "**/*",
+        "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+        "output": "./assets/icons/svg/"
+      }
+    ],
           "styles": [
             "src/styles.scss",
             "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
@@ -128,11 +128,18 @@ export class AppModule {
 ]]></pre>
       </ngx-prism>
 
-      <p>If you need all the components, only import the file <code>components.scss</code></p>
+      <p>If you need styles of all the components import the file <code>components.scss</code></p>
 
       <ngx-prism language="js">
 <pre><![CDATA[
 @import "~junte-ui/lib/assets/styles/components";
+]]></pre>
+      </ngx-prism>
+      <p>If you need common styles import the file <code>common.scss</code></p>
+
+      <ngx-prism language="js">
+<pre><![CDATA[
+@import "~junte-ui/lib/assets/styles/common";
 ]]></pre>
       </ngx-prism>
 
