@@ -29,9 +29,10 @@ export class ModalTestComponent {
         text: 'Login',
         icon: 'settings:animated:default'
       },
-      maxWidth: '400px'
+      maxWidth: '400px',
+      footer: this.footer
     });
-    this.modalService.open(this.content, this.footer, options);
+    this.modalService.open(this.content, options);
   }
 
 
@@ -43,9 +44,10 @@ export class ModalTestComponent {
         icon: UI.icons.calendar
       },
       maxHeight: '1024px',
-      maxWidth: '400px'
+      maxWidth: '400px',
+      footer: this.footer
     });
-    this.modalService.open(component, this.footer, options);
+    this.modalService.open(component, options);
   }
 
   close() {

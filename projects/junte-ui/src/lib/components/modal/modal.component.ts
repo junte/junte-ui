@@ -26,10 +26,12 @@ interface ModalTitle {
 }
 
 export class ModalOptions {
+
   maxWidth = '800px';
   maxHeight = '705px';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
+  footer?: TemplateRef<any>;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -37,7 +39,6 @@ export class ModalOptions {
 }
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;
-export type ModalFooter = TemplateRef<any>;
 
 enum BackdropFilter {
   none = 'none',
@@ -60,12 +61,10 @@ export class ModalComponent implements AfterViewInit {
   ui = UI;
   closing = ModalClosingOption;
 
-  private _footer: ModalFooter;
   private _opened: boolean;
   private modal: HTMLElement;
 
   contentTemplate: TemplateRef<any>;
-  footerTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
 
   @ViewChild('container', {read: ViewContainerRef, static: false}) container;
@@ -80,18 +79,6 @@ export class ModalComponent implements AfterViewInit {
       this.container.insert(content.hostView, 0);
     }
     this.cdr.detectChanges();
-  }
-
-  set footer(footer: ModalFooter) {
-    this.footerTemplate = null;
-    if (footer instanceof TemplateRef) {
-      this.footerTemplate = footer;
-    }
-    this.cdr.detectChanges();
-  }
-
-  get footer() {
-    return this._footer;
   }
 
   @HostBinding('style.display')
@@ -131,13 +118,12 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
-  open(content: ModalContent, footer?: TemplateRef<any>, options?: ModalOptions) {
+  open(content: ModalContent, options?: ModalOptions) {
     if (!!options) {
       this.options = options;
       this.cdr.detectChanges();
     }
     this.content = content;
-    this.footer = footer;
     this.setBackdropFilter(BackdropFilter.blur);
     this.opened = true;
     this.cdr.detectChanges();
