@@ -18,32 +18,40 @@
         for interesting job together!
       </p>
       <h2>Our team</h2>
-      <jnt-stack>
-        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-          <jnt-avatar image="assets/image/contributors/selezneva.jpg"></jnt-avatar>
-          <div><h3>Julia Selezneva</h3>
-            <small>Chief markup master</small>
-          </div>
-        </jnt-stack>
-        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-          <jnt-avatar></jnt-avatar>
-          <div>Anton Breslavsky<br>
-            <small>Frontend Expert</small>
-          </div>
-        </jnt-stack>
-        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-          <jnt-avatar></jnt-avatar>
-          <div>Roman Gromov<br>
-            <small>Frontend Developer</small>
-          </div>
-        </jnt-stack>
-        <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-          <jnt-avatar></jnt-avatar>
-          <div>Dmitri Yashin<br>
-            <small>Figma Master</small>
-          </div>
-        </jnt-stack>
-      </jnt-stack>
+      <jnt-row>
+        <jnt-col [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3" team>
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/image/contributors/selezneva.jpg"></jnt-avatar>
+            <jnt-stack [gutter]="ui.gutter.tiny">
+              <div>Julia Selezneva</div>
+              <small>Chief markup master</small>
+            </jnt-stack>
+          </jnt-stack>
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/image/contributors/breslavsky.jpg"></jnt-avatar>
+            <jnt-stack [gutter]="ui.gutter.tiny">
+              <div>Anton Breslavsky</div>
+              <small>Frontend Expert</small>
+            </jnt-stack>
+          </jnt-stack>
+        </jnt-col>
+        <jnt-col [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3" team>
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/image/contributors/gromov.jpg"></jnt-avatar>
+            <jnt-stack [gutter]="ui.gutter.tiny">
+              <div>Roman Gromov</div>
+              <small>Frontend Developer</small>
+            </jnt-stack>
+          </jnt-stack>
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/image/contributors/yashin.jpg"></jnt-avatar>
+            <jnt-stack [gutter]="ui.gutter.tiny">
+              <div>Dmitri Yashin</div>
+              <small>Figma Master</small>
+            </jnt-stack>
+          </jnt-stack>
+        </jnt-col>
+      </jnt-row>
     </jnt-container>
   </jnt-app-body>
   <app-footer #footer></app-footer>

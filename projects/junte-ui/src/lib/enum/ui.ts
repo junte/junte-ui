@@ -84,7 +84,9 @@ export enum FontDefaultIcons {
   overlays = 'overlays',
   charts = 'charts',
   crown = 'crown',
-  direction = 'direction'
+  direction = 'direction',
+  beaker = 'beaker',
+  mailbox = 'mailbox'
 
   // query = 'query',
   // facebook = 'facebook',
@@ -512,6 +514,8 @@ class ShortIcons {
     fingersScrollLeft2: FontIcons.fingersScrollLeft2 + ':font:junte-ui-gestures',
     fingersScrollRight2: FontIcons.fingersScrollRight2 + ':font:junte-ui-gestures',
     fingersScrollVertical3: FontIcons.fingersScrollVertical3 + ':font:junte-ui-gestures',
+    beaker: FontIcons.beaker + ':font',
+    mailbox: FontIcons.mailbox + ':font',
     // qrCode: FontIcons.qrCode + ':font',
     // query: FontIcons.query + ':font',
     // facebook: FontIcons.facebook + ':font',
