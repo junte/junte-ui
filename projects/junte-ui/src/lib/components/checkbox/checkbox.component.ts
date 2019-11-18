@@ -1,22 +1,28 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/core';
 import { Sizes, UI } from '../../enum/ui';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'jnt-checkbox',
-  templateUrl: './checkbox.encapsulated.html'
+  templateUrl: './checkbox.encapsulated.html',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => CheckboxComponent),
+    multi: true
+  }]
 })
-export class CheckboxComponent {
-
-  @HostBinding('attr.host') readonly host = 'jnt-checkbox-host';
+export class CheckboxComponent implements ControlValueAccessor {
 
   ui = UI;
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-checkbox-host';
 
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
 
   @HostBinding('attr.checked')
-  @Input()
   checked = false;
 
   @HostBinding('attr.label')
@@ -29,11 +35,27 @@ export class CheckboxComponent {
 
   @Input() value: any;
 
-  constructor(private element: ElementRef) {
+  constructor(public element: ElementRef) {
   }
 
-  getElement() {
-    return this.element.nativeElement;
+  onChange(value: any) {
+  }
+
+  onTouched() {
+  }
+
+  writeValue(value: any) {
+    if (!!value) {
+      this.checked = value;
+    }
+  }
+
+  registerOnChange(fn) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn) {
+    this.onTouched = fn;
   }
 
 }

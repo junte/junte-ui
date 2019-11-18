@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox-test',
@@ -7,7 +8,22 @@ import { UI } from 'junte-ui';
   styleUrls: ['./checkbox-test.component.scss']
 })
 export class CheckboxTestComponent {
-  ui = UI;
 
-  selected = [2, 3];
+  ui = UI;
+  checkboxControl = new FormControl(true);
+
+  acceptForm = this.fb.group({
+    checkbox: this.checkboxControl
+  });
+
+  value = ['Bob', 'Tom'];
+  userGroupControl = new FormControl(this.value);
+
+  userGroup = this.fb.group({
+    userGroup: this.userGroupControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+
 }
