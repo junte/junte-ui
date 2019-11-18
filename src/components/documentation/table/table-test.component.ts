@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, isEqual, TableComponent, UI} from 'junte-ui';
+import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, isEqual, TableComponent, UI, defined} from 'junte-ui';
 import {Observable, of} from 'rxjs';
 import {delay, distinctUntilChanged, tap} from 'rxjs/operators';
 import merge from 'merge-anything';
-import {defined} from '../../../../projects/junte-ui/src/lib/utils/defined';
 import {fake} from 'faker';
 
 const DEFAULT_DELAY = 1000;
