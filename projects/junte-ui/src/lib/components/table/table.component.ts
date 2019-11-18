@@ -91,7 +91,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     ).subscribe(state => {
       this.onChange({
         q: state.q,
-        sort: state.sort,
+        sort: state.orderBy,
         first: state.pageSize,
         offset: (state.page - 1) * state.pageSize
       });
@@ -118,10 +118,10 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     this.orderBy.setValue(this.orderBy.value === field ? `-${field}` : field);
   }
 
-  writeValue({q, orderBy, first, offset}: DefaultSearchFilter) {
+  writeValue({q, sort, first, offset}: DefaultSearchFilter) {
     this.form.patchValue({
       q,
-      orderBy,
+      orderBy: sort,
       pageSize: first,
       page: Math.floor(offset / first) + 1
     });

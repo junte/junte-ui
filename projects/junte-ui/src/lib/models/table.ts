@@ -2,7 +2,7 @@ export const DEFAULT_FIRST = 10;
 export const DEFAULT_OFFSET = 0;
 
 export interface SearchFilter {
-  orderBy?: string;
+  sort?: string;
   q?: string;
   offset?: number;
   first?: number;
@@ -10,7 +10,6 @@ export interface SearchFilter {
 
 export class DefaultSearchFilter implements SearchFilter {
 
-  orderBy?: string;
   q?: string;
   offset?: number;
   first?: number;
