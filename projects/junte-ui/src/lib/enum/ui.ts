@@ -92,7 +92,8 @@ export enum FontDefaultIcons {
   crown = 'crown',
   direction = 'direction',
   beaker = 'beaker',
-  mailbox = 'mailbox'
+  mailbox = 'mailbox',
+  email = 'email',
 
   // query = 'query',
   // facebook = 'facebook',
@@ -528,6 +529,7 @@ class ShortIcons {
     chevronRight: FontIcons.chevronRight + ':font',
     chevronUp: FontIcons.chevronUp + ':font',
     chevronDown: FontIcons.chevronDown + ':font',
+    email: FontIcons.email + ':font',
     // qrCode: FontIcons.qrCode + ':font',
     // query: FontIcons.query + ':font',
     // facebook: FontIcons.facebook + ':font',
