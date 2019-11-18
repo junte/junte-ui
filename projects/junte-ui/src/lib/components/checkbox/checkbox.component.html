@@ -1,3 +1,5 @@
-<input type="checkbox" [disabled]="disabled" [checked]="checked">
-<div switch><jnt-icon [icon]="ui.icons.check" icon></jnt-icon></div>
+<input type="checkbox" [disabled]="disabled" [checked]="checked" (change)="checked = !checked; onChange(checked)">
+<div switch>
+  <jnt-icon [icon]="ui.icons.check" icon></jnt-icon>
+</div>
 <label *ngIf="label">{{label}}</label>
