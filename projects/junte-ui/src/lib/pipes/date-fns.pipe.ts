@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
+  addDays,
   addMonths,
   differenceInDays,
   format,
@@ -11,6 +12,10 @@ import {
   isEqual,
   isSameMonth,
   isSameYear,
+  isToday,
+  isWeekend,
+  setDate,
+  startOfDay,
   subMonths
 } from 'date-fns';
 
@@ -158,5 +163,53 @@ export class DateDiffPipe implements PipeTransform {
 export class DiffDayPipe implements PipeTransform {
   transform(from: Date, to: Date): number {
     return getDifference(from, to);
+  }
+}
+
+@Pipe({name: 'isWeekend'})
+export class IsWeekendPipe implements PipeTransform {
+  transform(date: Date): boolean {
+    return isWeekend(date);
+  }
+}
+
+@Pipe({name: 'setDate'})
+export class SetDatePipe implements PipeTransform {
+  transform(date: Date, dayOfMonth: number): Date {
+    return setDate(date, dayOfMonth);
+  }
+}
+
+@Pipe({name: 'addDays'})
+export class AddDaysPipe implements PipeTransform {
+  transform(date: Date, amount: number): Date {
+    return addDays(date, amount);
+  }
+}
+
+@Pipe({name: 'startOfDay'})
+export class StartOfDayPipe implements PipeTransform {
+  transform(date: Date): Date {
+    return startOfDay(date);
+  }
+}
+
+@Pipe({name: 'isToday'})
+export class IsTodayPipe implements PipeTransform {
+  transform(date: Date): boolean {
+    return isToday(date);
+  }
+}
+
+@Pipe({name: 'datesInMonth'})
+export class DatesInMonthPipe implements PipeTransform {
+  transform(date: Date): Date[] {
+    const first = setDate(date, 1);
+    const days = getDaysInMonth(date);
+    const dates = [];
+    for (let i = 0; i < days; i++) {
+      dates.push(addDays(first, i));
+    }
+    return dates;
   }
 }
