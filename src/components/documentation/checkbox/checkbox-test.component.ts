@@ -16,8 +16,7 @@ export class CheckboxTestComponent {
     checkbox: this.checkboxControl
   });
 
-  value = ['Bob', 'Tom'];
-  userGroupControl = new FormControl(this.value);
+  userGroupControl = new FormControl(['Bob', 'Tom']);
 
   userGroup = this.fb.group({
     userGroup: this.userGroupControl
