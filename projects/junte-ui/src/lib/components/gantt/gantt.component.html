@@ -21,9 +21,10 @@
   <tr timeline>
     <td gutter></td>
     <td>{{title || ''}}</td>
-    <td day [attr.current]="(day === (today | getDate)) && (current | isSameMonth: today)"
-        *ngFor="let day of (current | getDaysInMonth) | numberArray: 1">
-      {{day}}
+    <td day *ngFor="let day of (current | datesInMonth)"
+        [attr.current]="day | isToday"
+        [attr.weekend]="day | isWeekend">
+      {{day | getDate}}
     </td>
   </tr>
   </thead>
