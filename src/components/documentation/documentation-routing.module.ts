@@ -38,6 +38,7 @@ import { TabsTestComponent } from './tabs/tabs-test.component';
 import { ThemingComponent } from './theming/theming.component';
 import { TypographyTestComponent } from './typography/typography-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
+import { KanbanTestComponent } from './kanban/kanban-test.component';
 
 
 export const routes: Routes = [
@@ -240,6 +241,11 @@ export const routes: Routes = [
         path: 'date-period',
         component: DatePeriodTestComponent,
         data: {breadcrumb: 'Date period'}
+      },
+      {
+        path: 'kanban',
+        component: KanbanTestComponent,
+        data: {breadcrumb: 'Kanban'}
       }
     ]
   }

@@ -44,6 +44,7 @@ import { TypographyTestComponent } from './typography/typography-test.component'
 import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
+import { KanbanTestComponent } from './kanban/kanban-test.component';
 
 @NgModule({
   imports: [
@@ -95,7 +96,8 @@ import { DatePeriodTestComponent } from './date-period/date-period-test.componen
     SwitcherTestComponent,
     GanttTestComponent,
     DatePickerTestComponent,
-    DatePeriodTestComponent
+    DatePeriodTestComponent,
+    KanbanTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
