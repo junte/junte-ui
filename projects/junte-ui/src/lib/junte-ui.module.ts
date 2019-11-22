@@ -52,10 +52,11 @@ import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
 import { DatePeriodModule } from './components/date-period/date-period.module';
+import { KanbanModule } from './components/kanban/kanban.module';
 
 @NgModule({
   declarations: [
-    JunteUiComponent
+    JunteUiComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +114,7 @@ import { DatePeriodModule } from './components/date-period/date-period.module';
     GanttModule,
     DatePickerModule,
     DatePeriodModule,
+    KanbanModule
   ]
 })
 export class JunteUiModule {
