@@ -10,7 +10,7 @@
        (click)="setPage(selectedPage - 1)" tabindex="0">
     <a title="Previous"
        data-page="1">
-      <jnt-icon [icon]="ui.icons.arrowLeft" icon></jnt-icon>
+      <jnt-icon [icon]="ui.icons.chevronLeft" icon></jnt-icon>
     </a>
   </div>
   <div page *ngFor="let page of pages"
@@ -21,7 +21,7 @@
 
   <div [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)" tabindex="0">
     <a title="Next">
-      <jnt-icon [icon]="ui.icons.arrowRight" icon></jnt-icon>
+      <jnt-icon [icon]="ui.icons.chevronRight" icon></jnt-icon>
     </a>
   </div>
   <div (click)="setPage(pagesCount)"
