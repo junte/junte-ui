@@ -61,7 +61,7 @@ export class Gulpfile {
             .pipe(consolidate('lodash', {
               glyphs: glyphs,
               fontName: font.fontName,
-              fontPath: './',
+              fontPath: '/assets/fonts',
               className: 'icon'
             }))
             .pipe(rename(`${font.fontName}-font.scss`))
