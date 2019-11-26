@@ -14,10 +14,11 @@
        [style.width.%]="(current | dateDiff:start:base) / (end || current | dateDiff:start:base) * 100">
   </div>
 
-  <div *ngIf="(!!end && !start && current >= end) || (!!start && !end && current > start)" progress full></div>
+  <div *ngIf="(current >= end) || (!!start && !end && current > start)" progress full></div>
 </div>
 
 <div *ngIf="!!start && !!end" days>
-  {{end | dateDiff:start:base}} {{base}}
+  {{current < end ? (end | dateDiff:start:base) - (current | dateDiff:start:base) :
+  (end | dateDiff:start:base) - (start | dateDiff:start:base)}} {{base}}
 </div>
 
