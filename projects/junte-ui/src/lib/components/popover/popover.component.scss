@@ -17,11 +17,43 @@ $popover-title-spacing: $gutter-normal !default;
 $popover-title-font-weight: $font-weight-bold !default;
 $popover-content-color: $white-color !default;
 
+$popover-schemes: (
+  #{$scheme-primary}: (
+    background-color: $primary-light-color,
+    color: $white-color
+  ),
+  #{$scheme-secondary}: (
+    background-color: $secondary-color,
+    color: $primary-text-color
+  ),
+  #{$scheme-success}: (
+    background-color: $success-color,
+    color: $white-color
+  ),
+  #{$scheme-fail}: (
+    background-color: $fail-color,
+    color: $white-color
+  ),
+)!default;
+
+@mixin scheme($scheme) {
+  [wrapper] {
+    color: #{map-get($scheme, color)};
+    background-color: #{map-get($scheme, background-color)};
+  }
+}
+
 :host {
   position: absolute;
   z-index: 100;
   user-select: text;
   display: block;
+
+  @each $scheme, $map in $popover-schemes {
+    &[scheme='#{$scheme}'] {
+      @include scheme($map);
+    }
+  }
 
   [arrow] {
     width: 0;
@@ -29,6 +61,7 @@ $popover-content-color: $white-color !default;
     border: $popover-arrow-width solid transparent;
     border-top-color: $popover-background;
     position: absolute;
+    display: none;
   }
 
   &.top,
@@ -153,19 +186,13 @@ $popover-content-color: $white-color !default;
 }
 
 [wrapper] {
-  background-color: $popover-background;
   border-radius: $popover-corner;
   box-shadow: $popover-shadow;
   padding: $popover-padding-x $popover-padding-y;
   max-width: $popover-max-width;
 
   [title] {
-    color: $popover-title-color;
     font-weight: $popover-title-font-weight;
     margin-bottom: $popover-title-spacing;
-  }
-
-  [content] {
-    color: $popover-content-color;
   }
 }

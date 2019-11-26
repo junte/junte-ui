@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, FontIcons, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../enum/ui';
+import { Colors, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../enum/ui';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({

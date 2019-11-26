@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
-import { PopoverPlacements, PopoverTriggers } from '../../enum/ui';
+import { Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef } from '@angular/core';
+import { PopoverPlacements, PopoverTriggers, Schemes } from '../../enum/ui';
 
 export class PopoverOptions {
   title: string | TemplateRef<void>;
@@ -29,6 +29,10 @@ export class PopoverComponent {
   get display() {
     return this.visible ? 'block' : 'none';
   }
+
+  @HostBinding('attr.scheme')
+  @Input()
+  scheme: Schemes = Schemes.primary;
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {
