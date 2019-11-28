@@ -6,6 +6,7 @@ import { DotModule } from '../dot/dot.module';
 import { StackModule } from '../stack/stack.module';
 import { SwitcherOptionComponent } from './option/switcher-option.component';
 import { SwitcherComponent } from './switcher.component';
+import { IconModule } from '../icon/icon.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SwitcherComponent } from './switcher.component';
     BadgeModule,
     DotModule,
     StackModule,
-    IsEqualModule
+    IsEqualModule,
+    IconModule
   ],
   declarations: [
     SwitcherComponent,
