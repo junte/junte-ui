@@ -12,7 +12,10 @@
   <jnt-spinner [size]="size" spinner></jnt-spinner>
 </div>
 <div *ngIf="error" error>
-  <jnt-icon icon="cancel"></jnt-icon>
+  <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
+</div>
+<div *ngIf="state.success" [@success]="state.success" success>
+  <jnt-icon [icon]="ui.icons.success"></jnt-icon>
 </div>
 
 <ng-container *ngTemplateOutlet="footerBlock"></ng-container>

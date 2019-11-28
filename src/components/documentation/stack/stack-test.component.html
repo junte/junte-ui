@@ -40,7 +40,7 @@
         <jnt-form-label for="gutter">Gutter</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="gutter">
-            <jnt-switcher-option *ngFor="let gutter of gutters" [label]="gutter.label"
+            <jnt-switcher-option *ngFor="let gutter of gutters" [label]="gutter.label | titlecase"
                                  [value]="gutter.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -50,7 +50,7 @@
         <jnt-form-label for="align">Align</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="align">
-            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label"
+            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label | titlecase"
                                  [value]="align.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -60,7 +60,7 @@
         <jnt-form-label for="justify">Justify</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="justify">
-            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label"
+            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label | titlecase"
                                  [value]="justify.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -70,7 +70,7 @@
         <jnt-form-label for="wrap">Wrap</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label"
+            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label | titlecase"
                                  [value]="wrap.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -78,7 +78,7 @@
 
       <jnt-tabs>
         <jnt-tab title="Preview" [active]="true">
-          <div preview>
+          <app-browser-preview>
             <jnt-stack [type]="typeControl.value"
                        [gutter]="gutterControl.value"
                        [align]="alignControl.value"
@@ -87,7 +87,7 @@
                        stack>
               <div block *ngFor="let block of [1, 2, 3, 4]"></div>
             </jnt-stack>
-          </div>
+          </app-browser-preview>
         </jnt-tab>
         <jnt-tab title="Code">
           <app-code-highlight>

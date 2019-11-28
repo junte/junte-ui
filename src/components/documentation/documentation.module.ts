@@ -45,6 +45,7 @@ import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
 import { KanbanTestComponent } from './kanban/kanban-test.component';
+import { BrowserPreviewComponent } from './browser-preview/browser-preview.component';
 import { CodeHighlightComponent } from './code-highlight/code-highlight.component';
 
 @NgModule({
@@ -98,6 +99,8 @@ import { CodeHighlightComponent } from './code-highlight/code-highlight.componen
     GanttTestComponent,
     DatePickerTestComponent,
     DatePeriodTestComponent,
+    KanbanTestComponent,
+    BrowserPreviewComponent
     KanbanTestComponent,
     CodeHighlightComponent
   ],
