@@ -173,6 +173,7 @@ export enum AnimatedIcons {
   settings = 'settings',
   time = 'time',
   upload = 'upload',
+  success = 'success'
 }
 
 export enum Colors {
@@ -555,7 +556,8 @@ class ShortIcons {
     italy: SvgFlagsIcons.italy + ':svg:flags',
     spain: SvgFlagsIcons.spain + ':svg:flags',
     sweden: SvgFlagsIcons.sweden + ':svg:flags',
-    runningMan: AnimatedIcons.runningMan + ':animated:default'
+    runningMan: AnimatedIcons.runningMan + ':animated:default',
+    success: AnimatedIcons.success + ':animated:default'
   };
 }
 
