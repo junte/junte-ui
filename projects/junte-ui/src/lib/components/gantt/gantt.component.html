@@ -6,13 +6,13 @@
     <td controls [attr.colspan]="(current | getDaysInMonth)">
       <div month>
         <button arrow (click)="current = subMonths(current, 1)">
-          <jnt-icon [icon]="ui.icons.arrowLeft"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
         </button>
         <div>
           {{current | format: 'MMMM'}}, {{current | format: 'YYYY'}}
         </div>
         <button arrow (click)="current = addMonths(current, 1)">
-          <jnt-icon [icon]="ui.icons.arrowRight"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
         </button>
       </div>
     </td>
