@@ -23,6 +23,7 @@
   <hr>
 
   <form [formGroup]="editForm">
+
     <h2>Text</h2>
     <jnt-stack formArrayName="texts">
       <ng-container [formGroupName]="i"
@@ -36,6 +37,7 @@
         <jnt-input [size]="size" placeholder="Hero name" [disabled]="true" formControlName="name"></jnt-input>
       </ng-container>
     </jnt-stack>
+
     <h2>Password</h2>
     <jnt-stack formArrayName="passwords">
       <ng-container [formGroupName]="i"
@@ -44,6 +46,11 @@
                    formControlName="password"></jnt-input>
       </ng-container>
     </jnt-stack>
+
+    <h2>Number</h2>
+
+    <jnt-input [type]="ui.form.input.number" placeholder="Number"></jnt-input>
+
     <h2>Input with icon</h2>
     <jnt-stack formArrayName="texts">
       <ng-container [formGroupName]="i"

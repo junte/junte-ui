@@ -343,7 +343,8 @@ export enum FormLayout {
 
 export enum InputType {
   text = 'text',
-  password = 'password'
+  password = 'password',
+  number = 'number'
 }
 
 export enum SelectMode {
