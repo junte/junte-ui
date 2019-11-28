@@ -196,7 +196,7 @@ export enum Colors {
   gray200 = '#F7F7F7',
   gray300 = '#F0F0F0',
   gray400 = '#E9E9E9',
-  gray500 = '#F3F4FC',
+  paleNavy = '#F3F4FC',
   gray600 = '#C4C4C4',
   gray700 = '#D0D0D0',
   gray800 = '#828282',
