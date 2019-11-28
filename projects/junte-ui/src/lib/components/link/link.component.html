@@ -19,8 +19,19 @@
 </ng-template>
 
 <ng-template #linkTemplate>
-    <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
+  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center">
+    <div>
+      <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
       <span>{{title}}</span>
-    <jnt-badge *ngFor="let badge of badges" [color]="badge.color" [count]="badge.count"
-               [position]="ui.position.inline" badge></jnt-badge>
+    </div>
+    <jnt-stack *ngIf="badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny">
+      <jnt-badge *ngFor="let badge of badges"
+                 [color]="badge.color"
+                 [count]="badge.count"
+                 [position]="ui.position.inline"
+                 badge>
+      </jnt-badge>
+    </jnt-stack>
+  </jnt-stack>
+
 </ng-template>
