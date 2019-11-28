@@ -74,7 +74,7 @@
       </ngx-prism>
 
     <h2>Block with error</h2>
-    <jnt-block [error]="true" [padding]="ui.padding.normal">
+    <jnt-block #block [error]="true" [padding]="ui.padding.normal">
       <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     </jnt-block>
 
@@ -86,7 +86,15 @@
     ]]></pre>
     </ngx-prism>
 
-  <h2>Block with title & footer</h2>
+    <h2>Block with success</h2>
+    <jnt-block #block [padding]="ui.padding.normal">
+      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
+    </jnt-block>
+
+    <jnt-button (click)="block.success()" text="Success"></jnt-button>
+
+
+    <h2>Block with title & footer</h2>
   <jnt-block title="Block title" [padding]="ui.padding.normal">
     <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     <ng-template #footerBlock>
