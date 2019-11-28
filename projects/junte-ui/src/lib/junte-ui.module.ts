@@ -53,6 +53,7 @@ import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
 import { DatePeriodModule } from './components/date-period/date-period.module';
 import { KanbanModule } from './components/kanban/kanban.module';
+import { ArrayPipeModule } from './pipes/array-pipe.module';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { KanbanModule } from './components/kanban/kanban.module';
     SvgIconModule,
     FontIconModule,
     IncludesPipeModule,
+    ArrayPipeModule,
     InputModule,
     LabelModule,
     LinkModule,
