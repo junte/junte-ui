@@ -1,0 +1,24 @@
+@import "../../../../projects/junte-ui/src/lib/assets/styles/variables";
+
+:host {
+  display: block;
+  position: relative;
+  [wrapper] {
+    position: absolute;
+    top: 15%;
+    left: $gutter-normal;
+    right: $gutter-normal;
+    bottom: 7%;
+    overflow: hidden;
+    & > ::ng-deep * {
+      max-height: 100%;
+    }
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
