@@ -45,6 +45,7 @@ import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
 import { KanbanTestComponent } from './kanban/kanban-test.component';
+import { BrowserPreviewComponent } from './browser-preview/browser-preview.component';
 
 @NgModule({
   imports: [
@@ -97,7 +98,8 @@ import { KanbanTestComponent } from './kanban/kanban-test.component';
     GanttTestComponent,
     DatePickerTestComponent,
     DatePeriodTestComponent,
-    KanbanTestComponent
+    KanbanTestComponent,
+    BrowserPreviewComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
