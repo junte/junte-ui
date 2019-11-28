@@ -27,13 +27,13 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.type.horizontal">
+  <jnt-stack [type]="ui.orientation.horizontal">
     <jnt-dropdown>
       <ng-template #trigger let-action="trigger">
         <jnt-button text="Dropdown" (click)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown let-action="trigger">
-        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
           <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
           <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
           <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
@@ -47,7 +47,7 @@
         <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.actions" (mouseover)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown>
-        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
           <jnt-menu-item title="Edit"></jnt-menu-item>
           <jnt-menu-item title="Delete"></jnt-menu-item>
           <jnt-menu-item title="Add"></jnt-menu-item>
@@ -59,13 +59,13 @@
 
   <h3>Dropdown modes</h3>
 
-  <jnt-stack [type]="ui.type.horizontal">
+  <jnt-stack [type]="ui.orientation.horizontal">
       <jnt-dropdown>
         <ng-template #trigger let-action="trigger">
           <jnt-button text="click" (click)="action()"></jnt-button>
         </ng-template>
         <ng-template #dropdown>
-          <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
             <jnt-menu-item title="Link" [icon]="ui.icons.externalLink"></jnt-menu-item>
             <jnt-menu-item title="Edit" [icon]="ui.icons.edit"></jnt-menu-item>
             <jnt-menu-item title="Sync" [icon]="ui.icons.sync"></jnt-menu-item>
@@ -78,7 +78,7 @@
         <jnt-button text="hover" (mouseover)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown>
-        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
           <jnt-menu-item title="Edit"></jnt-menu-item>
           <jnt-menu-item title="Delete"></jnt-menu-item>
           <jnt-menu-item title="Add"></jnt-menu-item>
@@ -96,7 +96,7 @@
         <jnt-button text="Dropdown" (click)="action()"></jnt-button>
       </ng-template>
       <ng-template #dropdown let-action="trigger">
-        <jnt-menu [type]="ui.type.vertical" [spacer]="ui.sizes.small">
+        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
           <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
           <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
           <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>

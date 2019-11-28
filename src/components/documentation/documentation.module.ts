@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
+import { ComponentApiComponent } from 'src/components/documentation/component-api/component-api.component';
 import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
@@ -100,9 +101,10 @@ import { CodeHighlightComponent } from './code-highlight/code-highlight.componen
     DatePickerTestComponent,
     DatePeriodTestComponent,
     KanbanTestComponent,
-    BrowserPreviewComponent
+    BrowserPreviewComponent,
     KanbanTestComponent,
-    CodeHighlightComponent
+    CodeHighlightComponent,
+    ComponentApiComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

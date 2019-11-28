@@ -22,7 +22,7 @@
 
   <h3>Builder</h3>
 
-  <jnt-form [formGroup]="stackBuilder" form>
+  <jnt-form [formGroup]="form" form>
     <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
       <jnt-form-item>
         <jnt-form-label for="type">Type</jnt-form-label>
@@ -40,8 +40,18 @@
         <jnt-form-label for="gutter">Gutter</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="gutter">
-            <jnt-switcher-option *ngFor="let gutter of gutters" [label]="gutter.label | titlecase"
-                                 [value]="gutter.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Tiny"
+                                 [value]="ui.gutter.tiny"></jnt-switcher-option>
+            <jnt-switcher-option label="Small"
+                                 [value]="ui.gutter.small"></jnt-switcher-option>
+            <jnt-switcher-option label="Normal"
+                                 [value]="ui.gutter.normal"></jnt-switcher-option>
+            <jnt-switcher-option label="Big"
+                                 [value]="ui.gutter.big"></jnt-switcher-option>
+            <jnt-switcher-option label="Large"
+                                 [value]="ui.gutter.large"></jnt-switcher-option>
+            <jnt-switcher-option label="Huge"
+                                 [value]="ui.gutter.huge"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -50,8 +60,16 @@
         <jnt-form-label for="align">Align</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="align">
-            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label | titlecase"
-                                 [value]="align.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Start"
+                                 [value]="ui.flex.align.start"></jnt-switcher-option>
+            <jnt-switcher-option label="Center"
+                                 [value]="ui.flex.align.center"></jnt-switcher-option>
+            <jnt-switcher-option label="End"
+                                 [value]="ui.flex.align.end"></jnt-switcher-option>
+            <jnt-switcher-option label="Baseline"
+                                 [value]="ui.flex.align.baseline"></jnt-switcher-option>
+            <jnt-switcher-option label="Stretch"
+                                 [value]="ui.flex.align.stretch"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -60,8 +78,18 @@
         <jnt-form-label for="justify">Justify</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="justify">
-            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label | titlecase"
-                                 [value]="justify.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Start"
+                                 [value]="ui.flex.justify.start"></jnt-switcher-option>
+            <jnt-switcher-option label="Center"
+                                 [value]="ui.flex.justify.center"></jnt-switcher-option>
+            <jnt-switcher-option label="End"
+                                 [value]="ui.flex.justify.end"></jnt-switcher-option>
+            <jnt-switcher-option label="Between"
+                                 [value]="ui.flex.justify.between"></jnt-switcher-option>
+            <jnt-switcher-option label="Around"
+                                 [value]="ui.flex.justify.around"></jnt-switcher-option>
+            <jnt-switcher-option label="Evenly"
+                                 [value]="ui.flex.justify.evenly"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -70,8 +98,12 @@
         <jnt-form-label for="wrap">Wrap</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label | titlecase"
-                                 [value]="wrap.value"></jnt-switcher-option>
+            <jnt-switcher-option label="No wrap"
+                                 [value]="ui.flex.wrap.noWrap"></jnt-switcher-option>
+            <jnt-switcher-option label="Wrap"
+                                 [value]="ui.flex.wrap.wrap"></jnt-switcher-option>
+            <jnt-switcher-option label="Reverse"
+                                 [value]="ui.flex.wrap.reverse"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -79,11 +111,11 @@
       <jnt-tabs>
         <jnt-tab title="Preview" [active]="true">
           <app-browser-preview>
-            <jnt-stack [type]="typeControl.value"
-                       [gutter]="gutterControl.value"
-                       [align]="alignControl.value"
-                       [justify]="justifyControl.value"
-                       [wrap]="wrapControl.value"
+            <jnt-stack [type]="type.value"
+                       [gutter]="gutter.value"
+                       [align]="align.value"
+                       [justify]="justify.value"
+                       [wrap]="wrap.value"
                        stack>
               <div block *ngFor="let block of [1, 2, 3, 4]"></div>
             </jnt-stack>
@@ -93,32 +125,35 @@
           <app-code-highlight>
             <![CDATA[
             <jnt-stack
-            ]]>
-            <ng-container *ngIf="typeControl.value">
-              <![CDATA[
-              [type]="ui.stack.type.]]>{{typeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="gutterControl.value">
-              <![CDATA[
-              [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="alignControl.value">
-              <![CDATA[
-              [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="justifyControl.value">
-              <![CDATA[
-              [justify]="ui.flex.justify.]]>{{justifyControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="wrapControl.value">
-              <![CDATA[
-              [wrap]="ui.flex.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-            ...
+              ]]>
+              <ng-container *ngIf="type.value">
+                <![CDATA[
+                [type]="ui.stack.type.]]>{{type.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="gutter.value">
+                <![CDATA[
+                [gutter]="ui.gutter.]]>{{gutter.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="align.value">
+                <![CDATA[
+                [align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="justify.value">
+                <![CDATA[
+                [justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="wrap.value">
+                <![CDATA[
+                [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
+              </ng-container>
+              <![CDATA[>
+              ...
             </jnt-stack>
             ]]>
           </app-code-highlight>
+        </jnt-tab>
+        <jnt-tab title="API">
+          <app-component-api [target]="stack"></app-component-api>
         </jnt-tab>
       </jnt-tabs>
     </jnt-block>

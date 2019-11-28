@@ -1,0 +1,33 @@
+<table api>
+  <thead>
+  <tr>
+    <th>Property</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of properties | keyvalue">
+    <td>
+      [{{p.key}}]
+    </td>
+    <ng-container *ngIf="p.value as api">
+      <td>
+        <p *ngIf="api.path">{{api.path}}.</p>
+        <ul>
+          <li *ngFor="let o of api.options">
+            {{o}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        {{api.description | empty}}
+      </td>
+      <td>
+        {{api.default | empty}}
+      </td>
+    </ng-container>
+  </tr>
+  </tbody>
+</table>

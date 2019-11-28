@@ -1,6 +1,6 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { ActionComponent } from '../action/action.component';
-import { PositionType, Sizes } from '../../../../enum/ui';
+import { Orientation, Sizes } from '../../../../enum/ui';
 
 @Component({
   selector: 'jnt-actions',
@@ -8,7 +8,7 @@ import { PositionType, Sizes } from '../../../../enum/ui';
 })
 export class ActionsComponent {
 
-  @Input() type: PositionType = PositionType.horizontal;
+  @Input() type: Orientation = Orientation.horizontal;
   @Input() spacer: Sizes = Sizes.large;
 
   @HostBinding('attr.host') readonly host = 'jnt-actions-host';

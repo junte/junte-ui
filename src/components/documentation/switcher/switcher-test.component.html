@@ -17,7 +17,7 @@
     </jnt-stack>
     <jnt-form [formGroup]="form">
       <jnt-stack [gutter]="ui.gutter.large">
-        <ng-container *ngFor="let type of [ui.type.horizontal, ui.type.vertical]">
+        <ng-container *ngFor="let type of [ui.orientation.horizontal, ui.orientation.vertical]">
           <h3>{{type | titlecase}}</h3>
           <jnt-switcher formControlName="selected" [type]="type">
             <jnt-switcher-option label="Lorem $$$$$" [value]="{obj: 10}"></jnt-switcher-option>
@@ -75,7 +75,7 @@
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-switcher formControlName="switcherValue" [type]="ui.type.vertical">
+<jnt-switcher formControlName="switcherValue" [type]="ui.orientation.vertical">
   <jnt-switcher-option label="Option 1"></jnt-switcher-option>
   <jnt-switcher-option label="Option 2">
     <jnt-dot [color]="ui.colors.red"></jnt-dot>

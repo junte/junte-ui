@@ -321,7 +321,12 @@ export enum ValidationTypeError {
   minlength = 'minlength'
 }
 
-export enum PositionType {
+export enum Orientation {
+  horizontal = 'horizontal',
+  vertical = 'vertical'
+}
+
+export enum StackType {
   horizontal = 'horizontal',
   vertical = 'vertical'
 }
@@ -578,7 +583,7 @@ export class UI {
   static outline = Outline;
   static position = Positions;
   static shape = Shapes;
-  static type = PositionType;
+  static orientation = Orientation;
   static width = Width;
   static skeleton = {
     type: TypeSkeleton
@@ -592,7 +597,7 @@ export class UI {
     alignSelf: FlexAlignSelf
   };
   static stack = {
-    type: PositionType,
+    type: StackType,
   };
   static gutter = Gutter;
   static form = {

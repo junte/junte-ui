@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { FlexAlign, FlexJustify, FlexWrap, Gutter, PositionType } from '../../enum/ui';
+import { api } from '../../decorators/api';
+import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-stack',
@@ -9,20 +10,51 @@ export class StackComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
+  @api({
+    description: 'Element direction.',
+    path: 'ui.stack.type',
+    default: StackType.vertical,
+    options: [StackType.vertical, StackType.horizontal]
+  })
+  @HostBinding('attr.type')
+  @Input() type: StackType = StackType.vertical;
+
+  @api({
+    description: 'Space between children elements.',
+    path: 'ui.gutter',
+    default: Gutter.normal,
+    options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.big, Gutter.large, Gutter.huge]
+  })
   @HostBinding('attr.gutter')
   @Input() gutter: Gutter = Gutter.normal;
 
-  @HostBinding('attr.type')
-  @Input() type: PositionType = PositionType.vertical;
-
+  @api({
+    description: 'Vertical align of elements.',
+    path: 'ui.flex.align',
+    default: FlexAlign.start,
+    options: [FlexAlign.start, FlexAlign.center, FlexAlign.end, FlexAlign.baseline, FlexAlign.stretch]
+  })
   @HostBinding('attr.align')
   @Input()
   align: FlexAlign = FlexAlign.start;
 
+  @api({
+    description: 'Horizontal align of elements.',
+    path: 'ui.flex.justify',
+    default: FlexJustify.start,
+    options: [FlexJustify.start, FlexJustify.center, FlexJustify.end, FlexJustify.between,
+      FlexJustify.around, FlexJustify.evenly]
+  })
   @HostBinding('attr.justify')
   @Input()
   justify: FlexJustify = FlexJustify.start;
 
+  @api({
+    description: 'Wrapping of elements.',
+    path: 'ui.flex.wrap',
+    default: FlexWrap.noWrap,
+    options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]
+  })
   @HostBinding('attr.wrap')
   @Input()
   wrap: FlexWrap = FlexWrap.noWrap;

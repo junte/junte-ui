@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   declarations: [
     StackComponent
   ],
+  entryComponents: [
+    StackComponent
+  ],
   exports: [
     StackComponent
   ]
