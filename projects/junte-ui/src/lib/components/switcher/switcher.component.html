@@ -4,6 +4,7 @@
            [align]="ui.flex.align.center"
            [gutter]="ui.gutter.tiny"
            [style.background-color]="(option.value | isEqual : value) ? option.activeColor : null" tabindex="0">
+  <jnt-icon *ngIf="option.icon" [icon]="option.icon" icon></jnt-icon>
   <jnt-dot *ngIf="option.dot" [color]="option.dot.color"></jnt-dot>
   <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center"
              [align]="ui.flex.align.center"
