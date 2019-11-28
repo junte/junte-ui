@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-stack-test',
@@ -8,6 +8,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
   styleUrls: ['./stack-test.component.scss']
 })
 export class StackTestComponent {
+
   ui = UI;
 
   types: any[] = [
@@ -63,4 +64,5 @@ export class StackTestComponent {
 
   constructor(private fb: FormBuilder) {
   }
+
 }

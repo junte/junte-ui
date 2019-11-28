@@ -28,8 +28,10 @@
         <jnt-form-label for="type">Type</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="type">
-            <jnt-switcher-option *ngFor="let type of types" [label]="type.label"
-                                 [value]="type.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Horizontal"
+                                 [value]="ui.stack.type.horizontal"></jnt-switcher-option>
+            <jnt-switcher-option label="Vertical"
+                                 [value]="ui.stack.type.vertical"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -74,17 +76,51 @@
         </jnt-form-control>
       </jnt-form-item>
 
-      <p>Preview</p>
-      <div preview>
-        <jnt-stack [type]="typeControl.value"
-                   [gutter]="gutterControl.value"
-                   [align]="alignControl.value"
-                   [justify]="justifyControl.value"
-                   [wrap]="wrapControl.value"
-                   stack>
-          <div block *ngFor="let block of [1, 2, 3, 4]"></div>
-        </jnt-stack>
-      </div>
+      <jnt-tabs>
+        <jnt-tab title="Preview" [active]="true">
+          <div preview>
+            <jnt-stack [type]="typeControl.value"
+                       [gutter]="gutterControl.value"
+                       [align]="alignControl.value"
+                       [justify]="justifyControl.value"
+                       [wrap]="wrapControl.value"
+                       stack>
+              <div block *ngFor="let block of [1, 2, 3, 4]"></div>
+            </jnt-stack>
+          </div>
+        </jnt-tab>
+        <jnt-tab title="Code">
+          <app-code-highlight>
+            <![CDATA[
+            <jnt-stack
+            ]]>
+            <ng-container *ngIf="typeControl.value">
+              <![CDATA[
+              [type]="ui.stack.type.]]>{{typeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="gutterControl.value">
+              <![CDATA[
+              [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="alignControl.value">
+              <![CDATA[
+              [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="justifyControl.value">
+              <![CDATA[
+              [justify]="ui.flex.justify.]]>{{justifyControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="wrapControl.value">
+              <![CDATA[
+              [wrap]="ui.flex.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+            ...
+            </jnt-stack>
+            ]]>
+          </app-code-highlight>
+        </jnt-tab>
+      </jnt-tabs>
     </jnt-block>
   </jnt-form>
 
