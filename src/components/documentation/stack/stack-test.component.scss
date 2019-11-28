@@ -4,6 +4,20 @@
   display: block;
 }
 
+[preview] {
+  background: url("/assets/image/browser.svg");
+  background-size: 100% auto;
+  height: 580px;
+  padding: 120px 30px 30px 30px;
+  [stack] {
+    height: 100%;
+    overflow: hidden;
+    [block] {
+      width: 30%;
+    }
+  }
+}
+
 [resources] {
   position: absolute;
   top: 0;
@@ -12,17 +26,4 @@
 
 [block] {
   min-width: 100px;
-}
-
-[wrapper] {
-  height: 150px;
-  border: 1px dashed $primary-text-light-color;
-  overflow: hidden;
-  [block] {
-    width: 30%;
-  }
-}
-
-[form] {
-  align-self: stretch;
 }

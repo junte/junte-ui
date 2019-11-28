@@ -13,34 +13,23 @@
   <p teaser>A stack organizes a list of elements using common rules.<br>
     The main feature of the stack is gutters - distances between elements are created using UI aesthetics 🚀</p>
 
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The stack should be of two types: <b>vertical</b> and <b>horizontal</b>.</li>
-    <li>Alignment in stack should be with the use of <b>flexbox</b>.</li>
-    <li>The stack must have different gutters: <b>tiny</b>, <b>small</b>, <b>normal</b>, <b>big</b>, <b>large</b>, <b>huge</b>.
-    </li>
-  </ol>
-
   <h3>Import</h3>
 
   <ngx-prism language="js">
     <pre><![CDATA[
- @import "~junte-ui/lib/components/stack/stack.encapsulated";
-    ]]></pre>
+ @import "~junte-ui/lib/components/stack/stack.encapsulated";]]></pre>
   </ngx-prism>
 
-  <h4>Builder</h4>
+  <h3>Builder</h3>
 
   <jnt-form [formGroup]="stackBuilder" form>
-
     <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
-
       <jnt-form-item>
         <jnt-form-label for="type">Type</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="type">
-            <jnt-switcher-option *ngFor="let type of types" [label]="type.label" [value]="type.value"></jnt-switcher-option>
+            <jnt-switcher-option *ngFor="let type of types" [label]="type.label"
+                                 [value]="type.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -49,7 +38,8 @@
         <jnt-form-label for="gutter">Gutter</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="gutter">
-            <jnt-switcher-option *ngFor="let gutter of gutters" [label]="gutter.label" [value]="gutter.value"></jnt-switcher-option>
+            <jnt-switcher-option *ngFor="let gutter of gutters" [label]="gutter.label"
+                                 [value]="gutter.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -58,7 +48,8 @@
         <jnt-form-label for="align">Align</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="align">
-            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label" [value]="align.value"></jnt-switcher-option>
+            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label"
+                                 [value]="align.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -67,7 +58,8 @@
         <jnt-form-label for="justify">Justify</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="justify">
-            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label" [value]="justify.value"></jnt-switcher-option>
+            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label"
+                                 [value]="justify.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -76,22 +68,23 @@
         <jnt-form-label for="wrap">Wrap</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label" [value]="wrap.value"></jnt-switcher-option>
+            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label"
+                                 [value]="wrap.value"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
 
-      <p>Result</p>
-
-      <jnt-stack [type]="typeControl.value"
-                 [gutter]="gutterControl.value"
-                 [align]="alignControl.value"
-                 [justify]="justifyControl.value"
-                 [wrap]="wrapControl.value"
-                 wrapper>
-        <div block *ngFor="let block of [1,2,3,4]"></div>
-      </jnt-stack>
-
+      <p>Preview</p>
+      <div preview>
+        <jnt-stack [type]="typeControl.value"
+                   [gutter]="gutterControl.value"
+                   [align]="alignControl.value"
+                   [justify]="justifyControl.value"
+                   [wrap]="wrapControl.value"
+                   stack>
+          <div block *ngFor="let block of [1, 2, 3, 4]"></div>
+        </jnt-stack>
+      </div>
     </jnt-block>
   </jnt-form>
 
