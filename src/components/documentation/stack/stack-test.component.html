@@ -110,7 +110,7 @@
       </jnt-form-item>
 
       <jnt-tabs>
-        <jnt-tab  title="Preview" [active]="true" [icon]="ui.icons.preview">
+        <jnt-tab  title="Preview" [active]="true" [icon]="localUi.icons.layout.preview">
           <app-browser-preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-stack [type]="type.value"
@@ -126,7 +126,7 @@
             </ng-template>
           </app-browser-preview>
         </jnt-tab>
-        <jnt-tab title="Code" [icon]="ui.icons.code">
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
           <app-code-highlight>
             <![CDATA[
             <jnt-stack
@@ -157,7 +157,7 @@
             ]]>
           </app-code-highlight>
         </jnt-tab>
-        <jnt-tab  title="API" [icon]="ui.icons.api">
+        <jnt-tab  title="API" [icon]="localUi.icons.layout.api">
           <app-component-api [target]="stack"></app-component-api>
         </jnt-tab>
       </jnt-tabs>
