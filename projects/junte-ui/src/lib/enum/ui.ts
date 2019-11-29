@@ -147,7 +147,10 @@ export enum SvgDefaultIcons {
   gitlab = 'gitlab',
   angular = 'angular',
   arnold = 'arnold',
-  dribbble = 'dribbble'
+  dribbble = 'dribbble',
+  review = 'review',
+  code = 'code',
+  api = 'api'
 }
 
 export enum SvgFlagsIcons {
@@ -554,6 +557,9 @@ class ShortIcons {
     angular: SvgDefaultIcons.angular + ':svg:default',
     arnold: SvgDefaultIcons.arnold + ':svg:default',
     dribbble: SvgDefaultIcons.dribbble + ':svg:default',
+    review: SvgDefaultIcons.review + ':svg:default',
+    code: SvgDefaultIcons.code + ':svg:default',
+    api: SvgDefaultIcons.api + ':svg:default',
     russia: SvgFlagsIcons.russia + ':svg:flags',
     germany: SvgFlagsIcons.germany + ':svg:flags',
     usa: SvgFlagsIcons.usa + ':svg:flags',
