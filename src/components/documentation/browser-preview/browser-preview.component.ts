@@ -7,17 +7,16 @@ import { ChangeDetectorRef, Component, ContentChild, ElementRef, HostListener, T
 })
 export class BrowserPreviewComponent {
 
-  constructor(private cd: ChangeDetectorRef,
-              public host: ElementRef<HTMLElement>) {
-
-  }
+  @ContentChild('document', {static: false})
+  documentTemplate: TemplateRef<any>;
 
   @HostListener('window:resize')
   resizing() {
     this.cd.markForCheck();
   }
+  constructor(private cd: ChangeDetectorRef,
+              public host: ElementRef<HTMLElement>) {
 
-  @ContentChild('document', {static: false})
-  documentTemplate: TemplateRef<any>;
+  }
 
 }

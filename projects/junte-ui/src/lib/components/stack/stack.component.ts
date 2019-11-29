@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { api } from '../../decorators/api';
 import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../enum/ui';
 
@@ -6,12 +6,12 @@ import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../enum/
   selector: 'jnt-stack',
   templateUrl: './stack.encapsulated.html'
 })
-export class StackComponent {
+export class StackComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
   @HostBinding('attr.type')
-  _type = StackType.vertical;
+  _type: StackType = StackType.vertical;
 
   @api({
     description: 'Element direction.',
@@ -22,6 +22,8 @@ export class StackComponent {
   @Input() set type(type: StackType) {
     if (!!type) {
       this._type = type;
+    } else {
+      this._type = StackType.vertical;
     }
   }
 
@@ -64,5 +66,9 @@ export class StackComponent {
   @HostBinding('attr.wrap')
   @Input()
   wrap: FlexWrap = FlexWrap.noWrap;
+
+  ngOnInit() {
+    console.log(this._type);
+  }
 
 }

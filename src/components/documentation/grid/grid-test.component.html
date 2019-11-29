@@ -103,16 +103,21 @@
       <p>Preview</p>
 
       <app-browser-preview>
-        <jnt-row [direction]="directionControl.value"
-                 [align]="alignControl.value"
-                 [justify]="justifyControl.value"
-                 [alignContent]="alignContentControl.value"
-                 [wrap]="wrapControl.value"
-                 row>
-          <jnt-col *ngFor="let column of columnsControl.value | mockArray" [span]="spanControl.value" col>
-            <jnt-icon [icon]="ui.icons.picture" icon></jnt-icon>
-          </jnt-col>
-        </jnt-row>
+        <ng-template #document let-height="height">
+          <jnt-row [direction]="directionControl.value"
+                   [align]="alignControl.value"
+                   [justify]="justifyControl.value"
+                   [alignContent]="alignContentControl.value"
+                   [wrap]="wrapControl.value"
+                   row>
+            <jnt-col *ngFor="let column of columnsControl.value | mockArray"
+                     [span]="spanControl.value"
+                     [style.height.px]="height / 4"
+                     col>
+              <jnt-icon [icon]="ui.icons.picture" icon></jnt-icon>
+            </jnt-col>
+          </jnt-row>
+        </ng-template>
       </app-browser-preview>
 
     </jnt-block>
