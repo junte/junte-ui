@@ -21,24 +21,24 @@ export enum FontLayoutIcons {
 
 class ShortIcons {
   static icons = {
-    horizontal: FontLayoutIcons.horizontal + ':font:layout',
-    vertical: FontLayoutIcons.vertical + ':font:layout',
-    start: FontLayoutIcons.start + ':font:layout',
-    end: FontLayoutIcons.end + ':font:layout',
-    stretch: FontLayoutIcons.stretch + ':font:layout',
-    center: FontLayoutIcons.center + ':font:layout',
-    nowrap: FontLayoutIcons.nowrap + ':font:layout',
-    wrap: FontLayoutIcons.wrap + ':font:layout',
-    reverse: FontLayoutIcons.reverse + ':font:layout',
-    around: FontLayoutIcons.around + ':font:layout',
-    evenly: FontLayoutIcons.evenly + ':font:layout',
-    between: FontLayoutIcons.between + ':font:layout',
-    tiny: FontLayoutIcons.tiny + ':font:layout',
-    small: FontLayoutIcons.small + ':font:layout',
-    normal: FontLayoutIcons.normal + ':font:layout',
-    big: FontLayoutIcons.big + ':font:layout',
-    large: FontLayoutIcons.large + ':font:layout',
-    huge: FontLayoutIcons.huge + ':font:layout'
+    horizontal: FontLayoutIcons.horizontal + ':font:junte-ui-test-layout',
+    vertical: FontLayoutIcons.vertical + ':font:junte-ui-test-layout',
+    start: FontLayoutIcons.start + ':font:junte-ui-test-layout',
+    end: FontLayoutIcons.end + ':font:junte-ui-test-layout',
+    stretch: FontLayoutIcons.stretch + ':font:junte-ui-test-layout',
+    center: FontLayoutIcons.center + ':font:junte-ui-test-layout',
+    nowrap: FontLayoutIcons.nowrap + ':font:junte-ui-test-layout',
+    wrap: FontLayoutIcons.wrap + ':font:junte-ui-test-layout',
+    reverse: FontLayoutIcons.reverse + ':font:junte-ui-test-layout',
+    around: FontLayoutIcons.around + ':font:junte-ui-test-layout',
+    evenly: FontLayoutIcons.evenly + ':font:junte-ui-test-layout',
+    between: FontLayoutIcons.between + ':font:junte-ui-test-layout',
+    tiny: FontLayoutIcons.tiny + ':font:junte-ui-test-layout',
+    small: FontLayoutIcons.small + ':font:junte-ui-test-layout',
+    normal: FontLayoutIcons.normal + ':font:junte-ui-test-layout',
+    big: FontLayoutIcons.big + ':font:junte-ui-test-layout',
+    large: FontLayoutIcons.large + ':font:junte-ui-test-layout',
+    huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout'
   };
 }
 
