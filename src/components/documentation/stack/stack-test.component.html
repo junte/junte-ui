@@ -1,5 +1,6 @@
 <jnt-container>
   <h1>Stack</h1>
+
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/stack"
@@ -28,9 +29,9 @@
         <jnt-form-label for="type">Type</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="type">
-            <jnt-switcher-option label="Horizontal"
+            <jnt-switcher-option [icon]="localUi.icons.layout.horizontal" label="Horizontal"
                                  [value]="ui.stack.type.horizontal"></jnt-switcher-option>
-            <jnt-switcher-option label="Vertical"
+            <jnt-switcher-option [icon]="localUi.icons.layout.vertical" label="Vertical"
                                  [value]="ui.stack.type.vertical"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -40,17 +41,17 @@
         <jnt-form-label for="gutter">Gutter</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="gutter">
-            <jnt-switcher-option label="Tiny"
+            <jnt-switcher-option [icon]="localUi.icons.layout.tiny" label="Tiny"
                                  [value]="ui.gutter.tiny"></jnt-switcher-option>
-            <jnt-switcher-option label="Small"
+            <jnt-switcher-option [icon]="localUi.icons.layout.small" label="Small"
                                  [value]="ui.gutter.small"></jnt-switcher-option>
-            <jnt-switcher-option label="Normal"
+            <jnt-switcher-option [icon]="localUi.icons.layout.normal" label="Normal"
                                  [value]="ui.gutter.normal"></jnt-switcher-option>
-            <jnt-switcher-option label="Big"
+            <jnt-switcher-option [icon]="localUi.icons.layout.big" label="Big"
                                  [value]="ui.gutter.big"></jnt-switcher-option>
-            <jnt-switcher-option label="Large"
+            <jnt-switcher-option [icon]="localUi.icons.layout.large" label="Large"
                                  [value]="ui.gutter.large"></jnt-switcher-option>
-            <jnt-switcher-option label="Huge"
+            <jnt-switcher-option [icon]="localUi.icons.layout.huge" label="Huge"
                                  [value]="ui.gutter.huge"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -60,15 +61,15 @@
         <jnt-form-label for="align">Align</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="align">
-            <jnt-switcher-option label="Start"
+            <jnt-switcher-option [icon]="localUi.icons.layout.start" label="Start"
                                  [value]="ui.flex.align.start"></jnt-switcher-option>
-            <jnt-switcher-option label="Center"
+            <jnt-switcher-option [icon]="localUi.icons.layout.center" label="Center"
                                  [value]="ui.flex.align.center"></jnt-switcher-option>
-            <jnt-switcher-option label="End"
+            <jnt-switcher-option [icon]="localUi.icons.layout.end" label="End"
                                  [value]="ui.flex.align.end"></jnt-switcher-option>
-            <jnt-switcher-option label="Baseline"
+            <jnt-switcher-option [icon]="localUi.icons.layout.baseline" label="Baseline"
                                  [value]="ui.flex.align.baseline"></jnt-switcher-option>
-            <jnt-switcher-option label="Stretch"
+            <jnt-switcher-option [icon]="localUi.icons.layout.stretch" label="Stretch"
                                  [value]="ui.flex.align.stretch"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -78,17 +79,17 @@
         <jnt-form-label for="justify">Justify</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="justify">
-            <jnt-switcher-option label="Start"
+            <jnt-switcher-option [icon]="localUi.icons.layout.start" label="Start"
                                  [value]="ui.flex.justify.start"></jnt-switcher-option>
-            <jnt-switcher-option label="Center"
+            <jnt-switcher-option [icon]="localUi.icons.layout.center" label="Center"
                                  [value]="ui.flex.justify.center"></jnt-switcher-option>
-            <jnt-switcher-option label="End"
+            <jnt-switcher-option [icon]="localUi.icons.layout.end" label="End"
                                  [value]="ui.flex.justify.end"></jnt-switcher-option>
-            <jnt-switcher-option label="Between"
+            <jnt-switcher-option [icon]="localUi.icons.layout.between" label="Between"
                                  [value]="ui.flex.justify.between"></jnt-switcher-option>
-            <jnt-switcher-option label="Around"
+            <jnt-switcher-option [icon]="localUi.icons.layout.around" label="Around"
                                  [value]="ui.flex.justify.around"></jnt-switcher-option>
-            <jnt-switcher-option label="Evenly"
+            <jnt-switcher-option [icon]="localUi.icons.layout.evenly" label="Evenly"
                                  [value]="ui.flex.justify.evenly"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
@@ -98,18 +99,18 @@
         <jnt-form-label for="wrap">Wrap</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option label="No wrap"
+            <jnt-switcher-option [icon]="localUi.icons.layout.nowrap" label="No wrap"
                                  [value]="ui.flex.wrap.noWrap"></jnt-switcher-option>
-            <jnt-switcher-option label="Wrap"
+            <jnt-switcher-option [icon]="localUi.icons.layout.wrap" label="Wrap"
                                  [value]="ui.flex.wrap.wrap"></jnt-switcher-option>
-            <jnt-switcher-option label="Reverse"
+            <jnt-switcher-option [icon]="localUi.icons.layout.reverse" label="Reverse"
                                  [value]="ui.flex.wrap.reverse"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
 
       <jnt-tabs>
-        <jnt-tab title="Preview" [active]="true">
+        <jnt-tab  title="Preview" [active]="true">
           <app-browser-preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-stack [type]="type.value"
@@ -156,7 +157,7 @@
             ]]>
           </app-code-highlight>
         </jnt-tab>
-        <jnt-tab title="API">
+        <jnt-tab  title="API">
           <app-component-api [target]="stack"></app-component-api>
         </jnt-tab>
       </jnt-tabs>
