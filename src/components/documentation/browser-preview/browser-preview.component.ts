@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, ElementRef, HostListener, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-browser-preview',
@@ -16,5 +16,8 @@ export class BrowserPreviewComponent {
   resizing() {
     this.cd.markForCheck();
   }
+
+  @ContentChild('document', {static: false})
+  documentTemplate: TemplateRef<any>;
 
 }

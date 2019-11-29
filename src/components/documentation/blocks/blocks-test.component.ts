@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { UI } from 'junte-ui';
-import { BlockComponent } from '../../../../projects/junte-ui/src/lib/components/block/block.component';
+import { BlockComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-blocks-test',

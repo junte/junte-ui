@@ -10,14 +10,20 @@ export class StackComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
+  @HostBinding('attr.type')
+  _type = StackType.vertical;
+
   @api({
     description: 'Element direction.',
     path: 'ui.stack.type',
     default: StackType.vertical,
     options: [StackType.vertical, StackType.horizontal]
   })
-  @HostBinding('attr.type')
-  @Input() type: StackType = StackType.vertical;
+  @Input() set type(type: StackType) {
+    if (!!type) {
+      this._type = type;
+    }
+  }
 
   @api({
     description: 'Space between children elements.',
