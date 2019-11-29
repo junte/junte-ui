@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { StackComponent, UI } from 'junte-ui';
+import {LocalUI} from '../../../enums/local-ui';
 
 @Component({
   selector: 'app-stack-test',
@@ -10,6 +11,7 @@ import { StackComponent, UI } from 'junte-ui';
 export class StackTestComponent {
 
   ui = UI;
+  localUi = LocalUI;
   stack = StackComponent;
 
   type = new FormControl(UI.stack.type.vertical);
