@@ -1,5 +1,6 @@
 <div tabs>
   <div tab item *ngFor="let tab of tabItems" [attr.active]="tab.active" (click)="activatedTab(tab)" tabindex="0">
+    <jnt-icon *ngIf="tab.icon" [icon]="tab.icon" icon></jnt-icon>
     {{tab.title}}
   </div>
 </div>

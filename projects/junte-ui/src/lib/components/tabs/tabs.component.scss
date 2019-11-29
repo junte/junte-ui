@@ -10,6 +10,7 @@ $tabs-item-active-color: $primary-color !default;
 $tabs-item-hover-color: $primary-light-color !default;
 $tabs-item-focus-outline-color: $primary-color !default;
 $tabs-item-focus-shadow: $shadow-primary-dark !default;
+$tabs-item-icon-spacing: $gutter-tiny !default;
 
 :host {
   display: block;
@@ -46,6 +47,9 @@ $tabs-item-focus-shadow: $shadow-primary-dark !default;
     &[active='true'] {
       color: $tabs-item-active-color;
       border-bottom-color: $tabs-item-active-color;
+    }
+    [icon] {
+      margin-right: $tabs-item-icon-spacing;
     }
   }
 }
