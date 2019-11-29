@@ -16,7 +16,8 @@ export enum FontLayoutIcons {
   normal = 'normal',
   big = 'big',
   large = 'large',
-  huge = 'huge'
+  huge = 'huge',
+  baseline = 'baseline'
 }
 
 class ShortIcons {
@@ -38,7 +39,8 @@ class ShortIcons {
     normal: FontLayoutIcons.normal + ':font:junte-ui-test-layout',
     big: FontLayoutIcons.big + ':font:junte-ui-test-layout',
     large: FontLayoutIcons.large + ':font:junte-ui-test-layout',
-    huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout'
+    huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout',
+    baseline: FontLayoutIcons.baseline + ':font:junte-ui-test-layout'
   };
 }
 
