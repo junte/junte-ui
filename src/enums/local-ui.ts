@@ -20,6 +20,12 @@ export enum FontLayoutIcons {
   baseline = 'baseline'
 }
 
+export enum SvgLocalIcons {
+  preview = 'preview',
+  code = 'code',
+  api = 'api'
+}
+
 class ShortIcons {
   static icons = {
     horizontal: FontLayoutIcons.horizontal + ':font:junte-ui-test-layout',
@@ -40,7 +46,10 @@ class ShortIcons {
     big: FontLayoutIcons.big + ':font:junte-ui-test-layout',
     large: FontLayoutIcons.large + ':font:junte-ui-test-layout',
     huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout',
-    baseline: FontLayoutIcons.baseline + ':font:junte-ui-test-layout'
+    baseline: FontLayoutIcons.baseline + ':font:junte-ui-test-layout',
+    preview: SvgLocalIcons.preview + ':svg:local',
+    code: SvgLocalIcons.code + ':svg:local',
+    api: SvgLocalIcons.api + ':svg:local',
   };
 }
 
@@ -49,6 +58,13 @@ export class LocalUI {
   static icons = {
     layout: {
       font: FontLayoutIcons,
+      svg: {
+        local: {
+          preview: SvgLocalIcons.preview,
+          code: SvgLocalIcons.code,
+          api: SvgLocalIcons.api
+        }
+      },
       ...ShortIcons.icons
     }
   };
