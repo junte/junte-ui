@@ -1,5 +1,5 @@
 export enum FontLayoutIcons {
-  horizont = 'horizont',
+  horizontal = 'horizontal',
   vertical = 'vertical',
   start = 'start',
   end = 'end',
@@ -8,7 +8,7 @@ export enum FontLayoutIcons {
   nowrap = 'nowrap',
   wrap = 'wrap',
   reverse = 'reverse',
-  arround = 'arround',
+  around = 'around',
   evenly = 'evenly',
   between = 'between',
   tiny = 'tiny',
@@ -19,11 +19,9 @@ export enum FontLayoutIcons {
   huge = 'huge'
 }
 
-
-export class LocalUI {
+class ShortIcons {
   static icons = {
-    font: FontLayoutIcons,
-    horizont: FontLayoutIcons.horizont + ':font:layout',
+    horizontal: FontLayoutIcons.horizontal + ':font:layout',
     vertical: FontLayoutIcons.vertical + ':font:layout',
     start: FontLayoutIcons.start + ':font:layout',
     end: FontLayoutIcons.end + ':font:layout',
@@ -32,7 +30,7 @@ export class LocalUI {
     nowrap: FontLayoutIcons.nowrap + ':font:layout',
     wrap: FontLayoutIcons.wrap + ':font:layout',
     reverse: FontLayoutIcons.reverse + ':font:layout',
-    arround: FontLayoutIcons.arround + ':font:layout',
+    around: FontLayoutIcons.around + ':font:layout',
     evenly: FontLayoutIcons.evenly + ':font:layout',
     between: FontLayoutIcons.between + ':font:layout',
     tiny: FontLayoutIcons.tiny + ':font:layout',
@@ -41,5 +39,15 @@ export class LocalUI {
     big: FontLayoutIcons.big + ':font:layout',
     large: FontLayoutIcons.large + ':font:layout',
     huge: FontLayoutIcons.huge + ':font:layout'
+  };
+}
+
+
+export class LocalUI {
+  static icons = {
+    layout: {
+      font: FontLayoutIcons,
+      ...ShortIcons.icons
+    }
   };
 }

@@ -148,7 +148,7 @@ export enum SvgDefaultIcons {
   angular = 'angular',
   arnold = 'arnold',
   dribbble = 'dribbble',
-  review = 'review',
+  preview = 'preview',
   code = 'code',
   api = 'api'
 }
@@ -557,7 +557,7 @@ class ShortIcons {
     angular: SvgDefaultIcons.angular + ':svg:default',
     arnold: SvgDefaultIcons.arnold + ':svg:default',
     dribbble: SvgDefaultIcons.dribbble + ':svg:default',
-    review: SvgDefaultIcons.review + ':svg:default',
+    preview: SvgDefaultIcons.preview + ':svg:default',
     code: SvgDefaultIcons.code + ':svg:default',
     api: SvgDefaultIcons.api + ':svg:default',
     russia: SvgFlagsIcons.russia + ':svg:flags',
