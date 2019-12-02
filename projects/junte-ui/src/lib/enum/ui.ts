@@ -147,7 +147,7 @@ export enum SvgDefaultIcons {
   gitlab = 'gitlab',
   angular = 'angular',
   arnold = 'arnold',
-  dribbble = 'dribbble'
+  dribbble = 'dribbble',
 }
 
 export enum SvgFlagsIcons {
