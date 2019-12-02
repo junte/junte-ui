@@ -75,7 +75,8 @@ export class ColComponent {
     description: 'Vertical align of specific elements.',
     path: 'ui.flex.alignSelf',
     default: FlexAlignSelf.auto,
-    options: [FlexAlignSelf.auto, FlexAlignSelf.start, FlexAlignSelf.end, FlexAlignSelf.baseline, FlexAlignSelf.stretch, FlexAlignSelf.center]
+    options: [FlexAlignSelf.auto, FlexAlignSelf.start, FlexAlignSelf.end,
+      FlexAlignSelf.baseline, FlexAlignSelf.stretch, FlexAlignSelf.center]
   })
 
   @Input() set alignSelf(align: FlexAlignSelf) {
