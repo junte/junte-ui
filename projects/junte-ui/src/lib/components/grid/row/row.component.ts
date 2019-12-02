@@ -27,7 +27,7 @@ export class RowComponent {
 
 
   @api({
-    description: 'Vertical align of elements.',
+    description: 'Vertical align of elements',
     path: 'ui.flex.align',
     default: FlexAlign.start,
     options: [FlexAlign.start, FlexAlign.center, FlexAlign.end, FlexAlign.baseline, FlexAlign.stretch]
@@ -42,7 +42,7 @@ export class RowComponent {
   }
 
   @api({
-    description: 'Horizontal align of elements.',
+    description: 'Horizontal align of elements',
     path: 'ui.flex.justify',
     default: FlexJustify.start,
     options: [FlexJustify.start, FlexJustify.center, FlexJustify.end, FlexJustify.between,
@@ -58,7 +58,7 @@ export class RowComponent {
   }
 
   @api({
-    description: 'Element direction.',
+    description: 'Element direction',
     path: 'ui.stack.type',
     default: FlexDirection.row,
     options: [FlexDirection.rowReverse, FlexDirection.column, FlexDirection.columnReverse]
@@ -73,7 +73,7 @@ export class RowComponent {
   }
 
   @api({
-    description: 'Wrapping of elements.',
+    description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
     options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]

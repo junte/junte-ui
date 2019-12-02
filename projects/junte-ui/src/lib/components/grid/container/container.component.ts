@@ -14,7 +14,7 @@ export class ContainerComponent {
   _width = Width.default;
 
   @api({
-    description: 'Vertical align of specific elements.',
+    description: 'Vertical align of specific elements',
     path: 'ui.width',
     default: Width.default,
     options: [Width.default, Width.fluid]

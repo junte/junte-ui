@@ -1,6 +1,5 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
 import { AppAsideComponent } from '../app-aside/app-aside.component';
-import { AppFooterComponent } from '../app-footer/app-footer.component';
 import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
 
 @Component({

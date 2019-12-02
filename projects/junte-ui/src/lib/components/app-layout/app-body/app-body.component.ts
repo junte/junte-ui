@@ -8,6 +8,4 @@ export class AppBodyComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-body-host';
 
-  constructor() {
-  }
 }

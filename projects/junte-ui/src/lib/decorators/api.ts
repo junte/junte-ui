@@ -5,6 +5,7 @@ export const PROPERTY_API_METADATA_KEY = Symbol('property_api_field_meta');
 export class PropertyAPI {
   description: string;
   path?: string;
+  type?: string;
   options?: string[];
   default?: string;
 }

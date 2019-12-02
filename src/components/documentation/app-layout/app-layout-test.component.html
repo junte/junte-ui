@@ -14,7 +14,6 @@
   <h3>Requirements</h3>
 
   <ol>
-    <li>Footer must have copyrights and links</li>
     <li>Aside must have drawer with overlay on mobile device</li>
     <li>Mobile menu must have 2 levels with icons near menu item</li>
     <li>Mobile menu must have compact design</li>
@@ -28,23 +27,23 @@
 <pre><![CDATA[
 <jnt-app-layout>
   <jnt-app-header>
-    <div>Header</div>
+    Header
   </jnt-app-header>
     <jnt-app-aside>
-      <div>Aside</div>
+      Aside
     </jnt-app-aside>
     <jnt-app-content>
-        <jnt-app-body>
-           <jnt-container>
-              <jnt-app-sub-header (burger)="aside.toggle()">
-                <jnt-breadcrumb></jnt-breadcrumb>
-              </jnt-app-sub-header>
-            </jnt-container>
-          <div>Content</div>
-        </jnt-app-body>
-        <jnt-app-footer>
-          Footer
-        </jnt-app-footer>
+      <jnt-app-sub-header (burger)="aside.toggle()">
+        <jnt-breadcrumb></jnt-breadcrumb>
+      </jnt-app-sub-header>
+      <jnt-app-body>
+        <jnt-container>
+          Content
+        </jnt-container>
+      </jnt-app-body>
+      <jnt-app-footer>
+        Footer
+      </jnt-app-footer>
     </jnt-app-content>
 </jnt-app-layout>
 ]]></pre>
@@ -120,6 +119,19 @@
   </ngx-prism>
 
   <h2>App-aside</h2>
+
+  <ngx-prism language="html">
+<pre><![CDATA[
+  <jnt-app-aside #aside>
+    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+      <jnt-submenu title="General" [icon]="ui.icons.crown">
+        <jnt-menu-item [link]="['theming']" title="Theming"></jnt-menu-item>
+        <jnt-menu-item [link]="['typography']" title="Typography"></jnt-menu-item>
+      </jnt-submenu>
+    </jnt-menu>
+  </jnt-app-aside>
+ ]]></pre>
+  </ngx-prism>
 
 
   <h3>API</h3>

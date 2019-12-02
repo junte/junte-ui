@@ -1,21 +1,31 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Sizes} from '../../enum/ui';
+import { Component, HostBinding, Input } from '@angular/core';
+import { Sizes } from '../../enum/ui';
+import { api } from '../../decorators/api';
 
 @Component({
   selector: 'jnt-spinner',
   templateUrl: './spinner.encapsulated.html'
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-spinner-host';
 
   @HostBinding('attr.size')
-  @Input()
-  size: Sizes = Sizes.small;
+  _size: Sizes = Sizes.normal;
 
-  constructor() { }
+  @api({
+    description: 'Spinner size',
+    path: 'ui.size',
+    default: Sizes.normal,
+    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+  })
 
-  ngOnInit() {
+  @Input() set size(size: Sizes) {
+    if (!!size) {
+      this._size = size;
+    } else {
+      this._size = Sizes.normal;
+    }
   }
 
 }

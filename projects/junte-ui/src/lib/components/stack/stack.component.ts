@@ -26,7 +26,7 @@ export class StackComponent {
   _wrap: FlexWrap = FlexWrap.noWrap;
 
   @api({
-    description: 'Element direction.',
+    description: 'Element direction',
     path: 'ui.stack.type',
     default: StackType.vertical,
     options: [StackType.vertical, StackType.horizontal]
@@ -41,7 +41,7 @@ export class StackComponent {
   }
 
   @api({
-    description: 'Space between children elements.',
+    description: 'Space between children elements',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.big, Gutter.large, Gutter.huge]
@@ -56,7 +56,7 @@ export class StackComponent {
   }
 
   @api({
-    description: 'Vertical align of elements.',
+    description: 'Vertical align of elements',
     path: 'ui.flex.align',
     default: FlexAlign.start,
     options: [FlexAlign.start, FlexAlign.center, FlexAlign.end, FlexAlign.baseline, FlexAlign.stretch]
@@ -71,7 +71,7 @@ export class StackComponent {
   }
 
   @api({
-    description: 'Horizontal align of elements.',
+    description: 'Horizontal align of elements',
     path: 'ui.flex.justify',
     default: FlexJustify.start,
     options: [FlexJustify.start, FlexJustify.center, FlexJustify.end, FlexJustify.between,
@@ -87,7 +87,7 @@ export class StackComponent {
   }
 
   @api({
-    description: 'Wrapping of elements.',
+    description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
     options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]
