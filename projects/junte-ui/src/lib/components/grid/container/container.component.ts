@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { FlexAlignSelf, Width } from '../../../enum/ui';
+import { Width } from '../../../enum/ui';
 import { api } from '../../../decorators/api';
 
 @Component({
