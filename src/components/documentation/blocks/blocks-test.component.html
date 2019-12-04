@@ -22,7 +22,7 @@
   <hr>
 
   <jnt-stack>
-    <jnt-block [size]="ui.sizes.large" [padding]="ui.padding.normal">
+    <jnt-block [padding]="ui.padding.normal" [type]="null">
       <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     </jnt-block>
 
@@ -34,7 +34,7 @@
 ]]></pre>
     </ngx-prism>
 
-    <jnt-block [size]="ui.sizes.large" [padding]="ui.padding.large">
+    <jnt-block [padding]="ui.padding.large">
       <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     </jnt-block>
 
@@ -48,26 +48,26 @@
 
 
     <h2>Block bordered</h2>
-    <jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large" [padding]="ui.padding.normal">
+    <jnt-block [type]="ui.block.type.bordered" [padding]="ui.padding.normal">
       <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     </jnt-block>
 
     <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-block [type]="ui.block.type.bordered" [size]="ui.sizes.large">
+<jnt-block [type]="ui.block.type.bordered">
    <div>Content</div>
 </jnt-block>
 ]]></pre>
     </ngx-prism>
 
     <h2>Block with loading</h2>
-    <jnt-block [loading]="true" [size]="ui.sizes.large" [padding]="ui.padding.normal">
+    <jnt-block [loading]="true" [padding]="ui.padding.normal">
       <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
     </jnt-block>
 
       <ngx-prism language="html">
 <pre><![CDATA[
-  <jnt-block [loading]="true" [size]="ui.sizes.large">
+  <jnt-block [loading]="true">
     <div>Content</div>
   </jnt-block>
 ]]></pre>
@@ -134,12 +134,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>small | normal | large</td>
-      <td>small</td>
-    </tr>
     <tr>
       <td>[padding]</td>
       <td>-</td>

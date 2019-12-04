@@ -10,6 +10,8 @@ import { FormBuilder, FormControl } from '@angular/forms';
 export class GridTestComponent {
   ui = UI;
 
+  grig = GridTestComponent;
+
   directions: any[] = [
     {value: UI.flex.direction.row, label: UI.flex.direction.row},
     {value: UI.flex.direction.rowReverse, label: UI.flex.direction.rowReverse},

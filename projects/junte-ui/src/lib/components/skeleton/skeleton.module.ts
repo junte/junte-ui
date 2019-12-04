@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { SkeletonComponent } from './skeleton.component';
 import { JunteDirectiveModule } from '../../directives/junte-directive.module';
 import { StackModule } from '../stack/stack.module';
+import { ArrayPipeModule } from '../../pipes/array-pipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     JunteDirectiveModule,
-    StackModule
+    StackModule,
+    ArrayPipeModule
   ],
   declarations: [
     SkeletonComponent

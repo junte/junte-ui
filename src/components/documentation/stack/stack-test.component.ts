@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { StackComponent, UI } from 'junte-ui';
 import {LocalUI} from '../../../enums/local-ui';
@@ -14,7 +14,9 @@ export class StackTestComponent {
   localUi = LocalUI;
   stack = StackComponent;
 
-  type = new FormControl(UI.stack.type.vertical);
+  _type = UI.stack.type.vertical;
+
+  type = new FormControl(this._type);
   gutter = new FormControl(UI.gutter.normal);
   align = new FormControl(UI.flex.align.start);
   justify = new FormControl(UI.flex.justify.start);

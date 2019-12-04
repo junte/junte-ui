@@ -1,5 +1,5 @@
-<jnt-stack *ngIf="type == 'text'">
-  <div *ngFor="let l of line" line></div>
+<jnt-stack *ngIf="type == ui.skeleton.type.text">
+  <div *ngFor="let l of lines | mockArray" line></div>
 </jnt-stack>
 
-<div avatar *ngIf="type == 'avatar'"></div>
+<div avatar *ngIf="type === ui.skeleton.type.avatar"></div>
