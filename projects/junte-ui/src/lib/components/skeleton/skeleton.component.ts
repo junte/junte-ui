@@ -1,39 +1,64 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { Sizes, TypeSkeleton, UI } from '../../enum/ui';
+import { api } from '../../decorators/api';
 
 @Component({
   selector: 'jnt-skeleton',
   templateUrl: './skeleton.encapsulated.html'
 })
-export class SkeletonComponent implements OnInit {
+export class SkeletonComponent {
+
+  private _type = TypeSkeleton.text;
 
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
-  @HostBinding('attr.type')
-  @Input()
-  type: TypeSkeleton = TypeSkeleton.text;
-
   @HostBinding('attr.size')
-  @Input() size = Sizes.normal;
+  _size = Sizes.normal;
 
-  private _lines: number[];
+  @api({
+    description: 'Skeleton type: text, avatar',
+    path: 'ui.skeleton.type',
+    default: TypeSkeleton.text,
+    options: [TypeSkeleton.text, TypeSkeleton.avatar]
+  })
+
+  @HostBinding('attr.type')
+  @Input() set type(type: TypeSkeleton) {
+    if (!!type) {
+      this._type = type;
+    } else {
+      this._type = TypeSkeleton.text;
+    }
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  @api({
+    description: 'Avatar size',
+    path: 'ui.sizes',
+    default: Sizes.normal,
+    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+  })
+
+  @Input() set size(size: Sizes) {
+    if (!!size) {
+      this._size = size;
+    } else {
+      this._size = Sizes.normal;
+    }
+  }
+
+  @api({
+    description: 'Count of text lines',
+    type: 'number',
+    default: '1'
+  })
 
   @HostBinding('attr.lines')
-  @Input()
-  set lines(count: number) {
-    this._lines = new Array(count);
-  }
-
-  get line() {
-    return this._lines;
-  }
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @Input() lines = 1;
 
 }
