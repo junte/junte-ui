@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FontIcons, InputState, InputType, Sizes } from '../../enum/ui';
+import { InputState, InputType, Sizes, TextAlign } from '../../enum/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -39,6 +39,10 @@ export class InputComponent implements ControlValueAccessor {
   @HostBinding('attr.label')
   @Input()
   label: string;
+
+  @HostBinding('attr.textAlign')
+  @Input()
+  textAlign: TextAlign = TextAlign.left;
 
   @Input()
   placeholder: string;

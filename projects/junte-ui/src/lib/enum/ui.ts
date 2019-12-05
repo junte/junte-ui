@@ -267,6 +267,11 @@ export enum TypeBlock {
   bordered = 'bordered'
 }
 
+export enum TextAlign {
+  left = 'left',
+  right = 'right'
+}
+
 export enum FlexAlign {
   start = 'start',
   center = 'center',
@@ -609,6 +614,9 @@ export class UI {
     validators: {
       typeError: ValidationTypeError
     }
+  };
+  static text = {
+    align: TextAlign
   };
   static select = SelectMode;
   static block = {

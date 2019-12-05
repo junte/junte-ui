@@ -47,20 +47,24 @@ $skeleton-avatar-sizes: (
   &[type='text'] {
     width: 100%;
   }
+  &[animated="true"] {
+    [line], [avatar] {
+      animation: loading 1.4s ease infinite;
+    }
+  }
 }
 
 [line] {
   min-height: $skeleton-line-height;
-  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
-  animation: loading 1.4s ease infinite;
-  background-size: 400% 100%;
   width: 100%;
 }
 
 [avatar] {
   display: block;
-  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
-  animation: loading 1.4s ease infinite;
-  background-size: 400% 100%;
   border-radius: 50%;
+}
+
+[line], [avatar] {
+  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
+  background-size: 400% 100%;
 }

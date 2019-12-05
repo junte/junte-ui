@@ -61,4 +61,13 @@ export class SkeletonComponent {
   @HostBinding('attr.lines')
   @Input() lines = 1;
 
+  @api({
+    description: 'Switch on/off skeleton animation',
+    type: 'boolean',
+    default: 'true'
+  })
+
+  @HostBinding('attr.animated')
+  @Input() animated = true;
+
 }
