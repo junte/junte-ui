@@ -43,9 +43,36 @@ $select-sizes: (
     }
   }
   &[mode='single'] {
-    [select] [selected] {
-      button {
+    &[opened='true'] [select] {
+      ul {
         display: none;
+      }
+    }
+
+    &[empty='false'][opened='false'] [select] {
+      ul {
+        flex: 1;
+        li {
+          width: 100%;
+        }
+      }
+      [query] {
+        display: none;
+      }
+    }
+
+    &[allow-empty='false'] {
+      [select] ul {
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+  &[mode='multiple'] {
+    &[empty='false'] [select] {
+      [query] {
+        margin-left: $gutter-small;
       }
     }
   }
@@ -68,19 +95,20 @@ $select-sizes: (
     padding: 0;
     li {
       position: relative;
-      padding-right: 32px;
+      padding-right: 38px;
       [empty] {
         width: 50px;
       }
       button {
         position: absolute;
-        padding: $gutter-tiny;
         top: 0;
         right: 0;
         bottom: 0;
-        height: 30px;
-        margin: auto $gutter-tiny;
+        margin: auto 0;
         border-radius: $corner-small;
+      }
+      &:not(:last-child) {
+        margin-right: $gutter-small;
       }
     }
   }
@@ -88,7 +116,6 @@ $select-sizes: (
   [query] {
     flex: 1;
     min-width: 100px;
-    margin-left: $gutter-small;
     input {
       width: 100%;
       border: none;
@@ -134,6 +161,8 @@ $select-sizes: (
     list-style: none;
     margin: 0;
     padding: 0;
+    max-height: 200px;
+    overflow-y: scroll;
     li {
       cursor: pointer;
       padding: $gutter-tiny;

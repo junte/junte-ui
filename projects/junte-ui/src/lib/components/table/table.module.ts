@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectModule } from '../select/select.module';
 import { ArrayPipeModule } from '../../pipes/array-pipe.module';
 import { TableComponent } from './table.component';
 import { TableColumnComponent } from './column/table-column.component';
@@ -28,7 +29,8 @@ import { DropdownModule } from '../dropdown/dropdown.module';
     StackModule,
     SkeletonModule,
     DropdownModule,
-    ArrayPipeModule
+    ArrayPipeModule,
+    SelectModule
   ],
   declarations: [
     TableComponent,

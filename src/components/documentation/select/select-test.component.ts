@@ -22,16 +22,21 @@ export class SelectTestComponent implements OnInit {
   searchControl = this.fb.control(false);
   staticControl = this.fb.control([1, 3, 99]);
   ajaxControl = this.fb.control([1, 3]);
+  singleControl = this.fb.control(10);
 
   form = this.fb.group({
     search: this.searchControl,
     static: this.staticControl,
-    ajax: this.ajaxControl
+    ajax: this.ajaxControl,
+    single: this.singleControl
   });
   heroes: Hero[] = [
     {id: 1, title: 'Spider man', likes: 1},
     {id: 2, title: 'Bet man', likes: 2},
-    {id: 3, title: 'Super man', likes: 3}
+    {id: 3, title: 'Super man', likes: 3},
+    {id: 4, title: 'Super man 1', likes: 3},
+    {id: 5, title: 'Super man 2', likes: 3},
+    {id: 6, title: 'Super man 3', likes: 3}
   ];
 
   searchHeroes() {

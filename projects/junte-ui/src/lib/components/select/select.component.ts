@@ -48,21 +48,44 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
+  private _opened = false;
+
   ui = UI;
+  selectMode = SelectMode;
 
   options: Options = {persisted: {}, found: {}};
   selected: Key[] = [];
 
-  opened = false;
+  @HostBinding('attr.opened')
+  set opened(opened: boolean) {
+    this._opened = opened;
+    const input = this.queryInput.nativeElement;
+    const checking = () => {
+      const style = getComputedStyle(input);
+      if (style.display !== 'none') {
+        if (opened) {
+          input.focus();
+        }
+      } else {
+        setTimeout(() => checking(), 100);
+      }
+    };
+    setTimeout(() => checking(), 100);
+  }
+
+  get opened() {
+    return this._opened;
+  }
+
   focused: boolean;
   loading: boolean;
 
   @HostBinding('attr.mode')
-  @Input() mode: SelectMode = UI.select.single;
+  @Input() mode: SelectMode = SelectMode.single;
 
   @Input() labelField = 'label';
   @Input() keyField = 'key';
-  @Input() placeholder: string;
+  @Input() placeholder = '';
 
   @Input() set search(search: boolean) {
     search ? this.queryControl.enable() : this.queryControl.disable();
@@ -82,6 +105,18 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input()
   label: string;
 
+  @HostBinding('attr.allow-empty')
+  @Input()
+  allowEmpty = true;
+
+  @ViewChild('queryInput', {static: true})
+  queryInput: ElementRef<HTMLInputElement>;
+
+  @HostBinding('attr.empty')
+  get empty() {
+    return this.selected.length === 0;
+  }
+
   @ContentChildren(SelectOptionComponent) optionsFromMarkup: QueryList<SelectOptionComponent>;
 
   @ViewChild('query', {static: false})
@@ -95,7 +130,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   private fetcher: Subscription;
 
-  queryControl = this.fb.control(null);
+  queryControl = this.fb.control({value: null, disabled: true});
   form = this.fb.group(
     {
       query: this.queryControl
@@ -160,11 +195,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       convert(options.toArray()));
   }
 
-  add(option: IOption) {
+  select(option: IOption) {
     this.options.persisted[option.key.toString()] = option;
     this.changes.options++;
-    this.selected.push(option.key);
     this.queryControl.setValue(null);
+    if (this.mode === SelectMode.multiple) {
+      this.selected.push(option.key);
+    } else {
+      this.selected = [option.key];
+    }
+    this.opened = false;
+    this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
   }
 
   remove(key: Key) {
@@ -172,7 +213,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     if (index !== -1) {
       this.selected.splice(index, 1);
       this.changes.selected++;
-      this.onChange(this.selected);
+      this.onChange(this.mode === SelectMode.multiple ? this.selected : null);
     }
   }
 

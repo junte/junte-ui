@@ -87,7 +87,11 @@
       <ng-container *ngIf="pagesCount > 1">
         <div pagination>
           <jnt-pagination [pagesCount]="pagesCount" formControlName="page" pages></jnt-pagination>
-          <jnt-page-size formControlName="pageSize" page-size></jnt-page-size>
+          <jnt-select formControlName="pageSize" [size]="ui.sizes.small">
+            <jnt-select-option label="10" key="10"></jnt-select-option>
+            <jnt-select-option label="20" key="20"></jnt-select-option>
+            <jnt-select-option label="30" key="30"></jnt-select-option>
+          </jnt-select>
         </div>
       </ng-container>
     </jnt-stack>

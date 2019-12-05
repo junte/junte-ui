@@ -52,5 +52,15 @@
         <div option>{{hero.title}} with likes {{hero.likes}}</div>
       </ng-template>
     </jnt-select>
+
+    <p>Single select</p>
+    <jnt-select formControlName="single"
+                [search]="true"
+                [allowEmpty]="true"
+                placeholder="Select page size">
+      <jnt-select-option [key]="10" label="A"></jnt-select-option>
+      <jnt-select-option [key]="20" label="B"></jnt-select-option>
+      <jnt-select-option [key]="30" label="C"></jnt-select-option>
+    </jnt-select>
   </jnt-form>
 </jnt-container>
