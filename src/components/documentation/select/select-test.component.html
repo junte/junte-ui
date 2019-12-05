@@ -10,212 +10,47 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The select should show the loading</li>
-    <li>The select and option list item should respond to mouse hover, click</li>
-    <li>The select must have different sizes: small, normal, large</li>
-    <li>The select should change the display when it is disabled</li>
-    <li>The select should be of two types: single and multiple</li>
-    <li>Selected items should be highlighted in option list</li>
-    <li>The select must be able to enter a query</li>
-    <li>The option list should be closed by clicking on free space or on the list item</li>
-  </ol>
-
-  <hr>
 
   <jnt-form [formGroup]="form">
-    <h4>Input property</h4>
-    <jnt-row>
-      <jnt-col [span]="12">
-        <jnt-stack>
-          <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-            <jnt-select valueField="value"
-                        labelField="label"
-                        placeholder="Multiple select"
-                        formControlName="select"
-                        [search]="true"
-                        [mode]="selectMode.multiple"
-                        [size]="size">
-              <jnt-select-option *ngFor="let option of options"
-                                 [label]="option.label"
-                                 [value]="option.value">
-              </jnt-select-option>
-            </jnt-select>
-          </ng-container>
+    <jnt-form-item>
+      <jnt-form-control>
+        <jnt-switch formControlName="search" label="Allow seach"></jnt-switch>
+      </jnt-form-control>
+    </jnt-form-item>
 
-          <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-select valueField="value"
-                      labelField="label"
-                      [search]="true"
-                      [mode]="selectMode.multiple"
-                      placeholder="Multiple select disabled"
-                      formControlName="select" [size]="size" [disabled]="true">
-            <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
-            </jnt-select-option>
-          </jnt-select>
-          </ng-container>
-        </jnt-stack>
-      </jnt-col>
-    </jnt-row>
+    <ul>
+      <li *ngFor="let v of staticControl.value">
+        {{v}}
+      </li>
+    </ul>
+    <p>Static options</p>
+    <jnt-select [mode]="ui.select.multiple"
+                [search]="true"
+                placeholder="Your favourite hero"
+                formControlName="static">
+      <jnt-select-option *ngFor="let hero of heroes"
+                         [label]="hero.title"
+                         [key]="hero.id"
+                         [value]="hero">
+      </jnt-select-option>
+    </jnt-select>
 
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-select valueField="value"
-            labelField="label"
-            placeholder="Multiple select"
-            formControlName="select"
-            [search]="true"
-            [mode]="selectMode.multiple"
-            [size]="ui.sizes.small">
-  <jnt-select-option *ngFor="let option of options"
-                     [label]="option.label"
-                     [value]="option.value">
-  </jnt-select-option>
-</jnt-select>]]></pre>
-    </ngx-prism>
-
-    <h4>Ajax request</h4>
-    <jnt-stack>
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    placeholder="Single select"
-                    formControlName="selectAjax"
-                    [loadOptions]="loadOptions()"
-                    [size]="size">
-        </jnt-select>
-      </ng-container>
-
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    [loadOptions]="loadOptions()"
-                    placeholder="Single select disabled"
-                    formControlName="selectAjax" [size]="size" [disabled]="true">
-        </jnt-select>
-      </ng-container>
-    </jnt-stack>
-
-    <h4>Select with label</h4>
-
-    <jnt-stack>
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    [loadOptions]="loadOptions()"
-                    placeholder="Single select"
-                    formControlName="selectAjax" [size]="size" label="Filter">
-        </jnt-select>
-      </ng-container>
-
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    [loadOptions]="loadOptions()"
-                    placeholder="Single select disabled"
-                    formControlName="selectAjax" [size]="size" label="Filter" [disabled]="true">
-        </jnt-select>
-      </ng-container>
-    </jnt-stack>
-
-    <h4>Multi-select with label</h4>
-
-    <jnt-stack>
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    [search]="true"
-                    [mode]="selectMode.multiple"
-                    placeholder="Multiple select"
-                    formControlName="select" [size]="size" label="Filter">
-          <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
-          </jnt-select-option>
-        </jnt-select>
-      </ng-container>
-
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-select valueField="value"
-                    labelField="label"
-                    [search]="true"
-                    [mode]="selectMode.multiple"
-                    placeholder="Multiple select disabled"
-                    formControlName="select" [size]="size" label="Filter" [disabled]="true">
-          <jnt-select-option *ngFor="let option of options" [label]="option.label" [value]="option.value">
-          </jnt-select-option>
-        </jnt-select>
-      </ng-container>
-    </jnt-stack>
-
+    <p>Ajax loading</p>
+    <jnt-select [mode]="ui.select.multiple"
+                [search]="searchControl.value"
+                [loader]="searchHeroes"
+                valueField="id"
+                labelField="title"
+                placeholder="Multiple select disabled"
+                formControlName="ajax">
+      <jnt-select-option *ngFor="let hero of heroes"
+                         [label]="hero.title"
+                         [key]="hero.id"
+                         [value]="hero">
+      </jnt-select-option>
+      <ng-template #optionTemplate let-hero="value">
+        <div option>{{hero.title}} with likes {{hero.likes}}</div>
+      </ng-template>
+    </jnt-select>
   </jnt-form>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-select valueField="value"
-            labelField="label"
-            placeholder="Single select(ajax)"
-            formControlName="selectAjax"
-            [loadOptions]="loadOptions()"
-            [size]="ui.sizes.normal">
-</jnt-select>]]></pre>
-  </ngx-prism>
-
-  <h3>API</h3>
-  <h4>jnt-select</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>labelField</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>valueField</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>placeholder</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[search]</td>
-      <td>-</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[mode]</td>
-      <td>-</td>
-      <td>multiple | single</td>
-      <td>single</td>
-    </tr>
-    <tr>
-      <td>[label]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[loadOptions]</td>
-      <td>-</td>
-      <td>() => (): Observable</td>
-      <td>-</td>
-    </tr>
-    </tbody>
-  </table>
-
 </jnt-container>

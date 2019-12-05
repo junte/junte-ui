@@ -1,46 +1,5 @@
 @import "../../assets/styles/variables";
 
-$select-option-list-spacer-top: $gutter-tiny !default;
-$select-option-list-padding-y: 0 !default;
-$select-option-list-padding-x: $gutter-tiny !default;
-$select-option-list-border-color: transparent !default;
-$select-option-list-border-width: 0 !default;
-$select-option-list-background: $primary-background !default;
-$select-option-list-shadow: $shadow-light !default;
-
-$select-option-item-padding-x: $gutter-small !default;
-$select-option-item-padding-y: $gutter-normal !default;
-$select-option-item-hover-background: $highlight-background !default;
-$select-option-item-icon-color: $primary-color !default;
-$select-option-border-radius: $corner-small !default;
-
-$select-background: $control-background !default;
-$select-border-width: 1px !default;
-$select-border-color: $control-border-color !default;
-$select-corner: $corner-small !default;
-$select-icon-dropdown-size: 7px !default;
-$select-icon-dropdown-color: $primary-text-light-color !default;
-$select-placeholder-color: $primary-text-light-color !default;
-$select-padding-bottom: $gutter-tiny !default;
-$select-padding-left: $gutter-tiny !default;
-$select-padding-right: $gutter-normal !default;
-
-$select-disabled-background: $control-disabled-background !default;
-$select-disabled-border-color: $control-disabled-border-color !default;
-$select-disabled-chips-color: $control-disabled-border-color !default;
-$select-disabled-chips-background-color: $muted-color !default;
-
-$select-focus-shadow: $shadow-primary-dark !default;
-
-$select-hover-border-color: $primary-color !default;
-$select-focus-border-color: $primary-color !default;
-
-$select-chips-background: $secondary-background !default;
-$select-chips-corner: $select-corner !default;
-$select-chips-padding-x: $gutter-tiny !default;
-$select-chips-padding-y: $gutter-tiny !default;
-$select-chips-spacer: $gutter-tiny !default;
-
 $select-sizes: (
   #{$size-tiny}: (
     font-size: 10px,
@@ -58,10 +17,10 @@ $select-sizes: (
     font-size: 16px,
     min-height: 50px
   )
-)!default;
+) !default;
 
 @mixin size($size) {
-  [selectize] {
+  [select] {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, min-height)};
   }
@@ -76,194 +35,103 @@ $select-sizes: (
     }
   }
   &[disabled='true'] {
-    [selectize] {
-      background-color: $select-disabled-background;
-      border-color: $select-disabled-border-color;
+    [select] {
+      background-color: $control-disabled-background;
+      border-color: $control-disabled-border-color;
       pointer-events: none;
-      li[chips='true'] {
-        background-color: $select-disabled-chips-background-color;
-        color: $select-disabled-chips-color;
-      }
     }
   }
-}
-
-[selectize] {
-  border: $select-border-width solid $select-border-color;
-  border-radius: $select-corner;
-  box-sizing: border-box;
-  padding-bottom: 3px;
-  padding-top: 3px;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: stretch;
-  background-color: $select-background;
-  transition: all .3s;
-  &:hover {
-    border-color: $select-hover-border-color;
-  }
-  &[focused="true"] {
-    border-color: $select-hover-border-color;
-    box-shadow: $select-focus-shadow;
-    outline: 0;
-  }
-
-  [placeholder] {
-    display: flex;
-    color: $select-placeholder-color;
-  }
-
-  [selection] {
-    margin-bottom: -3px;
-    margin-left: $select-padding-left;
-    margin-right: $select-padding-right;
-    display: flex;
-    flex-wrap: wrap;
-    li {
-      max-width: 100%;
-      margin-bottom: $select-chips-spacer;
-      display: flex;
-      align-items: center;
-      margin-right: $select-chips-spacer;
+  &[mode='single'] {
+    [select] [selected] {
       button {
         display: none;
       }
-      &[chips="true"] {
-        background-color: $select-chips-background;
-        border-radius: $select-chips-corner;
-        padding: $select-chips-padding-x $select-chips-padding-y;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        user-select: none;
-        button {
-          display: inline-block;
-          border: 0;
-          background-color: transparent;
-          padding: 0 $gutter-small 0 $gutter-normal;
-          line-height: 1;
-          &:focus {
-            outline: 0;
-          }
-          [close] {
-            font-size: 7px;
-            cursor: pointer;
-          }
-        }
+    }
+  }
+}
+
+[select] {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid $primary-color;
+  border-radius: $control-gutter;
+  background-color: $control-background;
+  padding: $gutter-tiny $gutter-small;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    li {
+      position: relative;
+      padding-right: 32px;
+      [empty] {
+        width: 50px;
+      }
+      button {
+        position: absolute;
+        padding: $gutter-tiny;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        height: 30px;
+        margin: auto $gutter-tiny;
+        border-radius: $corner-small;
       }
     }
   }
-  [down] {
-    position: absolute;
-    top: 50%;
-    right: $select-padding-left;
-    transform: translateY(-50%);
-    font-size: $select-icon-dropdown-size;
-    color: $select-icon-dropdown-color;
-  }
-  [spin] {
-    color: $muted-color;
-    margin: auto auto auto $gutter-normal;
-  }
-  [input] {
-    max-width: 100%;
-    width: 10px;
-    height: 100%;
-    box-sizing: border-box;
-    font-size: $font-size-base;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    color: $primary-text-color;
-    &:focus {
-      outline: 0;
+
+  [query] {
+    flex: 1;
+    min-width: 100px;
+    margin-left: $gutter-small;
+    input {
+      width: 100%;
+      border: none;
+      &:focus {
+        outline: none;
+      }
     }
   }
 
-}
-[label] {
-  background-color: $control-field-label-background;
-  padding: $control-field-label-padding;
-  margin-top: -3px;
-  margin-bottom: -3px;
-  display: flex;
-  align-items: center;
-  border-top-left-radius: $select-corner - 1px;
-  border-bottom-left-radius: $select-corner - 1px;
-  color: $control-field-label-color;
+  [toggle] {
+    border-radius: $corner-small;
+    margin-left: $gutter-small;
+  }
+
+  &[focused="true"] {
+    outline: 0;
+  }
 }
 
 [options] {
-  border: $select-option-list-border-width solid $select-option-list-border-color;
-  background-color: $select-option-list-background;
-  box-shadow: $select-option-list-shadow;
-  box-sizing: border-box;
-  margin-top: $select-option-list-spacer-top;
-  padding: $select-option-list-padding-x $select-option-list-padding-y;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  z-index: 2;
-  max-height: 300px;
-  overflow-y: auto;
-  border-radius: $select-option-border-radius;
-  [item] {
-    padding: $select-option-item-padding-x $select-option-item-padding-y;
-    text-align: left;
-    [checkbox][child-host=#{$jnt-checkbox-host}] [ switch ] {
-      border: 0;
-      background-color: transparent;
-      position: absolute;
-      right: 0;
-    [icon] {
-      color: $select-option-item-icon-color;
-    }
-  }
-    &:hover {
-      background-color: $select-option-item-hover-background;
-    }
-  }
-  [message] {
-    padding: $select-chips-padding-x $select-chips-padding-y;
-    min-height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $primary-background;
-    [icon] {
-      color: $muted-color;
-      font-size: 30px;
-    }
-  }
+  position: relative;
+  background-color: $control-background;
+  border-radius: $corner-small;
+  border: 1px solid $secondary-color;
+  padding: $gutter-small;
+  overflow: hidden;
   [loading] {
     position: absolute;
     top: 0;
-    left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: $primary-background;
+    justify-content: center;
+    background-color: rgba($white-color, .5);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      cursor: pointer;
+      padding: $gutter-tiny;
+    }
   }
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-[overlay] {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
-}
-
-
-

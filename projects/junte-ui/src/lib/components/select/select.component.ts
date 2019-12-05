@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   Component,
+  ContentChild,
   ContentChildren,
   ElementRef,
   forwardRef,
@@ -9,15 +10,28 @@ import {
   Input,
   OnInit,
   QueryList,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { of, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
 import { SelectMode, Sizes, UI } from '../../enum/ui';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, finalize, tap } from 'rxjs/operators';
-import { SelectOptionComponent } from './select-option/select-option.component';
+import { IOption, Key, Options } from './model';
 
-const SEARCH_DELAY = 500;
+@Component({
+  selector: 'jnt-select-option',
+  template: ''
+})
+export class SelectOptionComponent {
+
+  @Input() key: Key;
+  @Input() label: string;
+  @Input() value: any;
+
+}
+
+const SEARCH_DELAY = 100;
 
 @Component({
   selector: 'jnt-select',
@@ -36,12 +50,24 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ui = UI;
 
-  @Input() loadOptions: (q: string) => Observable<any>;
-  @Input() mode: SelectMode = SelectMode.single;
-  @Input() labelField: string;
-  @Input() valueField: string;
+  options: Options = {persisted: {}, found: {}};
+  selected: Key[] = [];
+
+  opened = false;
+  focused: boolean;
+  loading: boolean;
+
+  @HostBinding('attr.mode')
+  @Input() mode: SelectMode = UI.select.single;
+
+  @Input() labelField = 'label';
+  @Input() keyField = 'key';
   @Input() placeholder: string;
-  @Input() search = false;
+
+  @Input() set search(search: boolean) {
+    search ? this.queryControl.enable() : this.queryControl.disable();
+  }
+
   @Input() required = false;
 
   @HostBinding('attr.disabled')
@@ -56,141 +82,122 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input()
   label: string;
 
-  @ContentChildren(SelectOptionComponent) listOptionComponent: QueryList<SelectOptionComponent>;
+  @ContentChildren(SelectOptionComponent) optionsFromMarkup: QueryList<SelectOptionComponent>;
 
-  @ViewChild('searchInput', {static: false})
-  searchInput: ElementRef;
+  @ViewChild('query', {static: false})
+  query: ElementRef<HTMLInputElement>;
 
-  @ViewChild('selectize', {static: false})
-  selectize: ElementRef;
+  @Input()
+  @ContentChild('optionTemplate', {static: false})
+  optionTemplate: TemplateRef<any>;
+
+  changes = {selected: 0, options: 0};
 
   private fetcher: Subscription;
-  private q$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  private _options: SelectOptionComponent[] = [];
-  private _ajaxOptions: any[] = [];
-  private _placeholderVisible = true;
 
-  search$: Subject<string> = new Subject<string>();
-  selectMode = SelectMode;
-  selectedItems: any[] = [];
-  selected: any = {};
-  labels: string[] = [];
-  loading: boolean;
-  toggle: boolean;
-  focused: boolean;
-
-  get placeholderVisible() {
-    return this._placeholderVisible && !this.selectedItems.length;
-  }
-
-  set placeholderVisible(visible: boolean) {
-    this._placeholderVisible = visible;
-  }
-
-  get input() {
-    return !!this.searchInput ? this.searchInput.nativeElement : null;
-  }
-
-  set q(q: string) {
-    this.q$.next(q);
-  }
-
-  get q() {
-    return this.q$.getValue();
-  }
-
-  set ajaxOptions(options: any[]) {
-    this._ajaxOptions = options;
-    this.setLabels(options);
-  }
-
-  get ajaxOptions() {
-    return this._ajaxOptions;
-  }
-
-  set options(options: SelectOptionComponent[]) {
-    this._options = options;
-    this.setLabels(options);
-  }
-
-  get options() {
-    return this._options;
-  }
-
-  constructor() {
-  }
+  queryControl = this.fb.control(null);
+  form = this.fb.group(
+    {
+      query: this.queryControl
+    }
+  );
 
   ngOnInit() {
-    const loadOptions = (q: string = null) => {
+    const loadOptions = (query: string) => {
       if (this.fetcher) {
         this.fetcher.unsubscribe();
       }
-
-      this.loading = true;
-      this.fetcher = this.loadOptions(q).pipe(finalize(() => this.loading = false))
-        .subscribe(options => this.ajaxOptions = options);
+      this.fetcher = this.loader(query)
+        .pipe(finalize(() => this.loading = false))
+        .subscribe(objects => {
+          this.options.found = {};
+          objects.forEach(o => {
+            const key = o[this.keyField];
+            if (!!key) {
+              this.options.found[key.toString()] = {key, label: o[this.labelField], value: o};
+            }
+          });
+          this.changes.options++;
+        });
     };
 
-    if (!!this.loadOptions) {
-      loadOptions();
-    }
+    this.form.valueChanges.pipe(tap(({query}) => {
+        if (!!query) {
+          this.loading = true;
+        } else {
+          this.loading = false;
+          this.options.found = this.options.persisted;
+          this.changes.options++;
+        }
+      }),
+      debounceTime(SEARCH_DELAY),
+      distinctUntilChanged(),
+      filter(({query}) => !!query))
+      .subscribe(({query}) => loadOptions(query));
+  }
 
-    this.search$.pipe(
-      tap(val => this.placeholderVisible = !val),
-      debounceTime(SEARCH_DELAY)
-    ).subscribe(q => {
-      this.q = q;
-      if (!!this.loadOptions) {
-        loadOptions(q);
-      } else {
-        this.options = this.listOptionComponent.filter(o => o.label.toLowerCase().indexOf(q) > -1);
-      }
-    });
+  constructor(private hostRef: ElementRef,
+              private fb: FormBuilder) {
+
+  }
+
+  @Input()
+  loader(q: string) {
+    const options = Object.values(this.options.persisted);
+    return of(options.filter(o => o.label.startsWith(q)));
   }
 
   ngAfterContentInit() {
-    this.options = this.listOptionComponent.toArray();
-    this.listOptionComponent.changes
-      .subscribe((opts: QueryList<SelectOptionComponent>) => this.options = opts.toArray());
+    const convert = (options: SelectOptionComponent[]) => {
+      this.options.persisted = {};
+      options.forEach(({key, label, value}) =>
+        this.options.persisted[key.toString()] = {label, key, value});
+      this.changes.options++;
+    };
+
+    convert(this.optionsFromMarkup.toArray());
+    this.optionsFromMarkup.changes.subscribe(options =>
+      convert(options.toArray()));
   }
 
-  private setLabels(options: any[]) {
-    if (!!options) {
-      options.forEach(option => this.labels[option[this.valueField]] = option[this.labelField]);
+  add(option: IOption) {
+    this.options.persisted[option.key.toString()] = option;
+    this.changes.options++;
+    this.selected.push(option.key);
+    this.queryControl.setValue(null);
+  }
+
+  remove(key: Key) {
+    const index = this.selected.findIndex(i => i === key);
+    if (index !== -1) {
+      this.selected.splice(index, 1);
+      this.changes.selected++;
+      this.onChange(this.selected);
     }
   }
 
-  optionSelect(value) {
-    if (this.mode === SelectMode.multiple) {
-      const index = this.selectedItems.findIndex(i => i === value);
-      if (index > -1) {
-        this.selectedItems.splice(index, 1);
-      } else {
-        this.selectedItems.push(value);
-      }
-      this.onChange(this.selectedItems);
-    } else {
-      this.selectedItems = [value];
-      this.onChange(value);
+  @HostListener('document:click', ['$event'])
+  outside(e: { path: HTMLElement[] }) {
+    if (this.opened && e.path.indexOf(this.hostRef.nativeElement) === -1) {
+      this.close();
     }
-    this.selected[value] = !this.selected[value];
   }
 
-  writeValue(value: any) {
-    if (!!value) {
-      this.selectedItems = Array.isArray(value) ? value : [value];
-    } else {
-      this.selectedItems = [];
-    }
-
-    // TODO: @VSmirnov think about it
-    this.selectedItems.forEach(i => this.selected[i] = true);
+  @HostListener('blur')
+  close() {
+    this.opened = false;
   }
 
-  onChange(items: number[]) {
+  writeValue(value: Key) {
+    this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
+  }
+
+  onChange(value: Key | Key[]) {
+    // will be overridden
   }
 
   onTouched() {
+    // will be overridden
   }
 
   registerOnChange(fn) {
@@ -199,17 +206,5 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   registerOnTouched(fn) {
     this.onTouched = fn;
-  }
-
-
-  // TODO: think about it @VSmirnov17
-  @HostListener('focusin', ['$event.target'])
-  focusIn(target) {
-    this.focused = (target === this.searchInput.nativeElement || target === this.selectize.nativeElement);
-  }
-
-  @HostListener('focusout')
-  focusOut() {
-    this.focused = false;
   }
 }

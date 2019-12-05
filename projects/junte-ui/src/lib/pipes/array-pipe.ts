@@ -20,3 +20,10 @@ export class JoinPipe implements PipeTransform {
     return arr.map(el => !!field ? el[field] : el).join(', ');
   }
 }
+
+@Pipe({name: 'includes'})
+export class IncludesPipe implements PipeTransform {
+  transform(items: (string | number)[], item: string | number) {
+    return !!items && items.includes(item);
+  }
+}

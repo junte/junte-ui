@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { SelectMode, UI } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+
+class IHero {
+  id: number;
+  title: string;
+  likes: number;
+}
 
 @Component({
   selector: 'app-select-test',
@@ -13,31 +19,32 @@ export class SelectTestComponent implements OnInit {
 
   ui = UI;
 
-  form: FormGroup;
-  selectMode = SelectMode;
-  options: any[] = [
-    {value: 1, label: 'PFC CSKA Moscow'},
-    {value: 2, label: 'FC Real Madrid'},
-    {value: 3, label: 'FC Manchester United'}
+  searchControl = this.fb.control(false);
+  staticControl = this.fb.control([1, 3, 99]);
+  ajaxControl = this.fb.control([1, 3]);
+
+  form = this.fb.group({
+    search: this.searchControl,
+    static: this.staticControl,
+    ajax: this.ajaxControl
+  });
+  heroes: IHero[] = [
+    {id: 1, title: 'Spider man', likes: 1},
+    {id: 2, title: 'Bet man', likes: 2},
+    {id: 3, title: 'Super man', likes: 3}
   ];
-  ajaxOptions: any[] = [
-    {value: 4, label: 'FC Manchester City'},
-    {value: 5, label: 'FC Liverpool'},
-    {value: 6, label: 'FC Barcelona'}
-  ];
+
+  searchHeroes(query: string): Observable<IHero[]> {
+    return of(this.heroes.filter(h => !query
+      || h.title.toLowerCase().includes(query.toLowerCase())))
+      .pipe(delay(1000));
+  }
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      select: this.fb.control([1, 3]),
-      selectAjax: this.fb.control([])
-    });
     this.form.valueChanges.subscribe(c => console.log(c));
   }
 
-  loadOptions() {
-    return (): Observable<any> => of(this.ajaxOptions).pipe(delay(2000));
-  }
 }

@@ -47,7 +47,6 @@ import { JunteDirectiveModule } from './directives/junte-directive.module';
 import { JunteUiComponent } from './junte-ui.component';
 import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { DatePipeModule } from './pipes/date-pipe.module';
-import { IncludesPipeModule } from './pipes/includes-pipe.module';
 import { IsEqualModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
@@ -90,7 +89,6 @@ import { ArrayPipeModule } from './pipes/array-pipe.module';
     AnimatedIconModule,
     SvgIconModule,
     FontIconModule,
-    IncludesPipeModule,
     ArrayPipeModule,
     InputModule,
     LabelModule,
