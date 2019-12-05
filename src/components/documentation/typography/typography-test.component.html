@@ -36,7 +36,7 @@
 
   <h4><pre><![CDATA[ <input> ]]></pre></h4>
 
-  <input type="text" value="Lorem ipsum dolor sit amet">
+  <jnt-input [type]="ui.form.input.text" placeholder="Lorem ipsum dolor sit amet"></jnt-input>
 
   <h4><pre><![CDATA[ <textarea> ]]></pre></h4>
 
@@ -44,11 +44,17 @@
 
   <h4><pre><![CDATA[ <select> ]]> </pre></h4>
 
-  <select>
-    <option value="Lorem ipsum dolor sit amet">Lorem ipsum dolor sit amet</option>
-    <option value="Lorem ipsum dolor sit amet">Lorem ipsum dolor sit amet</option>
-    <option value="Lorem ipsum dolor sit amet">Lorem ipsum dolor sit amet</option>
-  </select>
+  <jnt-select valueField="value"
+              labelField="label"
+              placeholder="Lorem ipsum dolor sit amet"
+              formControlName="select"
+              [size]="ui.sizes.small">
+    <jnt-select-option *ngFor="let option of Options"
+                       [label]="option.label"
+                       [value]="option.value"
+                       placeholder="Lorem ipsum dolor sit amet">
+    </jnt-select-option>
+  </jnt-select>
 
   <h4><pre><![CDATA[ <button> ]]> </pre></h4>
 
