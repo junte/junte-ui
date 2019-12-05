@@ -28,6 +28,7 @@ $select-sizes: (
 
 :host {
   display: inline-block;
+  position: relative;
   width: 100%;
   @each $size, $map in $select-sizes {
     &[size='#{$size}'] {
@@ -108,12 +109,16 @@ $select-sizes: (
 }
 
 [options] {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: $gutter-tiny;
   background-color: $control-background;
   border-radius: $corner-small;
-  border: 1px solid $secondary-color;
+  border: 1px solid $primary-color;
   padding: $gutter-small;
   overflow: hidden;
+  z-index: 1;
   [loading] {
     position: absolute;
     top: 0;

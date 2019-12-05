@@ -4,7 +4,7 @@ import { UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-class IHero {
+interface Hero {
   id: number;
   title: string;
   likes: number;
@@ -28,16 +28,19 @@ export class SelectTestComponent implements OnInit {
     static: this.staticControl,
     ajax: this.ajaxControl
   });
-  heroes: IHero[] = [
+  heroes: Hero[] = [
     {id: 1, title: 'Spider man', likes: 1},
     {id: 2, title: 'Bet man', likes: 2},
     {id: 3, title: 'Super man', likes: 3}
   ];
 
-  searchHeroes(query: string): Observable<IHero[]> {
-    return of(this.heroes.filter(h => !query
-      || h.title.toLowerCase().includes(query.toLowerCase())))
-      .pipe(delay(1000));
+  searchHeroes() {
+    return (query: string) => new Observable(o => {
+      console.log(query);
+      o.next(this.heroes.filter(h => !query
+        || h.title.toLowerCase().includes(query.toLowerCase())));
+      o.complete();
+    }).pipe(delay(1000));
   }
 
   constructor(private fb: FormBuilder) {

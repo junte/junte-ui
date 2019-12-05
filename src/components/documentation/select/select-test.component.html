@@ -38,8 +38,8 @@
     <p>Ajax loading</p>
     <jnt-select [mode]="ui.select.multiple"
                 [search]="searchControl.value"
-                [loader]="searchHeroes"
-                valueField="id"
+                [loader]="searchHeroes()"
+                keyField="id"
                 labelField="title"
                 placeholder="Multiple select disabled"
                 formControlName="ajax">
