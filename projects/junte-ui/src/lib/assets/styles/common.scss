@@ -1,6 +1,9 @@
 @import "variables";
 @import "../../components/app-layout/common";
 
+$input-border-width: 1px !default;
+
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -55,6 +58,22 @@ h1, h2, h3, h4, h5, h6 {
 input, textarea, select, button {
   font-family: $font-family-base;
   font-size: $font-size-base;
+}
+input, textarea, select {
+  outline: 0;
+  background-color: $control-background;
+  color: $primary-text-color;
+  //width: 100%;
+  padding: 0 $gutter-normal;
+  border-radius: $corner-small;
+  border: $input-border-width solid;
+  //border-color: $control-border-color;
+  box-sizing: border-box;
+  transition: all .3s;
+  &:disabled {
+    background-color: $control-disabled-background;
+    pointer-events: none;
+  }
 }
 
 [role=button], a, area, button, input:not([type=range]), label, select, summary, textarea {
