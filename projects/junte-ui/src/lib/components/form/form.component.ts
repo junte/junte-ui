@@ -1,6 +1,6 @@
 import {
   AfterContentInit,
-  Component,
+  Component, ContentChild,
   ContentChildren,
   EventEmitter,
   HostBinding,
@@ -30,13 +30,14 @@ export class FormComponent implements AfterContentInit {
   @Input('formGroup')
   form: FormGroup;
 
-  @Input() loading: false;
+  @Input()
+  loading: false;
 
   @Input()
-  title: string | TemplateRef<void>;
+  title: string;
 
-  @Input()
-  footerForm: TemplateRef<void>;
+  @ContentChild('footerTemplate', {static: false})
+  footerTemplate: TemplateRef<any>;
 
   @Input()
   layout: FormLayout = FormLayout.vertical;

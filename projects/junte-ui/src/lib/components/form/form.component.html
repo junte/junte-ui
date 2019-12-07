@@ -1,10 +1,14 @@
 <form>
-  <ng-container *stringTemplateOutlet="title"></ng-container>
+  <header *ngIf="!!title">
+    <h2>{{title}}</h2>
+  </header>
 
   <div content>
     <ng-content></ng-content>
     <div *ngIf="loading" loading></div>
   </div>
 
-  <ng-container [ngTemplateOutlet]="footerForm"></ng-container>
+  <footer *ngIf="footerTemplate">
+    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+  </footer>
 </form>

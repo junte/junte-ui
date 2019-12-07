@@ -24,13 +24,12 @@
   <hr>
 
   <form [formGroup]="form">
-    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large" [align]="ui.flex.align.center"
-    [justify]="ui.flex.justify.center">
-      <jnt-pagination [pagesCount]="pagesCount"
-                      formControlName="offset">
+    <jnt-stack [type]="ui.stack.type.horizontal"
+               [gutter]="ui.gutter.large"
+               [align]="ui.flex.align.center"
+               [justify]="ui.flex.justify.center">
+      <jnt-pagination [pagesCount]="pagesCount" formControlName="offset">
       </jnt-pagination>
-
-      <jnt-page-size formControlName="pageSize"></jnt-page-size>
     </jnt-stack>
   </form>
 
