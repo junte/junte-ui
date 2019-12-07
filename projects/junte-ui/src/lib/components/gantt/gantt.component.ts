@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, subMonths } from 'date-fns';
 import { UI } from '../../enum/ui';
@@ -18,12 +18,18 @@ import { GanttLineComponent } from './gantt-line/gantt-line.component';
 })
 export class GanttComponent implements ControlValueAccessor {
 
+  @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
+
   private _current: Date = new Date();
 
-  @Input() loading = false;
-  @Input() title: string;
+  @Input()
+  title = '';
 
-  @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
+  @Input()
+  loading = false;
+
+  @ContentChild('titleTemplate', {static: false})
+  titleTemplate: TemplateRef<any>;
 
   @ContentChildren(GanttLineComponent)
   lines: QueryList<GanttLineComponent>;

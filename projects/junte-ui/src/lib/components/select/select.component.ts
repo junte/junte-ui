@@ -122,7 +122,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ViewChild('query', {static: false})
   query: ElementRef<HTMLInputElement>;
 
-  @Input()
   @ContentChild('optionTemplate', {static: false})
   optionTemplate: TemplateRef<any>;
 

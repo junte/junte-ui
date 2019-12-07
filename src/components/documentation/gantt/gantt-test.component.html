@@ -16,7 +16,10 @@
 
   <jnt-block>
     <form [formGroup]="form">
-      <jnt-gantt formControlName="gantt" [loading]="loading">
+      <jnt-gantt formControlName="gantt" title="Super" [loading]="loading">
+        <ng-template #titleTemplate>
+          <p>Test custom title</p>
+        </ng-template>
         <jnt-gantt-line *ngFor="let request of requests"
                         [period]="request"
                         [from]="request.from"
