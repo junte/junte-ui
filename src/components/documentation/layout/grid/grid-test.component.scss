@@ -1,0 +1,47 @@
+@import "../../../../../projects/junte-ui/src/lib/assets/styles/variables";
+
+[line] {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  border-right: 1px dashed black;
+  z-index: 1;
+  width: 0;
+  &:nth-child(1) {
+    left: 767px;
+  }
+  &:nth-child(2) {
+    left: 991px;
+  }
+  &:nth-child(3) {
+    left: 1199px;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    background-color: #D0D0D0;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+
+[row] {
+  background-color: $primary-background;
+}
+
+[col] {
+  text-align: center;
+  border: 1px solid $muted-color;
+}
+
+[icon] {
+  font-size: 55px;
+  color: $primary-text-light-color;
+}
+
+[resources] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

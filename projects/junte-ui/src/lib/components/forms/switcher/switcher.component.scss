@@ -1,0 +1,86 @@
+@import "../../../assets/styles/variables";
+
+$switcher-height: 32px;
+$switcher-option-padding-y: $gutter-normal;
+$switcher-corner: $corner-normal;
+$switcher-border-color: $gray-700-color;
+$switcher-option-background: $primary-background;
+$switcher-option-color: $primary-text-color;
+$switcher-option-hover-background: $highlight-background;
+$switcher-option-active-background: $primary-light-color;
+$switcher-option-active-color: $white-color;
+$switcher-option-focus-shadow: $shadow-primary-dark;
+$switcher-option-focus-border-color: $primary-light-color;
+
+:host {
+  display: flex;
+  min-height: $switcher-height;
+  line-height: $switcher-height;
+  border: 1px solid $switcher-border-color;
+  border-radius: $switcher-corner;
+  &[type='vertical'] {
+    flex-direction: column;
+    [option] {
+      &:first-child {
+        border-top-left-radius: $switcher-corner - 1px;
+        border-top-right-radius: $switcher-corner - 1px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: $switcher-corner - 1px;
+        border-bottom-left-radius: $switcher-corner - 1px;
+      }
+    }
+  }
+  &[type='horizontal'] {
+    flex-direction: row;
+    [option] {
+      flex: auto;
+      justify-content: center;
+      &:first-child {
+        border-top-left-radius: $switcher-corner - 1px;
+        border-bottom-left-radius: $switcher-corner - 1px;
+      }
+
+      &:last-child {
+        border-top-right-radius: $switcher-corner - 1px;
+        border-bottom-right-radius: $switcher-corner - 1px;
+      }
+    }
+  }
+}
+
+[option] {
+  background-color: $switcher-option-background;
+  padding: 0 $switcher-option-padding-y;
+  color: $switcher-option-color;
+  user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &:focus {
+    outline: 0;
+    box-shadow: $switcher-option-focus-shadow;
+    border-color: $switcher-option-focus-border-color;
+  }
+
+  &:hover {
+    background-color: $switcher-option-hover-background;
+  }
+
+  &[active="true"] {
+    color: $switcher-option-active-color;
+    background-color: $switcher-option-active-background;
+  }
+
+  [icon] {
+    line-height: 0;
+  }
+}
+
+[label] {
+  flex: 0 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -1,44 +1,44 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DatePickerTestComponent } from 'src/components/documentation/date-picker/date-picker-test.component';
-import { AppLayoutTestComponent } from './app-layout/app-layout-test.component';
-import { AvatarTestComponent } from './avatar/avatar-test.component';
-import { BadgeTestComponent } from './badge/badge-test.component';
-import { BlocksTestComponent } from './blocks/blocks-test.component';
-import { ButtonsTestComponent } from './buttons/buttons-test.component';
-import { CalendarTestComponent } from './calendar/calendar-test.component';
-import { ChartTestComponent } from './chart/chart-test.component';
-import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
-import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
+import { DatePickerTestComponent } from 'src/components/documentation/forms/date-picker/date-picker-test.component';
+import { AppLayoutTestComponent } from './layout/app-layout/app-layout-test.component';
+import { AvatarTestComponent } from './ui-elements/avatar/avatar-test.component';
+import { BadgeTestComponent } from './ui-elements/badge/badge-test.component';
+import { BlocksTestComponent } from './layout/blocks/blocks-test.component';
+import { ButtonsTestComponent } from './forms/buttons/buttons-test.component';
+import { CalendarTestComponent } from './forms/calendar/calendar-test.component';
+import { ChartTestComponent } from './dynamic-data/chart/chart-test.component';
+import { CheckboxTestComponent } from './forms/checkbox/checkbox-test.component';
+import { CircleBarTestComponent } from './dynamic-data/circle-bar/circle-bar-test.component';
 import { DocumentationComponent } from './documentation.component';
-import { DropdownTestComponent } from './dropdown/dropdown-test.component';
-import { FormTestComponent } from './form/form-test.component';
-import { GanttTestComponent } from './gantt/gantt-test.component';
-import { GridTestComponent } from './grid/grid-test.component';
-import { IconTestComponent } from './icon/icon-test.component';
-import { InputTestComponent } from './input/input-test.component';
-import { LabelTestComponent } from './label/label-test.component';
-import { LinkTestComponent } from './link/link-test.component';
-import { MenuTestComponent } from './menu/menu-test.component';
-import { ModalTestComponent } from './modal/modal-test.component';
-import { PagerTestComponent } from './pager/pager-test.component';
+import { DropdownTestComponent } from './navigation/dropdown/dropdown-test.component';
+import { FormTestComponent } from './forms/form/form-test.component';
+import { GanttTestComponent } from './collections/gantt/gantt-test.component';
+import { GridTestComponent } from './layout/grid/grid-test.component';
+import { IconTestComponent } from './ui-elements/icon/icon-test.component';
+import { InputTestComponent } from './forms/input/input-test.component';
+import { LabelTestComponent } from './ui-elements/label/label-test.component';
+import { LinkTestComponent } from './navigation/link/link-test.component';
+import { MenuTestComponent } from './navigation/menu/menu-test.component';
+import { ModalTestComponent } from './overlays/modal/modal-test.component';
+import { PagerTestComponent } from './navigation/pager/pager-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
-import { PopoverTestComponent } from './popover/popover-test.component';
-import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
-import { RadioTestComponent } from './radio/radio-test.component';
-import { SelectTestComponent } from './select/select-test.component';
-import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
-import { SliderTestComponent } from './slider/slider-test.component';
-import { SpinnerTestComponent } from './spinner/spinner-test.component';
-import { StackTestComponent } from './stack/stack-test.component';
-import { SwitchTestComponent } from './switch/switch-test.component';
-import { SwitcherTestComponent } from './switcher/switcher-test.component';
-import { TableTestComponent } from './table/table-test.component';
-import { TabsTestComponent } from './tabs/tabs-test.component';
-import { ThemingComponent } from './theming/theming.component';
-import { TypographyTestComponent } from './typography/typography-test.component';
-import { DatePeriodTestComponent } from './date-period/date-period-test.component';
-import { KanbanTestComponent } from './kanban/kanban-test.component';
+import { PopoverTestComponent } from './overlays/popover/popover-test.component';
+import { ProgressBarTestComponent } from './dynamic-data/progress-bar/progress-bar-test.component';
+import { RadioTestComponent } from './forms/radio/radio-test.component';
+import { SelectTestComponent } from './forms/select/select-test.component';
+import { SkeletonTestComponent } from './layout/skeleton/skeleton-test.component';
+import { SliderTestComponent } from './collections/slider/slider-test.component';
+import { SpinnerTestComponent } from './layout/spinner/spinner-test.component';
+import { StackTestComponent } from './layout/stack/stack-test.component';
+import { SwitchTestComponent } from './forms/switch/switch-test.component';
+import { SwitcherTestComponent } from './forms/switcher/switcher-test.component';
+import { TableTestComponent } from './collections/table/table-test.component';
+import { TabsTestComponent } from './navigation/tabs/tabs-test.component';
+import { ThemingComponent } from './general/theming/theming.component';
+import { TypographyTestComponent } from './general/typography/typography-test.component';
+import { DatePeriodTestComponent } from './dynamic-data/date-period/date-period-test.component';
+import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
 
 
 export const routes: Routes = [
@@ -75,7 +75,7 @@ export const routes: Routes = [
       {
         path: 'breadcrumbs',
         data: {breadcrumb: {label: 'Breadcrumbs'}},
-        loadChildren: () => import('./breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsModule)
+        loadChildren: () => import('./navigation/breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsModule)
       },
       {
         path: 'switch',
