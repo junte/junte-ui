@@ -3,14 +3,8 @@
 $checkbox-indicator-corner: 3px !default;
 $checkbox-icon-size: .8rem !default;
 $checkbox-icon-color: $primary-color !default;
-
-$checkbox-indicator-background: $control-background !default;
-$checkbox-indicator-border-color: $control-border-color !default;
 $checkbox-indicator-hover-border-color: $primary-color !default;
 $checkbox-indicator-border-width: 1px !default;
-$checkbox-disabled-indicator-background: $control-disabled-background !default;
-$checkbox-disabled-indicator-border-color: $control-disabled-border-color !default;
-$checkbox-checked-disabled-indicator-icon-color: $control-disabled-indicator-icon-color !default;
 
 $checkbox-sizes: (
   #{$size-tiny}: (
@@ -79,10 +73,10 @@ input {
       color: $control-disabled-label-color;
     }
     & + [switch] {
-      background-color: $checkbox-disabled-indicator-background;
-      border-color: $checkbox-disabled-indicator-border-color;
+      background-color: $control-disabled-background;
+      border-color: $control-disabled-border-color;
       & > [icon] {
-        color: $checkbox-checked-disabled-indicator-icon-color;
+        color: $control-disabled-indicator-icon-color;
       }
     }
   }
@@ -107,8 +101,8 @@ label {
 [switch] {
   position: relative;
   border-radius: $checkbox-indicator-corner;
-  background-color: $checkbox-indicator-background;
-  border: $checkbox-indicator-border-width solid $checkbox-indicator-border-color;
+  background-color: $control-background;
+  border: $checkbox-indicator-border-width solid $control-border-color;
   display: flex;
   justify-content: center;
   align-items: center;

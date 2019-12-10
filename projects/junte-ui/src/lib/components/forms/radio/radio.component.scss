@@ -1,15 +1,8 @@
 @import "../../../assets/styles/variables";
 
 $radio-icon-color: $primary-color !default;
-$radio-indicator-background: $control-background !default;
-$radio-indicator-border-color: $control-border-color !default;
 $radio-indicator-border-width: 1px !default;
-
 $radio-indicator-hover-border-color: $primary-color !default;
-
-$radio-indicator-disabled-background: $control-disabled-background !default;
-$radio-disabled-border-color: $control-disabled-border-color !default;
-$radio-indicator-checked-disabled-icon-color: $control-disabled-indicator-icon-color !default;
 
 $radio-sizes: (
   #{$size-tiny}: (
@@ -81,11 +74,11 @@ input {
       color: $control-disabled-label-color;
     }
     & + [switch] {
-      background-color: $radio-indicator-disabled-background;
-      border-color: $radio-disabled-border-color;
+      background-color: $control-disabled-background;
+      border-color: $control-disabled-border-color;
     }
     & + [switch] > [icon] {
-      background-color: $radio-indicator-checked-disabled-icon-color;
+      background-color: $control-disabled-indicator-icon-color;
     }
   }
   &:focus {
@@ -108,8 +101,8 @@ label {
 
 [switch] {
   position: relative;
-  background-color: $radio-indicator-background;
-  border: $radio-indicator-border-width solid $radio-indicator-border-color;
+  background-color: $control-background;
+  border: $radio-indicator-border-width solid $control-border-color;
   box-sizing: border-box;
   text-align: center;
   transition: all .3s;

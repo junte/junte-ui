@@ -1,10 +1,7 @@
 @import "../../../assets/styles/variables";
 
-$input-background: $control-background !default;
 $input-padding-y: $gutter-normal !default;
 $input-line-height: normal !default;
-$input-disabled-background: $control-disabled-background !default;
-$input-disabled-border-color: $control-disabled-border-color !default;
 $input-color: $primary-text-color !default;
 $input-border-width: 1px !default;
 $input-box-shadow: none !default;
@@ -34,11 +31,11 @@ $input-sizes: (
 $states: (
   #{$state-normal}: (
     border-color: $control-border-color,
-    bg-focus: $input-background,
+    bg-focus: $control-background,
     shadow-focus: $shadow-primary-dark,
     border-color-hover: $primary-color,
     border-color-focus: $primary-color,
-    border-color-disabled: $input-disabled-border-color
+    border-color-disabled: $control-disabled-border-color
   ),
   #{$state-success}: (
     border-color: $success-color,
@@ -112,7 +109,7 @@ $states: (
 
 input {
   outline: 0;
-  background-color: $input-background;
+  background-color: $control-background;
   color: $input-color;
   width: 100%;
   padding: 0 $input-padding-y;
@@ -121,7 +118,7 @@ input {
   box-sizing: border-box;
   transition: all .3s;
   &:disabled {
-    background-color: $input-disabled-background;
+    background-color: $control-disabled-background;
     pointer-events: none;
   }
 }
