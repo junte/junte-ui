@@ -1,0 +1,25 @@
+@import "../../../assets/styles/variables";
+
+$link-active-color: $primary-color !default;
+
+:host {
+  display: block;
+  flex: 1;
+}
+
+[submenuItems] {
+  display: none;
+}
+
+[title] {
+  &[opened='true'] {
+    & + [submenuItems] {
+      display: block;
+    }
+  }
+
+  &[active='true'] {
+    background-color: $pale-navy-color;
+    color: $link-active-color;
+  }
+}

@@ -1,0 +1,121 @@
+@import "../../../assets/styles/variables";
+
+$block-background: $primary-background !default;
+$block-shadow: $shadow-normal !default;
+$block-corner: $corner-normal !default;
+$block-border-width: 1px !default;
+$block-border-color: $gray-800-color !default;
+$block-loading-background: rgba($white-color, 0.5) !default;
+
+$block-error-background: rgba($white-color, 0.5) !default;
+$block-error-icon-size: 40px !default;
+$block-error-icon-color: $white-color !default;
+
+$block-success-background: rgba($white-color, 0.5) !default;
+$block-success-icon-size: 60px;
+
+$block-title-color: $primary-color !default;
+$block-title-padding: $gutter-normal !default;
+$block-title-font-weight: $font-weight-bold !default;
+$block-title-border-bottom-color: $muted-color !default;
+
+$padding-tiny-name: 'tiny';
+$padding-small-name: 'small';
+$padding-normal-name: 'normal';
+$padding-big-name: 'big';
+$padding-large-name: 'large';
+$padding-huge-name: 'huge';
+
+$block-padding: (
+  #{$padding-tiny-name}: (
+    padding: $gutter-tiny
+  ),
+  #{$padding-small-name}: (
+    padding: $gutter-small
+  ),
+  #{$padding-normal-name}: (
+    padding: $gutter-normal
+  ),
+  #{$padding-big-name}: (
+    padding: $gutter-big
+  ),
+  #{$padding-large-name}: (
+    padding: $gutter-large
+  ),
+  #{$padding-huge-name}: (
+    padding: $gutter-huge
+  ),
+) !default;
+
+@mixin padding($size) {
+  [body] {
+    padding: #{map-get($size, padding)};
+  }
+}
+
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 40px;
+  background-color: $block-background;
+  box-shadow: $block-shadow;
+  border-radius: $block-corner;
+  box-sizing: border-box;
+  &[width="fluid"] {
+    width: 100%;
+  }
+  &[type="bordered"] {
+    border: $block-border-width solid $block-border-color;
+  }
+
+  @each $size, $map in $block-padding {
+    &[padding='#{$size}'] {
+      @include padding($map);
+    }
+  }
+}
+
+[title] {
+  padding: 0 $block-title-padding;
+  text-align: center;
+  color: $block-title-color;
+  font-weight: $block-title-font-weight;
+  > div {
+    padding: $block-title-padding 0;
+    border-bottom: 1px solid $block-title-border-bottom-color;
+  }
+}
+
+[loading], [error], [success] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $block-corner;
+}
+
+[loading] {
+  background-color: $block-loading-background;
+}
+
+[success] {
+  background-color: $block-success-background;
+  [icon] {
+    width: $block-success-icon-size;
+    height: $block-success-icon-size;
+  }
+}
+
+[error] {
+  background-color: $block-error-background;
+  [icon] {
+    font-size: $block-error-icon-size;
+  }
+}
+
+

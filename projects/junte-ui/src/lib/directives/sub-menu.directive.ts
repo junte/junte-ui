@@ -8,7 +8,7 @@ import {
   HostListener,
   QueryList
 } from '@angular/core';
-import { LinkComponent } from '../components/link/link.component';
+import { LinkComponent } from '../components/navigation/link/link.component';
 
 @Directive({selector: '[jntSubMenuItems]'})
 export class SubMenuItemsDirective {

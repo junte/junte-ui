@@ -1,6 +1,6 @@
 import { ContentChildren, Directive, Input, OnInit, QueryList } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormControlComponent } from '../components/form/form-control/form-control.component';
+import { FormControlComponent } from '../components/forms/form/form-control/form-control.component';
 
 @Directive({
   selector: '[jntValidation]'

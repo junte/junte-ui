@@ -1,0 +1,70 @@
+@import "../../../assets/styles/variables";
+@import "common";
+
+$avatar-text-color: $primary-color !default;
+$avatar-icon-color: $blue-100-color !default;
+
+$avatar-shape-circle: 'circle';
+$avatar-shape-square: 'square';
+
+$avatar-background: $secondary-background !default;
+
+$avatar-shapes: (
+  #{$avatar-shape-circle}: (
+    border-radius: 50%
+  ),
+  #{$avatar-shape-square}: (
+    border-radius: 0
+  ),
+)!default;
+
+@mixin size($size) {
+  min-width: #{map-get($size, size)};
+  width: #{map-get($size, size)};
+  min-height: #{map-get($size, size)};
+  height: #{map-get($size, size)};
+  [icon] {
+    font-size: #{map-get($size, iconSize)};
+  }
+  [text] {
+    font-size: #{map-get($size, textSize)};
+  }
+}
+
+@mixin shape($property, $shape) {
+  #{$property}: #{map-get($shape, border-radius)};
+
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  background-color: $avatar-background;
+  overflow: hidden;
+  @each $size, $map in $avatar-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
+  @each $shape, $value in $avatar-shapes {
+    &[shape='#{$shape}'] {
+      @include shape(border-radius, $value);
+    }
+  }
+}
+
+[text] {
+  color: $avatar-text-color;
+  font-weight: $font-weight-bold;
+}
+
+[icon] {
+  color: $avatar-icon-color;
+}
+
+[image] {
+  width: 100%;
+  height: 100%;
+}
