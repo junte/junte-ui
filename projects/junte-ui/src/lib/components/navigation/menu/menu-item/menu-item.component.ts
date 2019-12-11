@@ -1,6 +1,6 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { Matching, Schemes, UI } from '../../../../enum/ui';
-import { BadgeComponent } from '../../../ui-elements/badge/badge.component';
+import { BadgeComponent } from '../../../elements/badge/badge.component';
 
 const DEFAULT_TARGET = '_self';
 

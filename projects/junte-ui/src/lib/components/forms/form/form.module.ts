@@ -6,8 +6,8 @@ import { JunteDirectiveModule } from '../../../directives/junte-directive.module
 import { ValidationDirective } from '../../../directives/validation';
 import { FieldTouchedHasErrorPipe } from '../../../pipes/form.pipe';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
-import { IconModule } from '../../ui-elements/icon/icon.module';
-import { LabelModule } from '../../ui-elements/label/label.module';
+import { IconModule } from '../../elements/icon/icon.module';
+import { LabelModule } from '../../elements/label/label.module';
 import { CheckboxModule } from '../checkbox/checkbox.module';
 import { InputModule } from '../input/input.module';
 import { RadioModule } from '../radio/radio.module';

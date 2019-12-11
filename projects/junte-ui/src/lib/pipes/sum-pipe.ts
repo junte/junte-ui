@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform, QueryList} from '@angular/core';
-import {BarIndicatorComponent} from '../components/dynamic-data/circle-bar/indicator/indicator.component';
+import { Pipe, PipeTransform, QueryList } from '@angular/core';
+import { BarIndicatorComponent } from '../components/dynamic/circle-bar/indicator/indicator.component';
 
 @Pipe({
   name: 'sum'

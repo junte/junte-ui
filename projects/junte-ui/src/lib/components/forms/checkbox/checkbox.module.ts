@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IconModule } from '../../ui-elements/icon/icon.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { CheckboxComponent } from './checkbox.component';
 

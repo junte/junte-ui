@@ -5,7 +5,7 @@ import { JunteDirectiveModule } from '../../../directives/junte-directive.module
 import { ArrayPipeModule } from '../../../pipes/array-pipe.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
-import { IconModule } from '../../ui-elements/icon/icon.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { GetOptionPipe, GetOptionsPipe } from './pipes';
 import { SelectComponent, SelectOptionComponent } from './select.component';
 

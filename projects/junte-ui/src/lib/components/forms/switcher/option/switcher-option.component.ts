@@ -1,5 +1,5 @@
 import { Component, ContentChild, Input } from '@angular/core';
-import { BadgeComponent } from '../../../ui-elements/badge/badge.component';
+import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { DotComponent } from '../../dot/dot.component';
 
 @Component({

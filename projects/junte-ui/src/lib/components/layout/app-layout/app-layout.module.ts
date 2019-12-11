@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from '../../forms/button/button.module';
-import { IconModule } from '../../ui-elements/icon/icon.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../stack/stack.module';
 import { AppAsideComponent } from './app-aside/app-aside.component';
 import { AppBodyComponent } from './app-body/app-body.component';

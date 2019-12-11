@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ColorPipeModule } from '../../../pipes/color-pipe.module';
 import { ConvertionPipeModule } from '../../../pipes/convertion-pipe.module';
-import { IsEqualModule } from '../../../pipes/is-equal.module';
-import { IconModule } from '../../ui-elements/icon/icon.module';
+import { IsEqualPipeModule } from '../../../pipes/is-equal.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 import { ChartComponent } from './chart.component';
 import { SumIndicatorsPipe } from './sum-indicator.pipe';
@@ -13,7 +13,7 @@ import { SumIndicatorsPipe } from './sum-indicator.pipe';
     CommonModule,
     ConvertionPipeModule,
     ColorPipeModule,
-    IsEqualModule,
+    IsEqualPipeModule,
     IconModule
   ],
   exports: [
