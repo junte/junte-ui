@@ -6,7 +6,7 @@ import { ArrayPipeModule } from '../../../pipes/array-pipe.module';
 import { TableComponent } from './table.component';
 import { TableColumnComponent } from './column/table-column.component';
 import { DatePipeModule } from '../../../pipes/date-pipe.module';
-import { IconModule } from '../../ui-elements/icon/icon.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { PaginationModule } from '../../navigation/pagination/pagination.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';

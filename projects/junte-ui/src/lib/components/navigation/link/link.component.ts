@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { Outline, Schemes, UI } from '../../../enum/ui';
-import { BadgeComponent } from '../../ui-elements/badge/badge.component';
+import { BadgeComponent } from '../../elements/badge/badge.component';
 
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
 const DEFAULT_TARGET = '_self';

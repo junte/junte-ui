@@ -7,5 +7,5 @@ import { IsEqualPipe } from './is-equal.pipe';
   exports: [IsEqualPipe],
   declarations: [IsEqualPipe]
 })
-export class IsEqualModule {
+export class IsEqualPipeModule {
 }

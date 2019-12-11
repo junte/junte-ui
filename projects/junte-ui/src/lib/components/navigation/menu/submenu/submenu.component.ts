@@ -1,6 +1,6 @@
 import { Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList } from '@angular/core';
 import { Matching, UI } from '../../../../enum/ui';
-import { BadgeComponent } from '../../../ui-elements/badge/badge.component';
+import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 @Component({
