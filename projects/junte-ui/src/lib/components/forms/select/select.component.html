@@ -1,45 +1,50 @@
 <ng-template #optionDefaultTemplate let-label="label">
   {{label}}
 </ng-template>
-
-<div select [attr.focused]="focused" tabindex="0">
+<div select tabindex="0">
   <div *ngIf="label" label>{{label}}</div>
-  <ul *ngIf="selected.length" [type]="ui.stack.type.horizontal"
-      (click)="mode == selectMode.single ? opened = true : null">
-    <li *ngFor="let key of selected">
-      <ng-template #noOptionTemplate>
-        <jnt-skeleton empty [type]="ui.skeleton.type.text" [animated]="false"></jnt-skeleton>
-      </ng-template>
-      <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
-        <ng-container
-          *ngTemplateOutlet="!!optionTemplate ? optionTemplate : optionDefaultTemplate;context: option"></ng-container>
-      </div>
-      <button (click)="remove(key)" type="button">
-        <jnt-icon [icon]="ui.icons.close"></jnt-icon>
-      </button>
+  <ul #selectedList>
+    <ng-container *ngIf="selected.length">
+      <li *ngFor="let key of selected" (click)="mode == selectMode.single ? opened = true : null">
+        <ng-template #noOptionTemplate>
+          <div empty></div>
+        </ng-template>
+        <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
+          <ng-container
+            *ngTemplateOutlet="!!optionTemplate ? optionTemplate : optionDefaultTemplate;context: option"></ng-container>
+        </div>
+        <button close>
+          <jnt-icon [icon]="ui.icons.close" (click)="remove(key)" icon></jnt-icon>
+        </button>
+      </li>
+    </ng-container>
+
+    <li [formGroup]="form" (click)="opened = true" query>
+      <input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
+             formControlName="query">
     </li>
   </ul>
-  <div query [formGroup]="form" (click)="opened = true">
-    <input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
-           formControlName="query">
-  </div>
-  <button toggle (click)="opened = !opened" type="button">
-    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
+  <button toggle>
+    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown" (click)="opened = !opened" icon></jnt-icon>
   </button>
 </div>
-<div options *ngIf="opened">
+<div options *ngIf="opened" [attr.loading]="loading">
   <ng-template #noOptionsTemplate>
-    <jnt-skeleton *ngIf="loading; else emptyOptions"
-                  [type]="ui.skeleton.type.text" [lines]="5"></jnt-skeleton>
+    <div skeleton>
+      <jnt-skeleton *ngIf="loading; else emptyOptions"
+                    [type]="ui.skeleton.type.text" [lines]="5"></jnt-skeleton>
+    </div>
     <ng-template #emptyOptions>
-      <jnt-icon [icon]="ui.icons.stopping"></jnt-icon>
+      <div empty>
+        <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
+      </div>
     </ng-template>
   </ng-template>
   <ng-container
     *ngIf="((!!queryControl.value ? options.found : options.persisted) | getOptions:selected:changes.selected:changes.options) as options">
     <ul *ngIf="options.length;else noOptionsTemplate">
       <div loading *ngIf="loading">
-        <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
+        <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
       </div>
       <ng-container *ngFor="let o of options">
         <li (click)="select(o)">

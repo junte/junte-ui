@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 interface Hero {

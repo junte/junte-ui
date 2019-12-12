@@ -2,10 +2,11 @@
   <jnt-select valueField="value"
               labelField="label"
               formControlName="select"
+              [allowEmpty]="false"
               [size]="ui.sizes.small">
     <jnt-select-option *ngFor="let option of options"
                        [label]="option.label"
-                       [value]="option.value">
+                       [key]="option.value">
     </jnt-select-option>
   </jnt-select>
 </form>
