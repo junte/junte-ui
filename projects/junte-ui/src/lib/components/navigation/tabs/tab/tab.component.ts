@@ -1,10 +1,10 @@
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { UI } from '../../../../enum/ui';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 
 @Component({
   selector: 'jnt-tab',
-  templateUrl: './tab.encapsulated.html'
+  template: ''
 })
 export class TabComponent {
 
@@ -18,4 +18,6 @@ export class TabComponent {
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
+  @ContentChild('tabContentTemplate', {static: false})
+  tabContentTemplate: TemplateRef<any>;
 }

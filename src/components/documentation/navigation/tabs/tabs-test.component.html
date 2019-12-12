@@ -21,12 +21,24 @@
   <jnt-stack>
     <jnt-tabs>
       <jnt-tab title="Personal"  [icon]="ui.icons.gitlab" [active]="true">
+        <jnt-badge [count]="5"></jnt-badge>
+        <jnt-badge [count]="5"></jnt-badge>
+        <jnt-badge [count]="5"></jnt-badge>
         <ng-template #tabContentTemplate>
           Template Personal
         </ng-template>
       </jnt-tab>
-      <jnt-tab title="Security" [icon]="ui.icons.calendar">Template Security</jnt-tab>
-      <jnt-tab title="Settings" [icon]="ui.icons.success">Template Settings</jnt-tab>
+      <jnt-tab title="Security" [icon]="ui.icons.calendar">
+        <jnt-badge [count]="545" [color]="ui.colors.blue100"></jnt-badge>
+        <ng-template #tabContentTemplate>
+          Security Personal
+        </ng-template>
+      </jnt-tab>
+      <jnt-tab title="Settings" [icon]="ui.icons.success">
+        <ng-template #tabContentTemplate>
+          Settings Personal
+        </ng-template>
+      </jnt-tab>
     </jnt-tabs>
 
     <jnt-tabs>
