@@ -1,10 +1,6 @@
 @import "../../../assets/styles/variables";
 
 $select-sizes: (
-  #{$size-tiny}: (
-    font-size: 10px,
-    min-height: 22px
-  ),
   #{$size-small}: (
     font-size: 12px,
     min-height: 30px
@@ -23,13 +19,18 @@ $select-sizes: (
   [select] {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, min-height)};
+    ul {
+      li {
+        height: calc(#{map-get($size, min-height)} - (#{$gutter-tiny} * 2) - 2px);
+      }
+    }
   }
 }
 
 :host {
   display: inline-block;
   position: relative;
-  width: 100%;
+  min-width: 80px;
   @each $size, $map in $select-sizes {
     &[size='#{$size}'] {
       @include size($map);
@@ -40,16 +41,40 @@ $select-sizes: (
       background-color: $control-disabled-background;
       border-color: $control-disabled-border-color;
       pointer-events: none;
+      ul li {
+        background-color: $control-disabled-background;
+        color: $control-disabled-border-color;
+        &[query] {
+          background-color: transparent;
+        }
+      }
     }
   }
+
+  &[opened='true'] [select] {
+    box-shadow: $shadow-primary-dark;
+    border-color: $primary-color;
+  }
+
   &[mode='single'] {
+    ul {
+      li {
+        background-color: $primary-background;
+        margin-left: -$gutter-tiny;
+      }
+    }
     &[opened='true'] [select] {
       ul {
-        display: none;
+        li {
+          display: none;
+          &[query] {
+            display: flex;
+          }
+        }
       }
     }
 
-    &[empty='false'][opened='false'] [select] {
+    &[empty='false'] [select] {
       ul {
         flex: 1;
         li {
@@ -61,77 +86,129 @@ $select-sizes: (
       }
     }
 
+    &[empty='true'] {
+      [select] ul li[query] {
+        padding-right: 0;
+      }
+    }
+
     &[allow-empty='false'] {
-      [select] ul {
-        button {
+      [select] ul li {
+        button[close] {
           display: none;
         }
       }
     }
   }
+
   &[mode='multiple'] {
-    &[empty='false'] [select] {
-      [query] {
-        margin-left: $gutter-small;
+    &[empty='false'][opened='false'] {
+      [select] ul li[query] {
+        display: none;
+      }
+    }
+  }
+  &[search='false'] {
+    [select] ul li[query] {
+      display: none;
+    }
+  }
+  &[empty='true'], &[mode='single'] {
+    [select] ul li[query] {
+      flex: 1;
+      input {
+        width: 100%;
+      }
+    }
+  }
+  [disabled='true'] {
+    [select] {
+      ul li {
+        background-color: $muted-color;
+        &[query] {
+          background-color: transparent;
+        }
       }
     }
   }
 }
 
 [select] {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  border: 1px solid $primary-color;
-  border-radius: $control-gutter;
+  border: 1px solid $control-border-color;
+  border-radius: $corner-small;
   background-color: $control-background;
-  padding: $gutter-tiny $gutter-small;
-
+  padding: $gutter-tiny $gutter-big $gutter-tiny $gutter-small;
+  box-sizing: border-box;
+  position: relative;
+  &:focus {
+    outline: 0;
+  }
   ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    margin: 0;
     padding: 0;
+    margin: 0 0 (-$gutter-tiny);
     li {
+      display: flex;
+      align-items: center;
       position: relative;
-      padding-right: 38px;
+      padding: 0 $gutter-large 0 $gutter-small;
+      background-color: $secondary-background;
+      border-radius: $corner-small;
+      margin-bottom: $gutter-tiny;
+      font-size: $font-size-small;
       [empty] {
         width: 50px;
+        height: 10px;
+        background-color: $primary-text-light-color;
       }
-      button {
+      [close] {
+        border: 0;
+        background-color: transparent;
         position: absolute;
-        top: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 $gutter-tiny;
         right: 0;
-        bottom: 0;
-        margin: auto 0;
-        border-radius: $corner-small;
+        &:focus {
+          outline: 0;
+        }
+        [icon] {
+          font-size: 11px;
+        }
       }
       &:not(:last-child) {
-        margin-right: $gutter-small;
+        margin-right: $gutter-tiny;
       }
-    }
-  }
-
-  [query] {
-    flex: 1;
-    min-width: 100px;
-    input {
-      width: 100%;
-      border: none;
-      &:focus {
-        outline: none;
+      &[query] {
+        background-color: transparent;
+        input {
+          width: 20px;
+          border: none;
+          background-color: transparent;
+          &:focus {
+            outline: none;
+          }
+        }
       }
     }
   }
 
   [toggle] {
-    border-radius: $corner-small;
-    margin-left: $gutter-small;
-  }
-
-  &[focused="true"] {
-    outline: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    border: 0;
+    background-color: transparent;
+    padding: 0 $gutter-tiny;
+    &:focus {
+      outline: 0;
+    }
+    [icon] {
+      font-size: 11px;
+    }
   }
 }
 
@@ -142,20 +219,26 @@ $select-sizes: (
   margin-top: $gutter-tiny;
   background-color: $control-background;
   border-radius: $corner-small;
-  border: 1px solid $primary-color;
-  padding: $gutter-small;
+  box-shadow: $shadow-normal;
+  padding: $gutter-small 0;
   overflow: hidden;
   z-index: 1;
-  [loading] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  &[loading='true'] {
+    min-height: 100px;
+    height: auto;
+  }
+  [skeleton] {
+    padding: 0 $gutter-small;
+  }
+  [empty] {
+    height: 200px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: rgba($white-color, .5);
+    align-items: center;
+    [icon] {
+      font-size: 50px;
+      color: $primary-text-light-color;
+    }
   }
   ul {
     list-style: none;
@@ -163,9 +246,25 @@ $select-sizes: (
     padding: 0;
     max-height: 200px;
     overflow-y: scroll;
+    [loading] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba($white-color, .5);
+    }
     li {
       cursor: pointer;
-      padding: $gutter-tiny;
+      padding: $gutter-small $gutter-normal;
+      border-left: 2px solid transparent;
+      &:hover {
+        background-color: $secondary-background;
+        border-color: $primary-color;
+      }
     }
   }
 }

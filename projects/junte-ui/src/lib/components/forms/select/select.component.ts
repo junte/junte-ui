@@ -9,7 +9,7 @@ import {
   HostListener,
   Input,
   OnInit,
-  QueryList,
+  QueryList, Renderer2,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -19,11 +19,16 @@ import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/
 import { SelectMode, Sizes, UI } from '../../../enum/ui';
 import { IOption, Key, Options } from './model';
 
+const MIN_WIDTH = 20;
+const CHAR_WIDTH = 8;
+
 @Component({
   selector: 'jnt-select-option',
   template: ''
 })
 export class SelectOptionComponent {
+
+  ui = UI;
 
   @Input() key: Key;
   @Input() label: string;
@@ -59,6 +64,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @HostBinding('attr.opened')
   set opened(opened: boolean) {
     this._opened = opened;
+    if (!opened) {
+      this.queryControl.setValue('');
+    }
     const input = this.queryInput.nativeElement;
     const checking = () => {
       const style = getComputedStyle(input);
@@ -77,7 +85,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     return this._opened;
   }
 
-  focused: boolean;
   loading: boolean;
 
   @HostBinding('attr.mode')
@@ -87,8 +94,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() keyField = 'key';
   @Input() placeholder = '';
 
-  @Input() set search(search: boolean) {
+  @Input()
+  @HostBinding('attr.search')
+  set search(search: boolean) {
     search ? this.queryControl.enable() : this.queryControl.disable();
+  }
+
+  get search() {
+    return !this.queryControl.disabled;
   }
 
   @Input() required = false;
@@ -111,6 +124,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @ViewChild('queryInput', {static: true})
   queryInput: ElementRef<HTMLInputElement>;
+
+  @ViewChild('selectedList', {static: true})
+  selectedList: ElementRef<HTMLUListElement>;
 
   @HostBinding('attr.empty')
   get empty() {
@@ -136,6 +152,19 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   );
 
+
+  @Input()
+  loader(q: string) {
+    const options = Object.values(this.options.persisted);
+    return of(options.filter(o => o.label.startsWith(q)));
+  }
+
+  constructor(private hostRef: ElementRef,
+              private renderer: Renderer2,
+              private fb: FormBuilder) {
+
+  }
+
   ngOnInit() {
     const loadOptions = (query: string) => {
       if (this.fetcher) {
@@ -155,7 +184,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         });
     };
 
-    this.form.valueChanges.pipe(tap(({query}) => {
+    this.queryControl.valueChanges.pipe(tap(query => {
         if (!!query) {
           this.loading = true;
         } else {
@@ -163,22 +192,19 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
           this.options.found = this.options.persisted;
           this.changes.options++;
         }
+
+        const input = this.queryInput.nativeElement;
+        if (!!query && query.length > 0) {
+          const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
+          this.renderer.setStyle(input, 'width', width + 'px');
+        } else {
+          this.renderer.removeStyle(input, 'width');
+        }
       }),
       debounceTime(SEARCH_DELAY),
       distinctUntilChanged(),
-      filter(({query}) => !!query))
-      .subscribe(({query}) => loadOptions(query));
-  }
-
-  constructor(private hostRef: ElementRef,
-              private fb: FormBuilder) {
-
-  }
-
-  @Input()
-  loader(q: string) {
-    const options = Object.values(this.options.persisted);
-    return of(options.filter(o => o.label.startsWith(q)));
+      filter(query => !!query))
+      .subscribe(query => loadOptions(query));
   }
 
   ngAfterContentInit() {
@@ -192,6 +218,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     convert(this.optionsFromMarkup.toArray());
     this.optionsFromMarkup.changes.subscribe(options =>
       convert(options.toArray()));
+  }
+
+  fitInputWidth() {
+
   }
 
   select(option: IOption) {
@@ -220,6 +250,21 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   outside(e: { path: HTMLElement[] }) {
     if (this.opened && e.path.indexOf(this.hostRef.nativeElement) === -1) {
       this.close();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  focused({target, path}: { target: HTMLElement, path: HTMLElement[] }) {
+    switch (this.mode) {
+      case SelectMode.single:
+        console.log(path);
+        break;
+      case SelectMode.multiple:
+        if (target === this.selectedList.nativeElement) {
+          this.opened = true;
+        }
+        break;
+
     }
   }
 

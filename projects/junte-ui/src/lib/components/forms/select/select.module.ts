@@ -8,6 +8,8 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { GetOptionPipe, GetOptionsPipe } from './pipes';
 import { SelectComponent, SelectOptionComponent } from './select.component';
+import { ButtonModule } from '../button/button.module';
+import { StackModule } from '../../layout/stack/stack.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,9 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     SpinnerModule,
     SkeletonModule,
     JunteDirectiveModule,
-
-    ArrayPipeModule
+    ButtonModule,
+    ArrayPipeModule,
+    StackModule
   ],
   exports: [
     SelectComponent,

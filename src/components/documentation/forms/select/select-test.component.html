@@ -24,16 +24,32 @@
       </li>
     </ul>
     <p>Static options</p>
-    <jnt-select [mode]="ui.select.multiple"
-                [search]="true"
-                placeholder="Your favourite hero"
-                formControlName="static">
-      <jnt-select-option *ngFor="let hero of heroes"
-                         [label]="hero.title"
-                         [key]="hero.id"
-                         [value]="hero">
-      </jnt-select-option>
-    </jnt-select>
+    <jnt-stack [align]="ui.flex.align.stretch">
+      <jnt-select *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]"
+                  [mode]="ui.select.multiple"
+                  [size]="size"
+                  [search]="searchControl.value"
+                  placeholder="Your favourite hero"
+                  formControlName="static">
+        <jnt-select-option *ngFor="let hero of heroes"
+                           [label]="hero.title"
+                           [key]="hero.id"
+                           [value]="hero">
+        </jnt-select-option>
+      </jnt-select>
+
+      <jnt-select [mode]="ui.select.multiple"
+                  [search]="searchControl.value"
+                  placeholder="Your favourite hero"
+                  [disabled]="true"
+                  formControlName="static">
+        <jnt-select-option *ngFor="let hero of heroes"
+                           [label]="hero.title"
+                           [key]="hero.id"
+                           [value]="hero">
+        </jnt-select-option>
+      </jnt-select>
+    </jnt-stack>
 
     <p>Ajax loading</p>
     <jnt-select [mode]="ui.select.multiple"
@@ -54,13 +70,27 @@
     </jnt-select>
 
     <p>Single select</p>
-    <jnt-select formControlName="single"
-                [search]="true"
-                [allowEmpty]="true"
-                placeholder="Select page size">
-      <jnt-select-option [key]="10" label="A"></jnt-select-option>
-      <jnt-select-option [key]="20" label="B"></jnt-select-option>
-      <jnt-select-option [key]="30" label="C"></jnt-select-option>
-    </jnt-select>
+    <jnt-stack [align]="ui.flex.align.stretch">
+      <jnt-select *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]"
+                  formControlName="single"
+                  [size]="size"
+                  [search]="searchControl.value"
+                  [allowEmpty]="true"
+                  placeholder="Select page size">
+        <jnt-select-option [key]="10" label="A"></jnt-select-option>
+        <jnt-select-option [key]="20" label="B"></jnt-select-option>
+        <jnt-select-option [key]="30" label="C"></jnt-select-option>
+      </jnt-select>
+      <jnt-select formControlName="single"
+                  [disabled]="true"
+                  [search]="searchControl.value"
+                  [allowEmpty]="true"
+                  placeholder="Select page size">
+        <jnt-select-option [key]="10" label="A"></jnt-select-option>
+        <jnt-select-option [key]="20" label="B"></jnt-select-option>
+        <jnt-select-option [key]="30" label="C"></jnt-select-option>
+      </jnt-select>
+    </jnt-stack>
+
   </jnt-form>
 </jnt-container>
