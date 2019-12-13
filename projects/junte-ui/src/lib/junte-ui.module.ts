@@ -20,6 +20,7 @@ import { IsEqualPipeModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { SumPipeModule } from './pipes/sum-pipe.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     LayoutModule,
     NavigationModule,
     OverlaysModule,
-
+    SharedModule,
     AnimationPipeModule,
     ArrayPipeModule,
     ColorPipeModule,
@@ -48,7 +49,8 @@ import { TextPipeModule } from './pipes/text-pipe.module';
     SanitizePipeModule,
     SumPipeModule,
     TextPipeModule
-  ]
+  ],
+  declarations: []
 })
 export class JunteUiModule {
 }

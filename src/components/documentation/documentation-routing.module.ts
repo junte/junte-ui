@@ -39,6 +39,7 @@ import { ThemingComponent } from './general/theming/theming.component';
 import { TypographyTestComponent } from './general/typography/typography-test.component';
 import { DatePeriodTestComponent } from './dynamic/date-period/date-period-test.component';
 import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
+import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 
 
 export const routes: Routes = [
@@ -246,6 +247,11 @@ export const routes: Routes = [
         path: 'kanban',
         component: KanbanTestComponent,
         data: {breadcrumb: 'Kanban'}
+      },
+      {
+        path: 'confirm',
+        component: ConfirmTestComponent,
+        data: {breadcrumb: 'Confirm'}
       }
     ]
   }

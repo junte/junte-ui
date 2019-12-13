@@ -48,6 +48,7 @@ import { DatePeriodTestComponent } from './dynamic/date-period/date-period-test.
 import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
 import { BrowserPreviewComponent } from './layout/browser-preview/browser-preview.component';
 import { CodeHighlightComponent } from './layout/code-highlight/code-highlight.component';
+import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 
 @NgModule({
   imports: [
@@ -104,7 +105,8 @@ import { CodeHighlightComponent } from './layout/code-highlight/code-highlight.c
     BrowserPreviewComponent,
     KanbanTestComponent,
     CodeHighlightComponent,
-    ComponentApiComponent
+    ComponentApiComponent,
+    ConfirmTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

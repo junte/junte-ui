@@ -44,5 +44,6 @@ export * from './lib/components/elements/icon/font-icon/public_api';
 export * from './lib/components/collections/gantt/public_api';
 export * from './lib/components/forms/date-picker/public_api';
 export * from './lib/components/dynamic/date-period/public_api';
+export * from './lib/components/shared/confirm/public_api';
 
 export * from './lib/services/public_api';

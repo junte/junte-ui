@@ -1,0 +1,13 @@
+<jnt-form [formGroup]="form" [loading]="loading">
+  <div *ngIf="!!message">
+    <ng-container *stringTemplateOutlet="message">{{message}}</ng-container>
+  </div>
+
+  <ng-template #formFooterTemplate>
+    <jnt-stack [type]="ui.stack.type.horizontal">
+      <jnt-button text="Ok" (click)="ok.emit()" [loading]="loading"></jnt-button>
+      <jnt-button [scheme]="ui.schemes.secondary" text="Cancel" (click)="cancel.emit()"></jnt-button>
+    </jnt-stack>
+  </ng-template>
+</jnt-form>
+
