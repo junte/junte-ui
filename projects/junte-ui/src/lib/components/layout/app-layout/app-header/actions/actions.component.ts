@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { api } from '../../../../../decorators/api';
+import { PropertyApi } from '../../../../../decorators/api';
 import { Gutter, UI } from '../../../../../enum/ui';
 import { ActionComponent } from '../action/action.component';
 
@@ -13,7 +13,7 @@ export class ActionsComponent {
 
   ui = UI;
 
-  @api({
+  @PropertyApi({
     description: 'Elements gutter',
     path: 'ui.gutter',
     default: Gutter.large,

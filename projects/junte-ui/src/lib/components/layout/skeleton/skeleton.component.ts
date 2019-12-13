@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { api } from '../../../decorators/api';
+import { PropertyApi } from '../../../decorators/api';
 import { Sizes, TypeSkeleton, UI } from '../../../enum/ui';
 
 @Component({
@@ -17,7 +17,7 @@ export class SkeletonComponent {
   @HostBinding('attr.size')
   _size = Sizes.normal;
 
-  @api({
+  @PropertyApi({
     description: 'Skeleton type: text, avatar',
     path: 'ui.skeleton.type',
     default: TypeSkeleton.text,
@@ -37,7 +37,7 @@ export class SkeletonComponent {
     return this._type;
   }
 
-  @api({
+  @PropertyApi({
     description: 'Avatar size',
     path: 'ui.sizes',
     default: Sizes.normal,
@@ -52,7 +52,7 @@ export class SkeletonComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Count of text lines',
     type: 'number',
     default: '1'
@@ -61,7 +61,7 @@ export class SkeletonComponent {
   @HostBinding('attr.lines')
   @Input() lines = 1;
 
-  @api({
+  @PropertyApi({
     description: 'Switch on/off skeleton animation',
     type: 'boolean',
     default: 'true'

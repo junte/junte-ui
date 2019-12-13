@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { api } from '../../../decorators/api';
+import { PropertyApi } from '../../../decorators/api';
 import { Paddings, TypeBlock, UI, Width } from '../../../enum/ui';
 
 @Component({
@@ -38,7 +38,7 @@ export class BlockComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
-  @api({
+  @PropertyApi({
     description: 'Title of block',
     type: 'string'
   })
@@ -46,7 +46,7 @@ export class BlockComponent {
   @Input()
   title: string;
 
-  @api({
+  @PropertyApi({
     description: 'Template of block footer',
     type: 'templateRef'
   })
@@ -54,7 +54,7 @@ export class BlockComponent {
   @ContentChild('footerBlock', {static: false})
   footerBlock: TemplateRef<any>;
 
-  @api({
+  @PropertyApi({
     description: 'Shows a spinner while the contents of the block is being fetched',
     type: 'boolean',
     default: 'false'
@@ -63,7 +63,7 @@ export class BlockComponent {
   @Input()
   loading = false;
 
-  @api({
+  @PropertyApi({
     description: 'Inner gutters for block',
     path: 'ui.padding',
     options: [Paddings.tiny, Paddings.small, Paddings.normal, Paddings.large, Paddings.big, Paddings.huge]
@@ -73,7 +73,7 @@ export class BlockComponent {
   @Input()
   padding: Paddings;
 
-  @api({
+  @PropertyApi({
     description: 'Shows a error status if the contents have an error',
     type: 'boolean',
     default: 'false'
@@ -82,7 +82,7 @@ export class BlockComponent {
   @Input()
   error = false;
 
-  @api({
+  @PropertyApi({
     description: 'Block width',
     path: 'ui.width',
     default: Width.default,
@@ -93,7 +93,7 @@ export class BlockComponent {
   @Input()
   width: Width = Width.default;
 
-  @api({
+  @PropertyApi({
     description: 'Block type: simple or bordered',
     path: 'ui.block.type',
     default: TypeBlock.simple,

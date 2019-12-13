@@ -1,4 +1,5 @@
-import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
+import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { UI } from '../../../enum/ui';
 import { TabComponent } from './tab/tab.component';
 
 @Component({
@@ -7,19 +8,14 @@ import { TabComponent } from './tab/tab.component';
 })
 export class TabsComponent {
 
+  ui = UI;
+
   @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
 
-  tabs: TabComponent[] = [];
-
   @ContentChildren(TabComponent)
-  tabItems: QueryList<TabComponent>;
+  tabs: QueryList<TabComponent>;
 
-  constructor() {
-  }
-
-  activatedTab(tab: TabComponent) {
-    this.tabItems.forEach(t => t.active = false);
-    tab.active = true;
-  }
+  @Input()
+  active = 0;
 
 }

@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { api } from '../../../../decorators/api';
+import { PropertyApi } from '../../../../decorators/api';
 import { FlexAlignSelf } from '../../../../enum/ui';
 
 @Component({
@@ -16,7 +16,7 @@ export class ColComponent {
   @HostBinding('attr.alignSelf')
   _alignSelf: FlexAlignSelf = FlexAlignSelf.auto;
 
-  @api({
+  @PropertyApi({
     description: 'Number of cells to occupy',
     path: '',
     default: '1',
@@ -31,7 +31,7 @@ export class ColComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Number of cells to occupy on screen resolution < 768px',
     path: '',
     default: '1',
@@ -41,7 +41,7 @@ export class ColComponent {
   @HostBinding('attr.mobile')
   @Input() mobile: number = null;
 
-  @api({
+  @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 768px',
     path: '',
     default: '1',
@@ -51,7 +51,7 @@ export class ColComponent {
   @HostBinding('attr.tablet')
   @Input() tablet: number = null;
 
-  @api({
+  @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 992px',
     path: '',
     default: '1',
@@ -61,7 +61,7 @@ export class ColComponent {
   @HostBinding('attr.desktop')
   @Input() desktop: number = null;
 
-  @api({
+  @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 1200px',
     path: '',
     default: '1',
@@ -71,7 +71,7 @@ export class ColComponent {
   @HostBinding('attr.wide')
   @Input() wide: number = null;
 
-  @api({
+  @PropertyApi({
     description: 'Vertical align of specific elements.',
     path: 'ui.flex.alignSelf',
     default: FlexAlignSelf.auto,

@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
-export const PROPERTY_API_METADATA_KEY = Symbol('property_api_field_meta');
+export const COMPONENT_API_METADATA_KEY = Symbol('component_api_field_meta');
 
-export class PropertyAPI {
+export class PropertyMetadata {
   description: string;
   path?: string;
   type?: string;
@@ -10,8 +10,20 @@ export class PropertyAPI {
   default?: string;
 }
 
-export function api(metadata: PropertyAPI) {
+export class MethodMetadata {
+  description: string;
+}
+
+export function PropertyApi(data: PropertyMetadata) {
   return function (obj: Object, property: string) {
-    Reflect.defineMetadata(PROPERTY_API_METADATA_KEY, metadata, obj, property);
+    const metadata = Reflect.getMetadata(COMPONENT_API_METADATA_KEY, obj) || {};
+    metadata[property] = data;
+    Reflect.defineMetadata(COMPONENT_API_METADATA_KEY, metadata, obj);
+  };
+}
+
+export function MethodApi(metadata: PropertyMetadata) {
+  return function (obj: Object, property: string) {
+
   };
 }

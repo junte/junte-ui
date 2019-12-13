@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
-import { ComponentApiComponent } from 'src/components/documentation/component-api/component-api.component';
+import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { AppLayoutTestComponent } from './layout/app-layout/app-layout-test.component';
 import { AvatarTestComponent } from './elements/avatar/avatar-test.component';
 import { BadgeTestComponent } from './elements/badge/badge-test.component';
@@ -46,8 +46,9 @@ import { AppFooterModule } from '../app-footer/app-footer.module';
 import { DatePickerTestComponent } from './forms/date-picker/date-picker-test.component';
 import { DatePeriodTestComponent } from './dynamic/date-period/date-period-test.component';
 import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
-import { BrowserPreviewComponent } from './layout/browser-preview/browser-preview.component';
-import { CodeHighlightComponent } from './layout/code-highlight/code-highlight.component';
+import { BrowserPreviewComponent } from './shared/browser-preview/browser-preview.component';
+import { CodeHighlightComponent } from './shared/code-highlight/code-highlight.component';
+import { AccordionTestComponent } from './layout/accordion/accordion-test.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 
 @NgModule({
@@ -106,6 +107,7 @@ import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
     KanbanTestComponent,
     CodeHighlightComponent,
     ComponentApiComponent,
+    AccordionTestComponent,
     ConfirmTestComponent
   ],
   entryComponents: [

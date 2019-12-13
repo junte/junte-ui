@@ -40,6 +40,7 @@ import { TypographyTestComponent } from './general/typography/typography-test.co
 import { DatePeriodTestComponent } from './dynamic/date-period/date-period-test.component';
 import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
+import { AccordionTestComponent } from './layout/accordion/accordion-test.component';
 
 
 export const routes: Routes = [
@@ -247,6 +248,11 @@ export const routes: Routes = [
         path: 'kanban',
         component: KanbanTestComponent,
         data: {breadcrumb: 'Kanban'}
+      },
+      {
+        path: 'accordion',
+        component: AccordionTestComponent,
+        data: {breadcrumb: 'Accordion'}
       },
       {
         path: 'confirm',

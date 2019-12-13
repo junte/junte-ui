@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { StackComponent, UI } from 'junte-ui';
-import {LocalUI} from 'src/enums/local-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-stack-test',

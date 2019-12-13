@@ -33,6 +33,7 @@ export * from './lib/components/forms/select/public_api';
 export * from './lib/components/layout/skeleton/public_api';
 export * from './lib/components/layout/spinner/public_api';
 export * from './lib/components/layout/stack/public_api';
+export * from './lib/components/collections/accordion/public_api';
 export * from './lib/components/forms/switch/public_api';
 export * from './lib/components/collections/table/public_api';
 export * from './lib/components/navigation/tabs/public_api';
