@@ -9,17 +9,11 @@ import { FormGroup } from '@angular/forms';
 export class ConfirmComponent {
 
   ui = UI;
-
   form: FormGroup;
-
   @HostBinding('attr.host') readonly host = 'jnt-confirm-host';
-
   @Input() message: string | TemplateRef<any>;
-
   @Input() loading: boolean;
-
   @Output() ok = new EventEmitter();
-
   @Output() cancel = new EventEmitter();
 
 }
