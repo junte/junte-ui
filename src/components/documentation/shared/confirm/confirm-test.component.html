@@ -17,14 +17,13 @@
 
   <h4>Test</h4>
 
-
-  <jnt-confirm message="Delete this ticket?" [loading]="loading" (ok)="success()" (cancel)="fail()"></jnt-confirm>
+  <jnt-confirm message="Delete this ticket?" (ok)="success()" (cancel)="fail()"></jnt-confirm>
 
   <h4>Title template</h4>
 
-  <jnt-confirm [message]="message"></jnt-confirm>
+  <jnt-confirm [messageTemplate]="messageTemplate"></jnt-confirm>
 
-  <ng-template #message>
+  <ng-template #messageTemplate>
     <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
       <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
       <span>Edit this ticket?</span>
