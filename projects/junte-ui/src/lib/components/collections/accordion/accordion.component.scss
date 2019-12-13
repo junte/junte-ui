@@ -1,0 +1,28 @@
+@import "../../../assets/styles/variables";
+
+:host {
+  display: block;
+}
+
+[title] {
+  padding: $gutter-small $gutter-normal;
+  background-color: $primary-background;
+  border: 1px solid $muted-color;
+  border-radius: $corner-small;
+  cursor: pointer;
+  &[active='true'] {
+    background-color: $primary-color;
+    color: $white-color;
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: $shadow-primary;
+  }
+  [icon] {
+    margin-right: $gutter-small;
+  }
+}
+
+[content] {
+  padding: $gutter-normal;
+}
