@@ -49,6 +49,7 @@ import { KanbanTestComponent } from './layout/kanban/kanban-test.component';
 import { BrowserPreviewComponent } from './shared/browser-preview/browser-preview.component';
 import { CodeHighlightComponent } from './shared/code-highlight/code-highlight.component';
 import { AccordionTestComponent } from './layout/accordion/accordion-test.component';
+import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import { AccordionTestComponent } from './layout/accordion/accordion-test.compon
     KanbanTestComponent,
     CodeHighlightComponent,
     ComponentApiComponent,
-    AccordionTestComponent
+    AccordionTestComponent,
+    ConfirmTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
