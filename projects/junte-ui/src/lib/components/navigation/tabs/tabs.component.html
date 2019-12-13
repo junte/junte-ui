@@ -1,10 +1,18 @@
 <div tabs>
-  <div tab item *ngFor="let tab of tabItems" [attr.active]="tab.active" (click)="activatedTab(tab)" tabindex="0">
-    <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny" [align]="ui.flex.align.center">
+  <div tab item *ngFor="let tab of tabs;let i = index"
+       [attr.active]="i === active"
+       (click)="active = i"
+       tabindex="0">
+    <jnt-stack [type]="ui.stack.type.horizontal"
+               [gutter]="ui.gutter.tiny"
+               [align]="ui.flex.align.center">
       <jnt-icon *ngIf="tab.icon" [icon]="tab.icon" icon></jnt-icon>
-      <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+      <jnt-stack [type]="ui.stack.type.horizontal"
+                 [align]="ui.flex.align.center">
         <span>{{tab.title}}</span>
-        <jnt-stack *ngIf="tab.badges.length" [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.tiny"
+        <jnt-stack *ngIf="tab.badges.length"
+                   [type]="ui.stack.type.horizontal"
+                   [gutter]="ui.gutter.tiny"
                    [align]="ui.flex.align.center">
           <jnt-badge *ngFor="let badge of tab.badges"
                      [color]="badge.color"
@@ -16,8 +24,8 @@
     </jnt-stack>
   </div>
 </div>
-<ng-container *ngFor="let tab of tabItems">
-  <ng-container *ngIf="tab.active">
+<ng-container *ngFor="let tab of tabs;let i = index">
+  <ng-container *ngIf="i === active && tab.tabContentTemplate">
     <ng-container *ngTemplateOutlet="tab.tabContentTemplate"></ng-container>
   </ng-container>
 </ng-container>

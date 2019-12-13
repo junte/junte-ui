@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { Sizes } from '../../../enum/ui';
-import { api } from '../../../decorators/api';
+import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-spinner',
@@ -13,7 +13,7 @@ export class SpinnerComponent {
   @HostBinding('attr.size')
   _size: Sizes = Sizes.normal;
 
-  @api({
+  @PropertyApi({
     description: 'Spinner size',
     path: 'ui.size',
     default: Sizes.normal,

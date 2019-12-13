@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { api } from '../../../../decorators/api';
+import { PropertyApi } from '../../../../decorators/api';
 import { FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap } from '../../../../enum/ui';
 
 @Component({
@@ -26,7 +26,7 @@ export class RowComponent {
   _alignContent: FlexAlignContent = FlexAlignContent.stretch;
 
 
-  @api({
+  @PropertyApi({
     description: 'Vertical align of elements',
     path: 'ui.flex.align',
     default: FlexAlign.start,
@@ -41,7 +41,7 @@ export class RowComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Horizontal align of elements',
     path: 'ui.flex.justify',
     default: FlexJustify.start,
@@ -57,7 +57,7 @@ export class RowComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Element direction',
     path: 'ui.stack.type',
     default: FlexDirection.row,
@@ -72,7 +72,7 @@ export class RowComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
@@ -88,7 +88,7 @@ export class RowComponent {
   }
 
 
-  @api({
+  @PropertyApi({
     description: 'Aligns a flex container’s lines within the flex container',
     path: 'ui.flex.alignContent',
     default: FlexAlignContent.stretch,

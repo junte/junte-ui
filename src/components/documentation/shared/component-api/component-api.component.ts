@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
-import { PROPERTY_API_METADATA_KEY } from 'junte-ui';
-import { PropertyAPI } from 'junte-ui';
+import { COMPONENT_API_METADATA_KEY } from 'junte-ui';
+import { PropertyMetadata, MethodMetadata } from 'junte-ui';
 
 @Component({
   selector: 'app-component-api',
@@ -9,20 +9,13 @@ import { PropertyAPI } from 'junte-ui';
 })
 export class ComponentApiComponent {
 
-  properties: { [key: string]: PropertyAPI } = {};
+  properties: { [key: string]: PropertyMetadata | MethodMetadata } = {};
 
   @Input()
   set target(target: any) {
-    this.properties = {};
     const component = this.cfr.resolveComponentFactory(target)
       .create(this.injector).instance;
-
-    for (const prop of Object.keys(component)) {
-      const meta = Reflect.getMetadata(PROPERTY_API_METADATA_KEY, component, prop);
-      if (!!meta) {
-        this.properties[prop] = meta;
-      }
-    }
+    this.properties = Reflect.getMetadata(COMPONENT_API_METADATA_KEY, component) || {};
   }
 
   constructor(private injector: Injector,

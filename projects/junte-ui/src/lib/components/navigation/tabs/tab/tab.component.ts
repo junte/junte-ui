@@ -8,12 +8,11 @@ import { BadgeComponent } from '../../../elements/badge/badge.component';
 })
 export class TabComponent {
 
-  ui = UI;
+  @Input()
+  title: string;
 
-  @HostBinding('attr.host') readonly host = 'jnt-tab-host';
-  @Input() title: string;
-  @Input() active: boolean;
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;

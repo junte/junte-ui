@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
 import { UI } from 'junte-ui';
 
@@ -17,6 +17,8 @@ export class CodeHighlightComponent implements AfterContentChecked {
   @ViewChild('prism', {static: true})
   prism: PrismComponent;
 
+  code = '';
+
   private format(source: string) {
     return source
       .replace(/^\s+/g, '')
@@ -27,8 +29,9 @@ export class CodeHighlightComponent implements AfterContentChecked {
   }
 
   ngAfterContentChecked() {
+    this.code = this.format(this.pre.nativeElement.innerText);
     this.prism.highlightElement({
-      code: this.format(this.pre.nativeElement.innerText),
+      code: this.code,
       language: 'html'
     });
   }

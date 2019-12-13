@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { api } from '../../../decorators/api';
+import { PropertyApi } from '../../../decorators/api';
 import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../../enum/ui';
 
 @Component({
@@ -25,13 +25,12 @@ export class StackComponent {
   @HostBinding('attr.wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
 
-  @api({
+  @PropertyApi({
     description: 'Element direction',
     path: 'ui.stack.type',
     default: StackType.vertical,
     options: [StackType.vertical, StackType.horizontal]
   })
-
   @Input() set type(type: StackType) {
     if (!!type) {
       this._type = type;
@@ -40,13 +39,12 @@ export class StackComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Space between children elements',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.big, Gutter.large, Gutter.huge]
   })
-
   @Input() set gutter(gutter: Gutter) {
     if (!!gutter) {
       this._gutter = gutter;
@@ -54,14 +52,12 @@ export class StackComponent {
       this._gutter = Gutter.normal;
     }
   }
-
-  @api({
+  @PropertyApi({
     description: 'Vertical align of elements',
     path: 'ui.flex.align',
     default: FlexAlign.start,
     options: [FlexAlign.start, FlexAlign.center, FlexAlign.end, FlexAlign.baseline, FlexAlign.stretch]
   })
-
   @Input() set align(align: FlexAlign) {
     if (!!align) {
       this._align = align;
@@ -69,15 +65,13 @@ export class StackComponent {
       this._align = FlexAlign.start;
     }
   }
-
-  @api({
+  @PropertyApi({
     description: 'Horizontal align of elements',
     path: 'ui.flex.justify',
     default: FlexJustify.start,
     options: [FlexJustify.start, FlexJustify.center, FlexJustify.end, FlexJustify.between,
       FlexJustify.around, FlexJustify.evenly]
   })
-
   @Input() set justify(justify: FlexJustify) {
     if (!!justify) {
       this._justify = justify;
@@ -86,13 +80,12 @@ export class StackComponent {
     }
   }
 
-  @api({
+  @PropertyApi({
     description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
     options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]
   })
-
   @Input() set wrap(wrap: FlexWrap) {
     if (!!wrap) {
       this._wrap = wrap;

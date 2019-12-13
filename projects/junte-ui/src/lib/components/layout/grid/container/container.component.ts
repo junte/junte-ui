@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { api } from '../../../../decorators/api';
+import { PropertyApi } from '../../../../decorators/api';
 import { Width } from '../../../../enum/ui';
 
 @Component({
@@ -13,7 +13,7 @@ export class ContainerComponent {
   @HostBinding('attr.width')
   _width = Width.default;
 
-  @api({
+  @PropertyApi({
     description: 'Vertical align of specific elements',
     path: 'ui.width',
     default: Width.default,
