@@ -2,7 +2,7 @@
 
 $select-sizes: (
   #{$size-small}: (
-    font-size: 12px,
+    font-size: 11px,
     min-height: 30px
   ),
   #{$size-normal}: (
@@ -30,7 +30,7 @@ $select-sizes: (
 :host {
   display: inline-block;
   position: relative;
-  min-width: 80px;
+  min-width: 70px;
   @each $size, $map in $select-sizes {
     &[size='#{$size}'] {
       @include size($map);
@@ -94,9 +94,15 @@ $select-sizes: (
 
     &[allow-empty='false'] {
       [select] ul li {
+        padding-right: $gutter-small;
         button[close] {
           display: none;
         }
+      }
+    }
+    &[search='false'] {
+      [select] ul li {
+        margin-right: 0;
       }
     }
   }
@@ -109,8 +115,11 @@ $select-sizes: (
     }
   }
   &[search='false'] {
-    [select] ul li[query] {
-      display: none;
+    [select] ul li {
+      cursor: default;
+      &[query] {
+        display: none;
+      }
     }
   }
   &[empty='true'], &[mode='single'] {
@@ -157,7 +166,6 @@ $select-sizes: (
       background-color: $secondary-background;
       border-radius: $corner-small;
       margin-bottom: $gutter-tiny;
-      font-size: $font-size-small;
       [empty] {
         width: 50px;
         height: 10px;
