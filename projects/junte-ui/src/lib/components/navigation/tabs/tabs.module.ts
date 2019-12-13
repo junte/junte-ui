@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 import { IconModule } from '../../elements/icon/icon.module';
 import { TabComponent } from './tab/tab.component';
 import { TabsComponent } from './tabs.component';
+import { StackModule } from '../../layout/stack/stack.module';
+import { BadgeModule } from '../../elements/badge/badge.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconModule
+    IconModule,
+    StackModule,
+    BadgeModule
   ],
   declarations: [
     TabsComponent,

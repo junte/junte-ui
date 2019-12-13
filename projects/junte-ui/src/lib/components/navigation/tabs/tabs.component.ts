@@ -1,5 +1,7 @@
 import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
 import { TabComponent } from './tab/tab.component';
+import { UI } from '../../../enum/ui';
+import { BadgeComponent } from '../../elements/badge/badge.component';
 
 @Component({
   selector: 'jnt-tabs',
@@ -7,15 +9,15 @@ import { TabComponent } from './tab/tab.component';
 })
 export class TabsComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
+  ui = UI;
 
-  tabs: TabComponent[] = [];
+  @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
 
   @ContentChildren(TabComponent)
   tabItems: QueryList<TabComponent>;
 
-  constructor() {
-  }
+  @ContentChildren(BadgeComponent)
+  badges: QueryList<BadgeComponent>;
 
   activatedTab(tab: TabComponent) {
     this.tabItems.forEach(t => t.active = false);
