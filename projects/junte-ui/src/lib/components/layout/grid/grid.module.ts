@@ -13,6 +13,11 @@ import { RowComponent } from './row/row.component';
     ContainerComponent,
     RowComponent
   ],
+  entryComponents: [
+    ContainerComponent,
+    RowComponent,
+    ColComponent
+  ],
   exports: [
     ColComponent,
     ContainerComponent,

@@ -25,6 +25,7 @@ export class CodeHighlightComponent implements AfterContentChecked {
       .replace(/(\s|\t)+/g, ' ')
       .replace(/\[+/g, '\n\t[')
       .replace(/ +/g, '\t')
+      .replace(/\>(\s|\t)+\</g, '>\n\t<')
       .replace(/(\n\t)+/g, '\n\t');
   }
 
