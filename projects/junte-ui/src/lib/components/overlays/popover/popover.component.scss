@@ -38,8 +38,10 @@ $popover-schemes: (
 
 @mixin scheme($scheme) {
   [wrapper] {
-    color: #{map-get($scheme, color)};
     background-color: #{map-get($scheme, background-color)};
+  }
+  [title] {
+    color: #{map-get($scheme, color)};
   }
 }
 

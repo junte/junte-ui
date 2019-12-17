@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef } from '@angular/core';
+import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
 import { PopoverPlacements, PopoverTriggers, Schemes } from '../../../enum/ui';
 
 export class PopoverOptions {
@@ -8,6 +8,7 @@ export class PopoverOptions {
   placement: PopoverPlacements;
   maxWidth: string;
   maxHeight: string;
+  scheme: Schemes;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -31,8 +32,9 @@ export class PopoverComponent {
   }
 
   @HostBinding('attr.scheme')
-  @Input()
-  scheme: Schemes = Schemes.primary;
+  get scheme() {
+    return this.options.scheme ? this.options.scheme : Schemes.primary;
+  }
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {

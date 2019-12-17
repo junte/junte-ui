@@ -24,13 +24,13 @@
 
   <jnt-stack [type]="ui.stack.type.vertical">
     <jnt-stack [type]="ui.stack.type.horizontal">
-      <jnt-button [jntPopover]="{title: 'Title', content: 'Click content', trigger: ui.popover.trigger.click}"
+      <jnt-button [jntPopover]="{title: 'Title', content: content, trigger: ui.popover.trigger.click}"
                   text="Click me">
       </jnt-button>
       <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.popover.trigger.click}"
                   text="Without title">
       </jnt-button>
-      <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.popover.trigger.hover}"
+      <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.schemes.secondary, content: content, trigger: ui.popover.trigger.hover}"
                   text="Custom content">
       </jnt-button>
 
