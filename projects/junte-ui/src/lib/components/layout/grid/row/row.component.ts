@@ -59,9 +59,9 @@ export class RowComponent {
 
   @PropertyApi({
     description: 'Element direction',
-    path: 'ui.stack.type',
+    path: 'ui.flex.direction',
     default: FlexDirection.row,
-    options: [FlexDirection.rowReverse, FlexDirection.column, FlexDirection.columnReverse]
+    options: [FlexDirection.row, FlexDirection.rowReverse, FlexDirection.column, FlexDirection.columnReverse]
   })
 
   @Input() set direction(direction: FlexDirection) {

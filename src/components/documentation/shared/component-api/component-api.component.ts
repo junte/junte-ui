@@ -11,6 +11,8 @@ export class ComponentApiComponent {
 
   properties: { [key: string]: PropertyMetadata | MethodMetadata } = {};
 
+  @Input() title: string;
+
   @Input()
   set target(target: any) {
     const component = this.cfr.resolveComponentFactory(target)

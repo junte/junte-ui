@@ -55,8 +55,10 @@
         <jnt-form-label for="direction">Direction</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="direction">
-            <jnt-switcher-option *ngFor="let direction of directions" [label]="direction.label | titlecase"
-                                 [value]="direction.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Row" [icon]="localUi.icons.layout.horizontal" [value]="ui.flex.direction.row"></jnt-switcher-option>
+            <jnt-switcher-option label="Row reverse" [value]="ui.flex.direction.rowReverse"></jnt-switcher-option>
+            <jnt-switcher-option label="Column" [value]="ui.flex.direction.column" [icon]="localUi.icons.layout.vertical"></jnt-switcher-option>
+            <jnt-switcher-option label="Column reverse" [value]="ui.flex.direction.columnReverse"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -65,8 +67,11 @@
         <jnt-form-label for="align">Align</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="align">
-            <jnt-switcher-option *ngFor="let align of aligns" [label]="align.label | titlecase"
-                                 [value]="align.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Start" [value]="ui.flex.align.start" [icon]="localUi.icons.layout.start"></jnt-switcher-option>
+            <jnt-switcher-option label="End" [value]="ui.flex.align.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+            <jnt-switcher-option label="Stretch" [value]="ui.flex.align.stretch" [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
+            <jnt-switcher-option label="Baseline" [value]="ui.flex.align.baseline" [icon]="localUi.icons.layout.baseline"></jnt-switcher-option>
+            <jnt-switcher-option label="Center" [value]="ui.flex.align.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -75,8 +80,12 @@
         <jnt-form-label for="justify">Justify</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="justify">
-            <jnt-switcher-option *ngFor="let justify of justifys" [label]="justify.label | titlecase"
-                                 [value]="justify.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Start" [icon]="localUi.icons.layout.start" [value]="ui.flex.justify.start"></jnt-switcher-option>
+            <jnt-switcher-option label="End" [value]="ui.flex.justify.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+            <jnt-switcher-option label="Around" [value]="ui.flex.justify.around" [icon]="localUi.icons.layout.around"></jnt-switcher-option>
+            <jnt-switcher-option label="Between" [value]="ui.flex.justify.between" [icon]="localUi.icons.layout.between"></jnt-switcher-option>
+            <jnt-switcher-option label="Evenly" [value]="ui.flex.justify.evenly" [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
+            <jnt-switcher-option label="Center" [value]="ui.flex.justify.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -85,8 +94,13 @@
         <jnt-form-label for="alignContent">Align content</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="alignContent">
-            <jnt-switcher-option *ngFor="let alignContent of alignsContent" [label]="alignContent.label | titlecase"
-                                 [value]="alignContent.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Start" [value]="ui.flex.alignContent.start" [icon]="localUi.icons.layout.start"></jnt-switcher-option>
+            <jnt-switcher-option label="End" [value]="ui.flex.alignContent.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+            <jnt-switcher-option label="Around" [value]="ui.flex.alignContent.around" [icon]="localUi.icons.layout.around"></jnt-switcher-option>
+            <jnt-switcher-option label="Between" [value]="ui.flex.alignContent.between" [icon]="localUi.icons.layout.between"></jnt-switcher-option>
+            <jnt-switcher-option label="Evenly" [value]="ui.flex.alignContent.evenly" [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
+            <jnt-switcher-option label="Center" [value]="ui.flex.alignContent.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
+            <jnt-switcher-option label="Stretch" [value]="ui.flex.alignContent.stretch" [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
@@ -95,131 +109,96 @@
         <jnt-form-label for="wrap">Wrap</jnt-form-label>
         <jnt-form-control>
           <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option *ngFor="let wrap of wraps" [label]="wrap.label | titlecase"
-                                 [value]="wrap.value"></jnt-switcher-option>
+            <jnt-switcher-option label="Wrap" [value]="ui.flex.wrap.wrap" [icon]="localUi.icons.layout.wrap"></jnt-switcher-option>
+            <jnt-switcher-option label="No wrap" [value]="ui.flex.wrap.noWrap" [icon]="localUi.icons.layout.nowrap"></jnt-switcher-option>
+            <jnt-switcher-option label="Wrap reverse" [value]="ui.flex.wrap.reverse" [icon]="localUi.icons.layout.reverse"></jnt-switcher-option>
           </jnt-switcher>
         </jnt-form-control>
       </jnt-form-item>
 
-      <p>Preview</p>
+      <h3>Builder</h3>
 
-      <app-browser-preview>
-        <ng-template #document let-height="height">
-          <jnt-container>
-            <jnt-row [direction]="directionControl.value"
-                     [align]="alignControl.value"
-                     [justify]="justifyControl.value"
-                     [alignContent]="alignContentControl.value"
-                     [wrap]="wrapControl.value"
-                     row>
-              <jnt-col *ngFor="let column of columnsControl.value | mockArray"
-                       [span]="spanControl.value"
-                       [style.height.px]="height / 4"
-                       col>
-                <jnt-icon [icon]="ui.icons.picture" icon></jnt-icon>
-              </jnt-col>
-            </jnt-row>
-          </jnt-container>
-        </ng-template>
-      </app-browser-preview>
+
+      <jnt-tabs>
+        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+          <ng-template #tabContentTemplate>
+            <app-browser-preview>
+              <ng-template #document let-height="height">
+                <jnt-container>
+                  <jnt-row [direction]="direction.value"
+                           [align]="align.value"
+                           [justify]="justify.value"
+                           [alignContent]="alignContent.value"
+                           [wrap]="wrap.value"
+                           row>
+                    <jnt-col *ngFor="let column of columns.value | mockArray"
+                             [span]="span.value"
+                             [style.height.px]="height / 4"
+                             col>
+                      <jnt-icon [icon]="ui.icons.picture" icon></jnt-icon>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-container>
+              </ng-template>
+            </app-browser-preview>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+          <ng-template #tabContentTemplate>
+            <app-code-highlight>
+                   <![CDATA[
+              <jnt-container>
+                <jnt-row
+                  ]]>
+                <ng-container *ngIf="direction.value">
+                  <![CDATA[
+                  [direction]="ui.flex.direction.]]>{{direction.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="align.value">
+                  <![CDATA[
+                  [align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="alignContent.value">
+                  <![CDATA[
+                  [alignContent]="ui.flex.alignContent.]]>{{alignContent.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="justify.value">
+                  <![CDATA[
+                  [justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="wrap.value">
+                  <![CDATA[
+                  [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
+                </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngFor="let i of columns.value | mockArray">
+                    <![CDATA[
+                    <jnt-col [span]="]]>{{span.value}}<![CDATA[">
+                      ...
+                    </jnt-col>]]>
+                  </ng-container>
+
+                <![CDATA[
+                </jnt-row>
+              </jnt-container>
+              ]]>
+
+            </app-code-highlight>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+          <ng-template #tabContentTemplate>
+            <app-component-api title="Container" [target]="container"></app-component-api>
+            <app-component-api title="Row" [target]="row"></app-component-api>
+            <app-component-api title="Column" [target]="col"></app-component-api>
+          </ng-template>
+        </jnt-tab>
+
+      </jnt-tabs>
 
     </jnt-block>
   </jnt-form>
-
-  <h3>API</h3>
-  <h4>jnt-row</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[justify]</td>
-      <td>-</td>
-      <td>start | end | around | between | evenly</td>
-      <td>start</td>
-    </tr>
-    <tr>
-      <td>[align]</td>
-      <td>-</td>
-      <td>start | end | stretch | baseline | center</td>
-      <td>stretch</td>
-    </tr>
-    <tr>
-      <td>[direction]</td>
-      <td>-</td>
-      <td>row | column | row-reverse | column-reverse</td>
-      <td>row</td>
-    </tr>
-    <tr>
-      <td>[alignContent]</td>
-      <td>-</td>
-      <td>start | around | between | center | end | evenly | stretch</td>
-      <td>start</td>
-    </tr>
-    <tr>
-      <td>[wrap]</td>
-      <td>-</td>
-      <td>wrap | noWrap | reverse</td>
-      <td>wrap</td>
-    </tr>
-    </tbody>
-
-  </table>
-
-  <h4>jnt-col</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[alignSelf]</td>
-      <td>-</td>
-      <td>center | stretch | start | baseline | end | auto</td>
-      <td>auto</td>
-    </tr>
-    <tr>
-      <td>[span]</td>
-      <td>-</td>
-      <td>number</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>[mobile]</td>
-      <td>< 768px</td>
-      <td>number</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>[tablet]</td>
-      <td>< 992px</td>
-      <td>number</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>[desktop]</td>
-      <td>< 1200px</td>
-      <td>number</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>[wide]</td>
-      <td><= 1200px
-      <td>number</td>
-      <td>null</td>
-    </tr>
-    </tbody>
-  </table>
 
 </jnt-container>

@@ -293,8 +293,8 @@ export enum FlexJustify {
 export enum FlexDirection {
   row = 'row',
   column = 'column',
-  rowReverse = 'row-reverse',
-  columnReverse = 'column-reverse'
+  rowReverse = 'rowReverse',
+  columnReverse = 'columnReverse'
 }
 
 export enum FlexWrap {
