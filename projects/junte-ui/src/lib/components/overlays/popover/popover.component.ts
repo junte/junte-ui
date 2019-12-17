@@ -2,13 +2,14 @@ import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@ang
 import { PopoverPlacements, PopoverTriggers, Schemes } from '../../../enum/ui';
 
 export class PopoverOptions {
-  title: string | TemplateRef<void>;
-  content: string | TemplateRef<void>;
+  title: string;
+  content: string;
+  contentTemplate: TemplateRef<void>;
   trigger: PopoverTriggers;
   placement: PopoverPlacements;
   maxWidth: string;
   maxHeight: string;
-  scheme: Schemes;
+  scheme: Schemes = Schemes.secondary;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -115,7 +116,7 @@ export class PopoverComponent {
   }
 
   show(target: ElementRef, options: PopoverOptions): void {
-    this.options = options;
+    this.options = new PopoverOptions(options);
     const position = this.getPosition(target);
     this.renderer.setStyle(this.hostRef.nativeElement, 'top', `${position.top}px`);
     this.renderer.setStyle(this.hostRef.nativeElement, 'left', `${position.left}px`);
