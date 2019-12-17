@@ -3,15 +3,18 @@
 $select-sizes: (
   #{$size-small}: (
     font-size: 11px,
-    min-height: 30px
+    min-height: 30px,
+    chips-padding: 2px $gutter-large 2px $gutter-small
   ),
   #{$size-normal}: (
     font-size: 14px,
-    min-height: 38px
+    min-height: 38px,
+    chips-padding: 3px $gutter-large 3px $gutter-small
   ),
   #{$size-large}: (
     font-size: 16px,
-    min-height: 50px
+    min-height: 50px,
+    chips-padding: $gutter-small $gutter-large $gutter-small $gutter-small
   )
 ) !default;
 
@@ -19,10 +22,8 @@ $select-sizes: (
   [select] {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, min-height)};
-    ul {
-      li {
-        height: calc(#{map-get($size, min-height)} - (#{$gutter-tiny} * 2) - 2px);
-      }
+    ul li {
+      padding: #{map-get($size, chips-padding)};
     }
   }
 }
@@ -162,7 +163,6 @@ $select-sizes: (
       display: flex;
       align-items: center;
       position: relative;
-      padding: 0 $gutter-large 0 $gutter-small;
       background-color: $secondary-background;
       border-radius: $corner-small;
       margin-bottom: $gutter-tiny;
@@ -177,7 +177,7 @@ $select-sizes: (
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        padding: 0 $gutter-tiny;
+        padding: 0 $gutter-small;
         right: 0;
         &:focus {
           outline: 0;
@@ -210,7 +210,7 @@ $select-sizes: (
     right: 0;
     border: 0;
     background-color: transparent;
-    padding: 0 $gutter-tiny;
+    padding: 0 $gutter-small;
     &:focus {
       outline: 0;
     }
