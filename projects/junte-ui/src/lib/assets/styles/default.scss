@@ -1,34 +1,9 @@
 @import "variables";
 @import "../../components/layout/app-layout/common";
 
-$input-sizes: (
-  #{$size-small}: (
-    font-size: 11px,
-    height: 30px,
-    icon-size: 14px
-  ),
-  #{$size-normal}: (
-    font-size: 14px,
-    height: 38px,
-    icon-size: 16px
-  ),
-  #{$size-large}: (
-    font-size: 16px,
-    height: 50px,
-    icon-size: 18px
-  )
-)!default;
-
-
-@mixin size($size) {
-  input {
-    font-size: #{map-get($size, font-size)};
-    min-height: #{map-get($size, height)};
-  }
-}
 
 input, textarea, select {
-  size: $size-large;
+  height: 38px;
   outline: 0;
   background-color: $control-background;
   color: $primary-text-color;
@@ -42,4 +17,17 @@ input, textarea, select {
     background-color: $control-disabled-background;
     pointer-events: none;
   }
+}
+
+textarea {
+  height: auto;
+}
+
+select {
+  width: auto;
+}
+
+blockquote {
+  font-family: Open Sans;
+  font-style: italic;
 }
