@@ -55,7 +55,7 @@ export class GridTestComponent {
   columnsControl = new FormControl(6);
   alignControl = new FormControl(UI.flex.align.start);
   justifyControl = new FormControl(UI.flex.justify.start);
-  wrapControl = new FormControl(UI.flex.wrap.noWrap);
+  wrapControl = new FormControl(UI.flex.wrap.wrap);
   directionControl = new FormControl(UI.flex.direction.row);
   alignContentControl = new FormControl(UI.flex.alignContent.start);
   spanControl = new FormControl(6);
