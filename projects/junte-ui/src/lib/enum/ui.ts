@@ -560,7 +560,7 @@ class ShortIcons {
     angular: SvgDefaultIcons.angular + ':svg:default',
     arnold: SvgDefaultIcons.arnold + ':svg:default',
     dribbble: SvgDefaultIcons.dribbble + ':svg:default',
-    github: SvgDefaultIcons.github + ':svg:github',
+    github: SvgDefaultIcons.github + ':svg:default',
     russia: SvgFlagsIcons.russia + ':svg:flags',
     germany: SvgFlagsIcons.germany + ':svg:flags',
     usa: SvgFlagsIcons.usa + ':svg:flags',
