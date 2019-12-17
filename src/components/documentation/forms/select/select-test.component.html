@@ -65,7 +65,13 @@
                          [value]="hero">
       </jnt-select-option>
       <ng-template #optionTemplate let-hero="value">
-        <div option>{{hero.title}} with likes {{hero.likes}}</div>
+        <jnt-stack option [type]="ui.stack.type.horizontal"
+                   [gutter]="ui.gutter.small"
+                   [align]="ui.flex.align.center">
+          <jnt-avatar [size]="ui.sizes.small"></jnt-avatar>
+          <div>{{hero.title}} with likes</div>
+          <jnt-label [label]="hero.likes"></jnt-label>
+        </jnt-stack>
       </ng-template>
     </jnt-select>
 
