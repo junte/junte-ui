@@ -20,7 +20,7 @@ export class RowComponent {
   _direction: FlexDirection = FlexDirection.row;
 
   @HostBinding('attr.wrap')
-  _wrap: FlexWrap = FlexWrap.noWrap;
+  _wrap: FlexWrap = FlexWrap.wrap;
 
   @HostBinding('attr.alignContent')
   _alignContent: FlexAlignContent = FlexAlignContent.stretch;
@@ -75,7 +75,7 @@ export class RowComponent {
   @PropertyApi({
     description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
-    default: FlexWrap.noWrap,
+    default: FlexWrap.wrap,
     options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]
   })
 
@@ -83,7 +83,7 @@ export class RowComponent {
     if (!!wrap) {
       this._wrap = wrap;
     } else {
-      this._wrap = FlexWrap.noWrap;
+      this._wrap = FlexWrap.wrap;
     }
   }
 
