@@ -24,6 +24,9 @@ $select-sizes: (
     min-height: #{map-get($size, min-height)};
     ul li {
       padding: #{map-get($size, chips-padding)};
+      input {
+        font-size: #{map-get($size, font-size)};
+      }
     }
   }
 }
@@ -48,6 +51,9 @@ $select-sizes: (
         &[query] {
           background-color: transparent;
         }
+      }
+      [close], [toggle] {
+        color: $control-disabled-border-color;
       }
     }
   }
@@ -118,9 +124,6 @@ $select-sizes: (
   &[search='false'] {
     [select] ul li {
       cursor: default;
-      &[query] {
-        display: none;
-      }
     }
   }
   &[empty='true'], &[mode='single'] {
@@ -195,6 +198,7 @@ $select-sizes: (
           width: 20px;
           border: none;
           background-color: transparent;
+          padding: 0;
           &:focus {
             outline: none;
           }
