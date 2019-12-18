@@ -1,21 +1,25 @@
 @import "variables";
-@import "../../components/layout/app-layout/common";
-
 
 input, textarea, select {
   height: 38px;
   outline: 0;
   background-color: $control-background;
   color: $primary-text-color;
-//width: 100%;
   padding: 0 $gutter-normal;
   border-radius: $corner-small;
-  border: 1px solid;
+  border: 1px solid $control-border-color;
   box-sizing: border-box;
   transition: all .3s;
   &:disabled {
     background-color: $control-disabled-background;
     pointer-events: none;
+  }
+  &:hover {
+    border-color: $primary-color;
+  }
+  &:focus {
+    box-shadow: $shadow-primary-dark;
+    border-color: $primary-color;
   }
 }
 
@@ -23,12 +27,7 @@ textarea {
   height: auto;
 }
 
-select {
-  width: auto;
-}
-
 blockquote {
-  font-family: Open Sans;
   font-style: italic;
 }
 
@@ -36,8 +35,7 @@ button {
   color: $white-color;
   background-color: $primary-color;
   padding: 0 38px;
-  padding-without-text: 0 13px;
-  font-size: 14px;
+  font-size: $font-size-base;
   height: 38px;
   display: flex;
   align-items: center;
@@ -49,6 +47,11 @@ button {
   border-radius: $corner-large;
   cursor: pointer;
   border: none;
-//   width: 100%;
   position: relative;
+  &:hover, &:focus {
+    background-color: $primary-dark-color;
+  }
+  &:focus {
+    box-shadow: 0 1px 5px $primary-color;
+  }
 }
