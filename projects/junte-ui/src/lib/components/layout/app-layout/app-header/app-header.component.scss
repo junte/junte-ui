@@ -21,7 +21,6 @@ $menu-item-icon-color-in-header: $white-color !default;
 
 :host {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
   flex-wrap: wrap;
@@ -37,6 +36,8 @@ $menu-item-icon-color-in-header: $white-color !default;
   z-index: $app-header-z-index;
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
+    display: flex;
+    align-items: center;
     jnt-link[child-host=#{$jnt-link-host}] {
       padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
       user-select: none;
@@ -66,10 +67,16 @@ $menu-item-icon-color-in-header: $white-color !default;
 }
 
 [logo] {
+  display: flex;
+  align-items: center;
   margin-right: $app-header-logo-margin-right;
   & > * {
     display: block;
   }
+}
+
+[actions] {
+  margin-left: auto;
 }
 
 

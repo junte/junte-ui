@@ -11,16 +11,22 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <p>Use stack to layout the views of your interface automatically. Use Layout when you require precise placement of your views.</p>
+  <p>Use stack to layout the views of your interface automatically. Use Layout when you require precise placement of
+    your views.</p>
 
   <h3>Overview</h3>
   <ol>
-      <p>When you design your app’s interface, you position views and other interface elements in your app’s windows and size them appropriately.
-        However, the size and position of those views may need to change at runtime for a variety of reasons:
-      </p>
+    <p>When you design your app’s interface, you position views and other interface elements in your app’s windows and
+      size them appropriately.
+      However, the size and position of those views may need to change at runtime for a variety of reasons:
+    </p>
     <li>The user can resize the window containing your views.</li>
-    <li>Variations in the screen sizes of mobile devices (including differences between portrait and landscape orientations) require different layouts for each device and orientation.</li>
-    <li>Apps on desktop must adapt to cover different amounts of screen space, ranging from a third of the screen to the entire screen.</li>
+    <li>Variations in the screen sizes of mobile devices (including differences between portrait and landscape
+      orientations) require different layouts for each device and orientation.
+    </li>
+    <li>Apps on desktop must adapt to cover different amounts of screen space, ranging from a third of the screen to the
+      entire screen.
+    </li>
     <li>Language changes might require size changes for labels and other text-based views.</li>
     <br>
     <jnt-link source="https://developer.apple.com/documentation/uikit/view_layout"
@@ -37,138 +43,282 @@
     <li>Header must include logo, menu and userbar</li>
   </ol>
 
-  <hr>
+  <h3>Builder</h3>
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-app-layout>
-  <jnt-app-header>
-    Header
-  </jnt-app-header>
-    <jnt-app-aside>
-      Aside
-    </jnt-app-aside>
-    <jnt-app-content>
-      <jnt-app-sub-header (burger)="aside.toggle()">
-        <jnt-breadcrumb></jnt-breadcrumb>
-      </jnt-app-sub-header>
-      <jnt-app-body>
-        <jnt-container>
-          Content
-        </jnt-container>
-      </jnt-app-body>
-      <jnt-app-footer>
-        Footer
-      </jnt-app-footer>
-    </jnt-app-content>
-</jnt-app-layout>
-]]></pre>
-  </ngx-prism>
+  <jnt-form [formGroup]="form" form>
+    <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
 
-  <h2>App-header</h2>
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="logotype" label="Logo"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
 
-  <jnt-app-layout>
-    <jnt-app-header>
-      <ng-template #logo>
-        <img src="https://teamprojector.com/assets/images/logo-white.svg" alt="">
-      </ng-template>
-      <ng-template #topMenu>
-        <jnt-menu>
-          <jnt-menu-item [link]="['/developer']" title="Developer"></jnt-menu-item>
-          <jnt-menu-item title="Team Leader"></jnt-menu-item>
-          <jnt-menu-item title="Project Manager"></jnt-menu-item>
-          <jnt-menu-item title="Customer"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-    </jnt-app-header>
-  </jnt-app-layout>
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-app-layout>
-  <jnt-app-header>
-    <ng-template #logo>
-        <img src="path" alt="">
-    </ng-template>
-    <ng-template #topMenu>
-      <jnt-menu>
-        <jnt-menu-item [link]="['/developer']" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>
-        <jnt-menu-item [link]="['/leader']" title="Team Leader"></jnt-menu-item>
-        <jnt-menu-item [link]="['/manager']" title="Project Manager"></jnt-menu-item>
-        <jnt-menu-item [link]="['/customer']" title="Customer"></jnt-menu-item>
-      </jnt-menu>
-    </ng-template>
-    <ng-template #actions>
-        <jnt-actions>
-          <jnt-action>
-            <ng-template #template>Action 1</ng-template>
-            <ng-template #content>Content 1</ng-template>
-          </jnt-action>
-          <jnt-action>
-            <ng-template #template>Action 2</ng-template>
-            <ng-template #content>Content 2</ng-template>
-          </jnt-action>
-          <jnt-action>
-            <ng-template #template>Action 3</ng-template>
-            <ng-template #content>Content 3</ng-template>
-          </jnt-action>
-          <jnt-action></jnt-action>
-        </jnt-actions>
-      </ng-template>
-    <ng-template #userbar>
-      <jnt-userbar>
-        <ng-template #avatar>
-          <jnt-avatar [size]="ui.sizes.small" image="path"></jnt-avatar>
-        </ng-template>
-        <ng-template #userMenu>
-          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-            <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
-            <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
-            <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
-          </jnt-menu>
-        </ng-template>
-      </jnt-userbar>
-    </ng-template>
-  </jnt-app-header>
-</jnt-app-layout>
-]]></pre>
-  </ngx-prism>
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
 
-  <h2>App-aside</h2>
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="usermenu" label="Userbar"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-  <jnt-app-aside #aside>
-    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-      <jnt-submenu title="General" [icon]="ui.icons.crown">
-        <jnt-menu-item [link]="['theming']" title="Theming"></jnt-menu-item>
-        <jnt-menu-item [link]="['typography']" title="Typography"></jnt-menu-item>
-      </jnt-submenu>
-    </jnt-menu>
-  </jnt-app-aside>
- ]]></pre>
-  </ngx-prism>
+      <jnt-tabs>
+        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+          <ng-template #tabContentTemplate>
+            <app-browser-preview>
+              <ng-template #document let-height="height">
+                <jnt-app-layout #layout>
+                  <jnt-app-header *ngIf="header.value" [style.min-height.px]="height / 10" header>
+                    <ng-template *ngIf="logotype.value" #logo>
+                      <img [style.height.px]="height / 10" [src]="'assets/images/logo.svg'">
+                    </ng-template>
+                    <ng-template *ngIf="menu.value" #topMenu>
+                      <jnt-menu>
+                        <jnt-menu-item [icon]="ui.icons.home" title="Home"></jnt-menu-item>
+                        <jnt-menu-item [icon]="ui.icons.beaker" title="Documentation"></jnt-menu-item>
+                        <jnt-menu-item title="GitLab" [icon]="ui.icons.gitlab"></jnt-menu-item>
+                        <jnt-menu-item title="Figma" [icon]="ui.icons.figma"></jnt-menu-item>
+                        <jnt-menu-item [icon]="ui.icons.mailbox" title="Contacts"></jnt-menu-item>
+                      </jnt-menu>
+                    </ng-template>
+                    <ng-template *ngIf="action.value" #actions>
+                      <jnt-actions>
+                        <jnt-action>
+                          <ng-template #template>
+                            <jnt-icon [icon]="ui.icons.mail" icon></jnt-icon>
+                          </ng-template>
+                          <ng-template #content>
+                            <jnt-stack>
+                              <span>5 new messages</span>
+                            </jnt-stack>
+                          </ng-template>
+                        </jnt-action>
+                        <jnt-action>
+                          <ng-template #template>
+                            <jnt-icon [icon]="ui.icons.calendar" icon></jnt-icon>
+                          </ng-template>
+                          <ng-template #content>
+                            <jnt-calendar></jnt-calendar>
+                          </ng-template>
+                        </jnt-action>
+                      </jnt-actions>
+                    </ng-template>
+
+                    <ng-template *ngIf="usermenu.value" #userbar>
+                      <jnt-userbar>
+                        <ng-template #avatar>
+                          <jnt-avatar [size]="ui.sizes.small" image="assets/images/bob.jpeg"></jnt-avatar>
+                        </ng-template>
+                        <ng-template #userMenu>
+                          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                            <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
+                            <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
+                            <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
+                          </jnt-menu>
+                        </ng-template>
+                      </jnt-userbar>
+                    </ng-template>
+
+                  </jnt-app-header>
+                </jnt-app-layout>
+              </ng-template>
+            </app-browser-preview>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+          <ng-template #tabContentTemplate>
+            <app-code-highlight>
+              <![CDATA[
+              <jnt-app-layout>
+                ]]>
+                <ng-container *ngIf="header.value">
+                  <![CDATA[
+                  <jnt-app-header>]]>
+
+                    <![CDATA[
+                  </jnt-app-header>
+                  ]]>
+                  <!--<jnt-stack-->
+                  <!--]]>-->
+                  <!--<ng-container *ngIf="header.value">-->
+                  <!--<![CDATA[-->
+                  <!--[type]="ui.stack.type.]]>{{type.value}}<![CDATA["]]>-->
+                  <!--</ng-container>-->
+                  <!--<ng-container *ngIf="gutter.value">-->
+                  <!--<![CDATA[-->
+                  <!--[gutter]="ui.gutter.]]>{{gutter.value}}<![CDATA["]]>-->
+                  <!--</ng-container>-->
+                  <!--<ng-container *ngIf="align.value">-->
+                  <!--<![CDATA[-->
+                  <!--[align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>-->
+                  <!--</ng-container>-->
+                  <!--<ng-container *ngIf="justify.value">-->
+                  <!--<![CDATA[-->
+                  <!--[justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>-->
+                  <!--</ng-container>-->
+                  <!--<ng-container *ngIf="wrap.value">-->
+                  <!--<![CDATA[-->
+                  <!--[wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>-->
+                  <!--</ng-container>-->
+                  <!--<![CDATA[>-->
+                  <!--...-->
+                  <!--</jnt-stack>-->
+                </ng-container>
+                <![CDATA[
+              </jnt-app-layout>
+              ]]>
+            </app-code-highlight>
+          </ng-template>
+        </jnt-tab>
+      </jnt-tabs>
+    </jnt-block>
+  </jnt-form>
+  <!--<ngx-prism language="html">-->
+  <!--<pre><![CDATA[-->
+  <!--<jnt-app-layout>-->
+  <!--<jnt-app-header>-->
+  <!--Header-->
+  <!--</jnt-app-header>-->
+  <!--<jnt-app-aside>-->
+  <!--Aside-->
+  <!--</jnt-app-aside>-->
+  <!--<jnt-app-content>-->
+  <!--<jnt-app-sub-header (burger)="aside.toggle()">-->
+  <!--<jnt-breadcrumb></jnt-breadcrumb>-->
+  <!--</jnt-app-sub-header>-->
+  <!--<jnt-app-body>-->
+  <!--<jnt-container>-->
+  <!--Content-->
+  <!--</jnt-container>-->
+  <!--</jnt-app-body>-->
+  <!--<jnt-app-footer>-->
+  <!--Footer-->
+  <!--</jnt-app-footer>-->
+  <!--</jnt-app-content>-->
+  <!--</jnt-app-layout>-->
+  <!--]]></pre>-->
+  <!--</ngx-prism>-->
+
+  <!--<h2>App-header</h2>-->
+
+  <!--<jnt-app-layout>-->
+  <!--<jnt-app-header>-->
+  <!--<ng-template #logo>-->
+  <!--<img src="https://teamprojector.com/assets/images/logo-white.svg" alt="">-->
+  <!--</ng-template>-->
+  <!--<ng-template #topMenu>-->
+  <!--<jnt-menu>-->
+  <!--<jnt-menu-item [link]="['/developer']" title="Developer"></jnt-menu-item>-->
+  <!--<jnt-menu-item title="Team Leader"></jnt-menu-item>-->
+  <!--<jnt-menu-item title="Project Manager"></jnt-menu-item>-->
+  <!--<jnt-menu-item title="Customer"></jnt-menu-item>-->
+  <!--</jnt-menu>-->
+  <!--</ng-template>-->
+  <!--</jnt-app-header>-->
+  <!--</jnt-app-layout>-->
+
+  <!--<ngx-prism language="html">-->
+  <!--<pre><![CDATA[-->
+  <!--<jnt-app-layout>-->
+  <!--<jnt-app-header>-->
+  <!--<ng-template #logo>-->
+  <!--<img src="path" alt="">-->
+  <!--</ng-template>-->
+  <!--<ng-template #topMenu>-->
+  <!--<jnt-menu>-->
+  <!--<jnt-menu-item [link]="['/developer']" title="Developer" [icon]="ui.icons.check"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['/leader']" title="Team Leader"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['/manager']" title="Project Manager"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['/customer']" title="Customer"></jnt-menu-item>-->
+  <!--</jnt-menu>-->
+  <!--</ng-template>-->
+  <!--<ng-template #actions>-->
+  <!--<jnt-actions>-->
+  <!--<jnt-action>-->
+  <!--<ng-template #template>Action 1</ng-template>-->
+  <!--<ng-template #content>Content 1</ng-template>-->
+  <!--</jnt-action>-->
+  <!--<jnt-action>-->
+  <!--<ng-template #template>Action 2</ng-template>-->
+  <!--<ng-template #content>Content 2</ng-template>-->
+  <!--</jnt-action>-->
+  <!--<jnt-action>-->
+  <!--<ng-template #template>Action 3</ng-template>-->
+  <!--<ng-template #content>Content 3</ng-template>-->
+  <!--</jnt-action>-->
+  <!--<jnt-action></jnt-action>-->
+  <!--</jnt-actions>-->
+  <!--</ng-template>-->
+  <!--<ng-template #userbar>-->
+  <!--<jnt-userbar>-->
+  <!--<ng-template #avatar>-->
+  <!--<jnt-avatar [size]="ui.sizes.small" image="path"></jnt-avatar>-->
+  <!--</ng-template>-->
+  <!--<ng-template #userMenu>-->
+  <!--<jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">-->
+  <!--<jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>-->
+  <!--</jnt-menu>-->
+  <!--</ng-template>-->
+  <!--</jnt-userbar>-->
+  <!--</ng-template>-->
+  <!--</jnt-app-header>-->
+  <!--</jnt-app-layout>-->
+  <!--]]></pre>-->
+  <!--</ngx-prism>-->
+
+  <!--<h2>App-aside</h2>-->
+
+  <!--<ngx-prism language="html">-->
+  <!--<pre><![CDATA[-->
+  <!--<jnt-app-aside #aside>-->
+  <!--<jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">-->
+  <!--<jnt-submenu title="General" [icon]="ui.icons.crown">-->
+  <!--<jnt-menu-item [link]="['theming']" title="Theming"></jnt-menu-item>-->
+  <!--<jnt-menu-item [link]="['typography']" title="Typography"></jnt-menu-item>-->
+  <!--</jnt-submenu>-->
+  <!--</jnt-menu>-->
+  <!--</jnt-app-aside>-->
+  <!--]]></pre>-->
+  <!--</ngx-prism>-->
 
 
-  <h3>API</h3>
-  <h4>jnt-header</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[fixed]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    </tbody>
-  </table>
+  <!--<h3>API</h3>-->
+  <!--<h4>jnt-header</h4>-->
+  <!--<table api>-->
+  <!--<thead>-->
+  <!--<tr>-->
+  <!--<th>Property</th>-->
+  <!--<th>Description</th>-->
+  <!--<th>Type</th>-->
+  <!--<th>Default</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr>-->
+  <!--<td>[fixed]</td>-->
+  <!--<td>-</td>-->
+  <!--<td>true | false</td>-->
+  <!--<td>false</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+  <!--</table>-->
 
 </jnt-container>
