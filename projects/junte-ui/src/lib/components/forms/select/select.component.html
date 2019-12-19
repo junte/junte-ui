@@ -13,7 +13,7 @@
           <ng-container
             *ngTemplateOutlet="!!optionTemplate ? optionTemplate : optionDefaultTemplate;context: option"></ng-container>
         </div>
-        <button close>
+        <button close type="button">
           <jnt-icon [icon]="ui.icons.close" (click)="remove(key)" icon></jnt-icon>
         </button>
       </li>
@@ -24,8 +24,9 @@
              formControlName="query">
     </li>
   </ul>
-  <button toggle>
-    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown" (click)="opened = !opened" icon></jnt-icon>
+  <button toggle type="button">
+    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
+              (click)="opened = !opened" icon></jnt-icon>
   </button>
 </div>
 <div options *ngIf="opened" [attr.loading]="loading">
