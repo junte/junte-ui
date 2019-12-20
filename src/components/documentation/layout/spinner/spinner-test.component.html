@@ -15,37 +15,56 @@
   <ol>
     <li>The spinner must have different sizes: small, normal, large</li>
   </ol>
-  <hr>
-  <jnt-stack [type]="ui.stack.type.horizontal">
-    <jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
-    <jnt-spinner [size]="ui.sizes.normal"></jnt-spinner>
-    <jnt-spinner [size]="ui.sizes.large"></jnt-spinner>
-  </jnt-stack>
 
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-spinner [size]="ui.sizes.small"></jnt-spinner>
-  ]]></pre>
-    </ngx-prism>
+  <h3>Builder</h3>
 
-  <h3>API</h3>
-  <h4>jnt-spinner</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>small | normal | large</td>
-      <td>small</td>
-    </tr>
-    </tbody>
-  </table>
+  <jnt-form [formGroup]="form" form>
+    <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
+      <jnt-form-item>
+        <jnt-form-label for="size">Size</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="size">
+            <jnt-switcher-option label="Small" [value]="ui.sizes.small"></jnt-switcher-option>
+            <jnt-switcher-option label="Normal" [value]="ui.sizes.normal"></jnt-switcher-option>
+            <jnt-switcher-option label="Large" [value]="ui.sizes.large"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-tabs>
+        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+          <ng-template #tabContentTemplate>
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-spinner [size]="size.value"></jnt-spinner>
+              </ng-template>
+            </app-browser-preview>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+          <ng-template #tabContentTemplate>
+            <app-code-highlight>
+              <![CDATA[
+              <jnt-spinner
+                ]]>
+                <ng-container *ngIf="size.value">
+                  <![CDATA[
+                  [size]="ui.sizes.]]>{{size.value}}<![CDATA["]]>
+                </ng-container>
+                <![CDATA[>
+              </jnt-spinner>
+              ]]>
+            </app-code-highlight>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+          <ng-template #tabContentTemplate>
+            <app-component-api [target]="spinner"></app-component-api>
+          </ng-template>
+        </jnt-tab>
+      </jnt-tabs>
+    </jnt-block>
+  </jnt-form>
 </jnt-container>

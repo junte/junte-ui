@@ -15,9 +15,9 @@ export class SpinnerComponent {
 
   @PropertyApi({
     description: 'Spinner size',
-    path: 'ui.size',
+    path: 'ui.sizes',
     default: Sizes.normal,
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+    options: [Sizes.small, Sizes.normal, Sizes.large]
   })
 
   @Input() set size(size: Sizes) {
