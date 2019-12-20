@@ -3,4 +3,7 @@
 :host {
   display: block;
   overflow-x: hidden;
+  &[with-header='false'] jnt-app-content[deep-host=#{$jnt-app-content-host}] {
+    padding-top: 0;
+  }
 }

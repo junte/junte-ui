@@ -53,33 +53,35 @@
         </jnt-form-control>
       </jnt-form-item>
 
+      <div subItems>
+        <jnt-form-item>
+          <jnt-form-control>
+            <jnt-checkbox formControlName="logotype" label="Logo"></jnt-checkbox>
+          </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+          <jnt-form-control>
+            <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
+          </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+          <jnt-form-control>
+            <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
+          </jnt-form-control>
+        </jnt-form-item>
+
+        <jnt-form-item>
+          <jnt-form-control>
+            <jnt-checkbox formControlName="usermenu" label="Userbar"></jnt-checkbox>
+          </jnt-form-control>
+        </jnt-form-item>
+      </div>
+
       <jnt-form-item>
         <jnt-form-control>
           <jnt-checkbox formControlName="subheader" label="Subheader"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="logotype" label="Logo"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="usermenu" label="Userbar"></jnt-checkbox>
         </jnt-form-control>
       </jnt-form-item>
 
@@ -89,15 +91,21 @@
         </jnt-form-control>
       </jnt-form-item>
 
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
+
       <jnt-tabs>
         <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
           <ng-template #tabContentTemplate>
             <app-browser-preview>
               <ng-template #document let-height="height">
                 <jnt-app-layout #layout>
-                  <jnt-app-header *ngIf="headerControl.value" [style.min-height.px]="height / 10" header>
+                  <jnt-app-header *ngIf="headerControl.value" header>
                     <ng-template *ngIf="logotypeControl.value" #logo>
-                      <img [style.height.px]="height / 10" [src]="'assets/images/logo.svg'">
+                      <img [src]="'assets/images/logo.svg'">
                     </ng-template>
                     <ng-template *ngIf="menuControl.value" #topMenu>
                       <jnt-menu>
@@ -147,31 +155,53 @@
                     </ng-template>
                   </jnt-app-header>
 
-                  <jnt-app-aside *ngIf="asideControl.value" #aside sider>
+                  <ng-template #contentTemplate let-sider="sider">
+                    <jnt-app-content [aside]="sider" content>
+                      <jnt-app-sub-header *ngIf="subheaderControl.value" (burger)="sider.toggle()">
+                        <jnt-breadcrumb></jnt-breadcrumb>
+                      </jnt-app-sub-header>
+                      <jnt-app-body body></jnt-app-body>
+                      <app-footer #footer></app-footer>
+                    </jnt-app-content>
+                  </ng-template>
 
-                    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-                      <jnt-submenu title="General" [icon]="ui.icons.crown">
-                        <jnt-menu-item title="Theming"></jnt-menu-item>
-                        <jnt-menu-item title="Typography"></jnt-menu-item>
-                      </jnt-submenu>
-                      <jnt-submenu title="Layout" [icon]="ui.icons.layout">
-                        <jnt-menu-item title="Grid"></jnt-menu-item>
-                        <jnt-menu-item title="Stack"></jnt-menu-item>
-                        <jnt-menu-item title="Block"></jnt-menu-item>
-                        <jnt-menu-item title="Spinner"></jnt-menu-item>
-                        <jnt-menu-item title="Application"></jnt-menu-item>
-                        <jnt-menu-item title="Skeleton"></jnt-menu-item>
-                      </jnt-submenu>
-                    </jnt-menu>
-                  </jnt-app-aside>
 
-                  <jnt-app-content [style.padding-top.px]="height / 10" [aside]="aside">
-                    <jnt-app-sub-header *ngIf="subheaderControl.value" (burger)="aside.toggle()">
-                      <jnt-breadcrumb></jnt-breadcrumb>
-                    </jnt-app-sub-header>
-                    <jnt-app-body [style.min-height.px]="height / 1.4649"></jnt-app-body>
-                    <!--<app-footer #footer></app-footer>-->
-                  </jnt-app-content>
+                  <ng-template #withoutfooterTemplate let-sider="sider">
+                    <jnt-app-content [aside]="sider" content>
+                      <jnt-app-sub-header *ngIf="subheaderControl.value" (burger)="sider.toggle()">
+                        <jnt-breadcrumb></jnt-breadcrumb>
+                      </jnt-app-sub-header>
+                      <jnt-app-body body></jnt-app-body>
+                    </jnt-app-content>
+                  </ng-template>
+
+
+                  <ng-container *ngIf="asideControl.value; else contentTemplate">
+                    <jnt-app-aside #sider sidebar>
+
+                      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                        <jnt-submenu title="General" [icon]="ui.icons.crown">
+                          <jnt-menu-item title="Theming"></jnt-menu-item>
+                          <jnt-menu-item title="Typography"></jnt-menu-item>
+                        </jnt-submenu>
+                        <jnt-submenu title="Layout" [icon]="ui.icons.layout">
+                          <jnt-menu-item title="Grid"></jnt-menu-item>
+                          <jnt-menu-item title="Stack"></jnt-menu-item>
+                          <jnt-menu-item title="Block"></jnt-menu-item>
+                          <jnt-menu-item title="Spinner"></jnt-menu-item>
+                          <jnt-menu-item title="Application"></jnt-menu-item>
+                          <jnt-menu-item title="Skeleton"></jnt-menu-item>
+                        </jnt-submenu>
+                      </jnt-menu>
+                    </jnt-app-aside>
+
+                    <ng-container *ngIf="footerControl.value">
+                      <ng-container *ngTemplateOutlet="contentTemplate;context: {sider: sider}"></ng-container>
+                    </ng-container>
+                  </ng-container>
+                  <ng-container *ngIf="!footerControl.value">
+                    <ng-container *ngTemplateOutlet="withoutfooterTemplate;context: {sider: sider}"></ng-container>
+                  </ng-container>
 
                 </jnt-app-layout>
               </ng-template>
@@ -278,12 +308,12 @@
                 </ng-container>
                 <![CDATA[
                 <jnt-app-content
-                ]]>
-                <ng-container *ngIf="asideControl.value">
-                  <![CDATA[ [aside]="aside">]]>
-                </ng-container>
-                <![CDATA[
-                <jnt-app-body></jnt-app-body>
+                  ]]>
+                  <ng-container *ngIf="asideControl.value">
+                    <![CDATA[ [aside]="aside">]]>
+                  </ng-container>
+                  <![CDATA[
+                  <jnt-app-body></jnt-app-body>
                 </jnt-app-content>
               </jnt-app-layout>
               ]]>

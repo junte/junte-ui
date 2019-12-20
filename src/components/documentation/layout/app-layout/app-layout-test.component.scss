@@ -1,3 +1,6 @@
+@import "../../../../../projects/junte-ui/src/lib/assets/styles/variables";
+@import "../../../../../projects/junte-ui/src/lib/components/layout/app-layout/app-body/app-body.encapsulated";
+
 :host {
   display: block;
 }
@@ -8,7 +11,7 @@
   right: 0;
 }
 
-[header]::ng-deep, [aside]::ng-deep,  [sider]::ng-deep [drawer] {
+[header]::ng-deep, [sidebar][host=jnt-app-aside-host]::ng-deep, [sidebar][host=jnt-app-aside-host]::ng-deep [drawer] {
   position: absolute;
 }
 
@@ -16,3 +19,36 @@
   font-size: 20px;
   line-height: 0;
 }
+
+[subItems] {
+  padding-left: $gutter-big;
+}
+
+[content] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  [body] {
+    min-height: calc(100% - #{$app-footer-height} - #{$app-sub-header-height});
+  }
+  &[with-sub-header="false"] {
+    [body] {
+      min-height: calc(100% - #{$app-footer-height});
+    }
+  }
+
+  &[with-footer="false"] {
+    [body] {
+      min-height: calc(100% - #{$app-sub-header-height});
+    }
+  }
+  &[with-sub-header="false"][with-footer="false"] {
+    [body] {
+      min-height: 100%;
+    }
+  }
+
+}
+

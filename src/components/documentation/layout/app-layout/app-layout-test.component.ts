@@ -28,6 +28,7 @@ export class AppLayoutTestComponent {
   usermenuControl = new FormControl(true);
   asideControl = new FormControl(true);
   subheaderControl = new FormControl(true);
+  footerControl = new FormControl(true);
 
   form = this.fb.group({
     header: this.headerControl,
@@ -37,6 +38,7 @@ export class AppLayoutTestComponent {
     usermenu: this.usermenuControl,
     aside: this.asideControl,
     subheader: this.subheaderControl,
+    footer: this.footerControl
   });
 
   constructor(private fb: FormBuilder) {
