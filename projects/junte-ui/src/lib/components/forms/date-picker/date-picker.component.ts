@@ -19,7 +19,8 @@ import { PopoverService } from '../../overlays/popover/popover.service';
 export class DatePickerComponent implements OnInit, OnDestroy {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
-  @ViewChild('calendar', {static: true}) calendarControl;
+
+  @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
   subscriptions = new Subscriptions();
   ui = UI;
@@ -46,7 +47,7 @@ export class DatePickerComponent implements OnInit, OnDestroy {
     }));
 
     this.options = {
-      content: this.calendarControl,
+      contentTemplate: this.calendarTemplate,
       trigger: PopoverTriggers.click,
       maxWidth: '100%'
     };
