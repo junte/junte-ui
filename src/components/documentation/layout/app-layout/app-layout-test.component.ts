@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { AppHeaderComponent } from 'junte-ui';
+import { ActionsComponent } from 'junte-ui';
+import { ActionComponent } from 'junte-ui';
+import { AppContentComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-app-layout-test',
@@ -12,22 +16,33 @@ export class AppLayoutTestComponent {
 
   ui = UI;
   localUi = LocalUI;
+  header = AppHeaderComponent;
+  actions = ActionsComponent;
+  action = ActionComponent;
+  content = AppContentComponent;
 
-  header = new FormControl(true);
-  logotype = new FormControl(true);
-  menu = new FormControl(true);
-  action = new FormControl(true);
-  usermenu = new FormControl(true);
+  headerControl = new FormControl(true);
+  logotypeControl = new FormControl(true);
+  menuControl = new FormControl(true);
+  actionControl = new FormControl(true);
+  usermenuControl = new FormControl(true);
+  asideControl = new FormControl(true);
+  subheaderControl = new FormControl(true);
 
   form = this.fb.group({
-    header: this.header,
-    logotype: this.logotype,
-    menu: this.menu,
-    action: this.action,
-    usermenu: this.usermenu,
+    header: this.headerControl,
+    logotype: this.logotypeControl,
+    menu: this.menuControl,
+    action: this.actionControl,
+    usermenu: this.usermenuControl,
+    aside: this.asideControl,
+    subheader: this.subheaderControl,
   });
 
   constructor(private fb: FormBuilder) {
   }
 
 }
+
+
+

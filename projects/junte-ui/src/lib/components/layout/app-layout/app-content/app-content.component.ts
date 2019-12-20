@@ -1,6 +1,7 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
 import { AppAsideComponent } from '../app-aside/app-aside.component';
 import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
+import { PropertyApi } from '../../../../decorators/api';
 
 @Component({
   selector: 'jnt-app-content',
@@ -26,6 +27,11 @@ export class AppContentComponent {
 
   @ContentChild(AppSubHeaderComponent, {static: false}) subHeader: AppSubHeaderComponent;
   @ContentChild('footer', {read: ElementRef, static: true}) footer;
+
+  @PropertyApi({
+    description: 'Support burger button for mobile devices',
+    type: 'AppAsideComponent'
+  })
 
   @Input() aside: AppAsideComponent;
 }

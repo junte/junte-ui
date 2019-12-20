@@ -33,6 +33,12 @@ import { AppSubHeaderComponent } from './app-sub-header/app-sub-header.component
     AppSubHeaderComponent,
     AppLayoutComponent
   ],
+  entryComponents: [
+    AppHeaderComponent,
+    ActionsComponent,
+    ActionComponent,
+    AppContentComponent
+  ],
   exports: [
     ActionComponent,
     ActionsComponent,
