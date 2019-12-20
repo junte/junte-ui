@@ -9,6 +9,9 @@ import { SpinnerComponent } from './spinner.component';
   declarations: [
     SpinnerComponent
   ],
+  entryComponents: [
+    SpinnerComponent
+  ],
   exports: [
     SpinnerComponent
   ]
