@@ -2,7 +2,6 @@ import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angula
 import { AppAsideComponent } from '../app-aside/app-aside.component';
 import { AppSubHeaderComponent } from '../app-sub-header/app-sub-header.component';
 import { PropertyApi } from '../../../../decorators/api';
-import { AppHeaderComponent } from '../app-header/app-header.component';
 
 @Component({
   selector: 'jnt-app-content',

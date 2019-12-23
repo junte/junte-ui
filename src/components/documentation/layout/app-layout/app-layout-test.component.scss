@@ -11,11 +11,20 @@
   right: 0;
 }
 
-[header]::ng-deep, [sidebar][host=jnt-app-aside-host]::ng-deep, [sidebar][host=jnt-app-aside-host]::ng-deep [drawer] {
+[header]::ng-deep,
+[sidebar][host=jnt-app-aside-host]::ng-deep,
+[sidebar][host=jnt-app-aside-host]::ng-deep [drawer] {
   position: absolute;
 }
 
-[icon][host=jnt-icon-host][type='font'] {
+app-browser-preview [sidebar][host=jnt-app-aside-host]::ng-deep [drawer][collapsed="true"] {
+  jnt-menu[host=jnt-menu-host]::ng-deep [submenu] [submenuItems] {
+    position: absolute;
+    top: 0!important;
+  }
+}
+
+jnt-icon[deep-host=#{$jnt-icon-host}][type='font'] {
   font-size: 20px;
   line-height: 0;
 }
