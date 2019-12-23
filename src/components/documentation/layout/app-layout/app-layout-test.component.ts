@@ -6,6 +6,7 @@ import { AppHeaderComponent } from 'junte-ui';
 import { ActionsComponent } from 'junte-ui';
 import { ActionComponent } from 'junte-ui';
 import { AppContentComponent } from 'junte-ui';
+import { AppSubHeaderComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-app-layout-test',
@@ -20,6 +21,7 @@ export class AppLayoutTestComponent {
   actions = ActionsComponent;
   action = ActionComponent;
   content = AppContentComponent;
+  subheader = AppSubHeaderComponent;
 
   headerControl = new FormControl(true);
   logotypeControl = new FormControl(true);

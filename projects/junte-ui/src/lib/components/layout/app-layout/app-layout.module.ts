@@ -37,7 +37,8 @@ import { AppSubHeaderComponent } from './app-sub-header/app-sub-header.component
     AppHeaderComponent,
     ActionsComponent,
     ActionComponent,
-    AppContentComponent
+    AppContentComponent,
+    AppSubHeaderComponent
   ],
   exports: [
     ActionComponent,
