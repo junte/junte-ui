@@ -1,26 +1,16 @@
 @import "../../../../assets/styles/variables";
 @import "../common";
 
-$app-aside-background: $primary-background !default;
-$app-aside-width: 200px !default;
 $app-aside-shadow: $shadow-primary-light !default;
-$app-aside-z-index: 2 !default;
-
 $menu-item-height-in-aside: 50px !default;
 $menu-item-color-in-aside: $primary-text-light-color !default;
 $menu-item-icon-color-in-aside: $primary-text-color !default;
 $menu-item-font-size-in-aside: .875rem !default;
 $menu-item-icon-size-in-aside: 20px !default;
-$menu-item-icon-margin-right-in-aside: $gutter-normal !default;
 $menu-item-active-color-in-aside: $primary-color !default;
-$menu-item-active-border-left-width-in-aside: 4px !default;
-$menu-item-active-border-left-color-in-aside: $primary-color !default;
 $menu-item-active-background-color-in-aside: $secondary-background !default;
-$menu-item-padding-y-in-aside: $gutter-normal !default;
 $menu-item-hover-background-color-in-aside: $highlight-background !default;
 $menu-item-hover-color-in-aside: $primary-text-dark-color !default;
-
-$submenu-padding-left-in-aside: 53px !default;
 $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
 
 :host {
@@ -30,7 +20,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: $app-aside-z-index;
+  z-index: 2;
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
     [link][child-host=#{$jnt-link-host}] {
@@ -38,8 +28,8 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
       a {
         position: relative;
         width: 100%;
-        padding: 0 $menu-item-padding-y-in-aside;
-        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+        padding: 0 $gutter-normal;
+        border-left: 4px solid transparent;
         height: $menu-item-height-in-aside;
         line-height: $menu-item-height-in-aside;
         white-space: nowrap;
@@ -59,11 +49,11 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         [icon] {
           color: $menu-item-icon-color-in-aside;
           font-size: $menu-item-icon-size-in-aside;
-          margin-right: $menu-item-icon-margin-right-in-aside;
+          margin-right: $gutter-normal;
         }
         &[active='true'] {
           background-color: $menu-item-active-background-color-in-aside;
-          border-left-color: $menu-item-active-border-left-color-in-aside;
+          border-left-color: $primary-color;
           span, [icon] {
             border-bottom: 0;
             color: $menu-item-active-color-in-aside;
@@ -73,7 +63,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
       }
       &[submenuItem] {
         a {
-          padding-left: $submenu-padding-left-in-aside;
+          padding-left: 53px;
           &[active='true'] {
             border-left-color: transparent;
           }
@@ -83,8 +73,8 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
     [submenu] {
       position: relative;
       [title] {
-        padding: 0 $menu-item-padding-y-in-aside;
-        border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+        padding: 0 $gutter-normal;
+        border-left: 4px solid transparent;
         height: $menu-item-height-in-aside;
         line-height: $menu-item-height-in-aside;
         cursor: pointer;
@@ -119,9 +109,9 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
     button {
       color: $menu-item-color-in-aside;
       font-size: $menu-item-font-size-in-aside;
-      padding: 0 $menu-item-padding-y-in-aside;
+      padding: 0 $gutter-normal;
       justify-content: flex-start;
-      border-left: $menu-item-active-border-left-width-in-aside solid transparent;
+      border-left: 4px solid transparent;
       border-radius: 0;
       &:hover, &:focus {
         color: $menu-item-color-in-aside;
@@ -186,7 +176,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   z-index: 2;
   height: 100%;
   width: $app-aside-width;
-  background-color: $app-aside-background;
+  background-color: $primary-background;
   box-shadow: $app-aside-shadow;
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
@@ -221,7 +211,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             opacity: 1;
           }
           a {
-            padding-left: $menu-item-padding-y-in-aside;
+            padding-left: $gutter-normal;
           }
         }
       }
@@ -246,7 +236,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
           min-width: 150px;
           [submenuTitle][deep-host=#{$jnt-link-host}] {
             display: block;
-            padding: 0 $menu-item-padding-y-in-aside;
+            padding: 0 $gutter-normal;
             height: $menu-item-height-in-aside;
             line-height: $menu-item-height-in-aside;
             border-bottom: 1px solid $muted-color;
@@ -270,7 +260,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
           }
           [submenuTitle] {
             display: block;
-            padding: 0 $menu-item-padding-y-in-aside;
+            padding: 0 $gutter-normal;
             height: $menu-item-height-in-aside;
             line-height: $menu-item-height-in-aside;
             border-bottom: 1px solid $muted-color;

@@ -2,17 +2,12 @@
 @import "../common";
 
 $app-header-background: $primary-dark-color !default;
-$app-header-padding-x: 0 !default;
-$app-header-padding-y: $gutter-big !default;
 $app-header-z-index: 3 !default;
 $app-header-color: $white-color !default;
-$app-header-logo-margin-right: $gutter-huge !default;
 
 $menu-item-color-in-header: $white-color !default;
 $menu-item-active-border-color-in-header: $white-color !default;
 $menu-item-active-color-in-header: $white-color !default;
-$menu-item-padding-x-in-header: $gutter-small !default;
-$menu-item-padding-y-in-header: $gutter-small !default;
 $menu-item-font-size-in-header: .875rem !default;
 
 $menu-item-icon-font-size-in-header: 16px !default;
@@ -26,7 +21,7 @@ $menu-item-icon-color-in-header: $white-color !default;
   flex-wrap: wrap;
   box-sizing: border-box;
   background-color: $app-header-background;
-  padding: $app-header-padding-x $app-header-padding-y;
+  padding: 0 $gutter-big;
   min-height: $app-header-height;
   color: $app-header-color;
   position: fixed;
@@ -39,7 +34,7 @@ $menu-item-icon-color-in-header: $white-color !default;
     display: flex;
     align-items: center;
     jnt-link[child-host=#{$jnt-link-host}] {
-      padding: $menu-item-padding-x-in-header $menu-item-padding-y-in-header;
+      padding: $gutter-small;
       user-select: none;
       a {
         span {
@@ -69,7 +64,7 @@ $menu-item-icon-color-in-header: $white-color !default;
 [logo] {
   display: flex;
   align-items: center;
-  margin-right: $app-header-logo-margin-right;
+  margin-right: $gutter-huge;
   & > * {
     display: block;
   }
