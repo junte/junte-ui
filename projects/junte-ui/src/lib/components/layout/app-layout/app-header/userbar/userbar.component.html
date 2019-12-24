@@ -1,5 +1,8 @@
-<ng-content></ng-content>
-<ng-container *ngTemplateOutlet="avatar"></ng-container>
+<jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+  <ng-content></ng-content>
+  <ng-container *ngTemplateOutlet="avatar"></ng-container>
+</jnt-stack>
+
 <div usermenu>
   <ng-container *ngTemplateOutlet="userMenu"></ng-container>
 </div>

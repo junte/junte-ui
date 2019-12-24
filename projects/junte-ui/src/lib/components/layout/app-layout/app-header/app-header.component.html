@@ -1,10 +1,12 @@
-<div logo>
+<div *ngIf="logo" logo>
   <ng-container *ngTemplateOutlet="logo"></ng-container>
 </div>
 
 <ng-container *ngTemplateOutlet="topMenu"></ng-container>
-<jnt-stack [type]="ui.orientation.horizontal" [gutter]="ui.gutter.small" [align]="ui.flex.align.center">
-  <ng-content></ng-content>
+<jnt-stack [type]="ui.orientation.horizontal" [gutter]="ui.gutter.small" [align]="ui.flex.align.stretch" actions>
+  <div content>
+    <ng-content></ng-content>
+  </div>
   <ng-container *ngTemplateOutlet="actions"></ng-container>
   <ng-container *ngTemplateOutlet="userbar"></ng-container>
 </jnt-stack>

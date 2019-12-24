@@ -18,7 +18,7 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy',
-    path: '',
+    type: 'number',
     default: '1',
     options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   })
@@ -33,7 +33,7 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution < 768px',
-    path: '',
+    type: 'number',
     default: '1',
     options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   })
@@ -43,7 +43,7 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 768px',
-    path: '',
+    type: 'number',
     default: '1',
     options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   })
@@ -53,7 +53,7 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 992px',
-    path: '',
+    type: 'number',
     default: '1',
     options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   })
@@ -63,7 +63,7 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 1200px',
-    path: '',
+    type: 'number',
     default: '1',
     options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   })

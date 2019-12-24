@@ -9,14 +9,14 @@ import { ActionComponent } from '../action/action.component';
 })
 export class ActionsComponent {
 
-  private _gutter: Gutter = Gutter.large;
+  private _gutter: Gutter = Gutter.tiny;
 
   ui = UI;
 
   @PropertyApi({
     description: 'Elements gutter',
     path: 'ui.gutter',
-    default: Gutter.large,
+    default: Gutter.tiny,
     options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
   })
 
