@@ -4,17 +4,20 @@ $select-sizes: (
   #{$size-small}: (
     font-size: 11px,
     min-height: 30px,
-    chips-padding: 2px $gutter-large 2px $gutter-small
+    chips-padding: 2px $gutter-large 2px $gutter-small,
+    input-padding: 2px 0 2px $gutter-small
   ),
   #{$size-normal}: (
     font-size: 14px,
     min-height: 38px,
-    chips-padding: 3px $gutter-large 3px $gutter-small
+    chips-padding: 3px $gutter-large 3px $gutter-small,
+    input-padding: 3px 0 3px $gutter-small
   ),
   #{$size-large}: (
     font-size: 16px,
     min-height: 50px,
-    chips-padding: $gutter-small $gutter-large $gutter-small $gutter-small
+    chips-padding: $gutter-small $gutter-large $gutter-small $gutter-small,
+    input-padding: $gutter-small 0 $gutter-small $gutter-small
   )
 ) !default;
 
@@ -24,6 +27,9 @@ $select-sizes: (
     min-height: #{map-get($size, min-height)};
     ul li {
       padding: #{map-get($size, chips-padding)};
+      &[query] {
+        padding: #{map-get($size, input-padding)};
+      }
       input {
         font-size: #{map-get($size, font-size)};
       }
@@ -114,13 +120,6 @@ $select-sizes: (
     }
   }
 
-  &[mode='multiple'] {
-    &[empty='false'][opened='false'] {
-      [select] ul li[query] {
-        display: none;
-      }
-    }
-  }
   &[search='false'] {
     [select] ul li {
       cursor: default;
@@ -209,8 +208,8 @@ $select-sizes: (
 
   [toggle] {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
     right: 0;
     border: 0;
     background-color: transparent;
