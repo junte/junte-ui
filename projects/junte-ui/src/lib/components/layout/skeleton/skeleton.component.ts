@@ -18,10 +18,10 @@ export class SkeletonComponent {
   _size = Sizes.normal;
 
   @PropertyApi({
-    description: 'Skeleton type: text, avatar',
+    description: 'Skeleton type: text, avatar, image',
     path: 'ui.skeleton.type',
     default: TypeSkeleton.text,
-    options: [TypeSkeleton.text, TypeSkeleton.avatar]
+    options: [TypeSkeleton.text, TypeSkeleton.avatar, TypeSkeleton.image]
   })
 
   @HostBinding('attr.type')
@@ -38,7 +38,7 @@ export class SkeletonComponent {
   }
 
   @PropertyApi({
-    description: 'Avatar size',
+    description: 'Avatar/image size',
     path: 'ui.sizes',
     default: Sizes.normal,
     options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]

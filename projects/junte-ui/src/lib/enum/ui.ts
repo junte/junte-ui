@@ -260,7 +260,8 @@ export enum TypeIcon {
 
 export enum TypeSkeleton {
   avatar = 'avatar',
-  text = 'text'
+  text = 'text',
+  image = 'image'
 }
 
 export enum TypeBlock {

@@ -2,4 +2,4 @@
   <div *ngFor="let l of lines | mockArray" line></div>
 </jnt-stack>
 
-<div avatar *ngIf="type === ui.skeleton.type.avatar"></div>
+<div [attr.avatar]="type == ui.skeleton.type.avatar" *ngIf="(type == ui.skeleton.type.avatar) || (type == ui.skeleton.type.image)" image></div>

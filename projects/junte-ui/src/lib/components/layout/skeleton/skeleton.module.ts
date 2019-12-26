@@ -15,6 +15,9 @@ import { SkeletonComponent } from './skeleton.component';
   declarations: [
     SkeletonComponent
   ],
+  entryComponents: [
+    SkeletonComponent
+  ],
   exports: [
     SkeletonComponent
   ]
