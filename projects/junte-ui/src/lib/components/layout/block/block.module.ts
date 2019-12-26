@@ -13,6 +13,9 @@ import { BlockComponent } from './block.component';
     IconModule,
     SpinnerModule
   ],
+  entryComponents: [
+    BlockComponent
+  ],
   exports: [
     BlockComponent
   ]

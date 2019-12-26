@@ -224,6 +224,10 @@ export enum InputState {
   success = 'success'
 }
 
+export enum BlockState {
+  loading = 'loading',
+  error = 'error'
+}
 
 export enum Sizes {
   tiny = 'tiny',
@@ -624,6 +628,7 @@ export class UI {
   static select = SelectMode;
   static block = {
     type: TypeBlock,
+    state: BlockState
   };
   static colors = Colors;
   static padding = Paddings;
