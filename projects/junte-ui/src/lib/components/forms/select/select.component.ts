@@ -254,10 +254,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   @HostListener('click', ['$event'])
-  focused({target, path}: { target: HTMLElement, path: HTMLElement[] }) {
+  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
     switch (this.mode) {
       case SelectMode.single:
-        console.log(path);
         break;
       case SelectMode.multiple:
         if (target === this.selectedList.nativeElement) {

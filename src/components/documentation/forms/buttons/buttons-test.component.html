@@ -253,13 +253,11 @@
           <jnt-form-item>
             <jnt-form-label for="scheme">Scheme</jnt-form-label>
             <jnt-form-control>
-              <jnt-select valueField="value"
-                          labelField="label"
-                          placeholder="Scheme"
+              <jnt-select placeholder="Scheme"
                           formControlName="scheme">
                 <jnt-select-option *ngFor="let scheme of schemes"
                                    [label]="scheme.label"
-                                   [value]="scheme.value">
+                                   [key]="scheme.value">
                 </jnt-select-option>
               </jnt-select>
             </jnt-form-control>
@@ -268,13 +266,11 @@
           <jnt-form-item>
             <jnt-form-label for="size">Size</jnt-form-label>
             <jnt-form-control>
-              <jnt-select valueField="value"
-                          labelField="label"
-                          placeholder="Size"
+              <jnt-select placeholder="Size"
                           formControlName="size">
                 <jnt-select-option *ngFor="let size of sizes"
                                    [label]="size.label"
-                                   [value]="size.value">
+                                   [key]="size.value">
                 </jnt-select-option>
               </jnt-select>
             </jnt-form-control>
@@ -283,13 +279,11 @@
           <jnt-form-item>
             <jnt-form-label for="outline">Outline</jnt-form-label>
             <jnt-form-control>
-              <jnt-select valueField="value"
-                          labelField="label"
-                          placeholder="Outline"
+              <jnt-select placeholder="Outline"
                           formControlName="outline">
                 <jnt-select-option *ngFor="let outline of outlines"
                                    [label]="outline.label"
-                                   [value]="outline.value">
+                                   [key]="outline.value">
                 </jnt-select-option>
               </jnt-select>
             </jnt-form-control>
