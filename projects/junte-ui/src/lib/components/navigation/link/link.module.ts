@@ -18,6 +18,9 @@ import { LinkComponent } from './link.component';
   exports: [
     LinkComponent
   ],
+  entryComponents: [
+    LinkComponent
+  ],
   declarations: [
     LinkComponent
   ]

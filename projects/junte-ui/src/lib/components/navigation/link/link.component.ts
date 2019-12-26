@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, Quer
 import { RouterLinkActive } from '@angular/router';
 import { Outline, Schemes, UI } from '../../../enum/ui';
 import { BadgeComponent } from '../../elements/badge/badge.component';
+import { PropertyApi } from '../../../decorators/api';
 
 const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
 const DEFAULT_TARGET = '_self';
@@ -19,10 +20,21 @@ export class LinkComponent {
   private _source: string | string[];
   private _target: string = DEFAULT_TARGET;
 
+  @HostBinding('attr.scheme')
+  _scheme = Schemes.primary;
+
+  @HostBinding('attr.outline')
+  _outline = Outline.transparent;
+
   externalLink = true;
 
   @ViewChild(RouterLinkActive, {static: false})
   linkRef: RouterLinkActive;
+
+  @PropertyApi({
+    description: 'Disable link',
+    type: 'boolean',
+  })
 
   @HostBinding('attr.disabled')
   @Input() disabled = false;
@@ -33,22 +45,61 @@ export class LinkComponent {
     return !!this.linkRef ? this.linkRef.isActive : false;
   }
 
-  @HostBinding('attr.outline')
-  @Input()
-  outline: Outline = Outline.transparent;
+  @PropertyApi({
+    description: 'Link outline',
+    path: 'ui.outline',
+    default: Outline.transparent,
+    options: [Outline.transparent, Outline.ghost, Outline.fill]
+  })
 
-  @HostBinding('attr.scheme')
-  @Input()
-  scheme: Schemes = Schemes.primary;
+  @Input() set outline(outline: Outline) {
+    if (!!outline) {
+      this._outline = outline;
+    } else {
+      this._outline = Outline.transparent;
+    }
+  }
+
+  @PropertyApi({
+    description: 'Link color scheme',
+    path: 'ui.schemes',
+    default: Schemes.primary,
+    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail]
+  })
+
+  @Input() set scheme(scheme: Schemes) {
+    if (!!scheme) {
+      this._scheme = scheme;
+    } else {
+      this._scheme = Schemes.primary;
+    }
+  }
+
+  @PropertyApi({
+    description: 'Icon for link',
+    type: 'string'
+  })
+
+  @Input() icon: string;
 
   @Input() exact = true;
-  @Input() icon: string;
+
+  @PropertyApi({
+    description: 'Link title',
+    type: 'string'
+  })
+
   @Input() title: string;
 
   @HostBinding('attr.with-title')
   get withTitle() {
     return !!this.title;
   }
+
+  @PropertyApi({
+    description: 'Link source',
+    type: 'string | string[]'
+  })
 
   @Input()
   set source(source: string | string[]) {
@@ -61,6 +112,13 @@ export class LinkComponent {
   get source() {
     return this._source;
   }
+
+  @PropertyApi({
+    description: 'Link target',
+    type: 'string',
+    default: '_self',
+    options: ['_blank', '_self', '_parent', '_top']
+  })
 
   @Input()
   set target(target: string) {
