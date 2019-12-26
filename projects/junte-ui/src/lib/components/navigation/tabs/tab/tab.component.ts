@@ -1,5 +1,4 @@
-import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
-import { UI } from '../../../../enum/ui';
+import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 
 @Component({

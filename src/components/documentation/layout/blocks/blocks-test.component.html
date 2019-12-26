@@ -10,6 +10,7 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
+
   <h3>Requirements</h3>
 
   <ol>
@@ -19,163 +20,143 @@
     <li>The block should be able to stretch across the width of the container or be the width of the content</li>
   </ol>
 
-  <hr>
+  <h3>Import</h3>
 
-  <jnt-stack>
-    <jnt-block [padding]="ui.padding.normal" [type]="null">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
-
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-block>
-   <div>Content</div>
-</jnt-block>
-]]></pre>
-    </ngx-prism>
-
-    <jnt-block [padding]="ui.padding.large">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
-
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-block [padding]="ui.padding.large">
-   <div>Content</div>
-</jnt-block>
-]]></pre>
-    </ngx-prism>
-
-
-    <h2>Block bordered</h2>
-    <jnt-block [type]="ui.block.type.bordered" [padding]="ui.padding.normal">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
-
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-block [type]="ui.block.type.bordered">
-   <div>Content</div>
-</jnt-block>
-]]></pre>
-    </ngx-prism>
-
-    <h2>Block with loading</h2>
-    <jnt-block [loading]="true" [padding]="ui.padding.normal">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
-
-      <ngx-prism language="html">
-<pre><![CDATA[
-  <jnt-block [loading]="true">
-    <div>Content</div>
-  </jnt-block>
-]]></pre>
-      </ngx-prism>
-
-    <h2>Block with error</h2>
-    <jnt-block #block [error]="true" [padding]="ui.padding.normal">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
-
-    <ngx-prism language="html">
+  <ngx-prism language="js">
     <pre><![CDATA[
-  <jnt-block [error]="true">
-   <div>Content</div>
-  </jnt-block>
-    ]]></pre>
-    </ngx-prism>
+ @import "~junte-ui/lib/components/layout/block/block.encapsulated";]]></pre>
+  </ngx-prism>
 
-    <h2>Block with success</h2>
-    <jnt-block #block [padding]="ui.padding.normal">
-      <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    </jnt-block>
+  <h3>Builder</h3>
 
-    <jnt-button (click)="block.success()" text="Success"></jnt-button>
+  <jnt-form [formGroup]="form" form>
+    <div builder>
+      <jnt-form-item>
+        <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+      </jnt-form-item>
+      <jnt-form-item>
+        <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+      </jnt-form-item>
 
+      <jnt-form-item>
+        <jnt-form-label for="padding">Padding</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="padding">
+            <jnt-switcher-option label="Tiny" [value]="ui.padding.tiny"></jnt-switcher-option>
+            <jnt-switcher-option label="Small" [value]="ui.padding.small"></jnt-switcher-option>
+            <jnt-switcher-option label="Normal" [value]="ui.padding.normal"></jnt-switcher-option>
+            <jnt-switcher-option label="Large" [value]="ui.padding.big"></jnt-switcher-option>
+            <jnt-switcher-option label="Big" [value]="ui.padding.large"></jnt-switcher-option>
+            <jnt-switcher-option label="Huge" [value]="ui.padding.huge"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
 
-    <h2>Block with title & footer</h2>
-  <jnt-block title="Block title" [padding]="ui.padding.normal">
-    <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-    <ng-template #footerBlock>
-      <div footer>
-        <div>Title footer</div>
-        <div>Content footer</div>
-      </div>
-    </ng-template>
-  </jnt-block>
+      <jnt-form-item>
+        <jnt-form-label for="width">Width</jnt-form-label>
+        <jnt-switcher formControlName="width">
+          <jnt-switcher-option label="Default" [value]="ui.width.default"></jnt-switcher-option>
+          <jnt-switcher-option label="Fluid" [value]="ui.width.fluid"></jnt-switcher-option>
+        </jnt-switcher>
+      </jnt-form-item>
 
-    <ngx-prism language="html">
-    <pre><![CDATA[
-<jnt-block title="Block title">
-  <div>Content</div>
-  <ng-template #footerBlock>
-    <div footer>
-      <div>Title footer</div>
-      <div>Content footer</div>
+      <jnt-form-item>
+        <jnt-form-label for="type">Type</jnt-form-label>
+        <jnt-switcher formControlName="type">
+          <jnt-switcher-option label="Simple" [value]="ui.block.type.simple"></jnt-switcher-option>
+          <jnt-switcher-option label="Bordered" [value]="ui.block.type.bordered"></jnt-switcher-option>
+        </jnt-switcher>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="state">States</jnt-form-label>
+        <jnt-switcher formControlName="state">
+          <jnt-switcher-option label="Loading" [value]="ui.block.state.loading"></jnt-switcher-option>
+          <jnt-switcher-option label="Error" [value]="ui.block.state.error"></jnt-switcher-option>
+        </jnt-switcher>
+      </jnt-form-item>
+
+      <!--<jnt-button text="Success" (click)="block.success()"></jnt-button>-->
+
+      <jnt-tabs>
+        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+          <ng-template #tabContentTemplate>
+            <app-browser-preview>
+              <ng-template #document>
+
+                <jnt-block #block [title]="title.value ? 'Block title' : null"
+                           [padding]="padding.value"
+                           [width]="width.value"
+                           [type]="type.value"
+                           [state]="state.value">
+                  <div content>
+                    <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
+                  </div>
+                  <ng-template *ngIf="footer.value" #footerBlock>
+                    <div footer>
+                      <div>Title footer</div>
+                      <div>Content footer</div>
+                    </div>
+                  </ng-template>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </ng-template>
+        </jnt-tab>
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+          <ng-template #tabContentTemplate>
+            <app-code-highlight>
+              <![CDATA[
+              <jnt-stack
+                ]]>
+                <ng-container *ngIf="title.value">
+                  <![CDATA[
+                  [title]="Block title"]]>
+                </ng-container>
+                <ng-container *ngIf="padding.value">
+                  <![CDATA[
+                  [padding]="ui.padding.]]>{{padding.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="width.value">
+                  <![CDATA[
+                  [width]="ui.width.]]>{{width.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="type.value">
+                  <![CDATA[
+                  [type]="ui.block.type.]]>{{type.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="state.value">
+                  <![CDATA[
+                  [state]="ui.block.state.]]>{{state.value}}<![CDATA["]]>
+                </ng-container>
+                <![CDATA[>
+                ...
+              </jnt-stack>
+              ]]>
+              <ng-container *ngIf="footer.value">
+                <![CDATA[
+                <ng-template #footerBlock>
+                  <div footer>
+                    <div>Title footer</div>
+                    <div>Content footer</div>
+                  </div>
+                </ng-template>
+                ]]>
+              </ng-container>
+
+            </app-code-highlight>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+          <ng-template #tabContentTemplate>
+            <app-component-api [target]="block"></app-component-api>
+          </ng-template>
+        </jnt-tab>
+
+      </jnt-tabs>
+
     </div>
-  </ng-template>
-</jnt-block>
-    ]]></pre>
-    </ngx-prism>
+  </jnt-form>
 
-  </jnt-stack>
-
-
-  <h3>API</h3>
-  <h4>jnt-block</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[padding]</td>
-      <td>-</td>
-      <td>small | normal | large</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[error]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[loading]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[type]</td>
-      <td>-</td>
-      <td>simple | bordered</td>
-      <td>simple</td>
-    </tr>
-    <tr>
-      <td>[width]</td>
-      <td>-</td>
-      <td>default | fluid</td>
-      <td>default</td>
-    </tr>
-    <tr>
-      <td>[title]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[footerBlock]</td>
-      <td>-</td>
-      <td>TemplateRef</td>
-      <td>-</td>
-    </tr>
-    </tbody>
-  </table>
 </jnt-container>

@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Orientation, UI } from '../../../enum/ui';
 import { isEqual } from '../../../utils/equal';
@@ -32,14 +32,11 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   set value(value: any) {
     this._value = value;
-    this.onChange(this.value);
+    this.onChange(value);
   }
 
   get value() {
     return this._value;
-  }
-
-  constructor() {
   }
 
   writeValue(value: any) {

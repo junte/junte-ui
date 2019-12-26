@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { Paddings, TypeBlock, UI, Width } from '../../../enum/ui';
+import { BlockState, Paddings, TypeBlock, UI, Width } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -32,11 +32,13 @@ import { Paddings, TypeBlock, UI, Width } from '../../../enum/ui';
 })
 export class BlockComponent {
 
-  state = {success: false};
+  _state = {success: false};
 
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
+
+  /*------------------------------------------------Title--------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Title of block',
@@ -46,6 +48,20 @@ export class BlockComponent {
   @Input()
   title: string;
 
+  /*------------------------------------------------State--------------------------------------------------------------------------------*/
+
+  @PropertyApi({
+    description: 'State of block: loading or error',
+    path: 'ui.block.state',
+    options: [BlockState.error, BlockState.loading]
+  })
+
+  @Input()
+  state: BlockState;
+
+  /*------------------------------------------------Footer-------------------------------------------------------------------------------*/
+
+
   @PropertyApi({
     description: 'Template of block footer',
     type: 'templateRef'
@@ -54,14 +70,7 @@ export class BlockComponent {
   @ContentChild('footerBlock', {static: false})
   footerBlock: TemplateRef<any>;
 
-  @PropertyApi({
-    description: 'Shows a spinner while the contents of the block is being fetched',
-    type: 'boolean',
-    default: 'false'
-  })
-
-  @Input()
-  loading = false;
+  /*------------------------------------------------Padding-------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Inner gutters for block',
@@ -73,14 +82,7 @@ export class BlockComponent {
   @Input()
   padding: Paddings;
 
-  @PropertyApi({
-    description: 'Shows a error status if the contents have an error',
-    type: 'boolean',
-    default: 'false'
-  })
-
-  @Input()
-  error = false;
+  /*------------------------------------------------Width-------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Block width',
@@ -93,6 +95,8 @@ export class BlockComponent {
   @Input()
   width: Width = Width.default;
 
+  /*------------------------------------------------Type-------------------------------------------------------------------------------*/
+
   @PropertyApi({
     description: 'Block type: simple or bordered',
     path: 'ui.block.type',
@@ -104,9 +108,11 @@ export class BlockComponent {
   @Input()
   type = TypeBlock.simple;
 
+  /*------------------------------------------------Success-------------------------------------------------------------------------------*/
+
   success() {
-    this.state.success = true;
-    setTimeout(() => this.state.success = false, 2100);
+    this._state.success = true;
+    setTimeout(() => this._state.success = false, 2100);
   }
 
 }
