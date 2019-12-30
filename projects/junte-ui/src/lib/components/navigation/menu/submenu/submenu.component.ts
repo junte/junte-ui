@@ -1,21 +1,44 @@
-import { Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { Matching, UI } from '../../../../enum/ui';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
+import { PropertyApi } from '../../../../decorators/api';
 
 @Component({
   selector: 'jnt-submenu',
   template: '',
 })
-export class SubmenuComponent implements OnInit {
+export class SubmenuComponent {
 
   ui = UI;
+  opened = false;
+
+  @PropertyApi({
+    description: 'Icon for submenu title',
+    type: 'string'
+  })
 
   @Input() icon: string;
+
+  @PropertyApi({
+    description: 'Submenu title',
+    type: 'string'
+  })
   @Input() title: string;
-  @Input() badge: number;
+
+  @PropertyApi({
+    description: 'Methods of matching',
+    path: 'ui.url.matching',
+    default: Matching.fullMatch,
+    options: [Matching.fullMatch, Matching.wildcard]
+  })
+
   @Input() matching: Matching = Matching.fullMatch;
-  @Input() opened = false;
+
+  @PropertyApi({
+    description: 'Click event',
+    path: 'EventEmitter'
+  })
   @Output() click = new EventEmitter<any>();
 
   @ContentChildren(BadgeComponent)
@@ -23,11 +46,5 @@ export class SubmenuComponent implements OnInit {
 
   @ContentChildren(MenuItemComponent)
   menuItems: QueryList<MenuItemComponent>;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
 }

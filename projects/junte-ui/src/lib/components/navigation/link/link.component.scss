@@ -233,18 +233,21 @@ $link-schemes: (
   &:focus {
     outline: none;
   }
-  [icon], span {
-    font-weight: $link-font-weight;
-    transition: color .3s;
-  }
-  [icon] {
-    margin-right: $link-icon-spacing;
-    line-height: 1;
-  }
-  [icon][child-host=#{$jnt-icon-host}] {
-    &[type='animated'], &[type='svg'] {
-      width: $link-icon-size;
-      height: $link-icon-size;
+  [title] {
+    white-space: nowrap;
+    [icon], span {
+      font-weight: $link-font-weight;
+      transition: color .3s;
+    }
+    [icon] {
+      margin-right: $link-icon-spacing;
+      line-height: 1;
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      &[type='animated'], &[type='svg'] {
+        width: $link-icon-size;
+        height: $link-icon-size;
+      }
     }
   }
   &:active {
