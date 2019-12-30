@@ -24,6 +24,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
     [link][child-host=#{$jnt-link-host}] {
+      padding: 0;
       width: 100%;
       a {
         position: relative;
@@ -77,7 +78,6 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         border-left: 4px solid transparent;
         height: $menu-item-height-in-aside;
         line-height: $menu-item-height-in-aside;
-        cursor: pointer;
         user-select: none;
         span {
           white-space: nowrap;
@@ -97,9 +97,6 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             color: $menu-item-hover-color-in-aside;
           }
         }
-      }
-      [submenuTitle] {
-        display: none;
       }
     }
   }

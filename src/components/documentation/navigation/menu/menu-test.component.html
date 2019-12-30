@@ -11,116 +11,358 @@
     </jnt-link>
   </jnt-stack>
 
+  <h3>Import</h3>
 
-  <hr>
-
-  <h3>Horizontal menu</h3>
-
-  <jnt-menu>
-    <jnt-menu-item [link]="['/developer']" title="Home" icon="upload:animated:default">
-      <jnt-badge [count]="5" [color]="ui.colors.purple"></jnt-badge>
-      <jnt-badge [count]="5"></jnt-badge>
-    </jnt-menu-item>
-    <jnt-menu-item [link]="['/documentation']" title="Doc"></jnt-menu-item>
-    <jnt-menu-item link="https://google.com" target="_blank" title="GitLab"></jnt-menu-item>
-    <jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>
-    <jnt-menu-item [link]="['']" title="Empty Link"></jnt-menu-item>
-  </jnt-menu>
-
-  <h3>Vertical menu</h3>
-
-  <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-    <jnt-menu-item [link]="['/developer']" title="Home">
-      <jnt-badge [count]="5"></jnt-badge>
-    </jnt-menu-item>
-    <jnt-menu-item [link]="['/developer']" title="Doc"></jnt-menu-item>
-    <jnt-menu-item [link]="['/developer']" title="GitLab" icon="gitlab:svg:default">
-      <jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>
-      <jnt-badge [count]="5"></jnt-badge>
-    </jnt-menu-item>
-    <jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>
-  </jnt-menu>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-
-<jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-  <jnt-menu-item [link]="['/home']" title="Home" [icon]="ui.icons.check">
-      <jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>
-      <jnt-badge [count]="5"></jnt-badge>
-  </jnt-menu-item>
-  <jnt-menu-item [link]="['/doc']" title="Doc"></jnt-menu-item>
-  <jnt-menu-item [link]="['/gitlab']" title="GitLab"></jnt-menu-item>
-  <jnt-menu-item [link]="['/contacts']" title="Contacts"></jnt-menu-item>
-</jnt-menu>
-
-  ]]></pre>
+  <ngx-prism language="js">
+    <pre><![CDATA[
+ @import "~junte-ui/lib/components/navigation/menu/menu.encapsulated";
+    ]]></pre>
   </ngx-prism>
 
-  <h3>API</h3>
+  <h4>Builder</h4>
 
-  <h4>jnt-menu</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[type]</td>
-      <td>-</td>
-      <td>vertical | horizontal</td>
-      <td>horizontal</td>
-    </tr>
-    <tr>
-      <td>[spacer]</td>
-      <td>-</td>
-      <td>small | normal | large</td>
-      <td>large</td>
-    </tr>
-    </tbody>
-  </table>
+  <jnt-form [formGroup]="menuBuilder" form>
+    <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
 
-  <h4>jnt-menu-item</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[title]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[link]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[icon]</td>
-      <td>-</td>
-      <td>Icons</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>(click)</td>
-      <td>-</td>
-      <td>event</td>
-      <td>-</td>
-    </tr>
-    </tbody>
-  </table>
+      <h4>Menu</h4>
 
+      <jnt-form-item>
+        <jnt-form-label for="type">Type</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="type">
+            <jnt-switcher-option label="Horizontal" [value]="ui.orientation.horizontal"></jnt-switcher-option>
+            <jnt-switcher-option label="Vertical" [value]="ui.orientation.vertical"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="spacing">
+            <jnt-switcher-option label="Tiny" [value]="ui.sizes.tiny"></jnt-switcher-option>
+            <jnt-switcher-option label="Small" [value]="ui.sizes.small"></jnt-switcher-option>
+            <jnt-switcher-option label="Normal" [value]="ui.sizes.normal"></jnt-switcher-option>
+            <jnt-switcher-option label="Large" [value]="ui.sizes.large"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <h4>Menu item</h4>
+
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="scheme">Scheme</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="scheme">
+            <jnt-switcher-option label="Primary" [value]="ui.schemes.primary"></jnt-switcher-option>
+            <jnt-switcher-option label="Secondary" [value]="ui.schemes.secondary"></jnt-switcher-option>
+            <jnt-switcher-option label="Success" [value]="ui.schemes.success"></jnt-switcher-option>
+            <jnt-switcher-option label="Fail" [value]="ui.schemes.fail"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="link">Link</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="link">
+            <jnt-switcher-option label="External link" [value]="sourceType.external"></jnt-switcher-option>
+            <jnt-switcher-option label="Local Link" [value]="sourceType.local"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="target">Target</jnt-form-label>
+        <jnt-form-control>
+          <jnt-switcher formControlName="target">
+            <jnt-switcher-option label="Blank" [value]="targetType.blank"></jnt-switcher-option>
+            <jnt-switcher-option label="Self" [value]="targetType.self"></jnt-switcher-option>
+            <jnt-switcher-option label="Parent" [value]="targetType.parent"></jnt-switcher-option>
+            <jnt-switcher-option label="Top" [value]="targetType.top"></jnt-switcher-option>
+          </jnt-switcher>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <h4>Submenu title</h4>
+
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="subtitleIcon" label="Icon" [value]="false"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-checkbox formControlName="subtitleBadge" label="Badge" [value]="false"></jnt-checkbox>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-tabs>
+        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+          <ng-template #tabContentTemplate>
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
+                  <ng-container *ngFor="let title of ['Documentation', 'Home', 'Contacts']">
+                    <jnt-menu-item [scheme]="schemeControl.value"
+                                   [icon]="iconControl.value ? ui.icons.search : null"
+                                   [target]="targetControl.value"
+                                   [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
+                                   [title]="title">
+                      <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
+                    </jnt-menu-item>
+                  </ng-container>
+                  <jnt-submenu title="General" [icon]="subtitleIconControl.value ? ui.icons.crown : null">
+                    <jnt-badge *ngIf="subtitleBadgeControl.value" count="5"></jnt-badge>
+                    <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                      <jnt-menu-item [scheme]="schemeControl.value"
+                                     [icon]="iconControl.value ? ui.icons.search : null"
+                                     [target]="targetControl.value"
+                                     [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
+                                     [title]="title">
+                        <jnt-badge *ngIf="badgeControl.value" count="7"></jnt-badge>
+                      </jnt-menu-item>
+                    </ng-container>
+                  </jnt-submenu>
+                </jnt-menu>
+              </ng-template>
+            </app-browser-preview>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+          <ng-template #tabContentTemplate>
+            <app-code-highlight>
+              <![CDATA[
+              <jnt-menu
+                ]]>
+                <ng-container *ngIf="typeControl.value">
+                  <![CDATA[
+                  [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+                </ng-container>
+                <![CDATA[>
+                <jnt-menu-item
+                  ]]>
+                  <ng-container *ngIf="schemeControl.value">
+                    <![CDATA[
+                    [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+                  </ng-container>
+
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.search"]]>
+                  </ng-container>
+
+                  <ng-container *ngIf="linkControl.value == sourceType.external">
+                    <![CDATA[
+                    link="https://google.com"]]>
+                  </ng-container>
+
+                  <ng-container *ngIf="linkControl.value == sourceType.local">
+                    <![CDATA[
+                    [link]="['/documentation', 'block']"]]>
+                  </ng-container>
+
+                  <ng-container *ngIf="targetControl.value">
+                    <![CDATA[
+                    target="]]>{{targetControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="badgeControl.value">
+                    <![CDATA[
+                    <jnt-badge count="5"></jnt-badge>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-menu-item>
+                <jnt-submenu title="General"]]>
+                  <ng-container *ngIf="subtitleIconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.crown"]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="subtitleBadgeControl.value">
+                    <![CDATA[
+                    <jnt-badge count="5"></jnt-badge>
+                    ]]>
+                  </ng-container>
+
+                  <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                    <![CDATA[ <jnt-menu-item  ]]>
+
+                    <ng-container *ngIf="schemeControl.value">
+                      <![CDATA[
+                      [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.search"]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="targetControl.value">
+                      <![CDATA[
+                      target="]]>{{targetControl.value}}<![CDATA["]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="linkControl.value == sourceType.external">
+                      <![CDATA[
+                      link="https://google.com"]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="linkControl.value == sourceType.local">
+                      <![CDATA[
+                      [link]="['/documentation', 'block']"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge count="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[</jnt-menu-item>]]>
+                  </ng-container>
+                  <![CDATA[</jnt-submenu>
+              </jnt-menu>]]>
+            </app-code-highlight>
+          </ng-template>
+        </jnt-tab>
+
+        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+          <ng-template #tabContentTemplate>
+            <app-component-api title="Menu" [target]="menu"></app-component-api>
+            <app-component-api title="Menu item" [target]="menuItem"></app-component-api>
+            <app-component-api title="Submenu" [target]="submenu"></app-component-api>
+          </ng-template>
+        </jnt-tab>
+      </jnt-tabs>
+
+    </jnt-block>
+  </jnt-form>
 </jnt-container>
+
+
+<!--<hr>-->
+
+<!--<h3>Horizontal menu</h3>-->
+
+<!--<jnt-menu>-->
+<!--<jnt-menu-item [link]="['/developer']" title="Home" icon="upload:animated:default">-->
+<!--<jnt-badge [count]="5" [color]="ui.colors.purple"></jnt-badge>-->
+<!--<jnt-badge [count]="5"></jnt-badge>-->
+<!--</jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/documentation']" title="Doc"></jnt-menu-item>-->
+<!--<jnt-menu-item link="https://google.com" target="_blank" title="GitLab"></jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['']" title="Empty Link"></jnt-menu-item>-->
+<!--</jnt-menu>-->
+
+<!--<h3>Vertical menu</h3>-->
+
+<!--<jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">-->
+<!--<jnt-menu-item [link]="['/developer']" title="Home">-->
+<!--<jnt-badge [count]="5"></jnt-badge>-->
+<!--</jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/developer']" title="Doc"></jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/developer']" title="GitLab" icon="gitlab:svg:default">-->
+<!--<jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>-->
+<!--<jnt-badge [count]="5"></jnt-badge>-->
+<!--</jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/developer']" title="Contacts"></jnt-menu-item>-->
+<!--</jnt-menu>-->
+
+<!--<ngx-prism language="html">-->
+<!--<pre><![CDATA[-->
+
+<!--<jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">-->
+<!--<jnt-menu-item [link]="['/home']" title="Home" [icon]="ui.icons.check">-->
+<!--<jnt-badge [count]="567" [color]="ui.colors.red"></jnt-badge>-->
+<!--<jnt-badge [count]="5"></jnt-badge>-->
+<!--</jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/doc']" title="Doc"></jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/gitlab']" title="GitLab"></jnt-menu-item>-->
+<!--<jnt-menu-item [link]="['/contacts']" title="Contacts"></jnt-menu-item>-->
+<!--</jnt-menu>-->
+
+<!--]]></pre>-->
+<!--</ngx-prism>-->
+
+<!--<h3>API</h3>-->
+
+<!--<h4>jnt-menu</h4>-->
+<!--<table api>-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Property</th>-->
+<!--<th>Description</th>-->
+<!--<th>Type</th>-->
+<!--<th>Default</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr>-->
+<!--<td>[type]</td>-->
+<!--<td>-</td>-->
+<!--<td>vertical | horizontal</td>-->
+<!--<td>horizontal</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>[spacer]</td>-->
+<!--<td>-</td>-->
+<!--<td>small | normal | large</td>-->
+<!--<td>large</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+
+<!--<h4>jnt-menu-item</h4>-->
+<!--<table api>-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Property</th>-->
+<!--<th>Description</th>-->
+<!--<th>Type</th>-->
+<!--<th>Default</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr>-->
+<!--<td>[title]</td>-->
+<!--<td>-</td>-->
+<!--<td>string</td>-->
+<!--<td>-</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>[link]</td>-->
+<!--<td>-</td>-->
+<!--<td>string</td>-->
+<!--<td>-</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>[icon]</td>-->
+<!--<td>-</td>-->
+<!--<td>Icons</td>-->
+<!--<td>-</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td>(click)</td>-->
+<!--<td>-</td>-->
+<!--<td>event</td>-->
+<!--<td>-</td>-->
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+

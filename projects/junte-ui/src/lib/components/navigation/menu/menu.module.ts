@@ -25,6 +25,11 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
     UserMenuComponent,
     SubmenuComponent
   ],
+  entryComponents: [
+    MenuItemComponent,
+    MenuComponent,
+    SubmenuComponent
+  ],
   declarations: [
     MenuComponent,
     MenuItemComponent,
