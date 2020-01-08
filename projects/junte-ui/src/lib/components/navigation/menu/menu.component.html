@@ -4,7 +4,7 @@
       <div title (click)="submenu.opened = !submenu.opened" [attr.opened]="submenu.opened">
         <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
           <jnt-icon *ngIf="submenu.icon" [icon]="submenu.icon" icon></jnt-icon>
-          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" text>
             <span>{{submenu.title}}</span>
             <jnt-stack *ngIf="!!submenu.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center"
                        [gutter]="ui.gutter.tiny">
@@ -13,6 +13,7 @@
                          [color]="badge.color"></jnt-badge>
             </jnt-stack>
           </jnt-stack>
+          <jnt-icon *ngIf="type == ui.orientation.horizontal" [icon]="submenu.opened ? ui.icons.chevronUp : ui.icons.chevronDown" toggle></jnt-icon>
         </jnt-stack>
       </div>
 

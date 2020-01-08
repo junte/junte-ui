@@ -6,31 +6,83 @@ $link-active-color: $primary-color !default;
   display: block;
   flex: 1;
   &[type='horizontal'] {
+    [submenu] {
+      padding: $gutter-small $gutter-small $gutter-small $gutter-normal;
+      [title] {
+        span {
+          text-overflow: ellipsis;
+          max-width: 200px;
+          display: inline-block;
+          overflow: hidden;
+        }
+      }
+    }
     [submenuItems] {
+      background-color: $primary-background;
+      box-shadow: $shadow-normal;
+      border-radius: $corner-small;
       position: absolute;
       top: 100% !important;
       left: 0;
+      z-index: 1;
+      padding: $gutter-small 0;
+      width: 100%;
+      min-width: 200px;
+      [link][deep-host=#{$jnt-link-host}] {
+        border-left: 4px solid transparent;
+        &:hover {
+          background-color: $highlight-background;
+          border-left-color: $primary-color;
+        }
+      }
     }
   }
 }
 
 [submenu] {
   position: relative;
+  max-width: 100%;
+  * {
+    max-width: 100%;
+  }
+  [toggle] {
+    line-height: 0;
+    font-size: 11px;
+  }
   [title] {
     cursor: pointer;
+    color: $primary-color;
+    [icon] {
+      line-height: 0;
+    }
+    [text] {
+      overflow: hidden;
+    }
+    span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 100%;
+      display: inline-block;
+    }
   }
 }
 
 [submenuItems] {
   display: none;
   flex-direction: column;
-  align-items: start;
   [link][deep-host=#{$jnt-link-host}] {
-    padding-top: $gutter-normal;
-    padding-bottom: $gutter-normal;
+    padding: $gutter-small $gutter-normal;
+    [title] {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 100%;
+      display: inline-block;
+    }
   }
   [submenuTitle] {
     display: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
