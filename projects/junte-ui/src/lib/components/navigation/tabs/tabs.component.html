@@ -25,7 +25,7 @@
   </div>
 </div>
 <ng-container *ngFor="let tab of tabs;let i = index">
-  <ng-container *ngIf="i === active && tab.tabContentTemplate">
+  <div content *ngIf="i === active && tab.tabContentTemplate">
     <ng-container *ngTemplateOutlet="tab.tabContentTemplate"></ng-container>
-  </ng-container>
+  </div>
 </ng-container>

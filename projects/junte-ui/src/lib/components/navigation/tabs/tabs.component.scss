@@ -15,12 +15,21 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
 :host {
   display: block;
   max-width: 100%;
+
+  &[outline='#{$outline-fill}'] {
+    [content] {
+      background-color: $white-color;
+      padding: $gutter-normal;
+      box-sizing: border-box;
+      border-bottom-left-radius: $tabs-corner;
+      border-bottom-right-radius: $tabs-corner;
+    }
+  }
 }
 
 [tabs] {
   display: flex;
   border-bottom: 1px solid $tabs-border-bottom-color;
-  margin-bottom: $gutter-normal;
   background-color: $tabs-background-color;
   border-top-left-radius: $tabs-corner;
   border-top-right-radius: $tabs-corner;

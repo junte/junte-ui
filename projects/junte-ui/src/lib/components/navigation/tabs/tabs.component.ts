@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { Outline, UI } from '../../../enum/ui';
 import { TabComponent } from './tab/tab.component';
 
 @Component({
@@ -17,5 +17,9 @@ export class TabsComponent {
 
   @Input()
   active = 0;
+
+  @HostBinding('attr.outline')
+  @Input()
+  outline: Outline = Outline.fill;
 
 }
