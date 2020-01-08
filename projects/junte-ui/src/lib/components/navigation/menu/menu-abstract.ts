@@ -9,7 +9,7 @@ export abstract class Menu {
   @HostBinding('attr.type')
   _type: Orientation = Orientation.horizontal;
 
-  _spacer: Sizes = Sizes.large;
+  _spacer: Sizes = Sizes.normal;
 
   @PropertyApi({
     description: 'Menu orientation',
@@ -41,7 +41,7 @@ export abstract class Menu {
     if (!!spacer) {
       this._spacer = spacer;
     } else {
-      this._spacer = Sizes.large;
+      this._spacer = Sizes.normal;
     }
   }
 
