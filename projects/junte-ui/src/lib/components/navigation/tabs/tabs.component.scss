@@ -19,10 +19,15 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
   &[outline='#{$outline-fill}'] {
     [content] {
       background-color: $white-color;
-      padding: $gutter-normal;
       box-sizing: border-box;
       border-bottom-left-radius: $tabs-corner;
       border-bottom-right-radius: $tabs-corner;
+    }
+  }
+
+  &[outline='#{$outline-transparent}'] {
+    [content] {
+      background-color: transparent;
     }
   }
 }
@@ -61,4 +66,8 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
       line-height: 0;
     }
   }
+}
+
+[content] {
+  padding: $gutter-normal;
 }

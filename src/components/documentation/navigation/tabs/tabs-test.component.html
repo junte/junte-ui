@@ -26,86 +26,151 @@
     <li>The tab should respond to mouse hover, click</li>
   </ol>
 
-  <hr>
+  <h3>How to use</h3>
 
-  <jnt-stack>
-    <jnt-tabs>
-      <jnt-tab title="Personal"  [icon]="ui.icons.gitlab">
-        <jnt-badge [count]="5"></jnt-badge>
-        <jnt-badge [count]="5"></jnt-badge>
-        <jnt-badge [count]="5"></jnt-badge>
-        <ng-template #tabContentTemplate>
-          Template Personal
-        </ng-template>
-      </jnt-tab>
-      <jnt-tab title="Security" [icon]="ui.icons.calendar">
-        <jnt-badge [count]="545" [color]="ui.colors.blue100"></jnt-badge>
-        <ng-template #tabContentTemplate>
-          Security Personal
-        </ng-template>
-      </jnt-tab>
-      <jnt-tab title="Settings" [icon]="ui.icons.success">
-        <ng-template #tabContentTemplate>
-          Settings Personal
-        </ng-template>
-      </jnt-tab>
-    </jnt-tabs>
-
-    <jnt-tabs>
-      <jnt-tab *ngFor="let tab of tabs" [title]="tab.title">{{tab.content}}</jnt-tab>
-    </jnt-tabs>
-  </jnt-stack>
-
-  <ngx-prism language="html">
+  <ngx-prism language="js">
     <pre><![CDATA[
-<jnt-tabs>
-    <jnt-tab title="Personal">Template Personal</jnt-tab>
-    <jnt-tab title="Security">Template Security</jnt-tab>
-    <jnt-tab title="Settings">Template Settings</jnt-tab>
-</jnt-tabs>
-      ]]></pre>
+ @import "~junte-ui/lib/components/navigation/tabs/tabs.encapsulated";
+    ]]></pre>
   </ngx-prism>
 
-  <h3>API</h3>
-  <h4>jnt-tabs</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[title]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    </tbody>
-  </table>
+  <h3>Playground</h3>
 
-  <h4>jnt-tab</h4>
+  <jnt-tabs>
+    <jnt-tab title="Builder" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <jnt-form [formGroup]="tabBuilder" form>
 
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-    <tr>
-      <td>[active]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    </tbody>
-  </table>
+          <jnt-form-item>
+            <jnt-form-label for="outline">Content background</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="outline">
+                <jnt-switcher-option label="Transparent" [value]="ui.outline.transparent"></jnt-switcher-option>
+                <jnt-switcher-option label="Fill" [value]="ui.outline.fill"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
+          <jnt-form-item>
+            <jnt-form-control>
+              <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
+            </jnt-form-control>
+          </jnt-form-item>
+
+          <jnt-form-item>
+            <jnt-form-control>
+              <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-form>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <app-browser-preview>
+          <ng-template #document>
+            <jnt-tabs [outline]="outlineControl.value">
+              <jnt-tab title="Personal" [icon]="iconControl.value ? ui.icons.calendar : null">
+                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
+                <ng-template #tabContentTemplate>
+                  <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                </ng-template>
+              </jnt-tab>
+              <jnt-tab title="Security" [icon]="iconControl.value ? ui.icons.accessLock : null">
+                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
+                <ng-template #tabContentTemplate>
+                  <jnt-stack [type]="ui.stack.type.horizontal">
+                    <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                  </jnt-stack>
+                </ng-template>
+              </jnt-tab>
+              <jnt-tab title="Settings" [icon]="iconControl.value ? ui.icons.settings : null">
+                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
+                <ng-template #tabContentTemplate>
+                  <jnt-stack>
+                    <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                  </jnt-stack>
+                </ng-template>
+              </jnt-tab>
+            </jnt-tabs>
+          </ng-template>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-tabs
+            ]]>
+            <ng-container *ngIf="outlineControl.value">
+              <![CDATA[
+              [outline]="]]>{{outlineControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+            <jnt-tab title="Personal"
+                     ]]>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                [icon]="ui.icons.calendar"]]>
+              </ng-container>
+              <![CDATA[>]]>
+              <ng-container *ngIf="badgeControl.value">
+                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+              </ng-container>
+              <![CDATA[
+              <ng-template #tabContentTemplate>
+                ...
+              </ng-template>
+            </jnt-tab>
+
+            <jnt-tab title="Security"
+                     ]]>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                [icon]="ui.icons.accessLock"]]>
+              </ng-container>
+              <![CDATA[>]]>
+              <ng-container *ngIf="badgeControl.value">
+                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+              </ng-container>
+              <![CDATA[
+              <ng-template #tabContentTemplate>
+                ...
+              </ng-template>
+            </jnt-tab>
+
+            <jnt-tab title="Settings"
+                     ]]>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                [icon]="ui.icons.settings"]]>
+              </ng-container>
+              <![CDATA[>]]>
+              <ng-container *ngIf="badgeControl.value">
+                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+              </ng-container>
+              <![CDATA[
+              <ng-template #tabContentTemplate>
+                ...
+              </ng-template>
+            </jnt-tab>
+
+          </jnt-tabs>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api title="tabs" [target]="tabs"></app-component-api>
+        <app-component-api title="tab" [target]="tab"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 </jnt-container>
