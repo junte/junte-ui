@@ -17,6 +17,10 @@ import { BadgeModule } from '../../elements/badge/badge.module';
     TabsComponent,
     TabComponent
   ],
+  entryComponents: [
+    TabsComponent,
+    TabComponent
+  ],
   exports: [
     TabsComponent,
     TabComponent

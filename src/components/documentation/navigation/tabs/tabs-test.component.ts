@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
+import { LocalUI } from '../../../../enums/local-ui';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { Outline } from 'junte-ui';
+import { TabsComponent } from 'junte-ui';
+import { TabComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-tabs-test',
   templateUrl: './tabs-test.component.html',
   styleUrls: ['./tabs-test.component.scss']
 })
-export class TabsTestComponent implements OnInit {
+export class TabsTestComponent {
+
   ui = UI;
-  tabs = [
-    {title: 'Information', content: 'Content Tab 1'},
-    {title: 'Settings', content: 'Content Tab 2'},
-    {title: 'Documentation', content: 'Content Tab 3'},
-    {title: 'General', content: 'Content Tab 4'}
-  ];
+  localUi = LocalUI;
+  tabs = TabsComponent;
+  tab = TabComponent;
 
-  constructor() { }
+  iconControl = new FormControl(false);
+  outlineControl = new FormControl(Outline.fill);
+  badgeControl = new FormControl(false);
 
-  ngOnInit() {
-    setTimeout(() => this.tabs.push({title: 'Tab 5', content: 'Content Tab 5'}), 5000);
+  tabBuilder = this.fb.group({
+    icon: this.iconControl,
+    outline: this.outlineControl,
+    badge: this.badgeControl
+  });
+
+  constructor(private fb: FormBuilder) {
   }
 
 }
