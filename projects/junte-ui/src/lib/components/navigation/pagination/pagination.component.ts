@@ -1,6 +1,7 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UI } from '../../../enum/ui';
+import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-pagination',
@@ -27,6 +28,11 @@ export class PaginationComponent {
   private size = 3;
 
   pages: number[];
+
+  @PropertyApi({
+    description: 'Pages count for pagination',
+    type: 'number',
+  })
 
   @Input()
   set pagesCount(pagesCount: number) {

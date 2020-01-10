@@ -20,6 +20,9 @@ import { SelectModule } from '../../forms/select/select.module';
     PaginationComponent,
     PageSizeComponent
   ],
+  entryComponents: [
+    PaginationComponent
+  ],
   exports: [
     PaginationComponent,
     PageSizeComponent

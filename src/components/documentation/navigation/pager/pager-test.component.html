@@ -21,22 +21,76 @@
     <li>The page button should change the display when it is disabled</li>
   </ol>
 
-  <hr>
+  <h3>How to use</h3>
 
-  <form [formGroup]="form">
-    <jnt-stack [type]="ui.stack.type.horizontal"
-               [gutter]="ui.gutter.large"
-               [align]="ui.flex.align.center"
-               [justify]="ui.flex.justify.center">
-      <jnt-pagination [pagesCount]="pagesCount" formControlName="offset">
-      </jnt-pagination>
-    </jnt-stack>
-  </form>
-
-  <ngx-prism language="html">
+  <ngx-prism language="js">
     <pre><![CDATA[
-<jnt-pagination [pagesCount]="pagesCount"></jnt-pagination>
-<jnt-page-size></jnt-page-size>
+ @import "~junte-ui/lib/components/navigation/pagination/pagination.encapsulated";
     ]]></pre>
   </ngx-prism>
+
+  <h3>Playground</h3>
+
+  <jnt-tabs>
+    <jnt-tab title="Builder" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <jnt-form [formGroup]="pagerBuilder" form>
+
+          <jnt-form-item>
+            <jnt-form-label for="count">Pages count</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="count">
+                <jnt-switcher-option *ngFor="let page of [2,5,10]" [label]="page" [value]="page"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
+
+        </jnt-form>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <app-browser-preview>
+          <ng-template #document>
+            <form [formGroup]="form">
+              <jnt-stack [align]="ui.flex.align.center">
+                <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+                  <div *ngFor="let number of (5 | numberArray:((pageControl.value - 1) * 5))" placeholder>
+                    {{number + 1}}
+                  </div>
+                </jnt-stack>
+                <jnt-pagination [pagesCount]="countControl.value" formControlName="page"></jnt-pagination>
+              </jnt-stack>
+            </form>
+          </ng-template>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-pagination
+            ]]>
+            <ng-container *ngIf="countControl.value">
+              <![CDATA[
+              [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-pagination>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api [target]="pager"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
+
 </jnt-container>
