@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { UI } from '../../../../enum/ui';
 
 const ASIDE_STATE = 'aside_collapsed';
@@ -23,6 +23,9 @@ export class AppAsideComponent implements OnInit {
   get collapsed() {
     return this._collapsed;
   }
+
+  @ContentChild(TemplateRef, {static: true})
+  contentTemplate: TemplateRef<any>;
 
   @HostBinding('attr.opened')
   @Input() opened = false;

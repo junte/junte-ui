@@ -105,7 +105,7 @@
                 <jnt-app-layout #layout>
                   <jnt-app-header *ngIf="headerControl.value" header>
                     <ng-template *ngIf="logotypeControl.value" #logo>
-                      <img [src]="'assets/images/logo.svg'">
+                      <img [src]="'assets/images/logo-light.svg'">
                     </ng-template>
                     <ng-template *ngIf="menuControl.value" #topMenu>
                       <jnt-menu>
@@ -155,7 +155,7 @@
                     </ng-template>
                   </jnt-app-header>
 
-                  <ng-template #contentTemplate let-sider="sider">
+                  <ng-template #contentAsideTemplate let-sider="sider">
                     <jnt-app-content [aside]="sider" content>
                       <jnt-app-sub-header *ngIf="subheaderControl.value" (burger)="sider.toggle()">
                         <jnt-breadcrumb></jnt-breadcrumb>
@@ -176,27 +176,30 @@
                   </ng-template>
 
 
-                  <ng-container *ngIf="asideControl.value; else contentTemplate">
+                  <ng-container *ngIf="asideControl.value; else contentAsideTemplate">
                     <jnt-app-aside #sider sidebar>
 
-                      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-                        <jnt-submenu title="General" [icon]="ui.icons.crown">
-                          <jnt-menu-item title="Theming"></jnt-menu-item>
-                          <jnt-menu-item title="Typography"></jnt-menu-item>
-                        </jnt-submenu>
-                        <jnt-submenu title="Layout" [icon]="ui.icons.layout">
-                          <jnt-menu-item title="Grid"></jnt-menu-item>
-                          <jnt-menu-item title="Stack"></jnt-menu-item>
-                          <jnt-menu-item title="Block"></jnt-menu-item>
-                          <jnt-menu-item title="Spinner"></jnt-menu-item>
-                          <jnt-menu-item title="Application"></jnt-menu-item>
-                          <jnt-menu-item title="Skeleton"></jnt-menu-item>
-                        </jnt-submenu>
-                      </jnt-menu>
+                      <ng-template let-collapsed="collapsed" #contentTemplate>
+                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                          <jnt-submenu title="General" [icon]="ui.icons.crown">
+                            <jnt-menu-item title="Theming"></jnt-menu-item>
+                            <jnt-menu-item title="Typography"></jnt-menu-item>
+                          </jnt-submenu>
+                          <jnt-submenu title="Layout" [icon]="ui.icons.layout">
+                            <jnt-menu-item title="Grid"></jnt-menu-item>
+                            <jnt-menu-item title="Stack"></jnt-menu-item>
+                            <jnt-menu-item title="Block"></jnt-menu-item>
+                            <jnt-menu-item title="Spinner"></jnt-menu-item>
+                            <jnt-menu-item title="Application"></jnt-menu-item>
+                            <jnt-menu-item title="Skeleton"></jnt-menu-item>
+                          </jnt-submenu>
+                        </jnt-menu>
+                        <img src="assets/images/alex.jpeg" [attr.small]="collapsed">
+                      </ng-template>
                     </jnt-app-aside>
 
                     <ng-container *ngIf="footerControl.value">
-                      <ng-container *ngTemplateOutlet="contentTemplate;context: {sider: sider}"></ng-container>
+                      <ng-container *ngTemplateOutlet="contentAsideTemplate;context: {sider: sider}"></ng-container>
                     </ng-container>
                   </ng-container>
                   <ng-container *ngIf="!footerControl.value">
@@ -313,15 +316,19 @@
                     <![CDATA[ [aside]="aside">]]>
                   </ng-container>
                   <![CDATA[
-                  <jnt-app-body></jnt-app-body> ]]>
+                  <jnt-app-body></jnt-app-body>
+                  ]]>
                   <ng-container *ngIf="footerControl.value">
-                    <![CDATA[ <app-footer #footer>
-                    <jnt-app-footer>
-                      <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
-                    </jnt-app-footer>
-                  </app-footer> ]]>
+                    <![CDATA[
+                    <app-footer #footer>
+                      <jnt-app-footer>
+                        <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+                      </jnt-app-footer>
+                    </app-footer>
+                    ]]>
                   </ng-container>
-                  <![CDATA[</jnt-app-content>
+                  <![CDATA[
+                </jnt-app-content>
               </jnt-app-layout>
               ]]>
             </app-code-highlight>
