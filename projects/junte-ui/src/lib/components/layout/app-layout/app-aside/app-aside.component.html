@@ -8,7 +8,7 @@
                 (click)="collapsed = !collapsed"
                 button>
     </jnt-button>
-    <ng-content></ng-content>
+    <ng-container *ngTemplateOutlet="contentTemplate; context: {collapsed: collapsed}"></ng-container>
   </div>
 </div>
 <div overlay (click)="opened = false"></div>
