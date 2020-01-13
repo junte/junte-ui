@@ -1,5 +1,6 @@
-import { AfterContentChecked, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
+import { html } from 'js-beautify';
 import { UI } from 'junte-ui';
 
 @Component({
@@ -7,7 +8,7 @@ import { UI } from 'junte-ui';
   templateUrl: './code-highlight.component.html',
   styleUrls: ['./code-highlight.component.scss']
 })
-export class CodeHighlightComponent implements AfterContentChecked {
+export class CodeHighlightComponent implements AfterContentInit {
 
   ui = UI;
 
@@ -20,21 +21,24 @@ export class CodeHighlightComponent implements AfterContentChecked {
   code = '';
 
   private format(source: string) {
-    return source
-      .replace(/^\s+/g, '')
-      .replace(/(\s|\t)+/g, ' ')
-      .replace(/\[+/g, '\n\t[')
-      .replace(/ +/g, '\t')
-      .replace(/\>(\s|\t)+\</g, '>\n\t<')
-      .replace(/(\n\t)+/g, '\n\t');
+    return source.replace(/\n +\>/g, '>');
   }
 
-  ngAfterContentChecked() {
-    this.code = this.format(this.pre.nativeElement.innerText);
-    this.prism.highlightElement({
-      code: this.code,
-      language: 'html'
+  ngAfterContentInit() {
+    let code = this.pre.nativeElement.innerText;
+    code = html(code, {
+      wrap_attributes: 'force-expand-multiline',
+      wrap_attributes_indent_size: 4
     });
+    code = this.format(code);
+    this.code = code;
+
+    setTimeout(() => {
+      this.prism.highlightElement({
+        code: this.code,
+        language: 'html'
+      });
+    }, 1);
   }
 
 }

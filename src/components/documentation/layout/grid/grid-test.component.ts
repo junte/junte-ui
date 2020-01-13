@@ -16,13 +16,13 @@ export class GridTestComponent {
   row = RowComponent;
   col = ColComponent;
 
-  columns = new FormControl(6);
+  columns = new FormControl(12);
+  span = new FormControl(4);
   align = new FormControl(UI.flex.align.start);
   justify = new FormControl(UI.flex.justify.start);
-  wrap = new FormControl(UI.flex.wrap.noWrap);
+  wrap = new FormControl(UI.flex.wrap.wrap);
   direction = new FormControl(UI.flex.direction.row);
   alignContent = new FormControl(UI.flex.alignContent.start);
-  span = new FormControl(6);
 
 
   gridBuilder = this.fb.group({

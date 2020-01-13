@@ -14,6 +14,7 @@ export class BrowserPreviewComponent {
   resizing() {
     this.cd.markForCheck();
   }
+
   constructor(private cd: ChangeDetectorRef,
               public host: ElementRef<HTMLElement>) {
 

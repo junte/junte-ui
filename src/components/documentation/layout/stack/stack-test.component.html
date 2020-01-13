@@ -12,13 +12,13 @@
     </jnt-link>
   </jnt-stack>
   <div teaser>
-    <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex layout) and using
+    <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
+      layout) and using
       similar space (gutter) between elements.</p>
     <p>The stack is the most popular pattern for aligning elements in views.</p>
   </div>
 
   <h3>How to use</h3>
-
   <ngx-prism language="js">
     <pre><![CDATA[
  @import "~junte-ui/lib/assets/styles/components/layout/stack";]]></pre>
@@ -128,7 +128,8 @@
                        stack>
               <div block *ngFor="let block of [1, 2, 3, 4]"
                    [style.width.px]="width / 6"
-                   [style.height.px]="height / 4"></div>
+                   [style.height.px]="height / 4">{{block}}
+              </div>
             </jnt-stack>
           </ng-template>
         </app-browser-preview>
@@ -161,7 +162,9 @@
               [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
             </ng-container>
             <![CDATA[>
-            ...
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
           </jnt-stack>
           ]]>
         </app-code-highlight>

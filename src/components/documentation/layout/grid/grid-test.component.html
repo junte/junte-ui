@@ -7,198 +7,210 @@
     </jnt-link>
   </jnt-stack>
 
-  <p teaser>12 Grids System</p>
+  <div teaser>
+    <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
+    <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
+  </div>
 
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The grid must have 12 column system</li>
-    <li>Alignment in grid should be with the use of flexbox</li>
-    <li>Grid system must support responsive design</li>
-  </ol>
-
-  <h3>Import</h3>
-
+  <h3>How to use</h3>
   <ngx-prism language="js">
     <pre><![CDATA[
- @import "~junte-ui/lib/components/grid/col/col.encapsulated";
- @import "~junte-ui/lib/components/grid/row/row.encapsulated";
- @import "~junte-ui/lib/components/grid/container/container.encapsulated";
-    ]]></pre>
+ @import "~junte-ui/lib/assets/styles/components/layout/grid";]]></pre>
   </ngx-prism>
 
-  <h4>Builder</h4>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Builder" [icon]="localUi.icons.layout.builder">
+      <ng-template #tabContentTemplate>
+        <jnt-form playground [formGroup]="gridBuilder" form>
+          <jnt-form-item>
+            <jnt-form-label for="columns">Number of columns</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="columns">
+                <jnt-switcher-option *ngFor="let column of [1,2,3,4,5,6,7,8,9,10,11,12]" [label]="column"
+                                     [value]="column"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-  <jnt-form [formGroup]="gridBuilder" form>
-    <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
-      <jnt-form-item>
-        <jnt-form-label for="columns">Number of columns</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="columns">
-            <jnt-switcher-option *ngFor="let column of [1,2,3,4,5,6,7,8,9,10,11,12]" [label]="column"
-                                 [value]="column"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-label for="span">Span</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="span">
+                <jnt-switcher-option *ngFor="let count of [1,2,3,4,5,6,7,8,9,10,11,12]" [label]="count"
+                                     [value]="count"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label for="span">Span</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="span">
-            <jnt-switcher-option *ngFor="let count of [1,2,3,4,5,6,7,8,9,10,11,12]" [label]="count"
-                                 [value]="count"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-label for="direction">Direction</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="direction">
+                <jnt-switcher-option label="Row" [icon]="localUi.icons.layout.horizontal"
+                                     [value]="ui.flex.direction.row"></jnt-switcher-option>
+                <jnt-switcher-option label="Row reverse" [value]="ui.flex.direction.rowReverse"></jnt-switcher-option>
+                <jnt-switcher-option label="Column" [value]="ui.flex.direction.column"
+                                     [icon]="localUi.icons.layout.vertical"></jnt-switcher-option>
+                <jnt-switcher-option label="Column reverse"
+                                     [value]="ui.flex.direction.columnReverse"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label for="direction">Direction</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="direction">
-            <jnt-switcher-option label="Row" [icon]="localUi.icons.layout.horizontal" [value]="ui.flex.direction.row"></jnt-switcher-option>
-            <jnt-switcher-option label="Row reverse" [value]="ui.flex.direction.rowReverse"></jnt-switcher-option>
-            <jnt-switcher-option label="Column" [value]="ui.flex.direction.column" [icon]="localUi.icons.layout.vertical"></jnt-switcher-option>
-            <jnt-switcher-option label="Column reverse" [value]="ui.flex.direction.columnReverse"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-label for="align">Align</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="align">
+                <jnt-switcher-option label="Start" [value]="ui.flex.align.start"
+                                     [icon]="localUi.icons.layout.start"></jnt-switcher-option>
+                <jnt-switcher-option label="End" [value]="ui.flex.align.end"
+                                     [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+                <jnt-switcher-option label="Stretch" [value]="ui.flex.align.stretch"
+                                     [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
+                <jnt-switcher-option label="Baseline" [value]="ui.flex.align.baseline"
+                                     [icon]="localUi.icons.layout.baseline"></jnt-switcher-option>
+                <jnt-switcher-option label="Center" [value]="ui.flex.align.center"
+                                     [icon]="localUi.icons.layout.center"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label for="align">Align</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="align">
-            <jnt-switcher-option label="Start" [value]="ui.flex.align.start" [icon]="localUi.icons.layout.start"></jnt-switcher-option>
-            <jnt-switcher-option label="End" [value]="ui.flex.align.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
-            <jnt-switcher-option label="Stretch" [value]="ui.flex.align.stretch" [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
-            <jnt-switcher-option label="Baseline" [value]="ui.flex.align.baseline" [icon]="localUi.icons.layout.baseline"></jnt-switcher-option>
-            <jnt-switcher-option label="Center" [value]="ui.flex.align.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-label for="justify">Justify</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="justify">
+                <jnt-switcher-option label="Start" [icon]="localUi.icons.layout.start"
+                                     [value]="ui.flex.justify.start"></jnt-switcher-option>
+                <jnt-switcher-option label="End" [value]="ui.flex.justify.end"
+                                     [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+                <jnt-switcher-option label="Around" [value]="ui.flex.justify.around"
+                                     [icon]="localUi.icons.layout.around"></jnt-switcher-option>
+                <jnt-switcher-option label="Between" [value]="ui.flex.justify.between"
+                                     [icon]="localUi.icons.layout.between"></jnt-switcher-option>
+                <jnt-switcher-option label="Evenly" [value]="ui.flex.justify.evenly"
+                                     [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
+                <jnt-switcher-option label="Center" [value]="ui.flex.justify.center"
+                                     [icon]="localUi.icons.layout.center"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label for="justify">Justify</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="justify">
-            <jnt-switcher-option label="Start" [icon]="localUi.icons.layout.start" [value]="ui.flex.justify.start"></jnt-switcher-option>
-            <jnt-switcher-option label="End" [value]="ui.flex.justify.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
-            <jnt-switcher-option label="Around" [value]="ui.flex.justify.around" [icon]="localUi.icons.layout.around"></jnt-switcher-option>
-            <jnt-switcher-option label="Between" [value]="ui.flex.justify.between" [icon]="localUi.icons.layout.between"></jnt-switcher-option>
-            <jnt-switcher-option label="Evenly" [value]="ui.flex.justify.evenly" [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
-            <jnt-switcher-option label="Center" [value]="ui.flex.justify.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
+          <jnt-form-item>
+            <jnt-form-label for="alignContent">Align content</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="alignContent">
+                <jnt-switcher-option label="Start" [value]="ui.flex.alignContent.start"
+                                     [icon]="localUi.icons.layout.start"></jnt-switcher-option>
+                <jnt-switcher-option label="End" [value]="ui.flex.alignContent.end"
+                                     [icon]="localUi.icons.layout.end"></jnt-switcher-option>
+                <jnt-switcher-option label="Around" [value]="ui.flex.alignContent.around"
+                                     [icon]="localUi.icons.layout.around"></jnt-switcher-option>
+                <jnt-switcher-option label="Between" [value]="ui.flex.alignContent.between"
+                                     [icon]="localUi.icons.layout.between"></jnt-switcher-option>
+                <jnt-switcher-option label="Evenly" [value]="ui.flex.alignContent.evenly"
+                                     [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
+                <jnt-switcher-option label="Center" [value]="ui.flex.alignContent.center"
+                                     [icon]="localUi.icons.layout.center"></jnt-switcher-option>
+                <jnt-switcher-option label="Stretch" [value]="ui.flex.alignContent.stretch"
+                                     [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label for="alignContent">Align content</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="alignContent">
-            <jnt-switcher-option label="Start" [value]="ui.flex.alignContent.start" [icon]="localUi.icons.layout.start"></jnt-switcher-option>
-            <jnt-switcher-option label="End" [value]="ui.flex.alignContent.end" [icon]="localUi.icons.layout.end"></jnt-switcher-option>
-            <jnt-switcher-option label="Around" [value]="ui.flex.alignContent.around" [icon]="localUi.icons.layout.around"></jnt-switcher-option>
-            <jnt-switcher-option label="Between" [value]="ui.flex.alignContent.between" [icon]="localUi.icons.layout.between"></jnt-switcher-option>
-            <jnt-switcher-option label="Evenly" [value]="ui.flex.alignContent.evenly" [icon]="localUi.icons.layout.evenly"></jnt-switcher-option>
-            <jnt-switcher-option label="Center" [value]="ui.flex.alignContent.center" [icon]="localUi.icons.layout.center"></jnt-switcher-option>
-            <jnt-switcher-option label="Stretch" [value]="ui.flex.alignContent.stretch" [icon]="localUi.icons.layout.stretch"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="wrap">Wrap</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="wrap">
-            <jnt-switcher-option label="Wrap" [value]="ui.flex.wrap.wrap" [icon]="localUi.icons.layout.wrap"></jnt-switcher-option>
-            <jnt-switcher-option label="No wrap" [value]="ui.flex.wrap.noWrap" [icon]="localUi.icons.layout.nowrap"></jnt-switcher-option>
-            <jnt-switcher-option label="Wrap reverse" [value]="ui.flex.wrap.reverse" [icon]="localUi.icons.layout.reverse"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <h3>Builder</h3>
-
-
-      <jnt-tabs>
-        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
-          <ng-template #tabContentTemplate>
-            <app-browser-preview>
-              <ng-template #document let-height="height">
-                <jnt-container>
-                  <jnt-row [direction]="direction.value"
-                           [align]="align.value"
-                           [justify]="justify.value"
-                           [alignContent]="alignContent.value"
-                           [wrap]="wrap.value"
-                           row>
-                    <jnt-col *ngFor="let column of columns.value | mockArray"
-                             [span]="span.value"
-                             [style.height.px]="height / 4"
-                             col>
-                      <jnt-icon [icon]="ui.icons.picture" icon></jnt-icon>
-                    </jnt-col>
-                  </jnt-row>
-                </jnt-container>
-              </ng-template>
-            </app-browser-preview>
+          <jnt-form-item>
+            <jnt-form-label for="wrap">Wrap</jnt-form-label>
+            <jnt-form-control>
+              <jnt-switcher formControlName="wrap">
+                <jnt-switcher-option label="Wrap" [value]="ui.flex.wrap.wrap"
+                                     [icon]="localUi.icons.layout.wrap"></jnt-switcher-option>
+                <jnt-switcher-option label="No wrap" [value]="ui.flex.wrap.noWrap"
+                                     [icon]="localUi.icons.layout.nowrap"></jnt-switcher-option>
+                <jnt-switcher-option label="Wrap reverse" [value]="ui.flex.wrap.reverse"
+                                     [icon]="localUi.icons.layout.reverse"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-form>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <app-browser-preview>
+          <ng-template #document let-height="height">
+            <jnt-container>
+              <jnt-row [direction]="direction.value"
+                       [align]="align.value"
+                       [justify]="justify.value"
+                       [alignContent]="alignContent.value"
+                       [wrap]="wrap.value"
+                       row>
+                <jnt-col *ngFor="let column of columns.value | mockArray"
+                         [span]="span.value">
+                  <div block
+                       [style.font-size.px]="height / 10"
+                       [style.height.px]="height / 4">{{column + 1}}</div>
+                </jnt-col>
+              </jnt-row>
+            </jnt-container>
           </ng-template>
-        </jnt-tab>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
 
-        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
-          <ng-template #tabContentTemplate>
-            <app-code-highlight>
-                   <![CDATA[
-              <jnt-container>
-                <jnt-row
-                  ]]>
-                <ng-container *ngIf="direction.value">
-                  <![CDATA[
-                  [direction]="ui.flex.direction.]]>{{direction.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="align.value">
-                  <![CDATA[
-                  [align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="alignContent.value">
-                  <![CDATA[
-                  [alignContent]="ui.flex.alignContent.]]>{{alignContent.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="justify.value">
-                  <![CDATA[
-                  [justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="wrap.value">
-                  <![CDATA[
-                  [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
-                </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngFor="let i of columns.value | mockArray">
-                    <![CDATA[
-                    <jnt-col [span]="]]>{{span.value}}<![CDATA[">
-                      ...
-                    </jnt-col>]]>
-                  </ng-container>
-
-                <![CDATA[
-                </jnt-row>
-              </jnt-container>
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-container>
+            <jnt-row
               ]]>
+              <ng-container *ngIf="direction.value">
+                <![CDATA[
+                [direction]="ui.flex.direction.]]>{{direction.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="align.value">
+                <![CDATA[
+                [align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="alignContent.value">
+                <![CDATA[
+                [alignContent]="ui.flex.alignContent.]]>{{alignContent.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="justify.value">
+                <![CDATA[
+                [justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="wrap.value">
+                <![CDATA[
+                [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
+              </ng-container>
+              <![CDATA[>]]>
+              <ng-container *ngFor="let i of columns.value | mockArray">
+                <![CDATA[
+                <jnt-col [span]="]]>{{span.value}}<![CDATA[">
+                  <div>]]>{{i + 1}}<![CDATA[</div>
+                </jnt-col>
+                ]]>
+              </ng-container>
 
-            </app-code-highlight>
-          </ng-template>
-        </jnt-tab>
+              <![CDATA[
+            </jnt-row>
+          </jnt-container>
+          ]]>
 
-        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
-          <ng-template #tabContentTemplate>
-            <app-component-api title="Container" [target]="container"></app-component-api>
-            <app-component-api title="Row" [target]="row"></app-component-api>
-            <app-component-api title="Column" [target]="col"></app-component-api>
-          </ng-template>
-        </jnt-tab>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-      </jnt-tabs>
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api title="Container" [target]="container"></app-component-api>
+        <app-component-api title="Row" [target]="row"></app-component-api>
+        <app-component-api title="Column" [target]="col"></app-component-api>
+      </ng-template>
+    </jnt-tab>
 
-    </jnt-block>
-  </jnt-form>
+  </jnt-tabs>
 
 </jnt-container>
