@@ -11,39 +11,22 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <p>A streamlined interface for laying out a collection of views in either a column or a row.
-    <br>
-    Stack views let you leverage the power of Layout, creating user interfaces that can dynamically
-    adapt to the device’s orientation, screen size, and any changes in the available space.
-    <br>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uistackview"
-              title="More">
-    </jnt-link>
-  </p>
-  <p>A stack is a conceptual structure consisting of a set of homogeneous elements and is based on
-    the principle of last in first out (LIFO). It is a commonly used abstract data type with two major
-    operations, namely push and pop. Push and pop are carried out on the topmost element, which is the
-    item most recently added to the stack. The push operation adds an element to the stack while the
-    pop operation removes an element from the top position. The stack concept is used in programming
-    and memory organization in computers.
-    <br>
-    <jnt-link source="https://www.techopedia.com/definition/9523/stack"
-              title="More">
-    </jnt-link>
-  </p>
-  <p teaser>A stack organizes a list of elements using common rules.<br>
-    The main feature of the stack is gutters - distances between elements are created using UI aesthetics 🚀</p>
+  <div teaser>
+    <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex layout) and using
+      similar space (gutter) between elements.</p>
+    <p>The stack is the most popular pattern for aligning elements in views.</p>
+  </div>
 
   <h3>How to use</h3>
 
   <ngx-prism language="js">
     <pre><![CDATA[
- @import "~junte-ui/lib/components/stack/stack.encapsulated";]]></pre>
+ @import "~junte-ui/lib/assets/styles/components/layout/stack";]]></pre>
   </ngx-prism>
 
   <h3>Playground</h3>
-  <jnt-tabs>
-    <jnt-tab title="Builder" [icon]="localUi.icons.layout.code">
+  <jnt-tabs playground>
+    <jnt-tab title="Builder" [icon]="localUi.icons.layout.builder">
       <ng-template #tabContentTemplate>
         <jnt-form [formGroup]="form" form>
           <jnt-form-item>
@@ -135,6 +118,24 @@
 
     <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
       <ng-template #tabContentTemplate>
+        <app-browser-preview>
+          <ng-template #document let-width="width" let-height="height">
+            <jnt-stack [type]="type.value"
+                       [gutter]="gutter.value"
+                       [align]="align.value"
+                       [justify]="justify.value"
+                       [wrap]="wrap.value"
+                       stack>
+              <div block *ngFor="let block of [1, 2, 3, 4]"
+                   [style.width.px]="width / 6"
+                   [style.height.px]="height / 4"></div>
+            </jnt-stack>
+          </ng-template>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
         <app-code-highlight>
           <![CDATA[
           <jnt-stack
@@ -164,21 +165,6 @@
           </jnt-stack>
           ]]>
         </app-code-highlight>
-
-        <app-browser-preview>
-          <ng-template #document let-width="width" let-height="height">
-            <jnt-stack [type]="type.value"
-                       [gutter]="gutter.value"
-                       [align]="align.value"
-                       [justify]="justify.value"
-                       [wrap]="wrap.value"
-                       stack>
-              <div block *ngFor="let block of [1, 2, 3, 4]"
-                   [style.width.px]="width / 6"
-                   [style.height.px]="height / 4"></div>
-            </jnt-stack>
-          </ng-template>
-        </app-browser-preview>
       </ng-template>
     </jnt-tab>
     <jnt-tab title="API" [icon]="localUi.icons.layout.api">

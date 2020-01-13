@@ -21,6 +21,7 @@ export enum FontLayoutIcons {
 }
 
 export enum SvgLocalIcons {
+  builder = 'builder',
   preview = 'preview',
   code = 'code',
   api = 'api'
@@ -47,6 +48,7 @@ class ShortIcons {
     large: FontLayoutIcons.large + ':font:junte-ui-test-layout',
     huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout',
     baseline: FontLayoutIcons.baseline + ':font:junte-ui-test-layout',
+    builder: SvgLocalIcons.builder + ':svg:local',
     preview: SvgLocalIcons.preview + ':svg:local',
     code: SvgLocalIcons.code + ':svg:local',
     api: SvgLocalIcons.api + ':svg:local',
@@ -60,6 +62,7 @@ export class LocalUI {
       font: FontLayoutIcons,
       svg: {
         local: {
+          builder: SvgLocalIcons.builder,
           preview: SvgLocalIcons.preview,
           code: SvgLocalIcons.code,
           api: SvgLocalIcons.api
