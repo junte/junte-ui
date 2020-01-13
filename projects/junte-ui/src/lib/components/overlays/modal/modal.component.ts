@@ -126,11 +126,13 @@ export class ModalComponent implements AfterViewInit {
     }
     this.content = content;
     this.setBackdropFilter(BackdropFilter.blur);
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
     this.cdr.detectChanges();
   }
 
   close() {
+    this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.setBackdropFilter(BackdropFilter.none);
     this.opened = false;
     this.options = new ModalOptions();
