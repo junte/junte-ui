@@ -7,7 +7,6 @@ $popover-spacing: $popover-arrow-width + $popover-distance;
 $popover-background: $primary-light-color !default;
 $popover-corner: $corner-small !default;
 $popover-min-width: 50px !default;
-$popover-max-width: 300px !default;
 $popover-shadow: $shadow-normal !default;
 $popover-padding-x: $gutter-normal !default;
 $popover-padding-y: $gutter-normal !default;
@@ -193,7 +192,6 @@ $popover-schemes: (
   border-radius: $popover-corner;
   box-shadow: $popover-shadow;
   padding: $popover-padding-x $popover-padding-y;
-  max-width: $popover-max-width;
 
   [title] {
     font-weight: $popover-title-font-weight;
@@ -201,5 +199,6 @@ $popover-schemes: (
   }
   [content] {
     opacity: .5;
+    max-width: 300px;
   }
 }
