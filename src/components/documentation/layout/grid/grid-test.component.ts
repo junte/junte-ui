@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ColComponent, ContainerComponent, RowComponent, UI } from 'junte-ui';
+import { ColComponent, ContainerComponent, RowComponent, UI, TabComponent } from 'junte-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { LocalUI } from 'src/enums/local-ui';
-import { TabComponent } from '../../../../../projects/junte-ui/src/lib/components/navigation/tabs/tab/tab.component';
 
 @Component({
   selector: 'app-grid-test',
