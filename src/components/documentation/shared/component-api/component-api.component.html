@@ -17,6 +17,7 @@
     </td>
     <ng-container *ngIf="p.value as api">
       <td>
+        <span *ngIf="api.type">{{api.type}}</span>
         <span *ngIf="api.path">{{api.path}}.</span>
         <ul>
           <li *ngFor="let o of api.options">

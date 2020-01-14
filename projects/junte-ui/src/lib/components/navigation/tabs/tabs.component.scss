@@ -18,7 +18,7 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
 
   &[outline='#{$outline-fill}'] {
     [content] {
-      background-color: $white-color;
+      background-color: $primary-background;
       box-sizing: border-box;
       border-bottom-left-radius: $tabs-corner;
       border-bottom-right-radius: $tabs-corner;
@@ -62,8 +62,22 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
       color: $tabs-item-active-color;
       border-bottom-color: $tabs-item-active-color;
     }
-    [icon] {
-      line-height: 0;
+    [label] {
+      position: relative;
+      z-index: 1;
+      [icon] {
+        line-height: 0;
+      }
+    }
+    [ripple] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: $highlight-background;
+      height: 50px;
+      width: 50px;
     }
   }
 }

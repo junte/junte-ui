@@ -38,7 +38,6 @@ export class BlockComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
-  /*------------------------------------------------Title--------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Title of block',
@@ -48,7 +47,6 @@ export class BlockComponent {
   @Input()
   title: string;
 
-  /*------------------------------------------------State--------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'State of block: loading or error',
@@ -59,9 +57,6 @@ export class BlockComponent {
   @Input()
   state: BlockState;
 
-  /*------------------------------------------------Footer-------------------------------------------------------------------------------*/
-
-
   @PropertyApi({
     description: 'Template of block footer',
     type: 'templateRef'
@@ -70,7 +65,6 @@ export class BlockComponent {
   @ContentChild('footerBlock', {static: false})
   footerBlock: TemplateRef<any>;
 
-  /*------------------------------------------------Padding-------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Inner gutters for block',
@@ -82,7 +76,6 @@ export class BlockComponent {
   @Input()
   padding: Paddings;
 
-  /*------------------------------------------------Width-------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Block width',
@@ -95,7 +88,6 @@ export class BlockComponent {
   @Input()
   width: Width = Width.default;
 
-  /*------------------------------------------------Type-------------------------------------------------------------------------------*/
 
   @PropertyApi({
     description: 'Block type: simple or bordered',
@@ -108,7 +100,6 @@ export class BlockComponent {
   @Input()
   type = TypeBlock.simple;
 
-  /*------------------------------------------------Success-------------------------------------------------------------------------------*/
 
   success() {
     this._state.success = true;
