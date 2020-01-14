@@ -14,7 +14,7 @@ export class StackTestComponent {
   localUi = LocalUI;
   stack = StackComponent;
 
-  type = new FormControl(UI.stack.type.vertical);
+  type = new FormControl(UI.stack.type.horizontal);
   gutter = new FormControl(UI.gutter.normal);
   align = new FormControl(UI.flex.align.start);
   justify = new FormControl(UI.flex.justify.start);

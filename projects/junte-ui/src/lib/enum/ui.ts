@@ -172,7 +172,7 @@ export type SvgIcons = SvgDefaultIcons | SvgFlagsIcons;
 export enum AnimatedIcons {
   runningMan = 'running-man',
   download = 'download',
-  settings = 'settings',
+  settings = 'settings:animated:default',
   time = 'time',
   upload = 'upload',
   success = 'success'
@@ -577,7 +577,7 @@ class ShortIcons {
     spain: SvgFlagsIcons.spain + ':svg:flags',
     sweden: SvgFlagsIcons.sweden + ':svg:flags',
     runningMan: AnimatedIcons.runningMan + ':animated:default',
-    success: AnimatedIcons.success + ':animated:default'
+    success: AnimatedIcons.success + ':animated:default',
   };
 }
 

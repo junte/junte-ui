@@ -16,15 +16,12 @@
 
 [playground] ::ng-deep {
   [tab]:nth-child(1) svg path {
-    fill: url(#purple-light);
-  }
-  [tab]:nth-child(2) svg path {
     fill: url(#green-light);
   }
-  [tab]:nth-child(3) svg path {
+  [tab]:nth-child(2) svg path {
     fill: url(#red-light);
   }
-  [tab]:nth-child(4) svg path {
+  [tab]:nth-child(3) svg path {
     fill: url(#yellow-light);
   }
 }
@@ -41,4 +38,14 @@
   box-sizing: border-box;
   border: 2px solid $primary-color;
   border-radius: $corner-normal;
+}
+
+[builder] {
+  position: absolute;
+  top: $gutter-small;
+  left: $gutter-small;
+  z-index: 1;
+  ::ng-deep [icon] svg path {
+    fill: url(#purple-light);
+  }
 }
