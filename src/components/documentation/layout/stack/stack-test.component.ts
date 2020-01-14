@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { StackComponent, UI } from 'junte-ui';
+import { StackComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -8,11 +8,13 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './stack-test.component.html',
   styleUrls: ['./stack-test.component.scss']
 })
-export class StackTestComponent {
+export class StackTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
   stack = StackComponent;
+
+  @ViewChild('code', {static: false}) preview: TabComponent;
 
   type = new FormControl(UI.stack.type.horizontal);
   gutter = new FormControl(UI.gutter.normal);
@@ -29,6 +31,11 @@ export class StackTestComponent {
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.form.valueChanges
+      .subscribe(() => this.preview.flash());
   }
 
 }

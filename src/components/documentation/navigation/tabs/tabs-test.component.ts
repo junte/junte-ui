@@ -34,7 +34,8 @@ export class TabsTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tabBuilder.valueChanges.subscribe(() => this.preview.flash());
+    this.tabBuilder.valueChanges
+      .subscribe(() => this.preview.flash());
   }
 
 }

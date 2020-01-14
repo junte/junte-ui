@@ -1,6 +1,7 @@
 export type Key = number | string;
 
 export interface IOption {
+  icon?: Key;
   key: Key;
   label: string;
   value: any;

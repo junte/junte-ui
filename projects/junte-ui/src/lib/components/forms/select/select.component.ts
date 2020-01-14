@@ -30,6 +30,7 @@ export class SelectOptionComponent {
 
   ui = UI;
 
+  @Input() icon: string;
   @Input() key: Key;
   @Input() label: string;
   @Input() value: any;
@@ -177,7 +178,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
           objects.forEach(o => {
             const key = o[this.keyField];
             if (!!key) {
-              this.options.found[key.toString()] = {key, label: o[this.labelField], value: o};
+              this.options.found[key.toString()] = {key, label: o[this.labelField], icon: o.icon, value: o};
             }
           });
           this.changes.options++;
@@ -210,8 +211,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   ngAfterContentInit() {
     const convert = (options: SelectOptionComponent[]) => {
       this.options.persisted = {};
-      options.forEach(({key, label, value}) =>
-        this.options.persisted[key.toString()] = {label, key, value});
+      options.forEach(({key, label, icon, value}) =>
+        this.options.persisted[key.toString()] = {key, label, icon, value});
       this.changes.options++;
     };
 
