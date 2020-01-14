@@ -14,7 +14,7 @@ export class StackTestComponent implements OnInit {
   localUi = LocalUI;
   stack = StackComponent;
 
-  @ViewChild('code', {static: false}) preview: TabComponent;
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   type = new FormControl(UI.stack.type.horizontal);
   gutter = new FormControl(UI.gutter.normal);
@@ -35,7 +35,7 @@ export class StackTestComponent implements OnInit {
 
   ngOnInit() {
     this.form.valueChanges
-      .subscribe(() => this.preview.flash());
+      .subscribe(() => this.code.flash());
   }
 
 }
