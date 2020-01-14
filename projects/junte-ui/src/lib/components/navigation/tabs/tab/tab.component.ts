@@ -8,6 +8,8 @@ import { PropertyApi } from '../../../../decorators/api';
 })
 export class TabComponent {
 
+  state = {flash: false};
+
   @PropertyApi({
     description: 'Title of tab',
     type: 'string'
@@ -29,4 +31,9 @@ export class TabComponent {
 
   @ContentChild('tabContentTemplate', {static: false})
   tabContentTemplate: TemplateRef<any>;
+
+  flash() {
+    this.state.flash = true;
+    setTimeout(() => this.state.flash = false, 700);
+  }
 }

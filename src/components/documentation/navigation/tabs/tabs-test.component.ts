@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import { TabComponent } from 'junte-ui';
   templateUrl: './tabs-test.component.html',
   styleUrls: ['./tabs-test.component.scss']
 })
-export class TabsTestComponent {
+export class TabsTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -28,7 +28,13 @@ export class TabsTestComponent {
     badge: this.badgeControl
   });
 
+  @ViewChild('preview', {static: false}) preview: TabComponent;
+
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.tabBuilder.valueChanges.subscribe(() => this.preview.flash());
   }
 
 }
