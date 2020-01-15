@@ -11,6 +11,9 @@ export class ComponentApiComponent {
 
   properties: { [key: string]: PropertyMetadata | MethodMetadata } = {};
 
+  @Input() selector: string;
+
+  // TODO: deprecated, use selector instead
   @Input() title: string;
 
   @Input()

@@ -1,13 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { JunteUiModule } from 'junte-ui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JunteUiModule } from 'junte-ui';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,10 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     JunteUiModule
   ],
-  bootstrap: [AppComponent],
-  providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

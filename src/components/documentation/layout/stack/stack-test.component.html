@@ -1,6 +1,4 @@
 <jnt-container>
-  <h1>Stack</h1>
-
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/stack"
@@ -11,6 +9,8 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
+
+  <h1>Stack</h1>
   <div teaser>
     <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
       layout) and similar space (gutter) between elements.</p>
@@ -18,8 +18,10 @@
   </div>
 
   <h3>How to use</h3>
-  <p>Make the command in terminal <code>ngc c stack-test</code> then</p>
-  <code>stack-test.component.ts</code>
+  <p>Make the command's in terminal <code>ng g c stack-test</code> then</p>
+  <p>
+    Component behaviour <code>stack-test.component.ts</code>
+  </p>
   <ngx-prism language="javascript">
     <pre><![CDATA[
 import { Component } from '@angular/core';
@@ -34,7 +36,7 @@ export class StackTestComponent {
       ui = UI;
 }]]></pre>
   </ngx-prism>
-  <code>stack-test.component.scss</code>
+  <p>Main app's style file <code>style.scss</code></p>
   <ngx-prism language="css">
     <pre><![CDATA[
  @import "~junte-ui/lib/assets/styles/components/layout/stack";]]></pre>
@@ -208,7 +210,7 @@ export class StackTestComponent {
     </jnt-tab>
     <jnt-tab title="API" [icon]="localUi.icons.layout.api">
       <ng-template #tabContentTemplate>
-        <app-component-api [target]="stack"></app-component-api>
+        <app-component-api selector="jnt-stack" [target]="stack"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
