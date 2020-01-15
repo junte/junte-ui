@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap } from '../../../../enum/ui';
+import { FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap, Gutter } from '../../../../enum/ui';
 
 @Component({
   selector: 'jnt-row',
@@ -24,6 +24,9 @@ export class RowComponent {
 
   @HostBinding('attr.alignContent')
   _alignContent: FlexAlignContent = FlexAlignContent.stretch;
+
+  @HostBinding('attr.gutter')
+  _gutter: Gutter = Gutter.normal;
 
 
   @PropertyApi({
@@ -87,7 +90,6 @@ export class RowComponent {
     }
   }
 
-
   @PropertyApi({
     description: 'Aligns a flex container’s lines within the flex container',
     path: 'ui.flex.alignContent',
@@ -102,6 +104,21 @@ export class RowComponent {
       this._alignContent = align;
     } else {
       this._alignContent = FlexAlignContent.stretch;
+    }
+  }
+
+  @PropertyApi({
+    description: 'Margin top for columns',
+    path: 'ui.gutter',
+    default: Gutter.normal,
+    options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.big, Gutter.large, Gutter.huge]
+  })
+
+  @Input() set gutter(gutter: Gutter) {
+    if (!!gutter) {
+      this._gutter = gutter;
+    } else {
+      this._gutter = Gutter.normal;
     }
   }
 

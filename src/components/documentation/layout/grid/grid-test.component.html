@@ -31,6 +31,7 @@
                          [justify]="justify.value"
                          [alignContent]="alignContent.value"
                          [wrap]="wrap.value"
+                         [gutter]="gutter.value"
                          row>
                   <jnt-col *ngFor="let column of columns.value | mockArray"
                            [span]="span.value">
@@ -51,6 +52,20 @@
                   <jnt-select-option *ngFor="let column of [1,2,3,4,5,6,7,8,9,10,11,12]"
                                      [label]="column"
                                      [key]="column"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label for="gutter">Gutters</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="gutter">
+                  <jnt-select-option label="Tiny" [key]="ui.gutter.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.gutter.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.gutter.normal"></jnt-select-option>
+                  <jnt-select-option label="Big" [key]="ui.gutter.big"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.gutter.large"></jnt-select-option>
+                  <jnt-select-option label="Huge" [key]="ui.gutter.huge"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
