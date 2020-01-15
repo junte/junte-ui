@@ -142,6 +142,16 @@ export enum FontGesturesIcons {
   fingersScrollVertical3 = 'fingers-scroll-vertical3'
 }
 
+export enum FontEmojiIcons {
+  smile = 'smile',
+  wink = 'wink',
+  laughter = 'laughter',
+  shocked = 'shocked',
+  sad = 'sad',
+  evil = 'evil',
+  skull = 'skull'
+}
+
 export enum SvgDefaultIcons {
   question = 'question',
   figma = 'figma',
@@ -163,8 +173,8 @@ export enum SvgFlagsIcons {
   sweden = 'sweden'
 }
 
-export const FontIcons = {...FontDefaultIcons, ...FontGesturesIcons};
-export type FontIcons = FontDefaultIcons | SvgFlagsIcons;
+export const FontIcons = {...FontDefaultIcons, ...FontGesturesIcons, ...FontEmojiIcons};
+export type FontIcons = FontDefaultIcons | FontGesturesIcons | FontEmojiIcons;
 
 export const SvgIcons = {...SvgDefaultIcons, ...SvgFlagsIcons};
 export type SvgIcons = SvgDefaultIcons | SvgFlagsIcons;
@@ -541,6 +551,13 @@ class ShortIcons {
     fingersScrollLeft2: FontIcons.fingersScrollLeft2 + ':font:junte-ui-gestures',
     fingersScrollRight2: FontIcons.fingersScrollRight2 + ':font:junte-ui-gestures',
     fingersScrollVertical3: FontIcons.fingersScrollVertical3 + ':font:junte-ui-gestures',
+    smile: FontIcons.smile + ':font:junte-ui-emoji',
+    wink: FontIcons.wink + ':font:junte-ui-emoji',
+    laughter: FontIcons.laughter + ':font:junte-ui-emoji',
+    shocked: FontIcons.shocked + ':font:junte-ui-emoji',
+    sad: FontIcons.sad + ':font:junte-ui-emoji',
+    evil: FontIcons.evil + ':font:junte-ui-emoji',
+    skull: FontIcons.skull + ':font:junte-ui-emoji',
     beaker: FontIcons.beaker + ':font',
     mailbox: FontIcons.mailbox + ':font',
     arrowUp: FontIcons.arrowUp + ':font',
