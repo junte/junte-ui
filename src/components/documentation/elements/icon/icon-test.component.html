@@ -121,6 +121,14 @@
     </div>
   </jnt-stack>
 
+  <h3>Emoji</h3>
+  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+    <div *ngFor="let icon of fontEmoji" wrapper>
+      <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
+      <div name>{{icon.name}}</div>
+    </div>
+  </jnt-stack>
+
   <ngx-prism language="html">
 <pre><![CDATA[
 <jnt-font-icon [icon]="ui.icons.check"></jnt-font-icon>
