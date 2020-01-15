@@ -13,13 +13,29 @@
   </jnt-stack>
   <div teaser>
     <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
-      layout) and using
-      similar space (gutter) between elements.</p>
+      layout) and similar space (gutter) between elements.</p>
     <p>The stack is the most popular pattern for aligning elements in views.</p>
   </div>
 
   <h3>How to use</h3>
-  <ngx-prism language="js">
+  <p>Make the command in terminal <code>ngc c stack-test</code> then</p>
+  <code>stack-test.component.ts</code>
+  <ngx-prism language="javascript">
+    <pre><![CDATA[
+import { Component } from '@angular/core';
+import { UI } from 'junte-ui';
+
+@Component({
+  selector: 'app-stack-test',
+  templateUrl: './stack-test.component.html',
+  styleUrls: ['./stack-test.component.scss']
+})
+export class StackTestComponent {
+      ui = UI;
+}]]></pre>
+  </ngx-prism>
+  <code>stack-test.component.scss</code>
+  <ngx-prism language="css">
     <pre><![CDATA[
  @import "~junte-ui/lib/assets/styles/components/layout/stack";]]></pre>
   </ngx-prism>

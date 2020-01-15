@@ -1,6 +1,7 @@
 @import "../projects/junte-ui/src/lib/assets/styles/variables";
 
 code {
+  font-family: 'Space Mono', monospace;
   color: $red-dark-color;
 }
 
@@ -17,10 +18,12 @@ code {
 }
 
 ngx-prism {
+  display: block;
   width: 100%;
 }
 
 pre[class*="language-"] {
+  border-radius: $corner-normal;
   background-color: $primary-background !important;
   width: 100%;
   display: block;
@@ -28,6 +31,7 @@ pre[class*="language-"] {
   box-sizing: border-box;
 
   code[class*="language-"] {
+    font-family: 'Space Mono', monospace !important;
     text-shadow: none !important;
     color: $primary-text-color;
     white-space: pre-wrap;
@@ -41,7 +45,7 @@ pre[class*="language-"] {
 table[api] {
   width: 100%;
   border-collapse: collapse;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: 'Space Mono', monospace;
 
   td, th {
     padding: $gutter-small;

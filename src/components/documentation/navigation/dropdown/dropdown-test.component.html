@@ -11,104 +11,59 @@
     </jnt-link>
   </jnt-stack>
 
-  <hr>
-
-  <jnt-stack [type]="ui.orientation.horizontal">
-    <jnt-dropdown>
-      <ng-template #trigger let-action="trigger">
-        <jnt-button text="Dropdown" (click)="action()"></jnt-button>
-      </ng-template>
-      <ng-template #dropdown let-action="trigger">
-        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-          <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Copy" (click)="action()"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-    </jnt-dropdown>
-
-    <jnt-dropdown>
-      <ng-template #trigger let-action="trigger">
-        <jnt-button [outline]="ui.outline.transparent" [icon]="ui.icons.actions" (mouseover)="action()"></jnt-button>
-      </ng-template>
-      <ng-template #dropdown>
-        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-          <jnt-menu-item title="Edit"></jnt-menu-item>
-          <jnt-menu-item title="Delete"></jnt-menu-item>
-          <jnt-menu-item title="Add"></jnt-menu-item>
-          <jnt-menu-item title="Copy"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-    </jnt-dropdown>
-  </jnt-stack>
-
-  <h3>Dropdown modes</h3>
-
-  <jnt-stack [type]="ui.orientation.horizontal">
-      <jnt-dropdown>
-        <ng-template #trigger let-action="trigger">
-          <jnt-button text="click" (click)="action()"></jnt-button>
-        </ng-template>
-        <ng-template #dropdown>
-          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-            <jnt-menu-item title="Link" [icon]="ui.icons.externalLink"></jnt-menu-item>
-            <jnt-menu-item title="Edit" [icon]="ui.icons.edit"></jnt-menu-item>
-            <jnt-menu-item title="Sync" [icon]="ui.icons.sync"></jnt-menu-item>
-            <jnt-menu-item title="Copy"></jnt-menu-item>
-          </jnt-menu>
-        </ng-template>
-      </jnt-dropdown>
-    <jnt-dropdown>
-      <ng-template #trigger let-action="trigger">
-        <jnt-button text="hover" (mouseover)="action()"></jnt-button>
-      </ng-template>
-      <ng-template #dropdown>
-        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-          <jnt-menu-item title="Edit"></jnt-menu-item>
-          <jnt-menu-item title="Delete"></jnt-menu-item>
-          <jnt-menu-item title="Add"></jnt-menu-item>
-          <jnt-menu-item title="Copy"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-    </jnt-dropdown>
-  </jnt-stack>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-
-    <jnt-dropdown>
-      <ng-template #trigger let-action="trigger">
-        <jnt-button text="Dropdown" (click)="action()"></jnt-button>
-      </ng-template>
-      <ng-template #dropdown let-action="trigger">
-        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
-          <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
-          <jnt-menu-item title="Copy" (click)="action()"></jnt-menu-item>
-        </jnt-menu>
-      </ng-template>
-    </jnt-dropdown>
-
-  ]]></pre>
+  <h3>How to use</h3>
+  <ngx-prism language="js">
+    <pre><![CDATA[
+ @import "~junte-ui/lib/assets/styles/components/navigation/dropdown";]]></pre>
   </ngx-prism>
 
-  <h3>API</h3>
+  <h3>Playground</h3>
 
-  <h4>jnt-dropdown</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <app-browser-preview preview>
+          <ng-template #document let-width="width" let-height="height">
+            <jnt-dropdown>
+              <ng-template #trigger let-action="trigger">
+                <jnt-button text="Dropdown" (click)="action()"></jnt-button>
+              </ng-template>
+              <ng-template #dropdown let-action="trigger">
+                <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                  <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
+                  <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
+                  <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
+                  <jnt-menu-item title="Copy" (click)="action()"></jnt-menu-item>
+                </jnt-menu>
+              </ng-template>
+            </jnt-dropdown>
+          </ng-template>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" #code [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-dropdown>
+            <ng-template #trigger let-action="trigger">
+              <jnt-button text="Dropdown" (click)="action()"></jnt-button>
+            </ng-template>
+            <ng-template #dropdown let-action="trigger">
+              <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
+                <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
+                <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
+                <jnt-menu-item title="Copy" (click)="action()"></jnt-menu-item>
+              </jnt-menu>
+            </ng-template>
+          </jnt-dropdown>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
 
