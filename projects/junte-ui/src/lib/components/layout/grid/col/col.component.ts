@@ -18,9 +18,8 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy',
-    type: 'number',
-    default: '1',
-    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    type: 'number: 1...12',
+    default: '1'
   })
 
   @Input() set span(span: number) {
@@ -33,9 +32,8 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution < 768px',
-    type: 'number',
-    default: '1',
-    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    type: 'number: 1...12',
+    default: '1'
   })
 
   @HostBinding('attr.mobile')
@@ -43,9 +41,8 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 768px',
-    type: 'number',
-    default: '1',
-    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    type: 'number: 1...12',
+    default: '1'
   })
 
   @HostBinding('attr.tablet')
@@ -53,9 +50,8 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 992px',
-    type: 'number',
-    default: '1',
-    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    type: 'number: 1...12',
+    default: '1'
   })
 
   @HostBinding('attr.desktop')
@@ -63,9 +59,8 @@ export class ColComponent {
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 1200px',
-    type: 'number',
-    default: '1',
-    options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    type: 'number: 1...12',
+    default: '1'
   })
 
   @HostBinding('attr.wide')
