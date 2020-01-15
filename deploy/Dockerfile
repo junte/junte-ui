@@ -18,6 +18,6 @@ FROM nginx:1.17.4-alpine
 WORKDIR /var/www
 
 COPY deploy/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /src/dist/junte-ui-app/* .
+COPY --from=build /src/dist/junte-ui-app .
 
 EXPOSE 8080
