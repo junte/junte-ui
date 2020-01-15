@@ -19,6 +19,7 @@ export class GridTestComponent implements OnInit {
   @ViewChild('code', {static: false}) code: TabComponent;
 
   columns = new FormControl(12);
+  gutter = new FormControl(UI.gutter.normal);
   span = new FormControl(4);
   align = new FormControl(UI.flex.align.start);
   justify = new FormControl(UI.flex.justify.start);
@@ -34,7 +35,8 @@ export class GridTestComponent implements OnInit {
     wrap: this.wrap,
     direction: this.direction,
     alignContent: this.alignContent,
-    span: this.span
+    span: this.span,
+    gutter: this.gutter
   });
 
   constructor(private fb: FormBuilder) {
