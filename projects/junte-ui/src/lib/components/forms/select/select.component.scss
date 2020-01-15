@@ -3,18 +3,21 @@
 $select-sizes: (
   #{$size-small}: (
     font-size: 11px,
+    icon-size: 11px,
     min-height: 30px,
     chips-padding: 2px $gutter-large 2px $gutter-small,
     input-padding: 2px 0 2px $gutter-small
   ),
   #{$size-normal}: (
     font-size: 14px,
+    icon-size: 14px,
     min-height: 38px,
     chips-padding: 3px $gutter-large 3px $gutter-small,
     input-padding: 3px 0 3px $gutter-small
   ),
   #{$size-large}: (
     font-size: 16px,
+    icon-size: 16px,
     min-height: 50px,
     chips-padding: $gutter-small $gutter-large $gutter-small $gutter-small,
     input-padding: $gutter-small 0 $gutter-small $gutter-small
@@ -27,11 +30,27 @@ $select-sizes: (
     min-height: #{map-get($size, min-height)};
     ul li {
       padding: #{map-get($size, chips-padding)};
+      [icon][deep-host=#{$jnt-icon-host}] {
+        &[type='svg'], &[type='animated'] {
+          width: #{map-get($size, icon-size)};
+          height: #{map-get($size, icon-size)};
+        }
+      }
       &[query] {
         padding: #{map-get($size, input-padding)};
       }
       input {
         font-size: #{map-get($size, font-size)};
+      }
+    }
+  }
+  [options] {
+    ul li {
+      [icon][deep-host=#{$jnt-icon-host}] {
+        &[type='svg'], &[type='animated'] {
+          width: #{map-get($size, icon-size)};
+          height: #{map-get($size, icon-size)};
+        }
       }
     }
   }
@@ -168,6 +187,9 @@ $select-sizes: (
       background-color: $secondary-background;
       border-radius: $corner-small;
       margin-bottom: $gutter-tiny;
+      [icon][child-host=#{$jnt-icon-host}] {
+        line-height: 0;
+      }
       [empty] {
         width: 50px;
         height: 10px;
@@ -272,6 +294,9 @@ $select-sizes: (
       cursor: pointer;
       padding: $gutter-small $gutter-normal;
       border-left: 2px solid transparent;
+      [icon][child-host=#{$jnt-icon-host}] {
+        line-height: 0;
+      }
       &:hover {
         background-color: $secondary-background;
         border-color: $primary-color;
