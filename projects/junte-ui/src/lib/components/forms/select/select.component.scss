@@ -95,7 +95,7 @@ $select-sizes: (
         margin-left: -$gutter-tiny;
       }
     }
-    &[opened='true'] [select] {
+    &[opened='true'][search='true'] [select] {
       ul {
         li {
           display: none;
@@ -206,8 +206,9 @@ $select-sizes: (
         &:focus {
           outline: 0;
         }
-        [icon] {
+        & > [icon] {
           font-size: 11px;
+          line-height: inherit;
         }
       }
       &:not(:last-child) {
@@ -239,8 +240,9 @@ $select-sizes: (
     &:focus {
       outline: 0;
     }
-    [icon] {
+    & > [icon] {
       font-size: 11px;
+      line-height: inherit;
     }
   }
 }
