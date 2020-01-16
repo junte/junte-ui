@@ -9,13 +9,17 @@ import { JunteUiModule } from 'junte-ui';
 import { PrismModule } from '@ngx-prism/core';
 import { BreadcrumbResolver } from 'src/components/documentation/navigation/breadcrumbs/resolver';
 import { BreadCrumbTest2Component } from 'src/components/documentation/navigation/breadcrumbs/tests/test2.component';
+import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
+import { BreadCrumbTest3Component } from './tests/test3.component';
+import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.module';
 
 
 @NgModule({
   declarations: [
     BreadcrumbsTestComponent,
     BreadCrumbTest1Component,
-    BreadCrumbTest2Component
+    BreadCrumbTest2Component,
+    BreadCrumbTest3Component,
   ],
   imports: [
     CommonModule,
@@ -23,12 +27,15 @@ import { BreadCrumbTest2Component } from 'src/components/documentation/navigatio
     RouterModule,
     JunteUiModule,
     PrismModule,
-    BreadcrumbsRoutingModule
+    BreadcrumbsRoutingModule,
+    BrowserPreviewModule,
+    CodeHighlightModule
   ],
   exports: [
     BreadcrumbsTestComponent,
     BreadCrumbTest1Component,
-    BreadCrumbTest2Component
+    BreadCrumbTest2Component,
+    BreadCrumbTest3Component
   ],
   providers: [
     BreadcrumbResolver

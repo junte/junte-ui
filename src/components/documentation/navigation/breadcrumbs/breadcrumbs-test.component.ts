@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
+import { LocalUI } from '../../../../enums/local-ui';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -8,4 +9,5 @@ import { UI } from 'junte-ui';
 })
 export class BreadcrumbsTestComponent {
   ui = UI;
+  localUi = LocalUI;
 }

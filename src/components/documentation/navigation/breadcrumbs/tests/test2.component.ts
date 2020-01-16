@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UI } from '../../../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
   selector: 'app-breadcrumbs-test2',
   template: `
-    <div>
-      <jnt-link [source]="['/components/breadcrumbs']">Home Page</jnt-link>
-    </div>
-  `
+    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+      <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+      <div block>2</div>
+    <router-outlet></router-outlet>
+    </jnt-stack>
+  `,
+  styleUrls: ['../../../_component.scss'],
+  styles: ['div[block] {font-size: 20px}']
 })
 
-export class BreadCrumbTest2Component implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+export class BreadCrumbTest2Component {
+  ui = UI;
 }

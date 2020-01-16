@@ -11,55 +11,85 @@
   </jnt-stack>
 
 
-
-  <hr>
-
   <h1>Breadcrumbs</h1>
-  <jnt-breadcrumb></jnt-breadcrumb>
-  <router-outlet></router-outlet>
-  <jnt-link [source]="['page']">Page First</jnt-link>
 
-  <h3>Usage</h3>
-  <ngx-prism language="html">
-    <pre><![CDATA[
-<jnt-breadcrumb></jnt-breadcrumb>
-]]></pre>
-  </ngx-prism>
+  <h3>How to use</h3>
 
-  <p>For using Breadcrumbs you need to import <code>RouterModule</code></p>
-  <ngx-prism language="js">
+
+  <h3>Playground</h3>
+
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document>
+              <jnt-stack>
+                <jnt-breadcrumb></jnt-breadcrumb>
+                <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" page>
+                  <jnt-icon [icon]="ui.icons.home" icon></jnt-icon>
+                  <router-outlet></router-outlet>
+                </jnt-stack>
+                <jnt-link [source]="['.']" title="Home"></jnt-link>
+                <jnt-link [source]="['page']" title="First page"></jnt-link>
+                <jnt-link [source]="['page', 'page-2']" title="Second page"></jnt-link>
+                <jnt-link [source]="['page', 'page-2', 'page-3']" title="Third page"></jnt-link>
+              </jnt-stack>
+            </ng-template>
+          </app-browser-preview>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-breadcrumb></jnt-breadcrumb>
+          ]]>
+        </app-code-highlight>
+
+        <ngx-prism language="js">
 <pre><![CDATA[
-import { RouterModule } from '@angular/router';
 
-@NgModule({
-  ...
-  imports: [ RouterModule.forRoot([]), ... ],
-  ...
- })
-
-export class AppModule {
-}
-]]></pre>
-  </ngx-prism>
-
-  <p>To each <jnt-label label="route" [color]="ui.colors.orange"></jnt-label> in the property data, you need to add the object <jnt-label label="breadcrumb" [color]="ui.colors.orange"></jnt-label>, in which you need to specify the
-    label:</p>
-  <ngx-prism language="js">
-    <pre><![CDATA[
-export const routes: Routes = [
+const routes: Routes = [
   {
-    path: 'test-component',
-    component: TestComponent,
-    data: { breadcrumb: { label: 'Test component' } }
+    path: '',
+    component: BreadcrumbsTestComponent,
+    data: {breadcrumb: 'Home'},
     children: [
       {
-        path: 'child-component',
-        component: ChildComponent,
-        data: { breadcrumb: { label: 'Child Component' } }
+        path: 'page',
+        component: BreadCrumbTest1Component,
+        data: {breadcrumb: getLabel},
+        resolve: {obj: BreadcrumbResolver},
+        children: [
+          {
+            path: 'page-2',
+            component: BreadCrumbTest2Component,
+            data: {breadcrumb: 'Second page'},
+            children: [
+              {
+                path: 'page-3',
+                component: BreadCrumbTest3Component,
+                data: {breadcrumb: 'Third page'}
+              }
+            ]
+          }
+        ]
       }
     ]
   }
-];]]></pre>
-  </ngx-prism>
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+  ]]></pre>
+        </ngx-prism>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
