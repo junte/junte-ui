@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Skeleton</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/skeleton"
@@ -10,149 +9,151 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
 
-  <ol>
+  <h1>Skeleton</h1>
+  <div teaser>
+    <p>Skeleton provides a placeholder for future content which will be loaded soon.</p>
+  </div>
 
-    <li>Skeleton must have different types: text, avatar</li>
-    <li>Skeleton avatar must have different sizes: tiny, small, normal, large</li>
-    <li>In skeleton text may change the count of lines</li>
-    <li>Skeleton may have animation</li>
-  </ol>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'skeleton-test', type: 'SkeletonTestComponent'}"
+    scss="layout/skeleton"></app-how-to-use>
 
-  <hr>
-
-  <h3>Builder</h3>
-
-  <jnt-form [formGroup]="form" form>
-    <div builder>
-      <jnt-form-item>
-        <jnt-form-label for="type">Skeleton type</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="type">
-            <jnt-switcher-option label="User card" [value]="skeletonType.UserCard"></jnt-switcher-option>
-            <jnt-switcher-option label=" Vertical post card" [value]="skeletonType.VerticalPostCard"></jnt-switcher-option>
-            <jnt-switcher-option label=" Horizontal post card" [value]="skeletonType.HorizontalPostCard"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="animation">Animation</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="animation">
-            <jnt-switcher-option label="Switch on" [value]="true"></jnt-switcher-option>
-            <jnt-switcher-option label="Switch off" [value]="false"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-tabs>
-        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
-          <ng-template #tabContentTemplate>
-            <app-browser-preview>
-              <ng-template #document let-width="width">
-                <ng-container *ngIf="type.value == skeletonType.UserCard">
-                  <jnt-block [padding]="ui.padding.normal" [style.width.px]="width / 4">
-                    <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
-                      <jnt-skeleton [type]="ui.skeleton.type.avatar" [animated]="animation.value"></jnt-skeleton>
-                      <jnt-skeleton [lines]="2" [animated]="animation.value"></jnt-skeleton>
-                    </jnt-stack>
-                  </jnt-block>
-                </ng-container>
-
-                <ng-container *ngIf="type.value == skeletonType.VerticalPostCard">
-                  <jnt-block [padding]="ui.padding.normal" [style.width.px]="width / 2">
-                    <jnt-stack [align]="ui.flex.align.center">
-                      <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="animation.value"></jnt-skeleton>
-                      <jnt-skeleton [lines]="3" [animated]="animation.value"></jnt-skeleton>
-                    </jnt-stack>
-                  </jnt-block>
-                </ng-container>
-
-                <ng-container *ngIf="type.value == skeletonType.HorizontalPostCard">
-                  <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
-                    <jnt-stack [type]="ui.stack.type.horizontal">
-                      <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.normal" [animated]="animation.value"></jnt-skeleton>
-                      <jnt-skeleton [lines]="5" [animated]="animation.value"></jnt-skeleton>
-                    </jnt-stack>
-                  </jnt-block>
-                </ng-container>
-
-              </ng-template>
-            </app-browser-preview>
-          </ng-template>
-        </jnt-tab>
-
-        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
-          <ng-template #tabContentTemplate>
-            <app-code-highlight>
-                <ng-container *ngIf="type.value == skeletonType.UserCard">
-                  <![CDATA[
-                  <jnt-block>
-                    <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
-                      <jnt-skeleton [type]="ui.skeleton.type.avatar" ]]>
-                        <ng-container *ngIf="animation.value !== null">
-                          <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                        </ng-container>
-                        <![CDATA[></jnt-skeleton>
-                      <jnt-skeleton [lines]="2"]]>
-                      <ng-container *ngIf="animation.value !== null">
-                        <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[></jnt-skeleton>
-                    </jnt-stack>
-                  </jnt-block>]]>
-                </ng-container>
-
-              <ng-container *ngIf="type.value == skeletonType.VerticalPostCard">
-                <![CDATA[
-                <jnt-block>
-                  <jnt-stack [align]="ui.flex.align.center">
-                    <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large"  ]]>
-                      <ng-container *ngIf="animation.value !== null">
-                        <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[></jnt-skeleton>
-                    <jnt-skeleton [lines]="3"]]>
-                      <ng-container *ngIf="animation.value !== null">
-                        <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[></jnt-skeleton>
-                  </jnt-stack>
-                </jnt-block>]]>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document let-width="width">
+              <ng-container *ngIf="type.value == sketches.UserCard">
+                <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
+                  <jnt-skeleton [type]="ui.skeleton.type.avatar" [animated]="animation.value"></jnt-skeleton>
+                  <jnt-skeleton [lines]="2" [animated]="animation.value"></jnt-skeleton>
+                </jnt-stack>
               </ng-container>
 
-              <ng-container *ngIf="type.value == skeletonType.HorizontalPostCard">
-                <![CDATA[
-                <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
-                  <jnt-stack [type]="ui.stack.type.horizontal" [size]="ui.sizes.normal">
-                    <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large"  ]]>
-                      <ng-container *ngIf="animation.value !== null">
-                        <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[></jnt-skeleton>
-                    <jnt-skeleton [lines]="5"]]>
-                      <ng-container *ngIf="animation.value !== null">
-                        <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[></jnt-skeleton>
-                  </jnt-stack>
-                </jnt-block>]]>
+              <ng-container *ngIf="type.value == sketches.VerticalPostCard">
+                <jnt-stack [align]="ui.flex.align.center">
+                  <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large"
+                                [animated]="animation.value"></jnt-skeleton>
+                  <jnt-skeleton [lines]="3" [animated]="animation.value"></jnt-skeleton>
+                </jnt-stack>
               </ng-container>
 
-            </app-code-highlight>
-          </ng-template>
-        </jnt-tab>
+              <ng-container *ngIf="type.value == sketches.HorizontalPostCard">
+                <jnt-stack [type]="ui.stack.type.horizontal">
+                  <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.normal"
+                                [animated]="animation.value"></jnt-skeleton>
+                  <jnt-skeleton [lines]="5" [animated]="animation.value"></jnt-skeleton>
+                </jnt-stack>
+              </ng-container>
 
-        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
-          <ng-template #tabContentTemplate>
-            <app-component-api [target]="skeleton"></app-component-api>
-          </ng-template>
-        </jnt-tab>
-      </jnt-tabs>
-    </div>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="type">Sketch</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="type">
+                  <jnt-select-option label="User card"
+                                     [key]="sketches.UserCard"></jnt-select-option>
+                  <jnt-select-option label=" Vertical post card"
+                                     [key]="sketches.VerticalPostCard"></jnt-select-option>
+                  <jnt-select-option label=" Horizontal post card"
+                                     [key]="sketches.HorizontalPostCard"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  </jnt-form>
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="animation"
+                              label="Animation"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <ng-container *ngIf="type.value == sketches.UserCard">
+            <![CDATA[
+            <jnt-block>
+              <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
+                <jnt-skeleton [type]="ui.skeleton.type.avatar" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [lines]="2" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
+            </jnt-block>
+            ]]>
+          </ng-container>
+
+          <ng-container *ngIf="type.value == sketches.VerticalPostCard">
+            <![CDATA[
+            <jnt-block>
+              <jnt-stack [align]="ui.flex.align.center">
+                <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [lines]="3" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
+            </jnt-block>
+            ]]>
+          </ng-container>
+
+          <ng-container *ngIf="type.value == sketches.HorizontalPostCard">
+            <![CDATA[
+            <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
+              <jnt-stack [type]="ui.stack.type.horizontal" [size]="ui.sizes.normal">
+                <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [lines]="5" ]]>
+                  <ng-container *ngIf="animation.value !== null">
+                    <![CDATA[[animated]="]]>{{animation.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
+            </jnt-block>
+            ]]>
+          </ng-container>
+
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-skeleton"
+                           [target]="skeleton"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>

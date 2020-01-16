@@ -14,7 +14,7 @@ export class SpinnerTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-  spinner = SpinnerComponent;
+  types = {spinner: SpinnerComponent};
 
   size = new FormControl(Sizes.normal);
 

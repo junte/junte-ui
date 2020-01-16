@@ -21,7 +21,8 @@ export class CodeHighlightComponent implements AfterContentInit {
   code = '';
 
   private format(source: string) {
-    return source.replace(/\n +\>/g, '>');
+    return source.replace(/\n +\>/g, '>')
+      .replace(/\> +\</g, '><');
   }
 
   ngAfterContentInit() {

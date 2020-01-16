@@ -3,7 +3,7 @@ import { SkeletonComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 
-export enum SkeletonType {
+export enum Sketches {
   UserCard = 'userCard',
   VerticalPostCard = 'verticalPostCard',
   HorizontalPostCard = 'horizontalPostCard'
@@ -17,12 +17,12 @@ export enum SkeletonType {
 export class SkeletonTestComponent {
 
   ui = UI;
-  skeletonType = SkeletonType;
+  sketches = Sketches;
   localUi = LocalUI;
   skeleton = SkeletonComponent;
 
-  type = new FormControl(SkeletonType.UserCard);
-  animation = new FormControl();
+  type = new FormControl(Sketches.UserCard);
+  animation = new FormControl(true);
 
   form = this.fb.group({
     type: this.type,
