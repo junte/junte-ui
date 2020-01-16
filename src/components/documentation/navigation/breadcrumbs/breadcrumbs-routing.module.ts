@@ -4,6 +4,7 @@ import { BreadcrumbsTestComponent } from 'src/components/documentation/navigatio
 import { BreadcrumbResolver } from 'src/components/documentation/navigation/breadcrumbs/resolver';
 import { BreadCrumbTest1Component } from 'src/components/documentation/navigation/breadcrumbs/tests/test.component';
 import { BreadCrumbTest2Component } from 'src/components/documentation/navigation/breadcrumbs/tests/test2.component';
+import { BreadCrumbTest3Component } from 'src/components/documentation/navigation/breadcrumbs/tests/test3.component';
 
 export function getLabel(data: any) {
   return data.obj.label;
@@ -24,7 +25,14 @@ const routes: Routes = [
           {
             path: 'page-2',
             component: BreadCrumbTest2Component,
-            data: {breadcrumb: 'Page Last'}
+            data: {breadcrumb: 'Second page'},
+            children: [
+              {
+                path: 'page-3',
+                component: BreadCrumbTest3Component,
+                data: {breadcrumb: 'Third page'}
+              }
+            ]
           }
         ]
       }

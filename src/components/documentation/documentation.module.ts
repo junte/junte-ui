@@ -47,10 +47,11 @@ import { ModalTestComponent } from './overlays/modal/modal-test.component';
 import { ModalTestFactoryComponent } from './overlays/modal/test.component';
 import { PopoverTestComponent } from './overlays/popover/popover-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
-import { BrowserPreviewComponent } from './shared/browser-preview/browser-preview.component';
 import { CodeHighlightComponent } from './shared/code-highlight/code-highlight.component';
 import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
+import { BrowserPreviewModule } from './shared/browser-preview/browser-preview.module';
+import { CodeHighlightModule } from './shared/code-highlight/code-highlight.module';
 
 @NgModule({
   imports: [
@@ -61,7 +62,9 @@ import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
     JunteUiModule,
     DocumentationRoutingModule,
     AppFooterModule,
-    OutletModule
+    OutletModule,
+    BrowserPreviewModule,
+    CodeHighlightModule
   ],
   declarations: [
     DocumentationComponent,
@@ -105,9 +108,7 @@ import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
     DatePickerTestComponent,
     DatePeriodTestComponent,
     KanbanTestComponent,
-    BrowserPreviewComponent,
     KanbanTestComponent,
-    CodeHighlightComponent,
     ComponentApiComponent,
     AccordionTestComponent,
     ConfirmTestComponent

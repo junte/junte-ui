@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 
 class Breadcrumb {
-  public label = 'Page First';
+  public label = 'First page';
 }
 
 @Injectable()

@@ -2,18 +2,17 @@ import { Component } from '@angular/core';
 import { UI } from '../../../../../../projects/junte-ui/src/lib/enum/ui';
 
 @Component({
-  selector: 'app-breadcrumbs-test1',
+  selector: 'app-breadcrumbs-test3',
   template: `
     <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
       <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-      <div block>1</div>
-      <router-outlet></router-outlet>
+      <div block>3</div>
     </jnt-stack>
   `,
   styleUrls: ['../../../_component.scss'],
   styles: ['div[block] {font-size: 20px}']
 })
 
-export class BreadCrumbTest1Component {
+export class BreadCrumbTest3Component {
   ui = UI;
 }
