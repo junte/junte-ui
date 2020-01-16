@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Grid</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/grid"
@@ -7,16 +6,16 @@
     </jnt-link>
   </jnt-stack>
 
+  <h1>Grid</h1>
   <div teaser>
     <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
     <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
   </div>
 
   <h3>How to use</h3>
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/assets/styles/components/layout/grid";]]></pre>
-  </ngx-prism>
+  <app-how-to-use
+    [test]="{selector:'grid-test', type: 'GridTestComponent'}"
+    scss="layout/grid"></app-how-to-use>
 
   <h3>Playground</h3>
   <jnt-tabs playground>
@@ -240,9 +239,9 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.layout.api">
       <ng-template #tabContentTemplate>
-        <app-component-api title="Container" [target]="container"></app-component-api>
-        <app-component-api title="Row" [target]="row"></app-component-api>
-        <app-component-api title="Column" [target]="col"></app-component-api>
+        <app-component-api selector="jnt-container" [target]="types.container"></app-component-api>
+        <app-component-api selector="jnt-row" [target]="types.row"></app-component-api>
+        <app-component-api selector="jnt-column" [target]="types.col"></app-component-api>
       </ng-template>
     </jnt-tab>
 

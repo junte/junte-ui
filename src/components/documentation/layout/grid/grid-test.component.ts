@@ -12,9 +12,7 @@ export class GridTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  container = ContainerComponent;
-  row = RowComponent;
-  col = ColComponent;
+  types = {container: ContainerComponent, row: RowComponent, col: ColComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 

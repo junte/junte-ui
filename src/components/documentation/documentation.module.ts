@@ -51,6 +51,7 @@ import { BrowserPreviewComponent } from './shared/browser-preview/browser-previe
 import { CodeHighlightComponent } from './shared/code-highlight/code-highlight.component';
 import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
+import { HowToUseComponent } from './shared/how-to-use/how-to-use.component';
 
 @NgModule({
   imports: [
@@ -110,7 +111,8 @@ import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
     CodeHighlightComponent,
     ComponentApiComponent,
     AccordionTestComponent,
-    ConfirmTestComponent
+    ConfirmTestComponent,
+    HowToUseComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

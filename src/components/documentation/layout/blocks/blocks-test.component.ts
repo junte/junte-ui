@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { TypeBlock, Width } from 'junte-ui';
-import { BlockComponent } from 'junte-ui';
+import { BlockComponent, UI } from 'junte-ui';
+import { LocalUI } from '../../../../enums/local-ui';
 
 @Component({
   selector: 'app-blocks-test',
@@ -11,18 +9,22 @@ import { BlockComponent } from 'junte-ui';
   styleUrls: ['./blocks-test.component.scss']
 })
 export class BlocksTestComponent {
+
   ui = UI;
   localUi = LocalUI;
-  block = BlockComponent;
+  types = {block: BlockComponent};
 
-  padding = new FormControl();
-  title = new FormControl();
-  footer = new FormControl();
+  @ViewChild('block', {static: false})
+  block: BlockComponent;
+
+  padding = new FormControl(UI.padding.normal);
+  title = new FormControl(true);
+  footer = new FormControl(true);
   state = new FormControl();
-  width = new FormControl(Width.default);
-  type = new FormControl(TypeBlock.simple);
+  width = new FormControl(UI.width.default);
+  type = new FormControl(UI.block.type.simple);
 
-  form = this.builder.group({
+  form = this.fb.group({
     padding: this.padding,
     title: this.title,
     footer: this.footer,
@@ -31,6 +33,6 @@ export class BlocksTestComponent {
     type: this.type
   });
 
-  constructor(private builder: FormBuilder) {
+  constructor(private fb: FormBuilder) {
   }
 }

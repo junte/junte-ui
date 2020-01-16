@@ -1,0 +1,29 @@
+<p>Please, create the component by the command in terminal</p>
+<ngx-prism language="shell">
+    <pre><![CDATA[
+ng g c ]]>{{test.selector}}<![CDATA[
+]]></pre>
+</ngx-prism>
+<p>
+  Add link to <code>UI </code> enum in component behaviour <code>{{test.selector}}.component.ts</code>
+</p>
+<ngx-prism language="javascript">
+    <pre><![CDATA[
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-]]>{{test.selector}}<![CDATA[',
+  templateUrl: './]]>{{test.selector}}<![CDATA[.component.html',
+  styleUrls: ['./]]>{{test.selector}}<![CDATA[.component.scss']
+})
+export class ]]>{{test.type}}<![CDATA[ {
+      ui = UI; // link to junte UI enum
+}]]></pre>
+</ngx-prism>
+
+<p>Add component's style to main app styles file <code>style.scss</code></p>
+<ngx-prism language="css">
+    <pre><![CDATA[
+ @import "@junte/ui/lib/assets/styles/components/]]>{{scss}}<![CDATA[";]]></pre>
+</ngx-prism>

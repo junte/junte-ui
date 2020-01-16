@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Block</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/block"
@@ -11,152 +10,148 @@
     </jnt-link>
   </jnt-stack>
 
-  <h3>Requirements</h3>
+  <h1>Block</h1>
+  <div teaser>
+    <p>Block is a grouping of elements related to one piece of functionality.</p>
+  </div>
 
-  <ol>
-    <li>The block must be able to set borders</li>
-    <li>The block should show the loading</li>
-    <li>The block should show the error status</li>
-    <li>The block should be able to stretch across the width of the container or be the width of the content</li>
-  </ol>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'block-test', type: 'BlockTestComponent'}"
+    scss="layout/block"></app-how-to-use>
 
-  <h3>Import</h3>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/layout/block/block.encapsulated";]]></pre>
-  </ngx-prism>
-
-  <h3>Builder</h3>
-
-  <jnt-form [formGroup]="form" form>
-    <div builder>
-      <jnt-form-item>
-        <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
-      </jnt-form-item>
-      <jnt-form-item>
-        <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="padding">Padding</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="padding">
-            <jnt-switcher-option label="Tiny" [value]="ui.padding.tiny"></jnt-switcher-option>
-            <jnt-switcher-option label="Small" [value]="ui.padding.small"></jnt-switcher-option>
-            <jnt-switcher-option label="Normal" [value]="ui.padding.normal"></jnt-switcher-option>
-            <jnt-switcher-option label="Large" [value]="ui.padding.big"></jnt-switcher-option>
-            <jnt-switcher-option label="Big" [value]="ui.padding.large"></jnt-switcher-option>
-            <jnt-switcher-option label="Huge" [value]="ui.padding.huge"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="width">Width</jnt-form-label>
-        <jnt-switcher formControlName="width">
-          <jnt-switcher-option label="Default" [value]="ui.width.default"></jnt-switcher-option>
-          <jnt-switcher-option label="Fluid" [value]="ui.width.fluid"></jnt-switcher-option>
-        </jnt-switcher>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="type">Type</jnt-form-label>
-        <jnt-switcher formControlName="type">
-          <jnt-switcher-option label="Simple" [value]="ui.block.type.simple"></jnt-switcher-option>
-          <jnt-switcher-option label="Bordered" [value]="ui.block.type.bordered"></jnt-switcher-option>
-        </jnt-switcher>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="state">States</jnt-form-label>
-        <jnt-switcher formControlName="state">
-          <jnt-switcher-option label="Loading" [value]="ui.block.state.loading"></jnt-switcher-option>
-          <jnt-switcher-option label="Error" [value]="ui.block.state.error"></jnt-switcher-option>
-        </jnt-switcher>
-      </jnt-form-item>
-
-      <!--<jnt-button text="Success" (click)="block.success()"></jnt-button>-->
-
-      <jnt-tabs>
-        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
-          <ng-template #tabContentTemplate>
-            <app-browser-preview>
-              <ng-template #document>
-
-                <jnt-block #block [title]="title.value ? 'Block title' : null"
-                           [padding]="padding.value"
-                           [width]="width.value"
-                           [type]="type.value"
-                           [state]="state.value">
-                  <div content>
-                    <jnt-icon [icon]="ui.icons.photoCamera" icon></jnt-icon>
-                  </div>
-                  <ng-template *ngIf="footer.value" #footerBlock>
-                    <div footer>
-                      <div>Title footer</div>
-                      <div>Content footer</div>
-                    </div>
-                  </ng-template>
-                </jnt-block>
-              </ng-template>
-            </app-browser-preview>
-          </ng-template>
-        </jnt-tab>
-        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
-          <ng-template #tabContentTemplate>
-            <app-code-highlight>
-              <![CDATA[
-              <jnt-stack
-                ]]>
-                <ng-container *ngIf="title.value">
-                  <![CDATA[
-                  [title]="Block title"]]>
-                </ng-container>
-                <ng-container *ngIf="padding.value">
-                  <![CDATA[
-                  [padding]="ui.padding.]]>{{padding.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="width.value">
-                  <![CDATA[
-                  [width]="ui.width.]]>{{width.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="type.value">
-                  <![CDATA[
-                  [type]="ui.block.type.]]>{{type.value}}<![CDATA["]]>
-                </ng-container>
-                <ng-container *ngIf="state.value">
-                  <![CDATA[
-                  [state]="ui.block.state.]]>{{state.value}}<![CDATA["]]>
-                </ng-container>
-                <![CDATA[>
-                ...
-              </jnt-stack>
-              ]]>
-              <ng-container *ngIf="footer.value">
-                <![CDATA[
-                <ng-template #footerBlock>
-                  <div footer>
-                    <div>Title footer</div>
-                    <div>Content footer</div>
-                  </div>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document let-height="height">
+              <jnt-block #block [title]="title.value ? 'Block title' : null"
+                         [padding]="padding.value"
+                         [width]="width.value"
+                         [type]="type.value"
+                         [state]="state.value">
+                <div block [style.font-size.px]="height / 10">
+                  <jnt-icon [icon]="ui.icons.smile"></jnt-icon>
+                </div>
+                <ng-template *ngIf="footer.value" #footerBlock>
+                  <jnt-stack [type]="ui.stack.type.horizontal">
+                    <jnt-button text="Ok"></jnt-button>
+                    <jnt-button text="Cancel"></jnt-button>
+                  </jnt-stack>
                 </ng-template>
-                ]]>
-              </ng-container>
+              </jnt-block>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <div builder>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+              </jnt-form-item>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+              </jnt-form-item>
 
-            </app-code-highlight>
-          </ng-template>
-        </jnt-tab>
+              <jnt-form-item>
+                <jnt-form-label for="padding">Padding</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="padding">
+                    <jnt-select-option label="Tiny" [key]="ui.padding.tiny"></jnt-select-option>
+                    <jnt-select-option label="Small" [key]="ui.padding.small"></jnt-select-option>
+                    <jnt-select-option label="Normal" [key]="ui.padding.normal"></jnt-select-option>
+                    <jnt-select-option label="Large" [key]="ui.padding.big"></jnt-select-option>
+                    <jnt-select-option label="Big" [key]="ui.padding.large"></jnt-select-option>
+                    <jnt-select-option label="Huge" [key]="ui.padding.huge"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
-          <ng-template #tabContentTemplate>
-            <app-component-api [target]="block"></app-component-api>
-          </ng-template>
-        </jnt-tab>
+              <jnt-form-item>
+                <jnt-form-label for="width">Width</jnt-form-label>
+                <jnt-switcher formControlName="width">
+                  <jnt-switcher-option label="Default" [value]="ui.width.default"></jnt-switcher-option>
+                  <jnt-switcher-option label="Fluid" [value]="ui.width.fluid"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
 
-      </jnt-tabs>
+              <jnt-form-item>
+                <jnt-form-label for="type">Type</jnt-form-label>
+                <jnt-switcher formControlName="type">
+                  <jnt-switcher-option label="Simple" [value]="ui.block.type.simple"></jnt-switcher-option>
+                  <jnt-switcher-option label="Bordered" [value]="ui.block.type.bordered"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
 
-    </div>
-  </jnt-form>
+              <jnt-form-item>
+                <jnt-form-label for="state">States</jnt-form-label>
+                <jnt-switcher formControlName="state">
+                  <jnt-switcher-option label="Loading" [value]="ui.block.state.loading"></jnt-switcher-option>
+                  <jnt-switcher-option label="Error" [value]="ui.block.state.error"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+
+              <jnt-button [scheme]="ui.schemes.success"
+                          [size]="ui.sizes.small"
+                          text="Success" (click)="block.success()"></jnt-button>
+            </div>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-stack
+            ]]>
+            <ng-container *ngIf="title.value">
+              <![CDATA[
+              [title]="'Block title'"]]>
+            </ng-container>
+            <ng-container *ngIf="padding.value">
+              <![CDATA[
+              [padding]="ui.padding.]]>{{padding.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="width.value">
+              <![CDATA[
+              [width]="ui.width.]]>{{width.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="type.value">
+              <![CDATA[
+              [type]="ui.block.type.]]>{{type.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="state.value">
+              <![CDATA[
+              [state]="ui.block.state.]]>{{state.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+            <div>...</div>
+          </jnt-stack>
+          ]]>
+          <ng-container *ngIf="footer.value">
+            <![CDATA[
+            <ng-template #footerBlock>
+              <div footer>
+                <div>Title footer</div>
+                <div>Content footer</div>
+              </div>
+            </ng-template>
+            ]]>
+          </ng-container>
+
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-block" [target]="types.block"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
 
 </jnt-container>

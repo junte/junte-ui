@@ -74,7 +74,7 @@ export class BlockComponent {
 
   @HostBinding('attr.padding')
   @Input()
-  padding: Paddings;
+  padding: Paddings = Paddings.normal;
 
 
   @PropertyApi({
