@@ -1,0 +1,36 @@
+@import "../../../../assets/styles/variables";
+
+:host {
+  display: flex;
+  &[width='fluid'] {
+    width: 100%;
+    [button] {
+      flex: 1;
+    }
+  }
+}
+
+[button][child-host=#{$jnt-button-host}] {
+  button {
+    padding: 0 $gutter-normal;
+  }
+  &:first-child {
+    button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  &:last-child {
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: 0;
+    }
+  }
+  &:not(:first-child):not(:last-child) {
+    button {
+      border-radius: 0;
+      border-left: 0;
+    }
+  }
+}

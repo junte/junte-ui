@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enum/ui';
+import { Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-button',
@@ -65,10 +65,6 @@ export class ButtonComponent {
   @HostBinding('attr.scheme')
   @Input()
   scheme: Schemes = Schemes.primary;
-
-  @HostBinding('attr.color')
-  @Input()
-  color: Colors = Colors.purple;
 
   @HostBinding('attr.size')
   @Input()

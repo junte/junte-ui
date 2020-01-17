@@ -5,6 +5,7 @@ import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { AnimationPipeModule } from '../../../pipes/animation-pipe.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
+import { ButtonGroupComponent } from './group/button-group.component';
 
 @NgModule({
   imports: [
@@ -15,10 +16,12 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
     SpinnerModule
   ],
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    ButtonGroupComponent,
   ],
   exports: [
-    ButtonComponent
+    ButtonComponent,
+    ButtonGroupComponent
   ]
 })
 export class ButtonModule {
