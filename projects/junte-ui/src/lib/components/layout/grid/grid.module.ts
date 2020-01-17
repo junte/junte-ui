@@ -9,9 +9,9 @@ import { RowComponent } from './row/row.component';
     CommonModule
   ],
   declarations: [
-    ColComponent,
     ContainerComponent,
-    RowComponent
+    RowComponent,
+    ColComponent
   ],
   entryComponents: [
     ContainerComponent,
@@ -19,9 +19,9 @@ import { RowComponent } from './row/row.component';
     ColComponent
   ],
   exports: [
-    ColComponent,
     ContainerComponent,
-    RowComponent
+    RowComponent,
+    ColComponent
   ]
 })
 export class GridModule {

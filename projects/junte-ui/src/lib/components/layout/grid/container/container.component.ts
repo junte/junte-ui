@@ -21,11 +21,7 @@ export class ContainerComponent {
   })
 
   @Input() set width(width: Width) {
-    if (!!width) {
-      this._width = width;
-    } else {
-      this._width = Width.default;
-    }
+    this._width = width || Width.default;
   }
 
 }

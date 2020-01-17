@@ -43,25 +43,14 @@ export class BlockComponent {
     description: 'Title of block',
     type: 'string'
   })
-
   @Input()
   title: string;
 
 
   @PropertyApi({
-    description: 'State of block: loading or error',
-    path: 'ui.block.state',
-    options: [BlockState.error, BlockState.loading]
-  })
-
-  @Input()
-  state: BlockState;
-
-  @PropertyApi({
     description: 'Template of block footer',
     type: 'templateRef'
   })
-
   @ContentChild('footerBlock', {static: false})
   footerBlock: TemplateRef<any>;
 
@@ -71,7 +60,6 @@ export class BlockComponent {
     path: 'ui.padding',
     options: [Paddings.tiny, Paddings.small, Paddings.normal, Paddings.large, Paddings.big, Paddings.huge]
   })
-
   @HostBinding('attr.padding')
   @Input()
   padding: Paddings = Paddings.normal;
@@ -83,14 +71,13 @@ export class BlockComponent {
     default: Width.default,
     options: [Width.default, Width.fluid]
   })
-
   @HostBinding('attr.width')
   @Input()
   width: Width = Width.default;
 
 
   @PropertyApi({
-    description: 'Block type: simple or bordered',
+    description: 'Block type',
     path: 'ui.block.type',
     default: TypeBlock.simple,
     options: [TypeBlock.simple, TypeBlock.bordered]
@@ -99,6 +86,15 @@ export class BlockComponent {
   @HostBinding('attr.type')
   @Input()
   type = TypeBlock.simple;
+
+
+  @PropertyApi({
+    description: 'State of block',
+    path: 'ui.block.state',
+    options: [BlockState.error, BlockState.loading]
+  })
+  @Input()
+  state: BlockState;
 
 
   success() {

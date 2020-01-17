@@ -16,12 +16,12 @@ export class ColComponent {
   @HostBinding('attr.alignSelf')
   _alignSelf: FlexAlignSelf = FlexAlignSelf.auto;
 
+
   @PropertyApi({
     description: 'Number of cells to occupy',
     type: 'number: 1...12',
     default: '1'
   })
-
   @Input() set span(span: number) {
     if (!!span) {
       this._span = span;
@@ -35,51 +35,50 @@ export class ColComponent {
     type: 'number: 1...12',
     default: '1'
   })
-
   @HostBinding('attr.mobile')
   @Input() mobile: number = null;
+
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 768px',
     type: 'number: 1...12',
     default: '1'
   })
-
   @HostBinding('attr.tablet')
   @Input() tablet: number = null;
+
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 992px',
     type: 'number: 1...12',
     default: '1'
   })
-
   @HostBinding('attr.desktop')
   @Input() desktop: number = null;
+
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 1200px',
     type: 'number: 1...12',
     default: '1'
   })
-
   @HostBinding('attr.wide')
   @Input() wide: number = null;
+
 
   @PropertyApi({
     description: 'Vertical align of specific elements.',
     path: 'ui.flex.alignSelf',
     default: FlexAlignSelf.auto,
-    options: [FlexAlignSelf.auto, FlexAlignSelf.start, FlexAlignSelf.end,
-      FlexAlignSelf.baseline, FlexAlignSelf.stretch, FlexAlignSelf.center]
+    options: [FlexAlignSelf.auto,
+      FlexAlignSelf.start,
+      FlexAlignSelf.end,
+      FlexAlignSelf.baseline,
+      FlexAlignSelf.stretch,
+      FlexAlignSelf.center]
   })
-
   @Input() set alignSelf(align: FlexAlignSelf) {
-    if (!!align) {
-      this._alignSelf = align;
-    } else {
-      this._alignSelf = FlexAlignSelf.auto;
-    }
+    this._alignSelf = align || FlexAlignSelf.auto;
   }
 
 }

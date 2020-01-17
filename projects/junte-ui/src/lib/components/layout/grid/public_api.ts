@@ -1,4 +1,4 @@
-export * from './col/col.component';
+export * from './grid.module';
 export * from './container/container.component';
 export * from './row/row.component';
-export * from './grid.module';
+export * from './col/col.component';
