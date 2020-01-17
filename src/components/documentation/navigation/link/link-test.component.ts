@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Schemes } from 'junte-ui';
-import { LinkComponent } from 'junte-ui';
-import { Outline } from 'junte-ui';
+import { UI, Schemes, LinkComponent, TabComponent , Outline } from 'junte-ui';
 
 export enum SourceType {
   external = 'external',
@@ -23,7 +20,7 @@ export enum TargetType {
   templateUrl: './link-test.component.html',
   styleUrls: ['./link-test.component.scss']
 })
-export class LinkTestComponent {
+export class LinkTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -31,6 +28,8 @@ export class LinkTestComponent {
   sourceType = SourceType;
   targetType = TargetType;
   localLink = ['/documentation', 'block'];
+
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   schemeControl = new FormControl(Schemes.primary);
   outlineControl = new FormControl(Outline.transparent);
@@ -40,7 +39,7 @@ export class LinkTestComponent {
   targetControl = new FormControl(TargetType.self);
   badgeControl = new FormControl(false);
 
-  linkBuilder = this.fb.group({
+  form = this.fb.group({
     scheme: this.schemeControl,
     outline: this.outlineControl,
     icon: this.iconControl,
@@ -51,6 +50,11 @@ export class LinkTestComponent {
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }
