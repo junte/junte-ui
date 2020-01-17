@@ -1,10 +1,10 @@
 {
   "name": "junte-ui-app",
-  "version": "0.0.336",
+  "version": "0.0.348",
   "scripts": {
     "ng": "ng",
     "gulp": "gulp",
-    "gulp:styles": "gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts",
+    "gulp:styles": "rm -rf dist/junte-ui/lib/assets/styles/components && gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts",
     "gulp:styles:w": "gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts --watch",
     "gulp:iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd ./projects/junte-ui",
     "iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd .",
@@ -18,7 +18,7 @@
     "copy:license": "cp ./projects/junte-ui/README.md ./dist/junte-ui",
     "copy:readme": "cp ./projects/junte-ui/LICENSE ./dist/junte-ui",
     "copy:assets": "rm -rf dist/junte-ui/lib/assets && npm run assets:create:folders && npm run assets:copy:folders && npm run assets:copy:styles",
-    "copy:files": "npm run copy:license && npm run copy:readme && npm run gulp:styles && npm run copy:assets && npm run copy:iconfont",
+    "copy:files": "npm run copy:license && npm run copy:readme && npm run copy:assets && npm run gulp:styles && npm run copy:iconfont",
     "copy:iconfont": "cd ./projects/junte-ui/src/scripts/iconfont && tsc  && cp iconfont.js template ../../../../../dist/junte-ui",
     "encapsulation": "gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd .",
     "encapsulation:watch": "gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd . --watch",
