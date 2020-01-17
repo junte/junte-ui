@@ -45,6 +45,19 @@
 
   <h3>Examples</h3>
 
+  <h4>Button group</h4>
+
+  <jnt-stack>
+    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+      <jnt-button-group [size]="size" [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost">
+        <jnt-button [icon]="ui.icons.crown"></jnt-button>
+        <jnt-button [icon]="ui.icons.mail"></jnt-button>
+        <jnt-button [icon]="ui.icons.accessLock"></jnt-button>
+        <jnt-button [icon]="ui.icons.settings"></jnt-button>
+      </jnt-button-group>
+    </ng-container>
+  </jnt-stack>
+
   <jnt-stack>
 
     <h4>A standard button</h4>
@@ -312,7 +325,6 @@
 
       </jnt-block>
     </jnt-form>
-
 
     <ngx-prism language="html">
     <pre><![CDATA[
