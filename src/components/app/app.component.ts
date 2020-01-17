@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   checked = true;
   themeControl = new FormControl(null);
 
-  themeForm = this.fb.group({
+  themeForm = this.builder.group({
     theme: this.themeControl
   });
 
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private modalService: ModalService,
               private popoverService: PopoverService,
-              private fb: FormBuilder) {
+              private builder: FormBuilder) {
   }
 
   ngOnInit() {

@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimatedIcons, FontDefaultIcons, FontGesturesIcons, FontEmojiIcons, FontIcons, SvgIcons, UI } from 'junte-ui';
+import {
+  AnimatedIcons,
+  FontDefaultIcons,
+  FontEmojiIcons,
+  FontGesturesIcons,
+  FontIcons,
+  SvgDefaultIcons,
+  SvgFlagsIcons,
+  SvgIcons,
+  UI
+} from 'junte-ui';
 
 class IconTest {
   constructor(public name: string,
@@ -34,18 +44,18 @@ export class IconTestComponent implements OnInit {
     this.fontEmoji = Object.keys(FontEmojiIcons)
       .map(icon => new IconTest(icon, FontEmojiIcons[icon], 'junte-ui-icons-emoji'));
 
-    this.svgDefault = Object.keys(UI.icons.svg.default)
-      .map(icon => new IconTest(icon, UI.icons.svg.default[icon]));
+    this.svgDefault = Object.keys(SvgDefaultIcons)
+      .map(icon => new IconTest(icon, SvgDefaultIcons[icon]));
 
-    this.svgFlags = Object.keys(UI.icons.svg.flags)
-      .map(icon => new IconTest(icon, UI.icons.svg.flags[icon], 'flags'));
+    this.svgFlags = Object.keys(SvgFlagsIcons)
+      .map(icon => new IconTest(icon, SvgFlagsIcons[icon], 'flags'));
 
-    this.animated = Object.keys(UI.icons.animated)
-      .map(icon => new IconTest(icon, UI.icons.animated[icon]));
+    this.animated = Object.keys(AnimatedIcons)
+      .map(icon => new IconTest(icon, AnimatedIcons[icon]));
   }
 
   refresh() {
-    this.animated = Object.keys(UI.icons.animated)
-      .map(icon => new IconTest(icon, UI.icons.animated[icon]));
+    this.animated = Object.keys(AnimatedIcons)
+      .map(icon => new IconTest(icon, AnimatedIcons[icon]));
   }
 }
