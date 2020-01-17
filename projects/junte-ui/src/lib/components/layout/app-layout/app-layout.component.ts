@@ -17,14 +17,4 @@ export class AppLayoutComponent {
   get withHeader() {
     return !!this.header;
   }
-
-  // @ContentChild(AppAsideComponent, {static: false})
-  // aside: AppAsideComponent;
-  //
-  // @HostBinding('attr.with-aside')
-  // get withAside() {
-  //   if (!!this.aside) {
-  //     return this.aside.collapsed ? 'collapsed' : 'full';
-  //   }
-  // }
 }

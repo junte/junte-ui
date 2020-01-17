@@ -17,29 +17,32 @@ export class AppLayoutTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-  header = AppHeaderComponent;
-  actions = ActionsComponent;
-  action = ActionComponent;
-  content = AppContentComponent;
-  subheader = AppSubHeaderComponent;
+
+  types = {
+    header: AppHeaderComponent,
+    actions: ActionsComponent,
+    action: ActionComponent,
+    content: AppContentComponent,
+    subHeader: AppSubHeaderComponent
+  };
 
   headerControl = new FormControl(true);
-  logotypeControl = new FormControl(true);
+  logoControl = new FormControl(true);
   menuControl = new FormControl(true);
   actionControl = new FormControl(true);
-  usermenuControl = new FormControl(true);
+  userMenuControl = new FormControl(true);
   asideControl = new FormControl(true);
-  subheaderControl = new FormControl(true);
+  subHeaderControl = new FormControl(true);
   footerControl = new FormControl(true);
 
   form = this.fb.group({
     header: this.headerControl,
-    logotype: this.logotypeControl,
+    logo: this.logoControl,
     menu: this.menuControl,
     action: this.actionControl,
-    usermenu: this.usermenuControl,
+    userMenu: this.userMenuControl,
     aside: this.asideControl,
-    subheader: this.subheaderControl,
+    subHeader: this.subHeaderControl,
     footer: this.footerControl
   });
 

@@ -4,6 +4,7 @@
 :host {
   display: block;
   overflow-x: hidden;
+  position: relative;
   &[with-header='false'] jnt-app-content[deep-host=#{$jnt-app-content-host}] {
     padding-top: 0;
   }
@@ -11,12 +12,4 @@
   &[with-header='false'] jnt-app-aside[deep-host=#{$jnt-app-aside-host}] [drawer] {
     padding-top: 0;
   }
-
-  //&[with-aside='full'] jnt-app-content[deep-host=#{$jnt-app-content-host}] {
-  //  padding-left: $app-aside-width;
-  //}
-  //
-  //&[with-aside='collapsed'] jnt-app-content[deep-host=#{$jnt-app-content-host}] {
-  //  padding-left: $app-aside-collapsed-width;
-  //}
 }
