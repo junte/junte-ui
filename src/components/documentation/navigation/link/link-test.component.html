@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Link</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/link"
@@ -10,166 +9,157 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
 
-  <ol>
+  <h1>Link</h1>
+  <ul>
     <li>The link should respond to mouse hover, click</li>
     <li>The link should change the display when it is disabled and visited</li>
-  </ol>
+  </ul>
 
-  <h3>Import</h3>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'link-test', type: 'LinkTestComponent'}"
+    scss="navigation/link"></app-how-to-use>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/navigation/link/link.encapsulated";
-    ]]></pre>
-  </ngx-prism>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document>
+              <jnt-link [scheme]="schemeControl.value"
+                        [outline]="outlineControl.value"
+                        [icon]="iconControl.value ? ui.icons.search : null"
+                        [disabled]="disableControl.value"
+                        [target]="targetControl.value"
+                        [source]="sourceControl.value == sourceType.external ? 'https://google.com' : sourceControl.value == sourceType.local ? localLink : null"
+                        title="Documentation link">
+                <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
+              </jnt-link>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="scheme">Scheme</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="scheme">
+                  <jnt-select-option label="Primary" [key]="ui.schemes.primary"></jnt-select-option>
+                  <jnt-select-option label="Secondary" [key]="ui.schemes.secondary"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.schemes.success"></jnt-select-option>
+                  <jnt-select-option label="Fail" [key]="ui.schemes.fail"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <h4>Builder</h4>
+            <jnt-form-item>
+              <jnt-form-label>Link states</jnt-form-label>
+              <jnt-row>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
+                </jnt-col>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
+                </jnt-col>
+              </jnt-row>
+              <jnt-row>
+                <jnt-col [span]="12">
+                  <jnt-checkbox formControlName="disable" label="Disabled" [value]="false"></jnt-checkbox>
+                </jnt-col>
+              </jnt-row>
+            </jnt-form-item>
 
-  <jnt-form [formGroup]="linkBuilder" form>
-    <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
+            <jnt-form-item>
+              <jnt-form-label for="outline">Outline</jnt-form-label>
+              <jnt-form-control>
+                <jnt-switcher formControlName="outline">
+                  <jnt-switcher-option label="Fill" [value]="ui.outline.fill"></jnt-switcher-option>
+                  <jnt-switcher-option label="Ghost" [value]="ui.outline.ghost"></jnt-switcher-option>
+                  <jnt-switcher-option label="Transparent" [value]="ui.outline.transparent"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
+            <jnt-form-item>
+              <jnt-form-label for="source">Source</jnt-form-label>
+              <jnt-form-control>
+                <jnt-switcher formControlName="source">
+                  <jnt-switcher-option label="External link" [value]="sourceType.external"></jnt-switcher-option>
+                  <jnt-switcher-option label="Local Link" [value]="sourceType.local"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-control>
-          <jnt-checkbox formControlName="disable" label="Disabled" [value]="false"></jnt-checkbox>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="scheme">Scheme</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="scheme">
-            <jnt-switcher-option label="Primary" [value]="ui.schemes.primary"></jnt-switcher-option>
-            <jnt-switcher-option label="Secondary" [value]="ui.schemes.secondary"></jnt-switcher-option>
-            <jnt-switcher-option label="Success" [value]="ui.schemes.success"></jnt-switcher-option>
-            <jnt-switcher-option label="Fail" [value]="ui.schemes.fail"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="outline">Outline</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="outline">
-            <jnt-switcher-option label="Fill" [value]="ui.outline.fill"></jnt-switcher-option>
-            <jnt-switcher-option label="Ghost" [value]="ui.outline.ghost"></jnt-switcher-option>
-            <jnt-switcher-option label="Transparent" [value]="ui.outline.transparent"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="source">Source</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="source">
-            <jnt-switcher-option label="External link" [value]="sourceType.external"></jnt-switcher-option>
-            <jnt-switcher-option label="Local Link" [value]="sourceType.local"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="target">Target</jnt-form-label>
-        <jnt-form-control>
-          <jnt-switcher formControlName="target">
-            <jnt-switcher-option label="Blank" [value]="targetType.blank"></jnt-switcher-option>
-            <jnt-switcher-option label="Self" [value]="targetType.self"></jnt-switcher-option>
-            <jnt-switcher-option label="Parent" [value]="targetType.parent"></jnt-switcher-option>
-            <jnt-switcher-option label="Top" [value]="targetType.top"></jnt-switcher-option>
-          </jnt-switcher>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-tabs>
-        <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
-          <ng-template #tabContentTemplate>
-            <app-browser-preview>
-              <ng-template #document>
-                <jnt-link [scheme]="schemeControl.value"
-                          [outline]="outlineControl.value"
-                          [icon]="iconControl.value ? ui.icons.search : null"
-                          [disabled]="disableControl.value"
-                          [target]="targetControl.value"
-                          [source]="sourceControl.value == sourceType.external ? 'https://google.com' : sourceControl.value == sourceType.local ? localLink : null"
-                          title="Documentation link">
-                  <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
-                </jnt-link>
-              </ng-template>
-            </app-browser-preview>
-          </ng-template>
-        </jnt-tab>
-
-        <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
-          <ng-template #tabContentTemplate>
-            <app-code-highlight>
+            <jnt-form-item>
+              <jnt-form-label for="target">Target</jnt-form-label>
+              <jnt-form-control>
+                <jnt-switcher formControlName="target">
+                  <jnt-switcher-option label="Blank" [value]="targetType.blank"></jnt-switcher-option>
+                  <jnt-switcher-option label="Self" [value]="targetType.self"></jnt-switcher-option>
+                  <jnt-switcher-option label="Parent" [value]="targetType.parent"></jnt-switcher-option>
+                  <jnt-switcher-option label="Top" [value]="targetType.top"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-link
+            ]]>
+            <ng-container *ngIf="schemeControl.value">
               <![CDATA[
-              <jnt-link
-                ]]>
-                <ng-container *ngIf="schemeControl.value">
-                  <![CDATA[
-                  [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
-                </ng-container>
+              [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+            </ng-container>
 
-                <ng-container *ngIf="outlineControl.value">
-                  <![CDATA[
-                  [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-                </ng-container>
+            <ng-container *ngIf="outlineControl.value">
+              <![CDATA[
+              [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+            </ng-container>
 
-                <ng-container *ngIf="iconControl.value">
-                  <![CDATA[
-                  [icon]="ui.icons.search"]]>
-                </ng-container>
+            <ng-container *ngIf="iconControl.value">
+              <![CDATA[
+              [icon]="ui.icons.search"]]>
+            </ng-container>
 
-                <ng-container *ngIf="sourceControl.value == sourceType.external">
-                  <![CDATA[
-                  source="https://google.com"]]>
-                </ng-container>
+            <ng-container *ngIf="sourceControl.value == sourceType.external">
+              <![CDATA[
+              source="https://google.com"]]>
+            </ng-container>
 
-                <ng-container *ngIf="sourceControl.value == sourceType.local">
-                  <![CDATA[
-                  [source]="['/documentation', 'block']"]]>
-                </ng-container>
+            <ng-container *ngIf="sourceControl.value == sourceType.local">
+              <![CDATA[
+              [source]="['/documentation', 'block']"]]>
+            </ng-container>
 
-                <ng-container *ngIf="disableControl.value">
-                  <![CDATA[
-                  [disabled]="]]>{{disableControl.value}}<![CDATA["]]>
-                </ng-container>
+            <ng-container *ngIf="disableControl.value">
+              <![CDATA[
+              [disabled]="]]>{{disableControl.value}}<![CDATA["]]>
+            </ng-container>
 
-                <ng-container *ngIf="targetControl.value">
-                  <![CDATA[
-                  target="]]>{{targetControl.value}}<![CDATA["]]>
-                </ng-container>
-                <![CDATA[>]]>
-                <ng-container *ngIf="badgeControl.value">
-                  <![CDATA[
-                  <jnt-badge count="5"></jnt-badge>]]>
-                </ng-container>
-                <![CDATA[</jnt-link>
-              ]]>
-            </app-code-highlight>
-          </ng-template>
-        </jnt-tab>
-
-        <jnt-tab title="API" [icon]="localUi.icons.layout.api">
-          <ng-template #tabContentTemplate>
-            <app-component-api [target]="link"></app-component-api>
-          </ng-template>
-        </jnt-tab>
-      </jnt-tabs>
-    </jnt-block>
-  </jnt-form>
+            <ng-container *ngIf="targetControl.value">
+              <![CDATA[
+              target="]]>{{targetControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>]]>
+            <ng-container *ngIf="badgeControl.value">
+              <![CDATA[
+              <jnt-badge count="5"></jnt-badge>]]>
+            </ng-container>
+            <![CDATA[</jnt-link>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-link" [target]="link"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 </jnt-container>
 

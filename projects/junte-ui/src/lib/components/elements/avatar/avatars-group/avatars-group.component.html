@@ -1,10 +1,10 @@
 <ng-container *ngFor="let avatar of avatars; let i = index;">
   <jnt-avatar *ngIf="i < max " avatar
+              [shape]="shape.square"
               [image]="avatar.image"
-              [size]="size"
               [icon]="avatar.icon"
-              [shape]="shape"
-              [text]="avatar.text">
+              [text]="avatar.text"
+              [size]="size">
   </jnt-avatar>
 </ng-container>
 

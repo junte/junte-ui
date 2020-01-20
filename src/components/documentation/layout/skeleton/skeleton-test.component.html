@@ -83,7 +83,6 @@
         <app-code-highlight>
           <ng-container *ngIf="type.value == sketches.User">
             <![CDATA[
-            <jnt-block>
               <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
                 <jnt-skeleton [type]="ui.skeleton.type.avatar" ]]>
                   <ng-container *ngIf="animation.value !== null">
@@ -98,13 +97,11 @@
                   <![CDATA[>
                 </jnt-skeleton>
               </jnt-stack>
-            </jnt-block>
             ]]>
           </ng-container>
 
           <ng-container *ngIf="type.value == sketches.VerticalPost">
             <![CDATA[
-            <jnt-block>
               <jnt-stack [align]="ui.flex.align.center">
                 <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" ]]>
                   <ng-container *ngIf="animation.value !== null">
@@ -119,13 +116,11 @@
                   <![CDATA[>
                 </jnt-skeleton>
               </jnt-stack>
-            </jnt-block>
             ]]>
           </ng-container>
 
           <ng-container *ngIf="type.value == sketches.HorizontalPost">
             <![CDATA[
-            <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
               <jnt-stack [type]="ui.stack.type.horizontal" [size]="ui.sizes.normal">
                 <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" ]]>
                   <ng-container *ngIf="animation.value !== null">
@@ -140,7 +135,6 @@
                   <![CDATA[>
                 </jnt-skeleton>
               </jnt-stack>
-            </jnt-block>
             ]]>
           </ng-container>
 

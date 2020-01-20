@@ -1,5 +1,7 @@
-<jnt-stack *ngIf="type == ui.skeleton.type.text">
+<jnt-stack *ngIf="type == skeletonType.text">
   <div *ngFor="let l of lines | mockArray" line></div>
 </jnt-stack>
 
-<div [attr.avatar]="type == ui.skeleton.type.avatar" *ngIf="(type == ui.skeleton.type.avatar) || (type == ui.skeleton.type.image)" image></div>
+<div *ngIf="(type == skeletonType.avatar) || (type == skeletonType.image)"
+     [attr.avatar]="type == skeletonType.avatar" image>
+</div>
