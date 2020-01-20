@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { Sizes, TypeSkeleton, UI } from '../../../enum/ui';
+import { Sizes, TypeSkeleton } from '../../../enum/ui';
 
 @Component({
   selector: 'jnt-skeleton',
@@ -10,7 +10,7 @@ export class SkeletonComponent {
 
   private _type = TypeSkeleton.text;
 
-  ui = UI;
+  skeletonType = TypeSkeleton;
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
@@ -26,11 +26,7 @@ export class SkeletonComponent {
 
   @HostBinding('attr.type')
   @Input() set type(type: TypeSkeleton) {
-    if (!!type) {
-      this._type = type;
-    } else {
-      this._type = TypeSkeleton.text;
-    }
+    this._type = type || TypeSkeleton.text;
   }
 
   get type() {
@@ -45,11 +41,7 @@ export class SkeletonComponent {
   })
 
   @Input() set size(size: Sizes) {
-    if (!!size) {
-      this._size = size;
-    } else {
-      this._size = Sizes.normal;
-    }
+    this._size = size || Sizes.normal;
   }
 
   @PropertyApi({
