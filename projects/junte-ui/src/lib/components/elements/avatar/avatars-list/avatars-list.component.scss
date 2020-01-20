@@ -1,9 +1,8 @@
 @import "../../../../assets/styles/variables";
 @import "../common";
 
-$avatar-border-width-in-avatar-list: 2px !default;
-$avatar-border-color-in-avatar-list: $primary-background !default;
-$max-avatar-index-in-avatar-list: 4 !default;
+$avatar-border-width-in-avatar-list: 2px;
+$max-avatar-index-in-avatar-list: 4;
 
 :host {
   display: inline-block;
@@ -24,7 +23,7 @@ $max-avatar-index-in-avatar-list: 4 !default;
 @for $i from 0 through $max-avatar-index-in-avatar-list {
   [avatar-index='#{$i}'] {
     position: absolute;
-    border: $avatar-border-width-in-avatar-list solid $avatar-border-color-in-avatar-list;
+    border: $avatar-border-width-in-avatar-list solid $primary-background;
     cursor: pointer;
     transition: all .5s;
     &:hover {
