@@ -1,13 +1,8 @@
 @import "../../../assets/styles/variables";
 @import "common";
 
-$avatar-text-color: $primary-color !default;
-$avatar-icon-color: $blue-100-color !default;
-
 $avatar-shape-circle: 'circle';
 $avatar-shape-square: 'square';
-
-$avatar-background: $secondary-background !default;
 
 $avatar-shapes: (
   #{$avatar-shape-circle}: (
@@ -41,7 +36,7 @@ $avatar-shapes: (
   justify-content: center;
   align-items: center;
   line-height: 0;
-  background-color: $avatar-background;
+  background-color: $secondary-background;
   overflow: hidden;
   @each $size, $map in $avatar-sizes {
     &[size='#{$size}'] {
@@ -56,12 +51,12 @@ $avatar-shapes: (
 }
 
 [text] {
-  color: $avatar-text-color;
+  color: $primary-color;
   font-weight: $font-weight-bold;
 }
 
 [icon] {
-  color: $avatar-icon-color;
+  color: $secondary-dark-color;
 }
 
 [image] {

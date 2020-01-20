@@ -15,6 +15,11 @@ import { AvatarsListComponent } from './avatars-list/avatars-list.component';
     AvatarsGroupComponent,
     AvatarsListComponent
   ],
+  entryComponents: [
+    AvatarComponent,
+    AvatarsGroupComponent,
+    AvatarsListComponent
+  ],
   exports: [
     AvatarComponent,
     AvatarsGroupComponent,
