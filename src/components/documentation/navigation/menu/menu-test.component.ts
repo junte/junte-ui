@@ -28,25 +28,19 @@ export class MenuTestComponent implements OnInit {
   @ViewChild('code', {static: false}) code: TabComponent;
 
   schemeControl = new FormControl(Schemes.primary);
-  iconControl = new FormControl(false);
   linkControl = new FormControl(SourceType.external);
   targetControl = new FormControl(TargetType.self);
-  badgeControl = new FormControl(false);
   typeControl = new FormControl(Orientation.horizontal);
   spacingControl = new FormControl(Sizes.large);
-  subtitleIconControl = new FormControl(false);
-  subtitleBadgeControl = new FormControl(false);
+  iconsControl = new FormControl(false);
 
   form = this.fb.group({
     scheme: this.schemeControl,
-    icon: this.iconControl,
     link: this.linkControl,
     target: this.targetControl,
-    badge: this.badgeControl,
     type: this.typeControl,
     spacing: this.spacingControl,
-    subtitleIcon: this.subtitleIconControl,
-    subtitleBadge: this.subtitleBadgeControl,
+    icons: this.iconsControl,
   });
 
   constructor(private fb: FormBuilder) {
@@ -56,5 +50,4 @@ export class MenuTestComponent implements OnInit {
     this.form.valueChanges
       .subscribe(() => this.code.flash());
   }
-
 }
