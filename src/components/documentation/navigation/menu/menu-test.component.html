@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Menu</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/menu"
@@ -11,113 +10,151 @@
     </jnt-link>
   </jnt-stack>
 
+  <h1>Menu</h1>
+
   <h3>How to use</h3>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/navigation/menu/menu.encapsulated";
-    ]]></pre>
-  </ngx-prism>
+  <app-how-to-use
+    [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
+    scss="navigation/menu"></app-how-to-use>
 
   <h3>Playground</h3>
 
-  <jnt-tabs>
-    <jnt-tab title="Builder" [icon]="localUi.icons.layout.code">
-      <ng-template #tabContentTemplate>
-
-        <jnt-form [formGroup]="menuBuilder" form>
-
-          <h4>Menu</h4>
-
-          <jnt-form-item>
-            <jnt-form-label for="type">Type</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="type">
-                <jnt-switcher-option label="Horizontal" [value]="ui.orientation.horizontal"></jnt-switcher-option>
-                <jnt-switcher-option label="Vertical" [value]="ui.orientation.vertical"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="spacing">
-                <jnt-switcher-option label="Tiny" [value]="ui.sizes.tiny"></jnt-switcher-option>
-                <jnt-switcher-option label="Small" [value]="ui.sizes.small"></jnt-switcher-option>
-                <jnt-switcher-option label="Normal" [value]="ui.sizes.normal"></jnt-switcher-option>
-                <jnt-switcher-option label="Large" [value]="ui.sizes.large"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <h4>Menu item</h4>
-
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="scheme">Scheme</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="scheme">
-                <jnt-switcher-option label="Primary" [value]="ui.schemes.primary"></jnt-switcher-option>
-                <jnt-switcher-option label="Secondary" [value]="ui.schemes.secondary"></jnt-switcher-option>
-                <jnt-switcher-option label="Success" [value]="ui.schemes.success"></jnt-switcher-option>
-                <jnt-switcher-option label="Fail" [value]="ui.schemes.fail"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="link">Link</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="link">
-                <jnt-switcher-option label="External link" [value]="sourceType.external"></jnt-switcher-option>
-                <jnt-switcher-option label="Local Link" [value]="sourceType.local"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="target">Target</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="target">
-                <jnt-switcher-option label="Blank" [value]="targetType.blank"></jnt-switcher-option>
-                <jnt-switcher-option label="Self" [value]="targetType.self"></jnt-switcher-option>
-                <jnt-switcher-option label="Parent" [value]="targetType.parent"></jnt-switcher-option>
-                <jnt-switcher-option label="Top" [value]="targetType.top"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <h4>Submenu title</h4>
-
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="subtitleIcon" label="Icon" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="subtitleBadge" label="Badge" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-        </jnt-form>
-      </ng-template>
-    </jnt-tab>
-
+  <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
       <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document>
+              <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
+                <ng-container *ngFor="let title of ['Documentation', 'Home', 'Contacts']">
+                  <jnt-menu-item [scheme]="schemeControl.value"
+                                 [icon]="iconControl.value ? ui.icons.search : null"
+                                 [target]="targetControl.value"
+                                 [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
+                                 [title]="title">
+                    <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
+                  </jnt-menu-item>
+                </ng-container>
+                <jnt-submenu title="General" [icon]="subtitleIconControl.value ? ui.icons.crown : null">
+                  <jnt-badge *ngIf="subtitleBadgeControl.value" count="5"></jnt-badge>
+                  <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                    <jnt-menu-item [scheme]="schemeControl.value"
+                                   [icon]="iconControl.value ? ui.icons.search : null"
+                                   [target]="targetControl.value"
+                                   [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
+                                   [title]="title">
+                      <jnt-badge *ngIf="badgeControl.value" count="7"></jnt-badge>
+                    </jnt-menu-item>
+                  </ng-container>
+                </jnt-submenu>
+              </jnt-menu>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="type">Type</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="type">
+                  <jnt-select-option label="Horizontal"
+                                     [icon]="localUi.icons.layout.horizontal"
+                                     [key]="ui.orientation.horizontal"></jnt-select-option>
+                  <jnt-select-option label="Vertical"
+                                     [icon]="localUi.icons.layout.vertical"
+                                     [key]="ui.orientation.vertical"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="spacing">
+                  <jnt-select-option label="Tiny"
+                                     [icon]="localUi.icons.layout.tiny"
+                                     [key]="ui.sizes.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small"
+                                     [icon]="localUi.icons.layout.small"
+                                     [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal"
+                                     [icon]="localUi.icons.layout.normal"
+                                     [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Large"
+                                     [icon]="localUi.icons.layout.large"
+                                     [key]="ui.sizes.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label>Menu item</jnt-form-label>
+              <jnt-row>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
+                </jnt-col>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
+                </jnt-col>
+              </jnt-row>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label>Submenu title</jnt-form-label>
+              <jnt-row>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="subtitleIcon" label="Icon" [value]="false"></jnt-checkbox>
+                </jnt-col>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="subtitleBadge" label="Badge" [value]="false"></jnt-checkbox>
+                </jnt-col>
+              </jnt-row>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label for="scheme">Scheme</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="scheme">
+                  <jnt-select-option label="Primary" [key]="ui.schemes.primary"></jnt-select-option>
+                  <jnt-select-option label="Secondary" [key]="ui.schemes.secondary"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.schemes.success"></jnt-select-option>
+                  <jnt-select-option label="Fail" [key]="ui.schemes.fail"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label for="link">Scheme</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="link">
+                  <jnt-select-option label="External link" [key]="sourceType.external"></jnt-select-option>
+                  <jnt-select-option label="Local link" [key]="sourceType.local"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-label for="target">Target</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="target">
+                  <jnt-select-option label="Blank" [key]="targetType.blank"></jnt-select-option>
+                  <jnt-select-option label="Self" [key]="targetType.self"></jnt-select-option>
+                  <jnt-select-option label="Parent" [key]="targetType.parent"></jnt-select-option>
+                  <jnt-select-option label="Top" [key]="targetType.top"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab #code title="Code"
+             [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <p>
+          <jnt-link [icon]="ui.icons.copy"
+                    [outline]="ui.outline.ghost" title="Copy"></jnt-link>
+          the code to <code>menu-test.component.html</code>
+        </p>
         <app-code-highlight>
           <![CDATA[
           <jnt-menu
@@ -216,41 +253,13 @@
           </jnt-menu>
           ]]>
         </app-code-highlight>
-        <app-browser-preview>
-          <ng-template #document>
-            <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
-              <ng-container *ngFor="let title of ['Documentation', 'Home', 'Contacts']">
-                <jnt-menu-item [scheme]="schemeControl.value"
-                               [icon]="iconControl.value ? ui.icons.search : null"
-                               [target]="targetControl.value"
-                               [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
-                               [title]="title">
-                  <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
-                </jnt-menu-item>
-              </ng-container>
-              <jnt-submenu title="General" [icon]="subtitleIconControl.value ? ui.icons.crown : null">
-                <jnt-badge *ngIf="subtitleBadgeControl.value" count="5"></jnt-badge>
-                <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
-                  <jnt-menu-item [scheme]="schemeControl.value"
-                                 [icon]="iconControl.value ? ui.icons.search : null"
-                                 [target]="targetControl.value"
-                                 [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
-                                 [title]="title">
-                    <jnt-badge *ngIf="badgeControl.value" count="7"></jnt-badge>
-                  </jnt-menu-item>
-                </ng-container>
-              </jnt-submenu>
-            </jnt-menu>
-          </ng-template>
-        </app-browser-preview>
       </ng-template>
     </jnt-tab>
-
     <jnt-tab title="API" [icon]="localUi.icons.layout.api">
       <ng-template #tabContentTemplate>
-        <app-component-api title="Menu" [target]="menu"></app-component-api>
-        <app-component-api title="Menu item" [target]="menuItem"></app-component-api>
-        <app-component-api title="Submenu" [target]="submenu"></app-component-api>
+        <app-component-api title="Menu" selector="jnt-menu" [target]="menu"></app-component-api>
+        <app-component-api title="Menu item" selector="jnt-menu-item" [target]="menuItem"></app-component-api>
+        <app-component-api title="Submenu" selector="jnt-submenu" [target]="submenu"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
