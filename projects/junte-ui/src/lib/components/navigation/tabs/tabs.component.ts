@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { Outline, UI } from '../../../enum/ui';
+import { Outline, UI } from '../../../enums/ui';
 import { TabComponent } from './tab.component';
 import { PropertyApi } from '../../../decorators/api';
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';

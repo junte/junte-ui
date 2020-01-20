@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputState, InputType, Sizes, TextAlign } from '../../../enum/ui';
+import { InputState, InputType, Sizes, TextAlign } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-input',

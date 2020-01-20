@@ -1,6 +1,6 @@
 import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Orientation, UI } from '../../../enum/ui';
+import { Orientation, UI } from '../../../enums/ui';
 import { isEqual } from '../../../utils/equal';
 import { SwitcherOptionComponent } from './option/switcher-option.component';
 

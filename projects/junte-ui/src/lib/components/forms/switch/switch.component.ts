@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Sizes, UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-switch',

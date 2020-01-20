@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { Outline, Schemes, UI } from '../../../enum/ui';
+import { Outline, Schemes, UI } from '../../../enums/ui';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
 

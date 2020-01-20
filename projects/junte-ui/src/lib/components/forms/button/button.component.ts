@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostBinding, Input } from '@angular/core';
-import { Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enum/ui';
+import { Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-button',

@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors, Sizes } from '../../../enum/ui';
+import { Colors, Sizes } from '../../../enums/ui';
 import { getTextBrightness } from '../../../utils/brightness';
 
 @Component({

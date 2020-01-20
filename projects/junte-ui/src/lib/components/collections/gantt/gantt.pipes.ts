@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GanttRequestStatuses } from '../../../enum/ui';
+import { GanttRequestStatuses } from '../../../enums/ui';
 
 export enum VacationRequestLables {
   accepting = 'Accepting',

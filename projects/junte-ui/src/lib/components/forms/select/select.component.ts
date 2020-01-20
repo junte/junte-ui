@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
-import { SelectMode, Sizes, UI } from '../../../enum/ui';
+import { SelectMode, Sizes, UI } from '../../../enums/ui';
 import { IOption, Key, Options } from './model';
 
 const MIN_WIDTH = 20;

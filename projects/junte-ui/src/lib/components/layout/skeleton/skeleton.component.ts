@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { Sizes, TypeSkeleton, UI } from '../../../enum/ui';
+import { Sizes, TypeSkeleton, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-skeleton',

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
-import { UI } from '../../../../enum/ui';
+import { UI } from '../../../../enums/ui';
 import { PropertyApi } from '../../../../decorators/api';
 
 @Component({

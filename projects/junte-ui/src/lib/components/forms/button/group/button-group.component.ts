@@ -1,6 +1,6 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { ButtonComponent } from '../button.component';
-import { Outline, Schemes, Sizes, UI, Width } from '../../../../enum/ui';
+import { Outline, Schemes, Sizes, UI, Width } from '../../../../enums/ui';
 
 @Component({
   selector: 'jnt-button-group',

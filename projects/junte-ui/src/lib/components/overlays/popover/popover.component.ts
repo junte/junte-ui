@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
-import { PopoverPlacements, PopoverTriggers, Schemes } from '../../../enum/ui';
+import { PopoverPlacements, PopoverTriggers, Schemes } from '../../../enums/ui';
 
 export class PopoverOptions {
   title: string;

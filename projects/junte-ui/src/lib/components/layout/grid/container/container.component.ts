@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { Width } from '../../../../enum/ui';
+import { Width } from '../../../../enums/ui';
 
 @Component({
   selector: 'jnt-container',

@@ -1,5 +1,5 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
-import { UI } from '../../../../enum/ui';
+import { UI } from '../../../../enums/ui';
 
 const ASIDE_STATE = 'aside_collapsed';
 

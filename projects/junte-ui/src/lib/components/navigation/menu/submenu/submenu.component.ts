@@ -1,5 +1,5 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
-import { Matching, UI } from '../../../../enum/ui';
+import { Matching, UI } from '../../../../enums/ui';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { PropertyApi } from '../../../../decorators/api';

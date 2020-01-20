@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {debounceTime, distinctUntilChanged, filter as filtering, finalize} from 'rxjs/operators';
-import {TableFeatures, UI} from '../../../enum/ui';
+import {TableFeatures, UI} from '../../../enums/ui';
 import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter} from '../../../models/table';
 import {isEqual} from '../../../utils/equal';
 import {Subscriptions} from '../../../utils/subscriptions';

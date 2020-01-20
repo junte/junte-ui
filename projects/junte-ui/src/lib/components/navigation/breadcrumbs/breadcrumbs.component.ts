@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/rou
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { isArray, isObject, isString } from 'util';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 
 class Breadcrumb {
   constructor(public route: ActivatedRoute,

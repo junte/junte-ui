@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { KanbanListComponent } from './list/kanban-list.component';
 
 @Component({

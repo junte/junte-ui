@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { PropertyApi } from '../../../decorators/api';
 
 @Component({

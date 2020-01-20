@@ -2,7 +2,7 @@
  * Public API Surface of junte-ui
  */
 
-export * from './lib/enum/ui';
+export * from './lib/enums/ui';
 export * from './lib/decorators/api';
 export * from './lib/utils/public_api';
 export * from './lib/models/table';

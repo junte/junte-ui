@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 
 export enum DatePeriodBases {
   days = 'day(s)'

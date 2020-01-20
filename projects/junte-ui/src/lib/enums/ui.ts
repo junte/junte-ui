@@ -248,6 +248,7 @@ export enum Sizes {
 }
 
 export enum Paddings {
+  none = 'none',
   tiny = 'tiny',
   small = 'small',
   normal = 'normal',

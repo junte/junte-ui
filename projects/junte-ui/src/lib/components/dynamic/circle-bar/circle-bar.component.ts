@@ -1,5 +1,5 @@
 import { Component, ContentChild, ContentChildren, HostBinding, QueryList, TemplateRef } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 
 @Component({

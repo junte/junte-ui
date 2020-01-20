@@ -1,7 +1,7 @@
 import { Component, forwardRef, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format } from 'date-fns';
-import { PopoverTriggers, UI } from '../../../enum/ui';
+import { PopoverTriggers, UI } from '../../../enums/ui';
 import { Subscriptions } from '../../../utils/subscriptions';
 import { PopoverService } from '../../overlays/popover/popover.service';
 

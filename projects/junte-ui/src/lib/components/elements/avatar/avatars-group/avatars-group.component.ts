@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { Shapes, Sizes, UI } from '../../../../enum/ui';
+import { Shapes, Sizes, UI } from '../../../../enums/ui';
 import { AvatarComponent } from '../avatar.component';
 
 const MAX_CAPACITY = 4;

@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../../enum/ui';
+import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-stack',
@@ -43,7 +43,12 @@ export class StackComponent {
     description: 'Space between children elements',
     path: 'ui.gutter',
     default: Gutter.normal,
-    options: [Gutter.tiny, Gutter.small, Gutter.normal, Gutter.big, Gutter.large, Gutter.huge]
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.big,
+      Gutter.large,
+      Gutter.huge]
   })
   @Input() set gutter(gutter: Gutter) {
     if (!!gutter) {
@@ -52,11 +57,16 @@ export class StackComponent {
       this._gutter = Gutter.normal;
     }
   }
+
   @PropertyApi({
     description: 'Vertical align of elements',
     path: 'ui.flex.align',
     default: FlexAlign.start,
-    options: [FlexAlign.start, FlexAlign.center, FlexAlign.end, FlexAlign.baseline, FlexAlign.stretch]
+    options: [FlexAlign.start,
+      FlexAlign.center,
+      FlexAlign.end,
+      FlexAlign.baseline,
+      FlexAlign.stretch]
   })
   @Input() set align(align: FlexAlign) {
     if (!!align) {
@@ -65,12 +75,17 @@ export class StackComponent {
       this._align = FlexAlign.start;
     }
   }
+
   @PropertyApi({
     description: 'Horizontal align of elements',
     path: 'ui.flex.justify',
     default: FlexJustify.start,
-    options: [FlexJustify.start, FlexJustify.center, FlexJustify.end, FlexJustify.between,
-      FlexJustify.around, FlexJustify.evenly]
+    options: [FlexJustify.start,
+      FlexJustify.center,
+      FlexJustify.end,
+      FlexJustify.between,
+      FlexJustify.around,
+      FlexJustify.evenly]
   })
   @Input() set justify(justify: FlexJustify) {
     if (!!justify) {
@@ -84,7 +99,9 @@ export class StackComponent {
     description: 'Wrapping of elements',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
-    options: [FlexWrap.noWrap, FlexWrap.wrap, FlexWrap.reverse]
+    options: [FlexWrap.noWrap,
+      FlexWrap.wrap,
+      FlexWrap.reverse]
   })
   @Input() set wrap(wrap: FlexWrap) {
     if (!!wrap) {

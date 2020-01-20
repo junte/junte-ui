@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addDays, addMonths, addWeeks, format, isEqual, setDay, setMonth, setYear, startOfMonth, startOfWeek, subMonths } from 'date-fns';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { Period } from './models';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';

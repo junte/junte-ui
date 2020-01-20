@@ -1,5 +1,5 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { UI } from '../../../../enum/ui';
+import { UI } from '../../../../enums/ui';
 
 @Component({
   selector: 'jnt-accordion-section',

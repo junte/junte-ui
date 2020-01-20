@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, Renderer2, ViewChild } from '@angular/core';
-import { UI } from '../../../../enum/ui';
+import { UI } from '../../../../enums/ui';
 import { SwiperDirective } from '../swiper.directive';
 
 @Component({

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { SliderCarouselItemComponent } from './item/item.component';
 
 const DEFAULT_HEIGHT = 300;

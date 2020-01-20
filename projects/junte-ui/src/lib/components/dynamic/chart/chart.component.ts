@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 import { getTextBrightness } from '../../../utils/brightness';
 import { isEqual } from '../../../utils/equal';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';

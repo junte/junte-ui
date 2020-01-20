@@ -1,5 +1,5 @@
 import { ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { Orientation, Sizes } from '../../../enum/ui';
+import { Orientation, Sizes } from '../../../enums/ui';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { PropertyApi } from '../../../decorators/api';

@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { Sizes, UI } from '../../../enum/ui';
+import { Sizes, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-radio',

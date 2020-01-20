@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FontIcons, UI } from '../../../enum/ui';
+import { FontIcons, UI } from '../../../enums/ui';
 
 export enum ModalClosingOption {
   enable = 'enable',

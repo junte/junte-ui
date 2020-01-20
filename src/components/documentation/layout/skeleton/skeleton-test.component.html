@@ -27,14 +27,14 @@
         <jnt-stack [type]="ui.stack.type.horizontal">
           <app-browser-preview>
             <ng-template #document let-width="width">
-              <ng-container *ngIf="type.value == sketches.UserCard">
+              <ng-container *ngIf="type.value == sketches.User">
                 <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
                   <jnt-skeleton [type]="ui.skeleton.type.avatar" [animated]="animation.value"></jnt-skeleton>
                   <jnt-skeleton [lines]="2" [animated]="animation.value"></jnt-skeleton>
                 </jnt-stack>
               </ng-container>
 
-              <ng-container *ngIf="type.value == sketches.VerticalPostCard">
+              <ng-container *ngIf="type.value == sketches.VerticalPost">
                 <jnt-stack [align]="ui.flex.align.center">
                   <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large"
                                 [animated]="animation.value"></jnt-skeleton>
@@ -42,7 +42,7 @@
                 </jnt-stack>
               </ng-container>
 
-              <ng-container *ngIf="type.value == sketches.HorizontalPostCard">
+              <ng-container *ngIf="type.value == sketches.HorizontalPost">
                 <jnt-stack [type]="ui.stack.type.horizontal">
                   <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.normal"
                                 [animated]="animation.value"></jnt-skeleton>
@@ -57,12 +57,12 @@
               <jnt-form-label for="type">Sketch</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="type">
-                  <jnt-select-option label="User card"
-                                     [key]="sketches.UserCard"></jnt-select-option>
-                  <jnt-select-option label=" Vertical post card"
-                                     [key]="sketches.VerticalPostCard"></jnt-select-option>
-                  <jnt-select-option label=" Horizontal post card"
-                                     [key]="sketches.HorizontalPostCard"></jnt-select-option>
+                  <jnt-select-option label="User"
+                                     [key]="sketches.User"></jnt-select-option>
+                  <jnt-select-option label=" Vertical post"
+                                     [key]="sketches.VerticalPost"></jnt-select-option>
+                  <jnt-select-option label=" Horizontal post"
+                                     [key]="sketches.HorizontalPost"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -81,7 +81,7 @@
     <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight>
-          <ng-container *ngIf="type.value == sketches.UserCard">
+          <ng-container *ngIf="type.value == sketches.User">
             <![CDATA[
             <jnt-block>
               <jnt-stack [align]="ui.flex.align.center" [type]="ui.stack.type.vertical">
@@ -102,7 +102,7 @@
             ]]>
           </ng-container>
 
-          <ng-container *ngIf="type.value == sketches.VerticalPostCard">
+          <ng-container *ngIf="type.value == sketches.VerticalPost">
             <![CDATA[
             <jnt-block>
               <jnt-stack [align]="ui.flex.align.center">
@@ -123,7 +123,7 @@
             ]]>
           </ng-container>
 
-          <ng-container *ngIf="type.value == sketches.HorizontalPostCard">
+          <ng-container *ngIf="type.value == sketches.HorizontalPost">
             <![CDATA[
             <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
               <jnt-stack [type]="ui.stack.type.horizontal" [size]="ui.sizes.normal">

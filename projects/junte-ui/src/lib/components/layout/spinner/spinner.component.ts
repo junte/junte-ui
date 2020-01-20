@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Sizes } from '../../../enum/ui';
+import { Sizes } from '../../../enums/ui';
 import { PropertyApi } from '../../../decorators/api';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../../../enum/ui';
+import { UI } from '../../../../enums/ui';
 
 const DEFAULT_SIZE = 10;
 

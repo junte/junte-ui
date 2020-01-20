@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap, Gutter } from '../../../../enum/ui';
+import { FlexAlign, FlexAlignContent, FlexDirection, FlexJustify, FlexWrap, Gutter } from '../../../../enums/ui';
 
 @Component({
   selector: 'jnt-row',

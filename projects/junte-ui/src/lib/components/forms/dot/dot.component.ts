@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors } from '../../../enum/ui';
+import { Colors } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-dot',

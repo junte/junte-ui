@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
-import { UI } from '../../../enum/ui';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-confirm',

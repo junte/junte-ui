@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Themes, UI } from '../../../enum/ui';
+import { Themes, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-theme-switcher',

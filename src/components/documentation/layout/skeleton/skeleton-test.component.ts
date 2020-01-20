@@ -4,9 +4,9 @@ import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 export enum Sketches {
-  UserCard = 'userCard',
-  VerticalPostCard = 'verticalPostCard',
-  HorizontalPostCard = 'horizontalPostCard'
+  User = 'user',
+  VerticalPost = 'verticalPost',
+  HorizontalPost = 'horizontalPost'
 }
 
 @Component({
@@ -21,7 +21,7 @@ export class SkeletonTestComponent {
   localUi = LocalUI;
   skeleton = SkeletonComponent;
 
-  type = new FormControl(Sketches.UserCard);
+  type = new FormControl(Sketches.User);
   animation = new FormControl(true);
 
   form = this.fb.group({

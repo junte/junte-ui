@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { PopoverTriggers } from '../../../enum/ui';
+import { PopoverTriggers } from '../../../enums/ui';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 import { PopoverService } from './popover.service';
 

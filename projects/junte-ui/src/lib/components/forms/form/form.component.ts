@@ -12,7 +12,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormLayout, UI } from '../../../enum/ui';
+import { FormLayout, UI } from '../../../enums/ui';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @Component({

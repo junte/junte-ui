@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { BlockState, Paddings, TypeBlock, UI, Width } from '../../../enum/ui';
+import { BlockState, Paddings, TypeBlock, UI, Width } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -58,11 +58,16 @@ export class BlockComponent {
   @PropertyApi({
     description: 'Inner gutters for block',
     path: 'ui.padding',
-    options: [Paddings.tiny, Paddings.small, Paddings.normal, Paddings.large, Paddings.big, Paddings.huge]
+    options: [Paddings.tiny,
+      Paddings.small,
+      Paddings.normal,
+      Paddings.large,
+      Paddings.big,
+      Paddings.huge]
   })
   @HostBinding('attr.padding')
   @Input()
-  padding: Paddings = Paddings.normal;
+  padding: Paddings = Paddings.none;
 
 
   @PropertyApi({
