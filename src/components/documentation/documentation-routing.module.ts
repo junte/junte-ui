@@ -43,7 +43,6 @@ import { PopoverTestComponent } from './overlays/popover/popover-test.component'
 import { PipesTestComponent } from './pipes/pipes-test.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 
-
 export const routes: Routes = [
   {
     path: '',
@@ -146,7 +145,7 @@ export const routes: Routes = [
           {
             path: 'breadcrumbs',
             data: {breadcrumb: {label: 'Breadcrumbs'}},
-            loadChildren: () => import('./navigation/breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsModule)
+            loadChildren: () => import('./navigation/breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsTestModule)
           }
         ]
       },
