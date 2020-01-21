@@ -4,7 +4,7 @@ import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-spinner',
-  templateUrl: './spinner.encapsulated.html'
+  template: ''
 })
 export class SpinnerComponent {
 
@@ -21,11 +21,7 @@ export class SpinnerComponent {
   })
 
   @Input() set size(size: Sizes) {
-    if (!!size) {
-      this._size = size;
-    } else {
-      this._size = Sizes.normal;
-    }
+    this._size = size || Sizes.normal;
   }
 
 }
