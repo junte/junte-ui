@@ -30,13 +30,13 @@
             <ng-template #document let-height="height">
               <jnt-block #block [title]="title.value ? 'Block title' : null"
                          [padding]="padding.value"
+                         [scheme]="scheme.value"
                          [width]="width.value"
-                         [type]="type.value"
                          [state]="state.value">
                 <div block [style.font-size.px]="height / 10">
                   <jnt-icon [icon]="ui.icons.smile"></jnt-icon>
                 </div>
-                <ng-template *ngIf="footer.value" #footerBlock>
+                <ng-template *ngIf="footer.value" #blockFooterTemplate>
                   <jnt-stack [type]="ui.stack.type.horizontal">
                     <jnt-button text="Ok"></jnt-button>
                     <jnt-button text="Cancel"></jnt-button>
@@ -52,6 +52,18 @@
               </jnt-form-item>
               <jnt-form-item>
                 <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+              </jnt-form-item>
+
+              <jnt-form-item>
+                <jnt-form-label for="scheme">Scheme</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="scheme">
+                    <jnt-select-option label="Primary" [key]="ui.schemes.primary"></jnt-select-option>
+                    <jnt-select-option label="Secondary" [key]="ui.schemes.secondary"></jnt-select-option>
+                    <jnt-select-option label="Success" [key]="ui.schemes.success"></jnt-select-option>
+                    <jnt-select-option label="Fail" [key]="ui.schemes.fail"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
@@ -77,14 +89,6 @@
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-form-label for="type">Type</jnt-form-label>
-                <jnt-switcher formControlName="type">
-                  <jnt-switcher-option label="Simple" [value]="ui.block.type.simple"></jnt-switcher-option>
-                  <jnt-switcher-option label="Bordered" [value]="ui.block.type.bordered"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-label for="state">States</jnt-form-label>
                 <jnt-switcher formControlName="state">
                   <jnt-switcher-option label="Loading" [value]="ui.block.state.loading"></jnt-switcher-option>
@@ -101,11 +105,11 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+    <jnt-tab #code title="Code" [icon]="localUi.icons.layout.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight>
           <![CDATA[
-          <jnt-stack
+          <jnt-block
             ]]>
             <ng-container *ngIf="title.value">
               <![CDATA[
@@ -115,13 +119,13 @@
               <![CDATA[
               [padding]="ui.padding.]]>{{padding.value}}<![CDATA["]]>
             </ng-container>
+            <ng-container *ngIf="scheme.value">
+              <![CDATA[
+              [scheme]="ui.scheme.]]>{{scheme.value}}<![CDATA["]]>
+            </ng-container>
             <ng-container *ngIf="width.value">
               <![CDATA[
               [width]="ui.width.]]>{{width.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="type.value">
-              <![CDATA[
-              [type]="ui.block.type.]]>{{type.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="state.value">
               <![CDATA[
@@ -129,15 +133,15 @@
             </ng-container>
             <![CDATA[>
             <div>...</div>
-          </jnt-stack>
+          </jnt-block>
           ]]>
           <ng-container *ngIf="footer.value">
             <![CDATA[
-            <ng-template #footerBlock>
-              <div footer>
-                <div>Title footer</div>
-                <div>Content footer</div>
-              </div>
+            <ng-template #blockFooterTemplate>
+              <jnt-stack [type]="ui.stack.type.horizontal">
+                <jnt-button text="Ok"></jnt-button>
+                <jnt-button text="Cancel"></jnt-button>
+              </jnt-stack>
             </ng-template>
             ]]>
           </ng-container>

@@ -1,14 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { BlockComponent, UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { BlockComponent, TabComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-blocks-test',
   templateUrl: './blocks-test.component.html',
   styleUrls: ['./blocks-test.component.scss']
 })
-export class BlocksTestComponent {
+export class BlocksTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -17,12 +17,15 @@ export class BlocksTestComponent {
   @ViewChild('block', {static: false})
   block: BlockComponent;
 
+  @ViewChild('code', {static: false})
+  code: TabComponent;
+
   padding = new FormControl(UI.padding.normal);
   title = new FormControl(true);
   footer = new FormControl(true);
   state = new FormControl();
   width = new FormControl(UI.width.default);
-  type = new FormControl(UI.block.type.simple);
+  scheme = new FormControl(UI.schemes.primary);
 
   form = this.fb.group({
     padding: this.padding,
@@ -30,9 +33,14 @@ export class BlocksTestComponent {
     footer: this.footer,
     state: this.state,
     width: this.width,
-    type: this.type
+    scheme: this.scheme
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 }
