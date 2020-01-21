@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { BreadcrumbsComponent } from '../../../../../projects/junte-ui/src/lib/components/navigation/breadcrumbs/breadcrumbs.component';
+import { BreadcrumbsComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-breadcrumbs-test',
