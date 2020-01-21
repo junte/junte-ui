@@ -1,6 +1,6 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputState, InputType, Sizes, TextAlign } from '../../../enums/ui';
+import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputState, InputType, Sizes, TextAlign, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -13,7 +13,9 @@ import { InputState, InputType, Sizes, TextAlign } from '../../../enums/ui';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements OnInit, ControlValueAccessor {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
@@ -47,7 +49,28 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   placeholder: string;
 
+  @Input()
+  min: number;
+
+  @Input()
+  max: number;
+
   value: string = null;
+
+  inputControl = new FormControl();
+  form = this.builder.group(
+    {
+      input: this.inputControl
+    }
+  );
+
+  constructor(private builder: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.inputControl.valueChanges
+      .subscribe(value => this.onChange(value));
+  }
 
   onChange(val: any) {
   }
@@ -65,5 +88,31 @@ export class InputComponent implements ControlValueAccessor {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  up() {
+    if (this.max !== undefined) {
+      if (this.inputControl.value === null) {
+        this.inputControl.patchValue(0);
+      }
+      if (this.inputControl.value < this.max) {
+        this.inputControl.patchValue(+this.inputControl.value + 1);
+      }
+    } else {
+      this.inputControl.patchValue(+this.inputControl.value + 1);
+    }
+  }
+
+  down() {
+    if (this.min !== undefined) {
+      if (this.inputControl.value === null) {
+        this.inputControl.patchValue(0);
+      }
+      if (this.inputControl.value > this.min) {
+        this.inputControl.patchValue(+this.inputControl.value - 1);
+      }
+    } else {
+      this.inputControl.patchValue(+this.inputControl.value - 1);
+    }
   }
 }
