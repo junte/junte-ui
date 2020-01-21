@@ -23,11 +23,7 @@ export class ColComponent {
     default: '1'
   })
   @Input() set span(span: number) {
-    if (!!span) {
-      this._span = span;
-    } else {
-      this._span = 1;
-    }
+    this._span = span || 1;
   }
 
   @PropertyApi({
