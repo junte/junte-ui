@@ -31,7 +31,7 @@ export class GanttComponent implements ControlValueAccessor {
   @ContentChild('titleTemplate', {static: false})
   titleTemplate: TemplateRef<any>;
 
-  @ContentChildren(GanttLineComponent)
+  @ContentChildren(GanttLineComponent, {descendants: true})
   lines: QueryList<GanttLineComponent>;
 
   ui = UI;
