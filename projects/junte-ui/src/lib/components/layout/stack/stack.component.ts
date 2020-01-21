@@ -51,11 +51,7 @@ export class StackComponent {
       Gutter.huge]
   })
   @Input() set gutter(gutter: Gutter) {
-    if (!!gutter) {
-      this._gutter = gutter;
-    } else {
-      this._gutter = Gutter.normal;
-    }
+    this._gutter = gutter || Gutter.normal;
   }
 
   @PropertyApi({
@@ -69,11 +65,7 @@ export class StackComponent {
       FlexAlign.stretch]
   })
   @Input() set align(align: FlexAlign) {
-    if (!!align) {
-      this._align = align;
-    } else {
-      this._align = FlexAlign.start;
-    }
+    this._align = align || FlexAlign.start;
   }
 
   @PropertyApi({
@@ -88,11 +80,7 @@ export class StackComponent {
       FlexJustify.evenly]
   })
   @Input() set justify(justify: FlexJustify) {
-    if (!!justify) {
-      this._justify = justify;
-    } else {
-      this._justify = FlexJustify.start;
-    }
+    this._justify = justify || FlexJustify.start;
   }
 
   @PropertyApi({
@@ -104,11 +92,7 @@ export class StackComponent {
       FlexWrap.reverse]
   })
   @Input() set wrap(wrap: FlexWrap) {
-    if (!!wrap) {
-      this._wrap = wrap;
-    } else {
-      this._wrap = FlexWrap.noWrap;
-    }
+    this._wrap = wrap || FlexWrap.noWrap;
   }
 
 }
