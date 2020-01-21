@@ -18,24 +18,22 @@ export class TabsTestComponent implements OnInit {
   tabs = TabsComponent;
   tab = TabComponent;
 
-  iconControl = new FormControl(false);
+  @ViewChild('code', {static: false}) code: TabComponent;
+
   outlineControl = new FormControl(Outline.fill);
-  badgeControl = new FormControl(false);
+  iconsControl = new FormControl(false);
 
-  tabBuilder = this.fb.group({
-    icon: this.iconControl,
+  form = this.fb.group({
     outline: this.outlineControl,
-    badge: this.badgeControl
+    icons: this.iconsControl
   });
-
-  @ViewChild('preview', {static: false}) preview: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.tabBuilder.valueChanges
-      .subscribe(() => this.preview.flash());
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }
