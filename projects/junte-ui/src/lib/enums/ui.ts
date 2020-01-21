@@ -95,7 +95,9 @@ export enum FontDefaultIcons {
   mailbox = 'mailbox',
   email = 'email',
   cup = 'cup',
-  move = 'move'
+  move = 'move',
+  pause = 'pause',
+  bug = 'bug'
 
   // query = 'query',
   // facebook = 'facebook',
@@ -104,7 +106,6 @@ export enum FontDefaultIcons {
   // instagram = 'instagram',
   // qrCode = 'qr-code',
   // playButton = 'play-button',
-  // pause = 'pause',
   // stop = 'stop',
 }
 
@@ -149,7 +150,8 @@ export enum FontEmojiIcons {
   shocked = 'shocked',
   sad = 'sad',
   evil = 'evil',
-  skull = 'skull'
+  skull = 'skull',
+  neutral = 'neutral'
 }
 
 export enum SvgDefaultIcons {
@@ -437,7 +439,6 @@ export class UI {
     // facebook: FontIcons.facebook + ':font',
     // google: FontIcons.google + ':font',
     // instagram: FontIcons.instagram + ':font',
-    // pause: FontIcons.pause + ':font',
     // playButton: FontIcons.playButton + ':font',
     // qrCode: FontIcons.qrCode + ':font',
     // query: FontIcons.query + ':font',
@@ -457,6 +458,7 @@ export class UI {
     arrowUp: FontIcons.arrowUp + ':font',
     beaker: FontIcons.beaker + ':font',
     bell: FontIcons.bell + ':font',
+    bug: FontIcons.bug + ':font:',
     burger: FontIcons.burger + ':font',
     calendar: FontIcons.calendar + ':font',
     cancel: FontIcons.cancel + ':font',
@@ -532,7 +534,9 @@ export class UI {
     moon: FontIcons.moon + ':font',
     more: FontIcons.more + ':font',
     move: FontIcons.move + ':font',
+    neutral: FontIcons.neutral + ':font:junte-ui-icons-emoji',
     overlays: FontIcons.overlays + ':font',
+    pause: FontIcons.pause + ':font',
     photoCamera: FontIcons.camera + ':font',
     picture: FontIcons.picture + ':font',
     pin: FontIcons.pin + ':font',
