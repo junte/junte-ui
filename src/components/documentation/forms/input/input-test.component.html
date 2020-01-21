@@ -56,7 +56,11 @@
 
     <h2>Number</h2>
 
-    <jnt-input [type]="ui.form.input.number" placeholder="Number"></jnt-input>
+    <jnt-stack>
+      <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+        <jnt-input [size]="size" [type]="ui.form.input.number" placeholder="Number" [min]="0" [max]="10"></jnt-input>
+      </ng-container>
+    </jnt-stack>
 
     <h2>Input with icon</h2>
     <jnt-stack formArrayName="texts">
