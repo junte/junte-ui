@@ -17,7 +17,15 @@ export enum FontLayoutIcons {
   big = 'big',
   large = 'large',
   huge = 'huge',
-  baseline = 'baseline'
+  baseline = 'baseline',
+  default = 'default',
+  fluid = 'fluid',
+  paddingTiny = 'padding-tiny',
+  paddingSmall = 'padding-small',
+  paddingNormal = 'padding-normal',
+  paddingLarge = 'padding-large',
+  paddingBig = 'padding-big',
+  paddingHuge = 'padding-huge'
 }
 
 export enum SvgLocalIcons {
@@ -48,6 +56,14 @@ class ShortIcons {
     large: FontLayoutIcons.large + ':font:junte-ui-test-layout',
     huge: FontLayoutIcons.huge + ':font:junte-ui-test-layout',
     baseline: FontLayoutIcons.baseline + ':font:junte-ui-test-layout',
+    default: FontLayoutIcons.default + ':font:junte-ui-test-layout',
+    fluid: FontLayoutIcons.fluid + ':font:junte-ui-test-layout',
+    paddingTiny: FontLayoutIcons.paddingTiny + ':font:junte-ui-test-layout',
+    paddingSmall: FontLayoutIcons.paddingSmall + ':font:junte-ui-test-layout',
+    paddingNormal: FontLayoutIcons.paddingNormal + ':font:junte-ui-test-layout',
+    paddingLarge: FontLayoutIcons.paddingLarge + ':font:junte-ui-test-layout',
+    paddingBig: FontLayoutIcons.paddingBig + ':font:junte-ui-test-layout',
+    paddingHuge: FontLayoutIcons.paddingHuge + ':font:junte-ui-test-layout',
     builder: SvgLocalIcons.builder + ':svg:local',
     preview: SvgLocalIcons.preview + ':svg:local',
     code: SvgLocalIcons.code + ':svg:local',
