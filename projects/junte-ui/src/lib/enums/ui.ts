@@ -95,7 +95,9 @@ export enum FontDefaultIcons {
   mailbox = 'mailbox',
   email = 'email',
   cup = 'cup',
-  move = 'move'
+  move = 'move',
+  pause = 'pause',
+  bug = 'bug'
 
   // query = 'query',
   // facebook = 'facebook',
@@ -104,7 +106,6 @@ export enum FontDefaultIcons {
   // instagram = 'instagram',
   // qrCode = 'qr-code',
   // playButton = 'play-button',
-  // pause = 'pause',
   // stop = 'stop',
 }
 
@@ -149,7 +150,8 @@ export enum FontEmojiIcons {
   shocked = 'shocked',
   sad = 'sad',
   evil = 'evil',
-  skull = 'skull'
+  skull = 'skull',
+  neutral = 'neutral'
 }
 
 export enum SvgDefaultIcons {
@@ -445,6 +447,7 @@ export class UI {
     arrowUp: FontIcons.arrowUp + ':font',
     beaker: FontIcons.beaker + ':font',
     bell: FontIcons.bell + ':font',
+    bug: FontIcons.bug + ':font:',
     burger: FontIcons.burger + ':font',
     calendar: FontIcons.calendar + ':font',
     cancel: FontIcons.cancel + ':font',
