@@ -98,15 +98,6 @@ export enum FontDefaultIcons {
   move = 'move',
   pause = 'pause',
   bug = 'bug'
-
-  // query = 'query',
-  // facebook = 'facebook',
-  // google = 'google',
-  // vkLogo = 'vk-logo',
-  // instagram = 'instagram',
-  // qrCode = 'qr-code',
-  // playButton = 'play-button',
-  // stop = 'stop',
 }
 
 export enum FontGesturesIcons {
@@ -447,7 +438,6 @@ export class UI {
     arrowUp: FontIcons.arrowUp + ':font',
     beaker: FontIcons.beaker + ':font',
     bell: FontIcons.bell + ':font',
-    bug: FontIcons.bug + ':font:',
     burger: FontIcons.burger + ':font',
     calendar: FontIcons.calendar + ':font',
     cancel: FontIcons.cancel + ':font',
@@ -527,6 +517,8 @@ export class UI {
     user: FontIcons.user + ':font',
     view: FontIcons.view + ':font',
     warning: FontIcons.warning + ':font',
+    pause: FontIcons.pause + ':font',
+    bug: FontIcons.bug + ':font',
     webProgramming: FontIcons.webProgramming + ':font',
     question: SvgDefaultIcons.question + ':svg:default',
     angular: SvgDefaultIcons.angular + ':svg:default',
@@ -585,7 +577,8 @@ export class UI {
       shocked: FontIcons.shocked + ':font:junte-ui-icons-emoji',
       skull: FontIcons.skull + ':font:junte-ui-icons-emoji',
       smile: FontIcons.smile + ':font:junte-ui-icons-emoji',
-      wink: FontIcons.wink + ':font:junte-ui-icons-emoji'
+      wink: FontIcons.wink + ':font:junte-ui-icons-emoji',
+      neutral: FontIcons.neutral + ':font:junte-ui-icons-emoji',
     },
     animated: {
       runningMan: AnimatedIcons.runningMan + ':animated:default',

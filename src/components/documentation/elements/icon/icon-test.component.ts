@@ -7,13 +7,12 @@ import {
   FontIcons,
   SvgDefaultIcons,
   SvgFlagsIcons,
-  SvgIcons,
   UI
 } from 'junte-ui';
 
 class IconTest {
   constructor(public name: string,
-              public value: FontIcons | SvgIcons | AnimatedIcons,
+              public value: FontIcons | AnimatedIcons,
               public iconset = 'default') {
   }
 }
