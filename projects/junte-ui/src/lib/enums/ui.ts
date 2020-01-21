@@ -280,11 +280,6 @@ export enum TypeSkeleton {
   image = 'image'
 }
 
-export enum TypeBlock {
-  simple = 'simple',
-  bordered = 'bordered'
-}
-
 export enum TextAlign {
   left = 'left',
   right = 'right'
@@ -643,7 +638,6 @@ export class UI {
   };
   static select = SelectMode;
   static block = {
-    type: TypeBlock,
     state: BlockState
   };
   static colors = Colors;

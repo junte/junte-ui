@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { BlockState, Paddings, TypeBlock, UI, Width } from '../../../enums/ui';
+import { BlockState, Paddings, Schemes, UI, Width } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-block',
@@ -34,10 +34,13 @@ export class BlockComponent {
 
   _state = {success: false};
 
+  blockState = BlockState;
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
+  @HostBinding('attr.scheme')
+  _scheme = Schemes.primary;
 
   @PropertyApi({
     description: 'Title of block',
@@ -46,13 +49,12 @@ export class BlockComponent {
   @Input()
   title: string;
 
-
   @PropertyApi({
     description: 'Template of block footer',
     type: 'templateRef'
   })
-  @ContentChild('footerBlock', {static: false})
-  footerBlock: TemplateRef<any>;
+  @ContentChild('blockFooterTemplate', {static: false})
+  blockFooterTemplate: TemplateRef<any>;
 
 
   @PropertyApi({
@@ -80,19 +82,6 @@ export class BlockComponent {
   @Input()
   width: Width = Width.default;
 
-
-  @PropertyApi({
-    description: 'Block type',
-    path: 'ui.block.type',
-    default: TypeBlock.simple,
-    options: [TypeBlock.simple, TypeBlock.bordered]
-  })
-
-  @HostBinding('attr.type')
-  @Input()
-  type = TypeBlock.simple;
-
-
   @PropertyApi({
     description: 'State of block',
     path: 'ui.block.state',
@@ -101,6 +90,16 @@ export class BlockComponent {
   @Input()
   state: BlockState;
 
+  @PropertyApi({
+    description: 'Block color scheme',
+    path: 'ui.schemes',
+    default: Schemes.primary,
+    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail]
+  })
+
+  @Input() set scheme(scheme: Schemes) {
+    this._scheme = scheme || Schemes.primary;
+  }
 
   success() {
     this._state.success = true;

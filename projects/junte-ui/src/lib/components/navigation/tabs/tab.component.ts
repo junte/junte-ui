@@ -1,6 +1,6 @@
 import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
-import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
+import { BadgeComponent } from '../../elements/badge/badge.component';
 
 @Component({
   selector: 'jnt-tab',
