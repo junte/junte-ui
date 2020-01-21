@@ -3,11 +3,11 @@ $fontname: '<%= fontName %>';
 
 @font-face {
   font-family: "<%= fontName %>";
-  src: url($fontpath + $fontname + '.eot');
-  src: url($fontpath + $fontname + '.eot?#iefix') format('eot'),
-  url($fontpath + $fontname + '.woff') format('woff'),
-  url($fontpath + $fontname + '.ttf') format('truetype'),
-  url($fontpath + $fontname + '.svg#<%= fontName %>') format('svg');
+  src: url($fontname + '.eot');
+  src: url($fontname + '.eot?#iefix') format('eot'),
+  url($fontname + '.woff') format('woff'),
+  url($fontname + '.ttf') format('truetype'),
+  url($fontname + '.svg#<%= fontName %>') format('svg');
 }
 
 <% _.each(glyphs, function(glyph) { %>.<%= className %>-<%= glyph.name %>:before {
