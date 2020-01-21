@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Tabs</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/tabs"
@@ -10,98 +9,89 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <p>
-    An item in a tab bar.<br>
-    A tab bar operates strictly in radio mode, where one item is selected at a time—tapping
-    a tab bar item toggles the view above the tab bar. You can also specify a badge value
-    on the tab bar item for adding additional visual information—for example, the Messages
-    app uses a badge on the item to show the number of new messages. This class also
-    provides a number of system defaults for creating items.<br>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uitabbaritem" title="More">
-    </jnt-link>
-  </p>
-  <h3>Requirements</h3>
 
-  <ol>
-    <li>The tab should respond to mouse hover, click</li>
-  </ol>
+  <h1>Tabs</h1>
+  <div teaser>
+    <p>
+      An item in a tab bar.<br>
+      A tab bar operates strictly in radio mode, where one item is selected at a time—tapping
+      a tab bar item toggles the view above the tab bar. You can also specify a badge value
+      on the tab bar item for adding additional visual information—for example, the Messages
+      app uses a badge on the item to show the number of new messages. This class also
+      provides a number of system defaults for creating items.<br>
+      <jnt-link source="https://developer.apple.com/documentation/uikit/uitabbaritem" title="More">
+      </jnt-link>
+    </p>
+    <ul>
+      <li>The tab should respond to mouse hover, click</li>
+    </ul>
+  </div>
 
   <h3>How to use</h3>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/navigation/tabs/tabs.encapsulated";
-    ]]></pre>
-  </ngx-prism>
+  <app-how-to-use
+    [test]="{selector:'tabs-test', type: 'TabsTestComponent'}"
+    scss="navigation/tabs"></app-how-to-use>
 
   <h3>Playground</h3>
 
-  <jnt-tabs>
-    <jnt-tab title="Builder" [icon]="localUi.icons.layout.code">
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
       <ng-template #tabContentTemplate>
-        <jnt-form [formGroup]="tabBuilder" form>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document>
+              <jnt-tabs [outline]="outlineControl.value">
+                <jnt-tab title="Personal" [icon]="iconsControl.value ? ui.icons.calendar : null">
+                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <ng-template #tabContentTemplate>
+                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                  </ng-template>
+                </jnt-tab>
+                <jnt-tab title="Security" [icon]="iconsControl.value ? ui.icons.accessLock : null">
+                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <ng-template #tabContentTemplate>
+                    <jnt-stack [type]="ui.stack.type.horizontal">
+                      <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                      <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                    </jnt-stack>
+                  </ng-template>
+                </jnt-tab>
+                <jnt-tab title="Settings" [icon]="iconsControl.value ? ui.icons.settings : null">
+                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <ng-template #tabContentTemplate>
+                    <jnt-stack>
+                      <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                      <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                    </jnt-stack>
+                  </ng-template>
+                </jnt-tab>
+              </jnt-tabs>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" form>
 
-          <jnt-form-item>
-            <jnt-form-label for="outline">Content background</jnt-form-label>
-            <jnt-form-control>
-              <jnt-switcher formControlName="outline">
-                <jnt-switcher-option label="Transparent" [value]="ui.outline.transparent"></jnt-switcher-option>
-                <jnt-switcher-option label="Fill" [value]="ui.outline.fill"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-control>
-          </jnt-form-item>
+            <jnt-form-item>
+              <jnt-form-label for="outline">Content background</jnt-form-label>
+              <jnt-form-control>
+                <jnt-switcher formControlName="outline">
+                  <jnt-switcher-option label="Transparent" [value]="ui.outline.transparent"></jnt-switcher-option>
+                  <jnt-switcher-option label="Fill" [value]="ui.outline.fill"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-form-item>
 
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="icon" label="Icon" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-control>
-              <jnt-checkbox formControlName="badge" label="Badge" [value]="false"></jnt-checkbox>
-            </jnt-form-control>
-          </jnt-form-item>
-        </jnt-form>
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="icons" label="Icons and badges"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview" #preview>
-      <ng-template #tabContentTemplate>
-        <app-browser-preview>
-          <ng-template #document>
-            <jnt-tabs [outline]="outlineControl.value">
-              <jnt-tab title="Personal" [icon]="iconControl.value ? ui.icons.calendar : null">
-                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
-                <ng-template #tabContentTemplate>
-                  <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
-                </ng-template>
-              </jnt-tab>
-              <jnt-tab title="Security" [icon]="iconControl.value ? ui.icons.accessLock : null">
-                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
-                <ng-template #tabContentTemplate>
-                  <jnt-stack [type]="ui.stack.type.horizontal">
-                    <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
-                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
-                  </jnt-stack>
-                </ng-template>
-              </jnt-tab>
-              <jnt-tab title="Settings" [icon]="iconControl.value ? ui.icons.settings : null">
-                <jnt-badge *ngIf="badgeControl.value" [count]="5"></jnt-badge>
-                <ng-template #tabContentTemplate>
-                  <jnt-stack>
-                    <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
-                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
-                  </jnt-stack>
-                </ng-template>
-              </jnt-tab>
-            </jnt-tabs>
-          </ng-template>
-        </app-browser-preview>
-      </ng-template>
-    </jnt-tab>
-
-    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+    <jnt-tab #code title="Code" [icon]="localUi.icons.layout.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight>
           <![CDATA[
@@ -114,12 +104,12 @@
             <![CDATA[>
             <jnt-tab title="Personal"
                      ]]>
-              <ng-container *ngIf="iconControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[
                 [icon]="ui.icons.calendar"]]>
               </ng-container>
               <![CDATA[>]]>
-              <ng-container *ngIf="badgeControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
@@ -130,12 +120,12 @@
 
             <jnt-tab title="Security"
                      ]]>
-              <ng-container *ngIf="iconControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[
                 [icon]="ui.icons.accessLock"]]>
               </ng-container>
               <![CDATA[>]]>
-              <ng-container *ngIf="badgeControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
@@ -146,12 +136,12 @@
 
             <jnt-tab title="Settings"
                      ]]>
-              <ng-container *ngIf="iconControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[
                 [icon]="ui.icons.settings"]]>
               </ng-container>
               <![CDATA[>]]>
-              <ng-container *ngIf="badgeControl.value">
+              <ng-container *ngIf="iconsControl.value">
                 <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
@@ -168,8 +158,8 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.layout.api">
       <ng-template #tabContentTemplate>
-        <app-component-api title="tabs" [target]="tabs"></app-component-api>
-        <app-component-api title="tab" [target]="tab"></app-component-api>
+        <app-component-api title="Tabs" selector="jnt-tabs" [target]="tabs"></app-component-api>
+        <app-component-api title="Tab" selector="jnt-tab" [target]="tab"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
