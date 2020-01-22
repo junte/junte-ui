@@ -23,9 +23,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input()
   state: InputState = InputState.normal;
 
-  @Input()
-  disabled = false;
-
   @HostBinding('attr.type')
   @Input()
   type: InputType = InputType.text;
@@ -55,21 +52,23 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input()
   max: number;
 
-  value: string = null;
+  set value(value: any) {
+    this.inputControl.patchValue(value);
+    this.onChange(value);
+  }
 
-  inputControl = new FormControl();
-  form = this.builder.group(
-    {
-      input: this.inputControl
-    }
-  );
+  inputControl = new FormControl({value: null});
+  form = this.builder.group({input: this.inputControl});
 
   constructor(private builder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges
-      .subscribe(value => this.onChange(value));
+    this.inputControl.valueChanges.subscribe(value => this.onChange(value));
+  }
+
+  writeValue(value) {
+    this.value = value;
   }
 
   onChange(val: any) {
@@ -78,16 +77,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   onTouched() {
   }
 
-  writeValue(value) {
-    this.value = value;
-  }
-
   registerOnChange(fn) {
     this.onChange = fn;
   }
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    disabled ? this.inputControl.disable() : this.inputControl.enable();
   }
 
   up() {

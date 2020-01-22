@@ -1,4 +1,4 @@
-import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Orientation, UI } from '../../../enums/ui';
 import { isEqual } from '../../../utils/equal';
