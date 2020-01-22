@@ -1,11 +1,11 @@
 <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="gutter" [align]="ui.flex.align.center">
   <ng-container *ngFor="let action of actions">
     <jnt-action>
-      <ng-template #template>
-        <ng-container *ngTemplateOutlet="action.template"></ng-container>
+      <ng-template #actionLabelTemplate>
+        <ng-container *ngTemplateOutlet="action.actionLabelTemplate"></ng-container>
       </ng-template>
-      <ng-template #content>
-        <ng-container *ngTemplateOutlet="action.content"></ng-container>
+      <ng-template #actionContentTemplate>
+        <ng-container *ngTemplateOutlet="action.actionContentTemplate"></ng-container>
       </ng-template>
     </jnt-action>
   </ng-container>

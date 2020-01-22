@@ -421,6 +421,11 @@ export enum GanttRequestStatuses {
   declined = 'declined'
 }
 
+export enum AppLayoutPosition {
+  default = 'default',
+  fixed = 'fixed'
+}
+
 export class UI {
   // <editor-fold desc="icons">
   static icons = {
@@ -645,6 +650,11 @@ export class UI {
   };
   static gantt = {
     statuses: GanttRequestStatuses
+  };
+  static layout = {
+    app: {
+      position: AppLayoutPosition
+    }
   };
 }
 

@@ -21,9 +21,7 @@ export class ActionsComponent {
   })
 
   @Input() set gutter(gutter: Gutter) {
-    if (!!gutter) {
-      this._gutter = gutter;
-    }
+    this._gutter = gutter || Gutter.tiny;
   }
 
   get gutter() {

@@ -1,34 +1,21 @@
 @import "../../../../assets/styles/variables";
 @import "../common";
 
-$app-header-background: $primary-dark-color !default;
-$app-header-z-index: 3 !default;
-$app-header-color: $white-color !default;
-
-$menu-item-color-in-header: $white-color !default;
-$menu-item-active-border-color-in-header: $white-color !default;
-$menu-item-active-color-in-header: $white-color !default;
-$menu-item-font-size-in-header: .875rem !default;
-
-$menu-item-icon-font-size-in-header: 16px !default;
-$menu-item-icon-size-in-header: 16px !default;
-$menu-item-icon-color-in-header: $white-color !default;
-
 :host {
   display: flex;
   justify-content: space-between;
   flex: 0 0 auto;
   flex-wrap: wrap;
   box-sizing: border-box;
-  background-color: $app-header-background;
+  background-color: $primary-dark-color;
   padding: 0 $gutter-big;
   min-height: $app-header-height;
-  color: $app-header-color;
+  color: $white-color;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: $app-header-z-index;
+  z-index: 3;
 
   jnt-menu[deep-host=#{$jnt-menu-host}] {
     display: flex;
@@ -38,22 +25,22 @@ $menu-item-icon-color-in-header: $white-color !default;
       user-select: none;
       a {
         span {
-          color: $menu-item-color-in-header;
-          font-size: $menu-item-font-size-in-header;
+          color: $white-color;
+          font-size: .875rem;
         }
         jnt-icon {
-          color: $menu-item-icon-color-in-header;
-          font-size: $menu-item-icon-font-size-in-header;
+          color: $white-color;
+          font-size: $font-size-large;
           [icon]:not([type='font']) {
-            width: $menu-item-icon-size-in-header;
-            height: $menu-item-icon-size-in-header;
-            fill: $menu-item-icon-color-in-header;
+            width: $font-size-large;
+            height: $font-size-large;
+            fill: $white-color;
           }
         }
         &[active='true'] {
           span {
-            color: $menu-item-active-color-in-header;
-            border-bottom-color: $menu-item-active-border-color-in-header;
+            color: $white-color;
+            border-bottom-color: $white-color;
           }
         }
       }

@@ -25,7 +25,7 @@ export class AppAsideComponent implements OnInit {
   }
 
   @ContentChild(TemplateRef, {static: true})
-  contentTemplate: TemplateRef<any>;
+  asideContentTemplate: TemplateRef<any>;
 
   @HostBinding('attr.opened')
   @Input() opened = false;

@@ -1,6 +1,6 @@
-import { Component, ContentChild, HostBinding } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input } from '@angular/core';
+import { AppLayoutPosition } from '../../../enums/ui';
 import { AppHeaderComponent } from './app-header/app-header.component';
-import { AppAsideComponent } from './app-aside/app-aside.component';
 
 @Component({
   selector: 'jnt-app-layout',
@@ -17,4 +17,7 @@ export class AppLayoutComponent {
   get withHeader() {
     return !!this.header;
   }
+
+  @HostBinding('attr.position')
+  @Input() position: AppLayoutPosition = AppLayoutPosition.default;
 }
