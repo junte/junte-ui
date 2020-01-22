@@ -24,7 +24,7 @@
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.stack.type.horizontal">
           <app-browser-preview preview>
@@ -152,7 +152,7 @@
         </jnt-stack>
       </ng-template>
     </jnt-tab>
-    <jnt-tab #code title="Code" [icon]="localUi.icons.layout.code">
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <p>
           <jnt-link [icon]="ui.icons.copy"
@@ -191,7 +191,7 @@
         </app-code-highlight>
       </ng-template>
     </jnt-tab>
-    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+    <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
         <app-component-api selector="jnt-stack" [target]="stack"></app-component-api>
       </ng-template>

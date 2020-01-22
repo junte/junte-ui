@@ -429,10 +429,6 @@ export enum AppLayoutPosition {
 export class UI {
   // <editor-fold desc="icons">
   static icons = {
-    layout: {
-      padding: Paddings,
-      size: Sizes
-    },
     accessLock: FontIcons.accessLock + ':font',
     accessUnlock: FontIcons.accessUnlock + ':font',
     actions: FontIcons.actions + ':font',
