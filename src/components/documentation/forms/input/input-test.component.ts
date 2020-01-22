@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from 'junte-ui';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-input-test',
@@ -11,22 +11,30 @@ export class InputTestComponent implements OnInit {
 
   ui = UI;
 
-  editForm = this.formBuilder.group({
-    texts: this.formBuilder.array([this.inputGroup(), this.inputGroup(), this.inputGroup(), this.inputGroup()]),
-    passwords: this.formBuilder.array([this.inputGroup(), this.inputGroup(), this.inputGroup(), this.inputGroup()])
+  changeControl = new FormControl();
+  disabledControl = new FormControl({value: null, disabled: true});
+
+  inputGroup = this.fb.group({
+    name: this.fb.control([null]),
+    password: this.fb.control([null])
   });
 
-  inputGroup() {
-    return this.formBuilder.group({
-      name: this.formBuilder.control([null]),
-      password: this.formBuilder.control([null])
-    });
-  }
+  form = this.fb.group({
+    texts: this.fb.array([this.inputGroup, this.inputGroup, this.inputGroup, this.inputGroup]),
+    disabled: this.disabledControl,
+    passwords: this.fb.array([this.inputGroup, this.inputGroup, this.inputGroup, this.inputGroup]),
+    change: this.changeControl
+  });
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.editForm.valueChanges.subscribe(value => console.log(value));
+    this.form.valueChanges.subscribe(value => console.log(value));
+  }
+
+  change() {
+    this.changeControl.patchValue('changed');
   }
 }
