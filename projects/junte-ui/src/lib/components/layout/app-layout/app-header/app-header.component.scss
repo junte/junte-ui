@@ -10,8 +10,8 @@ $menu-item-active-border-color-in-header: $white-color !default;
 $menu-item-active-color-in-header: $white-color !default;
 $menu-item-font-size-in-header: .875rem !default;
 
-$menu-item-icon-font-size-in-header: 16px !default;
-$menu-item-icon-size-in-header: 16px !default;
+$menu-item-icon-font-size-in-header: 18px !default;
+$menu-item-icon-size-in-header: 18px !default;
 $menu-item-icon-color-in-header: $white-color !default;
 
 :host {
@@ -41,13 +41,12 @@ $menu-item-icon-color-in-header: $white-color !default;
           color: $menu-item-color-in-header;
           font-size: $menu-item-font-size-in-header;
         }
-        jnt-icon {
+        jnt-icon[child-of=#{$jnt-link-host}] {
           color: $menu-item-icon-color-in-header;
           font-size: $menu-item-icon-font-size-in-header;
-          [icon]:not([type='font']) {
+          &[type='svg'] {
             width: $menu-item-icon-size-in-header;
             height: $menu-item-icon-size-in-header;
-            fill: $menu-item-icon-color-in-header;
           }
         }
         &[active='true'] {
