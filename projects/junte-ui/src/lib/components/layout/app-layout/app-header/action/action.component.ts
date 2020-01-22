@@ -11,18 +11,18 @@ export class ActionComponent {
   readonly host = 'jnt-action-host';
 
   @PropertyApi({
-    description: 'Action template',
+    description: 'Action label template',
     type: 'TemplateRef'
   })
 
-  @ContentChild('template', {static: false})
-  template: TemplateRef<any>;
+  @ContentChild('actionLabelTemplate', {static: false})
+  actionLabelTemplate: TemplateRef<any>;
 
   @PropertyApi({
-    description: 'Action content',
+    description: 'Action content template',
     type: 'TemplateRef'
   })
 
-  @ContentChild('content', {static: false})
-  content: TemplateRef<any>;
+  @ContentChild('actionContentTemplate', {static: false})
+  actionContentTemplate: TemplateRef<any>;
 }

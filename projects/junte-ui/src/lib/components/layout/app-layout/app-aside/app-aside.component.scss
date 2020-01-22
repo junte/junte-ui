@@ -1,17 +1,7 @@
 @import "../../../../assets/styles/variables";
 @import "../common";
 
-$app-aside-shadow: $shadow-primary-light !default;
-$menu-item-height-in-aside: 50px !default;
-$menu-item-color-in-aside: $primary-text-light-color !default;
-$menu-item-icon-color-in-aside: $primary-text-color !default;
-$menu-item-font-size-in-aside: .875rem !default;
-$menu-item-icon-size-in-aside: 20px !default;
-$menu-item-active-color-in-aside: $primary-color !default;
-$menu-item-active-background-color-in-aside: $secondary-background !default;
-$menu-item-hover-background-color-in-aside: $highlight-background !default;
-$menu-item-hover-color-in-aside: $primary-text-dark-color !default;
-$submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
+$menu-item-height-in-aside: 50px;
 
 :host {
   display: block;
@@ -35,29 +25,29 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         line-height: $menu-item-height-in-aside;
         white-space: nowrap;
         &:hover {
-          background-color: $menu-item-hover-background-color-in-aside;
+          background-color: $highlight-background;
           span, [icon] {
-            color: $menu-item-hover-color-in-aside;
+            color: $primary-text-dark-color;
             opacity: 1;
             transition: all .4s;
           }
         }
         span {
           white-space: nowrap;
-          color: $menu-item-color-in-aside;
-          font-size: $menu-item-font-size-in-aside;
+          color: $primary-text-light-color;
+          font-size: .875rem;
         }
         [icon] {
-          color: $menu-item-icon-color-in-aside;
-          font-size: $menu-item-icon-size-in-aside;
+          color: $primary-text-color;
+          font-size: 20px;
           margin-right: $gutter-normal;
         }
         &[active='true'] {
-          background-color: $menu-item-active-background-color-in-aside;
+          background-color: $secondary-background;
           border-left-color: $primary-color;
           span, [icon] {
             border-bottom: 0;
-            color: $menu-item-active-color-in-aside;
+            color: $primary-color;
             font-weight: $font-weight-bold;
           }
         }
@@ -81,17 +71,17 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         user-select: none;
         span {
           white-space: nowrap;
-          color: $menu-item-color-in-aside;
-          font-size: $menu-item-font-size-in-aside;
+          color: $primary-text-light-color;
+          font-size: .875rem;
         }
         [icon] {
-          color: $menu-item-icon-color-in-aside;
-          font-size: $menu-item-icon-size-in-aside;
+          color: $primary-text-color;
+          font-size: 20px;
         }
         &:hover {
-          background-color: $menu-item-hover-background-color-in-aside;
+          background-color: $highlight-background;
           span, [icon] {
-            color: $menu-item-hover-color-in-aside;
+            color: $primary-text-dark-color;
           }
         }
       }
@@ -101,14 +91,14 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   [button][child-host=#{$jnt-button-host}] {
     border-bottom: 1px solid $muted-color;
     button {
-      color: $menu-item-color-in-aside;
-      font-size: $menu-item-font-size-in-aside;
+      color: $primary-text-light-color;
+      font-size: .875rem;
       padding: 0 $gutter-normal;
       justify-content: flex-start;
       border-left: 4px solid transparent;
       border-radius: 0;
       &:hover, &:focus {
-        color: $menu-item-color-in-aside;
+        color: $primary-text-light-color;
         background-color: $secondary-background;
       }
       span {
@@ -117,8 +107,8 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
         transition: all .4s;
       }
       jnt-icon {
-        color: $menu-item-icon-color-in-aside;
-        font-size: $menu-item-icon-size-in-aside;
+        color: $primary-text-color;
+        font-size: 20px;
         margin-right: $gutter-normal;
       }
    }
@@ -171,7 +161,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
   height: 100%;
   width: $app-aside-width;
   background-color: $primary-background;
-  box-shadow: $app-aside-shadow;
+  box-shadow: $shadow-primary-light;
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
   transition: transform .3s ease, width .3s ease;
@@ -221,7 +211,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
           z-index: 3;
           left: $app-aside-collapsed-width;
           background-color: $primary-background;
-          box-shadow: $submenu-shadow;
+          box-shadow: 5px 2px 8px rgba(0, 0, 0, .25);
           border-left: 1px solid $muted-color;
           border-top-right-radius: $corner-small;
           border-bottom-right-radius: $corner-small;
@@ -236,12 +226,12 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             border-bottom: 1px solid $muted-color;
             a {
               span {
-                color: $menu-item-icon-color-in-aside;
+                color: $primary-text-color;
               }
               &[active='true'] {
                 border-bottom: none;
                 span {
-                  color: $menu-item-active-color-in-aside;
+                  color: $primary-color;
                   font-weight: $font-weight-bold;
                 }
               }
@@ -258,7 +248,7 @@ $submenu-shadow: 5px 2px 8px rgba(0, 0, 0, .25) !default;
             height: $menu-item-height-in-aside;
             line-height: $menu-item-height-in-aside;
             border-bottom: 1px solid $muted-color;
-            color: $menu-item-icon-color-in-aside;
+            color: $primary-text-color;
 
           }
         }

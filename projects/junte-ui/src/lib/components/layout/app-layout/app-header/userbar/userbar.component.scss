@@ -1,10 +1,7 @@
 @import "../../../../../assets/styles/variables";
 @import "../../common";
 
-$user-menu-max-height: 300px !default;
-$user-menu-corner: 0 !default;
-$user-menu-background: $primary-dark-color !default;
-$user-menu-hover-background: $primary-color !default;
+$user-menu-max-height: 300px;
 
 :host {
   position: relative;
@@ -14,7 +11,7 @@ $user-menu-hover-background: $primary-color !default;
   padding: 0 $gutter-normal;
 
   &:hover {
-    background-color: $user-menu-hover-background;
+    background-color: $primary-color;
 
     [usermenu] {
       display: block;
@@ -23,8 +20,7 @@ $user-menu-hover-background: $primary-color !default;
 }
 
 [usermenu] {
-  background: $user-menu-background;
-  border-radius: $user-menu-corner;
+  background: $primary-dark-color;
   padding: $gutter-normal $gutter-big;
   max-height: $user-menu-max-height;
   overflow-y: auto;
