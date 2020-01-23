@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ClipboardModule } from 'ngx-clipboard';
+import { LinkModule } from 'projects/junte-ui/src/lib/components/navigation/link/link.module';
 import { CodeHighlightComponent } from './code-highlight.component';
 import { CommonModule } from '@angular/common';
 import { PrismModule } from '@ngx-prism/core';
@@ -6,7 +8,9 @@ import { PrismModule } from '@ngx-prism/core';
 @NgModule({
   imports: [
     CommonModule,
-    PrismModule
+    PrismModule,
+    LinkModule,
+    ClipboardModule
   ],
   exports: [CodeHighlightComponent],
   declarations: [CodeHighlightComponent],
