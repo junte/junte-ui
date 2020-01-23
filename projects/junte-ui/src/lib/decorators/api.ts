@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
-export const COMPONENT_API_METADATA_KEY = Symbol('component_api_field_meta');
+export const COMPONENT_API_PROPERTIES_METADATA_KEY = Symbol('component_api_properties_field_meta');
+export const COMPONENT_API_METHODS_METADATA_KEY = Symbol('component_api_methods_field_meta');
 
 export class PropertyMetadata {
   description: string;
@@ -16,14 +17,16 @@ export class MethodMetadata {
 
 export function PropertyApi(data: PropertyMetadata) {
   return function (obj: Object, property: string) {
-    const metadata = Reflect.getMetadata(COMPONENT_API_METADATA_KEY, obj) || {};
+    const metadata = Reflect.getMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, obj) || {};
     metadata[property] = data;
-    Reflect.defineMetadata(COMPONENT_API_METADATA_KEY, metadata, obj);
+    Reflect.defineMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, metadata, obj);
   };
 }
 
-export function MethodApi(metadata: PropertyMetadata) {
+export function MethodApi(data: MethodMetadata) {
   return function (obj: Object, property: string) {
-
+    const metadata = Reflect.getMetadata(COMPONENT_API_METHODS_METADATA_KEY, obj) || {};
+    metadata[property] = data;
+    Reflect.defineMetadata(COMPONENT_API_METHODS_METADATA_KEY, metadata, obj);
   };
 }

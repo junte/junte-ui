@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { PropertyApi } from '../../../decorators/api';
+import { MethodApi, PropertyApi } from '../../../decorators/api';
 import { BlockState, Paddings, Schemes, UI, Width } from '../../../enums/ui';
 
 @Component({
@@ -101,6 +101,7 @@ export class BlockComponent {
     this._scheme = scheme || Schemes.primary;
   }
 
+  @MethodApi({description: 'show success animation'})
   success() {
     this._state.success = true;
     setTimeout(() => this._state.success = false, 2100);

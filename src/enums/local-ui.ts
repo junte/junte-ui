@@ -33,12 +33,6 @@ export class LocalUI {
       around: 'around:font:junte-ui-test-layout',
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
-      tiny: 'tiny:font:junte-ui-test-layout',
-      small: 'small:font:junte-ui-test-layout',
-      normal: 'normal:font:junte-ui-test-layout',
-      big: 'big:font:junte-ui-test-layout',
-      large: 'large:font:junte-ui-test-layout',
-      huge: 'huge:font:junte-ui-test-layout',
       baseline: 'baseline:font:junte-ui-test-layout',
       default: 'default:font:junte-ui-test-layout',
       fluid: 'fluid:font:junte-ui-test-layout'
