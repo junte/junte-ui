@@ -12,6 +12,7 @@ import { BreadCrumbTest2Component } from 'src/components/documentation/navigatio
 import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
 import { BreadCrumbTest3Component } from './tests/test3.component';
 import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.module';
+import { HowToUseModule } from '../../shared/how-to-use/how-to-use.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.
     PrismModule,
     BreadcrumbsRoutingModule,
     BrowserPreviewModule,
-    CodeHighlightModule
+    CodeHighlightModule,
+    HowToUseModule
   ],
   exports: [
     BreadcrumbsTestComponent,
@@ -41,5 +43,5 @@ import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.
     BreadcrumbResolver
   ]
 })
-export class BreadcrumbsModule {
+export class BreadcrumbsTestModule {
 }

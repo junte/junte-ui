@@ -1,12 +1,12 @@
 <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
 <jnt-popover #popover></jnt-popover>
-<jnt-app-layout #layout>
+<jnt-app-layout #layout [position]="ui.layout.app.position.fixed">
 
   <jnt-app-header>
-    <ng-template #logo>
+    <ng-template #headerLogoTemplate>
       <img [src]="'assets/images/logo' + (theme === 'dark' ? '-dark' : '-light') + '.svg'">
     </ng-template>
-    <ng-template #topMenu>
+    <ng-template #headerMenuTemplate>
       <jnt-menu>
         <jnt-menu-item [icon]="ui.icons.home" title="Home" [link]="['/']"></jnt-menu-item>
         <jnt-menu-item [icon]="ui.icons.beaker" title="Documentation" [link]="['/documentation']"

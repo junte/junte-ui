@@ -17,31 +17,31 @@ export class AppHeaderComponent {
     type: 'TemplateRef'
   })
 
-  @ContentChild('topMenu', {static: false})
-  topMenu: TemplateRef<any>;
+  @ContentChild('headerMenuTemplate', {static: false})
+  headerMenuTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Logo template',
     type: 'TemplateRef'
   })
 
-  @ContentChild('logo', {static: false})
-  logo: TemplateRef<any>;
+  @ContentChild('headerLogoTemplate', {static: false})
+  headerLogoTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Userbar template',
     type: 'TemplateRef'
   })
 
-  @ContentChild('userbar', {static: false})
-  userbar: TemplateRef<any>;
+  @ContentChild('headerUserbarTemplate', {static: false})
+  headerUserbarTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Actions template',
     type: 'TemplateRef'
   })
 
-  @ContentChild('actions', {static: false})
-  actions: TemplateRef<any>;
+  @ContentChild('headerActionsTemplate', {static: false})
+  headerActionsTemplate: TemplateRef<any>;
 
 }

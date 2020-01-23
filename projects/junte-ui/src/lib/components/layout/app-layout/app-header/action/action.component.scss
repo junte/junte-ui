@@ -1,11 +1,8 @@
 @import "../../../../../assets/styles/variables";
 @import "../../common";
 
-$action-hover-background: $primary-color !default;
-$action-content-background: $primary-background !default;
-$action-content-color: $primary-text-color !default;
-$action-content-width: 400px !default;
-$action-content-height: 400px !default;
+$action-content-width: 400px;
+$action-content-height: 400px;
 
 :host {
   position: relative;
@@ -16,7 +13,7 @@ $action-content-height: 400px !default;
   padding: 0 $gutter-normal;
 
   &:hover {
-    background-color: $action-hover-background;
+    background-color: $primary-color;
 
     [content] {
       display: block;
@@ -25,10 +22,10 @@ $action-content-height: 400px !default;
 }
 
 [content] {
-  background: $action-content-background;
+  background: $primary-background;
   border-radius: 0 0 $corner-small $corner-small;
   padding: $gutter-normal $gutter-big;
-  color: $action-content-color;
+  color: $primary-text-color;
   max-width: $action-content-width;
   width: $action-content-width;
   max-height: $action-content-height;

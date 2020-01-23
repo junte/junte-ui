@@ -41,7 +41,7 @@ import { StackTestComponent } from './layout/stack/stack-test.component';
 import { DropdownTestComponent } from './navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from './navigation/link/link-test.component';
 import { MenuTestComponent } from './navigation/menu/menu-test.component';
-import { PagerTestComponent } from './navigation/pager/pager-test.component';
+import { PaginationTestComponent } from './navigation/pagination/pagination-test.component';
 import { TabsTestComponent } from './navigation/tabs/tabs-test.component';
 import { ModalTestComponent } from './overlays/modal/modal-test.component';
 import { ModalTestFactoryComponent } from './overlays/modal/test.component';
@@ -51,7 +51,7 @@ import { BrowserPreviewModule } from './shared/browser-preview/browser-preview.m
 import { CodeHighlightModule } from './shared/code-highlight/code-highlight.module';
 import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
-import { HowToUseComponent } from './shared/how-to-use/how-to-use.component';
+import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
 
 @NgModule({
   imports: [
@@ -64,11 +64,12 @@ import { HowToUseComponent } from './shared/how-to-use/how-to-use.component';
     AppFooterModule,
     OutletModule,
     BrowserPreviewModule,
-    CodeHighlightModule
+    CodeHighlightModule,
+    HowToUseModule
   ],
   declarations: [
     DocumentationComponent,
-    PagerTestComponent,
+    PaginationTestComponent,
     PipesTestComponent,
     ButtonsTestComponent,
     GridTestComponent,
@@ -111,8 +112,7 @@ import { HowToUseComponent } from './shared/how-to-use/how-to-use.component';
     KanbanTestComponent,
     ComponentApiComponent,
     AccordionTestComponent,
-    ConfirmTestComponent,
-    HowToUseComponent
+    ConfirmTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

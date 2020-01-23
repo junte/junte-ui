@@ -36,13 +36,12 @@ import { StackTestComponent } from './layout/stack/stack-test.component';
 import { DropdownTestComponent } from './navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from './navigation/link/link-test.component';
 import { MenuTestComponent } from './navigation/menu/menu-test.component';
-import { PagerTestComponent } from './navigation/pager/pager-test.component';
+import { PaginationTestComponent } from './navigation/pagination/pagination-test.component';
 import { TabsTestComponent } from './navigation/tabs/tabs-test.component';
 import { ModalTestComponent } from './overlays/modal/modal-test.component';
 import { PopoverTestComponent } from './overlays/popover/popover-test.component';
 import { PipesTestComponent } from './pipes/pipes-test.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
-
 
 export const routes: Routes = [
   {
@@ -135,7 +134,7 @@ export const routes: Routes = [
           },
           {
             path: 'pagination',
-            component: PagerTestComponent,
+            component: PaginationTestComponent,
             data: {breadcrumb: 'Pagination'}
           },
           {
@@ -146,7 +145,7 @@ export const routes: Routes = [
           {
             path: 'breadcrumbs',
             data: {breadcrumb: {label: 'Breadcrumbs'}},
-            loadChildren: () => import('./navigation/breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsModule)
+            loadChildren: () => import('./navigation/breadcrumbs/breadcrumbs.module').then(m => m.BreadcrumbsTestModule)
           }
         ]
       },

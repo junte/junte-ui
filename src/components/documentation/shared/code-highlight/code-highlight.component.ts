@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
 import { html } from 'js-beautify';
 import { UI } from 'junte-ui';
@@ -11,6 +11,10 @@ import { UI } from 'junte-ui';
 export class CodeHighlightComponent implements AfterContentInit {
 
   ui = UI;
+
+  copied = false;
+
+  @Input() file: string;
 
   @ViewChild('pre', {static: true})
   pre: ElementRef<HTMLPreElement>;
@@ -42,4 +46,8 @@ export class CodeHighlightComponent implements AfterContentInit {
     }, 1);
   }
 
+  copy() {
+    this.copied = true;
+    setTimeout(() => this.copied = false, 2100);
+  }
 }

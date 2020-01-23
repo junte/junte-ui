@@ -12,13 +12,15 @@
     </jnt-link>
   </jnt-stack>
   <h3>Requirements</h3>
-  <ol>
-    <li>The avatar must have different sizes: <b>tiny, small, normal, large</b>.</li>
-    <li>The avatar must have different shapes: <b>circle, square</b>.</li>
-    <li>Avatar can contains <b>icon, text or image</b>.</li>
-    <li>If image passed it must replace icon or text.</li>
-    <li>If image or icon are not passed avatar must use first char of text.</li>
-  </ol>
+  <div teaser>
+    <ol>
+      <li>The avatar must have different sizes: <b>tiny, small, normal, large</b>.</li>
+      <li>The avatar must have different shapes: <b>circle, square</b>.</li>
+      <li>Avatar can contains <b>icon, text or image</b>.</li>
+      <li>If image passed it must replace icon or text.</li>
+      <li>If image or icon are not passed avatar must use first char of text.</li>
+    </ol>
+  </div>
 
   <h3>How to use</h3>
 
@@ -64,24 +66,6 @@
           <jnt-form [formGroup]="form" builder>
 
             <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="text" label="Text"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="image" label="Image"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
@@ -100,6 +84,24 @@
                   <jnt-select-option label="Circle" [key]="ui.shape.circle"></jnt-select-option>
                   <jnt-select-option label="Square" [key]="ui.shape.square"></jnt-select-option>
                 </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="text" label="Text"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
+
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="image" label="Image"></jnt-checkbox>
               </jnt-form-control>
             </jnt-form-item>
           </jnt-form>
@@ -215,157 +217,5 @@
     </jnt-tab>
 
   </jnt-tabs>
-
-
-  <!--<h1>Avatar</h1>-->
-  <!--<jnt-stack [gutter]="ui.gutter.large">-->
-  <!--<jnt-stack [type]="ui.stack.type.horizontal">-->
-  <!--<ng-container *ngFor="let shape of [ui.shape.circle, ui.shape.square]">-->
-  <!--<jnt-stack>-->
-  <!--<ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">-->
-  <!--<jnt-stack [type]="ui.stack.type.horizontal">-->
-  <!--<jnt-avatar [icon]="ui.icons.user" [size]="size" [shape]="shape"></jnt-avatar>-->
-  <!--<jnt-avatar text="Bob" [size]="size" [shape]="shape"></jnt-avatar>-->
-  <!--<jnt-avatar [size]="size" [shape]="shape" image="assets/images/bob.jpeg"></jnt-avatar>-->
-  <!--</jnt-stack>-->
-  <!--</ng-container>-->
-  <!--</jnt-stack>-->
-  <!--</ng-container>-->
-
-  <!--</jnt-stack>-->
-
-  <!--<ngx-prism language="html">-->
-  <!--<pre><![CDATA[-->
-  <!--<jnt-avatar image="path"-->
-  <!--[size]="ui.sizes.normal"-->
-  <!--text="Name"-->
-  <!--[shape]="ui.shape.circle"-->
-  <!--[icon]="ui.icons.user">-->
-  <!--</jnt-avatar>]]></pre>-->
-  <!--</ngx-prism>-->
-
-  <!--<h1>Avatars list</h1>-->
-
-  <!--<ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">-->
-  <!--<jnt-avatars-list [size]="size">-->
-  <!--<jnt-avatar image="assets/images/alex.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar text="Bob Marley"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/victoria.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/sofia.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar></jnt-avatar>-->
-  <!--<jnt-avatar></jnt-avatar>-->
-  <!--</jnt-avatars-list>-->
-  <!--</ng-container>-->
-
-  <!--<ngx-prism language="html">-->
-  <!--<pre><![CDATA[-->
-  <!--<jnt-avatars-list [size]="size">-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--</jnt-avatars-list>-->
-  <!--]]></pre>-->
-  <!--</ngx-prism>-->
-  <!--</jnt-stack>-->
-
-  <!--<h1>Avatars group</h1>-->
-  <!--<jnt-stack>-->
-  <!--<ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">-->
-
-  <!--<jnt-stack [type]="ui.stack.type.horizontal">-->
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar image="assets/images/alex.jpeg"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar image="assets/images/bob.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/maria.jpeg"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar image="assets/images/sofia.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/victoria.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/alex.jpeg"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar image="assets/images/alex.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar text="Anton"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/sofia.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/maria.jpeg"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/alex.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/bob.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/sofia.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/victoria.jpeg"></jnt-avatar>-->
-  <!--<jnt-avatar image="assets/images/maria.jpeg"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-
-  <!--</jnt-stack>-->
-  <!--</ng-container>-->
-
-  <!--<ngx-prism language="html">-->
-  <!--<pre><![CDATA[-->
-  <!--<jnt-avatars-group [size]="size">-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--<jnt-avatar image="path"></jnt-avatar>-->
-  <!--</jnt-avatars-group>-->
-  <!--]]></pre>-->
-  <!--</ngx-prism>-->
-
-  <!--</jnt-stack>-->
-
-  <!--<h3>API</h3>-->
-  <!--<h4>jnt-avatar</h4>-->
-  <!--<table api>-->
-  <!--<thead>-->
-  <!--<tr>-->
-  <!--<th>Property</th>-->
-  <!--<th>Description</th>-->
-  <!--<th>Type</th>-->
-  <!--<th>Default</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
-  <!--<tbody>-->
-  <!--<tr>-->
-  <!--<td>[size]</td>-->
-  <!--<td>-</td>-->
-  <!--<td>small | normal | large</td>-->
-  <!--<td>normal</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-  <!--<td>[shape]</td>-->
-  <!--<td>-</td>-->
-  <!--<td>circle | square</td>-->
-  <!--<td>circle</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-  <!--<td>[icon]</td>-->
-  <!--<td>-</td>-->
-  <!--<td>Icons</td>-->
-  <!--<td>-</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-  <!--<td>[text]</td>-->
-  <!--<td>-</td>-->
-  <!--<td>string</td>-->
-  <!--<td>-</td>-->
-  <!--</tr>-->
-  <!--<tr>-->
-  <!--<td>[image]</td>-->
-  <!--<td>-</td>-->
-  <!--<td>string</td>-->
-  <!--<td>-</td>-->
-  <!--</tr>-->
-  <!--</tbody>-->
-  <!--</table>-->
 
 </jnt-container>

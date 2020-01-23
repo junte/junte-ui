@@ -1,6 +1,17 @@
+<p>
+  <jnt-link [icon]="copied ? ui.icons.animated.success : ui.icons.copy"
+            [outline]="ui.outline.ghost"
+            title="Copy"
+            ngxClipboard
+            [cbContent]="code"
+            (cbOnSuccess)="copy()">
+  </jnt-link>
+  the code to <code>{{file}}.component.html</code>
+</p>
+
 <ngx-prism #prism language="html">
   {{code}}
 </ngx-prism>
 <pre #pre>
-<ng-content></ng-content>
+    <ng-content></ng-content>
 </pre>

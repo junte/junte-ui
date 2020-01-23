@@ -56,6 +56,7 @@ export enum FontDefaultIcons {
   settings = 'settings',
   warning = 'warning',
   information = 'information',
+  question = 'question',
   stopping = 'stopping',
   project = 'project',
   money = 'money',
@@ -146,7 +147,6 @@ export enum FontEmojiIcons {
 }
 
 export enum SvgDefaultIcons {
-  question = 'question',
   figma = 'figma',
   gitlab = 'gitlab',
   angular = 'angular',
@@ -421,6 +421,11 @@ export enum GanttRequestStatuses {
   declined = 'declined'
 }
 
+export enum AppLayoutPosition {
+  default = 'default',
+  fixed = 'fixed'
+}
+
 export class UI {
   // <editor-fold desc="icons">
   static icons = {
@@ -500,6 +505,7 @@ export class UI {
     printer: FontIcons.printer + ':font',
     profile: FontIcons.profile + ':font',
     project: FontIcons.project + ':font',
+    question: FontIcons.question + ':font',
     reload: FontIcons.reload + ':font',
     save: FontIcons.save + ':font',
     search: FontIcons.search + ':font',
@@ -520,7 +526,6 @@ export class UI {
     pause: FontIcons.pause + ':font',
     bug: FontIcons.bug + ':font',
     webProgramming: FontIcons.webProgramming + ':font',
-    question: SvgDefaultIcons.question + ':svg:default',
     angular: SvgDefaultIcons.angular + ':svg:default',
     gitlab: SvgDefaultIcons.gitlab + ':svg:default',
     arnold: SvgDefaultIcons.arnold + ':svg:default',
@@ -645,6 +650,11 @@ export class UI {
   };
   static gantt = {
     statuses: GanttRequestStatuses
+  };
+  static layout = {
+    app: {
+      position: AppLayoutPosition
+    }
   };
 }
 
