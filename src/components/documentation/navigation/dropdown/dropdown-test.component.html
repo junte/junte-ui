@@ -23,7 +23,7 @@
   <h3>Playground</h3>
 
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <app-browser-preview preview>
           <ng-template #document let-width="width" let-height="height">
@@ -45,7 +45,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+    <jnt-tab title="Code" #code [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight>
           <![CDATA[

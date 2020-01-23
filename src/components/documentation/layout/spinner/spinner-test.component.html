@@ -23,7 +23,7 @@
   <h3>Playground</h3>
   <jnt-tabs playground>
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.stack.type.horizontal">
           <app-browser-preview>
@@ -51,9 +51,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="Code" [icon]="localUi.icons.layout.code">
+    <jnt-tab title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-code-highlight>
+        <app-code-highlight file="spinner-test">
           <![CDATA[
           <jnt-spinner
             ]]>
@@ -67,7 +67,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+    <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
         <app-component-api selector="jnt-spinner"
                            [target]="types.spinner"></app-component-api>

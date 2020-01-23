@@ -1,39 +1,67 @@
-<table api>
-  <caption>
-    <ngx-prism language="html">
-      <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">...</]]>{{selector}}<![CDATA[>]]>
-    </ngx-prism>
-  </caption>
-  <thead>
-  <tr>
-    <th>Property</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let p of properties | keyvalue">
-    <td>
-      [{{p.key}}]
-    </td>
-    <ng-container *ngIf="p.value as api">
+<ng-container *ngIf="(properties | keyvalue).length">
+  <ngx-prism language="html">
+    <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">...</]]>{{selector}}<![CDATA[>]]>
+  </ngx-prism>
+
+  <table api>
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of properties | keyvalue">
       <td>
-        <span *ngIf="api.type">{{api.type}}</span>
-        <span *ngIf="api.path">{{api.path}}.</span>
-        <ul>
-          <li *ngFor="let o of api.options">
-            {{o}}
-          </li>
-        </ul>
+        [{{p.key}}]
       </td>
+      <ng-container *ngIf="p.value as api">
+        <td>
+          <span *ngIf="api.type">{{api.type}}</span>
+          <span *ngIf="api.path">{{api.path}}.</span>
+          <ul>
+            <li *ngFor="let o of api.options">
+              {{o}}
+            </li>
+          </ul>
+        </td>
+        <td>
+          {{api.description | empty}}
+        </td>
+        <td>
+          {{api.default | empty}}
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-container *ngIf="(methods | keyvalue).length">
+  <ngx-prism language="html">
+    <![CDATA[<]]>{{selector}}<![CDATA[ #selector>...</]]>{{selector}}<![CDATA[>]]>
+  </ngx-prism>
+
+  <table api>
+    <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let m of methods | keyvalue">
       <td>
-        {{api.description | empty}}
+        {{m.key}}()
       </td>
-      <td>
-        {{api.default | empty}}
-      </td>
-    </ng-container>
-  </tr>
-  </tbody>
-</table>
+      <ng-container *ngIf="m.value as api">
+        <td>
+          {{api.description | empty}}
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
