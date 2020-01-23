@@ -98,7 +98,8 @@ export enum FontDefaultIcons {
   cup = 'cup',
   move = 'move',
   pause = 'pause',
-  bug = 'bug'
+  bug = 'bug',
+  anchor = 'anchor'
 }
 
 export enum FontGesturesIcons {
@@ -435,6 +436,7 @@ export class UI {
     add: FontIcons.add + ':font',
     addGroup: FontIcons.addTeam + ':font',
     addUser: FontIcons.addUser + ':font',
+    anchor: FontIcons.anchor + ':font',
     arrowDown: FontIcons.arrowDown + ':font',
     arrowFirst: FontIcons.arrowFirst + ':font',
     arrowLast: FontIcons.arrowLast + ':font',
