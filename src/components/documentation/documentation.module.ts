@@ -41,7 +41,7 @@ import { StackTestComponent } from './layout/stack/stack-test.component';
 import { DropdownTestComponent } from './navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from './navigation/link/link-test.component';
 import { MenuTestComponent } from './navigation/menu/menu-test.component';
-import { PagerTestComponent } from './navigation/pager/pager-test.component';
+import { PaginationTestComponent } from './navigation/pagination/pagination-test.component';
 import { TabsTestComponent } from './navigation/tabs/tabs-test.component';
 import { ModalTestComponent } from './overlays/modal/modal-test.component';
 import { ModalTestFactoryComponent } from './overlays/modal/test.component';
@@ -69,7 +69,7 @@ import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
   ],
   declarations: [
     DocumentationComponent,
-    PagerTestComponent,
+    PaginationTestComponent,
     PipesTestComponent,
     ButtonsTestComponent,
     GridTestComponent,

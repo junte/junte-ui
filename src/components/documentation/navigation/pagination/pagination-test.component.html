@@ -1,0 +1,92 @@
+<jnt-container>
+
+  <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/pagination"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1472%3A3614"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+
+  <h1>Pager</h1>
+
+  <h3>Requirements</h3>
+  <div teaser>
+    <ol>
+      <li>The page button should respond to mouse hover, click</li>
+      <li>The active page button should be highlighted</li>
+      <li>The pager must have next/prev buttons and first/last buttons</li>
+      <li>Overflow must be considered in the pager</li>
+      <li>The pager must have a page size selection</li>
+      <li>The page button should change the display when it is disabled</li>
+    </ol>
+  </div>
+
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'pagination-test', type: 'PaginationTestComponent'}"
+    scss="navigation/pagination"></app-how-to-use>
+
+  <h3>Playground</h3>
+
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.layout.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document>
+              <form [formGroup]="previewForm">
+                <jnt-stack [align]="ui.flex.align.center">
+                  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+                    <div *ngFor="let number of (5 | numberArray:((pageControl.value - 1) * 5))" placeholder>
+                      {{number + 1}}
+                    </div>
+                  </jnt-stack>
+                  <jnt-pagination [pagesCount]="countControl.value" formControlName="page"></jnt-pagination>
+                </jnt-stack>
+              </form>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" form>
+            <jnt-form-item>
+              <jnt-form-label for="count">Pages count</jnt-form-label>
+              <jnt-form-control>
+                <jnt-switcher formControlName="count">
+                  <jnt-switcher-option *ngFor="let page of [2,5,10]" [label]="page" [value]="page"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.layout.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight>
+          <![CDATA[
+          <jnt-pagination
+            ]]>
+            <ng-container *ngIf="countControl.value">
+              <![CDATA[
+              [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-pagination>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.layout.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-pagination" [target]="pager"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
+
+</jnt-container>

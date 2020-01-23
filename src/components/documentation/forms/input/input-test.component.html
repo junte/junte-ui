@@ -29,20 +29,25 @@
   </ol>
   <hr>
 
-  <form [formGroup]="editForm">
+  <form [formGroup]="form">
 
     <h2>Text</h2>
     <jnt-stack formArrayName="texts">
-      <ng-container [formGroupName]="i"
-                    *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index">
+      <ng-container *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index"
+                    [formGroupName]="i">
         <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
           <jnt-input [state]="state" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
         </ng-container>
       </ng-container>
-      <ng-container [formGroupName]="i"
-                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
-        <jnt-input [size]="size" placeholder="Hero name" [disabled]="true" formControlName="name"></jnt-input>
-      </ng-container>
+    </jnt-stack>
+
+    <h2>Disabled</h2>
+    <jnt-input formControlName="disabled" placeholder="Disabled"></jnt-input>
+
+    <h2>Changing</h2>
+    <jnt-stack>
+      <jnt-input formControlName="change" placeholder="Click button"></jnt-input>
+      <jnt-button text="Change" (click)="change()"></jnt-button>
     </jnt-stack>
 
     <h2>Password</h2>
