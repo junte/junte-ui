@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Dropdown</h1>
   <jnt-stack resources [type]="ui.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/dropdown"
@@ -11,11 +10,15 @@
     </jnt-link>
   </jnt-stack>
 
+  <h1>Dropdown</h1>
+  <div teaser>
+    Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re toggled by clicking, not by hovering.
+  </div>
+
   <h3>How to use</h3>
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/assets/styles/components/navigation/dropdown";]]></pre>
-  </ngx-prism>
+  <app-how-to-use
+    [test]="{selector:'dropdown-test', type: 'DropdownTestComponent'}"
+    scss="navigation/dropdown"></app-how-to-use>
 
   <h3>Playground</h3>
 
