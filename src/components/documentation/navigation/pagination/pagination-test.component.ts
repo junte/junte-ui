@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { PaginationComponent, UI, TabComponent } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 const DEFAULT_COUNT = 5;
 const DEFAULT_PAGE = 1;
