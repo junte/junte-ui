@@ -1,9 +1,41 @@
 @import "../../../assets/styles/variables";
 
+$icon-sizes: (
+  #{$size-tiny}: (
+    size: 10px,
+  ),
+  #{$size-small}: (
+    size: 12px,
+  ),
+  #{$size-normal}: (
+    size: 14px,
+  ),
+  #{$size-large}: (
+    size: 16px,
+  )
+);
+
+
+@mixin size($size) {
+  & {
+    font-size: #{map-get($size, size)};
+    &[type='svg'], &[type='animated'] {
+      width: #{map-get($size, size)};
+      height: #{map-get($size, size)};
+    }
+  }
+}
+
 :host {
   display: inline-block;
   vertical-align: middle;
   line-height: 0;
+
+  @each $size, $map in $icon-sizes {
+    &[size='#{$size}'] {
+      @include size($map);
+    }
+  }
 
   &[type='svg'], &[type='animated'] {
     width: 22px;

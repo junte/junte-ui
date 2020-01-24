@@ -204,5 +204,61 @@
       <jnt-icon [icon]="ui.icons.animated.runningMan"></jnt-icon>
     </div>
   </jnt-stack>
+
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document>
+              <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+                <jnt-icon [icon]="ui.icons.user" [size]="sizeControl.value"></jnt-icon>
+                <jnt-icon [icon]="ui.icons.gitlab" [size]="sizeControl.value"></jnt-icon>
+                <jnt-icon [icon]="ui.icons.animated.runningMan" [size]="sizeControl.value"></jnt-icon>
+              </jnt-stack>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Tiny" [key]="ui.sizes.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="icon-test">
+          <![CDATA[
+          <jnt-icon [icon]="ui.icons.user"
+            ]]>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-icon>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-icon" [target]="icon"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+
 </jnt-container>
 

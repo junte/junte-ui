@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import {
   AnimatedIcons,
   FontDefaultIcons,
@@ -9,6 +10,8 @@ import {
   SvgFlagsIcons,
   UI
 } from 'junte-ui';
+import { TabComponent, IconComponent } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 class IconTest {
   constructor(public name: string,
@@ -25,6 +28,10 @@ class IconTest {
 export class IconTestComponent implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
+  icon = IconComponent;
+
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   fontDefault: IconTest[] = [];
   fontGestures: IconTest[] = [];
@@ -32,6 +39,15 @@ export class IconTestComponent implements OnInit {
   animated: IconTest[] = [];
   svgDefault: IconTest[] = [];
   svgFlags: IconTest[] = [];
+
+  sizeControl = new FormControl(UI.sizes.normal);
+
+  form = this.fb.group({
+    size: this.sizeControl,
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit() {
     this.fontDefault = Object.keys(FontDefaultIcons)
@@ -51,6 +67,9 @@ export class IconTestComponent implements OnInit {
 
     this.animated = Object.keys(AnimatedIcons)
       .map(icon => new IconTest(icon, AnimatedIcons[icon]));
+
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
   refresh() {
