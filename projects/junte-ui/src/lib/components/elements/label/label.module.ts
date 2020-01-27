@@ -11,6 +11,9 @@ import { IconModule } from '../icon/icon.module';
   exports: [
     LabelComponent
   ],
+  entryComponents: [
+    LabelComponent
+  ],
   declarations: [
     LabelComponent
   ]

@@ -1,7 +1,6 @@
 @import "../../../assets/styles/variables";
 
-$label-corner: 3px !default;
-$label-icon-spacing: $gutter-small !default;
+$label-corner: 3px;
 
 $label-sizes: (
   #{$size-small}: (
@@ -16,7 +15,7 @@ $label-sizes: (
     height: 24px,
     icon-size: 14px
   )
-) !default;
+);
 
 @mixin size($size) {
   padding: #{map-get($size, padding)};
@@ -53,5 +52,5 @@ span {
 }
 
 [icon][child-host=#{$jnt-icon-host}] {
-  margin-right: $label-icon-spacing;
+  margin-right: $gutter-small;
 }
