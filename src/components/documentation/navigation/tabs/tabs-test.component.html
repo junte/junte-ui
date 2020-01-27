@@ -43,13 +43,13 @@
             <ng-template #document>
               <jnt-tabs [outline]="outlineControl.value">
                 <jnt-tab title="Personal" [icon]="iconsControl.value ? ui.icons.calendar : null">
-                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-template #tabContentTemplate>
                     <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                   </ng-template>
                 </jnt-tab>
                 <jnt-tab title="Security" [icon]="iconsControl.value ? ui.icons.accessLock : null">
-                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-template #tabContentTemplate>
                     <jnt-stack [type]="ui.stack.type.horizontal">
                       <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
@@ -58,7 +58,7 @@
                   </ng-template>
                 </jnt-tab>
                 <jnt-tab title="Settings" [icon]="iconsControl.value ? ui.icons.settings : null">
-                  <jnt-badge *ngIf="iconsControl.value" [count]="5"></jnt-badge>
+                  <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-template #tabContentTemplate>
                     <jnt-stack>
                       <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
@@ -110,7 +110,7 @@
               </ng-container>
               <![CDATA[>]]>
               <ng-container *ngIf="iconsControl.value">
-                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+                <![CDATA[<jnt-badge [value]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
               <ng-template #tabContentTemplate>
@@ -126,7 +126,7 @@
               </ng-container>
               <![CDATA[>]]>
               <ng-container *ngIf="iconsControl.value">
-                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+                <![CDATA[<jnt-badge [value]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
               <ng-template #tabContentTemplate>
@@ -142,7 +142,7 @@
               </ng-container>
               <![CDATA[>]]>
               <ng-container *ngIf="iconsControl.value">
-                <![CDATA[<jnt-badge [count]="5"></jnt-badge>]]>
+                <![CDATA[<jnt-badge [value]="5"></jnt-badge>]]>
               </ng-container>
               <![CDATA[
               <ng-template #tabContentTemplate>

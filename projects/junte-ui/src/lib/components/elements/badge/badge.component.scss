@@ -1,35 +1,35 @@
 @import "../../../assets/styles/variables";
 
-$badge-size: 24px !default;
-$badge-font-size: 12px !default;
-$badge-corner: 3px !default;
+$badge-size: 24px;
+$badge-font-size: 12px;
+$badge-corner: 3px;
 
-$position-right-top: 'right-top';
-$position-left-top: 'left-top';
+$position-right-top: 'rightTop';
+$position-left-top: 'leftTop';
 $position-inline: 'inline';
 
 $badge-positions: (
   #{$position-right-top}: (
     position: 'absolute',
-    right: -$badge-size / 2,
-    top: -$badge-size / 2
+    right: 0,
+    transform: translate(50%, -50%),
   ),
   #{$position-left-top}: (
     position: 'absolute',
-    left: -$badge-size / 2,
-    top: -$badge-size / 2
+    left: 0,
+    transform: translate(-50%, -50%),
   ),
   #{$position-inline}: (
     position: 'static'
   )
-) !default;
+);
 
 @mixin position($position) {
   sup {
     position: #{map-get($position, position)};
-    top: #{map-get($position, top)};
     left: #{map-get($position, left)};
     right: #{map-get($position, right)};
+    transform: #{map-get($position, transform)};
   }
 }
 
@@ -47,6 +47,7 @@ $badge-positions: (
 }
 
 sup {
+  top: 0;
   display: inline-block;
   line-height: $badge-size;
   min-width: $badge-size;

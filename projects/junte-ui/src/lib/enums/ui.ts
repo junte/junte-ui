@@ -372,8 +372,8 @@ export enum DropdownMode {
 }
 
 export enum Positions {
-  rightTop = 'right-top',
-  leftTop = 'left-top',
+  rightTop = 'rightTop',
+  leftTop = 'leftTop',
   inline = 'inline'
 }
 

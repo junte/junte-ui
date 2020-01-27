@@ -18,78 +18,110 @@
   </ol>
 
 
-  <hr>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'badge-test', type: 'BadgeTestComponent'}"
+    scss="elements/badge"></app-how-to-use>
 
-  <br>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <ng-container *ngIf="positionControl.value == ui.position.inline; else positionTemplate">
+                <jnt-badge [value]="valueControl.value"
+                           [overflow]="overflowControl.value ? overflowControl.value : null"
+                           [position]="positionControl.value">
+                </jnt-badge>
+              </ng-container>
+              <ng-template #positionTemplate>
+                <jnt-badge [value]="valueControl.value"
+                           [overflow]="overflowControl.value ? overflowControl.value : null"
+                           [position]="positionControl.value"
+                           [color]="colorControl.value">
+                  <div block></div>
+                </jnt-badge>
+              </ng-template>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="position">Position</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="position">
+                  <jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>
+                  <jnt-select-option label="Right top" [key]="ui.position.rightTop"></jnt-select-option>
+                  <jnt-select-option label="Left top" [key]="ui.position.leftTop"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <jnt-stack>
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <ng-container *ngFor="let color of [ui.colors.purple, ui.colors.blue100, ui.colors.green, ui.colors.red]">
-        <jnt-badge [color]="color" [count]="5">
-          <a href="#" block></a>
-        </jnt-badge>
-      </ng-container>
-    </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="value">Value</jnt-form-label>
+              <jnt-switcher formControlName="value">
+                <jnt-switcher-option label="5" [value]="5"></jnt-switcher-option>
+                <jnt-switcher-option label="10" [value]="10"></jnt-switcher-option>
+                <jnt-switcher-option label="100" [value]="100"></jnt-switcher-option>
+                <jnt-switcher-option label="1000" [value]="1000"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-item>
 
-      <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-badge [color]="ui.colors.purple" [count]="5">
-  <a href="#"></a>
-</jnt-badge>
-]]></pre>
-      </ngx-prism>
+            <jnt-form-item>
+              <jnt-form-label for="overflow">Overflow</jnt-form-label>
+              <jnt-switcher formControlName="overflow">
+                <jnt-switcher-option label="9" [value]="9"></jnt-switcher-option>
+                <jnt-switcher-option label="99" [value]="99"></jnt-switcher-option>
+                <jnt-switcher-option label="999" [value]="999"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-item>
 
-    <jnt-stack [type]="ui.stack.type.horizontal">
-      <div block>
-        <jnt-badge [position]="ui.position.inline" [count]="5"></jnt-badge>
-      </div>
-      <ng-container *ngFor="let position of [ui.position.leftTop, ui.position.rightTop]">
-        <jnt-badge [position]="position" [count]="5">
-          <a href="#" block></a>
-        </jnt-badge>
-      </ng-container>
-    </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="color">Background color</jnt-form-label>
+              <jnt-form-control>
+                <input type="color" formControlName="color">
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
 
-      <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-badge [position]="ui.position.rightTop">
-  <a href="#"></a>
-</jnt-badge>
-]]></pre>
-      </ngx-prism>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="badge-test">
+          <![CDATA[
+          <jnt-badge
+            ]]>
+            <ng-container *ngIf="valueControl.value">
+              <![CDATA[
+              [value]="]]>{{valueControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="overflowControl.value">
+              <![CDATA[
+              [overflow]="]]>{{overflowControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="positionControl.value">
+              <![CDATA[
+              [position]="ui.position.]]>{{positionControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="colorControl.value">
+              <![CDATA[
+              [color]="]]>{{colorControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-badge>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-  </jnt-stack>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-badge" [target]="badge"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
-  <h3>API</h3>
-  <h4>jnt-badge</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[scheme]</td>
-      <td>-</td>
-      <td>primary | secondary | success | fail</td>
-      <td>primary</td>
-    </tr>
-    <tr>
-      <td>[count]</td>
-      <td>-</td>
-      <td>number</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[position]</td>
-      <td>-</td>
-      <td>rightTop | leftTop | inline</td>
-      <td>rightTop</td>
-    </tr>
-    </tbody>
-  </table>
 </jnt-container>
