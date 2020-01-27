@@ -8,7 +8,7 @@
             <span>{{submenu.title}}</span>
             <jnt-stack *ngIf="!!submenu.badges.length" [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center"
                        [gutter]="ui.gutter.tiny">
-              <jnt-badge badge *ngFor="let badge of submenu.badges" [count]="badge.count"
+              <jnt-badge badge *ngFor="let badge of submenu.badges" [value]="badge.value"
                          [position]="ui.position.inline"
                          [color]="badge.color"></jnt-badge>
             </jnt-stack>
@@ -24,7 +24,7 @@
                     [exact]="matching.fullMatch === submenuItem.matching" [source]="submenuItem.link"
                     [icon]="submenuItem.icon" [scheme]="submenuItem.scheme" [title]="submenuItem.title"
                     [target]="submenuItem.target">
-            <jnt-badge *ngFor="let badge of submenuItem.badges" [count]="badge.count"
+            <jnt-badge *ngFor="let badge of submenuItem.badges" [value]="badge.value"
                        [position]="ui.position.inline" [color]="badge.color">
             </jnt-badge>
           </jnt-link>
@@ -38,12 +38,12 @@
       <jnt-link link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching"
                 [source]="item.link" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title"
                 [target]="item.target">
-        <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+        <jnt-badge *ngFor="let badge of item.badges" [value]="badge.value" [position]="ui.position.inline"
                    [color]="badge.color"></jnt-badge>
       </jnt-link>
       <div submenuItems jntSubMenuItems>
         <jnt-link submenuTitle only [source]="item.link" [scheme]="item.scheme" [title]="item.title" [target]="item.target">
-          <jnt-badge *ngFor="let badge of item.badges" [count]="badge.count" [position]="ui.position.inline"
+          <jnt-badge *ngFor="let badge of item.badges" [value]="badge.value" [position]="ui.position.inline"
                      [color]="badge.color"></jnt-badge>
         </jnt-link>
       </div>

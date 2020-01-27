@@ -35,7 +35,7 @@
                         [target]="targetControl.value"
                         [source]="sourceControl.value == sourceType.external ? 'https://google.com' : sourceControl.value == sourceType.local ? localLink : null"
                         title="Documentation link">
-                <jnt-badge *ngIf="badgeControl.value" count="5"></jnt-badge>
+                <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
               </jnt-link>
             </ng-template>
           </app-browser-preview>
@@ -148,7 +148,7 @@
             <![CDATA[>]]>
             <ng-container *ngIf="badgeControl.value">
               <![CDATA[
-              <jnt-badge count="5"></jnt-badge>]]>
+              <jnt-badge [value]="5"></jnt-badge>]]>
             </ng-container>
             <![CDATA[</jnt-link>
           ]]>

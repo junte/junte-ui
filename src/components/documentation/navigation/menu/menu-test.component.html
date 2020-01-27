@@ -37,14 +37,14 @@
                   </jnt-menu-item>
                 </ng-container>
                 <jnt-submenu title="General" [icon]="iconsControl.value ? ui.icons.crown : null">
-                  <jnt-badge *ngIf="iconsControl.value" count="5"></jnt-badge>
+                  <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
                     <jnt-menu-item [scheme]="schemeControl.value"
                                    [icon]="iconsControl.value ? ui.icons.search : null"
                                    [target]="targetControl.value"
                                    [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
                                    [title]="title">
-                      <jnt-badge *ngIf="iconsControl.value" count="7"></jnt-badge>
+                      <jnt-badge *ngIf="iconsControl.value" [value]="7"></jnt-badge>
                     </jnt-menu-item>
                   </ng-container>
                 </jnt-submenu>
@@ -175,7 +175,7 @@
               <![CDATA[>]]>
               <ng-container *ngIf="iconsControl.value">
                 <![CDATA[
-                <jnt-badge count="5"></jnt-badge>
+                <jnt-badge [value]="5"></jnt-badge>
                 ]]>
               </ng-container>
               <![CDATA[
@@ -188,7 +188,7 @@
               <![CDATA[>]]>
               <ng-container *ngIf="iconsControl.value">
                 <![CDATA[
-                <jnt-badge count="5"></jnt-badge>
+                <jnt-badge [value]="5"></jnt-badge>
                 ]]>
               </ng-container>
 
@@ -223,7 +223,7 @@
                   <![CDATA[>]]>
                   <ng-container *ngIf="iconsControl.value">
                     <![CDATA[
-                    <jnt-badge count="5"></jnt-badge>
+                    <jnt-badge [value]="5"></jnt-badge>
                     ]]>
                   </ng-container>
                   <![CDATA[

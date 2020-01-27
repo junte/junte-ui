@@ -9,6 +9,9 @@ import { BadgeComponent } from './badge.component';
   declarations: [
     BadgeComponent
   ],
+  entryComponents: [
+    BadgeComponent
+  ],
   exports: [
     BadgeComponent
   ]
