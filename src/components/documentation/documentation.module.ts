@@ -52,6 +52,7 @@ import { CodeHighlightModule } from './shared/code-highlight/code-highlight.modu
 import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
+import { AnchorTestComponent } from './navigation/anchor/anchor-test.component';
 
 @NgModule({
   imports: [
@@ -112,7 +113,8 @@ import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
     KanbanTestComponent,
     ComponentApiComponent,
     AccordionTestComponent,
-    ConfirmTestComponent
+    ConfirmTestComponent,
+    AnchorTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent

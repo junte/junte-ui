@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DatePickerTestComponent } from 'src/components/documentation/forms/date-picker/date-picker-test.component';
+import { AnchorTestComponent } from 'src/components/documentation/navigation/anchor/anchor-test.component';
 import { OutletComponent } from 'src/components/outlet/outlet.component';
 import { GanttTestComponent } from './collections/gantt/gantt-test.component';
 import { SliderTestComponent } from './collections/slider/slider-test.component';
@@ -141,6 +142,11 @@ export const routes: Routes = [
             path: 'dropdown',
             component: DropdownTestComponent,
             data: {breadcrumb: 'Dropdown'}
+          },
+          {
+            path: 'anchor',
+            component: AnchorTestComponent,
+            data: {breadcrumb: 'Anchor'}
           },
           {
             path: 'breadcrumbs',
