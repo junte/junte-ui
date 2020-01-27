@@ -19,6 +19,9 @@ import { ButtonGroupComponent } from './group/button-group.component';
     ButtonComponent,
     ButtonGroupComponent,
   ],
+  entryComponents: [
+    ButtonComponent
+  ],
   exports: [
     ButtonComponent,
     ButtonGroupComponent

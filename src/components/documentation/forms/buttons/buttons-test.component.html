@@ -11,14 +11,14 @@
     </jnt-link>
   </jnt-stack>
 
-    <p>A control that executes your custom code in response to user interactions.<br>
+  <p>A control that executes your custom code in response to user interactions.<br>
     When you tap a button, or select a button that has focus, the button performs any actions attached
     to it. You communicate the purpose of a button using a text label, an image, or both. The appearance
     of buttons is configurable, so you can tint buttons or format titles to match the design of your app.
-    </p>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uibutton"
+  </p>
+  <jnt-link source="https://developer.apple.com/documentation/uikit/uibutton"
             title="More">
-    </jnt-link>
+  </jnt-link>
 
   <p teaser>Used to activate operations</p>
 
@@ -35,370 +35,171 @@
     <li>The button should be able to stretch across the width of the container or be the width of the content</li>
   </ol>
 
-  <h3>Import</h3>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'button-test', type: 'ButtonTestComponent'}"
+    scss="forms/button"></app-how-to-use>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/button/button.encapsulated";
-    ]]></pre>
-  </ngx-prism>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <jnt-button [text]="textControl.value ? 'Button' : null"
+                          [scheme]="schemeControl.value"
+                          [size]="sizeControl.value"
+                          [outline]="outlineControl.value"
+                          [width]="widthControl.value"
+                          [type]="typeControl.value"
+                          [loading]="loadingControl.value"
+                          [disabled]="disabledControl.value"
+                          [icon]="iconControl.value ? ui.icons.user : null"
+                          [badge]="badgeControl.value ? 5 : null">
+              </jnt-button>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
 
-  <h3>Examples</h3>
+            <jnt-form-item>
+              <jnt-checkbox formControlName="text" label="With text"></jnt-checkbox>
+            </jnt-form-item>
 
-  <h4>Button group</h4>
+            <jnt-form-item>
+              <jnt-form-label for="scheme">Scheme</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="scheme">
+                  <jnt-select-option label="Primary" [key]="ui.schemes.primary"></jnt-select-option>
+                  <jnt-select-option label="Secondary" [key]="ui.schemes.secondary"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.schemes.success"></jnt-select-option>
+                  <jnt-select-option label="Fail" [key]="ui.schemes.fail"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <jnt-stack>
-    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-      <jnt-button-group [size]="size" [scheme]="ui.schemes.primary" [outline]="ui.outline.ghost">
-        <jnt-button [icon]="ui.icons.crown"></jnt-button>
-        <jnt-button [icon]="ui.icons.mail"></jnt-button>
-        <jnt-button [icon]="ui.icons.accessLock"></jnt-button>
-        <jnt-button [icon]="ui.icons.settings"></jnt-button>
-      </jnt-button-group>
-    </ng-container>
-  </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Tiny" [key]="ui.sizes.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="outline">Outline</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="outline">
+                  <jnt-select-option label="Fill" [key]="ui.outline.fill"></jnt-select-option>
+                  <jnt-select-option label="Transparent" [key]="ui.outline.transparent"></jnt-select-option>
+                  <jnt-select-option label="Ghost" [key]="ui.outline.ghost"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-    <h4>A standard button</h4>
+            <jnt-form-item>
+              <jnt-form-label for="width">Width</jnt-form-label>
+              <jnt-switcher formControlName="width">
+                <jnt-switcher-option label="Default" [value]="ui.width.default"></jnt-switcher-option>
+                <jnt-switcher-option label="Fluid" [value]="ui.width.fluid"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-item>
 
-    <jnt-button text="Button"></jnt-button>
+            <jnt-form-item>
+              <jnt-form-label for="type">Type</jnt-form-label>
+              <jnt-switcher formControlName="type">
+                <jnt-switcher-option label="Button" [value]="ui.form.button.type.button"></jnt-switcher-option>
+                <jnt-switcher-option label="Submit" [value]="ui.form.button.type.submit"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-item>
 
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+              <jnt-form-item>
+                <jnt-checkbox formControlName="loading" label="Loading"></jnt-checkbox>
+              </jnt-form-item>
 
-    <h4>Sizes</h4>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="disabled" label="Disabled"></jnt-checkbox>
+              </jnt-form-item>
+            </jnt-stack>
 
-    <p>Button have different sizes:
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="tiny"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="small"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="normal"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="large"></jnt-label>
-    </p>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+              <jnt-form-item>
+                <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+              </jnt-form-item>
 
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-      <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-button text="Button"
-                    [size]="size">
-        </jnt-button>
-      </ng-container>
-    </jnt-stack>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="badge" label="Badge"></jnt-checkbox>
+              </jnt-form-item>
+            </jnt-stack>
 
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button"
-             [size]="ui.sizes.tiny">
- </jnt-button>
- <jnt-button text="Button"
-             [size]="ui.sizes.small">
- </jnt-button>
- <jnt-button text="Button"
-             [size]="ui.sizes.normal">
- </jnt-button>
- <jnt-button text="Button"
-             [size]="ui.sizes.large">
- </jnt-button>
-    ]]></pre>
-    </ngx-prism>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
 
-    <h4>Schemes</h4>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="button-test">
+          <![CDATA[
+          <jnt-button
+            ]]>
+            <ng-container *ngIf="textControl.value">
+              <![CDATA[
+              text="Button"]]>
+            </ng-container>
+            <ng-container *ngIf="schemeControl.value">
+              <![CDATA[
+              [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="outlineControl.value">
+              <![CDATA[
+              [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="widthControl.value">
+              <![CDATA[
+              [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="typeControl.value">
+              <![CDATA[
+              [type]="ui.form.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="loadingControl.value">
+              <![CDATA[
+              [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="disabledControl.value">
+              <![CDATA[
+              [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="iconControl.value">
+              <![CDATA[
+              [icon]="ui.icons.user"]]>
+            </ng-container>
+            <ng-container *ngIf="badgeControl.value">
+              <![CDATA[
+              [badge]="5"]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-button>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-    <p>Button have different schemes:
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="primary"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="secondary"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="success"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="fail"></jnt-label>
-    </p>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-      <ng-container
-        *ngFor="let scheme of [ui.schemes.primary, ui.schemes.secondary, ui.schemes.success, ui.schemes.fail]">
-        <jnt-button text="Button"
-                    [scheme]="scheme">
-        </jnt-button>
-      </ng-container>
-    </jnt-stack>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button"
-             [scheme]="ui.schemes.primary">
- </jnt-button>
- <jnt-button text="Button"
-             [scheme]="ui.schemes.secondary">
- </jnt-button>
- <jnt-button text="Button"
-             [scheme]="ui.schemes.success">
- </jnt-button>
- <jnt-button text="Button"
-             [scheme]="ui.schemes.fail">
- </jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Outline</h4>
-
-    <p>Button have different outlines:
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="fill"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="ghost"></jnt-label>
-      ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="transparent"></jnt-label>
-    </p>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-      <ng-container
-        *ngFor="let outline of [ui.outline.fill, ui.outline.ghost, ui.outline.transparent]">
-        <jnt-button text="Button"
-                    [outline]="outline">
-        </jnt-button>
-      </ng-container>
-    </jnt-stack>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button"
-             [outline]="ui.outline.fill">
- </jnt-button>
- <jnt-button text="Button"
-             [scheme]="ui.outline.ghost">
- </jnt-button>
- <jnt-button text="Button"
-             [scheme]="ui.outline.transparent">
- </jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-
-    <h4>Button with icon</h4>
-
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-      <ng-container
-        *ngFor="let icon of [ui.icons.calendar, ui.icons.gitlab, ui.icons.animated.runningMan]">
-        <jnt-button text="Button"
-                    [icon]="icon">
-        </jnt-button>
-      </ng-container>
-    </jnt-stack>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button"
-             [icon]="ui.icons.calendar">
- </jnt-button>
- <jnt-button text="Button"
-             [icon]="ui.icons.gitlab">
- </jnt-button>
- <jnt-button text="Button"
-             [icon]="ui.icons.animated.runningMan">
- </jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Button without text</h4>
-
-    <jnt-button [icon]="ui.icons.plus"></jnt-button>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button [icon]="ui.icons.plus"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Button with badge</h4>
-
-    <jnt-button text="Button" [badge]="5"></jnt-button>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button" [badge]="5"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Disabled</h4>
-
-    <jnt-button text="Button" [disabled]="true"></jnt-button>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button" [disabled]="true"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Loading</h4>
-
-    <jnt-button text="Button" [loading]="true"></jnt-button>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button" [loading]="true"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Button fluid</h4>
-
-    <p>Property width <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="fluid"></jnt-label>
-      will make the button fit to its parent width</p>
-
-    <jnt-button text="Button" [width]="ui.width.fluid"></jnt-button>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button text="Button" [width]="ui.width.fluid"></jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Builder</h4>
-
-    <jnt-form [formGroup]="form" form>
-
-      <jnt-block [padding]="ui.padding.normal" [width]="ui.width.fluid">
-
-          <jnt-form-item>
-            <jnt-form-label for="scheme">Scheme</jnt-form-label>
-            <jnt-form-control>
-              <jnt-select placeholder="Scheme"
-                          formControlName="scheme">
-                <jnt-select-option *ngFor="let scheme of schemes"
-                                   [label]="scheme.label"
-                                   [key]="scheme.value">
-                </jnt-select-option>
-              </jnt-select>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="size">Size</jnt-form-label>
-            <jnt-form-control>
-              <jnt-select placeholder="Size"
-                          formControlName="size">
-                <jnt-select-option *ngFor="let size of sizes"
-                                   [label]="size.label"
-                                   [key]="size.value">
-                </jnt-select-option>
-              </jnt-select>
-            </jnt-form-control>
-          </jnt-form-item>
-
-          <jnt-form-item>
-            <jnt-form-label for="outline">Outline</jnt-form-label>
-            <jnt-form-control>
-              <jnt-select placeholder="Outline"
-                          formControlName="outline">
-                <jnt-select-option *ngFor="let outline of outlines"
-                                   [label]="outline.label"
-                                   [key]="outline.value">
-                </jnt-select-option>
-              </jnt-select>
-            </jnt-form-control>
-          </jnt-form-item>
-
-
-          <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap" buttons>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        text="Button"></jnt-button>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        [disabled]="true"
-                        text="Button"></jnt-button>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        [loading]="true"
-                        text="Button"></jnt-button>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        [icon]="ui.icons.plus"
-                        text="Button"></jnt-button>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        [icon]="ui.icons.figma"
-                        text="Button" [badge]="5"></jnt-button>
-            <jnt-button [scheme]="schemeControl.value" [size]="sizeControl.value" [outline]="outlineControl.value"
-                        [icon]="ui.icons.animated.runningMan">
-            </jnt-button>
-          </jnt-stack>
-
-      </jnt-block>
-    </jnt-form>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
- <jnt-button [scheme]="ui.schemes.primary"
-             [size]="ui.sizes.small"
-             [outline]="ui.outline.ghost"
-             [icon]="ui.icons.plus"
-             [width]="ui.width.fluid"
-             [badge]="5"
-             [loading]="true"
-             [disabled]="false"
-             [text]="Button">
-</jnt-button>
-    ]]></pre>
-    </ngx-prism>
-
-    <h3>API</h3>
-    <h4>jnt-button</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[scheme]</td>
-        <td>primary | secondary | success | fail</td>
-        <td>primary</td>
-      </tr>
-      <tr>
-        <td>[size]</td>
-        <td>tiny | small | normal | large</td>
-        <td>normal</td>
-      </tr>
-      <tr>
-        <td>[outline]</td>
-        <td>ghost | fill | transparent</td>
-        <td>fill</td>
-      </tr>
-      <tr>
-        <td>[width]</td>
-        <td>default | fluid</td>
-        <td>default</td>
-      </tr>
-      <tr>
-        <td>[icon]</td>
-        <td>Icons</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[text]</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[badge]</td>
-        <td>number</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[disabled]</td>
-        <td>boolean</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>[loading]</td>
-        <td>boolean</td>
-        <td>false</td>
-      </tr>
-      </tbody>
-    </table>
-  </jnt-stack>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-button" [target]="button"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
