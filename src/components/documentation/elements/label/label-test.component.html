@@ -16,69 +16,83 @@
     <li>The label must have a design in accordance with a given color scheme and custom colors</li>
   </ol>
 
-  <hr>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'label-test', type: 'LabelTestComponent'}"
+    scss="elements/label"></app-how-to-use>
 
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <jnt-label label="Doing"
+                         [icon]="iconControl.value ? ui.icons.animated.runningMan : null"
+                         [size]="sizeControl.value"
+                         [color]="colorControl.value">
+              </jnt-label>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
 
-    <ng-container *ngFor="let color of [ui.colors.red, ui.colors.purpleDark, ui.colors.blue, ui.colors.gray, ui.colors.grayDark,
-   ui.colors.green, ui.colors.orange, ui.colors.purple, ui.colors.teal, ui.colors.yellow, ui.colors.purpleLight]">
-      <jnt-label label="Doing" [color]="color"></jnt-label>
-    </ng-container>
-    <jnt-label label="To Do" color="#FFF"></jnt-label>
-    <jnt-label label="To Do"></jnt-label>
-    <jnt-label label="To Do" [icon]="ui.icons.reload"></jnt-label>
-    <jnt-label label="To Do" icon="settings:animated:default"></jnt-label>
-    <jnt-label label="To Do" icon="figma:svg:default"></jnt-label>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="color">Background color</jnt-form-label>
+              <jnt-form-control>
+                <input type="color" formControlName="color">
+              </jnt-form-control>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
 
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="label-test">
+          <![CDATA[
+          <jnt-label label="Doing"
+            ]]>
+            <ng-container *ngIf="iconControl.value">
+              <![CDATA[
+              [icon]="ui.icons.animated.runningMan"]]>
+            </ng-container>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="colorControl.value">
+              <![CDATA[
+              color="]]>{{colorControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-label>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-  <h3>Label sizes</h3>
-
-  <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
-    <ng-container *ngFor="let size of [ui.sizes.normal, ui.sizes.small]">
-      <jnt-label [label]="size" [size]="size"></jnt-label>
-    </ng-container>
-  </jnt-stack>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-label label="Doing" [color]="ui.colors.red"></jnt-label>
-<jnt-label label="To Do" color="#000" [size]="ui.sizes.small"></jnt-label>
-]]></pre>
-  </ngx-prism>
-
-  <h3>API</h3>
-  <h4>jnt-label</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[label]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[color]</td>
-      <td>-</td>
-      <td>Colors | string</td>
-      <td>purple-dark</td>
-    </tr>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>normal | small</td>
-      <td>normal</td>
-    </tr>
-    </tbody>
-  </table>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-label" [target]="label"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
