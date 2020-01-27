@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AnchorModule } from './anchor/anchor.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { LinkModule } from './link/link.module';
@@ -13,7 +14,8 @@ import { TabsModule } from './tabs/tabs.module';
     LinkModule,
     MenuModule,
     PaginationModule,
-    TabsModule
+    TabsModule,
+    AnchorModule
   ]
 })
 export class NavigationModule {
