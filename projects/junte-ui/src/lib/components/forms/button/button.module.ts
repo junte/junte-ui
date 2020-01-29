@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { StackModule } from '../../layout/stack/stack.module';
 import { ButtonComponent } from './button.component';
 import { CommonModule } from '@angular/common';
 import { BadgeModule } from '../../elements/badge/badge.module';
@@ -13,14 +14,16 @@ import { ButtonGroupComponent } from './group/button-group.component';
     AnimationPipeModule,
     BadgeModule,
     IconModule,
-    SpinnerModule
+    SpinnerModule,
+    StackModule
   ],
   declarations: [
     ButtonComponent,
     ButtonGroupComponent,
   ],
   entryComponents: [
-    ButtonComponent
+    ButtonComponent,
+    ButtonGroupComponent
   ],
   exports: [
     ButtonComponent,

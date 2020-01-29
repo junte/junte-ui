@@ -14,7 +14,7 @@ export class BadgeComponent {
   @HostBinding('attr.position')
   _position: Positions = Positions.rightTop;
 
-  private _overflow: number;
+  private _overflow = 99;
 
   @PropertyApi({
     description: 'Number to show in badge',

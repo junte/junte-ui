@@ -3,6 +3,7 @@ import { UI } from 'junte-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { TabComponent } from 'junte-ui';
 import { ButtonComponent } from 'junte-ui';
+import { ButtonGroupComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -15,6 +16,7 @@ export class ButtonsTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   button = ButtonComponent;
+  buttonGroup = ButtonGroupComponent;
 
   @ViewChild('code', {static: false}) code: TabComponent;
 

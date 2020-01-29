@@ -4,9 +4,14 @@
             [scheme]="scheme"
             [outline]="outline"
             [icon]="button.icon"
-            [badge]="button.badge"
             [loading]="button.loading"
             [disabled]="button.disabled"
             [type]="button.type"
             button>
+  <jnt-badge *ngFor="let badge of button.badges"
+             [value]="badge.value"
+             [overflow]="badge.overflow"
+             [color]="badge.color"
+             [position]="badge.position">
+  </jnt-badge>
 </jnt-button>
