@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
+  <jnt-icon *ngIf="icon && !label" [icon]="icon" icon></jnt-icon>
   <div *ngIf="label" label>{{label}}</div>
   <input formControlName="input"
          [type]="type"
@@ -8,11 +8,11 @@
          [max]="max">
 
   <div *ngIf="type === ui.form.input.number" arrows>
-    <button (click)="up()">
-      <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
+    <button [disabled]="inputControl.disabled" (click)="up()">
+      <jnt-icon [icon]="ui.icons.chevronUp" icon></jnt-icon>
     </button>
-    <button (click)="down()">
-      <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
+    <button [disabled]="inputControl.disabled" (click)="down()">
+      <jnt-icon [icon]="ui.icons.chevronDown" icon></jnt-icon>
     </button>
   </div>
 </form>

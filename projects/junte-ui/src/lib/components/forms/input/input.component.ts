@@ -1,5 +1,6 @@
 import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PropertyApi } from '../../../decorators/api';
 import { InputState, InputType, Sizes, TextAlign, UI } from '../../../enums/ui';
 
 @Component({
@@ -20,34 +21,99 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   @HostBinding('attr.state')
-  @Input()
-  state: InputState = InputState.normal;
+  _state: InputState = InputState.normal;
 
   @HostBinding('attr.type')
-  @Input()
-  type: InputType = InputType.text;
+  _type: InputType = InputType.text;
+
+  @HostBinding('attr.size')
+  _size: Sizes = Sizes.normal;
+
+  @PropertyApi({
+    description: 'Input states',
+    path: 'ui.state',
+    default: InputState.normal,
+    options: [InputState.normal, InputState.success, InputState.failed]
+  })
+
+  @Input() set state(state: InputState) {
+    this._state = state || InputState.normal;
+  }
+
+  @PropertyApi({
+    description: 'Input type',
+    path: 'ui.form.input',
+    default: InputType.text,
+    options: [InputType.text, InputType.number, InputType.password]
+  })
+
+  @Input() set type(type: InputType) {
+    this._type = type || InputType.text;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  @PropertyApi({
+    description: 'Icon for input',
+    type: 'string',
+  })
 
   @HostBinding('attr.icon')
   @Input()
   icon: string;
 
-  @HostBinding('attr.size')
-  @Input()
-  size: Sizes = Sizes.normal;
+  @PropertyApi({
+    description: 'Input size',
+    path: 'ui.sizes',
+    default: Sizes.normal,
+    options: [Sizes.small, Sizes.normal, Sizes.large]
+  })
+
+  @Input() set size(size: Sizes) {
+    this._size = size || Sizes.normal;
+  }
+
+  @PropertyApi({
+    description: 'Label for input',
+    type: 'string',
+  })
 
   @HostBinding('attr.label')
   @Input()
   label: string;
 
+  @PropertyApi({
+    description: 'Input text align',
+    path: 'ui.text.align.',
+    default: TextAlign.left,
+    options: [TextAlign.left, TextAlign.right]
+  })
+
   @HostBinding('attr.textAlign')
   @Input()
   textAlign: TextAlign = TextAlign.left;
 
-  @Input()
-  placeholder: string;
+  @PropertyApi({
+    description: 'Input placeholder',
+    type: 'string',
+  })
+
+  @Input() placeholder = '';
+
+  @PropertyApi({
+    description: 'Minimum number value that can be entered. For input with type = number',
+    type: 'number',
+  })
 
   @Input()
   min: number;
+
+  @PropertyApi({
+    description: 'Maximum number value that can be entered. For input with type = number',
+    type: 'number',
+  })
 
   @Input()
   max: number;
@@ -57,10 +123,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.onChange(value);
   }
 
-  inputControl = new FormControl({value: null});
-  form = this.builder.group({input: this.inputControl});
+  inputControl = this.fb.control(null);
 
-  constructor(private builder: FormBuilder) {
+  form = this.fb.group({
+    input: this.inputControl
+  });
+
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {

@@ -14,6 +14,9 @@ import { IconModule } from '../../elements/icon/icon.module';
   exports: [
     InputComponent,
   ],
+  entryComponents: [
+    InputComponent
+  ],
   declarations: [
     InputComponent,
   ]

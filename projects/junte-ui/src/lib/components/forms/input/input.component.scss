@@ -1,32 +1,25 @@
 @import "../../../assets/styles/variables";
 
-$input-padding-y: $gutter-normal !default;
-$input-line-height: normal !default;
-$input-color: $primary-text-color !default;
-$input-border-width: 1px !default;
-$input-box-shadow: none !default;
-$input-corner: $corner-small !default;
-$input-font-size: $font-size-base !default;
-$input-icon-spacing: $gutter-small !default;
-$input-icon-color: $primary-text-light-color !default;
-
 $input-sizes: (
   #{$size-small}: (
     font-size: 11px,
     height: 30px,
-    icon-size: 14px
+    icon-size: 14px,
+    chevron-size: 8px,
   ),
   #{$size-normal}: (
     font-size: 14px,
     height: 38px,
-    icon-size: 16px
+    icon-size: 16px,
+    chevron-size: 10px,
   ),
   #{$size-large}: (
     font-size: 16px,
     height: 50px,
-    icon-size: 18px
+    icon-size: 18px,
+    chevron-size: 12px,
   )
-)!default;
+);
 
 $states: (
   #{$state-normal}: (
@@ -43,7 +36,7 @@ $states: (
   #{$state-failed}: (
     border-color: $fail-color,
   )
-) !default;
+);
 
 @mixin state($state) {
   input {
@@ -59,19 +52,26 @@ $states: (
       border-color: #{map-get($state, border-color-disabled)};
     }
   }
-};
+}
 
 @mixin size($size) {
   input {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, height)};
+    &[type='number'] {
+      padding-right: calc(#{$gutter-small} * 2 + #{map-get($size, chevron-size)});
+    }
   }
-  [icon] {
+  [icon]:not([type='font']) {
     width: #{map-get($size, icon-size)};
     height: #{map-get($size, icon-size)};
   }
+  [arrows] {
+    [icon] {
+      font-size: #{map-get($size, chevron-size)};
+    }
+  }
 }
-
 
 :host {
   display: block;
@@ -88,7 +88,7 @@ $states: (
       [icon] {
         font-size: #{map-get($map, font-size)};
         & + input {
-          padding-left: calc(#{map-get($map, font-size)} + #{$input-padding-y} + #{$input-icon-spacing});
+          padding-left: calc(#{map-get($map, font-size)} + #{$gutter-normal} + #{$gutter-small});
         }
       }
     }
@@ -110,27 +110,34 @@ form {
   align-items: stretch;
   width: 100%;
   position: relative;
-  & > [icon] {
+  > [icon][deep-host=#{$jnt-icon-host}] {
     position: absolute;
     top: 50%;
-    left: $input-padding-y;
+    left: $gutter-normal;
     transform: translateY(-50%);
-    color: $input-icon-color;
-    fill: $input-icon-color;
+    color: $primary-text-light-color;
+    fill: $primary-text-light-color;
+    line-height: 0;
   }
   input {
     outline: 0;
     background-color: $control-background;
-    color: $input-color;
+    color: $primary-text-color;
     width: 100%;
-    padding: 0 $input-padding-y;
-    border-radius: $input-corner;
-    border: $input-border-width solid;
+    padding: 0 $gutter-normal;
+    border-radius: $corner-small;
+    border: 1px solid;
     box-sizing: border-box;
     transition: all .3s;
     &:disabled {
       background-color: $control-disabled-background;
+      color: $control-disabled-label-color;
       pointer-events: none;
+      & + [arrows] {
+        button {
+          cursor: default;
+        }
+      }
     }
   }
 
@@ -139,10 +146,10 @@ form {
     padding: $control-field-label-padding;
     display: flex;
     align-items: center;
-    border-top-left-radius: $input-corner - 1px;
-    border-bottom-left-radius: $input-corner - 1px;
+    border-top-left-radius: $corner-small - 1px;
+    border-bottom-left-radius: $corner-small - 1px;
     color: $control-field-label-color;
-    border: $input-border-width solid $control-field-label-border-color;
+    border: 1px solid $control-field-label-border-color;
     border-right: 0;
     & ~ input {
       border-top-left-radius: 0;
@@ -159,19 +166,17 @@ form {
     bottom: 1px;
     button {
       flex: 1;
-      width: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0 $gutter-small;
+      height: 50%;
       border: 0;
-      padding: 0;
       border-radius: $corner-small;
       cursor: pointer;
+      line-height: 0;
+      background-color: transparent;
       &:focus {
         outline: 0;
       }
     }
   }
 }
-
 

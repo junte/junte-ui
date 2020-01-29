@@ -15,6 +15,7 @@ export class CodeHighlightComponent implements AfterContentInit {
   copied = false;
 
   @Input() file: string;
+  @Input() lang = 'html';
 
   @ViewChild('pre', {static: true})
   pre: ElementRef<HTMLPreElement>;
@@ -41,7 +42,7 @@ export class CodeHighlightComponent implements AfterContentInit {
     setTimeout(() => {
       this.prism.highlightElement({
         code: this.code,
-        language: 'html'
+        language: this.lang
       });
     }, 1);
   }
