@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
 import { Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enums/ui';
 
@@ -180,6 +181,6 @@ export class ButtonComponent {
     type: 'number',
   })
 
-  @Input()
-  badge: number;
+  @ContentChildren(BadgeComponent)
+  badges: QueryList<BadgeComponent>;
 }
