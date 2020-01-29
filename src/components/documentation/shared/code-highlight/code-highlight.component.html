@@ -6,10 +6,10 @@
             [cbContent]="code"
             (cbOnSuccess)="copy()">
   </jnt-link>
-  the code to <code>{{file}}.component.html</code>
+  the code to <code>{{file}}</code>
 </p>
 
-<ngx-prism #prism language="html">
+<ngx-prism #prism [language]="lang">
   {{code}}
 </ngx-prism>
 <pre #pre>

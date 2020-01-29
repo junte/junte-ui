@@ -1,40 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { InputComponent, TabComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-input-test',
   templateUrl: './input-test.component.html',
   styleUrls: ['./input-test.component.scss']
 })
-export class InputTestComponent implements OnInit {
+export class InputTestComponent implements OnInit, AfterViewInit {
 
   ui = UI;
+  localUi = LocalUI;
+  input = InputComponent;
 
-  changeControl = new FormControl();
-  disabledControl = new FormControl({value: null, disabled: true});
+  @ViewChild('code', {static: false}) code: TabComponent;
 
-  inputGroup = this.fb.group({
-    name: this.fb.control([null]),
-    password: this.fb.control([null])
-  });
+  typeControl = this.fb.control(UI.form.input.text);
+  stateControl = this.fb.control(UI.state.normal);
+  sizeControl = this.fb.control(UI.sizes.normal);
+  iconControl = this.fb.control(false);
+  labelControl = this.fb.control(false);
+  alignControl = this.fb.control(UI.text.align.left);
+  placeholderControl = this.fb.control(true);
+  disabledControl = this.fb.control(false);
+  minControl = this.fb.control(1);
+  maxControl = this.fb.control(10);
+
+  inputControl = this.fb.control(null);
 
   form = this.fb.group({
-    texts: this.fb.array([this.inputGroup, this.inputGroup, this.inputGroup, this.inputGroup]),
+    type: this.typeControl,
+    state: this.stateControl,
+    size: this.sizeControl,
+    icon: this.iconControl,
+    label: this.labelControl,
+    align: this.alignControl,
+    placeholder: this.placeholderControl,
+    max: this.maxControl,
+    min: this.minControl,
     disabled: this.disabledControl,
-    passwords: this.fb.array([this.inputGroup, this.inputGroup, this.inputGroup, this.inputGroup]),
-    change: this.changeControl
   });
 
+  inputForm = this.fb.group({
+    input: this.inputControl
+  });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe(value => console.log(value));
+    this.minControl.disable();
+    this.maxControl.disable();
+
+    this.disabledControl.valueChanges.subscribe((disabled) => {
+      disabled ? this.inputControl.disable() : this.inputControl.enable();
+    });
+
+    this.typeControl.valueChanges.subscribe((type) => {
+      if (type !== UI.form.input.number) {
+        this.minControl.disable();
+        this.maxControl.disable();
+      } else {
+        this.minControl.enable();
+        this.maxControl.enable();
+      }
+    });
   }
 
-  change() {
-    this.changeControl.patchValue('changed');
+  ngAfterViewInit() {
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 }
