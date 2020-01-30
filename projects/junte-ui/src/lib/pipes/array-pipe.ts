@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({name: 'mockArray'})
 export class MockArrayPipe implements PipeTransform {
-  transform(length: number): any[] {
-    return Array.apply(null, Array(length)).map((v, i) => i);
+  transform(length: number, start: number = 0): number[] {
+    return Array.apply(null, Array(length)).map((v, i) => i + start);
   }
 }
 

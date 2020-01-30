@@ -1,10 +1,11 @@
 export type Key = number | string;
 
 export interface IOption {
-  icon?: Key;
+  index: number;
   key: Key;
   label: string;
   value: any;
+  icon?: Key;
 }
 
 export class Options {

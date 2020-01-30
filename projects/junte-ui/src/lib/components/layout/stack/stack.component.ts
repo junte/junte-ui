@@ -19,7 +19,7 @@ export class StackComponent {
   @HostBinding('attr.align')
   _align: FlexAlign = FlexAlign.start;
 
-  @HostBinding('attr.justify')
+  @HostBinding('attr.justifyControl')
   _justify: FlexJustify = FlexJustify.start;
 
   @HostBinding('attr.wrap')
@@ -70,7 +70,7 @@ export class StackComponent {
 
   @PropertyApi({
     description: 'Horizontal align of elements',
-    path: 'ui.flex.justify',
+    path: 'ui.flex.justifyControl',
     default: FlexJustify.start,
     options: [FlexJustify.start,
       FlexJustify.center,

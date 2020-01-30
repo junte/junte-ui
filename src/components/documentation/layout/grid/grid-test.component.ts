@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ColComponent, ContainerComponent, RowComponent, UI, TabComponent } from 'junte-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ColComponent, ContainerComponent, RowComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -16,25 +16,14 @@ export class GridTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  columns = new FormControl(12);
-  gutter = new FormControl(UI.gutter.normal);
-  span = new FormControl(4);
-  align = new FormControl(UI.flex.align.start);
-  justify = new FormControl(UI.flex.justify.start);
-  wrap = new FormControl(UI.flex.wrap.wrap);
-  direction = new FormControl(UI.flex.direction.row);
-  alignContent = new FormControl(UI.flex.alignContent.start);
-
+  gutterControl = this.fb.control(null);
+  alignControl = this.fb.control(null);
+  spanControl = this.fb.control(null);
 
   form = this.fb.group({
-    columns: this.columns,
-    align: this.align,
-    justify: this.justify,
-    wrap: this.wrap,
-    direction: this.direction,
-    alignContent: this.alignContent,
-    span: this.span,
-    gutter: this.gutter
+    gutter: this.gutterControl,
+    align: this.alignControl,
+    span: this.spanControl
   });
 
   constructor(private fb: FormBuilder) {

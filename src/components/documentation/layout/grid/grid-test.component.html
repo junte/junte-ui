@@ -21,173 +21,72 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
-          <app-browser-preview>
-            <ng-template #document let-height="height">
-              <jnt-container>
-                <jnt-row [direction]="direction.value"
-                         [align]="align.value"
-                         [justify]="justify.value"
-                         [alignContent]="alignContent.value"
-                         [wrap]="wrap.value"
-                         [gutter]="gutter.value"
-                         row>
-                  <jnt-col *ngFor="let column of columns.value | mockArray"
-                           [span]="span.value">
-                    <div block
-                         [style.font-size.px]="height / 10"
-                         [style.height.px]="height / 4">{{column + 1}}
-                    </div>
-                  </jnt-col>
-                </jnt-row>
-              </jnt-container>
-            </ng-template>
-          </app-browser-preview>
-          <jnt-form [formGroup]="form" builder>
-            <jnt-form-item>
-              <jnt-form-label for="columns">Number of columns</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="columns">
-                  <jnt-select-option *ngFor="let column of [1,2,3,4,5,6,7,8,9,10,11,12]"
-                                     [label]="column"
-                                     [key]="column"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+        <jnt-row>
+          <jnt-col [desktop]="8">
+            <app-browser-preview>
+              <ng-template #document let-height="height">
+                <jnt-container>
+                  <jnt-row row [align]="alignControl.value"
+                           [gutter]="gutterControl.value">
+                    <jnt-col *ngFor="let block of 25 | mockArray"
+                             [span]="spanControl.value">
+                      <div block
+                           [style.height.px]="alignControl.value !== ui.flex.align.stretch || (block + 1) % 6 === 0 ? 40 + 20 * (block % 6) : null">
+                        {{block + 1}}
+                      </div>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-container>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [desktop]="4">
+            <jnt-form [formGroup]="form" builder>
 
-            <jnt-form-item>
-              <jnt-form-label for="gutter">Gutter</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="gutter">
-                  <jnt-select-option label="Tiny" [key]="ui.gutter.tiny"></jnt-select-option>
-                  <jnt-select-option label="Small" [key]="ui.gutter.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.gutter.normal"></jnt-select-option>
-                  <jnt-select-option label="Big" [key]="ui.gutter.big"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.gutter.large"></jnt-select-option>
-                  <jnt-select-option label="Huge" [key]="ui.gutter.huge"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+              <jnt-form-item>
+                <jnt-form-label for="gutter">Gutter</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="gutter" placeholder="Normal">
+                    <jnt-select-option label="Tiny" [key]="ui.gutter.tiny"></jnt-select-option>
+                    <jnt-select-option label="Small" [key]="ui.gutter.small"></jnt-select-option>
+                    <jnt-select-option label="Normal" [key]="ui.gutter.normal"></jnt-select-option>
+                    <jnt-select-option label="Big" [key]="ui.gutter.big"></jnt-select-option>
+                    <jnt-select-option label="Large" [key]="ui.gutter.large"></jnt-select-option>
+                    <jnt-select-option label="Huge" [key]="ui.gutter.huge"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-form-label for="span">Span</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="span">
-                  <jnt-select-option *ngFor="let count of [1,2,3,4,5,6,7,8,9,10,11,12]"
-                                     [label]="count"
-                                     [key]="count"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+              <jnt-form-item>
+                <jnt-form-label for="align">Align</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="align" placeholder="Start">
+                    <jnt-select-option label="Start" [key]="ui.flex.align.start"
+                                       [icon]="localUi.icons.layout.start"></jnt-select-option>
+                    <jnt-select-option label="Center" [key]="ui.flex.align.center"
+                                       [icon]="localUi.icons.layout.center"></jnt-select-option>
+                    <jnt-select-option label="End" [key]="ui.flex.align.end"
+                                       [icon]="localUi.icons.layout.end"></jnt-select-option>
+                    <jnt-select-option label="Stretch" [key]="ui.flex.align.stretch"
+                                       [icon]="localUi.icons.layout.stretch"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-form-label for="direction">Direction</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="direction">
-                  <jnt-select-option label="Row" [icon]="localUi.icons.layout.horizontal"
-                                     [key]="ui.flex.direction.row"></jnt-select-option>
-                  <jnt-select-option label="Row reverse"
-                                     [key]="ui.flex.direction.rowReverse"></jnt-select-option>
-                  <jnt-select-option label="Column"
-                                     [key]="ui.flex.direction.column"
-                                     [icon]="localUi.icons.layout.vertical"></jnt-select-option>
-                  <jnt-select-option label="Column reverse"
-                                     [key]="ui.flex.direction.columnReverse"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+              <jnt-form-item>
+                <jnt-form-label for="span">Column span</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="span">
+                    <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
+                                       [label]="count"
+                                       [key]="count"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-form-label for="align">Align</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="align">
-                  <jnt-select-option label="Start" [key]="ui.flex.align.start"
-                                     [icon]="localUi.icons.layout.start"></jnt-select-option>
-                  <jnt-select-option label="End" [key]="ui.flex.align.end"
-                                     [icon]="localUi.icons.layout.end"></jnt-select-option>
-                  <jnt-select-option label="Stretch" [key]="ui.flex.align.stretch"
-                                     [icon]="localUi.icons.layout.stretch"></jnt-select-option>
-                  <jnt-select-option label="Baseline" [key]="ui.flex.align.baseline"
-                                     [icon]="localUi.icons.layout.baseline"></jnt-select-option>
-                  <jnt-select-option label="Center" [key]="ui.flex.align.center"
-                                     [icon]="localUi.icons.layout.center"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-label for="justify">Justify</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="justify">
-                  <jnt-select-option label="Start"
-                                     [key]="ui.flex.justify.start"
-                                     [icon]="localUi.icons.layout.start"></jnt-select-option>
-                  <jnt-select-option label="End"
-                                     [key]="ui.flex.justify.end"
-                                     [icon]="localUi.icons.layout.end"></jnt-select-option>
-                  <jnt-select-option label="Around"
-                                     [key]="ui.flex.justify.around"
-                                     [icon]="localUi.icons.layout.around"></jnt-select-option>
-                  <jnt-select-option label="Between"
-                                     [key]="ui.flex.justify.between"
-                                     [icon]="localUi.icons.layout.between"></jnt-select-option>
-                  <jnt-select-option label="Evenly"
-                                     [key]="ui.flex.justify.evenly"
-                                     [icon]="localUi.icons.layout.evenly"></jnt-select-option>
-                  <jnt-select-option label="Center"
-                                     [key]="ui.flex.justify.center"
-                                     [icon]="localUi.icons.layout.center"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-label for="alignContent">Align content</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="alignContent">
-                  <jnt-select-option label="Start"
-                                     [key]="ui.flex.alignContent.start"
-                                     [icon]="localUi.icons.layout.start"></jnt-select-option>
-                  <jnt-select-option label="End"
-                                     [key]="ui.flex.alignContent.end"
-                                     [icon]="localUi.icons.layout.end"></jnt-select-option>
-                  <jnt-select-option label="Around"
-                                     [key]="ui.flex.alignContent.around"
-                                     [icon]="localUi.icons.layout.around"></jnt-select-option>
-                  <jnt-select-option label="Between"
-                                     [key]="ui.flex.alignContent.between"
-                                     [icon]="localUi.icons.layout.between"></jnt-select-option>
-                  <jnt-select-option label="Evenly"
-                                     [key]="ui.flex.alignContent.evenly"
-                                     [icon]="localUi.icons.layout.evenly"></jnt-select-option>
-                  <jnt-select-option label="Center"
-                                     [key]="ui.flex.alignContent.center"
-                                     [icon]="localUi.icons.layout.center"></jnt-select-option>
-                  <jnt-select-option label="Stretch"
-                                     [key]="ui.flex.alignContent.stretch"
-                                     [icon]="localUi.icons.layout.stretch"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-label for="wrap">Wrap</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="wrap">
-                  <jnt-select-option label="Wrap"
-                                     [key]="ui.flex.wrap.wrap"
-                                     [icon]="localUi.icons.layout.wrap"></jnt-select-option>
-                  <jnt-select-option label="No wrap"
-                                     [key]="ui.flex.wrap.noWrap"
-                                     [icon]="localUi.icons.layout.nowrap"></jnt-select-option>
-                  <jnt-select-option label="Wrap reverse"
-                                     [key]="ui.flex.wrap.reverse"
-                                     [icon]="localUi.icons.layout.reverse"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
-          </jnt-form>
-        </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
 
       </ng-template>
     </jnt-tab>
@@ -199,30 +98,23 @@
           <jnt-container>
             <jnt-row
               ]]>
-              <ng-container *ngIf="direction.value">
+              <ng-container *ngIf="gutterControl.value">
                 <![CDATA[
-                [direction]="ui.flex.direction.]]>{{direction.value}}<![CDATA["]]>
+                [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
               </ng-container>
-              <ng-container *ngIf="align.value">
+              <ng-container *ngIf="alignControl.value">
                 <![CDATA[
-                [align]="ui.flex.align.]]>{{align.value}}<![CDATA["]]>
-              </ng-container>
-              <ng-container *ngIf="alignContent.value">
-                <![CDATA[
-                [alignContent]="ui.flex.alignContent.]]>{{alignContent.value}}<![CDATA["]]>
-              </ng-container>
-              <ng-container *ngIf="justify.value">
-                <![CDATA[
-                [justify]="ui.flex.justify.]]>{{justify.value}}<![CDATA["]]>
-              </ng-container>
-              <ng-container *ngIf="wrap.value">
-                <![CDATA[
-                [wrap]="ui.flex.wrap.]]>{{wrap.value}}<![CDATA["]]>
+                [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
               </ng-container>
               <![CDATA[>]]>
-              <ng-container *ngFor="let i of columns.value | mockArray">
+              <ng-container *ngFor="let i of 12 | mockArray">
                 <![CDATA[
-                <jnt-col [span]="]]>{{span.value}}<![CDATA[">
+                <jnt-col]]>
+                  <ng-container *ngIf="spanControl.value">
+                    <![CDATA[
+                    [span]="]]>{{spanControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
                   <div>]]>{{i + 1}}<![CDATA[</div>
                 </jnt-col>
                 ]]>

@@ -8,13 +8,6 @@ $grid-columns: 12;
   padding-right: $grid-gutter;
   box-sizing: border-box;
   position: relative;
-  @for $i from 1 through $grid-columns {
-    &[span = "#{$i}"] {
-      $width: $i/$grid-columns;
-      flex: 0 0 percentage($width);
-      max-width: percentage($width);
-    }
-  }
 
   @each $breakpoints, $value in $grid-breakpoints {
     @media screen and (min-width: $value) {
@@ -28,22 +21,11 @@ $grid-columns: 12;
     }
   }
 
-  &[alignSelf='auto'] {
-    align-self: auto;
-  }
-  &[alignSelf='start'] {
-    align-self: flex-start;
-  }
-  &[alignSelf='center'] {
-    align-self: center;
-  }
-  &[alignSelf='end'] {
-    align-self: flex-end;
-  }
-  &[alignSelf='baseline'] {
-    align-self: baseline;
-  }
-  &[alignSelf='stretch'] {
-    align-self: stretch;
+  @for $i from 1 through $grid-columns {
+    &[span = "#{$i}"] {
+      $width: $i/$grid-columns;
+      flex: 0 0 percentage($width);
+      max-width: percentage($width);
+    }
   }
 }

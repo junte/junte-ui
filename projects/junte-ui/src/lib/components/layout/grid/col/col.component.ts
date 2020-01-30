@@ -1,6 +1,10 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { FlexAlignSelf } from '../../../../enums/ui';
+
+const MOBILE_COLUMNS = 12;
+const TABLET_COLUMNS = 6;
+const DESKTOP_COLUMNS = 1;
+const WIDE_COLUMNS = 1;
 
 @Component({
   selector: 'jnt-col',
@@ -10,38 +14,36 @@ export class ColComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-col-host';
 
-  @HostBinding('attr.span')
-  _span = 1;
+  @HostBinding('attr.tablet')
+  get _tablet() {
+    return this.tablet === TABLET_COLUMNS && this.mobile !== MOBILE_COLUMNS ? this.mobile : this.tablet;
+  }
 
-  @HostBinding('attr.alignSelf')
-  _alignSelf: FlexAlignSelf = FlexAlignSelf.auto;
+  @HostBinding('attr.desktop')
+  get _desktop() {
+    return this.desktop === DESKTOP_COLUMNS && this.tablet !== TABLET_COLUMNS ? this.tablet : this.desktop;
+  }
 
-
-  @PropertyApi({
-    description: 'Number of cells to occupy',
-    type: 'number: 1...12',
-    default: '1'
-  })
-  @Input() set span(span: number) {
-    this._span = span || 1;
+  @HostBinding('attr.wide')
+  get _wide() {
+    return this.wide === WIDE_COLUMNS && this.desktop !== DESKTOP_COLUMNS ? this.desktop : this.wide;
   }
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution < 768px',
     type: 'number: 1...12',
-    default: '1'
+    default: '6'
   })
   @HostBinding('attr.mobile')
-  @Input() mobile: number = null;
+  @Input() mobile = MOBILE_COLUMNS;
 
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen resolution >= 768px',
     type: 'number: 1...12',
-    default: '1'
+    default: '3'
   })
-  @HostBinding('attr.tablet')
-  @Input() tablet: number = null;
+  @Input() tablet = TABLET_COLUMNS;
 
 
   @PropertyApi({
@@ -49,8 +51,7 @@ export class ColComponent {
     type: 'number: 1...12',
     default: '1'
   })
-  @HostBinding('attr.desktop')
-  @Input() desktop: number = null;
+  @Input() desktop = DESKTOP_COLUMNS;
 
 
   @PropertyApi({
@@ -58,23 +59,14 @@ export class ColComponent {
     type: 'number: 1...12',
     default: '1'
   })
-  @HostBinding('attr.wide')
-  @Input() wide: number = null;
-
+  @Input() wide = WIDE_COLUMNS;
 
   @PropertyApi({
-    description: 'Vertical align of specific elements.',
-    path: 'ui.flex.alignSelf',
-    default: FlexAlignSelf.auto,
-    options: [FlexAlignSelf.auto,
-      FlexAlignSelf.start,
-      FlexAlignSelf.end,
-      FlexAlignSelf.baseline,
-      FlexAlignSelf.stretch,
-      FlexAlignSelf.center]
+    description: 'Number of cells to occupy for all breakpoints',
+    type: 'number: 1...12',
+    default: 'null'
   })
-  @Input() set alignSelf(align: FlexAlignSelf) {
-    this._alignSelf = align || FlexAlignSelf.auto;
-  }
+  @HostBinding('attr.span')
+  @Input() span = null;
 
 }

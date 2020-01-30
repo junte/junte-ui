@@ -175,10 +175,16 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         .pipe(finalize(() => this.loading = false))
         .subscribe(objects => {
           this.options.found = {};
-          objects.forEach(o => {
+          objects.forEach((o, index) => {
             const key = o[this.keyField];
             if (!!key) {
-              this.options.found[key.toString()] = {key, label: o[this.labelField], icon: o.icon, value: o};
+              this.options.found[key.toString()] = {
+                index,
+                key,
+                label: o[this.labelField],
+                icon: o.icon,
+                value: o
+              };
             }
           });
           this.changes.options++;
@@ -211,18 +217,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   ngAfterContentInit() {
     const convert = (options: SelectOptionComponent[]) => {
       this.options.persisted = {};
-      options.forEach(({key, label, icon, value}) =>
-        this.options.persisted[key.toString()] = {key, label, icon, value});
+      options.forEach(({key, label, icon, value}, index) =>
+        this.options.persisted[key.toString()] = {index, key, label, icon, value});
       this.changes.options++;
     };
 
     convert(this.optionsFromMarkup.toArray());
     this.optionsFromMarkup.changes.subscribe(options =>
       convert(options.toArray()));
-  }
-
-  fitInputWidth() {
-
   }
 
   select(option: IOption) {
