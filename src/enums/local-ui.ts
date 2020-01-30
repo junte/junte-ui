@@ -6,20 +6,20 @@ export class LocalUI {
     api: 'api:svg:local',
     layout: {
       padding: {
-        tiny: 'paddingTiny:font:junte-ui-test-layout',
-        small: 'paddingSmall:font:junte-ui-test-layout',
-        normal: 'paddingNormal:font:junte-ui-test-layout',
-        large: 'paddingLarge:font:junte-ui-test-layout',
-        big: 'paddingBig:font:junte-ui-test-layout',
-        huge: 'paddingHuge:font:junte-ui-test-layout'
+        tiny: 'padding-tiny:font:junte-ui-test-layout',
+        small: 'padding-small:font:junte-ui-test-layout',
+        normal: 'padding-normal:font:junte-ui-test-layout',
+        large: 'padding-large:font:junte-ui-test-layout',
+        big: 'padding-big:font:junte-ui-test-layout',
+        huge: 'padding-huge:font:junte-ui-test-layout'
       },
-      size: {
-        tiny: 'tiny:font:junte-ui-test-layout',
-        small: 'small:font:junte-ui-test-layout',
-        normal: 'normal:font:junte-ui-test-layout',
-        big: 'big:font:junte-ui-test-layout',
-        large: 'large:font:junte-ui-test-layout',
-        huge: 'huge:font:junte-ui-test-layout',
+      gutter: {
+        tiny: 'gutter-tiny:font:junte-ui-test-layout',
+        small: 'gutter-small:font:junte-ui-test-layout',
+        normal: 'gutter-normal:font:junte-ui-test-layout',
+        big: 'gutter-big:font:junte-ui-test-layout',
+        large: 'gutter-large:font:junte-ui-test-layout',
+        huge: 'gutter-huge:font:junte-ui-test-layout',
       },
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
