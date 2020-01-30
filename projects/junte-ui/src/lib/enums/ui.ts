@@ -1,3 +1,5 @@
+import { RowAlign } from '../components/layout/grid/enums';
+
 export enum FontDefaultIcons {
   plus = 'plus',
   minus = 'minus',
@@ -341,6 +343,7 @@ export enum StackType {
 }
 
 export enum Gutter {
+  none = 'none',
   tiny = 'tiny',
   small = 'small',
   normal = 'normal',
@@ -654,6 +657,11 @@ export class UI {
     statuses: GanttRequestStatuses
   };
   static layout = {
+    grid: {
+      row: {
+        align: RowAlign
+      }
+    },
     app: {
       position: AppLayoutPosition
     }

@@ -1,6 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { FlexAlign, Gutter } from '../../../../enums/ui';
+import { Gutter } from '../../../../enums/ui';
+import { RowAlign } from '../enums';
 
 @Component({
   selector: 'jnt-row',
@@ -11,26 +12,26 @@ export class RowComponent {
   @HostBinding('attr.host') readonly host = 'jnt-row-host';
 
   @HostBinding('attr.align')
-  _align: FlexAlign = FlexAlign.start;
+  _align: RowAlign = RowAlign.start;
 
   @HostBinding('attr.gutter')
   _gutter: Gutter = Gutter.normal;
 
   @PropertyApi({
-    description: 'Vertical align of elements',
-    path: 'ui.flex.align',
-    default: FlexAlign.start,
-    options: [FlexAlign.start,
-      FlexAlign.center,
-      FlexAlign.end,
-      FlexAlign.stretch]
+    description: 'Vertical align columns',
+    path: 'ui.layout.row.align',
+    default: RowAlign.start,
+    options: [RowAlign.start,
+      RowAlign.center,
+      RowAlign.end,
+      RowAlign.stretch]
   })
-  @Input() set align(align: FlexAlign) {
-    this._align = align || FlexAlign.start;
+  @Input() set align(align: RowAlign) {
+    this._align = align || RowAlign.start;
   }
 
   @PropertyApi({
-    description: 'Margin top for columns',
+    description: 'Top margin of columns while wrapping',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.tiny,

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Language } from '../code-highlight/enum';
 
 @Component({
   selector: 'app-how-to-use',
@@ -6,6 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./how-to-use.component.scss']
 })
 export class HowToUseComponent {
+
+  language = Language;
 
   @Input()
   test: { selector: string, type: string };

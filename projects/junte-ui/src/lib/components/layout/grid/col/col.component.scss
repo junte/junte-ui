@@ -2,12 +2,44 @@
 
 $grid-columns: 12;
 
+$col-paddings: (
+  #{$gutter-tiny-name}: (
+    padding: $gutter-tiny
+  ),
+  #{$gutter-small-name}: (
+    padding: $gutter-small
+  ),
+  #{$gutter-normal-name}: (
+    padding: $gutter-normal
+  ),
+  #{$gutter-big-name}: (
+    padding: $gutter-big
+  ),
+  #{$gutter-large-name}: (
+    padding: $gutter-large
+  ),
+  #{$gutter-huge-name}: (
+    padding: $gutter-huge
+  )
+);
+
+@mixin padding($padding) {
+  & {
+    padding-left: #{map-get($padding, padding)};
+    padding-right: #{map-get($padding, padding)};
+  }
+}
+
 :host {
   display: block;
-  padding-left: $grid-gutter;
-  padding-right: $grid-gutter;
   box-sizing: border-box;
   position: relative;
+
+  @each $padding, $value in $col-paddings {
+    &[padding = '#{$padding}'] {
+      @include padding($value);
+    }
+  }
 
   @each $breakpoints, $value in $grid-breakpoints {
     @media screen and (min-width: $value) {

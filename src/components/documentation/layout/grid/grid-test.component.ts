@@ -18,12 +18,14 @@ export class GridTestComponent implements OnInit {
 
   gutterControl = this.fb.control(null);
   alignControl = this.fb.control(null);
-  spanControl = this.fb.control(null);
+  spanControl = this.fb.control(2);
+  paddingControl = this.fb.control(null);
 
   form = this.fb.group({
     gutter: this.gutterControl,
     align: this.alignControl,
-    span: this.spanControl
+    span: this.spanControl,
+    padding: this.paddingControl
   });
 
   constructor(private fb: FormBuilder) {
