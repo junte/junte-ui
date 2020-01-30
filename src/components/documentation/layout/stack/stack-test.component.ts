@@ -17,10 +17,10 @@ export class StackTestComponent implements OnInit {
   @ViewChild('code', {static: false}) code: TabComponent;
 
   type = new FormControl(UI.stack.type.horizontal);
-  gutter = new FormControl(UI.gutter.normal);
-  align = new FormControl(UI.flex.align.start);
-  justify = new FormControl(UI.flex.justify.start);
-  wrap = new FormControl(UI.flex.wrap.noWrap);
+  gutter = new FormControl(null);
+  align = new FormControl(null);
+  justify = new FormControl(null);
+  wrap = new FormControl(null);
 
   form = this.fb.group({
     type: this.type,
