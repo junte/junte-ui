@@ -47,6 +47,7 @@
         <jnt-stack [type]="ui.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
+              <h5>Button</h5>
               <jnt-button [text]="textControl.value ? 'Button' : null"
                           [scheme]="schemeControl.value"
                           [size]="sizeControl.value"
@@ -55,9 +56,23 @@
                           [type]="typeControl.value"
                           [loading]="loadingControl.value"
                           [disabled]="disabledControl.value"
-                          [icon]="iconControl.value ? ui.icons.user : null"
-                          [badge]="badgeControl.value ? 5 : null">
+                          [icon]="iconControl.value ? ui.icons.user : null">
+                <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
               </jnt-button>
+              <h5>Button group</h5>
+              <jnt-button-group [scheme]="schemeControl.value"
+                                [size]="sizeControl.value"
+                                [outline]="outlineControl.value"
+                                [width]="widthControl.value">
+                <jnt-button *ngFor="let btn of 3 | mockArray"
+                            [text]="textControl.value ? 'Button' : null"
+                            [type]="typeControl.value"
+                            [loading]="loadingControl.value"
+                            [disabled]="disabledControl.value"
+                            [icon]="iconControl.value ? ui.icons.user : null">
+                  <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
+                </jnt-button>
+              </jnt-button-group>
             </ng-template>
           </app-browser-preview>
           <jnt-form [formGroup]="form" builder>
@@ -144,6 +159,7 @@
 
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
+        <h5>Button</h5>
         <app-code-highlight file="button-test">
           <![CDATA[
           <jnt-button
@@ -184,12 +200,74 @@
               <![CDATA[
               [icon]="ui.icons.user"]]>
             </ng-container>
+            <![CDATA[>]]>
             <ng-container *ngIf="badgeControl.value">
               <![CDATA[
-              [badge]="5"]]>
+              <jnt-badge [value]="5"></jnt-badge>
+              ]]>
             </ng-container>
-            <![CDATA[>
+            <![CDATA[
           </jnt-button>
+          ]]>
+        </app-code-highlight>
+
+        <h5>Button group</h5>
+        <app-code-highlight file="button-group-test">
+          <![CDATA[
+          <jnt-button-group
+            ]]>
+            <ng-container *ngIf="schemeControl.value">
+              <![CDATA[
+              [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="outlineControl.value">
+              <![CDATA[
+              [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="widthControl.value">
+              <![CDATA[
+              [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+            </ng-container>
+            <![CDATA[>]]>
+            <ng-container *ngFor="let btn of 3 | mockArray">
+              <![CDATA[
+              <jnt-button
+                ]]>
+                <ng-container *ngIf="textControl.value">
+                  <![CDATA[
+                  text="Button"]]>
+                </ng-container>
+                <ng-container *ngIf="typeControl.value">
+                  <![CDATA[
+                  [type]="ui.form.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="loadingControl.value">
+                  <![CDATA[
+                  [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="disabledControl.value">
+                  <![CDATA[
+                  [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="iconControl.value">
+                  <![CDATA[
+                  [icon]="ui.icons.user"]]>
+                </ng-container>
+                <![CDATA[>]]>
+                <ng-container *ngIf="badgeControl.value">
+                  <![CDATA[
+                  <jnt-badge [value]="5"></jnt-badge>
+                  ]]>
+                </ng-container>
+                <![CDATA[
+              </jnt-button>]]>
+            </ng-container>
+            <![CDATA[
+          </jnt-button-group>
           ]]>
         </app-code-highlight>
       </ng-template>
@@ -198,6 +276,7 @@
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
         <app-component-api selector="jnt-button" [target]="button"></app-component-api>
+        <app-component-api selector="jnt-button-group" [target]="buttonGroup"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

@@ -29,133 +29,208 @@
   </ol>
   <hr>
 
-  <form [formGroup]="form">
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'input-test', type: 'InputTestComponent'}"
+    scss="forms/input"></app-how-to-use>
 
-    <h2>Text</h2>
-    <jnt-stack formArrayName="texts">
-      <ng-container *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index"
-                    [formGroupName]="i">
-        <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-          <jnt-input [state]="state" [size]="size" placeholder="Hero name" formControlName="name"></jnt-input>
-        </ng-container>
-      </ng-container>
-    </jnt-stack>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview preview>
+            <ng-template #document>
+              <form [formGroup]="inputForm">
+                <jnt-stack>
+                  <jnt-input formControlName="input"
+                             [type]="typeControl.value"
+                             [state]="stateControl.value"
+                             [size]="sizeControl.value"
+                             [icon]="iconControl.value ? ui.icons.search : null"
+                             [label]="labelControl.value ? 'Name' : null"
+                             [textAlign]="alignControl.value"
+                             [placeholder]="placeholderControl.value ? 'Your name' : ''"
+                             [min]="minControl.value"
+                             [max]="maxControl.value">
+                  </jnt-input>
+                  <div>Value: {{inputControl.value}}</div>
+                </jnt-stack>
+              </form>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
 
-    <h2>Disabled</h2>
-    <jnt-input formControlName="disabled" placeholder="Disabled"></jnt-input>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
 
-    <h2>Changing</h2>
-    <jnt-stack>
-      <jnt-input formControlName="change" placeholder="Click button"></jnt-input>
-      <jnt-button text="Change" (click)="change()"></jnt-button>
-    </jnt-stack>
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="label" label="Label"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-stack>
 
-    <h2>Password</h2>
-    <jnt-stack formArrayName="passwords">
-      <ng-container [formGroupName]="i"
-                    *ngFor="let state of [ui.state.normal, ui.state.success, ui.state.failed];let i = index">
-        <jnt-input [state]="state" [type]="ui.form.input.password" placeholder="Hero password"
-                   formControlName="password"></jnt-input>
-      </ng-container>
-    </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="placeholder" label="Placeholder"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
 
-    <h2>Number</h2>
+            <jnt-form-item>
+              <jnt-form-control>
+                <jnt-checkbox formControlName="disabled" label="Disabled"></jnt-checkbox>
+              </jnt-form-control>
+            </jnt-form-item>
 
-    <jnt-stack>
-      <ng-container *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-        <jnt-input [size]="size" [type]="ui.form.input.number" placeholder="Number" [min]="0" [max]="10"></jnt-input>
-      </ng-container>
-    </jnt-stack>
+            <jnt-form-item>
+              <jnt-form-label for="type">Type</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="type">
+                  <jnt-select-option label="Text" [key]="ui.form.input.text"></jnt-select-option>
+                  <jnt-select-option label="Number" [key]="ui.form.input.number"></jnt-select-option>
+                  <jnt-select-option label="Password" [key]="ui.form.input.password"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-    <h2>Input with icon</h2>
-    <jnt-stack formArrayName="texts">
-      <ng-container [formGroupName]="i"
-                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
-        <ng-template let-icon="icon" let-type="type" let-iconset="iconset" #input>
-          <jnt-input placeholder="Hero name" [size]="size" [icon]="icon + ':' + type + ':' + iconset"
-                     formControlName="name"></jnt-input>
-        </ng-template>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
 
-        <ng-container *ngTemplateOutlet="input;
-              context:{icon: ui.icons.search, type: 'font', iconset: 'junte-ui-icons-default'}">
-        </ng-container>
-        <ng-container *ngTemplateOutlet="input;
-              context:{icon: ui.icons.question, type: 'svg', iconset: 'default'}">
-        </ng-container>
-        <ng-container *ngTemplateOutlet="input;
-              context:{icon: ui.icons.animated.time, type: 'animated', iconset: 'default'}">
-        </ng-container>
-      </ng-container>
-    </jnt-stack>
+              <jnt-form-item>
+                <jnt-form-label for="min">Min</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-input formControlName="min" [type]="ui.form.input.number"></jnt-input>
+                </jnt-form-control>
+              </jnt-form-item>
 
-    <h2>Input with label</h2>
-    <jnt-stack formArrayName="texts">
-      <ng-container [formGroupName]="i"
-                    *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large];let i = index">
-        <jnt-input placeholder="Hero name" [size]="size" label="Name"
-                   formControlName="name"></jnt-input>
-      </ng-container>
-    </jnt-stack>
-  </form>
+              <jnt-form-item>
+                <jnt-form-label for="max">Max</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-input formControlName="max" [type]="ui.form.input.number"></jnt-input>
+                </jnt-form-control>
+              </jnt-form-item>
 
+            </jnt-stack>
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-input [state]="ui.state.normal" [type]="ui.form.input.password" placeholder="Hero name"
-           [icon]="ui.icons.search"></jnt-input>
-]]></pre>
-  </ngx-prism>
+            <jnt-form-item>
+              <jnt-form-label for="state">State</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="state">
+                  <jnt-select-option label="Normal" [key]="ui.state.normal"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.state.success"></jnt-select-option>
+                  <jnt-select-option label="Failed" [key]="ui.state.failed"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <h3>API</h3>
-  <h4>jnt-input</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[state]</td>
-      <td>-</td>
-      <td>normal | success | fail</td>
-      <td>normal</td>
-    </tr>
-    <tr>
-      <td>[type]</td>
-      <td>-</td>
-      <td>text | password</td>
-      <td>text</td>
-    </tr>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>small | normal | large</td>
-      <td>normal</td>
-    </tr>
-    <tr>
-      <td>[placeholder]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[icon]</td>
-      <td>-</td>
-      <td>Icons</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[label]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    </tbody>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  </table>
+            <jnt-form-item>
+              <jnt-form-label for="align">Text align</jnt-form-label>
+              <jnt-switcher formControlName="align">
+                <jnt-switcher-option label="Left" [value]="ui.text.align.left"></jnt-switcher-option>
+                <jnt-switcher-option label="Right" [value]="ui.text.align.right"></jnt-switcher-option>
+              </jnt-switcher>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="input-test.component.html">
+          <![CDATA[
+          <jnt-input
+            ]]>
+            <ng-container *ngIf="typeControl.value">
+              <![CDATA[
+              [type]="ui.form.input.]]>{{typeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="minControl.value">
+              <![CDATA[
+              [min]="]]>{{minControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="maxControl.value">
+              <![CDATA[
+              [max]="]]>{{maxControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="stateControl.value">
+              <![CDATA[
+              [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="iconControl.value">
+              <![CDATA[
+              [icon]="ui.icons.search"]]>
+            </ng-container>
+            <ng-container *ngIf="labelControl.value">
+              <![CDATA[
+              label="Name"]]>
+            </ng-container>
+            <ng-container *ngIf="alignControl.value">
+              <![CDATA[
+              [textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="placeholderControl.value">
+              <![CDATA[
+              placeholder="Your name"]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-input>
+            <div>Value:]]>{{<![CDATA[inputControl.value]]>}}<![CDATA[</div>
+          ]]>
+        </app-code-highlight>
+
+        <app-code-highlight file="input-test.component.ts" lang="js">
+          <pre>
+               <![CDATA[
+import { Component, OnInit, FormBuilder } from '@angular/core';
+import { UI } from 'junte-ui';
+
+@Component({
+  selector: 'app-input-test',
+  templateUrl: './input-test.component.html',
+  styleUrls: ['./input-test.component.scss']
+})
+export class InputTestComponent implements OnInit {
+
+  ui = UI;
+  inputControl = this.fb.control(null);
+
+  inputForm = this.fb.group({
+    input: this.inputControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+          ]]>
+          </pre>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-input" [target]="input"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
