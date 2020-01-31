@@ -69,7 +69,6 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.form.valueChanges
-      .subscribe(() => this.code.flash());
+    this.form.valueChanges.subscribe(() => this.code.flash());
   }
 }

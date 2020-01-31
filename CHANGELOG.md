@@ -18,3 +18,5 @@ Layout/Header/Userbar @ContentChild('userMenu', {static: false}) was renamed to 
 Layout/Header/Action @ContentChild('template', {static: false}) was renamed to @ContentChild('actionLabelTemplate', {static: false})
 
 Layout/Header/Action @ContentChild('content', {static: false}) was renamed to @ContentChild('actionContentTemplate', {static: false})
+
+forms/select @ContentChild('optionTemplate', {static: false}) was renamed to @ContentChild('selectOptionTemplate', {static: false})
