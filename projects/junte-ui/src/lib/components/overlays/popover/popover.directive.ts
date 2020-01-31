@@ -15,28 +15,28 @@ export class PopoverDirective {
 
   @HostListener('mouseenter')
   mouseEnter() {
-    if (this.options.trigger === PopoverTriggers.hover) {
+    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
       this.show();
     }
   }
 
   @HostListener('document:mousemove', ['$event'])
   documentMouseMove(e: any) {
-    if (this.options.trigger === PopoverTriggers.hover) {
+    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
       this.hide(e.path);
     }
   }
 
   @HostListener('click')
   click() {
-    if (this.options.trigger === PopoverTriggers.click) {
+    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
       this.show();
     }
   }
 
   @HostListener('document:click', ['$event'])
   documentClick(e: any) {
-    if (this.options.trigger === PopoverTriggers.click) {
+    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
       this.hide(e.path);
     }
   }

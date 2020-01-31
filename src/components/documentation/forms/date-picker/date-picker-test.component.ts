@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { TabComponent, UI } from 'junte-ui';
+import { DatePickerComponent } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
+
+export enum DateFormat {
+  fullDate = 'DD.MM.YYYY',
+  shortDate = 'DD.MM',
+  longDate = 'DD.MM.YY',
+  fullMonth = 'DD MMMM'
+}
 
 @Component({
   selector: 'app-date-picker-test',
@@ -10,21 +19,32 @@ import { UI } from 'junte-ui';
 export class DatePickerTestComponent implements OnInit {
 
   ui = UI;
-  date: Date = new Date;
-  date1: Date = new Date;
-  datePicker = new FormControl(new Date);
-  datePicker1 = new FormControl(new Date);
+  localUi = LocalUI;
+  dateFormat = DateFormat;
+  picker = DatePickerComponent;
+
+  @ViewChild('code', {static: false}) code: TabComponent;
+
+  placeholderControl = this.fb.control(true);
+  formatControl = this.fb.control(this.dateFormat.fullDate);
+
   form = this.fb.group({
-    datePicker: this.datePicker,
-    datePicker1: this.datePicker1
+    placeholder: this.placeholderControl,
+    format: this.formatControl,
+  });
+
+  pickerControl = this.fb.control(null);
+
+  pickerForm = this.fb.group({
+    picker: this.pickerControl
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.datePicker.valueChanges.subscribe(date => this.date = date);
-    this.datePicker1.valueChanges.subscribe(date => this.date1 = date);
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }
