@@ -25,7 +25,7 @@ export class CodeHighlightComponent implements AfterContentChecked {
   prism: PrismComponent;
 
   copied = false;
-  code: string = null;
+  code = '';
 
   private formatHTML(source: string) {
     return source.replace(/\n +\>/g, '>')
