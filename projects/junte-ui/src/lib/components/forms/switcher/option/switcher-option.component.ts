@@ -1,4 +1,5 @@
 import { Component, ContentChild, Input } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { DotComponent } from '../../dot/dot.component';
 
@@ -9,8 +10,22 @@ import { DotComponent } from '../../dot/dot.component';
 
 export class SwitcherOptionComponent {
 
+  @PropertyApi({
+    description: 'Text on switcher option',
+    type: 'string',
+  })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Switcher option value',
+    type: 'any',
+  })
   @Input() value: any;
+
+  @PropertyApi({
+    description: 'Icon for switcher option',
+    type: 'string',
+  })
   @Input() icon: string;
 
   active = false;

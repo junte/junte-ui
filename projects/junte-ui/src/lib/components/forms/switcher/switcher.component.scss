@@ -1,22 +1,13 @@
 @import "../../../assets/styles/variables";
 
 $switcher-height: 32px;
-$switcher-option-padding-y: $gutter-normal;
 $switcher-corner: $corner-normal;
-$switcher-border-color: $gray-700-color;
-$switcher-option-background: $primary-background;
-$switcher-option-color: $primary-text-color;
-$switcher-option-hover-background: $highlight-background;
-$switcher-option-active-background: $primary-light-color;
-$switcher-option-active-color: $white-color;
-$switcher-option-focus-shadow: $shadow-primary;
-$switcher-option-focus-border-color: $primary-light-color;
 
 :host {
   display: flex;
   min-height: $switcher-height;
   line-height: $switcher-height;
-  border: 1px solid $switcher-border-color;
+  border: 1px solid $gray-700-color;
   border-radius: $switcher-corner;
   &[type='vertical'] {
     flex-direction: column;
@@ -51,9 +42,9 @@ $switcher-option-focus-border-color: $primary-light-color;
 }
 
 [option] {
-  background-color: $switcher-option-background;
-  padding: 0 $switcher-option-padding-y;
-  color: $switcher-option-color;
+  background-color: $primary-background;
+  padding: 0 $gutter-normal;
+  color: $primary-text-color;
   user-select: none;
   overflow: hidden;
   cursor: pointer;
@@ -61,17 +52,17 @@ $switcher-option-focus-border-color: $primary-light-color;
 
   &:focus {
     outline: 0;
-    box-shadow: $switcher-option-focus-shadow;
-    border-color: $switcher-option-focus-border-color;
+    box-shadow: $shadow-primary;
+    border-color: $primary-light-color;
   }
 
   &:hover {
-    background-color: $switcher-option-hover-background;
+    background-color: $highlight-background;
   }
 
   &[active="true"] {
-    color: $switcher-option-active-color;
-    background-color: $switcher-option-active-background;
+    color: $white-color;
+    background-color: $primary-light-color;
   }
 
   [icon] {

@@ -21,6 +21,10 @@ import { SwitcherComponent } from './switcher.component';
     SwitcherComponent,
     SwitcherOptionComponent
   ],
+  entryComponents: [
+    SwitcherComponent,
+    SwitcherOptionComponent
+  ],
   exports: [
     SwitcherComponent,
     SwitcherOptionComponent
