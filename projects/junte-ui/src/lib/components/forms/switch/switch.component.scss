@@ -1,18 +1,7 @@
 @import "../../../assets/styles/variables";
 
-$switch-corner: 35px !default;
-$switch-slider-background: $white-color !default;
-$switch-background: $gray-600-color !default;
-$switch-border-color: transparent !default;
-$switch-padding: 2px !default;
-$switch-border-width: 1px !default;
-$switch-icon-color: $switch-background !default;
-
-$switch-checked-background: $primary-color !default;
-$switch-checked-icon-color: $switch-checked-background !default;
-$switch-disabled-background: rgba($switch-background, .7) !default;
-$switch-disabled-checked-background: rgba($switch-checked-background, .5) !default;
-$switch-disabled-border-color: transparent !default;
+$switch-corner: 35px;
+$switch-padding: 2px;
 
 $switch-sizes: (
   #{$size-tiny}: (
@@ -43,7 +32,7 @@ $switch-sizes: (
     icon-size: 16px,
     label-font-size: 14px,
   ),
-) !default;
+);
 
 @mixin size($size) {
   [switch] {
@@ -66,16 +55,17 @@ $switch-sizes: (
     height: calc(#{map-get($size, height)} - #{$switch-padding} * 2);
     [icon] {
       font-size: #{map-get($size, icon-font-size)};
-      width: #{map-get($size, icon-size)};
-      height: #{map-get($size, icon-size)};
+      line-height: 0;
+      &[type='svg'], &[type='animated'] {
+        width: #{map-get($size, icon-size)};
+        height: #{map-get($size, icon-size)};
+      }
     }
   }
 }
 
 :host {
-  display: flex;
-  align-items: center;
-  position: relative;
+ display: block;
   @each $size, $map in $switch-sizes {
     &[size='#{$size}'] {
       @include size($map);
@@ -83,105 +73,112 @@ $switch-sizes: (
   }
 }
 
-input {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  cursor: pointer;
-  opacity: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  &:checked + [switch] {
-    background-color: $switch-checked-background;
-    [label] {
-      margin-left: 0;
-      text-align: right;
-    }
-    [slider] {
-      [icon] {
-        color: $switch-checked-background;
-        fill: $switch-checked-icon-color;
+form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  input {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    &:checked + [switch] {
+      background-color: $primary-color;
+      [label] {
+        margin-left: 0;
+        text-align: right;
       }
-    }
-  }
-  &:checked + [switch] > [slider] {
-    left: auto;
-    right: #{$switch-padding};
-  }
-  &:disabled {
-    cursor: default;
-    & ~ label {
-      color: $control-disabled-label-color;
-    }
-    & + [switch] {
-      background-color: $switch-disabled-background;
-      border-color: $switch-disabled-border-color;
-      [slider] [icon] {
-        color: $switch-disabled-background;
-      }
-    }
-    &:checked {
-      & + [switch] {
-        background-color: $switch-disabled-checked-background;
-        [slider] [icon] {
-          color: $switch-disabled-checked-background;
+      [slider] {
+        [icon] {
+          color: $primary-color;
+          fill: $primary-color;
         }
       }
     }
-  }
-  &:focus {
-    & + [switch] {
-      box-shadow: 0 1px 5px $primary-color;
+    &:checked + [switch] > [slider] {
+      left: auto;
+      right: #{$switch-padding};
+    }
+    &:disabled {
+      cursor: default;
+      & ~ label {
+        color: $control-disabled-label-color;
+      }
+      & + [switch] {
+        background-color: rgba($gray-600-color, .7);
+        [slider] [icon] {
+          color: rgba($gray-600-color, .7);
+        }
+      }
+      &:checked {
+        & + [switch] {
+          background-color: rgba($primary-color, .5);
+          [slider] [icon] {
+            color: rgba($primary-color, .5);
+          }
+        }
+      }
+    }
+    &:focus {
+      & + [switch] {
+        box-shadow: 0 1px 5px $primary-color;
+      }
     }
   }
-}
-
-label {
-  padding-left: $control-gutter;
-  color: $control-switch-label-color;
-  user-select: none;
-}
-
-[switch] {
-  position: relative;
-  border-radius: $switch-corner;
-  background-color: $switch-background;
-  border: $switch-border-width solid $switch-border-color;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  padding: 0 $switch-padding;
-  overflow: hidden;
-  transition: all ease .4s;
-  [slider] {
-    border-radius: 50%;
-    background-color: $switch-slider-background;
-    position: absolute;
-    left: $switch-padding;
-    right: auto;
-    top: 50%;
-    transform: translateY(-50%);
+  label {
+    padding-left: $control-gutter;
+    color: $control-switch-label-color;
+    user-select: none;
+  }
+  [switch] {
+    position: relative;
+    border-radius: $switch-corner;
+    background-color: $gray-600-color;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: all .3s;
-    [icon] {
-      color: $switch-background;
-      fill: $switch-icon-color;
+    padding: 0 $switch-padding;
+    overflow: hidden;
+    transition: all ease .4s;
+    [slider] {
+      border-radius: 50%;
+      background-color: $white-color;
+      position: absolute;
+      left: $switch-padding;
+      right: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      [icon] {
+        color: $gray-600-color;
+        fill: $gray-600-color;
+      }
+    }
+    [label] {
+      color: $white-color;
+      margin-right: 0;
+      width: 100%;
+      text-align: left;
+      overflow: hidden;
     }
   }
-  [label] {
-    color: $switch-slider-background;
-    margin-right: 0;
-    width: 100%;
-    text-align: left;
-    overflow: hidden;
-  }
 }
+
+
+
+
+
+
 
 
 

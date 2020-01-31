@@ -20,6 +20,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
+  inputControl = this.fb.control(null);
+  form = this.fb.group({
+    input: this.inputControl
+  });
+
   @HostBinding('attr.state')
   _state: InputState = InputState.normal;
 
@@ -30,12 +35,52 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   _size: Sizes = Sizes.normal;
 
   @PropertyApi({
+    description: 'Icon for input',
+    type: 'string',
+  })
+  @HostBinding('attr.icon')
+  @Input() icon: string;
+
+  @PropertyApi({
+    description: 'Label for input',
+    type: 'string',
+  })
+  @HostBinding('attr.label')
+  @Input() label: string;
+
+  @PropertyApi({
+    description: 'Input text align',
+    path: 'ui.text.align.',
+    default: TextAlign.left,
+    options: [TextAlign.left, TextAlign.right]
+  })
+  @HostBinding('attr.textAlign')
+  @Input() textAlign: TextAlign = TextAlign.left;
+
+  @PropertyApi({
+    description: 'Input placeholder',
+    type: 'string',
+  })
+  @Input() placeholder = '';
+
+  @PropertyApi({
+    description: 'Minimum number value that can be entered. For input with type = number',
+    type: 'number',
+  })
+  @Input() min: number;
+
+  @PropertyApi({
+    description: 'Maximum number value that can be entered. For input with type = number',
+    type: 'number',
+  })
+  @Input() max: number;
+
+  @PropertyApi({
     description: 'Input states',
     path: 'ui.state',
     default: InputState.normal,
     options: [InputState.normal, InputState.success, InputState.failed]
   })
-
   @Input() set state(state: InputState) {
     this._state = state || InputState.normal;
   }
@@ -46,7 +91,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
-
   @Input() set type(type: InputType) {
     this._type = type || InputType.text;
   }
@@ -56,78 +100,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Icon for input',
-    type: 'string',
-  })
-
-  @HostBinding('attr.icon')
-  @Input()
-  icon: string;
-
-  @PropertyApi({
     description: 'Input size',
     path: 'ui.sizes',
     default: Sizes.normal,
     options: [Sizes.small, Sizes.normal, Sizes.large]
   })
-
   @Input() set size(size: Sizes) {
     this._size = size || Sizes.normal;
   }
-
-  @PropertyApi({
-    description: 'Label for input',
-    type: 'string',
-  })
-
-  @HostBinding('attr.label')
-  @Input()
-  label: string;
-
-  @PropertyApi({
-    description: 'Input text align',
-    path: 'ui.text.align.',
-    default: TextAlign.left,
-    options: [TextAlign.left, TextAlign.right]
-  })
-
-  @HostBinding('attr.textAlign')
-  @Input()
-  textAlign: TextAlign = TextAlign.left;
-
-  @PropertyApi({
-    description: 'Input placeholder',
-    type: 'string',
-  })
-
-  @Input() placeholder = '';
-
-  @PropertyApi({
-    description: 'Minimum number value that can be entered. For input with type = number',
-    type: 'number',
-  })
-
-  @Input()
-  min: number;
-
-  @PropertyApi({
-    description: 'Maximum number value that can be entered. For input with type = number',
-    type: 'number',
-  })
-
-  @Input()
-  max: number;
-
-  set value(value: any) {
-    this.inputControl.patchValue(value);
-    this.onChange(value);
-  }
-
-  inputControl = this.fb.control(null);
-
-  form = this.fb.group({
-    input: this.inputControl
-  });
 
   constructor(private fb: FormBuilder) {
   }
@@ -137,7 +117,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value) {
-    this.value = value;
+    this.inputControl.patchValue(value);
   }
 
   onChange(val: any) {
