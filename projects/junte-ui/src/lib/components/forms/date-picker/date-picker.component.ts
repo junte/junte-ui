@@ -1,6 +1,7 @@
 import { Component, forwardRef, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { format } from 'date-fns';
+import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { format as formatDate } from 'date-fns';
+import { PropertyApi } from '../../../decorators/api';
 import { PopoverTriggers, UI } from '../../../enums/ui';
 import { Subscriptions } from '../../../utils/subscriptions';
 import { PopoverService } from '../../overlays/popover/popover.service';
@@ -20,20 +21,39 @@ export class DatePickerComponent implements OnInit, OnDestroy {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
+  private _format = 'DD.MM.YYYY';
+
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
   subscriptions = new Subscriptions();
   ui = UI;
-  input = new FormControl();
-  calendar = new FormControl(new Date);
+  input = this.fb.control(null);
+  calendar = this.fb.control(new Date);
   form = this.fb.group({
     input: this.input,
     calendar: this.calendar
   });
   options = null;
 
-  @Input() placeholder: string;
-  @Input() format: string = 'DD.MM.YYYY';
+  @PropertyApi({
+    description: 'Placeholder for date picker',
+    type: 'string'
+  })
+  @Input() placeholder = '';
+
+  @PropertyApi({
+    description: 'Date format',
+    type: 'string',
+    default: 'DD.MM.YYYY'
+  })
+  @Input() set format(format: string) {
+    this._format = format || 'DD.MM.YYYY';
+    this.input.patchValue(!!this.calendar.value ? formatDate(this.calendar.value, this.format) : null);
+  }
+
+  get format() {
+    return this._format;
+  }
 
   constructor(private fb: FormBuilder,
               private popoverService: PopoverService) {
@@ -41,7 +61,7 @@ export class DatePickerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push('calendar', this.calendar.valueChanges.subscribe(date => {
-      this.input.patchValue(format(date, this.format));
+      this.input.patchValue(!!date ? formatDate(date, this.format) : null);
       this.onChange(date);
       this.popoverService.hide();
     }));
