@@ -15,7 +15,8 @@
     The switch class declares a property and a method to control its on/off state. When the user
     manipulates the switch control (“flips” it) a valueChanged event is generated, which results
     in the control (if properly configured) sending an action message.<br>
-    You can customize the appearance of the switch by changing the color used to tint the switch when it is on or off.<br>
+    You can customize the appearance of the switch by changing the color used to tint the switch when it is on or
+    off.<br>
     <jnt-link source="https://developer.apple.com/documentation/uikit/uiswitch" title="More">
     </jnt-link>
   </p>
@@ -27,88 +28,127 @@
     <li>The button should change the display when it is disabled and disabled & checked</li>
   </ol>
 
-  <hr>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'switch-test', type: 'SwitchTestComponent'}"
+    scss="forms/switch"></app-how-to-use>
 
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-      <jnt-switch label="Switch" [size]="size"></jnt-switch>
-      <jnt-switch [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
-      <jnt-switch [disabled]="true" label="Switch disabled" [size]="size" name="disabled"></jnt-switch>
-      <jnt-switch [(ngModel)]="checked" [disabled]="true" name="checked_disabled"
-                  label="Switch disabled & checked" [size]="size">
-      </jnt-switch>
-      <br>
-    </ng-container>
-  </jnt-stack>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.stack.type.horizontal">
+          <app-browser-preview>
+            <ng-template #document>
+              <form [formGroup]="switchForm">
+                <jnt-stack>
+                  <jnt-switch formControlName="switch"
+                              [size]="sizeControl.value"
+                              [label]="labelControl.value ? 'Turn notifications on' : null"
+                              [iconOn]="iconOnControl.value ? ui.icons.check : null"
+                              [iconOff]="iconOffControl.value ? ui.icons.close : null"
+                              [labelOn]="labelOnControl.value ? 'On' : null"
+                              [labelOff]="labelOffControl.value ? 'Off' : null">
+                  </jnt-switch>
+                  <div>{{switchControl.value ? 'Notifications on' : 'Notifications off'}}</div>
+                </jnt-stack>
+              </form>
+            </ng-template>
+          </app-browser-preview>
+          <jnt-form [formGroup]="form" builder>
 
-  <form [formGroup]="switchForm">
-    <jnt-switch label="Switch in reactive forms" formControlName="switch"></jnt-switch>
-    <span>switchForm.get('switch').value: {{switchForm.get('switch').value}}</span>
-  </form>
+            <jnt-form-item>
+              <jnt-checkbox formControlName="label" label="Label"></jnt-checkbox>
+            </jnt-form-item>
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-switch [(ngModel)]="checked" [disabled]="false" label="Switch" [size]="ui.sizes.large" name="switch"></jnt-switch>
-]]></pre>
-  </ngx-prism>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Tiny" [key]="ui.sizes.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
 
-  <h2>Switch with icon (on,off) & label (on, off)</h2>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+              <jnt-form-item>
+                <jnt-checkbox formControlName="iconOn" label="IconOn"></jnt-checkbox>
+              </jnt-form-item>
 
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
-      <jnt-switch label="Switch" iconOn="time:animated:default" iconOff="gitlab:svg:default" labelOn="On" labelOff="Off" [size]="size"></jnt-switch>
-      <jnt-switch labelOn="On" labelOff="Off" iconOn="check:font:junte-ui-icons-default" iconOff="running-man:animated:default" [(ngModel)]="checked" label="Switch checked" [size]="size" name="checked"></jnt-switch>
-      <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" [disabled]="true" label="Switch disabled" [size]="size" name="disabled"></jnt-switch>
-      <jnt-switch labelOn="On" labelOff="Off" [iconOn]="ui.icons.check" [iconOff]="ui.icons.close" [(ngModel)]="checked" [disabled]="true" name="checked_disabled"
-                  label="Switch disabled & checked" [size]="size">
-      </jnt-switch>
-      <br>
-    </ng-container>
-  </jnt-stack>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="iconOff" label="IconOff"></jnt-checkbox>
+              </jnt-form-item>
+            </jnt-stack>
 
-  <h1>Theme switcher</h1>
+            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+              <jnt-form-item>
+                <jnt-checkbox formControlName="labelOn" label="labelOn"></jnt-checkbox>
+              </jnt-form-item>
 
-  <form [formGroup]="themeForm">
-    <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
-  </form>
+              <jnt-form-item>
+                <jnt-checkbox formControlName="labelOff" label="labelOff"></jnt-checkbox>
+              </jnt-form-item>
+            </jnt-stack>
 
-  <h3>API</h3>
-  <h4>jnt-switch</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[(ngModel)]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[disabled]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[label]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>tiny | small | normal | large</td>
-      <td>normal</td>
-    </tr>
-    </tbody>
-  </table>
+            <jnt-form-item>
+              <jnt-checkbox formControlName="disabled" label="Disabled"></jnt-checkbox>
+            </jnt-form-item>
+          </jnt-form>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="switch-test.component.html">
+          <![CDATA[
+          <jnt-switch
+            ]]>
+            <ng-container *ngIf="sizeControl.value">
+              <![CDATA[
+              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+            </ng-container>
+
+            <ng-container *ngIf="labelControl.value">
+              <![CDATA[
+              label="Turn notifications on"]]>
+            </ng-container>
+
+            <ng-container *ngIf="iconOnControl.value">
+              <![CDATA[
+              [iconOn]="ui.icons.check"]]>
+            </ng-container>
+
+            <ng-container *ngIf="iconOffControl.value">
+              <![CDATA[
+              [iconOff]="ui.icons.close"]]>
+            </ng-container>
+
+            <ng-container *ngIf="labelOnControl.value">
+              <![CDATA[
+              labelOn="On"]]>
+            </ng-container>
+
+            <ng-container *ngIf="labelOffControl.value">
+              <![CDATA[
+              labelOff="Off"]]>
+            </ng-container>
+            <![CDATA[>
+          </jnt-switch>
+          <div>]]>{{<![CDATA[switchControl.value ? 'Notifications on' : 'Notifications off']]>}}<![CDATA[</div>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-switch" [target]="switch"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>

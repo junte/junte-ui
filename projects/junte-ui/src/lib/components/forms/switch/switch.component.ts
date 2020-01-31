@@ -1,5 +1,6 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PropertyApi } from '../../../decorators/api';
 import { Sizes, UI } from '../../../enums/ui';
 
 @Component({
@@ -13,38 +14,72 @@ import { Sizes, UI } from '../../../enums/ui';
     }
   ]
 })
-export class SwitchComponent implements ControlValueAccessor {
+export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-switch-host';
 
   ui = UI;
 
-  @HostBinding('attr.disabled')
-  @Input()
-  disabled = false;
+  switchControl = this.fb.control(null);
+  form = this.fb.group({
+    switch: this.switchControl
+  });
+
+  @HostBinding('attr.size')
+  _size: Sizes = Sizes.normal;
 
   @HostBinding('attr.checked')
   checked = false;
 
-  @HostBinding('attr.label')
-  @Input()
-  label: string;
+  @PropertyApi({
+    description: 'Label for switch',
+    type: 'string',
+  })
+  @Input() label: string;
 
-  @Input()
-  iconOn: string;
+  @PropertyApi({
+    description: 'Icon for switch-on state',
+    type: 'string',
+  })
+  @Input() iconOn: string;
 
-  @Input()
-  iconOff: string;
+  @PropertyApi({
+    description: 'Icon for switch-off state',
+    type: 'string',
+  })
+  @Input() iconOff: string;
 
-  @Input()
-  labelOn: string;
+  @PropertyApi({
+    description: 'Label for switch-on state',
+    type: 'string',
+  })
+  @Input() labelOn: string;
 
-  @Input()
-  labelOff: string;
+  @PropertyApi({
+    description: 'Label for switch-off state',
+    type: 'string',
+  })
+  @Input() labelOff: string;
 
-  @HostBinding('attr.size')
-  @Input()
-  size: Sizes = Sizes.normal;
+  @PropertyApi({
+    description: 'Input size',
+    path: 'ui.sizes',
+    default: Sizes.normal,
+    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+  })
+  @Input() set size(size: Sizes) {
+    this._size = size || Sizes.normal;
+  }
+
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.switchControl.valueChanges.subscribe(value => {
+      this.onChange(value);
+      this.checked = value;
+    });
+  }
 
   onChange(val: boolean) {
   }
@@ -53,7 +88,7 @@ export class SwitchComponent implements ControlValueAccessor {
   }
 
   writeValue(value) {
-    this.checked = value;
+    this.switchControl.patchValue(value);
   }
 
   registerOnChange(fn) {
@@ -62,6 +97,10 @@ export class SwitchComponent implements ControlValueAccessor {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    disabled ? this.switchControl.disable() : this.switchControl.enable();
   }
 
 }
