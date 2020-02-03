@@ -1,5 +1,5 @@
 <jnt-container>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/dropdown"
               target="_blank" title="GitLab">
@@ -32,7 +32,7 @@
                 <jnt-button text="Dropdown" (click)="action()"></jnt-button>
               </ng-template>
               <ng-template #dropdown let-action="trigger">
-                <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                   <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
                   <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
                   <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
@@ -54,7 +54,7 @@
               <jnt-button text="Dropdown" (click)="action()"></jnt-button>
             </ng-template>
             <ng-template #dropdown let-action="trigger">
-              <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+              <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                 <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
                 <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
                 <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>

@@ -16,7 +16,8 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
-import { SelectMode, Sizes, UI } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
+import { SelectMode, UI } from '../../../enums/ui';
 import { IOption, Key, Options } from './model';
 
 const MIN_WIDTH = 20;
@@ -113,7 +114,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostBinding('attr.size')
   @Input()
-  size: Sizes = Sizes.normal;
+  size: Size = Size.normal;
 
   @HostBinding('attr.label')
   @Input()

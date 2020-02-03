@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Checkbox</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/checkbox"
               target="_blank" title="GitLab">
@@ -85,25 +85,25 @@ export class CheckboxTestComponent {
     <h4>Sizes</h4>
 
     <p>Checkbox have different sizes:
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="tiny"></jnt-label>
+      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="tiny"></jnt-label>
       ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="small"></jnt-label>
+      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="small"></jnt-label>
       ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="normal"></jnt-label>
+      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="normal"></jnt-label>
       ,
-      <jnt-label [size]="ui.sizes.small" [color]="ui.colors.blue100" label="large"></jnt-label>
+      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="large"></jnt-label>
     </p>
 
-    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+    <ng-container *ngFor="let size of [ui.size.tiny, ui.size.small, ui.size.normal, ui.size.large]">
       <jnt-checkbox [label]="size | titlecase" [size]="size"></jnt-checkbox>
     </ng-container>
 
     <ngx-prism language="html">
     <pre><![CDATA[
-<jnt-checkbox label="Checkbox" [size]="ui.sizes.tiny"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.sizes.small"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.sizes.normal"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.sizes.large"></jnt-checkbox>
+<jnt-checkbox label="Checkbox" [size]="ui.size.tiny"></jnt-checkbox>
+<jnt-checkbox label="Checkbox" [size]="ui.size.small"></jnt-checkbox>
+<jnt-checkbox label="Checkbox" [size]="ui.size.normal"></jnt-checkbox>
+<jnt-checkbox label="Checkbox" [size]="ui.size.large"></jnt-checkbox>
     ]]></pre>
     </ngx-prism>
 

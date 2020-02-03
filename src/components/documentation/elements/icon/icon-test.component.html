@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Icon</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/icon"
               target="_blank" title="GitLab">
@@ -63,7 +63,7 @@
 
 <jnt-container>
   <h2>Font icon</h2>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/font-icon"
               target="_blank" title="GitLab">
@@ -106,7 +106,7 @@
 
   <h2>Font icons</h2>
   <h3>Default</h3>
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontDefault" wrapper>
       <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
@@ -114,15 +114,15 @@
   </jnt-stack>
 
   <h3>Gestures</h3>
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontGestures" wrapper>
-      <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
+      <jnt-icon [icon]="icon.value" icon></jnt-icon>
       <div name>{{icon.name}}</div>
     </div>
   </jnt-stack>
 
   <h3>Emoji</h3>
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of fontEmoji" wrapper>
       <jnt-font-icon [icon]="icon.value" [iconset]="icon.iconset" icon></jnt-font-icon>
       <div name>{{icon.name}}</div>
@@ -136,7 +136,7 @@
   </ngx-prism>
 
   <h2>SVG icons</h2>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/svg-icon"
               target="_blank" title="GitLab">
@@ -147,7 +147,7 @@
   <hr>
 
   <h3>Default</h3>
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of svgDefault" wrapper>
       <jnt-svg-icon [icon]="icon.value" [iconset]="icon.iconset"></jnt-svg-icon>
       <div name>{{icon.name}}</div>
@@ -155,7 +155,7 @@
   </jnt-stack>
 
   <h3>Flags</h3>
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div *ngFor="let icon of svgFlags" wrapper>
       <jnt-svg-icon [icon]="icon.value" [iconset]="icon.iconset"></jnt-svg-icon>
       <div name>{{icon.name}}</div>
@@ -169,7 +169,7 @@
   </ngx-prism>
 
   <h2>Animated icons</h2>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.externalLink"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/icon/animated-icon"
               target="_blank" title="GitLab">
@@ -179,7 +179,7 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap" [align]="ui.flex.align.center">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap" [align]="ui.flex.align.center">
     <jnt-button text="Refresh" (click)="refresh()"></jnt-button>
     <div *ngFor="let icon of animated" wrapper>
       <jnt-animated-icon [icon]="icon.value"></jnt-animated-icon>
@@ -193,7 +193,7 @@
 ]]></pre>
   </ngx-prism>
 
-  <jnt-stack [type]="ui.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
     <div wrapper>
       <jnt-icon [icon]="ui.icons.add"></jnt-icon>
     </div>
@@ -209,10 +209,10 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document>
-              <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center">
+              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
                 <jnt-icon [icon]="ui.icons.user" [size]="sizeControl.value"></jnt-icon>
                 <jnt-icon [icon]="ui.icons.gitlab" [size]="sizeControl.value"></jnt-icon>
                 <jnt-icon [icon]="ui.icons.animated.runningMan" [size]="sizeControl.value"></jnt-icon>
@@ -224,10 +224,10 @@
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
-                  <jnt-select-option label="Tiny" [key]="ui.sizes.tiny"></jnt-select-option>
-                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                  <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -244,7 +244,7 @@
             ]]>
             <ng-container *ngIf="sizeControl.value">
               <![CDATA[
-              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
             </ng-container>
             <![CDATA[>
           </jnt-icon>

@@ -1,7 +1,8 @@
 import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../../decorators/api';
-import { Sizes, UI } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-switch',
@@ -26,7 +27,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   });
 
   @HostBinding('attr.size')
-  _size: Sizes = Sizes.normal;
+  _size: Size = Size.normal;
 
   @HostBinding('attr.checked')
   checked = false;
@@ -63,12 +64,12 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   @PropertyApi({
     description: 'Input size',
-    path: 'ui.sizes',
-    default: Sizes.normal,
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+    path: 'ui.size',
+    default: Size.normal,
+    options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Sizes) {
-    this._size = size || Sizes.normal;
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
   constructor(private fb: FormBuilder) {

@@ -16,11 +16,11 @@ export class ChartTestComponent implements OnInit {
   selected = 28;
 
   demo = [
-    {title: 'Title 1', value: 10, label: 'Label 1', color: UI.colors.orange},
-    {title: 'Title 2', value: 15, label: 'Label 2', color: UI.colors.red},
-    {title: 'Title 3', value: 20, label: 'Label 3', color: UI.colors.blue},
-    {title: 'Title 4', value: 5, label: 'Label 4', color: UI.colors.purpleDark},
-    {title: 'Title 5', value: 5, label: 'Label 5', color: UI.colors.gray}
+    {title: 'Title 1', value: 10, label: 'Label 1', color: UI.color.orange},
+    {title: 'Title 2', value: 15, label: 'Label 2', color: UI.color.red},
+    {title: 'Title 3', value: 20, label: 'Label 3', color: UI.color.blue},
+    {title: 'Title 4', value: 5, label: 'Label 4', color: UI.color.purpleDark},
+    {title: 'Title 5', value: 5, label: 'Label 5', color: UI.color.gray}
   ];
 
   constructor(private fb: FormBuilder) {

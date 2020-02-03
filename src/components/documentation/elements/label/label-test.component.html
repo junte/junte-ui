@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Label</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/label"
               target="_blank" title="GitLab">
@@ -25,7 +25,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-label label="Doing"
@@ -46,8 +46,8 @@
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
-                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -75,7 +75,7 @@
             </ng-container>
             <ng-container *ngIf="sizeControl.value">
               <![CDATA[
-              [size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="colorControl.value">
               <![CDATA[

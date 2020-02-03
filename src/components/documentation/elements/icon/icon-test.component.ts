@@ -4,7 +4,6 @@ import {
   AnimatedIcons,
   FontDefaultIcons,
   FontEmojiIcons,
-  FontGesturesIcons,
   FontIcons,
   SvgDefaultIcons,
   SvgFlagsIcons,
@@ -40,7 +39,7 @@ export class IconTestComponent implements OnInit {
   svgDefault: IconTest[] = [];
   svgFlags: IconTest[] = [];
 
-  sizeControl = new FormControl(UI.sizes.normal);
+  sizeControl = new FormControl(UI.size.normal);
 
   form = this.fb.group({
     size: this.sizeControl,
@@ -53,8 +52,11 @@ export class IconTestComponent implements OnInit {
     this.fontDefault = Object.keys(FontDefaultIcons)
       .map(icon => new IconTest(icon, FontDefaultIcons[icon], 'junte-ui-icons-default'));
 
-    this.fontGestures = Object.keys(FontGesturesIcons)
-      .map(icon => new IconTest(icon, FontGesturesIcons[icon], 'junte-ui-icons-gestures'));
+    this.fontGestures = Object.keys(UI.icons.gestures)
+      .map(icon => new IconTest(icon, UI.icons.gestures[icon], 'junte-ui-icons-gestures'));
+
+    Object.keys(UI.icons.gestures)
+      .map(icon => console.log(UI.icons.gestures[icon]));
 
     this.fontEmoji = Object.keys(FontEmojiIcons)
       .map(icon => new IconTest(icon, FontEmojiIcons[icon], 'junte-ui-icons-emoji'));

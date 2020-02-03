@@ -1,6 +1,7 @@
 import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Sizes, UI } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-checkbox',
@@ -31,7 +32,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   @HostBinding('attr.size')
   @Input()
-  size: Sizes = Sizes.normal;
+  size: Size = Size.normal;
 
   @Input() value: any;
 

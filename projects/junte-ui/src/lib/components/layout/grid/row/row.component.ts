@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { Gutter } from '../../../../enums/ui';
+import { Gutter } from '../../../../enums/gutter';
 import { RowAlign } from '../enums';
 
 @Component({

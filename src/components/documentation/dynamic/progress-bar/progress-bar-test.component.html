@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Progress bar</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/progress-bar"
               target="_blank" title="GitLab">
@@ -32,7 +32,7 @@
       <div style="width: 100%">
         <jnt-progress-bar [value]="value">
           <ng-template #legend>
-            <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
               <span>{{math.round(value * 10)/10}}%</span>
               <span>{{value > 100 ? '' : math.round(((100 - value) * 10))/10 + '%'}}</span>
             </jnt-stack>
@@ -44,7 +44,7 @@
     <div style="width: 100%">
       <jnt-progress-bar [value]="20">
         <ng-template #legend>
-          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
+          <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
             <span>20% Spend</span>
             <span>80% Remains</span>
           </jnt-stack>
@@ -55,7 +55,7 @@
     <div style="width: 100%">
       <jnt-progress-bar [value]="-20">
         <ng-template #legend>
-          <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
+          <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
             <span>-20%</span>
             <span></span>
           </jnt-stack>
@@ -67,7 +67,7 @@
       <pre><![CDATA[
 <jnt-progress-bar [value]="30">
   <ng-template #legend>
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
       <span>30%</span>
       <span>70%</span>
     </jnt-stack>

@@ -21,6 +21,10 @@ export class LocalUI {
         large: 'gutter-large:font:junte-ui-test-layout',
         huge: 'gutter-huge:font:junte-ui-test-layout',
       },
+      width: {
+        default: 'width-default:font:junte-ui-test-layout',
+        fluid: 'width-fluid:font:junte-ui-test-layout'
+      },
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
       start: 'start:font:junte-ui-test-layout',
@@ -33,9 +37,7 @@ export class LocalUI {
       around: 'around:font:junte-ui-test-layout',
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
-      baseline: 'baseline:font:junte-ui-test-layout',
-      default: 'default:font:junte-ui-test-layout',
-      fluid: 'fluid:font:junte-ui-test-layout'
+      baseline: 'baseline:font:junte-ui-test-layout'
     }
   };
 }

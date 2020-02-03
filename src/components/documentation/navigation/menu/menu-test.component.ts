@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Schemes, UI } from 'junte-ui';
+import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SourceType, TargetType } from '../link/link-test.component';
 import { MenuItemComponent } from 'junte-ui';
-import { Orientation } from 'junte-ui';
 import { MenuComponent } from 'junte-ui';
-import { Sizes } from 'junte-ui';
-import { SubmenuComponent, TabComponent} from 'junte-ui';
+import { SubmenuComponent, TabComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-menu-test',
@@ -27,11 +25,11 @@ export class MenuTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(Schemes.primary);
+  schemeControl = new FormControl(UI.scheme.primary);
   linkControl = new FormControl(SourceType.external);
   targetControl = new FormControl(TargetType.self);
-  typeControl = new FormControl(Orientation.horizontal);
-  spacingControl = new FormControl(Sizes.large);
+  typeControl = new FormControl(UI.orientation.horizontal);
+  spacingControl = new FormControl(UI.size.large);
   iconsControl = new FormControl(false);
 
   form = this.fb.group({

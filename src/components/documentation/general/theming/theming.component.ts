@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 
 @Component({
@@ -6,22 +6,8 @@ import { UI } from 'junte-ui';
   templateUrl: './theming.component.html',
   styleUrls: ['./theming.component.scss']
 })
-export class ThemingComponent implements OnInit {
+export class ThemingComponent {
 
   ui = UI;
-
-  colors: any[] = [];
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.colors = Object.keys(UI.colors).map(color => {
-      return {
-        name: color,
-        value: UI.colors[color]
-      };
-    });
-  }
 
 }

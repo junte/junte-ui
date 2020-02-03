@@ -1,5 +1,5 @@
 <jnt-container>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/grid"
@@ -24,11 +24,11 @@
                 <jnt-container>
                   <jnt-row row [align]="alignControl.value"
                            [gutter]="gutterControl.value">
-                    <jnt-col col *ngFor="let block of 25 | mockArray"
+                    <jnt-col col *ngFor="let block of 24 | mockArray"
                              [span]="spanControl.value"
                              [padding]="paddingControl.value">
                       <div block
-                           [style.height.px]="alignControl.value !== ui.layout.grid.row.align.stretch || (block + 1) % 6 === 0 ? 40 + 20 * (block % 6) : null">
+                           [style.height.px]="alignControl.value !== ui.layout.grid.row.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
                         {{block + 1}}
                       </div>
                     </jnt-col>
@@ -91,7 +91,7 @@
               <jnt-form-item>
                 <jnt-form-label for="span">Column span</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-select formControlName="span">
+                  <jnt-select formControlName="span" placeholder="1">
                     <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
                                        [label]="count"
                                        [key]="count"></jnt-select-option>

@@ -1,5 +1,6 @@
 import { ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { Orientation, Sizes } from '../../../enums/ui';
+import { Orientation } from '../../../enums/orientation';
+import { Size } from '../../../enums/size';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { SubmenuComponent } from './submenu/submenu.component';
 import { PropertyApi } from '../../../decorators/api';
@@ -9,7 +10,7 @@ export abstract class Menu {
   @HostBinding('attr.type')
   _type: Orientation = Orientation.horizontal;
 
-  _spacer: Sizes = Sizes.normal;
+  _spacer: Size = Size.normal;
 
   @PropertyApi({
     description: 'Menu orientation',
@@ -32,16 +33,16 @@ export abstract class Menu {
 
   @PropertyApi({
     description: 'Size of spacing between menu items',
-    path: 'ui.sizes',
-    default: Sizes.large,
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+    path: 'ui.size',
+    default: Size.large,
+    options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
 
-  @Input() set spacer(spacer: Sizes) {
+  @Input() set spacer(spacer: Size) {
     if (!!spacer) {
       this._spacer = spacer;
     } else {
-      this._spacer = Sizes.normal;
+      this._spacer = Size.normal;
     }
   }
 

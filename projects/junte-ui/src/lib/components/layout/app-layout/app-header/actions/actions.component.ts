@@ -1,6 +1,7 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { PropertyApi } from '../../../../../decorators/api';
-import { Gutter, UI } from '../../../../../enums/ui';
+import { Gutter } from '../../../../../enums/gutter';
+import { UI } from '../../../../../enums/ui';
 import { ActionComponent } from '../action/action.component';
 
 @Component({

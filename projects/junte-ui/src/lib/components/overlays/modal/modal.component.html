@@ -1,12 +1,12 @@
-<jnt-block modal>
-  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" title>
-    <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
+<jnt-block modal [padding]="ui.gutter.none">
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" title>
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
       <jnt-icon *ngIf="!!options?.title?.icon" [icon]="options?.title.icon" icon-title></jnt-icon>
       <span text *ngIf="!!options?.title?.text">{{options?.title?.text}}</span>
     </jnt-stack>
 
     <jnt-button *ngIf="options?.closing === closing.enable" [outline]="ui.outline.transparent"
-                [scheme]="ui.schemes.secondary"
+                [scheme]="ui.scheme.secondary"
                 [icon]="ui.icons.close" (click)="close()">
     </jnt-button>
   </jnt-stack>

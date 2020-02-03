@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { SkeletonComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
 
-export enum Sketches {
+export enum Sketch {
   User = 'user',
   VerticalPost = 'verticalPost',
   HorizontalPost = 'horizontalPost'
@@ -17,16 +17,16 @@ export enum Sketches {
 export class SkeletonTestComponent {
 
   ui = UI;
-  sketches = Sketches;
+  sketch = Sketch;
   localUi = LocalUI;
   skeleton = SkeletonComponent;
 
-  type = new FormControl(Sketches.User);
-  animation = new FormControl(true);
+  sketchControl = this.fb.control(Sketch.User);
+  animationControl = this.fb.control(true);
 
   form = this.fb.group({
-    type: this.type,
-    animation: this.animation,
+    sketch: this.sketchControl,
+    animation: this.animationControl,
   });
 
   constructor(private fb: FormBuilder) {

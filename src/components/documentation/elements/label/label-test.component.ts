@@ -19,7 +19,7 @@ export class LabelTestComponent implements OnInit {
   @ViewChild('code', {static: false}) code: TabComponent;
 
   iconControl = new FormControl(false);
-  sizeControl = new FormControl(UI.sizes.normal);
+  sizeControl = new FormControl(UI.size.normal);
   colorControl = new FormControl('#00227B');
 
   form = this.fb.group({

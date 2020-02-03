@@ -1,7 +1,7 @@
 <jnt-container>
   <jnt-stack [gutter]="ui.gutter.large">
     <h1>Switcher</h1>
-    <jnt-stack resources [type]="ui.stack.type.horizontal">
+    <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
       <jnt-link [icon]="ui.icons.gitlab"
                 source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switcher"
                 target="_blank" title="GitLab">
@@ -11,7 +11,7 @@
                 target="_blank" title="Figma">
       </jnt-link>
     </jnt-stack>
-    <jnt-stack [type]="ui.stack.type.horizontal">
+    <jnt-stack [type]="ui.layout.stack.type.horizontal">
       <jnt-label label="Selected value:"></jnt-label>
       <span>{{form.value | json}}</span>
     </jnt-stack>
@@ -22,12 +22,12 @@
           <jnt-switcher formControlName="selected" [type]="type">
             <jnt-switcher-option label="Lorem $$$$$" [value]="{obj: 10}"></jnt-switcher-option>
             <jnt-switcher-option label="Lorem ipsum dolor" [value]="{obj: 1}">
-              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
-              <jnt-badge [color]="ui.colors.purple" [value]="2000"></jnt-badge>
+              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
+              <jnt-badge [color]="ui.color.purple" [value]="2000"></jnt-badge>
             </jnt-switcher-option>
             <jnt-switcher-option label="Lorem ipsum dolor sit amet" [value]="{obj: 2}">
-              <jnt-dot [color]="ui.colors.red"></jnt-dot>
-              <jnt-badge [color]="ui.colors.purple" [value]="20"></jnt-badge>
+              <jnt-dot [color]="ui.color.red"></jnt-dot>
+              <jnt-badge [color]="ui.color.purple" [value]="20"></jnt-badge>
             </jnt-switcher-option>
             <jnt-switcher-option label="Option" [value]="{obj: 3}">
               <jnt-dot></jnt-dot>
@@ -36,30 +36,30 @@
 
           <jnt-switcher formControlName="selected" [type]="type">
             <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-              <jnt-badge [color]="ui.colors.purple" [value]="10"></jnt-badge>
+              <jnt-badge [color]="ui.color.purple" [value]="10"></jnt-badge>
             </jnt-switcher-option>
             <jnt-switcher-option label="Purple Dark active color" [value]="{obj: 20}">
-              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
+              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
             </jnt-switcher-option>
             <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
             <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-              <jnt-dot [color]="ui.colors.red"></jnt-dot>
-              <jnt-badge [value]="100000" [color]="ui.colors.red"></jnt-badge>
+              <jnt-dot [color]="ui.color.red"></jnt-dot>
+              <jnt-badge [value]="100000" [color]="ui.color.red"></jnt-badge>
             </jnt-switcher-option>
           </jnt-switcher>
 
           <jnt-switcher formControlName="selected" [type]="type">
             <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-              <jnt-badge [color]="ui.colors.purple" [value]="10"></jnt-badge>
+              <jnt-badge [color]="ui.color.purple" [value]="10"></jnt-badge>
             </jnt-switcher-option>
             <jnt-switcher-option label="Purple Dark active color Purple Dark active color"
                                  [value]="{obj: 20}">
-              <jnt-dot [color]="ui.colors.yellow"></jnt-dot>
+              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
             </jnt-switcher-option>
             <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
             <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-              <jnt-dot [color]="ui.colors.red"></jnt-dot>
-              <jnt-badge [value]="100000" [color]="ui.colors.red"></jnt-badge>
+              <jnt-dot [color]="ui.color.red"></jnt-dot>
+              <jnt-badge [value]="100000" [color]="ui.color.red"></jnt-badge>
             </jnt-switcher-option>
           </jnt-switcher>
 
@@ -78,8 +78,8 @@
 <jnt-switcher formControlName="switcherValue" [type]="ui.orientation.vertical">
   <jnt-switcher-option label="Option 1"></jnt-switcher-option>
   <jnt-switcher-option label="Option 2">
-    <jnt-dot [color]="ui.colors.red"></jnt-dot>
-    <jnt-badge [color]="ui.colors.blue100" [value]="99"></jnt-badge>
+    <jnt-dot [color]="ui.color.red"></jnt-dot>
+    <jnt-badge [color]="ui.color.blue100" [value]="99"></jnt-badge>
   </jnt-switcher-option>
 </jnt-switcher>
 ]]></pre>

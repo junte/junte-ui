@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { Outline, Schemes, UI } from '../../../enums/ui';
+import { Outline } from '../../../enums/outline';
+import { Scheme } from '../../../enums/scheme';
+import { UI } from '../../../enums/ui';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
 
@@ -21,7 +23,7 @@ export class LinkComponent {
   private _target: string = DEFAULT_TARGET;
 
   @HostBinding('attr.scheme')
-  _scheme = Schemes.primary;
+  _scheme = Scheme.primary;
 
   @HostBinding('attr.outline')
   _outline = Outline.transparent;
@@ -63,15 +65,15 @@ export class LinkComponent {
   @PropertyApi({
     description: 'Link color scheme',
     path: 'ui.schemes',
-    default: Schemes.primary,
-    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail]
+    default: Scheme.primary,
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail]
   })
 
-  @Input() set scheme(scheme: Schemes) {
+  @Input() set scheme(scheme: Scheme) {
     if (!!scheme) {
       this._scheme = scheme;
     } else {
-      this._scheme = Schemes.primary;
+      this._scheme = Scheme.primary;
     }
   }
 

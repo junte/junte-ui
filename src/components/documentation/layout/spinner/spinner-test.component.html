@@ -1,10 +1,12 @@
 <jnt-container>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/spinner"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2194%3A2"
               target="_blank" title="Figma">
     </jnt-link>
@@ -15,53 +17,55 @@
     <p>Spinner displays loading data or performing some processing.</p>
   </div>
 
-  <h3>How to use</h3>
-  <app-how-to-use
-    [test]="{selector:'spinner-test', type: 'SpinnerTestComponent'}"
-    scss="layout/spinner"></app-how-to-use>
-
   <h3>Playground</h3>
   <jnt-tabs playground>
 
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
-          <app-browser-preview>
-            <ng-template #document>
-              <jnt-spinner [size]="size.value"></jnt-spinner>
-            </ng-template>
-          </app-browser-preview>
-
-          <jnt-form [formGroup]="form" builder>
-            <jnt-form-item>
-              <jnt-form-label for="size">Size</jnt-form-label>
-              <jnt-form-control>
-                <jnt-switcher formControlName="size">
-                  <jnt-switcher-option label="Small"
-                                       [value]="ui.sizes.small"></jnt-switcher-option>
-                  <jnt-switcher-option label="Normal"
-                                       [value]="ui.sizes.normal"></jnt-switcher-option>
-                  <jnt-switcher-option label="Large"
-                                       [value]="ui.sizes.large"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-control>
-            </jnt-form-item>
-          </jnt-form>
-        </jnt-stack>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-spinner [size]="sizeControl.value"></jnt-spinner>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="form" builder>
+              <jnt-form-item>
+                <jnt-form-label for="size">Size</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-switcher formControlName="size" placeholder="Normal">
+                    <jnt-switcher-option label="Small"
+                                         [value]="ui.size.small"></jnt-switcher-option>
+                    <jnt-switcher-option label="Normal"
+                                         [value]="ui.size.normal"></jnt-switcher-option>
+                    <jnt-switcher-option label="Large"
+                                         [value]="ui.size.large"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
       </ng-template>
     </jnt-tab>
 
     <jnt-tab title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-code-highlight file="spinner-test">
+        <app-how-to-use
+          [test]="{selector:'spinner-test', type: 'SpinnerTestComponent'}"
+          scss="layout/spinner"></app-how-to-use>
+        <app-code-highlight file="spinner-test.template.html">
           <![CDATA[
           <jnt-spinner
             ]]>
-            <ng-container *ngIf="size.value">
+            <ng-container *ngIf="sizeControl.value">
               <![CDATA[
-              [size]="ui.sizes.]]>{{size.value}}<![CDATA["]]>
+              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
             </ng-container>
-            <![CDATA[></jnt-spinner>
+            <![CDATA[>
+          </jnt-spinner>
           ]]>
         </app-code-highlight>
       </ng-template>

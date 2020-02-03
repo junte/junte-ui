@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Popover</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/overlays/popover"
               target="_blank" title="GitLab">
@@ -22,22 +22,22 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <jnt-stack [type]="ui.stack.type.horizontal">
+  <jnt-stack [type]="ui.layout.stack.type.vertical">
+    <jnt-stack [type]="ui.layout.stack.type.horizontal">
       <jnt-button [jntPopover]="{title: 'Title', contentTemplate: contentTemplate, trigger: ui.popover.trigger.click}"
                   text="Click me">
       </jnt-button>
       <jnt-button [jntPopover]="{content: 'Without title & text only', trigger: ui.popover.trigger.click}"
                   text="Without title">
       </jnt-button>
-      <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.schemes.primary, contentTemplate: contentTemplate, trigger: ui.popover.trigger.hover}"
+      <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.scheme.primary, contentTemplate: contentTemplate, trigger: ui.popover.trigger.hover}"
                   text="Custom content">
       </jnt-button>
 
       <ng-template #contentTemplate>
-        <jnt-stack [type]="ui.stack.type.vertical">
+        <jnt-stack [type]="ui.layout.stack.type.vertical">
           <span>It is custom content!</span>
-          <jnt-stack [type]="ui.stack.type.horizontal">
+          <jnt-stack [type]="ui.layout.stack.type.horizontal">
             <jnt-button text="Ok"></jnt-button>
             <jnt-button text="Cancel"></jnt-button>
           </jnt-stack>
@@ -54,10 +54,10 @@
   <jnt-row>
     <jnt-stack [align]="ui.flex.align.stretch" placements>
 
-      <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
         <ng-container
           *ngFor="let pos of [ui.popover.position.topLeft, ui.popover.position.top, ui.popover.position.topRight]">
-          <jnt-button [size]="ui.sizes.large"
+          <jnt-button [size]="ui.size.large"
                       [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
@@ -66,7 +66,7 @@
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
         <ng-container *ngFor="let pos of [ui.popover.position.leftTop, ui.popover.position.rightTop]">
-          <jnt-button [size]="ui.sizes.large"
+          <jnt-button [size]="ui.size.large"
                       [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
@@ -75,7 +75,7 @@
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
         <ng-container *ngFor="let pos of [ui.popover.position.left, ui.popover.position.right]">
-          <jnt-button [size]="ui.sizes.large"
+          <jnt-button [size]="ui.size.large"
                       [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
@@ -85,17 +85,17 @@
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
         <ng-container *ngFor="let pos of [ui.popover.position.leftBottom, ui.popover.position.rightBottom]">
-          <jnt-button [size]="ui.sizes.large"
+          <jnt-button [size]="ui.size.large"
                       [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
       </jnt-stack>
 
-      <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
         <ng-container
           *ngFor="let pos of [ui.popover.position.bottomLeft, ui.popover.position.bottom, ui.popover.position.bottomRight]">
-          <jnt-button [size]="ui.sizes.large"
+          <jnt-button [size]="ui.size.large"
                       [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
@@ -133,9 +133,9 @@
    </jnt-button>
 
   <ng-template #content>
-     <jnt-stack [type]="ui.stack.type.vertical">
+     <jnt-stack [type]="ui.layout.stack.type.vertical">
         <jnt-link>"It is custom content!</jnt-link>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <jnt-button text="Ok"></jnt-button>
           <jnt-button text="Cancel"></jnt-button>
         </jnt-stack>

@@ -18,7 +18,7 @@ export class SwitchTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  sizeControl = new FormControl(UI.sizes.normal);
+  sizeControl = new FormControl(UI.size.normal);
   labelControl = new FormControl(true);
   iconOnControl = new FormControl(false);
   iconOffControl = new FormControl(false);

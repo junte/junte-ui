@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Form</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/form"
               target="_blank" title="GitLab">
@@ -22,7 +22,7 @@
 
   <h3>Horizontal</h3>
 
-  <jnt-block [padding]="ui.padding.normal">
+  <jnt-block [padding]="ui.gutter.normal">
     <jnt-form [layout]="ui.form.layout.horizontal" title="Form title">
       <jnt-form-item>
         <jnt-col [span]="3">
@@ -50,9 +50,9 @@
       </jnt-form-item>
 
       <ng-template #formFooterTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
           <jnt-button text="Save changes"></jnt-button>
-          <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
         </jnt-stack>
       </ng-template>
     </jnt-form>
@@ -61,7 +61,7 @@
 
   <ng-container *ngFor="let layout of [ui.form.layout.vertical, ui.form.layout.inline]">
     <h3>{{layout | titlecase}}</h3>
-    <jnt-block [padding]="ui.padding.normal">
+    <jnt-block [padding]="ui.gutter.normal">
       <jnt-form [layout]="layout" title="Form title">
         <jnt-form-item>
           <jnt-form-label for="name">Username</jnt-form-label>
@@ -81,9 +81,9 @@
         </jnt-form-item>
 
         <ng-template #formFooterTemplate>
-          <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+          <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
             <jnt-button text="Save changes"></jnt-button>
-            <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+            <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
           </jnt-stack>
         </ng-template>
       </jnt-form>
@@ -92,7 +92,7 @@
 
   <h3>Form loading</h3>
 
-  <jnt-block [padding]="ui.padding.normal">
+  <jnt-block [padding]="ui.gutter.normal">
     <jnt-form title="Form title" [loading]="true">
       <jnt-form-item>
         <jnt-form-label for="name">Username</jnt-form-label>
@@ -112,18 +112,18 @@
       </jnt-form-item>
 
       <ng-template #formFooterTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
           <jnt-button text="Save changes"></jnt-button>
-          <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
         </jnt-stack>
       </ng-template>
     </jnt-form>
   </jnt-block>
 
   <ng-template #formFooterTemplate>
-    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
       <jnt-button text="Save changes"></jnt-button>
-      <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+      <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
     </jnt-stack>
   </ng-template>
 
@@ -160,20 +160,20 @@
     </jnt-form-item>
 
     <ng-template #formFooterTemplate>
-      <jnt-stack [type]="ui.stack.type.horizontal">
+      <jnt-stack [type]="ui.layout.stack.type.horizontal">
         <jnt-form-control>
           <jnt-button text="Save changes" [type]="ui.form.button.type.submit"></jnt-button>
         </jnt-form-control>
         <jnt-form-control>
-          <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
         </jnt-form-control>
       </jnt-stack>
     </ng-template>
 
     <ng-template #formFooterTemplate>
-      <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.end">
+      <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
         <jnt-button text="Save changes"></jnt-button>
-        <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+        <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
       </jnt-stack>
     </ng-template>
   </jnt-form>
@@ -189,9 +189,9 @@
     </jnt-form-control>
   </jnt-form-item>
   <ng-template #formFooterTemplate>
-    <jnt-stack [type]="ui.stack.type.horizontal">
+    <jnt-stack [type]="ui.layout.stack.type.horizontal">
       <jnt-button text="Save changes"></jnt-button>
-      <jnt-button [scheme]="ui.schemes.secondary" text="Cancel"></jnt-button>
+      <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
     </jnt-stack>
   </ng-template>
 </jnt-form>

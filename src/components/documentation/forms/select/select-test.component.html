@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Select</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/select"
               target="_blank" title="GitLab">
@@ -25,7 +25,7 @@
     </ul>
     <p>Static options</p>
     <jnt-stack [align]="ui.flex.align.stretch">
-      <jnt-select *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]"
+      <jnt-select *ngFor="let size of [ui.size.small, ui.size.normal, ui.size.large]"
                   [mode]="ui.select.multiple"
                   [size]="size"
                   [search]="searchControl.value"
@@ -65,10 +65,10 @@
                          [value]="hero">
       </jnt-select-option>
       <ng-template #optionTemplate let-hero="value">
-        <jnt-stack option [type]="ui.stack.type.horizontal"
+        <jnt-stack option [type]="ui.layout.stack.type.horizontal"
                    [gutter]="ui.gutter.small"
                    [align]="ui.flex.align.center">
-          <jnt-avatar [size]="ui.sizes.small"></jnt-avatar>
+          <jnt-avatar [size]="ui.size.small"></jnt-avatar>
           <div>{{hero.title}} with likes</div>
           <jnt-label [label]="hero.likes"></jnt-label>
         </jnt-stack>
@@ -77,7 +77,7 @@
 
     <p>Single select</p>
     <jnt-stack [align]="ui.flex.align.stretch">
-      <jnt-select *ngFor="let size of [ui.sizes.small, ui.sizes.normal, ui.sizes.large]"
+      <jnt-select *ngFor="let size of [ui.size.small, ui.size.normal, ui.size.large]"
                   formControlName="single"
                   [size]="size"
                   [search]="searchControl.value"

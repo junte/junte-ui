@@ -1,5 +1,5 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
-import { Matching, UI } from '../../../../enums/ui';
+import { UrlMatching, UI } from '../../../../enums/ui';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 import { PropertyApi } from '../../../../decorators/api';
@@ -29,11 +29,11 @@ export class SubmenuComponent {
   @PropertyApi({
     description: 'Methods of matching',
     path: 'ui.url.matching',
-    default: Matching.fullMatch,
-    options: [Matching.fullMatch, Matching.wildcard]
+    default: UrlMatching.fullMatch,
+    options: [UrlMatching.fullMatch, UrlMatching.wildcard]
   })
 
-  @Input() matching: Matching = Matching.fullMatch;
+  @Input() matching: UrlMatching = UrlMatching.fullMatch;
 
   @PropertyApi({
     description: 'Click event',

@@ -20,8 +20,8 @@ export class ButtonsTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(UI.schemes.primary);
-  sizeControl = new FormControl(UI.sizes.normal);
+  schemeControl = new FormControl(UI.scheme.primary);
+  sizeControl = new FormControl(UI.size.normal);
   outlineControl = new FormControl(UI.outline.fill);
   widthControl = new FormControl(UI.width.default);
   typeControl = new FormControl(UI.form.button.type.button);

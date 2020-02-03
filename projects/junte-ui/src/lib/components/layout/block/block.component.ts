@@ -1,7 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { MethodApi, PropertyApi } from '../../../decorators/api';
-import { BlockState, Paddings, Schemes, UI, Width } from '../../../enums/ui';
+import { Gutter } from '../../../enums/gutter';
+import { Scheme } from '../../../enums/scheme';
+import { UI } from '../../../enums/ui';
+import { Width } from '../../../enums/width';
+import { BlockState } from './enums';
 
 @Component({
   selector: 'jnt-block',
@@ -32,15 +36,18 @@ import { BlockState, Paddings, Schemes, UI, Width } from '../../../enums/ui';
 })
 export class BlockComponent {
 
-  _state = {success: false};
-
   blockState = BlockState;
   ui = UI;
+
+  _state = {success: false};
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
   @HostBinding('attr.scheme')
-  _scheme = Schemes.primary;
+  _scheme = Scheme.primary;
+
+  @HostBinding('attr.padding')
+  _padding = Gutter.normal;
 
   @PropertyApi({
     description: 'Title of block',
@@ -50,33 +57,38 @@ export class BlockComponent {
   title: string;
 
   @PropertyApi({
-    description: 'Template of block footer',
-    type: 'templateRef'
+    description: 'Block color scheme',
+    path: 'ui.schemes',
+    default: Scheme.primary,
+    options: [Scheme.primary,
+      Scheme.secondary,
+      Scheme.success,
+      Scheme.fail]
   })
-  @ContentChild('blockFooterTemplate', {static: false})
-  blockFooterTemplate: TemplateRef<any>;
-
+  @Input() set scheme(scheme: Scheme) {
+    this._scheme = scheme || Scheme.primary;
+  }
 
   @PropertyApi({
-    description: 'Inner gutters for block',
-    path: 'ui.padding',
-    options: [Paddings.tiny,
-      Paddings.small,
-      Paddings.normal,
-      Paddings.large,
-      Paddings.big,
-      Paddings.huge]
+    description: 'Padding for content & footer',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.large,
+      Gutter.big,
+      Gutter.huge]
   })
-  @HostBinding('attr.padding')
-  @Input()
-  padding: Paddings = Paddings.none;
-
+  @Input() set padding(padding: Gutter) {
+    this._padding = padding || Gutter.normal;
+  }
 
   @PropertyApi({
     description: 'Block width',
     path: 'ui.width',
     default: Width.default,
-    options: [Width.default, Width.fluid]
+    options: [Width.default,
+      Width.fluid]
   })
   @HostBinding('attr.width')
   @Input()
@@ -85,21 +97,14 @@ export class BlockComponent {
   @PropertyApi({
     description: 'State of block',
     path: 'ui.block.state',
-    options: [BlockState.error, BlockState.loading]
+    options: [BlockState.error,
+      BlockState.loading]
   })
   @Input()
   state: BlockState;
 
-  @PropertyApi({
-    description: 'Block color scheme',
-    path: 'ui.schemes',
-    default: Schemes.primary,
-    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail]
-  })
-
-  @Input() set scheme(scheme: Schemes) {
-    this._scheme = scheme || Schemes.primary;
-  }
+  @ContentChild('blockFooterTemplate', {static: false})
+  blockFooterTemplate: TemplateRef<any>;
 
   @MethodApi({description: 'show success animation'})
   success() {

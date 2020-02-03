@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { Gutter } from '../../../../enums/ui';
+import { Gutter } from '../../../../enums/gutter';
 
 const MOBILE_COLUMNS = 12;
 const TABLET_COLUMNS = 6;

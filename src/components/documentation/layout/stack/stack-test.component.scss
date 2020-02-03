@@ -1,2 +1,53 @@
 @import "../../../../../projects/junte-ui/src/lib/assets/styles/variables";
 @import "../../component";
+
+[axis1] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto 0;
+  height: 2px;
+  background: $red-color;
+  width: 100%;
+  opacity: .5;
+  transform: translateY(50%);
+  &[type='horizontal'] {
+    background: $green-color;
+  }
+}
+
+[axis2] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  height: 100%;
+  background: $green-color;
+  width: 2px;
+  opacity: .5;
+  transform: translateX(50%);
+  &[type='horizontal'] {
+    background: $red-color;
+  }
+}
+
+[stack] {
+  border: 1px dashed $secondary-color;
+  height: 100%;
+}
+
+[align][host=#{$jnt-select-host}] ::ng-deep {
+  [select][child-of=#{$jnt-select-host}] {
+    border-color: $red-color;
+  }
+}
+
+[justify][host=#{$jnt-select-host}] ::ng-deep {
+  [select][child-of=#{$jnt-select-host}] {
+    border-color: $green-color;
+  }
+}

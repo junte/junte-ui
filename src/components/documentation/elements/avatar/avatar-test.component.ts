@@ -20,7 +20,7 @@ export class AvatarTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  sizeControl = new FormControl(UI.sizes.normal);
+  sizeControl = new FormControl(UI.size.normal);
   shapeControl = new FormControl(UI.shape.circle);
   iconControl = new FormControl(false);
   textControl = new FormControl(false);

@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Badge</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/badge"
               target="_blank" title="GitLab">
@@ -27,7 +27,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <ng-container *ngIf="positionControl.value == ui.position.inline; else positionTemplate">

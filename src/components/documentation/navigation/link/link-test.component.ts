@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI, Schemes, LinkComponent, TabComponent , Outline } from 'junte-ui';
+import { UI, LinkComponent, TabComponent } from 'junte-ui';
 
 export enum SourceType {
   external = 'external',
@@ -31,8 +31,8 @@ export class LinkTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(Schemes.primary);
-  outlineControl = new FormControl(Outline.transparent);
+  schemeControl = new FormControl(UI.scheme.primary);
+  outlineControl = new FormControl(UI.outline.transparent);
   iconControl = new FormControl(false);
   sourceControl = new FormControl(SourceType.external);
   disableControl = new FormControl();

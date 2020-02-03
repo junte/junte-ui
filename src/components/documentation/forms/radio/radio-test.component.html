@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Radio</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/radio"
               target="_blank" title="GitLab">
@@ -19,8 +19,8 @@
 
   <hr>
 
-  <jnt-stack [type]="ui.stack.type.vertical">
-    <ng-container *ngFor="let size of [ui.sizes.tiny, ui.sizes.small, ui.sizes.normal, ui.sizes.large]">
+  <jnt-stack [type]="ui.layout.stack.type.vertical">
+    <ng-container *ngFor="let size of [ui.size.tiny, ui.size.small, ui.size.normal, ui.size.large]">
       <jnt-radio label="Radio" [size]="size"></jnt-radio>
       <jnt-radio [checked]="true" label="Radio checked" [size]="size"></jnt-radio>
       <jnt-radio [disabled]="true" label="Radio disabled" [size]="size"></jnt-radio>
@@ -31,11 +31,11 @@
 
   <ngx-prism language="html">
 <pre><![CDATA[
-<jnt-radio [checked]="true" [disabled]="false" label="Radio" [size]="ui.sizes.large"></jnt-radio>
+<jnt-radio [checked]="true" [disabled]="false" label="Radio" [size]="ui.size.large"></jnt-radio>
 ]]></pre>
   </ngx-prism>
 
-  <jnt-stack [type]="ui.stack.type.vertical">
+  <jnt-stack [type]="ui.layout.stack.type.vertical">
     <h3>Radio Group</h3>
     Selected: {{selected}}
     <jnt-radio-group [(ngModel)]="selected">

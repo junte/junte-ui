@@ -1,5 +1,5 @@
 <jnt-container>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/tabs"
               target="_blank" title="GitLab">
@@ -38,7 +38,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
             <ng-template #document>
               <jnt-tabs [outline]="outlineControl.value">
@@ -51,8 +51,8 @@
                 <jnt-tab title="Security" [icon]="iconsControl.value ? ui.icons.accessLock : null">
                   <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-template #tabContentTemplate>
-                    <jnt-stack [type]="ui.stack.type.horizontal">
-                      <jnt-skeleton [type]="ui.skeleton.type.avatar" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" [size]="ui.size.large" [animated]="false"></jnt-skeleton>
                       <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                     </jnt-stack>
                   </ng-template>
@@ -61,7 +61,7 @@
                   <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
                   <ng-template #tabContentTemplate>
                     <jnt-stack>
-                      <jnt-skeleton [type]="ui.skeleton.type.image" [size]="ui.sizes.large" [animated]="false"></jnt-skeleton>
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image" [size]="ui.size.large" [animated]="false"></jnt-skeleton>
                       <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                     </jnt-stack>
                   </ng-template>

@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Sizes } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
 import { PropertyApi } from '../../../decorators/api';
 
 @Component({
@@ -11,17 +11,19 @@ export class SpinnerComponent {
   @HostBinding('attr.host') readonly host = 'jnt-spinner-host';
 
   @HostBinding('attr.size')
-  _size: Sizes = Sizes.normal;
+  _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Spinner size',
-    path: 'ui.sizes',
-    default: Sizes.normal,
-    options: [Sizes.small, Sizes.normal, Sizes.large]
+    path: 'ui.size',
+    default: Size.normal,
+    options: [Size.small,
+      Size.normal,
+      Size.large]
   })
 
-  @Input() set size(size: Sizes) {
-    this._size = size || Sizes.normal;
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
 }

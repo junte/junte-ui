@@ -1,11 +1,13 @@
 <jnt-container>
 
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/app-layout"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611"
               target="_blank" title="Figma">
     </jnt-link>
@@ -16,11 +18,6 @@
     <p>Each WEB application requires base components for working: logo, main menu, footer, side menu, breadcrumbs,
       etc.</p>
   </div>
-
-  <h3>How to use</h3>
-  <app-how-to-use
-    [test]="{selector:'layout-test', type: 'AppLayoutTestComponent'}"
-    scss="layout/app"></app-how-to-use>
 
   <h3>Playground</h3>
   <jnt-tabs playground>
@@ -121,10 +118,10 @@
                   <ng-template *ngIf="userMenuControl.value" #headerUserbarTemplate>
                     <jnt-userbar>
                       <ng-template #userbarAvatarTemplate>
-                        <jnt-avatar [size]="ui.sizes.small" image="assets/images/bob.jpeg"></jnt-avatar>
+                        <jnt-avatar [size]="ui.size.small" image="assets/images/bob.jpeg"></jnt-avatar>
                       </ng-template>
                       <ng-template #userbarMenuTemplate>
-                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                           <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
                           <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
                           <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
@@ -152,7 +149,7 @@
                   <jnt-app-aside #sider>
 
                     <ng-template let-collapsed="collapsed" #asideContentTemplate>
-                      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                         <jnt-submenu title="General" [icon]="ui.icons.crown">
                           <jnt-menu-item title="Theming"></jnt-menu-item>
                           <jnt-menu-item title="Typography"></jnt-menu-item>
@@ -181,7 +178,11 @@
 
     <jnt-tab title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-code-highlight>
+        <app-how-to-use
+          [test]="{selector:'layout-test', type: 'AppLayoutTestComponent'}"
+          scss="layout/app"></app-how-to-use>
+
+        <app-code-highlight file="app-layout-test.template.html">
           <![CDATA[
           <jnt-app-layout>
             ]]>
@@ -239,10 +240,10 @@
                   <ng-template #headerUserbarTemplate>
                     <jnt-userbar>
                       <ng-template #userbarAvatarTemplate>
-                        <jnt-avatar [size]="ui.sizes.small" image="assets/images/bob.jpeg"></jnt-avatar>
+                        <jnt-avatar [size]="ui.size.small" image="assets/images/bob.jpeg"></jnt-avatar>
                       </ng-template>
                       <ng-template #userbarMenuTemplate>
-                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                        <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                           <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
                           <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
                           <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
@@ -258,7 +259,7 @@
               <ng-container *ngIf="asideControl.value">
                 <![CDATA[
                 <jnt-app-aside #aside>
-                  <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+                  <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                     <jnt-submenu title="General" [icon]="ui.icons.crown">
                       <jnt-menu-item title="Theming"></jnt-menu-item>
                       <jnt-menu-item title="Typography"></jnt-menu-item>

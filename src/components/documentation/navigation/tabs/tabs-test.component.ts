@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
-import { UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Outline } from 'junte-ui';
-import { TabsComponent } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
+import { TabComponent, TabsComponent, UI } from 'junte-ui';
+import { LocalUI } from '../../../../enums/local-ui';
 
 @Component({
   selector: 'app-tabs-test',
@@ -20,7 +17,7 @@ export class TabsTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  outlineControl = new FormControl(Outline.fill);
+  outlineControl = new FormControl(UI.outline.fill);
   iconsControl = new FormControl(false);
 
   form = this.fb.group({

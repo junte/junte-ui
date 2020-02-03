@@ -1,6 +1,6 @@
-<jnt-stack [type]="ui.stack.type.horizontal">
+<jnt-stack [type]="ui.layout.stack.type.horizontal">
   <ng-container *ngIf="!!lists.length; else nolists">
-    <jnt-block *ngFor="let list of lists" [title]="list.title" [padding]="ui.padding.normal" list>
+    <jnt-block *ngFor="let list of lists" [title]="list.title" [padding]="ui.gutter.normal" list>
       <jnt-stack *ngIf="!!list.tickets.length; else notickets" [align]="ui.flex.align.stretch">
         <div *ngFor="let ticket of list.tickets" ticket>{{ticket.title}}</div>
       </jnt-stack>
@@ -14,7 +14,7 @@
 
 <ng-template #loadingLists>
   <div *ngFor="let i of [1,2,3]">
-    <jnt-block [width]="ui.width.fluid" [padding]="ui.padding.normal" mock>
+    <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.normal" mock>
       <jnt-skeleton [lines]="4"></jnt-skeleton>
     </jnt-block>
   </div>

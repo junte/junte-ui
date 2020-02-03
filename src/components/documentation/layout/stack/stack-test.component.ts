@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { StackComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
   selector: 'app-stack-test',
@@ -12,22 +13,24 @@ export class StackTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  stack = StackComponent;
+  language = Language;
+
+  types = {stack: StackComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  type = new FormControl(UI.stack.type.horizontal);
-  gutter = new FormControl(null);
-  align = new FormControl(null);
-  justify = new FormControl(null);
-  wrap = new FormControl(null);
+  typeControl = this.fb.control(UI.layout.stack.type.horizontal);
+  gutterControl = this.fb.control(null);
+  alignControl = this.fb.control(null);
+  justifyControl = this.fb.control(null);
+  wrapControl = this.fb.control(null);
 
   form = this.fb.group({
-    type: this.type,
-    gutter: this.gutter,
-    align: this.align,
-    justify: this.justify,
-    wrap: this.wrap
+    type: this.typeControl,
+    gutter: this.gutterControl,
+    align: this.alignControl,
+    justify: this.justifyControl,
+    wrap: this.wrapControl
   });
 
   constructor(private fb: FormBuilder) {

@@ -1,6 +1,8 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { FlexAlign, FlexJustify, FlexWrap, Gutter, StackType } from '../../../enums/ui';
+import { FlexAlign, FlexJustify, FlexWrap } from '../../../enums/flex';
+import { Gutter } from '../../../enums/gutter';
+import { StackType } from './enums';
 
 @Component({
   selector: 'jnt-stack',
@@ -19,15 +21,15 @@ export class StackComponent {
   @HostBinding('attr.align')
   _align: FlexAlign = FlexAlign.start;
 
-  @HostBinding('attr.justifyControl')
+  @HostBinding('attr.justify')
   _justify: FlexJustify = FlexJustify.start;
 
   @HostBinding('attr.wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
 
   @PropertyApi({
-    description: 'Element direction',
-    path: 'ui.stack.type',
+    description: 'Defined main axis of elements align',
+    path: 'ui.layout.stack.type',
     default: StackType.vertical,
     options: [StackType.vertical, StackType.horizontal]
   })
@@ -40,7 +42,7 @@ export class StackComponent {
   }
 
   @PropertyApi({
-    description: 'Space between children elements',
+    description: 'Space between elements in main axis',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.tiny,
@@ -55,7 +57,7 @@ export class StackComponent {
   }
 
   @PropertyApi({
-    description: 'Vertical align of elements',
+    description: 'Align of elements in main axis',
     path: 'ui.flex.align',
     default: FlexAlign.start,
     options: [FlexAlign.start,
@@ -69,8 +71,8 @@ export class StackComponent {
   }
 
   @PropertyApi({
-    description: 'Horizontal align of elements',
-    path: 'ui.flex.justifyControl',
+    description: 'Align of elements in secondary axis',
+    path: 'ui.flex.justify',
     default: FlexJustify.start,
     options: [FlexJustify.start,
       FlexJustify.center,
@@ -84,7 +86,7 @@ export class StackComponent {
   }
 
   @PropertyApi({
-    description: 'Wrapping of elements',
+    description: 'Wrapping of elements in main axis',
     path: 'ui.flex.wrap',
     default: FlexWrap.noWrap,
     options: [FlexWrap.noWrap,

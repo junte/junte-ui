@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Modal</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/overlays/modal"
               target="_blank" title="GitLab">
@@ -19,7 +19,7 @@
   </ng-template>
 
   <ng-template #footer>
-    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center" footer>
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" footer>
       <jnt-button text="Ok"></jnt-button>
       <jnt-button text="Cancel"></jnt-button>
     </jnt-stack>
@@ -34,7 +34,7 @@
 
   <h3>Usage</h3>
 
-  <p>To use the modal component, changes are <jnt-label [color]="ui.colors.red" label="required in the main component"></jnt-label> of the application.</p>
+  <p>To use the modal component, changes are <jnt-label [color]="ui.color.red" label="required in the main component"></jnt-label> of the application.</p>
 
   <h6>app.component.ts:</h6>
   <ngx-prism language="js">

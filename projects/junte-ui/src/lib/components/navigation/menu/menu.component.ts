@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { Matching, UI } from '../../../enums/ui';
+import { UrlMatching, UI } from '../../../enums/ui';
 import { Menu } from './menu-abstract';
 
 @Component({
@@ -11,6 +11,6 @@ export class MenuComponent extends Menu {
   ui = UI;
   @HostBinding('attr.host') readonly host = 'jnt-menu-host';
 
-  matching = Matching;
+  matching = UrlMatching;
 
 }

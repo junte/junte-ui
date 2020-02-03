@@ -1,6 +1,10 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
-import { Outline, Schemes, Sizes, UI, Width } from '../../../../enums/ui';
+import { Outline } from '../../../../enums/outline';
+import { Scheme } from '../../../../enums/scheme';
+import { Size } from '../../../../enums/size';
+import { UI } from '../../../../enums/ui';
+import { Width } from '../../../../enums/width';
 import { ButtonComponent } from '../button.component';
 
 @Component({
@@ -18,23 +22,23 @@ export class ButtonGroupComponent {
 
   @PropertyApi({
     description: 'Button group size',
-    path: 'ui.sizes',
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large],
-    default: Sizes.normal
+    path: 'ui.size',
+    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    default: Size.normal
   })
 
   @HostBinding('attr.size')
-  @Input() size: Sizes = Sizes.normal;
+  @Input() size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Button group color scheme',
     path: 'ui.schemes',
-    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail],
-    default: Schemes.primary
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
+    default: Scheme.primary
   })
 
   @HostBinding('attr.scheme')
-  @Input() scheme: Schemes = Schemes.primary;
+  @Input() scheme: Scheme = Scheme.primary;
 
   @PropertyApi({
     description: 'Button group outline',

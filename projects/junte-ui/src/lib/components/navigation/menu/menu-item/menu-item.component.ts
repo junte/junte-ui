@@ -1,5 +1,6 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
-import { Matching, Schemes, UI } from '../../../../enums/ui';
+import { Scheme } from '../../../../enums/scheme';
+import { UrlMatching, UI } from '../../../../enums/ui';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { PropertyApi } from '../../../../decorators/api';
 
@@ -46,20 +47,20 @@ export class MenuItemComponent {
   @PropertyApi({
     description: 'Methods of matching',
     path: 'ui.url.matching',
-    default: Matching.fullMatch,
-    options: [Matching.fullMatch, Matching.wildcard]
+    default: UrlMatching.fullMatch,
+    options: [UrlMatching.fullMatch, UrlMatching.wildcard]
   })
 
-  @Input() matching: Matching = Matching.fullMatch;
+  @Input() matching: UrlMatching = UrlMatching.fullMatch;
 
   @PropertyApi({
     description: 'Menu item color scheme',
     path: 'ui.schemes',
-    default: Schemes.primary,
-    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail]
+    default: Scheme.primary,
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail]
   })
 
-  @Input() scheme: Schemes = Schemes.primary;
+  @Input() scheme: Scheme = Scheme.primary;
 
   @PropertyApi({
     description: 'Click event',

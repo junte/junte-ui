@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Colors } from '../../../enums/ui';
+import { Color } from '../../../enums/color';
 
 @Component({
   selector: 'jnt-dot',
@@ -12,6 +12,6 @@ export class DotComponent {
 
   @Input()
   @HostBinding('style.background-color')
-  color: string = Colors.orange;
+  color: string = Color.orange;
 
 }

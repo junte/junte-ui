@@ -28,7 +28,7 @@ export class CodeHighlightComponent implements AfterContentChecked {
   code = '';
 
   private formatHTML(source: string) {
-    return source.replace(/\n +\>/g, '>')
+    return source.replace(/\n *\>/g, '>')
       .replace(/\> +\</g, '><');
   }
 

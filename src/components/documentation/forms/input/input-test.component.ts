@@ -18,7 +18,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
 
   typeControl = this.fb.control(UI.form.input.text);
   stateControl = this.fb.control(UI.state.normal);
-  sizeControl = this.fb.control(UI.sizes.normal);
+  sizeControl = this.fb.control(UI.size.normal);
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
   alignControl = this.fb.control(UI.text.align.left);

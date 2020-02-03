@@ -1,12 +1,14 @@
 <form [formGroup]="form">
   <jnt-stack [align]="ui.flex.align.stretch">
-    <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.between"
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between"
                [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
-      <jnt-stack [type]="ui.stack.type.horizontal" [align]="ui.flex.align.center" [wrap]="ui.flex.wrap.wrap">
+      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                 [align]="ui.flex.align.center"
+                 [wrap]="ui.flex.wrap.wrap">
         <jnt-button button text="Reload"
                     [icon]="ui.icons.reload"
                     [outline]="ui.outline.transparent"
-                    [scheme]="ui.schemes.secondary"
+                    [scheme]="ui.scheme.secondary"
                     (click)="load(); reloaded.emit()">
         </jnt-button>
         <div>
@@ -27,7 +29,7 @@
       <div table>
         <table>
           <div *ngIf="source.length && progress.loading" spinner>
-            <jnt-spinner [size]="ui.sizes.large" icon></jnt-spinner>
+            <jnt-spinner [size]="ui.size.large" icon></jnt-spinner>
           </div>
 
           <thead>

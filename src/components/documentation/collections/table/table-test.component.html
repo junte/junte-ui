@@ -1,6 +1,6 @@
 <jnt-container>
   <h1>Table</h1>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/collections/table"
               target="_blank" title="GitLab">
@@ -23,7 +23,7 @@
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-form [formGroup]="form">
-      <jnt-stack [type]="ui.stack.type.vertical" [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+      <jnt-stack [type]="ui.layout.stack.type.vertical" [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
         <jnt-table #table [features]="[ui.table.features.search]" formControlName="table">
           <jnt-table-column title="#" sort="id">
             <ng-template #cellTemplate let-id="id">
@@ -44,7 +44,7 @@
           </jnt-table-column>
 
           <ng-template #rowActions let-row="row">
-            <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+            <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
               <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
               <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
             </jnt-menu>
@@ -73,7 +73,7 @@
         <ng-template #cellTemplate let-value="value">value</ng-template>
     </jnt-table-column>
      <ng-template #rowActions let-row="row">
-          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.sizes.small">
+          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
             <jnt-menu-item title="Edit" (click)="edit()"></jnt-menu-item>
             <jnt-menu-item title="Delete" (click)="delete()"></jnt-menu-item>
           </jnt-menu>

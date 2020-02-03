@@ -1,7 +1,9 @@
 import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../../decorators/api';
-import { InputState, InputType, Sizes, TextAlign, UI } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
+import { TextAlign } from '../../../enums/text';
+import { InputState, InputType, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-input',
@@ -32,7 +34,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   _type: InputType = InputType.text;
 
   @HostBinding('attr.size')
-  _size: Sizes = Sizes.normal;
+  _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Icon for input',
@@ -64,13 +66,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder = '';
 
   @PropertyApi({
-    description: 'Minimum number value that can be entered. For input with type = number',
+    description: 'Minimum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
   @Input() min: number;
 
   @PropertyApi({
-    description: 'Maximum number value that can be entered. For input with type = number',
+    description: 'Maximum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
   @Input() max: number;
@@ -86,7 +88,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Input type',
+    description: 'Input typeControl',
     path: 'ui.form.input',
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
@@ -101,12 +103,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input size',
-    path: 'ui.sizes',
-    default: Sizes.normal,
-    options: [Sizes.small, Sizes.normal, Sizes.large]
+    path: 'ui.size',
+    default: Size.normal,
+    options: [Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Sizes) {
-    this._size = size || Sizes.normal;
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
   constructor(private fb: FormBuilder) {

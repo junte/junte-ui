@@ -1,6 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
-import { Sizes, TypeSkeleton } from '../../../enums/ui';
+import { Size } from '../../../enums/size';
+import { SkeletonType } from './enums';
 
 @Component({
   selector: 'jnt-skeleton',
@@ -8,25 +9,27 @@ import { Sizes, TypeSkeleton } from '../../../enums/ui';
 })
 export class SkeletonComponent {
 
-  private _type = TypeSkeleton.text;
+  private _type = SkeletonType.text;
 
-  skeletonType = TypeSkeleton;
+  skeletonType = SkeletonType;
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
   @HostBinding('attr.size')
-  _size = Sizes.normal;
+  _size = Size.normal;
 
   @PropertyApi({
-    description: 'Skeleton type: text, avatar, image',
+    description: 'Skeleton type',
     path: 'ui.skeleton.type',
-    default: TypeSkeleton.text,
-    options: [TypeSkeleton.text, TypeSkeleton.avatar, TypeSkeleton.image]
+    default: SkeletonType.text,
+    options: [SkeletonType.text,
+      SkeletonType.avatar,
+      SkeletonType.image]
   })
 
   @HostBinding('attr.type')
-  @Input() set type(type: TypeSkeleton) {
-    this._type = type || TypeSkeleton.text;
+  @Input() set type(type: SkeletonType) {
+    this._type = type || SkeletonType.text;
   }
 
   get type() {
@@ -35,13 +38,13 @@ export class SkeletonComponent {
 
   @PropertyApi({
     description: 'Avatar/image size',
-    path: 'ui.sizes',
-    default: Sizes.normal,
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large]
+    path: 'ui.size',
+    default: Size.normal,
+    options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
 
-  @Input() set size(size: Sizes) {
-    this._size = size || Sizes.normal;
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
   @PropertyApi({
@@ -54,7 +57,7 @@ export class SkeletonComponent {
   @Input() lines = 1;
 
   @PropertyApi({
-    description: 'Switch on/off skeleton animation',
+    description: 'Switch on/off animation',
     type: 'boolean',
     default: 'true'
   })

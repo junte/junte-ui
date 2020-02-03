@@ -1,5 +1,5 @@
 <jnt-container>
-  <jnt-stack resources [type]="ui.stack.type.horizontal">
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/menu"
               target="_blank" title="GitLab">
@@ -23,7 +23,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
             <ng-template #document>
               <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
@@ -72,16 +72,16 @@
                 <jnt-select formControlName="spacing">
                   <jnt-select-option label="Tiny"
                                      [icon]="localUi.icons.layout.tiny"
-                                     [key]="ui.sizes.tiny"></jnt-select-option>
+                                     [key]="ui.size.tiny"></jnt-select-option>
                   <jnt-select-option label="Small"
                                      [icon]="localUi.icons.layout.small"
-                                     [key]="ui.sizes.small"></jnt-select-option>
+                                     [key]="ui.size.small"></jnt-select-option>
                   <jnt-select-option label="Normal"
                                      [icon]="localUi.icons.layout.normal"
-                                     [key]="ui.sizes.normal"></jnt-select-option>
+                                     [key]="ui.size.normal"></jnt-select-option>
                   <jnt-select-option label="Large"
                                      [icon]="localUi.icons.layout.large"
-                                     [key]="ui.sizes.large"></jnt-select-option>
+                                     [key]="ui.size.large"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -90,10 +90,10 @@
               <jnt-form-label for="scheme">Scheme</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="scheme">
-                  <jnt-select-option label="Primary" [key]="ui.schemes.primary"></jnt-select-option>
-                  <jnt-select-option label="Secondary" [key]="ui.schemes.secondary"></jnt-select-option>
-                  <jnt-select-option label="Success" [key]="ui.schemes.success"></jnt-select-option>
-                  <jnt-select-option label="Fail" [key]="ui.schemes.fail"></jnt-select-option>
+                  <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
+                  <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
+                  <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -150,7 +150,7 @@
               ]]>
               <ng-container *ngIf="schemeControl.value">
                 <![CDATA[
-                [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+                [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
               </ng-container>
 
               <ng-container *ngIf="iconsControl.value">
@@ -198,7 +198,7 @@
 
                   <ng-container *ngIf="schemeControl.value">
                     <![CDATA[
-                    [scheme]="ui.schemes.]]>{{schemeControl.value}}<![CDATA["]]>
+                    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
                   </ng-container>
 
                   <ng-container *ngIf="iconsControl.value">

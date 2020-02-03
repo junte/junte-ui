@@ -6,8 +6,8 @@
   <div message>{{message}}</div>
 </ng-template>
 
-<jnt-stack [type]="ui.stack.type.horizontal">
+<jnt-stack [type]="ui.layout.stack.type.horizontal">
   <jnt-button [type]="ui.form.button.type.submit" text="Ok" (click)="ok.emit()"></jnt-button>
-  <jnt-button [scheme]="ui.schemes.secondary" text="Cancel" (click)="cancel.emit()"></jnt-button>
+  <jnt-button [scheme]="ui.scheme.secondary" text="Cancel" (click)="cancel.emit()"></jnt-button>
 </jnt-stack>
 

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { Sizes } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
 import { SpinnerComponent } from 'junte-ui';
 
 @Component({
@@ -16,10 +15,10 @@ export class SpinnerTestComponent {
   localUi = LocalUI;
   types = {spinner: SpinnerComponent};
 
-  size = new FormControl(Sizes.normal);
+  sizeControl = this.fb.control(null);
 
   form = this.fb.group({
-    size: this.size,
+    size: this.sizeControl,
   });
 
   constructor(private fb: FormBuilder) {

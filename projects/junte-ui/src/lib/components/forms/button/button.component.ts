@@ -1,8 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Outline } from '../../../enums/outline';
+import { Scheme } from '../../../enums/scheme';
+import { Size } from '../../../enums/size';
+import { Width } from '../../../enums/width';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
-import { Outline, Schemes, Sizes, TypeButton, UI, Width } from '../../../enums/ui';
+import { TypeButton, UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-button',
@@ -56,10 +60,10 @@ export class ButtonComponent {
   @HostBinding('attr.host') readonly host = 'jnt-button-host';
 
   @HostBinding('attr.scheme')
-  _scheme: Schemes = Schemes.primary;
+  _scheme: Scheme = Scheme.primary;
 
   @HostBinding('attr.size')
-  _size: Sizes = Sizes.normal;
+  _size: Size = Size.normal;
 
   @HostBinding('attr.outline')
   _outline: Outline = Outline.fill;
@@ -93,23 +97,23 @@ export class ButtonComponent {
   @PropertyApi({
     description: 'Button color scheme',
     path: 'ui.schemes',
-    options: [Schemes.primary, Schemes.secondary, Schemes.success, Schemes.fail],
-    default: Schemes.primary
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
+    default: Scheme.primary
   })
 
-  @Input() set scheme(scheme: Schemes) {
-    this._scheme = scheme || Schemes.primary;
+  @Input() set scheme(scheme: Scheme) {
+    this._scheme = scheme || Scheme.primary;
   }
 
   @PropertyApi({
     description: 'Button size',
-    path: 'ui.sizes',
-    options: [Sizes.tiny, Sizes.small, Sizes.normal, Sizes.large],
-    default: Sizes.normal
+    path: 'ui.size',
+    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    default: Size.normal
   })
 
-  @Input() set size(size: Sizes) {
-    this._size = size || Sizes.normal;
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
   @HostBinding('attr.with-text')
@@ -154,7 +158,7 @@ export class ButtonComponent {
   disabled = false;
 
   @PropertyApi({
-    description: 'Button type',
+    description: 'Button typeControl',
     path: 'ui.form.button.type',
     default: TypeButton.button,
     options: [TypeButton.button, TypeButton.submit]
