@@ -1,30 +1,66 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { TabComponent, UI } from 'junte-ui';
+import { CalendarComponent } from 'junte-ui';
+import { Period } from 'projects/junte-ui/src/lib/components/forms/calendar/models';
 import { BehaviorSubject } from 'rxjs';
-import { format, getDate } from 'date-fns';
-import { UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
+
+export enum Months {
+  march = 2,
+  may = 4,
+  july = 6,
+  april = 3
+}
 
 @Component({
   selector: 'app-calendar-test',
   templateUrl: './calendar-test.component.html',
   styleUrls: ['./calendar-test.component.scss']
 })
-export class CalendarTestComponent {
-  getDate = getDate;
-  format = format;
-  ui = UI;
-  period$ = new BehaviorSubject<any>(null);
+export class CalendarTestComponent implements OnInit {
 
-  set period(period: any) {
+  private period$ = new BehaviorSubject<Period>(null);
+
+  ui = UI;
+  localUi = LocalUI;
+  month = Months;
+  calendar = CalendarComponent;
+
+  @ViewChild('code', {static: false}) code: TabComponent;
+
+  yearControl = this.fb.control(null);
+  monthControl = this.fb.control(null);
+  metricsControl = this.fb.control(false);
+  dayControl = this.fb.control(false);
+
+  form = this.fb.group({
+    year: this.yearControl,
+    month: this.monthControl,
+    metrics: this.metricsControl,
+    day: this.dayControl,
+  });
+
+  calendarControl = this.fb.control(null);
+
+  calendarForm = this.fb.group({
+    calendar: this.calendarControl
+  });
+
+  set period(period: Period) {
     this.period$.next(period);
   }
 
-  dueDate = new FormControl(new Date());
-  form = this.fb.group({
-    dueDate: this.dueDate
-  });
+  get period() {
+    return this.period$.getValue();
+  }
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }

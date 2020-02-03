@@ -20,3 +20,7 @@ Layout/Header/Action @ContentChild('template', {static: false}) was renamed to @
 Layout/Header/Action @ContentChild('content', {static: false}) was renamed to @ContentChild('actionContentTemplate', {static: false})
 
 forms/select @ContentChild('optionTemplate', {static: false}) was renamed to @ContentChild('selectOptionTemplate', {static: false})
+
+forms/calendar @ContentChild('metricTemplate', {static: false}) was renamed to @ContentChild('calendarMetricTemplate', {static: false})
+
+forms/calendar @ContentChild('dayTemplate', {static: false}) was renamed to @ContentChild('calendarDayTemplate', {static: false})

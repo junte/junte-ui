@@ -21,6 +21,9 @@ import { WeekComponent } from './week/week.component';
     DayComponent,
     WeekMetricComponent
   ],
+  entryComponents: [
+    CalendarComponent
+  ],
   exports: [
     CalendarComponent,
     WeekComponent,
