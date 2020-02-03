@@ -12,9 +12,23 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addDays, addMonths, addWeeks, format, isEqual, setDay, setMonth, setYear, startOfMonth, startOfWeek, subMonths } from 'date-fns';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import {
+  addDays,
+  addMonths,
+  addWeeks,
+  format,
+  getYear,
+  isEqual,
+  setDate,
+  setMonth,
+  setYear,
+  startOfMonth,
+  startOfWeek,
+  subMonths
+} from 'date-fns';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 import { Period } from './models';
 import { today } from './utils';
@@ -40,7 +54,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
 
-  private year$ = new Subject<number>();
+  private year$ = new BehaviorSubject<number>(getYear(new Date()));
   private month$ = new BehaviorSubject<number>(0);
   private _period: Date;
 
@@ -50,20 +64,28 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   @ContentChildren(WeekMetricComponent)
   metrics: QueryList<WeekMetricComponent>;
 
-  @ContentChild('dayTemplate', {static: false})
-  dayTemplate: TemplateRef<any>;
+  @ContentChild('calendarDayTemplate', {static: false})
+  calendarDayTemplate: TemplateRef<any>;
 
-  @ContentChild('metricTemplate', {static: false})
-  metricTemplate: TemplateRef<any>;
+  @ContentChild('calendarMetricTemplate', {static: false})
+  calendarMetricTemplate: TemplateRef<any>;
 
   @Output()
   updated = new EventEmitter<Period>();
 
+  @PropertyApi({
+    description: 'Set current year',
+    type: 'number'
+  })
   @Input()
   set year(year: number) {
     this.year$.next(year);
   }
 
+  @PropertyApi({
+    description: 'Set current month',
+    type: 'number'
+  })
   @Input()
   set month(month: number) {
     this.month$.next(month);
@@ -85,16 +107,13 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   onChange: (date: Date) => void;
 
-  constructor() {
+  ngOnInit() {
+    this.period = startOfMonth(this.current);
+
     combineLatest(this.year$, this.month$)
       .pipe(filter(([year, month]) => !!year && !!month))
       .subscribe(([year, month]) =>
-        this.period = setDay(setMonth(setYear(new Date(), year), month), 1, {weekStartsOn: 1})
-      );
-  }
-
-  ngOnInit() {
-    this.period = startOfMonth(this.current);
+        this.period = setDate(setMonth(setYear(new Date(), year), month), 1));
   }
 
   writeValue(date: Date): void {
