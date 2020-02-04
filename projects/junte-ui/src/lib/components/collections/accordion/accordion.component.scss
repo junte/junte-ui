@@ -4,25 +4,43 @@
   display: block;
 }
 
-[title] {
-  padding: $gutter-small $gutter-normal;
-  background-color: $primary-background;
-  border: 1px solid $muted-color;
-  border-radius: $corner-small;
-  cursor: pointer;
-  &[active='true'] {
-    background-color: $primary-color;
-    color: $white-color;
+[section] {
+  &:not(:last-child) {
+    [title] {
+      border-bottom: 0;
+    }
   }
-  &:focus {
-    outline: 0;
-    box-shadow: $shadow-primary;
+  &:first-child {
+    [title] {
+      border-top-left-radius: $corner-small;
+      border-top-right-radius: $corner-small;
+    }
   }
-  [icon] {
-    margin-right: $gutter-small;
+  &:last-child {
+    [title] {
+      border-bottom-left-radius: $corner-small;
+      border-bottom-right-radius: $corner-small;
+    }
+  }
+  [title] {
+    padding: $gutter-small $gutter-normal;
+    background-color: $secondary-background;
+    border: 1px solid $muted-color;
+    cursor: pointer;
+    &[active='true'] {
+      background-color: $primary-color;
+      color: $white-color;
+    }
+    &:focus {
+      outline: 0;
+      box-shadow: $shadow-primary;
+    }
+    [icon] {
+      margin-right: $gutter-small;
+    }
+  }
+  [content] {
+    padding: $gutter-normal;
   }
 }
 
-[content] {
-  padding: $gutter-normal;
-}

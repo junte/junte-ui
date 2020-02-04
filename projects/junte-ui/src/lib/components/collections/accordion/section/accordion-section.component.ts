@@ -1,4 +1,5 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { UI } from '../../../../enums/ui';
 
 @Component({
@@ -9,9 +10,13 @@ export class AccordionSectionComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'Accordion section title',
+    type: 'string'
+  })
   @Input() title: string;
 
-  @ContentChild('sectionContentTemplate', {static: false})
-  sectionContentTemplate: TemplateRef<any>;
+  @ContentChild('accordionContentTemplate', {static: false})
+  accordionContentTemplate: TemplateRef<any>;
 
 }

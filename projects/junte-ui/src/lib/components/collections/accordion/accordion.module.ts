@@ -13,6 +13,9 @@ import { IconModule } from '../../elements/icon/icon.module';
     AccordionComponent,
     AccordionSectionComponent
   ],
+  entryComponents: [
+    AccordionSectionComponent
+  ],
   exports: [
     AccordionComponent,
     AccordionSectionComponent
