@@ -24,7 +24,6 @@ export class AppHeaderComponent {
     description: 'Logo template',
     type: 'TemplateRef'
   })
-
   @ContentChild('headerLogoTemplate', {static: false})
   headerLogoTemplate: TemplateRef<any>;
 
@@ -32,7 +31,6 @@ export class AppHeaderComponent {
     description: 'Userbar template',
     type: 'TemplateRef'
   })
-
   @ContentChild('headerUserbarTemplate', {static: false})
   headerUserbarTemplate: TemplateRef<any>;
 
@@ -40,7 +38,6 @@ export class AppHeaderComponent {
     description: 'Actions template',
     type: 'TemplateRef'
   })
-
   @ContentChild('headerActionsTemplate', {static: false})
   headerActionsTemplate: TemplateRef<any>;
 

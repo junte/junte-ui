@@ -35,14 +35,14 @@
               <jnt-form-item>
                 <jnt-form-label for="size">Size</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-switcher formControlName="size" placeholder="Normal">
-                    <jnt-switcher-option label="Small"
-                                         [value]="ui.size.small"></jnt-switcher-option>
-                    <jnt-switcher-option label="Normal"
-                                         [value]="ui.size.normal"></jnt-switcher-option>
-                    <jnt-switcher-option label="Large"
-                                         [value]="ui.size.large"></jnt-switcher-option>
-                  </jnt-switcher>
+                  <jnt-select formControlName="size" placeholder="Normal">
+                    <jnt-select-option label="Small"
+                                       [key]="ui.size.small"></jnt-select-option>
+                    <jnt-select-option label="Normal"
+                                       [key]="ui.size.normal"></jnt-select-option>
+                    <jnt-select-option label="Large"
+                                       [key]="ui.size.large"></jnt-select-option>
+                  </jnt-select>
                 </jnt-form-control>
               </jnt-form-item>
             </jnt-form>
