@@ -1,0 +1,53 @@
+@import "../../../assets/styles/variables";
+@import "variables";
+
+:host {
+  display: block;
+  overflow-x: hidden;
+  position: relative;
+
+  &[with-header='false'] {
+    jnt-app-content[deep-host=#{$jnt-app-content-host}] {
+      padding-top: 0;
+    }
+
+    jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      [drawer] {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &[position='default'] {
+    > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      position: absolute;
+    }
+    > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      position: absolute;
+    }
+    > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      position: absolute;
+    }
+    > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      position: absolute;
+    }
+    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+      min-height: 0 !important;
+    }
+  }
+
+  &[position='fixed'] {
+    > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      position: fixed;
+    }
+    > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      position: fixed;
+    }
+    > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      position: fixed;
+    }
+    > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      position: fixed;
+    }
+  }
+}

@@ -50,6 +50,8 @@ export class Gulpfile {
           fs.mkdirSync(groupPath, {recursive: true});
         }
 
+        console.log(groupPath);
+
         fs.writeFileSync(`${groupPath}/${build.scss.name}.scss`, `@import "../../variables";\n${this.clearImports(content)}`);
         this.components.push(new Component(build.scss.path, build.scss.name));
         return cb(null, file);

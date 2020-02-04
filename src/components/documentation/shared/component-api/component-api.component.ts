@@ -1,7 +1,11 @@
 import { Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
 import {
-  COMPONENT_API_PROPERTIES_METADATA_KEY, COMPONENT_API_METHODS_METADATA_KEY,
-  PropertyMetadata, MethodMetadata
+  COMPONENT_API_PROPERTIES_METADATA_KEY,
+  COMPONENT_API_METHODS_METADATA_KEY,
+  COMPONENT_API_CONTENT_METADATA_KEY,
+  PropertyMetadata,
+  MethodMetadata,
+  ContentMetadata
 } from 'junte-ui';
 
 @Component({
@@ -13,6 +17,7 @@ export class ComponentApiComponent {
 
   properties: { [key: string]: PropertyMetadata } = {};
   methods: { [key: string]: MethodMetadata } = {};
+  content: { [key: string]: ContentMetadata } = {};
 
   @Input() selector: string;
 
@@ -25,6 +30,7 @@ export class ComponentApiComponent {
       .create(this.injector).instance;
     this.properties = Reflect.getMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, component) || {};
     this.methods = Reflect.getMetadata(COMPONENT_API_METHODS_METADATA_KEY, component) || {};
+    this.content = Reflect.getMetadata(COMPONENT_API_CONTENT_METADATA_KEY, component) || {};
   }
 
   constructor(private injector: Injector,

@@ -1,0 +1,26 @@
+@import "../../../../assets/styles/variables";
+@import "../variables";
+
+:host {
+  display: flex;
+  align-items: center;
+  min-height: $app-sub-header-height;
+  background-color: $page-background;
+
+  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+    [burger] {
+      display: inline-block;
+    }
+  }
+}
+
+[burger] {
+  display: none;
+  margin-left: $gutter-normal;
+}
+
+[content] {
+  margin-left: $gutter-normal;
+}
+
+

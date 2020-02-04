@@ -1,6 +1,6 @@
 <ng-container *ngIf="(properties | keyvalue).length">
   <ngx-prism language="html">
-    <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">...</]]>{{selector}}<![CDATA[>]]>
+    <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">]]>
   </ngx-prism>
 
   <table api>
@@ -41,7 +41,7 @@
 
 <ng-container *ngIf="(methods | keyvalue).length">
   <ngx-prism language="html">
-    <![CDATA[<]]>{{selector}}<![CDATA[ #selector>...</]]>{{selector}}<![CDATA[>]]>
+    <![CDATA[<]]>{{selector}}<![CDATA[ #selector>]]>
   </ngx-prism>
 
   <table api>
@@ -57,6 +57,35 @@
         {{m.key}}()
       </td>
       <ng-container *ngIf="m.value as api">
+        <td>
+          {{api.description | empty}}
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-container *ngIf="(content | keyvalue).length">
+  <ngx-prism language="html">
+    <![CDATA[<]]>{{selector}}<![CDATA[>
+    ...
+    </]]>{{selector}}<![CDATA[>]]>
+  </ngx-prism>
+
+  <table api>
+    <thead>
+    <tr>
+      <th>Selector</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of content | keyvalue">
+      <ng-container *ngIf="c.value as api">
+        <td>
+          {{api.selector}}
+        </td>
         <td>
           {{api.description | empty}}
         </td>

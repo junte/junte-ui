@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
 
-export enum Themes {
+export enum Theme {
   light = 'light',
   dark = 'dark'
 }
@@ -14,28 +14,18 @@ export enum Themes {
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  private _theme = Themes.light;
   ui = UI;
-  loading = false;
-  themes = Themes;
-  checked = true;
-  themeControl = new FormControl(null);
+  theme = Theme;
 
+  loading = false;
+
+  themeControl = new FormControl(localStorage.theme || Theme.light);
   themeForm = this.builder.group({
     theme: this.themeControl
   });
 
-  set theme(theme: Themes) {
-    this._theme = theme;
-    this.load(theme);
-  }
-
-  get theme() {
-    return this._theme;
-  }
-
-  @ViewChild('popover', {static: false}) popover: PopoverComponent;
-  @ViewChild('modal', {static: false}) modal: ModalComponent;
+  @ViewChild('popover', {static: true}) popover: PopoverComponent;
+  @ViewChild('modal', {static: true}) modal: ModalComponent;
   @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
 
   constructor(private modalService: ModalService,
@@ -44,9 +34,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this._theme = Themes[localStorage.getItem('theme')];
-    this.themeControl.setValue(this.theme);
-    this.themeControl.valueChanges.subscribe(theme => this.theme = theme);
+    this.themeControl.valueChanges
+      .subscribe(theme => this.load(theme));
   }
 
   ngAfterViewInit() {
@@ -54,7 +43,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.popoverService.register(this.popover);
   }
 
-  private load(theme: Themes) {
+  private load(theme: Theme) {
     this.loading = true;
     window['themes'](theme, () => this.loading = false);
   }

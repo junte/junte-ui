@@ -27,7 +27,7 @@ import { SwitcherTestComponent } from './forms/switcher/switcher-test.component'
 import { ThemingComponent } from './general/theming/theming.component';
 import { TypographyTestComponent } from './general/typography/typography-test.component';
 import { AccordionTestComponent } from './collections/accordion/accordion-test.component';
-import { AppLayoutTestComponent } from './layout/app-layout/app-layout-test.component';
+import { AppLayoutTestComponent } from './layout/app/app-layout-test.component';
 import { BlockTestComponent } from './layout/block/block-test.component';
 import { GridTestComponent } from './layout/grid/grid-test.component';
 import { KanbanTestComponent } from './collections/kanban/kanban-test.component';

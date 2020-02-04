@@ -59,7 +59,10 @@ export class MenuItemComponent {
     description: 'Menu item color scheme',
     path: 'ui.schemes',
     default: Scheme.primary,
-    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail]
+    options: [Scheme.primary,
+      Scheme.secondary,
+      Scheme.success,
+      Scheme.fail]
   })
 
   @Input() scheme: Scheme = Scheme.primary;

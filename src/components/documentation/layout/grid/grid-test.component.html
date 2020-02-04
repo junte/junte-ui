@@ -8,187 +8,192 @@
   </jnt-stack>
 
   <h1>Grid</h1>
-  <div teaser>
-    <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
-    <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
-  </div>
 
-  <h3>Playground</h3>
-  <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
-      <ng-template #tabContentTemplate>
-        <jnt-row>
-          <jnt-col [tablet]="8">
-            <app-browser-preview>
-              <ng-template #document let-height="height">
-                <jnt-container>
-                  <jnt-row row [align]="alignControl.value"
-                           [gutter]="gutterControl.value">
-                    <jnt-col col *ngFor="let block of 24 | mockArray"
-                             [span]="spanControl.value"
-                             [padding]="paddingControl.value">
-                      <div block
-                           [style.height.px]="alignControl.value !== ui.layout.grid.row.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
-                        {{block + 1}}
-                      </div>
-                    </jnt-col>
-                  </jnt-row>
-                </jnt-container>
-              </ng-template>
-            </app-browser-preview>
-          </jnt-col>
-          <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="form" builder>
+  <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
-                <jnt-form-label for="gutter">Gutter</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="gutter" placeholder="Normal">
-                    <jnt-select-option label="None"
-                                       [key]="ui.gutter.none"></jnt-select-option>
-                    <jnt-select-option label="Tiny"
-                                       [icon]="localUi.icons.layout.gutter.tiny"
-                                       [key]="ui.gutter.tiny"></jnt-select-option>
-                    <jnt-select-option label="Small"
-                                       [icon]="localUi.icons.layout.gutter.small"
-                                       [key]="ui.gutter.small"></jnt-select-option>
-                    <jnt-select-option label="Normal"
-                                       [icon]="localUi.icons.layout.gutter.normal"
-                                       [key]="ui.gutter.normal"></jnt-select-option>
-                    <jnt-select-option label="Big"
-                                       [icon]="localUi.icons.layout.gutter.big"
-                                       [key]="ui.gutter.big"></jnt-select-option>
-                    <jnt-select-option label="Large"
-                                       [icon]="localUi.icons.layout.gutter.large"
-                                       [key]="ui.gutter.large"></jnt-select-option>
-                    <jnt-select-option label="Huge"
-                                       [icon]="localUi.icons.layout.gutter.huge"
-                                       [key]="ui.gutter.huge"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+    <div teaser>
+      <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
+      <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
+    </div>
 
-              <jnt-form-item>
-                <jnt-form-label for="align">Align</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="align" placeholder="Start">
-                    <jnt-select-option label="Start"
-                                       [icon]="localUi.icons.layout.start"
-                                       [key]="ui.layout.grid.row.align.start"></jnt-select-option>
-                    <jnt-select-option label="Center"
-                                       [icon]="localUi.icons.layout.center"
-                                       [key]="ui.layout.grid.row.align.center"></jnt-select-option>
-                    <jnt-select-option label="End"
-                                       [icon]="localUi.icons.layout.end"
-                                       [key]="ui.layout.grid.row.align.end"></jnt-select-option>
-                    <jnt-select-option label="Stretch"
-                                       [icon]="localUi.icons.layout.stretch"
-                                       [key]="ui.layout.grid.row.align.stretch"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+    <jnt-tabs playground>
+      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+        <ng-template #tabContentTemplate>
+          <jnt-row>
+            <jnt-col [tablet]="8">
+              <app-browser-preview>
+                <ng-template #document let-height="height">
+                  <jnt-container>
+                    <jnt-row row [align]="alignControl.value"
+                             [gutter]="gutterControl.value">
+                      <jnt-col col *ngFor="let block of 24 | mockArray"
+                               [span]="spanControl.value"
+                               [padding]="paddingControl.value">
+                        <div block
+                             [style.height.px]="alignControl.value !== ui.layout.grid.row.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
+                          {{block + 1}}
+                        </div>
+                      </jnt-col>
+                    </jnt-row>
+                  </jnt-container>
+                </ng-template>
+              </app-browser-preview>
+            </jnt-col>
+            <jnt-col [tablet]="4">
+              <jnt-form [formGroup]="form" builder>
 
-              <jnt-form-item>
-                <jnt-form-label for="span">Column span</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="span" placeholder="1">
-                    <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
-                                       [label]="count"
-                                       [key]="count"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="gutter">Gutter</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="gutter" placeholder="Normal">
+                      <jnt-select-option label="None"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         [icon]="localUi.icons.layout.gutter.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         [icon]="localUi.icons.layout.gutter.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         [icon]="localUi.icons.layout.gutter.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         [icon]="localUi.icons.layout.gutter.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         [icon]="localUi.icons.layout.gutter.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         [icon]="localUi.icons.layout.gutter.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="span">Column padding</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="padding" placeholder="Normal">
-                    <jnt-select-option label="None"
-                                       [key]="ui.gutter.none"></jnt-select-option>
-                    <jnt-select-option label="Tiny"
-                                       [icon]="localUi.icons.layout.padding.tiny"
-                                       [key]="ui.gutter.tiny"></jnt-select-option>
-                    <jnt-select-option label="Small"
-                                       [icon]="localUi.icons.layout.padding.small"
-                                       [key]="ui.gutter.small"></jnt-select-option>
-                    <jnt-select-option label="Normal"
-                                       [icon]="localUi.icons.layout.padding.normal"
-                                       [key]="ui.gutter.normal"></jnt-select-option>
-                    <jnt-select-option label="Big"
-                                       [icon]="localUi.icons.layout.padding.big"
-                                       [key]="ui.gutter.big"></jnt-select-option>
-                    <jnt-select-option label="Large"
-                                       [icon]="localUi.icons.layout.padding.large"
-                                       [key]="ui.gutter.large"></jnt-select-option>
-                    <jnt-select-option label="Huge"
-                                       [icon]="localUi.icons.layout.padding.huge"
-                                       [key]="ui.gutter.huge"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="align">Align</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="align" placeholder="Start">
+                      <jnt-select-option label="Start"
+                                         [icon]="localUi.icons.layout.start"
+                                         [key]="ui.layout.grid.row.align.start"></jnt-select-option>
+                      <jnt-select-option label="Center"
+                                         [icon]="localUi.icons.layout.center"
+                                         [key]="ui.layout.grid.row.align.center"></jnt-select-option>
+                      <jnt-select-option label="End"
+                                         [icon]="localUi.icons.layout.end"
+                                         [key]="ui.layout.grid.row.align.end"></jnt-select-option>
+                      <jnt-select-option label="Stretch"
+                                         [icon]="localUi.icons.layout.stretch"
+                                         [key]="ui.layout.grid.row.align.stretch"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-            </jnt-form>
-          </jnt-col>
-        </jnt-row>
+                <jnt-form-item>
+                  <jnt-form-label for="span">Column span</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="span" placeholder="1">
+                      <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
+                                         [label]="count"
+                                         [key]="count"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-      </ng-template>
-    </jnt-tab>
+                <jnt-form-item>
+                  <jnt-form-label for="span">Column padding</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="padding" placeholder="Normal">
+                      <jnt-select-option label="None"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         [icon]="localUi.icons.layout.padding.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         [icon]="localUi.icons.layout.padding.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         [icon]="localUi.icons.layout.padding.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         [icon]="localUi.icons.layout.padding.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         [icon]="localUi.icons.layout.padding.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         [icon]="localUi.icons.layout.padding.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
-      <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'grid-test', type: 'GridTestComponent'}"
-          scss="layout/grid"></app-how-to-use>
+              </jnt-form>
+            </jnt-col>
+          </jnt-row>
 
-        <app-code-highlight file="grid-test.template.html">
-          <![CDATA[
-          <jnt-container>
-            <jnt-row
-              ]]>
-              <ng-container *ngIf="gutterControl.value">
-                <![CDATA[
-                [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
-              </ng-container>
-              <ng-container *ngIf="alignControl.value">
-                <![CDATA[
-                [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngFor="let i of 12 | mockArray">
-                <![CDATA[
-                <jnt-col
-                  ]]>
-                  <ng-container *ngIf="spanControl.value">
-                    <![CDATA[
-                    [span]="]]>{{spanControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="paddingControl.value">
-                    <![CDATA[
-                    [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                  <div>]]>{{i + 1}}<![CDATA[</div>
-                </jnt-col>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+        <ng-template #tabContentTemplate>
+          <app-how-to-use
+            [test]="{selector:'grid-test', type: 'GridTestComponent'}"
+            scss="layout/grid"></app-how-to-use>
+
+          <app-code-highlight file="grid-test.template.html">
+            <![CDATA[
+            <jnt-container>
+              <jnt-row
                 ]]>
-              </ng-container>
+                <ng-container *ngIf="gutterControl.value">
+                  <![CDATA[
+                  [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="alignControl.value">
+                  <![CDATA[
+                  [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
+                </ng-container>
+                <![CDATA[>]]>
+                <ng-container *ngFor="let i of 12 | mockArray">
+                  <![CDATA[
+                  <jnt-col
+                    ]]>
+                    <ng-container *ngIf="spanControl.value">
+                      <![CDATA[
+                      [span]="]]>{{spanControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="paddingControl.value">
+                      <![CDATA[
+                      [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>
+                    <div>]]>{{i + 1}}<![CDATA[</div>
+                  </jnt-col>
+                  ]]>
+                </ng-container>
 
-              <![CDATA[
-            </jnt-row>
-          </jnt-container>
-          ]]>
+                <![CDATA[
+              </jnt-row>
+            </jnt-container>
+            ]]>
 
-        </app-code-highlight>
-      </ng-template>
-    </jnt-tab>
+          </app-code-highlight>
+        </ng-template>
+      </jnt-tab>
 
-    <jnt-tab title="API" [icon]="localUi.icons.api">
-      <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-container" [target]="types.container"></app-component-api>
-        <app-component-api selector="jnt-row" [target]="types.row"></app-component-api>
-        <app-component-api selector="jnt-column" [target]="types.col"></app-component-api>
-      </ng-template>
-    </jnt-tab>
+      <jnt-tab title="API" [icon]="localUi.icons.api">
+        <ng-template #tabContentTemplate>
+          <jnt-stack [align]="ui.flex.align.stretch">
+            <app-component-api selector="jnt-container" [target]="types.container"></app-component-api>
+            <app-component-api selector="jnt-row" [target]="types.row"></app-component-api>
+            <app-component-api selector="jnt-column" [target]="types.col"></app-component-api>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
 
-  </jnt-tabs>
+    </jnt-tabs>
 
+  </jnt-stack>
 </jnt-container>

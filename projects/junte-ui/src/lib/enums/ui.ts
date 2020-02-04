@@ -3,7 +3,7 @@ import { ButtonType } from '../components/forms/button/enums';
 import { FormLayout, ValidationTypeError } from '../components/forms/form/enums';
 import { InputState, InputType } from '../components/forms/input/enums';
 import { SelectMode } from '../components/forms/select/enums';
-import { AppLayoutPosition } from '../components/layout/app-layout/enums';
+import { AppLayoutPosition } from '../components/layout/app/enums';
 import { BlockState } from '../components/layout/block/enums';
 import { RowAlign } from '../components/layout/grid/enums';
 import { SkeletonType } from '../components/layout/skeleton/enums';

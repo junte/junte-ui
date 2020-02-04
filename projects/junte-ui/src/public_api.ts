@@ -8,7 +8,7 @@ export * from './lib/utils/public_api';
 export * from './lib/models/table';
 
 export * from './lib/public_api';
-export * from './lib/components/layout/app-layout/public_api';
+export * from './lib/components/layout/app/public_api';
 export * from './lib/components/elements/avatar/public_api';
 export * from './lib/components/elements/badge/public_api';
 export * from './lib/components/layout/block/public_api';
