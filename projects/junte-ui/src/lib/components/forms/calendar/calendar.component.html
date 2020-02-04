@@ -39,12 +39,12 @@
     <td day *ngFor="let d of w.days"
         [attr.current-day]="(d | format : 'YYYY-MM-DD') | isEqualDate: (current | format: 'YYYY-MM-DD')"
         (click)="onChange(d)" tabindex="0">
-      <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
+      <ng-container *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
       </ng-container>
     </td>
 
     <td metric *ngFor="let m of metrics;let i = index;">
-      <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
+      <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
       </ng-container>
     </td>
   </tr>

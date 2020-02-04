@@ -46,3 +46,7 @@ Layout/Header/Action
 `ui.skeleton.type.` to `ui.layout.skeleton.type.`
 
 forms/select @ContentChild('optionTemplate', {static: false}) was renamed to @ContentChild('selectOptionTemplate', {static: false})
+
+forms/calendar @ContentChild('metricTemplate', {static: false}) was renamed to @ContentChild('calendarMetricTemplate', {static: false})
+
+forms/calendar @ContentChild('dayTemplate', {static: false}) was renamed to @ContentChild('calendarDayTemplate', {static: false})
