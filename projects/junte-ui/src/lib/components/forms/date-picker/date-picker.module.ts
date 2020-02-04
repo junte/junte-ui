@@ -22,6 +22,9 @@ import { DatePickerComponent } from './date-picker.component';
     BlockModule,
     PopoverModule
   ],
+  entryComponents: [
+    DatePickerComponent
+  ],
   exports: [
     DatePickerComponent
   ]

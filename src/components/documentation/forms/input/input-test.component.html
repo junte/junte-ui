@@ -157,45 +157,37 @@
           <jnt-input
             ]]>
             <ng-container *ngIf="typeControl.value">
-              <![CDATA[
-              [type]="ui.form.input.]]>{{typeControl.value}}<![CDATA["]]>
+              <![CDATA[[type]="ui.form.input.]]>{{typeControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="minControl.value">
-              <![CDATA[
-              [min]="]]>{{minControl.value}}<![CDATA["]]>
+              <![CDATA[[min]="]]>{{minControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="maxControl.value">
-              <![CDATA[
-              [max]="]]>{{maxControl.value}}<![CDATA["]]>
+              <![CDATA[[max]="]]>{{maxControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="stateControl.value">
-              <![CDATA[
-              [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
+              <![CDATA[[state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="sizeControl.value">
+              <![CDATA[[size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
               <![CDATA[
               [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.search"]]>
+              <![CDATA[[icon]="ui.icons.search"]]>
             </ng-container>
             <ng-container *ngIf="labelControl.value">
-              <![CDATA[
-              label="Name"]]>
+              <![CDATA[label="Name"]]>
             </ng-container>
             <ng-container *ngIf="alignControl.value">
-              <![CDATA[
-              [textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
+              <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
             </ng-container>
             <ng-container *ngIf="placeholderControl.value">
-              <![CDATA[
-              placeholder="Your name"]]>
+              <![CDATA[placeholder="Your name"]]>
             </ng-container>
             <![CDATA[>
           </jnt-input>
-            <div>Value:]]>{{<![CDATA[inputControl.value]]>}}<![CDATA[</div>
-          ]]>
+          <div>Value:]]>{{<![CDATA[inputControl.value]]>}}<![CDATA[</div>]]>
         </app-code-highlight>
 
         <app-code-highlight file="input-test.component.ts" lang="js">
@@ -205,16 +197,16 @@ import { Component, OnInit, FormBuilder } from '@angular/core';
 import { UI } from 'junte-ui';
 
 @Component({
-  selector: 'app-input-test',
-  templateUrl: './input-test.component.html',
-  styleUrls: ['./input-test.component.scss']
+            selector: 'app-input-test',
+            templateUrl: './input-test.component.html',
+            styleUrls: ['./input-test.component.scss']
 })
 export class InputTestComponent implements OnInit {
 
-  ui = UI;
-  inputControl = this.fb.control(null);
+            ui = UI;
+            inputControl = this.fb.control(null);
 
-  inputForm = this.fb.group({
+            inputForm = this.fb.group({
     input: this.inputControl
   });
 

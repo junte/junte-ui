@@ -44,3 +44,5 @@ Layout/Header/Action
 
 `ui.colors.` to `ui.color.`
 `ui.skeleton.type.` to `ui.layout.skeleton.type.`
+
+forms/select @ContentChild('optionTemplate', {static: false}) was renamed to @ContentChild('selectOptionTemplate', {static: false})

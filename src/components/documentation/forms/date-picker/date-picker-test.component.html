@@ -56,16 +56,79 @@
           <jnt-date-picker placeholder="Select date" formControlName="datePicker"></jnt-date-picker>
         </jnt-form-control>
       </jnt-form-item>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-stack>
+                  <form [formGroup]="pickerForm">
+                    <jnt-date-picker formControlName="picker"
+                                     [placeholder]="placeholderControl.value ? 'Please enter the date' : null"
+                                     [format]="formatControl.value">
+                    </jnt-date-picker>
+                  </form>
+                  <div *ngIf="!!pickerControl.value">You choose: {{pickerControl.value | format: 'DD.MM.YYYY'}}</div>
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="form">
+              <jnt-form-item>
+                <jnt-form-label for="placeholder">Placeholder</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-form-item>
+                    <jnt-checkbox formControlName="placeholder" label="placeholder"></jnt-checkbox>
+                  </jnt-form-item>
+                </jnt-form-control>
+              </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label>
-          Picked date1: {{date1 | format: 'YYYY.MM.DD'}}
-        </jnt-form-label>
-        <jnt-form-control>
-          <jnt-date-picker placeholder="Select date" formControlName="datePicker1"></jnt-date-picker>
-        </jnt-form-control>
-      </jnt-form-item>
-    </jnt-form>
-      ]]></pre>
-  </ngx-prism>
+              <jnt-form-item>
+                <jnt-form-label for="format">Format</jnt-form-label>
+                <jnt-switcher formControlName="format">
+                  <jnt-switcher-option label="DD.MM.YYYY" [value]="dateFormat.fullDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="DD.MM" [value]="dateFormat.shortDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="DD.MM.YY" [value]="dateFormat.longDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="DD MMMM" [value]="dateFormat.fullMonth"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'date-picker-test', type: 'DatePickerTestComponent'}"
+          scss="forms/date-picker"></app-how-to-use>
+        <app-code-highlight file="date-picker-test.component.html">
+          <![CDATA[
+          <jnt-date-picker
+            ]]>
+            <ng-container *ngIf="placeholderControl.value">
+              <![CDATA[
+              placeholder="Please enter the date"]]>
+            </ng-container>
+            <ng-container *ngIf="formatControl.value">
+              <![CDATA[
+              format="]]>{{formatControl.value}}<![CDATA["]]>
+            </ng-container><![CDATA[>
+          </jnt-date-picker>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-date-picker" [target]="picker"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 </jnt-container>

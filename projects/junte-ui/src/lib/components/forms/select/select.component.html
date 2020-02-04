@@ -15,8 +15,9 @@
           <div empty></div>
         </ng-template>
         <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
-          <ng-container
-            *ngTemplateOutlet="!!optionTemplate ? optionTemplate : optionDefaultTemplate;context: option"></ng-container>
+          <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+            : optionDefaultTemplate;context: option">
+          </ng-container>
         </div>
         <button close type="button" (click)="remove(key)">
           <jnt-icon [icon]="ui.icons.close" icon></jnt-icon>
@@ -45,16 +46,17 @@
       </div>
     </ng-template>
   </ng-template>
-  <ng-container
-    *ngIf="((!!queryControl.value ? options.found : options.persisted) | getOptions:selected:changes.selected:changes.options) as options">
+  <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
+    | getOptions:selected:changes.selected:changes.options) as options">
     <ul *ngIf="options.length;else noOptionsTemplate">
       <div loading *ngIf="loading">
         <jnt-spinner [size]="ui.size.large"></jnt-spinner>
       </div>
       <ng-container *ngFor="let o of options">
         <li (click)="select(o)">
-          <ng-container
-            *ngTemplateOutlet="!!optionTemplate ? optionTemplate : optionDefaultTemplate;context: o"></ng-container>
+          <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+              : optionDefaultTemplate;context: o">
+          </ng-container>
         </li>
       </ng-container>
     </ul>

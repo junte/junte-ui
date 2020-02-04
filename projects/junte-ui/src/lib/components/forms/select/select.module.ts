@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
 import { ArrayPipeModule } from '../../../pipes/array-pipe.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
-import { IconModule } from '../../elements/icon/icon.module';
+import { StackModule } from '../../layout/stack/stack.module';
+import { ButtonModule } from '../button/button.module';
 import { GetOptionPipe, GetOptionsPipe } from './pipes';
 import { SelectComponent, SelectOptionComponent } from './select.component';
-import { ButtonModule } from '../button/button.module';
-import { StackModule } from '../../layout/stack/stack.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { StackModule } from '../../layout/stack/stack.module';
     ArrayPipeModule,
     StackModule
   ],
+  entryComponents: [SelectComponent],
   exports: [
     SelectComponent,
     SelectOptionComponent

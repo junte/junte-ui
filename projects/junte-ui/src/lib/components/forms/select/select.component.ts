@@ -9,11 +9,13 @@ import {
   HostListener,
   Input,
   OnInit,
-  QueryList, Renderer2,
+  QueryList,
+  Renderer2,
   TemplateRef,
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PropertyApi } from '../../../decorators/api';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
 import { Size } from '../../../enums/size';
@@ -56,12 +58,86 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
   private _opened = false;
+  private fetcher: Subscription;
 
   ui = UI;
   selectMode = SelectMode;
 
   options: Options = {persisted: {}, found: {}};
+  changes = {selected: 0, options: 0};
   selected: Key[] = [];
+  loading: boolean;
+
+  queryControl = this.fb.control({value: null, disabled: true});
+  form = this.fb.group(
+    {
+      query: this.queryControl
+    }
+  );
+
+  @PropertyApi({
+    description: 'Select label field',
+    type: 'string',
+    default: 'label'
+  })
+  @Input() labelField = 'label';
+
+  @PropertyApi({
+    description: 'Select key field',
+    type: 'string',
+    default: 'key'
+  })
+  @Input() keyField = 'key';
+
+  @PropertyApi({
+    description: 'Select placeholder',
+    type: 'string',
+    default: 'key'
+  })
+  @Input() placeholder = '';
+
+  @PropertyApi({
+    description: 'Select required',
+    type: 'boolean',
+    default: 'false'
+  })
+  @Input() required = false;
+
+  @HostBinding('attr.mode')
+  _mode: SelectMode = SelectMode.single;
+
+  @HostBinding('attr.size')
+  _size: Size = Size.normal;
+
+  @PropertyApi({
+    description: 'Select label',
+    type: 'string'
+  })
+  @HostBinding('attr.label')
+  @Input() label: string;
+
+  @PropertyApi({
+    description: 'Select allow empty',
+    type: 'boolean',
+    default: 'true'
+  })
+  @HostBinding('attr.allow-empty')
+  @Input() allowEmpty = true;
+
+  @ViewChild('queryInput', {static: true})
+  queryInput: ElementRef<HTMLInputElement>;
+
+  @ViewChild('selectedList', {static: true})
+  selectedList: ElementRef<HTMLUListElement>;
+
+  @ViewChild('query', {static: false})
+  query: ElementRef<HTMLInputElement>;
+
+  @ContentChild('selectOptionTemplate', {static: false})
+  optionTemplate: TemplateRef<any>;
+
+  @ContentChildren(SelectOptionComponent)
+  optionsFromMarkup: QueryList<SelectOptionComponent>;
 
   @HostBinding('attr.opened')
   set opened(opened: boolean) {
@@ -87,18 +163,26 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     return this._opened;
   }
 
-  loading: boolean;
+  @PropertyApi({
+    description: 'Select mode',
+    path: 'ui.select',
+    default: SelectMode.single,
+    options: [SelectMode.single, SelectMode.multiple]
+  })
+  @Input() set mode(mode: SelectMode) {
+    this._mode = mode || SelectMode.single;
+  }
 
-  @HostBinding('attr.mode')
-  @Input() mode: SelectMode = SelectMode.single;
+  get mode() {
+    return this._mode;
+  }
 
-  @Input() labelField = 'label';
-  @Input() keyField = 'key';
-  @Input() placeholder = '';
-
-  @Input()
+  @PropertyApi({
+    description: 'Select search',
+    type: 'boolean'
+  })
   @HostBinding('attr.search')
-  set search(search: boolean) {
+  @Input() set search(search: boolean) {
     search ? this.queryControl.enable() : this.queryControl.disable();
   }
 
@@ -106,57 +190,30 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     return !this.queryControl.disabled;
   }
 
-  @Input() required = false;
-
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
 
-  @HostBinding('attr.size')
-  @Input()
-  size: Size = Size.normal;
-
-  @HostBinding('attr.label')
-  @Input()
-  label: string;
-
-  @HostBinding('attr.allow-empty')
-  @Input()
-  allowEmpty = true;
-
-  @ViewChild('queryInput', {static: true})
-  queryInput: ElementRef<HTMLInputElement>;
-
-  @ViewChild('selectedList', {static: true})
-  selectedList: ElementRef<HTMLUListElement>;
+  @PropertyApi({
+    description: 'Select size',
+    path: 'ui.sizes',
+    default: Size.normal,
+    options: [Size.tiny, Size.small, Size.normal, Size.large]
+  })
+  @Input() set size(size: Size) {
+    this._size = size || Size.normal;
+  }
 
   @HostBinding('attr.empty')
   get empty() {
     return this.selected.length === 0;
   }
 
-  @ContentChildren(SelectOptionComponent) optionsFromMarkup: QueryList<SelectOptionComponent>;
-
-  @ViewChild('query', {static: false})
-  query: ElementRef<HTMLInputElement>;
-
-  @ContentChild('optionTemplate', {static: false})
-  optionTemplate: TemplateRef<any>;
-
-  changes = {selected: 0, options: 0};
-
-  private fetcher: Subscription;
-
-  queryControl = this.fb.control({value: null, disabled: true});
-  form = this.fb.group(
-    {
-      query: this.queryControl
-    }
-  );
-
-
-  @Input()
-  loader(q: string) {
+  @PropertyApi({
+    description: 'Select loader',
+    type: 'function'
+  })
+  @Input() loader(q: string) {
     const options = Object.values(this.options.persisted);
     return of(options.filter(o => o.label.startsWith(q)));
   }
@@ -164,7 +221,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
               private fb: FormBuilder) {
-
   }
 
   ngOnInit() {
@@ -294,5 +350,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 }
