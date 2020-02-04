@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { Shape } from '../../../enums/shape';
 import { Size } from '../../../enums/size';
 import { PropertyApi } from '../../../decorators/api';
-import { FontIcons, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-avatar',
@@ -52,7 +52,7 @@ export class AvatarComponent {
   })
 
   @HostBinding('attr.icon')
-  @Input() icon: FontIcons = FontIcons.user;
+  @Input() icon: string = UI.icons.user;
 
   @PropertyApi({
     description: 'Text on avatar',

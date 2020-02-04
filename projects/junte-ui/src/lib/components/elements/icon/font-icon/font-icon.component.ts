@@ -1,5 +1,4 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { FontIcons } from '../../../../enums/ui';
 
 const DEFAULT_ICONSET = 'junte-ui-icons-default';
 
@@ -13,7 +12,7 @@ export class FontIconComponent {
   @HostBinding('attr.host') readonly host = 'jnt-font-icon-host';
 
   @HostBinding('attr.icon')
-  @Input() icon: string = FontIcons.check;
+  @Input() icon: string;
 
   @HostBinding('style.font-family')
   @Input() iconset = DEFAULT_ICONSET;

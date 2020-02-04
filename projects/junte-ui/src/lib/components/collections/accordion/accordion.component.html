@@ -1,6 +1,6 @@
 <div *ngFor="let section of sections; let i = index;" section>
   <div title tabindex="0" (click)="active == i ? active = null : active = i" [attr.active]="active == i">
-    <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown" [size]="ui.sizes.small" icon></jnt-icon>
+    <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown" [size]="ui.size.small" icon></jnt-icon>
     {{section.title}}
   </div>
   <div *ngIf="active == i" content>

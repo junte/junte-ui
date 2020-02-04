@@ -1,6 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { ModalComponent, ModalService, PopoverComponent, PopoverService, Themes, UI } from 'junte-ui';
+import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
+
+export enum Themes {
+  light = 'light',
+  dark = 'dark'
+}
 
 @Component({
   selector: 'app-root',

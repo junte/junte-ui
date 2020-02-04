@@ -14,7 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FontIcons, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
 
 export enum ModalClosingOption {
   enable = 'enable',
@@ -23,7 +23,7 @@ export enum ModalClosingOption {
 
 interface ModalTitle {
   text?: string;
-  icon?: FontIcons;
+  icon?: string;
 }
 
 export class ModalOptions {
