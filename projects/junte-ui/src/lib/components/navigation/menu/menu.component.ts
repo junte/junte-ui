@@ -1,5 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
-import { UrlMatching, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
+import { UrlMatching } from '../../../enums/url';
 import { Menu } from './menu-abstract';
 
 @Component({

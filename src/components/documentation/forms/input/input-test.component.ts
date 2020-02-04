@@ -16,8 +16,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  typeControl = this.fb.control(UI.form.input.text);
-  stateControl = this.fb.control(UI.state.normal);
+  typeControl = this.fb.control(UI.form.input.type.text);
+  stateControl = this.fb.control(UI.form.input.state.normal);
   sizeControl = this.fb.control(UI.size.normal);
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
@@ -58,7 +58,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     });
 
     this.typeControl.valueChanges.subscribe((type) => {
-      if (type !== UI.form.input.number) {
+      if (type !== UI.form.input.type.number) {
         this.minControl.disable();
         this.maxControl.disable();
       } else {

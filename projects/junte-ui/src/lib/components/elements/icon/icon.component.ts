@@ -1,7 +1,8 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
 import { Size } from '../../../enums/size';
-import { FontIcons, TypeIcon } from '../../../enums/ui';
+import { FontIcons } from '../../../enums/ui';
+import { IconType } from './enums';
 
 const DEFAULT_ICONSET = 'junte-ui-icons-default';
 
@@ -14,7 +15,7 @@ export class IconComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-icon-host';
   private _icon: string = FontIcons.check;
-  typeIcon = TypeIcon;
+  iconType = IconType;
 
   @PropertyApi({
     description: 'Icon size',
@@ -31,7 +32,7 @@ export class IconComponent {
   size: Size;
 
   @HostBinding('attr.type')
-  type: TypeIcon = TypeIcon.font;
+  type: IconType = IconType.font;
   iconset: string = DEFAULT_ICONSET;
 
   @PropertyApi({
@@ -46,7 +47,7 @@ export class IconComponent {
     this._icon = chunks[0];
 
     if (chunks.length > 1) {
-      this.type = TypeIcon[chunks[1]];
+      this.type = IconType[chunks[1]];
     }
 
     if (chunks.length > 2) {

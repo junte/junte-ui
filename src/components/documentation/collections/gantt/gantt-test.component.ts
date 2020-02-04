@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { GanttRequestStatuses, UI } from 'junte-ui';
+import { UI } from 'junte-ui';
 import { REQUESTS } from 'src/components/documentation/collections/gantt/requests';
+
+export enum GanttRequestStatuses {
+  accepting = 'accepting',
+  accepted = 'accepted',
+  declined = 'declined'
+}
+
 
 @Component({
   selector: 'app-gantt-test',

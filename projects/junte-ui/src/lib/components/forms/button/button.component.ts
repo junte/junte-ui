@@ -6,7 +6,8 @@ import { Size } from '../../../enums/size';
 import { Width } from '../../../enums/width';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
-import { TypeButton, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
+import { ButtonType } from './enums';
 
 @Component({
   selector: 'jnt-button',
@@ -72,7 +73,7 @@ export class ButtonComponent {
   _width: Width = Width.default;
 
   @HostBinding('attr.type')
-  _type: TypeButton = TypeButton.button;
+  _type: ButtonType = ButtonType.button;
 
   ui = UI;
 
@@ -160,12 +161,12 @@ export class ButtonComponent {
   @PropertyApi({
     description: 'Button typeControl',
     path: 'ui.form.button.type',
-    default: TypeButton.button,
-    options: [TypeButton.button, TypeButton.submit]
+    default: ButtonType.button,
+    options: [ButtonType.button, ButtonType.submit]
   })
 
-  @Input() set type(type: TypeButton) {
-    this._type = type || TypeButton.button;
+  @Input() set type(type: ButtonType) {
+    this._type = type || ButtonType.button;
   }
 
   get type() {

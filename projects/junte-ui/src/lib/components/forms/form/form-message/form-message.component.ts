@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { ValidationTypeError } from '../../../../enums/ui';
+import { ValidationTypeError } from '../enums';
 
 @Component({
   selector: 'jnt-form-message',

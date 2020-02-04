@@ -23,8 +23,10 @@
 
   <jnt-block [width]="ui.width.fluid">
     <jnt-form [formGroup]="form">
-      <jnt-stack [type]="ui.layout.stack.type.vertical" [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
-        <jnt-table #table [features]="[ui.table.features.search]" formControlName="table">
+      <jnt-stack [type]="ui.layout.stack.type.vertical"
+                 [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+        <jnt-table #table [features]="[ui.collections.table.features.search]"
+                   formControlName="table">
           <jnt-table-column title="#" sort="id">
             <ng-template #cellTemplate let-id="id">
               {{id}}

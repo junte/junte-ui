@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SelectComponent, SelectMode, TabComponent, UI } from 'junte-ui';
-import { combineLatest, Observable } from 'rxjs';
+import { SelectComponent, TabComponent, UI } from 'junte-ui';
+import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -23,9 +23,9 @@ export class SelectTestComponent implements OnInit {
   disabledControl = this.fb.control(false);
   labelControl = this.fb.control(null);
   allowEmptyControl = this.fb.control(true);
-  modeControl = this.fb.control(SelectMode.single);
+  modeControl = this.fb.control(UI.form.select.mode.single);
   searchControl = this.fb.control(false);
-  sizeControl = this.fb.control(UI.sizes.normal);
+  sizeControl = this.fb.control(UI.size.normal);
   loaderControl = this.fb.control(null);
   templateControl = this.fb.control(false);
   form = this.fb.group({

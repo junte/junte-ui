@@ -7,55 +7,14 @@
     </jnt-link>
   </jnt-stack>
 
-    <p>A control used for the inputting of date and time values.<br>
-      You can use a date picker to allow a user to enter either a point in time
-      (calendar date, time value or both) or a time interval (for example for a timer).
-      The date picker reports interactions to its associated target object.<br>
-      <jnt-link source="https://developer.apple.com/documentation/uikit/uidatepicker" title="More">
-      </jnt-link>
-    </p>
+  <p>A control used for the inputting of date and time values.<br>
+    You can use a date picker to allow a user to enter either a point in time
+    (calendar date, time value or both) or a time interval (for example for a timer).
+    The date picker reports interactions to its associated target object.<br>
+    <jnt-link source="https://developer.apple.com/documentation/uikit/uidatepicker" title="More">
+    </jnt-link>
+  </p>
 
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The date-picker should have placeholder</li>
-  </ol>
-
-  <hr>
-
-  <jnt-block [padding]="ui.gutter.normal">
-    <jnt-form [formGroup]="form">
-      <jnt-form-item>
-        <jnt-form-label>
-          Picked date: {{date | format: 'YYYY.MM.DD'}}
-        </jnt-form-label>
-        <jnt-form-control>
-          <jnt-date-picker placeholder="Select date" formControlName="datePicker"></jnt-date-picker>
-        </jnt-form-control>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label>
-          Picked date1: {{date1 | format: 'YYYY.MM.DD'}}
-        </jnt-form-label>
-        <jnt-form-control>
-          <jnt-date-picker placeholder="Select date" formControlName="datePicker1"></jnt-date-picker>
-        </jnt-form-control>
-      </jnt-form-item>
-    </jnt-form>
-  </jnt-block>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-  <jnt-form [formGroup]="form">
-      <jnt-form-item>
-        <jnt-form-label>
-          Picked date: {{date | format: 'YYYY.MM.DD'}}
-        </jnt-form-label>
-        <jnt-form-control>
-          <jnt-date-picker placeholder="Select date" formControlName="datePicker"></jnt-date-picker>
-        </jnt-form-control>
-      </jnt-form-item>
   <h3>Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">

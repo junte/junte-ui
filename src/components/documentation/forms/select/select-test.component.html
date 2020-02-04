@@ -74,7 +74,7 @@
                   </jnt-select>
                   <div>
                     Value: {{modeControl.value === ui.select.multiple
-                      ? (selectControl.valueChanges | async)?.join(', ') : selectControl.value}}
+                    ? (selectControl.valueChanges | async)?.join(', ') : selectControl.value}}
                   </div>
                 </jnt-stack>
               </form>
@@ -104,25 +104,6 @@
               </jnt-form-control>
             </jnt-form-item>
 
-    <ul>
-      <li *ngFor="let v of staticControl.value">
-        {{v}}
-      </li>
-    </ul>
-    <p>Static options</p>
-    <jnt-stack [align]="ui.flex.align.stretch">
-      <jnt-select *ngFor="let size of [ui.size.small, ui.size.normal, ui.size.large]"
-                  [mode]="ui.select.multiple"
-                  [size]="size"
-                  [search]="searchControl.value"
-                  placeholder="Your favourite hero"
-                  formControlName="static">
-        <jnt-select-option *ngFor="let hero of heroes"
-                           [label]="hero.title"
-                           [key]="hero.id"
-                           [value]="hero">
-        </jnt-select-option>
-      </jnt-select>
             <jnt-form-item>
               <jnt-form-control>
                 <jnt-checkbox formControlName="required" label="Required"></jnt-checkbox>
@@ -227,52 +208,6 @@
 <![CDATA[
 import { Component, OnInit, FormBuilder } from '@angular/core';
 import { UI } from 'junte-ui';
-    <p>Ajax loading</p>
-    <jnt-select [mode]="ui.select.multiple"
-                [search]="searchControl.value"
-                [loader]="searchHeroes()"
-                keyField="id"
-                labelField="title"
-                placeholder="Multiple select disabled"
-                formControlName="ajax">
-      <jnt-select-option *ngFor="let hero of heroes"
-                         [label]="hero.title"
-                         [key]="hero.id"
-                         [value]="hero">
-      </jnt-select-option>
-      <ng-template #optionTemplate let-hero="value">
-        <jnt-stack option [type]="ui.layout.stack.type.horizontal"
-                   [gutter]="ui.gutter.small"
-                   [align]="ui.flex.align.center">
-          <jnt-avatar [size]="ui.size.small"></jnt-avatar>
-          <div>{{hero.title}} with likes</div>
-          <jnt-label [label]="hero.likes"></jnt-label>
-        </jnt-stack>
-      </ng-template>
-    </jnt-select>
-
-    <p>Single select</p>
-    <jnt-stack [align]="ui.flex.align.stretch">
-      <jnt-select *ngFor="let size of [ui.size.small, ui.size.normal, ui.size.large]"
-                  formControlName="single"
-                  [size]="size"
-                  [search]="searchControl.value"
-                  [allowEmpty]="true"
-                  placeholder="Select page size">
-        <jnt-select-option [key]="10" label="A" [icon]="ui.icons.settings"></jnt-select-option>
-        <jnt-select-option [key]="20" label="B" [icon]="ui.icons.settings"></jnt-select-option>
-        <jnt-select-option [key]="30" label="C" [icon]="ui.icons.settings"></jnt-select-option>
-      </jnt-select>
-      <jnt-select formControlName="single"
-                  [disabled]="true"
-                  [search]="searchControl.value"
-                  [allowEmpty]="true"
-                  placeholder="Select page size">
-        <jnt-select-option [key]="10" label="A" [icon]="ui.icons.settings"></jnt-select-option>
-        <jnt-select-option [key]="20" label="B" [icon]="ui.icons.settings"></jnt-select-option>
-        <jnt-select-option [key]="30" label="C" [icon]="ui.icons.settings"></jnt-select-option>
-      </jnt-select>
-    </jnt-stack>
 
 @Component({
             selector: 'app-select-test',

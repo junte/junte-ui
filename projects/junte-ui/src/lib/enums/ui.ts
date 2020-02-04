@@ -1,7 +1,14 @@
+import { TableFeatures } from '../components/collections/table/enums';
+import { ButtonType } from '../components/forms/button/enums';
+import { FormLayout, ValidationTypeError } from '../components/forms/form/enums';
+import { InputState, InputType } from '../components/forms/input/enums';
+import { SelectMode } from '../components/forms/select/enums';
+import { AppLayoutPosition } from '../components/layout/app-layout/enums';
 import { BlockState } from '../components/layout/block/enums';
 import { RowAlign } from '../components/layout/grid/enums';
 import { SkeletonType } from '../components/layout/skeleton/enums';
 import { StackType } from '../components/layout/stack/enums';
+import { PopoverPlacements, PopoverTriggers } from '../components/overlays/popover/enums';
 import { Color } from './color';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
@@ -13,6 +20,7 @@ import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
 import { TextAlign } from './text';
+import { UrlMatching } from './url';
 import { Width } from './width';
 
 export enum FontDefaultIcons {
@@ -167,94 +175,10 @@ export enum Themes {
   dark = 'dark'
 }
 
-export enum InputState {
-  normal = 'normal',
-  failed = 'failed',
-  success = 'success'
-}
-
-export enum TypeButton {
-  button = 'button',
-  submit = 'submit'
-}
-
-export enum TypeIcon {
-  font = 'font',
-  svg = 'svg',
-  animated = 'animated'
-}
-
-export enum ValidationTypeError {
-  required = 'required',
-  minlength = 'minlength'
-}
-
-export enum FormLayout {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-  inline = 'inline'
-}
-
-export enum InputType {
-  text = 'text',
-  password = 'password',
-  number = 'number'
-}
-
-export enum SelectMode {
-  single = 'single',
-  multiple = 'multiple'
-}
-
-export enum DropdownMode {
-  click = 'click',
-  hover = 'hover'
-}
-
-export enum PopoverPlacements {
-  top = 'top',
-  topLeft = 'top-left',
-  topRight = 'top-right',
-  right = 'right',
-  rightTop = 'right-top',
-  rightBottom = 'right-bottom',
-  bottom = 'bottom',
-  bottomLeft = 'bottom-left',
-  bottomRight = 'bottom-right',
-  left = 'left',
-  leftTop = 'left-top',
-  leftBottom = 'left-bottom'
-}
-
-export enum TableFeatures {
-  search = 'search'
-}
-
-export enum PopoverTriggers {
-  hover = 'hover',
-  click = 'click'
-}
-
-export enum UrlMatching {
-  fullMatch = 'fullMatch',
-  wildcard = 'wildcard'
-}
-
-export enum GanttRequestStatuses {
-  accepting = 'accepting',
-  accepted = 'accepted',
-  declined = 'declined'
-}
-
-export enum AppLayoutPosition {
-  default = 'default',
-  fixed = 'fixed'
-}
-
 export class UI {
+  static themes = Themes;
   static gutter = Gutter;
   static scheme = Scheme;
-  static themes = Themes;
   static size = Size;
   static outline = Outline;
   static position = Position;
@@ -262,9 +186,7 @@ export class UI {
   static orientation = Orientation;
   static width = Width;
   static color = Color;
-  static text = {
-    align: TextAlign
-  };
+  static text = {align: TextAlign};
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,
@@ -274,23 +196,34 @@ export class UI {
     alignSelf: FlexAlignSelf
   };
   static layout = {
-    grid: {
-      row: {
-        align: RowAlign
-      }
-    },
-    stack: {
-      type: StackType
-    },
-    block: {
-      state: BlockState
-    },
-    skeleton: {
-      type: SkeletonType
-    },
-    app: {
-      position: AppLayoutPosition
+    grid: {row: {align: RowAlign}},
+    stack: {type: StackType},
+    block: {state: BlockState},
+    skeleton: {type: SkeletonType},
+    app: {position: AppLayoutPosition}
+  };
+  static navigation = {
+    url: {matching: UrlMatching}
+  };
+  static form = {
+    layout: FormLayout,
+    input: {type: InputType, state: InputState},
+    select: {mode: SelectMode},
+    button: {type: ButtonType},
+    validators: {
+      typeError: ValidationTypeError
     }
+  };
+  static overlays = {
+    popover: {
+      position: PopoverPlacements,
+      trigger: PopoverTriggers
+    }
+
+  };
+  static collections = {
+    table: {features: TableFeatures}
+
   };
   // <editor-fold desc="icons">
   static icons = {
@@ -429,30 +362,5 @@ export class UI {
     }
   };
   // </editor-fold>
-  static form = {
-    layout: FormLayout,
-    input: InputType,
-    button: {
-      type: TypeButton
-    },
-    validators: {
-      typeError: ValidationTypeError
-    }
-  };
-  static select = SelectMode;
-  static state = InputState;
-  static popover = {
-    position: PopoverPlacements,
-    trigger: PopoverTriggers
-  };
-  static url = {
-    matching: UrlMatching
-  };
-  static table = {
-    features: TableFeatures
-  };
-  static gantt = {
-    statuses: GanttRequestStatuses
-  };
 }
 

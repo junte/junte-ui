@@ -3,7 +3,8 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { PropertyApi } from '../../../decorators/api';
 import { Size } from '../../../enums/size';
 import { TextAlign } from '../../../enums/text';
-import { InputState, InputType, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
+import { InputState, InputType } from './enums';
 
 @Component({
   selector: 'jnt-input',
@@ -19,6 +20,7 @@ import { InputState, InputType, UI } from '../../../enums/ui';
 export class InputComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
+  inputType = InputType;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 

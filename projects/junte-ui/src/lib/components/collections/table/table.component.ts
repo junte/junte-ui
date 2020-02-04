@@ -12,13 +12,14 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {debounceTime, distinctUntilChanged, filter as filtering, finalize} from 'rxjs/operators';
-import {TableFeatures, UI} from '../../../enums/ui';
-import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter} from '../../../models/table';
-import {isEqual} from '../../../utils/equal';
-import {Subscriptions} from '../../../utils/subscriptions';
-import {TableColumnComponent} from './column/table-column.component';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
+import { UI } from '../../../enums/ui';
+import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from '../../../models/table';
+import { isEqual } from '../../../utils/equal';
+import { Subscriptions } from '../../../utils/subscriptions';
+import { TableColumnComponent } from './column/table-column.component';
+import { TableFeatures } from './enums';
 
 const FILTER_DELAY = 500;
 
@@ -35,10 +36,12 @@ const FILTER_DELAY = 500;
 })
 export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
+  ui = UI;
+  tableFeatures = TableFeatures;
+
   private count: number;
   private subscriptions = new Subscriptions();
 
-  ui = UI;
   progress = {loading: false};
   source: any[] = [];
   q = new FormControl(null);

@@ -1,21 +1,21 @@
 <jnt-container>
-    <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-      <jnt-link [icon]="ui.icons.gitlab"
-                source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switcher"
-                target="_blank" title="GitLab">
-      </jnt-link>
-      <jnt-link [icon]="ui.icons.figma"
-                source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997"
-                target="_blank" title="Figma">
-      </jnt-link>
-    </jnt-stack>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switcher"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
 
   <h1>Switcher</h1>
 
   <h3>How to use</h3>
-    <app-how-to-use
-      [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
-      scss="forms/switcher"></app-how-to-use>
+  <app-how-to-use
+    [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
+    scss="forms/switcher"></app-how-to-use>
 
   <h3>Playground</h3>
   <jnt-tabs playground>
@@ -64,80 +64,7 @@
             <jnt-form-item>
               <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
             </jnt-form-item>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-      <jnt-label label="Selected value:"></jnt-label>
-      <span>{{form.value | json}}</span>
-    </jnt-stack>
-    <jnt-form [formGroup]="form">
-      <jnt-stack [gutter]="ui.gutter.large">
-        <ng-container *ngFor="let type of [ui.orientation.horizontal, ui.orientation.vertical]">
-          <h3>{{type | titlecase}}</h3>
-          <jnt-switcher formControlName="selected" [type]="type">
-            <jnt-switcher-option label="Lorem $$$$$" [value]="{obj: 10}"></jnt-switcher-option>
-            <jnt-switcher-option label="Lorem ipsum dolor" [value]="{obj: 1}">
-              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
-              <jnt-badge [color]="ui.color.purple" [value]="2000"></jnt-badge>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Lorem ipsum dolor sit amet" [value]="{obj: 2}">
-              <jnt-dot [color]="ui.color.red"></jnt-dot>
-              <jnt-badge [color]="ui.color.purple" [value]="20"></jnt-badge>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Option" [value]="{obj: 3}">
-              <jnt-dot></jnt-dot>
-            </jnt-switcher-option>
-          </jnt-switcher>
 
-          <jnt-switcher formControlName="selected" [type]="type">
-            <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-              <jnt-badge [color]="ui.color.purple" [value]="10"></jnt-badge>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Purple Dark active color" [value]="{obj: 20}">
-              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
-            <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-              <jnt-dot [color]="ui.color.red"></jnt-dot>
-              <jnt-badge [value]="100000" [color]="ui.color.red"></jnt-badge>
-            </jnt-switcher-option>
-          </jnt-switcher>
-
-          <jnt-switcher formControlName="selected" [type]="type">
-            <jnt-switcher-option label="Orange active color" [value]="{obj: 10}">
-              <jnt-badge [color]="ui.color.purple" [value]="10"></jnt-badge>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Purple Dark active color Purple Dark active color"
-                                 [value]="{obj: 20}">
-              <jnt-dot [color]="ui.color.yellow"></jnt-dot>
-            </jnt-switcher-option>
-            <jnt-switcher-option label="Without badge and dot" [value]="{obj: 40}"></jnt-switcher-option>
-            <jnt-switcher-option label="Default active color" [value]="{obj: 30}">
-              <jnt-dot [color]="ui.color.red"></jnt-dot>
-              <jnt-badge [value]="100000" [color]="ui.color.red"></jnt-badge>
-            </jnt-switcher-option>
-          </jnt-switcher>
-
-          <jnt-switcher formControlName="selected" [type]="type">
-            <jnt-switcher-option label="Without badge and dot" [icon]="ui.icons.calendar" [value]="1"></jnt-switcher-option>
-            <jnt-switcher-option label="Without badge and dot" [icon]="ui.icons.animated.success" [value]="2"></jnt-switcher-option>
-            <jnt-switcher-option label="Without badge and dot" [icon]="ui.icons.angular" [value]="3"></jnt-switcher-option>
-            <jnt-switcher-option label="Without badge and dot" [value]="4"></jnt-switcher-option>
-          </jnt-switcher>
-        </ng-container>
-      </jnt-stack>
-    </jnt-form>
-
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-switcher formControlName="switcherValue" [type]="ui.orientation.vertical">
-  <jnt-switcher-option label="Option 1"></jnt-switcher-option>
-  <jnt-switcher-option label="Option 2">
-    <jnt-dot [color]="ui.color.red"></jnt-dot>
-    <jnt-badge [color]="ui.color.blue100" [value]="99"></jnt-badge>
-  </jnt-switcher-option>
-</jnt-switcher>
-]]></pre>
-    </ngx-prism>
-  </jnt-stack>
             <jnt-form-item>
               <jnt-checkbox formControlName="dot" label="Dot"></jnt-checkbox>
             </jnt-form-item>
@@ -178,11 +105,11 @@
               <![CDATA[</jnt-switcher-option>]]>
             <![CDATA[
             <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin"]]>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.dashboard"]]>
-            </ng-container>
-            <![CDATA[>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                [icon]="ui.icons.dashboard"]]>
+              </ng-container>
+              <![CDATA[>
               ]]>
               <ng-container *ngIf="dotControl.value">
                 <![CDATA[

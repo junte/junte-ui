@@ -1,6 +1,7 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { Scheme } from '../../../../enums/scheme';
-import { UrlMatching, UI } from '../../../../enums/ui';
+import { UI } from '../../../../enums/ui';
+import { UrlMatching } from '../../../../enums/url';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { PropertyApi } from '../../../../decorators/api';
 
@@ -48,7 +49,8 @@ export class MenuItemComponent {
     description: 'Methods of matching',
     path: 'ui.url.matching',
     default: UrlMatching.fullMatch,
-    options: [UrlMatching.fullMatch, UrlMatching.wildcard]
+    options: [UrlMatching.fullMatch,
+      UrlMatching.wildcard]
   })
 
   @Input() matching: UrlMatching = UrlMatching.fullMatch;

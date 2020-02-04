@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { FormLayout } from '../../../../enums/ui';
+import { FormLayout } from '../enums';
 
 @Component({
   selector: 'jnt-form-item',

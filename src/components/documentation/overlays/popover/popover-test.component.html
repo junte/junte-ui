@@ -24,13 +24,13 @@
 
   <jnt-stack [type]="ui.layout.stack.type.vertical">
     <jnt-stack [type]="ui.layout.stack.type.horizontal">
-      <jnt-button [jntPopover]="{title: 'Title', contentTemplate: contentTemplate, trigger: ui.popover.trigger.click}"
+      <jnt-button [jntPopover]="{title: 'Title', contentTemplate: contentTemplate, trigger: ui.overlays.popover.trigger.click}"
                   text="Click me">
       </jnt-button>
-      <jnt-button [jntPopover]="{content: 'Without title & text only', trigger: ui.popover.trigger.click}"
+      <jnt-button [jntPopover]="{content: 'Without title & text only', trigger: ui.overlays.popover.trigger.click}"
                   text="Without title">
       </jnt-button>
-      <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.scheme.primary, contentTemplate: contentTemplate, trigger: ui.popover.trigger.hover}"
+      <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.scheme.primary, contentTemplate: contentTemplate, trigger: ui.overlays.popover.trigger.hover}"
                   text="Custom content">
       </jnt-button>
 
@@ -45,7 +45,7 @@
       </ng-template>
     </jnt-stack>
     <jnt-input [(ngModel)]="title"></jnt-input>
-    <jnt-button [jntPopover]="{title: title, content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque aut cum cupiditate dolor fugiat ipsa provident vel voluptates. Accusantium ducimus fuga nisi nulla possimus, saepe vel voluptatum. Eligendi, repellat.', trigger: ui.popover.trigger.hover}"
+    <jnt-button [jntPopover]="{title: title, content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque aut cum cupiditate dolor fugiat ipsa provident vel voluptates. Accusantium ducimus fuga nisi nulla possimus, saepe vel voluptatum. Eligendi, repellat.', trigger: ui.overlays.popover.trigger.hover}"
                 text="Changed title">
     </jnt-button>
   </jnt-stack>
@@ -56,27 +56,27 @@
 
       <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
         <ng-container
-          *ngFor="let pos of [ui.popover.position.topLeft, ui.popover.position.top, ui.popover.position.topRight]">
+          *ngFor="let pos of [ui.overlays.popover.position.topLeft, ui.overlays.popover.position.top, ui.overlays.popover.position.topRight]">
           <jnt-button [size]="ui.size.large"
-                      [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
+                      [jntPopover]="{title: pos, content: lorem, trigger: ui.overlays.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
       </jnt-stack>
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
-        <ng-container *ngFor="let pos of [ui.popover.position.leftTop, ui.popover.position.rightTop]">
+        <ng-container *ngFor="let pos of [ui.overlays.popover.position.leftTop, ui.overlays.popover.position.rightTop]">
           <jnt-button [size]="ui.size.large"
-                      [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
+                      [jntPopover]="{title: pos, content: lorem, trigger: ui.overlays.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
       </jnt-stack>
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
-        <ng-container *ngFor="let pos of [ui.popover.position.left, ui.popover.position.right]">
+        <ng-container *ngFor="let pos of [ui.overlays.popover.position.left, ui.overlays.popover.position.right]">
           <jnt-button [size]="ui.size.large"
-                      [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
+                      [jntPopover]="{title: pos, content: lorem, trigger: ui.overlays.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
@@ -84,9 +84,9 @@
       </jnt-stack>
 
       <jnt-stack [type]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" stack>
-        <ng-container *ngFor="let pos of [ui.popover.position.leftBottom, ui.popover.position.rightBottom]">
+        <ng-container *ngFor="let pos of [ui.overlays.popover.position.leftBottom, ui.overlays.popover.position.rightBottom]">
           <jnt-button [size]="ui.size.large"
-                      [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
+                      [jntPopover]="{title: pos, content: lorem, trigger: ui.overlays.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
@@ -94,9 +94,9 @@
 
       <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" stack>
         <ng-container
-          *ngFor="let pos of [ui.popover.position.bottomLeft, ui.popover.position.bottom, ui.popover.position.bottomRight]">
+          *ngFor="let pos of [ui.overlays.popover.position.bottomLeft, ui.overlays.popover.position.bottom, ui.overlays.popover.position.bottomRight]">
           <jnt-button [size]="ui.size.large"
-                      [jntPopover]="{title: pos, content: lorem, trigger: ui.popover.trigger.hover, placement: pos}"
+                      [jntPopover]="{title: pos, content: lorem, trigger: ui.overlays.popover.trigger.hover, placement: pos}"
                       [text]="pos">
           </jnt-button>
         </ng-container>
@@ -114,21 +114,21 @@
 
   <ngx-prism language="html">
 <pre><![CDATA[
-  <jnt-button [jntPopover]="{title: 'Title', content: 'Click content', trigger: ui.popover.trigger.click}"
+  <jnt-button [jntPopover]="{title: 'Title', content: 'Click content', trigger: ui.overlays.popover.trigger.click}"
               text="Click me">
    </jnt-button>
-   <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.popover.trigger.hover}"
+   <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.overlays.popover.trigger.hover}"
                text="Without title">
    </jnt-button>
    <jnt-button [jntPopover]="{title: 'Mouse enter delay', content: 'Enter delay 1 sec',
-        enterDelay: 1, trigger: ui.popover.trigger.hover}"
+        enterDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
                text="Enter delay">
    </jnt-button>
    <jnt-button [jntPopover]="{title: 'Mouse leave delay', content: 'Leave delay 1 sec',
-        leaveDelay: 1, trigger: ui.popover.trigger.hover}"
+        leaveDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
                text="Leave delay">
    </jnt-button>
-   <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.popover.trigger.hover}"
+   <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.overlays.popover.trigger.hover}"
                text="Custom content">
    </jnt-button>
 
@@ -170,13 +170,13 @@
     </tr>
     <tr>
       <td>trigger</td>
-      <td>ui.popover.trigger</td>
+      <td>ui.overlays.popover.trigger</td>
       <td>hover | click | focus</td>
       <td>hover</td>
     </tr>
     <tr>
       <td>placement</td>
-      <td>ui.popover.placement</td>
+      <td>ui.overlays.popover.placement</td>
       <td>
         top | top-left | top-right<br>
         left | left-top | left-bottom<br>

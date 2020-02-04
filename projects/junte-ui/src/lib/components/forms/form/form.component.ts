@@ -12,7 +12,8 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormLayout, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
+import { FormLayout } from './enums';
 import { FormItemComponent } from './form-item/form-item.component';
 
 @Component({

@@ -1,5 +1,11 @@
 <ng-container [ngSwitch]="type">
-  <jnt-font-icon *ngSwitchCase="typeIcon.font" [icon]="icon" [iconset]="iconset"></jnt-font-icon>
-  <jnt-svg-icon *ngSwitchCase="typeIcon.svg" [icon]="icon" [iconset]="iconset"></jnt-svg-icon>
-  <jnt-animated-icon *ngSwitchCase="typeIcon.animated" [icon]="icon" [iconset]="iconset"></jnt-animated-icon>
+  <jnt-font-icon *ngSwitchCase="iconType.font"
+                 [icon]="icon"
+                 [iconset]="iconset"></jnt-font-icon>
+  <jnt-svg-icon *ngSwitchCase="iconType.svg"
+                [icon]="icon" [
+                iconset]="iconset"></jnt-svg-icon>
+  <jnt-animated-icon *ngSwitchCase="iconType.animated"
+                     [icon]="icon"
+                     [iconset]="iconset"></jnt-animated-icon>
 </ng-container>

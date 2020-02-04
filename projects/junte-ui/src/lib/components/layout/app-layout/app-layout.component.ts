@@ -1,6 +1,6 @@
 import { Component, ContentChild, HostBinding, Input } from '@angular/core';
-import { AppLayoutPosition } from '../../../enums/ui';
 import { AppHeaderComponent } from './app-header/app-header.component';
+import { AppLayoutPosition } from './enums';
 
 @Component({
   selector: 'jnt-app-layout',

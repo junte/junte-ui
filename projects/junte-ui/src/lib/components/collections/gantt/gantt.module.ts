@@ -7,13 +7,11 @@ import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
 import { GanttComponent } from './gantt.component';
-import { StatusPipe } from './gantt.pipes';
 
 @NgModule({
   declarations: [
     GanttComponent,
-    GanttLineComponent,
-    StatusPipe
+    GanttLineComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +23,7 @@ import { StatusPipe } from './gantt.pipes';
   ],
   exports: [
     GanttComponent,
-    GanttLineComponent,
-    StatusPipe
+    GanttLineComponent
   ]
 })
 export class GanttModule {

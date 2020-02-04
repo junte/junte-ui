@@ -19,7 +19,8 @@ import { PropertyApi } from '../../../decorators/api';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
 import { Size } from '../../../enums/size';
-import { SelectMode, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
+import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
 const MIN_WIDTH = 20;
@@ -57,11 +58,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
-  private _opened = false;
-  private fetcher: Subscription;
-
   ui = UI;
   selectMode = SelectMode;
+
+  private _opened = false;
+  private fetcher: Subscription;
 
   options: Options = {persisted: {}, found: {}};
   changes = {selected: 0, options: 0};

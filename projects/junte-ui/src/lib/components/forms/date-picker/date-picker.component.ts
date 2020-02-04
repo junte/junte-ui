@@ -2,8 +2,9 @@ import { Component, forwardRef, HostBinding, Input, OnDestroy, OnInit, ViewChild
 import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format as formatDate } from 'date-fns';
 import { PropertyApi } from '../../../decorators/api';
-import { PopoverTriggers, UI } from '../../../enums/ui';
+import { UI } from '../../../enums/ui';
 import { Subscriptions } from '../../../utils/subscriptions';
+import { PopoverTriggers } from '../../overlays/popover/enums';
 import { PopoverService } from '../../overlays/popover/popover.service';
 
 @Component({
