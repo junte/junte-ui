@@ -24,3 +24,5 @@ forms/select @ContentChild('optionTemplate', {static: false}) was renamed to @Co
 forms/calendar @ContentChild('metricTemplate', {static: false}) was renamed to @ContentChild('calendarMetricTemplate', {static: false})
 
 forms/calendar @ContentChild('dayTemplate', {static: false}) was renamed to @ContentChild('calendarDayTemplate', {static: false})
+
+collections/accordion @ContentChild('sectionContentTemplate', {static: false}) was renamed to @ContentChild('accordionContentTemplate', {static: false})
