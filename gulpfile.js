@@ -5,6 +5,7 @@ const map = require('map-stream');
 const hash = require('gulp-hash');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
+
 const themeFiles = "src/assets/themes/*.scss";
 const themeCSSFiles = "src/assets/themes/*.css";
 const scriptFile = "src/assets/themes/themes.js";
@@ -36,7 +37,7 @@ gulp.task('themes:script', function () {
   return gulp.src([scriptFile])
     .pipe(map((file, cb) => {
       const content = file.contents.toString();
-      const str = `themes = ${JSON.stringify(themes, true)}`;
+      const str = `themes = ${JSON.stringify(themes, '\t', true)}`;
       file.contents = new Buffer(content.replace(/themes = \{.*\}/, str));
       return cb(null, file);
     }))

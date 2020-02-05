@@ -1,5 +1,5 @@
 function themes(theme, callback) {
-  var themes = {"dark":"885be1f115","light":"087f588d70"};
+  var themes = {"dark":"56d17a81df"};
 
   var clear = function () {
     var exist = document.head.querySelector('style[theme="true"]');
@@ -28,7 +28,7 @@ function themes(theme, callback) {
     request.send();
   };
 
-  theme != 'light' ? set(theme, callback) : clear();
+  !!theme ? set(theme, callback) : clear();
 }
 
-window['themes'](localStorage.theme || 'light');
+window['themes'](localStorage.theme);
