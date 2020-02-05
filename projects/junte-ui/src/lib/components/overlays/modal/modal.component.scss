@@ -1,7 +1,5 @@
 @import "../../../assets/styles/variables";
 
-$modal-width: 320px !default;
-$modal-height: 210px !default;
 $modal-text-color: $primary-text-color !default;
 $modal-text-font-weight: $font-weight-bold !default;
 $modal-text-font-size: $font-size-base !default;
@@ -46,8 +44,6 @@ $modal-content-padding-y: $gutter-normal !default;
   z-index: 2;
   top: 50%;
   left: 50%;
-  min-width: $modal-width;
-  min-height: $modal-height;
   transform: translate(-50%, -50%);
   animation: fadein .5s;
 
@@ -58,7 +54,22 @@ $modal-content-padding-y: $gutter-normal !default;
     background-color: $modal-title-background;
     font-size: $modal-title-font-size;
 
-    [icon-title]:not([type='font']) {
+    [close] {
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      line-height: 0;
+      cursor: pointer;
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    [iconTitle] {
+      line-height: 0;
+    }
+
+    [icon]:not([type='font']) {
       fill: $modal-title-icon-color;
       width: $modal-title-icon-size;
       height: $modal-title-icon-size;
@@ -73,6 +84,8 @@ $modal-content-padding-y: $gutter-normal !default;
   [content] {
     padding: $modal-content-padding-x $modal-content-padding-y;
     font-size: $modal-text-font-size;
+    box-sizing: border-box;
+    overflow: auto;
   }
 
 }

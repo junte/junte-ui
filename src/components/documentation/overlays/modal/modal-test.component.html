@@ -11,132 +11,255 @@
     </jnt-link>
   </jnt-stack>
 
-  <hr>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-button (click)="typeControl.value === contentType.templateRef ? openModal() : openCalendar()"
+                            text="Open modal"></jnt-button>
+                <ng-template #content>
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad animi blanditiis
+                    consectetur
+                    corporis eligendi enim eveniet ex facere inventore ipsa iusto laboriosam minima minus nesciunt nulla
+                    officiis omnis, pariatur perspiciatis placeat provident quae quibusdam quos reiciendis repellat
+                    repellendus sit suscipit tempora unde velit veniam vitae voluptatem. Alias atque ea, eligendi enim
+                    explicabo impedit, magnam odio possimus rerum sunt vel velit voluptate voluptatem. A adipisci
+                    aspernatur, at aut, corporis cum distinctio dolore eligendi est explicabo facilis fuga harum illum
+                    impedit ipsam labore odit officiis perferendis provident quae quia quis quisquam recusandae rem
+                    repellat sapiente totam, unde. Cum, obcaecati soluta.
+                  </div>
+                  <jnt-button *ngIf="!closingControl.value && !footerControl.value" text="Cancel" (click)="close()"
+                              cancel></jnt-button>
+                </ng-template>
 
-  <ng-template #content>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cum delectus dolorem ducimus illum iusto
-      nemo nesciunt obcaecati omnis provident, qui quia quis quisquam tempore temporibus totam veniam voluptatem.</p>
-  </ng-template>
+                <ng-template #footer>
+                  <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center" footer>
+                    <jnt-button text="Ok" (click)="close()"></jnt-button>
+                  </jnt-stack>
+                </ng-template>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="form">
 
-  <ng-template #footer>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" footer>
-      <jnt-button text="Ok"></jnt-button>
-      <jnt-button text="Cancel"></jnt-button>
-    </jnt-stack>
-  </ng-template>
+              <jnt-form-item>
+                <jnt-form-label for="type">Content type</jnt-form-label>
+                <jnt-switcher formControlName="type">
+                  <jnt-switcher-option label="TemplateRef" [value]="contentType.templateRef"></jnt-switcher-option>
+                  <jnt-switcher-option label="ComponentRef" [value]="contentType.componentRef"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
 
+              <jnt-form-item>
+                <jnt-form-label for="width">Max width</jnt-form-label>
+                <jnt-switcher formControlName="width">
+                  <jnt-switcher-option label="800" [value]="size.large"></jnt-switcher-option>
+                  <jnt-switcher-option label="400" [value]="size.small"></jnt-switcher-option>
+                  <jnt-switcher-option label="600" [value]="size.normal"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
 
-  <h3>Example</h3>
-  <jnt-stack>
-    <jnt-button (click)="openModal()" text="Open modal"></jnt-button>
-    <jnt-button (click)="openCalendar()" text="Open calendar component"></jnt-button>
-  </jnt-stack>
+              <jnt-form-item>
+                <jnt-form-label for="height">Max height</jnt-form-label>
+                <jnt-switcher formControlName="height">
+                  <jnt-switcher-option label="800" [value]="size.large"></jnt-switcher-option>
+                  <jnt-switcher-option label="400" [value]="size.small"></jnt-switcher-option>
+                  <jnt-switcher-option label="600" [value]="size.normal"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
 
-  <h3>Usage</h3>
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="closing" label="Enable closing"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
 
-  <p>To use the modal component, changes are <jnt-label [color]="ui.color.red" label="required in the main component"></jnt-label> of the application.</p>
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
 
-  <h6>app.component.ts:</h6>
-  <ngx-prism language="js">
-    <pre><![CDATA[
-  import { Component } from '@angular/core';
-  import { ModalComponent, ModalService } from 'junte-ui';
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="icon" label="Icon for title"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
 
-  @Component({
-    selector: 'my-app',
-    templateUrl: './app.component.html',
-    styleUrls: [ './app.component.css' ]
-  })
-  export class AppComponent implements AfterViewInit {
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
 
-    @ViewChild('modal', {static: false}) modal: ModalComponent;
-    @ViewChild('layout', {read: ElementRef, static: false}) backdrop;
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'modal-test', type: 'ModalTestComponent'}" scss="overlays/modal">
+          <![CDATA[
+          import { FormBuilder } from '@angular/forms';
+          import { ModalOptions, ModalService, UI, ModalClosingOption } from 'junte-ui';
+          import { ModalTestFactoryComponent } from 'src/components/documentation/overlays/modal/test.component';
 
-    constructor(private modalService: ModalService) {
-    }
+          @Component({
+          selector: 'app-modal-test',
+          templateUrl: './modal-test.component.html',
+          styleUrls: ['./modal-test.component.scss']
+          })
 
-    ngAfterViewInit() {
-      this.modalService.register(this.modal);
-    }
+          export class ModalTestComponent implements OnInit {
 
-  }]]></pre>
-  </ngx-prism>
-  <h6>app.component.css:</h6>
-  <ngx-prism language="html">
-      <pre><![CDATA[
-  <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
-  <jnt-container #layout>
-    This is the main component of the application
-  </jnt-container>
-]]></pre>
-  </ngx-prism>
+          ui = UI;
+          ]]>
+          <ng-container *ngIf="footerControl.value">
+            <![CDATA[
+            @ViewChild('footer', {static: false})
+            footer: TemplateRef<any>;
+            ]]>
+          </ng-container>
+          <ng-container *ngIf="typeControl.value === contentType.templateRef">
+            <![CDATA[
+            @ViewChild('content', {static: false})
+            content: TemplateRef<any>;
 
-  <p>To call the modal window from the components, use the service <jnt-label label="ModalService"></jnt-label></p>
-  <h6>other.component.ts:</h6>
-  <ngx-prism language="js">
-      <pre><![CDATA[
-  import { Component, ComponentFactoryResolver, Injector, TemplateRef, ViewChild } from '@angular/core';
-  import { ModalService, ModalOptions } from 'junte-ui';
+            constructor(private modalService: ModalService) {
+            }
 
-  @Component({
-    selector: 'other',
-    templateUrl: './other.component.html',
-    styleUrls: [ './other.component.css' ]
-  })
-  export class OtherComponent  {
+            openModal() {
+            const options = new ModalOptions({]]>
+            <ng-container *ngIf="widthControl.value">
+              <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
+            </ng-container>
+            <ng-container *ngIf="heightControl.value">
+              <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
+            </ng-container>
+            <ng-container *ngIf="closingControl.value">
+              <![CDATA[closing: ModalClosingOption.enable,]]>
+            </ng-container>
+            <ng-container *ngIf="!closingControl.value">
+              <![CDATA[closing: ModalClosingOption.disable,]]>
+            </ng-container>
 
-    @ViewChild('content', {static: false}) content: TemplateRef<any>;
+            <ng-container *ngIf="titleControl.value || iconControl.value">
+              <![CDATA[title: {]]>
+              <ng-container *ngIf="titleControl.value">
+                <![CDATA[ text: 'Modal']]>
+              </ng-container>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[ icon: UI.icons.settings]]>
+              </ng-container>
+              <![CDATA[}, ]]>
+            </ng-container>
 
-    constructor(private injector: Injector,
-                private cfr: ComponentFactoryResolver,
-                private modalService: ModalService) {}
+            <ng-container *ngIf="footerControl.value">
+              <![CDATA[footer: this.footer]]>
+            </ng-container>
+            <![CDATA[
+            });
+            this.modalService.open(this.content, options);
+            }
+            ]]>
+          </ng-container>
+          <ng-container *ngIf="typeControl.value === contentType.componentRef">
+            <![CDATA[
+            constructor(private modalService: ModalService,
+            private injector: Injector,
+            private cfr: ComponentFactoryResolver) {
+            }
+            openModal() {
+            const options = new ModalOptions({]]>
+            <ng-container *ngIf="widthControl.value">
+              <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
+            </ng-container>
+            <ng-container *ngIf="heightControl.value">
+              <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
+            </ng-container>
+            <ng-container *ngIf="closingControl.value">
+              <![CDATA[closing: ModalClosingOption.enable,]]>
+            </ng-container>
+            <ng-container *ngIf="!closingControl.value">
+              <![CDATA[closing: ModalClosingOption.disable,]]>
+            </ng-container>
 
-    openModalWithTemplate() {
-      this.modalService.open('Title modal', this.content, new ModalOptions({maxHeight: '300px', maxWidth: '500px'}));
-    }
+            <ng-container *ngIf="titleControl.value || iconControl.value">
+              <![CDATA[title: {]]>
+              <ng-container *ngIf="titleControl.value">
+                <![CDATA[ text: 'Calendar']]>
+              </ng-container>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[ icon: UI.icons.calendar]]>
+              </ng-container>
+              <![CDATA[}, ]]>
+            </ng-container>
 
-    openModalWithComponent() {
-      const component = this.cfr.resolveComponentFactory(TestComponent).create(this.injector);
-      this.modalService.open('Title modal', component);
-    }
-  }
-]]></pre>
-  </ngx-prism>
+            <ng-container *ngIf="footerControl.value">
+              <![CDATA[footer: this.footer]]>
+            </ng-container>
+            <![CDATA[
+            });
+            this.modalService.open(this.content, options);
+            }
+            ]]>
+          </ng-container>
+          <![CDATA[
+          close() {
+          this.modalService.close();
+          }
+          }
+          ]]>
+        </app-how-to-use>
+        <app-code-highlight file="modal-test.template.html">
+            <![CDATA[
+            <jnt-button (click)="openModal()" text="Open modal"></jnt-button>
+            ]]>
+          <ng-container *ngIf="typeControl.value === contentType.templateRef">
+            <![CDATA[
+            <ng-template #content>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad animi blanditiis
+                consectetur
+                corporis eligendi enim eveniet ex facere inventore ipsa iusto laboriosam minima minus nesciunt nulla
+                officiis omnis, pariatur perspiciatis placeat provident quae quibusdam quos reiciendis repellat
+                repellendus sit suscipit tempora unde velit veniam vitae voluptatem. Alias atque ea, eligendi enim
+                explicabo impedit, magnam odio possimus rerum sunt vel velit voluptate voluptatem. A adipisci
+                aspernatur, at aut, corporis cum distinctio dolore eligendi est explicabo facilis fuga harum illum
+                impedit ipsam labore odit officiis perferendis provident quae quia quis quisquam recusandae rem
+                repellat sapiente totam, unde. Cum, obcaecati soluta.
+              </div>]]>
+              <ng-container *ngIf="!closingControl.value && !footerControl.value">
+                <![CDATA[<jnt-button  text="Cancel" (click)="close()"></jnt-button>]]>
+              </ng-container>
+              <![CDATA[</ng-template>
+            ]]>
+          </ng-container>
 
-  <h6>other.template.html:</h6>
-  <ngx-prism language="html">
-    <pre><![CDATA[
-  <ng-template #content>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus cum delectus dolorem ducimus illum iusto
-      nemo nesciunt obcaecati omnis provident, qui quia quis quisquam tempore temporibus totam veniam voluptatem.</p>
-    <jnt-button text="Click"></jnt-button>
-    <jnt-button text="Click 2"></jnt-button>
-  </ng-template>
+          <ng-container *ngIf="footerControl.value">
+            <![CDATA[
+            <ng-template #footer>
+              <jnt-stack [type]="ui.stack.type.horizontal" [justify]="ui.flex.justify.center">
+                <jnt-button text="Ok" (click)="close()"></jnt-button>
+              </jnt-stack>
+            </ng-template>]]>
+          </ng-container>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-  <jnt-button (click)="openModalWithTemplate()" text="Open modal with Template"></jnt-button>
-  <jnt-button (click)="openModalWithComponent()" text="Open modal with Component"></jnt-button>
-]]></pre>
-  </ngx-prism>
-
-
-  <h3>API</h3>
-  <h4>jnt-modal</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[backdrop]</td>
-      <td>-</td>
-      <td>ElementRef</td>
-      <td>-</td>
-    </tr>
-    </tbody>
-  </table>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api [target]="modal"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 </jnt-container>

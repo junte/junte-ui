@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { format, getDate } from 'date-fns';
 import { BehaviorSubject } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class ModalTestFactoryComponent {
     this.period$.next(period);
   }
 
-  dueDate = new FormControl(new Date());
+  dueDate = this.fb.control(new Date());
   form = this.fb.group({
     dueDate: this.dueDate
   });

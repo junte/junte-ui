@@ -47,7 +47,7 @@ export class BlockComponent {
   _scheme = Scheme.primary;
 
   @HostBinding('attr.padding')
-  _padding = Gutter.normal;
+  _padding = Gutter.none;
 
   @PropertyApi({
     description: 'Title of block',
@@ -80,7 +80,7 @@ export class BlockComponent {
       Gutter.huge]
   })
   @Input() set padding(padding: Gutter) {
-    this._padding = padding || Gutter.normal;
+    this._padding = padding || Gutter.none;
   }
 
   @PropertyApi({
