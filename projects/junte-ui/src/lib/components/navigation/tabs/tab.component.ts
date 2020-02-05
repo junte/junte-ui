@@ -14,7 +14,6 @@ export class TabComponent {
     description: 'Title of tab',
     type: 'string'
   })
-
   @Input()
   title: string;
 
@@ -22,7 +21,6 @@ export class TabComponent {
     description: 'Icon for tab',
     type: 'string'
   })
-
   @Input()
   icon: string;
 

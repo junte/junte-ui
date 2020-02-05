@@ -45,6 +45,7 @@ import { animate, keyframes, state, style, transition, trigger } from '@angular/
 export class TabsComponent {
 
   ui = UI;
+  active = 0;
 
   @HostBinding('attr.outline')
   _outline: Outline = Outline.fill;
@@ -54,15 +55,12 @@ export class TabsComponent {
   @ContentChildren(TabComponent)
   tabs: QueryList<TabComponent>;
 
-  active = 0;
-
   @PropertyApi({
     description: 'there is/no background for the content',
     path: 'ui.outline',
     default: Outline.fill,
     options: [Outline.fill, Outline.transparent]
   })
-
   @Input() set outline(outline: Outline) {
     if (!!outline) {
       this._outline = outline;

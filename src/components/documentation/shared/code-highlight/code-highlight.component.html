@@ -14,6 +14,6 @@
 <ngx-prism #prism [language]="language">
   {{code}}
 </ngx-prism>
-<pre #pre>
-    <ng-content></ng-content>
+<pre #pre (cdkObserveContent)="observe()">
+  <ng-content></ng-content>
 </pre>

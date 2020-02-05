@@ -24,11 +24,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   alignControl = this.fb.control(UI.text.align.left);
   placeholderControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
-  minControl = this.fb.control(1);
-  maxControl = this.fb.control(10);
-
-  inputControl = this.fb.control(null);
-
+  minControl = this.fb.control({value: 1, disabled: true});
+  maxControl = this.fb.control({value: 10, disabled: true});
   form = this.fb.group({
     type: this.typeControl,
     state: this.stateControl,
@@ -42,6 +39,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     disabled: this.disabledControl,
   });
 
+  inputControl = this.fb.control(null);
   inputForm = this.fb.group({
     input: this.inputControl
   });
@@ -50,10 +48,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.minControl.disable();
-    this.maxControl.disable();
-
-    this.disabledControl.valueChanges.subscribe((disabled) => {
+    this.disabledControl.valueChanges.subscribe(disabled => {
       disabled ? this.inputControl.disable() : this.inputControl.enable();
     });
 
