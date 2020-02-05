@@ -38,7 +38,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document>
               <form [formGroup]="inputForm">
@@ -61,7 +61,7 @@
           </app-browser-preview>
           <jnt-form [formGroup]="form" builder>
 
-            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.large">
               <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
@@ -91,26 +91,26 @@
               <jnt-form-label for="type">Type</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="type">
-                  <jnt-select-option label="Text" [key]="ui.form.input.text"></jnt-select-option>
-                  <jnt-select-option label="Number" [key]="ui.form.input.number"></jnt-select-option>
-                  <jnt-select-option label="Password" [key]="ui.form.input.password"></jnt-select-option>
+                  <jnt-select-option label="Text" [key]="ui.form.input.type.text"></jnt-select-option>
+                  <jnt-select-option label="Number" [key]="ui.form.input.type.number"></jnt-select-option>
+                  <jnt-select-option label="Password" [key]="ui.form.input.type.password"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
 
-            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.large">
 
               <jnt-form-item>
                 <jnt-form-label for="min">Min</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-input formControlName="min" [type]="ui.form.input.number"></jnt-input>
+                  <jnt-input formControlName="min" [type]="ui.form.input.type.number"></jnt-input>
                 </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
                 <jnt-form-label for="max">Max</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-input formControlName="max" [type]="ui.form.input.number"></jnt-input>
+                  <jnt-input formControlName="max" [type]="ui.form.input.type.number"></jnt-input>
                 </jnt-form-control>
               </jnt-form-item>
 
@@ -120,9 +120,9 @@
               <jnt-form-label for="state">State</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="state">
-                  <jnt-select-option label="Normal" [key]="ui.state.normal"></jnt-select-option>
-                  <jnt-select-option label="Success" [key]="ui.state.success"></jnt-select-option>
-                  <jnt-select-option label="Failed" [key]="ui.state.failed"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.form.input.state.normal"></jnt-select-option>
+                  <jnt-select-option label="Success" [key]="ui.form.input.state.success"></jnt-select-option>
+                  <jnt-select-option label="Failed" [key]="ui.form.input.state.failed"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -131,9 +131,9 @@
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
-                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>

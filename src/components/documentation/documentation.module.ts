@@ -4,12 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 import { AppFooterModule } from 'src/components/app-footer/app-footer.module';
+import { CollectionsTestModule } from 'src/components/documentation/collections/collections-test.module';
+import { DynamicTestModule } from 'src/components/documentation/dynamic/dynamic-test.module';
+import { ElementsTestModule } from 'src/components/documentation/elements/elements-test.module';
+import { FormsTestModule } from 'src/components/documentation/forms/forms-test.module';
+import { GeneralModule } from 'src/components/documentation/general/general.module';
+import { LayoutTestModule } from 'src/components/documentation/layout/layout-test.module';
+import { NavigationTestModule } from 'src/components/documentation/navigation/navigation-test.module';
+import { OtherModule } from 'src/components/documentation/other/other.module';
+import { OverlaysTestModule } from 'src/components/documentation/overlays/overlays-test.module';
+import { SharedModule } from 'src/components/documentation/shared/shared.module';
 import { OutletModule } from 'src/components/outlet/outlet.module';
-import { AccordionTestComponent } from './collections/accordion/accordion-test.component';
-import { GanttTestComponent } from './collections/gantt/gantt-test.component';
-import { KanbanTestComponent } from './collections/kanban/kanban-test.component';
-import { SliderTestComponent } from './collections/slider/slider-test.component';
-import { TableTestComponent } from './collections/table/table-test.component';
 import { DocumentationRoutingModule } from './documentation-routing.module';
 import { DocumentationComponent } from './documentation.component';
 import { ChartTestComponent } from './dynamic/chart/chart-test.component';
@@ -61,60 +66,22 @@ import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
     ReactiveFormsModule,
     PrismModule,
     JunteUiModule,
+    SharedModule,
     DocumentationRoutingModule,
     AppFooterModule,
     OutletModule,
-    BrowserPreviewModule,
-    CodeHighlightModule,
-    HowToUseModule
+    CollectionsTestModule,
+    DynamicTestModule,
+    ElementsTestModule,
+    FormsTestModule,
+    GeneralModule,
+    LayoutTestModule,
+    NavigationTestModule,
+    OverlaysTestModule,
+    OtherModule
   ],
   declarations: [
     DocumentationComponent,
-    PaginationTestComponent,
-    PipesTestComponent,
-    ButtonsTestComponent,
-    GridTestComponent,
-    StackTestComponent,
-    InputTestComponent,
-    BlockTestComponent,
-    SpinnerTestComponent,
-    CheckboxTestComponent,
-    RadioTestComponent,
-    SwitchTestComponent,
-    FormTestComponent,
-    IconTestComponent,
-    SwitchTestComponent,
-    SelectTestComponent,
-    BadgeTestComponent,
-    AppLayoutTestComponent,
-    AvatarTestComponent,
-    TableTestComponent,
-    LinkTestComponent,
-    CalendarTestComponent,
-    LabelTestComponent,
-    SkeletonTestComponent,
-    TabsTestComponent,
-    MenuTestComponent,
-    TypographyTestComponent,
-    CircleBarTestComponent,
-    DropdownTestComponent,
-    ModalTestComponent,
-    ThemingComponent,
-    PopoverTestComponent,
-    ModalTestFactoryComponent,
-    ProgressBarTestComponent,
-    ChartTestComponent,
-    SliderTestComponent,
-    SwitcherTestComponent,
-    GanttTestComponent,
-    DatePickerTestComponent,
-    DatePeriodTestComponent,
-    KanbanTestComponent,
-    KanbanTestComponent,
-    ComponentApiComponent,
-    AccordionTestComponent,
-    ConfirmTestComponent,
-    AnchorTestComponent
   ],
   entryComponents: [
     ModalTestFactoryComponent
