@@ -1,4 +1,4 @@
-<ng-container *ngIf="externalLink; else internalLink">
+<ng-container *ngIf="externalLink; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else noSource">
     <a link [href]="source" [target]="target">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
@@ -11,7 +11,7 @@
   </ng-template>
 </ng-container>
 
-<ng-template #internalLink>
+<ng-template #internalLinkTemplate>
   <a link [routerLink]="source" #link="routerLinkActive" routerLinkActive
      [routerLinkActiveOptions]="{exact: exact}" [attr.active]="link.isActive">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>

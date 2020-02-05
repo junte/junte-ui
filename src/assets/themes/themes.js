@@ -5,7 +5,6 @@ function themes(theme, callback) {
     var exist = document.head.querySelector('style[theme="true"]');
     if (!!exist) {
       document.head.removeChild(exist);
-      localStorage.removeItem('theme');
     }
   };
 
@@ -20,7 +19,6 @@ function themes(theme, callback) {
         style.innerHTML = this.responseText;
         document.head.appendChild(style);
         document.body.setAttribute('theme', current);
-        localStorage.setItem('theme', current);
         if (!!callback) {
           callback();
         }
@@ -30,11 +28,7 @@ function themes(theme, callback) {
     request.send();
   };
 
-  if (!!theme && theme !== 'light') {
-    set(theme, callback);
-  } else {
-    clear();
-  }
+  theme != 'light' ? set(theme, callback) : clear();
 }
 
-window['themes'](localStorage.theme);
+window['themes'](localStorage.theme || 'light');

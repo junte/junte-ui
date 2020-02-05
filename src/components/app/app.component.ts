@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
+import { Themes } from '../../../projects/junte-ui/src/lib/components/general/enums';
 
 export enum Theme {
   light = 'light',
@@ -35,7 +36,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.themeControl.valueChanges
-      .subscribe(theme => this.load(theme));
+      .subscribe(theme => {
+        if (theme !== Theme.light) {
+          localStorage.setItem('theme', theme);
+        } else {
+          localStorage.removeItem('thene');
+        }
+        this.load(theme);
+      });
   }
 
   ngAfterViewInit() {
