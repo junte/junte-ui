@@ -14,6 +14,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MethodApi, PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 
 export enum ModalClosingOption {
@@ -27,9 +28,8 @@ interface ModalTitle {
 }
 
 export class ModalOptions {
-
-  maxWidth = '800px';
-  maxHeight = '705px';
+  maxWidth = '800';
+  maxHeight = '800';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
@@ -119,6 +119,7 @@ export class ModalComponent implements AfterViewInit {
     }
   }
 
+  @MethodApi({description: 'show modal'})
   open(content: ModalContent, options?: ModalOptions) {
     if (!!options) {
       this.options = options;
@@ -131,6 +132,7 @@ export class ModalComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
+  @MethodApi({description: 'close modal'})
   close() {
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.setBackdropFilter(BackdropFilter.none);

@@ -19,6 +19,9 @@ import { ModalComponent } from './modal.component';
     IconModule,
     SanitizePipeModule
   ],
+  entryComponents: [
+    ModalComponent
+  ],
   exports: [
     ModalComponent
   ]
