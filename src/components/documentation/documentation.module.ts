@@ -38,6 +38,7 @@ import { GridTestComponent } from './layout/grid/grid-test.component';
 import { SkeletonTestComponent } from './layout/skeleton/skeleton-test.component';
 import { SpinnerTestComponent } from './layout/spinner/spinner-test.component';
 import { StackTestComponent } from './layout/stack/stack-test.component';
+import { AnchorTestComponent } from './navigation/anchor/anchor-test.component';
 import { DropdownTestComponent } from './navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from './navigation/link/link-test.component';
 import { MenuTestComponent } from './navigation/menu/menu-test.component';
@@ -52,7 +53,6 @@ import { CodeHighlightModule } from './shared/code-highlight/code-highlight.modu
 import { ComponentApiComponent } from './shared/component-api/component-api.component';
 import { ConfirmTestComponent } from './shared/confirm/confirm-test.component';
 import { HowToUseModule } from './shared/how-to-use/how-to-use.module';
-import { AnchorTestComponent } from './navigation/anchor/anchor-test.component';
 
 @NgModule({
   imports: [

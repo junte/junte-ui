@@ -1,3 +1,4 @@
+import { ObserversModule } from '@angular/cdk/observers';
 import { NgModule } from '@angular/core';
 import { ClipboardModule } from 'ngx-clipboard';
 import { LinkModule } from 'projects/junte-ui/src/lib/components/navigation/link/link.module';
@@ -10,7 +11,8 @@ import { PrismModule } from '@ngx-prism/core';
     CommonModule,
     PrismModule,
     LinkModule,
-    ClipboardModule
+    ClipboardModule,
+    ObserversModule
   ],
   exports: [CodeHighlightComponent],
   declarations: [CodeHighlightComponent],
