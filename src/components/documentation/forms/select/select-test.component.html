@@ -20,7 +20,7 @@
   <h3>Requirements</h3>
 
   <ol>
-    <li>The input must have different sizes: small, normal, large</li>
+    <li>The input must have different size: small, normal, large</li>
     <li>The input should respond to mouse hover, focus</li>
     <li>The input should change the display when it is disabled</li>
     <li>The input must have a design in accordance with a given color scheme</li>
@@ -39,7 +39,7 @@
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.stack.type.horizontal">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview preview>
             <ng-template #document>
               <form [formGroup]="selectForm">
@@ -62,10 +62,10 @@
                     </jnt-select-option>
                     <ng-container *ngIf="templateControl.value">
                       <ng-template #selectOptionTemplate let-option="value">
-                        <jnt-stack option [type]="ui.stack.type.horizontal"
+                        <jnt-stack option [type]="ui.layout.stack.type.horizontal"
                                    [gutter]="ui.gutter.small"
                                    [align]="ui.flex.align.center">
-                          <jnt-avatar [size]="ui.sizes.small"></jnt-avatar>
+                          <jnt-avatar [size]="ui.size.small"></jnt-avatar>
                           <div>{{option.label}} with likes</div>
                           <jnt-label [label]="option.likes"></jnt-label>
                         </jnt-stack>
@@ -73,7 +73,7 @@
                     </ng-container>
                   </jnt-select>
                   <div>
-                    Value: {{modeControl.value === ui.select.multiple
+                    Value: {{modeControl.value === ui.form.select.mode.multiple
                     ? (selectControl.valueChanges | async)?.join(', ') : selectControl.value}}
                   </div>
                 </jnt-stack>
@@ -82,18 +82,18 @@
           </app-browser-preview>
 
           <jnt-form [formGroup]="form" builder>
-            <jnt-stack [type]="ui.stack.type.horizontal" [gutter]="ui.gutter.large">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.large">
               <jnt-form-item>
                 <jnt-form-label for="label">Label</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-input formControlName="label" [type]="ui.form.input.text"></jnt-input>
+                  <jnt-input formControlName="label" [type]="ui.form.input.type.text"></jnt-input>
                 </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
                 <jnt-form-label for="placeholder">Placeholder</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-input formControlName="placeholder" [type]="ui.form.input.text"></jnt-input>
+                  <jnt-input formControlName="placeholder" [type]="ui.form.input.type.text"></jnt-input>
                 </jnt-form-control>
               </jnt-form-item>
             </jnt-stack>
@@ -132,8 +132,8 @@
               <jnt-form-label for="mode">Mode</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="mode" [allowEmpty]="false">
-                  <jnt-select-option label="Single" [key]="ui.select.single"></jnt-select-option>
-                  <jnt-select-option label="Multiple" [key]="ui.select.multiple"></jnt-select-option>
+                  <jnt-select-option label="Single" [key]="ui.form.select.mode.single"></jnt-select-option>
+                  <jnt-select-option label="Multiple" [key]="ui.form.select.mode.multiple"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -142,9 +142,9 @@
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size" [allowEmpty]="false">
-                  <jnt-select-option label="Small" [key]="ui.sizes.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.sizes.normal"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.sizes.large"></jnt-select-option>
+                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                  <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
@@ -172,7 +172,7 @@
             </ng-container>
             <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
             <ng-container *ngIf="sizeControl.value">
-              <![CDATA[[size]="ui.sizes.]]>{{sizeControl.value}}<![CDATA["]]>
+              <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
             </ng-container>
             <![CDATA[>]]>
             <![CDATA[
@@ -185,10 +185,10 @@
             <ng-container *ngIf="templateControl.value">
               <![CDATA[
               <ng-template #selectOptionTemplate let-option="value">
-                <jnt-stack option [type]="ui.stack.type.horizontal"
+                <jnt-stack option [type]="ui.layout.stack.type.horizontal"
                            [gutter]="ui.gutter.small"
                            [align]="ui.flex.align.center">
-                  <jnt-avatar [size]="ui.sizes.small"></jnt-avatar>
+                  <jnt-avatar [size]="ui.size.small"></jnt-avatar>
                   <div>]]>{{<![CDATA[option.label]] >}}<![CDATA[ with likes</div>
                   <jnt-label [label]="option.likes"></jnt-label>
                 </jnt-stack>

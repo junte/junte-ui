@@ -45,14 +45,8 @@ export class IconComponent {
   set icon(icon: string) {
     const chunks = icon.split(':');
     this._icon = chunks[0];
-
-    if (chunks.length > 1) {
-      this.type = IconType[chunks[1]];
-    }
-
-    if (chunks.length > 2) {
-      this.iconset = chunks[2];
-    }
+    this.type = chunks.length > 1 ? IconType[chunks[1]] : IconType.font;
+    this.iconset = chunks.length > 2 ? chunks[2] : DEFAULT_ICONSET;
   }
 
   get icon() {
