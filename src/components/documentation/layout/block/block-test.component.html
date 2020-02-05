@@ -13,161 +13,166 @@
   </jnt-stack>
 
   <h1>Block</h1>
-  <div teaser>
-    <p>Block is a grouping of elements related to one piece of functionality.</p>
-  </div>
 
-  <jnt-tabs playground>
+  <jnt-stack [align]="ui.flex.align.stretch">
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
-      <ng-template #tabContentTemplate>
-        <jnt-row>
-          <jnt-col [tablet]="8">
-            <app-browser-preview>
-              <ng-template #document let-height="height">
-                <jnt-block #block [title]="titleControl.value ? 'Block title' : null"
-                           [padding]="paddingControl.value"
-                           [scheme]="schemeControl.value"
-                           [width]="widthControl.value"
-                           [state]="stateControl.value">
-                  <jnt-skeleton skeleton [lines]="3" [animated]="false"></jnt-skeleton>
-                  <ng-template *ngIf="footerControl.value" #blockFooterTemplate>
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                               [justify]="ui.flex.justify.between">
-                      <jnt-button text="Ok"></jnt-button>
-                      <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
+    <div teaser>
+      <p>Block is a grouping of elements related to one piece of functionality.</p>
+    </div>
+
+    <jnt-tabs playground>
+
+      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+        <ng-template #tabContentTemplate>
+          <jnt-row>
+            <jnt-col [tablet]="8">
+              <app-browser-preview>
+                <ng-template #document let-height="height">
+                  <jnt-block #block [title]="titleControl.value ? 'Block title' : null"
+                             [padding]="paddingControl.value"
+                             [scheme]="schemeControl.value"
+                             [width]="widthControl.value"
+                             [state]="stateControl.value">
+                    <jnt-skeleton skeleton [lines]="3" [animated]="false"></jnt-skeleton>
+                    <ng-template *ngIf="footerControl.value" #blockFooterTemplate>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                 [justify]="ui.flex.justify.between">
+                        <jnt-button text="Ok"></jnt-button>
+                        <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
+                      </jnt-stack>
+                    </ng-template>
+                  </jnt-block>
+                </ng-template>
+              </app-browser-preview>
+            </jnt-col>
+            <jnt-col [tablet]="4">
+              <jnt-form [formGroup]="form" builder>
+                <div builder>
+                  <jnt-form-item>
+                    <jnt-form-label for="scheme">Scheme</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="scheme" placeholder="Primary">
+                        <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
+                        <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
+                        <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
+                        <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="padding">Padding</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="padding" placeholder="Normal">
+                        <jnt-select-option label="Tiny" [key]="ui.gutter.tiny"></jnt-select-option>
+                        <jnt-select-option label="Small" [key]="ui.gutter.small"></jnt-select-option>
+                        <jnt-select-option label="Normal" [key]="ui.gutter.normal"></jnt-select-option>
+                        <jnt-select-option label="Large" [key]="ui.gutter.big"></jnt-select-option>
+                        <jnt-select-option label="Big" [key]="ui.gutter.large"></jnt-select-option>
+                        <jnt-select-option label="Huge" [key]="ui.gutter.huge"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="width">Width</jnt-form-label>
+                    <jnt-switcher formControlName="width" placeholder="Default">
+                      <jnt-switcher-option label="Default"
+                                           [icon]="localUi.icons.layout.width.default"
+                                           [value]="ui.width.default"></jnt-switcher-option>
+                      <jnt-switcher-option label="Fluid"
+                                           [icon]="localUi.icons.layout.width.fluid"
+                                           [value]="ui.width.fluid"></jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="state">States</jnt-form-label>
+                    <jnt-switcher formControlName="state">
+                      <jnt-switcher-option label="Loading"
+                                           [value]="ui.layout.block.state.loading"></jnt-switcher-option>
+                      <jnt-switcher-option label="Error"
+                                           [value]="ui.layout.block.state.error"></jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+                      <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
                     </jnt-stack>
-                  </ng-template>
-                </jnt-block>
-              </ng-template>
-            </app-browser-preview>
-          </jnt-col>
-          <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="form" builder>
-              <div builder>
-                <jnt-form-item>
-                  <jnt-form-label for="scheme">Scheme</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="scheme" placeholder="Primary">
-                      <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
-                      <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
-                      <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
-                      <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="padding">Padding</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="padding" placeholder="Normal">
-                      <jnt-select-option label="Tiny" [key]="ui.gutter.tiny"></jnt-select-option>
-                      <jnt-select-option label="Small" [key]="ui.gutter.small"></jnt-select-option>
-                      <jnt-select-option label="Normal" [key]="ui.gutter.normal"></jnt-select-option>
-                      <jnt-select-option label="Large" [key]="ui.gutter.big"></jnt-select-option>
-                      <jnt-select-option label="Big" [key]="ui.gutter.large"></jnt-select-option>
-                      <jnt-select-option label="Huge" [key]="ui.gutter.huge"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-button [scheme]="ui.scheme.success"
+                              [size]="ui.size.small"
+                              text="Success"
+                              (click)="block.success()"></jnt-button>
+                </div>
+              </jnt-form>
+            </jnt-col>
+          </jnt-row>
+        </ng-template>
+      </jnt-tab>
 
-                <jnt-form-item>
-                  <jnt-form-label for="width">Width</jnt-form-label>
-                  <jnt-switcher formControlName="width" placeholder="Default">
-                    <jnt-switcher-option label="Default"
-                                         [icon]="localUi.icons.layout.width.default"
-                                         [value]="ui.width.default"></jnt-switcher-option>
-                    <jnt-switcher-option label="Fluid"
-                                         [icon]="localUi.icons.layout.width.fluid"
-                                         [value]="ui.width.fluid"></jnt-switcher-option>
-                  </jnt-switcher>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-label for="state">States</jnt-form-label>
-                  <jnt-switcher formControlName="state">
-                    <jnt-switcher-option label="Loading"
-                                         [value]="ui.layout.block.state.loading"></jnt-switcher-option>
-                    <jnt-switcher-option label="Error"
-                                         [value]="ui.layout.block.state.error"></jnt-switcher-option>
-                  </jnt-switcher>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
-                    <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
-                  </jnt-stack>
-                </jnt-form-item>
-
-                <jnt-button [scheme]="ui.scheme.success"
-                            [size]="ui.size.small"
-                            text="Success"
-                            (click)="block.success()"></jnt-button>
-              </div>
-            </jnt-form>
-          </jnt-col>
-        </jnt-row>
-      </ng-template>
-    </jnt-tab>
-
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
-      <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'block-test', type: 'BlockTestComponent'}"
-          scss="layout/block"></app-how-to-use>
-        <app-code-highlight file="block-test.template.html">
-          <![CDATA[
-          <jnt-block
-            ]]>
-            <ng-container *ngIf="titleControl.value">
-              <![CDATA[
-              [title]="'Block title'"]]>
-            </ng-container>
-            <ng-container *ngIf="paddingControl.value">
-              <![CDATA[
-              [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="schemeControl.value">
-              <![CDATA[
-              [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="widthControl.value">
-              <![CDATA[
-              [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="stateControl.value">
-              <![CDATA[
-              [state]="ui.block.state.]]>{{stateControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-            <jnt-skeleton [lines]="3" [animated]="false"></jnt-skeleton>
-            ]]>
-            <ng-container *ngIf="footerControl.value">
-              <![CDATA[
-              <ng-template #blockFooterTemplate>
-                <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                           [justify]="ui.flex.justify.between">
-                  <jnt-button text="Ok"></jnt-button>
-                  <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-                </jnt-stack>
-              </ng-template>
-              ]]>
-            </ng-container>
+      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+        <ng-template #tabContentTemplate>
+          <app-how-to-use
+            [test]="{selector:'block-test', type: 'BlockTestComponent'}"
+            scss="layout/block"></app-how-to-use>
+          <app-code-highlight file="block-test.template.html">
             <![CDATA[
-          </jnt-block>
-          ]]>
-        </app-code-highlight>
-      </ng-template>
-    </jnt-tab>
+            <jnt-block
+              ]]>
+              <ng-container *ngIf="titleControl.value">
+                <![CDATA[
+                [title]="'Block title'"]]>
+              </ng-container>
+              <ng-container *ngIf="paddingControl.value">
+                <![CDATA[
+                [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="schemeControl.value">
+                <![CDATA[
+                [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="widthControl.value">
+                <![CDATA[
+                [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+              </ng-container>
+              <ng-container *ngIf="stateControl.value">
+                <![CDATA[
+                [state]="ui.block.state.]]>{{stateControl.value}}<![CDATA["]]>
+              </ng-container>
+              <![CDATA[>
+              <jnt-skeleton [lines]="3" [animated]="false"></jnt-skeleton>
+              ]]>
+              <ng-container *ngIf="footerControl.value">
+                <![CDATA[
+                <ng-template #blockFooterTemplate>
+                  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                             [justify]="ui.flex.justify.between">
+                    <jnt-button text="Ok"></jnt-button>
+                    <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
+                  </jnt-stack>
+                </ng-template>
+                ]]>
+              </ng-container>
+              <![CDATA[
+            </jnt-block>
+            ]]>
+          </app-code-highlight>
+        </ng-template>
+      </jnt-tab>
 
-    <jnt-tab title="API" [icon]="localUi.icons.api">
-      <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-block"
-                           [target]="types.block"></app-component-api>
-      </ng-template>
-    </jnt-tab>
+      <jnt-tab title="API" [icon]="localUi.icons.api">
+        <ng-template #tabContentTemplate>
+          <app-component-api selector="jnt-block"
+                             [target]="types.block"></app-component-api>
+        </ng-template>
+      </jnt-tab>
 
-  </jnt-tabs>
+    </jnt-tabs>
+
+  </jnt-stack>
 
 </jnt-container>

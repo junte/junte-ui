@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
 import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
 import { html, js } from 'js-beautify';
 import { UI } from 'junte-ui';

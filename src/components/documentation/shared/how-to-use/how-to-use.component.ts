@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { Language } from '../code-highlight/enum';
 
 @Component({
@@ -15,5 +15,8 @@ export class HowToUseComponent {
 
   @Input()
   scss: string;
+
+  @ContentChild('behaviourTemplate', {static: false})
+  behaviourTemplate: TemplateRef<any>;
 
 }
