@@ -57,9 +57,6 @@ export class UI {
       target: LinkTarget
     }
   };
-  static elements = {
-    icons: icons
-  };
   static form = {
     layout: FormLayout,
     input: {type: InputType, state: InputState},

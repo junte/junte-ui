@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { UI } from 'projects/junte-ui/src/lib/enums/ui';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-anchor',

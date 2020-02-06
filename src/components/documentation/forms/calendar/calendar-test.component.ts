@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TabComponent, UI } from 'junte-ui';
 import { CalendarComponent } from 'junte-ui';
-import { Period } from 'projects/junte-ui/src/lib/components/forms/calendar/models';
 import { BehaviorSubject } from 'rxjs';
 import { LocalUI } from 'src/enums/local-ui';
+
+type Period = { start: Date, end: Date };
 
 export enum Months {
   march = 2,
@@ -47,7 +48,7 @@ export class CalendarTestComponent implements OnInit {
     calendar: this.calendarControl
   });
 
-  set period(period: Period) {
+  set period(period: { start: Date, end: Date }) {
     this.period$.next(period);
   }
 
