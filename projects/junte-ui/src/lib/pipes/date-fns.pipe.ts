@@ -23,7 +23,7 @@ interface FormatOptions {
   locale?: Object;
 }
 
-type DateFns = number | string | Date;
+type DateFns = number | Date;
 
 const MONTHS_IN_YEAR = 12;
 

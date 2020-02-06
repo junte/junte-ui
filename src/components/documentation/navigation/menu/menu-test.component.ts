@@ -2,10 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { SourceType, TargetType } from '../link/link-test.component';
 import { MenuItemComponent } from 'junte-ui';
 import { MenuComponent } from 'junte-ui';
 import { SubmenuComponent, TabComponent } from 'junte-ui';
+
+enum SourceType {
+  external = 'external',
+  local = 'local'
+}
 
 @Component({
   selector: 'app-menu-test',
@@ -17,7 +21,6 @@ export class MenuTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sourceType = SourceType;
-  targetType = TargetType;
   menuItem = MenuItemComponent;
   menu = MenuComponent;
   submenu = SubmenuComponent;
@@ -27,7 +30,7 @@ export class MenuTestComponent implements OnInit {
 
   schemeControl = new FormControl(UI.scheme.primary);
   linkControl = new FormControl(SourceType.external);
-  targetControl = new FormControl(TargetType.self);
+  targetControl = new FormControl();
   typeControl = new FormControl(UI.orientation.horizontal);
   spacingControl = new FormControl(UI.size.large);
   iconsControl = new FormControl(false);

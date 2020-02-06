@@ -1,9 +1,9 @@
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../decorators/api';
 import { Outline } from '../../../enums/outline';
 import { UI } from '../../../enums/ui';
 import { TabComponent } from './tab.component';
-import { PropertyApi } from '../../../decorators/api';
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'jnt-tabs',
@@ -62,11 +62,7 @@ export class TabsComponent {
     options: [Outline.fill, Outline.transparent]
   })
   @Input() set outline(outline: Outline) {
-    if (!!outline) {
-      this._outline = outline;
-    } else {
-      this._outline = Outline.fill;
-    }
+    this._outline = outline || Outline.fill;
   }
 
 }

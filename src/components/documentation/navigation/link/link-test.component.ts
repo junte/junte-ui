@@ -3,16 +3,9 @@ import { LocalUI } from '../../../../enums/local-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI, LinkComponent, TabComponent } from 'junte-ui';
 
-export enum SourceType {
+enum SourceType {
   external = 'external',
   local = 'local'
-}
-
-export enum TargetType {
-  self = '_self',
-  blank = '_blank',
-  parent = '_parent',
-  top = '_top'
 }
 
 @Component({
@@ -24,19 +17,18 @@ export class LinkTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  link = LinkComponent;
   sourceType = SourceType;
-  targetType = TargetType;
-  localLink = ['/documentation', 'block'];
+
+  types = {link: LinkComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(UI.scheme.primary);
-  outlineControl = new FormControl(UI.outline.transparent);
+  schemeControl = new FormControl(null);
+  outlineControl = new FormControl(null);
   iconControl = new FormControl(false);
-  sourceControl = new FormControl(SourceType.external);
+  sourceControl = new FormControl(SourceType.local);
   disableControl = new FormControl();
-  targetControl = new FormControl(TargetType.self);
+  targetControl = new FormControl(null);
   badgeControl = new FormControl(false);
 
   form = this.fb.group({
