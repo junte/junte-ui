@@ -41,7 +41,7 @@ export class CalendarTestComponent implements OnInit {
     day: this.dayControl,
   });
 
-  calendarControl = this.fb.control(null);
+  calendarControl = this.fb.control(new Date());
 
   calendarForm = this.fb.group({
     calendar: this.calendarControl

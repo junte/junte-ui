@@ -8,6 +8,7 @@ import { BlockState } from '../components/layout/block/enums';
 import { RowAlign } from '../components/layout/grid/enums';
 import { SkeletonType } from '../components/layout/skeleton/enums';
 import { StackType } from '../components/layout/stack/enums';
+import { LinkTarget } from '../components/navigation/link/enums';
 import { PopoverPlacements, PopoverTriggers } from '../components/overlays/popover/enums';
 import { Color } from './color';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
@@ -35,6 +36,7 @@ export class UI {
   static color = Color;
   static text = {align: TextAlign};
   static icons = icons;
+  static url = {matching: UrlMatching};
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,
@@ -51,7 +53,9 @@ export class UI {
     app: {position: AppLayoutPosition}
   };
   static navigation = {
-    url: {matching: UrlMatching}
+    link: {
+      target: LinkTarget
+    }
   };
   static elements = {
     icons: icons
