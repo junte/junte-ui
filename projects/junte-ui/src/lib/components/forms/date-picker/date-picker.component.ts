@@ -22,7 +22,7 @@ export class DatePickerComponent implements OnInit, OnDestroy {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
-  private _format = 'DD.MM.YYYY';
+  private _format = 'dd.MM.yyyy';
 
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
@@ -45,10 +45,10 @@ export class DatePickerComponent implements OnInit, OnDestroy {
   @PropertyApi({
     description: 'Date format',
     type: 'string',
-    default: 'DD.MM.YYYY'
+    default: 'dd.MM.yyyy'
   })
   @Input() set format(format: string) {
-    this._format = format || 'DD.MM.YYYY';
+    this._format = format || 'dd.MM.yyyy';
     this.input.patchValue(!!this.calendar.value ? formatDate(this.calendar.value, this.format) : null);
   }
 

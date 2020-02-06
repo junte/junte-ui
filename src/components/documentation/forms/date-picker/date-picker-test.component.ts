@@ -5,10 +5,10 @@ import { DatePickerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum DateFormat {
-  fullDate = 'DD.MM.YYYY',
-  shortDate = 'DD.MM',
-  longDate = 'DD.MM.YY',
-  fullMonth = 'DD MMMM'
+  fullDate = 'dd.MM.yyyy',
+  shortDate = 'dd.MM',
+  longDate = 'dd.MM.yy',
+  fullMonth = 'dd MMMM'
 }
 
 @Component({
