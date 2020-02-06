@@ -76,33 +76,15 @@
                                          [key]="sketch.VerticalPost"></jnt-select-option>
                       <jnt-select-option label=" Horizontal post"
                                          [key]="sketch.HorizontalPost"></jnt-select-option>
+                      <jnt-select-option label=" Text"
+                                         [key]="sketch.Text"></jnt-select-option>
+                      <jnt-select-option label=" Image Gallery"
+                                         [key]="sketch.ImageGallery"></jnt-select-option>
+                      <jnt-select-option label=" Contacts"
+                                         [key]="sketch.Contacts"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
-              </ng-template>
-            </app-browser-preview>
-          </jnt-col>
-          <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="form" builder>
-              <jnt-form-item>
-                <jnt-form-label for="type">Sketch</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="sketch">
-                    <jnt-select-option label="User"
-                                       [key]="sketch.User"></jnt-select-option>
-                    <jnt-select-option label=" Vertical post"
-                                       [key]="sketch.VerticalPost"></jnt-select-option>
-                    <jnt-select-option label=" Horizontal post"
-                                       [key]="sketch.HorizontalPost"></jnt-select-option>
-                    <jnt-select-option label=" Text"
-                                       [key]="sketch.Text"></jnt-select-option>
-                    <jnt-select-option label=" Image Gallery"
-                                       [key]="sketch.ImageGallery"></jnt-select-option>
-                    <jnt-select-option label=" Contacts"
-                                       [key]="sketch.Contacts"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-control>
@@ -184,26 +166,6 @@
                 </jnt-stack>
                 ]]>
               </ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="sketch.HorizontalPost">
-              <![CDATA[
-              <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                         [size]="ui.size.normal">
-                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
-                              [size]="ui.size.large" ]]>
-                  <ng-container *ngIf="!animationControl.value">
-                    <![CDATA[[animated]="false"]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-skeleton>
-                <jnt-skeleton [lines]="5" ]]>
-                  <ng-container *ngIf="!animationControl.value">
-                    <![CDATA[[animated]="false"]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-skeleton>
-              </jnt-stack>
-              ]]>
             </ng-container>
 
             <ng-container *ngSwitchCase="sketch.Text">
@@ -308,18 +270,16 @@
             </ng-container>
           </ng-container>
 
-          </app-code-highlight>
-        </ng-template>
-      </jnt-tab>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
 
-      <jnt-tab title="API" [icon]="localUi.icons.api">
-        <ng-template #tabContentTemplate>
-          <app-component-api selector="jnt-skeleton"
-                             [target]="skeleton"></app-component-api>
-        </ng-template>
-      </jnt-tab>
-    </jnt-tabs>
-
-  </jnt-stack>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-skeleton"
+                           [target]="skeleton"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
