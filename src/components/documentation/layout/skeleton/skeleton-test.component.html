@@ -55,6 +55,50 @@
                                     [animated]="animationControl.value"></jnt-skeleton>
                     </jnt-stack>
                   </ng-container>
+
+                  <ng-container *ngSwitchCase="sketch.Text">
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-skeleton [lines]="5"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                    </jnt-stack>
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase="sketch.ImageGallery">
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                    [size]="ui.size.normal"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                    [size]="ui.size.normal"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                    [size]="ui.size.normal"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                    [size]="ui.size.normal"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                    [size]="ui.size.normal"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                    </jnt-stack>
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase="sketch.Contacts">
+                    <jnt-stack [align]="ui.flex.align.stretch">
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.avatar"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [lines]="2"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      </jnt-stack>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-skeleton [type]="ui.layout.skeleton.type.avatar"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      <jnt-skeleton [lines]="2"
+                                    [animated]="animationControl.value"></jnt-skeleton>
+                      </jnt-stack>
+                    </jnt-stack>
+                  </ng-container>
                 </ng-container>
 
               </ng-template>
@@ -72,6 +116,12 @@
                                        [key]="sketch.VerticalPost"></jnt-select-option>
                     <jnt-select-option label=" Horizontal post"
                                        [key]="sketch.HorizontalPost"></jnt-select-option>
+                    <jnt-select-option label=" Text"
+                                       [key]="sketch.Text"></jnt-select-option>
+                    <jnt-select-option label=" Image Gallery"
+                                       [key]="sketch.ImageGallery"></jnt-select-option>
+                    <jnt-select-option label=" Contacts"
+                                       [key]="sketch.Contacts"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-control>
               </jnt-form-item>
@@ -153,6 +203,107 @@
                   </ng-container>
                   <![CDATA[>
                 </jnt-skeleton>
+              </jnt-stack>
+              ]]>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="sketch.Text">
+              <![CDATA[
+              <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                         [size]="ui.size.normal">
+
+                <jnt-skeleton [lines]="5" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
+              ]]>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="sketch.ImageGallery">
+              <![CDATA[
+              <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                         [size]="ui.size.normal">
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                              [size]="ui.size.large" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+
+              </jnt-stack>
+              ]]>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="sketch.Contacts">
+              <![CDATA[
+              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [lines]="2" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
+              <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+                <jnt-skeleton [lines]="2" ]]>
+                  <ng-container *ngIf="!animationControl.value">
+                    <![CDATA[[animated]="false"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-skeleton>
+              </jnt-stack>
               </jnt-stack>
               ]]>
             </ng-container>
