@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
 import { html, js } from 'js-beautify';
 import { UI } from 'junte-ui';
@@ -7,9 +7,10 @@ import { Language } from './enum';
 @Component({
   selector: 'app-code-highlight',
   templateUrl: './code-highlight.component.html',
-  styleUrls: ['./code-highlight.component.scss']
+  styleUrls: ['./code-highlight.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CodeHighlightComponent implements AfterContentInit {
+export class CodeHighlightComponent implements AfterViewInit {
 
   ui = UI;
 
@@ -32,11 +33,14 @@ export class CodeHighlightComponent implements AfterContentInit {
       .replace(/\> +\</g, '><');
   }
 
-  ngAfterContentInit() {
+  constructor(private cd: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit() {
     this.render();
   }
 
-  private render() {
+  render() {
     const source = this.pre.nativeElement.innerText;
     if (this._source !== source) {
       this._source = source;
@@ -56,7 +60,7 @@ export class CodeHighlightComponent implements AfterContentInit {
       }
 
       this.code = code;
-
+      this.cd.detectChanges();
       this.prism.highlightElement({
         code: this.code,
         language: this.language
@@ -67,9 +71,5 @@ export class CodeHighlightComponent implements AfterContentInit {
   copy() {
     this.copied = true;
     setTimeout(() => this.copied = false, 2100);
-  }
-
-  observe() {
-    this.render();
   }
 }
