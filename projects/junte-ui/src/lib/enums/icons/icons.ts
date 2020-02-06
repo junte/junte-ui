@@ -219,3 +219,52 @@ export const icons = {
   emoji: emoji,
   animated: animated
 };
+
+const icons2 = {
+  font: {
+    access: {
+      lock: 'access-lock:font',
+      unlock: 'access-unlock:font'
+    },
+    actions: {
+      add: 'actions-add:font',
+      edit: 'actions-edit:font',
+      save: 'save:font',
+      cancel: 'cancel:font'
+    },
+    social: {
+      like: 'like:font',
+      dislike: 'dislike:font',
+      profile: 'profile:font'
+    },
+    chevron: {
+      doubleLeft: 'chevron-double-left:font',
+      doubleRight: 'chevron-double-right:font',
+      down: FontIcons.chevronDown + ':font',
+      left: FontIcons.chevronLeft + ':font',
+      right: FontIcons.chevronRight + ':font',
+      up: FontIcons.chevronUp + ':font',
+    },
+    arrow: {
+      down: 'arrow-down:font',
+      first: FontIcons.arrowFirst + ':font',
+      last: FontIcons.arrowLast + ':font',
+      left: FontIcons.arrowLeft + ':font',
+      right: FontIcons.arrowRight + ':font',
+      up: FontIcons.arrowUp + ':font',
+    },
+    gestures: gestures,
+    emoji: emoji,
+  },
+  svg: {
+    flags: flags,
+    apps: {
+      angular: 'angular:svg:apps',
+      gitlab: 'gitlab:svg:apps',
+      dribbble: 'dribbble:svg:apps',
+      github: 'github:svg:apps',
+      figma: 'figma:svg:apps',
+    }
+  },
+  animated: animated
+};

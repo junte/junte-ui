@@ -12,6 +12,33 @@ $tabs-item-focus-outline-color: $primary-color !default;
 $tabs-item-focus-shadow: $shadow-primary !default;
 $tabs-item-icon-spacing: $gutter-tiny !default;
 
+$tab-paddings: (
+  #{$gutter-tiny-name}: (
+    padding: $gutter-tiny
+  ),
+  #{$gutter-small-name}: (
+    padding: $gutter-small
+  ),
+  #{$gutter-normal-name}: (
+    padding: $gutter-normal
+  ),
+  #{$gutter-big-name}: (
+    padding: $gutter-big
+  ),
+  #{$gutter-large-name}: (
+    padding: $gutter-large
+  ),
+  #{$gutter-huge-name}: (
+    padding: $gutter-huge
+  )
+);
+
+@mixin padding($padding) {
+  & {
+    padding: #{map-get($padding, padding)};
+  }
+}
+
 :host {
   display: block;
   max-width: 100%;
@@ -40,7 +67,7 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
   border-top-right-radius: $tabs-corner;
 
   [tab] {
-    padding: $tabs-item-padding;
+    padding: $gutter-normal;
     cursor: pointer;
     color: $tabs-item-color;
     font-size: $tabs-item-font-size;
@@ -85,5 +112,9 @@ $tabs-item-icon-spacing: $gutter-tiny !default;
 
 [content] {
   position: relative;
-  padding: $gutter-normal;
+  @each $padding, $value in $tab-paddings {
+    &[padding = '#{$padding}'] {
+      @include padding($value);
+    }
+  }
 }

@@ -35,7 +35,15 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.themeControl.valueChanges
-      .subscribe(theme => this.load(theme));
+      .subscribe(theme => {
+        if (theme !== Theme.light) {
+          localStorage.setItem('theme', theme);
+          this.load(theme);
+        } else {
+          localStorage.removeItem('theme');
+          this.load(null);
+        }
+      });
   }
 
   ngAfterViewInit() {

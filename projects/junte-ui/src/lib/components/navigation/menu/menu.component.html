@@ -21,7 +21,7 @@
         <div submenuTitle>{{submenu.title}}</div>
         <ng-container *ngFor="let submenuItem of submenu.menuItems">
           <jnt-link link submenuItem (click)="submenuItem.click.emit($event)"
-                    [exact]="matching.fullMatch === submenuItem.matching" [source]="submenuItem.link"
+                    [matching]="submenuItem.matching" [source]="submenuItem.link"
                     [icon]="submenuItem.icon" [scheme]="submenuItem.scheme" [title]="submenuItem.title"
                     [target]="submenuItem.target">
             <jnt-badge *ngFor="let badge of submenuItem.badges" [value]="badge.value"
@@ -35,7 +35,7 @@
 
   <ng-container *ngFor="let item of items">
     <div submenu jntSubMenu>
-      <jnt-link link (click)="item.click.emit($event)" [exact]="matching.fullMatch === item.matching"
+      <jnt-link link (click)="item.click.emit($event)" [matching]="item.matching"
                 [source]="item.link" [icon]="item.icon" [scheme]="item.scheme" [title]="item.title"
                 [target]="item.target">
         <jnt-badge *ngFor="let badge of item.badges" [value]="badge.value" [position]="ui.position.inline"

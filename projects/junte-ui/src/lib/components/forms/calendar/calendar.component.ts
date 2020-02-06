@@ -133,7 +133,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    const start = format(startOfWeek(this.period, {weekStartsOn: 1}));
+    const start = startOfWeek(this.period, {weekStartsOn: 1});
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {
@@ -141,9 +141,9 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
       for (let j = 0; j < DAYS_IN_WEEK; j++) {
         this.weeks[i].days[j] = addDays(date, j);
       }
-      date = format(addWeeks(date, 1));
+      date = addWeeks(date, 1);
     }
-    this.updated.emit({start: new Date(start), end: new Date(date)});
+    this.updated.emit({start: start, end: date});
   }
 
 }

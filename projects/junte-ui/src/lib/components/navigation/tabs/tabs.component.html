@@ -22,11 +22,12 @@
         </jnt-stack>
       </jnt-stack>
     </jnt-stack>
-    <div *ngIf="!!tab.state.flash" [@flash]="tab.state.flash" ripple></div>
+    <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" ripple></div>
   </div>
 </div>
 <ng-container *ngFor="let tab of tabs;let i = index">
-  <div content *ngIf="i === active && tab.tabContentTemplate">
+  <div content *ngIf="i === active && tab.tabContentTemplate"
+       [attr.padding]="tab.padding">
     <ng-container *ngTemplateOutlet="tab.tabContentTemplate"></ng-container>
   </div>
 </ng-container>

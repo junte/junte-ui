@@ -7,7 +7,7 @@
       </button>
     </td>
     <td colspan="5" date>
-      {{period | format: 'MMMM'}}, {{period | format: 'YYYY'}}
+      {{period | format: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
     </td>
     <td arrow-right>
       <button arrow (click)="period = addMonths(period, 1)">
@@ -35,11 +35,12 @@
   </thead>
 
   <tbody>
-  <tr *ngFor="let w of weeks" [attr.current-week]="(current | getISOWeek) === (w.date | getISOWeek)">
+  <tr *ngFor="let w of weeks" [attr.current-week]="(current | dfnsStartOfWeek) | isEqualDate: (w.date | dfnsStartOfWeek)">
     <td day *ngFor="let d of w.days"
-        [attr.current-day]="(d | format : 'YYYY-MM-DD') | isEqualDate: (current | format: 'YYYY-MM-DD')"
+        [attr.current-day]="(d | dfnsStartOfDay) | isEqualDate: (current | dfnsStartOfDay)"
         (click)="onChange(d)" tabindex="0">
-      <ng-container *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
+      <ng-container
+        *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
       </ng-container>
     </td>
 

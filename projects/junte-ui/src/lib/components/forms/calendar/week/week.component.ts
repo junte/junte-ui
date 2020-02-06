@@ -1,6 +1,6 @@
 import { Component, ContentChild, forwardRef, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addDays, format, isEqual, startOfWeek } from 'date-fns';
+import { addDays, isEqual, startOfWeek } from 'date-fns';
 import { UI } from '../../../../enums/ui';
 import { today } from '../utils';
 
@@ -26,7 +26,7 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
   private _period: Date;
 
   current: Date = today();
-  days: string[] = [];
+  days: Date[] = [];
 
   @ContentChild('dayTemplate', {static: false})
   dayTemplate: TemplateRef<any>;
@@ -64,11 +64,11 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    let date = format(startOfWeek(this.period, {weekStartsOn: 1}));
+    let date = startOfWeek(this.period, {weekStartsOn: 1});
     this.days = [];
     for (let j = 0; j < DAYS_IN_WEEK; j++) {
-      this.days[j] = format(date);
-      date = format(addDays(date, 1));
+      this.days[j] = date;
+      date = addDays(date, 1);
     }
   }
 

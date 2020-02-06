@@ -3,11 +3,11 @@ import { RouterLinkActive } from '@angular/router';
 import { Outline } from '../../../enums/outline';
 import { Scheme } from '../../../enums/scheme';
 import { UI } from '../../../enums/ui';
+import { UrlMatching } from '../../../enums/url';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { PropertyApi } from '../../../decorators/api';
+import { LinkTarget } from './enums';
 
-const ALLOW_TARGETS = ['_blank', '_self', '_parent', '_top'];
-const DEFAULT_TARGET = '_self';
 
 @Component({
   selector: 'jnt-link',
@@ -18,9 +18,11 @@ export class LinkComponent {
   @HostBinding('attr.host') readonly host = 'jnt-link-host';
 
   ui = UI;
+  urlMatching = UrlMatching;
 
   private _source: string | string[];
-  private _target: string = DEFAULT_TARGET;
+  private _target: LinkTarget = LinkTarget.self;
+  private _matching: UrlMatching = UrlMatching.fullMatch;
 
   @HostBinding('attr.scheme')
   _scheme = Scheme.primary;
@@ -33,33 +35,16 @@ export class LinkComponent {
   @ViewChild(RouterLinkActive, {static: false})
   linkRef: RouterLinkActive;
 
-  @PropertyApi({
-    description: 'Disable link',
-    type: 'boolean',
-  })
+  @HostBinding('attr.with-title')
+  get withTitle() {
+    return !!this.title;
+  }
 
-  @HostBinding('attr.disabled')
-  @Input() disabled = false;
-
+  // TODO: we must find better solution
   @HostBinding('attr.active')
   get linkActive(): boolean {
     this.cdr.detectChanges();
     return !!this.linkRef ? this.linkRef.isActive : false;
-  }
-
-  @PropertyApi({
-    description: 'Link outline',
-    path: 'ui.outline',
-    default: Outline.transparent,
-    options: [Outline.transparent, Outline.ghost, Outline.fill]
-  })
-
-  @Input() set outline(outline: Outline) {
-    if (!!outline) {
-      this._outline = outline;
-    } else {
-      this._outline = Outline.transparent;
-    }
   }
 
   @PropertyApi({
@@ -68,41 +53,41 @@ export class LinkComponent {
     default: Scheme.primary,
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail]
   })
-
   @Input() set scheme(scheme: Scheme) {
-    if (!!scheme) {
-      this._scheme = scheme;
-    } else {
-      this._scheme = Scheme.primary;
-    }
+    this._scheme = scheme || Scheme.primary;
+  }
+
+  @PropertyApi({
+    description: 'Link outline',
+    path: 'ui.outline',
+    default: Outline.transparent,
+    options: [Outline.transparent,
+      Outline.ghost,
+      Outline.fill]
+  })
+  @Input() set outline(outline: Outline) {
+    this._outline = outline || Outline.transparent;
   }
 
   @PropertyApi({
     description: 'Icon for link',
     type: 'string'
   })
-
-  @Input() icon: string;
-
-  @Input() exact = true;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Link title',
     type: 'string'
   })
+  @Input()
+  title: string;
 
-  @Input() title: string;
-
-  @HostBinding('attr.with-title')
-  get withTitle() {
-    return !!this.title;
-  }
 
   @PropertyApi({
     description: 'Link source',
     type: 'string | string[]'
   })
-
   @Input()
   set source(source: string | string[]) {
     if (!!source) {
@@ -117,24 +102,51 @@ export class LinkComponent {
 
   @PropertyApi({
     description: 'Link target',
-    type: 'string',
-    default: '_self',
-    options: ['_blank', '_self', '_parent', '_top']
+    path: 'ui.navigation.link.target',
+    default: LinkTarget.self,
+    options: [LinkTarget.blank,
+      LinkTarget.self,
+      LinkTarget.parent,
+      LinkTarget.top]
   })
-
   @Input()
-  set target(target: string) {
-    this._target = ALLOW_TARGETS.includes(target) ? target : DEFAULT_TARGET;
+  set target(target: LinkTarget) {
+    this._target = target || LinkTarget.self;
   }
 
   get target() {
     return this._target;
   }
 
+  @PropertyApi({
+    description: 'Matching to activate link',
+    path: 'ui.url.matching',
+    default: UrlMatching.fullMatch,
+    options: [UrlMatching.fullMatch, UrlMatching.wildcard]
+  })
+  @Input()
+  set matching(matching: UrlMatching) {
+    this._matching = matching || UrlMatching.fullMatch;
+  }
+
+  get matching() {
+    return this._matching;
+  }
+
+  @PropertyApi({
+    description: 'Disable link',
+    type: 'boolean',
+    default: 'false'
+  })
+  @HostBinding('attr.disabled')
+  @Input()
+  disabled = false;
+
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
   constructor(private cdr: ChangeDetectorRef) {
+
   }
 
 }
