@@ -11,3 +11,18 @@
   <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
 </jnt-stack>
 
+<jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.tiny" [align]="ui.flex.align.stretch"
+           [wrap]="ui.flex.wrap.noWrap" mobileActions>
+  <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+  <jnt-dropdown>
+    <ng-template #trigger let-action="trigger">
+      <button (click)="action()" burger>
+        <jnt-icon [icon]="ui.icons.actions"></jnt-icon>
+      </button>
+    </ng-template>
+    <ng-template #dropdown let-action="trigger">
+      <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
+    </ng-template>
+  </jnt-dropdown>
+</jnt-stack>
+

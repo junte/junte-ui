@@ -1,0 +1,7 @@
+@import "variables";
+
+@mixin for-mobile() {
+  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+    @content;
+  }
+}

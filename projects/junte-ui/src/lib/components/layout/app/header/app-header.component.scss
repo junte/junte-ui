@@ -1,4 +1,5 @@
 @import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
 @import "../variables";
 
 :host {
@@ -16,8 +17,13 @@
   left: 0;
   right: 0;
   z-index: 3;
-
+  @include for-mobile() {
+    padding-right: 0;
+  }
   jnt-menu[deep-host=#{$jnt-menu-host}] {
+    @include for-mobile() {
+      display: none;
+    }
     display: flex;
     align-items: center;
     jnt-link[child-host=#{$jnt-link-host}] {
@@ -58,6 +64,9 @@
 }
 
 [actions] {
+  @include for-mobile() {
+    display: none;
+  }
   margin-left: auto;
 }
 
@@ -65,5 +74,27 @@
   display: flex;
   align-items: center;
 }
+
+[mobileActions] {
+  display: none;
+  @include for-mobile() {
+    display: flex;
+  }
+  [burger] {
+    display: none;
+    background-color: transparent;
+    border: 0;
+    padding: 0 $gutter-normal;
+    color: $white-color;
+    font-size: 20px;
+    &:focus {
+      outline: 0;
+    }
+    @include for-mobile() {
+      display: block;
+    }
+  }
+}
+
 
 
