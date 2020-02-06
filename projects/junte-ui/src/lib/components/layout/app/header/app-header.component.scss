@@ -77,8 +77,45 @@
 
 [mobileActions] {
   display: none;
+  position: relative;
   @include for-mobile() {
     display: flex;
+  }
+  [dropdown] {
+    background-color: $primary-background;
+    min-width: 100%;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: $gutter-small 0;
+    box-shadow: $shadow-normal;
+    border-radius: $corner-small;
+    white-space: nowrap;
+    box-sizing: border-box;
+    z-index: 1;
+    jnt-menu[deep-host=#{$jnt-menu-host}] {
+      display: flex;
+      //[submenu] {
+      //  width: 100%;
+      //}
+      jnt-link[child-host=#{$jnt-link-host}] {
+        width: 100%;
+        a {
+          border: 0;
+          border-left: 4px solid transparent;
+          padding: $gutter-small $gutter-big;
+          position: relative;
+          text-align: left;
+          &:hover {
+            background-color: $highlight-background;
+            border-left-color: $primary-color;
+          }
+          span, [icon] {
+            color: $primary-text-color;
+          }
+        }
+      }
+    }
   }
   [burger] {
     display: none;

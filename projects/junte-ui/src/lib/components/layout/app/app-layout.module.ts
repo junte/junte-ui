@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { StackModule } from '../stack/stack.module';
@@ -19,7 +20,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     CommonModule,
     IconModule,
     StackModule,
-    ButtonModule
+    ButtonModule,
+    DropdownModule
   ],
   declarations: [
     AppLayoutComponent,
