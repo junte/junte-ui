@@ -37,7 +37,18 @@ export class LocalUI {
       around: 'around:font:junte-ui-test-layout',
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
-      baseline: 'baseline:font:junte-ui-test-layout'
+      baseline: 'baseline:font:junte-ui-test-layout',
+      date: 'dynamic-date:font:junte-ui-test-layout',
+      general: 'general:font:junte-ui-test-layout',
+      layout: 'layout:font:junte-ui-test-layout',
+      navigation: 'navigation:font:junte-ui-test-layout',
+      other: 'other:font:junte-ui-test-layout',
+      collections: 'collections:font:junte-ui-test-layout',
+      elements: 'elements:font:junte-ui-test-layout',
+      forms: 'forms:font:junte-ui-test-layout',
+      contacts: 'contacts:font:junte-ui-test-layout',
+      overlays: 'overlays:font:junte-ui-test-layout',
+      documentation: 'documentation:font:junte-ui-test-layout',
     }
   };
 }
