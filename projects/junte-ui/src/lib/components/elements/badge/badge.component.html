@@ -1,2 +1,8 @@
 <ng-content></ng-content>
-<sup [style.background-color]="color"><span>{{overflow > value ? value : overflow + '+'}}</span></sup>
+<div [style.background-color]="color">
+  <span *ngIf="text; else numberTemplate">{{text}}</span>
+</div>
+
+<ng-template #numberTemplate>
+  <span>{{overflow > value ? value : overflow + '+'}}</span>
+</ng-template>

@@ -18,10 +18,15 @@ export class BadgeComponent {
   private _overflow = 99;
 
   @PropertyApi({
+    description: 'Text to show in badge',
+    type: 'string',
+  })
+  @Input() text: string;
+
+  @PropertyApi({
     description: 'Number to show in badge',
     type: 'number',
   })
-
   @Input() value: number;
 
   @PropertyApi({
@@ -29,7 +34,6 @@ export class BadgeComponent {
     type: 'number',
     default: '99'
   })
-
   @Input() set overflow(overflow: number) {
     this._overflow = overflow || 99;
   }

@@ -28,7 +28,7 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document let-width="width">
-                  <ng-container [ngSwitch]="sketchControl.value">
+                  <jnt-block [width]="ui.width.fluid" [ngSwitch]="sketchControl.value">
 
                     <ng-container *ngSwitchCase="sketch.User">
                       <jnt-stack [align]="ui.flex.align.center"
@@ -59,7 +59,7 @@
                                       [animated]="animationControl.value"></jnt-skeleton>
                       </jnt-stack>
                     </ng-container>
-                  </ng-container>
+                  </jnt-block>
 
                 </ng-template>
               </app-browser-preview>

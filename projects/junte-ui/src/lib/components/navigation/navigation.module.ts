@@ -9,13 +9,13 @@ import { TabsModule } from './tabs/tabs.module';
 
 @NgModule({
   exports: [
+    LinkModule,
+    AnchorModule,
     BreadcrumbsModule,
     DropdownModule,
-    LinkModule,
     MenuModule,
     PaginationModule,
-    TabsModule,
-    AnchorModule
+    TabsModule
   ]
 })
 export class NavigationModule {

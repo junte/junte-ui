@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
+import { UI, AnchorComponent } from 'junte-ui';
+import { LocalUI } from '../../../../enums/local-ui';
 
 @Component({
   selector: 'app-anchor-test',
@@ -9,5 +10,8 @@ import { UI } from 'junte-ui';
 export class AnchorTestComponent {
 
   ui = UI;
+  localUi = LocalUI;
+
+  types = {anchor: AnchorComponent};
 
 }

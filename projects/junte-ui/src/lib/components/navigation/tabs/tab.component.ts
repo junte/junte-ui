@@ -34,7 +34,7 @@ export class TabComponent {
   tabContentTemplate: TemplateRef<any>;
 
   @PropertyApi({
-    description: 'Padding in column',
+    description: 'Padding in tab',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.none,

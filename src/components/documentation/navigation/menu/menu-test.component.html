@@ -1,10 +1,12 @@
 <jnt-container>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/menu"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780"
               target="_blank" title="Figma">
     </jnt-link>
@@ -12,15 +14,8 @@
 
   <h1>Menu</h1>
 
-  <h3>How to use</h3>
-
-  <app-how-to-use
-    [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
-    scss="navigation/menu"></app-how-to-use>
-
-  <h3>Playground</h3>
-
   <jnt-tabs playground>
+
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
@@ -129,15 +124,14 @@
         </jnt-stack>
       </ng-template>
     </jnt-tab>
+
     <jnt-tab #code title="Code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <p>
-          <jnt-link [icon]="ui.icons.copy"
-                    [outline]="ui.outline.ghost" title="Copy"></jnt-link>
-          the code to <code>menu-test.component.html</code>
-        </p>
-        <app-code-highlight>
+        <app-how-to-use
+          [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
+          scss="navigation/menu"></app-how-to-use>
+        <app-code-highlight file="menu-test.component.html">
           <![CDATA[
           <jnt-menu
             ]]>

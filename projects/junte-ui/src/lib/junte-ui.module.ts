@@ -31,15 +31,17 @@ import { SharedModule } from './components/shared/shared.module';
     HttpClientModule
   ],
   exports: [
-    CollectionsModule,
-    DynamicModule,
-    ElementsModule,
-    UiFormsModule,
     GeneralModule,
+    SharedModule,
+
     LayoutModule,
     NavigationModule,
+    ElementsModule,
+    UiFormsModule,
+    CollectionsModule,
     OverlaysModule,
-    SharedModule,
+    DynamicModule,
+
     AnimationPipeModule,
     ArrayPipeModule,
     ColorPipeModule,

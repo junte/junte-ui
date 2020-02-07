@@ -25,6 +25,7 @@ export * from './lib/components/elements/icon/public_api';
 export * from './lib/components/forms/input/public_api';
 export * from './lib/components/elements/label/public_api';
 export * from './lib/components/navigation/link/public_api';
+export * from './lib/components/navigation/anchor/public_api';
 export * from './lib/components/navigation/menu/public_api';
 export * from './lib/components/overlays/modal/public_api';
 export * from './lib/components/navigation/pagination/public_api';

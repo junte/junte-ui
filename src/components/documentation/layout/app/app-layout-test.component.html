@@ -166,12 +166,17 @@
                   <ng-container *ngIf="asideControl.value; else withoutAsideTemplate">
                     <jnt-app-aside #sider>
                       <ng-template let-collapsed="collapsed" #asideContentTemplate>
-                        <jnt-stack [align]="ui.flex.align.stretch">
-                          <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
-                                      image="assets/images/alex.jpeg"></jnt-avatar>
-                          <p *ngIf="!collapsed">Elon Musk<br>
-                            <small>CEO of SpaceX</small>
-                          </p>
+                        <jnt-stack aside [align]="ui.flex.align.stretch">
+                          <jnt-stack [align]="ui.flex.align.center">
+                            <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
+                                        image="assets/images/alex.jpeg"></jnt-avatar>
+                            <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
+                                       [align]="ui.flex.align.center">
+                              <div>Elon Musk</div>
+                              <jnt-label label="CEO of SpaceX"
+                                         [color]="ui.color.paleNavy"></jnt-label>
+                            </jnt-stack>
+                          </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                             <jnt-submenu title="General" [icon]="ui.icons.crown">

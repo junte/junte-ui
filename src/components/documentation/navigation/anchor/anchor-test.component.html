@@ -1,6 +1,7 @@
 <jnt-container>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/anchor"
               target="_blank" title="GitLab">
     </jnt-link>
@@ -8,13 +9,77 @@
 
   <h1>Anchor</h1>
 
-  <h3>How to use</h3>
-  <app-how-to-use
-    [test]="{selector:'anchor-test', type: 'AnchorTestComponent'}"
-    scss="navigation/anchor"></app-how-to-use>
+  <jnt-stack [align]="ui.flex.align.stretch">
 
-    <h3>Anchor<jnt-anchor anchor="test"></jnt-anchor></h3>
+    <div teaser>
+      <p>Anchor restores scroll position on the page.</p>
+    </div>
 
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat quod quos saepe sapiente tenetur totam voluptas voluptatum? Alias autem consectetur corporis delectus dolor dolorem ea eaque earum eius esse fugit illo incidunt laboriosam, neque officiis perspiciatis provident quaerat, quisquam quo rerum saepe sapiente sit totam ut veritatis. Adipisci aut delectus deserunt ea expedita facere illo, ipsa ipsam libero maiores maxime molestiae, necessitatibus nobis non nostrum odio quia quis quisquam suscipit tenetur. Aperiam in pariatur quia quos velit! Aliquam consequatur deleniti dicta dolorum ea, eum explicabo in iure magnam minus necessitatibus, neque placeat quasi quisquam, reiciendis repellat sapiente sunt ullam veritatis voluptates. A alias aut cumque doloremque eligendi, eos excepturi illum ipsum laboriosam laborum maxime omnis reiciendis ullam? Culpa debitis esse quasi sit temporibus? Ad, amet autem blanditiis culpa debitis esse facilis inventore laboriosam, laudantium minus nihil perspiciatis voluptas. Ab accusamus accusantium assumenda aut blanditiis consectetur cum deleniti doloribus dolorum earum ex explicabo, fuga fugit id illum impedit inventore labore necessitatibus neque non numquam perferendis quae sequi, tempore ut voluptatem voluptatum. Commodi cum ex numquam, obcaecati recusandae sit totam. Ab ad animi assumenda blanditiis consequuntur dolore doloremque eligendi est et, explicabo necessitatibus nisi officia omnis provident ratione reiciendis, suscipit voluptatem voluptatum? Aliquid, aspernatur atque culpa expedita iste quia recusandae tempore voluptas? A ad aliquam at aut autem, dicta dolorum est exercitationem facere ipsa itaque labore laboriosam libero natus necessitatibus non numquam perspiciatis quis, quo quos sapiente tempora, voluptates voluptatum. Doloribus error, illo itaque maiores quis sed ullam ut. Autem debitis dicta dignissimos est non odio, provident repellat repudiandae. Adipisci amet autem delectus dolorum enim eveniet exercitationem fugit inventore itaque iusto, laboriosam maiores neque odit placeat possimus quibusdam quidem quis quos, sequi sint suscipit tenetur totam unde voluptas voluptatum. Accusamus at atque aut cum, dolores ex exercitationem harum illo laudantium, minus mollitia nihil non nulla odit officiis, pariatur perspiciatis praesentium quidem repellendus similique sit sunt tempora temporibus veniam veritatis vero vitae? Accusamus architecto assumenda at aut cumque doloremque eius facilis fuga in itaque laborum, libero necessitatibus optio provident ratione recusandae repellendus, voluptate? At cupiditate eum nisi ratione rerum? Assumenda blanditiis cumque eum ex fugit impedit ipsum laborum libero officia pariatur quibusdam repellendus, repudiandae rerum sunt suscipit velit voluptas? Autem deleniti dignissimos doloremque eius enim, fuga harum, laboriosam numquam optio quae, sint ut voluptatum? Nemo neque quos saepe sequi totam! Accusantium animi architecto asperiores delectus distinctio doloremque ducimus fugiat harum id in inventore laboriosam maiores nemo odio odit perferendis, possimus tenetur, veniam vitae voluptatibus. A beatae consectetur est ipsam, possimus quod sequi ut vero. Ab ad cum eaque fuga nulla odit rem, temporibus? Assumenda commodi cupiditate dicta excepturi labore, maiores mollitia reprehenderit vel. Consequuntur delectus distinctio excepturi, ipsa magnam minima molestias mollitia nobis odio omnis praesentium provident rerum sapiente sequi sint sunt veritatis voluptas voluptatem voluptates voluptatibus! Omnis, quas.
+    <jnt-tabs playground>
+
+      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+        <ng-template #tabContentTemplate>
+
+          <h2>Section A
+            <jnt-anchor anchor="section_a"></jnt-anchor>
+          </h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+
+          <h2>Section B
+            <jnt-anchor anchor="section_b"></jnt-anchor>
+          </h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+            ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+            enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis quaerat
+            quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+        <ng-template #tabContentTemplate>
+          <app-how-to-use
+            [test]="{selector:'anchor-test', type: 'AnchorTestComponent'}"
+            scss="navigation/anchor"></app-how-to-use>
+          <app-code-highlight file="anchor-test.template.html">
+            <![CDATA[
+            <h2>Section A <jnt-anchor anchor="section_a"></jnt-anchor></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
+              ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
+              enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis
+              quaerat quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+            ]]>
+          </app-code-highlight>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="API" [icon]="localUi.icons.api">
+        <ng-template #tabContentTemplate>
+          <app-component-api selector="jnt-anchor" [target]="types.anchor"></app-component-api>
+        </ng-template>
+      </jnt-tab>
+
+    </jnt-tabs>
+
+  </jnt-stack>
 
 </jnt-container>
