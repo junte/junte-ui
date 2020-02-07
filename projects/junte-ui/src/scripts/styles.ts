@@ -48,11 +48,13 @@ export class Gulpfile {
         const groupPath = `${dir}/${build.scss.path}`;
         if (!fs.existsSync(groupPath)) {
           fs.mkdirSync(groupPath, {recursive: true});
+          fs.writeFileSync(`${dir}/${build.scss.path}.scss`, '');
         }
 
         console.log(groupPath);
 
         fs.writeFileSync(`${groupPath}/${build.scss.name}.scss`, `@import "../../variables";\n${this.clearImports(content)}`);
+        fs.appendFileSync(`${dir}/${build.scss.path}.scss`, `@import "./${build.scss.path}/${build.scss.name}.scss";\n`);
         this.components.push(new Component(build.scss.path, build.scss.name));
         return cb(null, file);
       }));
