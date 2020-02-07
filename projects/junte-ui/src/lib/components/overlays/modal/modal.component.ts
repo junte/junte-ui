@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -14,7 +15,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MethodApi, PropertyApi } from '../../../decorators/api';
+import { MethodApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 
 export enum ModalClosingOption {
@@ -54,7 +55,54 @@ enum Display {
 @Component({
   selector: 'jnt-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
+  animations: [
+    trigger('modal', [
+        state(
+          'hidden',
+          style({
+            top: '100%',
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+          })
+        ),
+        state(
+          'visible',
+          style({
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          })
+        ),
+        transition(
+          'hidden => visible',
+          [
+            animate('.5s cubic-bezier(0.165, 0.840, 0.440, 1.000)')
+          ],
+        ),
+        transition(
+          'visible => hidden',
+          [
+            animate('.3s cubic-bezier(0.165, 0.840, 0.440, 1.000)')
+          ],
+        ),
+      ]
+    ),
+
+    trigger('text', [
+      state('show', style({
+        visibility: 'visible',
+        opacity: 1
+      })),
+      state('hide', style({
+        visibility: 'collapse',
+        opacity: 0
+      })),
+      transition('show <=> hide', [
+        animate('.5s ease-in-out')
+      ]),
+    ])
+  ]
 })
 
 export class ModalComponent implements AfterViewInit {
@@ -82,10 +130,10 @@ export class ModalComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  @HostBinding('style.display')
-  get visible() {
-    return this.sanitizer.bypassSecurityTrustStyle(!!this.opened ? Display.block : Display.none);
-  }
+  // @HostBinding('style.display')
+  // get visible() {
+  //   return this.sanitizer.bypassSecurityTrustStyle(!!this.opened ? Display.block : Display.none);
+  // }
 
   @Output()
   opened$: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -126,18 +174,23 @@ export class ModalComponent implements AfterViewInit {
       this.cdr.detectChanges();
     }
     this.content = content;
-    this.setBackdropFilter(BackdropFilter.blur);
+    // this.setBackdropFilter(BackdropFilter.blur);
+    this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000)  forwards ');
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
+    this.renderer.removeClass(this.modal, 'out');
     this.opened = true;
     this.cdr.detectChanges();
   }
 
   @MethodApi({description: 'close modal'})
   close() {
+    this.renderer.addClass(this.modal, 'out');
+    // setTimeout(() => this.opened = false, 300);
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.setBackdropFilter(BackdropFilter.none);
-    this.opened = false;
+    this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     this.options = new ModalOptions();
     this.cdr.detectChanges();
+    this.opened = false;
   }
 }

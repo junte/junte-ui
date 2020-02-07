@@ -14,7 +14,7 @@ $modal-title-icon-size: 18px !default;
 $modal-content-padding-x: $gutter-normal !default;
 $modal-content-padding-y: $gutter-normal !default;
 
-@keyframes fadein {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -23,8 +23,69 @@ $modal-content-padding-y: $gutter-normal !default;
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(.9);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes moveUp {
+  from {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  to {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes moveDown {
+  from {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
 :host {
   display: none;
+  &.out {
+    //[modal] {
+    //  animation: moveDown .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    //}
+    [overlay] {
+      animation: fadeOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    }
+  }
 }
 
 [overlay] {
@@ -37,15 +98,15 @@ $modal-content-padding-y: $gutter-normal !default;
   top: 0;
   bottom: 0;
   right: 0;
+  animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 [modal] {
+  transform: scale(1);
   position: fixed;
   z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: fadein .5s;
+  top: 100%;
+  //animation: moveUp .5s cubic-bezier(0.165, 0.840, 0.440, 1.000)  forwards;
 
   [title] {
     border-top-left-radius: $corner-normal;
