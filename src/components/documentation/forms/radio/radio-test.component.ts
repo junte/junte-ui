@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { RadioComponent, TabComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-radio-test',
@@ -9,23 +10,33 @@ import { UI } from 'junte-ui';
 })
 export class RadioTestComponent implements OnInit {
   ui = UI;
+  localUi = LocalUI;
+  radio = RadioComponent;
 
-  form: FormGroup;
+  @ViewChild('code', {static: false}) code: TabComponent;
 
-  developers = [
-    {developer: 'Anton', age: 32},
-    {developer: 'Andrey', age: 33},
-    {developer: 'Roman', age: 26}
-  ];
-  selected = 2;
+  sizeControl = new FormControl(this.ui.size.small);
+  disableControl = new FormControl(false);
+  checkedControl = new FormControl(false);
+  labelControl = new FormControl('Label 1');
+  radioGroupControl = new FormControl();
+
+  form = this.fb.group({
+    size: this.sizeControl,
+    disable: this.disableControl,
+    checked: this.checkedControl,
+    label: this.labelControl
+  });
+
+  formRadioGroup = this.fb.group({
+    radioGroup: this.radioGroupControl
+  });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      select: this.fb.control(5),
-      selectDeveloper: this.fb.control(26)
-    });
+    this.form.valueChanges
+      .subscribe(() => this.code.flash());
   }
 }
