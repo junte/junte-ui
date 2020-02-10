@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DateFnsModule } from 'ngx-date-fns';
 import { BlockModule } from '../../layout/block/block.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { CalendarModule } from '../calendar/calendar.module';
@@ -17,6 +18,7 @@ import { DatePickerComponent } from './date-picker.component';
     CommonModule,
     ReactiveFormsModule,
     FormModule,
+    DateFnsModule,
     InputModule,
     CalendarModule,
     BlockModule,

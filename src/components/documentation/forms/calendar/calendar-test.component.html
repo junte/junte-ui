@@ -52,11 +52,11 @@
                       <jnt-week-metric title="Сalories"></jnt-week-metric>
                     </ng-container>
                     <ng-template *ngIf="dayControl.value" #calendarDayTemplate let-date="date">
-                      <div day>{{date | getDate}}</div>
+                      <div day>{{date | dfnsGetDate}}</div>
                     </ng-template>
                   </jnt-calendar>
                 </form>
-                <div *ngIf="calendarControl.value">You choose: {{calendarControl.value | format: 'DD.MM.YYYY'}}</div>
+                <div *ngIf="calendarControl.value">You choose: {{calendarControl.value | dfnsFormat: 'dd.MM.yyyy'}}</div>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -142,7 +142,7 @@
           <ng-container *ngIf="dayControl.value">
             <![CDATA[
             <ng-template #calendarDayTemplate let-date="date">]]>
-              <![CDATA[ <div day>]]>{{<![CDATA[date | getDate]]>}}<![CDATA[</div>
+              <![CDATA[ <div day>]]>{{<![CDATA[date | dfnsGetDate]]>}}<![CDATA[</div>
             </ng-template>]]>
           </ng-container>
           <![CDATA[

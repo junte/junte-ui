@@ -30,7 +30,7 @@
                                      [format]="formatControl.value">
                     </jnt-date-picker>
                   </form>
-                  <div *ngIf="!!pickerControl.value">You choose: {{pickerControl.value | format: 'DD.MM.YYYY'}}</div>
+                  <div *ngIf="!!pickerControl.value">You choose: {{pickerControl.value | dfnsFormat: 'dd.MM.yyyy'}}</div>
                 </jnt-stack>
               </ng-template>
             </app-browser-preview>
@@ -49,10 +49,10 @@
               <jnt-form-item>
                 <jnt-form-label for="format">Format</jnt-form-label>
                 <jnt-switcher formControlName="format">
-                  <jnt-switcher-option label="DD.MM.YYYY" [value]="dateFormat.fullDate"></jnt-switcher-option>
-                  <jnt-switcher-option label="DD.MM" [value]="dateFormat.shortDate"></jnt-switcher-option>
-                  <jnt-switcher-option label="DD.MM.YY" [value]="dateFormat.longDate"></jnt-switcher-option>
-                  <jnt-switcher-option label="DD MMMM" [value]="dateFormat.fullMonth"></jnt-switcher-option>
+                  <jnt-switcher-option label="dd.MM.yyyy" [value]="dateFormat.fullDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="dd.MM" [value]="dateFormat.shortDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="dd.MM.yy" [value]="dateFormat.longDate"></jnt-switcher-option>
+                  <jnt-switcher-option label="dd MMMM" [value]="dateFormat.fullMonth"></jnt-switcher-option>
                 </jnt-switcher>
               </jnt-form-item>
             </jnt-form>
