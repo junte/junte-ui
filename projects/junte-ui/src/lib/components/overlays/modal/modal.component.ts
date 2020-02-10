@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -115,6 +115,8 @@ enum Display {
 
 export class ModalComponent implements AfterViewInit {
 
+  private _visible;
+
   ui = UI;
   closing = ModalClosingOption;
 
@@ -165,8 +167,12 @@ export class ModalComponent implements AfterViewInit {
               private cdr: ChangeDetectorRef) {
   }
 
-  modalHidden(event: AnimationEvent) {
-    console.log(event);
+  modalVisible(event: AnimationEvent) {
+    console.log(event.fromState);
+    console.log(event.toState);
+    if (event.toState === 'visible') {
+      return true;
+    }
   }
 
   ngAfterViewInit() {
