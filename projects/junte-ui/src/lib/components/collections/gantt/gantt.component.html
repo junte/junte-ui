@@ -7,13 +7,13 @@
   <tr>
     <td gutter></td>
     <td empty></td>
-    <td controls [attr.colspan]="(current | getDaysInMonth)">
+    <td controls [attr.colspan]="(current | dfnsGetDaysInMonth)">
       <div month>
         <button arrow (click)="current = subMonths(current, 1)">
           <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
         </button>
         <div>
-          {{current | format: 'MMMM'}}, {{current | format: 'yyyy'}}
+          {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
         </div>
         <button arrow (click)="current = addMonths(current, 1)">
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
@@ -31,14 +31,14 @@
     <td day *ngFor="let day of (current | datesInMonth)"
         [attr.current]="day | isToday"
         [attr.weekend]="day | isWeekend">
-      {{day | getDate}}
+      {{day | dfnsGetDate}}
     </td>
   </tr>
   </thead>
   <tbody>
   <ng-template #noDataTemplate>
     <tr nodata>
-      <td [attr.colspan]="(current | getDaysInMonth) + 1">
+      <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 1">
         <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
       </td>
     </tr>
@@ -46,7 +46,7 @@
   <ng-template #skeletonTemplate>
     <ng-container *ngIf="loading; else noDataTemplate">
       <tr loading>
-        <td [attr.colspan]="(current | getDaysInMonth) + 2">
+        <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 2">
           <jnt-skeleton [type]="ui.layout.skeleton.type.text" [lines]="7"></jnt-skeleton>
         </td>
       </tr>
@@ -56,7 +56,7 @@
   <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
     <tr *ngFor="let line of lines" (click)="line.click.emit($event)">
       <ng-template #noRequest>
-        <td *ngFor="let day of (current | getDaysInMonth) | numberArray: 1"></td>
+        <td *ngFor="let day of (current | dfnsGetDaysInMonth) | numberArray: 1"></td>
       </ng-template>
 
       <td gutter></td>
@@ -75,7 +75,7 @@
             context: {period: line.period, current: current, today: today}">
           </ng-container>
         </td>
-        <td *ngFor="let day of ((current | getDaysInMonth) - (line.to | after: current)) | numberArray"></td>
+        <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | numberArray"></td>
       </ng-container>
     </tr>
   </ng-container>
