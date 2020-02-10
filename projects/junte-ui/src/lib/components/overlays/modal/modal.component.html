@@ -1,4 +1,4 @@
-<jnt-block [padding]="ui.gutter.none" modal [@modal]="opened ? 'visible' : 'hidden'">
+<jnt-block [padding]="ui.gutter.none" modal [@modal]="opened ? 'visible' : 'hidden'" (@modal.done) = 'modalHidden($event)'>
   <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" title>
     <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
       <jnt-icon *ngIf="!!options?.title?.icon" [icon]="options?.title.icon" iconTitle></jnt-icon>
@@ -22,4 +22,4 @@
   </ng-container>
 
 </jnt-block>
-<div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null"></div>
+<div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null" [@overlay]="opened"></div>

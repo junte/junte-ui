@@ -1,37 +1,5 @@
 @import "../../../assets/styles/variables";
 
-$modal-text-color: $primary-text-color !default;
-$modal-text-font-weight: $font-weight-bold !default;
-$modal-text-font-size: $font-size-base !default;
-
-$modal-title-padding-x: $gutter-normal !default;
-$modal-title-padding-y: $gutter-normal !default;
-$modal-title-background: $page-background !default;
-$modal-title-font-size: 18px !default;
-$modal-title-icon-color: $modal-text-color !default;
-$modal-title-icon-size: 18px !default;
-
-$modal-content-padding-x: $gutter-normal !default;
-$modal-content-padding-y: $gutter-normal !default;
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 @keyframes scaleIn {
   from {
     transform: scale(1);
@@ -50,42 +18,8 @@ $modal-content-padding-y: $gutter-normal !default;
   }
 }
 
-@keyframes moveUp {
-  from {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-  to {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes moveDown {
-  from {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  to {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-}
-
 :host {
-  display: none;
-  &.out {
-    //[modal] {
-    //  animation: moveDown .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-    //}
-    [overlay] {
-      animation: fadeOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-    }
-  }
+  //display: none;
 }
 
 [overlay] {
@@ -98,7 +32,6 @@ $modal-content-padding-y: $gutter-normal !default;
   top: 0;
   bottom: 0;
   right: 0;
-  animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 [modal] {
@@ -106,14 +39,13 @@ $modal-content-padding-y: $gutter-normal !default;
   position: fixed;
   z-index: 2;
   top: 100%;
-  //animation: moveUp .5s cubic-bezier(0.165, 0.840, 0.440, 1.000)  forwards;
 
   [title] {
     border-top-left-radius: $corner-normal;
     border-top-right-radius: $corner-normal;
-    padding: $modal-title-padding-x $modal-title-padding-y;
-    background-color: $modal-title-background;
-    font-size: $modal-title-font-size;
+    padding: $gutter-normal;
+    background-color: $page-background;
+    font-size: 18px;
 
     [close] {
       background-color: transparent;
@@ -131,20 +63,20 @@ $modal-content-padding-y: $gutter-normal !default;
     }
 
     [icon]:not([type='font']) {
-      fill: $modal-title-icon-color;
-      width: $modal-title-icon-size;
-      height: $modal-title-icon-size;
+      fill: $primary-text-color;
+      width: 18px;
+      height: 18px;
     }
 
     [text] {
-      color: $modal-text-color;
-      font-weight: $modal-text-font-weight;
+      color: $primary-text-color;
+      font-weight: $font-weight-bold;
     }
   }
 
   [content] {
-    padding: $modal-content-padding-x $modal-content-padding-y;
-    font-size: $modal-text-font-size;
+    padding: $gutter-normal;
+    font-size: $font-size-base;
     box-sizing: border-box;
     overflow: auto;
   }

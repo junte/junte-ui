@@ -89,19 +89,27 @@ enum Display {
       ]
     ),
 
-    trigger('text', [
-      state('show', style({
-        visibility: 'visible',
-        opacity: 1
-      })),
-      state('hide', style({
-        visibility: 'collapse',
-        opacity: 0
-      })),
-      transition('show <=> hide', [
-        animate('.5s ease-in-out')
-      ]),
-    ])
+    trigger('overlay', [
+        state(
+          'void',
+          style({
+            opacity: 0,
+          })
+        ),
+        state(
+          '*',
+          style({
+            opacity: 1,
+          })
+        ),
+        transition(
+          'void <=> *',
+          [
+            animate('.5s ease-in-out')
+          ]
+        ),
+      ]
+    ),
   ]
 })
 
@@ -130,10 +138,10 @@ export class ModalComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  // @HostBinding('style.display')
-  // get visible() {
-  //   return this.sanitizer.bypassSecurityTrustStyle(!!this.opened ? Display.block : Display.none);
-  // }
+  @HostBinding('style.display')
+  get visible() {
+    return this.sanitizer.bypassSecurityTrustStyle(!!this.opened ? Display.block : Display.none);
+  }
 
   @Output()
   opened$: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -157,6 +165,10 @@ export class ModalComponent implements AfterViewInit {
               private cdr: ChangeDetectorRef) {
   }
 
+  modalHidden(event: AnimationEvent) {
+    console.log(event);
+  }
+
   ngAfterViewInit() {
     this.modal = this.element.nativeElement;
   }
@@ -174,18 +186,15 @@ export class ModalComponent implements AfterViewInit {
       this.cdr.detectChanges();
     }
     this.content = content;
-    // this.setBackdropFilter(BackdropFilter.blur);
-    this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000)  forwards ');
+    this.setBackdropFilter(BackdropFilter.blur);
+    this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
-    this.renderer.removeClass(this.modal, 'out');
     this.opened = true;
     this.cdr.detectChanges();
   }
 
   @MethodApi({description: 'close modal'})
   close() {
-    this.renderer.addClass(this.modal, 'out');
-    // setTimeout(() => this.opened = false, 300);
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.setBackdropFilter(BackdropFilter.none);
     this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
