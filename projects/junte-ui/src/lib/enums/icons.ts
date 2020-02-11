@@ -44,7 +44,7 @@ export const icons = {
     time: 'time:font',
     // media
     image: 'picture:font',
-    video: 'media-video:font',
+    video: 'video:font',
     camera: 'camera:font',
     // rewind
     first: 'arrow-first:font',
@@ -97,34 +97,21 @@ export const icons = {
     neutral: 'neutral:font',
     // gesture
     scrollVertical: 'fingers-scroll-vertical:font',
-    scrollVertical2: 'fingers-scroll-vertical2:font',
-    scrollVertical3: 'fingers-scroll-vertical3:font',
     doubleTab: 'fingers-tab:font',
-    doubleTab2: 'fingers-tab2:font',
     victory: 'fingers-victory:font',
     right: 'fingers-right:font',
-    right2: 'fingers-right2:font',
     up: 'fingers-up:font',
-    up2: 'fingers-up2:font',
     reminder: 'reminder:font',
-    reminder2: 'reminder2:font',
     tab: 'finger-tab:font',
-    tab2: 'finger-tab2:font',
     crossed: 'finger-crossed:font',
     scrollHorizontal: 'fingers-scroll-horizontal:font',
-    scrollHorizontal2: 'fingers-scroll-horizontal2:font',
     scrollLeft: 'fingers-scroll-left:font',
-    scrollLeft2: 'fingers-scroll-left2:font',
     scrollRight: 'fingers-scroll-right:font',
     pinch: 'gesture-pinch:font',
-    pinch2: 'gesture-pinch2:font',
     zoom: 'gesture-zoom:font',
     hand: 'hand:font',
-    hand2: 'hand2:font',
     down: 'pointer-down:font',
-    down2: 'pointer-down2:font',
-    left: 'pointer-left:font',
-    left2: 'pointer-left2:font'
+    left: 'pointer-left:font'
   },
   svg: {
     // flags
@@ -132,7 +119,7 @@ export const icons = {
     germany: 'germany:svg:flags',
     usa: 'usa:svg:flags',
     france: 'france:svg:flags',
-    uk: 'united-kingdom:svg:flags',
+    uk: 'uk:svg:flags',
     italy: 'italy:svg:flags',
     spain: 'spain:svg:flags',
     sweden: 'sweden:svg:flags',
