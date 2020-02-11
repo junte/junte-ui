@@ -1,22 +1,19 @@
-<jnt-block modal [padding]="ui.gutter.none">
-  <jnt-stack title [type]="ui.layout.stack.type.horizontal"
-             [justify]="ui.flex.justify.between"
-             [align]="ui.flex.align.center">
-    <jnt-stack [type]="ui.layout.stack.type.horizontal"
-               [align]="ui.flex.align.center"
-               [gutter]="ui.gutter.small">
-      <jnt-icon icon *ngIf="!!options?.title?.icon"
-                [icon]="options?.title.icon"></jnt-icon>
+<jnt-block [padding]="ui.gutter.none" modal
+           [@modal]="opened ? 'visible' : 'hidden'"
+           (@modal.start) = 'start($event)'
+           (@modal.done) = 'done($event)'>
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.center" title>
+    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
+      <jnt-icon *ngIf="!!options?.title?.icon" [icon]="options?.title.icon" iconTitle></jnt-icon>
       <span text *ngIf="!!options?.title?.text">{{options?.title?.text}}</span>
     </jnt-stack>
 
-    <button close *ngIf="options?.closing === closing.enable"
-            (click)="close()">
-      <jnt-icon [icon]="ui.icons.close"></jnt-icon>
+    <button *ngIf="options?.closing === closing.enable" (click)="close()" close>
+      <jnt-icon [icon]="ui.icons.font.close"></jnt-icon>
     </button>
   </jnt-stack>
 
-  <div content [ngStyle]="{'max-height.px': options?.maxHeight, 'max-width.px': options?.maxWidth}">
+  <div [ngStyle]="{'max-height.px': options?.maxHeight, 'max-width.px': options?.maxWidth}" content>
     <ng-container #container>
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
@@ -28,4 +25,4 @@
   </ng-container>
 
 </jnt-block>
-<div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null"></div>
+<div *ngIf="!!opened" overlay (click)="options?.closing === closing.enable ? close() : null" [@overlay]="opened"></div>
