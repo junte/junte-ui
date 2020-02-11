@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { IconComponent, TabComponent, UI, ModalService, ModalOptions } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { IconComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { SelectIconComponent } from './select-icon/select-icon.component';
 
@@ -19,8 +19,8 @@ export class IconTestComponent implements OnInit {
 
   icons = [];
 
-  iconControl = this.fb.control({path: ['font'], name: 'map', value: UI.icons.font.map});
-  sizeControl = this.fb.control(UI.size.normal);
+  iconControl = this.fb.control({path: ['icons'], name: 'map', value: UI.icons.map});
+  sizeControl = this.fb.control(null);
 
   form = this.fb.group({
     icon: this.iconControl,

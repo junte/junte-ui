@@ -52,7 +52,7 @@ export class AvatarComponent {
   })
 
   @HostBinding('attr.icon')
-  @Input() icon: string = UI.icons.font.user;
+  @Input() icon: string = UI.icons.user;
 
   @PropertyApi({
     description: 'Text on avatar',

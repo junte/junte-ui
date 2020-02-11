@@ -1,12 +1,12 @@
 <jnt-container>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.svg.gitlab"
+    <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/app-layout"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.svg.figma"
+    <jnt-link [icon]="ui.icons.figma"
               [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611"
               target="_blank" title="Figma">
@@ -87,17 +87,17 @@
                     </ng-template>
                     <ng-template #headerMenuTemplate *ngIf="menuControl.value">
                       <jnt-menu top-menu>
-                        <jnt-menu-item title="Home" [icon]="ui.icons.font.home"></jnt-menu-item>
+                        <jnt-menu-item title="Home" [icon]="ui.icons.home"></jnt-menu-item>
                         <jnt-menu-item title="My network" [icon]="ui.icons.animated.runningMan"></jnt-menu-item>
-                        <jnt-menu-item title="Jobs" [icon]="ui.icons.svg.gitlab"></jnt-menu-item>
-                        <jnt-menu-item title="Messages" [icon]="ui.icons.font.email"></jnt-menu-item>
+                        <jnt-menu-item title="Jobs" [icon]="ui.icons.gitlab"></jnt-menu-item>
+                        <jnt-menu-item title="Messages" [icon]="ui.icons.email"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
                       <jnt-app-header-actions>
                         <jnt-app-header-action>
                           <ng-template #actionLabelTemplate>
-                            <jnt-icon [icon]="ui.icons.font.bell"></jnt-icon>
+                            <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
                           </ng-template>
                           <ng-template #actionContentTemplate>
                             <jnt-stack>
@@ -108,7 +108,7 @@
                         </jnt-app-header-action>
                         <jnt-app-header-action>
                           <ng-template #actionLabelTemplate>
-                            <jnt-icon [icon]="ui.icons.font.calendar"></jnt-icon>
+                            <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
                           </ng-template>
                           <ng-template #actionContentTemplate>
                             <jnt-stack>
@@ -129,13 +129,13 @@
                           <jnt-menu [type]="ui.orientation.vertical"
                                     [spacer]="ui.size.small">
                             <jnt-menu-item title="Profile"
-                                           [icon]="ui.icons.font.profile"
+                                           [icon]="ui.icons.profile"
                                            [link]="['/profile']"></jnt-menu-item>
                             <jnt-menu-item title="Settings"
                                            [icon]="ui.icons.animated.settings"
                                            [link]="['/settings']"></jnt-menu-item>
                             <jnt-menu-item title="Logout"
-                                           [icon]="ui.icons.font.home"
+                                           [icon]="ui.icons.home"
                                            [link]="['/logout']"></jnt-menu-item>
                           </jnt-menu>
                         </ng-template>
@@ -179,13 +179,13 @@
                           </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="ui.icons.font.information">
+                            <jnt-submenu title="General" [icon]="ui.icons.information">
                               <jnt-menu-item title="About"></jnt-menu-item>
                               <jnt-menu-item title="Education"></jnt-menu-item>
                             </jnt-submenu>
-                            <jnt-submenu title="Profession" [icon]="ui.icons.font.skull">
+                            <jnt-submenu title="Profession" [icon]="ui.icons.skull">
                               <jnt-menu-item title="Skills"
-                                             [icon]="ui.icons.font.skull"></jnt-menu-item>
+                                             [icon]="ui.icons.skull"></jnt-menu-item>
                               <jnt-menu-item title="Experience"></jnt-menu-item>
                               <jnt-menu-item title="Certificates"></jnt-menu-item>
                             </jnt-submenu>
@@ -229,8 +229,8 @@
                       <jnt-menu>
                         <jnt-menu-item [icon]="ui.icons.home" title="Home"></jnt-menu-item>
                         <jnt-menu-item [icon]="ui.icons.beaker" title="Documentation"></jnt-menu-item>
-                        <jnt-menu-item title="GitLab" [icon]="ui.icons.svg.gitlab"></jnt-menu-item>
-                        <jnt-menu-item title="Figma" [icon]="ui.icons.svg.figma"></jnt-menu-item>
+                        <jnt-menu-item title="GitLab" [icon]="ui.icons.gitlab"></jnt-menu-item>
+                        <jnt-menu-item title="Figma" [icon]="ui.icons.figma"></jnt-menu-item>
                         <jnt-menu-item [icon]="ui.icons.mailbox" title="Contacts"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
@@ -343,7 +343,7 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Design system" [icon]="ui.icons.svg.figma" [padding]="ui.gutter.none">
+      <jnt-tab title="Design system" [icon]="ui.icons.figma" [padding]="ui.gutter.none">
         <ng-template #tabContentTemplate>
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/yKIp2EGu6DY" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
