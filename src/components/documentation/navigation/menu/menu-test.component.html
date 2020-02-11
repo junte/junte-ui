@@ -1,11 +1,11 @@
 <jnt-container>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.svg.gitlab"
+    <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/menu"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.svg.figma"
+    <jnt-link [icon]="ui.icons.figma"
               [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780"
               target="_blank" title="Figma">
@@ -23,16 +23,16 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
-                  <jnt-submenu title="General" [icon]="ui.icons.svg.angular">
+                  <jnt-submenu title="General" [icon]="ui.icons.angular">
                     <jnt-badge [value]="5"></jnt-badge>
                     <jnt-menu-item [title]="'Theming'"
-                                   [icon]="ui.icons.font.search"
+                                   [icon]="ui.icons.search"
                                    [target]="targetControl.value"
                                    [link]="['documentation','navigation','menu']">
                       <jnt-badge [text]="'100$'"></jnt-badge>
                     </jnt-menu-item>
                   </jnt-submenu>
-                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.font.search : null"
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.search : null"
                                  [target]="targetControl.value"
                                  [link]="['/documentation','navigation','menu']"
                                  [title]="'Text'">

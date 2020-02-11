@@ -81,12 +81,12 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   private extract(iconset) {
-    const icon = iconset.querySelector('[id=' + this.icon + ']');
-    if (!!icon) {
-      this.source = new XMLSerializer().serializeToString(icon);
-    } else {
-      console.log(`icon not found ${this.icon}`);
+    const icon = iconset.querySelector(`[id=${this.icon}]`);
+    if (!icon) {
+      throw new Error(`icon [${this.icon}] not found`);
     }
+
+    this.source = new XMLSerializer().serializeToString(icon);
   }
 
   private load() {

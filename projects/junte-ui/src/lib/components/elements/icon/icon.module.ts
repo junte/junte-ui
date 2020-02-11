@@ -1,30 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AnimatedIconModule } from './animated/animated-icon.module';
-import { FontIconModule } from './font/font-icon.module';
+import { AnimatedIconComponent } from './animated/animated-icon.component';
+import { FontIconComponent } from './font/font-icon.component';
 import { IconComponent } from './icon.component';
-import { SvgIconModule } from './svg/svg-icon.module';
+import { SvgIconComponent } from './svg/svg-icon.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
-    FontIconModule,
-    AnimatedIconModule,
-    SvgIconModule
+    HttpClientModule
   ],
   declarations: [
-    IconComponent
+    IconComponent,
+    FontIconComponent,
+    AnimatedIconComponent,
+    SvgIconComponent
   ],
   entryComponents: [
     IconComponent
   ],
   exports: [
-    IconComponent,
-    FontIconModule,
-    AnimatedIconModule,
-    SvgIconModule
+    IconComponent
   ]
 })
 export class IconModule {
