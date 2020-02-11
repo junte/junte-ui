@@ -1,11 +1,11 @@
 <jnt-container>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
+    <jnt-link [icon]="ui.icons.svg.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/dropdown"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
+    <jnt-link [icon]="ui.icons.svg.figma"
               [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=48%3A432"
               target="_blank" title="Figma">
@@ -28,18 +28,18 @@
             <ng-template #document let-width="width" let-height="height">
               <jnt-dropdown>
                 <ng-template #trigger let-action="trigger">
-                  <jnt-button [icon]="ui.icons.actions" text="More" (click)="action()"></jnt-button>
+                  <jnt-button [icon]="ui.icons.font.actions" text="More" (click)="action()"></jnt-button>
                 </ng-template>
                 <ng-template #dropdown let-action="trigger">
                   <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                     <jnt-menu-item title="Edit"
-                                   [icon]="ui.icons.edit"
+                                   [icon]="ui.icons.font.edit"
                                    (click)="action()"></jnt-menu-item>
                     <jnt-menu-item title="Delete"
-                                   [icon]="ui.icons.delete"
+                                   [icon]="ui.icons.font.delete"
                                    (click)="action()"></jnt-menu-item>
                     <jnt-menu-item title="Copy"
-                                   [icon]="ui.icons.copy"
+                                   [icon]="ui.icons.font.copy"
                                    (click)="action()"></jnt-menu-item>
                   </jnt-menu>
                 </ng-template>
@@ -57,15 +57,15 @@
           <app-code-highlight>
             <![CDATA[
             <jnt-dropdown>
-              <ng-template #trigger let-action="trigger">
-                <jnt-button text="Dropdown" (click)="action()"></jnt-button>
+              <ng-template #trigger let-close="trigger">
+                <jnt-button text="Dropdown" (click)="close()"></jnt-button>
               </ng-template>
               <ng-template #dropdown let-action="trigger">
                 <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                  <jnt-menu-item title="Edit" (click)="action()"></jnt-menu-item>
-                  <jnt-menu-item title="Delete" (click)="action()"></jnt-menu-item>
-                  <jnt-menu-item title="Add" (click)="action()"></jnt-menu-item>
-                  <jnt-menu-item title="Copy" (click)="action()"></jnt-menu-item>
+                  <jnt-menu-item title="Edit" (click)="close()"></jnt-menu-item>
+                  <jnt-menu-item title="Delete" (click)="close()"></jnt-menu-item>
+                  <jnt-menu-item title="Add" (click)="close()"></jnt-menu-item>
+                  <jnt-menu-item title="Copy" (click)="close()"></jnt-menu-item>
                 </jnt-menu>
               </ng-template>
             </jnt-dropdown>

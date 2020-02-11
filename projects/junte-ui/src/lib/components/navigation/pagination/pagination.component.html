@@ -1,16 +1,18 @@
-<jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.small" [justify]="ui.flex.justify.center">
+<jnt-stack [type]="ui.layout.stack.type.horizontal"
+           [gutter]="ui.gutter.small"
+           [justify]="ui.flex.justify.center">
   <div [attr.disabled]="selectedPage === 1"
        (click)="setPage(1)" tabindex="0">
     <a [attr.data-href]="'?page=' + 1"
        title="First">
-      <jnt-icon [icon]="ui.icons.arrowFirst" icon></jnt-icon>
+      <jnt-icon [icon]="ui.icons.font.first" icon></jnt-icon>
     </a>
   </div>
   <div [attr.disabled]="selectedPage === 1"
        (click)="setPage(selectedPage - 1)" tabindex="0">
     <a title="Previous"
        data-page="1">
-      <jnt-icon [icon]="ui.icons.chevronLeft" icon></jnt-icon>
+      <jnt-icon icon [icon]="ui.icons.font.chevronLeft"></jnt-icon>
     </a>
   </div>
   <div page *ngFor="let page of pages"
@@ -19,15 +21,16 @@
     <a>{{page}}</a>
   </div>
 
-  <div [attr.disabled]="selectedPage >= pagesCount" (click)="setPage(selectedPage + 1)" tabindex="0">
+  <div [attr.disabled]="selectedPage >= pagesCount"
+       (click)="setPage(selectedPage + 1)" tabindex="0">
     <a title="Next">
-      <jnt-icon [icon]="ui.icons.chevronRight" icon></jnt-icon>
+      <jnt-icon icon [icon]="ui.icons.font.chevronRight"></jnt-icon>
     </a>
   </div>
   <div (click)="setPage(pagesCount)"
        [attr.disabled]="selectedPage >= pagesCount" tabindex="0">
     <a title="Last">
-      <jnt-icon [icon]="ui.icons.arrowLast" icon></jnt-icon>
+      <jnt-icon icon [icon]="ui.icons.font.last"></jnt-icon>
     </a>
   </div>
 </jnt-stack>

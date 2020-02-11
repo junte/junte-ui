@@ -74,10 +74,12 @@ export class ModalTestComponent implements OnInit {
     const options = new ModalOptions({
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
-      closing: this.closingControl.value ? ModalClosingOption.enable : ModalClosingOption.disable,
+      closing: this.closingControl.value
+        ? ModalClosingOption.enable
+        : ModalClosingOption.disable,
       title: {
         text: this.titleControl.value ? 'Modal' : null,
-        icon: this.iconControl.value ? UI.icons.settings : null
+        icon: this.iconControl.value ? UI.icons.font.settings : null
       },
       footer: this.footerControl.value ? this.footer : null
     });
@@ -93,7 +95,7 @@ export class ModalTestComponent implements OnInit {
       closing: this.closingControl.value ? ModalClosingOption.enable : ModalClosingOption.disable,
       title: {
         text: this.titleControl.value ? 'Calendar' : null,
-        icon: this.iconControl.value ? UI.icons.calendar : null
+        icon: this.iconControl.value ? UI.icons.font.calendar : null
       },
       footer: this.footerControl.value ? this.footer : null
     });

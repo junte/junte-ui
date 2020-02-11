@@ -28,11 +28,11 @@ export class MenuTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = this.fb.control(UI.scheme.primary);
-  linkControl = this.fb.control(SourceType.external);
+  schemeControl = this.fb.control(null);
+  linkControl = this.fb.control(null);
   targetControl = this.fb.control(null);
-  typeControl = this.fb.control(UI.orientation.horizontal);
-  spacingControl = this.fb.control(UI.size.large);
+  typeControl = this.fb.control(null);
+  spacingControl = this.fb.control(null);
   iconsControl = this.fb.control(false);
 
   builder = this.fb.group({

@@ -1,11 +1,11 @@
 <jnt-container>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
+    <jnt-link [icon]="ui.icons.svg.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/menu"
               target="_blank" title="GitLab">
     </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
+    <jnt-link [icon]="ui.icons.svg.figma"
               [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780"
               target="_blank" title="Figma">
@@ -23,27 +23,21 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
-                  <ng-container *ngFor="let title of ['Documentation', 'Home', 'Contacts']">
-                    <jnt-menu-item [scheme]="schemeControl.value"
-                                   [icon]="iconsControl.value ? ui.icons.search : null"
+                  <jnt-submenu title="General" [icon]="ui.icons.svg.angular">
+                    <jnt-badge [value]="5"></jnt-badge>
+                    <jnt-menu-item [title]="'Theming'"
+                                   [icon]="ui.icons.font.search"
                                    [target]="targetControl.value"
-                                   [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
-                                   [title]="title">
-                      <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
+                                   [link]="['documentation','navigation','menu']">
+                      <jnt-badge [text]="'100$'"></jnt-badge>
                     </jnt-menu-item>
-                  </ng-container>
-                  <jnt-submenu title="General" [icon]="iconsControl.value ? ui.icons.crown : null">
-                    <jnt-badge *ngIf="iconsControl.value" [value]="5"></jnt-badge>
-                    <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
-                      <jnt-menu-item [scheme]="schemeControl.value"
-                                     [icon]="iconsControl.value ? ui.icons.search : null"
-                                     [target]="targetControl.value"
-                                     [link]="linkControl.value == sourceType.external ? 'https://google.com' : linkControl.value == sourceType.local ? localLink : null"
-                                     [title]="title">
-                        <jnt-badge *ngIf="iconsControl.value" [value]="7"></jnt-badge>
-                      </jnt-menu-item>
-                    </ng-container>
                   </jnt-submenu>
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.font.search : null"
+                                 [target]="targetControl.value"
+                                 [link]="['/documentation','navigation','menu']"
+                                 [title]="'Text'">
+                    <jnt-badge [text]="'5h'"></jnt-badge>
+                  </jnt-menu-item>
                 </jnt-menu>
               </ng-template>
             </app-browser-preview>
@@ -53,7 +47,7 @@
               <jnt-form-item>
                 <jnt-form-label for="type">Type</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-select formControlName="type">
+                  <jnt-select formControlName="type" placeholder="Horizontal">
                     <jnt-select-option label="Horizontal"
                                        [icon]="localUi.icons.layout.horizontal"
                                        [key]="ui.orientation.horizontal"></jnt-select-option>
@@ -67,7 +61,7 @@
               <jnt-form-item>
                 <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-select formControlName="spacing">
+                  <jnt-select formControlName="spacing" placeholder="Normal">
                     <jnt-select-option label="Tiny"
                                        [icon]="localUi.icons.layout.tiny"
                                        [key]="ui.size.tiny"></jnt-select-option>
@@ -80,40 +74,6 @@
                     <jnt-select-option label="Large"
                                        [icon]="localUi.icons.layout.large"
                                        [key]="ui.size.large"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
-                <jnt-form-label for="scheme">Scheme</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="scheme">
-                    <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
-                    <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
-                    <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
-                    <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
-                <jnt-form-label for="link">Scheme</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="link">
-                    <jnt-select-option label="External link" [key]="sourceType.external"></jnt-select-option>
-                    <jnt-select-option label="Local link" [key]="sourceType.local"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
-                <jnt-form-label for="target">Target</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="target">
-                    <jnt-select-option label="Blank" [key]="ui.navigation.link.target.blank"></jnt-select-option>
-                    <jnt-select-option label="Self" [key]="ui.navigation.link.target.self"></jnt-select-option>
-                    <jnt-select-option label="Parent" [key]="ui.navigation.link.target.parent"></jnt-select-option>
-                    <jnt-select-option label="Top" [key]="ui.navigation.link.target.top"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-control>
               </jnt-form-item>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
+import { LocalUI } from '../../enums/local-ui';
 
 @Component({
   selector: 'app-documentation',
@@ -7,5 +8,8 @@ import { UI } from 'junte-ui';
   styleUrls: ['./documentation.component.scss']
 })
 export class DocumentationComponent {
+
   ui = UI;
+  localUi = LocalUI;
+
 }

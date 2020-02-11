@@ -13,7 +13,7 @@ import { PopoverPlacements, PopoverTriggers } from '../components/overlays/popov
 import { Color } from './color';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
-import { icons } from './icons/icons';
+import { icons } from './icons';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
 import { Position } from './position';

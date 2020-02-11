@@ -16,8 +16,8 @@ export class NumberArrayPipe implements PipeTransform {
 
 @Pipe({name: 'join'})
 export class JoinPipe implements PipeTransform {
-  transform(arr: any[], field: string = null): string {
-    return arr.map(el => !!field ? el[field] : el).join(', ');
+  transform(arr: any[], separator: string = ', '): string {
+    return arr.join(separator);
   }
 }
 

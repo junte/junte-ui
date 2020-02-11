@@ -8,20 +8,24 @@ export class ModalService {
 
   opened$ = new EventEmitter<boolean>();
 
-  register(modal: ModalComponent) {
-    if (!modal) {
-      throw new Error('jnt-modal component not found');
-    } else {
-      this.modal = modal;
-      this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
+  private checkRegistration() {
+    if (!this.modal) {
+      throw new Error('modal component is not registered');
     }
   }
 
+  register(modal: ModalComponent) {
+    this.modal = modal;
+    this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
+  }
+
   open(content: ModalContent, options?: ModalOptions) {
+    this.checkRegistration();
     this.modal.open(content, options);
   }
 
   close() {
+    this.checkRegistration();
     this.modal.close();
   }
 }

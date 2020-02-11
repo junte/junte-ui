@@ -20,7 +20,9 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     JunteUiModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }

@@ -10,13 +10,13 @@
     <td controls [attr.colspan]="(current | getDaysInMonth)">
       <div month>
         <button arrow (click)="current = subMonths(current, 1)">
-          <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.font.chevronLeft"></jnt-icon>
         </button>
         <div>
           {{current | format: 'MMMM'}}, {{current | format: 'yyyy'}}
         </div>
         <button arrow (click)="current = addMonths(current, 1)">
-          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.font.chevronRight"></jnt-icon>
         </button>
       </div>
     </td>
@@ -39,7 +39,7 @@
   <ng-template #noDataTemplate>
     <tr nodata>
       <td [attr.colspan]="(current | getDaysInMonth) + 1">
-        <jnt-icon [icon]="ui.icons.stopping" icon></jnt-icon>
+        <jnt-icon [icon]="ui.icons.font.sad" icon></jnt-icon>
       </td>
     </tr>
   </ng-template>
