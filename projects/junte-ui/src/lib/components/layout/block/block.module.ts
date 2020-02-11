@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MediaQueryDirective } from '../../../directives/media-query';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { BlockComponent } from './block.component';
 
 @NgModule({
   declarations: [
-    BlockComponent
+    BlockComponent,
+    MediaQueryDirective
   ],
   imports: [
     CommonModule,
     IconModule,
-    SpinnerModule
+    SpinnerModule,
   ],
   entryComponents: [
     BlockComponent
