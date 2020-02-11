@@ -29,15 +29,19 @@
             <jnt-col [tablet]="8">
               <app-browser-preview preview>
                 <ng-template #document>
-                  <jnt-link [scheme]="schemeControl.value"
-                            [outline]="outlineControl.value"
-                            [icon]="iconControl.value ? ui.icons.link : null"
-                            [disabled]="disableControl.value"
-                            [target]="targetControl.value"
-                            [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
-                            title="Documentation link">
-                    <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
-                  </jnt-link>
+                  <p>In this text we try to test link as inline element
+                    <jnt-link [scheme]="schemeControl.value"
+                              [outline]="outlineControl.value"
+                              [icon]="iconControl.value ? ui.icons.link : null"
+                              [disabled]="disableControl.value"
+                              [target]="targetControl.value"
+                              [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
+                              title="Documentation link">
+                      <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
+                    </jnt-link>
+                    which should inherit font size of paragraph, thus we should write here some long text and we believe
+                    that is possible!
+                  </p>
                 </ng-template>
               </app-browser-preview>
             </jnt-col>
@@ -105,57 +109,67 @@
 
       <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
-          <app-how-to-use
-            [test]="{selector:'link-test', type: 'LinkTestComponent'}"
-            scss="navigation/link"></app-how-to-use>
-          <app-code-highlight>
-            <![CDATA[
-            <jnt-link
-              ]]>
-              <ng-container *ngIf="schemeControl.value">
-                <![CDATA[
-                [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-              </ng-container>
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'link-test', type: 'LinkTestComponent'}"
+                  scss="navigation/link"></app-how-to-use>
+              </ng-template>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight file="link-test.template.html">
+                  <![CDATA[
+                  <jnt-link
+                    ]]>
+                    <ng-container *ngIf="schemeControl.value">
+                      <![CDATA[
+                      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+                    </ng-container>
 
-              <ng-container *ngIf="outlineControl.value">
-                <![CDATA[
-                [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-              </ng-container>
+                    <ng-container *ngIf="outlineControl.value">
+                      <![CDATA[
+                      [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+                    </ng-container>
 
-              <ng-container *ngIf="iconControl.value">
-                <![CDATA[
-                [icon]="ui.icons.search"]]>
-              </ng-container>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.search"]]>
+                    </ng-container>
 
-              <ng-container *ngIf="sourceControl.value == sourceType.external">
-                <![CDATA[
-                source="https://google.com"]]>
-              </ng-container>
+                    <ng-container *ngIf="sourceControl.value == sourceType.external">
+                      <![CDATA[
+                      source="https://google.com"]]>
+                    </ng-container>
 
-              <ng-container *ngIf="sourceControl.value == sourceType.local">
-                <![CDATA[
-                [source]="['/documentation', 'block']"]]>
-              </ng-container>
+                    <ng-container *ngIf="sourceControl.value == sourceType.local">
+                      <![CDATA[
+                      [source]="['/documentation', 'block']"]]>
+                    </ng-container>
 
-              <ng-container *ngIf="disableControl.value">
-                <![CDATA[
-                [disabled]="]]>{{disableControl.value}}<![CDATA["]]>
-              </ng-container>
+                    <ng-container *ngIf="disableControl.value">
+                      <![CDATA[
+                      [disabled]="]]>{{disableControl.value}}<![CDATA["]]>
+                    </ng-container>
 
-              <ng-container *ngIf="targetControl.value">
-                <![CDATA[
-                target="]]>{{targetControl.value}}<![CDATA["]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="badgeControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-link>
-            ]]>
-          </app-code-highlight>
+                    <ng-container *ngIf="targetControl.value">
+                      <![CDATA[
+                      target="]]>{{targetControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-link>
+                  ]]>
+                </app-code-highlight>
+              </ng-template>
+            </jnt-accordion-section>
+          </jnt-accordion>
         </ng-template>
       </jnt-tab>
 
