@@ -7,7 +7,7 @@
       </button>
     </td>
     <td colspan="5" date>
-      {{period | format: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
+      {{period | dfnsFormat: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
     </td>
     <td arrow-right>
       <button arrow (click)="period = addMonths(period, 1)">
@@ -53,6 +53,6 @@
 </table>
 
 <ng-template #defaultDayTemplate let-date="date">
-  <div default>{{date | getDate}}</div>
+  <div default>{{date | dfnsGetDate}}</div>
 </ng-template>
 

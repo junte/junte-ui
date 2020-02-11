@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Radio</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.svg.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/radio"
@@ -10,110 +9,150 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
 
+  <h1>Radio</h1>
+  <h3>Requirements</h3>
   <ol>
     <li>The radio should change the display when it is disabled and disabled & checked</li>
     <li>The radio should respond to mouse hover, click</li>
   </ol>
 
-  <hr>
+  <h3>How to use</h3>
+  <app-how-to-use
+    [test]="{selector:'radio-test', type: 'RadioTestComponent'}"
+    scss="forms/radio"></app-how-to-use>
 
-  <jnt-stack [type]="ui.layout.stack.type.vertical">
-    <ng-container *ngFor="let size of [ui.size.tiny, ui.size.small, ui.size.normal, ui.size.large]">
-      <jnt-radio label="Radio" [size]="size"></jnt-radio>
-      <jnt-radio [checked]="true" label="Radio checked" [size]="size"></jnt-radio>
-      <jnt-radio [disabled]="true" label="Radio disabled" [size]="size"></jnt-radio>
-      <jnt-radio [checked]="true" [disabled]="true" label="Radio disabled & checked" [size]="size"></jnt-radio>
-      <br>
-    </ng-container>
-  </jnt-stack>
+  <h3>Playground</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [type]="ui.layout.stack.type.horizontal">
 
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-radio [checked]="true" [disabled]="false" label="Radio" [size]="ui.size.large"></jnt-radio>
-]]></pre>
-  </ngx-prism>
+          <app-browser-preview preview>
+            <ng-template #document>
+              <jnt-form [formGroup]="formRadioGroup">
+                <jnt-radio-group formControlName="radioGroup">
+                  <jnt-stack [type]="ui.layout.stack.type.vertical">
+                    <jnt-radio [size]="sizeControl.value" value="Option 1" [label]="labelControl.value"
+                             [disabled]="disableControl.value" [checked]="checkedControl.value"></jnt-radio>
+                    <jnt-radio [size]="sizeControl.value" value="Option 2" label="Label 2"></jnt-radio>
+                    <jnt-radio [size]="sizeControl.value" value="Option 3" label="Label 3"></jnt-radio>
+                  </jnt-stack>
+                </jnt-radio-group>
+              </jnt-form>
+              <p>Selected value: {{radioGroupControl.value}}</p>
+            </ng-template>
+          </app-browser-preview>
 
-  <jnt-stack [type]="ui.layout.stack.type.vertical">
-    <h3>Radio Group</h3>
-    Selected: {{selected}}
-    <jnt-radio-group [(ngModel)]="selected">
-      <jnt-stack [gutter]="ui.gutter.small">
-        <jnt-radio [value]="1" label="Radio 1"></jnt-radio>
-        <jnt-radio [value]="2" label="Radio 2"></jnt-radio>
-        <jnt-radio [value]="3" label="Radio 3"></jnt-radio>
-      </jnt-stack>
-    </jnt-radio-group>
-
-    <h4>Reactive Forms with sample radio value</h4>
-    Selected: {{form.get('select').value}}
-    <jnt-form [formGroup]="form">
-      <jnt-radio-group formControlName="select">
-        <jnt-stack [gutter]="ui.gutter.small">
-          <jnt-radio [value]="4" label="Radio 4"></jnt-radio>
-          <jnt-radio [value]="5" label="Radio 5"></jnt-radio>
-          <jnt-radio [value]="6" label="Radio 6"></jnt-radio>
+          <jnt-form [formGroup]="form" builder>
+            <jnt-form-item>
+              <jnt-form-label for="spaclabeling">Label</jnt-form-label>
+              <jnt-input formControlName="label"></jnt-input>
+            </jnt-form-item>
+            <jnt-form-item>
+              <jnt-form-label for="size">Size of radio buttons</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="size">
+                  <jnt-select-option label="Tiny"
+                                     [icon]="localUi.icons.layout.tiny"
+                                     [key]="ui.size.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small"
+                                     [icon]="localUi.icons.layout.small"
+                                     [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal"
+                                     [icon]="localUi.icons.layout.normal"
+                                     [key]="ui.size.normal"></jnt-select-option>
+                  <jnt-select-option label="Large"
+                                     [icon]="localUi.icons.layout.large"
+                                     [key]="ui.size.large"></jnt-select-option>
+                </jnt-select>
+              </jnt-form-control>
+            </jnt-form-item>
+            <jnt-form-item>
+              <jnt-row>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="disable" label="Disabled" [value]="false"></jnt-checkbox>
+                </jnt-col>
+                <jnt-col [span]="6">
+                  <jnt-checkbox formControlName="checked" label="Checked" [value]="false"></jnt-checkbox>
+                </jnt-col>
+              </jnt-row>
+            </jnt-form-item>
+          </jnt-form>
         </jnt-stack>
-      </jnt-radio-group>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-code-highlight file="radio-test.component.html">
+          <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
 
-      <h4>Reactive Forms with object in value</h4>
-      Age: {{form.get('selectDeveloper').value}}
-      <jnt-radio-group formControlName="selectDeveloper" labelField="developer" valueField="age">
-        <jnt-stack [gutter]="ui.gutter.small">
-          <jnt-radio *ngFor="let d of developers" [value]="d"></jnt-radio>
-        </jnt-stack>
-      </jnt-radio-group>
-    </jnt-form>
-  </jnt-stack>
+          <![CDATA[<jnt-form [formGroup]="form"><jnt-radio-group formControlName="radioGroup"> ]]>
 
-  <ngx-prism language="html">
-    <pre><![CDATA[
-<jnt-radio-group [(ngModel)]="selected">
-  <jnt-radio [value]="1">Radio 1</jnt-radio>
-  <jnt-radio [value]="2">Radio 2</jnt-radio>
-  <jnt-radio [value]="3">Radio 3</jnt-radio>
-</jnt-radio-group>
-    ]]></pre>
-  </ngx-prism>
+          <![CDATA[<jnt-radio value="Option 1" ]]>
+            <ng-container *ngIf="disableControl.value">
+              <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="checkedControl.value">
+              <![CDATA[ checked="]]>{{checkedControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="labelControl.value">
+              <![CDATA[ label="]]>{{labelControl.value}}<![CDATA["]]>
+            </ng-container>
+            <ng-container *ngIf="sizeControl.value">
+              <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+            </ng-container>
+          <![CDATA[ ></jnt-radio>]]>
 
-  <h3>API</h3>
-  <h4>jnt-radio</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[checked]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[disabled]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>[label]</td>
-      <td>-</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[size]</td>
-      <td>-</td>
-      <td>tiny | small | normal | large</td>
-      <td>normal</td>
-    </tr>
-    </tbody>
-  </table>
+          <![CDATA[<jnt-radio value="Option 2" label="Label 2" ]]>
+            <ng-container *ngIf="sizeControl.value">
+              <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+            </ng-container>
+          <![CDATA[></jnt-radio>]]>
+
+          <![CDATA[<jnt-radio value="Option 3" label="Label 3" ]]>
+            <ng-container *ngIf="sizeControl.value">
+              <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+            </ng-container>
+            <![CDATA[></jnt-radio>]]>
+
+          <![CDATA[</jnt-radio-group></jnt-form>]]>
+        </app-code-highlight>
+        <app-code-highlight file="radio-test.component.ts" lang="js">
+          <pre>
+            <![CDATA[
+              import { Component, OnInit, ViewChild } from '@angular/core';
+              import { FormBuilder, FormControl } from '@angular/forms';
+              import { RadioComponent, TabComponent, UI } from 'junte/ui';
+
+              @Component({
+                selector: 'app-radio-test',
+                templateUrl: './radio-test.component.html',
+                styleUrls: ['./radio-test.component.scss']
+              })
+              export class RadioTestComponent implements OnInit {
+                ui = UI;
+
+                radioGroupControl = new FormControl();
+
+                form = this.fb.group({
+                  radioGroup: this.radioGroupControl
+                });
+
+                constructor(private fb: FormBuilder) {
+                }
+
+              }
+            ]]>
+          </pre>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-radio" [target]="radio"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
