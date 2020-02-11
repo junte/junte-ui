@@ -123,7 +123,7 @@
                     <ng-template #headerUserbarTemplate *ngIf="userMenuControl.value">
                       <jnt-app-header-userbar>
                         <ng-template #userbarAvatarTemplate>
-                          <jnt-avatar [size]="ui.size.small" image="assets/images/bob.jpeg"></jnt-avatar>
+                          <jnt-avatar [size]="ui.size.small" image="assets/images/elon.jpeg"></jnt-avatar>
                         </ng-template>
                         <ng-template #userbarMenuTemplate>
                           <jnt-menu [type]="ui.orientation.vertical"
@@ -145,7 +145,8 @@
 
                   <ng-template #withoutAsideTemplate let-sider="sider">
                     <jnt-app-content [aside]="sider">
-                      <jnt-app-sub-header *ngIf="subHeaderControl.value" (burger)="sider.toggle()">
+                      <jnt-app-sub-header *ngIf="subHeaderControl.value"
+                                          (burger)="sider.toggle()">
                         <jnt-breadcrumb></jnt-breadcrumb>
                       </jnt-app-sub-header>
                       <jnt-app-body>
@@ -169,7 +170,7 @@
                         <jnt-stack aside [align]="ui.flex.align.stretch">
                           <jnt-stack [align]="ui.flex.align.center">
                             <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
-                                        image="assets/images/alex.jpeg"></jnt-avatar>
+                                        [image]="'assets/images/elon.jpeg'"></jnt-avatar>
                             <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
                                        [align]="ui.flex.align.center">
                               <div>Elon Musk</div>

@@ -3,216 +3,212 @@
   <h1>Avatar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/avatar"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=791%3A0"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
-  <div teaser>
-    <ol>
-      <li>The avatar must have different sizes: <b>tiny, small, normal, large</b>.</li>
-      <li>The avatar must have different shapes: <b>circle, square</b>.</li>
-      <li>Avatar can contains <b>icon, text or image</b>.</li>
-      <li>If image passed it must replace icon or text.</li>
-      <li>If image or icon are not passed avatar must use first char of text.</li>
-    </ol>
-  </div>
 
-  <h3>How to use</h3>
-
-  <app-how-to-use
-    [test]="{selector:'avatar-test', type: 'AvatarTestComponent'}"
-    scss="elements/avatar"></app-how-to-use>
-
-  <h3>Playground</h3>
   <jnt-tabs playground>
+
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.layout.stack.type.horizontal">
-          <app-browser-preview preview>
-            <ng-template #document let-width="width" let-height="height">
-              <h5>Avatar</h5>
-              <jnt-avatar [size]="sizeControl.value"
-                          [shape]="shapeControl.value"
-                          [icon]="iconControl.value ? ui.icons.photoCamera : ui.icons.user"
-                          [text]="textControl.value ? 'User' : null"
-                          [image]="imageControl.value ? 'assets/images/bob.jpeg' : null">
-              </jnt-avatar>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                           [wrap]="ui.flex.wrap.wrap">
+                  <jnt-block title="Avatar" [padding]="ui.gutter.large">
+                    <jnt-avatar [size]="sizeControl.value"
+                                [shape]="shapeControl.value"
+                                [icon]="iconControl.value ? ui.icons.user : null"
+                                [text]="textControl.value ? 'User' : null"
+                                [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                    </jnt-avatar>
+                  </jnt-block>
 
-              <h5>Avatars list</h5>
-              <jnt-avatars-list [size]="sizeControl.value">
-                <jnt-avatar *ngFor="let av of 4 | mockArray"
-                            [icon]="iconControl.value ? ui.icons.photoCamera : ui.icons.user"
-                            [text]="textControl.value ? 'User' : null"
-                            [image]="imageControl.value ? 'assets/images/bob.jpeg' : null">
-                </jnt-avatar>
-              </jnt-avatars-list>
+                  <jnt-block title="List" [padding]="ui.gutter.large">
+                    <jnt-avatars-list [size]="sizeControl.value">
+                      <jnt-avatar *ngFor="let av of 4 | mockArray"
+                                  [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'User' : null"
+                                  [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                      </jnt-avatar>
+                    </jnt-avatars-list>
+                  </jnt-block>
 
-              <h5>Avatars group</h5>
-              <jnt-avatars-group [size]="sizeControl.value">
-                <jnt-avatar *ngFor="let av of 5 | mockArray"
-                            [icon]="iconControl.value ? ui.icons.photoCamera : ui.icons.user"
-                            [text]="textControl.value ? 'User' : null"
-                            [image]="imageControl.value ? 'assets/images/bob.jpeg' : null">
-                </jnt-avatar>
-              </jnt-avatars-group>
+                  <jnt-block title="Group" [padding]="ui.gutter.large">
+                    <jnt-avatars-group [size]="sizeControl.value">
+                      <jnt-avatar *ngFor="let av of 5 | mockArray"
+                                  [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'User' : null"
+                                  [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                      </jnt-avatar>
+                    </jnt-avatars-group>
+                  </jnt-block>
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder" builder>
 
-            </ng-template>
-          </app-browser-preview>
-          <jnt-form [formGroup]="form" builder>
+              <jnt-form-item>
+                <jnt-form-label for="size">Size</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="size" placeholder="Normal">
+                    <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
+                    <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                    <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                    <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-form-label for="size">Size</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="size">
-                  <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
-                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
+              <jnt-form-item>
+                <jnt-form-label for="shape">Shape</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-select formControlName="shape" placeholder="Circle">
+                    <jnt-select-option label="Circle" [key]="ui.shape.circle"></jnt-select-option>
+                    <jnt-select-option label="Square" [key]="ui.shape.square"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-control>
+              </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-form-label for="shape">Shape</jnt-form-label>
-              <jnt-form-control>
-                <jnt-select formControlName="shape">
-                  <jnt-select-option label="Circle" [key]="ui.shape.circle"></jnt-select-option>
-                  <jnt-select-option label="Square" [key]="ui.shape.square"></jnt-select-option>
-                </jnt-select>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="text" label="Text"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-
-            <jnt-form-item>
-              <jnt-form-control>
-                <jnt-checkbox formControlName="image" label="Image"></jnt-checkbox>
-              </jnt-form-control>
-            </jnt-form-item>
-          </jnt-form>
-        </jnt-stack>
+              <jnt-form-item>
+                <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                  <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+                  <jnt-checkbox formControlName="text" label="Text"></jnt-checkbox>
+                  <jnt-checkbox formControlName="image" label="Image"></jnt-checkbox>
+                </jnt-stack>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
       </ng-template>
     </jnt-tab>
 
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <p>
-          <jnt-link [icon]="ui.icons.copy"
-                    [outline]="ui.outline.ghost" title="Copy"></jnt-link>
-          the code to <code>avatar-test.component.html</code></p>
-        <app-code-highlight>
-          <![CDATA[
-          <jnt-avatar
-            ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="shapeControl.value">
-              <![CDATA[
-              [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.photoCamera"]]>
-            </ng-container>
-            <ng-container *ngIf="textControl.value">
-              <![CDATA[
-              text="User"]]>
-            </ng-container>
-            <ng-container *ngIf="imageControl.value">
-              <![CDATA[
-              image="assets/images/bob.jpeg"]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-avatar>
-          ]]>
-          <![CDATA[
-          <jnt-avatars-list
-            ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <ng-container *ngFor="let av of 4 | mockArray">
-              <![CDATA[
-              <jnt-avatar
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'avatar-test', type: 'AvatarTestComponent'}"
+                scss="elements/avatar"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="avatar-test.component.html">
+                <![CDATA[
+                <jnt-avatar
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="shapeControl.value">
+                    <![CDATA[
+                    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.photoCamera"]]>
+                  </ng-container>
+                  <ng-container *ngIf="textControl.value">
+                    <![CDATA[
+                    text="User"]]>
+                  </ng-container>
+                  <ng-container *ngIf="imageControl.value">
+                    <![CDATA[
+                    image="assets/images/bob.jpeg"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-avatar>
                 ]]>
-                <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                <jnt-avatars-list
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngFor="let av of 4 | mockArray">
+                    <![CDATA[
+                    <jnt-avatar
+                      ]]>
+                      <ng-container *ngIf="iconControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.photoCamera"]]>
+                      </ng-container>
+                      <ng-container *ngIf="textControl.value">
+                        <![CDATA[
+                        text="User"]]>
+                      </ng-container>
+                      <ng-container *ngIf="imageControl.value">
+                        <![CDATA[
+                        image="assets/images/bob.jpeg"]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-avatar>
+                    ]]>
+                  </ng-container>
                   <![CDATA[
-                  [icon]="ui.icons.photoCamera"]]>
-                </ng-container>
-                <ng-container *ngIf="textControl.value">
-                  <![CDATA[
-                  text="User"]]>
-                </ng-container>
-                <ng-container *ngIf="imageControl.value">
-                  <![CDATA[
-                  image="assets/images/bob.jpeg"]]>
-                </ng-container>
-                <![CDATA[>
-              </jnt-avatar>
-              ]]>
-            </ng-container>
-            <![CDATA[
-          </jnt-avatars-list>
-          ]]>
-          <![CDATA[
-          <jnt-avatars-group
-            ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <ng-container *ngFor="let av of 5 | mockArray">
-              <![CDATA[
-              <jnt-avatar
+                </jnt-avatars-list>
                 ]]>
-                <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                <jnt-avatars-group
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngFor="let av of 5 | mockArray">
+                    <![CDATA[
+                    <jnt-avatar
+                      ]]>
+                      <ng-container *ngIf="iconControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.photoCamera"]]>
+                      </ng-container>
+                      <ng-container *ngIf="textControl.value">
+                        <![CDATA[
+                        text="User"]]>
+                      </ng-container>
+                      <ng-container *ngIf="imageControl.value">
+                        <![CDATA[
+                        image="assets/images/bob.jpeg"]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-avatar>
+                    ]]>
+                  </ng-container>
                   <![CDATA[
-                  [icon]="ui.icons.photoCamera"]]>
-                </ng-container>
-                <ng-container *ngIf="textControl.value">
-                  <![CDATA[
-                  text="User"]]>
-                </ng-container>
-                <ng-container *ngIf="imageControl.value">
-                  <![CDATA[
-                  image="assets/images/bob.jpeg"]]>
-                </ng-container>
-                <![CDATA[>
-              </jnt-avatar>
-              ]]>
-            </ng-container>
-            <![CDATA[
-          </jnt-avatars-group>
-          ]]>
-        </app-code-highlight>
+                </jnt-avatars-group>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-avatar" [target]="avatar"></app-component-api>
-        <app-component-api selector="jnt-avatars-list" [target]="avatarsList"></app-component-api>
-        <app-component-api selector="jnt-avatars-group" [target]="avatarsGroup"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-avatar" [target]="types.avatar"></app-component-api>
+          <app-component-api selector="jnt-avatars-list" [target]="types.list"></app-component-api>
+          <app-component-api selector="jnt-avatars-group" [target]="types.group"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
 

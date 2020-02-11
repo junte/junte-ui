@@ -3,7 +3,10 @@
     <jnt-container>
       <h1>Junte <span>UI</span></h1>
 
-      <h2>Very strong <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon> framework!</h2>
+      <h2>Very strong
+        <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
+        framework!
+      </h2>
       <h5><b>Junte UI</b> is a collection of quality UI components for Angular
         <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
         with design system in Figma
@@ -78,8 +81,8 @@ export class AppModule {
 
 
       <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
-      means you have full control over styles, you can customize, build, switch themes or customize components in the
-      context!</p>
+        means you have full control over styles, you can customize, build, switch themes or customize components in the
+        context!</p>
       <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
       <ngx-prism language="js">
@@ -237,6 +240,8 @@ export class YourComponent {
     </jnt-container>
 
   </jnt-app-body>
-  <app-footer #footer></app-footer>
+  <jnt-app-footer>
+    <app-footer></app-footer>
+  </jnt-app-footer>
 
 </jnt-app-content>

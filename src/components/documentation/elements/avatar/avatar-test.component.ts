@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AvatarComponent, TabComponent, UI } from 'junte-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { AvatarsListComponent } from 'junte-ui';
-import { AvatarsGroupComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-avatar-test',
@@ -14,19 +12,21 @@ export class AvatarTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  avatar = AvatarComponent;
-  avatarsList = AvatarsListComponent;
-  avatarsGroup = AvatarsGroupComponent;
+  types = {
+    avatar: AvatarComponent,
+    list: AvatarsListComponent,
+    group: AvatarsGroupComponent
+  };
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  sizeControl = new FormControl(UI.size.normal);
-  shapeControl = new FormControl(UI.shape.circle);
-  iconControl = new FormControl(false);
-  textControl = new FormControl(false);
-  imageControl = new FormControl(false);
+  sizeControl = this.fb.control(null);
+  shapeControl = this.fb.control(null);
+  iconControl = this.fb.control(true);
+  textControl = this.fb.control(true);
+  imageControl = this.fb.control(true);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     size: this.sizeControl,
     shape: this.shapeControl,
     icon: this.iconControl,
@@ -38,7 +38,7 @@ export class AvatarTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

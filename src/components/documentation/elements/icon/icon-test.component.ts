@@ -20,7 +20,7 @@ export class IconTestComponent implements OnInit {
   icons = [];
 
   iconControl = this.fb.control({path: ['icons'], name: 'map', value: UI.icons.map});
-  sizeControl = this.fb.control(null);
+  sizeControl = this.fb.control(UI.size.large);
 
   form = this.fb.group({
     icon: this.iconControl,

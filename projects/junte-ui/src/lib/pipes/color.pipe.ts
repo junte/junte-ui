@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { getTextBrightness } from '../utils/brightness';
 
 const changeColor = (color: string, value: number): string => {
   const rgbColor = Math.round(parseInt(color, 16) - value);
@@ -18,5 +19,12 @@ const darkenLighten = (color: string, amount: number): string => {
 export class LightenDarkenPipe implements PipeTransform {
   transform(color: string, value: number): string {
     return darkenLighten(color, value);
+  }
+}
+
+@Pipe({name: 'textBrightness'})
+export class TextBrightnessPipe implements PipeTransform {
+  transform(color: string): string {
+    return getTextBrightness(color);
   }
 }

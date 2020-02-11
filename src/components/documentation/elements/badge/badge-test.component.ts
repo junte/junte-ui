@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import {UI} from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { BadgeComponent } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { BadgeComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,27 +12,27 @@ export class BadgeTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  badge = BadgeComponent;
+  types = {badge: BadgeComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  positionControl = new FormControl(UI.position.rightTop);
-  colorControl = new FormControl('#3949AB');
-  overflowControl = new FormControl();
-  valueControl = new FormControl(5);
+  positionControl = this.fb.control(null);
+  overflowControl = this.fb.control(null);
+  valueControl = this.fb.control(5);
+  colorControl = this.fb.control(null);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     position: this.positionControl,
-    color: this.colorControl,
     overflow: this.overflowControl,
     value: this.valueControl,
+    color: this.colorControl
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

@@ -2,7 +2,6 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
 import { Color } from '../../../enums/color';
 import { Position } from '../../../enums/position';
-import { getTextBrightness } from '../../../utils/brightness';
 
 @Component({
   selector: 'jnt-badge',
@@ -14,6 +13,8 @@ export class BadgeComponent {
 
   @HostBinding('attr.position')
   _position: Position = Position.rightTop;
+
+  _color: string = Color.purple;
 
   private _overflow = 99;
 
@@ -45,25 +46,25 @@ export class BadgeComponent {
   @PropertyApi({
     description: 'Badge background color',
     type: 'string',
-    default: 'purple'
+    default: 'ui.color.primary'
   })
-  @Input() color: string = Color.purple;
+  @Input() set color(color: string) {
+    this._color = color || Color.purple;
+  }
+
+  get color() {
+    return this._color;
+  }
 
   @PropertyApi({
     description: 'Badge position',
     path: 'ui.position',
-    default: 'rightTop',
+    default: 'inline',
     options: [Position.inline,
       Position.rightTop,
       Position.leftTop]
   })
-
   @Input() set position(position: Position) {
-    this._position = position || Position.rightTop;
-  }
-
-  @HostBinding('style.color')
-  get textColor() {
-    return getTextBrightness(this.color);
+    this._position = position || Position.inline;
   }
 }
