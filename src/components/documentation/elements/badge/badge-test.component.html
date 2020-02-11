@@ -25,8 +25,10 @@
                   *ngIf="positionControl.value === ui.position.inline || !positionControl.value; else positionTemplate">
                   <jnt-stack [type]="ui.layout.stack.type.horizontal"
                              [align]="ui.flex.align.center">
-                    <jnt-icon [icon]="ui.icons.home"
-                              [size]="ui.size.large"></jnt-icon>
+                    <div block>
+                      <jnt-icon [icon]="ui.icons.home"
+                                [size]="ui.size.large"></jnt-icon>
+                    </div>
                     <jnt-badge [value]="valueControl.value"
                                [text]="!valueControl.value ? '100$' : null"
                                [overflow]="overflowControl.value ? overflowControl.value : null"
@@ -41,8 +43,10 @@
                              [overflow]="overflowControl.value ? overflowControl.value : null"
                              [position]="positionControl.value"
                              [color]="colorControl.value">
-                    <jnt-icon [icon]="ui.icons.home"
-                              [size]="ui.size.large"></jnt-icon>
+                    <div block>
+                      <jnt-icon [icon]="ui.icons.home"
+                                [size]="ui.size.large"></jnt-icon>
+                    </div>
                   </jnt-badge>
                 </ng-template>
               </ng-template>
