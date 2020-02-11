@@ -3,21 +3,25 @@
 :host {
   display: block;
   position: relative;
+  border-radius: $corner-normal;
+  border: 1px solid $secondary-color;
+  box-sizing: border-box;
+  overflow: hidden;
   [wrapper] {
     position: absolute;
     top: 10.85%;
     left: 0;
     right: 0;
-    bottom: 6.25%;
+    bottom: 5%;
     overflow-y: hidden;
     overflow-y: scroll;
     padding: $gutter-big;
+    background: $page-background;
   }
 }
 
 svg {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: $corner-normal;
-  border: 1px solid $secondary-color;
 }

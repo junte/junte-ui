@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 
 @Component({
@@ -12,13 +13,20 @@ export class AnchorComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-anchor-host';
 
-  @Input() anchor: string;
+  @PropertyApi({
+    description: 'Anchor hash in URL',
+    type: 'string'
+  })
+  @Input()
+  anchor: string;
 
-  constructor(public router: Router) {
+  constructor(private router: Router) {
   }
 
-  nav() {
-    this.router.navigate([], {fragment: this.anchor});
+  navigate() {
+    this.router.navigate([],
+      {fragment: this.anchor})
+      .then(_ => null);
   }
 
 }

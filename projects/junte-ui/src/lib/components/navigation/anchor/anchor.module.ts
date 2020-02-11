@@ -9,8 +9,15 @@ import { AnchorComponent } from './anchor.component';
     CommonModule,
     IconModule
   ],
-  exports: [AnchorComponent],
-  declarations: [AnchorComponent]
+  declarations: [
+    AnchorComponent
+  ],
+  exports: [
+    AnchorComponent
+  ],
+  entryComponents: [
+    AnchorComponent
+  ]
 })
 export class AnchorModule {
 }

@@ -1,18 +1,20 @@
 <form [formGroup]="form">
-  <jnt-icon *ngIf="icon && !label" [icon]="icon" icon></jnt-icon>
-  <div *ngIf="label" label>{{label}}</div>
+  <jnt-icon icon *ngIf="icon && !label"
+            [icon]="icon"></jnt-icon>
+  <div label *ngIf="label">{{label}}</div>
+
   <input formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
          [min]="min"
          [max]="max">
 
-  <div *ngIf="type === inputType.number" arrows>
+  <div arrows *ngIf="type === inputType.number">
     <button [disabled]="inputControl.disabled" (click)="up()">
-      <jnt-icon [icon]="ui.icons.chevronUp" icon></jnt-icon>
+      <jnt-icon [icon]="ui.icons.font.chevronUp" icon></jnt-icon>
     </button>
     <button [disabled]="inputControl.disabled" (click)="down()">
-      <jnt-icon [icon]="ui.icons.chevronDown" icon></jnt-icon>
+      <jnt-icon [icon]="ui.icons.font.chevronDown" icon></jnt-icon>
     </button>
   </div>
 </form>

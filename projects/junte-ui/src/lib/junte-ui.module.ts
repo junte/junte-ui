@@ -1,8 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { CollectionsModule } from './components/collections/collections.module';
 import { DynamicModule } from './components/dynamic/dynamic.module';
 import { ElementsModule } from './components/elements/elements.module';
@@ -11,6 +7,7 @@ import { GeneralModule } from './components/general/general.module';
 import { LayoutModule } from './components/layout/layout.module';
 import { NavigationModule } from './components/navigation/navigation.module';
 import { OverlaysModule } from './components/overlays/overlays.module';
+import { SharedModule } from './components/shared/shared.module';
 import { AnimationPipeModule } from './pipes/animation-pipe.module';
 import { ArrayPipeModule } from './pipes/array-pipe.module';
 import { ColorPipeModule } from './pipes/color-pipe.module';
@@ -20,26 +17,20 @@ import { IsEqualPipeModule } from './pipes/is-equal.module';
 import { SanitizePipeModule } from './pipes/sanitize.module';
 import { SumPipeModule } from './pipes/sum-pipe.module';
 import { TextPipeModule } from './pipes/text-pipe.module';
-import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule
-  ],
   exports: [
-    CollectionsModule,
-    DynamicModule,
-    ElementsModule,
-    UiFormsModule,
     GeneralModule,
+    SharedModule,
+
     LayoutModule,
     NavigationModule,
+    ElementsModule,
+    UiFormsModule,
+    CollectionsModule,
     OverlaysModule,
-    SharedModule,
+    DynamicModule,
+
     AnimationPipeModule,
     ArrayPipeModule,
     ColorPipeModule,
@@ -49,8 +40,7 @@ import { SharedModule } from './components/shared/shared.module';
     SanitizePipeModule,
     SumPipeModule,
     TextPipeModule
-  ],
-  declarations: []
+  ]
 })
 export class JunteUiModule {
 }

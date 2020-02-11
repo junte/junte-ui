@@ -3,15 +3,15 @@
   <tr>
     <td arrow-left>
       <button arrow (click)="period = subMonths(period, 1)">
-        <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.font.chevronLeft"></jnt-icon>
       </button>
     </td>
     <td colspan="5" date>
-      {{period | format: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
+      {{period | dfnsFormat: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
     </td>
     <td arrow-right>
       <button arrow (click)="period = addMonths(period, 1)">
-        <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.font.chevronRight"></jnt-icon>
       </button>
     </td>
     <td *ngIf="metrics.length"
@@ -53,6 +53,6 @@
 </table>
 
 <ng-template #defaultDayTemplate let-date="date">
-  <div default>{{date | getDate}}</div>
+  <div default>{{date | dfnsGetDate}}</div>
 </ng-template>
 

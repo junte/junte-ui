@@ -25,7 +25,7 @@ $badge-positions: (
 );
 
 @mixin position($position) {
-  sup {
+  div {
     position: #{map-get($position, position)};
     left: #{map-get($position, left)};
     right: #{map-get($position, right)};
@@ -46,7 +46,7 @@ $badge-positions: (
   }
 }
 
-sup {
+div {
   top: 0;
   display: inline-block;
   line-height: $badge-size;

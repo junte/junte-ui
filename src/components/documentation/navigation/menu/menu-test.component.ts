@@ -28,14 +28,14 @@ export class MenuTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(UI.scheme.primary);
-  linkControl = new FormControl(SourceType.external);
-  targetControl = new FormControl();
-  typeControl = new FormControl(UI.orientation.horizontal);
-  spacingControl = new FormControl(UI.size.large);
-  iconsControl = new FormControl(false);
+  schemeControl = this.fb.control(null);
+  linkControl = this.fb.control(null);
+  targetControl = this.fb.control(null);
+  typeControl = this.fb.control(null);
+  spacingControl = this.fb.control(null);
+  iconsControl = this.fb.control(false);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     scheme: this.schemeControl,
     link: this.linkControl,
     target: this.targetControl,
@@ -48,7 +48,7 @@ export class MenuTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 }

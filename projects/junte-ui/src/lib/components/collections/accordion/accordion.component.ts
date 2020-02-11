@@ -1,4 +1,4 @@
-import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
+import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { AccordionSectionComponent } from './section/accordion-section.component';
 import { UI } from '../../../enums/ui';
 
@@ -15,6 +15,7 @@ export class AccordionComponent {
   @ContentChildren(AccordionSectionComponent)
   sections: QueryList<AccordionSectionComponent>;
 
+  @Input()
   active = 0;
 
 }

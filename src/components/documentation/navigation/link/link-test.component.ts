@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { LinkComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI, LinkComponent, TabComponent } from 'junte-ui';
 
 enum SourceType {
   external = 'external',
@@ -23,13 +23,13 @@ export class LinkTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  schemeControl = new FormControl(null);
-  outlineControl = new FormControl(null);
-  iconControl = new FormControl(false);
-  sourceControl = new FormControl(SourceType.local);
-  disableControl = new FormControl();
-  targetControl = new FormControl(null);
-  badgeControl = new FormControl(false);
+  schemeControl = this.fb.control(null);
+  outlineControl = this.fb.control(null);
+  sourceControl = this.fb.control(SourceType.local);
+  targetControl = this.fb.control(null);
+  iconControl = this.fb.control(true);
+  badgeControl = this.fb.control(true);
+  disableControl = this.fb.control(false);
 
   form = this.fb.group({
     scheme: this.schemeControl,
@@ -50,3 +50,4 @@ export class LinkTestComponent implements OnInit {
   }
 
 }
+

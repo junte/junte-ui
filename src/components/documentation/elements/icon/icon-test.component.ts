@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { TabComponent, IconComponent } from 'junte-ui';
+import { IconComponent, TabComponent, UI, ModalService, ModalOptions } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { SelectIconComponent } from './select-icon/select-icon.component';
 
 @Component({
   selector: 'app-icon-test',
@@ -19,22 +19,36 @@ export class IconTestComponent implements OnInit {
 
   icons = [];
 
-  sizeControl = new FormControl(UI.size.normal);
+  iconControl = this.fb.control({path: ['font'], name: 'map', value: UI.icons.font.map});
+  sizeControl = this.fb.control(UI.size.normal);
 
   form = this.fb.group({
+    icon: this.iconControl,
     size: this.sizeControl,
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private modal: ModalService,
+              private injector: Injector,
+              private cfr: ComponentFactoryResolver,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
-
     this.form.valueChanges
       .subscribe(() => this.code.flash());
   }
 
-  refresh() {
-
+  select() {
+    const component = this.cfr.resolveComponentFactory(SelectIconComponent)
+      .create(this.injector);
+    component.instance.selected.subscribe(icon => {
+      this.iconControl.setValue(icon);
+      this.modal.close();
+    });
+    const options = new ModalOptions({
+      title: {text: 'Select icon'},
+      maxHeight: 600
+    });
+    this.modal.open(component, options);
   }
 }

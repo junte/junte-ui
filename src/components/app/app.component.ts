@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
+import { LocalUI } from '../../enums/local-ui';
 
 export enum Theme {
   light = 'light',
@@ -15,6 +16,7 @@ export enum Theme {
 export class AppComponent implements OnInit, AfterViewInit {
 
   ui = UI;
+  localUi = LocalUI;
   theme = Theme;
 
   loading = false;

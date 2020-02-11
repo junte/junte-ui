@@ -5,7 +5,6 @@ import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
 import { SharedModule } from 'src/components/documentation/shared/shared.module';
 import { ModalTestFactoryComponent } from './test.component';
-
 import { ModalTestComponent } from './modal-test.component';
 
 @NgModule({
@@ -23,8 +22,7 @@ import { ModalTestComponent } from './modal-test.component';
   declarations: [
     ModalTestComponent,
     ModalTestFactoryComponent
-  ],
-  providers: [],
+  ]
 })
 export class ModalTestModule {
 }

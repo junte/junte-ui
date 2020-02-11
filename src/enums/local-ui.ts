@@ -4,6 +4,22 @@ export class LocalUI {
     preview: 'preview:svg:local',
     code: 'code:svg:local',
     api: 'api:svg:local',
+
+    menu: {
+      documentation: 'documentation:font:junte-ui-test-default',
+      contacts: 'contacts:font:junte-ui-test-default',
+      
+      layout: 'layout:font:junte-ui-test-default',
+      general: 'general:font:junte-ui-test-default',
+      navigation: 'navigation:font:junte-ui-test-default',
+      collections: 'collections:font:junte-ui-test-default',
+      elements: 'elements:font:junte-ui-test-default',
+      forms: 'forms:font:junte-ui-test-default',
+      overlays: 'overlays:font:junte-ui-test-default',
+      dynamic: 'dynamic:font:junte-ui-test-default',
+      other: 'other:font:junte-ui-test-default',
+    },
+
     layout: {
       padding: {
         tiny: 'padding-tiny:font:junte-ui-test-layout',

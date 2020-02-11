@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { TabComponent, TabsComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 
@@ -12,24 +12,25 @@ export class TabsTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  tabs = TabsComponent;
-  tab = TabComponent;
+  types = {tabs: TabsComponent, tab: TabComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  outlineControl = new FormControl(UI.outline.fill);
-  iconsControl = new FormControl(false);
+  outlineControl = this.fb.control(null);
+  iconsControl = this.fb.control(true);
+  badgesControl = this.fb.control(true);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     outline: this.outlineControl,
-    icons: this.iconsControl
+    icons: this.iconsControl,
+    badges: this.badgesControl
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 
