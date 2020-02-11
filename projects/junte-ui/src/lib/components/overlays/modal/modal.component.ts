@@ -37,7 +37,7 @@ export class ModalOptions {
   title?: ModalTitle;
   footer?: TemplateRef<any>;
 
-  constructor(defs: ModalOptions = null) {
+  constructor(defs:any = null) {
     Object.assign(this, defs);
   }
 }
