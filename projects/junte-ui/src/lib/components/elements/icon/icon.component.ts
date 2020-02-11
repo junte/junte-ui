@@ -14,8 +14,12 @@ export class IconComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-icon-host';
 
-  private _icon: string;
   iconType = IconType;
+
+  _size: Size = Size.normal;
+
+  @HostBinding('attr.icon')
+  _icon: string;
 
   @PropertyApi({
     description: 'Icon size',
@@ -36,21 +40,18 @@ export class IconComponent {
   iconset: string = DEFAULT_ICONSET;
 
   @PropertyApi({
-    description: 'Icon',
-    path: 'ui.icons'
+    description: 'Icon query in special format',
+    type: '[name:type:iconset]'
   })
-
-  @HostBinding('attr.icon')
   @Input()
-  set icon(icon: string) {
-    const chunks = icon.split(':');
-    this._icon = chunks[0];
-    this.type = chunks.length > 1 ? IconType[chunks[1]] : IconType.font;
-    this.iconset = chunks.length > 2 ? chunks[2] : DEFAULT_ICONSET;
-  }
+  set icon(query: string) {
+    if (!query) {
+      throw new Error('Icon query was not passed');
+    }
 
-  get icon() {
-    return this._icon;
+    const [icon, type, iconset] = query.split(':');
+    [this._icon, this.type, this.iconset] =
+      [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET];
   }
 
 }

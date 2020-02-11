@@ -8,7 +8,7 @@
         <jnt-stack [type]="ui.layout.stack.type.horizontal"
                    [align]="ui.flex.align.center">
           <jnt-icon icon *ngIf="submenu.icon" [icon]="submenu.icon"></jnt-icon>
-          <jnt-stack text ][type]="ui.layout.stack.type.horizontal"
+          <jnt-stack text [type]="ui.layout.stack.type.horizontal"
                      [align]="ui.flex.align.center">
             <span>{{submenu.title}}</span>
             <jnt-stack *ngIf="!!submenu.badges.length"
@@ -22,7 +22,7 @@
             </jnt-stack>
           </jnt-stack>
           <jnt-icon toggle *ngIf="type == ui.orientation.horizontal"
-                    [icon]="submenu.opened ? ui.icons.font.chevronUp : ui.icons.font.chevronDown"></jnt-icon>
+                    [icon]="submenu.opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
         </jnt-stack>
       </div>
 

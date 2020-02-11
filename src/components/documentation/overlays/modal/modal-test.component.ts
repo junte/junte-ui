@@ -79,7 +79,7 @@ export class ModalTestComponent implements OnInit {
         : ModalClosingOption.disable,
       title: {
         text: this.titleControl.value ? 'Modal' : null,
-        icon: this.iconControl.value ? UI.icons.font.settings : null
+        icon: this.iconControl.value ? UI.icons.settings : null
       },
       footer: this.footerControl.value ? this.footer : null
     });
@@ -95,7 +95,7 @@ export class ModalTestComponent implements OnInit {
       closing: this.closingControl.value ? ModalClosingOption.enable : ModalClosingOption.disable,
       title: {
         text: this.titleControl.value ? 'Calendar' : null,
-        icon: this.iconControl.value ? UI.icons.font.calendar : null
+        icon: this.iconControl.value ? UI.icons.calendar : null
       },
       footer: this.footerControl.value ? this.footer : null
     });
