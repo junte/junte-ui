@@ -8,7 +8,7 @@ export class LocalUI {
     menu: {
       documentation: 'documentation:font:junte-ui-test-default',
       contacts: 'contacts:font:junte-ui-test-default',
-      
+
       layout: 'layout:font:junte-ui-test-default',
       general: 'general:font:junte-ui-test-default',
       navigation: 'navigation:font:junte-ui-test-default',
@@ -53,7 +53,8 @@ export class LocalUI {
       around: 'around:font:junte-ui-test-layout',
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
-      baseline: 'baseline:font:junte-ui-test-layout'
+      baseline: 'baseline:font:junte-ui-test-layout',
+      cup: 'cup:font:junte-ui-test-layout',
     }
   };
 }
