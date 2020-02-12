@@ -65,111 +65,123 @@
               </app-browser-preview>
             </jnt-col>
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form" builder>
-                <jnt-form-item>
-                  <jnt-form-label for="type">Sketch</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="sketch" [allowEmpty]="false">
-                      <jnt-select-option label="User"
-                                         [key]="sketch.User"></jnt-select-option>
-                      <jnt-select-option label=" Vertical post"
-                                         [key]="sketch.VerticalPost"></jnt-select-option>
-                      <jnt-select-option label=" Horizontal post"
-                                         [key]="sketch.HorizontalPost"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+              <jnt-form [formGroup]="builder" builder>
+                <jnt-stack [align]="ui.flex.align.stretch">
+                  <jnt-form-item>
+                    <jnt-form-label for="type">Sketch</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="sketch" [allowEmpty]="false">
+                        <jnt-select-option label="User"
+                                           [key]="sketch.User"></jnt-select-option>
+                        <jnt-select-option label=" Vertical post"
+                                           [key]="sketch.VerticalPost"></jnt-select-option>
+                        <jnt-select-option label=" Horizontal post"
+                                           [key]="sketch.HorizontalPost"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="animation"
-                                  label="Animation"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-control>
+                      <jnt-checkbox formControlName="animation"
+                                    label="Animation"></jnt-checkbox>
+                    </jnt-form-control>
+                  </jnt-form-item>
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Code" [icon]="localUi.icons.code">
+      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
-          <app-how-to-use
-            [test]="{selector:'skeleton-test', type: 'SkeletonTestComponent'}"
-            scss="layout/skeleton"></app-how-to-use>
-          <app-code-highlight file="skeleton-test.template.html">
-            <ng-container [ngSwitch]="sketchControl.value">
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'skeleton-test', type: 'SkeletonTestComponent'}"
+                  scss="layout/skeleton"></app-how-to-use>
+              </ng-template>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight file="skeleton-test.template.html">
+                  <ng-container [ngSwitch]="sketchControl.value">
 
-              <ng-container *ngSwitchCase="sketch.User">
-                <![CDATA[
-                <jnt-stack [align]="ui.flex.align.center"
-                           [type]="ui.layout.stack.type.vertical">
-                  <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
+                    <ng-container *ngSwitchCase="sketch.User">
+                      <![CDATA[
+                      <jnt-stack [align]="ui.flex.align.center"
+                                 [type]="ui.layout.stack.type.vertical">
+                        <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                        <jnt-skeleton [lines]="2" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                      </jnt-stack>
+                      ]]>
                     </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                  <jnt-skeleton [lines]="2" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
-                    </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                </jnt-stack>
-                ]]>
-              </ng-container>
 
-              <ng-container *ngSwitchCase="sketch.VerticalPost">
-                <![CDATA[
-                <jnt-stack [align]="ui.flex.align.center">
-                  <jnt-skeleton [type]="ui.layout.skeleton.type.image"
-                                [size]="ui.size.large" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
+                    <ng-container *ngSwitchCase="sketch.VerticalPost">
+                      <![CDATA[
+                      <jnt-stack [align]="ui.flex.align.center">
+                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                      [size]="ui.size.large" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                        <jnt-skeleton [lines]="3" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                      </jnt-stack>
+                      ]]>
                     </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                  <jnt-skeleton [lines]="3" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
-                    </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                </jnt-stack>
-                ]]>
-              </ng-container>
 
-              <ng-container *ngSwitchCase="sketch.HorizontalPost">
-                <![CDATA[
-                <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                           [size]="ui.size.normal">
-                  <jnt-skeleton [type]="ui.layout.skeleton.type.image"
-                                [size]="ui.size.large" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
+                    <ng-container *ngSwitchCase="sketch.HorizontalPost">
+                      <![CDATA[
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                 [size]="ui.size.normal">
+                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                                      [size]="ui.size.large" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                        <jnt-skeleton [lines]="5" ]]>
+                          <ng-container *ngIf="!animationControl.value">
+                            <![CDATA[[animated]="false"]]>
+                          </ng-container>
+                          <![CDATA[>
+                        </jnt-skeleton>
+                      </jnt-stack>
+                      ]]>
                     </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                  <jnt-skeleton [lines]="5" ]]>
-                    <ng-container *ngIf="!animationControl.value">
-                      <![CDATA[[animated]="false"]]>
-                    </ng-container>
-                    <![CDATA[>
-                  </jnt-skeleton>
-                </jnt-stack>
-                ]]>
-              </ng-container>
-            </ng-container>
+                  </ng-container>
 
-          </app-code-highlight>
+                </app-code-highlight>
+              </ng-template>
+            </jnt-accordion-section>
+          </jnt-accordion>
         </ng-template>
       </jnt-tab>
 
       <jnt-tab title="API" [icon]="localUi.icons.api">
         <ng-template #tabContentTemplate>
           <app-component-api selector="jnt-skeleton"
-                             [target]="skeleton"></app-component-api>
+                             [target]="types.skeleton"></app-component-api>
         </ng-template>
       </jnt-tab>
     </jnt-tabs>

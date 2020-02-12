@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SkeletonComponent, UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { TabComponent } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 export enum Sketch {
   User = 'user',
@@ -14,22 +15,29 @@ export enum Sketch {
   templateUrl: './skeleton-test.component.html',
   styleUrls: ['./skeleton-test.component.scss']
 })
-export class SkeletonTestComponent {
+export class SkeletonTestComponent implements OnInit {
 
   ui = UI;
   sketch = Sketch;
   localUi = LocalUI;
-  skeleton = SkeletonComponent;
+  types = {skeleton: SkeletonComponent};
+
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   sketchControl = this.fb.control(Sketch.User);
   animationControl = this.fb.control(true);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     sketch: this.sketchControl,
     animation: this.animationControl,
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }
