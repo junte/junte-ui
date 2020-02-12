@@ -24,7 +24,7 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-stack [type]="ui.layout.stack.type.horizontal"
                            [wrap]="ui.flex.wrap.wrap">
-                  <jnt-block title="Avatar" [padding]="ui.gutter.large">
+                  <jnt-block title="Elon Musk" [padding]="ui.gutter.large">
                     <jnt-avatar [size]="sizeControl.value"
                                 [shape]="shapeControl.value"
                                 [icon]="iconControl.value ? ui.icons.user : null"
@@ -33,21 +33,43 @@
                     </jnt-avatar>
                   </jnt-block>
 
-                  <jnt-block title="List" [padding]="ui.gutter.large">
+                  <jnt-block title="Inventors" [padding]="ui.gutter.large">
                     <jnt-avatars-list [size]="sizeControl.value">
-                      <jnt-avatar *ngFor="let av of 4 | mockArray"
-                                  [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'User' : null"
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Mark' : null"
+                                  [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Bill' : null"
+                                  [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Steve' : null"
+                                  [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Elon' : null"
                                   [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                       </jnt-avatar>
                     </jnt-avatars-list>
                   </jnt-block>
 
-                  <jnt-block title="Group" [padding]="ui.gutter.large">
-                    <jnt-avatars-group [size]="sizeControl.value">
-                      <jnt-avatar *ngFor="let av of 5 | mockArray"
-                                  [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'User' : null"
+                  <jnt-block title="Inventors" [padding]="ui.gutter.large">
+                    <jnt-avatars-group [size]="sizeControl.value" [total]="10">
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Mark' : null"
+                                  [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Bill' : null"
+                                  [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Steve' : null"
+                                  [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                      </jnt-avatar>
+                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'Elon' : null"
                                   [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                       </jnt-avatar>
                     </jnt-avatars-group>

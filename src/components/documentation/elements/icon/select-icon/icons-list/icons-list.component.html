@@ -1,4 +1,4 @@
-<code *ngIf="name">{{name}}</code>
+<jnt-label *ngIf="name" [label]="name"></jnt-label>
 
 <jnt-stack icons [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">
   <jnt-button *ngFor="let icon of (icons | getIcons)" [outline]="ui.outline.transparent"

@@ -21,4 +21,3 @@ npm publish ./dist/junte-ui/junte-ui-0.0.251.tgz
 Developing
 
 For developing component please use https://gitlab.com/junte/junte-ui/-/wikis/Component-check-list
-

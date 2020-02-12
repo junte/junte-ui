@@ -9,7 +9,7 @@ export class PropertyMetadata {
   path?: string;
   type?: string;
   options?: string[];
-  default?: string;
+  default?: string | number;
 }
 
 export class MethodMetadata {
