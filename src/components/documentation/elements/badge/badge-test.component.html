@@ -53,43 +53,47 @@
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder" builder>
-              <jnt-form-item>
-                <jnt-form-label for="position">Position</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="position" placeholder="Inline">
-                    <jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>
-                    <jnt-select-option label="Right top" [key]="ui.position.rightTop"></jnt-select-option>
-                    <jnt-select-option label="Left top" [key]="ui.position.leftTop"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
-                <jnt-form-label for="value">Value</jnt-form-label>
-                <jnt-switcher formControlName="value">
-                  <jnt-switcher-option label="5" [value]="5"></jnt-switcher-option>
-                  <jnt-switcher-option label="10" [value]="10"></jnt-switcher-option>
-                  <jnt-switcher-option label="100" [value]="100"></jnt-switcher-option>
-                  <jnt-switcher-option label="1000" [value]="1000"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="position">Position</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="position" placeholder="Inline">
+                      <jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>
+                      <jnt-select-option label="Right top" [key]="ui.position.rightTop"></jnt-select-option>
+                      <jnt-select-option label="Left top" [key]="ui.position.leftTop"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="overflow">Overflow</jnt-form-label>
-                <jnt-switcher formControlName="overflow" placeholder="99">
-                  <jnt-switcher-option label="9" [value]="9"></jnt-switcher-option>
-                  <jnt-switcher-option label="99" [value]="99"></jnt-switcher-option>
-                  <jnt-switcher-option label="999" [value]="999"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="value">Value</jnt-form-label>
+                  <jnt-switcher formControlName="value">
+                    <jnt-switcher-option label="5" [value]="5"></jnt-switcher-option>
+                    <jnt-switcher-option label="10" [value]="10"></jnt-switcher-option>
+                    <jnt-switcher-option label="100" [value]="100"></jnt-switcher-option>
+                    <jnt-switcher-option label="1000" [value]="1000"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="color">Background color</jnt-form-label>
-                <jnt-form-control>
-                  <input type="color" formControlName="color">
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="overflow">Overflow</jnt-form-label>
+                  <jnt-switcher formControlName="overflow" placeholder="99">
+                    <jnt-switcher-option label="9" [value]="9"></jnt-switcher-option>
+                    <jnt-switcher-option label="99" [value]="99"></jnt-switcher-option>
+                    <jnt-switcher-option label="999" [value]="999"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="color">Background color</jnt-form-label>
+                  <jnt-form-control>
+                    <input type="color" formControlName="color">
+                  </jnt-form-control>
+                </jnt-form-item>
+
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>

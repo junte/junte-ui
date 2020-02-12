@@ -24,7 +24,6 @@ export class MenuTestComponent implements OnInit {
   menuItem = MenuItemComponent;
   menu = MenuComponent;
   submenu = SubmenuComponent;
-  localLink = ['/documentation', 'block'];
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
@@ -33,7 +32,8 @@ export class MenuTestComponent implements OnInit {
   targetControl = this.fb.control(null);
   typeControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
-  iconsControl = this.fb.control(false);
+  iconsControl = this.fb.control(true);
+  badgesControl = this.fb.control(true);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -42,6 +42,7 @@ export class MenuTestComponent implements OnInit {
     type: this.typeControl,
     spacing: this.spacingControl,
     icons: this.iconsControl,
+    badges: this.badgesControl
   });
 
   constructor(private fb: FormBuilder) {

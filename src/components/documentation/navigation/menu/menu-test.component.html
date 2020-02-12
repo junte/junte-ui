@@ -23,66 +23,72 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
-                  <jnt-submenu title="General" [icon]="ui.icons.angular">
-                    <jnt-badge [value]="5"></jnt-badge>
+                  <jnt-submenu title="General"
+                               [icon]="iconsControl.value ? ui.icons.angular : null">
+                    <jnt-badge *ngIf="badgesControl.value" [value]="5"></jnt-badge>
                     <jnt-menu-item [title]="'Theming'"
-                                   [icon]="ui.icons.search"
+                                   [icon]="iconsControl.value ? ui.icons.search : null"
                                    [target]="targetControl.value"
                                    [link]="['documentation','navigation','menu']">
-                      <jnt-badge [text]="'100$'"></jnt-badge>
+                      <jnt-badge *ngIf="badgesControl.value" [text]="'100$'"></jnt-badge>
                     </jnt-menu-item>
                   </jnt-submenu>
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.search : null"
                                  [target]="targetControl.value"
                                  [link]="['/documentation','navigation','menu']"
                                  [title]="'Text'">
-                    <jnt-badge [text]="'5h'"></jnt-badge>
+                    <jnt-badge *ngIf="badgesControl.value" [text]="'5h'"></jnt-badge>
                   </jnt-menu-item>
                 </jnt-menu>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder" builder>
-              <jnt-form-item>
-                <jnt-form-label for="type">Type</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="type" placeholder="Horizontal">
-                    <jnt-select-option label="Horizontal"
-                                       [icon]="localUi.icons.layout.horizontal"
-                                       [key]="ui.orientation.horizontal"></jnt-select-option>
-                    <jnt-select-option label="Vertical"
-                                       [icon]="localUi.icons.layout.vertical"
-                                       [key]="ui.orientation.vertical"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
-                <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="spacing" placeholder="Normal">
-                    <jnt-select-option label="Tiny"
-                                       [icon]="localUi.icons.layout.tiny"
-                                       [key]="ui.size.tiny"></jnt-select-option>
-                    <jnt-select-option label="Small"
-                                       [icon]="localUi.icons.layout.small"
-                                       [key]="ui.size.small"></jnt-select-option>
-                    <jnt-select-option label="Normal"
-                                       [icon]="localUi.icons.layout.normal"
-                                       [key]="ui.size.normal"></jnt-select-option>
-                    <jnt-select-option label="Large"
-                                       [icon]="localUi.icons.layout.large"
-                                       [key]="ui.size.large"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="type">Type</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="type" placeholder="Horizontal">
+                      <jnt-select-option label="Horizontal"
+                                         [icon]="localUi.icons.layout.horizontal"
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
+                      <jnt-select-option label="Vertical"
+                                         [icon]="localUi.icons.layout.vertical"
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="icons" label="Icons and badges"></jnt-checkbox>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="spacing">Spacing between items</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="spacing" placeholder="Normal">
+                      <jnt-select-option label="Tiny"
+                                         [icon]="localUi.icons.layout.tiny"
+                                         [key]="ui.size.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         [icon]="localUi.icons.layout.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         [icon]="localUi.icons.layout.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         [icon]="localUi.icons.layout.large"
+                                         [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                  <jnt-checkbox formControlName="icons"
+                                label="Icons"></jnt-checkbox>
+                  <jnt-checkbox formControlName="badges"
+                                label="Badges"></jnt-checkbox>
+                </jnt-stack>
+
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>

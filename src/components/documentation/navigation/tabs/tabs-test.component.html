@@ -69,30 +69,30 @@
               </app-browser-preview>
             </jnt-col>
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="builder" form>
+              <jnt-form [formGroup]="builder">
+                <jnt-stack [align]="ui.flex.align.stretch">
 
-                <jnt-form-item>
-                  <jnt-form-label for="outline">Background</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="outline"
-                                placeholder="Fill">
-                      <jnt-select-option label="Transparent"
-                                         [key]="ui.outline.transparent"></jnt-select-option>
-                      <jnt-select-option label="Fill"
-                                         [key]="ui.outline.fill"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="outline">Background</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="outline"
+                                  placeholder="Fill">
+                        <jnt-select-option label="Transparent"
+                                           [key]="ui.outline.transparent"></jnt-select-option>
+                        <jnt-select-option label="Fill"
+                                           [key]="ui.outline.fill"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
                   <jnt-stack [type]="ui.layout.stack.type.horizontal">
                     <jnt-checkbox formControlName="icons"
                                   label="Icons"></jnt-checkbox>
                     <jnt-checkbox formControlName="badges"
                                   label="Badges"></jnt-checkbox>
                   </jnt-stack>
-                </jnt-form-item>
 
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>

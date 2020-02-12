@@ -5,7 +5,7 @@ $link-font-weight: $font-weight-base !default;
 $link-active-color: $primary-color !default;
 $link-disabled-color: $primary-text-light-color !default;
 $link-icon-spacing: $gutter-tiny !default;
-$link-icon-size: 16px !default;
+$link-icon-size: 18px !default;
 $link-corner: $corner-small !default;
 $link-padding: $gutter-tiny $gutter-small !default;
 
@@ -206,7 +206,7 @@ $link-schemes: (
 }
 
 [link] {
-  display: inline-block;
+  display: inline-flex;
   text-decoration: $link-decoration;
   box-sizing: border-box;
   cursor: pointer;
@@ -215,8 +215,13 @@ $link-schemes: (
   &:focus {
     outline: none;
   }
+  [icon][type='svg'] {
+    width: $link-icon-size;
+    height: $link-icon-size;
+  }
   [title] {
     white-space: nowrap;
+    line-height: 1;
   }
   &:active {
     [icon], [title] {

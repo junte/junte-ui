@@ -33,25 +33,26 @@
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="form" builder>
+            <jnt-form [formGroup]="form">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
                 <jnt-button text="Pick the icon"
                             [icon]="iconControl.value.value"
                             (click)="select()"></jnt-button>
-              </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="size">Size</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="size" placeholder="Normal">
-                    <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
-                    <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                    <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                    <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="size" placeholder="Normal">
+                      <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>

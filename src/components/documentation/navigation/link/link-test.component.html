@@ -47,60 +47,63 @@
             </jnt-col>
 
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form" builder>
-                <jnt-form-item>
-                  <jnt-form-label for="scheme">Scheme</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="scheme" placeholder="Primary">
-                      <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
-                      <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
-                      <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
-                      <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+              <jnt-form [formGroup]="form">
+                <jnt-stack [align]="ui.flex.align.stretch">
 
-                <jnt-form-item>
-                  <jnt-form-label for="outline">Outline</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="outline" placeholder="Transparent">
-                      <jnt-select-option label="Fill" [key]="ui.outline.fill"></jnt-select-option>
-                      <jnt-select-option label="Ghost" [key]="ui.outline.ghost"></jnt-select-option>
-                      <jnt-select-option label="Transparent" [key]="ui.outline.transparent"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="scheme">Scheme</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="scheme" placeholder="Primary">
+                        <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
+                        <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
+                        <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
+                        <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="source">Source</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="source" [allowEmpty]="false">
-                      <jnt-select-option label="External link" [key]="sourceType.external"></jnt-select-option>
-                      <jnt-select-option label="Local link" [key]="sourceType.local"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="outline">Outline</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="outline" placeholder="Transparent">
+                        <jnt-select-option label="Fill" [key]="ui.outline.fill"></jnt-select-option>
+                        <jnt-select-option label="Ghost" [key]="ui.outline.ghost"></jnt-select-option>
+                        <jnt-select-option label="Transparent" [key]="ui.outline.transparent"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="target">Target</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="target" placeholder="Self">
-                      <jnt-select-option label="Self" [key]="ui.navigation.link.target.self"></jnt-select-option>
-                      <jnt-select-option label="Blank" [key]="ui.navigation.link.target.blank"></jnt-select-option>
-                      <jnt-select-option label="Parent" [key]="ui.navigation.link.target.parent"></jnt-select-option>
-                      <jnt-select-option label="Top" [key]="ui.navigation.link.target.top"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="source">Source</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="source" [allowEmpty]="false">
+                        <jnt-select-option label="External link" [key]="sourceType.external"></jnt-select-option>
+                        <jnt-select-option label="Local link" [key]="sourceType.local"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
-                    <jnt-checkbox formControlName="badge" label="Badge"></jnt-checkbox>
-                    <jnt-checkbox formControlName="disable" label="Disabled"></jnt-checkbox>
-                  </jnt-stack>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="target">Target</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="target" placeholder="Self">
+                        <jnt-select-option label="Self" [key]="ui.navigation.link.target.self"></jnt-select-option>
+                        <jnt-select-option label="Blank" [key]="ui.navigation.link.target.blank"></jnt-select-option>
+                        <jnt-select-option label="Parent" [key]="ui.navigation.link.target.parent"></jnt-select-option>
+                        <jnt-select-option label="Top" [key]="ui.navigation.link.target.top"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
+                  <jnt-form-item>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+                      <jnt-checkbox formControlName="badge" label="Badge"></jnt-checkbox>
+                      <jnt-checkbox formControlName="disable" label="Disabled"></jnt-checkbox>
+                    </jnt-stack>
+                  </jnt-form-item>
+
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>

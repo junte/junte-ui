@@ -35,31 +35,33 @@
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder" builder>
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
-                <jnt-form-label for="size">Size</jnt-form-label>
-                <jnt-form-control>
-                  <jnt-select formControlName="size" placeholder="Normal">
-                    <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                    <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                  </jnt-select>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="size" placeholder="Normal">
+                      <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="color">Background color</jnt-form-label>
-                <jnt-form-control>
-                  <input type="color" formControlName="color">
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="color">Background color</jnt-form-label>
+                  <jnt-form-control>
+                    <input type="color" formControlName="color">
+                  </jnt-form-control>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
 
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>

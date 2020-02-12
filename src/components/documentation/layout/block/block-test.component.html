@@ -46,8 +46,9 @@
               </app-browser-preview>
             </jnt-col>
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form" builder>
+              <jnt-form [formGroup]="form">
                 <jnt-stack [align]="ui.flex.align.stretch">
+
                   <jnt-form-item>
                     <jnt-form-label for="scheme">Scheme</jnt-form-label>
                     <jnt-form-control>
@@ -105,7 +106,9 @@
                               [size]="ui.size.small"
                               text="Success"
                               (click)="block.success()"></jnt-button>
+
                 </jnt-stack>
+
               </jnt-form>
             </jnt-col>
           </jnt-row>

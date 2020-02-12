@@ -27,55 +27,34 @@
       <jnt-tab title="Preview" [icon]="localUi.icons.preview">
         <ng-template #tabContentTemplate>
           <jnt-stack>
-            <jnt-form [formGroup]="form" [layout]="ui.form.layout.inline">
+            <jnt-form [formGroup]="form">
 
-              <jnt-form-item>
+              <jnt-stack [type]="ui.layout.stack.type.horizontal">
                 <jnt-form-control>
                   <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
                 <jnt-form-control>
                   <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
                 </jnt-form-control>
-              </jnt-form-item>
+              </jnt-stack>
             </jnt-form>
 
             <app-browser-preview preview>

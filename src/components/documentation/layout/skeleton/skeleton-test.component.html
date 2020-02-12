@@ -65,27 +65,31 @@
               </app-browser-preview>
             </jnt-col>
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form" builder>
-                <jnt-form-item>
-                  <jnt-form-label for="type">Sketch</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="sketch" [allowEmpty]="false">
-                      <jnt-select-option label="User"
-                                         [key]="sketch.User"></jnt-select-option>
-                      <jnt-select-option label=" Vertical post"
-                                         [key]="sketch.VerticalPost"></jnt-select-option>
-                      <jnt-select-option label=" Horizontal post"
-                                         [key]="sketch.HorizontalPost"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+              <jnt-form [formGroup]="form">
+                <jnt-stack [align]="ui.flex.align.stretch">
 
-                <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="animation"
-                                  label="Animation"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="type">Sketch</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="sketch" [allowEmpty]="false">
+                        <jnt-select-option label="User"
+                                           [key]="sketch.User"></jnt-select-option>
+                        <jnt-select-option label=" Vertical post"
+                                           [key]="sketch.VerticalPost"></jnt-select-option>
+                        <jnt-select-option label=" Horizontal post"
+                                           [key]="sketch.HorizontalPost"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-control>
+                      <jnt-checkbox formControlName="animation"
+                                    label="Animation"></jnt-checkbox>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>

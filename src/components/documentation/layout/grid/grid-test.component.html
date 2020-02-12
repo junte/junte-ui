@@ -40,95 +40,97 @@
               </app-browser-preview>
             </jnt-col>
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form" builder>
+              <jnt-form [formGroup]="form">
+                <jnt-stack [align]="ui.flex.align.stretch">
 
-                <jnt-form-item>
-                  <jnt-form-label for="gutter">Gutter</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="gutter" placeholder="Normal">
-                      <jnt-select-option label="None"
-                                         [key]="ui.gutter.none"></jnt-select-option>
-                      <jnt-select-option label="Tiny"
-                                         [icon]="localUi.icons.layout.gutter.tiny"
-                                         [key]="ui.gutter.tiny"></jnt-select-option>
-                      <jnt-select-option label="Small"
-                                         [icon]="localUi.icons.layout.gutter.small"
-                                         [key]="ui.gutter.small"></jnt-select-option>
-                      <jnt-select-option label="Normal"
-                                         [icon]="localUi.icons.layout.gutter.normal"
-                                         [key]="ui.gutter.normal"></jnt-select-option>
-                      <jnt-select-option label="Big"
-                                         [icon]="localUi.icons.layout.gutter.big"
-                                         [key]="ui.gutter.big"></jnt-select-option>
-                      <jnt-select-option label="Large"
-                                         [icon]="localUi.icons.layout.gutter.large"
-                                         [key]="ui.gutter.large"></jnt-select-option>
-                      <jnt-select-option label="Huge"
-                                         [icon]="localUi.icons.layout.gutter.huge"
-                                         [key]="ui.gutter.huge"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="gutter">Gutter</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="gutter" placeholder="Normal">
+                        <jnt-select-option label="None"
+                                           [key]="ui.gutter.none"></jnt-select-option>
+                        <jnt-select-option label="Tiny"
+                                           [icon]="localUi.icons.layout.gutter.tiny"
+                                           [key]="ui.gutter.tiny"></jnt-select-option>
+                        <jnt-select-option label="Small"
+                                           [icon]="localUi.icons.layout.gutter.small"
+                                           [key]="ui.gutter.small"></jnt-select-option>
+                        <jnt-select-option label="Normal"
+                                           [icon]="localUi.icons.layout.gutter.normal"
+                                           [key]="ui.gutter.normal"></jnt-select-option>
+                        <jnt-select-option label="Big"
+                                           [icon]="localUi.icons.layout.gutter.big"
+                                           [key]="ui.gutter.big"></jnt-select-option>
+                        <jnt-select-option label="Large"
+                                           [icon]="localUi.icons.layout.gutter.large"
+                                           [key]="ui.gutter.large"></jnt-select-option>
+                        <jnt-select-option label="Huge"
+                                           [icon]="localUi.icons.layout.gutter.huge"
+                                           [key]="ui.gutter.huge"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="align">Align</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="align" placeholder="Start">
-                      <jnt-select-option label="Start"
-                                         [icon]="localUi.icons.layout.start"
-                                         [key]="ui.layout.grid.row.align.start"></jnt-select-option>
-                      <jnt-select-option label="Center"
-                                         [icon]="localUi.icons.layout.center"
-                                         [key]="ui.layout.grid.row.align.center"></jnt-select-option>
-                      <jnt-select-option label="End"
-                                         [icon]="localUi.icons.layout.end"
-                                         [key]="ui.layout.grid.row.align.end"></jnt-select-option>
-                      <jnt-select-option label="Stretch"
-                                         [icon]="localUi.icons.layout.stretch"
-                                         [key]="ui.layout.grid.row.align.stretch"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="align">Align</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="align" placeholder="Start">
+                        <jnt-select-option label="Start"
+                                           [icon]="localUi.icons.layout.start"
+                                           [key]="ui.layout.grid.row.align.start"></jnt-select-option>
+                        <jnt-select-option label="Center"
+                                           [icon]="localUi.icons.layout.center"
+                                           [key]="ui.layout.grid.row.align.center"></jnt-select-option>
+                        <jnt-select-option label="End"
+                                           [icon]="localUi.icons.layout.end"
+                                           [key]="ui.layout.grid.row.align.end"></jnt-select-option>
+                        <jnt-select-option label="Stretch"
+                                           [icon]="localUi.icons.layout.stretch"
+                                           [key]="ui.layout.grid.row.align.stretch"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="span">Column span</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="span" placeholder="1">
-                      <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
-                                         [label]="count"
-                                         [key]="count"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="span">Column span</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="span" placeholder="1">
+                        <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
+                                           [label]="count"
+                                           [key]="count"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="span">Column padding</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="padding" placeholder="Normal">
-                      <jnt-select-option label="None"
-                                         [key]="ui.gutter.none"></jnt-select-option>
-                      <jnt-select-option label="Tiny"
-                                         [icon]="localUi.icons.layout.padding.tiny"
-                                         [key]="ui.gutter.tiny"></jnt-select-option>
-                      <jnt-select-option label="Small"
-                                         [icon]="localUi.icons.layout.padding.small"
-                                         [key]="ui.gutter.small"></jnt-select-option>
-                      <jnt-select-option label="Normal"
-                                         [icon]="localUi.icons.layout.padding.normal"
-                                         [key]="ui.gutter.normal"></jnt-select-option>
-                      <jnt-select-option label="Big"
-                                         [icon]="localUi.icons.layout.padding.big"
-                                         [key]="ui.gutter.big"></jnt-select-option>
-                      <jnt-select-option label="Large"
-                                         [icon]="localUi.icons.layout.padding.large"
-                                         [key]="ui.gutter.large"></jnt-select-option>
-                      <jnt-select-option label="Huge"
-                                         [icon]="localUi.icons.layout.padding.huge"
-                                         [key]="ui.gutter.huge"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-form-label for="span">Column padding</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="padding" placeholder="Normal">
+                        <jnt-select-option label="None"
+                                           [key]="ui.gutter.none"></jnt-select-option>
+                        <jnt-select-option label="Tiny"
+                                           [icon]="localUi.icons.layout.padding.tiny"
+                                           [key]="ui.gutter.tiny"></jnt-select-option>
+                        <jnt-select-option label="Small"
+                                           [icon]="localUi.icons.layout.padding.small"
+                                           [key]="ui.gutter.small"></jnt-select-option>
+                        <jnt-select-option label="Normal"
+                                           [icon]="localUi.icons.layout.padding.normal"
+                                           [key]="ui.gutter.normal"></jnt-select-option>
+                        <jnt-select-option label="Big"
+                                           [icon]="localUi.icons.layout.padding.big"
+                                           [key]="ui.gutter.big"></jnt-select-option>
+                        <jnt-select-option label="Large"
+                                           [icon]="localUi.icons.layout.padding.large"
+                                           [key]="ui.gutter.large"></jnt-select-option>
+                        <jnt-select-option label="Huge"
+                                           [icon]="localUi.icons.layout.padding.huge"
+                                           [key]="ui.gutter.huge"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>
