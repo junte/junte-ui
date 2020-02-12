@@ -14,7 +14,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { UI } from '../../../enums/ui';
 import { FormLayout } from './enums';
-import { FormItemComponent } from './form-item/form-item.component';
+import { FormItemComponent } from './item/form-item.component';
 
 @Component({
   selector: 'jnt-form',
@@ -72,8 +72,6 @@ export class FormComponent implements AfterContentInit {
   }
 
   private setLayout(items: QueryList<FormItemComponent>) {
-    if (!!items) {
-      items.forEach(item => item.layout = this.layout);
-    }
+
   }
 }

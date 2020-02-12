@@ -8,13 +8,14 @@ import { FieldTouchedHasErrorPipe } from '../../../pipes/form.pipe';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { LabelModule } from '../../elements/label/label.module';
+import { StackModule } from '../../layout/stack/stack.module';
 import { CheckboxModule } from '../checkbox/checkbox.module';
 import { InputModule } from '../input/input.module';
 import { RadioModule } from '../radio/radio.module';
 import { SelectModule } from '../select/select.module';
 import { SwitchModule } from '../switch/switch.module';
 import { FormControlComponent } from './form-control/form-control.component';
-import { FormItemComponent } from './form-item/form-item.component';
+import { FormItemComponent } from './item/form-item.component';
 import { FormLabelComponent } from './form-label/form-label.component';
 import { FormMessageComponent } from './form-message/form-message.component';
 import { FormComponent } from './form.component';
@@ -27,6 +28,7 @@ import { FormComponent } from './form.component';
     JunteDirectiveModule,
     CheckboxModule,
     LabelModule,
+    StackModule,
     ReactiveFormsModule,
     RouterModule,
     RadioModule,
