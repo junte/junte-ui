@@ -1,16 +1,19 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[jntFor]'
+  selector: '[@for]',
 })
-export class MediaQueryDirective {
+export class MediaQueryDirective implements OnInit {
 
-  @Input() highlightColor: string;
+  @Input('jntFor') color = 'blue';
 
-  constructor(el: ElementRef) {
-    el.nativeElement.style.backgroundColor = this.highlightColor;
+  constructor(private el: ElementRef,
+              private renderer: Renderer2) {
+    this.renderer.setStyle(this.el.nativeElement, 'background-color', this.color);
   }
 
-  // @Input('@for') attr: string;
+  ngOnInit() {
+
+  }
 
 }
