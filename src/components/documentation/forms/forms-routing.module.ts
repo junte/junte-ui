@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ButtonsTestComponent } from './buttons/buttons-test.component';
+import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
@@ -14,7 +14,7 @@ import { SwitcherTestComponent } from './switcher/switcher-test.component';
 export const routes: Routes = [
   {
     path: 'button',
-    component: ButtonsTestComponent,
+    component: ButtonTestComponent,
     data: {breadcrumb: 'Button'}
   },
   {

@@ -22,219 +22,68 @@
 
   <h3>Horizontal</h3>
 
-  <jnt-block [padding]="ui.gutter.normal">
+  <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
     <jnt-form [layout]="ui.form.layout.horizontal" title="Form title">
-      <jnt-form-item>
-        <jnt-col [span]="3">
-          <jnt-form-label for="name">Username</jnt-form-label>
-        </jnt-col>
-        <jnt-col [span]="9">
-          <jnt-form-control>
-            <jnt-input placeholder="Name"></jnt-input>
-            <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
-              tenetur? Earum eius ex illo libero nisi nulla, odio?
-            </jnt-form-message>
-          </jnt-form-control>
-        </jnt-col>
-      </jnt-form-item>
+      <jnt-stack [align]="ui.flex.align.stretch">
 
-      <jnt-form-item>
-        <jnt-col [span]="3">
-          <jnt-form-label>Fullname</jnt-form-label>
-        </jnt-col>
-        <jnt-col [span]="9">
-          <jnt-form-control>
-            <jnt-input placeholder="Full name"></jnt-input>
-          </jnt-form-control>
-        </jnt-col>
-      </jnt-form-item>
+        <p>Stack layout for controls</p>
 
-      <ng-template #formFooterTemplate>
-        <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
-          <jnt-button text="Save changes"></jnt-button>
-          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-        </jnt-stack>
-      </ng-template>
-    </jnt-form>
-
-  </jnt-block>
-
-  <ng-container *ngFor="let layout of [ui.form.layout.vertical, ui.form.layout.inline]">
-    <h3>{{layout | titlecase}}</h3>
-    <jnt-block [padding]="ui.gutter.normal">
-      <jnt-form [layout]="layout" title="Form title">
-        <jnt-form-item>
-          <jnt-form-label for="name">Username</jnt-form-label>
-          <jnt-form-control>
-            <jnt-input placeholder="Name"></jnt-input>
-            <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
-              tenetur? Earum eius ex illo libero nisi nulla, odio?
-            </jnt-form-message>
-          </jnt-form-control>
-        </jnt-form-item>
-
-        <jnt-form-item>
-          <jnt-form-label>Fullname</jnt-form-label>
-          <jnt-form-control>
-            <jnt-input placeholder="Full name"></jnt-input>
-          </jnt-form-control>
-        </jnt-form-item>
-
-        <ng-template #formFooterTemplate>
-          <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
-            <jnt-button text="Save changes"></jnt-button>
-            <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-          </jnt-stack>
-        </ng-template>
-      </jnt-form>
-    </jnt-block>
-  </ng-container>
-
-  <h3>Form loading</h3>
-
-  <jnt-block [padding]="ui.gutter.normal">
-    <jnt-form title="Form title" [loading]="true">
-      <jnt-form-item>
-        <jnt-form-label for="name">Username</jnt-form-label>
         <jnt-form-control>
+          <jnt-form-label for="name">Username</jnt-form-label>
           <jnt-input placeholder="Name"></jnt-input>
-          <jnt-form-message>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deleniti nulla
-            tenetur? Earum eius ex illo libero nisi nulla, odio?
-          </jnt-form-message>
+          <jnt-form-message>This field can't be empty!</jnt-form-message>
         </jnt-form-control>
-      </jnt-form-item>
 
-      <jnt-form-item>
-        <jnt-form-label>Fullname</jnt-form-label>
         <jnt-form-control>
-          <jnt-input placeholder="Full name"></jnt-input>
+          <jnt-form-label for="name">Surnam</jnt-form-label>
+          <jnt-input placeholder="Name"></jnt-input>
+          <jnt-form-message>This field can't be empty!</jnt-form-message>
         </jnt-form-control>
-      </jnt-form-item>
+      </jnt-stack>
+
+      <p>Grid layout for controls</p>
+      <jnt-row>
+        <jnt-col [tablet]="6">
+          <jnt-row [align]="ui.flex.align.center">
+            <jnt-col [tablet]="2">
+              <jnt-form-label for="name">Username</jnt-form-label>
+            </jnt-col>
+            <jnt-col [tablet]="10">
+              <jnt-form-control>
+                <jnt-input placeholder="Name"></jnt-input>
+                <jnt-form-message>This field can't be empty!</jnt-form-message>
+              </jnt-form-control>
+            </jnt-col>
+          </jnt-row>
+        </jnt-col>
+        <jnt-col [tablet]="6">
+          <jnt-row [align]="ui.flex.align.center">
+            <jnt-col [tablet]="2">
+              <jnt-form-label for="name">Username</jnt-form-label>
+            </jnt-col>
+            <jnt-col [tablet]="10">
+              <jnt-form-control>
+                <jnt-input placeholder="Name"></jnt-input>
+                <jnt-form-message>This field can't be empty!</jnt-form-message>
+              </jnt-form-control>
+            </jnt-col>
+          </jnt-row>
+        </jnt-col>
+      </jnt-row>
+
 
       <ng-template #formFooterTemplate>
-        <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
-          <jnt-button text="Save changes"></jnt-button>
-          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
+        <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                   [justify]="ui.flex.justify.between">
+          <jnt-button text="Save"
+                      [icon]="ui.icons.save"></jnt-button>
+          <jnt-button text="Cancel"
+                      [icon]="ui.icons.cancel"
+                      [scheme]="ui.scheme.secondary"></jnt-button>
         </jnt-stack>
       </ng-template>
     </jnt-form>
+
   </jnt-block>
-
-  <ng-template #formFooterTemplate>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
-      <jnt-button text="Save changes"></jnt-button>
-      <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-    </jnt-stack>
-  </ng-template>
-
-  <h1>Reactive Forms Validation</h1>
-  <jnt-form [formGroup]="form" jntValidation (submitted)="submitForm()">
-    <ng-template #title>
-      <h3>Personal details</h3>
-    </ng-template>
-
-    <jnt-form-item>
-      <jnt-form-label for="name">Username</jnt-form-label>
-      <jnt-form-control name="name">
-        <jnt-input placeholder="Name" formControlName="name"></jnt-input>
-        <jnt-form-message [type]="ui.form.validators.typeError.required">
-          This field is required
-        </jnt-form-message>
-        <jnt-form-message [type]="ui.form.validators.typeError.minlength">
-          Min. length field is 3
-        </jnt-form-message>
-      </jnt-form-control>
-    </jnt-form-item>
-
-    <jnt-form-item>
-      <jnt-form-label>Full Name</jnt-form-label>
-      <jnt-form-control name="fullName">
-        <jnt-input placeholder="Full name" formControlName="fullName"></jnt-input>
-        <jnt-form-message [type]="ui.form.validators.typeError.required">
-          This field is required
-        </jnt-form-message>
-        <jnt-form-message [type]="ui.form.validators.typeError.minlength">
-          Min. length field is 5
-        </jnt-form-message>
-      </jnt-form-control>
-    </jnt-form-item>
-
-    <ng-template #formFooterTemplate>
-      <jnt-stack [type]="ui.layout.stack.type.horizontal">
-        <jnt-form-control>
-          <jnt-button text="Save changes" [type]="ui.form.button.type.submit"></jnt-button>
-        </jnt-form-control>
-        <jnt-form-control>
-          <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-        </jnt-form-control>
-      </jnt-stack>
-    </ng-template>
-
-    <ng-template #formFooterTemplate>
-      <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.end">
-        <jnt-button text="Save changes"></jnt-button>
-        <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-      </jnt-stack>
-    </ng-template>
-  </jnt-form>
-
-  <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-form [layout]="ui.form.layout.horizontal" [title]="Title">
-  <jnt-form-item>
-    <jnt-form-label for="name">Username</jnt-form-label>
-    <jnt-form-control>
-      <jnt-input placeholder="Name"></jnt-input>
-      <jnt-form-message>Message</jnt-form-message>
-    </jnt-form-control>
-  </jnt-form-item>
-  <ng-template #formFooterTemplate>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-      <jnt-button text="Save changes"></jnt-button>
-      <jnt-button [scheme]="ui.scheme.secondary" text="Cancel"></jnt-button>
-    </jnt-stack>
-  </ng-template>
-</jnt-form>
- ]]></pre>
-  </ngx-prism>
-
-  <h3>API</h3>
-  <h4>jnt-form</h4>
-  <table api>
-    <thead>
-    <tr>
-      <th>Property</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>[layout]</td>
-      <td>-</td>
-      <td>horizontal | vertical | inline</td>
-      <td>vertical</td>
-    </tr>
-    <tr>
-      <td>[title]</td>
-      <td>-</td>
-      <td>string | TemplateRef</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[footerTemplate]</td>
-      <td>-</td>
-      <td>TemplateRef</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>[loading]</td>
-      <td>-</td>
-      <td>true | false</td>
-      <td>false</td>
-    </tr>
-    </tbody>
-  </table>
 
 </jnt-container>

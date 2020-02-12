@@ -18,7 +18,7 @@ export class LabelTestComponent implements OnInit {
 
   sizeControl = this.fb.control(null);
   colorControl = this.fb.control(UI.color.blue100);
-  iconControl = this.fb.control(false);
+  iconControl = this.fb.control(true);
 
   builder = this.fb.group({
     icon: this.iconControl,

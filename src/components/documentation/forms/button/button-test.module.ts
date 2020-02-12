@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JunteUiModule } from 'junte-ui';
 import { SharedModule } from 'src/components/documentation/shared/shared.module';
 
-import { ButtonsTestComponent } from './buttons-test.component';
+import { ButtonTestComponent } from './button-test.component';
 
 @NgModule({
   imports: [
@@ -13,9 +13,9 @@ import { ButtonsTestComponent } from './buttons-test.component';
     JunteUiModule,
     SharedModule
   ],
-  exports: [ButtonsTestComponent],
-  declarations: [ButtonsTestComponent],
+  exports: [ButtonTestComponent],
+  declarations: [ButtonTestComponent],
 })
-export class ButtonsTestModule {
+export class ButtonTestModule {
 }
 

@@ -9,14 +9,14 @@ import { FormTestModule } from './form/form-test.module';
 import { DatePickerTestModule } from './date-picker/date-picker-test.module';
 import { CheckboxTestModule } from './checkbox/checkbox-test.module';
 import { CalendarTestModule } from './calendar/calendar-test.module';
-import { ButtonsTestModule } from './buttons/buttons-test.module';
+import { ButtonTestModule } from './button/button-test.module';
 
 @NgModule({
   imports: [
     FormsRoutingModule
   ],
   exports: [
-    ButtonsTestModule,
+    ButtonTestModule,
     CalendarTestModule,
     CheckboxTestModule,
     DatePickerTestModule,

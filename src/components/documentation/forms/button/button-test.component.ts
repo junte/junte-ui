@@ -7,11 +7,11 @@ import { ButtonGroupComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
-  selector: 'app-buttons-test',
-  templateUrl: './buttons-test.component.html',
-  styleUrls: ['./buttons-test.component.scss']
+  selector: 'app-button-test',
+  templateUrl: './button-test.component.html',
+  styleUrls: ['./button-test.component.scss']
 })
-export class ButtonsTestComponent implements OnInit {
+export class ButtonTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;

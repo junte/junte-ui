@@ -1,46 +1,18 @@
 <jnt-container>
-  <h1>Buttons</h1>
+  <h1>Button</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/button"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A0"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
 
-  <p>A control that executes your custom code in response to user interactions.<br>
-    When you tap a button, or select a button that has focus, the button performs any actions attached
-    to it. You communicate the purpose of a button using a text label, an image, or both. The appearance
-    of buttons is configurable, so you can tint buttons or format titles to match the design of your app.
-  </p>
-  <jnt-link source="https://developer.apple.com/documentation/uikit/uibutton"
-            title="More">
-  </jnt-link>
-
-  <p teaser>Used to activate operations</p>
-
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The button must have different sizes: tiny, small, normal, large</li>
-    <li>The button may have a badge and an icon</li>
-    <li>The button should show the loading</li>
-    <li>The button should respond to mouse hover, click</li>
-    <li>The button should change the display when it is disabled</li>
-    <li>The button must have a design in accordance with a given color scheme</li>
-    <li>The button should be of two types: outline and fill</li>
-    <li>The button should be able to stretch across the width of the container or be the width of the content</li>
-  </ol>
-
-  <h3>How to use</h3>
-  <app-how-to-use
-    [test]="{selector:'button-test', type: 'ButtonTestComponent'}"
-    scss="forms/button"></app-how-to-use>
-
-  <h3>Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
@@ -159,8 +131,11 @@
 
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'button-test', type: 'ButtonTestComponent'}"
+          scss="forms/button"></app-how-to-use>
         <h5>Button</h5>
-        <app-code-highlight file="button-test">
+        <app-code-highlight file="button-test.template.html">
           <![CDATA[
           <jnt-button
             ]]>

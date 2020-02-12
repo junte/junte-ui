@@ -17,7 +17,7 @@ export class IconComponent {
   iconType = IconType;
 
   @HostBinding('attr.size')
-  _size: Size = Size.normal;
+  _size: Size = Size.auto;
 
   @HostBinding('attr.icon')
   _icon: string;
@@ -25,7 +25,7 @@ export class IconComponent {
   @PropertyApi({
     description: 'Icon size',
     path: 'ui.size',
-    default: Size.normal,
+    default: Size.auto,
     options: [Size.tiny,
       Size.small,
       Size.normal,
@@ -34,7 +34,7 @@ export class IconComponent {
 
   @Input()
   set size(size: Size) {
-    this._size = size || Size.normal;
+    this._size = size || Size.auto;
   }
 
   @HostBinding('attr.type')
