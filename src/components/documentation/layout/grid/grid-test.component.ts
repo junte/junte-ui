@@ -21,7 +21,7 @@ export class GridTestComponent implements OnInit {
   spanControl = this.fb.control(2);
   paddingControl = this.fb.control(null);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     gutter: this.gutterControl,
     align: this.alignControl,
     span: this.spanControl,
@@ -32,7 +32,7 @@ export class GridTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 }

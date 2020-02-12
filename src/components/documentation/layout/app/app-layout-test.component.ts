@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { TabComponent } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import { AppLayoutComponent } from 'junte-ui';
 import { AppHeaderComponent } from 'junte-ui';
@@ -14,7 +15,7 @@ import { AppSubHeaderComponent } from 'junte-ui';
   templateUrl: './app-layout-test.component.html',
   styleUrls: ['./app-layout-test.component.scss']
 })
-export class AppLayoutTestComponent {
+export class AppLayoutTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -28,6 +29,8 @@ export class AppLayoutTestComponent {
     subHeader: AppSubHeaderComponent
   };
 
+  @ViewChild('code', {static: false}) code: TabComponent;
+
   headerControl = this.fb.control(true);
   logoControl = this.fb.control(true);
   menuControl = this.fb.control(true);
@@ -37,7 +40,7 @@ export class AppLayoutTestComponent {
   subHeaderControl = this.fb.control(true);
   footerControl = this.fb.control(true);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     header: this.headerControl,
     logo: this.logoControl,
     menu: this.menuControl,
@@ -49,6 +52,11 @@ export class AppLayoutTestComponent {
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }

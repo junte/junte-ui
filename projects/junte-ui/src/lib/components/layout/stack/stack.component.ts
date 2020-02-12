@@ -34,11 +34,7 @@ export class StackComponent {
     options: [StackType.vertical, StackType.horizontal]
   })
   @Input() set type(type: StackType) {
-    if (!!type) {
-      this._type = type;
-    } else {
-      this._type = StackType.vertical;
-    }
+    this._type = type || StackType.vertical;
   }
 
   @PropertyApi({
