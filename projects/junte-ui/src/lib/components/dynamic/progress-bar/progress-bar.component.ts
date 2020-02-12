@@ -1,25 +1,30 @@
-import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { ContentApi } from '../../../decorators/api';
+import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-progress-bar',
   templateUrl: './progress-bar.encapsulated.html',
 })
-export class ProgressBarComponent implements OnInit {
+export class ProgressBarComponent {
 
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-progress-bar-host';
 
-  @ContentChild('legend', {static: false})
-  legend: TemplateRef<any>;
+  @ContentApi({
+    selector: '#progressBarLegendTemplate',
+    description: 'Legend template'
+  })
+  @ContentChild('progressBarLegendTemplate', {static: false})
+  progressBarLegendTemplate: TemplateRef<any>;
 
-  @Input() value: number;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+  @PropertyApi({
+    description: 'Completion percentage',
+    type: 'number',
+    default: '0'
+  })
+  @Input() value = 0;
 
 }

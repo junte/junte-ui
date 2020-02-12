@@ -52,3 +52,5 @@ forms/calendar @ContentChild('metricTemplate', {static: false}) was renamed to @
 forms/calendar @ContentChild('dayTemplate', {static: false}) was renamed to @ContentChild('calendarDayTemplate', {static: false})
 
 collections/accordion @ContentChild('sectionContentTemplate', {static: false}) was renamed to @ContentChild('accordionContentTemplate', {static: false})
+
+dynamic/progressBar @ContentChild('legend', {static: false}) was renamed to @ContentChild('progressBarLegendTemplate', {static: false})
