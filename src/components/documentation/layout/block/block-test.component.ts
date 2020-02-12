@@ -27,7 +27,7 @@ export class BlockTestComponent implements OnInit {
   footerControl = this.fb.control(true);
   stateControl = this.fb.control(null);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     padding: this.paddingControl,
     title: this.titleControl,
     footer: this.footerControl,
@@ -40,7 +40,7 @@ export class BlockTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 }

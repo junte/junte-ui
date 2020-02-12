@@ -25,7 +25,7 @@ export class StackTestComponent implements OnInit {
   justifyControl = this.fb.control(null);
   wrapControl = this.fb.control(null);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     type: this.typeControl,
     gutter: this.gutterControl,
     align: this.alignControl,
@@ -37,7 +37,7 @@ export class StackTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 
