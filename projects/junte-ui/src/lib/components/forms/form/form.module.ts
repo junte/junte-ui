@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
-import { ValidationDirective } from '../../../directives/validation';
-import { FieldTouchedHasErrorPipe } from '../../../pipes/form.pipe';
+import { ValidationDirective } from './directives';
+import { FieldTouchedHasErrorPipe } from './pipes';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { LabelModule } from '../../elements/label/label.module';
@@ -14,10 +14,10 @@ import { InputModule } from '../input/input.module';
 import { RadioModule } from '../radio/radio.module';
 import { SelectModule } from '../select/select.module';
 import { SwitchModule } from '../switch/switch.module';
-import { FormControlComponent } from './form-control/form-control.component';
+import { FormControlComponent } from './control/form-control.component';
 import { FormItemComponent } from './item/form-item.component';
-import { FormLabelComponent } from './form-label/form-label.component';
-import { FormMessageComponent } from './form-message/form-message.component';
+import { FormLabelComponent } from './label/form-label.component';
+import { FormMessageComponent } from './message/form-message.component';
 import { FormComponent } from './form.component';
 
 
@@ -45,7 +45,7 @@ import { FormComponent } from './form.component';
     FormLabelComponent,
     FormMessageComponent,
     ValidationDirective,
-    FieldTouchedHasErrorPipe,
+    FieldTouchedHasErrorPipe
   ],
   exports: [
     FormComponent,

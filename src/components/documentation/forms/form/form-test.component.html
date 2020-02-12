@@ -10,20 +10,9 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>Form must have various layouts: vertical, horizontal, inline</li>
-    <li>Form must have footer (action), title</li>
-    <li>Form must have error message, form control, form label</li>
-  </ol>
-
-  <hr>
-
-  <h3>Horizontal</h3>
 
   <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-    <jnt-form [layout]="ui.form.layout.horizontal" title="Form title">
+    <jnt-form title="Form title">
       <jnt-stack [align]="ui.flex.align.stretch">
 
         <p>Stack layout for controls</p>
@@ -35,7 +24,7 @@
         </jnt-form-control>
 
         <jnt-form-control>
-          <jnt-form-label for="name">Surnam</jnt-form-label>
+          <jnt-form-label for="name">Surname</jnt-form-label>
           <jnt-input placeholder="Name"></jnt-input>
           <jnt-form-message>This field can't be empty!</jnt-form-message>
         </jnt-form-control>

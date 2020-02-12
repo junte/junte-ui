@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ContentChild,
   ContentChildren,
@@ -13,14 +12,13 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UI } from '../../../enums/ui';
-import { FormLayout } from './enums';
 import { FormItemComponent } from './item/form-item.component';
 
 @Component({
   selector: 'jnt-form',
   templateUrl: './form.encapsulated.html'
 })
-export class FormComponent implements AfterContentInit {
+export class FormComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-form-host';
 
@@ -33,16 +31,13 @@ export class FormComponent implements AfterContentInit {
   form: FormGroup;
 
   @Input()
-  loading: false;
+  loading = false;
 
   @Input()
   title: string;
 
   @ContentChild('formFooterTemplate', {static: false})
   footerTemplate: TemplateRef<any>;
-
-  @Input()
-  layout: FormLayout = FormLayout.vertical;
 
   @Output()
   submitted = new EventEmitter();
@@ -58,20 +53,13 @@ export class FormComponent implements AfterContentInit {
     }
   }
 
-  ngAfterContentInit() {
-    this.setLayout(this.items);
-    this.items.changes.subscribe(items => this.setLayout(items));
-  }
-
   private check(form: any) {
     for (const i in form.controls) {
-      form.controls[i].markAsDirty();
-      form.controls[i].updateValueAndValidity();
-      this.check(form.controls[i]);
+      const control = form.controls[i];
+      control.markAsDirty();
+      control.updateValueAndValidity();
+      this.check(control);
     }
   }
 
-  private setLayout(items: QueryList<FormItemComponent>) {
-
-  }
 }

@@ -9,11 +9,11 @@ export class FormMessageComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-form-message-host';
 
-  show = false;
+  active = false;
 
   @HostBinding('style.display')
   get style() {
-    return !!this.show ? 'inline-block' : 'none';
+    return !!this.active ? 'inline-block' : 'none';
   }
 
   @Input()

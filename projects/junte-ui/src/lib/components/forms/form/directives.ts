@@ -1,6 +1,6 @@
 import { ContentChildren, Directive, Input, OnInit, QueryList } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormControlComponent } from '../components/forms/form/form-control/form-control.component';
+import { FormControlComponent } from './control/form-control.component';
 
 @Directive({
   selector: '[jntValidation]'
@@ -19,7 +19,7 @@ export class ValidationDirective implements OnInit {
       controls.filter(c => !!c.name && !!c.messages.length).forEach(c => {
         const control = this.form.get(c.name);
         const messages = c.messages;
-        messages.forEach(m => m.show = !!(control.hasError(m.type) && control.errors && control.dirty));
+        messages.forEach(m => m.active = !!(control.hasError(m.type) && control.errors && control.dirty));
       });
     });
   }
