@@ -34,7 +34,7 @@
       <div table>
         <table>
           <div spinner *ngIf="source.length && progress.loading">
-            <jnt-spinner icon [size]="ui.size.large"></jnt-spinner>
+            <jnt-spinner [size]="ui.size.large"></jnt-spinner>
           </div>
 
           <thead>
@@ -76,7 +76,7 @@
             <ng-container *ngIf="!progress.loading; else skeletonTemplate">
               <tr nodata>
                 <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
-                  <jnt-icon icon [icon]="ui.icons.neutral"></jnt-icon>
+                  <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
                 </td>
               </tr>
             </ng-container>

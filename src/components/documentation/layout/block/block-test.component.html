@@ -47,7 +47,7 @@
             </jnt-col>
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="form" builder>
-                <div builder>
+                <jnt-stack [align]="ui.flex.align.stretch">
                   <jnt-form-item>
                     <jnt-form-label for="scheme">Scheme</jnt-form-label>
                     <jnt-form-control>
@@ -96,18 +96,16 @@
                     </jnt-switcher>
                   </jnt-form-item>
 
-                  <jnt-form-item>
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                      <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
-                      <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
-                    </jnt-stack>
-                  </jnt-form-item>
+                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                    <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+                    <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+                  </jnt-stack>
 
                   <jnt-button [scheme]="ui.scheme.success"
                               [size]="ui.size.small"
                               text="Success"
                               (click)="block.success()"></jnt-button>
-                </div>
+                </jnt-stack>
               </jnt-form>
             </jnt-col>
           </jnt-row>
