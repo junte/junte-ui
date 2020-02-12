@@ -16,6 +16,7 @@ export class IconComponent {
 
   iconType = IconType;
 
+  @HostBinding('attr.size')
   _size: Size = Size.normal;
 
   @HostBinding('attr.icon')
@@ -31,9 +32,10 @@ export class IconComponent {
       Size.large]
   })
 
-  @HostBinding('attr.size')
   @Input()
-  size: Size;
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
 
   @HostBinding('attr.type')
   type: IconType = IconType.font;

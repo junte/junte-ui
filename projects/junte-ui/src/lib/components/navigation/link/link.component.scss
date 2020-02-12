@@ -19,7 +19,6 @@ $link-schemes: (
     fill-hover-background-color: $primary-dark-color,
     fill-badge-color: $primary-color,
     fill-badge-background-color: $white-color,
-
     ghost-color: $primary-color,
     ghost-border-color: $primary-color,
     ghost-hover-background-color: $primary-color,
@@ -28,12 +27,10 @@ $link-schemes: (
     ghost-hover-badge-color: $primary-color,
     ghost-badge-background: $primary-color,
     ghost-hover-badge-background: $primary-background,
-
     transparent-color: $primary-color,
     transparent-hover-color: $primary-dark-color,
     transparent-badge-color: $white-color,
     transparent-badge-background: $primary-color,
-
     link-focus-shadow-color: $primary-color
   ),
   #{$scheme-secondary}: (
@@ -42,7 +39,6 @@ $link-schemes: (
     fill-hover-background-color: $blue-100-color,
     fill-badge-color: $secondary-color,
     fill-badge-background-color: $gray-900-color,
-
     ghost-color: $gray-900-color,
     ghost-border-color: $gray-900-color,
     ghost-hover-background-color: $gray-900-color,
@@ -51,12 +47,10 @@ $link-schemes: (
     ghost-hover-badge-background: $secondary-color,
     ghost-hover-badge-color: $gray-900-color,
     ghost-badge-background: $gray-900-color,
-
     transparent-color: $primary-text-color,
     transparent-hover-color: $primary-text-dark-color,
     transparent-badge-color: $white-color,
     transparent-badge-background: $gray-900-color,
-
     link-focus-shadow-color: $gray-900-color
   ),
   #{$scheme-success}: (
@@ -65,7 +59,6 @@ $link-schemes: (
     fill-hover-background-color: $green-dark-color,
     fill-badge-color: $success-color,
     fill-badge-background-color: $white-color,
-
     ghost-color: $success-color,
     ghost-border-color: $success-color,
     ghost-hover-background-color: $success-color,
@@ -74,12 +67,10 @@ $link-schemes: (
     ghost-badge-background: $success-color,
     ghost-hover-badge-background: $primary-background,
     ghost-hover-badge-color: $success-color,
-
     transparent-color: $success-color,
     transparent-hover-color: $green-dark-color,
     transparent-badge-color: $white-color,
     transparent-badge-background: $success-color,
-
     link-focus-shadow-color: $success-color
   ),
   #{$scheme-fail}: (
@@ -88,7 +79,6 @@ $link-schemes: (
     fill-hover-background-color: $red-dark-color,
     fill-badge-color: $fail-color,
     fill-badge-background-color: $white-color,
-
     ghost-color: $fail-color,
     ghost-border-color: $fail-color,
     ghost-hover-background-color: $fail-color,
@@ -97,15 +87,13 @@ $link-schemes: (
     ghost-badge-background: $fail-color,
     ghost-hover-badge-background: $primary-background,
     ghost-hover-badge-color: $fail-color,
-
     transparent-color: $fail-color,
     transparent-hover-color: $red-dark-color,
     transparent-badge-color: $white-color,
     transparent-badge-background: $fail-color,
-
     link-focus-shadow-color: $fail-color
   ),
-)!default;
+) !default;
 
 @mixin scheme($scheme) {
   [link] {
@@ -177,7 +165,7 @@ $link-schemes: (
       color: #{map-get($scheme, transparent-badge-color)};
     }
     &[active="true"] {
-      span {
+      [title] {
         border-bottom: 1px solid #{map-get($scheme, transparent-color)};
       }
     }
@@ -229,23 +217,9 @@ $link-schemes: (
   }
   [title] {
     white-space: nowrap;
-    [icon], span {
-      font-weight: $link-font-weight;
-      transition: color .3s;
-    }
-    [icon] {
-      margin-right: $link-icon-spacing;
-      line-height: 1;
-    }
-    [icon][child-host=#{$jnt-icon-host}] {
-      &[type='animated'], &[type='svg'] {
-        width: $link-icon-size;
-        height: $link-icon-size;
-      }
-    }
   }
   &:active {
-    [icon], span {
+    [icon], [title] {
       color: $link-active-color;
     }
   }

@@ -2,16 +2,16 @@
 
 $icon-sizes: (
   #{$size-tiny}: (
-    size: 16px,
+    size: 14px,
   ),
   #{$size-small}: (
-    size: 18px,
+    size: 16px,
   ),
   #{$size-normal}: (
-    size: 22px,
+    size: 18px,
   ),
   #{$size-large}: (
-    size: 38px,
+    size: 20px,
   )
 );
 
@@ -27,9 +27,8 @@ $icon-sizes: (
 }
 
 :host {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 0;
+  display: inline-flex;
+  align-items: center;
 
   @each $size, $map in $icon-sizes {
     &[size='#{$size}'] {
@@ -47,6 +46,7 @@ $icon-sizes: (
   }
 
   &[type='font'] {
-    line-height: inherit;
+    /* for what? */
+    /* line-height: inherit; */
   }
 }

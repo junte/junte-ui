@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { LabelComponent } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { LabelComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,15 +12,15 @@ export class LabelTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  label = LabelComponent;
+  types = {label: LabelComponent};
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  iconControl = new FormControl(false);
-  sizeControl = new FormControl(UI.size.normal);
-  colorControl = new FormControl('#00227B');
+  sizeControl = this.fb.control(null);
+  colorControl = this.fb.control(UI.color.blue100);
+  iconControl = this.fb.control(false);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     icon: this.iconControl,
     size: this.sizeControl,
     color: this.colorControl,
@@ -32,7 +30,7 @@ export class LabelTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

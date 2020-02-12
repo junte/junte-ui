@@ -1,5 +1,6 @@
 <ng-content></ng-content>
-<div [style.background-color]="color" [style.color]="color | textBrightness">
+<div [style.background-color]="color"
+     [style.color]="color | textBrightness">
   <span *ngIf="text; else numberTemplate">{{text}}</span>
 </div>
 

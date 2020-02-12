@@ -117,6 +117,10 @@ export class ButtonComponent {
     this._size = size || Size.normal;
   }
 
+  get size() {
+    return this._size;
+  }
+
   @HostBinding('attr.with-text')
   get withText() {
     return !!this.text;

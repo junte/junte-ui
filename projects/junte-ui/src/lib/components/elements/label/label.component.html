@@ -1,3 +1,8 @@
-<jnt-icon *ngIf="icon" [icon]="icon" icon [style.fill]="textColor"></jnt-icon>
-<span>{{label}}</span>
-
+<jnt-stack [type]="ui.layout.stack.type.horizontal"
+           [gutter]="ui.gutter.tiny"
+           [align]="ui.flex.align.center">
+  <jnt-icon icon *ngIf="icon"
+            [icon]="icon"
+            [style.color]="color | textBrightness"></jnt-icon>
+  <div [style.color]="color | textBrightness">{{label}}</div>
+</jnt-stack>

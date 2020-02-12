@@ -21,11 +21,14 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document>
-                <jnt-icon [icon]="iconControl.value.value"
-                          [size]="sizeControl.value"></jnt-icon>
-                <p>
-                  <code>ui.{{iconControl.value.path | join:'.'}}.{{iconControl.value.name}}</code>
-                </p>
+                <jnt-stack>
+                  <div block>
+                    <jnt-icon [icon]="iconControl.value.value"
+                              [size]="sizeControl.value"></jnt-icon>
+                  </div>
+                  <jnt-label
+                    [label]="'ui.' + (iconControl.value.path | join:'.') + '.' + iconControl.value.name"></jnt-label>
+                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>

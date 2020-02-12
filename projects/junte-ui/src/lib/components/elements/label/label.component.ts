@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
 import { Color } from '../../../enums/color';
 import { Size } from '../../../enums/size';
-import { getTextBrightness } from '../../../utils/brightness';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-label',
@@ -11,6 +11,8 @@ import { getTextBrightness } from '../../../utils/brightness';
 export class LabelComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-label-host';
+
+  ui = UI;
 
   @HostBinding('attr.size')
   _size: Size = Size.normal;
@@ -46,8 +48,4 @@ export class LabelComponent {
     this._size = size || Size.normal;
   }
 
-  @HostBinding('style.color')
-  get textColor() {
-    return getTextBrightness(this.color);
-  }
 }
