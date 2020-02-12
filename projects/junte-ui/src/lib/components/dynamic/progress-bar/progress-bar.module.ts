@@ -9,6 +9,9 @@ import { ProgressBarComponent } from './progress-bar.component';
   exports: [
     ProgressBarComponent
   ],
+  entryComponents: [
+    ProgressBarComponent
+  ],
   declarations: [
     ProgressBarComponent
   ]

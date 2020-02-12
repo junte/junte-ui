@@ -2,10 +2,12 @@
   <h1>Progress bar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/progress-bar"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/awyH7tq7nZlZATd56otvOzWY/Team-projector?node-id=1893%3A11767"
               target="_blank" title="Figma">
     </jnt-link>
@@ -17,92 +19,94 @@
     <jnt-link source="https://developer.apple.com/documentation/uikit/uiprogressview" title="More">
     </jnt-link>
   </p>
-  <h3>Requirements</h3>
 
-  <ol>
-    <li>Progress bar should display the percent complete</li>
-    <li>If the percentage exceeds 100, the progress bar should change the background color</li>
-  </ol>
+  <jnt-tabs playground>
 
-  <hr>
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-progress-bar [value]="valueControl.value">
+                  <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center"
+                               [justify]="ui.flex.justify.between">
+                      <span>{{math.round(valueControl.value * 10)/10}}%</span>
+                      <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
+                    </jnt-stack>
+                  </ng-template>
+                </jnt-progress-bar>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder" builder>
+              <jnt-form-item>
+                <jnt-form-label for="value">Value</jnt-form-label>
+                <jnt-form-control>
+                  <jnt-input formControlName="value" [type]="ui.form.input.type.number"></jnt-input>
+                </jnt-form-control>
+              </jnt-form-item>
 
-  <jnt-stack>
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="legend" label="Legend"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
 
-    <ng-container *ngFor="let value of [0.1655, 20, 99.6, 130]">
-      <div style="width: 100%">
-        <jnt-progress-bar [value]="value">
-          <ng-template #legend>
-            <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
-              <span>{{math.round(value * 10)/10}}%</span>
-              <span>{{value > 100 ? '' : math.round(((100 - value) * 10))/10 + '%'}}</span>
-            </jnt-stack>
-          </ng-template>
-        </jnt-progress-bar>
-      </div>
-    </ng-container>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'progress-bar-test', type: 'ProgressBarTestComponent'}"
+                scss="dynamic/progress-bar"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="progress-bar-test.template.html">
+                <![CDATA[
+                <jnt-progress-bar
+                  ]]>
+                  <ng-container *ngIf="valueControl.value">
+                    <![CDATA[
+                    [value]="]]>{{valueControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="legendControl.value">
+                    <![CDATA[
+                    <ng-template #progressBarLegendTemplate>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center"
+                                 [justify]="ui.flex.justify.between">
+                        <span>{{math.round(valueControl.value * 10)/10}}%</span>
+                        <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
+                      </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-progress-bar>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
 
-    <div style="width: 100%">
-      <jnt-progress-bar [value]="20">
-        <ng-template #legend>
-          <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
-            <span>20% Spend</span>
-            <span>80% Remains</span>
-          </jnt-stack>
-        </ng-template>
-      </jnt-progress-bar>
-    </div>
-
-    <div style="width: 100%">
-      <jnt-progress-bar [value]="-20">
-        <ng-template #legend>
-          <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between" [gutter]="ui.gutter.tiny">
-            <span>-20%</span>
-            <span></span>
-          </jnt-stack>
-        </ng-template>
-      </jnt-progress-bar>
-    </div>
-
-    <ngx-prism language="html">
-      <pre><![CDATA[
-<jnt-progress-bar [value]="30">
-  <ng-template #legend>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [justify]="ui.flex.justify.between">
-      <span>30%</span>
-      <span>70%</span>
-    </jnt-stack>
-  </ng-template>
-</jnt-progress-bar>
-      ]]></pre>
-    </ngx-prism>
-
-    <h3>API</h3>
-    <h4>jnt-progress-bar</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[value]</td>
-        <td>-</td>
-        <td>number</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>legend</td>
-        <td>-</td>
-        <td>TemplateRef</td>
-        <td>-</td>
-      </tr>
-      </tbody>
-    </table>
-
-  </jnt-stack>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-progress-bar" [target]="types.progress"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
