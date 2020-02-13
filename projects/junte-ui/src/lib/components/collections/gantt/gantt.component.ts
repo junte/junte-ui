@@ -20,13 +20,20 @@ export class GanttComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
 
+  ui = UI;
+  addMonths = addMonths;
+  subMonths = subMonths;
+
   private _current: Date = new Date();
 
   @Input()
-  title = '';
+  title: string;
 
   @Input()
   loading = false;
+
+  @ContentChild('toolsTemplate', {static: false})
+  toolsTemplate: TemplateRef<any>;
 
   @ContentChild('titleTemplate', {static: false})
   titleTemplate: TemplateRef<any>;
@@ -34,12 +41,8 @@ export class GanttComponent implements ControlValueAccessor {
   @ContentChildren(GanttLineComponent, {descendants: true})
   lines: QueryList<GanttLineComponent>;
 
-  ui = UI;
   today = today();
   error: Error;
-
-  addMonths = addMonths;
-  subMonths = subMonths;
 
   get current() {
     return this._current;
