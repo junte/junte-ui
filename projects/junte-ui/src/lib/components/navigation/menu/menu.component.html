@@ -6,9 +6,11 @@
       <div title (click)="submenu.opened = !submenu.opened"
            [attr.opened]="submenu.opened">
         <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                   [gutter]="ui.gutter.small"
                    [align]="ui.flex.align.center">
           <jnt-icon *ngIf="submenu.icon" [icon]="submenu.icon"></jnt-icon>
           <jnt-stack text [type]="ui.layout.stack.type.horizontal"
+                     [gutter]="ui.gutter.small"
                      [align]="ui.flex.align.center">
             <span>{{submenu.title}}</span>
             <jnt-stack *ngIf="!!submenu.badges.length"
@@ -16,6 +18,7 @@
                        [align]="ui.flex.align.center"
                        [gutter]="ui.gutter.small">
               <jnt-badge badge *ngFor="let badge of submenu.badges"
+                         [text]="badge.text"
                          [value]="badge.value"
                          [position]="ui.position.inline"
                          [color]="badge.color"></jnt-badge>
@@ -37,6 +40,7 @@
                     [title]="submenuItem.title"
                     [target]="submenuItem.target">
             <jnt-badge *ngFor="let badge of submenuItem.badges"
+                       [text]="badge.text"
                        [value]="badge.value"
                        [position]="ui.position.inline"
                        [color]="badge.color">
@@ -57,6 +61,7 @@
                 [scheme]="item.scheme"
                 [target]="item.target">
         <jnt-badge *ngFor="let badge of item.badges"
+                   [text]="badge.text"
                    [value]="badge.value"
                    [position]="ui.position.inline"
                    [color]="badge.color"></jnt-badge>
@@ -67,6 +72,7 @@
                   [title]="item.title"
                   [target]="item.target">
           <jnt-badge *ngFor="let badge of item.badges"
+                     [text]="badge.text"
                      [value]="badge.value"
                      [position]="ui.position.inline"
                      [color]="badge.color"></jnt-badge>
