@@ -67,18 +67,18 @@
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
                     </ng-template>
                     <ng-template #headerMenuTemplate *ngIf="menuControl.value">
-                      <jnt-menu top-menu>
+                      <jnt-menu>
                         <jnt-menu-item title="Home" [icon]="ui.icons.home"></jnt-menu-item>
-                        <jnt-menu-item title="My network" [icon]="ui.icons.animated.runningMan"></jnt-menu-item>
-                        <jnt-menu-item title="Jobs" [icon]="ui.icons.gitlab"></jnt-menu-item>
-                        <jnt-menu-item title="Messages" [icon]="ui.icons.email"></jnt-menu-item>
+                        <jnt-menu-item title="My network" [icon]="localUi.icons.network"></jnt-menu-item>
+                        <jnt-menu-item title="Jobs" [icon]="localUi.icons.jobs"></jnt-menu-item>
+                        <jnt-menu-item title="Messages" [icon]="ui.icons.messafes"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
-                      <jnt-app-header-actions>
+                      <jnt-app-header-actions actions>
                         <jnt-app-header-action>
                           <ng-template #actionLabelTemplate>
-                            <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
+                            <jnt-icon [icon]="ui.icons.animated.bell"></jnt-icon>
                           </ng-template>
                           <ng-template #actionContentTemplate>
                             <jnt-stack>
@@ -161,15 +161,15 @@
                           </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="ui.icons.information">
-                              <jnt-menu-item title="About"></jnt-menu-item>
-                              <jnt-menu-item title="Education"></jnt-menu-item>
+                            <jnt-submenu title="General" [icon]="localUi.icons.general">
+                              <jnt-menu-item title="About" [icon]="localUi.icons.bio"></jnt-menu-item>
+                              <jnt-menu-item title="Education" [icon]="ui.icons.knowledge"></jnt-menu-item>
                             </jnt-submenu>
-                            <jnt-submenu title="Profession" [icon]="ui.icons.skull">
+                            <jnt-submenu title="Profession" [icon]="localUi.icons.certificate">
                               <jnt-menu-item title="Skills"
                                              [icon]="ui.icons.skull"></jnt-menu-item>
-                              <jnt-menu-item title="Experience"></jnt-menu-item>
-                              <jnt-menu-item title="Certificates"></jnt-menu-item>
+                              <jnt-menu-item title="Experience" [icon]="localUi.icons.experience"></jnt-menu-item>
+                              <jnt-menu-item title="Certificates" [icon]="localUi.icons.certificate"></jnt-menu-item>
                             </jnt-submenu>
                           </jnt-menu>
                         </jnt-stack>

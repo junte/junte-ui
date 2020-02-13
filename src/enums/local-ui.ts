@@ -9,8 +9,9 @@ export class LocalUI {
     certificate: 'certificate:font:junte-ui-test-default',
     experience: 'experience:font:junte-ui-test-default',
     jobs: 'jobs:font:junte-ui-test-default',
-    network: 'jobs:font:junte-ui-test-default',
-    skills: 'jobs:font:junte-ui-test-default',
+    network: 'network:font:junte-ui-test-default',
+    skills: 'skills:font:junte-ui-test-default',
+    general: 'general:font:junte-ui-test-default',
 
     menu: {
       documentation: 'documentation:font:junte-ui-test-default',
