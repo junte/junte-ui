@@ -9,6 +9,7 @@ export const icons = {
   solar: 'solar:font',
   moon: 'moon:font',
   poop: 'poop:font',
+  knowledge: 'knowledge:font',
   // access
   lock: 'lock:font',
   unlock: 'unlock:font',
@@ -50,6 +51,8 @@ export const icons = {
   pause: 'pause:font',
   play: 'play:font',
   // internet
+  signin: 'signin:font',
+  signout: 'signout:font',
   link: 'link:font',
   email: 'email:font',
   anchor: 'anchor:font',
@@ -69,6 +72,7 @@ export const icons = {
   bell: 'bell:font',
   team: 'team:font',
   user: 'user:font',
+  messafes: 'messafes:font',
   // chevron
   doubleChevronLeft: 'chevron-double-left:font',
   doubleChevronRight: 'chevron-double-right:font',

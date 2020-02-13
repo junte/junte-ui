@@ -4,6 +4,13 @@ export class LocalUI {
     preview: 'preview:svg:local',
     code: 'code:svg:local',
     api: 'api:svg:local',
+    cup: 'cup:font:junte-ui-test-layout',
+    bio: 'bio:font:junte-ui-test-default',
+    certificate: 'certificate:font:junte-ui-test-default',
+    experience: 'experience:font:junte-ui-test-default',
+    jobs: 'jobs:font:junte-ui-test-default',
+    network: 'jobs:font:junte-ui-test-default',
+    skills: 'jobs:font:junte-ui-test-default',
 
     menu: {
       documentation: 'documentation:font:junte-ui-test-default',
@@ -54,7 +61,6 @@ export class LocalUI {
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
       baseline: 'baseline:font:junte-ui-test-layout',
-      cup: 'cup:font:junte-ui-test-layout',
     }
   };
 }
