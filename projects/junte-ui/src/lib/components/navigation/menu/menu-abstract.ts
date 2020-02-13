@@ -1,9 +1,8 @@
-import { ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../decorators/api';
 import { Orientation } from '../../../enums/orientation';
 import { Size } from '../../../enums/size';
 import { MenuItemComponent } from './menu-item/menu-item.component';
-import { SubmenuComponent } from './submenu/submenu.component';
-import { PropertyApi } from '../../../decorators/api';
 
 export abstract class Menu {
 
@@ -11,6 +10,9 @@ export abstract class Menu {
   _type: Orientation = Orientation.horizontal;
 
   _spacer: Size = Size.normal;
+
+  @HostBinding('attr.collapsed')
+  @Input() collapsed = false;
 
   @PropertyApi({
     description: 'Menu orientation',
@@ -20,11 +22,7 @@ export abstract class Menu {
   })
 
   @Input() set type(type: Orientation) {
-    if (!!type) {
-      this._type = type;
-    } else {
-      this._type = Orientation.horizontal;
-    }
+    this._type = type || Orientation.horizontal;
   }
 
   get type() {
@@ -50,10 +48,6 @@ export abstract class Menu {
     return this._spacer;
   }
 
-  @ContentChildren(MenuItemComponent)
+  @ContentChildren(forwardRef(() => MenuItemComponent))
   items: QueryList<MenuItemComponent>;
-
-  @ContentChildren(SubmenuComponent)
-  submenus: QueryList<SubmenuComponent>;
-
 }

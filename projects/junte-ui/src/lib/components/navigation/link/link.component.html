@@ -23,8 +23,10 @@
   <jnt-stack [type]="ui.layout.stack.type.horizontal"
              [gutter]="ui.gutter.tiny"
              [align]="ui.flex.align.center">
-    <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
-    <div title>{{title}}</div>
+    <div title>
+      <jnt-icon *ngIf="icon" [icon]="icon" icon></jnt-icon>
+      <span>{{title}}</span>
+    </div>
     <jnt-stack *ngIf="badges.length"
                [type]="ui.layout.stack.type.horizontal"
                [gutter]="ui.gutter.tiny">

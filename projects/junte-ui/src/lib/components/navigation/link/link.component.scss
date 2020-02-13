@@ -165,7 +165,7 @@ $link-schemes: (
       color: #{map-get($scheme, transparent-badge-color)};
     }
     &[active="true"] {
-      [title] {
+      span {
         border-bottom: 1px solid #{map-get($scheme, transparent-color)};
       }
     }
@@ -206,7 +206,7 @@ $link-schemes: (
 }
 
 [link] {
-  display: inline-flex;
+  display: inline-block;
   text-decoration: $link-decoration;
   box-sizing: border-box;
   cursor: pointer;
@@ -221,7 +221,20 @@ $link-schemes: (
   }
   [title] {
     white-space: nowrap;
-    line-height: 1;
+    [icon], span {
+      font-weight: $link-font-weight;
+      transition: color .3s;
+    }
+    [icon] {
+      margin-right: $link-icon-spacing;
+      line-height: 1;
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      &[type='animated'], &[type='svg'] {
+        width: $link-icon-size;
+        height: $link-icon-size;
+      }
+    }
   }
   &:active {
     [icon], [title] {

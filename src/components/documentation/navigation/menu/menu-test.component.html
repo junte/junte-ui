@@ -23,22 +23,27 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value">
-                  <jnt-submenu title="General"
-                               [icon]="iconsControl.value ? ui.icons.angular : null">
-                    <jnt-badge *ngIf="badgesControl.value" [value]="5"></jnt-badge>
-                    <jnt-menu-item [title]="'Theming'"
-                                   [icon]="iconsControl.value ? ui.icons.search : null"
-                                   [target]="targetControl.value"
-                                   [link]="['documentation','navigation','menu']">
-                      <jnt-badge *ngIf="badgesControl.value" [text]="'100$'"></jnt-badge>
-                    </jnt-menu-item>
-                  </jnt-submenu>
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.search : null"
                                  [target]="targetControl.value"
                                  [link]="['/documentation','navigation','menu']"
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [text]="'5h'"></jnt-badge>
                   </jnt-menu-item>
+
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.search : null"
+                                 [target]="targetControl.value"
+                                 [link]="['/documentation','navigation','menu']"
+                                 [title]="'Text'">
+                    <jnt-badge *ngIf="badgesControl.value" [text]="'5h'"></jnt-badge>
+
+                    <jnt-menu>
+                      <jnt-menu-item title="Test"></jnt-menu-item>
+                      <jnt-menu-item title="Test"></jnt-menu-item>
+                      <jnt-menu-item title="Test"></jnt-menu-item>
+                    </jnt-menu>
+
+                  </jnt-menu-item>
+
                 </jnt-menu>
               </ng-template>
             </app-browser-preview>

@@ -1,0 +1,13 @@
+<jnt-link link
+          [title]="title"
+          [icon]="icon"
+          [matching]="matching"
+          [source]="link"
+          [scheme]="scheme"
+          [target]="target">
+  <jnt-badge *ngFor="let badge of badges"
+             [value]="badge.value"
+             [position]="ui.position.inline"
+             [color]="badge.color">
+  </jnt-badge>
+</jnt-link>
