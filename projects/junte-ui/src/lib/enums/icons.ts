@@ -129,6 +129,8 @@ export const icons = {
     download: 'download:animated:default',
     upload: 'upload:animated:default',
     settings: 'settings:animated:default',
-    time: 'time:animated:default'
+    time: 'time:animated:default',
+    bell: 'bell:animated:default',
+    reload: 'reload:animated:default'
   }
 };
