@@ -29,8 +29,9 @@
                [type]="ui.layout.stack.type.horizontal"
                [gutter]="ui.gutter.tiny">
       <jnt-badge badge *ngFor="let badge of badges"
-                 [color]="badge.color"
+                 [text]="badge.text"
                  [value]="badge.value"
+                 [color]="badge.color"
                  [position]="ui.position.inline">
       </jnt-badge>
     </jnt-stack>
