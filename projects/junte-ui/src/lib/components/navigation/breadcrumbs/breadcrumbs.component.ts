@@ -20,22 +20,14 @@ class Breadcrumb {
 
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
-  @HostBinding('attr.host') readonly host = 'jnt-breadcrumb-host';
-
   ui = UI;
 
-  private routerState$: BehaviorSubject<RouterState> = new BehaviorSubject<RouterState>(null);
+  private routerState$ = new BehaviorSubject<RouterState>(this.router.routerState);
   private subscriptions: Subscription[] = [];
 
   breadcrumbs: Breadcrumb[];
 
-  private set routerState(routerState: RouterState) {
-    this.routerState$.next(routerState);
-  }
-
-  private get routerState() {
-    return this.routerState$.getValue();
-  }
+  @HostBinding('attr.host') readonly host = 'jnt-breadcrumb-host';
 
   constructor(private router: Router,
               private titleService: Title,
@@ -43,11 +35,9 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.routerState = this.router.routerState;
-
     this.subscriptions.push(this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => this.routerState = this.router.routerState));
+      .subscribe(() => this.routerState$.next(this.router.routerState)));
 
     this.routerState$.pipe(filter(r => !!r))
       .subscribe((router) => this.build(router.root));

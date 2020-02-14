@@ -1,9 +1,9 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { UI } from '../../../../enums/ui';
 import { UrlMatching } from '../../../../enums/url';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
-import { PropertyApi } from '../../../../decorators/api';
 
 @Component({
   selector: 'jnt-submenu',
@@ -18,7 +18,6 @@ export class SubmenuComponent {
     description: 'Icon for submenu title',
     type: 'string'
   })
-
   @Input() icon: string;
 
   @PropertyApi({
@@ -33,7 +32,6 @@ export class SubmenuComponent {
     default: UrlMatching.fullMatch,
     options: [UrlMatching.fullMatch, UrlMatching.wildcard]
   })
-
   @Input() matching: UrlMatching = UrlMatching.fullMatch;
 
   @PropertyApi({

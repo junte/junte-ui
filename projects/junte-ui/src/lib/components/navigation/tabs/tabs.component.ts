@@ -47,13 +47,11 @@ export class TabsComponent {
   ui = UI;
   active = 0;
 
+  @HostBinding('attr.host')
+  readonly host = 'jnt-tabs-host';
+
   @HostBinding('attr.outline')
   _outline: Outline = Outline.fill;
-
-  @HostBinding('attr.host') readonly host = 'jnt-tabs-host';
-
-  @ContentChildren(TabComponent)
-  tabs: QueryList<TabComponent>;
 
   @PropertyApi({
     description: 'there is/no background for the content',
@@ -64,5 +62,8 @@ export class TabsComponent {
   @Input() set outline(outline: Outline) {
     this._outline = outline || Outline.fill;
   }
+
+  @ContentChildren(TabComponent)
+  tabs: QueryList<TabComponent>;
 
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-dropdown-test',
@@ -11,5 +11,4 @@ export class DropdownTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-
 }

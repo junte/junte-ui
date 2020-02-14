@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UI } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { MenuComponent, MenuItemComponent, SubmenuComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MenuItemComponent } from 'junte-ui';
-import { MenuComponent } from 'junte-ui';
-import { SubmenuComponent, TabComponent } from 'junte-ui';
 
 enum SourceType {
   external = 'external',
@@ -21,9 +18,11 @@ export class MenuTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sourceType = SourceType;
-  menuItem = MenuItemComponent;
-  menu = MenuComponent;
-  submenu = SubmenuComponent;
+  types = {
+    menuItem: MenuItemComponent,
+    menu: MenuComponent,
+    submenu: SubmenuComponent
+  };
 
   @ViewChild('code', {static: false}) code: TabComponent;
 

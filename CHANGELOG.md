@@ -54,3 +54,8 @@ forms/calendar @ContentChild('dayTemplate', {static: false}) was renamed to @Con
 collections/accordion @ContentChild('sectionContentTemplate', {static: false}) was renamed to @ContentChild('accordionContentTemplate', {static: false})
 
 dynamic/progressBar @ContentChild('legend', {static: false}) was renamed to @ContentChild('progressBarLegendTemplate', {static: false})
+
+navigation/dropdown @ContentChild('trigger', {static: false}) was renamed to @ContentChild('triggerTemplate', {static: false})
+
+navigation/dropdown @ContentChild('dropdown', {static: false}) was renamed to @ContentChild('dropdownTemplate', {static: false})
+
