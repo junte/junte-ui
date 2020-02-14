@@ -1,9 +1,9 @@
 import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { Scheme } from '../../../../enums/scheme';
 import { UI } from '../../../../enums/ui';
 import { UrlMatching } from '../../../../enums/url';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
-import { PropertyApi } from '../../../../decorators/api';
 
 const DEFAULT_TARGET = '_self';
 
@@ -19,21 +19,18 @@ export class MenuItemComponent {
     description: 'Icon for menu item',
     type: 'string'
   })
-
   @Input() icon: string;
 
   @PropertyApi({
     description: 'Menu item title',
     type: 'string'
   })
-
   @Input() title: string;
 
   @PropertyApi({
     description: 'Menu item source',
     type: 'string | string[]'
   })
-
   @Input() link: string | string[];
 
   @PropertyApi({
@@ -52,7 +49,6 @@ export class MenuItemComponent {
     options: [UrlMatching.fullMatch,
       UrlMatching.wildcard]
   })
-
   @Input() matching: UrlMatching = UrlMatching.fullMatch;
 
   @PropertyApi({
@@ -64,14 +60,12 @@ export class MenuItemComponent {
       Scheme.success,
       Scheme.fail]
   })
-
   @Input() scheme: Scheme = Scheme.primary;
 
   @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
-
   @Output() click = new EventEmitter<any>();
 
   @ContentChildren(BadgeComponent)

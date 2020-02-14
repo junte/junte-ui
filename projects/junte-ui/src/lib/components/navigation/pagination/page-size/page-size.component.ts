@@ -22,7 +22,13 @@ export class PageSizeComponent implements OnInit {
 
   ui = UI;
 
-  @HostBinding('attr.host') readonly host = 'jnt-page-size-host';
+  selectControl = new FormControl(DEFAULT_SIZE);
+  form = this.fb.group({
+    select: this.selectControl
+  });
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-page-size-host';
 
   @Input() options: PageSizeOption[] = [
     new PageSizeOption(10, '10'),
@@ -31,11 +37,6 @@ export class PageSizeComponent implements OnInit {
     new PageSizeOption(50, '50'),
     new PageSizeOption(100, '100')
   ];
-
-  selectControl = new FormControl(DEFAULT_SIZE);
-  form = this.fb.group({
-    select: this.selectControl
-  });
 
   constructor(private fb: FormBuilder) {
   }

@@ -1,7 +1,7 @@
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../../enums/ui';
 import { PropertyApi } from '../../../decorators/api';
+import { UI } from '../../../enums/ui';
 
 @Component({
   selector: 'jnt-pagination',
@@ -14,13 +14,6 @@ import { PropertyApi } from '../../../decorators/api';
 })
 export class PaginationComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-pagination-host';
-
-  @HostBinding('style.visibility')
-  get visible() {
-    return this.pagesCount > 1 ? 'visible' : 'collapse';
-  }
-
   ui = UI;
 
   private _pagesCount: number;
@@ -29,11 +22,18 @@ export class PaginationComponent {
 
   pages: number[];
 
+  @HostBinding('attr.host')
+  readonly host = 'jnt-pagination-host';
+
+  @HostBinding('style.visibility')
+  get visible() {
+    return this.pagesCount > 1 ? 'visible' : 'collapse';
+  }
+
   @PropertyApi({
     description: 'Pages count for pagination',
     type: 'number',
   })
-
   @Input()
   set pagesCount(pagesCount: number) {
     this._pagesCount = pagesCount;

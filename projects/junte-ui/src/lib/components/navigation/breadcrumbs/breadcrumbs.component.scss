@@ -1,31 +1,27 @@
 @import "../../../assets/styles/variables";
 
-$breadcrumb-link-color: $primary-text-light-color !default;
-$breadcrumb-last-link-color: $primary-text-dark-color !default;
-$breadcrumb-link-font-size: 12px !default;
-
-$breadcrumb-icon-color: $primary-text-light-color !default;
-$breadcrumb-icon-font-size: 8px !default;
-$breadcrumb-icon-line-height: 18px !default;
+$breadcrumb-link-font-size: 12px;
+$breadcrumb-icon-font-size: 8px;
+$breadcrumb-icon-line-height: 18px;
 
 :host {
   display: block;
 }
 
 a {
-  color: $breadcrumb-link-color;
+  color: $primary-text-light-color;
   font-size: $breadcrumb-link-font-size;
   text-decoration: none;
   user-select: none;
 
   &:last-of-type {
-    color: $breadcrumb-last-link-color;
+    color: $primary-text-dark-color;
     pointer-events: none;
   }
 }
 
 [icon] {
-  color: $breadcrumb-icon-color;
+  color: $primary-text-light-color;
   font-size: $breadcrumb-icon-font-size !important;
 
   &:last-child {

@@ -1,21 +1,27 @@
 @import "../../../assets/styles/variables";
 
-$link-active-color: $primary-color !default;
+$toggle-font-size: 11px;
+$submenu-title-max-width: 200px;
+$submenu-items-min-width: 200px;
+$submenu-items-link-border-left: 4px;
 
 :host {
   display: block;
   flex: 1;
+
   &[type='horizontal'] {
     [submenu] {
       padding: $gutter-small $gutter-small $gutter-small $gutter-normal;
+
       [title] {
         span {
           text-overflow: ellipsis;
-          max-width: 200px;
+          max-width: $submenu-title-max-width;
           display: inline-block;
         }
       }
     }
+
     [submenuItems] {
       background-color: $primary-background;
       box-shadow: $shadow-normal;
@@ -26,9 +32,11 @@ $link-active-color: $primary-color !default;
       z-index: 1;
       padding: $gutter-small 0;
       width: 100%;
-      min-width: 200px;
+      min-width: $submenu-items-min-width;
+
       [link][deep-host=#{$jnt-link-host}] {
-        border-left: 4px solid transparent;
+        border-left: $submenu-items-link-border-left solid transparent;
+
         &:hover {
           background-color: $highlight-background;
           border-left-color: $primary-color;
@@ -41,19 +49,24 @@ $link-active-color: $primary-color !default;
 [submenu] {
   position: relative;
   max-width: 100%;
+
   * {
     max-width: 100%;
   }
+
   [toggle] {
     line-height: 0;
-    font-size: 11px;
+    font-size: $toggle-font-size;
   }
+
   [title] {
     cursor: pointer;
     color: $primary-color;
+
     [icon] {
       line-height: 0;
     }
+
     span {
       text-overflow: ellipsis;
       max-width: 100%;
@@ -65,14 +78,17 @@ $link-active-color: $primary-color !default;
 [submenuItems] {
   display: none;
   flex-direction: column;
+
   [link][deep-host=#{$jnt-link-host}] {
     padding: $gutter-small $gutter-normal;
+
     [title] {
       text-overflow: ellipsis;
       max-width: 100%;
       display: inline-block;
     }
   }
+
   [submenuTitle] {
     display: none;
     text-overflow: ellipsis;
@@ -88,6 +104,6 @@ $link-active-color: $primary-color !default;
 
   &[active='true'] {
     background-color: $pale-navy-color;
-    color: $link-active-color;
+    color: $primary-color;
   }
 }

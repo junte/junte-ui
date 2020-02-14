@@ -47,7 +47,7 @@
             </jnt-col>
 
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form">
+              <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.flex.align.stretch">
 
                   <jnt-form-item>
@@ -112,7 +112,7 @@
 
       <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
-          <jnt-accordion [active]="1">
+          <jnt-accordion [active]="0">
             <jnt-accordion-section title="How to start">
               <ng-template #accordionContentTemplate>
                 <app-how-to-use
@@ -187,4 +187,3 @@
   </jnt-stack>
 
 </jnt-container>
-

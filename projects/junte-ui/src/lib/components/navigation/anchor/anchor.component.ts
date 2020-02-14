@@ -11,21 +11,20 @@ export class AnchorComponent {
 
   ui = UI;
 
-  @HostBinding('attr.host') readonly host = 'jnt-anchor-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-anchor-host';
 
   @PropertyApi({
     description: 'Anchor hash in URL',
     type: 'string'
   })
-  @Input()
-  anchor: string;
+  @Input() anchor: string;
 
   constructor(private router: Router) {
   }
 
   navigate() {
-    this.router.navigate([],
-      {fragment: this.anchor})
+    this.router.navigate([], {fragment: this.anchor})
       .then(_ => null);
   }
 

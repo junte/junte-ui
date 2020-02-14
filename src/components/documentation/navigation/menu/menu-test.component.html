@@ -98,114 +98,127 @@
     <jnt-tab #code title="Code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
-          scss="navigation/menu"></app-how-to-use>
-        <app-code-highlight file="menu-test.component.html">
-          <![CDATA[
-          <jnt-menu
-            ]]>
-            <ng-container *ngIf="typeControl.value">
-              <![CDATA[
-              [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-            <jnt-menu-item
-              ]]>
-              <ng-container *ngIf="schemeControl.value">
+        <jnt-accordion [active]="0">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
+                scss="navigation/menu">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="menu-test.component.html">
                 <![CDATA[
-                [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-              </ng-container>
-
-              <ng-container *ngIf="iconsControl.value">
-                <![CDATA[
-                [icon]="ui.icons.search"]]>
-              </ng-container>
-
-              <ng-container *ngIf="linkControl.value == sourceType.external">
-                <![CDATA[
-                link="https://google.com"]]>
-              </ng-container>
-
-              <ng-container *ngIf="linkControl.value == sourceType.local">
-                <![CDATA[
-                [link]="['/documentation', 'block']"]]>
-              </ng-container>
-
-              <ng-container *ngIf="targetControl.value">
-                <![CDATA[
-                target="]]>{{targetControl.value}}<![CDATA["]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="iconsControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-menu-item>
-            <jnt-submenu title="General" ]]>
-              <ng-container *ngIf="iconsControl.value">
-                <![CDATA[
-                [icon]="ui.icons.crown"]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="iconsControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-
-              <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
-                <![CDATA[
-                <jnt-menu-item ]]>
-
-                  <ng-container *ngIf="schemeControl.value">
+                <jnt-menu
+                  ]]>
+                  <ng-container *ngIf="typeControl.value">
                     <![CDATA[
-                    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
                   </ng-container>
-
-                  <ng-container *ngIf="iconsControl.value">
-                    <![CDATA[
-                    [icon]="ui.icons.search"]]>
-                  </ng-container>
-
-                  <ng-container *ngIf="targetControl.value">
-                    <![CDATA[
-                    target="]]>{{targetControl.value}}<![CDATA["]]>
-                  </ng-container>
-
-                  <ng-container *ngIf="linkControl.value == sourceType.external">
-                    <![CDATA[
-                    link="https://google.com"]]>
-                  </ng-container>
-
-                  <ng-container *ngIf="linkControl.value == sourceType.local">
-                    <![CDATA[
-                    [link]="['/documentation', 'block']"]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngIf="iconsControl.value">
-                    <![CDATA[
-                    <jnt-badge [value]="5"></jnt-badge>
+                  <![CDATA[>
+                  <jnt-menu-item
                     ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-menu-item>
+                    <ng-container *ngIf="schemeControl.value">
+                      <![CDATA[
+                      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.search"]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="linkControl.value == sourceType.external">
+                      <![CDATA[
+                      link="https://google.com"]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="linkControl.value == sourceType.local">
+                      <![CDATA[
+                      [link]="['/documentation', 'block']"]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="targetControl.value">
+                      <![CDATA[
+                      target="]]>{{targetControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-menu-item>
+                  <jnt-submenu title="General" ]]>
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.crown"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+
+                    <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                      <![CDATA[
+                      <jnt-menu-item ]]>
+
+                        <ng-container *ngIf="schemeControl.value">
+                          <![CDATA[
+                          [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+                        </ng-container>
+
+                        <ng-container *ngIf="iconsControl.value">
+                          <![CDATA[
+                          [icon]="ui.icons.search"]]>
+                        </ng-container>
+
+                        <ng-container *ngIf="targetControl.value">
+                          <![CDATA[
+                          target="]]>{{targetControl.value}}<![CDATA["]]>
+                        </ng-container>
+
+                        <ng-container *ngIf="linkControl.value == sourceType.external">
+                          <![CDATA[
+                          link="https://google.com"]]>
+                        </ng-container>
+
+                        <ng-container *ngIf="linkControl.value == sourceType.local">
+                          <![CDATA[
+                          [link]="['/documentation', 'block']"]]>
+                        </ng-container>
+                        <![CDATA[>]]>
+                        <ng-container *ngIf="iconsControl.value">
+                          <![CDATA[
+                          <jnt-badge [value]="5"></jnt-badge>
+                          ]]>
+                        </ng-container>
+                        <![CDATA[
+                      </jnt-menu-item>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-submenu>
+                </jnt-menu>
                 ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-submenu>
-          </jnt-menu>
-          ]]>
-        </app-code-highlight>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api title="Menu" selector="jnt-menu" [target]="menu"></app-component-api>
-        <app-component-api title="Menu item" selector="jnt-menu-item" [target]="menuItem"></app-component-api>
-        <app-component-api title="Submenu" selector="jnt-submenu" [target]="submenu"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api title="Menu" selector="jnt-menu" [target]="types.menu"></app-component-api>
+          <app-component-api title="Menu item" selector="jnt-menu-item" [target]="types.menuItem"></app-component-api>
+          <app-component-api title="Submenu" selector="jnt-submenu" [target]="types.submenu"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

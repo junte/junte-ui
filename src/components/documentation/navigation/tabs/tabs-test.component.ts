@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TabComponent, TabsComponent, UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-tabs-test',
@@ -14,8 +14,6 @@ export class TabsTestComponent implements OnInit {
   localUi = LocalUI;
   types = {tabs: TabsComponent, tab: TabComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
-
   outlineControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
@@ -26,6 +24,8 @@ export class TabsTestComponent implements OnInit {
     badges: this.badgesControl
   });
 
+  @ViewChild('code', {static: false}) code: TabComponent;
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -33,5 +33,4 @@ export class TabsTestComponent implements OnInit {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
-
 }
