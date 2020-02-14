@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { LinkModule } from '../link/link.module';
 import { SubMenuDirective, SubMenuItemsDirective, SubMenuTitleDirective } from './sub-menu.directive';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    LinkModule
   ],
   exports: [
     SubMenuDirective,

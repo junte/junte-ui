@@ -31,27 +31,27 @@
 
               <jnt-stack [type]="ui.layout.stack.type.horizontal">
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
-                </jnt-form-control>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
-                </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
+                  </jnt-form-control>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
+                  </jnt-form-control>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
                   </jnt-form-control>
@@ -161,16 +161,21 @@
                           </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="ui.icons.information">
-                              <jnt-menu-item title="About"></jnt-menu-item>
-                              <jnt-menu-item title="Education"></jnt-menu-item>
-                            </jnt-submenu>
-                            <jnt-submenu title="Profession" [icon]="ui.icons.skull">
-                              <jnt-menu-item title="Skills"
-                                             [icon]="ui.icons.skull"></jnt-menu-item>
-                              <jnt-menu-item title="Experience"></jnt-menu-item>
-                              <jnt-menu-item title="Certificates"></jnt-menu-item>
-                            </jnt-submenu>
+                            <jnt-menu-item title="General" [icon]="ui.icons.information">
+                              <jnt-menu>
+                                <jnt-menu-item title="About"></jnt-menu-item>
+                                <jnt-menu-item title="Education"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
+
+                            <jnt-menu-item title="Profession" [icon]="ui.icons.skull">
+                              <jnt-menu>
+                                <jnt-menu-item title="Skills"
+                                               [icon]="ui.icons.skull"></jnt-menu-item>
+                                <jnt-menu-item title="Experience"></jnt-menu-item>
+                                <jnt-menu-item title="Certificates"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
                           </jnt-menu>
                         </jnt-stack>
                       </ng-template>
@@ -275,19 +280,22 @@
                         <![CDATA[
                         <jnt-app-aside #aside>
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="ui.icons.crown">
-                              <jnt-menu-item title="Theming"></jnt-menu-item>
-                              <jnt-menu-item title="Typography"></jnt-menu-item>
-                            </jnt-submenu>
-                            <jnt-submenu title="Layout" [icon]="ui.icons.layout">
-                              <jnt-menu-item title="Grid"></jnt-menu-item>
-                              <jnt-menu-item title="Stack"></jnt-menu-item>
-                              <jnt-menu-item title="Block"></jnt-menu-item>
-                              <jnt-menu-item title="Spinner"></jnt-menu-item>
-                              <jnt-menu-item title="Application"></jnt-menu-item>
-                              <jnt-menu-item title="Skeleton"></jnt-menu-item>
-                            </jnt-submenu>
-                          </jnt-menu>
+                            <jnt-menu-item title="General" [icon]="ui.icons.crown">
+                              <jnt-menu>
+                                <jnt-menu-item title="Theming"></jnt-menu-item>
+                                <jnt-menu-item title="Typography"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
+
+                            <jnt-menu-item title="Layout" [icon]="ui.icons.layout">
+                              <jnt-menu>
+                                <jnt-menu-item title="Grid"></jnt-menu-item>
+                                <jnt-menu-item title="Stack"></jnt-menu-item>
+                                <jnt-menu-item title="Block"></jnt-menu-item>
+                                <jnt-menu-item title="Spinner"></jnt-menu-item>
+                                <jnt-menu-item title="Application"></jnt-menu-item>
+                                <jnt-menu-item title="Skeleton"></jnt-menu-item>
+                              </jnt-menu>
                         </jnt-app-aside>
                         ]]>
                       </ng-container>

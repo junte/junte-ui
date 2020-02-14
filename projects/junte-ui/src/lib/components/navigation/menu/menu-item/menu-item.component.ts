@@ -1,4 +1,4 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
 import { Scheme } from '../../../../enums/scheme';
 import { UI } from '../../../../enums/ui';
@@ -10,11 +10,16 @@ const DEFAULT_TARGET = '_self';
 
 @Component({
   selector: 'jnt-menu-item',
-  templateUrl: './menu-item.component.html'
+  template: ''
 })
 export class MenuItemComponent {
 
   ui = UI;
+
+  _scheme: Scheme = Scheme.primary;
+
+  @HostBinding('attr.opened')
+  opened = false;
 
   @PropertyApi({
     description: 'Icon for menu item',
@@ -63,7 +68,9 @@ export class MenuItemComponent {
       Scheme.fail
     ]
   })
-  @Input() scheme: Scheme = Scheme.primary;
+  @Input() set scheme(scheme: Scheme) {
+    this._scheme = scheme || Scheme.primary;
+  }
 
   @PropertyApi({
     description: 'Click event',

@@ -165,8 +165,10 @@ $link-schemes: (
       color: #{map-get($scheme, transparent-badge-color)};
     }
     &[active="true"] {
-      span {
-        border-bottom: 1px solid #{map-get($scheme, transparent-color)};
+      [title] {
+        span {
+          border-bottom: 1px solid #{map-get($scheme, transparent-color)};
+        }
       }
     }
     [icon][child-host=#{$jnt-icon-host}] {
@@ -177,6 +179,16 @@ $link-schemes: (
 
 :host {
   display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  &[orphan='true'] {
+    [link] {
+      color: $primary-text-light-color!important;
+      &:hover {
+        color: $primary-text-color!important;
+      }
+    }
+  }
   &[disabled="true"] {
     [link] {
       opacity: .65;
@@ -227,7 +239,6 @@ $link-schemes: (
     }
     [icon] {
       margin-right: $link-icon-spacing;
-      line-height: 1;
     }
     [icon][child-host=#{$jnt-icon-host}] {
       &[type='animated'], &[type='svg'] {
@@ -235,6 +246,9 @@ $link-schemes: (
         height: $link-icon-size;
       }
     }
+  }
+  [badge] {
+    margin-left: $gutter-small;
   }
   &:active {
     [icon], [title] {

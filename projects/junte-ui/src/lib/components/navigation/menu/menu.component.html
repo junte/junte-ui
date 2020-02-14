@@ -1,76 +1,47 @@
 <jnt-stack [type]="type" [gutter]="spacer"
            [align]="ui.flex.align.stretch"
            [wrap]="ui.flex.wrap.wrap">
-  <!--<ng-container *ngFor="let submenu of submenus">-->
-  <!--<div submenu jntSubMenu>-->
-  <!--<div title (click)="submenu.opened = !submenu.opened"-->
-  <!--[attr.opened]="submenu.opened">-->
-  <!--<jnt-stack [type]="ui.layout.stack.type.horizontal"-->
-  <!--[align]="ui.flex.align.center">-->
-  <!--<jnt-icon *ngIf="submenu.icon" [icon]="submenu.icon"></jnt-icon>-->
-  <!--<jnt-stack text [type]="ui.layout.stack.type.horizontal"-->
-  <!--[align]="ui.flex.align.center">-->
-  <!--<span>{{submenu.title}}</span>-->
-  <!--<jnt-stack *ngIf="!!submenu.badges.length"-->
-  <!--[type]="ui.layout.stack.type.horizontal"-->
-  <!--[align]="ui.flex.align.center"-->
-  <!--[gutter]="ui.gutter.small">-->
-  <!--<jnt-badge badge *ngFor="let badge of submenu.badges"-->
-  <!--[value]="badge.value"-->
-  <!--[position]="ui.position.inline"-->
-  <!--[color]="badge.color"></jnt-badge>-->
-  <!--</jnt-stack>-->
-  <!--</jnt-stack>-->
-  <!--<jnt-icon toggle *ngIf="type == ui.orientation.horizontal"-->
-  <!--[icon]="submenu.opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>-->
-  <!--</jnt-stack>-->
-  <!--</div>-->
-
-  <!--<div submenuItems jntSubMenuItems>-->
-  <!--<div submenuTitle>{{submenu.title}}</div>-->
-  <!--<ng-container *ngFor="let submenuItem of submenu.menuItems">-->
-  <!--<jnt-link link submenuItem (click)="submenuItem.click.emit($event)"-->
-  <!--[matching]="submenuItem.matching"-->
-  <!--[source]="submenuItem.link"-->
-  <!--[icon]="submenuItem.icon"-->
-  <!--[scheme]="submenuItem.scheme"-->
-  <!--[title]="submenuItem.title"-->
-  <!--[target]="submenuItem.target">-->
-  <!--<jnt-badge *ngFor="let badge of submenuItem.badges"-->
-  <!--[value]="badge.value"-->
-  <!--[position]="ui.position.inline"-->
-  <!--[color]="badge.color">-->
-  <!--</jnt-badge>-->
-  <!--</jnt-link>-->
-  <!--</ng-container>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</ng-container>-->
-
   <ng-container *ngFor="let item of items">
-    <div item>
-      <jnt-menu-item [title]="item.title"
-                     [icon]="item.icon"
-                     [matching]="item.matching"
-                     [scheme]="item.scheme"
-                     [target]="item.target">
-      </jnt-menu-item>
-      <div *ngIf="!!item.submenus.length" submenu>
-        <ng-container>
-          <ng-container *ngFor="let submenu of item.submenus">
-            <jnt-link *ngFor="let subitem of submenu.items"
-                      [title]="subitem.title"
-                      [icon]="subitem.icon"
-                      [matching]="subitem.matching"
-                      [source]="subitem.link"
-                      [scheme]="subitem.scheme"
-                      [target]="subitem.target">
-            </jnt-link>
-          </ng-container>
+    <div (click)="item.opened = !item.opened" top-level>
+      <jnt-link link
+                [title]="item.title"
+                [icon]="item.icon"
+                [matching]="item.matching"
+                [source]="!item.submenus.length ? item.link : null"
+                [scheme]="item.scheme"
+                [outline]="ui.outline.transparent"
+                [target]="item.target">
+        <ng-container *ngIf="!collapsed">
+          <jnt-badge *ngFor="let badge of item.badges"
+                     [value]="badge.value"
+                     [position]="ui.position.inline"
+                     [color]="badge.color">
+          </jnt-badge>
+        </ng-container>
+      </jnt-link>
+      <jnt-icon *ngIf="!!item.submenus.length"
+                [size]="ui.size.tiny"
+                [icon]="item.opened ? ui.icons.chevronUp : ui.icons.chevronDown">
+      </jnt-icon>
+
+      <div *ngIf="!!item.submenus.length" [attr.opened]="item.opened" submenu>
+        <ng-container *ngFor="let submenu of item.submenus">
+          <jnt-link *ngFor="let subitem of submenu.items"
+                    [title]="subitem.title"
+                    [icon]="subitem.icon"
+                    [matching]="subitem.matching"
+                    [source]="subitem.link"
+                    [scheme]="subitem.scheme"
+                    [target]="subitem.target"
+                    link>
+            <jnt-badge *ngFor="let badge of subitem.badges"
+                       [value]="badge.value"
+                       [position]="ui.position.inline"
+                       [color]="badge.color">
+            </jnt-badge>
+          </jnt-link>
         </ng-container>
       </div>
-
     </div>
-
   </ng-container>
 </jnt-stack>

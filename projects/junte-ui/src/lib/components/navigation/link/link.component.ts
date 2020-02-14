@@ -93,12 +93,17 @@ export class LinkComponent {
     if (!!source) {
       this.externalLink = !Array.isArray(source);
       this._source = source;
+    } else {
+      this._orphan = true;
     }
   }
 
   get source() {
     return this._source;
   }
+
+  @HostBinding('attr.orphan')
+  _orphan = false;
 
   @PropertyApi({
     description: 'Link target',

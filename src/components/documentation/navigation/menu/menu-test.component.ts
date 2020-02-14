@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UI } from 'junte-ui';
-import { LocalUI } from '../../../../enums/local-ui';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { MenuItemComponent } from 'junte-ui';
-import { MenuComponent } from 'junte-ui';
-import { SubmenuComponent, TabComponent } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { MenuComponent, MenuItemComponent, UI } from 'junte-ui';
+import { TabComponent } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 enum SourceType {
   external = 'external',
@@ -23,7 +21,6 @@ export class MenuTestComponent implements OnInit {
   sourceType = SourceType;
   menuItem = MenuItemComponent;
   menu = MenuComponent;
-  submenu = SubmenuComponent;
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
@@ -34,6 +31,7 @@ export class MenuTestComponent implements OnInit {
   spacingControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
+  collapseControl = this.fb.control(false);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -42,7 +40,8 @@ export class MenuTestComponent implements OnInit {
     type: this.typeControl,
     spacing: this.spacingControl,
     icons: this.iconsControl,
-    badges: this.badgesControl
+    badges: this.badgesControl,
+    collapse: this.collapseControl,
   });
 
   constructor(private fb: FormBuilder) {
