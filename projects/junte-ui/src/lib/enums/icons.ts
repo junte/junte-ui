@@ -72,7 +72,7 @@ export const icons = {
   bell: 'bell:font',
   team: 'team:font',
   user: 'user:font',
-  messafes: 'messafes:font',
+  messages: 'messages:font',
   // chevron
   doubleChevronLeft: 'chevron-double-left:font',
   doubleChevronRight: 'chevron-double-right:font',
