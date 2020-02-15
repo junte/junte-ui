@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SubmenuDirectiveModule } from './submenu-directive.module';
-import { MenuItemComponent } from './menu-item/menu-item.component';
+import { SubMenuDirective, SubMenuItemsDirective, SubMenuTitleDirective } from './directives';
+import { MenuItemComponent } from './menu-item.component';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { LinkModule } from '../link/link.module';
 import { MenuComponent } from './menu.component';
-import { UserMenuComponent } from './user-menu/user-menu.component';
 
 @NgModule({
   imports: [
@@ -15,22 +14,22 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
     LinkModule,
     IconModule,
     StackModule,
-    BadgeModule,
-    SubmenuDirectiveModule
+    BadgeModule
   ],
   exports: [
     MenuComponent,
-    MenuItemComponent,
-    UserMenuComponent,
+    MenuItemComponent
   ],
   entryComponents: [
     MenuComponent,
-    MenuItemComponent,
+    MenuItemComponent
   ],
   declarations: [
     MenuComponent,
     MenuItemComponent,
-    UserMenuComponent,
+    SubMenuDirective,
+    SubMenuItemsDirective,
+    SubMenuTitleDirective
   ],
 })
 export class MenuModule {

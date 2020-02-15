@@ -17,35 +17,37 @@
   right: 0;
   z-index: 3;
 
-  jnt-menu[deep-host=#{$jnt-menu-host}] {
+  [menu] {
     display: flex;
     align-items: center;
-    jnt-link[child-host=#{$jnt-link-host}] {
-      padding: $gutter-small;
-      user-select: none;
-      &:hover {
-        background-color: transparent;
-      }
-      a {
-        [title] {
-          color: $white-color;
-          font-size: .875rem;
+    jnt-menu[deep-host=#{$jnt-menu-host}] {
+      jnt-link[child-host=#{$jnt-link-host}] {
+        padding: $gutter-small;
+        user-select: none;
+        &:hover {
+          background-color: transparent;
         }
-        jnt-icon {
-          color: $white-color;
-          font-size: $font-size-large;
+        a {
+          [title] {
+            color: $white-color;
+            font-size: .875rem;
+          }
+          jnt-icon {
+            color: $white-color;
+            font-size: $font-size-large;
+          }
+          jnt-icon:not([type='font']) {
+            width: $font-size-large;
+            height: $font-size-large;
+            fill: $white-color;
+          }
         }
-        jnt-icon:not([type='font']) {
-          width: $font-size-large;
-          height: $font-size-large;
-          fill: $white-color;
-        }
-      }
-      &[active='true'] {
-        a [title] {
-          color: $white-color;
-          span {
-            border-bottom-color: $white-color;
+        &[active='true'] {
+          a [title] {
+            color: $white-color;
+            span {
+              border-bottom-color: $white-color;
+            }
           }
         }
       }

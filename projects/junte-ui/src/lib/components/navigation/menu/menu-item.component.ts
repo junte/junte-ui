@@ -1,10 +1,10 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
-import { PropertyApi } from '../../../../decorators/api';
-import { Scheme } from '../../../../enums/scheme';
-import { UI } from '../../../../enums/ui';
-import { UrlMatching } from '../../../../enums/url';
-import { BadgeComponent } from '../../../elements/badge/badge.component';
-import { MenuComponent } from '../menu.component';
+import { PropertyApi } from '../../../decorators/api';
+import { Scheme } from '../../../enums/scheme';
+import { UI } from '../../../enums/ui';
+import { UrlMatching } from '../../../enums/url';
+import { BadgeComponent } from '../../elements/badge/badge.component';
+import { MenuComponent } from './menu.component';
 
 const DEFAULT_TARGET = '_self';
 

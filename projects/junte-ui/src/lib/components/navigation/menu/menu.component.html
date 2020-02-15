@@ -1,4 +1,5 @@
-<jnt-stack [type]="type" [gutter]="spacer"
+<jnt-stack [type]="type"
+           [gutter]="spacer"
            [align]="ui.flex.align.stretch"
            [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
@@ -24,7 +25,7 @@
                 [icon]="item.opened ? ui.icons.chevronUp : ui.icons.chevronDown">
       </jnt-icon>
 
-      <div *ngIf="!!item.submenus.length" [attr.opened]="item.opened" submenu>
+      <div submenu *ngIf="!!item.submenus.length" [attr.opened]="item.opened">
         <ng-container *ngFor="let submenu of item.submenus">
           <jnt-link *ngFor="let subitem of submenu.items"
                     [title]="subitem.title"

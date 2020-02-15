@@ -1,8 +1,6 @@
 @import "../../../../../assets/styles/variables";
 @import "../../variables";
 
-$user-menu-max-height: 300px;
-
 :host {
   position: relative;
   cursor: pointer;
@@ -12,21 +10,20 @@ $user-menu-max-height: 300px;
 
   &:hover {
     background-color: $primary-color;
-
-    [usermenu] {
+    [menu] {
       display: block;
     }
   }
 }
 
-[usermenu] {
-  background: $primary-dark-color;
-  padding: $gutter-normal $gutter-big;
-  max-height: $user-menu-max-height;
-  overflow-y: auto;
+[menu] {
   display: none;
   position: absolute;
   z-index: 1;
   top: 100%;
   right: 0;
+  background: $primary-background;
+  border-radius: 0 0 $corner-small $corner-small;
+  padding: $gutter-normal $gutter-big;
+  overflow-y: auto;
 }
