@@ -1,74 +1,95 @@
 <jnt-app-aside #aside>
-  <ng-template #asideContentTemplate>
-    <jnt-menu [type]="ui.orientation.vertical"
+  <ng-template #asideContentTemplate let-collapsed="collapsed">
+    <jnt-menu [collapsed]="collapsed"
+              [type]="ui.orientation.vertical"
               [spacer]="ui.size.small">
 
-      <jnt-submenu title="General" [icon]="localUi.icons.menu.general">
-        <jnt-menu-item title="Theming" [link]="['general/theming']"></jnt-menu-item>
-        <jnt-menu-item title="Typography" [link]="['general/typography']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="General" [icon]="localUi.icons.menu.general">
+        <jnt-menu>
+          <jnt-menu-item title="Theming" [link]="['general/theming']"></jnt-menu-item>
+          <jnt-menu-item title="Typography" [link]="['general/typography']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="Layout" [icon]="localUi.icons.menu.layout">
-        <jnt-menu-item title="Stack" [link]="['layout/stack']"></jnt-menu-item>
-        <jnt-menu-item title="Grid" [link]="['layout/grid']"></jnt-menu-item>
-        <jnt-menu-item title="Block" [link]="['layout/block']"></jnt-menu-item>
-        <jnt-menu-item title="Skeleton" [link]="['layout/skeleton']"></jnt-menu-item>
-        <jnt-menu-item title="Spinner" [link]="['layout/spinner']"></jnt-menu-item>
-        <jnt-menu-item title="Application" [link]="['layout/application']"></jnt-menu-item>
-      </jnt-submenu>
 
-      <jnt-submenu title="Navigation" [icon]="localUi.icons.menu.navigation">
-        <jnt-menu-item title="Link" [link]="['navigation/link']"></jnt-menu-item>
-        <jnt-menu-item title="Anchor" [link]="['navigation/anchor']"></jnt-menu-item>
-        <jnt-menu-item title="Menu" [link]="['navigation/menu']"></jnt-menu-item>
-        <jnt-menu-item title="Tabs" [link]="['navigation/tabs']"></jnt-menu-item>
-        <jnt-menu-item title="Pagination" [link]="['navigation/pagination']"></jnt-menu-item>
-        <jnt-menu-item title="Dropdown" [link]="['navigation/dropdown']"></jnt-menu-item>
-        <jnt-menu-item title="Breadcrumbs" [link]="['navigation/breadcrumbs']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="Layout" [icon]="localUi.icons.menu.layout">
+        <jnt-menu>
+          <jnt-menu-item title="Stack" [link]="['layout/stack']"></jnt-menu-item>
+          <jnt-menu-item title="Grid" [link]="['layout/grid']"></jnt-menu-item>
+          <jnt-menu-item title="Block" [link]="['layout/block']"></jnt-menu-item>
+          <jnt-menu-item title="Skeleton" [link]="['layout/skeleton']"></jnt-menu-item>
+          <jnt-menu-item title="Spinner" [link]="['layout/spinner']"></jnt-menu-item>
+          <jnt-menu-item title="Application" [link]="['layout/application']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="UI Elements" [icon]="localUi.icons.menu.elements">
-        <jnt-menu-item title="Icon" [link]="['ui-elements/icon']"></jnt-menu-item>
-        <jnt-menu-item title="Avatar" [link]="['ui-elements/avatar']"></jnt-menu-item>
-        <jnt-menu-item title="Badge" [link]="['ui-elements/badge']"></jnt-menu-item>
-        <jnt-menu-item title="Label" [link]="['ui-elements/label']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="Navigation" [icon]="localUi.icons.menu.navigation">
+        <jnt-menu>
+          <jnt-menu-item title="Link" [link]="['navigation/link']"></jnt-menu-item>
+          <jnt-menu-item title="Anchor" [link]="['navigation/anchor']"></jnt-menu-item>
+          <jnt-menu-item title="Menu" [link]="['navigation/menu']"></jnt-menu-item>
+          <jnt-menu-item title="Tabs" [link]="['navigation/tabs']"></jnt-menu-item>
+          <jnt-menu-item title="Pagination" [link]="['navigation/pagination']"></jnt-menu-item>
+          <jnt-menu-item title="Dropdown" [link]="['navigation/dropdown']"></jnt-menu-item>
+          <jnt-menu-item title="Breadcrumbs" [link]="['navigation/breadcrumbs']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="Forms" [icon]="localUi.icons.menu.forms">
-        <jnt-menu-item title="Button" [link]="['forms/button']"></jnt-menu-item>
-        <jnt-menu-item title="Form" [link]="['forms/form']"></jnt-menu-item>
-        <jnt-menu-item title="Input" [link]="['forms/input']"></jnt-menu-item>
-        <jnt-menu-item title="Checkbox" [link]="['forms/checkbox']"></jnt-menu-item>
-        <jnt-menu-item title="Radio" [link]="['forms/radio']"></jnt-menu-item>
-        <jnt-menu-item title="Select" [link]="['forms/select']"></jnt-menu-item>
-        <jnt-menu-item title="Switch" [link]="['forms/switch']"></jnt-menu-item>
-        <jnt-menu-item title="Switcher" [link]="['forms/switcher']"></jnt-menu-item>
-        <jnt-menu-item title="Calendar" [link]="['forms/calendar']"></jnt-menu-item>
-        <jnt-menu-item title="Date picker" [link]="['forms/date-picker']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="UI Elements" [icon]="localUi.icons.menu.elements">
+        <jnt-menu>
+          <jnt-menu-item title="Icon" [link]="['ui-elements/icon']"></jnt-menu-item>
+          <jnt-menu-item title="Avatar" [link]="['ui-elements/avatar']"></jnt-menu-item>
+          <jnt-menu-item title="Badge" [link]="['ui-elements/badge']"></jnt-menu-item>
+          <jnt-menu-item title="Label" [link]="['ui-elements/label']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="Collections" [icon]="localUi.icons.menu.collections">
-        <jnt-menu-item title="Gantt" [link]="['collections/gantt']"></jnt-menu-item>
-        <jnt-menu-item title="Table" [link]="['collections/table']"></jnt-menu-item>
-        <jnt-menu-item title="Accordion" [link]="['collections/accordion']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="Forms" [icon]="localUi.icons.menu.forms">
+        <jnt-menu>
+          <jnt-menu-item title="Button" [link]="['forms/button']"></jnt-menu-item>
+          <jnt-menu-item title="Form" [link]="['forms/form']"></jnt-menu-item>
+          <jnt-menu-item title="Input" [link]="['forms/input']"></jnt-menu-item>
+          <jnt-menu-item title="Checkbox" [link]="['forms/checkbox']"></jnt-menu-item>
+          <jnt-menu-item title="Radio" [link]="['forms/radio']"></jnt-menu-item>
+          <jnt-menu-item title="Select" [link]="['forms/select']"></jnt-menu-item>
+          <jnt-menu-item title="Switch" [link]="['forms/switch']"></jnt-menu-item>
+          <jnt-menu-item title="Switcher" [link]="['forms/switcher']"></jnt-menu-item>
+          <jnt-menu-item title="Calendar" [link]="['forms/calendar']"></jnt-menu-item>
+          <jnt-menu-item title="Date picker" [link]="['forms/date-picker']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="Overlays" [icon]="localUi.icons.menu.overlays">
-        <jnt-menu-item title="Modal" [link]="['overlays/modal']"></jnt-menu-item>
-        <jnt-menu-item title="Popover" [link]="['overlays/popover']"></jnt-menu-item>
-      </jnt-submenu>
 
-      <jnt-submenu title="Dynamic Data" [icon]="localUi.icons.menu.dynamic">
-        <jnt-menu-item title="Progress bar" [link]="['dynamic-data/progress-bar']"></jnt-menu-item>
-        <jnt-menu-item title="Circle bar" [link]="['dynamic-data/circle-bar']"></jnt-menu-item>
-        <jnt-menu-item title="Chart" [link]="['dynamic-data/chart']"></jnt-menu-item>
-        <jnt-menu-item title="Date period" [link]="['dynamic-data/date-period']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="Collections" [icon]="localUi.icons.menu.collections">
+        <jnt-menu>
+          <jnt-menu-item title="Gantt" [link]="['collections/gantt']"></jnt-menu-item>
+          <jnt-menu-item title="Table" [link]="['collections/table']"></jnt-menu-item>
+          <jnt-menu-item title="Accordion" [link]="['collections/accordion']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      <jnt-submenu title="Other" [icon]="localUi.icons.menu.other">
-        <jnt-menu-item title="Pipes" [link]="['other/pipes']"></jnt-menu-item>
-        <jnt-menu-item title="Confirm" [link]="['other/confirm']"></jnt-menu-item>
-      </jnt-submenu>
+      <jnt-menu-item title="Overlays" [icon]="localUi.icons.menu.overlays">
+        <jnt-menu>
+          <jnt-menu-item title="Modal" [link]="['overlays/modal']"></jnt-menu-item>
+          <jnt-menu-item title="Popover" [link]="['overlays/popover']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+      <jnt-menu-item title="Dynamic Data" [icon]="localUi.icons.menu.dynamic">
+        <jnt-menu>
+          <jnt-menu-item title="Progress bar" [link]="['dynamic-data/progress-bar']"></jnt-menu-item>
+          <jnt-menu-item title="Circle bar" [link]="['dynamic-data/circle-bar']"></jnt-menu-item>
+          <jnt-menu-item title="Chart" [link]="['dynamic-data/chart']"></jnt-menu-item>
+          <jnt-menu-item title="Date period" [link]="['dynamic-data/date-period']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+      <jnt-menu-item title="Other" [icon]="localUi.icons.menu.other">
+        <jnt-menu>
+          <jnt-menu-item title="Pipes" [link]="['other/pipes']"></jnt-menu-item>
+          <jnt-menu-item title="Confirm" [link]="['other/confirm']"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
     </jnt-menu>
   </ng-template>

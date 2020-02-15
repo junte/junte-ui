@@ -4,13 +4,15 @@ $label-corner: 3px;
 
 $label-sizes: (
   #{$size-small}: (
-    padding: 1px $gutter-small,
+    padding: 0 $gutter-small,
     font-size: 10px,
+    height: 20px,
     icon-size: 12px
   ),
   #{$size-normal}: (
-    padding: 2px $gutter-small,
+    padding: 0 $gutter-small,
     font-size: 12px,
+    height: 24px,
     icon-size: 14px
   )
 );
@@ -18,21 +20,24 @@ $label-sizes: (
 @mixin size($size) {
   padding: #{map-get($size, padding)};
   font-size: #{map-get($size, font-size)};
+  height: #{map-get($size, height)};
   [icon] {
-    font-size: #{map-get($size, font-size)};
     &[type='svg'], &[type='animated'] {
-      width: #{map-get($size, icon-size)} !important;
-      height: #{map-get($size, icon-size)} !important;
+      width: #{map-get($size, icon-size)};
+      height: #{map-get($size, icon-size)};
     }
   }
-  [div] {
+  [span] {
     line-height: #{map-get($size, height)};
   }
 }
 
 :host {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: $label-corner;
+  line-height: 0;
   box-sizing: border-box;
 
   @each $size, $map in $label-sizes {
@@ -42,6 +47,10 @@ $label-sizes: (
   }
 }
 
-div {
+span {
   white-space: nowrap;
+}
+
+[icon][child-host=#{$jnt-icon-host}] {
+  margin-right: $gutter-small;
 }

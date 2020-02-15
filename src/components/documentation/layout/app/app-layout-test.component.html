@@ -161,16 +161,21 @@
                           </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="localUi.icons.general">
-                              <jnt-menu-item title="About" [icon]="localUi.icons.bio"></jnt-menu-item>
-                              <jnt-menu-item title="Education" [icon]="ui.icons.knowledge"></jnt-menu-item>
-                            </jnt-submenu>
-                            <jnt-submenu title="Profession" [icon]="localUi.icons.certificate">
-                              <jnt-menu-item title="Skills"
-                                             [icon]="ui.icons.skull"></jnt-menu-item>
-                              <jnt-menu-item title="Experience" [icon]="localUi.icons.experience"></jnt-menu-item>
-                              <jnt-menu-item title="Certificates" [icon]="localUi.icons.certificate"></jnt-menu-item>
-                            </jnt-submenu>
+                            <jnt-menu-item title="General" [icon]="localUi.icons.general">
+                              <jnt-menu>
+                                <jnt-menu-item title="About" [icon]="localUi.icons.bio"></jnt-menu-item>
+                                <jnt-menu-item title="Education" [icon]="ui.icons.knowledge"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
+
+                            <jnt-menu-item title="Profession" [icon]="localUi.icons.certificate">
+                              <jnt-menu>
+                                <jnt-menu-item title="Skills"
+                                               [icon]="ui.icons.skull"></jnt-menu-item>
+                                <jnt-menu-item title="Experience" [icon]="localUi.icons.experience"></jnt-menu-item>
+                                <jnt-menu-item title="Certificates" [icon]="localUi.icons.certificate"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
                           </jnt-menu>
                         </jnt-stack>
                       </ng-template>
@@ -275,18 +280,23 @@
                         <![CDATA[
                         <jnt-app-aside #aside>
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-submenu title="General" [icon]="ui.icons.crown">
-                              <jnt-menu-item title="Theming"></jnt-menu-item>
-                              <jnt-menu-item title="Typography"></jnt-menu-item>
-                            </jnt-submenu>
-                            <jnt-submenu title="Layout" [icon]="ui.icons.layout">
-                              <jnt-menu-item title="Grid"></jnt-menu-item>
-                              <jnt-menu-item title="Stack"></jnt-menu-item>
-                              <jnt-menu-item title="Block"></jnt-menu-item>
-                              <jnt-menu-item title="Spinner"></jnt-menu-item>
-                              <jnt-menu-item title="Application"></jnt-menu-item>
-                              <jnt-menu-item title="Skeleton"></jnt-menu-item>
-                            </jnt-submenu>
+                            <jnt-menu-item title="General" [icon]="ui.icons.crown">
+                              <jnt-menu>
+                                <jnt-menu-item title="Theming"></jnt-menu-item>
+                                <jnt-menu-item title="Typography"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
+
+                            <jnt-menu-item title="Layout" [icon]="ui.icons.layout">
+                              <jnt-menu>
+                                <jnt-menu-item title="Grid"></jnt-menu-item>
+                                <jnt-menu-item title="Stack"></jnt-menu-item>
+                                <jnt-menu-item title="Block"></jnt-menu-item>
+                                <jnt-menu-item title="Spinner"></jnt-menu-item>
+                                <jnt-menu-item title="Application"></jnt-menu-item>
+                                <jnt-menu-item title="Skeleton"></jnt-menu-item>
+                              </jnt-menu>
+                            </jnt-menu-item>
                           </jnt-menu>
                         </jnt-app-aside>
                         ]]>

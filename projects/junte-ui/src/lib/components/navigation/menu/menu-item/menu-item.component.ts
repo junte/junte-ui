@@ -1,9 +1,10 @@
-import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../../../decorators/api';
 import { Scheme } from '../../../../enums/scheme';
 import { UI } from '../../../../enums/ui';
 import { UrlMatching } from '../../../../enums/url';
 import { BadgeComponent } from '../../../elements/badge/badge.component';
+import { MenuComponent } from '../menu.component';
 
 const DEFAULT_TARGET = '_self';
 
@@ -14,6 +15,11 @@ const DEFAULT_TARGET = '_self';
 export class MenuItemComponent {
 
   ui = UI;
+
+  _scheme: Scheme = Scheme.primary;
+
+  @HostBinding('attr.opened')
+  opened = false;
 
   @PropertyApi({
     description: 'Icon for menu item',
@@ -55,12 +61,16 @@ export class MenuItemComponent {
     description: 'Menu item color scheme',
     path: 'ui.schemes',
     default: Scheme.primary,
-    options: [Scheme.primary,
+    options: [
+      Scheme.primary,
       Scheme.secondary,
       Scheme.success,
-      Scheme.fail]
+      Scheme.fail
+    ]
   })
-  @Input() scheme: Scheme = Scheme.primary;
+  @Input() set scheme(scheme: Scheme) {
+    this._scheme = scheme || Scheme.primary;
+  }
 
   @PropertyApi({
     description: 'Click event',
@@ -71,4 +81,6 @@ export class MenuItemComponent {
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
+  @ContentChildren(MenuComponent)
+  submenus: QueryList<MenuComponent>;
 }
