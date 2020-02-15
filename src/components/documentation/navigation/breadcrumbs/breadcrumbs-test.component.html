@@ -39,70 +39,88 @@
 
     <jnt-tab title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-code-highlight>
-          <![CDATA[
-          <jnt-breadcrumb></jnt-breadcrumb>
-          ]]>
-        </app-code-highlight>
-
-        <h4>RoutingModule</h4>
-        <ngx-prism language="js">
-        <pre><![CDATA[
-        const routes: Routes = [
-          {
-            path: '',
-            component: BreadcrumbsTestComponent,
-            data: {breadcrumb: 'Home'},
-            children: [
-              {
-                path: 'page',
-                component: BreadCrumbTest1Component,
-                data: {breadcrumb: getLabel},
-                resolve: {obj: BreadcrumbResolver},
-                children: [
+        <jnt-accordion [active]="0">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'breadcrumbs-test', type: 'BreadcrumbsTestComponent'}"
+                scss="navigation/breadcrumbs">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight>
+                <![CDATA[
+                <jnt-breadcrumb></jnt-breadcrumb>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Routing">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight  [language]="language.javascript">
+                <![CDATA[
+                const routes: Routes = [
                   {
-                    path: 'page-2',
-                    component: BreadCrumbTest2Component,
-                    data: {breadcrumb: 'Second page'},
+                    path: '',
+                    component: BreadcrumbsTestComponent,
+                    data: {breadcrumb: 'Home'},
                     children: [
                       {
-                        path: 'page-3',
-                        component: BreadCrumbTest3Component,
-                        data: {breadcrumb: 'Third page'}
+                        path: 'page',
+                        component: BreadCrumbTest1Component,
+                        data: {breadcrumb: getLabel},
+                        resolve: {obj: BreadcrumbResolver},
+                        children: [
+                          {
+                            path: 'page-2',
+                            component: BreadCrumbTest2Component,
+                            data: {breadcrumb: 'Second page'},
+                            children: [
+                              {
+                                path: 'page-3',
+                                component: BreadCrumbTest3Component,
+                                data: {breadcrumb: 'Third page'}
+                              }
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }
-                ]
-              }
-            ]
-          }
-        ];
+                ];
 
-        @NgModule({
-          imports: [RouterModule.forChild(routes)],
-          exports: [RouterModule]
-        })
-          ]]></pre>
-        </ngx-prism>
-
-        <h4>BreadcrumbResolver</h4>
-        <ngx-prism language="js">
-        <pre><![CDATA[
-        class Breadcrumb {
+                @NgModule({
+                  imports: [RouterModule.forChild(routes)],
+                  exports: [RouterModule]
+                })
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Resolver">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight [language]="language.javascript">
+                <![CDATA[
+                class Breadcrumb {
                   public label = 'First page';
-        }
+                }
 
-        @Injectable()
-        export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
-                    constructor() {
-          }
+                @Injectable()
+                export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
+                  constructor() {
+                  }
 
-          resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
-            return of(new Breadcrumb());
-          }
-        }
-          ]]></pre>
-        </ngx-prism>
+                  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
+                  return of(new Breadcrumb());
+                  }
+                }
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

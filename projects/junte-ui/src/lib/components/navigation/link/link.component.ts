@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
+import { PropertyApi } from '../../../decorators/api';
 import { Outline } from '../../../enums/outline';
 import { Scheme } from '../../../enums/scheme';
 import { UI } from '../../../enums/ui';
 import { UrlMatching } from '../../../enums/url';
 import { BadgeComponent } from '../../elements/badge/badge.component';
-import { PropertyApi } from '../../../decorators/api';
 import { LinkTarget } from './enums';
 
 
@@ -24,16 +24,13 @@ export class LinkComponent {
   private _target: LinkTarget = LinkTarget.self;
   private _matching: UrlMatching = UrlMatching.fullMatch;
 
+  externalLink = true;
+
   @HostBinding('attr.scheme')
   _scheme = Scheme.primary;
 
   @HostBinding('attr.outline')
   _outline = Outline.transparent;
-
-  externalLink = true;
-
-  @ViewChild(RouterLinkActive, {static: false})
-  linkRef: RouterLinkActive;
 
   @HostBinding('attr.with-title')
   get withTitle() {
@@ -46,6 +43,14 @@ export class LinkComponent {
     this.cdr.detectChanges();
     return !!this.linkRef ? this.linkRef.isActive : false;
   }
+
+  @PropertyApi({
+    description: 'Disable link',
+    type: 'boolean',
+    default: 'false'
+  })
+  @HostBinding('attr.disabled')
+  @Input() disabled = false;
 
   @PropertyApi({
     description: 'Link color scheme',
@@ -73,16 +78,13 @@ export class LinkComponent {
     description: 'Icon for link',
     type: 'string'
   })
-  @Input()
-  icon: string;
+  @Input() icon: string;
 
   @PropertyApi({
     description: 'Link title',
     type: 'string'
   })
-  @Input()
-  title: string;
-
+  @Input() title: string;
 
   @PropertyApi({
     description: 'Link source',
@@ -138,20 +140,12 @@ export class LinkComponent {
     return this._matching;
   }
 
-  @PropertyApi({
-    description: 'Disable link',
-    type: 'boolean',
-    default: 'false'
-  })
-  @HostBinding('attr.disabled')
-  @Input()
-  disabled = false;
+  @ViewChild(RouterLinkActive, {static: false})
+  linkRef: RouterLinkActive;
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
   constructor(private cdr: ChangeDetectorRef) {
-
   }
-
 }

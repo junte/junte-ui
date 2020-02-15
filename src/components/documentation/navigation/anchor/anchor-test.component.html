@@ -57,18 +57,33 @@
 
       <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
-          <app-how-to-use
-            [test]="{selector:'anchor-test', type: 'AnchorTestComponent'}"
-            scss="navigation/anchor"></app-how-to-use>
-          <app-code-highlight file="anchor-test.template.html">
-            <![CDATA[
-            <h2>Section A <jnt-anchor anchor="section_a"></jnt-anchor></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque fugiat
-              ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta dolore earum
-              enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo officiis
-              quaerat quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
-            ]]>
-          </app-code-highlight>
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'anchor-test', type: 'AnchorTestComponent'}"
+                  scss="navigation/anchor">
+                </app-how-to-use>
+              </ng-template>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight file="anchor-test.template.html">
+                  <![CDATA[
+                  <h2>Section A
+                    <jnt-anchor anchor="section_a"></jnt-anchor>
+                  </h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur, beatae doloribus eaque
+                    fugiat ipsum temporibus tenetur ut. Accusamus accusantium aliquid, aut autem commodi deleniti dicta
+                    dolore
+                    earum enim exercitationem facilis hic illum inventore ipsam, labore magni minima modi, natus nemo
+                    officiis
+                    quaerat quod quos saepe sapiente tenetur totam voluptas voluptatum?.</p>
+                  ]]>
+                </app-code-highlight>
+              </ng-template>
+            </jnt-accordion-section>
+          </jnt-accordion>
         </ng-template>
       </jnt-tab>
 

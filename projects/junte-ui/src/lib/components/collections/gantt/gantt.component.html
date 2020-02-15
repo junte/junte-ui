@@ -1,12 +1,19 @@
 <ng-template #titleDefaultTemplate let-title="title">
   {{title}}
 </ng-template>
+<ng-template #lineTitleDefaultTemplate let-title="title">
+  {{title}}
+</ng-template>
 
 <table border="0" cellpadding="5" [cellSpacing]="0">
   <thead>
   <tr>
     <td gutter></td>
-    <td empty></td>
+    <td empty>
+      <ng-container *ngIf="toolsTemplate">
+        <ng-container *ngTemplateOutlet="toolsTemplate"></ng-container>
+      </ng-container>
+    </td>
     <td controls [attr.colspan]="(current | dfnsGetDaysInMonth)">
       <div month>
         <button arrow (click)="current = subMonths(current, 1)">
@@ -39,7 +46,7 @@
   <ng-template #noDataTemplate>
     <tr nodata>
       <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 1">
-        <jnt-icon [icon]="ui.icons.stop"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
       </td>
     </tr>
   </ng-template>
@@ -47,7 +54,7 @@
     <ng-container *ngIf="loading; else noDataTemplate">
       <tr loading>
         <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 2">
-          <jnt-skeleton [type]="ui.layout.skeleton.type.text" [lines]="7"></jnt-skeleton>
+          <jnt-skeleton [type]="ui.layout.skeleton.type.text" [lines]="8"></jnt-skeleton>
         </td>
       </tr>
     </ng-container>
@@ -61,10 +68,8 @@
 
       <td gutter></td>
       <td title>
-        <ng-template #title>{{line.title}}</ng-template>
-        <ng-container *ngIf="line.titleTemplate; else title">
-          <ng-container *ngTemplateOutlet="line.titleTemplate; context: {title: line.title}"></ng-container>
-        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
       </td>
 
       <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)

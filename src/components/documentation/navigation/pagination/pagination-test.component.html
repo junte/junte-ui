@@ -36,7 +36,8 @@
                       </jnt-row>
                     </jnt-block>
                     <jnt-pagination [pagesCount]="countControl.value"
-                                    formControlName="page"></jnt-pagination>
+                                    formControlName="page">
+                    </jnt-pagination>
                   </jnt-stack>
                 </form>
               </ng-template>
@@ -49,7 +50,8 @@
                 <jnt-form-control>
                   <jnt-switcher formControlName="count">
                     <jnt-switcher-option *ngFor="let page of [2,5,10]" [label]="page"
-                                         [value]="page"></jnt-switcher-option>
+                                         [value]="page">
+                    </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-control>
               </jnt-form-item>
@@ -61,28 +63,38 @@
 
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'pagination-test', type: 'PaginationTestComponent'}"
-          scss="navigation/pagination"></app-how-to-use>
-        <app-code-highlight>
-          <![CDATA[
-          <jnt-pagination
-            ]]>
-            <ng-container *ngIf="countControl.value">
-              <![CDATA[
-              [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-pagination>
-          ]]>
-        </app-code-highlight>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'pagination-test', type: 'PaginationTestComponent'}"
+                scss="navigation/pagination">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight>
+                <![CDATA[
+                <jnt-pagination
+                  ]]>
+                  <ng-container *ngIf="countControl.value">
+                    <![CDATA[
+                    [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-pagination>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-pagination"
-                           [target]="types.pager"></app-component-api>
+        <app-component-api selector="jnt-pagination" [target]="types.pager"></app-component-api>
       </ng-template>
     </jnt-tab>
 

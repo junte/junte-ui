@@ -36,18 +36,31 @@
                               [disabled]="disableControl.value"
                               [target]="targetControl.value"
                               [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
-                              title="Documentation link">
+                              title="Link here">
                       <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
                     </jnt-link>
-                    which should inherit font size of paragraph, thus we should write here some long text and we believe
-                    that is possible!
+                    which should inherit font size and line height of paragraph, thus we should write here some long
+                    text and we believe that is possible!
+                  </p>
+                  <p>Also it is very important to test a link with SVG icons
+                    <jnt-link [scheme]="schemeControl.value"
+                              [outline]="outlineControl.value"
+                              [icon]="iconControl.value ? ui.icons.figma : null"
+                              [disabled]="disableControl.value"
+                              [target]="targetControl.value"
+                              [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
+                              title="Link here">
+                      <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
+                    </jnt-link>
+                    as SVG does't use line height for align near with text, thus we should write here some long
+                    text and we believe that is possible!
                   </p>
                 </ng-template>
               </app-browser-preview>
             </jnt-col>
 
             <jnt-col [tablet]="4">
-              <jnt-form [formGroup]="form">
+              <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.flex.align.stretch">
 
                   <jnt-form-item>
@@ -187,4 +200,3 @@
   </jnt-stack>
 
 </jnt-container>
-

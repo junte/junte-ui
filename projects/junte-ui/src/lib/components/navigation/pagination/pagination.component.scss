@@ -1,8 +1,6 @@
 @import "../../../assets/styles/variables";
 
-$pager-disabled-button-color: $muted-color !default;
-$pager-icon-size: 10px !default;
-$pager-icon-color: $primary-text-light-color !default;
+$pager-icon-size: 10px;
 
 :host {
   display: block;
@@ -10,23 +8,29 @@ $pager-icon-color: $primary-text-light-color !default;
 
 div {
   padding: $gutter-small 0;
+
   &:focus {
     outline: 0;
+
     a {
       box-shadow: $shadow-primary;
     }
   }
+
   a {
     padding: 0 5px;
     border-radius: $corner-small;
     transition: background-color .3s;
     user-select: none;
+
     &:hover {
       background-color: $highlight-background;
     }
   }
+
   box-sizing: border-box;
   cursor: pointer;
+
   &[page] {
     &[active="true"] {
       font-weight: $font-weight-bold;
@@ -34,16 +38,18 @@ div {
       border-bottom: 2px solid $primary-color;
     }
   }
+
   &[disabled="true"] {
     cursor: default;
     pointer-events: none;
+
     [icon] {
-      color: $pager-disabled-button-color;
+      color: $muted-color;
     }
   }
+
   [icon] {
     font-size: $pager-icon-size;
-    color: $pager-icon-color;
+    color: $primary-text-light-color;
   }
 }
-

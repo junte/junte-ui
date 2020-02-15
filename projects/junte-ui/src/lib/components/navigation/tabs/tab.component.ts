@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../decorators/api';
 import { Gutter } from '../../../enums/gutter';
 import { BadgeComponent } from '../../elements/badge/badge.component';
@@ -9,29 +9,20 @@ import { BadgeComponent } from '../../elements/badge/badge.component';
 })
 export class TabComponent {
 
+  private _padding: Gutter = Gutter.normal;
   state = {flash: false};
-
-  _padding: Gutter = Gutter.normal;
 
   @PropertyApi({
     description: 'Title of tab',
     type: 'string'
   })
-  @Input()
-  title: string;
+  @Input() title: string;
 
   @PropertyApi({
     description: 'Icon for tab',
     type: 'string'
   })
-  @Input()
-  icon: string;
-
-  @ContentChildren(BadgeComponent)
-  badges: QueryList<BadgeComponent>;
-
-  @ContentChild('tabContentTemplate', {static: false})
-  tabContentTemplate: TemplateRef<any>;
+  @Input() icon: string;
 
   @PropertyApi({
     description: 'Padding in tab',
@@ -52,6 +43,12 @@ export class TabComponent {
   get padding() {
     return this._padding;
   }
+
+  @ContentChildren(BadgeComponent)
+  badges: QueryList<BadgeComponent>;
+
+  @ContentChild('tabContentTemplate', {static: false})
+  tabContentTemplate: TemplateRef<any>;
 
   flash() {
     this.state.flash = true;

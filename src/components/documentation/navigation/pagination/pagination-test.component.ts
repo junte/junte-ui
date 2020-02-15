@@ -14,11 +14,8 @@ export class PaginationTestComponent implements OnInit {
   localUi = LocalUI;
   types = {pager: PaginationComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
-
   countControl = this.fb.control(5);
   pageControl = this.fb.control(1);
-
   builder = this.fb.group({
     count: this.countControl,
   });
@@ -26,6 +23,8 @@ export class PaginationTestComponent implements OnInit {
   form = this.fb.group({
     page: this.pageControl,
   });
+
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }

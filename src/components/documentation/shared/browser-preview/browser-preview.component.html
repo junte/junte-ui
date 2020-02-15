@@ -16,8 +16,5 @@
 </svg>
 
 <div wrapper>
-  <ng-container
-    *ngTemplateOutlet="documentTemplate; context:
-      {width: host.nativeElement.clientWidth, height: host.nativeElement.clientHeight}">
-  </ng-container>
+  <ng-container *ngTemplateOutlet="documentTemplate; context: {width: width, height: height}"></ng-container>
 </div>

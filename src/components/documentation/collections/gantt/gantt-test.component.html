@@ -15,14 +15,18 @@
   <ol>
     <li>The component must be able to accept the date range - the start date and the end</li>
     <li>The component should be able to accept the string that will be used as the title</li>
-    <li>The component should be able to combine the specified date range into a common block with the specified title</li>
+    <li>The component should be able to combine the specified date range into a common block with the specified title
+    </li>
   </ol>
 
-  <jnt-block>
+  <jnt-block [padding]="ui.gutter.none">
     <form [formGroup]="form">
       <jnt-gantt formControlName="gantt" title="Super" [loading]="loading">
+        <ng-template #toolsTemplate>
+          <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
+        </ng-template>
         <ng-template #titleTemplate>
-          <p>Test custom title</p>
+          <strong>Test custom title</strong>
         </ng-template>
         <jnt-gantt-line *ngFor="let request of requests"
                         [period]="request"

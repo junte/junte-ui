@@ -17,7 +17,8 @@
   <jnt-stack [align]="ui.flex.align.stretch">
 
     <div teaser>
-      Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re toggled by clicking, not by hovering.
+      Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re toggled by clicking,
+      not by hovering.
     </div>
 
     <jnt-tabs playground>
@@ -27,20 +28,23 @@
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-dropdown>
-                <ng-template #trigger let-action="trigger">
+                <ng-template #triggerTemplate let-action="trigger">
                   <jnt-button [icon]="ui.icons.actions" text="More" (click)="action()"></jnt-button>
                 </ng-template>
-                <ng-template #dropdown let-action="trigger">
+                <ng-template #dropdownTemplate let-action="trigger">
                   <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                     <jnt-menu-item title="Edit"
                                    [icon]="ui.icons.edit"
-                                   (click)="action()"></jnt-menu-item>
+                                   (click)="action()">
+                    </jnt-menu-item>
                     <jnt-menu-item title="Delete"
                                    [icon]="ui.icons.delete"
-                                   (click)="action()"></jnt-menu-item>
+                                   (click)="action()">
+                    </jnt-menu-item>
                     <jnt-menu-item title="Copy"
                                    [icon]="ui.icons.copy"
-                                   (click)="action()"></jnt-menu-item>
+                                   (click)="action()">
+                    </jnt-menu-item>
                   </jnt-menu>
                 </ng-template>
               </jnt-dropdown>
@@ -51,26 +55,37 @@
 
       <jnt-tab title="Code" #code [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
-          <app-how-to-use
-            [test]="{selector:'dropdown-test', type: 'DropdownTestComponent'}"
-            scss="navigation/dropdown"></app-how-to-use>
-          <app-code-highlight>
-            <![CDATA[
-            <jnt-dropdown>
-              <ng-template #trigger let-close="trigger">
-                <jnt-button text="Dropdown" (click)="close()"></jnt-button>
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'dropdown-test', type: 'DropdownTestComponent'}"
+                  scss="navigation/dropdown">
+                </app-how-to-use>
               </ng-template>
-              <ng-template #dropdown let-action="trigger">
-                <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                  <jnt-menu-item title="Edit" (click)="close()"></jnt-menu-item>
-                  <jnt-menu-item title="Delete" (click)="close()"></jnt-menu-item>
-                  <jnt-menu-item title="Add" (click)="close()"></jnt-menu-item>
-                  <jnt-menu-item title="Copy" (click)="close()"></jnt-menu-item>
-                </jnt-menu>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight>
+                  <![CDATA[
+                  <jnt-dropdown>
+                    <ng-template #trigger let-close="trigger">
+                      <jnt-button text="Dropdown" (click)="close()"></jnt-button>
+                    </ng-template>
+                    <ng-template #dropdown let-close="trigger">
+                      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
+                        <jnt-menu-item title="Edit" (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Delete" (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Add" (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy" (click)="close()"></jnt-menu-item>
+                      </jnt-menu>
+                    </ng-template>
+                  </jnt-dropdown>
+                  ]]>
+                </app-code-highlight>
               </ng-template>
-            </jnt-dropdown>
-            ]]>
-          </app-code-highlight>
+            </jnt-accordion-section>
+          </jnt-accordion>
         </ng-template>
       </jnt-tab>
 

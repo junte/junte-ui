@@ -31,27 +31,27 @@
 
               <jnt-stack [type]="ui.layout.stack.type.horizontal">
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
-                  </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
+                </jnt-form-control>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
+                </jnt-form-control>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
                   </jnt-form-control>
@@ -67,18 +67,18 @@
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
                     </ng-template>
                     <ng-template #headerMenuTemplate *ngIf="menuControl.value">
-                      <jnt-menu top-menu>
+                      <jnt-menu>
                         <jnt-menu-item title="Home" [icon]="ui.icons.home"></jnt-menu-item>
-                        <jnt-menu-item title="My network" [icon]="ui.icons.animated.runningMan"></jnt-menu-item>
-                        <jnt-menu-item title="Jobs" [icon]="ui.icons.gitlab"></jnt-menu-item>
-                        <jnt-menu-item title="Messages" [icon]="ui.icons.email"></jnt-menu-item>
+                        <jnt-menu-item title="My network" [icon]="localUi.icons.network"></jnt-menu-item>
+                        <jnt-menu-item title="Jobs" [icon]="localUi.icons.jobs"></jnt-menu-item>
+                        <jnt-menu-item title="Messages" [icon]="ui.icons.messafes"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
-                      <jnt-app-header-actions>
+                      <jnt-app-header-actions actions>
                         <jnt-app-header-action>
                           <ng-template #actionLabelTemplate>
-                            <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
+                            <jnt-icon [icon]="ui.icons.animated.bell"></jnt-icon>
                           </ng-template>
                           <ng-template #actionContentTemplate>
                             <jnt-stack>
@@ -161,19 +161,19 @@
                           </jnt-stack>
 
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-menu-item title="General" [icon]="ui.icons.information">
+                            <jnt-menu-item title="General" [icon]="localUi.icons.general">
                               <jnt-menu>
-                                <jnt-menu-item title="About"></jnt-menu-item>
-                                <jnt-menu-item title="Education"></jnt-menu-item>
+                                <jnt-menu-item title="About" [icon]="localUi.icons.bio"></jnt-menu-item>
+                                <jnt-menu-item title="Education" [icon]="ui.icons.knowledge"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
 
-                            <jnt-menu-item title="Profession" [icon]="ui.icons.skull">
+                            <jnt-menu-item title="Profession" [icon]="localUi.icons.certificate">
                               <jnt-menu>
                                 <jnt-menu-item title="Skills"
                                                [icon]="ui.icons.skull"></jnt-menu-item>
-                                <jnt-menu-item title="Experience"></jnt-menu-item>
-                                <jnt-menu-item title="Certificates"></jnt-menu-item>
+                                <jnt-menu-item title="Experience" [icon]="localUi.icons.experience"></jnt-menu-item>
+                                <jnt-menu-item title="Certificates" [icon]="localUi.icons.certificate"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
                           </jnt-menu>
@@ -296,6 +296,8 @@
                                 <jnt-menu-item title="Application"></jnt-menu-item>
                                 <jnt-menu-item title="Skeleton"></jnt-menu-item>
                               </jnt-menu>
+                            </jnt-menu-item>
+                          </jnt-menu>
                         </jnt-app-aside>
                         ]]>
                       </ng-container>
