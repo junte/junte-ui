@@ -29,6 +29,11 @@
                   <jnt-label
                     [label]="'ui.' + (iconControl.value.path | join:'.') + '.' + iconControl.value.name"></jnt-label>
                 </jnt-stack>
+                <p>The icon is inline element by default and we should write some text for tests
+                  <jnt-icon [icon]="iconControl.value.value"
+                            [size]="sizeControl.value"></jnt-icon>
+                  thus the text is here. We also need secondary line of the text and we will try to write some thing.
+                </p>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
