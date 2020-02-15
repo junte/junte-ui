@@ -10,6 +10,7 @@ import { Menu } from './menu-abstract';
 export class MenuComponent extends Menu {
 
   ui = UI;
+
   matching = UrlMatching;
 
   @HostBinding('attr.host') readonly host = 'jnt-menu-host';

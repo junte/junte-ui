@@ -1,13 +1,11 @@
 <div drawer [attr.collapsed]="collapsed">
   <div scroll>
-    <jnt-button [outline]="ui.outline.transparent"
-                text="Hide sidebar"
-                [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"
-                [width]="ui.width.fluid"
-                [size]="ui.size.large"
-                (click)="collapsed = !collapsed"
-                button>
-    </jnt-button>
+    <button (click)="collapsed = !collapsed">
+      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+        <jnt-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>
+        <span *ngIf="!collapsed">Hide sidebar</span>
+      </jnt-stack>
+    </button>
     <ng-container *ngTemplateOutlet="asideContentTemplate; context: {collapsed: collapsed}"></ng-container>
   </div>
 </div>

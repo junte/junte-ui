@@ -12,7 +12,10 @@ export class BarIndicatorGroupComponent {
   @ContentChildren(BarIndicatorComponent)
   indicators: QueryList<BarIndicatorComponent>;
 
-  @Input() @HostBinding('attr.index') index: number;
+  @HostBinding('attr.index')
+  @Input()
+  index: number;
+
   @Input() @HostBinding('attr.groups') groups: number;
 
 }

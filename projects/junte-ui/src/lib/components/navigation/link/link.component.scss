@@ -1,6 +1,16 @@
 @import "../../../assets/styles/variables";
 
-$link-icon-size: 18px;
+$link-decoration: none !default;
+$link-font-weight: $font-weight-base !default;
+$link-active-color: $primary-color !default;
+$link-disabled-color: $primary-text-light-color !default;
+$link-icon-spacing: $gutter-tiny !default;
+$link-icon-size: 18px !default;
+$link-corner: $corner-small !default;
+$link-padding: $gutter-tiny $gutter-small !default;
+
+$outline-ghost: 'ghost';
+$outline-transparent: 'transparent';
 
 $link-schemes: (
   #{$scheme-primary}: (
@@ -89,23 +99,19 @@ $link-schemes: (
   [link] {
     color: #{map-get($scheme, fill-color)};
     background-color: #{map-get($scheme, fill-background-color)};
-    padding: $gutter-tiny $gutter-small;
-
+    padding: $link-padding;
     &:hover, &:focus {
       background-color: #{map-get($scheme, fill-hover-background-color)};
     }
-
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, link-focus-shadow-color)};
     }
-
     [badge][child-host=#{$jnt-badge-host}] {
       sup {
         color: #{map-get($scheme, fill-badge-color)};
         background: #{map-get($scheme, fill-badge-background-color)} !important;
       }
     }
-
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, fill-color)};
     }
@@ -118,8 +124,7 @@ $link-schemes: (
     color: #{map-get($scheme, ghost-color)};
     background-color: transparent;
     border-color: #{map-get($scheme, ghost-border-color)};
-    padding: $gutter-tiny $gutter-small;
-
+    padding: $link-padding;
     &:hover, &:focus {
       background-color: #{map-get($scheme, ghost-hover-background-color)};
       color: #{map-get($scheme, ghost-hover-color)};
@@ -129,12 +134,10 @@ $link-schemes: (
         color: #{map-get($scheme, ghost-hover-badge-color)} !important;
       }
     }
-
     [badge][child-host=#{$jnt-badge-host}] > sup {
       background: #{map-get($scheme, ghost-badge-background)} !important;
       color: #{map-get($scheme, ghost-badge-color)};
     }
-
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, ghost-color)};
     }
@@ -149,28 +152,25 @@ $link-schemes: (
     border-color: transparent;
     padding: 0;
     border-radius: 0;
-
     &:hover, &:focus {
       color: #{map-get($scheme, transparent-hover-color)};
     }
-
     &:focus {
       box-shadow: none;
       outline-offset: 1px;
       outline: #{map-get($scheme, link-focus-shadow-color)} auto 1px;
     }
-
     [badge][child-host=#{$jnt-badge-host}] > sup {
       background: #{map-get($scheme, transparent-badge-background)} !important;
       color: #{map-get($scheme, transparent-badge-color)};
     }
-
     &[active="true"] {
       [title] {
-        border-bottom: 1px solid #{map-get($scheme, transparent-color)};
+        span {
+          border-bottom: 1px solid #{map-get($scheme, transparent-color)};
+        }
       }
     }
-
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, transparent-color)};
     }
@@ -179,7 +179,16 @@ $link-schemes: (
 
 :host {
   display: inline-block;
-
+  vertical-align: middle;
+  box-sizing: border-box;
+  &[orphan='true'] {
+    [link] {
+      color: $primary-text-light-color!important;
+      &:hover {
+        color: $primary-text-color!important;
+      }
+    }
+  }
   &[disabled="true"] {
     [link] {
       opacity: .65;
@@ -187,25 +196,20 @@ $link-schemes: (
       cursor: default;
     }
   }
-
   &[with-title='false'] {
     [link] [icon] {
       margin-right: 0;
     }
   }
-
   @each $scheme, $map in $link-schemes {
     &[scheme='#{$scheme}'] {
       @include scheme($map);
-
       &[outline='#{$outline-ghost}'] {
         [link] {
           border: 1px solid transparent;
         }
-
         @include ghost($map);
       }
-
       &[outline='#{$outline-transparent}'] {
         @include transparent($map);
       }
@@ -214,30 +218,41 @@ $link-schemes: (
 }
 
 [link] {
-  display: inline-flex;
-  text-decoration: none;
+  display: inline-block;
+  text-decoration: $link-decoration;
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
-  border-radius: $corner-small;
-
+  border-radius: $link-corner;
   &:focus {
     outline: none;
   }
-
   [icon][type='svg'] {
     width: $link-icon-size;
     height: $link-icon-size;
   }
-
   [title] {
     white-space: nowrap;
-    line-height: 1;
+    [icon], span {
+      font-weight: $link-font-weight;
+      transition: color .3s;
+    }
+    [icon] {
+      margin-right: $link-icon-spacing;
+    }
+    [icon][child-host=#{$jnt-icon-host}] {
+      &[type='animated'], &[type='svg'] {
+        width: $link-icon-size;
+        height: $link-icon-size;
+      }
+    }
   }
-
+  [badge] {
+    margin-left: $gutter-small;
+  }
   &:active {
     [icon], [title] {
-      color: $primary-color;
+      color: $link-active-color;
     }
   }
 
