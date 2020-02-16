@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColorPipeModule } from '../../../pipes/color-pipe.module';
+import { ColorPipesModule } from '../../../pipes/color-pipes.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { LabelComponent } from './label.component';
 import { IconModule } from '../icon/icon.module';
@@ -10,7 +10,7 @@ import { IconModule } from '../icon/icon.module';
     CommonModule,
     IconModule,
     StackModule,
-    ColorPipeModule
+    ColorPipesModule
   ],
   exports: [
     LabelComponent

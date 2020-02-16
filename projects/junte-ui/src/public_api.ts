@@ -1,3 +1,4 @@
+export * from './lib/i18n/public_api';
 export * from './lib/enums/ui';
 export * from './lib/decorators/api';
 export * from './lib/utils/public_api';

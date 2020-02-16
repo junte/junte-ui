@@ -117,14 +117,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges.subscribe(value => this.onChange(value));
+    this.inputControl.valueChanges
+      .subscribe(value => this.onChange(value));
   }
 
   writeValue(value) {
     this.inputControl.patchValue(value);
   }
 
-  onChange(val: any) {
+  onChange(value: any) {
   }
 
   onTouched() {

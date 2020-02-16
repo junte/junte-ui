@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ColorPipeModule } from '../../../pipes/color-pipe.module';
+import { ColorPipesModule } from '../../../pipes/color-pipes.module';
 import { BadgeComponent } from './badge.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ColorPipeModule
+    ColorPipesModule
   ],
   declarations: [
     BadgeComponent

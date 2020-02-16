@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { DateFnsModule } from 'ngx-date-fns';
+import { createModule, JunteUIModuleConfig } from '../../../config';
 import { DatePipeModule } from '../../../pipes/date-pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -12,6 +14,7 @@ import { WeekComponent } from './week/week.component';
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule,
     IconModule,
     DatePipeModule,
     StackModule,
@@ -34,4 +37,9 @@ import { WeekComponent } from './week/week.component';
   ]
 })
 export class CalendarModule {
+
+  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<CalendarModule> {
+    return createModule(CalendarModule, config);
+  }
+
 }

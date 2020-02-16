@@ -1,7 +1,7 @@
 <form [formGroup]="form">
-  <jnt-icon *ngIf="icon && !label"
+  <jnt-icon *ngIf="!!icon && !label"
             [icon]="icon"></jnt-icon>
-  <div label *ngIf="label">{{label}}</div>
+  <div label *ngIf="!!label">{{label}}</div>
 
   <input formControlName="input"
          [type]="type"

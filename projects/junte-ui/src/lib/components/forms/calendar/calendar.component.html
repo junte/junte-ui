@@ -15,8 +15,9 @@
       </button>
     </td>
     <td *ngIf="metrics.length"
-        [attr.colspan]="metrics.length"
-    >Metrics
+        [translate]="'label.metrics'"
+        [attr.colspan]="metrics.length">
+      Metrics
     </td>
   </tr>
   <tr days>
@@ -35,7 +36,8 @@
   </thead>
 
   <tbody>
-  <tr *ngFor="let w of weeks" [attr.current-week]="(current | dfnsStartOfWeek) | isEqualDate: (w.date | dfnsStartOfWeek)">
+  <tr *ngFor="let w of weeks"
+      [attr.current-week]="(current | dfnsStartOfWeek) | isEqualDate: (w.date | dfnsStartOfWeek)">
     <td day *ngFor="let d of w.days"
         [attr.current-day]="(d | dfnsStartOfDay) | isEqualDate: (current | dfnsStartOfDay)"
         (click)="onChange(d)" tabindex="0">

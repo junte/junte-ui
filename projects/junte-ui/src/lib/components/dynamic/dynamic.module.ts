@@ -13,4 +13,5 @@ import { ProgressBarModule } from './progress-bar/progress-bar.module';
   ]
 })
 export class DynamicModule {
+  
 }

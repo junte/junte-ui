@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { JunteUiModule } from 'junte-ui';
+import { JunteUiModule, ru } from 'junte-ui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -15,10 +15,11 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    JunteUiModule
+    JunteUiModule.forRoot({
+      i18n: ru
+    })
   ],
   bootstrap: [
     AppComponent

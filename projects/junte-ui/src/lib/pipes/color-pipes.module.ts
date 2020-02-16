@@ -14,5 +14,5 @@ import { LightenDarkenPipe, TextBrightnessPipe } from './color.pipe';
   ]
 })
 
-export class ColorPipeModule {
+export class ColorPipesModule {
 }
