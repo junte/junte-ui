@@ -136,8 +136,8 @@ $button-sizes: (
       box-shadow: 0 1px 5px #{map-get($scheme, button-focus-shadow-color)};
     }
     [badge][child-host=#{$jnt-badge-host}] {
-      sup {
-        color: #{map-get($scheme, fill-badge-color)};
+      div {
+        color: #{map-get($scheme, fill-badge-color)} !important;
         background: #{map-get($scheme, fill-badge-background-color)} !important;
       }
     }
@@ -157,7 +157,7 @@ $button-sizes: (
       background-color: #{map-get($scheme, ghost-hover-background-color)};
       color: #{map-get($scheme, ghost-hover-color)};
 
-      [badge][child-host=#{$jnt-badge-host}] > sup {
+      [badge][child-host=#{$jnt-badge-host}] > div {
         background: #{map-get($scheme, ghost-hover-badge-background)} !important;
         color: #{map-get($scheme, ghost-hover-badge-color)} !important;
       }
@@ -165,9 +165,9 @@ $button-sizes: (
         fill: #{map-get($scheme, ghost-hover-color)};
       }
     }
-    [badge][child-host=#{$jnt-badge-host}] > sup {
+    [badge][child-host=#{$jnt-badge-host}] > div {
       background: #{map-get($scheme, ghost-badge-background)} !important;
-      color: #{map-get($scheme, ghost-badge-color)};
+      color: #{map-get($scheme, ghost-badge-color)} !important;
     }
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, ghost-color)};
@@ -187,9 +187,9 @@ $button-sizes: (
         fill: #{map-get($scheme, transparent-hover-color)};
       }
     }
-    [badge][child-host=#{$jnt-badge-host}] > sup {
+    [badge][child-host=#{$jnt-badge-host}] > div {
       background: #{map-get($scheme, transparent-badge-background)} !important;
-      color: #{map-get($scheme, transparent-badge-color)};
+      color: #{map-get($scheme, transparent-badge-color)} !important;
     }
     [icon][child-host=#{$jnt-icon-host}] {
       fill: #{map-get($scheme, transparent-color)};
@@ -203,7 +203,7 @@ $button-sizes: (
     font-size: #{map-get($size, font-size)};
     height: #{map-get($size, height)};
   }
-  [badge][child-host=#{$jnt-badge-host}] > sup {
+  [badge][child-host=#{$jnt-badge-host}] > div {
     min-width: #{map-get($size, badge-size)};
     min-height: #{map-get($size, badge-size)};
     height: #{map-get($size, badge-size)};
