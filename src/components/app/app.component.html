@@ -1,39 +1,4 @@
 <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
 <jnt-popover #popover></jnt-popover>
 
-<jnt-app-layout #layout
-                [position]="ui.layout.app.position.fixed">
-  <jnt-app-header>
-    <ng-template #headerLogoTemplate>
-      <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">
-    </ng-template>
-    <ng-template #headerMenuTemplate>
-      <jnt-menu>
-        <jnt-menu-item [icon]="ui.icons.home"
-                       title="Home"
-                       [link]="['/']"></jnt-menu-item>
-        <jnt-menu-item title="Documentation"
-                       [icon]="localUi.icons.menu.documentation"
-                       [link]="['/documentation']"
-                       [matching]="ui.url.matching.wildcard">
-        </jnt-menu-item>
-        <jnt-menu-item title="Team"
-                       [icon]="localUi.icons.menu.contacts"
-                       [link]="['/contacts']"
-                       [matching]="ui.url.matching.wildcard"></jnt-menu-item>
-        <jnt-menu-item title="GitLab"
-                       link="https://gitlab.com/junte/junte-ui"
-                       target="_blank"
-                       [icon]="ui.icons.gitlab"></jnt-menu-item>
-        <jnt-menu-item title="Figma"
-                       link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0"
-                       target="_blank"
-                       [icon]="ui.icons.figma"></jnt-menu-item>
-      </jnt-menu>
-    </ng-template>
-    <form [formGroup]="themeForm">
-      <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
-    </form>
-  </jnt-app-header>
-  <router-outlet></router-outlet>
-</jnt-app-layout>
+<router-outlet></router-outlet>

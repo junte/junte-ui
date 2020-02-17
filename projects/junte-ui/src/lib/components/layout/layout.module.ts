@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { LpModule } from './lp/lp.module';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
 import { GridModule } from './grid/grid.module';
@@ -13,7 +14,8 @@ import { StackModule } from './stack/stack.module';
     BlockModule,
     SkeletonModule,
     SpinnerModule,
-    AppLayoutModule
+    AppLayoutModule,
+    LpModule
   ]
 })
 export class LayoutModule {

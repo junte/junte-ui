@@ -1,42 +1,32 @@
 @import "../../../projects/junte-ui/src/lib/assets/styles/variables";
 
-:host {
-  display: block;
-}
 
-h1, h2 {
+[about] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(180deg, rgba($primary-color, .8) 0%, rgba($primary-dark-color, .8) 100%),
+  url('../../assets/images/about-bg.jpg') no-repeat;
+  background-size: 100%, cover;
+  mix-blend-mode: soft-light;
   text-align: center;
-}
-
-h3 {
-  color: $primary-color;
-}
-
-h1 {
-  span {
-    border: 3px solid $primary-text-color;
-    border-radius: $corner-normal;
-    padding: 0 $gutter-small;
-    background: $secondary-color;
-    color: $green-dark-color;
+  h1 {
+    font-size: 81px;
+    line-height: 1.1;
+    font-weight: $font-weight-base;
+    color: $white-color;
   }
-}
-
-h2 [arnold] {
-  width: 48px;
-  height: 48px;
-}
-
-p {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 16px;
-    height: 16px;
+  p {
+    font-size: 30px;
+    font-weight: 100;
+    margin-bottom: 50px;
+    color: $white-color;
+    span {
+      font-weight: 300;
+    }
   }
-}
-
-h5 {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 20px;
-    height: 20px;
+  h1 {
+    margin: 90px 0;
   }
 }
