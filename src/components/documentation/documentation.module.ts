@@ -9,12 +9,13 @@ import { DynamicTestModule } from 'src/components/documentation/dynamic/dynamic-
 import { ElementsTestModule } from 'src/components/documentation/elements/elements-test.module';
 import { FormsTestModule } from 'src/components/documentation/forms/forms-test.module';
 import { GeneralModule } from 'src/components/documentation/general/general.module';
-import { LayoutTestModule } from 'src/components/documentation/layout/layout-test.module';
-import { NavigationTestModule } from 'src/components/documentation/navigation/navigation-test.module';
-import { OtherModule } from 'src/components/documentation/other/other.module';
-import { OverlaysTestModule } from 'src/components/documentation/overlays/overlays-test.module';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
-import { OutletModule } from 'src/components/outlet/outlet.module';
+import { HomeModule } from './general/home/home.module';
+import { LayoutTestModule } from './layout/layout-test.module';
+import { NavigationTestModule } from './navigation/navigation-test.module';
+import { OtherModule } from './other/other.module';
+import { OverlaysTestModule } from './overlays/overlays-test.module';
+import { SharedModule } from './shared/shared.module';
+import { OutletModule } from '../outlet/outlet.module';
 import { DocumentationRoutingModule } from './documentation-routing.module';
 import { DocumentationComponent } from './documentation.component';
 import { ModalTestFactoryComponent } from './overlays/modal/test.component';
@@ -38,7 +39,8 @@ import { ModalTestFactoryComponent } from './overlays/modal/test.component';
     LayoutTestModule,
     NavigationTestModule,
     OverlaysTestModule,
-    OtherModule
+    OtherModule,
+    HomeModule
   ],
   declarations: [
     DocumentationComponent,

@@ -1,15 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from 'junte-ui';
-import { LocalUI } from '../../enums/local-ui';
+import { LocalUI } from 'src/enums/local-ui';
+
+export enum Theme {
+  light = 'light',
+  dark = 'dark'
+}
 
 @Component({
   selector: 'app-documentation',
   templateUrl: './documentation.component.html',
   styleUrls: ['./documentation.component.scss']
 })
-export class DocumentationComponent {
+export class DocumentationComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  theme = Theme;
+
+  loading = false;
+
+  themeControl = new FormControl(localStorage.theme || Theme.light);
+  themeForm = this.builder.group({
+    theme: this.themeControl
+  });
+
+  @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
+
+  constructor(private builder: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.themeControl.valueChanges
+      .subscribe(theme => {
+        if (theme !== Theme.light) {
+          localStorage.setItem('theme', theme);
+          this.load(theme);
+        } else {
+          localStorage.removeItem('theme');
+          this.load(null);
+        }
+      });
+  }
+
+  private load(theme: Theme) {
+    this.loading = true;
+    window['themes'](theme, () => this.loading = false);
+  }
 
 }

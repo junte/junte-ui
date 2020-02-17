@@ -1,0 +1,42 @@
+@import "../../../../../projects/junte-ui/src/lib/assets/styles/variables";
+
+:host {
+  display: block;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h3 {
+  color: $primary-color;
+}
+
+h1 {
+  span {
+    border: 3px solid $primary-text-color;
+    border-radius: $corner-normal;
+    padding: 0 $gutter-small;
+    background: $secondary-color;
+    color: $green-dark-color;
+  }
+}
+
+h2 [arnold] {
+  width: 48px;
+  height: 48px;
+}
+
+p {
+  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+h5 {
+  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
+    width: 20px;
+    height: 20px;
+  }
+}
