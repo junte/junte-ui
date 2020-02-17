@@ -1,141 +1,166 @@
-<!--<jnt-container>-->
-  <!--<h1>Circle bar</h1>-->
-  <!--<jnt-stack resources [type]="ui.layout.stack.type.horizontal">-->
-    <!--<jnt-link [icon]="ui.icons.gitlab"-->
-              <!--[outline]="ui.outline.ghost"-->
-              <!--source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/circlbar"-->
-              <!--target="_blank" title="GitLab">-->
-    <!--</jnt-link>-->
-    <!--<jnt-link [icon]="ui.icons.figma"-->
-              <!--[outline]="ui.outline.ghost"-->
-              <!--source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554"-->
-              <!--target="_blank" title="Figma">-->
-    <!--</jnt-link>-->
-  <!--</jnt-stack>-->
+<jnt-container>
+  <h1>Circle bar</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/circlbar"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
 
-  <!--<jnt-tabs playground>-->
+  <jnt-tabs playground>
 
-    <!--<jnt-tab title="Preview" [icon]="localUi.icons.preview">-->
-      <!--<ng-template #tabContentTemplate>-->
-        <!--<jnt-row>-->
-          <!--<jnt-col [tablet]="8">-->
-            <!--<app-browser-preview preview>-->
-              <!--<ng-template #document let-width="width" let-height="height">-->
-                <!--<jnt-circle-bar>-->
-                  <!--<ng-template #content>Content</ng-template>-->
-                  <!--<jnt-bar-indicator-group>-->
-                    <!--<jnt-bar-indicator [value]="10" title="Beer" [color]="ui.color.purple"></jnt-bar-indicator>-->
-                    <!--<jnt-bar-indicator [value]="20" title="Vodka" [color]="ui.color.red"></jnt-bar-indicator>-->
-                    <!--<jnt-bar-indicator [value]="30" title="Absent" [color]="ui.color.green"></jnt-bar-indicator>-->
-                  <!--</jnt-bar-indicator-group>-->
-                <!--</jnt-circle-bar>-->
-              <!--</ng-template>-->
-            <!--</app-browser-preview>-->
-          <!--</jnt-col>-->
-          <!--<jnt-col [tablet]="4">-->
-            <!--<jnt-form [formGroup]="builder" builder>-->
-              <!--<jnt-form-item>-->
-                <!--<jnt-form-label for="position">Position</jnt-form-label>-->
-                <!--<jnt-form-control>-->
-                  <!--<jnt-select formControlName="position" placeholder="Inline">-->
-                    <!--<jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>-->
-                    <!--<jnt-select-option label="Right top" [key]="ui.position.rightTop"></jnt-select-option>-->
-                    <!--<jnt-select-option label="Left top" [key]="ui.position.leftTop"></jnt-select-option>-->
-                  <!--</jnt-select>-->
-                <!--</jnt-form-control>-->
-              <!--</jnt-form-item>-->
-            <!--</jnt-form>-->
-          <!--</jnt-col>-->
-        <!--</jnt-row>-->
-      <!--</ng-template>-->
-    <!--</jnt-tab>-->
-  <!--</jnt-tabs>-->
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-circle-bar>
+                  <ng-template #circleBarContentTemplate>Content</ng-template>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value1Control.value"
+                                       [color]="color1Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value2Control.value"
+                                       [color]="color2Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value3Control.value"
+                                       [color]="color3Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                </jnt-circle-bar>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder" builder>
 
-  <!--&lt;!&ndash;<jnt-stack [type]="ui.layout.stack.type.horizontal" [wrap]="ui.flex.wrap.wrap">&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-circle-bar *ngFor="let size of ['tiny', 'small', 'normal', 'big']"&ndash;&gt;-->
-  <!--&lt;!&ndash;[attr.bar-size]="size">&ndash;&gt;-->
-  <!--&lt;!&ndash;<ng-template #content>Content</ng-template>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="10" title="Beer" [color]="ui.color.purple"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20" title="Vodka" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="value" title="Absent" [color]="ui.color.green"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="70" title="Vine" [color]="ui.color.black"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20" title="Water" [color]="ui.color.orange"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20" title="20 percents" [color]="ui.color.yellow"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20" title="10 percents" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="10" title="20 percents" [color]="ui.color.yellow"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-circle-bar>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-stack>&ndash;&gt;-->
+              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                <jnt-form-item>
+                  <jnt-form-label for="value1">First value</jnt-form-label>
+                  <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100"
+                             [min]="0"></jnt-input>
+                </jnt-form-item>
 
-  <!--&lt;!&ndash;<jnt-circle-bar>&ndash;&gt;-->
-  <!--&lt;!&ndash;<ng-template #content>Content</ng-template>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="Beer" [color]="ui.color.purple"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="Vodka" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="Absent" [color]="ui.color.green"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="Vine" [color]="ui.color.black"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="Water" [color]="ui.color.orange"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="10 percents" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="20 percents" [color]="ui.color.yellow"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="10 percents" [color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="0" title="20 percents" [color]="ui.color.yellow"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-circle-bar>&ndash;&gt;-->
+                <jnt-form-item>
+                  <jnt-form-label for="color1">First color</jnt-form-label>
+                  <input formControlName="color1" type="color">
+                </jnt-form-item>
+              </jnt-stack>
 
-  <!--&lt;!&ndash;<jnt-stack [type]="ui.layout.stack.type.horizontal">&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-button [icon]="ui.icons.arrowLeft"&ndash;&gt;-->
-  <!--&lt;!&ndash;(click)="value = value + 5"></jnt-button>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-button [icon]="ui.icons.arrowRight"&ndash;&gt;-->
-  <!--&lt;!&ndash;(click)="value = value - 5"></jnt-button>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-stack>&ndash;&gt;-->
+              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                <jnt-form-item>
+                  <jnt-form-label for="value2">Second value</jnt-form-label>
+                  <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100"
+                             [min]="0"></jnt-input>
+                </jnt-form-item>
 
-  <!--&lt;!&ndash;<ngx-prism language="html">&ndash;&gt;-->
-  <!--&lt;!&ndash;<pre><![CDATA[&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-circle-bar>&ndash;&gt;-->
-  <!--&lt;!&ndash;<ng-template #content>Content</ng-template>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="10"&ndash;&gt;-->
-  <!--&lt;!&ndash;title="Beer"&ndash;&gt;-->
-  <!--&lt;!&ndash;[color]="ui.color.purple"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="20"&ndash;&gt;-->
-  <!--&lt;!&ndash;title="Vodka"&ndash;&gt;-->
-  <!--&lt;!&ndash;[color]="ui.color.red"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;<jnt-bar-indicator [value]="60"&ndash;&gt;-->
-  <!--&lt;!&ndash;title="Absent"&ndash;&gt;-->
-  <!--&lt;!&ndash;[color]="ui.color.green"></jnt-bar-indicator>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-bar-indicator-group>&ndash;&gt;-->
-  <!--&lt;!&ndash;</jnt-circle-bar>&ndash;&gt;-->
-  <!--&lt;!&ndash;]]></pre>&ndash;&gt;-->
-  <!--&lt;!&ndash;</ngx-prism>&ndash;&gt;-->
+                <jnt-form-item>
+                  <jnt-form-label for="color2">Second color</jnt-form-label>
+                  <input formControlName="color2" type="color">
+                </jnt-form-item>
+              </jnt-stack>
 
-  <!--&lt;!&ndash;<h3>API</h3>&ndash;&gt;-->
-  <!--&lt;!&ndash;<h4>jnt-circle-bar</h4>&ndash;&gt;-->
-  <!--&lt;!&ndash;<table api>&ndash;&gt;-->
-  <!--&lt;!&ndash;<thead>&ndash;&gt;-->
-  <!--&lt;!&ndash;<tr>&ndash;&gt;-->
-  <!--&lt;!&ndash;<th>Property</th>&ndash;&gt;-->
-  <!--&lt;!&ndash;<th>Description</th>&ndash;&gt;-->
-  <!--&lt;!&ndash;<th>Type</th>&ndash;&gt;-->
-  <!--&lt;!&ndash;<th>Default</th>&ndash;&gt;-->
-  <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-  <!--&lt;!&ndash;</thead>&ndash;&gt;-->
-  <!--&lt;!&ndash;<tbody>&ndash;&gt;-->
-  <!--&lt;!&ndash;<tr>&ndash;&gt;-->
-  <!--&lt;!&ndash;<td>[size]</td>&ndash;&gt;-->
-  <!--&lt;!&ndash;<td>-</td>&ndash;&gt;-->
-  <!--&lt;!&ndash;<td>small | normal | large</td>&ndash;&gt;-->
-  <!--&lt;!&ndash;<td>small</td>&ndash;&gt;-->
-  <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-  <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
-  <!--&lt;!&ndash;</table>&ndash;&gt;-->
-<!--</jnt-container>-->
+
+              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                <jnt-form-item>
+                  <jnt-form-label for="value3">Third value</jnt-form-label>
+                  <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100"
+                             [min]="0"></jnt-input>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="color3">Third color</jnt-form-label>
+                  <input formControlName="color3" type="color">
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'circle-bar-test', type: 'CircleBarTestComponent'}"
+                scss="dynamic/circle-bar"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="circle-bar-test.template.html">
+                <![CDATA[
+                <jnt-circle-bar>
+                  <ng-template #circleBarContentTemplate>Content</ng-template>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value1Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value1Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color1Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color1Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value2Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value2Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color2Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color2Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value3Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value3Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color3Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color3Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                </jnt-circle-bar>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack>
+          <app-component-api selector="jnt-bar-indicator" [target]="types.indicator"></app-component-api>
+          <app-component-api selector="jnt-circle-bar" [target]="types.bar"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>
