@@ -1,9 +1,26 @@
 {
-  "scss": {
-    "path": "dynamic",
-    "name": "date-period",
-    "files": [
-      "date-period.encapsulated.scss"
+  "composition": {
+    "section": "dynamic",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "date-period/date-period.scss"
+    ],
+    "to": "date-period.scss"
+  },
+  "encapsuler": {
+    "host": "jnt-date-period-host",
+    "html": [
+      {
+        "from": "date-period.component.html",
+        "to": "date-period.encapsulated.html"
+      }
+    ],
+    "scss": [
+      {
+        "from": "date-period.component.scss",
+        "to": "../../../assets/styles/components/dynamic/date-period/date-period.scss"
+      }
     ]
   }
 }
