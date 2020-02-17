@@ -17,6 +17,10 @@ import { SumPipe } from './pipes';
     BarIndicatorGroupComponent,
     SumPipe
   ],
+  entryComponents: [
+    CircleBarComponent,
+    BarIndicatorComponent
+  ],
   exports: [
     CircleBarComponent,
     BarIndicatorComponent,

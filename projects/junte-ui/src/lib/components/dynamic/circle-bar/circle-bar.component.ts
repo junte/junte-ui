@@ -1,4 +1,5 @@
 import { Component, ContentChild, ContentChildren, HostBinding, QueryList, TemplateRef } from '@angular/core';
+import { ContentApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 import { BarIndicatorGroupComponent } from './indicator-group/indicator-group.component';
 
@@ -13,8 +14,12 @@ export class CircleBarComponent {
   @ContentChildren(BarIndicatorGroupComponent)
   groups: QueryList<BarIndicatorGroupComponent>;
 
+  @ContentApi({
+    selector: '#circleBarContentTemplate',
+    description: 'Circle bar content template'
+  })
   @ContentChild(TemplateRef, {static: false})
-  content: TemplateRef<any>;
+  circleBarContentTemplate: TemplateRef<any>;
 
   @HostBinding('attr.host') readonly host = 'jnt-circle-bar-host';
 }

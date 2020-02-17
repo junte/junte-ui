@@ -59,3 +59,5 @@ navigation/dropdown @ContentChild('trigger', {static: false}) was renamed to @Co
 
 navigation/dropdown @ContentChild('dropdown', {static: false}) was renamed to @ContentChild('dropdownTemplate', {static: false})
 
+dynamic/circle-bar @ContentChild('content', {static: false}) was renamed to @ContentChild('circleBarContentTemplate', {static: false})
+
