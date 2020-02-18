@@ -4,8 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JunteUiModule, ru } from 'junte-ui';
+import { getJunteUiConfig } from '../../utils/config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+const config = getJunteUiConfig();
 
 @NgModule({
   declarations: [
@@ -17,9 +20,7 @@ import { AppComponent } from './app.component';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    JunteUiModule.forRoot({
-      i18n: ru
-    })
+    JunteUiModule.forRoot(config)
   ],
   bootstrap: [
     AppComponent
