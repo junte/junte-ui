@@ -1,12 +1,50 @@
 {
-  "scss": {
-    "path": "elements",
-    "name": "icon",
-    "files": [
-      "icon.encapsulated.scss",
-      "svg/svg-icon.encapsulated.scss",
-      "font/font-icon.encapsulated.scss",
-      "animated/animated-icon.encapsulated.scss"
+  "composition": {
+    "section": "elements",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "icon/icon.scss",
+      "icon/svg/svg-icon.scss",
+      "icon/font/font-icon.scss",
+      "icon/animated/animated-icon.scss"
+    ],
+    "to": "icon.scss"
+  },
+  "encapsuler": {
+    "host": "jnt-icon-host",
+    "html": [
+      {
+        "from": "icon.component.html",
+        "to": "icon.encapsulated.html"
+      },
+      {
+        "from": "svg/svg-icon.component.html",
+        "to": "svg/svg-icon.encapsulated.html"
+      },
+      {
+        "from": "animated/animated-icon.component.html",
+        "to": "animated/animated-icon.encapsulated.html"
+      }
+    ],
+    "scss": [
+      {
+        "from": "icon.component.scss",
+        "to": "../../../assets/styles/components/elements/icon/icon.scss"
+      },
+      {
+        "from": "svg/svg-icon.component.scss",
+        "to": "../../../assets/styles/components/elements/icon/svg/svg-icon.scss"
+      },
+      {
+        "from": "font/font-icon.component.scss",
+        "to": "../../../assets/styles/components/elements/icon/font/font-icon.scss"
+      },
+      {
+        "from": "animated/animated-icon.component.scss",
+        "to": "../../../assets/styles/components/elements/icon/animated/animated-icon.scss"
+      }
     ]
   }
 }
+

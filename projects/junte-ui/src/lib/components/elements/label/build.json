@@ -1,9 +1,26 @@
 {
-  "scss": {
-    "path": "elements",
-    "name": "label",
-    "files": [
-      "label.encapsulated.scss"
+  "composition": {
+    "section": "elements",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "label/label.scss"
+    ],
+    "to": "label.scss"
+  },
+  "encapsuler": {
+    "host": "jnt-label-host",
+    "html": [
+      {
+        "from": "label.component.html",
+        "to": "label.encapsulated.html"
+      }
+    ],
+    "scss": [
+      {
+        "from": "label.component.scss",
+        "to": "../../../assets/styles/components/elements/label/label.scss"
+      }
     ]
   }
 }
