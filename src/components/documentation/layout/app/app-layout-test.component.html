@@ -218,14 +218,14 @@
                       <jnt-app-header>]]>
                         <ng-container *ngIf="logoControl.value">
                           <![CDATA[
-                          <ng-template #logo>
+                          <ng-template #headerLogoTemplate>
                             <img [src]="'assets/images/logo.svg'">
                           </ng-template>
                           ]]>
                         </ng-container>
                         <ng-container *ngIf="menuControl.value">
                           <![CDATA[
-                          <ng-template #topMenu>
+                          <ng-template #headerMenuTemplate>
                             <jnt-menu>
                               <jnt-menu-item [icon]="ui.icons.home" title="Home"></jnt-menu-item>
                               <jnt-menu-item [icon]="ui.icons.beaker" title="Documentation"></jnt-menu-item>
@@ -271,9 +271,9 @@
                               </ng-template>
                               <ng-template #userbarMenuTemplate>
                                 <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                                  <jnt-menu-item [link]="['/logout']" title="Logout"></jnt-menu-item>
-                                  <jnt-menu-item [link]="['/profile']" title="Profile"></jnt-menu-item>
-                                  <jnt-menu-item [link]="['/settings']" title="Settings"></jnt-menu-item>
+                                  <jnt-menu-item  title="Logout"></jnt-menu-item>
+                                  <jnt-menu-item  title="Profile"></jnt-menu-item>
+                                  <jnt-menu-item title="Settings"></jnt-menu-item>
                                 </jnt-menu>
                               </ng-template>
                             </jnt-app-header-userbar>
@@ -316,15 +316,16 @@
                         <![CDATA[ [aside]="aside">]]>
                       </ng-container>
                       <![CDATA[
+                      <jnt-app-sub-header></jnt-app-sub-header>
+                      ]]>
+                      <![CDATA[
                       <jnt-app-body></jnt-app-body>
                       ]]>
                       <ng-container *ngIf="footerControl.value">
                         <![CDATA[
-                        <app-footer #footer>
                           <jnt-app-footer>
                             <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
                           </jnt-app-footer>
-                        </app-footer>
                         ]]>
                       </ng-container>
                       <![CDATA[
