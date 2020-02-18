@@ -1,6 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from 'junte-ui';
+import { ModalComponent } from 'junte-ui';
+import { ModalService } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Theme {
@@ -13,7 +15,7 @@ export enum Theme {
   templateUrl: './documentation.component.html',
   styleUrls: ['./documentation.component.scss']
 })
-export class DocumentationComponent implements OnInit {
+export class DocumentationComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -27,8 +29,10 @@ export class DocumentationComponent implements OnInit {
   });
 
   @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
+  @ViewChild('modal', {static: true}) modal: ModalComponent;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder,
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -42,6 +46,10 @@ export class DocumentationComponent implements OnInit {
           this.load(null);
         }
       });
+  }
+
+  ngAfterViewInit() {
+    this.modalService.register(this.modal);
   }
 
   private load(theme: Theme) {

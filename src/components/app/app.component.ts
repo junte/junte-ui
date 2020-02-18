@@ -13,15 +13,11 @@ export class AppComponent implements AfterViewInit {
   localUi = LocalUI;
 
   @ViewChild('popover', {static: true}) popover: PopoverComponent;
-  @ViewChild('modal', {static: true}) modal: ModalComponent;
-  @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
 
-  constructor(private modalService: ModalService,
-              private popoverService: PopoverService) {
+  constructor(private popoverService: PopoverService) {
   }
 
   ngAfterViewInit() {
-    this.modalService.register(this.modal);
     this.popoverService.register(this.popover);
   }
 
