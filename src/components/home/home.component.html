@@ -9,19 +9,26 @@
               [link]="['documentation']">
             </jnt-menu-item>
           </jnt-menu>
-          <img src="assets/images/logo-lp.svg" alt="logo">
-          <h1>Quality Angular<br>UI components kit</h1>
-          <p>Made with love for making beautiful WEB apps!</p>
-          <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                     [justify]="ui.flex.justify.center">
-            <jnt-label label="Opened"></jnt-label>
-            <jnt-label label="Native"></jnt-label>
-            <jnt-label label="Multilingual"></jnt-label>
+          <jnt-stack [gutter]="ui.gutter.big"
+                     [align]="ui.flex.align.center">
+            <img height="100" src="assets/images/logo-light.svg" alt="logo">
+            <h1>Quality Angular<br>UI components kit</h1>
+            <jnt-stack [gutter]="ui.gutter.big"
+                       [align]="ui.flex.align.center">
+              <p>Made with love for making beautiful WEB apps!</p>
+              <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                         [justify]="ui.flex.justify.center">
+                <jnt-label label="Opened"></jnt-label>
+                <jnt-label label="Native"></jnt-label>
+                <jnt-label label="Multilingual"></jnt-label>
+              </jnt-stack>
+
+              <jnt-link title="Tutorial here"
+                        [icon]="ui.icons.link"
+                        [outline]="ui.outline.fill"
+                        [source]="['documentation']"></jnt-link>
+            </jnt-stack>
           </jnt-stack>
-          <jnt-link title="Tutorial here"
-                    [icon]="ui.icons.link"
-                    [outline]="ui.outline.fill"
-                    [source]="['documentation']"></jnt-link>
         </jnt-container>
       </div>
     </ng-template>

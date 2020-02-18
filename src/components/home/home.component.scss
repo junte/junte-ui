@@ -1,33 +1,44 @@
 @import "../../../projects/junte-ui/src/lib/assets/styles/variables";
 
+[host=#{$jnt-label-host}] {
+  font-size: 30px !important;
+  background: transparent !important;
+  border: 1px solid $white-color;
+  height: auto !important;
+  line-height: 1.5;
+  border-radius: $corner-normal;
+  &:nth-child(1) {
+    background-color: rgba($success-color, .5) !important;
+  }
+}
+
+[host=#{$jnt-link-host}] {
+  font-size: 30px;
+}
+
 [about] {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: linear-gradient(180deg, rgba($primary-color, .8) 0%, rgba($primary-dark-color, .8) 100%),
+  background: linear-gradient(180deg, rgba(#3949AB, .8) 0%, rgba(#00227B, 1) 100%),
   url('../../assets/images/about-bg.jpg') no-repeat;
   background-size: 100%, cover;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: darken;
   text-align: center;
   h1 {
-    font-size: 81px;
+    font-size: 60px;
     line-height: 1.1;
     font-weight: $font-weight-base;
     color: $white-color;
-    margin: 10px 0;
   }
   p {
     font-size: 30px;
-    font-weight: 100;
-    margin-bottom: 40px;
+    font-weight: 200;
     color: $white-color;
-    span {
-      font-weight: 300;
-    }
   }
   h1 {
-    margin: 90px 0;
+
   }
 }
 
