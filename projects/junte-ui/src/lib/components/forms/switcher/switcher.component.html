@@ -4,13 +4,19 @@
            [align]="ui.flex.align.center"
            [gutter]="ui.gutter.small"
            [style.background-color]="(option.value | isEqual : value) ? option.activeColor : null" tabindex="0">
-  <jnt-dot *ngIf="option.dot" [color]="option.dot.color"></jnt-dot>
-  <jnt-icon *ngIf="option.icon" [icon]="option.icon"></jnt-icon>
-  <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center"
+  <jnt-dot *ngIf="option.dot"
+           [color]="option.dot.color"></jnt-dot>
+  <jnt-icon *ngIf="option.icon"
+            [icon]="option.icon"></jnt-icon>
+  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+             [justify]="ui.flex.justify.center"
              [align]="ui.flex.align.center"
              [gutter]="ui.gutter.small">
     <span label>{{option.label}}</span>
-    <jnt-badge *ngIf="option.badge" [color]="option.badge.color" [position]="ui.position.inline"
+    <jnt-badge *ngIf="option.badge"
+               [color]="option.badge.color"
+               [position]="ui.position.inline"
+               [text]="option.badge.text"
                [value]="option.badge.value"></jnt-badge>
   </jnt-stack>
 </jnt-stack>
