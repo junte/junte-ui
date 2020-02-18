@@ -1,9 +1,26 @@
 {
-  "scss": {
-    "path": "forms",
-    "name": "date-picker",
-    "files": [
-      "date-picker.encapsulated.scss"
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "date-picker/date-picker.scss"
+    ],
+    "to": "date-picker.scss"
+  },
+  "encapsuler": {
+    "host": "jnt-date-picker-host",
+    "html": [
+      {
+        "from": "date-picker.component.html",
+        "to": "date-picker.encapsulated.html"
+      }
+    ],
+    "scss": [
+      {
+        "from": "date-picker.component.scss",
+        "to": "../../../assets/styles/components/forms/date-picker/date-picker.scss"
+      }
     ]
   }
 }

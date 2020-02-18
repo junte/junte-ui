@@ -1,9 +1,20 @@
 {
-  "scss": {
-    "path": "forms",
-    "name": "dot",
-    "files": [
-      "dot.encapsulated.scss"
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "dot/dot.scss"
+    ],
+    "to": "dot.scss"
+  },
+  "encapsuler": {
+    "host": "jnt-dot-host",
+    "scss": [
+      {
+        "from": "dot.component.scss",
+        "to": "../../../assets/styles/components/forms/dot/dot.scss"
+      }
     ]
   }
 }
