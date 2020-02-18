@@ -11,7 +11,8 @@
                 [source]="!item.submenus.length ? item.link : null"
                 [scheme]="item.scheme"
                 [outline]="ui.outline.transparent"
-                [target]="item.target">
+                [target]="item.target"
+                (click)="item.click.emit()">
         <ng-container *ngIf="!collapsed">
           <jnt-badge *ngFor="let badge of item.badges"
                      [value]="badge.value"
@@ -27,14 +28,14 @@
 
       <div submenu *ngIf="!!item.submenus.length" [attr.opened]="item.opened">
         <ng-container *ngFor="let submenu of item.submenus">
-          <jnt-link *ngFor="let subitem of submenu.items"
+          <jnt-link link *ngFor="let subitem of submenu.items"
                     [title]="subitem.title"
                     [icon]="subitem.icon"
                     [matching]="subitem.matching"
                     [source]="subitem.link"
                     [scheme]="subitem.scheme"
                     [target]="subitem.target"
-                    link>
+                    (click)="item.click.emit()">
             <jnt-badge *ngFor="let badge of subitem.badges"
                        [value]="badge.value"
                        [position]="ui.position.inline"

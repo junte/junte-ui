@@ -13,6 +13,9 @@ export class RadioComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-host';
 
+  @HostBinding('attr.size')
+  _size = Size.normal;
+
   @PropertyApi({
     description: 'Set disabled state',
     type: 'boolean',
@@ -36,12 +39,16 @@ export class RadioComponent {
     description: 'Size for radio button',
     type: 'string',
     path: 'ui.sizes',
-    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    options: [Size.tiny,
+      Size.small,
+      Size.normal,
+      Size.large],
     default: Size.normal
   })
-  @HostBinding('attr.size')
   @Input()
-  size: Size = Size.normal;
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
 
   @PropertyApi({
     description: 'Label name for radio button',
