@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { DateFnsModule } from 'ngx-date-fns';
-import { createModule, JunteUIModuleConfig } from '../../../config';
+import { JunteUIModuleConfig } from '../../../config';
+import { JUNTE_UI_I18N_KEYS } from '../../../i18n/consts';
+import { en } from '../../../i18n/en';
+import { I18nLoader } from '../../../i18n/loader';
 import { DatePipeModule } from '../../../pipes/date-pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -39,7 +42,21 @@ import { WeekComponent } from './week/week.component';
 export class CalendarModule {
 
   static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<CalendarModule> {
-    return createModule(CalendarModule, config);
+    return {
+      ngModule: CalendarModule,
+      providers: [
+        {
+          provide: JUNTE_UI_I18N_KEYS,
+          useValue: config.i18n || en
+        },
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: I18nLoader
+          },
+          defaultLanguage: 'en'
+        }).providers]
+    };
   }
 
 }
