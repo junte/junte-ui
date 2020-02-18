@@ -3,10 +3,25 @@
     <ng-template #slideContentTemplate>
       <div about>
         <jnt-container>
+          <jnt-menu>
+            <jnt-menu-item
+              [title]="'Documentation'"
+              [link]="['documentation']">
+            </jnt-menu-item>
+          </jnt-menu>
           <img src="assets/images/logo-lp.svg" alt="logo">
-          <h1>We make apps <br> with estimates</h1>
-          <p>We are developers who save <span>your time & money</span></p>
-          <jnt-button text="Hire us now!" [outline]="ui.outline.ghost"></jnt-button>
+          <h1>Quality Angular<br>UI components kit</h1>
+          <p>Made with love for making beautiful WEB apps!</p>
+          <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                     [justify]="ui.flex.justify.center">
+            <jnt-label label="Opened"></jnt-label>
+            <jnt-label label="Native"></jnt-label>
+            <jnt-label label="Multilingual"></jnt-label>
+          </jnt-stack>
+          <jnt-link title="Tutorial here"
+                    [icon]="ui.icons.link"
+                    [outline]="ui.outline.fill"
+                    [source]="['documentation']"></jnt-link>
         </jnt-container>
       </div>
     </ng-template>
@@ -14,7 +29,7 @@
 
   <jnt-lp-slide>
     <ng-template #slideContentTemplate>
-      <div>
+      <div slide2>
         <jnt-container>
           <h1>Slide 2</h1>
         </jnt-container>
@@ -24,9 +39,11 @@
 
   <jnt-lp-slide>
     <ng-template #slideContentTemplate>
-      <jnt-container>
-        <h1>Slide 3</h1>
-      </jnt-container>
+      <div slide3>
+        <jnt-container>
+          <h1>Slide 3</h1>
+        </jnt-container>
+      </div>
     </ng-template>
   </jnt-lp-slide>
 

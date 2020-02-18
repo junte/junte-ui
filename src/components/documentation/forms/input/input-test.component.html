@@ -32,7 +32,7 @@
                                [icon]="iconControl.value ? ui.icons.search : null"
                                [label]="labelControl.value ? 'Name' : null"
                                [textAlign]="alignControl.value"
-                               [placeholder]="placeholderControl.value ? 'Your name' : ''">
+                               [placeholder]="placeholderControl.value ? 'Yes or no?' : ''">
                     </jnt-input>
                     <iframe [style.display]="inputControl.value === 'yes' ? 'block' : 'none'"
                             src="https://giphy.com/embed/mzTKsByk8Xl6g"
@@ -166,8 +166,8 @@
           ]]>
         </app-code-highlight>
 
-        <app-code-highlight file="input-test.component.ts" lang="js">
-          <pre>
+        <app-code-highlight file="input-test.component.ts"
+                            [language]="language.javascript">
                <![CDATA[
 import { Component, OnInit, FormBuilder } from '@angular/core';
 import { UI } from 'junte-ui';
@@ -180,16 +180,14 @@ import { UI } from 'junte-ui';
 export class InputTestComponent implements OnInit {
 
             ui = UI;
-            inputControl = this.fb.control(null);
 
             inputForm = this.fb.group({
-    input: this.inputControl
+    input: []
   });
 
   constructor(private fb: FormBuilder) {
   }
           ]]>
-          </pre>
         </app-code-highlight>
       </ng-template>
     </jnt-tab>

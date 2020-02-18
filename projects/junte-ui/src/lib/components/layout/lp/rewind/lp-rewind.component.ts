@@ -21,7 +21,7 @@ export class LpRewindComponent {
     return currentScroll - document.documentElement.clientHeight;
   }
 
-  scrollSmooth(targetScroll, ms = 500) {
+  scrollSmooth(targetScroll, ms = 200) {
 
     const getScroll = () => window.pageYOffset || document.documentElement.scrollTop;
     const currentScroll = getScroll();

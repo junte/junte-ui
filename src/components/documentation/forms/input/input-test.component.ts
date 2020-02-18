@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InputComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
   selector: 'app-input-test',
@@ -13,6 +14,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   ui = UI;
   localUi = LocalUI;
   input = InputComponent;
+  language = Language;
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
