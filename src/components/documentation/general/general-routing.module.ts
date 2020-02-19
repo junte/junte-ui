@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'theming'
+    redirectTo: 'home'
   },
   {
     path: 'home',

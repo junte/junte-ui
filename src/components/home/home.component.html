@@ -3,14 +3,31 @@
     <ng-template #slideContentTemplate>
       <div about>
         <jnt-container>
-          <jnt-menu>
-            <jnt-menu-item
-              [title]="'Documentation'"
-              [link]="['documentation']">
-            </jnt-menu-item>
-          </jnt-menu>
           <jnt-stack [gutter]="ui.gutter.big"
                      [align]="ui.flex.align.center">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                       [justify]="ui.flex.justify.center">
+              <jnt-menu>
+                <jnt-menu-item
+                  [title]="'Documentation'"
+                  [link]="['documentation']">
+                </jnt-menu-item>
+                <jnt-menu-item
+                  [title]="'Team'"
+                  [link]="['contacts']">
+                </jnt-menu-item>
+                <jnt-menu-item
+                  [icon]="ui.icons.gitlab"
+                  [title]="'GitLab'"
+                  [link]="['documentation']">
+                </jnt-menu-item>
+                <jnt-menu-item
+                  [icon]="ui.icons.figma"
+                  [title]="'Firma'"
+                  [link]="['documentation']">
+                </jnt-menu-item>
+              </jnt-menu>
+            </jnt-stack>
             <img height="100" src="assets/images/logo-light.svg" alt="logo">
             <h1>Quality Angular<br>UI components kit</h1>
             <jnt-stack [gutter]="ui.gutter.big"
