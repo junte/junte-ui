@@ -1,9 +1,5 @@
 <ng-content></ng-content>
-<div [style.background-color]="color"
+<div text [style.background-color]="color"
      [style.color]="color | textBrightness">
-  <span *ngIf="!!text; else numberTemplate">{{text}}</span>
+  {{!!text ? text : (overflow > value ? value : overflow + '+')}}
 </div>
-
-<ng-template #numberTemplate>
-  <span>{{overflow > value ? value : overflow + '+'}}</span>
-</ng-template>

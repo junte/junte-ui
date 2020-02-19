@@ -1,21 +1,27 @@
 @import "../../../assets/styles/variables";
 
-@mixin size($size) {
-  padding: #{map-get($size, padding)};
-  font-size: #{map-get($size, font-size)};
-  height: #{map-get($size, height)};
+@mixin label-size($size) {
+  @if map-has-key($size, padding) {
+    padding: #{map-get($size, padding)};
+  }
+  @if map-has-key($size, font-size) {
+    font-size: #{map-get($size, font-size)};
+  }
+  @if map-has-key($size, height) {
+    height: #{map-get($size, height)};
+  }
   [icon] {
     &[type='svg'], &[type='animated'] {
       width: #{map-get($size, icon-size)};
       height: #{map-get($size, icon-size)};
     }
   }
-  [span] {
+  [text] {
     line-height: #{map-get($size, height)};
   }
 }
 
-@mixin label($passed) {
+@mixin label($passed: (), $strategy: 'merge') {
   $defs: (
     corner: $corner-small,
     background: $primary-color,
@@ -40,35 +46,53 @@
     )
   );
 
-  $vars: map-merge($defs, $passed);
+  $vars: $passed;
+
+  @if $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+  }
 
   :host {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: map-get($vars, border);
-    border-radius: map-get($vars, corner);
-    font-size: map-get($vars, font-size);
-    line-height: 0;
-    box-sizing: border-box;
-    background: map-get($vars, background);
+    @if $strategy == 'merge' {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      box-sizing: border-box;
+      [text][child-of=#{$jnt-label-host}] {
+        white-space: nowrap;
+      }
+    }
+    @if map-has-key($vars, border) {
+      border: map-get($vars, border);
+    }
 
-    @each $size, $map in map-get($vars, sizes) {
-      &[size='#{$size}'] {
-        @include size($map);
+    @if map-has-key($vars, corner) {
+      border-radius: map-get($vars, corner);
+    }
+
+    @if map-has-key($vars, font-size) {
+      font-size: map-get($vars, font-size);
+    }
+
+    @if map-has-key($vars, background) {
+      background: map-get($vars, background);
+    }
+
+    @if map-has-key($vars, sizes) {
+      @each $size, $map in map-get($vars, sizes) {
+        &[size='#{$size}'] {
+          @include label-size($map);
+        }
       }
     }
 
-    [text] {
-      white-space: nowrap;
-    }
-
-    $icon: map-get($vars, icon);
-    [icon][child-host=#{$jnt-icon-host}] {
-      margin-right: map-get($icon, margin-right);
+    @if map-has-key($vars, icon) {
+      $icon: map-get($vars, icon);
+      [icon][host=#{$jnt-icon-host}] {
+        margin-right: map-get($icon, margin-right);
+      }
     }
   }
 
 }
-
-@include label(());
