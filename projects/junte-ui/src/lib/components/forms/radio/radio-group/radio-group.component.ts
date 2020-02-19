@@ -3,6 +3,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, fromEvent, merge, Subscription } from 'rxjs';
 import { filter, mapTo } from 'rxjs/operators';
 import { isObject, isUndefined } from 'util';
+import { UI } from '../../../../enums/ui';
 import { RadioComponent } from '../radio.component';
 
 @Component({
@@ -18,6 +19,8 @@ import { RadioComponent } from '../radio.component';
 })
 
 export class RadioGroupComponent implements AfterContentInit, OnDestroy {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
 

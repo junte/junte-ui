@@ -1,5 +1,19 @@
 @import "../../../../assets/styles/variables";
+@import "../../../elements/label/label.encapsulated";
 
 :host {
   display: block;
+
+  @include label((
+    corner: 100px,
+    border: 1px solid $white-color,
+    icon: (
+      margin-right: 50px
+    ),
+    sizes:(
+      normal: (
+        font-size: 30px
+      )
+    )
+  ));
 }

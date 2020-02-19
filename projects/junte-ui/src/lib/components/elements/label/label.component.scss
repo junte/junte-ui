@@ -1,22 +1,5 @@
 @import "../../../assets/styles/variables";
 
-$label-corner: 3px;
-
-$label-sizes: (
-  #{$size-small}: (
-    padding: 0 $gutter-small,
-    font-size: 10px,
-    height: 20px,
-    icon-size: 12px
-  ),
-  #{$size-normal}: (
-    padding: 0 $gutter-small,
-    font-size: 12px,
-    height: 24px,
-    icon-size: 14px
-  )
-);
-
 @mixin size($size) {
   padding: #{map-get($size, padding)};
   font-size: #{map-get($size, font-size)};
@@ -32,25 +15,60 @@ $label-sizes: (
   }
 }
 
-:host {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: $label-corner;
-  line-height: 0;
-  box-sizing: border-box;
+@mixin label($passed) {
+  $defs: (
+    corner: $corner-small,
+    background: $primary-color,
+    font-size: inherit,
+    border: none,
+    icon: (
+      margin-right: $gutter-small
+    ),
+    sizes: (
+      small: (
+        padding: 0 $gutter-small,
+        font-size: 10px,
+        height: 20px,
+        icon-size: 12px
+      ),
+      normal: (
+        padding: 0 $gutter-small,
+        font-size: 12px,
+        height: 24px,
+        icon-size: 14px
+      )
+    )
+  );
 
-  @each $size, $map in $label-sizes {
-    &[size='#{$size}'] {
-      @include size($map);
+  $vars: map-merge($defs, $passed);
+
+  :host {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: map-get($vars, border);
+    border-radius: map-get($vars, corner);
+    font-size: map-get($vars, font-size);
+    line-height: 0;
+    box-sizing: border-box;
+    background: map-get($vars, background);
+
+    @each $size, $map in map-get($vars, sizes) {
+      &[size='#{$size}'] {
+        @include size($map);
+      }
+    }
+
+    [text] {
+      white-space: nowrap;
+    }
+
+    $icon: map-get($vars, icon);
+    [icon][child-host=#{$jnt-icon-host}] {
+      margin-right: map-get($icon, margin-right);
     }
   }
+
 }
 
-span {
-  white-space: nowrap;
-}
-
-[icon][child-host=#{$jnt-icon-host}] {
-  margin-right: $gutter-small;
-}
+@include label(());

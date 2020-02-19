@@ -18,6 +18,8 @@ import { SharedModule } from 'src/components/documentation/shared/shared.module'
 import { getJunteUiConfig } from '../../../../utils/config';
 import { CalendarTestComponent } from './calendar-test.component';
 
+const config = getJunteUiConfig();
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +34,7 @@ import { CalendarTestComponent } from './calendar-test.component';
     SwitcherModule,
     CheckboxModule,
     AccordionModule,
-    CalendarModule.forRoot(getJunteUiConfig())
+    CalendarModule.forRoot(config)
   ],
   declarations: [
     CalendarTestComponent

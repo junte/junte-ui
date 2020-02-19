@@ -10,7 +10,6 @@ import { NavigationModule } from './components/navigation/navigation.module';
 import { OverlaysModule } from './components/overlays/overlays.module';
 import { SharedModule } from './components/shared/shared.module';
 import { JunteUIModuleConfig } from './config';
-import { JUNTE_UI_I18N_KEYS } from './i18n/consts';
 import { en } from './i18n/en';
 import { I18nLoader } from './i18n/loader';
 import { AnimationPipeModule } from './pipes/animation-pipe.module';
@@ -47,14 +46,10 @@ export class JunteUiModule {
     return {
       ngModule: JunteUiModule,
       providers: [
-        {
-          provide: JUNTE_UI_I18N_KEYS,
-          useValue: config.i18n || en
-        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useClass: I18nLoader
+            useValue: new I18nLoader(config.i18n || en)
           },
           defaultLanguage: 'en'
         }).providers]

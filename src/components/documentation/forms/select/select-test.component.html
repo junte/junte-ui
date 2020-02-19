@@ -1,40 +1,18 @@
 <jnt-container>
   <h1>Select</h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/select"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A219"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <p>
-    An object that displays and manages custom input for a view when that view becomes the first responder.<br>
-    When defining your own custom input views or input accessory views, you can use a Input object as the
-    root view and add any subviews you want to create your input view.<br>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uiinputview" title="More">
-    </jnt-link>
-  </p>
-  <h3>Requirements</h3>
-
-  <ol>
-    <li>The input must have different size: small, normal, large</li>
-    <li>The input should respond to mouse hover, focus</li>
-    <li>The input should change the display when it is disabled</li>
-    <li>The input must have a design in accordance with a given color scheme</li>
-    <li>The button should be of two types: password and text</li>
-    <li>The input must have a placeholder</li>
-  </ol>
-  <hr>
-
-  <h3>How to use</h3>
-  <app-how-to-use [test]="{selector:'select-test', type: 'SelectTestComponent'}"
-                  scss="forms/select">
-  </app-how-to-use>
-
-  <h3>Playground</h3>
 
   <jnt-tabs playground>
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
@@ -155,6 +133,9 @@
 
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
+        <app-how-to-use [test]="{selector:'select-test', type: 'SelectTestComponent'}"
+                        scss="forms/select">
+        </app-how-to-use>
         <app-code-highlight file="select-test.component.html">
           <![CDATA[
           <jnt-select [labelField]="'label'"
