@@ -1,4 +1,5 @@
 @import "../../../projects/junte-ui/src/lib/assets/styles/variables";
+@import "../../../projects/junte-ui/src/lib/components/elements/label/label.encapsulated";
 
 [host=#{$jnt-link-host}] {
   font-size: 30px;
@@ -26,9 +27,9 @@
     font-weight: 200;
     color: $white-color;
   }
-  h1 {
-
-  }
+  @include label((
+    background: red !important
+  ), 'changes')
 }
 
 [slide2] {
