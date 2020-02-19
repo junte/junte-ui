@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { UI, ModalComponent, ModalService, PopoverComponent, PopoverService, AppLayoutComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Theme {
@@ -13,7 +13,7 @@ export enum Theme {
   templateUrl: './documentation.component.html',
   styleUrls: ['./documentation.component.scss']
 })
-export class DocumentationComponent implements OnInit {
+export class DocumentationComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -26,9 +26,13 @@ export class DocumentationComponent implements OnInit {
     theme: this.themeControl
   });
 
-  @ViewChild('layout', {read: ElementRef, static: true}) backdrop;
+  @ViewChild('popover', {static: true}) popover: PopoverComponent;
+  @ViewChild('modal', {static: true}) modal: ModalComponent;
+  @ViewChild('layout', {read: ElementRef, static: true}) backdrop: ElementRef<HTMLElement>;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private modalService: ModalService,
+              private popoverService: PopoverService,
+              private builder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -43,6 +47,12 @@ export class DocumentationComponent implements OnInit {
         }
       });
   }
+
+  ngAfterViewInit() {
+    this.modalService.register(this.modal);
+    this.popoverService.register(this.popover);
+  }
+
 
   private load(theme: Theme) {
     this.loading = true;

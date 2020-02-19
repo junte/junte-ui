@@ -1,0 +1,22 @@
+@mixin label($passed) {
+
+  $defs: (
+    color: red,
+    text: (
+      margin-bottom: 5px
+    )
+  );
+
+  $vars: map-merge($defs, $passed);
+
+  [host=jnt-label] {
+    color: map-get($vars, color);
+  }
+
+  $text: map-get($vars, text);
+  span[child-of=jnt-label] {
+    margin-top: 0;
+    margin-bottom: map-get($text, margin-bottom);
+  }
+
+}

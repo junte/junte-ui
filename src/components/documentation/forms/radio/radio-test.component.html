@@ -96,12 +96,12 @@
           [test]="{selector:'radio-test', type: 'RadioTestComponent'}"
           scss="forms/radio"></app-how-to-use>
         <app-code-highlight file="radio-test.component.html">
-          <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
-
+          <ng-template #sizeTemplate>
+            <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+          </ng-template>
           <![CDATA[
           <jnt-form [formGroup]="builder">
             <jnt-radio-group formControlName="radioGroup"> ]]>
-
               <![CDATA[
               <jnt-radio value="Option 1" ]]>
                 <ng-container *ngIf="disableControl.value">
@@ -116,7 +116,6 @@
                 <![CDATA[ >
               </jnt-radio>
               ]]>
-
               <![CDATA[
               <jnt-radio value="Option 2" label="Label 2" ]]>
                 <ng-container *ngIf="sizeControl.value">
@@ -168,7 +167,7 @@ export class RadioTestComponent implements OnInit {
 
 }
 ]]>
-          <!-- @formatter:on -->
+        <!-- @formatter:on -->
         </app-code-highlight>
       </ng-template>
     </jnt-tab>
