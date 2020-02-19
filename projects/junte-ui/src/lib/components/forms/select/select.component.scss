@@ -32,7 +32,9 @@ $select-sizes: (
       padding: #{map-get($size, chips-padding)};
       [icon][deep-host=#{$jnt-icon-host}] {
         &[type='svg'], &[type='animated'] {
+          min-width: #{map-get($size, icon-size)};
           width: #{map-get($size, icon-size)};
+          min-height: #{map-get($size, icon-size)};
           height: #{map-get($size, icon-size)};
         }
       }
@@ -48,7 +50,9 @@ $select-sizes: (
     ul li {
       [icon][deep-host=#{$jnt-icon-host}] {
         &[type='svg'], &[type='animated'] {
+          min-width: #{map-get($size, icon-size)};
           width: #{map-get($size, icon-size)};
+          min-height: #{map-get($size, icon-size)};
           height: #{map-get($size, icon-size)};
         }
       }
