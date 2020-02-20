@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "overlays",
-    "name": "popover",
-    "files": [
-      "popover.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "overlays",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "popover/popover.scss"
+    ],
+    "to": "popover.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-popover-host",
+      "html": {
+        "from": "popover.component.html",
+        "to": "popover.encapsulated.html"
+      },
+      "scss": {
+        "from": "popover.component.scss",
+        "to": "../../../assets/styles/components/overlays/popover/popover.scss"
+      }
+    }
+  ]
 }

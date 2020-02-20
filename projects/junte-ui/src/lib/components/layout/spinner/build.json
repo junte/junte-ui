@@ -1,9 +1,20 @@
 {
-  "scss": {
-    "path": "layout",
-    "name": "spinner",
-    "files": [
-      "spinner.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "layout",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "spinner/spinner.scss"
+    ],
+    "to": "spinner.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-spinner-host",
+      "scss": {
+        "from": "spinner.component.scss",
+        "to": "../../../assets/styles/components/layout/spinner/spinner.scss"
+      }
+    }
+  ]
 }

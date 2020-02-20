@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "shared",
-    "name": "confirm",
-    "files": [
-      "confirm.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "shared",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "confirm/confirm.scss"
+    ],
+    "to": "confirm.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-confirm-host",
+      "html": {
+        "from": "confirm.component.html",
+        "to": "confirm.encapsulated.html"
+      },
+      "scss": {
+        "from": "confirm.component.scss",
+        "to": "../../../assets/styles/components/shared/confirm/confirm.scss"
+      }
+    }
+  ]
 }
