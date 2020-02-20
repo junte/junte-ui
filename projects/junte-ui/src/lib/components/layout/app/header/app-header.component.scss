@@ -20,12 +20,14 @@
     display: flex;
     align-items: center;
     jnt-menu[deep-host=#{$jnt-menu-host}] {
-      jnt-link[child-host=#{$jnt-link-host}] {
-        padding: $gutter-small;
-        user-select: none;
+      [title] {
         &:hover {
           background-color: transparent;
         }
+      }
+      jnt-link[deep-host=#{$jnt-link-host}] {
+        padding: $gutter-small;
+        user-select: none;
         a {
           [title] {
             color: $white-color;
