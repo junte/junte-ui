@@ -1,17 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, isEqual, TableComponent, UI, defined} from 'junte-ui';
-import {Observable, of} from 'rxjs';
-import {delay, distinctUntilChanged, tap} from 'rxjs/operators';
-import merge from 'merge-anything';
-import {fake} from 'faker';
-
-const DEFAULT_DELAY = 1000;
-
-class Filter extends DefaultSearchFilter {
-  job?: string;
-}
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { fake } from 'faker';
+import { UI } from 'junte-ui';
+import { TabComponent } from 'junte-ui';
+import { DEFAULT_FIRST, DEFAULT_OFFSET } from 'junte-ui';
+import { TableComponent } from 'junte-ui';
+import { TableColumnComponent } from 'junte-ui';
+import { TableState } from './data/table-data.component';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-table-test',
@@ -20,101 +17,66 @@ class Filter extends DefaultSearchFilter {
 })
 export class TableTestComponent implements OnInit {
 
+  private _state = new TableState();
+
   ui = UI;
 
-  form = this.builder.group({
-    table: [{
-      q: null,
-      sort: null,
-      first: DEFAULT_FIRST,
-      offset: DEFAULT_OFFSET
-    }],
-    job: []
+  localUi = LocalUI;
+
+  types = {table: TableComponent, column: TableColumnComponent};
+
+  @ViewChild('code', {static: false}) code: TabComponent;
+
+  searchControl = this.fb.control(true);
+  filterControl = this.fb.control(true);
+  actionsControl = this.fb.control(true);
+
+  builder = this.fb.group({
+    search: this.searchControl,
+    filter: this.filterControl,
+    actions: this.actionsControl,
   });
 
-  @ViewChild('table', {static: true})
-  table: TableComponent;
+  set state(state: TableState) {
+    this._state = state;
+    this.router.navigate([state], {relativeTo: this.route})
+      .then(() => null);
+  }
 
-  mocks = (() => {
-    const data = [];
-    for (let i = 0; i < Math.random() * (300 - 50) + 50; i++) {
-      data.push({
-        id: i + 1,
-        person: fake('{{name.firstName}} {{name.lastName}}'),
-        job: fake('{{name.jobArea}}')
-      });
-    }
-    return data;
-  })();
+  get state() {
+    return this._state;
+  }
 
-  constructor(private builder: FormBuilder,
+  constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.table.fetcher = (): Observable<any> => {
-      const {table, job} = this.form.getRawValue();
-      const filter: Filter = {...table, job};
-      console.log(filter);
+    this.route.params.subscribe(({job, q, first, offset}) => {
+      const state = new TableState();
 
-      let results = this.mocks;
-      if (!!filter.q) {
-        results = results.filter(({person}) => person.indexOf(filter.q) !== -1);
+      if (!!+first && +first !== DEFAULT_FIRST) {
+        state.first = +first;
       }
 
-      return of({
-        results: results.slice(filter.offset, filter.offset + filter.first),
-        count: this.mocks.length
-      }).pipe(delay(DEFAULT_DELAY));
-    };
+      if (!!+offset && +offset !== DEFAULT_OFFSET) {
+        state.offset = +offset;
+      }
 
-    this.form.valueChanges.pipe(distinctUntilChanged((val1, val2) => isEqual(val1, val2)),
-      tap(({table: {offset, first, q}, job}) => this.save({offset, first, q, job})))
-      .subscribe(() => this.table.load());
+      if (!!q) {
+        state.q = q;
+      }
 
-    this.route.params.subscribe(({q, sort, first, offset, job}) => {
-      const filter = merge({extensions: [defined]},
-        this.form.getRawValue(), {table: {q, sort, first, offset}, job});
-      this.form.patchValue(filter);
+      if (!!job) {
+        state.job = job;
+      }
+
+
+      this.state = state;
     });
-  }
 
-  save(filter: Filter) {
-    const state: { q?, sort?, first?, offset?, job? } = {};
-    if (filter.offset !== DEFAULT_OFFSET) {
-      state.offset = filter.offset;
-    }
-    if (filter.first !== DEFAULT_FIRST) {
-      state.first = filter.first;
-    }
-
-    if (!!filter.q) {
-      state.q = filter.q;
-    }
-
-    if (!!filter.job) {
-      state.job = filter.job;
-    }
-
-    this.router.navigate([state], {
-      relativeTo: this.route
-    }).then(() => null);
-  }
-
-  loadJobs() {
-    return (): Observable<any> => of([
-      {value: 1, label: 'PFC CSKA Moscow'},
-      {value: 2, label: 'FC Real Madrid'},
-      {value: 3, label: 'FC Manchester United'}
-    ]).pipe(delay(DEFAULT_DELAY));
-  }
-
-  edit() {
-    console.log('edit');
-  }
-
-  delete() {
-    console.log('delete');
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 }
