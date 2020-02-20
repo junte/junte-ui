@@ -1,10 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JunteUiModule } from 'junte-ui';
+import {
+  LinkModule,
+  StackModule,
+  TabsModule,
+  GridModule,
+  FormModule,
+  AccordionModule,
+  SwitcherModule,
+  DatePickerModule,
+  CheckboxModule
+} from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
-
+import { SharedModule } from '../../shared/shared.module';
 import { DatePickerTestComponent } from './date-picker-test.component';
 
 @NgModule({
@@ -12,11 +21,24 @@ import { DatePickerTestComponent } from './date-picker-test.component';
     CommonModule,
     ReactiveFormsModule,
     DateFnsModule,
-    JunteUiModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    FormModule,
+    AccordionModule,
+    GridModule,
+    SwitcherModule,
+    DatePickerModule,
+    CheckboxModule,
     SharedModule
   ],
-  exports: [DatePickerTestComponent],
-  declarations: [DatePickerTestComponent],
+  exports: [
+    DatePickerTestComponent
+  ],
+  declarations: [
+    DatePickerTestComponent
+  ],
 })
 export class DatePickerTestModule {
 }

@@ -2,8 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { JunteUiModule } from 'junte-ui';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
+import {
+  StackModule,
+  IconModule,
+  LinkModule,
+  GridModule,
+  SwitcherModule,
+  TabsModule,
+  ButtonModule,
+  FormModule,
+  CheckboxModule,
+  CalendarModule
+} from 'junte-ui';
+import { SharedModule } from '../../shared/shared.module';
 import { ModalTestFactoryComponent } from './test.component';
 import { ModalTestComponent } from './modal-test.component';
 
@@ -11,8 +22,17 @@ import { ModalTestComponent } from './modal-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    JunteUiModule,
+    StackModule,
+    IconModule,
+    LinkModule,
+    GridModule,
+    TabsModule,
+    ButtonModule,
+    FormModule,
     SharedModule,
+    SwitcherModule,
+    CheckboxModule,
+    CalendarModule,
     PrismModule
   ],
   exports: [

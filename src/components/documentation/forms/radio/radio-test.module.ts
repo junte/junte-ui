@@ -2,9 +2,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { JunteUiModule } from 'junte-ui';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
-
+import {
+  LinkModule,
+  StackModule,
+  TabsModule,
+  GridModule,
+  FormModule,
+  AccordionModule,
+  RadioModule,
+  AvatarModule,
+  SelectModule,
+  CheckboxModule,
+  BlockModule
+} from 'junte-ui';
+import { SharedModule } from '../../shared/shared.module';
 import { RadioTestComponent } from './radio-test.component';
 
 @NgModule({
@@ -12,12 +23,27 @@ import { RadioTestComponent } from './radio-test.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    JunteUiModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    FormModule,
+    AccordionModule,
+    GridModule,
     SharedModule,
+    RadioModule,
+    AvatarModule,
+    SelectModule,
+    CheckboxModule,
+    BlockModule,
     PrismModule
   ],
-  exports: [RadioTestComponent],
-  declarations: [RadioTestComponent]
+  exports: [
+    RadioTestComponent
+  ],
+  declarations: [
+    RadioTestComponent
+  ]
 })
 export class RadioTestModule {
 }
