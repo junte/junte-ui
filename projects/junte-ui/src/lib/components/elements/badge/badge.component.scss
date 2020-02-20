@@ -1,60 +1,82 @@
 @import "../../../assets/styles/variables";
 
-$badge-size: 24px;
-$badge-font-size: 12px;
-$badge-corner: 3px;
-
-$position-right-top: 'rightTop';
-$position-left-top: 'leftTop';
-$position-inline: 'inline';
-
-$badge-positions: (
-  #{$position-right-top}: (
-    position: 'absolute',
-    right: 0,
-    transform: translate(50%, -50%),
-  ),
-  #{$position-left-top}: (
-    position: 'absolute',
-    left: 0,
-    transform: translate(-50%, -50%),
-  ),
-  #{$position-inline}: (
-    position: 'static'
-  )
-);
-
-@mixin position($position) {
+@mixin badge-position($position) {
   [text] {
-    position: #{map-get($position, position)};
-    left: #{map-get($position, left)};
-    right: #{map-get($position, right)};
-    transform: #{map-get($position, transform)};
+    position: map-get($position, position);
+    left: map-get($position, left);
+    right: map-get($position, right);
+    transform: map-get($position, transform);
   }
 }
 
-:host {
-  display: inline-block;
-  position: relative;
-  text-align: center;
-  vertical-align: middle;
-  @each $position, $map in $badge-positions {
-    &[position='#{$position}'] {
-      @include position($map);
+@mixin badge($passed: (), $context: null, $strategy: 'changes') {
+  $defs: (
+    size: 24px,
+    color: $white-color,
+    background: $primary-color,
+    border: null,
+    font-size: 12px,
+    corner: $corner-small,
+    positions: (
+      rightTop: (
+        position: 'absolute',
+        right: 0,
+        transform: translate(50%, -50%),
+      ),
+      leftTop: (
+        position: 'absolute',
+        left: 0,
+        transform: translate(-50%, -50%),
+      ),
+      inline: (
+        position: 'static'
+      )
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    @if $declare {
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    border: map-get($vars, border);
+
+    @if map-has-key($vars, positions) {
+      @each $position, $map in map-get($vars, positions) {
+        &[position='#{$position}'] {
+          @include badge-position($map);
+        }
+      }
     }
   }
-}
 
-[text] {
-  top: 0;
-  display: inline-block;
-  line-height: $badge-size;
-  min-width: $badge-size;
-  min-height: $badge-size;
-  height: $badge-size;
-  font-size: $badge-font-size;
-  border-radius: $badge-corner;
-  text-align: center;
-  padding: 0 3px;
-  box-sizing: border-box;
+  #{$context} [text] {
+    @if $declare {
+      top: 0;
+      display: inline-block;
+      text-align: center;
+      padding: 0 3px;
+      box-sizing: border-box;
+    }
+
+    color: map-get($vars, color);
+    background: map-get($vars, background);
+    font-size: map-get($vars, font-size);
+    line-height: map-get($vars, size);
+    min-width: map-get($vars, size);
+    min-height: map-get($vars, size);
+    height: map-get($vars, size);
+    border-radius: map-get($vars, corner);
+  }
 }

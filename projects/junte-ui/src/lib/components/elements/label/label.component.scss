@@ -1,15 +1,10 @@
 @import "../../../assets/styles/variables";
 
 @mixin label-size($size) {
-  @if map-has-key($size, padding) {
-    padding: #{map-get($size, padding)};
-  }
-  @if map-has-key($size, font-size) {
-    font-size: #{map-get($size, font-size)};
-  }
-  @if map-has-key($size, height) {
-    height: #{map-get($size, height)};
-  }
+  padding: #{map-get($size, padding)};
+  font-size: #{map-get($size, font-size)};
+  height: #{map-get($size, height)};
+
   [icon] {
     &[type='svg'], &[type='animated'] {
       width: #{map-get($size, icon-size)};
@@ -63,21 +58,11 @@
         white-space: nowrap;
       }
     }
-    @if map-has-key($vars, border) {
-      border: map-get($vars, border);
-    }
 
-    @if map-has-key($vars, corner) {
-      border-radius: map-get($vars, corner);
-    }
-
-    @if map-has-key($vars, font-size) {
-      font-size: map-get($vars, font-size);
-    }
-
-    @if map-has-key($vars, background) {
-      background: map-get($vars, background);
-    }
+    border: map-get($vars, border);
+    border-radius: map-get($vars, corner);
+    font-size: map-get($vars, font-size);
+    background: map-get($vars, background);
 
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
