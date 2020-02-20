@@ -1,3 +1,6 @@
+find . -name "*.encapsulated.scss" -exec rm -rf {} \;
+
+
 ## For development:
 On windows please install cygwin.
 

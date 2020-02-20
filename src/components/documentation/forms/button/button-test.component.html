@@ -42,12 +42,27 @@
                                       [size]="sizeControl.value"
                                       [outline]="outlineControl.value"
                                       [width]="widthControl.value">
-                      <jnt-button *ngFor="let btn of 3 | mockArray"
-                                  [text]="textControl.value ? 'Button' : null"
+                      <jnt-button [text]="textControl.value ? 'Button' : null"
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
                                   [icon]="iconControl.value ? ui.icons.user : null">
+                        <jnt-badge *ngIf="badgeControl.value"
+                                   [value]="5"></jnt-badge>
+                      </jnt-button>
+                      <jnt-button [text]="textControl.value ? 'Button' : null"
+                                  [type]="typeControl.value"
+                                  [loading]="loadingControl.value"
+                                  [disabled]="disabledControl.value"
+                                  [icon]="iconControl.value ? ui.icons.gitlab : null">
+                        <jnt-badge *ngIf="badgeControl.value"
+                                   [value]="5"></jnt-badge>
+                      </jnt-button>
+                      <jnt-button [text]="textControl.value ? 'Button' : null"
+                                  [type]="typeControl.value"
+                                  [loading]="loadingControl.value"
+                                  [disabled]="disabledControl.value"
+                                  [icon]="iconControl.value ? ui.icons.figma : null">
                         <jnt-badge *ngIf="badgeControl.value"
                                    [value]="5"></jnt-badge>
                       </jnt-button>

@@ -28,7 +28,8 @@ export class IconComponent {
     options: [Size.tiny,
       Size.small,
       Size.normal,
-      Size.large]
+      Size.large
+    ]
   })
 
   @Input()

@@ -1,52 +1,77 @@
 @import "variables";
 
-$icon-sizes: (
-  #{$size-tiny}: (
-    size: 11px,
-  ),
-  #{$size-small}: (
-    size: 13px,
-  ),
-  #{$size-normal}: (
-    size: 16px,
-  ),
-  #{$size-large}: (
-    size: 20px,
-  )
-);
-
-
-@mixin size($size) {
-  & {
-    font-size: #{map-get($size, size)};
-    &[type='svg'], &[type='animated'] {
-      width: #{map-get($size, size)};
-      height: #{map-get($size, size)};
+@mixin icon-size($size, $vars) {
+  &[type='font'] {
+    [icon] {
+      @if $size != 'auto' {
+        font-size: map-get($vars, size);
+      }
+    }
+  }
+  &[type='svg'], &[type='animated'] {
+    [icon] {
+      width: map-get($vars, size);
+      height: map-get($vars, size);
     }
   }
 }
 
-:host {
-  display: inline-block;
-  vertical-align: middle;
+@mixin icon($passed: (), $context: null, $strategy: 'merge') {
+  $defs: (
+    color: null,
+    size: null,
+    sizes: (
+      auto: (
+        size: 22px,
+      ),
+      tiny: (
+        size: 11px,
+      ),
+      small: (
+        size: 13px,
+      ),
+      normal: (
+        size: 16px,
+      ),
+      large: (
+        size: 20px,
+      )
+    )
+  );
 
-  @each $size, $map in $icon-sizes {
-    &[size='#{$size}'] {
-      @include size($map);
-    }
+  $vars: $passed;
+
+  @if $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
   }
 
-  &[type='svg'], &[type='animated'] {
-    width: 22px;
-    height: 22px;
-    [icon] {
-      width: 100% !important;
-      height: 100% !important;
+  :host, #{$context} {
+    @if $strategy == 'merge' {
+      display: inline-block;
+      vertical-align: middle;
     }
-  }
 
-  &[type='font'] {
-    /* for what? */
-    /* line-height: inherit; */
+    &[type='font'] {
+      [icon] {
+        font-size: map-get($vars, size);
+        color: map-get($vars, color);
+      }
+    }
+
+    &[type='svg'], &[type='animated'] {
+      [icon] {
+        fill: map-get($vars, color);
+        width: map-get($vars, size);
+        height: map-get($vars, size);
+      }
+    }
+
+    @if map-has-key($vars, sizes) {
+      @each $size, $map in map-get($vars, sizes) {
+        &[size='#{$size}'] {
+          @include icon-size($size, $map);
+        }
+      }
+    }
   }
 }

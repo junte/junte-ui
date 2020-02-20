@@ -1,5 +1,6 @@
 @import "variables";
-@import "../../elements/badge/badge.encapsulated";
+@import "components/elements/badge/badge";
+@import "components/elements/icon/icon";
 
 $button-corner: $corner-large;
 $button-without-text-corner: $corner-small;
@@ -221,13 +222,13 @@ $button-sizes: (
     height: #{map-get($size, badge-size)};
     line-height: #{map-get($size, badge-size)};
   }*/
-  [icon][child-host=#{$jnt-icon-host}] {
-    font-size: #{map-get($size, icon-size)};
-    &[type='animated'], &[type='svg'] {
-      width: #{map-get($size, icon-size)};
-      height: #{map-get($size, icon-size)};
-    }
+
+  [icon] {
+    @include icon((
+      size: map-get($size, icon-size)
+    ), '&');
   }
+
   [loading][child-host=#{$jnt-spinner-host}] {
     width: #{map-get($size, spinner-size)};
     min-width: #{map-get($size, spinner-size)};

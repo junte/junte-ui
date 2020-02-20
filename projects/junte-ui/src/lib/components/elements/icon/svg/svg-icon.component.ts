@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { CacheService } from '../../../../services/cache.service';
@@ -14,10 +14,13 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-svg-icon-host';
 
-  private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>(DEFAULT_ICONSET);
-  private icon$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  private source$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  private nativeElement$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private icon$ = new BehaviorSubject<string>(null);
+  private iconset$ = new BehaviorSubject<string>(DEFAULT_ICONSET);
+  private source$ = new BehaviorSubject<string>(null);
+  private container$ = new BehaviorSubject<any>(null);
+
+  @ViewChild('svg', {static: true})
+  svg: ElementRef;
 
   private set source(source: string) {
     this.source$.next(source);
@@ -46,37 +49,36 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     return this.icon$.getValue();
   }
 
-  private set nativeElement(nativeElement: HTMLElement) {
-    this.nativeElement$.next(nativeElement);
+  private set container(nativeElement: HTMLElement) {
+    this.container$.next(nativeElement);
   }
 
-  private get nativeElement() {
-    return this.nativeElement$.getValue();
+  private get container() {
+    return this.container$.getValue();
   }
 
   constructor(private http: HttpClient,
               private cache: CacheService,
-              private renderer: Renderer2,
-              private hostRef: ElementRef) {
+              private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    combineLatest(this.iconset$, this.icon$)
+    combineLatest([this.iconset$, this.icon$])
       .pipe(filter(([iconset, icon]) => !!iconset && !!icon),
         distinctUntilChanged())
       .subscribe(() => this.load());
 
-    combineLatest(this.nativeElement$, this.source$)
-      .pipe(filter(([nativeElement, source]) => !!nativeElement && !!source))
+    combineLatest([this.container$, this.source$])
+      .pipe(filter(([container, source]) => !!container && !!source))
       .subscribe(() => this.render());
   }
 
   ngAfterViewInit() {
-    this.nativeElement = this.hostRef.nativeElement;
+    this.container = this.svg.nativeElement;
   }
 
   private render() {
-    this.renderer.setProperty(this.nativeElement, 'innerHTML', this.source);
+    this.renderer.setProperty(this.container, 'innerHTML', this.source);
   }
 
   private extract(iconset) {
@@ -85,7 +87,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
       throw new Error(`icon [${this.icon}] not found`);
     }
 
-    this.source = new XMLSerializer().serializeToString(icon);
+    this.source = icon.innerHTML;
   }
 
   private load() {
