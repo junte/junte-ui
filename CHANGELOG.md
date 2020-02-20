@@ -61,3 +61,11 @@ navigation/dropdown @ContentChild('dropdown', {static: false}) was renamed to @C
 
 dynamic/circle-bar @ContentChild('content', {static: false}) was renamed to @ContentChild('circleBarContentTemplate', {static: false})
 
+collection/table @ContentChild('rowTemplate', {static: false}) was renamed to @ContentChild('tableRowActionsTemplate', {static: false})
+
+collection/table @ContentChild('actionTemplate', {static: false}) was renamed to @ContentChild('tableActionsTemplate', {static: false})
+
+collection/table @ContentChild('filtersTemplate', {static: false}) was renamed to @ContentChild('tableFiltersTemplate', {static: false})
+
+collection/table/column @ContentChild('cellTemplate', {static: false}) was renamed to @ContentChild('tableCellTemplate', {static: false})
+

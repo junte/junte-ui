@@ -1,4 +1,5 @@
 import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
+import { ContentApi, PropertyApi } from '../../../../decorators/api';
 
 @Component({
   selector: 'jnt-table-column',
@@ -6,12 +7,24 @@ import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
 })
 export class TableColumnComponent {
 
-  @ContentChild('cellTemplate', {static: false})
-  cellTemplate: TemplateRef<any>;
+  @ContentApi({
+    selector: '#tableCellTemplate',
+    description: 'table cell template'
+  })
+  @ContentChild('tableCellTemplate', {static: false})
+  tableCellTemplate: TemplateRef<any>;
 
+  @PropertyApi({
+    description: 'Column title',
+    type: 'string',
+  })
   @Input()
   title: string;
 
+  @PropertyApi({
+    description: 'Column sort field',
+    type: 'string',
+  })
   @Input()
   sort: string;
 
