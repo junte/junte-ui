@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from '../../forms/select/select.module';
@@ -14,6 +14,10 @@ import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { InputModule } from '../../forms/input/input.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
+import { JunteUIModuleConfig } from '../../../config';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoader } from '../../../i18n/loader';
+import { en } from '../../../i18n/en';
 
 @NgModule({
   imports: [
@@ -30,7 +34,8 @@ import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
     SkeletonModule,
     DropdownModule,
     ArrayPipeModule,
-    SelectModule
+    SelectModule,
+    TranslateModule
   ],
   declarations: [
     TableComponent,
@@ -46,4 +51,19 @@ import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
   ]
 })
 export class TableModule {
+
+  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<TableModule> {
+    return {
+      ngModule: TableModule,
+      providers: [
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useValue: new I18nLoader(config.i18n || en)
+          },
+          defaultLanguage: 'en'
+        }).providers]
+    };
+  }
+
 }

@@ -7,7 +7,7 @@
       <jnt-stack [type]="ui.layout.stack.type.horizontal"
                  [align]="ui.flex.align.center"
                  [wrap]="ui.flex.wrap.wrap">
-        <jnt-button button text="Reload"
+        <jnt-button button [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
                     [outline]="ui.outline.transparent"
                     [scheme]="ui.scheme.secondary"
@@ -24,7 +24,7 @@
         <jnt-input *ngIf="features | includes : tableFeatures.search"
                    formControlName="q"
                    [icon]="ui.icons.search"
-                   placeholder="Search">
+                   [placeholder]="'label.search' | translate">
         </jnt-input>
       </div>
 

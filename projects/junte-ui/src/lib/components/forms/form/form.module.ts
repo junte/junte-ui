@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
@@ -19,6 +19,10 @@ import { FormItemComponent } from './item/form-item.component';
 import { FormLabelComponent } from './label/form-label.component';
 import { FormMessageComponent } from './message/form-message.component';
 import { FormComponent } from './form.component';
+import { JunteUIModuleConfig } from '../../../config';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoader } from '../../../i18n/loader';
+import { en } from '../../../i18n/en';
 
 
 @NgModule({
@@ -58,4 +62,19 @@ import { FormComponent } from './form.component';
   ]
 })
 export class FormModule {
+
+  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<FormModule> {
+    return {
+      ngModule: FormModule,
+      providers: [
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useValue: new I18nLoader(config.i18n || en)
+          },
+          defaultLanguage: 'en'
+        }).providers]
+    };
+  }
+
 }
