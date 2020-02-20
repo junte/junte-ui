@@ -27,7 +27,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   breadcrumbs: Breadcrumb[];
 
-  @HostBinding('attr.host') readonly host = 'jnt-breadcrumb-host';
+  @HostBinding('attr.host') readonly host = 'jnt-breadcrumbs-host';
 
   constructor(private router: Router,
               private titleService: Title,

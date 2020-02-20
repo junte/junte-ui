@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "layout",
-    "name": "skeleton",
-    "files": [
-      "skeleton.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "layout",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "skeleton/skeleton.scss"
+    ],
+    "to": "skeleton.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-skeleton-host",
+      "html": {
+        "from": "skeleton.component.html",
+        "to": "skeleton.encapsulated.html"
+      },
+      "scss": {
+        "from": "skeleton.component.scss",
+        "to": "../../../assets/styles/components/layout/skeleton/skeleton.scss"
+      }
+    }
+  ]
 }

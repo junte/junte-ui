@@ -4,8 +4,7 @@ const DEFAULT_ICONSET = 'junte-ui-icons-default';
 
 @Component({
   selector: 'jnt-font-icon',
-  template: '',
-  styleUrls: ['./font-icon.encapsulated.scss']
+  template: ''
 })
 export class FontIconComponent {
 

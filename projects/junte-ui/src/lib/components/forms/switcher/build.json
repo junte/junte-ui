@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "forms",
-    "name": "switcher",
-    "files": [
-      "switcher.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "switcher/switcher.scss"
+    ],
+    "to": "switcher.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-switcher-host",
+      "html": {
+        "from": "switcher.component.html",
+        "to": "switcher.encapsulated.html"
+      },
+      "scss": {
+        "from": "switcher.component.scss",
+        "to": "../../../assets/styles/components/forms/switcher/switcher.scss"
+      }
+    }
+  ]
 }

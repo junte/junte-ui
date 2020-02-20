@@ -7,8 +7,7 @@ const DEFAULT_ICONSET = 'junte-ui-icons-default';
 
 @Component({
   selector: 'jnt-icon',
-  templateUrl: './icon.encapsulated.html',
-  styleUrls: ['./icon.encapsulated.scss']
+  templateUrl: './icon.encapsulated.html'
 })
 export class IconComponent {
 

@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "navigation",
-    "name": "link",
-    "files": [
-      "link.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "navigation",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "link/link.scss"
+    ],
+    "to": "link.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-link-host",
+      "html": {
+        "from": "link.component.html",
+        "to": "link.encapsulated.html"
+      },
+      "scss": {
+        "from": "link.component.scss",
+        "to": "../../../assets/styles/components/navigation/link/link.scss"
+      }
+    }
+  ]
 }

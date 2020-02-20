@@ -1,19 +1,139 @@
 {
-  "scss": {
-    "path": "layout",
-    "name": "app",
-    "files": [
-      "variables.scss",
-      "app-layout.encapsulated.scss",
-      "header/app-header.encapsulated.scss",
-      "header/action/app-header-action.encapsulated.scss",
-      "header/actions/app-header-actions.encapsulated.scss",
-      "header/userbar/app-header-userbar.encapsulated.scss",
-      "sub-header/app-sub-header.encapsulated.scss",
-      "aside/app-aside.encapsulated.scss",
-      "body/app-body.encapsulated.scss",
-      "content/app-content.encapsulated.scss",
-      "footer/app-footer.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "layout",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "app/variables.scss",
+      "app/header/app-header.scss",
+      "app/header/action/app-header-action.scss",
+      "app/header/actions/app-header-actions.scss",
+      "app/header/userbar/app-header-userbar.scss",
+      "app/sub-header/app-sub-header.scss",
+      "app/aside/app-aside.scss",
+      "app/body/app-body.scss",
+      "app/content/app-content.scss",
+      "app/footer/app-footer.scss"
+    ],
+    "to": "app.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "",
+      "scss": {
+        "from": "variables.scss",
+        "to": "../../../assets/styles/components/layout/app/variables.scss"
+      }
+    },
+    {
+      "host": "jnt-app-layout-host",
+      "html": {
+        "from": "app-layout.component.html",
+        "to": "app-layout.encapsulated.html"
+      },
+      "scss": {
+        "from": "app-layout.component.scss",
+        "to": "../../../assets/styles/components/layout/app/app-layout.scss"
+      }
+    },
+    {
+      "host": "jnt-app-header-host",
+      "html": {
+        "from": "header/app-header.component.html",
+        "to": "header/app-header.encapsulated.html"
+      },
+      "scss": {
+        "from": "header/app-header.component.scss",
+        "to": "../../../assets/styles/components/layout/app/header/app-header.scss"
+      }
+    },
+    {
+      "host": "jnt-app-header-action-host",
+      "html": {
+        "from": "header/action/app-header-action.component.html",
+        "to": "header/action/app-header-action.encapsulated.html"
+      },
+      "scss": {
+        "from": "header/action/app-header-action.component.scss",
+        "to": "../../../assets/styles/components/layout/app/header/action/app-header-action.scss"
+      }
+    },
+    {
+      "host": "jnt-app-header-actions-host",
+      "html": {
+        "from": "header/actions/app-header-actions.component.html",
+        "to": "header/actions/app-header-actions.encapsulated.html"
+      },
+      "scss": {
+        "from": "header/actions/app-header-actions.component.scss",
+        "to": "../../../assets/styles/components/layout/app/header/actions/app-header-actions.scss"
+      }
+    },
+    {
+      "host": "jnt-app-header-userbar-host",
+      "html": {
+        "from": "header/userbar/app-header-userbar.component.html",
+        "to": "header/userbar/app-header-userbar.encapsulated.html"
+      },
+      "scss": {
+        "from": "header/userbar/app-header-userbar.component.scss",
+        "to": "../../../assets/styles/components/layout/app/header/userbar/app-header-userbar.scss"
+      }
+    },
+    {
+      "host": "jnt-app-sub-header-host",
+      "html": {
+        "from": "sub-header/app-sub-header.component.html",
+        "to": "sub-header/app-sub-header.encapsulated.html"
+      },
+      "scss": {
+        "from": "sub-header/app-sub-header.component.scss",
+        "to": "../../../assets/styles/components/layout/app/sub-header/app-sub-header.scss"
+      }
+    },
+    {
+      "host": "jnt-app-aside-host",
+      "html": {
+        "from": "aside/app-aside.component.html",
+        "to": "aside/app-aside.encapsulated.html"
+      },
+      "scss": {
+        "from": "aside/app-aside.component.scss",
+        "to": "../../../assets/styles/components/layout/app/aside/app-aside.scss"
+      }
+    },
+    {
+      "host": "jnt-app-body-host",
+      "html": {
+        "from": "body/app-body.component.html",
+        "to": "body/app-body.encapsulated.html"
+      },
+      "scss": {
+        "from": "body/app-body.component.scss",
+        "to": "../../../assets/styles/components/layout/app/body/app-body.scss"
+      }
+    },
+    {
+      "host": "jnt-app-content-host",
+      "html": {
+        "from": "content/app-content.component.html",
+        "to": "content/app-content.encapsulated.html"
+      },
+      "scss": {
+        "from": "content/app-content.component.scss",
+        "to": "../../../assets/styles/components/layout/app/content/app-content.scss"
+      }
+    },
+    {
+      "host": "jnt-app-footer-host",
+      "html": {
+        "from": "footer/app-footer.component.html",
+        "to": "footer/app-footer.encapsulated.html"
+      },
+      "scss": {
+        "from": "footer/app-footer.component.scss",
+        "to": "../../../assets/styles/components/layout/app/footer/app-footer.scss"
+      }
+    }
+  ]
 }

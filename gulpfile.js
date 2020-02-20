@@ -9,8 +9,9 @@ sass.compiler = require('node-sass');
 const themeFiles = "src/assets/themes/*.scss";
 const themeCSSFiles = "src/assets/themes/*.css";
 const scriptFile = "src/assets/themes/themes.js";
-const assetsStyleFiles = 'projects/junte-ui/src/lib/assets/styles/*.scss';
+const assetsStyleFiles = 'projects/junte-ui/src/lib/assets/styles/**/*.scss';
 const styleFiles = 'projects/junte-ui/src/lib/components/**/*.scss';
+const globSASS = 'projects/junte-ui/src/lib/assets/styles';
 
 let themes = {};
 
@@ -23,7 +24,7 @@ gulp.task('themes:hash', function () {
   themes = {};
   return gulp.src([themeFiles])
     .pipe(hash({hashLength: 10, template: '<%= name %>.<%= hash %><%= ext %>'}))
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed', includePaths: globSASS}).on('error', sass.logError))
     .pipe(gulp.dest('src/assets/themes'))
     .pipe(map((file, cb) => {
       const name = path.basename(file.path, '.css');
@@ -38,7 +39,7 @@ gulp.task('themes:script', function () {
     .pipe(map((file, cb) => {
       const content = file.contents.toString();
       const str = `themes = ${JSON.stringify(themes, '\t', true)}`;
-      file.contents = new Buffer(content.replace(/themes = \{.*\}/, str));
+      file.contents = Buffer.from(content.replace(/themes = \{.*\}/, str));
       return cb(null, file);
     }))
     .pipe(gulp.dest('src/assets/themes'))
@@ -47,5 +48,5 @@ gulp.task('themes:script', function () {
 gulp.task('themes', gulp.series(['themes:clean', 'themes:hash', 'themes:script']));
 
 gulp.task('themes:watch', function() {
-  return gulp.watch([themeFiles, assetsStyleFiles, styleFiles], { ignoreInitial: false }, gulp.series('themes'));
+  return gulp.watch([themeFiles, assetsStyleFiles, styleFiles], gulp.series('themes'));
 });

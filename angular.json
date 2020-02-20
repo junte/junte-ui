@@ -51,7 +51,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/junte-ui/src/lib/assets/"
+                "./projects/junte-ui/src/lib/assets/styles"
               ]
             },
             "scripts": [
@@ -89,7 +89,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "baseHref": "/",
-            "browserTarget": "junte-ui-app:build"
+            "browserTarget": "junte-ui-app:build",
+            "hmrWarning": false
           },
           "configurations": {
             "production": {
@@ -179,6 +180,11 @@
           "options": {
             "tsConfig": "projects/junte-ui/tsconfig.lib.json",
             "project": "projects/junte-ui/ng-package.json"
+          },
+          "stylePreprocessorOptions": {
+            "includePaths": [
+              "./projects/junte-ui/src/lib/assets/styles"
+            ]
           }
         },
         "test": {
