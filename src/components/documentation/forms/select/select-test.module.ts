@@ -1,20 +1,46 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JunteUiModule } from 'junte-ui';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
-
+import {
+  LinkModule,
+  StackModule,
+  TabsModule,
+  GridModule,
+  FormModule,
+  AccordionModule,
+  SelectModule,
+  AvatarModule,
+  CheckboxModule,
+  InputModule,
+  LabelModule
+} from 'junte-ui';
+import { SharedModule } from '../../shared/shared.module';
 import { SelectTestComponent } from './select-test.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    JunteUiModule,
-    SharedModule
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    FormModule,
+    AccordionModule,
+    GridModule,
+    SelectModule,
+    AvatarModule,
+    SharedModule,
+    CheckboxModule,
+    InputModule,
+    LabelModule
   ],
-  exports: [SelectTestComponent],
-  declarations: [SelectTestComponent],
+  exports: [
+    SelectTestComponent
+  ],
+  declarations: [
+    SelectTestComponent
+  ],
 })
 export class SelectTestModule {
 }

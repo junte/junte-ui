@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { JunteUiModule } from 'junte-ui';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
+import { LinkModule, StackModule, TabsModule, GridModule, AccordionModule, FormModule, CircleBarModule, InputModule } from 'junte-ui';
+import { SharedModule } from '../../shared/shared.module';
 
 import { CircleBarTestComponent } from './circle-bar-test.component';
 
@@ -11,12 +11,24 @@ import { CircleBarTestComponent } from './circle-bar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    JunteUiModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    AccordionModule,
+    FormModule,
     SharedModule,
-    PrismModule
+    PrismModule,
+    CircleBarModule,
+    FormsModule,
+    InputModule
   ],
-  exports: [CircleBarTestComponent],
-  declarations: [CircleBarTestComponent],
+  exports: [
+    CircleBarTestComponent
+  ],
+  declarations: [
+    CircleBarTestComponent
+  ],
 })
 export class CircleBarTestModule {
 }
