@@ -5,20 +5,6 @@ $link-active-color: $primary-color !default;
 :host {
   display: block;
   flex: 1;
-  &[collapsed='true'] {
-    [top-level] {
-      > [link][deep-host=#{$jnt-link-host}] {
-        [title] {
-          span {
-            display: none;
-          }
-        }
-        [icon] {
-          margin-right: 0;
-        }
-      }
-    }
-  }
   &[type='horizontal'] {
     [submenu] {
       position: absolute;
@@ -41,20 +27,28 @@ $link-active-color: $primary-color !default;
   position: relative;
   white-space: nowrap;
   box-sizing: border-box;
-  > [link][deep-host=#{$jnt-link-host}] {
-    user-select: none;
-    a {
-      padding: $gutter-small $gutter-normal !important;
-      [title] {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 100%;
-      }
-    }
+  [title] {
+    padding: $gutter-small $gutter-normal;
+    cursor: pointer;
     &:hover {
       background-color: $highlight-background;
     }
+    [link][deep-host=#{$jnt-link-host}] {
+      user-select: none;
+      a {
+        padding: 0;
+        [title] {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 100%;
+        }
+      }
+    }
+    [toggle] {
+      margin-left: $gutter-small;
+    }
   }
+
   [submenu] {
     padding: $gutter-small 0;
     width: 100%;
