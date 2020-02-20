@@ -1,22 +1,10 @@
-@import "../../../assets/styles/variables";
+@import "variables";
 
-$table-padding-x: $gutter-normal !default;
-$table-padding-y: $gutter-normal !default;
-$table-head-background: $secondary-background !default;
-$table-row-border-color: $muted-color !default;
-$table-cell-padding-x: $gutter-normal !default;
-$table-cell-padding-y: $gutter-normal !default;
-$table-cell-border-width: 0 !default;
-$table-cell-border-color: transparent !default;
-$table-font-size: $font-size-base !default;
-$table-row-hover: $highlight-background !default;
-$table-icon-nodata-size: 80px !default;
-$table-icon-nodata-color: $muted-color !default;
-$table-min-height: 200px !default;
-$table-min-width: 400px !default;
-
-$table-loading-overlay-background: rgba($secondary-background, .6) !default;
-$table-loading-spinner-color: $primary-text-light-color !default;
+$table-padding-x: $gutter-normal;
+$table-padding-y: $gutter-normal;
+$table-icon-nodata-size: 80px;
+$table-min-height: 200px;
+$table-min-width: 400px;
 
 :host {
   display: block;
@@ -38,7 +26,6 @@ $table-loading-spinner-color: $primary-text-light-color !default;
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: $table-font-size;
     position: relative;
     [spinner] {
       position: absolute;
@@ -46,24 +33,24 @@ $table-loading-spinner-color: $primary-text-light-color !default;
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: $table-loading-overlay-background;
+      background-color: rgba($secondary-background, .6);
       display: flex;
       justify-content: center;
       align-items: center;
       transition: all .3s;
       z-index: 1;
       [icon] {
-        color: $table-loading-spinner-color;
+        color: $primary-text-light-color;
       }
     }
     thead {
-      background-color: $table-head-background;
+      background-color: $secondary-background;
       .sortable {
         cursor: pointer;
       }
     }
     tbody tr {
-      border-bottom: 1px solid $table-row-border-color;
+      border-bottom: 1px solid $muted-color;
       background-color: $primary-background;
       transition: all .3s;
       &[nodata] {
@@ -75,7 +62,7 @@ $table-loading-spinner-color: $primary-text-light-color !default;
           text-align: center;
           [icon] {
             font-size: $table-icon-nodata-size;
-            color: $table-icon-nodata-color;
+            color: $muted-color;
           }
         }
       }
@@ -85,7 +72,7 @@ $table-loading-spinner-color: $primary-text-light-color !default;
         border-bottom: 0;
       }
       &:hover {
-        background-color: $table-row-hover;
+        background-color: $highlight-background;
       }
       td {
         &[action] {
@@ -102,8 +89,7 @@ $table-loading-spinner-color: $primary-text-light-color !default;
       }
     }
     td, th {
-      padding: $table-cell-padding-x $table-cell-padding-y;
-      border: $table-cell-border-width solid $table-cell-border-color;
+      padding: $gutter-normal;
       box-sizing: border-box;
     }
   }

@@ -1,0 +1,40 @@
+<jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
+  <jnt-form [formGroup]="form">
+    <jnt-stack [type]="ui.layout.stack.type.vertical"
+               [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+      <jnt-table #table [features]="search ? [ui.collections.table.features.search] : null"
+                 formControlName="table">
+        <jnt-table-column title="#" sort="id">
+          <ng-template #tableCellTemplate let-id="id">
+            {{id}}
+          </ng-template>
+        </jnt-table-column>
+
+        <jnt-table-column title="Person" sort="person">
+          <ng-template #tableCellTemplate let-person="person">
+            {{person}}
+          </ng-template>
+        </jnt-table-column>
+
+        <jnt-table-column title="Job" sort="job">
+          <ng-template #tableCellTemplate let-job="job">
+            {{job}}
+          </ng-template>
+        </jnt-table-column>
+
+        <ng-template *ngIf="actions" #tableRowActionsTemplate let-row="row">
+          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
+            <jnt-menu-item title="Edit"></jnt-menu-item>
+            <jnt-menu-item title="Delete"></jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+
+        <ng-template *ngIf="filter" #tableFiltersTemplate>
+          <jnt-select formControlName="job" placeholder="Select job">
+            <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
+          </jnt-select>
+        </ng-template>
+      </jnt-table>
+    </jnt-stack>
+  </jnt-form>
+</jnt-block>

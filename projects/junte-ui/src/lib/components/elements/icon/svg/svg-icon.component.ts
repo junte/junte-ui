@@ -8,8 +8,7 @@ const DEFAULT_ICONSET = 'default';
 
 @Component({
   selector: 'jnt-svg-icon',
-  templateUrl: './svg-icon.encapsulated.html',
-  styleUrls: ['./svg-icon.encapsulated.scss']
+  templateUrl: './svg-icon.encapsulated.html'
 })
 export class SvgIconComponent implements OnInit, AfterViewInit {
 

@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
+import * as debug from 'gulp-debug';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as map from 'map-stream';
 import * as path from 'path';
@@ -10,8 +11,20 @@ const styleFiles = '../lib/components/**/**/*.encapsulated.scss';
 const buildFiles = '../lib/components/**/**/build.json';
 
 class Component {
-  constructor(public group: string, public name: string) {
+  constructor(public section: string, public name: string) {
   }
+}
+
+class Composition {
+  section: string;
+  pathFrom: string;
+  pathTo: string;
+  from: string[];
+  to: string;
+}
+
+class Builder {
+  composition: Composition;
 }
 
 @Gulpclass()
@@ -29,7 +42,7 @@ export class Gulpfile {
       .pipe(map((file, cb) => {
         const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib');
         let contents = '';
-        this.components.forEach(component => contents += `@import './components/${component.group}/${component.name}';\n`);
+        this.components.forEach(component => contents += `@import './components/${component.section}/${component.name}';\n`);
         fs.writeFileSync(filePath, contents);
         return cb(null, file);
       }));
@@ -38,24 +51,30 @@ export class Gulpfile {
   @Task()
   styles() {
     return gulp.src([buildFiles])
+      .pipe(debug())
       .pipe(map((file, cb) => {
-        const build = JSON.parse(file.contents.toString());
-        const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib/assets/styles');
-        const dir = path.dirname(filePath).substr(0, path.dirname(filePath).lastIndexOf('components/') + 10);
-        let content = '';
+        const composition = (JSON.parse(file.contents.toString()) as Builder).composition;
+        if (!!composition) {
+          const from = path.normalize(`${path.dirname(file.path)}/${composition.pathFrom}`);
+          const to = path.normalize(`${path.dirname(file.path)}/${composition.pathTo}`);
+          let content = '';
 
-        build.scss.files.forEach(f => content += (fs.readFileSync(`${path.dirname(file.path)}/${f}`).toString() + '\n\r'));
-        const groupPath = `${dir}/${build.scss.path}`;
-        if (!fs.existsSync(groupPath)) {
-          fs.mkdirSync(groupPath, {recursive: true});
-          fs.writeFileSync(`${dir}/${build.scss.path}.scss`, '');
+          composition.from.forEach(scss => content +=
+            (fs.readFileSync(`${from}/${composition.section}/${scss}`).toString() + '\n\r'));
+
+          if (!fs.existsSync(`${to}/${composition.section}`)) {
+            fs.mkdirSync(`${to}/${composition.section}`, {recursive: true});
+            fs.writeFileSync(`${to}/${composition.section}.scss`, '');
+          }
+
+          fs.writeFileSync(`${to}/${composition.section}/${composition.to}`,
+            `@import "../../variables";\n${this.clearImports(content)}`);
+
+          fs.appendFileSync(`${to}/${composition.section}.scss`,
+            `@import "./${composition.section}/${composition.to}";\n`);
+
+          this.components.push(new Component(composition.section, composition.to));
         }
-
-        console.log(groupPath);
-
-        fs.writeFileSync(`${groupPath}/${build.scss.name}.scss`, `@import "../../variables";\n${this.clearImports(content)}`);
-        fs.appendFileSync(`${dir}/${build.scss.path}.scss`, `@import "./${build.scss.path}/${build.scss.name}.scss";\n`);
-        this.components.push(new Component(build.scss.path, build.scss.name));
         return cb(null, file);
       }));
   }

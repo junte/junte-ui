@@ -3,8 +3,7 @@ import { UI } from '../../../../enums/ui';
 
 @Component({
   selector: 'jnt-form-item',
-  templateUrl: './form-item.encapsulated.html',
-  styleUrls: ['./form-item.encapsulated.scss']
+  templateUrl: './form-item.encapsulated.html'
 })
 export class FormItemComponent {
 

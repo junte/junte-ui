@@ -8,8 +8,7 @@ const DEFAULT_ICONSET = 'default';
 
 @Component({
   selector: 'jnt-animated-icon',
-  templateUrl: './animated-icon.encapsulated.html',
-  styleUrls: ['./animated-icon.encapsulated.scss']
+  templateUrl: './animated-icon.encapsulated.html'
 })
 export class AnimatedIconComponent implements OnInit, AfterViewInit {
 

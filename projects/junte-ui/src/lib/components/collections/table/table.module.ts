@@ -36,6 +36,10 @@ import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
     TableComponent,
     TableColumnComponent
   ],
+  entryComponents: [
+    TableComponent,
+    TableColumnComponent
+  ],
   exports: [
     TableComponent,
     TableColumnComponent

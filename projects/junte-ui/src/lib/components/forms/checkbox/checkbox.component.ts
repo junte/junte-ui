@@ -2,6 +2,7 @@ import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Size } from '../../../enums/size';
 import { UI } from '../../../enums/ui';
+import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-checkbox',
@@ -19,6 +20,11 @@ export class CheckboxComponent implements ControlValueAccessor {
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-host';
 
+  @PropertyApi({
+    description: 'Set disabled state',
+    type: 'boolean',
+    default: 'false',
+  })
   @HostBinding('attr.disabled')
   @Input()
   disabled = false;
@@ -26,14 +32,29 @@ export class CheckboxComponent implements ControlValueAccessor {
   @HostBinding('attr.checked')
   checked = false;
 
+  @PropertyApi({
+    description: 'Label name for checkbox button',
+    type: 'strign'
+  })
   @HostBinding('attr.label')
   @Input()
   label: string;
 
+  @PropertyApi({
+    description: 'Size for checkbox button',
+    type: 'string',
+    path: 'ui.sizes',
+    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    default: Size.normal
+  })
   @HostBinding('attr.size')
   @Input()
   size: Size = Size.normal;
 
+  @PropertyApi({
+    description: 'Value for checkbox button',
+    type: 'string'
+  })
   @Input() value: any;
 
   constructor(public element: ElementRef) {

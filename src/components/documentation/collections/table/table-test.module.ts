@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
 import { JunteUiModule } from 'junte-ui';
-import { SharedModule } from 'src/components/documentation/shared/shared.module';
+import { TableDataComponent } from './data/table-data.component';
+import { SharedModule } from '../../shared/shared.module';
 
 import { TableTestComponent } from './table-test.component';
 
@@ -15,8 +16,11 @@ import { TableTestComponent } from './table-test.component';
     SharedModule,
     PrismModule
   ],
-  exports: [TableTestComponent],
-  declarations: [TableTestComponent],
+  exports: [TableTestComponent, TableDataComponent],
+  declarations: [
+    TableTestComponent,
+    TableDataComponent
+  ],
 })
 export class TableTestModule {
 }

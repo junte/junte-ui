@@ -1,9 +1,24 @@
 {
-  "scss": {
-    "path": "forms",
-    "name": "select",
-    "files": [
-      "select.encapsulated.scss"
-    ]
-  }
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "select/select.scss"
+    ],
+    "to": "select.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-select-host",
+      "html": {
+        "from": "select.component.html",
+        "to": "select.encapsulated.html"
+      },
+      "scss": {
+        "from": "select.component.scss",
+        "to": "../../../assets/styles/components/forms/select/select.scss"
+      }
+    }
+  ]
 }
