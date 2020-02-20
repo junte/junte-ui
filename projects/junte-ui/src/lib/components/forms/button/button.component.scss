@@ -246,7 +246,7 @@ $button-sizes: (
 }
 
 :host {
-  display: inline-flex;
+  display: inline-block;
   position: relative;
   max-width: 100%;
 
@@ -318,12 +318,9 @@ $button-sizes: (
     width: 100%;
     position: relative;
     font-family: $font-family-base;
-    line-height: $line-height-base;
+    line-height: 1;
     [icon] {
       margin-right: $gutter-small;
-    }
-    [icon][child-host=#{$jnt-icon-host}] {
-      line-height: 0;
     }
     [text] {
       display: inline-block;
