@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
+import { Component, ViewChild } from '@angular/core';
+import { UI, TabComponent, CheckboxComponent } from 'junte-ui';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { LocalUI } from 'src/enums/local-ui';
+
+export enum Hero {
+  spiderman = 'spiderman',
+  ironman = 'ironman',
+  captainAmerica = 'captain_america'
+}
 
 @Component({
   selector: 'app-checkbox-test',
@@ -10,16 +17,25 @@ import { FormBuilder, FormControl } from '@angular/forms';
 export class CheckboxTestComponent {
 
   ui = UI;
-  checkboxControl = new FormControl(true);
+  hero = Hero;
+  localUi = LocalUI;
 
-  acceptForm = this.fb.group({
-    checkbox: this.checkboxControl
+  types = {checkbox: CheckboxComponent};
+
+  @ViewChild('code', {static: false}) code: TabComponent;
+
+  sizeControl = new FormControl(this.ui.size.normal);
+  disableControl = new FormControl(false);
+
+  builder = this.fb.group({
+    size: this.sizeControl,
+    disable: this.disableControl
   });
 
-  userGroupControl = new FormControl(['Bob', 'Tom']);
+  heroControl = new FormControl([]);
 
-  userGroup = this.fb.group({
-    userGroup: this.userGroupControl
+  form = this.fb.group({
+    hero: this.heroControl
   });
 
   constructor(private fb: FormBuilder) {

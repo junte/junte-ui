@@ -1,5 +1,4 @@
 <jnt-container>
-  <h1>Checkbox</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/checkbox"
@@ -11,10 +10,11 @@
     </jnt-link>
   </jnt-stack>
 
+  <h1>Checkbox</h1>
+
   <p teaser>Used to select a value from several options</p>
 
   <h3>Requirements</h3>
-
   <ol>
     <li>The checkbox must have different sizes: tiny, small, normal, large</li>
     <li>The checkbox should change the display when it is disabled and disabled & checked</li>
@@ -22,212 +22,171 @@
     <li>Checkbox should work with reactive forms</li>
   </ol>
 
-  <h3>Import</h3>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <!--preview-->
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-form-label>Select your heros</jnt-form-label>
+                <jnt-form [formGroup]="form">
+                  <jnt-checkbox-group formControlName="hero">
+                    <jnt-stack>
+                      <jnt-checkbox label="Spiderman"
+                                    [value]="hero.spiderman"
+                                    [size]="sizeControl.value"
+                                    [disabled]="disableControl.value"></jnt-checkbox>
+                      <jnt-checkbox label="Ironman" [value]="hero.ironman" [size]="sizeControl.value" [disabled]="disableControl.value"></jnt-checkbox>
+                      <jnt-checkbox label="Captain America" [value]="hero.captainAmerica" [size]="sizeControl.value" [disabled]="disableControl.value"></jnt-checkbox>
+                    </jnt-stack>
+                  </jnt-checkbox-group>
+                </jnt-form>
 
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/checkbox/checkbox.encapsulated";
-    ]]></pre>
-  </ngx-prism>
+                <h3>Your heroes:</h3>
+                <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                  <jnt-block title="Your hero" *ngFor="let value of heroControl.value">
+                      <ng-container [ngSwitch]="value">
+                        <jnt-avatar *ngSwitchCase="hero.spiderman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.ironman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.captainAmerica"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/captain_america.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
+                                    [icon]="ui.icons.question"></jnt-avatar>
+                      </ng-container>
+                  </jnt-block>
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+            <!--preview-->
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <!--builder-->
+            <jnt-form [formGroup]="builder" builder>
+              <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-label for="size">Size of checkbox buttons</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="size">
+                      <jnt-select-option label="Tiny"
+                                         [icon]="localUi.icons.layout.tiny"
+                                         [key]="ui.size.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         [icon]="localUi.icons.layout.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         [icon]="localUi.icons.layout.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         [icon]="localUi.icons.layout.large"
+                                         [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-row>
+                    <jnt-col [span]="12">
+                      <jnt-checkbox formControlName="disable" label="Disabled" [value]="false"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+            <!--builder-->
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
 
-  <h3>Examples</h3>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'checkbox-test', type: 'CheckboxTestComponent'}"
+                scss="forms/checkbox"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="checkbox-test.component.html">
+                <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
+                <![CDATA[<jnt-form [formGroup]="form">
+                  <jnt-checkbox-group formControlName="userGroup">
+                    <jnt-stack>
+                      <jnt-checkbox label="Spiderman" value="spiderman"]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[></jnt-checkbox>]]>
 
-  <jnt-stack>
+                        <![CDATA[<jnt-checkbox label="Ironman" value="ironman"]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[></jnt-checkbox>]]>
 
-    <h4>A standard checkbox</h4>
+                        <![CDATA[<jnt-checkbox label="Captain America" value="captain_america"]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[></jnt-checkbox>]]>
 
-    <jnt-form [formGroup]="acceptForm">
-      <jnt-stack>
-        <jnt-checkbox formControlName="checkbox" label="I accept the terms"></jnt-checkbox>
-        <div>{{checkboxControl.value ? 'You accepted the terms' : 'You refused to accept the terms'}}</div>
-      </jnt-stack>
-    </jnt-form>
+                      <![CDATA[</jnt-stack>
+                  </jnt-checkbox-group>
+                </jnt-form>]]>
+              </app-code-highlight>
+              <app-code-highlight file="radio-test.component.ts" lang="js">
+                <pre><![CDATA[
+                  import { Component } from '@angular/core';
+                  import { FormBuilder, FormControl } from '@angular/forms';
+                  import { UI } from 'junte-ui';
 
-    <jnt-tabs>
-      <jnt-tab title="checkbox-test.component.html">
+                  @Component({
+                    selector: 'app-checkbox-test',
+                    templateUrl: './checkbox-test.component.html',
+                    styleUrls: ['./checkbox-test.component.scss']
+                  })
 
-        <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-form [formGroup]="acceptForm">
-  <jnt-checkbox formControlName="checkbox" label="I accept the terms"></jnt-checkbox>
-  <div>{{checkboxControl.value ? 'You accepted the terms' : 'You refused to accept the terms'}}</div>
-</jnt-form>]]></pre>
-        </ngx-prism>
-      </jnt-tab>
+                  export class CheckboxTestComponent {
+                    ui = UI;
 
-      <jnt-tab title="checkbox-test.component.ts">
-        <ngx-prism language="js">
-<pre><![CDATA[
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+                    heroControl = new FormControl([]);
 
-@Component({
-  selector: 'app-checkbox-test',
-  templateUrl: './checkbox-test.component.html',
-  styleUrls: ['./checkbox-test.component.scss']
-})
+                    form = this.fb.group({
+                      hero: this.heroControl
+                    });
 
-export class CheckboxTestComponent {
+                    constructor(private fb: FormBuilder) {}
+                  }]]></pre>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
 
-  checkboxControl = new FormControl(true);
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-checkbox" [target]="types.checkbox"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
-  acceptForm = this.fb.group({
-    checkbox: this.checkboxControl
-  });
-
-  constructor(private fb: FormBuilder) {}
-
-}]]></pre>
-        </ngx-prism>
-      </jnt-tab>
-    </jnt-tabs>
-
-    <h4>Sizes</h4>
-
-    <p>Checkbox have different sizes:
-      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="tiny"></jnt-label>
-      ,
-      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="small"></jnt-label>
-      ,
-      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="normal"></jnt-label>
-      ,
-      <jnt-label [size]="ui.size.small" [color]="ui.color.blue100" label="large"></jnt-label>
-    </p>
-
-    <ng-container *ngFor="let size of [ui.size.tiny, ui.size.small, ui.size.normal, ui.size.large]">
-      <jnt-checkbox [label]="size | titlecase" [size]="size"></jnt-checkbox>
-    </ng-container>
-
-    <ngx-prism language="html">
-    <pre><![CDATA[
-<jnt-checkbox label="Checkbox" [size]="ui.size.tiny"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.size.small"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.size.normal"></jnt-checkbox>
-<jnt-checkbox label="Checkbox" [size]="ui.size.large"></jnt-checkbox>
-    ]]></pre>
-    </ngx-prism>
-
-    <h4>Disabled</h4>
-
-    <jnt-checkbox label="Disabled" [disabled]="true"></jnt-checkbox>
-
-    <ngx-prism language="html">
-<pre><![CDATA[
-<jnt-checkbox label="Disabled" [disabled]="true"></jnt-checkbox>
-]]></pre>
-    </ngx-prism>
-
-  </jnt-stack>
-
-  <h2>Checkbox Group</h2>
-
-  <h3>Import</h3>
-
-  <ngx-prism language="js">
-    <pre><![CDATA[
- @import "~junte-ui/lib/components/checkbox/checkbox-group/checkbox-group.encapsulated";
-    ]]></pre>
-  </ngx-prism>
-
-  <h3>Examples</h3>
-
-  <jnt-stack>
-    <span>Choose a user:</span>
-    <jnt-form [formGroup]="userGroup">
-      <jnt-checkbox-group formControlName="userGroup">
-        <jnt-stack>
-          <jnt-checkbox value="Bob" label="Bob"></jnt-checkbox>
-          <jnt-checkbox value="Tom" label="Tom"></jnt-checkbox>
-          <jnt-checkbox value="Lisa" label="Lisa"></jnt-checkbox>
-        </jnt-stack>
-      </jnt-checkbox-group>
-    </jnt-form>
-    <div>
-      You choose:
-      <span user *ngFor="let value of userGroupControl.value">{{value}}</span>
-    </div>
-
-    <jnt-tabs>
-      <jnt-tab title="checkbox-test.component.html">
-        <ngx-prism language="html">
-<pre><![CDATA[
-<span>Choose a user:</span>
-  <jnt-form [formGroup]="userGroup">
-    <jnt-checkbox-group formControlName="userGroup">
-      <jnt-stack>
-        <jnt-checkbox value="Bob" label="Bob"></jnt-checkbox>
-        <jnt-checkbox value="Tom" label="Tom"></jnt-checkbox>
-        <jnt-checkbox value="Lisa" label="Lisa"></jnt-checkbox>
-      </jnt-stack>
-    </jnt-checkbox-group>
-  </jnt-form>
-]]></pre>
-        </ngx-prism>
-      </jnt-tab>
-
-      <jnt-tab title="checkbox-test.component.ts">
-        <ngx-prism language="js">
-<pre><![CDATA[
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-
-@Component({
-  selector: 'app-checkbox-test',
-  templateUrl: './checkbox-test.component.html',
-  styleUrls: ['./checkbox-test.component.scss']
-})
-
-export class CheckboxTestComponent {
-  value = ['Bob', 'Tom'];
-  userGroupControl = new FormControl(this.value);
-  userGroup = this.fb.group({
-    userGroup: this.userGroupControl
-  });
-
-  constructor(private fb: FormBuilder) {}
-}]]></pre>
-        </ngx-prism>
-      </jnt-tab>
-    </jnt-tabs>
-
-    <h3>API</h3>
-    <h4>jnt-checkbox</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[disabled]</td>
-        <td>-</td>
-        <td>true | false</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>[label]</td>
-        <td>-</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[size]</td>
-        <td>-</td>
-        <td>tiny | small | normal | large</td>
-        <td>normal</td>
-      </tr>
-      <tr>
-        <td>[value]</td>
-        <td>-</td>
-        <td>any</td>
-        <td>-</td>
-      </tr>
-      </tbody>
-    </table>
-
-  </jnt-stack>
 </jnt-container>
