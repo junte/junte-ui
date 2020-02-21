@@ -3,9 +3,7 @@
 @mixin icon-size($size, $vars) {
   &[type='font'] {
     [icon] {
-      @if $size != 'auto' {
-        font-size: map-get($vars, size);
-      }
+      font-size: map-get($vars, size);
     }
   }
   &[type='svg'], &[type='animated'] {
@@ -40,29 +38,31 @@
   );
 
   $vars: $passed;
+  $declare: false;
 
-  @if $strategy == 'merge' {
+  @if $passed == () or $strategy == 'merge' {
     $vars: map-merge($defs, $passed);
+    $declare: true;
   }
 
   :host, #{$context} {
-    @if $strategy == 'merge' {
+    @if $declare {
       display: inline-block;
       vertical-align: middle;
     }
 
     &[type='font'] {
       [icon] {
-        font-size: map-get($vars, size);
         color: map-get($vars, color);
+        font-size: #{map-get($vars, size)} !important;
       }
     }
 
     &[type='svg'], &[type='animated'] {
       [icon] {
         fill: map-get($vars, color);
-        width: map-get($vars, size);
-        height: map-get($vars, size);
+        width: #{map-get($vars, size)} !important;
+        height: #{map-get($vars, size)} !important;
       }
     }
 

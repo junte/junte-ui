@@ -42,13 +42,15 @@
   );
 
   $vars: $passed;
+  $declare: false;
 
-  @if $strategy == 'merge' {
+  @if $passed == () or $strategy == 'merge' {
     $vars: map-merge($defs, $passed);
+    $declare: true;
   }
 
   :host {
-    @if $strategy == 'merge' {
+    @if $declare {
       display: inline-flex;
       align-items: center;
       justify-content: center;

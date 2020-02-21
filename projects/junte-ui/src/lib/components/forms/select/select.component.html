@@ -20,7 +20,8 @@
           </ng-container>
         </div>
         <button close type="button" (click)="remove(key)">
-          <jnt-icon [icon]="ui.icons.close"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.close"
+                    [size]="ui.size.small"></jnt-icon>
         </button>
       </li>
     </ng-container>
@@ -31,7 +32,8 @@
     </li>
   </ul>
   <button toggle type="button" (click)="opened = !opened">
-    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
+    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
+              [size]="ui.size.small"></jnt-icon>
   </button>
 </div>
 <div options *ngIf="opened" [attr.loading]="loading">
