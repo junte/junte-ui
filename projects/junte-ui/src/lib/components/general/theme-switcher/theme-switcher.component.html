@@ -1,10 +1,13 @@
 <form [formGroup]="form">
   <input type="checkbox" formControlName="theme">
-  <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.tiny"
-             [align]="ui.flex.align.center" [justify]="ui.flex.justify.center" switch>
+  <jnt-stack switch [type]="ui.layout.stack.type.horizontal"
+             [gutter]="ui.gutter.tiny"
+             [align]="ui.flex.align.center"
+             [justify]="ui.flex.justify.center">
     <span [translate]="'label.dark'">Dark</span>
     <div icon>
-      <jnt-icon [icon]="theme === themes.light ? ui.icons.solar : ui.icons.moon"></jnt-icon>
+      <jnt-icon [icon]="theme === themes.light ? ui.icons.solar : ui.icons.moon"
+                [size]="ui.size.small"></jnt-icon>
     </div>
     <span [translate]="'label.light'">Light</span>
   </jnt-stack>

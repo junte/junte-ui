@@ -61,11 +61,11 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    combineLatest(this.iconset$, this.icon$)
+    combineLatest([this.iconset$, this.icon$])
       .pipe(filter(([iconset, icon]) => !!iconset && !!icon), distinctUntilChanged())
       .subscribe(() => this.load());
 
-    combineLatest(this.nativeElement$, this.source$)
+    combineLatest([this.nativeElement$, this.source$])
       .pipe(filter(([nativeElement, source]) => !!nativeElement && !!source))
       .subscribe(() => this.render());
   }

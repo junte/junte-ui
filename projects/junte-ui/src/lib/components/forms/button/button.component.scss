@@ -225,8 +225,10 @@ $button-sizes: (
 @mixin size($size) {
   button {
     padding: #{map-get($size, padding)};
-    font-size: #{map-get($size, font-size)};
     height: #{map-get($size, height)};
+    [text] {
+      font-size: #{map-get($size, font-size)};
+    }
   }
 
   [badge] {
@@ -334,14 +336,9 @@ $button-sizes: (
     [icon] {
       margin-right: $gutter-small;
     }
-    [icon][child-host=#{$jnt-icon-host}] {
-      line-height: 0;
-    }
     [text] {
-      display: inline-block;
+      line-height: 1em;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     [badges] {
