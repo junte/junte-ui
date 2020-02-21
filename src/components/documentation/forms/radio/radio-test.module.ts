@@ -13,7 +13,8 @@ import {
   AvatarModule,
   SelectModule,
   CheckboxModule,
-  BlockModule
+  BlockModule,
+  ButtonModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { RadioTestComponent } from './radio-test.component';
@@ -29,6 +30,7 @@ import { RadioTestComponent } from './radio-test.component';
     GridModule,
     FormModule,
     AccordionModule,
+    ButtonModule,
     GridModule,
     SharedModule,
     RadioModule,

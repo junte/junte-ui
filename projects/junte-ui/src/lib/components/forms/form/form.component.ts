@@ -6,26 +6,27 @@ import {
   HostBinding,
   HostListener,
   Input,
+  OnInit,
   Output,
   QueryList,
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UI } from '../../../enums/ui';
-import { FormItemComponent } from './item/form-item.component';
+import { FormControlComponent } from './control/form-control.component';
 
 @Component({
   selector: 'jnt-form',
   templateUrl: './form.encapsulated.html'
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-form-host';
 
   ui = UI;
 
-  @ContentChildren(FormItemComponent, {descendants: true})
-  items: QueryList<FormItemComponent>;
+  @ContentChildren(FormControlComponent, {descendants: true})
+  controls: QueryList<FormControlComponent>;
 
   @Input('formGroup')
   form: FormGroup;
@@ -41,6 +42,18 @@ export class FormComponent {
 
   @Output()
   submitted = new EventEmitter();
+
+  ngOnInit() {
+    this.form.statusChanges.subscribe(() => {
+      const controls = this.controls;
+      controls.filter(c => !!c.name && !!c.messages.length)
+        .forEach(c => {
+          const control = this.form.get(c.name);
+          const messages = c.messages;
+          messages.forEach(m => m.active = !!(control.hasError(m.type) && control.errors && control.dirty));
+        });
+    });
+  }
 
   @HostListener('submit')
   onSubmit() {

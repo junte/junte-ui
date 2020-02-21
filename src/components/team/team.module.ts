@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactsComponent } from './contacts.component';
+import { TeamComponent } from './team.component';
 import { JunteUiModule } from 'junte-ui';
-import { ContactsRoutingModule } from './contacts-routing.module';
+import { TeamRoutingModule } from './team-routing.module';
 import { AppFooterModule } from '../app-footer/app-footer.module';
 
 @NgModule({
-  declarations: [ContactsComponent],
+  declarations: [TeamComponent],
   imports: [
     CommonModule,
     JunteUiModule,
-    ContactsRoutingModule,
+    TeamRoutingModule,
     AppFooterModule
   ]
 })
-export class ContactsModule { }
+export class TeamModule { }

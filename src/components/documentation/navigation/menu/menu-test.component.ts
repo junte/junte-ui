@@ -31,7 +31,7 @@ export class MenuTestComponent implements OnInit {
   spacingControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
-  collapseControl = this.fb.control(false);
+  collapsedControl = this.fb.control(false);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -41,7 +41,7 @@ export class MenuTestComponent implements OnInit {
     spacing: this.spacingControl,
     icons: this.iconsControl,
     badges: this.badgesControl,
-    collapse: this.collapseControl,
+    collapsed: this.collapsedControl,
   });
 
   constructor(private fb: FormBuilder) {

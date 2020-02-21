@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+export function docsMatcher() {
+  return {consumed: []};
+}
+
 const routes: Routes = [
   {
     path: '',
@@ -8,15 +12,14 @@ const routes: Routes = [
     loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'documentation',
+    matcher: docsMatcher,
     data: {breadcrumb: 'Junte UI'},
     loadChildren: () => import('../documentation/documentation.module').then(m => m.DocumentationModule)
   },
   {
-    path: 'contacts',
-    data: {breadcrumb: 'Contacts'},
-    loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsModule)
-  }
+    path: '**',
+    redirectTo: '/'
+  },
 ];
 
 @NgModule({

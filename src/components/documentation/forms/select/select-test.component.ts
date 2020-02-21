@@ -18,25 +18,20 @@ export class SelectTestComponent implements OnInit {
 
   @ViewChild('code', {static: false}) code: TabComponent;
 
-  placeholderControl = this.fb.control('');
-  requiredControl = this.fb.control(false);
+  modeControl = this.fb.control(null);
+  sizeControl = this.fb.control(null);
   disabledControl = this.fb.control(false);
-  labelControl = this.fb.control(null);
   allowEmptyControl = this.fb.control(true);
-  modeControl = this.fb.control(UI.form.select.mode.single);
   searchControl = this.fb.control(false);
-  sizeControl = this.fb.control(UI.size.normal);
   loaderControl = this.fb.control(null);
   templateControl = this.fb.control(false);
-  form = this.fb.group({
-    placeholder: this.placeholderControl,
-    required: this.requiredControl,
-    disabled: this.disabledControl,
-    label: this.labelControl,
-    allowEmpty: this.allowEmptyControl,
+
+  builder = this.fb.group({
     mode: this.modeControl,
-    search: this.searchControl,
     size: this.sizeControl,
+    disabled: this.disabledControl,
+    allowEmpty: this.allowEmptyControl,
+    search: this.searchControl,
     loader: this.loaderControl,
     template: this.templateControl
   });
@@ -46,19 +41,17 @@ export class SelectTestComponent implements OnInit {
     select: this.selectControl
   });
 
-  options = [
-    {key: 1, label: 'Option 1', likes: 1},
-    {key: 2, label: 'Option 2', likes: 2},
-    {key: 3, label: 'Option 3', likes: 3},
-    {key: 4, label: 'Option 4', likes: 4},
-    {key: 5, label: 'Option 5', likes: 5}
+  heroes = [
+    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
+    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
+    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
   ];
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe(() => this.code.flash());
+    this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable() : this.selectControl.enable());
 
@@ -67,8 +60,8 @@ export class SelectTestComponent implements OnInit {
 
   search() {
     return (query: string) => new Observable(observable => {
-      observable.next(this.options.filter(option => !query
-        || option.label.toLowerCase().includes(query.toLowerCase())));
+      observable.next(this.heroes.filter(hero => !query
+        || hero.name.toLowerCase().includes(query.toLowerCase())));
       observable.complete();
     }).pipe(delay(1000));
   }

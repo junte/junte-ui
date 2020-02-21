@@ -13,6 +13,11 @@ export const routes: Routes = [
         redirectTo: 'general'
       },
       {
+        path: 'docs',
+        pathMatch: 'full',
+        redirectTo: 'general'
+      },
+      {
         path: 'general',
         loadChildren: () => import('./general/general.module').then(m => m.GeneralModule)
       },
@@ -47,6 +52,11 @@ export const routes: Routes = [
       {
         path: 'other',
         loadChildren: () => import('./other/other.module').then(m => m.OtherModule)
+      },
+      {
+        path: 'team',
+        data: {breadcrumb: 'Team'},
+        loadChildren: () => import('../team/team.module').then(m => m.TeamModule)
       }
     ]
   }

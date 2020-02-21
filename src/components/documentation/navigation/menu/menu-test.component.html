@@ -22,7 +22,8 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value" [collapsed]="collapseControl.value">
+                <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value"
+                          [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
                                  [target]="targetControl.value"
                                  [link]="['/documentation','navigation','link']"
@@ -100,10 +101,9 @@
                                 label="Icons"></jnt-checkbox>
                   <jnt-checkbox formControlName="badges"
                                 label="Badges"></jnt-checkbox>
+                  <jnt-checkbox formControlName="collapsed"
+                                label="Collapsed"></jnt-checkbox>
                 </jnt-stack>
-
-                <jnt-checkbox formControlName="collapse"
-                              label="Collapsed"></jnt-checkbox>
 
               </jnt-stack>
             </jnt-form>

@@ -24,8 +24,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
   alignControl = this.fb.control(UI.text.align.left);
-  placeholderControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
+
   builder = this.fb.group({
     type: this.typeControl,
     state: this.stateControl,
@@ -33,12 +33,11 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     icon: this.iconControl,
     label: this.labelControl,
     align: this.alignControl,
-    placeholder: this.placeholderControl,
     disabled: this.disabledControl,
   });
 
   inputControl = this.fb.control(null);
-  inputForm = this.fb.group({
+  form = this.fb.group({
     input: this.inputControl
   });
 
