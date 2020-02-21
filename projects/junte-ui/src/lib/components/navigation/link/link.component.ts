@@ -140,7 +140,7 @@ export class LinkComponent {
     return this._matching;
   }
 
-  @ViewChild(RouterLinkActive, {static: false})
+  @ViewChild(RouterLinkActive)
   linkRef: RouterLinkActive;
 
   @ContentChildren(BadgeComponent)

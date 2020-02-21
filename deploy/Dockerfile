@@ -1,4 +1,4 @@
-FROM node:10.12 as build
+FROM node:10.13 as build
 
 RUN npm install -g @angular/cli@8.3.3
 

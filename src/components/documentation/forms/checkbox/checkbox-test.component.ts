@@ -22,7 +22,7 @@ export class CheckboxTestComponent {
 
   types = {checkbox: CheckboxComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   sizeControl = new FormControl(this.ui.size.normal);
   disableControl = new FormControl(false);

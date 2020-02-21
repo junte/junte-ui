@@ -16,7 +16,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   input = InputComponent;
   language = Language;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(null);
   stateControl = this.fb.control(null);

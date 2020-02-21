@@ -27,7 +27,7 @@ export class SwitcherTestComponent implements OnInit {
   switcher = SwitcherComponent;
   switcherOption = SwitcherOptionComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(UI.orientation.horizontal);
   iconControl = this.fb.control(false);

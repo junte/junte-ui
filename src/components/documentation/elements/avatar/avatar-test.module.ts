@@ -12,8 +12,8 @@ import {
   FormModule,
   SelectModule,
   CheckboxModule,
+  ArrayPipeModule
 } from 'junte-ui';
-import { ArrayPipeModule } from 'projects/junte-ui/src/lib/pipes/array-pipe.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AvatarTestComponent } from './avatar-test.component';
 

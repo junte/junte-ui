@@ -14,10 +14,10 @@ export class BlockTestComponent implements OnInit {
   localUi = LocalUI;
   types = {block: BlockComponent};
 
-  @ViewChild('block', {static: false})
+  @ViewChild('block')
   block: BlockComponent;
 
-  @ViewChild('code', {static: false})
+  @ViewChild('code')
   code: TabComponent;
 
   schemeControl = this.fb.control(null);

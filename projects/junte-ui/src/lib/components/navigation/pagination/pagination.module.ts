@@ -1,15 +1,14 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaginationComponent } from './pagination.component';
-import { PageSizeComponent } from './page-size/page-size.component';
-import { IconModule } from '../../elements/icon/icon.module';
-import { StackModule } from '../../layout/stack/stack.module';
-import { SelectModule } from '../../forms/select/select.module';
-import { JunteUIModuleConfig } from '../../../config';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
 import { en } from '../../../i18n/en';
+import { IconModule } from '../../elements/icon/icon.module';
+import { SelectModule } from '../../forms/select/select.module';
+import { StackModule } from '../../layout/stack/stack.module';
+import { PageSizeComponent } from './page-size/page-size.component';
+import { PaginationComponent } from './pagination.component';
 
 @NgModule({
   imports: [
@@ -38,13 +37,19 @@ export class PaginationModule {
     return {
       ngModule: PaginationModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

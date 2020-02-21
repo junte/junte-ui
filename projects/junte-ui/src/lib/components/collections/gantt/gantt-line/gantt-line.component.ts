@@ -11,6 +11,6 @@ export class GanttLineComponent {
   @Input() to: Date;
   @Input() period: any;
   @Output() click = new EventEmitter<any>();
-  @ContentChild('indicator', {static: false}) indicatorTemplate: TemplateRef<any>;
-  @ContentChild('title', {static: false}) titleTemplate: TemplateRef<any>;
+  @ContentChild('indicator') indicatorTemplate: TemplateRef<any>;
+  @ContentChild('title') titleTemplate: TemplateRef<any>;
 }

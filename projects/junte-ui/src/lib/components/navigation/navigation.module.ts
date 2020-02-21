@@ -1,4 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../config';
+import { en } from '../../i18n/en';
 import { AnchorModule } from './anchor/anchor.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { DropdownModule } from './dropdown/dropdown.module';
@@ -6,10 +9,6 @@ import { LinkModule } from './link/link.module';
 import { MenuModule } from './menu/menu.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { TabsModule } from './tabs/tabs.module';
-import { JunteUIModuleConfig } from '../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../i18n/loader';
-import { en } from '../../i18n/en';
 
 @NgModule({
   exports: [
@@ -28,13 +27,19 @@ export class NavigationModule {
     return {
       ngModule: NavigationModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

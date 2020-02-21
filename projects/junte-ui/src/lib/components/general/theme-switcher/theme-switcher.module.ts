@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StackModule } from '../../layout/stack/stack.module';
-import { IconModule } from '../../elements/icon/icon.module';
-import { ThemeSwitcherComponent } from './theme-switcher.component';
-import { JunteUIModuleConfig } from '../../../config';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
 import { en } from '../../../i18n/en';
+import { IconModule } from '../../elements/icon/icon.module';
+import { StackModule } from '../../layout/stack/stack.module';
+import { ThemeSwitcherComponent } from './theme-switcher.component';
 
 @NgModule({
   imports: [
@@ -29,13 +28,19 @@ export class ThemeSwitcherModule {
     return {
       ngModule: ThemeSwitcherModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

@@ -2,20 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  CalendarModule,
-  GridModule,
-  StackModule,
-  LinkModule,
-  TabsModule,
   AccordionModule,
-  FormModule,
-  SwitcherModule,
+  CalendarModule,
   CheckboxModule,
-  ru
+  FormModule,
+  GridModule,
+  LinkModule,
+  StackModule,
+  SwitcherModule,
+  TabsModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { SharedModule } from 'src/components/documentation/shared/shared.module';
-import { getJunteUiConfig } from '../../../../utils/config';
+import { getJunteUiConfig } from 'src/utils/config';
 import { CalendarTestComponent } from './calendar-test.component';
 
 const config = getJunteUiConfig();

@@ -1,22 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ColorPipesModule } from '../../../pipes/color-pipes.module';
-import { ConvertionPipeModule } from '../../../pipes/convertion-pipe.module';
-import { IsEqualPipeModule } from '../../../pipes/is-equal.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { en } from '../../../i18n/en';
+import { ColorPipeModule } from '../../../pipes/color.pipe.module';
+import { ConvertionPipeModule } from '../../../pipes/convertion.pipe.module';
+import { IsEqualPipeModule } from '../../../pipes/is-equal.pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 import { ChartComponent } from './chart.component';
 import { SumIndicatorsPipe } from './sum-indicator.pipe';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   imports: [
     CommonModule,
     ConvertionPipeModule,
-    ColorPipesModule,
+    ColorPipeModule,
     IsEqualPipeModule,
     IconModule
   ],
@@ -36,13 +35,19 @@ export class ChartModule {
     return {
       ngModule: ChartModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

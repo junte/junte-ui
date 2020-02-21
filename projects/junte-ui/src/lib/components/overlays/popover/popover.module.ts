@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
+import { en } from '../../../i18n/en';
 import { PopoverComponent } from './popover.component';
 import { PopoverDirective } from './popover.directive';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   declarations: [
@@ -31,13 +30,19 @@ export class PopoverModule {
     return {
       ngModule: PopoverModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

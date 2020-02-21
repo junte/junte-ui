@@ -26,7 +26,7 @@ export class AppContentComponent {
     return !!this.footer;
   }
 
-  @ContentChild(AppSubHeaderComponent, {static: false}) subHeader: AppSubHeaderComponent;
+  @ContentChild(AppSubHeaderComponent) subHeader: AppSubHeaderComponent;
   @ContentChild(AppFooterComponent, {read: ElementRef, static: true}) footer: AppFooterComponent;
 
   @PropertyApi({

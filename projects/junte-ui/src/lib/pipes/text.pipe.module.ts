@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VisibleElementPipe } from './visible-element.pipe';
+import { EmptyPipe } from './text.pipe';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    VisibleElementPipe
+    EmptyPipe
   ],
   exports: [
-    VisibleElementPipe
+    EmptyPipe
   ]
 })
-export class AnimationPipeModule {
+export class TextPipeModule {
 }

@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { en } from '../../../i18n/en';
 import { ButtonModule } from '../../forms/button/button.module';
 import { StackModule } from '../stack/stack.module';
 import { LpLayoutComponent } from './layout/lp-layout.component';
 import { LpRewindComponent } from './rewind/lp-rewind.component';
 import { LpSlideComponent } from './slide/lp-slide.component';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   imports: [
@@ -33,13 +32,19 @@ export class LpModule {
     return {
       ngModule: LpModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

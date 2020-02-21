@@ -1,3 +1,4 @@
+export * from './forms.module';
 export * from './button/public_api';
 export * from './calendar/public_api';
 export * from './checkbox/public_api';

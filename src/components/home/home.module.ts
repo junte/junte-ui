@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { GridModule, LabelModule, LinkModule, MenuModule, StackModule } from 'junte-ui';
-import { LpModule } from 'projects/junte-ui/src/lib/components/layout/lp/lp.module';
+import { GridModule, LabelModule, LinkModule, MenuModule, StackModule, LpModule } from 'junte-ui';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 

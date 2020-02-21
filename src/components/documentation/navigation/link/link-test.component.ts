@@ -37,7 +37,7 @@ export class LinkTestComponent implements OnInit {
     badge: this.badgeControl
   });
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }

@@ -1,3 +1,4 @@
+export * from './dynamic.module';
 export * from './chart/public_api';
 export * from './circle-bar/public_api';
 export * from './date-period/public_api';

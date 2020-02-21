@@ -24,7 +24,7 @@ export class PaginationTestComponent implements OnInit {
     page: this.pageControl,
   });
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }

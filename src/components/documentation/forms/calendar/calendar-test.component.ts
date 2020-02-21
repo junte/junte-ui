@@ -28,7 +28,7 @@ export class CalendarTestComponent implements OnInit {
   month = Months;
   calendar = CalendarComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   yearControl = this.fb.control(null);
   monthControl = this.fb.control(null);

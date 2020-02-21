@@ -16,7 +16,7 @@ export class HowToUseComponent {
   @Input()
   scss: string;
 
-  @ContentChild('behaviourTemplate', {static: false})
+  @ContentChild('behaviourTemplate')
   behaviourTemplate: TemplateRef<any>;
 
 }

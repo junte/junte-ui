@@ -2,21 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  LinkModule,
-  StackModule,
-  TabsModule,
-  GridModule,
-  FormModule,
   AccordionModule,
-  IconModule,
-  ButtonModule,
-  BlockModule,
-  SwitcherModule,
+  ArrayPipeModule,
   BadgeModule,
+  BlockModule,
+  ButtonModule,
   CheckboxModule,
-  SelectModule
+  FormModule,
+  GridModule,
+  IconModule,
+  LinkModule,
+  SelectModule,
+  StackModule,
+  SwitcherModule,
+  TabsModule
 } from 'junte-ui';
-import { ArrayPipeModule } from 'projects/junte-ui/src/lib/pipes/array-pipe.module';
 import { SharedModule } from '../../shared/shared.module';
 import { ButtonTestComponent } from './button-test.component';
 

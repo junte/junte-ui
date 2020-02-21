@@ -10,7 +10,7 @@ export class BrowserPreviewComponent implements AfterViewInit {
   width: number;
   height: number;
 
-  @ContentChild('document', {static: false})
+  @ContentChild('document')
   documentTemplate: TemplateRef<any>;
 
   @HostListener('window:resize')

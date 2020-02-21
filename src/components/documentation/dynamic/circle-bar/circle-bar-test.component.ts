@@ -17,7 +17,7 @@ export class CircleBarTestComponent implements OnInit {
   localUi = LocalUI;
   types = {indicator: BarIndicatorComponent, bar: CircleBarComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   positionControl = this.fb.control(null);
   value1Control = this.fb.control(10);

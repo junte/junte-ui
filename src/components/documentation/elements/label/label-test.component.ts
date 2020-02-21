@@ -14,7 +14,7 @@ export class LabelTestComponent implements OnInit {
   localUi = LocalUI;
   types = {label: LabelComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
   colorControl = this.fb.control(UI.color.blue100);

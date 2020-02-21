@@ -18,7 +18,7 @@ export class AvatarTestComponent implements OnInit {
     group: AvatarsGroupComponent
   };
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
   shapeControl = this.fb.control(null);

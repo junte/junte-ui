@@ -17,28 +17,28 @@ export class AppHeaderComponent {
     description: 'Menu template'
   })
 
-  @ContentChild('headerMenuTemplate', {static: false})
+  @ContentChild('headerMenuTemplate')
   headerMenuTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#headerLogoTemplate',
     description: 'Logo template'
   })
-  @ContentChild('headerLogoTemplate', {static: false})
+  @ContentChild('headerLogoTemplate')
   headerLogoTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#headerUserbarTemplate',
     description: 'Userbar template'
   })
-  @ContentChild('headerUserbarTemplate', {static: false})
+  @ContentChild('headerUserbarTemplate')
   headerUserbarTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#headerActionsTemplate',
     description: 'Actions template'
   })
-  @ContentChild('headerActionsTemplate', {static: false})
+  @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
 }

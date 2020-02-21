@@ -29,7 +29,7 @@ export class AppLayoutTestComponent implements OnInit {
     subHeader: AppSubHeaderComponent
   };
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   headerControl = this.fb.control(true);
   logoControl = this.fb.control(true);

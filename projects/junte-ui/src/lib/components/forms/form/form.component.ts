@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
   @Input()
   title: string;
 
-  @ContentChild('formFooterTemplate', {static: false})
+  @ContentChild('formFooterTemplate')
   footerTemplate: TemplateRef<any>;
 
   @Output()

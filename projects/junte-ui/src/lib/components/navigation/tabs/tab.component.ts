@@ -47,7 +47,7 @@ export class TabComponent {
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
-  @ContentChild('tabContentTemplate', {static: false})
+  @ContentChild('tabContentTemplate')
   tabContentTemplate: TemplateRef<any>;
 
   flash() {

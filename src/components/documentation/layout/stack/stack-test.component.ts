@@ -17,7 +17,7 @@ export class StackTestComponent implements OnInit {
 
   types = {stack: StackComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(UI.layout.stack.type.horizontal);
   gutterControl = this.fb.control(null);

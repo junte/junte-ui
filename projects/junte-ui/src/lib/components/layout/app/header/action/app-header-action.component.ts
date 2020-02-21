@@ -15,7 +15,7 @@ export class AppHeaderActionComponent {
     type: 'TemplateRef'
   })
 
-  @ContentChild('actionLabelTemplate', {static: false})
+  @ContentChild('actionLabelTemplate')
   actionLabelTemplate: TemplateRef<any>;
 
   @PropertyApi({
@@ -23,6 +23,6 @@ export class AppHeaderActionComponent {
     type: 'TemplateRef'
   })
 
-  @ContentChild('actionContentTemplate', {static: false})
+  @ContentChild('actionContentTemplate')
   actionContentTemplate: TemplateRef<any>;
 }

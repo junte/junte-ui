@@ -23,7 +23,7 @@ export class DatePickerTestComponent implements OnInit {
   dateFormat = DateFormat;
   picker = DatePickerComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   placeholderControl = this.fb.control(true);
   formatControl = this.fb.control(this.dateFormat.fullDate);

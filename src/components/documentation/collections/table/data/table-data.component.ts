@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { fake } from 'faker';
-import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, TableComponent, UI } from 'junte-ui';
-import { isEqual } from 'projects/junte-ui/src/lib/utils/equal';
+import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, TableComponent, UI, isEqual } from 'junte-ui';
 import { of } from 'rxjs';
 import { delay, distinctUntilChanged } from 'rxjs/operators';
 

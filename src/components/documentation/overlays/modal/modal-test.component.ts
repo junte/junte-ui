@@ -33,7 +33,7 @@ export class ModalTestComponent implements OnInit {
   modal = ModalComponent;
   types = {modal: ModalComponent, options: ModalOptions};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   widthControl = this.fb.control(Size.large);
   heightControl = this.fb.control(Size.large);
@@ -53,10 +53,10 @@ export class ModalTestComponent implements OnInit {
     type: this.typeControl,
   });
 
-  @ViewChild('content', {static: false})
+  @ViewChild('content')
   content: TemplateRef<any>;
 
-  @ViewChild('footer', {static: false})
+  @ViewChild('footer')
   footer: TemplateRef<any>;
 
   constructor(private modalService: ModalService,

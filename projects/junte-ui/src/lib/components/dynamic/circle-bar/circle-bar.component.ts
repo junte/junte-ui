@@ -18,7 +18,7 @@ export class CircleBarComponent {
     selector: '#circleBarContentTemplate',
     description: 'Circle bar content template'
   })
-  @ContentChild(TemplateRef, {static: false})
+  @ContentChild(TemplateRef)
   circleBarContentTemplate: TemplateRef<any>;
 
   @HostBinding('attr.host') readonly host = 'jnt-circle-bar-host';

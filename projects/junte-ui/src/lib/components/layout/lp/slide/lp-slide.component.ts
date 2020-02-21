@@ -11,7 +11,7 @@ export class LpSlideComponent {
   @HostBinding('style.height.px')
   height: number = document.documentElement.clientHeight;
 
-  @ContentChild('slideContentTemplate', {static: false})
+  @ContentChild('slideContentTemplate')
   slideContentTemplate: TemplateRef<any>;
 
   @HostListener('window:resize')

@@ -24,7 +24,7 @@ export class TabsTestComponent implements OnInit {
     badges: this.badgesControl
   });
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }
