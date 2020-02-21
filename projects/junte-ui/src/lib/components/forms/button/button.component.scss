@@ -140,13 +140,15 @@ $button-sizes: (
 
     [badge] {
       @include badge((
-        background: #{map-get($scheme, fill-badge-background-color)} !important,
-        color:#{map-get($scheme, fill-badge-color)} !important
+        background: map-get($scheme, fill-badge-background-color) !important,
+        color: map-get($scheme, fill-badge-color) !important
       ), '&');
     }
 
-    [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, fill-color)};
+    [icon] {
+      @include icon((
+        color: map-get($scheme, fill-color)
+      ), '&');
     }
   }
 }
@@ -168,8 +170,10 @@ $button-sizes: (
         ), '&');
       }
 
-      [icon][child-host=#{$jnt-icon-host}] {
-        fill: #{map-get($scheme, ghost-hover-color)};
+      [icon] {
+        @include icon((
+          color: map-get($scheme, ghost-hover-color)
+        ), '&');
       }
     }
 
@@ -179,10 +183,12 @@ $button-sizes: (
         color:#{map-get($scheme, ghost-badge-color)} !important
       ), '&');
     }
-  }
 
-  [icon][child-host=#{$jnt-icon-host}] {
-    fill: #{map-get($scheme, ghost-color)};
+    [icon] {
+      @include icon((
+        color: map-get($scheme, ghost-color)
+      ), '&');
+    }
   }
 }
 
@@ -194,17 +200,24 @@ $button-sizes: (
     border-color: transparent;
     &:hover, &:focus {
       color: #{map-get($scheme, transparent-hover-color)};
-      [icon][child-host=#{$jnt-icon-host}] {
-        fill: #{map-get($scheme, transparent-hover-color)};
+      [icon] {
+        @include icon((
+          color: map-get($scheme, transparent-hover-color)
+        ), '&');
       }
     }
-    [badge][child-host=#{$jnt-badge-host}] [text] {
-      background: #{map-get($scheme, transparent-badge-background)} !important;
-      color: #{map-get($scheme, transparent-badge-color)} !important;
+
+    [badge] {
+      @include badge((
+        background: #{map-get($scheme, transparent-badge-background)} !important,
+        color:#{map-get($scheme, transparent-badge-color)} !important
+      ), '&');
     }
 
-    [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, transparent-color)};
+    [icon] {
+      @include icon((
+        color: map-get($scheme, transparent-color)
+      ), '&');
     }
   }
 }
@@ -216,12 +229,11 @@ $button-sizes: (
     height: #{map-get($size, height)};
   }
 
-  /*[badge][child-host=#{$jnt-badge-host}] [text] {
-    min-width: #{map-get($size, badge-size)};
-    min-height: #{map-get($size, badge-size)};
-    height: #{map-get($size, badge-size)};
-    line-height: #{map-get($size, badge-size)};
-  }*/
+  [badge] {
+    @include badge((
+      size: map-get($size, badge-size)
+    ), '&');
+  }
 
   [icon] {
     @include icon((
