@@ -16,7 +16,7 @@ export class AccordionSectionComponent {
   })
   @Input() title: string;
 
-  @ContentChild('accordionContentTemplate', {static: false})
+  @ContentChild('accordionContentTemplate')
   accordionContentTemplate: TemplateRef<any>;
 
 }

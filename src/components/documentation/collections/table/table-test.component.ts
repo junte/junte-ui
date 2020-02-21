@@ -25,7 +25,7 @@ export class TableTestComponent implements OnInit {
 
   types = {table: TableComponent, column: TableColumnComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   searchControl = this.fb.control(true);
   filterControl = this.fb.control(true);

@@ -103,7 +103,7 @@ export class BlockComponent {
   @Input()
   state: BlockState;
 
-  @ContentChild('blockFooterTemplate', {static: false})
+  @ContentChild('blockFooterTemplate')
   blockFooterTemplate: TemplateRef<any>;
 
   @MethodApi({description: 'show success animation'})

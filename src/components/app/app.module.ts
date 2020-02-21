@@ -3,8 +3,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { JunteUiModule, ru } from 'junte-ui';
-import { getJunteUiConfig } from '../../utils/config';
+import { JunteUiModule } from 'junte-ui';
+import { getJunteUiConfig } from 'src/utils/config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 

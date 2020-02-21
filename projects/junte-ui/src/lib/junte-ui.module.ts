@@ -9,15 +9,14 @@ import { LayoutModule } from './components/layout/layout.module';
 import { NavigationModule } from './components/navigation/navigation.module';
 import { OverlaysModule } from './components/overlays/overlays.module';
 import { SharedModule } from './components/shared/shared.module';
-import { JunteUIModuleConfig } from './config';
+import { I18nLoaderFactory, JunteUIModuleConfig } from './config';
 import { en } from './i18n/en';
-import { I18nLoader } from './i18n/loader';
-import { AnimationPipeModule } from './pipes/animation-pipe.module';
-import { ArrayPipeModule } from './pipes/array-pipe.module';
-import { ColorPipesModule } from './pipes/color-pipes.module';
-import { ConvertionPipeModule } from './pipes/convertion-pipe.module';
-import { DatePipeModule } from './pipes/date-pipe.module';
-import { TextPipeModule } from './pipes/text-pipe.module';
+import { AnimationPipeModule } from './pipes/animation.pipe.module';
+import { ArrayPipeModule } from './pipes/array.pipe.module';
+import { ColorPipeModule } from './pipes/color.pipe.module';
+import { ConvertionPipeModule } from './pipes/convertion.pipe.module';
+import { DatePipeModule } from './pipes/date.pipe.module';
+import { TextPipeModule } from './pipes/text.pipe.module';
 
 @NgModule({
   exports: [
@@ -34,7 +33,7 @@ import { TextPipeModule } from './pipes/text-pipe.module';
 
     AnimationPipeModule,
     ArrayPipeModule,
-    ColorPipesModule,
+    ColorPipeModule,
     ConvertionPipeModule,
     DatePipeModule,
     TextPipeModule
@@ -46,13 +45,19 @@ export class JunteUiModule {
     return {
       ngModule: JunteUiModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

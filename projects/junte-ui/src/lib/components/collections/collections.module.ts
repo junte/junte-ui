@@ -1,11 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../config';
+import { en } from '../../i18n/en';
+import { AccordionModule } from './accordion/accordion.module';
 import { GanttModule } from './gantt/gantt.module';
 import { TableModule } from './table/table.module';
-import { AccordionModule } from './accordion/accordion.module';
-import { JunteUIModuleConfig } from '../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../i18n/loader';
-import { en } from '../../i18n/en';
 
 @NgModule({
   exports: [
@@ -20,13 +19,19 @@ export class CollectionsModule {
     return {
       ngModule: CollectionsModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

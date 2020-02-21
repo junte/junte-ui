@@ -14,7 +14,7 @@ export class GridTestComponent implements OnInit {
   localUi = LocalUI;
   types = {container: ContainerComponent, row: RowComponent, col: ColComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   gutterControl = this.fb.control(null);
   alignControl = this.fb.control(null);

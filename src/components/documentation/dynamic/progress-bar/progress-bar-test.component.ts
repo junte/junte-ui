@@ -17,7 +17,7 @@ export class ProgressBarTestComponent implements OnInit {
   math = Math;
   types = {progress: ProgressBarComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   valueControl = this.fb.control(50);
   legendControl = this.fb.control(true);

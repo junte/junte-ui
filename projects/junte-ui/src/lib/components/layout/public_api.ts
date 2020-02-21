@@ -1,3 +1,4 @@
+export * from './layout.module';
 export * from './app/public_api';
 export * from './block/public_api';
 export * from './grid/public_api';

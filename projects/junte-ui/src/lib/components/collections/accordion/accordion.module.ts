@@ -1,12 +1,11 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { en } from '../../../i18n/en';
+import { IconModule } from '../../elements/icon/icon.module';
 import { AccordionComponent } from './accordion.component';
 import { AccordionSectionComponent } from './section/accordion-section.component';
-import { IconModule } from '../../elements/icon/icon.module';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   imports: [
@@ -31,13 +30,19 @@ export class AccordionModule {
     return {
       ngModule: AccordionModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

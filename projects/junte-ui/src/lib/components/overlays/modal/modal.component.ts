@@ -128,7 +128,7 @@ export class ModalComponent {
 
   @Output() opened$ = new EventEmitter<boolean>();
 
-  @ViewChild('container', {read: ViewContainerRef, static: false}) container;
+  @ViewChild('container', { read: ViewContainerRef }) container;
 
   @HostBinding('style.display') display = Display.none;
 

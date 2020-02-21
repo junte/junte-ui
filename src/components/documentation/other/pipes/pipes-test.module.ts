@@ -1,20 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { GridModule } from 'junte-ui';
-import { EmptyPipe } from 'projects/junte-ui/src/lib/pipes/empty-pipe';
+import { GridModule, TextPipeModule } from 'junte-ui';
 import { PipesTestComponent } from './pipes-test.component';
 
 @NgModule({
   imports: [
     CommonModule,
     GridModule,
+    TextPipeModule
   ],
   exports: [
     PipesTestComponent
   ],
   declarations: [
-    PipesTestComponent,
-    EmptyPipe
+    PipesTestComponent
   ],
 })
 export class PipesTestModule {

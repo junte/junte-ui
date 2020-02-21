@@ -17,7 +17,7 @@ export class ProgressBarComponent {
     selector: '#progressBarLegendTemplate',
     description: 'Legend template'
   })
-  @ContentChild('progressBarLegendTemplate', {static: false})
+  @ContentChild('progressBarLegendTemplate')
   progressBarLegendTemplate: TemplateRef<any>;
 
   @PropertyApi({

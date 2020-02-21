@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { RadioComponent, TabComponent, UI } from 'junte-ui';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BlockComponent, RadioComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { BlockComponent } from '../../../../../projects/junte-ui/src/lib/components/layout/block/block.component';
 import { Language } from '../../shared/code-highlight/enum';
 
 export enum Hero {
@@ -24,8 +23,8 @@ export class RadioTestComponent implements OnInit {
   localUi = LocalUI;
   types = {radio: RadioComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
-  @ViewChild('block', {static: false}) block: BlockComponent;
+  @ViewChild('code') code: TabComponent;
+  @ViewChild('block') block: BlockComponent;
 
   sizeControl = this.fb.control(null);
   disableControl = this.fb.control(false);

@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { JunteUIModuleConfig } from '../../../config';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
 import { en } from '../../../i18n/en';
-import { I18nLoader } from '../../../i18n/loader';
 import { IconModule } from '../../elements/icon/icon.module';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { CheckboxComponent } from './checkbox.component';
@@ -31,13 +30,19 @@ export class CheckboxModule {
     return {
       ngModule: CheckboxModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

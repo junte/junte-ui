@@ -11,7 +11,7 @@ import {
   IsWeekendPipe,
   RemnantDayPipe,
   IsTodayPipe
-} from './date-fns.pipe';
+} from './date.pipe';
 
 @NgModule({
   imports: [

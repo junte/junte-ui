@@ -12,10 +12,10 @@ export class DropdownComponent {
   @HostBinding('attr.host') readonly host = 'jnt-dropdown-host';
   @HostBinding('attr.toggle') _visible: boolean;
 
-  @ContentChild('triggerTemplate', {static: false})
+  @ContentChild('triggerTemplate')
   triggerTemplate: TemplateRef<any>;
 
-  @ContentChild('dropdownTemplate', {static: false})
+  @ContentChild('dropdownTemplate')
   dropdownTemplate: TemplateRef<any>;
 
   set visible(visible: boolean) {

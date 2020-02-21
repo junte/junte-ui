@@ -4,6 +4,7 @@ export * from './lib/decorators/api';
 export * from './lib/utils/public_api';
 export * from './lib/models/table';
 export * from './lib/services/public_api';
+export * from './lib/pipes/public_api';
 
 export * from './lib/public_api';
 export * from './lib/components/collections/public_api';

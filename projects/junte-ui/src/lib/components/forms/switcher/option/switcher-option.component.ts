@@ -30,10 +30,10 @@ export class SwitcherOptionComponent {
 
   active = false;
 
-  @ContentChild(DotComponent, {static: false})
+  @ContentChild(DotComponent)
   dot: DotComponent;
 
-  @ContentChild(BadgeComponent, {static: false})
+  @ContentChild(BadgeComponent)
   badge: BadgeComponent;
 
 }

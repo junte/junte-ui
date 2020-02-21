@@ -12,7 +12,7 @@ export class ChartIndicatorComponent implements OnInit {
   @Input() color: string;
   @Input() data: any;
 
-  @ContentChild('titleTemplate', {static: false})
+  @ContentChild('titleTemplate')
   titleTemplate: TemplateRef<any>;
 
   constructor() {

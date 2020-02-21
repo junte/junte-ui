@@ -22,7 +22,7 @@ export class SkeletonTestComponent implements OnInit {
   localUi = LocalUI;
   types = {skeleton: SkeletonComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   sketchControl = this.fb.control(Sketch.User);
   animationControl = this.fb.control(true);

@@ -15,7 +15,7 @@ export class AppLayoutComponent {
     selector: '<jnt-app-header',
     description: 'Header of application'
   })
-  @ContentChild(AppHeaderComponent, {static: false})
+  @ContentChild(AppHeaderComponent)
   header: AppHeaderComponent;
 
   @HostBinding('attr.with-header')

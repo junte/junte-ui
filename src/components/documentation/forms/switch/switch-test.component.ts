@@ -16,7 +16,7 @@ export class SwitchTestComponent implements OnInit {
   localUi = LocalUI;
   switch = SwitchComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   sizeControl = new FormControl(UI.size.normal);
   labelControl = new FormControl(true);

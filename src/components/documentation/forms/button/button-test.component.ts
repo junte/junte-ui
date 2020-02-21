@@ -14,7 +14,7 @@ export class ButtonTestComponent implements OnInit {
   localUi = LocalUI;
   types = {button: ButtonComponent, group: ButtonGroupComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   schemeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);

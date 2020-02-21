@@ -87,21 +87,21 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     selector: '#tableRowActionsTemplate',
     description: 'table row actions template'
   })
-  @ContentChild('tableRowActionsTemplate', {static: false})
+  @ContentChild('tableRowActionsTemplate')
   tableRowActionsTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#tableActionsTemplate',
     description: 'table actions template'
   })
-  @ContentChild('tableActionsTemplate', {static: false})
+  @ContentChild('tableActionsTemplate')
   tableActionsTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#tableFiltersTemplate',
     description: 'table filters template'
   })
-  @ContentChild('tableFiltersTemplate', {static: false})
+  @ContentChild('tableFiltersTemplate')
   tableFiltersTemplate: TemplateRef<any>;
 
   get pagesCount() {

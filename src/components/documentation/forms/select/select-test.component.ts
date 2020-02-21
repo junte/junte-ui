@@ -16,7 +16,7 @@ export class SelectTestComponent implements OnInit {
   localUi = LocalUI;
   select = SelectComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   modeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);

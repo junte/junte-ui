@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { IsEqualPipeModule } from '../../../pipes/is-equal.module';
-import { StackModule } from '../../layout/stack/stack.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { en } from '../../../i18n/en';
+import { IsEqualPipeModule } from '../../../pipes/is-equal.pipe.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { StackModule } from '../../layout/stack/stack.module';
 import { DotModule } from '../dot/dot.module';
 import { SwitcherOptionComponent } from './option/switcher-option.component';
 import { SwitcherComponent } from './switcher.component';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   imports: [
@@ -40,13 +39,19 @@ export class SwitcherModule {
     return {
       ngModule: SwitcherModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

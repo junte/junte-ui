@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IncludesPipe, JoinPipe, MockArrayPipe, NumberArrayPipe } from './array-pipe';
+import { IncludesPipe, JoinPipe, MockArrayPipe, NumberArrayPipe } from './array.pipe';
 
 @NgModule({
   declarations: [

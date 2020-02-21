@@ -28,7 +28,7 @@ export class WeekComponent implements ControlValueAccessor, OnInit {
   current: Date = today();
   days: Date[] = [];
 
-  @ContentChild('dayTemplate', {static: false})
+  @ContentChild('dayTemplate')
   dayTemplate: TemplateRef<any>;
 
   @Input()

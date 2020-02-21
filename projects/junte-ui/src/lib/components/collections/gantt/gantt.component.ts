@@ -32,10 +32,10 @@ export class GanttComponent implements ControlValueAccessor {
   @Input()
   loading = false;
 
-  @ContentChild('toolsTemplate', {static: false})
+  @ContentChild('toolsTemplate')
   toolsTemplate: TemplateRef<any>;
 
-  @ContentChild('titleTemplate', {static: false})
+  @ContentChild('titleTemplate')
   titleTemplate: TemplateRef<any>;
 
   @ContentChildren(GanttLineComponent, {descendants: true})

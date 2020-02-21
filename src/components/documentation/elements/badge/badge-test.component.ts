@@ -14,7 +14,7 @@ export class BadgeTestComponent implements OnInit {
   localUi = LocalUI;
   types = {badge: BadgeComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   positionControl = this.fb.control(null);
   overflowControl = this.fb.control(null);

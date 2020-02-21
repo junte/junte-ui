@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { DateFnsModule } from 'ngx-date-fns';
-import { ArrayPipeModule } from '../../../pipes/array-pipe.module';
-import { DatePipeModule } from '../../../pipes/date-pipe.module';
+import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { en } from '../../../i18n/en';
+import { ArrayPipeModule } from '../../../pipes/array.pipe.module';
+import { DatePipeModule } from '../../../pipes/date.pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
 import { GanttComponent } from './gantt.component';
-import { JunteUIModuleConfig } from '../../../config';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoader } from '../../../i18n/loader';
-import { en } from '../../../i18n/en';
 
 @NgModule({
   declarations: [
@@ -38,13 +37,19 @@ export class GanttModule {
     return {
       ngModule: GanttModule,
       providers: [
+        {
+          provide: JunteUIModuleConfig,
+          useValue: config
+        },
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
-            useValue: new I18nLoader(config.i18n || en)
+            useFactory: I18nLoaderFactory,
+            deps: [JunteUIModuleConfig]
           },
           defaultLanguage: 'en'
-        }).providers]
+        }).providers
+      ]
     };
   }
 

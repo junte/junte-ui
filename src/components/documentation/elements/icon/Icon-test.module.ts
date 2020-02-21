@@ -11,9 +11,9 @@ import {
   LinkModule,
   SelectModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  ArrayPipeModule
 } from 'junte-ui';
-import { ArrayPipeModule } from 'projects/junte-ui/src/lib/pipes/array-pipe.module';
 import { SharedModule } from '../../shared/shared.module';
 import { IconTestComponent } from './icon-test.component';
 import { GetGroupsPipe, GetIconsPipe, GetPathPipe, IconsListComponent } from './select-icon/icons-list/icons-list.component';

@@ -22,7 +22,7 @@ export class MenuTestComponent implements OnInit {
   menuItem = MenuItemComponent;
   menu = MenuComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   schemeControl = this.fb.control(null);
   linkControl = this.fb.control(null);

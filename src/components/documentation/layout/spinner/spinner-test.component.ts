@@ -16,7 +16,7 @@ export class SpinnerTestComponent implements OnInit {
   localUi = LocalUI;
   types = {spinner: SpinnerComponent};
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
 
   sizeControl = this.fb.control(null);

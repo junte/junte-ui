@@ -1,4 +1,4 @@
-import { ru, en } from 'junte-ui';
+import { ru } from 'junte-ui';
 
 export function getJunteUiConfig() {
   return {

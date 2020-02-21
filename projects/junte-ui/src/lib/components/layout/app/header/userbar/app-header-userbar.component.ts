@@ -11,10 +11,10 @@ export class AppHeaderUserbarComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-header-userbar-host';
 
-  @ContentChild('userbarAvatarTemplate', {static: false})
+  @ContentChild('userbarAvatarTemplate')
   userbarAvatarTemplate: TemplateRef<any>;
 
-  @ContentChild('userbarMenuTemplate', {static: false})
+  @ContentChild('userbarMenuTemplate')
   userbarMenuTemplate: TemplateRef<any>;
 
 }

@@ -15,7 +15,7 @@ export class IconTestComponent implements OnInit {
   localUi = LocalUI;
   icon = IconComponent;
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code') code: TabComponent;
 
   icons = [];
 

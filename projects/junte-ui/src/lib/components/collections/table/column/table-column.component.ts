@@ -11,7 +11,7 @@ export class TableColumnComponent {
     selector: '#tableCellTemplate',
     description: 'table cell template'
   })
-  @ContentChild('tableCellTemplate', {static: false})
+  @ContentChild('tableCellTemplate')
   tableCellTemplate: TemplateRef<any>;
 
   @PropertyApi({
