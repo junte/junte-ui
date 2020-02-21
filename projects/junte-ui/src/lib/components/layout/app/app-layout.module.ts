@@ -23,7 +23,8 @@ import { en } from '../../../i18n/en';
     CommonModule,
     IconModule,
     StackModule,
-    ButtonModule
+    ButtonModule,
+    TranslateModule
   ],
   declarations: [
     AppLayoutComponent,
