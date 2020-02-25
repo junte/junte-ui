@@ -19,7 +19,9 @@
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
@@ -56,21 +58,31 @@
             <jnt-form-item>
               <jnt-form-label for="type">Type</jnt-form-label>
               <jnt-switcher formControlName="type">
-                <jnt-switcher-option label="Horizontal" [value]="ui.orientation.horizontal"></jnt-switcher-option>
-                <jnt-switcher-option label="Vertical" [value]="ui.orientation.vertical"></jnt-switcher-option>
+                <jnt-switcher-option label="Horizontal"
+                                     i18n-label="@@label.horizontal"
+                                     [value]="ui.orientation.horizontal"></jnt-switcher-option>
+                <jnt-switcher-option label="Vertical"
+                                     i18n-label="@@label.vertical"
+                                     [value]="ui.orientation.vertical"></jnt-switcher-option>
               </jnt-switcher>
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+              <jnt-checkbox formControlName="icon"
+                            label="Icon"
+                            i18n-label="@@label.icon"></jnt-checkbox>
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-checkbox formControlName="dot" label="Dot"></jnt-checkbox>
+              <jnt-checkbox formControlName="dot"
+                            label="Dot"
+                            i18n-label="@@label.dot"></jnt-checkbox>
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-checkbox formControlName="badge" label="Badge"></jnt-checkbox>
+              <jnt-checkbox formControlName="badge"
+                            label="Badge"
+                            i18n-label="@@label.badge"></jnt-checkbox>
             </jnt-form-item>
           </jnt-form>
         </jnt-stack>

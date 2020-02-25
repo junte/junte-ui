@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Table</h1>
+  <h1 i18n="@@label.table">Table</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/collections/table"
@@ -13,7 +13,9 @@
 
   <jnt-tabs playground>
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -32,19 +34,25 @@
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="search" label="Search"></jnt-checkbox>
+                    <jnt-checkbox formControlName="search"
+                                  label="Search"
+                                  i18n-label="@@label.search"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="filter" label="Filter"></jnt-checkbox>
+                    <jnt-checkbox formControlName="filter"
+                                  label="Filter"
+                                  i18n-label="@@label.filter"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="actions" label="Actions"></jnt-checkbox>
+                    <jnt-checkbox formControlName="actions"
+                                  label="Actions"
+                                  i18n-label="@@label.actions"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>
@@ -57,7 +65,8 @@
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'table-test', type: 'TableTestComponent'}"
@@ -86,13 +95,17 @@
                           </ng-template>
                         </jnt-table-column>
 
-                        <jnt-table-column title="Person" sort="person">
+                        <jnt-table-column title="Person"
+                                          i18n-title="@@label.person"
+                                          sort="person">
                           <ng-template #tableCellTemplate let-person="person">
                             {{person}}
                           </ng-template>
                         </jnt-table-column>
 
-                        <jnt-table-column title="Job" sort="job">
+                        <jnt-table-column title="Job"
+                                          i18n-title="@@label.job"
+                                          sort="job">
                           <ng-template #tableCellTemplate let-job="job">
                             {{job}}
                           </ng-template>
@@ -102,8 +115,10 @@
                           <![CDATA[
                           <ng-template #tableRowActionsTemplate let-row="row">
                             <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                              <jnt-menu-item title="Edit"></jnt-menu-item>
-                              <jnt-menu-item title="Delete"></jnt-menu-item>
+                              <jnt-menu-item title="Edit"
+                                             i18n-title="@@action.edit"></jnt-menu-item>
+                              <jnt-menu-item title="Delete"
+                                             i18n-title="@@action.delete"></jnt-menu-item>
                             </jnt-menu>
                           </ng-template>]]>
                         </ng-container>
@@ -111,7 +126,9 @@
                         <ng-container *ngIf="filterControl.value">
                           <![CDATA[
                           <ng-template #tableFiltersTemplate>
-                            <jnt-select formControlName="job" placeholder="Select job">
+                            <jnt-select formControlName="job"
+                                        placeholder="Select job"
+                                        i18n-placeholder="@@label.select_job">
                               <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
                             </jnt-select>
                           </ng-template>

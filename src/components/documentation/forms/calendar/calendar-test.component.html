@@ -23,7 +23,9 @@
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -47,9 +49,12 @@
                           </ng-container>
                         </ng-container>
                       </ng-template>
-                      <jnt-week-metric title="Time"></jnt-week-metric>
-                      <jnt-week-metric title="Distance"></jnt-week-metric>
-                      <jnt-week-metric title="Сalories"></jnt-week-metric>
+                      <jnt-week-metric title="Time"
+                                       i18n-title="@@label.time"></jnt-week-metric>
+                      <jnt-week-metric title="Distance"
+                                       i18n-title="@@label.distance"></jnt-week-metric>
+                      <jnt-week-metric title="Сalories"
+                                       i18n-title="@@label.calories"></jnt-week-metric>
                     </ng-container>
                     <ng-template *ngIf="dayControl.value" #calendarDayTemplate let-date="date">
                       <div day>{{date | dfnsGetDate}}</div>
@@ -87,11 +92,15 @@
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-checkbox formControlName="metrics" label="Metrics"></jnt-checkbox>
+                <jnt-checkbox formControlName="metrics"
+                              label="Metrics"
+                              i18n-label="@@label.metrics" ></jnt-checkbox>
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-checkbox formControlName="day" label="Custom template day"></jnt-checkbox>
+                <jnt-checkbox formControlName="day"
+                              label="Custom template day"
+                              i18n-label="@@label.custom_template_day"></jnt-checkbox>
               </jnt-form-item>
             </jnt-form>
           </jnt-col>
@@ -132,9 +141,12 @@
                   </ng-container>
                 </ng-container>
               </ng-template>
-              <jnt-week-metric title="Time"></jnt-week-metric>
-              <jnt-week-metric title="Distance"></jnt-week-metric>
-              <jnt-week-metric title="Сalories"></jnt-week-metric>
+              <jnt-week-metric title="Time"
+                               i18n-title="@@label.time"></jnt-week-metric>
+              <jnt-week-metric title="Distance"
+                               i18n-title="@@label.distance"></jnt-week-metric>
+              <jnt-week-metric title="Сalories"
+                               i18n-title="@@label.calories"></jnt-week-metric>
               ]]>
             </ng-container>
             <![CDATA[

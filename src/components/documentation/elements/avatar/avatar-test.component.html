@@ -16,7 +16,9 @@
 
   <jnt-tabs playground>
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -85,7 +87,9 @@
                 <jnt-form-item>
                   <jnt-form-label for="size">Size</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
                       <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
                       <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
                       <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
@@ -98,17 +102,27 @@
                   <jnt-form-label for="shape">Shape</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="shape" placeholder="Circle">
-                      <jnt-select-option label="Circle" [key]="ui.shape.circle"></jnt-select-option>
-                      <jnt-select-option label="Square" [key]="ui.shape.square"></jnt-select-option>
+                      <jnt-select-option label="Circle"
+                                         i18n-label="@@label.circle"
+                                         [key]="ui.shape.circle"></jnt-select-option>
+                      <jnt-select-option label="Square"
+                                         i18n-label="@@label.square"
+                                         [key]="ui.shape.square"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
-                    <jnt-checkbox formControlName="text" label="Text"></jnt-checkbox>
-                    <jnt-checkbox formControlName="image" label="Image"></jnt-checkbox>
+                    <jnt-checkbox formControlName="icon"
+                                  label="Icon"
+                                  i18n-label="@@label.icon"></jnt-checkbox>
+                    <jnt-checkbox formControlName="text"
+                                  label="Text"
+                                  i18n-label="@@label.text"></jnt-checkbox>
+                    <jnt-checkbox formControlName="image"
+                                  label="Image"
+                                  i18n-label="@@label.image"></jnt-checkbox>
                   </jnt-stack>
                 </jnt-form-item>
 
@@ -122,14 +136,16 @@
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'avatar-test', type: 'AvatarTestComponent'}"
                 scss="elements/avatar"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.component.html">
                 <![CDATA[

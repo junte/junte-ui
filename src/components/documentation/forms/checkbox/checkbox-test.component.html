@@ -23,7 +23,8 @@
   </ol>
 
   <jnt-tabs playground>
-    <jnt-tab title="Preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -46,7 +47,9 @@
 
                 <h3>Your heroes:</h3>
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                  <jnt-block title="Your hero" *ngFor="let value of heroControl.value">
+                  <jnt-block title="Your hero"
+                             i18n-title="@@label.your_hero"
+                             *ngFor="let value of heroControl.value">
                       <ng-container [ngSwitch]="value">
                         <jnt-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
@@ -104,17 +107,20 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'checkbox-test', type: 'CheckboxTestComponent'}"
                 scss="forms/checkbox"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="checkbox-test.component.html">
                 <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
