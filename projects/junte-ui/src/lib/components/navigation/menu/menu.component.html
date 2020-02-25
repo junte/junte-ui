@@ -29,7 +29,7 @@
         </jnt-icon>
       </div>
 
-      <div submenu *ngIf="!!item.submenus.length" [attr.opened]="item.opened">
+      <div submenu *ngIf="!!item.submenus.length" [attr.opened]="item.opened" jntSubMenu jntSubMenuItems jntSubMenuTitle>
         <ng-container *ngFor="let submenu of item.submenus">
           <jnt-link link *ngFor="let subitem of submenu.items"
                     [title]="subitem.title"

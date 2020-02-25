@@ -1,4 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { UI } from '../../../../enums/ui';
 import { FormMessageComponent } from '../message/form-message.component';
 
@@ -15,6 +16,10 @@ export class FormControlComponent {
   @ContentChildren(FormMessageComponent)
   messages: QueryList<FormMessageComponent>;
 
+  @PropertyApi({
+    description: 'Form control name',
+    type: 'string',
+  })
   @Input()
   name: string;
 

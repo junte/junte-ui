@@ -12,6 +12,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 import { FormControlComponent } from './control/form-control.component';
 
@@ -28,12 +29,24 @@ export class FormComponent implements OnInit {
   @ContentChildren(FormControlComponent, {descendants: true})
   controls: QueryList<FormControlComponent>;
 
+  @PropertyApi({
+    description: 'Name form group',
+    type: 'FormGroup',
+  })
   @Input('formGroup')
   form: FormGroup;
 
+  @PropertyApi({
+    description: 'Form loading',
+    type: 'boolean',
+  })
   @Input()
   loading = false;
 
+  @PropertyApi({
+    description: 'Title for form',
+    type: 'string',
+  })
   @Input()
   title: string;
 
