@@ -1,8 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrismModule } from '@ngx-prism/core';
-import { LinkModule, StackModule, TabsModule, GridModule, FormModule, AccordionModule, ButtonModule, InputModule, BlockModule } from 'junte-ui';
+import {
+  LinkModule,
+  StackModule,
+  TabsModule,
+  GridModule,
+  FormModule,
+  AccordionModule,
+  ButtonModule,
+  InputModule,
+  BlockModule,
+  CheckboxModule,
+  IconModule,
+  RadioModule,
+  DatePickerModule,
+  SelectModule,
+  SwitchModule,
+  SwitcherModule
+} from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { FormTestComponent } from './form-test.component';
 
@@ -10,6 +27,7 @@ import { FormTestComponent } from './form-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     LinkModule,
     StackModule,
     TabsModule,
@@ -19,8 +37,15 @@ import { FormTestComponent } from './form-test.component';
     GridModule,
     SharedModule,
     ButtonModule,
+    CheckboxModule,
     InputModule,
     BlockModule,
+    IconModule,
+    RadioModule,
+    DatePickerModule,
+    SelectModule,
+    SwitchModule,
+    SwitcherModule,
     PrismModule
   ],
   exports: [

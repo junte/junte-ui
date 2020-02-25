@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 
 @Component({
   selector: 'jnt-form-label',
@@ -8,6 +9,10 @@ export class FormLabelComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-form-label-host';
 
+  @PropertyApi({
+    description: 'The identifier of the item to associate with',
+    type: 'string',
+  })
   @HostBinding('attr.for')
   @Input()
   for: string;

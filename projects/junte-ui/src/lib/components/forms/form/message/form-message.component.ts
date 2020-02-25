@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { PropertyApi } from '../../../../decorators/api';
 import { ValidationTypeError } from '../enums';
 
 @Component({
@@ -16,6 +17,11 @@ export class FormMessageComponent {
     return !!this.active ? 'inline-block' : 'none';
   }
 
+  @PropertyApi({
+    description: 'Validation type error',
+    path: 'ui.form.validators.typeError',
+    options: [ValidationTypeError.required, ValidationTypeError.minlength]
+  })
   @Input()
   type: ValidationTypeError = null;
 

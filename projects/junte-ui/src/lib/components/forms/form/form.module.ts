@@ -50,6 +50,12 @@ import { FieldTouchedHasErrorPipe } from './pipes';
     ValidationDirective,
     FieldTouchedHasErrorPipe
   ],
+  entryComponents: [
+    FormComponent,
+    FormControlComponent,
+    FormLabelComponent,
+    FormMessageComponent,
+  ],
   exports: [
     FormComponent,
     FormControlComponent,
