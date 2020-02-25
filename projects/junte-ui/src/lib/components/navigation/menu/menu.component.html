@@ -3,8 +3,8 @@
            [align]="ui.flex.align.stretch"
            [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
-    <div (click)="item.opened = !item.opened" top-level>
-      <div title>
+    <div [attr.active]="item.opened" top-level [jntSubMenu]="item" [collapsed]="collapsed">
+      <div title jntSubMenuTitle (click)="item.opened = !item.opened">
         <jnt-link link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
@@ -29,7 +29,7 @@
         </jnt-icon>
       </div>
 
-      <div submenu *ngIf="!!item.submenus.length" [attr.opened]="item.opened" jntSubMenu jntSubMenuItems jntSubMenuTitle>
+      <div submenu [attr.opened]="item.opened" jntSubMenuItems>
         <ng-container *ngFor="let submenu of item.submenus">
           <jnt-link link *ngFor="let subitem of submenu.items"
                     [title]="subitem.title"

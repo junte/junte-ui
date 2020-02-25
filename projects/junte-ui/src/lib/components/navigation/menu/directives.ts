@@ -6,16 +6,17 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
+  Input,
   QueryList
 } from '@angular/core';
 import { LinkComponent } from '../link/link.component';
+import { MenuItemComponent } from './menu-item.component';
 
 @Directive({selector: '[jntSubMenuItems]'})
 export class SubMenuItemsDirective {
 
   @HostBinding('style.top.px')
   top: number;
-
 }
 
 @Directive({selector: '[jntSubMenuTitle]'})
@@ -31,14 +32,16 @@ export class SubMenuTitleDirective {
   set active(active: boolean) {
     this._active = active;
   }
-
 }
 
 @Directive({selector: '[jntSubMenu]'})
 export class SubMenuDirective implements AfterViewInit {
 
+  @Input('jntSubMenu') item: MenuItemComponent;
+  @Input() collapsed;
+
   @ContentChild(SubMenuItemsDirective)
-  item: SubMenuItemsDirective;
+  submenu: SubMenuItemsDirective;
 
   @ContentChild(SubMenuTitleDirective)
   title: SubMenuTitleDirective;
@@ -48,8 +51,18 @@ export class SubMenuDirective implements AfterViewInit {
 
   @HostListener('mouseenter')
   onEnter() {
-    const position = this.host.nativeElement.getBoundingClientRect();
-    this.item.top = position.top;
+    if (!!this.submenu && this.collapsed) {
+      const position = this.host.nativeElement.getBoundingClientRect();
+      this.submenu.top = position.top;
+      this.item.opened = true;
+    }
+  }
+
+  @HostListener('mouseleave')
+  onLeave() {
+    if (!!this.submenu && this.collapsed) {
+      this.item.opened = false;
+    }
   }
 
   constructor(private host: ElementRef) {
@@ -58,5 +71,3 @@ export class SubMenuDirective implements AfterViewInit {
   ngAfterViewInit() {
   }
 }
-
-
