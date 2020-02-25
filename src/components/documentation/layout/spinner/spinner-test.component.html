@@ -22,7 +22,9 @@
 
     <jnt-tabs playground>
 
-      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <jnt-tab title="Preview"
+               i18n-title="@@label.preview"
+               [icon]="localUi.icons.preview">
         <ng-template #tabContentTemplate>
           <jnt-row>
             <jnt-col [tablet]="8">
@@ -39,12 +41,17 @@
                   <jnt-form-item>
                     <jnt-form-label for="size">Size</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="size" placeholder="Normal">
+                      <jnt-select formControlName="size"
+                                  placeholder="Normal"
+                                  i18n-placeholder="@@label.normal">
                         <jnt-select-option label="Small"
+                                           i18n-label="@@label.small"
                                            [key]="ui.size.small"></jnt-select-option>
                         <jnt-select-option label="Normal"
+                                           i18n-label="@@label.normal"
                                            [key]="ui.size.normal"></jnt-select-option>
                         <jnt-select-option label="Large"
+                                           i18n-label="@@label.large"
                                            [key]="ui.size.large"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
@@ -60,7 +67,8 @@
       <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
-            <jnt-accordion-section title="How to start">
+            <jnt-accordion-section title="How to start"
+                                   i18n-title="@@label.how_to_start">
               <ng-template #accordionContentTemplate>
                 <app-how-to-use
                   [test]="{selector:'spinner-test', type: 'SpinnerTestComponent'}"
@@ -68,7 +76,8 @@
                 </app-how-to-use>
               </ng-template>
             </jnt-accordion-section>
-            <jnt-accordion-section title="Component template">
+            <jnt-accordion-section title="Component template"
+                                   i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="spinner-test.template.html">
                   <![CDATA[

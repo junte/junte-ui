@@ -13,7 +13,9 @@
     </jnt-link>
   </jnt-stack>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -21,11 +23,13 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
                   <jnt-label label="Todo"
+                             i18n-label="@@label.todo"
                              [icon]="iconControl.value ? ui.icons.home : null"
                              [size]="sizeControl.value"
                              [color]="colorControl.value">
                   </jnt-label>
                   <jnt-label label="Doing"
+                             i18n-label="@@label.doing"
                              [icon]="iconControl.value ? ui.icons.figma : null"
                              [size]="sizeControl.value"
                              [color]="colorControl.value">
@@ -41,9 +45,15 @@
                 <jnt-form-item>
                   <jnt-form-label for="size">Size</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
-                      <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                      <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -57,7 +67,9 @@
 
                 <jnt-form-item>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
+                    <jnt-checkbox formControlName="icon"
+                                  label="Icon"
+                                  i18n-label="@@label.icon"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
@@ -75,7 +87,8 @@
           scss="elements/label"></app-how-to-use>
         <app-code-highlight file="label-test.template.html">
           <![CDATA[
-          <jnt-label label="Doing" ]]>
+          <jnt-label label="Doing"
+                     i18n-label="@@label.doing"  ]]>
             <ng-container *ngIf="iconControl.value">
               <![CDATA[
               [icon]="ui.icons.animated.runningMan"]]>

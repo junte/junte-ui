@@ -24,7 +24,9 @@
 
     <jnt-tabs playground>
 
-      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <jnt-tab title="Preview"
+               i18n-title="@@label.preview"
+               [icon]="localUi.icons.preview">
         <ng-template #tabContentTemplate>
           <jnt-stack>
             <jnt-form [formGroup]="builder">
@@ -68,10 +70,18 @@
                     </ng-template>
                     <ng-template #headerMenuTemplate *ngIf="menuControl.value">
                       <jnt-menu>
-                        <jnt-menu-item title="Home" [icon]="ui.icons.home"></jnt-menu-item>
-                        <jnt-menu-item title="My network" [icon]="localUi.icons.network"></jnt-menu-item>
-                        <jnt-menu-item title="Jobs" [icon]="localUi.icons.jobs"></jnt-menu-item>
-                        <jnt-menu-item title="Messages" [icon]="ui.icons.messages"></jnt-menu-item>
+                        <jnt-menu-item title="Home"
+                                       i18n-title="@@label.home"
+                                       [icon]="ui.icons.home"></jnt-menu-item>
+                        <jnt-menu-item title="My network"
+                                       i18n-title="@@label.my_network"
+                                       [icon]="localUi.icons.network"></jnt-menu-item>
+                        <jnt-menu-item title="Jobs"
+                                       i18n-title="@@label.jobs"
+                                       [icon]="localUi.icons.jobs"></jnt-menu-item>
+                        <jnt-menu-item title="Messages"
+                                       i18n-title="@@label.messages"
+                                       [icon]="ui.icons.messages"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
@@ -110,12 +120,15 @@
                           <jnt-menu [type]="ui.orientation.vertical"
                                     [spacer]="ui.size.small">
                             <jnt-menu-item title="Profile"
+                                           i18n-title="@@label.profile"
                                            [icon]="ui.icons.profile"
                                            [link]="['/profile']"></jnt-menu-item>
                             <jnt-menu-item title="Settings"
+                                           i18n-title="@@label.settings"
                                            [icon]="ui.icons.animated.settings"
                                            [link]="['/settings']"></jnt-menu-item>
                             <jnt-menu-item title="Logout"
+                                           i18n-title="@@label.logout"
                                            [icon]="ui.icons.home"
                                            [link]="['/logout']"></jnt-menu-item>
                           </jnt-menu>
@@ -163,23 +176,30 @@
                           <jnt-menu [type]="ui.orientation.vertical"
                                     [spacer]="ui.size.small">
                             <jnt-menu-item title="General"
+                                           i18n-title="@@label.general"
                                            [icon]="localUi.icons.general">
                               <jnt-menu>
                                 <jnt-menu-item title="About"
+                                               i18n-title="@@label.about"
                                                [icon]="localUi.icons.bio"></jnt-menu-item>
                                 <jnt-menu-item title="Education"
+                                               i18n-title="@@label.education"
                                                [icon]="ui.icons.knowledge"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
 
                             <jnt-menu-item title="Profession"
+                                           i18n-title="@@label.profession"
                                            [icon]="localUi.icons.certificate">
                               <jnt-menu>
                                 <jnt-menu-item title="Skills"
+                                               i18n-title="@@label.skills"
                                                [icon]="ui.icons.skull"></jnt-menu-item>
                                 <jnt-menu-item title="Experience"
+                                               i18n-title="@@label.experience"
                                                [icon]="localUi.icons.experience"></jnt-menu-item>
                                 <jnt-menu-item title="Certificates"
+                                               i18n-title="@@label.certificates"
                                                [icon]="localUi.icons.certificate"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
@@ -200,14 +220,16 @@
       <jnt-tab #code title="Code" [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
-            <jnt-accordion-section title="How to start">
+            <jnt-accordion-section title="How to start"
+                                   i18n-title="@@label.how_to_start">
               <ng-template #accordionContentTemplate>
                 <app-how-to-use
                   [test]="{selector:'layout-test', type: 'AppLayoutTestComponent'}"
                   scss="layout/app"></app-how-to-use>
               </ng-template>
             </jnt-accordion-section>
-            <jnt-accordion-section title="Component template">
+            <jnt-accordion-section title="Component template"
+                                   i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="app-layout-test.template.html">
                   <![CDATA[
@@ -227,11 +249,19 @@
                           <![CDATA[
                           <ng-template #headerMenuTemplate>
                             <jnt-menu>
-                              <jnt-menu-item [icon]="ui.icons.home" title="Home"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.beaker" title="Documentation"></jnt-menu-item>
-                              <jnt-menu-item title="GitLab" [icon]="ui.icons.gitlab"></jnt-menu-item>
-                              <jnt-menu-item title="Figma" [icon]="ui.icons.figma"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.mailbox" title="Contacts"></jnt-menu-item>
+                              <jnt-menu-item [icon]="ui.icons.home"
+                                             title="Home"
+                                             i18n-title="@@label.home"></jnt-menu-item>
+                              <jnt-menu-item [icon]="ui.icons.beaker"
+                                             title="Documentation"
+                                             i18n-title="@@label.documentation"></jnt-menu-item>
+                              <jnt-menu-item [icon]="ui.icons.gitlab"
+                                             title="GitLab"></jnt-menu-item>
+                              <jnt-menu-item [icon]="ui.icons.figma"
+                                             title="Figma"></jnt-menu-item>
+                              <jnt-menu-item [icon]="ui.icons.mailbox"
+                                             title="Contacts"
+                                             i18n-title="@@label.contacts"></jnt-menu-item>
                             </jnt-menu>
                           </ng-template>
                           ]]>
@@ -271,9 +301,12 @@
                               </ng-template>
                               <ng-template #userbarMenuTemplate>
                                 <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                                  <jnt-menu-item  title="Logout"></jnt-menu-item>
-                                  <jnt-menu-item  title="Profile"></jnt-menu-item>
-                                  <jnt-menu-item title="Settings"></jnt-menu-item>
+                                  <jnt-menu-item  title="Logout"
+                                                  i18n-title="@@label.logout"></jnt-menu-item>
+                                  <jnt-menu-item  title="Profile"
+                                                  i18n-title="@@label.profile"></jnt-menu-item>
+                                  <jnt-menu-item title="Settings"
+                                                 i18n-title="@@label.settings"></jnt-menu-item>
                                 </jnt-menu>
                               </ng-template>
                             </jnt-app-header-userbar>
@@ -287,21 +320,33 @@
                         <![CDATA[
                         <jnt-app-aside #aside>
                           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-menu-item title="General" [icon]="ui.icons.crown">
+                            <jnt-menu-item title="General"
+                                           i18n-title="@@label.general"
+                                           [icon]="ui.icons.crown">
                               <jnt-menu>
-                                <jnt-menu-item title="Theming"></jnt-menu-item>
-                                <jnt-menu-item title="Typography"></jnt-menu-item>
+                                <jnt-menu-item title="Theming"
+                                               i18n-title="@@label.theming"></jnt-menu-item>
+                                <jnt-menu-item title="Typography"
+                                               i18n-title="@@label.typography"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
 
-                            <jnt-menu-item title="Layout" [icon]="ui.icons.layout">
+                            <jnt-menu-item title="Layout"
+                                           i18n-title="@@label.layout"
+                                           [icon]="ui.icons.layout">
                               <jnt-menu>
-                                <jnt-menu-item title="Grid"></jnt-menu-item>
-                                <jnt-menu-item title="Stack"></jnt-menu-item>
-                                <jnt-menu-item title="Block"></jnt-menu-item>
-                                <jnt-menu-item title="Spinner"></jnt-menu-item>
-                                <jnt-menu-item title="Application"></jnt-menu-item>
-                                <jnt-menu-item title="Skeleton"></jnt-menu-item>
+                                <jnt-menu-item title="Grid"
+                                               i18n-title="@@label.grid"></jnt-menu-item>
+                                <jnt-menu-item title="Stack"
+                                               i18n-title="@@label.stack"></jnt-menu-item>
+                                <jnt-menu-item title="Block"
+                                               i18n-title="@@label.block"></jnt-menu-item>
+                                <jnt-menu-item title="Spinner"
+                                               i18n-title="@@label.spinner"></jnt-menu-item>
+                                <jnt-menu-item title="Application"
+                                               i18n-title="@@label.application"></jnt-menu-item>
+                                <jnt-menu-item title="Skeleton"
+                                               i18n-title="@@label.skeleton"></jnt-menu-item>
                               </jnt-menu>
                             </jnt-menu-item>
                           </jnt-menu>
@@ -352,7 +397,8 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Design system" [icon]="ui.icons.figma" [padding]="ui.gutter.none">
+      <jnt-tab title="Design system"
+               i18n-title="@@label.system" [icon]="ui.icons.figma" [padding]="ui.gutter.none">
         <ng-template #tabContentTemplate>
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/yKIp2EGu6DY" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

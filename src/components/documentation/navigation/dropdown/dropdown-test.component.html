@@ -23,7 +23,9 @@
 
     <jnt-tabs playground>
 
-      <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <jnt-tab title="Preview"
+               i18n-title="@@label.preview"
+               [icon]="localUi.icons.preview">
         <ng-template #tabContentTemplate>
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
@@ -34,14 +36,17 @@
                 <ng-template #dropdownTemplate let-action="trigger">
                   <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                     <jnt-menu-item title="Edit"
+                                   i18n-title="@@label.edit"
                                    [icon]="ui.icons.edit"
                                    (click)="action()">
                     </jnt-menu-item>
                     <jnt-menu-item title="Delete"
+                                   i18n-title="@@label.delete"
                                    [icon]="ui.icons.delete"
                                    (click)="action()">
                     </jnt-menu-item>
                     <jnt-menu-item title="Copy"
+                                   i18n-title="@@label.copy"
                                    [icon]="ui.icons.copy"
                                    (click)="action()">
                     </jnt-menu-item>
@@ -53,10 +58,14 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab title="Code" #code [icon]="localUi.icons.code">
+      <jnt-tab title="Code"
+               i18n-title="@@label.code"
+               #code
+               [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
-            <jnt-accordion-section title="How to start">
+            <jnt-accordion-section title="How to start"
+                                   i18n-title="@@label.how_to_start">
               <ng-template #accordionContentTemplate>
                 <app-how-to-use
                   [test]="{selector:'dropdown-test', type: 'DropdownTestComponent'}"
@@ -64,20 +73,31 @@
                 </app-how-to-use>
               </ng-template>
             </jnt-accordion-section>
-            <jnt-accordion-section title="Component template">
+            <jnt-accordion-section title="Component template"
+                                   i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight>
                   <![CDATA[
                   <jnt-dropdown>
                     <ng-template #trigger let-close="trigger">
-                      <jnt-button text="Dropdown" (click)="close()"></jnt-button>
+                      <jnt-button text="Dropdown"
+                                  i18n-text="@@action.dropdown"
+                                  (click)="close()"></jnt-button>
                     </ng-template>
                     <ng-template #dropdown let-close="trigger">
                       <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                        <jnt-menu-item title="Edit" (click)="close()"></jnt-menu-item>
-                        <jnt-menu-item title="Delete" (click)="close()"></jnt-menu-item>
-                        <jnt-menu-item title="Add" (click)="close()"></jnt-menu-item>
-                        <jnt-menu-item title="Copy" (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Edit"
+                                       i18n-title="@@label.edit"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Delete"
+                                       i18n-title="@@label.delete"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Add"
+                                       i18n-title="@@label.add"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy"
+                                       i18n-title="@@label.copy"
+                                       (click)="close()"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                   </jnt-dropdown>

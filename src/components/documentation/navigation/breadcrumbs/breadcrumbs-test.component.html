@@ -15,7 +15,9 @@
   <h1>Breadcrumbs</h1>
 
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
@@ -26,10 +28,18 @@
                   <jnt-icon [icon]="ui.icons.home"></jnt-icon>
                   <router-outlet></router-outlet>
                 </jnt-stack>
-                <jnt-link [source]="['.']" title="Home"></jnt-link>
-                <jnt-link [source]="['page']" title="First page"></jnt-link>
-                <jnt-link [source]="['page', 'page-2']" title="Second page"></jnt-link>
-                <jnt-link [source]="['page', 'page-2', 'page-3']" title="Third page"></jnt-link>
+                <jnt-link [source]="['.']"
+                          title="Home"
+                          i18n-title="@@label.home"></jnt-link>
+                <jnt-link [source]="['page']"
+                          title="First page"
+                          i18n-title="@@label.first_page"></jnt-link>
+                <jnt-link [source]="['page', 'page-2']"
+                          title="Second page"
+                          i18n-title="@@label.second_page"></jnt-link>
+                <jnt-link [source]="['page', 'page-2', 'page-3']"
+                          title="Third page"
+                          i18n-title="@@label.third_page"></jnt-link>
               </jnt-stack>
             </ng-template>
           </app-browser-preview>
@@ -40,7 +50,8 @@
     <jnt-tab title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="0">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'breadcrumbs-test', type: 'BreadcrumbsTestComponent'}"
@@ -48,7 +59,8 @@
               </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
                 <![CDATA[
@@ -57,7 +69,8 @@
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Routing">
+          <jnt-accordion-section title="Routing"
+                                 i18n-title="@@label.routing">
             <ng-template #accordionContentTemplate>
               <app-code-highlight  [language]="language.javascript">
                 <![CDATA[
@@ -99,7 +112,8 @@
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Resolver">
+          <jnt-accordion-section title="Resolver"
+                                 i18n-title="@@label.resolver">
             <ng-template #accordionContentTemplate>
               <app-code-highlight [language]="language.javascript">
                 <![CDATA[
