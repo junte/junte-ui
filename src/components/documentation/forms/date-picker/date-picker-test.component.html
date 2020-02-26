@@ -11,13 +11,17 @@
     You can use a date picker to allow a user to enter either a point in time
     (calendar date, time value or both) or a time interval (for example for a timer).
     The date picker reports interactions to its associated target object.<br>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uidatepicker" title="More">
+    <jnt-link source="https://developer.apple.com/documentation/uikit/uidatepicker"
+              title="More"
+              i18n-title="@@label.more">
     </jnt-link>
   </p>
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -41,7 +45,9 @@
                 <jnt-form-label for="placeholder">Placeholder</jnt-form-label>
                 <jnt-form-control>
                   <jnt-form-item>
-                    <jnt-checkbox formControlName="placeholder" label="placeholder"></jnt-checkbox>
+                    <jnt-checkbox formControlName="placeholder"
+                                  label="placeholder"
+                                  i18n-label="@@label.placeholder"></jnt-checkbox>
                   </jnt-form-item>
                 </jnt-form-control>
               </jnt-form-item>

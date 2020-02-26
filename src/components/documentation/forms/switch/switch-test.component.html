@@ -17,7 +17,9 @@
     in the control (if properly configured) sending an action message.<br>
     You can customize the appearance of the switch by changing the color used to tint the switch when it is on or
     off.<br>
-    <jnt-link source="https://developer.apple.com/documentation/uikit/uiswitch" title="More">
+    <jnt-link source="https://developer.apple.com/documentation/uikit/uiswitch"
+              title="More"
+              i18n-title="@@label.more">
     </jnt-link>
   </p>
   <h3>Requirements</h3>
@@ -35,7 +37,9 @@
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
@@ -58,43 +62,63 @@
           <jnt-form [formGroup]="form" builder>
 
             <jnt-form-item>
-              <jnt-checkbox formControlName="label" label="Label"></jnt-checkbox>
+              <jnt-checkbox formControlName="label"
+                            label="Label"
+                            i18n-label="@@label.label"></jnt-checkbox>
             </jnt-form-item>
 
             <jnt-form-item>
               <jnt-form-label for="size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
-                  <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
-                  <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                  <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                  <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
+                  <jnt-select-option label="Tiny"
+                                     i18n-label="@@label.tiny"
+                                     [key]="ui.size.tiny"></jnt-select-option>
+                  <jnt-select-option label="Small"
+                                     i18n-label="@@label.small"
+                                     [key]="ui.size.small"></jnt-select-option>
+                  <jnt-select-option label="Normal"
+                                     i18n-label="@@label.normal"
+                                     [key]="ui.size.normal"></jnt-select-option>
+                  <jnt-select-option label="Large"
+                                     i18n-label="@@label.large"
+                                     [key]="ui.size.large"></jnt-select-option>
                 </jnt-select>
               </jnt-form-control>
             </jnt-form-item>
 
             <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.large">
               <jnt-form-item>
-                <jnt-checkbox formControlName="iconOn" label="IconOn"></jnt-checkbox>
+                <jnt-checkbox formControlName="iconOn"
+                              label="IconOn"
+                              i18n-label="@@label.icon_on"></jnt-checkbox>
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-checkbox formControlName="iconOff" label="IconOff"></jnt-checkbox>
+                <jnt-checkbox formControlName="iconOff"
+                              label="IconOff"
+                              i18n-label="@@label.icon_off"></jnt-checkbox>
               </jnt-form-item>
             </jnt-stack>
 
             <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.large">
               <jnt-form-item>
-                <jnt-checkbox formControlName="labelOn" label="labelOn"></jnt-checkbox>
+                <jnt-checkbox formControlName="labelOn"
+                              label="labelOn"
+                              i18n-label="@@label.label_on"></jnt-checkbox>
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-checkbox formControlName="labelOff" label="labelOff"></jnt-checkbox>
+                <jnt-checkbox formControlName="labelOff"
+                              label="labelOff"
+                              i18n-label="@@label.label_off"></jnt-checkbox>
               </jnt-form-item>
             </jnt-stack>
 
             <jnt-form-item>
-              <jnt-checkbox formControlName="disabled" label="Disabled"></jnt-checkbox>
+              <jnt-checkbox formControlName="disabled"
+                            label="Disabled"
+                            i18n-label="@@label.disabled"></jnt-checkbox>
             </jnt-form-item>
           </jnt-form>
         </jnt-stack>

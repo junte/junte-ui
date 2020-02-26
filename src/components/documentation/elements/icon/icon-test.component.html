@@ -15,7 +15,9 @@
 
   <jnt-tabs playground>
 
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -42,17 +44,28 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-button text="Pick the icon"
+                            i18n-text="@@action.pick_icon"
                             [icon]="iconControl.value.value"
                             (click)="select()"></jnt-button>
 
                 <jnt-form-item>
                   <jnt-form-label for="size">Size</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
-                      <jnt-select-option label="Tiny" [key]="ui.size.tiny"></jnt-select-option>
-                      <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                      <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                      <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [key]="ui.size.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [key]="ui.size.large"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -67,14 +80,16 @@
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'icon-test', type: 'IconTestComponent'}"
                 scss="elements/icon"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="icon-test.template.html">
                 <![CDATA[

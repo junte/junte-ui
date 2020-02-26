@@ -15,7 +15,9 @@
   </jnt-stack>
 
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
 
@@ -28,6 +30,7 @@
                                 [keyField]="'id'"
                                 [labelField]="'name'"
                                 placeholder="Select your hero"
+                                i18n-placeholder="@@label.select_your_hero"
                                 [allowEmpty]="allowEmptyControl.value"
                                 [mode]="modeControl.value"
                                 [search]="searchControl.value"
@@ -65,9 +68,15 @@
                 <jnt-form-item>
                   <jnt-form-label for="mode">Mode</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="mode" placeholder="Single">
-                      <jnt-select-option label="Single" [key]="ui.form.select.mode.single"></jnt-select-option>
-                      <jnt-select-option label="Multiple" [key]="ui.form.select.mode.multiple"></jnt-select-option>
+                    <jnt-select formControlName="mode"
+                                placeholder="Single"
+                                i18n-placeholder="@@label.single">
+                      <jnt-select-option label="Single"
+                                         i18n-label="@@label.single"
+                                         [key]="ui.form.select.mode.single"></jnt-select-option>
+                      <jnt-select-option label="Multiple"
+                                         i18n-label="@@label.multiple"
+                                         [key]="ui.form.select.mode.multiple"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -75,10 +84,18 @@
                 <jnt-form-item>
                   <jnt-form-label for="size">Size</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
-                      <jnt-select-option label="Small" [key]="ui.size.small"></jnt-select-option>
-                      <jnt-select-option label="Normal" [key]="ui.size.normal"></jnt-select-option>
-                      <jnt-select-option label="Large" [key]="ui.size.large"></jnt-select-option>
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [key]="ui.size.large"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -86,7 +103,9 @@
                 <jnt-form-item>
                   <jnt-form-label for="type">State</jnt-form-label>
                   <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="disabled" label="Disabled"></jnt-checkbox>
+                    <jnt-checkbox formControlName="disabled"
+                                  label="Disabled"
+                                  i18n-label="@@label.disabled"></jnt-checkbox>
                   </jnt-stack>
                 </jnt-form-item>
 
@@ -94,10 +113,16 @@
                   <jnt-form-label for="type">Features</jnt-form-label>
                   <jnt-stack>
                     <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                      <jnt-checkbox formControlName="allowEmpty" label="Allow empty"></jnt-checkbox>
-                      <jnt-checkbox formControlName="search" label="Search"></jnt-checkbox>
+                      <jnt-checkbox formControlName="allowEmpty"
+                                    label="Allow empty"
+                                    i18n-label="@@label.allow_empty"></jnt-checkbox>
+                      <jnt-checkbox formControlName="search"
+                                    label="Search"
+                                    i18n-label="@@label.search"></jnt-checkbox>
                     </jnt-stack>
-                    <jnt-checkbox formControlName="template" label="Option template"></jnt-checkbox>
+                    <jnt-checkbox formControlName="template"
+                                  label="Option template"
+                                  i18n-label="@@label.option_label"></jnt-checkbox>
                   </jnt-stack>
                 </jnt-form-item>
 

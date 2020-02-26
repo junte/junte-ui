@@ -10,13 +10,17 @@
           </ng-template>
         </jnt-table-column>
 
-        <jnt-table-column title="Person" sort="person">
+        <jnt-table-column title="Person"
+                          i18n-title="@@label.person"
+                          sort="person">
           <ng-template #tableCellTemplate let-person="person">
             {{person}}
           </ng-template>
         </jnt-table-column>
 
-        <jnt-table-column title="Job" sort="job">
+        <jnt-table-column title="Job"
+                          i18n-title="@@label.job"
+                          sort="job">
           <ng-template #tableCellTemplate let-job="job">
             {{job}}
           </ng-template>
@@ -24,13 +28,17 @@
 
         <ng-template *ngIf="actions" #tableRowActionsTemplate let-row="row">
           <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-            <jnt-menu-item title="Edit"></jnt-menu-item>
-            <jnt-menu-item title="Delete"></jnt-menu-item>
+            <jnt-menu-item title="Edit"
+                           i18n-title="@@action.edit"></jnt-menu-item>
+            <jnt-menu-item title="Delete"
+                           i18n-title="@@action.delete"></jnt-menu-item>
           </jnt-menu>
         </ng-template>
 
         <ng-template *ngIf="filter" #tableFiltersTemplate>
-          <jnt-select formControlName="job" placeholder="Select job">
+          <jnt-select formControlName="job"
+                      placeholder="Select job"
+                      i18n-placeholder="@@label.select_job">
             <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
           </jnt-select>
         </ng-template>

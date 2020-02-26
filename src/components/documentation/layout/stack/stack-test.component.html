@@ -16,7 +16,9 @@
   </div>
 
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
@@ -59,11 +61,15 @@
                 <jnt-form-item>
                   <jnt-form-label for="typeControl">Type</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="type" placeholder="Vertical">
+                    <jnt-select formControlName="type"
+                                placeholder="Vertical"
+                                i18n-placeholder="@@label.vertical">
                       <jnt-select-option label="Horizontal"
+                                         i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.layout.horizontal"
                                          [key]="ui.layout.stack.type.horizontal"></jnt-select-option>
                       <jnt-select-option label="Vertical"
+                                         i18n-label="@@label.vertical"
                                          [icon]="localUi.icons.layout.vertical"
                                          [key]="ui.layout.stack.type.vertical"></jnt-select-option>
                     </jnt-select>
@@ -73,25 +79,34 @@
                 <jnt-form-item>
                   <jnt-form-label for="gutter">Gutter</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="gutter" placeholder="Normal">
+                    <jnt-select formControlName="gutter"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
                       <jnt-select-option label="None"
+                                         i18n-label="@@label.none"
                                          [key]="ui.gutter.none"></jnt-select-option>
                       <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.layout.gutter.tiny"
                                          [key]="ui.gutter.tiny"></jnt-select-option>
                       <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
                                          [icon]="localUi.icons.layout.gutter.small"
                                          [key]="ui.gutter.small"></jnt-select-option>
                       <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
                                          [icon]="localUi.icons.layout.gutter.normal"
                                          [key]="ui.gutter.normal"></jnt-select-option>
                       <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
                                          [icon]="localUi.icons.layout.gutter.big"
                                          [key]="ui.gutter.big"></jnt-select-option>
                       <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
                                          [icon]="localUi.icons.layout.gutter.large"
                                          [key]="ui.gutter.large"></jnt-select-option>
                       <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
                                          [icon]="localUi.icons.layout.gutter.huge"
                                          [key]="ui.gutter.huge"></jnt-select-option>
                     </jnt-select>
@@ -101,20 +116,27 @@
                 <jnt-form-item>
                   <jnt-form-label for="align">Align in the main axis</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select align formControlName="align" placeholder="Start">
+                    <jnt-select align formControlName="align"
+                                placeholder="Start"
+                                i18n-placeholder="@@label.start">
                       <jnt-select-option label="Start"
+                                         i18n-label="@@label.start"
                                          [icon]="localUi.icons.layout.start"
                                          [key]="ui.flex.align.start"></jnt-select-option>
                       <jnt-select-option label="Center"
+                                         i18n-label="@@label.center"
                                          [icon]="localUi.icons.layout.center"
                                          [key]="ui.flex.align.center"></jnt-select-option>
                       <jnt-select-option label="End"
+                                         i18n-label="@@label.end"
                                          [icon]="localUi.icons.layout.end"
                                          [key]="ui.flex.align.end"></jnt-select-option>
                       <jnt-select-option label="Baseline"
+                                         i18n-label="@@label.baseline"
                                          [icon]="localUi.icons.layout.baseline"
                                          [key]="ui.flex.align.baseline"></jnt-select-option>
                       <jnt-select-option label="Stretch"
+                                         i18n-label="@@label.scretch"
                                          [icon]="localUi.icons.layout.stretch"
                                          [key]="ui.flex.align.stretch"></jnt-select-option>
                     </jnt-select>
@@ -124,23 +146,31 @@
                 <jnt-form-item>
                   <jnt-form-label for="justify">Justify on the secondary axis</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select justify formControlName="justify" placeholder="Start">
+                    <jnt-select justify formControlName="justify"
+                                placeholder="Start"
+                                i18n-placeholder="@@label.start">
                       <jnt-select-option label="Start"
+                                         i18n-label="@@label.start"
                                          [icon]="localUi.icons.layout.start"
                                          [key]="ui.flex.justify.start"></jnt-select-option>
                       <jnt-select-option label="Center"
+                                         i18n-label="@@label.center"
                                          [icon]="localUi.icons.layout.center"
                                          [key]="ui.flex.justify.center"></jnt-select-option>
                       <jnt-select-option label="End"
+                                         i18n-label="@@label.end"
                                          [icon]="localUi.icons.layout.end"
                                          [key]="ui.flex.justify.end"></jnt-select-option>
                       <jnt-select-option label="Between"
+                                         i18n-label="@@label.between"
                                          [icon]="localUi.icons.layout.between"
                                          [key]="ui.flex.justify.between"></jnt-select-option>
                       <jnt-select-option label="Around"
+                                         i18n-label="@@label.around"
                                          [icon]="localUi.icons.layout.around"
                                          [key]="ui.flex.justify.around"></jnt-select-option>
                       <jnt-select-option label="Evenly"
+                                         i18n-label="@@label.evenly"
                                          [icon]="localUi.icons.layout.evenly"
                                          [key]="ui.flex.justify.evenly"></jnt-select-option>
                     </jnt-select>
@@ -150,14 +180,19 @@
                 <jnt-form-item>
                   <jnt-form-label for="wrap">Wrap</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="wrap" placeholder="No wrap">
+                    <jnt-select formControlName="wrap"
+                                placeholder="No wrap"
+                                i18n-placeholder="@@label.no_wrap">
                       <jnt-select-option label="No wrap"
+                                         i18n-label="@@label.no_wrap"
                                          [icon]="localUi.icons.layout.nowrap"
                                          [key]="ui.flex.wrap.noWrap"></jnt-select-option>
                       <jnt-select-option label="Wrap"
+                                         i18n-label="@@label.wrap"
                                          [icon]="localUi.icons.layout.wrap"
                                          [key]="ui.flex.wrap.wrap"></jnt-select-option>
                       <jnt-select-option label="Reverse"
+                                         i18n-label="@@label.reverse"
                                          [icon]="localUi.icons.layout.reverse"
                                          [key]="ui.flex.wrap.reverse"></jnt-select-option>
                     </jnt-select>
@@ -173,14 +208,16 @@
     <jnt-tab #code title="Code" [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
-          <jnt-accordion-section title="How to start">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'stack-test', type: 'StackTestComponent'}"
                 scss="layout/stack"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight [language]="language.html" file="stack-test.template.html">
                 <![CDATA[
