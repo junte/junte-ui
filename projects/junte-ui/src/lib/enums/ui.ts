@@ -10,6 +10,7 @@ import { SkeletonType } from '../components/layout/skeleton/enums';
 import { StackType } from '../components/layout/stack/enums';
 import { LinkTarget } from '../components/navigation/link/enums';
 import { PopoverPlacements, PopoverTriggers } from '../components/overlays/popover/enums';
+import { Breakpoint } from './breakpoint';
 import { Color } from './color';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
@@ -30,6 +31,7 @@ export class UI {
   static size = Size;
   static outline = Outline;
   static position = Position;
+  static breakpoint = Breakpoint;
   static shape = Shape;
   static orientation = Orientation;
   static width = Width;

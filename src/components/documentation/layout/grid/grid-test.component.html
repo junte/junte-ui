@@ -9,6 +9,26 @@
 
   <h1>Grid</h1>
 
+  <div *jntMinFor="ui.breakpoint.mobile">
+    <p>Only for mobile!</p>
+  </div>
+
+  <div *jntMinFor="ui.breakpoint.tablet">
+    <p>Only min for tablet!</p>
+  </div>
+
+  <div *jntFor="ui.breakpoint.tablet">
+    <p>Only for tablet!</p>
+  </div>
+
+  <div *jntMinFor="ui.breakpoint.desktop">
+    <p>Min for desktop!</p>
+  </div>
+
+  <div *jntFor="ui.breakpoint.wide">
+    <p>Only for wide!</p>
+  </div>
+
   <jnt-stack [align]="ui.flex.align.stretch">
 
     <div teaser>

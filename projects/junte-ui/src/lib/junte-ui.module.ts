@@ -10,7 +10,6 @@ import { NavigationModule } from './components/navigation/navigation.module';
 import { OverlaysModule } from './components/overlays/overlays.module';
 import { SharedModule } from './components/shared/shared.module';
 import { I18nLoaderFactory, JunteUIModuleConfig } from './config';
-import { en } from './i18n/en';
 import { AnimationPipeModule } from './pipes/animation.pipe.module';
 import { ArrayPipeModule } from './pipes/array.pipe.module';
 import { ColorPipeModule } from './pipes/color.pipe.module';

@@ -50,4 +50,5 @@ import { ModalTestFactoryComponent } from './overlays/modal/test.component';
   ]
 })
 export class DocumentationModule {
+
 }

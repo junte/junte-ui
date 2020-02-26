@@ -1,6 +1,7 @@
 export * from './lib/i18n/public_api';
 export * from './lib/enums/ui';
-export * from './lib/decorators/api';
+export * from './lib/decorators/public_api';
+export * from './lib/directives/public_api';
 export * from './lib/utils/public_api';
 export * from './lib/models/table';
 export * from './lib/services/public_api';
@@ -16,3 +17,4 @@ export * from './lib/components/layout/public_api';
 export * from './lib/components/navigation/public_api';
 export * from './lib/components/overlays/public_api';
 export * from './lib/components/shared/public_api';
+

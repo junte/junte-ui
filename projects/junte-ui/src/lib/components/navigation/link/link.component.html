@@ -20,10 +20,8 @@
 </ng-template>
 
 <ng-template #linkTemplate>
-  <span title>
-    <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
-    <span>{{title}}</span>
-  </span>
+  <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
+  <div text>{{title}}</div>
   <ng-container *ngIf="badges.length">
     <jnt-badge badge *ngFor="let badge of badges"
                [color]="badge.color"

@@ -10,7 +10,7 @@
     "gulp:iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd ./projects/junte-ui",
     "iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd .",
     "clean": "rimraf ./dist",
-    "serve": "wait-on -i 3000 dist/junte-ui/public_api.d.ts && npm run copy:files && npm run iconfont && ng serve --hmr",
+    "serve": "wait-on -i 3000 dist/junte-ui/public_api.d.ts && npm run copy:files && npm run iconfont && ng serve --hmr --poll",
     "start": "npm run clean && run-p *:watch serve",
     "build": "npm run iconfont && ng build --prod",
     "assets:create:folders": "mkdir ./dist/junte-ui/lib/assets/ && mkdir ./dist/junte-ui/lib/assets/icons && mkdir ./dist/junte-ui/lib/assets/fonts && mkdir ./dist/junte-ui/lib/assets/styles",

@@ -1,11 +1,6 @@
 @import "variables";
 
 @mixin icon-size($size, $vars) {
-  &[type='font'] {
-    [icon] {
-      font-size: map-get($vars, size);
-    }
-  }
   &[type='svg'], &[type='animated'] {
     [icon] {
       width: map-get($vars, size);
@@ -51,18 +46,13 @@
       align-items: center;
     }
 
-    &[type='font'] {
-      [icon] {
-        color: map-get($vars, color);
-        font-size: #{map-get($vars, size)} !important;
-      }
-    }
-
     &[type='svg'], &[type='animated'] {
       [icon] {
         fill: map-get($vars, color);
-        width: #{map-get($vars, size)} !important;
-        height: #{map-get($vars, size)} !important;
+        @if map-has-key($vars, size) {
+          width: #{map-get($vars, size)} !important;
+          height: #{map-get($vars, size)} !important;
+        }
       }
     }
 

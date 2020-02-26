@@ -1,4 +1,5 @@
 @import "variables";
+@import "components/elements/icon/icon";
 
 $link-decoration: none !default;
 $link-font-weight: $font-weight-base !default;
@@ -165,14 +166,15 @@ $link-schemes: (
       color: #{map-get($scheme, transparent-badge-color)};
     }
     &[active="true"] {
-      [title] {
-        span {
-          border-bottom: 1px solid #{map-get($scheme, transparent-color)};
-        }
+      [text] {
+        border-bottom: 1px solid #{map-get($scheme, transparent-color)};
       }
     }
-    [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, transparent-color)};
+
+    [icon] {
+      @include icon((
+        color: map-get($scheme, transparent-color)
+      ), '&');
     }
   }
 }
@@ -181,10 +183,10 @@ $link-schemes: (
   display: inline-block;
   box-sizing: border-box;
   &[orphan='true'] {
-    [link] {
-      color: $primary-text-color!important;
+    [text] {
+      color: $primary-text-color !important;
       &:hover {
-        color: $primary-text-dark-color!important;
+        color: $primary-text-dark-color !important;
       }
     }
   }
@@ -212,45 +214,41 @@ $link-schemes: (
       &[outline='#{$outline-transparent}'] {
         @include transparent($map);
       }
+      &[outline='#{$outline-fill}'] {
+        border-radius: $link-corner;
+      }
     }
   }
 }
 
 [link] {
-  display: inline-block;
-  text-decoration: $link-decoration;
+  display: inline-flex;
+  align-items: center;
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
-  border-radius: $link-corner;
+  text-decoration: none;
   &:focus {
     outline: none;
   }
-  [icon][type='svg'] {
-    width: $link-icon-size;
-    height: $link-icon-size;
+
+  [icon] {
+    margin-right: $link-icon-spacing;
+    @include icon((
+      size: $link-icon-size
+    ), '&');
   }
-  [title] {
+
+  [text] {
     white-space: nowrap;
-    [icon], span {
-      font-weight: $link-font-weight;
-      transition: color .3s;
-    }
-    [icon] {
-      margin-right: $link-icon-spacing;
-    }
-    [icon][child-host=#{$jnt-icon-host}] {
-      &[type='animated'], &[type='svg'] {
-        width: $link-icon-size;
-        height: $link-icon-size;
-      }
-    }
+    text-decoration: $link-decoration;
   }
+
   [badge] {
     margin-left: $gutter-small;
   }
   &:active {
-    [icon], [title] {
+    [icon], [text] {
       color: $link-active-color;
     }
   }
