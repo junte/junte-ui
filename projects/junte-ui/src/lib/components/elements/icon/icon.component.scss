@@ -1,6 +1,16 @@
 @import "variables";
 
 @mixin icon-size($size, $vars) {
+  &[type='font'] {
+    [icon] {
+      font-size: map-get($vars, size);
+    }
+    &[size='auto'] {
+      [icon] {
+        font-size: inherit!important;
+      }
+    }
+  }
   &[type='svg'], &[type='animated'] {
     [icon] {
       width: map-get($vars, size);
@@ -43,7 +53,14 @@
   :host, #{$context} {
     @if $declare {
       display: inline-flex;
-      align-items: center;
+      vertical-align: middle;
+    }
+
+    &[type='font'] {
+      [icon] {
+        color: map-get($vars, color);
+        font-size: #{map-get($vars, size)} !important;
+      }
     }
 
     &[type='svg'], &[type='animated'] {
