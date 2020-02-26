@@ -6,12 +6,11 @@
   [link] {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
-    padding: $gutter-tiny $gutter-small;
     &:hover {
       background-color: map-get($scheme, hover-color);
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, color)};
+      box-shadow: 0 1px 5px map-get($scheme, color);
     }
     [badge] {
       @include badge((
@@ -27,8 +26,7 @@
   [link] {
     color: map-get($scheme, color);
     background-color: transparent;
-    border-color: map-get($scheme, color);
-    padding: $gutter-tiny $gutter-small;
+    border: 1px solid map-get($scheme, color);
     &:hover {
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
@@ -47,6 +45,29 @@
         background: map-get($scheme, color) !important,
         color: map-get($scheme, inverse-color) !important
       ), '&');
+    }
+  }
+  &[scheme=#{$scheme-secondary}] {
+    [link] {
+      color: map-get($scheme, inverse-color);
+      border-color: map-get($scheme, inverse-color);
+      &:hover {
+        background-color: map-get($scheme, inverse-color);
+        color: map-get($scheme, color);
+
+        [badge] {
+          @include badge((
+            background: map-get($scheme, color) !important,
+            color: map-get($scheme, inverse-color) !important
+          ), '&');
+        }
+      }
+      [badge] {
+        @include badge((
+          background: map-get($scheme, inverse-color) !important,
+          color: map-get($scheme, color) !important
+        ), '&');
+      }
     }
   }
 }
@@ -80,13 +101,35 @@
       }
     }
   }
+  &[scheme=#{$scheme-secondary}] {
+    [link] {
+      color: map-get($scheme, inverse-color);
+      &:hover {
+        color: map-get($scheme, inverse-color);
+      }
+      [badge] {
+        @include badge((
+          background: map-get($scheme, inverse-color) !important,
+          color: map-get($scheme, color) !important
+        ), '&');
+      }
+      &[active="true"] {
+        [title] {
+          span {
+            border-bottom: 1px solid map-get($scheme, inverse-color);
+          }
+        }
+      }
+    }
+  }
 }
 
 @mixin link($passed: (), $strategy: 'merge') {
   $defs: (
     corner: $corner-small,
     font-size: inherit,
-    icon: (
+    padding: $gutter-tiny $gutter-small,
+  icon: (
       margin-right: $gutter-tiny,
       size: 18px
     ),
@@ -100,8 +143,8 @@
         hover-color: $primary-dark-color,
       ),
       secondary: (
-        color: $gray-900-color,
-        inverse-color: $secondary-color,
+        color: $secondary-color,
+        inverse-color: $gray-900-color,
         hover-color: $blue-100-color
       ),
       success: (
@@ -174,9 +217,6 @@
             @include link-fill($map);
           }
           &[outline='#{$outline-ghost}'] {
-            [link] {
-              border: 1px solid transparent;
-            }
             @include link-ghost($map);
           }
           &[outline='#{$outline-transparent}'] {
@@ -189,6 +229,7 @@
 
   [link] {
     border-radius: map-get($vars, corner);
+    padding: map-get($vars, padding);
     [title] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
@@ -205,11 +246,6 @@
       $badge: map-get($vars, badge);
       [badge] {
         margin-left: map-get($badge, margin-left);
-      }
-    }
-    &:active {
-      [icon], [title] {
-        color: $primary-color;
       }
     }
   }
