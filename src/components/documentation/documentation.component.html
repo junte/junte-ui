@@ -1,7 +1,8 @@
 <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
 <jnt-popover #popover></jnt-popover>
 
-<jnt-app-layout #layout [position]="ui.layout.app.position.fixed">
+<jnt-app-layout #layout
+                [position]="ui.layout.app.position.fixed">
   <jnt-app-header>
     <ng-template #headerLogoTemplate>
       <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">

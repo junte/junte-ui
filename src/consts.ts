@@ -1,5 +1,5 @@
 import { enUS as dfnsEnUS, ru as dfnsRu } from 'date-fns/locale';
-import { ru as jntRu } from 'junte-ui';
+import { en as jntEn, ru as jntRu } from 'junte-ui';
 import { Language } from './enums/language';
 
 export const CURRENT_LANGUAGE = (() => {
@@ -14,7 +14,7 @@ export const CURRENT_LANGUAGE = (() => {
   }
 })();
 export let JUNTE_UI_CONFIG = {
-  i18n: jntRu,
+  i18n: jntEn,
   locale: {
     dfns: dfnsEnUS
   }
