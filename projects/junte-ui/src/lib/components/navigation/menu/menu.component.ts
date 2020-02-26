@@ -29,7 +29,6 @@ export class MenuComponent {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-
   @Input() set type(type: Orientation) {
     this._type = type || Orientation.horizontal;
   }
