@@ -7,6 +7,10 @@ import { JunteUiModule } from 'junte-ui';
 import { getJunteUiConfig } from 'src/utils/config';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
 
 const config = getJunteUiConfig();
 
