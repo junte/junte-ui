@@ -1,257 +1,217 @@
 @import "variables";
+@import "components/elements/badge/badge";
 @import "components/elements/icon/icon";
 
-$link-decoration: none !default;
-$link-font-weight: $font-weight-base !default;
-$link-active-color: $primary-color !default;
-$link-disabled-color: $primary-text-light-color !default;
-$link-icon-spacing: $gutter-tiny !default;
-$link-icon-size: 18px !default;
-$link-corner: $corner-small !default;
-$link-padding: $gutter-tiny $gutter-small !default;
-
-$outline-ghost: 'ghost';
-$outline-transparent: 'transparent';
-
-$link-schemes: (
-  #{$scheme-primary}: (
-    fill-color: $white-color,
-    fill-background-color: $primary-color,
-    fill-hover-background-color: $primary-dark-color,
-    fill-badge-color: $primary-color,
-    fill-badge-background-color: $white-color,
-    ghost-color: $primary-color,
-    ghost-border-color: $primary-color,
-    ghost-hover-background-color: $primary-color,
-    ghost-hover-color: $white-color,
-    ghost-badge-color: $white-color,
-    ghost-hover-badge-color: $primary-color,
-    ghost-badge-background: $primary-color,
-    ghost-hover-badge-background: $primary-background,
-    transparent-color: $primary-color,
-    transparent-hover-color: $primary-dark-color,
-    transparent-badge-color: $white-color,
-    transparent-badge-background: $primary-color,
-    link-focus-shadow-color: $primary-color
-  ),
-  #{$scheme-secondary}: (
-    fill-color: $gray-900-color,
-    fill-background-color: $secondary-color,
-    fill-hover-background-color: $blue-100-color,
-    fill-badge-color: $secondary-color,
-    fill-badge-background-color: $gray-900-color,
-    ghost-color: $gray-900-color,
-    ghost-border-color: $gray-900-color,
-    ghost-hover-background-color: $gray-900-color,
-    ghost-hover-color: $secondary-color,
-    ghost-badge-color: $white-color,
-    ghost-hover-badge-background: $secondary-color,
-    ghost-hover-badge-color: $gray-900-color,
-    ghost-badge-background: $gray-900-color,
-    transparent-color: $primary-text-color,
-    transparent-hover-color: $primary-text-dark-color,
-    transparent-badge-color: $white-color,
-    transparent-badge-background: $gray-900-color,
-    link-focus-shadow-color: $gray-900-color
-  ),
-  #{$scheme-success}: (
-    fill-color: $white-color,
-    fill-background-color: $success-color,
-    fill-hover-background-color: $green-dark-color,
-    fill-badge-color: $success-color,
-    fill-badge-background-color: $white-color,
-    ghost-color: $success-color,
-    ghost-border-color: $success-color,
-    ghost-hover-background-color: $success-color,
-    ghost-hover-color: $white-color,
-    ghost-badge-color: $white-color,
-    ghost-badge-background: $success-color,
-    ghost-hover-badge-background: $primary-background,
-    ghost-hover-badge-color: $success-color,
-    transparent-color: $success-color,
-    transparent-hover-color: $green-dark-color,
-    transparent-badge-color: $white-color,
-    transparent-badge-background: $success-color,
-    link-focus-shadow-color: $success-color
-  ),
-  #{$scheme-fail}: (
-    fill-color: $white-color,
-    fill-background-color: $fail-color,
-    fill-hover-background-color: $red-dark-color,
-    fill-badge-color: $fail-color,
-    fill-badge-background-color: $white-color,
-    ghost-color: $fail-color,
-    ghost-border-color: $fail-color,
-    ghost-hover-background-color: $fail-color,
-    ghost-hover-color: $white-color,
-    ghost-badge-color: $white-color,
-    ghost-badge-background: $fail-color,
-    ghost-hover-badge-background: $primary-background,
-    ghost-hover-badge-color: $fail-color,
-    transparent-color: $fail-color,
-    transparent-hover-color: $red-dark-color,
-    transparent-badge-color: $white-color,
-    transparent-badge-background: $fail-color,
-    link-focus-shadow-color: $fail-color
-  ),
-) !default;
-
-@mixin scheme($scheme) {
+@mixin link-fill($scheme) {
   [link] {
-    color: #{map-get($scheme, fill-color)};
-    background-color: #{map-get($scheme, fill-background-color)};
-    padding: $link-padding;
-    &:hover, &:focus {
-      background-color: #{map-get($scheme, fill-hover-background-color)};
+    color: map-get($scheme, inverse-color);
+    background-color: map-get($scheme, color);
+    padding: $gutter-tiny $gutter-small;
+    &:hover {
+      background-color: map-get($scheme, hover-color);
     }
     &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, link-focus-shadow-color)};
+      box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
-    [badge][child-host=#{$jnt-badge-host}] {
-      sup {
-        color: #{map-get($scheme, fill-badge-color)};
-        background: #{map-get($scheme, fill-badge-background-color)} !important;
-      }
-    }
-    [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, fill-color)};
-    }
-  }
-}
-
-@mixin ghost($scheme) {
-
-  [link] {
-    color: #{map-get($scheme, ghost-color)};
-    background-color: transparent;
-    border-color: #{map-get($scheme, ghost-border-color)};
-    padding: $link-padding;
-    &:hover, &:focus {
-      background-color: #{map-get($scheme, ghost-hover-background-color)};
-      color: #{map-get($scheme, ghost-hover-color)};
-
-      [badge][child-host=#{$jnt-badge-host}] > sup {
-        background: #{map-get($scheme, ghost-hover-badge-background)} !important;
-        color: #{map-get($scheme, ghost-hover-badge-color)} !important;
-      }
-    }
-    [badge][child-host=#{$jnt-badge-host}] > sup {
-      background: #{map-get($scheme, ghost-badge-background)} !important;
-      color: #{map-get($scheme, ghost-badge-color)};
-    }
-    [icon][child-host=#{$jnt-icon-host}] {
-      fill: #{map-get($scheme, ghost-color)};
-    }
-  }
-}
-
-@mixin transparent($scheme) {
-
-  [link] {
-    color: #{map-get($scheme, transparent-color)};
-    background-color: transparent;
-    border-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    &:hover, &:focus {
-      color: #{map-get($scheme, transparent-hover-color)};
-    }
-    &:focus {
-      box-shadow: none;
-      outline-offset: 1px;
-      outline: #{map-get($scheme, link-focus-shadow-color)} auto 1px;
-    }
-    [badge][child-host=#{$jnt-badge-host}] > sup {
-      background: #{map-get($scheme, transparent-badge-background)} !important;
-      color: #{map-get($scheme, transparent-badge-color)};
-    }
-    &[active="true"] {
-      [text] {
-        border-bottom: 1px solid #{map-get($scheme, transparent-color)};
-      }
-    }
-
-    [icon] {
-      @include icon((
-        color: map-get($scheme, transparent-color)
+    [badge] {
+      @include badge((
+        background: map-get($scheme, inverse-color) !important,
+        color: map-get($scheme, color) !important
       ), '&');
     }
   }
 }
 
-:host {
-  display: inline-block;
-  box-sizing: border-box;
-  &[orphan='true'] {
-    [text] {
-      color: $primary-text-color !important;
-      &:hover {
-        color: $primary-text-dark-color !important;
+@mixin link-ghost($scheme) {
+
+  [link] {
+    color: map-get($scheme, color);
+    background-color: transparent;
+    border-color: map-get($scheme, color);
+    padding: $gutter-tiny $gutter-small;
+    &:hover {
+      background-color: map-get($scheme, color);
+      color: map-get($scheme, inverse-color);
+      [badge] {
+        @include badge((
+          background: map-get($scheme, inverse-color) !important,
+          color: map-get($scheme, color) !important
+        ), '&');
       }
     }
-  }
-  &[disabled="true"] {
-    [link] {
-      opacity: .65;
-      pointer-events: none;
-      cursor: default;
+    &:focus {
+      box-shadow: 0 1px 5px #{map-get($scheme, color)};
+    }
+    [badge] {
+      @include badge((
+        background: map-get($scheme, color) !important,
+        color: map-get($scheme, inverse-color) !important
+      ), '&');
     }
   }
-  &[with-title='false'] {
-    [link] [icon] {
-      margin-right: 0;
+}
+
+@mixin link-transparent($scheme) {
+
+  [link] {
+    color: map-get($scheme, color);
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    &:hover {
+      color: map-get($scheme, hover-color);
     }
-  }
-  @each $scheme, $map in $link-schemes {
-    &[scheme='#{$scheme}'] {
-      @include scheme($map);
-      &[outline='#{$outline-ghost}'] {
-        [link] {
-          border: 1px solid transparent;
+    &:focus {
+      outline-offset: 1px;
+      outline: map-get($scheme, color) auto 1px;
+    }
+    [badge] {
+      @include badge((
+        background: map-get($scheme, color) !important,
+        color: map-get($scheme, inverse-color) !important
+      ), '&');
+    }
+    &[active="true"] {
+      [title] {
+        span {
+          border-bottom: 1px solid map-get($scheme, color);
         }
-        @include ghost($map);
-      }
-      &[outline='#{$outline-transparent}'] {
-        @include transparent($map);
-      }
-      &[outline='#{$outline-fill}'] {
-        border-radius: $link-corner;
       }
     }
   }
 }
 
-[link] {
-  display: inline-flex;
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  width: 100%;
-  text-decoration: none;
-  &:focus {
-    outline: none;
+@mixin link($passed: (), $strategy: 'merge') {
+  $defs: (
+    corner: $corner-small,
+    font-size: inherit,
+    icon: (
+      margin-right: $gutter-tiny,
+      size: 18px
+    ),
+    badge: (
+      margin-left: $gutter-small
+    ),
+    schemes: (
+      primary: (
+        color: $primary-color,
+        inverse-color: $white-color,
+        hover-color: $primary-dark-color,
+      ),
+      secondary: (
+        color: $gray-900-color,
+        inverse-color: $secondary-color,
+        hover-color: $blue-100-color
+      ),
+      success: (
+        color: $success-color,
+        inverse-color: $white-color,
+        hover-color: $success-dark-color
+      ),
+      fail: (
+        color: $fail-color,
+        inverse-color: $white-color,
+        hover-color: $fail-dark-color
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
   }
 
-  [icon] {
-    margin-right: $link-icon-spacing;
-    @include icon((
-      size: $link-icon-size
-    ), '&');
+  :host {
+    @if $declare {
+      display: inline-block;
+      box-sizing: border-box;
+      &[orphan='true'] {
+        [link] {
+          color: $primary-text-color !important;
+          &:hover {
+            color: $primary-text-dark-color !important;
+          }
+        }
+      }
+      &[disabled="true"] {
+        [link] {
+          opacity: .65;
+          pointer-events: none;
+          cursor: default;
+        }
+      }
+      &[with-title='false'] {
+        [link] [icon] {
+          margin-right: 0;
+        }
+      }
+      [link] {
+        display: inline-block;
+        text-decoration: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        width: 100%;
+        &:focus {
+          outline: none;
+        }
+        [title] {
+          white-space: nowrap;
+          [icon], span {
+            transition: color .3s;
+          }
+        }
+      }
+    }
+
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[scheme='#{$scheme}'] {
+          &[outline='#{$outline-fill}'] {
+            @include link-fill($map);
+          }
+          &[outline='#{$outline-ghost}'] {
+            [link] {
+              border: 1px solid transparent;
+            }
+            @include link-ghost($map);
+          }
+          &[outline='#{$outline-transparent}'] {
+            @include link-transparent($map);
+          }
+        }
+      }
+    }
   }
 
-  [text] {
-    white-space: nowrap;
-    text-decoration: $link-decoration;
-  }
+  [link] {
+    border-radius: map-get($vars, corner);
+    [title] {
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        [icon] {
+          margin-right: map-get($icon, margin-right);
+          @include icon((
+            size: map-get($icon, size)
+          ), '&');
 
-  [badge] {
-    margin-left: $gutter-small;
-  }
-  &:active {
-    [icon], [text] {
-      color: $link-active-color;
+        }
+      }
+    }
+    @if map-has-key($vars, badge) {
+      $badge: map-get($vars, badge);
+      [badge] {
+        margin-left: map-get($badge, margin-left);
+      }
+    }
+    &:active {
+      [icon], [title] {
+        color: $primary-color;
+      }
     }
   }
 
 }
-

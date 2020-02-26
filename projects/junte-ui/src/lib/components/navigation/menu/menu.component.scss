@@ -41,6 +41,9 @@ $link-active-color: $primary-color !default;
           text-overflow: ellipsis;
           overflow: hidden;
           max-width: 100%;
+          span {
+            vertical-align: middle;
+          }
         }
       }
     }
@@ -62,6 +65,9 @@ $link-active-color: $primary-color !default;
     [link][deep-host=#{$jnt-link-host}] {
       a {
         padding: $gutter-small $gutter-normal;
+        [title] span {
+          vertical-align: middle;
+        }
       }
       border-left: 4px solid transparent;
       &:hover {
