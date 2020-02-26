@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ForDirective, ForMaxDirective, ForMinDirective } from './pipes';
+import { ForDirective, ForMaxDirective, ForMinDirective } from './responsive.directives';
 
 @NgModule({
   declarations: [

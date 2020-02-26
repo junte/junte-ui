@@ -1,7 +1,7 @@
 import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
 import { Breakpoint } from '../../../enums/breakpoint';
-import { BreakpointService } from '../../../services/breakpoint.service';
+import { BreakpointService } from './breakpoint.service';
 
 export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
