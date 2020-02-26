@@ -13,14 +13,17 @@
 
   <h3>Playground</h3>
   <jnt-tabs playground>
-    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
                 <jnt-button (click)="typeControl.value === contentType.templateRef ? openModal() : openCalendar()"
-                            text="Open modal"></jnt-button>
+                            text="Open modal"
+                            i18n-text="@@action.open_modal"></jnt-button>
                 <ng-template #content>
                   <div>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad animi blanditiis
@@ -33,13 +36,18 @@
                     impedit ipsam labore odit officiis perferendis provident quae quia quis quisquam recusandae rem
                     repellat sapiente totam, unde. Cum, obcaecati soluta.
                   </div>
-                  <jnt-button *ngIf="!closingControl.value && !footerControl.value" text="Cancel" (click)="close()"
+                  <jnt-button *ngIf="!closingControl.value && !footerControl.value"
+                              text="Cancel"
+                              i18n-text="@@action.cancel"
+                              (click)="close()"
                               cancel></jnt-button>
                 </ng-template>
 
                 <ng-template #footer>
                   <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center" footer>
-                    <jnt-button text="Ok" (click)="close()"></jnt-button>
+                    <jnt-button text="Ok"
+                                i18n-text="@@action.ok"
+                                (click)="close()"></jnt-button>
                   </jnt-stack>
                 </ng-template>
               </ng-template>
@@ -76,25 +84,33 @@
 
               <jnt-form-item>
                 <jnt-form-control>
-                  <jnt-checkbox formControlName="closing" label="Enable closing"></jnt-checkbox>
+                  <jnt-checkbox formControlName="closing"
+                                label="Enable closing"
+                                i18n-label="@@label.enable_closing"></jnt-checkbox>
                 </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
                 <jnt-form-control>
-                  <jnt-checkbox formControlName="title" label="Title"></jnt-checkbox>
+                  <jnt-checkbox formControlName="title"
+                                label="Title"
+                                i18n-label="@@label.title"></jnt-checkbox>
                 </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
                 <jnt-form-control>
-                  <jnt-checkbox formControlName="icon" label="Icon for title"></jnt-checkbox>
+                  <jnt-checkbox formControlName="icon"
+                                label="Icon for title"
+                                i18n-label="@@label.icon_for_title"></jnt-checkbox>
                 </jnt-form-control>
               </jnt-form-item>
 
               <jnt-form-item>
                 <jnt-form-control>
-                  <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
+                  <jnt-checkbox formControlName="footer"
+                                label="Footer"
+                                i18n-label="@@label.footer"></jnt-checkbox>
                 </jnt-form-control>
               </jnt-form-item>
             </jnt-form>
@@ -226,7 +242,9 @@
         </app-how-to-use>
         <app-code-highlight file="modal-test.template.html">
           <![CDATA[
-          <jnt-button (click)="openModal()" text="Open modal"></jnt-button>
+          <jnt-button (click)="openModal()"
+                      text="Open modal"
+                      i18n-text="@@action.open_modal"></jnt-button>
           ]]>
           <ng-container *ngIf="typeControl.value === contentType.templateRef">
             <![CDATA[
@@ -245,7 +263,9 @@
               ]]>
               <ng-container *ngIf="!closingControl.value && !footerControl.value">
                 <![CDATA[
-                <jnt-button text="Cancel" (click)="close()"></jnt-button>
+                <jnt-button text="Cancel"
+                            i18n-text="@@action.cancel"
+                            (click)="close()"></jnt-button>
                 ]]>
               </ng-container>
               <![CDATA[
@@ -257,7 +277,9 @@
             <![CDATA[
             <ng-template #footer>
               <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center">
-                <jnt-button text="Ok" (click)="close()"></jnt-button>
+                <jnt-button text="Ok"
+                            i18n-text="@@action.ok"
+                            (click)="close()"></jnt-button>
               </jnt-stack>
             </ng-template>
             ]]>
