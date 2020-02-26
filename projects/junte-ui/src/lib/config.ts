@@ -9,4 +9,7 @@ export function I18nLoaderFactory(config: JunteUIModuleConfig) {
 @Injectable()
 export class JunteUIModuleConfig {
   i18n?: any;
+  locale?: {
+    dfns?: any
+  };
 }

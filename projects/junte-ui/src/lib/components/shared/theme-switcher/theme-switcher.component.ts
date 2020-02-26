@@ -1,7 +1,7 @@
 import { Component, forwardRef, HostBinding, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Theme } from '../../../enums/theme';
 import { UI } from '../../../enums/ui';
-import { Themes } from '../enums';
 
 @Component({
   selector: 'jnt-theme-switcher',
@@ -18,10 +18,10 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-theme-switcher-host';
 
-  @HostBinding('attr.theme') theme = Themes.light;
+  @HostBinding('attr.theme') theme = Theme.light;
 
   ui = UI;
-  themes = Themes;
+  themes = Theme;
   themeControl = new FormControl();
   form = this.fb.group({
     theme: this.themeControl
@@ -32,7 +32,7 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.themeControl.valueChanges.subscribe(checked => {
-      this.theme = checked ? Themes.light : Themes.dark;
+      this.theme = checked ? Theme.light : Theme.dark;
       this.onChange(this.theme);
     });
   }
@@ -44,7 +44,7 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value) {
-    this.themeControl.setValue(!value || value === Themes.light);
+    this.themeControl.setValue(!value || value === Theme.light);
   }
 
   registerOnChange(fn) {

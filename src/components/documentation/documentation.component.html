@@ -35,9 +35,13 @@
                        [icon]="ui.icons.figma"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
-    <form [formGroup]="themeForm">
-      <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
-    </form>
+    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+               [align]="ui.flex.align.center">
+      <form [formGroup]="themeForm">
+        <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
+      </form>
+      <app-select-lang></app-select-lang>
+    </jnt-stack>
   </jnt-app-header>
 
   <jnt-app-aside #aside>

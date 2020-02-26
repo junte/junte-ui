@@ -22,11 +22,13 @@ import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
 import { TextAlign } from './text';
+import { Theme } from './theme';
 import { UrlMatching } from './url';
 import { Width } from './width';
 
 export class UI {
   static gutter = Gutter;
+  static theme = Theme;
   static scheme = Scheme;
   static size = Size;
   static outline = Outline;

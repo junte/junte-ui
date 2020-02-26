@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI, ModalComponent, ModalService, PopoverComponent, PopoverService, AppLayoutComponent } from 'junte-ui';
+import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Theme {

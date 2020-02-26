@@ -14,10 +14,8 @@ import {
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { SharedModule } from 'src/components/documentation/shared/shared.module';
-import { getJunteUiConfig } from 'src/utils/config';
+import { JUNTE_UI_CONFIG } from '../../../../consts';
 import { CalendarTestComponent } from './calendar-test.component';
-
-const config = getJunteUiConfig();
 
 @NgModule({
   imports: [
@@ -25,15 +23,15 @@ const config = getJunteUiConfig();
     ReactiveFormsModule,
     DateFnsModule,
     SharedModule,
-    GridModule,
-    StackModule,
-    LinkModule,
-    TabsModule,
-    FormModule,
-    SwitcherModule,
-    CheckboxModule,
-    AccordionModule,
-    CalendarModule.forRoot(config)
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG),
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    CalendarModule.forRoot(JUNTE_UI_CONFIG)
   ],
   declarations: [
     CalendarTestComponent
