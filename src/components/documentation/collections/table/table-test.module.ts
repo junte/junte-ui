@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PrismModule } from '@ngx-prism/core';
 import {
   LinkModule,
   StackModule,
@@ -32,7 +31,6 @@ import { TableTestComponent } from './table-test.component';
     BlockModule,
     TableModule,
     SharedModule,
-    PrismModule,
     SelectModule,
     CheckboxModule,
     MenuModule

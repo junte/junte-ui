@@ -6,7 +6,6 @@ import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbsRoutingModule } from './breadcrumbs-routing.module';
 import { LinkModule, StackModule, TabsModule, GridModule, FormModule, AccordionModule, BreadcrumbsModule, IconModule } from 'junte-ui';
-import { PrismModule } from '@ngx-prism/core';
 import { BreadcrumbResolver } from './resolver';
 import { BreadCrumbTest2Component } from './tests/test2.component';
 import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
@@ -33,7 +32,6 @@ import { HowToUseModule } from '../../shared/how-to-use/how-to-use.module';
     AccordionModule,
     BreadcrumbsModule,
     IconModule,
-    PrismModule,
     BreadcrumbsRoutingModule,
     BrowserPreviewModule,
     CodeHighlightModule,

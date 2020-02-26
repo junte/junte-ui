@@ -11,9 +11,9 @@
   </ng-container>
 </p>
 
-<ngx-prism #prism [language]="language">
+<pre #prism [attr.language]="language">
   {{code}}
-</ngx-prism>
+</pre>
 <pre #pre (cdkObserveContent)="render()">
   <ng-content></ng-content>
 </pre>

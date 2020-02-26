@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { PrismComponent } from '@ngx-prism/core/dist/prism.component';
 import { html, js } from 'js-beautify';
 import { UI } from 'junte-ui';
 import { Language } from './enum';
@@ -26,7 +25,7 @@ export class CodeHighlightComponent implements AfterViewInit {
   pre: ElementRef<HTMLPreElement>;
 
   @ViewChild('prism', {static: true})
-  prism: PrismComponent;
+  prism: any;
 
   private formatHTML(source: string) {
     return source.replace(/\n *\>/g, '>')

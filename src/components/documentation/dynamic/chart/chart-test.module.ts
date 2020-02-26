@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PrismModule } from '@ngx-prism/core';
 import {
   LinkModule,
   StackModule,
@@ -31,7 +30,6 @@ import { ChartTestComponent } from './chart-test.component';
     ChartModule,
     BlockModule,
     SharedModule,
-    PrismModule,
     LabelModule,
     ButtonModule
   ],

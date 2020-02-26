@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PrismModule } from '@ngx-prism/core';
 import {
   LinkModule,
   StackModule,
@@ -34,8 +33,7 @@ import { CheckboxTestComponent } from './checkbox-test.component';
     LabelModule,
     AvatarModule,
     BlockModule,
-    SelectModule,
-    PrismModule
+    SelectModule
   ],
   exports: [
     CheckboxTestComponent

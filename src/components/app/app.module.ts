@@ -9,10 +9,6 @@ import { CURRENT_LANGUAGE } from '../../consts';
 import { Language } from '../../enums/language';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { registerLocaleData } from '@angular/common';
-import localeRu from '@angular/common/locales/ru';
-
-registerLocaleData(localeRu, 'ru');
 
 enum Currencies {
   rur = 'rur',

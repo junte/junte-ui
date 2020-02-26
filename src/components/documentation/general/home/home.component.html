@@ -35,16 +35,16 @@
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 npm install junte-ui --save
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <p>Once installed you need to import our main module.</p>
   <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
     application.</p>
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 import { JunteUiModule } from 'junte-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,10 +58,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class AppModule {
   }
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <p>Or you can import only modules of target components to decrease bundle size.</p>
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 import { IconModule } from 'junte-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -75,7 +75,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class AppModule {
     }
       ]]></pre>
-  </ngx-prism>
+  </pre>
 
 
   <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
@@ -83,7 +83,7 @@ export class AppModule {
     context!</p>
   <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
-  <ngx-prism language="js">
+  <pre language="js">
       <pre><![CDATA[
       {
       ...
@@ -116,33 +116,33 @@ export class AppModule {
   ...
 }
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <p>Import the style files of the components you need into the global style file <code>style.scss</code></p>
 
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 @import "~junte-ui/lib/components/button/button.encapsulated";
 @import "~junte-ui/lib/components/block/block.encapsulated";
 @import "~junte-ui/lib/components/badge/badge.encapsulated";
 ...
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <p>If you need styles of all the components import the file <code>components.scss</code></p>
 
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 @import "~junte-ui/lib/assets/styles/components";
 ]]></pre>
-  </ngx-prism>
+  </pre>
   <p>If you need common styles import the file <code>common.scss</code></p>
 
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 @import "~junte-ui/lib/assets/styles/common";
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
 
   <h3>Strong HTML</h3>
@@ -150,7 +150,7 @@ export class AppModule {
   <p>Junte UI uses multiple enums to set the input parameters of a component.
     Create an alias in your component for using UI enums.</p>
 
-  <ngx-prism language="js">
+  <pre language="js">
 <pre><![CDATA[
 import { UI } from 'junte-ui';
 ...
@@ -159,11 +159,11 @@ export class YourComponent {
   ui = UI;
 }
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <p>In the template, you can use strong enum values</p>
 
-  <ngx-prism language="html">
+  <pre language="html">
 <pre><![CDATA[
 <jnt-button [scheme]="ui.scheme.primary"
             [size]="ui.size.small"
@@ -175,7 +175,7 @@ export class YourComponent {
             text="Button">
 </jnt-button>
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
   <h3>Responsive Design</h3>
 
@@ -184,7 +184,7 @@ export class YourComponent {
     using rows & columns.
   </p>
 
-  <ngx-prism language="html">
+  <pre language="html">
 <pre><![CDATA[
 <jnt-container>
   <jnt-row>
@@ -197,7 +197,7 @@ export class YourComponent {
   </jnt-row>
 </jnt-container>
 ]]></pre>
-  </ngx-prism>
+  </pre>
 
 
   <h3>Themes Support</h3>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PrismModule } from '@ngx-prism/core';
 import { ConfirmModule, StackModule, IconModule, LinkModule, GridModule } from 'junte-ui';
 import { ConfirmTestComponent } from './confirm-test.component';
 
@@ -11,8 +10,7 @@ import { ConfirmTestComponent } from './confirm-test.component';
     StackModule,
     IconModule,
     LinkModule,
-    GridModule,
-    PrismModule
+    GridModule
   ],
   exports: [
     ConfirmTestComponent

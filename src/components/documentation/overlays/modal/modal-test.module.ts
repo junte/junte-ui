@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PrismModule } from '@ngx-prism/core';
 import {
   StackModule,
   IconModule,
@@ -32,8 +31,7 @@ import { ModalTestComponent } from './modal-test.component';
     SharedModule,
     SwitcherModule,
     CheckboxModule,
-    CalendarModule,
-    PrismModule
+    CalendarModule
   ],
   exports: [
     ModalTestComponent,
