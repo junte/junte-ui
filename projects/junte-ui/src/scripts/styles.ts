@@ -92,6 +92,6 @@ export class Gulpfile {
 
   @Task()
   watch() {
-    return gulp.watch([styleFiles, buildFiles], {ignoreInitial: false}, gulp.series('styles'));
+    return gulp.watch([styleFiles, buildFiles], {ignoreInitial: true}, gulp.series('styles'));
   }
 }
