@@ -1,14 +1,13 @@
 @import "variables";
-
-$link-active-color: $primary-color !default;
+@import "components/navigation/link/link";
 
 :host {
   display: block;
   flex: 1;
   &[type='horizontal'] {
-    [submenu] {
+    [sub] {
       position: absolute;
-      top: 100%;
+      top: 100% !important;
       left: 0;
       z-index: 1;
       background-color: $primary-background;
@@ -16,14 +15,21 @@ $link-active-color: $primary-color !default;
       border-radius: $corner-small;
     }
   }
+  &[collapsed='true'] {
+    [sub] {
+      background-color: $primary-background;
+      box-shadow: $shadow-normal;
+      border-radius: $corner-small;
+    }
+  }
   &[type='vertical'] {
-    [top-level] {
+    [top] {
       width: 100%;
     }
   }
 }
 
-[top-level] {
+[top] {
   position: relative;
   white-space: nowrap;
   box-sizing: border-box;
@@ -33,11 +39,15 @@ $link-active-color: $primary-color !default;
     &:hover {
       background-color: $highlight-background;
     }
+    //@include link((
+    //  text-overflow: true
+    //), '&');
+
     [link][deep-host=#{$jnt-link-host}] {
       user-select: none;
       a {
         padding: 0;
-        [title] {
+        > [title] {
           text-overflow: ellipsis;
           overflow: hidden;
           max-width: 100%;
@@ -52,35 +62,35 @@ $link-active-color: $primary-color !default;
     }
   }
 
-  [submenu] {
-    //padding: $gutter-small 0;
-    background-color: $primary-background;
+  [sub] {
     width: 100%;
     min-width: 200px;
     display: none;
     align-items: stretch;
     flex-direction: column;
+    > [title] {
+      padding: 0 $gutter-normal;
+      pointer-events: none;
+      span {
+        display: block;
+        padding: $gutter-normal 0;
+        border-bottom: 1px solid $muted-color;
+      }
+    }
     &[opened='true'] {
       display: flex;
     }
-    [link][deep-host=#{$jnt-link-host}] {
-      a {
-        padding: $gutter-small $gutter-normal;
-        [title] span {
-          vertical-align: middle;
-        }
-      }
+
+    [link] {
       border-left: 4px solid transparent;
+      padding: $gutter-small $gutter-normal;
       &:hover {
         background-color: $highlight-background;
         border-left-color: $primary-color;
       }
-      [title] {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 100%;
-        display: inline-block;
-      }
+      @include link((
+        text-overflow: true
+      ), '&');
     }
   }
 }
