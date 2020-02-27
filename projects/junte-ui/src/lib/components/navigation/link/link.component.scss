@@ -129,7 +129,8 @@
     corner: $corner-small,
     font-size: inherit,
     padding: $gutter-tiny $gutter-small,
-  icon: (
+    text-overflow: false,
+    icon: (
       margin-right: $gutter-tiny,
       size: 18px
     ),
@@ -189,7 +190,7 @@
       }
       &[with-title='false'] {
         [link] [icon] {
-          margin-right: 0;
+          margin-right: 0 !important;
         }
       }
       [link] {
@@ -225,29 +226,34 @@
         }
       }
     }
-  }
 
-  [link] {
-    border-radius: map-get($vars, corner);
-    padding: map-get($vars, padding);
-    [title] {
-      @if map-has-key($vars, icon) {
-        $icon: map-get($vars, icon);
-        [icon] {
-          margin-right: map-get($icon, margin-right);
-          @include icon((
-            size: map-get($icon, size)
-          ), '&');
+    [link] {
+      border-radius: map-get($vars, corner);
+      padding: map-get($vars, padding);
+      [title] {
+        @if map-has-key($vars, icon) {
+          $icon: map-get($vars, icon);
+          [icon] {
+            margin-right: map-get($icon, margin-right);
+            @include icon((
+              size: map-get($icon, size)
+            ), '&');
 
+          }
+        }
+        @if map-get($vars, text-overflow) == true {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          max-width: 100%;
+          display: inline-block;
+        }
+      }
+      @if map-has-key($vars, badge) {
+        $badge: map-get($vars, badge);
+        [badge] {
+          margin-left: map-get($badge, margin-left);
         }
       }
     }
-    @if map-has-key($vars, badge) {
-      $badge: map-get($vars, badge);
-      [badge] {
-        margin-left: map-get($badge, margin-left);
-      }
-    }
   }
-
 }
