@@ -12,7 +12,9 @@ import {
   LabelModule,
   AvatarModule,
   BlockModule,
-  SelectModule
+  SelectModule,
+  ArrayPipeModule,
+  ButtonModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { CheckboxTestComponent } from './checkbox-test.component';
@@ -33,7 +35,9 @@ import { CheckboxTestComponent } from './checkbox-test.component';
     LabelModule,
     AvatarModule,
     BlockModule,
-    SelectModule
+    SelectModule,
+    ArrayPipeModule,
+    ButtonModule
   ],
   exports: [
     CheckboxTestComponent

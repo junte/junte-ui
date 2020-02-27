@@ -1,8 +1,8 @@
 import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PropertyApi } from '../../../decorators/api';
 import { Size } from '../../../enums/size';
 import { UI } from '../../../enums/ui';
-import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-checkbox',
@@ -16,6 +16,9 @@ import { PropertyApi } from '../../../decorators/api';
 export class CheckboxComponent implements ControlValueAccessor {
 
   ui = UI;
+
+  @HostBinding('attr.size')
+  _size: Size = Size.normal;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-host';
@@ -47,9 +50,10 @@ export class CheckboxComponent implements ControlValueAccessor {
     options: [Size.tiny, Size.small, Size.normal, Size.large],
     default: Size.normal
   })
-  @HostBinding('attr.size')
   @Input()
-  size: Size = Size.normal;
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
 
   @PropertyApi({
     description: 'Value for checkbox button',

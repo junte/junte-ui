@@ -28,8 +28,18 @@
                            i18n-title="@@label.your_hero">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                               [gutter]="ui.gutter.big"
-                               [align]="ui.flex.align.center">
+                               [gutter]="ui.gutter.big">
+                      <jnt-form-control name="hero">
+                        <jnt-radio-group formControlName="hero">
+                          <jnt-radio label="Spiderman" [value]="hero.spiderman"></jnt-radio>
+                          <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
+                          <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
+                        </jnt-radio-group>
+                        <jnt-form-message [type]="ui.form.validators.typeError.required">
+                          Please select the hero
+                        </jnt-form-message>
+                      </jnt-form-control>
+
                       <ng-container [ngSwitch]="heroControl.value">
                         <jnt-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
@@ -43,19 +53,6 @@
                         <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </ng-container>
-
-                      <jnt-form-item>
-                        <jnt-form-control name="hero">
-                          <jnt-radio-group formControlName="hero">
-                            <jnt-radio label="Spiderman" [value]="hero.spiderman"></jnt-radio>
-                            <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
-                            <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
-                          </jnt-radio-group>
-                          <jnt-form-message [type]="ui.form.validators.typeError.required">
-                            Please select the hero
-                          </jnt-form-message>
-                        </jnt-form-control>
-                      </jnt-form-item>
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
                       <jnt-stack [type]="ui.layout.stack.type.horizontal"

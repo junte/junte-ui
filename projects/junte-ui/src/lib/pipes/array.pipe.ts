@@ -21,7 +21,7 @@ export class JoinPipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'includes'})
+@Pipe({name: 'includes', pure: false})
 export class IncludesPipe implements PipeTransform {
   transform(items: (string | number)[], item: string | number) {
     return !!items && items.includes(item);
