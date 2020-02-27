@@ -25,28 +25,34 @@
   <jnt-stack [type]="ui.layout.stack.type.vertical">
     <jnt-stack [type]="ui.layout.stack.type.horizontal">
       <jnt-button [jntPopover]="{title: 'Title', contentTemplate: contentTemplate, trigger: ui.overlays.popover.trigger.click}"
-                  text="Click me">
+                  text="Click me"
+                  i18n-text="@@action.click_me">
       </jnt-button>
       <jnt-button [jntPopover]="{content: 'Without title & text only', trigger: ui.overlays.popover.trigger.click}"
-                  text="Without title">
+                  text="Without title"
+                  i18n-text="@@action.without_title">
       </jnt-button>
       <jnt-button [jntPopover]="{title: 'Custom', scheme: ui.scheme.primary, contentTemplate: contentTemplate, trigger: ui.overlays.popover.trigger.hover}"
-                  text="Custom content">
+                  text="Custom content"
+                  i18n-text="@@action.custom_content">
       </jnt-button>
 
       <ng-template #contentTemplate>
         <jnt-stack [type]="ui.layout.stack.type.vertical">
           <span>It is custom content!</span>
           <jnt-stack [type]="ui.layout.stack.type.horizontal">
-            <jnt-button text="Ok"></jnt-button>
-            <jnt-button text="Cancel"></jnt-button>
+            <jnt-button text="Ok"
+                        i18n-text="@@action.ok"></jnt-button>
+            <jnt-button text="Cancel"
+                        i18n-text="@@action.cancel"></jnt-button>
           </jnt-stack>
         </jnt-stack>
       </ng-template>
     </jnt-stack>
     <jnt-input [(ngModel)]="title"></jnt-input>
     <jnt-button [jntPopover]="{title: title, content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque aut cum cupiditate dolor fugiat ipsa provident vel voluptates. Accusantium ducimus fuga nisi nulla possimus, saepe vel voluptatum. Eligendi, repellat.', trigger: ui.overlays.popover.trigger.hover}"
-                text="Changed title">
+                text="Changed title"
+                i18n-text="@@action.changed_title">
     </jnt-button>
   </jnt-stack>
   <hr>
@@ -115,29 +121,36 @@
   <pre language="html">
 <pre><![CDATA[
   <jnt-button [jntPopover]="{title: 'Title', content: 'Click content', trigger: ui.overlays.popover.trigger.click}"
-              text="Click me">
+              text="Click me"
+              i18n-text="@@action.click_me">
    </jnt-button>
    <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.overlays.popover.trigger.hover}"
-               text="Without title">
+               text="Without title"
+               i18n-text="@@action.without_title">
    </jnt-button>
    <jnt-button [jntPopover]="{title: 'Mouse enter delay', content: 'Enter delay 1 sec',
         enterDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
-               text="Enter delay">
+               text="Enter delay"
+               i18n-text="@@action.enter_delay">
    </jnt-button>
    <jnt-button [jntPopover]="{title: 'Mouse leave delay', content: 'Leave delay 1 sec',
         leaveDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
-               text="Leave delay">
+               text="Leave delay"
+               i18n-text="@@action.leave_delay">
    </jnt-button>
    <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.overlays.popover.trigger.hover}"
-               text="Custom content">
+               text="Custom content"
+               i18n-text="@@action.custom_content">
    </jnt-button>
 
   <ng-template #content>
      <jnt-stack [type]="ui.layout.stack.type.vertical">
         <jnt-link>"It is custom content!</jnt-link>
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
-          <jnt-button text="Ok"></jnt-button>
-          <jnt-button text="Cancel"></jnt-button>
+          <jnt-button text="Ok"
+                      i18n-text="@@action.ok"></jnt-button>
+          <jnt-button text="Cancel"
+                      i18n-text="@@action.cancel"></jnt-button>
         </jnt-stack>
      </jnt-stack>
   </ng-template>
