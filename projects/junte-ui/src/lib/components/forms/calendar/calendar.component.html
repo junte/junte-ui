@@ -21,13 +21,7 @@
     </td>
   </tr>
   <tr days>
-    <th>Mo</th>
-    <th>Tu</th>
-    <th>We</th>
-    <th>Th</th>
-    <th>Fr</th>
-    <th>Sa</th>
-    <th>Su</th>
+    <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | dfnsWeekdayName: 'x2' }}</th>
 
     <th *ngFor="let m of metrics">
       {{m.title}}
