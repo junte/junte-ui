@@ -4,6 +4,7 @@ import { UI } from '../../../enums/ui';
 import { getTextBrightness } from '../../../utils/brightness';
 import { isEqual } from '../../../utils/equal';
 import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
+import { PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-chart',
@@ -28,7 +29,15 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   @HostBinding('attr.host') readonly host = 'jnt-chart-host';
 
   @Input() keyField: string;
+  @PropertyApi({
+    description: 'Title of the charts group',
+    type: 'string'
+  })
   @Input() title: string;
+  @PropertyApi({
+    description: 'Name of metric for the charts',
+    type: 'string'
+  })
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)

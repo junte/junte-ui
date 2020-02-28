@@ -10,209 +10,119 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <jnt-stack>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-      <jnt-stack>
-        <jnt-label label="Selected chart: {{selected | json}}" [color]="ui.color.red"></jnt-label>
-        <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading">
-          <jnt-chart-indicator title="Esanum" [data]="{project: 1, id: 10}" [value]="32" label="129h"
-                               [color]="ui.color.purple">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Junte UI" [data]="{project: 2, id: 20}" [value]="28" label="95h"
-                               [color]="ui.color.red">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Team Projector" [data]="{project: 3, id: 30}" [value]="22" label="57h"
-                               [color]="ui.color.green">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Junte site" [data]="{project: 4, id: 40}" [value]="18" label="50h"
-                               [color]="ui.color.teal"></jnt-chart-indicator>
-        </jnt-chart>
-      </jnt-stack>
-      <jnt-stack>
-        <jnt-label label="Selected chart with keyField: {{selected | json}}" [color]="ui.color.green"></jnt-label>
-        <jnt-chart [(ngModel)]="selected" title="Project" metric="Loading" keyField="id">
-          <jnt-chart-indicator title="Esanum" [data]="{project: 1, id: 10}" [value]="32" label="129h"
-                               [color]="ui.color.purple">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Junte UI" [data]="{project: 2, id: 20}" [value]="28" label="95h"
-                               [color]="ui.color.red">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Team Projector" [data]="{project: 3, id: 30}" [value]="22" label="57h"
-                               [color]="ui.color.green">
-          </jnt-chart-indicator>
-          <jnt-chart-indicator title="Junte site" [data]="{project: 4, id: 40}" [value]="18" label="50h"
-                               [color]="ui.color.teal"></jnt-chart-indicator>
-        </jnt-chart>
-      </jnt-stack>
-    </jnt-stack>
 
-    <jnt-chart [heightIndicator]="100" [widthMark]="40" [widthPoligon]="70" title="Project" metric="Loading">
-      <jnt-chart-indicator title="Esanum" [data]="1" [value]="32" label="129h"
-                           [color]="ui.color.purple"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte UI" [data]="2" [value]="28" label="95h"
-                           [color]="ui.color.red"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Team Projector" [data]="3" [value]="22" label="57h"
-                           [color]="ui.color.green"></jnt-chart-indicator>
-      <jnt-chart-indicator title="Junte site" [data]="4" [value]="18" label="50h"
-                           [color]="ui.color.yellow"></jnt-chart-indicator>
-    </jnt-chart>
+  <h1>Chart</h1>
 
-    <jnt-stack [align]="ui.flex.align.stretch">
-      <jnt-stack [type]="ui.layout.stack.type.vertical">
-        <jnt-stack [type]="ui.layout.stack.type.horizontal">
-          <jnt-label label="Selected chart" [color]="ui.color.red"></jnt-label>
-          {{form.value | json}}
-        </jnt-stack>
-        <jnt-stack [type]="ui.layout.stack.type.horizontal">
-          <jnt-button text="Add Chart" (click)="addChart()"></jnt-button>
-          <jnt-button text="Remove Chart" [scheme]="ui.scheme.fail" (click)="removeChart()"></jnt-button>
-        </jnt-stack>
-        <jnt-form [formGroup]="form">
-          <jnt-chart formControlName="selected" title="Project" metric="Loading">
-            <jnt-chart-indicator [data]="{project: 9}"
-                                 [value]="2" label="Lorem ipsum dolor sit amet."
-                                 [color]="ui.color.purple">
-              <ng-template #titleTemplate>
-                <h3>Title</h3>
-                <h4>Title</h4>
-                <h4>Title</h4>
-                <h4>Title</h4>
+  <div teaser>
+    <p></p>
+  </div>
+
+  <jnt-tabs playground>
+
+    <jnt-tab title="Preview" [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <!-- preview -->
+                <jnt-stack [align]="ui.flex.align.stretch">
+                  <jnt-stack [type]="ui.layout.stack.type.vertical">
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-label label="Selected chart" [color]="ui.color.red"></jnt-label>
+                      {{form.value | json}}
+                    </jnt-stack>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-button text="Add Chart" (click)="addChart()"></jnt-button>
+                      <jnt-button text="Remove Chart" [scheme]="ui.scheme.fail" (click)="removeChart()"></jnt-button>
+                    </jnt-stack>
+                    <jnt-form [formGroup]="form">
+                      <jnt-chart formControlName="selected" [title]="titleChartControl.value" [metric]="metricChartControl.value">
+                        <jnt-chart-indicator [data]="{hero: 9}"
+                                             [value]="2"
+                                             title="Ironman"
+                                             label="Smart"
+                                             [color]="ui.color.purple">
+                        </jnt-chart-indicator>
+                        <jnt-chart-indicator [data]="{hero: 10}" [value]="0" title="Tor" label="God of thunder"
+                                             [color]="ui.color.yellow"></jnt-chart-indicator>
+
+                        <ng-container *ngFor="let chart of charts; let i = index">
+                          <jnt-chart-indicator
+                            [data]="{hero: i + 10}"
+                            [title]="chart.title"
+                            [value]="chart.value"
+                            [label]="chart.label"
+                            [color]="chart.color">
+                          </jnt-chart-indicator>
+                        </ng-container>
+                      </jnt-chart>
+                    </jnt-form>
+                  </jnt-stack>
+                </jnt-stack>
+                <!-- preview -->
               </ng-template>
-            </jnt-chart-indicator>
-
-            <jnt-chart-indicator [data]="{project: 10}" title="Esanum" [value]="0" label="129h"
-                                 [color]="ui.color.yellow"></jnt-chart-indicator>
-            <ng-container *ngFor="let chart of charts; let i = index">
-              <jnt-chart-indicator
-                [data]="{id: i + 10}"
-                [title]="chart.title"
-                [value]="chart.value"
-                [label]="chart.label"
-                [color]="chart.color">
-              </jnt-chart-indicator>
-            </ng-container>
-          </jnt-chart>
-        </jnt-form>
-      </jnt-stack>
-    </jnt-stack>
-
-    <jnt-chart title="Project" metric="Loading"></jnt-chart>
-
-    <pre language="html">
-<pre><![CDATA[
-<jnt-chart title="Project" metric="Loading">
-  <jnt-chart-indicator title="Esanum"
-                       [data]="{project: 1}"
-                       [value]="32"
-                       label="129h"
-                       [color]="ui.color.purple">
-  </jnt-chart-indicator>
-  <jnt-chart-indicator title="Junte UI"
-                       [data]="{project: 2}"
-                       [value]="28"
-                       label="95h"
-                       [color]="ui.color.red">
-  </jnt-chart-indicator>
-  <jnt-chart-indicator title="Team Projector"
-                       [data]="{project: 3}"
-                       [value]="22"
-                       label="57h"
-                       [color]="ui.color.green">
-  </jnt-chart-indicator>
-  <jnt-chart-indicator title="Junte site"
-                       [data]="{project: 4}"
-                       [value]="18"
-                       label="50h"
-                       [color]="ui.color.yellow">
-  </jnt-chart-indicator>
-</jnt-chart>]]></pre>
-    </pre>
-
-    <h3>API</h3>
-    <h4>jnt-chart</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[title]</td>
-        <td>-</td>
-        <td>string</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>[metric]</td>
-        <td>-</td>
-        <td>string</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>[heightIndicator]</td>
-        <td>-</td>
-        <td>number</td>
-        <td>55</td>
-      </tr>
-      <tr>
-        <td>[widthPoligon]</td>
-        <td>-</td>
-        <td>number</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>[widthMark]</td>
-        <td>-</td>
-        <td>number</td>
-        <td>100</td>
-      </tr>
-      </tbody>
-    </table>
-
-    <h4>jnt-chart-indicator</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[label]</td>
-        <td>-</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[value]</td>
-        <td>-</td>
-        <td>number</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[title]</td>
-        <td>-</td>
-        <td>string</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[color]</td>
-        <td>-</td>
-        <td>string | Colors</td>
-        <td>-</td>
-      </tr>
-      </tbody>
-    </table>
-
-  </jnt-stack>
-
-
-</jnt-container>
-
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-label for="titleChart">Custom title</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-input formControlName="titleChart" [type]="ui.form.input.type.text"></jnt-input>
+                  </jnt-form-control>
+                </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="metricChart">Custom metric</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-input formControlName="metricChart" [type]="ui.form.input.type.text"></jnt-input>
+                  </jnt-form-control>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'chart-test', type: 'ChartTestComponent'}"
+                scss="dynamic/chart"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight [language]="language.html" file="chart-test.template.html">
+                <![CDATA[
+                <jnt-chart title="{{titleChartControl.value}}" metric="{{metricChartControl.value}}">
+                  <jnt-chart-indicator title="Ironman"
+                                       [data]="{hero: 1}"
+                                       [value]="32"
+                                       label="Smart"
+                                       [color]="ui.color.purple">
+                  </jnt-chart-indicator>
+                  <jnt-chart-indicator title="Tor"
+                                       [data]="{hero: 2}"
+                                       [value]="28"
+                                       label="God of thunder"
+                                       [color]="ui.color.red">
+                  </jnt-chart-indicator>
+                </jnt-chart>]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-chart" [target]="types.chart"></app-component-api>
+        <app-component-api selector="jnt-chart-indicator" [target]="types.chartIndicator"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>

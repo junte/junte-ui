@@ -27,6 +27,10 @@ import { SumIndicatorsPipe } from './sum-indicator.pipe';
     ChartComponent,
     ChartIndicatorComponent,
     SumIndicatorsPipe
+  ],
+  entryComponents: [
+    ChartComponent,
+    ChartIndicatorComponent
   ]
 })
 export class ChartModule {
