@@ -13,7 +13,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Pager</h1>
+  <h1 i18n="@@label.pager">Pager</h1>
 
   <jnt-tabs playground>
 
@@ -48,7 +48,8 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder" form>
               <jnt-form-item>
-                <jnt-form-label for="count">Pages count</jnt-form-label>
+                <jnt-form-label for="count"
+                                i18n="@@label.pages_count">Pages count</jnt-form-label>
                 <jnt-form-control>
                   <jnt-switcher formControlName="count">
                     <jnt-switcher-option *ngFor="let page of [2,5,10]" [label]="page"
