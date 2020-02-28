@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Select</h1>
+  <h1 i18n="@@label.select">Select</h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
@@ -70,7 +70,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="mode">Mode</jnt-form-label>
+                  <jnt-form-label for="mode"
+                                  i18n="@@label.mode">Mode</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="mode"
                                 placeholder="Single"
@@ -86,7 +87,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size">Size</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -107,7 +109,8 @@
                 <jnt-stack [type]="ui.layout.stack.type.horizontal"
                            [align]="ui.flex.align.stretch">
                   <jnt-form-item>
-                    <jnt-form-label for="type">State</jnt-form-label>
+                    <jnt-form-label for="type"
+                                    i18n="@@label.state">State</jnt-form-label>
                     <jnt-stack [type]="ui.layout.stack.type.horizontal">
                       <jnt-checkbox formControlName="disabled"
                                     label="Disabled"
@@ -116,7 +119,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="type">Features</jnt-form-label>
+                    <jnt-form-label for="type"
+                                    i18n="@@label.features">Features</jnt-form-label>
                     <jnt-stack>
                       <jnt-stack [type]="ui.layout.stack.type.horizontal">
                         <jnt-checkbox formControlName="allowEmpty"
@@ -141,7 +145,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-how-to-use [test]="{selector:'select-test', type: 'SelectTestComponent'}"
                         scss="forms/select">

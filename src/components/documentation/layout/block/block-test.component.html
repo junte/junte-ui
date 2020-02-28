@@ -12,7 +12,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Block</h1>
+  <h1 i18n="@@label.block">Block</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -55,7 +55,8 @@
                 <jnt-stack [align]="ui.flex.align.stretch">
 
                   <jnt-form-item>
-                    <jnt-form-label for="scheme">Scheme</jnt-form-label>
+                    <jnt-form-label for="scheme"
+                                    i18n="@@label.scheme">Scheme</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="scheme"
                                   placeholder="Primary"
@@ -77,7 +78,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="padding">Padding</jnt-form-label>
+                    <jnt-form-label for="padding"
+                                    i18n="@@label.padding">Padding</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="padding"
                                   placeholder="Normal"
@@ -105,7 +107,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="width">Width</jnt-form-label>
+                    <jnt-form-label for="width"
+                                    i18n="@@label.width">Width</jnt-form-label>
                     <jnt-switcher formControlName="width"
                                   placeholder="Default"
                                   i18n-primary="@@label.default">
@@ -121,7 +124,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="state">States</jnt-form-label>
+                    <jnt-form-label for="state"
+                                    i18n="@@label.states">States</jnt-form-label>
                     <jnt-switcher formControlName="state">
                       <jnt-switcher-option label="Loading"
                                            i18n-label="@@label.loading"
@@ -154,7 +158,9 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"

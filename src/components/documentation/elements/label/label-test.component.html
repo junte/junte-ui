@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Label</h1>
+  <h1 i18n="@@label.label">Label</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -43,7 +43,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size">Size</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -59,7 +60,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color">Background color</jnt-form-label>
+                  <jnt-form-label for="color"
+                                  i18n="@@label.background_color">Background color</jnt-form-label>
                   <jnt-form-control>
                     <input type="color" formControlName="color">
                   </jnt-form-control>
@@ -80,7 +82,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-how-to-use
           [test]="{selector:'label-test', type: 'LabelTestComponent'}"

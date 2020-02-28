@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { ChartComponent, ChartIndicatorComponent, UI, TabComponent} from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
   selector: 'app-chart-test',
@@ -10,18 +12,35 @@ import { UI } from 'junte-ui';
 export class ChartTestComponent implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
+  language = Language;
+
+  @ViewChild('code', {static: false}) code: TabComponent;
 
   form: FormGroup;
   charts: any[] = [];
-  selected = 28;
+  selected = null;
+
+  titleChartControl = this.fb.control('Heroes');
+  metricChartControl = this.fb.control('Superpower');
+
+  types = {
+    chart: ChartComponent,
+    chartIndicator: ChartIndicatorComponent
+  };
 
   demo = [
-    {title: 'Title 1', value: 10, label: 'Label 1', color: UI.color.orange},
-    {title: 'Title 2', value: 15, label: 'Label 2', color: UI.color.red},
-    {title: 'Title 3', value: 20, label: 'Label 3', color: UI.color.blue},
-    {title: 'Title 4', value: 5, label: 'Label 4', color: UI.color.purpleDark},
-    {title: 'Title 5', value: 5, label: 'Label 5', color: UI.color.gray}
+    {title: 'Hulk', value: 10, label: 'Rage', color: UI.color.orange},
+    {title: 'Groot', value: 15, label: 'Can Control Plant Life', color: UI.color.red},
+    {title: 'Gamora', value: 20, label: 'Acrobatic Skills', color: UI.color.blue},
+    {title: 'Scarlet Witch', value: 5, label: 'Hyper Telekinesis', color: UI.color.purpleDark},
+    {title: 'Doctor Strange', value: 5, label: 'The Mirror Dimension', color: UI.color.gray}
   ];
+
+  builder = this.fb.group({
+    titleChart: this.titleChartControl,
+    metricChart: this.metricChartControl
+  });
 
   constructor(private fb: FormBuilder) {
   }
@@ -30,6 +49,8 @@ export class ChartTestComponent implements OnInit {
     this.form = this.fb.group({
       selected: this.fb.control(null)
     });
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
   addChart() {

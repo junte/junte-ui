@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppLayoutModule, BreadcrumbsModule, MenuModule, ModalModule, PopoverModule, StackModule, ThemeSwitcherModule } from 'junte-ui';
 import { AppFooterModule } from 'src/components/app-footer/app-footer.module';
-import { JUNTE_UI_CONFIG } from '../../consts';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { OutletModule } from '../outlet/outlet.module';
 import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocumentationRoutingModule } from './documentation-routing.module';
@@ -24,11 +24,11 @@ import { DocumentationComponent } from './documentation.component';
     StackModule.forRoot(JUNTE_UI_CONFIG),
     SelectLangModule,
     AppFooterModule,
-    DocumentationRoutingModule,
+    DocumentationRoutingModule
   ],
   declarations: [
     DocumentationComponent,
-  ],
+  ]
 })
 export class DocumentationModule {
 

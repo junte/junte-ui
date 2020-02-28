@@ -1,6 +1,6 @@
 <jnt-container>
 
-  <h1>Avatar</h1>
+  <h1 i18n="@@label.avatar">Avatar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -85,7 +85,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size">Size</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -99,7 +100,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="shape">Shape</jnt-form-label>
+                  <jnt-form-label for="shape"
+                                  i18n="@@label.shape">Shape</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="shape" placeholder="Circle">
                       <jnt-select-option label="Circle"
@@ -133,7 +135,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
           <jnt-accordion-section title="How to start"

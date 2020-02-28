@@ -7,3 +7,4 @@ export * from './skeleton/public_api';
 export * from './spinner/public_api';
 export * from './stack/public_api';
 export * from './lp/public_api';
+export * from './responsive/public_api';

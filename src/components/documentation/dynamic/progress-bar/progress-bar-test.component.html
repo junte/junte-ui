@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Progress bar</h1>
+  <h1 i18n="@@label.progress_bar">Progress bar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -64,7 +64,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
           <jnt-accordion-section title="How to start"

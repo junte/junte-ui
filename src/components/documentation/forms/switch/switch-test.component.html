@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Switch</h1>
+  <h1 i18n="@@label.switch">Switch</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switch"
@@ -22,7 +22,7 @@
               i18n-title="@@label.more">
     </jnt-link>
   </p>
-  <h3>Requirements</h3>
+  <h3 i18n="@@label.requirements">Requirements</h3>
 
   <ol>
     <li>The switch should show the loading</li>
@@ -30,12 +30,12 @@
     <li>The button should change the display when it is disabled and disabled & checked</li>
   </ol>
 
-  <h3>How to use</h3>
+  <h3 i18n="@@label.how_to_use">How to use</h3>
   <app-how-to-use
     [test]="{selector:'switch-test', type: 'SwitchTestComponent'}"
     scss="forms/switch"></app-how-to-use>
 
-  <h3>Playground</h3>
+  <h3 i18n="@@label.playground">Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -68,7 +68,8 @@
             </jnt-form-item>
 
             <jnt-form-item>
-              <jnt-form-label for="size">Size</jnt-form-label>
+              <jnt-form-label for="size"
+                              i18n="@@label.size">Size</jnt-form-label>
               <jnt-form-control>
                 <jnt-select formControlName="size">
                   <jnt-select-option label="Tiny"
@@ -125,7 +126,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight file="switch-test.component.html">
           <![CDATA[

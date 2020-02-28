@@ -10,14 +10,14 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Switcher</h1>
+  <h1 i18n="@@label.switcher">Switcher</h1>
 
-  <h3>How to use</h3>
+  <h3 i18n="@@label.how_to_use">How to use</h3>
   <app-how-to-use
     [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
     scss="forms/switcher"></app-how-to-use>
 
-  <h3>Playground</h3>
+  <h3 i18n="@@label.playground">Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -26,7 +26,7 @@
         <jnt-stack [type]="ui.layout.stack.type.horizontal">
           <app-browser-preview>
             <ng-template #document>
-              <h5>Choose your favorite car brand:</h5>
+              <h5 i18n="@@label.choose_car">Choose your favorite car brand:</h5>
               <form [formGroup]="switcherForm">
                 <jnt-switcher formControlName="switcher" [type]="typeControl.value">
                   <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini"
@@ -56,7 +56,8 @@
           </app-browser-preview>
           <jnt-form [formGroup]="form" builder>
             <jnt-form-item>
-              <jnt-form-label for="type">Type</jnt-form-label>
+              <jnt-form-label for="type"
+                              i18n="@@label.type">Type</jnt-form-label>
               <jnt-switcher formControlName="type">
                 <jnt-switcher-option label="Horizontal"
                                      i18n-label="@@label.horizontal"
@@ -89,7 +90,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-code-highlight file="switcher-test.component.html">
           <![CDATA[
