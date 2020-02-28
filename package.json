@@ -22,7 +22,7 @@
     "copy:assets": "rm -rf dist/junte-ui/lib/assets && npm run assets:create:folders && npm run assets:copy:folders && npm run assets:copy:styles",
     "copy:files": "npm run copy:license && npm run copy:readme && npm run copy:assets && npm run gulp:styles && npm run copy:iconfont",
     "copy:iconfont": "cd ./projects/junte-ui/src/scripts/iconfont && tsc  && cp iconfont.js template ../../../../../dist/junte-ui",
-    "encapsulation": "rm -rf projects/junte-ui/src/lib/assets/styles/components && gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd .",
+    "encapsulation": "gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd .",
     "encapsulation:watch": "rm -rf projects/junte-ui/src/lib/assets/styles/components && gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd . --watch",
     "themes:wwatch": "gulp themes:watch",
     "themes": "gulp themes",
