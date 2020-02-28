@@ -11,7 +11,8 @@ import {
   BlockModule,
   ChartModule,
   LabelModule,
-  ButtonModule
+  ButtonModule,
+  InputModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { ChartTestComponent } from './chart-test.component';
@@ -31,7 +32,8 @@ import { ChartTestComponent } from './chart-test.component';
     BlockModule,
     SharedModule,
     LabelModule,
-    ButtonModule
+    ButtonModule,
+    InputModule
   ],
   exports: [
     ChartTestComponent

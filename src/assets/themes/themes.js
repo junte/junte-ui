@@ -1,5 +1,5 @@
 function themes(theme, callback) {
-  var themes = {};
+  var themes = {"dark":"38aa5f7df3"};
 
   var clear = function () {
     var exist = document.head.querySelector('style[theme="true"]');

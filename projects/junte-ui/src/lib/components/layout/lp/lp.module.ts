@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
-import { en } from '../../../i18n/en';
+import { TranslateModule } from '@ngx-translate/core';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../../config';
 import { ButtonModule } from '../../forms/button/button.module';
 import { StackModule } from '../stack/stack.module';
 import { LpLayoutComponent } from './layout/lp-layout.component';
@@ -13,7 +12,8 @@ import { LpSlideComponent } from './slide/lp-slide.component';
   imports: [
     CommonModule,
     StackModule,
-    ButtonModule
+    ButtonModule,
+    TranslateModule
   ],
   declarations: [
     LpLayoutComponent,
@@ -35,15 +35,7 @@ export class LpModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        }, ...JUNTE_MODULE_PROVIDES
       ]
     };
   }
