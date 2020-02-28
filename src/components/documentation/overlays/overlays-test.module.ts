@@ -5,9 +5,7 @@ import { ModalTestModule } from './modal/modal-test.module';
 
 @NgModule({
   imports: [
-    OverlaysRoutingModule
-  ],
-  exports: [
+    OverlaysRoutingModule,
     ModalTestModule,
     PopoverTestModule
   ]

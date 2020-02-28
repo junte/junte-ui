@@ -1,7 +1,6 @@
 <button [type]="type" [disabled]="disabled || loading">
   <jnt-spinner loading [@spinner]="loading" *ngIf="loading"></jnt-spinner>
-  <jnt-icon *ngIf="icon" [@text]="loading | visible"
-            [icon]="icon"></jnt-icon>
+  <jnt-icon *ngIf="icon" [@text]="loading | visible" [icon]="icon"></jnt-icon>
   <div text [@text]="loading | visible">{{text}}</div>
   <jnt-stack [@text]="loading | visible" *ngIf="badges.length"
              [type]="ui.layout.stack.type.horizontal"
