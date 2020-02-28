@@ -12,7 +12,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Checkbox</h1>
+  <h1 i18n="@@label.checkbox">Checkbox</h1>
 
   <jnt-tabs playground>
     <jnt-tab title="Preview"
@@ -41,7 +41,8 @@
                                         [size]="sizeControl.value"
                                         [disabled]="disableControl.value"></jnt-checkbox>
                         </jnt-checkbox-group>
-                        <jnt-form-message [type]="ui.form.validators.typeError.required">
+                        <jnt-form-message [type]="ui.form.validators.typeError.required"
+                                          i18n="@@label.please_select_any_hero">
                           Please select any hero
                         </jnt-form-message>
                       </jnt-form-control>
@@ -79,7 +80,8 @@
             <jnt-form [formGroup]="builder" builder>
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size of checkbox buttons</jnt-form-label>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size_of_checkbox_buttons">Size of checkbox buttons</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size">
                       <jnt-select-option label="Tiny"

@@ -12,7 +12,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Breadcrumbs</h1>
+  <h1 i18n="@@label.Breadcrumbs">Breadcrumbs</h1>
 
   <jnt-tabs playground>
     <jnt-tab title="Preview"
@@ -47,7 +47,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab title="Code" [icon]="localUi.icons.code">
+    <jnt-tab title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="0">
           <jnt-accordion-section title="How to start"

@@ -119,7 +119,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-how-to-use
           [test]="{selector:'modal-test', type: 'ModalTestComponent'}"

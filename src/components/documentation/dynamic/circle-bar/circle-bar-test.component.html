@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Circle bar</h1>
+  <h1 i18n="@@label.circle_bar">Circle bar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -24,7 +24,7 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-circle-bar>
-                  <ng-template #circleBarContentTemplate>Content</ng-template>
+                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
                   <jnt-bar-indicator-group>
                     <jnt-bar-indicator [value]="value1Control.value"
                                        [color]="color1Control.value"></jnt-bar-indicator>
@@ -46,26 +46,30 @@
 
               <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
                 <jnt-form-item>
-                  <jnt-form-label for="value1">First value</jnt-form-label>
+                  <jnt-form-label for="value1"
+                                  i18n="@@label.first_value">First value</jnt-form-label>
                   <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100"
                              [min]="0"></jnt-input>
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color1">First color</jnt-form-label>
+                  <jnt-form-label for="color1"
+                                  i18n="@@label.first_color">First color</jnt-form-label>
                   <input formControlName="color1" type="color">
                 </jnt-form-item>
               </jnt-stack>
 
               <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
                 <jnt-form-item>
-                  <jnt-form-label for="value2">Second value</jnt-form-label>
+                  <jnt-form-label for="value2"
+                                  i18n="@@label.second_value">Second value</jnt-form-label>
                   <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100"
                              [min]="0"></jnt-input>
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color2">Second color</jnt-form-label>
+                  <jnt-form-label for="color2"
+                                  i18n="@@label.second_value">Second color</jnt-form-label>
                   <input formControlName="color2" type="color">
                 </jnt-form-item>
               </jnt-stack>
@@ -73,13 +77,15 @@
 
               <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
                 <jnt-form-item>
-                  <jnt-form-label for="value3">Third value</jnt-form-label>
+                  <jnt-form-label for="value3"
+                                  i18n="@@label.third_value">Third value</jnt-form-label>
                   <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100"
                              [min]="0"></jnt-input>
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color3">Third color</jnt-form-label>
+                  <jnt-form-label for="color3"
+                                  i18n="@@label.third_color">Third color</jnt-form-label>
                   <input formControlName="color3" type="color">
                 </jnt-form-item>
               </jnt-stack>
@@ -89,7 +95,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
           <jnt-accordion-section title="How to start"
@@ -106,7 +114,7 @@
               <app-code-highlight file="circle-bar-test.template.html">
                 <![CDATA[
                 <jnt-circle-bar>
-                  <ng-template #circleBarContentTemplate>Content</ng-template>
+                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
                   <jnt-bar-indicator-group>
                     <jnt-bar-indicator
                       ]]>
