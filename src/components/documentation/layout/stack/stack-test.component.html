@@ -7,7 +7,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Stack</h1>
+  <h1 i18n="@@label.stack">Stack</h1>
 
   <div teaser>
     <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
@@ -59,7 +59,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="typeControl">Type</jnt-form-label>
+                  <jnt-form-label for="typeControl"
+                                  i18n="@@label.type">Type</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Vertical"
@@ -77,7 +78,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="gutter">Gutter</jnt-form-label>
+                  <jnt-form-label for="gutter"
+                                  i18n="@@label.gutter">Gutter</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="gutter"
                                 placeholder="Normal"
@@ -114,7 +116,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="align">Align in the main axis</jnt-form-label>
+                  <jnt-form-label for="align"
+                                  i18n="@@label.align_in_the_main_axis">Align in the main axis</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select align formControlName="align"
                                 placeholder="Start"
@@ -144,7 +147,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="justify">Justify on the secondary axis</jnt-form-label>
+                  <jnt-form-label for="justify"
+                                  i18n="@@label.justify_on_the_secondary_axis">Justify on the secondary axis</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select justify formControlName="justify"
                                 placeholder="Start"
@@ -178,7 +182,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="wrap">Wrap</jnt-form-label>
+                  <jnt-form-label for="wrap"
+                                  i18n="@@label.wrap">Wrap</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="wrap"
                                 placeholder="No wrap"
@@ -205,7 +210,9 @@
         </jnt-row>
       </ng-template>
     </jnt-tab>
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
           <jnt-accordion-section title="How to start"

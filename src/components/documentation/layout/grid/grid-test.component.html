@@ -7,7 +7,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Grid</h1>
+  <h1 i18n="@@label.grid">Grid</h1>
 
   <div *jntMinFor="ui.breakpoint.mobile">
     <p>Only for mobile!</p>
@@ -66,7 +66,8 @@
                 <jnt-stack [align]="ui.flex.align.stretch">
 
                   <jnt-form-item>
-                    <jnt-form-label for="gutter">Gutter</jnt-form-label>
+                    <jnt-form-label for="gutter"
+                                    i18n="@@label.gutter">Gutter</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="gutter"
                                   placeholder="Normal"
@@ -103,7 +104,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="align">Align</jnt-form-label>
+                    <jnt-form-label for="align"
+                                    i18n="@@label.align">Align</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="align"
                                   placeholder="Start"
@@ -129,7 +131,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="span">Column span</jnt-form-label>
+                    <jnt-form-label for="span"
+                                    i18n="@@label.column_span">Column span</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="span" placeholder="1">
                         <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
@@ -140,7 +143,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="span">Column padding</jnt-form-label>
+                    <jnt-form-label for="span"
+                                    i18n="@@label.column_padding">Column padding</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="padding"
                                   placeholder="Normal"
@@ -184,7 +188,9 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+      <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"

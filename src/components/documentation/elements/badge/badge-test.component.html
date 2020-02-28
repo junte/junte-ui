@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Badge</h1>
+  <h1 i18n="@@label.badge">Badge</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -59,7 +59,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="position">Position</jnt-form-label>
+                  <jnt-form-label for="position"
+                                  i18n="@@label.position">Position</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="position" placeholder="Inline">
                       <jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>
@@ -70,7 +71,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="value">Value</jnt-form-label>
+                  <jnt-form-label for="value"
+                                  i18n="@@label.value">Value</jnt-form-label>
                   <jnt-switcher formControlName="value">
                     <jnt-switcher-option label="5" [value]="5"></jnt-switcher-option>
                     <jnt-switcher-option label="10" [value]="10"></jnt-switcher-option>
@@ -80,7 +82,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="overflow">Overflow</jnt-form-label>
+                  <jnt-form-label for="overflow"
+                                  i18n="@@label.overflow">Overflow</jnt-form-label>
                   <jnt-switcher formControlName="overflow" placeholder="99">
                     <jnt-switcher-option label="9" [value]="9"></jnt-switcher-option>
                     <jnt-switcher-option label="99" [value]="99"></jnt-switcher-option>
@@ -89,7 +92,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color">Background color</jnt-form-label>
+                  <jnt-form-label for="color"
+                                  i18n="@@label.background_color">Background color</jnt-form-label>
                   <jnt-form-control>
                     <input type="color" formControlName="color">
                   </jnt-form-control>
@@ -102,7 +106,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <jnt-accordion [active]="1">
           <jnt-accordion-section title="How to start"

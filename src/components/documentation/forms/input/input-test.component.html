@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Input</h1>
+  <h1 i18n="@@label.input">Input</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -57,7 +57,8 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="type">Type</jnt-form-label>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.type">Type</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Text"
@@ -76,7 +77,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="state">State</jnt-form-label>
+                  <jnt-form-label for="state"
+                                  i18n="@@label.state">State</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="state"
                                 placeholder="Normal"
@@ -95,7 +97,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size">Size</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -114,7 +117,8 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="align">Text align</jnt-form-label>
+                  <jnt-form-label for="align"
+                                  i18n="@@label.text_align">Text align</jnt-form-label>
                   <jnt-switcher formControlName="align"
                                 placeholder="Left"
                                 i18n-placeholder="@@label.left">
@@ -129,7 +133,8 @@
 
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
                   <jnt-form-item>
-                    <jnt-form-label for="type">State</jnt-form-label>
+                    <jnt-form-label for="type"
+                                    i18n="@@label.state">State</jnt-form-label>
                     <jnt-stack [type]="ui.layout.stack.type.horizontal">
                       <jnt-checkbox formControlName="disabled"
                                     label="Disabled"
@@ -138,7 +143,8 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="type">Features</jnt-form-label>
+                    <jnt-form-label for="type"
+                                    i18n="@@label.features">Features</jnt-form-label>
                     <jnt-stack [type]="ui.layout.stack.type.horizontal">
                       <jnt-checkbox formControlName="icon"
                                     label="Icon"
@@ -158,7 +164,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-how-to-use
           [test]="{selector:'input-test', type: 'InputTestComponent'}"

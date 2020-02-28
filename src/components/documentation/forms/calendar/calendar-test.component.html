@@ -1,5 +1,5 @@
 <jnt-container>
-  <h1>Calendar</h1>
+  <h1 i18n="@@label.calendar">Calendar</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/calendar"
@@ -10,7 +10,7 @@
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-  <h3>Requirements</h3>
+  <h3 i18n="@@label.requirements">Requirements</h3>
 
   <ol>
     <li>The day and arrows in calendar should respond to mouse hover, click</li>
@@ -21,7 +21,7 @@
     <li>Weekend should be highlighted</li>
   </ol>
 
-  <h3>Playground</h3>
+  <h3 i18n="@@label.playground">Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -61,14 +61,16 @@
                     </ng-template>
                   </jnt-calendar>
                 </form>
-                <div *ngIf="calendarControl.value">You choose: {{calendarControl.value | dfnsFormat: 'dd.MM.yyyy'}}</div>
+                <div *ngIf="calendarControl.value"
+                     i18n="@@label.you_choose">You choose: {{calendarControl.value | dfnsFormat: 'dd.MM.yyyy'}}</div>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="form">
               <jnt-form-item>
-                <jnt-form-label for="year">Year</jnt-form-label>
+                <jnt-form-label for="year"
+                                i18n="@@label.year">Year</jnt-form-label>
                 <jnt-form-control>
                   <jnt-switcher formControlName="year">
                     <jnt-switcher-option label="2020" [value]="2020"></jnt-switcher-option>
@@ -80,7 +82,8 @@
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-form-label for="month">Month</jnt-form-label>
+                <jnt-form-label for="month"
+                                i18n="@@label.month">Month</jnt-form-label>
                 <jnt-form-control>
                   <jnt-switcher formControlName="month">
                     <jnt-switcher-option label="March" [value]="month.march"></jnt-switcher-option>
@@ -94,7 +97,7 @@
               <jnt-form-item>
                 <jnt-checkbox formControlName="metrics"
                               label="Metrics"
-                              i18n-label="@@label.metrics" ></jnt-checkbox>
+                              i18n-label="@@label.metrics"></jnt-checkbox>
               </jnt-form-item>
 
               <jnt-form-item>
@@ -108,7 +111,9 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code" [icon]="localUi.icons.code">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
         <app-how-to-use
           [test]="{selector:'calendar-test', type: 'CalendarTestComponent'}"
