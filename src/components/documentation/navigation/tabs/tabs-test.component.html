@@ -12,7 +12,7 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1>Tabs</h1>
+  <h1 i18n="@@label.tabs">Tabs</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -80,13 +80,17 @@
                 <jnt-stack [align]="ui.flex.align.stretch">
 
                   <jnt-form-item>
-                    <jnt-form-label for="outline">Background</jnt-form-label>
+                    <jnt-form-label for="outline"
+                                    i18n="@@label.background">Background</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="outline"
-                                  placeholder="Fill">
+                                  placeholder="Fill"
+                                  i18n-placeholder="@@label.fill">
                         <jnt-select-option label="Transparent"
+                                           i18n-label="@@label.transparent"
                                            [key]="ui.outline.transparent"></jnt-select-option>
                         <jnt-select-option label="Fill"
+                                           i18n-label="@@label.fill"
                                            [key]="ui.outline.fill"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
@@ -94,9 +98,11 @@
 
                   <jnt-stack [type]="ui.layout.stack.type.horizontal">
                     <jnt-checkbox formControlName="icons"
-                                  label="Icons"></jnt-checkbox>
+                                  label="Icons"
+                                  i18n-label="@@label.icons"></jnt-checkbox>
                     <jnt-checkbox formControlName="badges"
-                                  label="Badges"></jnt-checkbox>
+                                  label="Badges"
+                                  i18n-label="@@label.badges"></jnt-checkbox>
                   </jnt-stack>
 
                 </jnt-stack>
@@ -202,9 +208,11 @@
         <ng-template #tabContentTemplate>
           <jnt-stack [align]="ui.flex.align.stretch">
             <app-component-api title="Tabs"
+                               i18n-title="@@label.tabs"
                                selector="jnt-tabs"
                                [target]="types.tabs"></app-component-api>
             <app-component-api title="Tab"
+                               i18n-title="@@label.tab"
                                selector="jnt-tab"
                                [target]="types.tab"></app-component-api>
           </jnt-stack>
