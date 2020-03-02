@@ -5,8 +5,8 @@ import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { CURRENT_LANGUAGE } from '../../consts';
-import { Language } from '../../enums/language';
+import { CURRENT_LANGUAGE } from 'src/consts';
+import { Language } from 'src/enums/language';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 

@@ -1,6 +1,6 @@
 export enum Language {
-  html = 'html',
+  xml = 'xml',
   css = 'css',
-  javascript = 'javascript',
-  shell = 'shell'
+  typescript = 'typescript',
+  json = 'json'
 }
