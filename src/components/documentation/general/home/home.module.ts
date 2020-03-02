@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LinkModule, IconModule, GridModule } from 'junte-ui';
+import { GridModule, IconModule, LinkModule } from 'junte-ui';
+import { CodeHighlightModule } from 'src/components/documentation/shared/code-highlight/code-highlight.module';
 import { HomeComponent } from './home.component';
 
 @NgModule({
@@ -8,7 +9,8 @@ import { HomeComponent } from './home.component';
     CommonModule,
     LinkModule,
     IconModule,
-    GridModule
+    GridModule,
+    CodeHighlightModule
   ],
   exports: [
     HomeComponent

@@ -35,17 +35,20 @@
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 npm install junte-ui --save
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
 
   <p>Once installed you need to import our main module.</p>
   <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
     application.</p>
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 import { JunteUiModule } from 'junte-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -53,16 +56,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ...
   imports: [ JunteUiModule, BrowserAnimationsModule, ... ],
   ...
- })
+})
 
 export class AppModule {
-  }
-]]></pre>
-  </pre>
+}
+]]>
+    </pre>
+  </app-code-highlight>
 
   <p>Or you can import only modules of target components to decrease bundle size.</p>
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 import { IconModule } from 'junte-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -70,12 +75,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ...
   imports: [ IconModule, BrowserAnimationsModule, ... ],
   ...
- })
+})
 
 export class AppModule {
-    }
-      ]]></pre>
-  </pre>
+}
+]]>
+    </pre>
+  </app-code-highlight>
 
 
   <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
@@ -83,20 +89,17 @@ export class AppModule {
     context!</p>
   <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
-  <pre language="js">
-      <pre><![CDATA[
-      {
-      ...
-      "projects": {
-      "architect": {
-      "build": {
-      "options": {
-      "assets": [
-      {
-      "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
-      "output": "./assets/fonts/icons/"
-      },
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
+{
+  ...
+  "assets": [
+    {
+    "glob": "**/*",
+    "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
+    "output": "./assets/fonts/icons/"
+    },
     {
       "glob": "**/*",
       "input": "node_modules/junte-ui/lib/assets/icons/animated/",
@@ -104,45 +107,52 @@ export class AppModule {
     },
     {
       "glob": "**/*",
-        "input": "node_modules/junte-ui/lib/assets/icons/svg/",
-        "output": "./assets/icons/svg/"
-      }
-    ],
-          "styles": [
-            "src/styles.scss",
-            "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
-            "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
-          ]
+      "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+      "output": "./assets/icons/svg/"
+    }
+  ],
+  "styles": [
+    "src/styles.scss",
+    "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
+    "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
+  ]
   ...
 }
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
 
   <p>Import the style files of the components you need into the global style file <code>style.scss</code></p>
 
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 @import "~junte-ui/lib/components/button/button.encapsulated";
 @import "~junte-ui/lib/components/block/block.encapsulated";
 @import "~junte-ui/lib/components/badge/badge.encapsulated";
 ...
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
 
   <p>If you need styles of all the components import the file <code>components.scss</code></p>
 
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 @import "~junte-ui/lib/assets/styles/components";
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
   <p>If you need common styles import the file <code>common.scss</code></p>
 
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 @import "~junte-ui/lib/assets/styles/common";
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
 
 
   <h3 i18n="@@label.strong_html">Strong HTML</h3>
@@ -150,32 +160,36 @@ export class AppModule {
   <p>Junte UI uses multiple enums to set the input parameters of a component.
     Create an alias in your component for using UI enums.</p>
 
-  <pre language="js">
-<pre><![CDATA[
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
 import { UI } from 'junte-ui';
 ...
 
 export class YourComponent {
   ui = UI;
 }
-]]></pre>
-  </pre>
+]]>
+    </pre>
+  </app-code-highlight>
 
   <p>In the template, you can use strong enum values</p>
 
-  <pre language="html">
-<pre><![CDATA[
-<jnt-button [scheme]="ui.scheme.primary"
-            [size]="ui.size.small"
-            [outline]="ui.outline.ghost"
-            [icon]="ui.icons.plus"
-            [badge]="5"
-            [loading]="true"
-            [disabled]="false"
-            text="Button">
-</jnt-button>
-]]></pre>
-  </pre>
+  <app-code-highlight>
+    <pre>
+      <![CDATA[
+      <jnt-button [scheme]="ui.scheme.primary"
+                  [size]="ui.size.small"
+                  [outline]="ui.outline.ghost"
+                  [icon]="ui.icons.plus"
+                  [badge]="5"
+                  [loading]="true"
+                  [disabled]="false"
+                  text="Button">
+      </jnt-button>
+      ]]>
+    </pre>
+  </app-code-highlight>
 
   <h3 i18n="@@label.responsive_design">Responsive Design</h3>
 
@@ -184,21 +198,22 @@ export class YourComponent {
     using rows & columns.
   </p>
 
-  <pre language="html">
-<pre><![CDATA[
-<jnt-container>
-  <jnt-row>
-    <jnt-col [mobile]="12"
-             [tablet]="6"
-             [desktop]="4"
-             [wide]="3">
-      Content here
-    </jnt-col>
-  </jnt-row>
-</jnt-container>
-]]></pre>
-  </pre>
-
+  <app-code-highlight>
+    <pre>
+      <![CDATA[
+      <jnt-container>
+        <jnt-row>
+          <jnt-col [mobile]="12"
+                   [tablet]="6"
+                   [desktop]="4"
+                   [wide]="3">
+            Content here
+          </jnt-col>
+        </jnt-row>
+      </jnt-container>
+      ]]>
+    </pre>
+  </app-code-highlight>
 
   <h3 i18n="@@label.themes_support">Themes Support</h3>
   <p>Style files are stored separately from the components, so any style can be changed and the project can be
@@ -238,4 +253,3 @@ export class YourComponent {
   </p>
 
 </jnt-container>
-

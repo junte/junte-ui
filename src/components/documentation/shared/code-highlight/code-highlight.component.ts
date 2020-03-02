@@ -19,13 +19,10 @@ export class CodeHighlightComponent implements AfterViewInit {
   code = '';
 
   @Input() file: string;
-  @Input() language: Language = Language.html;
+  @Input() language: Language = Language.xml;
 
   @ViewChild('pre', {static: true})
   pre: ElementRef<HTMLPreElement>;
-
-  @ViewChild('prism', {static: true})
-  prism: any;
 
   private formatHTML(source: string) {
     return source.replace(/\n *\>/g, '>')
@@ -45,7 +42,7 @@ export class CodeHighlightComponent implements AfterViewInit {
       this._source = source;
       let code = this._source.trim();
       switch (this.language) {
-        case Language.html:
+        case Language.xml:
           code = html(code, {
             wrap_attributes: 'force-expand-multiline',
             indent_level: 0,
@@ -53,17 +50,18 @@ export class CodeHighlightComponent implements AfterViewInit {
           });
           code = this.formatHTML(code);
           break;
-        case Language.javascript:
-          code = js(code);
+        case Language.typescript:
+          code = js(code, {
+            preserve_newlines: true,
+            wrap_attributes: 'force-expand-multiline',
+            indent_level: 0,
+            wrap_attributes_indent_size: 4
+          });
           break;
       }
 
       this.code = code;
       this.cd.detectChanges();
-      this.prism.highlightElement({
-        code: this.code,
-        language: this.language
-      });
     }
   }
 

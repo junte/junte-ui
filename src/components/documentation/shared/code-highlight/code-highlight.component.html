@@ -12,9 +12,10 @@
   </ng-container>
 </p>
 
-<pre #prism [attr.language]="language">
-  {{code}}
+<pre>
+  <code [highlight]="code"></code>
 </pre>
-<pre #pre (cdkObserveContent)="render()">
+
+<pre #pre (cdkObserveContent)="render()" hidden>
   <ng-content></ng-content>
 </pre>

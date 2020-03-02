@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UI } from 'junte-ui';
+import { Language } from 'src/components/documentation/shared/code-highlight/enum';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { UI } from 'junte-ui';
 export class HomeComponent implements OnInit {
 
   ui = UI;
+  languages = Language;
 
   constructor() {
   }
