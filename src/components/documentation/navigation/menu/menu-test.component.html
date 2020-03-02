@@ -55,10 +55,6 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [link]="['/documentation','navigation','menu']" title="Home">
-                    <jnt-badge [value]=5></jnt-badge>
-                  </jnt-menu-item>
-
                 </jnt-menu>
               </ng-template>
             </app-browser-preview>
@@ -140,6 +136,14 @@
                     <![CDATA[
                     [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
                   </ng-container>
+                  <ng-container *ngIf="spacingControl.value">
+                    <![CDATA[
+                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="collapseControl.value">
+                    <![CDATA[
+                    collapse="]]>{{collapseControl.value}}<![CDATA["]]>
+                  </ng-container>
                   <![CDATA[>
                   <jnt-menu-item
                     ]]>
@@ -168,7 +172,7 @@
                       target="]]>{{targetControl.value}}<![CDATA["]]>
                     </ng-container>
                     <![CDATA[>]]>
-                    <ng-container *ngIf="iconsControl.value">
+                    <ng-container *ngIf="badgesControl.value">
                       <![CDATA[
                       <jnt-badge [value]="5"></jnt-badge>
                       ]]>
@@ -182,7 +186,7 @@
                       [icon]="ui.icons.crown"]]>
                     </ng-container>
                     <![CDATA[>]]>
-                    <ng-container *ngIf="iconsControl.value">
+                    <ng-container *ngIf="badgesControl.value">
                       <![CDATA[
                       <jnt-badge [value]="5"></jnt-badge>
                       ]]>
@@ -217,7 +221,7 @@
                           [link]="['/documentation', 'block']"]]>
                         </ng-container>
                         <![CDATA[>]]>
-                        <ng-container *ngIf="iconsControl.value">
+                        <ng-container *ngIf="badgesControl.value">
                           <![CDATA[
                           <jnt-badge [value]="5"></jnt-badge>
                           ]]>
