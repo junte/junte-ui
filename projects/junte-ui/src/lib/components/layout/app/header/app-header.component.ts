@@ -12,6 +12,8 @@ export class AppHeaderComponent {
 
   ui = UI;
 
+  opened = false;
+
   @ContentApi({
     selector: '#headerMenuTemplate',
     description: 'Menu template'
