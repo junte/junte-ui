@@ -235,7 +235,7 @@
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="app-layout-test.template.html">
                   <![CDATA[
-                  <jnt-app-layout>
+                  <jnt-app-layout [position]=fixed>
                     ]]>
                     <ng-container *ngIf="headerControl.value">
                       <![CDATA[
@@ -254,16 +254,12 @@
                               <jnt-menu-item [icon]="ui.icons.home"
                                              title="Home"
                                              i18n-title="@@label.home"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.beaker"
-                                             title="Documentation"
-                                             i18n-title="@@label.documentation"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.gitlab"
-                                             title="GitLab"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.figma"
-                                             title="Figma"></jnt-menu-item>
-                              <jnt-menu-item [icon]="ui.icons.mailbox"
-                                             title="Contacts"
-                                             i18n-title="@@label.contacts"></jnt-menu-item>
+                              <jnt-menu-item [icon]="localUi.icons.network"
+                                             title="My network"></jnt-menu-item>
+                              <jnt-menu-item [icon]="localUi.icons.jobs"
+                                             title="Jobs"></jnt-menu-item>
+                              <jnt-menu-item [icon]="localUi.icons.massages"
+                                             title="Messages"></jnt-menu-item>
                             </jnt-menu>
                           </ng-template>
                           ]]>
@@ -274,11 +270,12 @@
                             <jnt-app-header-actions>
                               <jnt-app-header-action>
                                 <ng-template #actionLabelTemplate>
-                                  <jnt-icon [icon]="ui.icons.email"></jnt-icon>
+                                  <jnt-icon [icon]="ui.icons.animated.bell"></jnt-icon>
                                 </ng-template>
                                 <ng-template #actionContentTemplate>
                                   <jnt-stack>
-                                    <span>5 new messages</span>
+                                    <p>You have 5 new messages</p>
+                                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                                   </jnt-stack>
                                 </ng-template>
                               </jnt-app-header-action>
@@ -287,7 +284,10 @@
                                   <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
                                 </ng-template>
                                 <ng-template #actionContentTemplate>
-                                  <jnt-calendar></jnt-calendar>
+                                  <jnt-stack>
+                                    <p>Your personal events calendar</p>
+                                    <jnt-calendar></jnt-calendar>
+                                  </jnt-stack>
                                 </ng-template>
                               </jnt-app-header-action>
                             </jnt-app-header-actions>
@@ -299,17 +299,23 @@
                           <ng-template #headerUserbarTemplate>
                             <jnt-app-header-userbar>
                               <ng-template #userbarAvatarTemplate>
-                                <jnt-avatar [size]="ui.size.small" image="assets/images/bob.jpeg"></jnt-avatar>
+                                <jnt-avatar [size]="ui.size.small" image="assets/images/elon.jpeg"></jnt-avatar>
                               </ng-template>
                               <ng-template #userbarMenuTemplate>
                                 <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                                  <jnt-menu-item  title="Logout"
-                                                  i18n-title="@@label.logout"></jnt-menu-item>
                                   <jnt-menu-item  title="Profile"
-                                                  i18n-title="@@label.profile"></jnt-menu-item>
+                                                  [icon]="ui.icons.profile"
+                                                  i18n-title="@@label.profile"
+                                                  [link]="['/profile']"></jnt-menu-item>
                                   <jnt-menu-item title="Settings"
-                                                 i18n-title="@@label.settings"></jnt-menu-item>
-                                </jnt-menu>
+                                                 [icon]="ui.icons.animated.settings"
+                                                 i18n-title="@@label.settings"
+                                                 [link]="['/settings']"></jnt-menu-item>
+                                  <jnt-menu-item  title="Logout"
+                                                  [icon]="ui.icons.home"
+                                                  i18n-title="@@label.logout"
+                                                  [link]="['/logout']"></jnt-menu-item>
+                                  </jnt-menu>
                               </ng-template>
                             </jnt-app-header-userbar>
                           </ng-template>
@@ -321,37 +327,52 @@
                       <ng-container *ngIf="asideControl.value">
                         <![CDATA[
                         <jnt-app-aside #aside>
-                          <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                            <jnt-menu-item title="General"
-                                           i18n-title="@@label.general"
-                                           [icon]="ui.icons.crown">
-                              <jnt-menu>
-                                <jnt-menu-item title="Theming"
-                                               i18n-title="@@label.theming"></jnt-menu-item>
-                                <jnt-menu-item title="Typography"
-                                               i18n-title="@@label.typography"></jnt-menu-item>
-                              </jnt-menu>
-                            </jnt-menu-item>
+                          <ng-template let-collapsed="collapsed" #asideContentTemplate>
+                            <jnt-stack aside [align]="ui.flex.align.stretch">
+                              <jnt-stack [align]="ui.flex.align.center">
+                                <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
+                                            [image]="'assets/images/elon.jpeg'"></jnt-avatar>
+                                <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
+                                           [align]="ui.flex.align.center">
+                                  <div>Elon Musk</div>
+                                  <jnt-label label="CEO of SpaceX"
+                                             [color]="ui.color.paleNavy"></jnt-label>
+                                </jnt-stack>
+                              </jnt-stack>
 
-                            <jnt-menu-item title="Layout"
-                                           i18n-title="@@label.layout"
-                                           [icon]="ui.icons.layout">
-                              <jnt-menu>
-                                <jnt-menu-item title="Grid"
-                                               i18n-title="@@label.grid"></jnt-menu-item>
-                                <jnt-menu-item title="Stack"
-                                               i18n-title="@@label.stack"></jnt-menu-item>
-                                <jnt-menu-item title="Block"
-                                               i18n-title="@@label.block"></jnt-menu-item>
-                                <jnt-menu-item title="Spinner"
-                                               i18n-title="@@label.spinner"></jnt-menu-item>
-                                <jnt-menu-item title="Application"
-                                               i18n-title="@@label.application"></jnt-menu-item>
-                                <jnt-menu-item title="Skeleton"
-                                               i18n-title="@@label.skeleton"></jnt-menu-item>
+                              <jnt-menu [type]="ui.orientation.vertical"
+                                        [spacer]="ui.size.small">
+                                <jnt-menu-item title="General"
+                                               i18n-title="@@label.general"
+                                               [icon]="localUi.icons.general">
+                                  <jnt-menu>
+                                    <jnt-menu-item title="About"
+                                                   i18n-title="@@label.about"
+                                                   [icon]="localUi.icons.bio"></jnt-menu-item>
+                                    <jnt-menu-item title="Education"
+                                                   i18n-title="@@label.education"
+                                                   [icon]="ui.icons.knowledge"></jnt-menu-item>
+                                  </jnt-menu>
+                                </jnt-menu-item>
+
+                                <jnt-menu-item title="Profession"
+                                               i18n-title="@@label.profession"
+                                               [icon]="localUi.icons.certificate">
+                                  <jnt-menu>
+                                    <jnt-menu-item title="Skills"
+                                                   i18n-title="@@label.skills"
+                                                   [icon]="ui.icons.skull"></jnt-menu-item>
+                                    <jnt-menu-item title="Experience"
+                                                   i18n-title="@@label.experience"
+                                                   [icon]="localUi.icons.experience"></jnt-menu-item>
+                                    <jnt-menu-item title="Certificates"
+                                                   i18n-title="@@label.certificates"
+                                                   [icon]="localUi.icons.certificate"></jnt-menu-item>
+                                  </jnt-menu>
+                                </jnt-menu-item>
                               </jnt-menu>
-                            </jnt-menu-item>
-                          </jnt-menu>
+                            </jnt-stack>
+                          </ng-template>
                         </jnt-app-aside>
                         ]]>
                       </ng-container>
@@ -363,7 +384,10 @@
                         <![CDATA[ [aside]="aside">]]>
                       </ng-container>
                       <![CDATA[
-                      <jnt-app-sub-header></jnt-app-sub-header>
+                      <jnt-app-sub-header *ngIf="subHeaderControl.value"
+                                                         (burger)="sider.toggle()">
+                      <jnt-breadcrumb></jnt-breadcrumb>
+                    </jnt-app-sub-header>
                       ]]>
                       <![CDATA[
                       <jnt-app-body></jnt-app-body>
