@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ResponsiveModule } from '../responsive/responsive.module';
 import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
 import { en } from '../../../i18n/en';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -23,7 +24,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     IconModule,
     StackModule,
     ButtonModule,
-    TranslateModule
+    TranslateModule,
+    ResponsiveModule
   ],
   declarations: [
     AppLayoutComponent,

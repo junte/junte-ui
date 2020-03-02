@@ -1,16 +1,50 @@
-<div logo *ngIf="headerLogoTemplate">
-  <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
-</div>
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>
 
-<div menu>
-  <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
-</div>
-<jnt-stack actions [type]="ui.orientation.horizontal"
-           [gutter]="ui.gutter.small"
-           [align]="ui.flex.align.stretch">
-  <div content>
-    <ng-content></ng-content>
+<ng-container *jntMinFor="ui.breakpoint.desktop">
+  <div logo *ngIf="headerLogoTemplate">
+    <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
-  <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
-  <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
-</jnt-stack>
+
+  <div menu>
+    <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
+  </div>
+  <jnt-stack actions [type]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.small"
+             [align]="ui.flex.align.stretch">
+    <div content>
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+    <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+  </jnt-stack>
+</ng-container>
+
+<ng-container *jntMaxFor="ui.breakpoint.tablet">
+  <div logo *ngIf="headerLogoTemplate">
+    <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
+  </div>
+  <jnt-stack action
+             [type]="ui.layout.stack.type.horizontal"
+             [align]="ui.flex.align.center">
+    <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+    <div dropdown>
+      <button (click)="opened = !opened">
+        <jnt-icon [icon]="ui.icons.actions" [size]="ui.size.large"></jnt-icon>
+      </button>
+      <div menu [attr.opened]="opened">
+        <jnt-stack stack [type]="ui.orientation.horizontal"
+                   [gutter]="ui.gutter.small"
+                   [align]="ui.flex.align.stretch">
+          <div content>
+            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+          </div>
+          <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+        </jnt-stack>
+        <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
+      </div>
+    </div>
+  </jnt-stack>
+</ng-container>
+

@@ -16,7 +16,7 @@
   right: 0;
   z-index: 3;
 
-  [menu] {
+  > [menu] {
     display: flex;
     align-items: center;
     jnt-menu[deep-host=#{$jnt-menu-host}] {
@@ -73,5 +73,41 @@
   display: flex;
   align-items: center;
 }
+
+[action] {
+ position: relative;
+  [dropdown] {
+    display: flex;
+    align-items: center;
+    button {
+      color: $white-color;
+    }
+    > [menu] {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: $gutter-tiny;
+      background-color: $primary-background;
+      padding: $gutter-small $gutter-normal;
+      min-width: 200px;
+      box-shadow: $shadow-normal;
+      display: none;
+      &[opened='true'] {
+        display: block;
+      }
+      [stack] {
+        background-color: $primary-dark-color;
+        margin: -$gutter-normal (-$gutter-normal) 0 (-$gutter-normal);
+        padding: $gutter-normal;
+        [content] {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+
+
 
 
