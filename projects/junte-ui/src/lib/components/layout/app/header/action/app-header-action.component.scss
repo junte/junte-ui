@@ -4,43 +4,45 @@
 $action-content-width: 400px;
 $action-content-height: 400px;
 
-:host {
-  position: relative;
-  cursor: pointer;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 $gutter-normal;
+@mixin action($passed: (), $context: null, $strategy: 'changes') {
 
-  >jnt-icon[deep-host=#{$jnt-icon-host}] {
-    font-size: 20px;
-    color: $white-color;
-  }
+  :host, #{$context} {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 $gutter-normal;
 
-  &:hover {
-    background-color: $primary-color;
+    > jnt-icon[deep-host=#{$jnt-icon-host}] {
+      font-size: 20px;
+      color: $white-color;
+    }
 
-    [content] {
-      display: block;
+    &:hover {
+      background-color: $primary-color;
+
+      [content] {
+        display: block;
+      }
     }
   }
-}
 
-[content] {
-  background: $primary-background;
-  border-radius: 0 0 $corner-small $corner-small;
-  padding: $gutter-normal $gutter-big;
-  color: $primary-text-color;
-  max-width: $action-content-width;
-  width: $action-content-width;
-  max-height: $action-content-height;
-  box-shadow: $shadow-light;
-  overflow-y: auto;
-  display: none;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  right: 0;
+  [content] {
+    background: $primary-background;
+    border-radius: 0 0 $corner-small $corner-small;
+    padding: $gutter-normal $gutter-big;
+    color: $primary-text-color;
+    max-width: $action-content-width;
+    width: $action-content-width;
+    max-height: $action-content-height;
+    box-shadow: $shadow-light;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 0;
+  }
 }
-
 
