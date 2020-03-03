@@ -173,7 +173,8 @@
                             </jnt-stack>
                           </jnt-stack>
 
-                          <jnt-menu [type]="ui.orientation.vertical"
+                          <jnt-menu [collapsed]="collapsed"
+                                    [type]="ui.orientation.vertical"
                                     [spacer]="ui.size.small">
                             <jnt-menu-item title="General"
                                            i18n-title="@@label.general"
@@ -218,8 +219,8 @@
       </jnt-tab>
 
       <jnt-tab #code title="Code"
-             i18n-title="@@label.code"
-             [icon]="localUi.icons.code">
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"
@@ -303,19 +304,19 @@
                               </ng-template>
                               <ng-template #userbarMenuTemplate>
                                 <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                                  <jnt-menu-item  title="Profile"
-                                                  [icon]="ui.icons.profile"
-                                                  i18n-title="@@label.profile"
-                                                  [link]="['/profile']"></jnt-menu-item>
+                                  <jnt-menu-item title="Profile"
+                                                 [icon]="ui.icons.profile"
+                                                 i18n-title="@@label.profile"
+                                                 [link]="['/profile']"></jnt-menu-item>
                                   <jnt-menu-item title="Settings"
                                                  [icon]="ui.icons.animated.settings"
                                                  i18n-title="@@label.settings"
                                                  [link]="['/settings']"></jnt-menu-item>
-                                  <jnt-menu-item  title="Logout"
-                                                  [icon]="ui.icons.home"
-                                                  i18n-title="@@label.logout"
-                                                  [link]="['/logout']"></jnt-menu-item>
-                                  </jnt-menu>
+                                  <jnt-menu-item title="Logout"
+                                                 [icon]="ui.icons.home"
+                                                 i18n-title="@@label.logout"
+                                                 [link]="['/logout']"></jnt-menu-item>
+                                </jnt-menu>
                               </ng-template>
                             </jnt-app-header-userbar>
                           </ng-template>
@@ -385,18 +386,18 @@
                       </ng-container>
                       <![CDATA[
                       <jnt-app-sub-header *ngIf="subHeaderControl.value"
-                                                         (burger)="sider.toggle()">
-                      <jnt-breadcrumb></jnt-breadcrumb>
-                    </jnt-app-sub-header>
+                                          (burger)="sider.toggle()">
+                        <jnt-breadcrumb></jnt-breadcrumb>
+                      </jnt-app-sub-header>
                       ]]>
                       <![CDATA[
                       <jnt-app-body></jnt-app-body>
                       ]]>
                       <ng-container *ngIf="footerControl.value">
                         <![CDATA[
-                          <jnt-app-footer>
-                            <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
-                          </jnt-app-footer>
+                        <jnt-app-footer>
+                          <small>Junte 2008 - 2019<br> Any rights are NOT reserved, use this as you want ;-)</small>
+                        </jnt-app-footer>
                         ]]>
                       </ng-container>
                       <![CDATA[
