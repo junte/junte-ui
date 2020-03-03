@@ -25,71 +25,74 @@ $stack-gutters: (
   #{$gutter-huge-name}: (
     gutter: $gutter-huge
   )
-)!default;
+);
 
-@mixin stack($property, $gutter) {
+@mixin gutters($property, $gutter) {
   & > :not(:last-child):not(router-outlet) {
     #{$property}: #{map-get($gutter, gutter)};
   }
 }
 
-:host {
-  display: flex;
-  text-align: left;
-  @each $gutter, $value in $stack-gutters {
-    &[gutter = '#{$gutter}'] {
-      &[type = '#{$type-vertical}'] {
-        flex-direction: column;
-        @include stack(margin-bottom, $value);
-      }
-      &[type = '#{$type-horizontal}'] {
-        flex-direction: row;
-        @include stack(margin-right, $value);
+@mixin stack($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: flex;
+    text-align: left;
+    @each $gutter, $value in $stack-gutters {
+      &[gutter = '#{$gutter}'] {
+        &[type = '#{$type-vertical}'] {
+          flex-direction: column;
+          @include gutters(margin-bottom, $value);
+        }
+        &[type = '#{$type-horizontal}'] {
+          flex-direction: row;
+          @include gutters(margin-right, $value);
+        }
       }
     }
-  }
-  &[align='start'] {
-    align-items: flex-start;
-  }
-  &[align='center'] {
-    align-items: center;
-  }
-  &[align='end'] {
-    align-items: flex-end;
-  }
-  &[align='stretch'] {
-    align-items: stretch;
-  }
-  &[align='baseline'] {
-    align-items: baseline;
-  }
+    &[align='start'] {
+      align-items: flex-start;
+    }
+    &[align='center'] {
+      align-items: center;
+    }
+    &[align='end'] {
+      align-items: flex-end;
+    }
+    &[align='stretch'] {
+      align-items: stretch;
+    }
+    &[align='baseline'] {
+      align-items: baseline;
+    }
 
-  &[justify='start'] {
-    justify-content: flex-start;
-  }
-  &[justify='center'] {
-    justify-content: center;
-  }
-  &[justify='end'] {
-    justify-content: flex-end;
-  }
-  &[justify='between'] {
-    justify-content: space-between;
-  }
-  &[justify='around'] {
-    justify-content: space-around;
-  }
-  &[justify='evenly'] {
-    justify-content: space-evenly;
-  }
+    &[justify='start'] {
+      justify-content: flex-start;
+    }
+    &[justify='center'] {
+      justify-content: center;
+    }
+    &[justify='end'] {
+      justify-content: flex-end;
+    }
+    &[justify='between'] {
+      justify-content: space-between;
+    }
+    &[justify='around'] {
+      justify-content: space-around;
+    }
+    &[justify='evenly'] {
+      justify-content: space-evenly;
+    }
 
-  &[wrap='wrap'] {
-    flex-wrap: wrap;
-  }
-  &[wrap='nowrap'] {
-    flex-wrap: nowrap;
-  }
-  &[wrap='reverse'] {
-    flex-wrap: wrap-reverse;
+    &[wrap='wrap'] {
+      flex-wrap: wrap;
+    }
+    &[wrap='nowrap'] {
+      flex-wrap: nowrap;
+    }
+    &[wrap='reverse'] {
+      flex-wrap: wrap-reverse;
+    }
   }
 }

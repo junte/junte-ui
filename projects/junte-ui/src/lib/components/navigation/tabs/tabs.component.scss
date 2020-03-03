@@ -21,94 +21,97 @@ $tab-paddings: (
   )
 );
 
-@mixin padding($padding) {
+@mixin tab-padding($padding) {
   & {
     padding: #{map-get($padding, padding)};
   }
 }
 
-:host {
-  display: block;
-  max-width: 100%;
+@mixin tabs($passed: (), $context: null, $strategy: 'changes') {
 
-  &[outline='#{$outline-fill}'] {
-    [content] {
-      background-color: $primary-background;
-      box-sizing: border-box;
-      border-bottom-left-radius: $corner-normal;
-      border-bottom-right-radius: $corner-normal;
-    }
-  }
-
-  &[outline='#{$outline-transparent}'] {
-    [content] {
-      background-color: transparent;
-    }
-  }
-}
-
-[tabs] {
-  display: flex;
-  border-bottom: 1px solid $muted-color;
-  background-color: $primary-background;
-  border-top-left-radius: $corner-normal;
-  border-top-right-radius: $corner-normal;
-
-  [tab] {
-    padding: $gutter-normal;
-    cursor: pointer;
-    color: $primary-text-color;
-    font-size: $font-size-base;
-    position: relative;
-    user-select: none;
+  :host, #{$context} {
+    display: block;
     max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid transparent;
-    margin-bottom: -1px;
 
-    &:hover {
-      color: $primary-light-color;
-    }
-
-    &:focus {
-      outline: 1px solid $primary-color;
-      box-shadow: $shadow-primary;
-    }
-
-    &[active='true'] {
-      color: $primary-color;
-      border-bottom-color: $primary-color;
-    }
-
-    [label] {
-      position: relative;
-      z-index: 1;
-
-      [icon] {
-        line-height: 0;
+    &[outline='#{$outline-fill}'] {
+      [content] {
+        background-color: $primary-background;
+        box-sizing: border-box;
+        border-bottom-left-radius: $corner-normal;
+        border-bottom-right-radius: $corner-normal;
       }
     }
 
-    [ripple] {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background-color: $secondary-color;
-      height: 50px;
-      width: 50px;
+    &[outline='#{$outline-transparent}'] {
+      [content] {
+        background-color: transparent;
+      }
     }
   }
-}
 
-[content] {
-  position: relative;
-  @each $padding, $value in $tab-paddings {
-    &[padding = '#{$padding}'] {
-      @include padding($value);
+  [tabs] {
+    display: flex;
+    border-bottom: 1px solid $muted-color;
+    background-color: $primary-background;
+    border-top-left-radius: $corner-normal;
+    border-top-right-radius: $corner-normal;
+
+    [tab] {
+      padding: $gutter-normal;
+      cursor: pointer;
+      color: $primary-text-color;
+      font-size: $font-size-base;
+      position: relative;
+      user-select: none;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      border-bottom: 1px solid transparent;
+      margin-bottom: -1px;
+
+      &:hover {
+        color: $primary-light-color;
+      }
+
+      &:focus {
+        outline: 1px solid $primary-color;
+        box-shadow: $shadow-primary;
+      }
+
+      &[active='true'] {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+      }
+
+      [label] {
+        position: relative;
+        z-index: 1;
+
+        [icon] {
+          line-height: 0;
+        }
+      }
+
+      [ripple] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: $secondary-color;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  [content] {
+    position: relative;
+    @each $padding, $value in $tab-paddings {
+      &[padding = '#{$padding}'] {
+        @include tab-padding($value);
+      }
     }
   }
 }

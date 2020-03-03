@@ -4,31 +4,34 @@ $breadcrumb-link-font-size: 12px;
 $breadcrumb-icon-font-size: 8px;
 $breadcrumb-icon-line-height: 18px;
 
-:host {
-  display: block;
-}
+@mixin breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
-a {
-  color: $primary-text-light-color;
-  font-size: $breadcrumb-link-font-size;
-  text-decoration: none;
-  user-select: none;
-
-  &:last-of-type {
-    color: $primary-text-dark-color;
-    pointer-events: none;
+  :host, #{$context} {
+    display: block;
   }
-}
 
-[icon] {
-  color: $primary-text-light-color;
-  font-size: $breadcrumb-icon-font-size !important;
+  a {
+    color: $primary-text-light-color;
+    font-size: $breadcrumb-link-font-size;
+    text-decoration: none;
+    user-select: none;
 
-  &:last-child {
-    display: none;
+    &:last-of-type {
+      color: $primary-text-dark-color;
+      pointer-events: none;
+    }
   }
-}
 
-[icon][child-host=#{$jnt-icon-host}] {
-  line-height: $breadcrumb-icon-line-height;
+  [icon] {
+    color: $primary-text-light-color;
+    font-size: $breadcrumb-icon-font-size !important;
+
+    &:last-child {
+      display: none;
+    }
+  }
+
+  [icon][child-host=#{$jnt-icon-host}] {
+    line-height: $breadcrumb-icon-line-height;
+  }
 }

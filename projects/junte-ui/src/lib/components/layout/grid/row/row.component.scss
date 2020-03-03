@@ -21,7 +21,7 @@ $col-gutters: (
   )
 );
 
-@mixin gutter($gutter) {
+@mixin col-gutter($gutter) {
   & {
     margin-top: -#{map-get($gutter, gutter)};
     > :not(router-outlet) {
@@ -30,29 +30,32 @@ $col-gutters: (
   }
 }
 
-:host {
-  display: flex;
-  text-align: left;
-  flex-wrap: wrap;
-  margin: 0 (-$grid-gutter);
+@mixin row($passed: (), $context: null, $strategy: 'changes') {
 
-  @each $gutter, $value in $col-gutters {
-    &[gutter = '#{$gutter}'] {
-      @include gutter($value);
+  :host, #{$context} {
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+    margin: 0 (-$grid-gutter);
+
+    @each $gutter, $value in $col-gutters {
+      &[gutter = '#{$gutter}'] {
+        @include col-gutter($value);
+      }
     }
-  }
 
-  &[align='start'] {
-    align-items: flex-start;
-  }
-  &[align='center'] {
-    align-items: center;
-  }
-  &[align='end'] {
-    align-items: flex-end;
-  }
-  &[align='stretch'] {
-    align-items: stretch;
-  }
+    &[align='start'] {
+      align-items: flex-start;
+    }
+    &[align='center'] {
+      align-items: center;
+    }
+    &[align='end'] {
+      align-items: flex-end;
+    }
+    &[align='stretch'] {
+      align-items: stretch;
+    }
 
+  }
 }
