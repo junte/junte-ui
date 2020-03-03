@@ -2,18 +2,20 @@
 
 :host {
   display: block;
+  position: relative;
 }
 
-[content] {
-  position: relative;
-  [loading] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, .5);
-  }
+[loading], [error] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, .5);
+  z-index: 1;
 }
 
 footer {

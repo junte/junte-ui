@@ -12,6 +12,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { FormState } from './enums';
 import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
 import { FormControlComponent } from './control/form-control.component';
@@ -26,8 +27,7 @@ export class FormComponent implements OnInit {
 
   ui = UI;
 
-  @ContentChildren(FormControlComponent, {descendants: true})
-  controls: QueryList<FormControlComponent>;
+  formState = FormState;
 
   @PropertyApi({
     description: 'Name form group',
@@ -50,11 +50,23 @@ export class FormComponent implements OnInit {
   @Input()
   title: string;
 
+  @PropertyApi({
+    description: 'State of form',
+    path: 'ui.form.state',
+    options: [FormState.error,
+      FormState.loading]
+  })
+  @Input()
+  state: FormState;
+
   @ContentChild('formFooterTemplate')
   footerTemplate: TemplateRef<any>;
 
   @Output()
   submitted = new EventEmitter();
+
+  @ContentChildren(FormControlComponent, {descendants: true})
+  controls: QueryList<FormControlComponent>;
 
   ngOnInit() {
     this.form.statusChanges.subscribe(() => {

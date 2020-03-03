@@ -34,11 +34,11 @@ export class FormTestComponent implements OnInit {
   @ViewChild('code', {static: false}) code: TabComponent;
 
   titleControl = this.fb.control(true);
-  loadingControl = this.fb.control(false);
+  stateControl = this.fb.control(null);
 
   builder = this.fb.group({
     title: this.titleControl,
-    loading: this.loadingControl,
+    state: this.stateControl,
   });
 
   nameControl = this.fb.control(null, [ Validators.required, Validators.minLength(3) ]);

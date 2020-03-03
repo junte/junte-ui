@@ -1,6 +1,6 @@
 import { TableFeatures } from '../components/collections/table/enums';
 import { ButtonType } from '../components/forms/button/enums';
-import { ValidationTypeError } from '../components/forms/form/enums';
+import { FormState, ValidationTypeError } from '../components/forms/form/enums';
 import { InputState, InputType } from '../components/forms/input/enums';
 import { SelectMode } from '../components/forms/select/enums';
 import { AppLayoutPosition } from '../components/layout/app/enums';
@@ -67,7 +67,8 @@ export class UI {
     button: {type: ButtonType},
     validators: {
       typeError: ValidationTypeError
-    }
+    },
+    form: {state: FormState},
   };
   static overlays = {
     popover: {
