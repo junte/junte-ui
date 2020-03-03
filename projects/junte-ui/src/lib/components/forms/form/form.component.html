@@ -5,10 +5,17 @@
 
   <div content>
     <ng-content></ng-content>
-    <div *ngIf="loading" loading></div>
   </div>
 
   <footer *ngIf="footerTemplate">
     <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
   </footer>
+
+  <div *ngIf="state === formState.loading" loading>
+    <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+  </div>
+  <div *ngIf="state === formState.error" error>
+    <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
+  </div>
+
 </form>

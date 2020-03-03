@@ -27,9 +27,15 @@
               </jnt-form-item>
 
               <jnt-form-item>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="loading" label="Loading"></jnt-checkbox>
-                </jnt-form-control>
+                <jnt-form-label for="state"
+                               >States</jnt-form-label>
+                <jnt-switcher formControlName="state">
+                  <jnt-switcher-option label="Loading"
+
+                                       [value]="ui.form.form.state.loading"></jnt-switcher-option>
+                  <jnt-switcher-option label="Error"
+                                       [value]="ui.form.form.state.error"></jnt-switcher-option>
+                </jnt-switcher>
               </jnt-form-item>
 
             </jnt-stack>
@@ -39,7 +45,7 @@
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
                 <jnt-form [formGroup]="form" [title]="titleControl.value ? 'Registration' : null"
-                          [loading]="loadingControl.value" (submitted)="submit()">
+                          [state]="stateControl.value" (submitted)="submit()">
 
                   <jnt-stack [align]="ui.flex.align.stretch">
 
