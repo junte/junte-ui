@@ -8,13 +8,10 @@ import {
   GridModule,
   FormModule,
   AccordionModule,
-  IconModule,
-  SelectModule,
-  LabelModule,
-  CheckboxModule
+  DotModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
-import { LabelTestComponent } from './label-test.component';
+import { DotTestComponent } from './dot-test.component';
 
 @NgModule({
   imports: [
@@ -26,19 +23,16 @@ import { LabelTestComponent } from './label-test.component';
     GridModule,
     FormModule,
     AccordionModule,
-    IconModule,
-    SelectModule,
-    LabelModule,
-    CheckboxModule,
+    DotModule,
     SharedModule
   ],
   exports: [
-    LabelTestComponent
+    DotTestComponent
   ],
   declarations: [
-    LabelTestComponent
+    DotTestComponent
   ],
 })
-export class LabelTestModule {
+export class DotTestModule {
 }
 

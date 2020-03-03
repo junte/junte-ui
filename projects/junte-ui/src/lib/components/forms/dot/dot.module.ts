@@ -14,6 +14,9 @@ import { DotComponent } from './dot.component';
   ],
   declarations: [
     DotComponent
+  ],
+  entryComponents: [
+    DotComponent,
   ]
 })
 export class DotModule {
