@@ -196,8 +196,7 @@
                     <jnt-row>
                       <jnt-col [tablet]="6" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="name"
-                                          i18n="@@label.your_name">Your Name</jnt-form-label>
+                          <jnt-form-label for="name">Your Name</jnt-form-label>
                           <jnt-form-control>
                             <jnt-input formControlName="name" [type]="ui.form.input.type.text"></jnt-input>
                           </jnt-form-control>
@@ -206,8 +205,7 @@
 
                       <jnt-col [tablet]="6" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="lastName"
-                                          i18n="@@label.your_last_name">Your Last name</jnt-form-label>
+                          <jnt-form-label for="lastName">Your Last name</jnt-form-label>
                           <jnt-form-control>
                             <jnt-input formControlName="lastName" [type]="ui.form.input.type.text"></jnt-input>
                           </jnt-form-control>
@@ -217,24 +215,21 @@
 
 
                     <jnt-form-item>
-                      <jnt-form-label for="email"
-                                      i18n="@@label.your_email">Your E-mail</jnt-form-label>
+                      <jnt-form-label for="email">Your E-mail</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="email" [type]="ui.form.input.type.text"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
 
                     <jnt-form-item>
-                      <jnt-form-label for="password"
-                                      i18n="@@label.password">Password</jnt-form-label>
+                      <jnt-form-label for="password">Password</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="password" [type]="ui.form.input.type.password"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
 
                     <jnt-form-item>
-                      <jnt-form-label for="gender"
-                                      i18n="@@label.gender">Gender</jnt-form-label>
+                      <jnt-form-label for="gender">Gender</jnt-form-label>
                       <jnt-radio-group formControlName="gender">
                         <jnt-stack [type]="ui.layout.stack.type.horizontal">
                           <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
@@ -246,16 +241,14 @@
                     <jnt-row>
                       <jnt-col [tablet]="6" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="birthday"
-                                          i18n="@@label.birthday">Birthday</jnt-form-label>
+                          <jnt-form-label for="birthday">Birthday</jnt-form-label>
                           <jnt-date-picker formControlName="birthday"></jnt-date-picker>
                         </jnt-form-item>
                       </jnt-col>
 
                       <jnt-col [tablet]="6" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="country"
-                                          i18n="@@label.country">Country</jnt-form-label>
+                          <jnt-form-label for="country">Country</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="country" placeholder="Country" [search]="true"
                                         [allowEmpty]="false">
@@ -269,8 +262,7 @@
                     </jnt-row>
 
                     <jnt-form-item>
-                      <jnt-form-label for="status"
-                                      i18n="@@label.marital_status">Marital Status</jnt-form-label>
+                      <jnt-form-label for="status">Marital Status</jnt-form-label>
                       <jnt-switcher formControlName="status">
                         <jnt-switcher-option *ngFor="let stat of status" [label]="stat"
                                              [value]="stat"></jnt-switcher-option>
@@ -278,8 +270,7 @@
                     </jnt-form-item>
 
                     <jnt-form-item>
-                      <jnt-form-label for="pets"
-                                      i18n="@@label.your_pets">Your pets:</jnt-form-label>
+                      <jnt-form-label for="pets">Your pets:</jnt-form-label>
                       <jnt-form-control>
                         <jnt-checkbox-group formControlName="pets">
                           <jnt-stack [type]="ui.layout.stack.type.horizontal">

@@ -81,22 +81,17 @@
                   <jnt-dropdown>
                     <ng-template #trigger let-close="trigger">
                       <jnt-button text="Dropdown"
-                                  i18n-text="@@action.dropdown"
                                   (click)="close()"></jnt-button>
                     </ng-template>
                     <ng-template #dropdown let-close="trigger">
                       <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
                         <jnt-menu-item title="Edit"
-                                       i18n-title="@@action.edit"
                                        (click)="close()"></jnt-menu-item>
                         <jnt-menu-item title="Delete"
-                                       i18n-title="@@action.delete"
                                        (click)="close()"></jnt-menu-item>
                         <jnt-menu-item title="Add"
-                                       i18n-title="@@action.add"
                                        (click)="close()"></jnt-menu-item>
                         <jnt-menu-item title="Copy"
-                                       i18n-title="@@action.copy"
                                        (click)="close()"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
