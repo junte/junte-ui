@@ -1,26 +1,28 @@
 @import "variables";
 @import "../variables";
 
-:host {
-  display: flex;
-  align-items: center;
-  min-height: $app-sub-header-height;
-  background-color: $page-background;
+@mixin sub-header($passed: (), $context: null, $strategy: 'changes') {
 
-  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
-    [burger] {
-      display: inline-block;
+  :host, #{$context} {
+    display: flex;
+    align-items: center;
+    min-height: $app-sub-header-height;
+    background-color: $page-background;
+
+    @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+      [burger] {
+        display: inline-block;
+      }
     }
   }
+
+  [burger] {
+    display: none;
+    margin-left: $gutter-normal;
+  }
+
+  [content] {
+    margin-left: $gutter-normal;
+  }
+
 }
-
-[burger] {
-  display: none;
-  margin-left: $gutter-normal;
-}
-
-[content] {
-  margin-left: $gutter-normal;
-}
-
-

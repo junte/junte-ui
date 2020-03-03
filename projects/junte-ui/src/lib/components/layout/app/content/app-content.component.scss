@@ -1,44 +1,46 @@
 @import "variables";
 @import "../variables";
 
-:host {
-  display: block;
-  flex: auto;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  z-index: 1;
-  padding-top: $app-header-height;
-  transition: all .3s;
+@mixin content($passed: (), $context: null, $strategy: 'changes') {
 
-  &[with-aside='full'] {
-    padding-left: $app-aside-width;
-  }
+  :host, #{$context} {
+    display: block;
+    flex: auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+    padding-top: $app-header-height;
+    transition: all .3s;
 
-  &[with-aside='collapsed'] {
-    padding-left: $app-aside-collapsed-width;
-  }
+    &[with-aside='full'] {
+      padding-left: $app-aside-width;
+    }
 
-  @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
-    padding-left: 0 !important;
-  }
+    &[with-aside='collapsed'] {
+      padding-left: $app-aside-collapsed-width;
+    }
 
-  &[with-sub-header="false"] {
-    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
-      min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
+    @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      padding-left: 0 !important;
+    }
+
+    &[with-sub-header="false"] {
+      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
+      }
+    }
+
+    &[with-footer="false"] {
+      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
+      }
+    }
+    &[with-sub-header="false"][with-footer="false"] {
+      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-header-height});
+      }
     }
   }
-
-  &[with-footer="false"] {
-    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
-      min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
-    }
-  }
-  &[with-sub-header="false"][with-footer="false"] {
-    jnt-app-body[deep-host=#{$jnt-app-body-host}] {
-      min-height: calc(100vh - #{$app-header-height});
-    }
-  }
-
 }
