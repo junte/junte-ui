@@ -26,6 +26,7 @@ import {
   startOfWeek,
   subMonths
 } from 'date-fns';
+import { DateFnsConfigurationService } from 'ngx-date-fns';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../../decorators/api';
@@ -107,6 +108,9 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   onChange: (date: Date) => void;
 
+  constructor(public config: DateFnsConfigurationService) {
+  }
+
   ngOnInit() {
     this.period = startOfMonth(this.current);
 
@@ -133,7 +137,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    const start = startOfWeek(this.period, {weekStartsOn: 1});
+    const start = startOfWeek(this.period, {weekStartsOn: this.config.locale().options.weekStartsOn});
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {
