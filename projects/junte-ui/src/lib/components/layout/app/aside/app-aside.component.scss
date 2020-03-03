@@ -1,5 +1,6 @@
 @import "variables";
 @import "../variables";
+@import "components/navigation/menu/menu";
 
 $menu-item-height-in-aside: 50px;
 
@@ -11,62 +12,43 @@ $menu-item-height-in-aside: 50px;
   left: 0;
   bottom: 0;
   z-index: 2;
-  jnt-menu[deep-host=#{$jnt-menu-host}] {
-    [top] {
-      [toggle] {
-        display: none;
-      }
-      > [title] {
-        padding: 0;
-      }
-      [link][deep-host=#{$jnt-link-host}] {
-        width: 100%;
-        padding: 0;
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: $menu-item-height-in-aside;
-          padding: 0 $gutter-normal;
-          &[active='true'] {
-            span, [icon] {
-              border-bottom: 0;
-              color: $primary-color;
-            }
-          }
-        }
-        [icon], span {
-          color: $primary-text-light-color;
-        }
-        [icon] {
-          font-size: 20px;
-          margin-right: $gutter-normal;
-        }
-      }
-      [sub] {
-        [link][deep-host=#{$jnt-link-host}] {
-          a {
-            padding-left: 50px;
-          }
-          [icon], span {
-            color: $primary-text-light-color;
-          }
-          a {
-            &[active='true'] {
-              background-color: $secondary-background;
-              border-left-color: $primary-color;
-              span, [icon] {
-                border-bottom: 0;
-                color: $primary-color;
-                font-weight: $font-weight-bold;
-              }
-            }
-          }
-        }
-      }
-    }
-
-  }
+  @include menu((
+    top: (
+      item: (
+        height: $menu-item-height-in-aside,
+        orphan-color: $primary-text-light-color,
+        orphan-hover-color: $primary-text-dark-color,
+        color: $primary-text-light-color,
+        active: (
+          underline: false,
+          color: $primary-color
+        ),
+        icon: (
+          margin-right: $gutter-normal,
+          size: 20px
+        ),
+        padding: (
+          inner: 0 $gutter-normal,
+          outer: 0,
+        ),
+        toggle: (
+          toggle: false
+        ),
+      ),
+    ),
+    sub: (
+      item: (
+        color: $primary-text-light-color,
+        active: (
+          underline: false,
+          background-color: $secondary-background,
+          color: $primary-color
+        ),
+        padding: 0 0 0 50px,
+        height: $menu-item-height-in-aside,
+      ),
+    ),
+  ), '&');
 }
 
 button {
@@ -158,7 +140,7 @@ button {
     width: $app-aside-collapsed-width;
     jnt-menu[deep-host=#{$jnt-menu-host}] {
       [top] {
-        >[link][deep-host=#{$jnt-link-host}] {
+        > [link][deep-host=#{$jnt-link-host}] {
           a {
             justify-content: center;
           }

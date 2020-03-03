@@ -1,13 +1,10 @@
 @import "variables";
 
-@mixin icon-size($size, $vars) {
+@mixin icon-size($vars) {
   &[type='font'] {
-    [icon] {
-      font-size: map-get($vars, size);
-    }
-    &[size='auto'] {
+    &:not([size='auto']) {
       [icon] {
-        font-size: inherit!important;
+        font-size: map-get($vars, size);
       }
     }
   }
@@ -76,7 +73,7 @@
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
         &[size='#{$size}'] {
-          @include icon-size($size, $map);
+          @include icon-size($map);
         }
       }
     }

@@ -1,5 +1,6 @@
 @import "variables";
 @import "../variables";
+@import "components/navigation/menu/menu";
 
 :host {
   display: flex;
@@ -19,40 +20,26 @@
   > [menu] {
     display: flex;
     align-items: center;
-    jnt-menu[deep-host=#{$jnt-menu-host}] {
-      [title] {
-        &:hover {
-          background-color: transparent;
-        }
-      }
-      jnt-link[deep-host=#{$jnt-link-host}] {
-        padding: $gutter-small;
-        user-select: none;
-        a {
-          [title] {
-            color: $white-color;
-            font-size: .875rem;
-          }
-          jnt-icon {
-            color: $white-color;
-            font-size: $font-size-large;
-          }
-          jnt-icon:not([type='font']) {
-            width: $font-size-large;
-            height: $font-size-large;
-            fill: $white-color;
-          }
-        }
-        &[active='true'] {
-          a [title] {
-            color: $white-color;
-            span {
-              border-bottom-color: $white-color;
-            }
-          }
-        }
-      }
-    }
+    @include menu((
+      top: (
+        item: (
+          color: $white-color,
+          active: (
+            color: $white-color
+          ),
+          icon: (
+            size: $font-size-large
+          ),
+          padding: (
+            outer: $gutter-small $gutter-normal,
+            inner: $gutter-small,
+          ),
+          hover: (
+            background-color: transparent,
+          ),
+        ),
+      ),
+    ));
   }
 }
 
