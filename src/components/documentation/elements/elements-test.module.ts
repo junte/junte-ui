@@ -4,6 +4,7 @@ import { LabelTestModule } from './label/label-test.module';
 import { IconTestModule } from './icon/Icon-test.module';
 import { BadgeTestModule } from './badge/badge-test.module';
 import { AvatarTestModule } from './avatar/avatar-test.module';
+import { DotTestModule } from './dot/dot-test.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AvatarTestModule } from './avatar/avatar-test.module';
     AvatarTestModule,
     BadgeTestModule,
     IconTestModule,
-    LabelTestModule
+    LabelTestModule,
+    DotTestModule
   ]
 })
 export class ElementsTestModule {

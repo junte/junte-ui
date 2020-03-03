@@ -4,6 +4,7 @@ import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { LabelTestComponent } from './label/label-test.component';
+import { DotTestComponent } from './dot/dot-test.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,11 @@ export const routes: Routes = [
     path: 'label',
     component: LabelTestComponent,
     data: {breadcrumb: 'Label'}
+  },
+  {
+    path: 'dot',
+    component: DotTestComponent,
+    data: {breadcrumb: 'Dot'}
   }
 ];
 
