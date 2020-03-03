@@ -248,8 +248,7 @@
         <app-code-highlight file="modal-test.template.html">
           <![CDATA[
           <jnt-button (click)="openModal()"
-                      text="Open modal"
-                      i18n-text="@@action.open_modal"></jnt-button>
+                      text="Open modal"></jnt-button>
           ]]>
           <ng-container *ngIf="typeControl.value === contentType.templateRef">
             <![CDATA[
@@ -269,7 +268,6 @@
               <ng-container *ngIf="!closingControl.value && !footerControl.value">
                 <![CDATA[
                 <jnt-button text="Cancel"
-                            i18n-text="@@action.cancel"
                             (click)="close()"></jnt-button>
                 ]]>
               </ng-container>
@@ -283,7 +281,6 @@
             <ng-template #footer>
               <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center">
                 <jnt-button text="Ok"
-                            i18n-text="@@action.ok"
                             (click)="close()"></jnt-button>
               </jnt-stack>
             </ng-template>
