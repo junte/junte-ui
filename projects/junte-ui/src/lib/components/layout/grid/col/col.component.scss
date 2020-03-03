@@ -23,41 +23,44 @@ $col-paddings: (
   )
 );
 
-@mixin padding($padding) {
+@mixin col-padding($padding) {
   & {
     padding-left: #{map-get($padding, padding)};
     padding-right: #{map-get($padding, padding)};
   }
 }
 
-:host {
-  display: block;
-  box-sizing: border-box;
-  position: relative;
+@mixin col($passed: (), $context: null, $strategy: 'changes') {
 
-  @each $padding, $value in $col-paddings {
-    &[padding = '#{$padding}'] {
-      @include padding($value);
+  :host, #{$context} {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+
+    @each $padding, $value in $col-paddings {
+      &[padding = '#{$padding}'] {
+        @include col-padding($value);
+      }
     }
-  }
 
-  @each $breakpoints, $value in $grid-breakpoints {
-    @media screen and (min-width: $value) {
-      @for $i from 1 through $grid-columns {
-        &[#{$breakpoints} = '#{$i}'] {
-          $width: $i/$grid-columns;
-          flex: 0 0 percentage($width);
-          max-width: percentage($width);
+    @each $breakpoints, $value in $grid-breakpoints {
+      @media screen and (min-width: $value) {
+        @for $i from 1 through $grid-columns {
+          &[#{$breakpoints} = '#{$i}'] {
+            $width: $i/$grid-columns;
+            flex: 0 0 percentage($width);
+            max-width: percentage($width);
+          }
         }
       }
     }
-  }
 
-  @for $i from 1 through $grid-columns {
-    &[span = "#{$i}"] {
-      $width: $i/$grid-columns;
-      flex: 0 0 percentage($width);
-      max-width: percentage($width);
+    @for $i from 1 through $grid-columns {
+      &[span = "#{$i}"] {
+        $width: $i/$grid-columns;
+        flex: 0 0 percentage($width);
+        max-width: percentage($width);
+      }
     }
   }
 }

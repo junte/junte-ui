@@ -28,7 +28,7 @@ $skeleton-avatar-sizes: (
   )
 ) !default;
 
-@mixin size($size) {
+@mixin skeleton-size($size) {
   [image] {
     min-width: #{map-get($size, size)};
     width: #{map-get($size, size)};
@@ -37,34 +37,37 @@ $skeleton-avatar-sizes: (
   }
 }
 
-:host {
-  display: block;
-  @each $size, $map in $skeleton-avatar-sizes {
-    &[size='#{$size}'] {
-      @include size($map);
+@mixin skeleton($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: block;
+    @each $size, $map in $skeleton-avatar-sizes {
+      &[size='#{$size}'] {
+        @include skeleton-size($map);
+      }
+    }
+    &[type='text'] {
+      width: 100%;
+    }
+    &[animated='false'] {
+      [line], [image] {
+        animation: none;
+      }
     }
   }
-  &[type='text'] {
+
+  [line] {
+    min-height: $skeleton-text-line-height;
     width: 100%;
   }
-  &[animated='false'] {
-    [line], [image] {
-      animation: none;
-    }
+
+  [avatar='true'] {
+    border-radius: 50%;
   }
-}
 
-[line] {
-  min-height: $skeleton-text-line-height;
-  width: 100%;
-}
-
-[avatar='true'] {
-  border-radius: 50%;
-}
-
-[line], [image] {
-  background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
-  background-size: 400% 100%;
-  animation: loading 1.5s ease infinite;
+  [line], [image] {
+    background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
+    background-size: 400% 100%;
+    animation: loading 1.5s ease infinite;
+  }
 }

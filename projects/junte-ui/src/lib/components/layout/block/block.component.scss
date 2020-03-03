@@ -40,84 +40,86 @@ $block-padding: (
   ),
 );
 
-@mixin padding($size) {
+@mixin block-padding($size) {
   [body], [footer] {
     padding: #{map-get($size, padding)};
   }
 }
 
-@mixin fill($scheme) {
+@mixin block-fill($scheme) {
   & {
     background-color: #{map-get($scheme, background-color)};
   }
 }
 
-:host {
-  display: inline-flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 40px;
-  box-shadow: $shadow-normal;
-  border-radius: $corner-normal;
-  box-sizing: border-box;
-  &[width="fluid"] {
-    width: 100%;
-  }
+@mixin block($passed: (), $context: null, $strategy: 'changes') {
 
-  @each $scheme, $map in $block-schemes {
-    &[scheme='#{$scheme}'] {
-      @include fill($map);
+  :host, #{$context} {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 40px;
+    box-shadow: $shadow-normal;
+    border-radius: $corner-normal;
+    box-sizing: border-box;
+    &[width="fluid"] {
+      width: 100%;
+    }
+
+    @each $scheme, $map in $block-schemes {
+      &[scheme='#{$scheme}'] {
+        @include block-fill($map);
+      }
+    }
+
+    @each $size, $map in $block-padding {
+      &[padding='#{$size}'] {
+        @include block-padding($map);
+      }
     }
   }
 
-  @each $size, $map in $block-padding {
-    &[padding='#{$size}'] {
-      @include padding($map);
+  [title] {
+    padding: 0 $gutter-normal;
+    text-align: center;
+    color: $primary-color;
+    font-weight: $font-weight-bold;
+    > div {
+      padding: $gutter-normal 0;
+      border-bottom: 1px solid $muted-color;
+    }
+  }
+
+  [loading], [error], [success] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $corner-normal;
+    z-index: 1;
+  }
+
+  [loading] {
+    background-color: $block-overlay-background;
+  }
+
+  [success] {
+    background-color: $block-overlay-background;
+    [icon] {
+      width: $block-success-icon-size;
+      height: $block-success-icon-size;
+    }
+  }
+
+  [error] {
+    background-color: $block-overlay-background;
+    [icon] {
+      font-size: $block-error-icon-size;
     }
   }
 }
-
-[title] {
-  padding: 0 $gutter-normal;
-  text-align: center;
-  color: $primary-color;
-  font-weight: $font-weight-bold;
-  > div {
-    padding: $gutter-normal 0;
-    border-bottom: 1px solid $muted-color;
-  }
-}
-
-[loading], [error], [success] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: $corner-normal;
-  z-index: 1;
-}
-
-[loading] {
-  background-color: $block-overlay-background;
-}
-
-[success] {
-  background-color: $block-overlay-background;
-  [icon] {
-    width: $block-success-icon-size;
-    height: $block-success-icon-size;
-  }
-}
-
-[error] {
-  background-color: $block-overlay-background;
-  [icon] {
-    font-size: $block-error-icon-size;
-  }
-}
-
 
