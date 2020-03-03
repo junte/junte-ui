@@ -34,8 +34,7 @@ export class SubMenuDirective implements AfterViewInit {
   @HostListener('mouseenter')
   onEnter() {
     if (!!this.submenu && this.collapsed) {
-      const position = this.host.nativeElement.getBoundingClientRect();
-      this.submenu.top = position.top;
+      this.submenu.top = this.host.nativeElement.offsetTop;
       this.item.opened = true;
     }
   }
