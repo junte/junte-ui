@@ -31,7 +31,6 @@ export class IconComponent {
       Size.large
     ]
   })
-
   @Input()
   set size(size: Size) {
     this._size = size || Size.auto;

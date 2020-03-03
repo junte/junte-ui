@@ -1,97 +1,242 @@
 @import "variables";
 @import "components/navigation/link/link";
 
-:host {
-  display: block;
-  flex: 1;
-  &[type='horizontal'] {
-    [sub] {
-      position: absolute;
-      top: 100% !important;
-      left: 0;
-      z-index: 1;
-      background-color: $primary-background;
-      box-shadow: $shadow-normal;
-      border-radius: $corner-small;
-    }
-  }
-  &[collapsed='true'] {
-    [sub] {
-      background-color: $primary-background;
-      box-shadow: $shadow-normal;
-      border-radius: $corner-small;
-    }
-  }
-  &[type='vertical'] {
-    [top] {
-      width: 100%;
-    }
-  }
-}
+@mixin menu($passed: (), $context: null, $strategy: 'changes') {
 
-[top] {
-  position: relative;
-  white-space: nowrap;
-  box-sizing: border-box;
-  [title] {
-    padding: $gutter-small $gutter-normal;
-    cursor: pointer;
-    &:hover {
-      background-color: $highlight-background;
-    }
-    //@include link((
-    //  text-overflow: true
-    //), '&');
+  $defs: (
+    top: (
+      item: (
+        height: null,
+        orphan-color: $primary-text-color,
+        orphan-hover-color: $primary-text-dark-color,
+        color: null,
+        icon: (
+          margin-right: $gutter-tiny,
+          size: 18px
+        ),
+        padding: (
+          inner: 0,
+          outer: $gutter-small $gutter-normal,
+        ),
+        toggle: (
+          toggle: true,
+          margin-left: $gutter-small,
+        ),
+        hover: (
+          background-color: $highlight-background,
+        ),
+        active: (
+          underline: true,
+          background-color: null,
+          color: null
+        ),
+      ),
+    ),
+    sub: (
+      width: 200px,
+      background-color: $primary-background,
+      shadow: $shadow-normal,
+      corner: $corner-small,
+      title: (
+        padding: 0 $gutter-normal,
+        border-bottom: 1px solid $muted-color,
+      ),
+      item: (
+        padding: $gutter-small $gutter-normal,
+        height: null,
+        color: null,
+        hover: (
+          background-color: $highlight-background,
+          border-left-color: $primary-color,
+        ),
+        active: (
+          underline: true,
+          background-color: null,
+          color: null
+        ),
+      ),
+    ),
+  );
 
-    [link][deep-host=#{$jnt-link-host}] {
-      user-select: none;
-      a {
-        padding: 0;
-        > [title] {
-          text-overflow: ellipsis;
-          overflow: hidden;
-          max-width: 100%;
-          span {
-            vertical-align: middle;
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    @if $declare {
+      display: block;
+      flex: 1;
+      &[type='horizontal'] {
+        [sub] {
+          position: absolute;
+          top: 100% !important;
+          left: 0;
+          z-index: 1;
+        }
+      }
+      &[type='vertical'] {
+        [top] {
+          width: 100%;
+        }
+      }
+
+      [top] {
+        position: relative;
+        white-space: nowrap;
+        box-sizing: border-box;
+        @include link((
+          overflow: true,
+          display: block,
+        ), '&');
+
+        [item] {
+          cursor: pointer;
+        }
+
+        [sub] {
+          width: 100%;
+          display: none;
+          align-items: stretch;
+          flex-direction: column;
+          &[opened='true'] {
+            display: flex;
+          }
+          > [title] {
+            pointer-events: none;
+            span {
+              display: block;
+              padding: $gutter-normal 0;
+            }
           }
         }
       }
     }
-    [toggle] {
-      margin-left: $gutter-small;
+  }
+
+  :host {
+    &[type='horizontal'], &[collapsed='true'] {
+      [sub] {
+        @if map-has-key($vars, sub) {
+          $sub: map-get($vars, sub);
+          background-color: map-get($sub, background-color);
+          box-shadow: map-get($sub, shadow);
+          border-radius: map-get($sub, corner);
+        }
+      }
     }
   }
 
-  [sub] {
-    width: 100%;
-    min-width: 200px;
-    display: none;
-    align-items: stretch;
-    flex-direction: column;
-    > [title] {
-      padding: 0 $gutter-normal;
-      pointer-events: none;
-      span {
-        display: block;
-        padding: $gutter-normal 0;
-        border-bottom: 1px solid $muted-color;
+
+  #{$context} [top] {
+    [item] {
+      @if map-has-key($vars, top) {
+        $title: map-get(map-get($vars, top), item);
+        @include link((
+          height: map-get($title, height),
+          orphan-color: map-get($title, orphan-color),
+          orphan-hover-color: map-get($title, orphan-hover-color),
+          color: map-get($title, color),
+        ), '&');
+
+        @if map-has-key($title, active) {
+          $active: map-get($title, active);
+          @include link((
+            active: (
+              underline: map-get($active, underline),
+              background-color: map-get($active, background-color),
+              color: map-get($active, color),
+            ),
+          ), '&');
+        }
+
+          @if map-has-key($title, icon) {
+          $icon: map-get($title, icon);
+          @include link((
+            icon: (
+              margin-right: map-get($icon, margin-right),
+              size: map-get($icon, size)
+            ),
+          ), '&');
+        }
+
+        @if map-has-key($title, padding) {
+          $padding: map-get($title, padding);
+          padding: map-get($padding, outer);
+          @include link((
+            padding: map-get($padding, inner),
+          ), '&');
+        }
+
+        @if map-has-key($title, toggle) {
+          $toggle: map-get($title, toggle);
+          @if map-get($toggle, toggle) == false {
+            [toggle] {
+              display: none;
+            }
+          }
+          [toggle] {
+            margin-left: map-get($toggle, margin-left);
+          }
+        }
+
+        @if map-has-key($title, hover) {
+          $hover: map-get($title, hover);
+          &:hover {
+            background-color: map-get($hover, background-color);
+          }
+        }
       }
-    }
-    &[opened='true'] {
-      display: flex;
     }
 
-    [link] {
-      border-left: 4px solid transparent;
-      padding: $gutter-small $gutter-normal;
-      &:hover {
-        background-color: $highlight-background;
-        border-left-color: $primary-color;
+    [sub] {
+      @if map-has-key($vars, sub) {
+        $sub: map-get($vars, sub);
+        min-width: map-get($sub, width);
+        @if map-has-key($sub, title) {
+          $title: map-get($sub, title);
+          > [title] {
+            padding: map-get($title, padding);
+            span {
+              border-bottom: map-get($title, border-bottom);
+            }
+          }
+        }
+
+        @if map-has-key($sub, item) {
+          $item: map-get($sub, item);
+          [link] {
+            border-left: 4px solid transparent;
+            @include link((
+              height: map-get($item, height),
+              padding: map-get($item, padding),
+              color: map-get($item, color),
+            ), '&');
+            @if map-has-key($item, hover) {
+              $hover: map-get($item, hover);
+              &:hover {
+                background-color: map-get($hover, background-color);
+                border-left-color: map-get($hover, border-left-color);
+              }
+            }
+            @if map-has-key($item, active) {
+              $active: map-get($item, active);
+              @include link((
+                active: (
+                  underline: map-get($active, underline),
+                  background-color: map-get($active, background-color),
+                  color: map-get($active, color),
+                ),
+              ), '&');
+            }
+          }
+        }
       }
-      @include link((
-        text-overflow: true
-      ), '&');
     }
   }
 }
+
 

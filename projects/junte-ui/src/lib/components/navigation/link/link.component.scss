@@ -99,6 +99,7 @@
           border-bottom: 1px solid map-get($scheme, color);
         }
       }
+
     }
   }
   &[scheme=#{$scheme-secondary}] {
@@ -124,15 +125,25 @@
   }
 }
 
-@mixin link($passed: (), $strategy: 'merge') {
+@mixin link($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     corner: $corner-small,
-    font-size: inherit,
+    font-size: null,
     padding: $gutter-tiny $gutter-small,
-    text-overflow: false,
+    display: inline,
+    overflow: false,
+    height: null,
+    orphan-color: $primary-text-color,
+    orphan-hover-color: $primary-text-dark-color,
+    color: null,
+    active: (
+      underline: true,
+      background-color: null,
+      color: null,
+    ),
     icon: (
       margin-right: $gutter-tiny,
-      size: 18px
+      size: null
     ),
     badge: (
       margin-left: $gutter-small
@@ -169,18 +180,10 @@
     $declare: true;
   }
 
-  :host {
+  :host, #{$context} {
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
-      &[orphan='true'] {
-        [link] {
-          color: $primary-text-color !important;
-          &:hover {
-            color: $primary-text-dark-color !important;
-          }
-        }
-      }
       &[disabled="true"] {
         [link] {
           opacity: .65;
@@ -194,7 +197,6 @@
         }
       }
       [link] {
-        display: inline-block;
         text-decoration: none;
         box-sizing: border-box;
         cursor: pointer;
@@ -207,6 +209,15 @@
           [icon], span {
             transition: color .3s;
           }
+        }
+      }
+    }
+
+    &[orphan='true'] {
+      [link] {
+        color: map-get($vars, orphan-color) !important;
+        &:hover {
+          color: map-get($vars, orphan-hover-color) !important;
         }
       }
     }
@@ -226,33 +237,70 @@
         }
       }
     }
+  }
 
-    [link] {
-      border-radius: map-get($vars, corner);
-      padding: map-get($vars, padding);
+  #{$context} [link] {
+    @if map-get($vars, display) == inline {
+      display: inline-block;
+    }
+    @if map-get($vars, display) == block {
+      display: inline-flex;
+      align-items: center;
       [title] {
-        @if map-has-key($vars, icon) {
-          $icon: map-get($vars, icon);
-          [icon] {
-            margin-right: map-get($icon, margin-right);
-            @include icon((
-              size: map-get($icon, size)
-            ), '&');
-
-          }
-        }
-        @if map-get($vars, text-overflow) == true {
-          text-overflow: ellipsis;
-          overflow: hidden;
-          max-width: 100%;
-          display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    @if map-has-key($vars, active) {
+      $active: map-get($vars, active);
+      &[active='true'] {
+        background-color: map-get($active, background-color);
+        color: map-get($active, color) !important;
+        [title] span {
+          border-bottom-color: map-get($active, color) !important;
         }
       }
-      @if map-has-key($vars, badge) {
-        $badge: map-get($vars, badge);
-        [badge] {
-          margin-left: map-get($badge, margin-left);
+      @if map-get($active, underline) == false {
+        &[active='true'] {
+          [title] span {
+            border-bottom: 0;
+          }
         }
+      }
+    }
+    border-radius: map-get($vars, corner);
+    padding: map-get($vars, padding);
+    height: map-get($vars, height);
+    font-size: map-get($vars, font-size);
+    @if map-has-key($vars, color) {
+      color: map-get($vars, color) !important;
+    }
+    [title] {
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        [icon] {
+          margin-right: map-get($icon, margin-right);
+          @include icon((
+            size: map-get($icon, size),
+            sizes: (
+              auto: (
+                size: map-get($icon, size),
+              )
+            )
+          ), '&');
+
+        }
+      }
+      @if map-get($vars, overflow) == true {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        display: inline-block;
+      }
+    }
+    @if map-has-key($vars, badge) {
+      $badge: map-get($vars, badge);
+      [badge] {
+        margin-left: map-get($badge, margin-left);
       }
     }
   }
