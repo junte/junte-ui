@@ -1,5 +1,5 @@
 <p>Create the component by the command in terminal</p>
-<app-code-highlight [language]="language.shell">
+<app-code-highlight>
 <![CDATA[
 ng g c ]]>{{test.selector}}<![CDATA[
 ]]>
@@ -9,14 +9,14 @@ ng g c ]]>{{test.selector}}<![CDATA[
 </p>
 
 <ng-template #customBehaviourTemplate>
-  <app-code-highlight [language]="language.javascript"
+  <app-code-highlight [language]="language.typescript"
                       file="{{test.selector}}.component.ts">
     <ng-container *ngTemplateOutlet="behaviourTemplate"></ng-container>
   </app-code-highlight>
 </ng-template>
 
 <app-code-highlight *ngIf="!behaviourTemplate; else customBehaviourTemplate"
-                    [language]="language.javascript"
+                    [language]="language.typescript"
                     file="{{test.selector}}.component.ts">
 <![CDATA[
 import { Component } from '@angular/core';
