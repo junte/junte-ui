@@ -42,6 +42,7 @@ export const icons = {
   warning: 'warning:font',
   stop: 'stop:font',
   time: 'time:font',
+  help: 'help:font',
   // media
   image: 'image:font',
   camera: 'camera:font',
