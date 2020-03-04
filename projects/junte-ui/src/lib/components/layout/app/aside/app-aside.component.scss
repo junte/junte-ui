@@ -2,8 +2,6 @@
 @import "../variables";
 @import "components/navigation/menu/menu";
 
-$menu-item-height-in-aside: 50px;
-
 @mixin aside($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
@@ -17,7 +15,7 @@ $menu-item-height-in-aside: 50px;
     @include menu((
       top: (
         item: (
-          height: $menu-item-height-in-aside,
+          height: 50px,
           orphan-color: $primary-text-light-color,
           orphan-hover-color: $primary-text-dark-color,
           color: $primary-text-light-color,
@@ -39,15 +37,22 @@ $menu-item-height-in-aside: 50px;
         ),
       ),
       sub: (
+        collapsed: (
+          position: fixed,
+          left: $app-aside-collapsed-width,
+          item: (
+            padding: 0 $gutter-normal,
+          ),
+        ),
         item: (
           color: $primary-text-light-color,
+          padding: 0 0 0 50px,
           active: (
             underline: false,
             background-color: $secondary-background,
             color: $primary-color
           ),
-          padding: 0 0 0 50px,
-          height: $menu-item-height-in-aside,
+          height: 50px,
         ),
       ),
     ), '&');
@@ -140,26 +145,7 @@ $menu-item-height-in-aside: 50px;
     }
     &[collapsed="true"] {
       width: $app-aside-collapsed-width;
-      jnt-menu[deep-host=#{$jnt-menu-host}] {
-        [top] {
-          > [link][deep-host=#{$jnt-link-host}] {
-            a {
-              justify-content: center;
-            }
-          }
-          [sub] {
-            position: fixed;
-            left: $app-aside-collapsed-width;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            [link][deep-host=#{$jnt-link-host}] {
-              a {
-                padding-left: $gutter-normal;
-              }
-            }
-          }
-        }
-      }
     }
   }
+
 }
