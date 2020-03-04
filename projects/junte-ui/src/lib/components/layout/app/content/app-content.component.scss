@@ -10,14 +10,16 @@
   position: relative;
   z-index: 1;
   padding-top: $app-header-height;
-  transition: all .3s;
+  //transition: padding .3s;
 
   &[with-aside='full'] {
-    padding-left: $app-aside-width;
+    animation: slideIn .3s ease;
+    //padding-left: $app-aside-width;
   }
 
   &[with-aside='collapsed'] {
-    padding-left: $app-aside-collapsed-width;
+    animation: slideOut .3s ease;
+    //padding-left: $app-aside-collapsed-width;
   }
 
   @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
@@ -41,4 +43,14 @@
     }
   }
 
+}
+
+@keyframes slideIn {
+  //from { padding-left: $app-aside-collapsed-width }
+  to { padding-left: $app-aside-width }
+}
+
+@keyframes slideOut {
+  //from { padding-left: $app-aside-width }
+  to { padding-left: $app-aside-collapsed-width }
 }
