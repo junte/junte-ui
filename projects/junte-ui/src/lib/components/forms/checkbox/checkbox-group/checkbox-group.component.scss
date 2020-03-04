@@ -1,5 +1,9 @@
 @import "variables";
 
-:host {
-  display: block;
+@mixin checkbox-group($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: block;
+  }
+
 }

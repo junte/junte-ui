@@ -2,11 +2,14 @@
 
 $dot-size: 12px;
 
-:host {
-  display: inline-block;
-  border-radius: 50%;
-  min-width: $dot-size;
-  min-height: $dot-size;
-  width: $dot-size;
-  height: $dot-size;
+@mixin dot($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: inline-block;
+    border-radius: 50%;
+    min-width: $dot-size;
+    min-height: $dot-size;
+    width: $dot-size;
+    height: $dot-size;
+  }
 }

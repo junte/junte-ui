@@ -38,7 +38,7 @@ $states: (
   )
 );
 
-@mixin state($state) {
+@mixin input-state($state) {
   input {
     border-color: #{map-get($state, border-color)};
     &:focus {
@@ -54,7 +54,7 @@ $states: (
   }
 }
 
-@mixin size($size) {
+@mixin input-size($size) {
   input {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, height)};
@@ -73,111 +73,113 @@ $states: (
   }
 }
 
-:host {
-  display: block;
-  width: 100%;
-  @each $state, $map in $states {
-    &[state='#{$state}'] {
-      @include state($map);
-    }
-  }
+@mixin input($passed: (), $context: null, $strategy: 'changes') {
 
-  @each $size, $map in $input-sizes {
-    &[size='#{$size}'] {
-      @include size($map);
-      [icon] {
-        font-size: #{map-get($map, font-size)};
-        & + input {
-          padding-left: calc(#{map-get($map, font-size)} + #{$gutter-normal} + #{$gutter-small});
-        }
-      }
-    }
-  }
-  &[textAlign="right"] {
-    input {
-      text-align: right;
-    }
-  }
-  &[textAlign="left"] {
-    input {
-      text-align: left;
-    }
-  }
-}
-
-form {
-  display: inline-flex;
-  align-items: stretch;
-  width: 100%;
-  position: relative;
-  > [icon][deep-host=#{$jnt-icon-host}] {
-    position: absolute;
-    top: 50%;
-    left: $gutter-normal;
-    transform: translateY(-50%);
-    color: $primary-text-light-color;
-    fill: $primary-text-light-color;
-    line-height: 0;
-  }
-  input {
-    outline: 0;
-    background-color: $control-background;
-    color: $primary-text-color;
+  :host, #{$context} {
+    display: block;
     width: 100%;
-    padding: 0 $gutter-normal;
-    border-radius: $corner-small;
-    border: 1px solid;
-    box-sizing: border-box;
-    transition: all .3s;
-    &:disabled {
-      background-color: $control-disabled-background;
-      color: $control-disabled-label-color;
-      pointer-events: none;
-      & + [arrows] {
-        button {
-          cursor: default;
+    @each $state, $map in $states {
+      &[state='#{$state}'] {
+        @include input-state($map);
+      }
+    }
+
+    @each $size, $map in $input-sizes {
+      &[size='#{$size}'] {
+        @include input-size($map);
+        [icon] {
+          font-size: #{map-get($map, font-size)};
+          & + input {
+            padding-left: calc(#{map-get($map, font-size)} + #{$gutter-normal} + #{$gutter-small});
+          }
+        }
+      }
+    }
+    &[textAlign="right"] {
+      input {
+        text-align: right;
+      }
+    }
+    &[textAlign="left"] {
+      input {
+        text-align: left;
+      }
+    }
+  }
+
+  form {
+    display: inline-flex;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+    > [icon][deep-host=#{$jnt-icon-host}] {
+      position: absolute;
+      top: 50%;
+      left: $gutter-normal;
+      transform: translateY(-50%);
+      color: $primary-text-light-color;
+      fill: $primary-text-light-color;
+      line-height: 0;
+    }
+    input {
+      outline: 0;
+      background-color: $control-background;
+      color: $primary-text-color;
+      width: 100%;
+      padding: 0 $gutter-normal;
+      border-radius: $corner-small;
+      border: 1px solid;
+      box-sizing: border-box;
+      transition: all .3s;
+      &:disabled {
+        background-color: $control-disabled-background;
+        color: $control-disabled-label-color;
+        pointer-events: none;
+        & + [arrows] {
+          button {
+            cursor: default;
+          }
+        }
+      }
+    }
+
+    [label] {
+      background-color: $control-field-label-background;
+      padding: $control-field-label-padding;
+      display: flex;
+      align-items: center;
+      border-top-left-radius: $corner-small - 1px;
+      border-bottom-left-radius: $corner-small - 1px;
+      color: $control-field-label-color;
+      border: 1px solid $control-field-label-border-color;
+      border-right: 0;
+      white-space: nowrap;
+      & ~ input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    [arrows] {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      bottom: 1px;
+      button {
+        flex: 1;
+        padding: 0 $gutter-small;
+        height: 50%;
+        border: 0;
+        border-radius: $corner-small;
+        cursor: pointer;
+        line-height: 0;
+        background-color: transparent;
+        &:focus {
+          outline: 0;
         }
       }
     }
   }
-
-  [label] {
-    background-color: $control-field-label-background;
-    padding: $control-field-label-padding;
-    display: flex;
-    align-items: center;
-    border-top-left-radius: $corner-small - 1px;
-    border-bottom-left-radius: $corner-small - 1px;
-    color: $control-field-label-color;
-    border: 1px solid $control-field-label-border-color;
-    border-right: 0;
-    white-space: nowrap;
-    & ~ input {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
-  [arrows] {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    bottom: 1px;
-    button {
-      flex: 1;
-      padding: 0 $gutter-small;
-      height: 50%;
-      border: 0;
-      border-radius: $corner-small;
-      cursor: pointer;
-      line-height: 0;
-      background-color: transparent;
-      &:focus {
-        outline: 0;
-      }
-    }
-  }
 }
-
