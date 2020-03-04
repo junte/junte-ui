@@ -37,6 +37,14 @@
       background-color: $primary-background,
       shadow: $shadow-normal,
       corner: $corner-small,
+      collapsed: (
+        position: null,
+        top: null,
+        left: null,
+        item: (
+          padding: $gutter-small $gutter-normal,
+        ),
+      ),
       title: (
         padding: 0 $gutter-normal,
         border-bottom: 1px solid $muted-color,
@@ -88,13 +96,19 @@
         position: relative;
         white-space: nowrap;
         box-sizing: border-box;
-        @include link((
-          overflow: true,
-          display: block,
-        ), '&');
 
         [item] {
           cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          [link] {
+            width: 100%;
+            @include link((
+              overflow: true,
+              display: block,
+            ), '&');
+          }
         }
 
         [sub] {
@@ -112,6 +126,12 @@
               padding: $gutter-normal 0;
             }
           }
+          [link] {
+            @include link((
+              overflow: true,
+              display: block,
+            ), '&');
+          }
         }
       }
     }
@@ -125,6 +145,24 @@
           background-color: map-get($sub, background-color);
           box-shadow: map-get($sub, shadow);
           border-radius: map-get($sub, corner);
+        }
+      }
+    }
+    &[collapsed='true'] {
+      [sub] {
+        @if map-has-key($vars, sub) {
+          $collapsed: map-get(map-get($vars, sub), collapsed);
+          position: map-get($collapsed, position);
+          top: map-get($collapsed, top);
+          left: map-get($collapsed, left);
+          @if map-has-key($collapsed, item) {
+            $item: map-get($collapsed, item);
+            [link] {
+              @include link((
+                padding: map-get($item, padding),
+              ), '&');
+            }
+          }
         }
       }
     }
@@ -209,7 +247,6 @@
         @if map-has-key($sub, item) {
           $item: map-get($sub, item);
           [link] {
-            border-left: 4px solid transparent;
             @include link((
               height: map-get($item, height),
               padding: map-get($item, padding),
