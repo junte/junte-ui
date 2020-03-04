@@ -40,10 +40,8 @@ export class DocumentationComponent implements OnInit, AfterViewInit {
       .subscribe(theme => {
         if (theme !== Theme.light) {
           localStorage.setItem('theme', theme);
-          this.load(theme);
         } else {
           localStorage.removeItem('theme');
-          this.load(null);
         }
       });
   }
@@ -51,12 +49,6 @@ export class DocumentationComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.modalService.register(this.modal);
     this.popoverService.register(this.popover);
-  }
-
-
-  private load(theme: Theme) {
-    this.loading = true;
-    window['themes'](theme, () => this.loading = false);
   }
 
 }

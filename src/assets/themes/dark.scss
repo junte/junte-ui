@@ -34,8 +34,53 @@ $control-disabled-background: $highlight-background;
 $shadow-light: 0px 4px 10px rgba(255, 255, 255, 0.15);
 $shadow-normal: 0px 2px 8px rgba(255, 255, 255, 0.25);
 
+@import "../../../projects/junte-ui/src/lib/assets/styles/variables";
 
-@import "common";
-@import "components";
-@import "../../styles";
-@import "../../common";
+[theme='dark'] {
+  @import "../../../projects/junte-ui/src/lib/assets/styles/components";
+
+  @include label();
+  @include badge();
+  @include icon();
+  @include link();
+  @include button();
+  @include menu();
+  @include stack();
+  @include container();
+  @include col();
+  @include row();
+  @include block();
+  @include skeleton();
+  @include spinner();
+  @include tabs();
+  @include pagination();
+  @include dropdown();
+  @include breadcrumbs();
+  @include anchor();
+  @include avatar();
+  @include avatars-list();
+  @include avatars-group();
+  @include aside();
+  @include body();
+  @include content();
+  @include footer();
+  @include header();
+  @include userbar();
+  @include actions();
+  @include action();
+  @include sub-header();
+  @include layout();
+  @include calendar();
+  @include checkbox();
+  @include checkbox-group();
+  @include date-picker();
+  @include dot();
+  @include form();
+  @include form-label();
+  @include form-message();
+  @include input();
+  @include radio();
+  @include select();
+  @include switch();
+  @include switcher();
+}
