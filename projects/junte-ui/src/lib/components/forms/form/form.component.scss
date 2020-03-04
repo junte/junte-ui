@@ -1,23 +1,26 @@
 @import "variables";
 
-:host {
-  display: block;
-  position: relative;
-}
+@mixin form($passed: (), $context: null, $strategy: 'changes') {
 
-[loading], [error] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, .5);
-  z-index: 1;
-}
+  :host, #{$context} {
+    display: block;
+    position: relative;
+  }
 
-footer {
-  margin-top: $gutter-large;
+  [loading], [error] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .5);
+    z-index: 1;
+  }
+
+  footer {
+    margin-top: $gutter-large;
+  }
 }

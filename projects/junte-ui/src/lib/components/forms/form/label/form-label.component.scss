@@ -3,11 +3,14 @@
 $form-label-font-size: .75rem !default;
 $form-label-color: $primary-text-light-color !default;
 
-:host {
-  display: inline-block;
-}
+@mixin form-label($passed: (), $context: null, $strategy: 'changes') {
 
-label {
-  font-size: $form-label-font-size;
-  color: $form-label-color;
+  :host, #{$context} {
+    display: inline-block;
+  }
+
+  label {
+    font-size: $form-label-font-size;
+    color: $form-label-color;
+  }
 }
