@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { TranslateModule } from '@ngx-translate/core';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../../config';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
-import { en } from '../../../i18n/en';
 import { ButtonModule } from '../../forms/button/button.module';
 import { FormModule } from '../../forms/form/form.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -34,15 +33,7 @@ export class ConfirmModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        }, ...JUNTE_MODULE_PROVIDES
       ]
     };
   }

@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LabelModule, LinkModule, StackModule, GridModule } from 'junte-ui';
+import { GridModule, LabelModule, LinkModule, StackModule } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { ThemingComponent } from './theming.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    LabelModule,
-    LinkModule,
-    StackModule,
-    GridModule
+    LabelModule.forRoot(JUNTE_UI_CONFIG),
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG)
   ],
   exports: [
     ThemingComponent

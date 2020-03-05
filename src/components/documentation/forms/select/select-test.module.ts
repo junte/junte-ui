@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  LinkModule,
-  StackModule,
-  TabsModule,
-  GridModule,
-  FormModule,
   AccordionModule,
-  SelectModule,
   AvatarModule,
   CheckboxModule,
+  FormModule,
+  GridModule,
   InputModule,
-  LabelModule
+  LabelModule,
+  LinkModule,
+  SelectModule,
+  StackModule,
+  TabsModule
 } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { SelectTestComponent } from './select-test.component';
 
@@ -21,19 +22,19 @@ import { SelectTestComponent } from './select-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    GridModule,
-    SelectModule,
-    AvatarModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
+    AvatarModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    CheckboxModule,
-    InputModule,
-    LabelModule
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    InputModule.forRoot(JUNTE_UI_CONFIG),
+    LabelModule.forRoot(JUNTE_UI_CONFIG)
   ],
   exports: [
     SelectTestComponent

@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
-import { en } from '../../../i18n/en';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 
 import { AnchorComponent } from './anchor.component';
@@ -31,15 +29,7 @@ export class AnchorModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        }, ...JUNTE_MODULE_PROVIDES
       ]
     };
   }

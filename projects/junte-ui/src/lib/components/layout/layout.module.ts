@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JunteUIModuleConfig } from '../../config';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
 import { GridModule } from './grid/grid.module';
@@ -31,15 +30,7 @@ export class LayoutModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        }, ...JUNTE_MODULE_PROVIDES
       ]
     };
   }

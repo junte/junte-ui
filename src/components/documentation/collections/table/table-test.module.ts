@@ -2,38 +2,39 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  LinkModule,
-  StackModule,
-  TabsModule,
-  GridModule,
   AccordionModule,
-  FormModule,
   BlockModule,
-  TableModule,
-  SelectModule,
+  CheckboxModule,
+  FormModule,
+  GridModule,
+  LinkModule,
   MenuModule,
-  CheckboxModule
+  SelectModule,
+  StackModule,
+  TableModule,
+  TabsModule
 } from 'junte-ui';
-import { TableDataComponent } from './data/table-data.component';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
+import { TableDataComponent } from './data/table-data.component';
 import { TableTestComponent } from './table-test.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    AccordionModule,
-    FormModule,
-    BlockModule,
-    TableModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    TableModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    SelectModule,
-    CheckboxModule,
-    MenuModule
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    MenuModule.forRoot(JUNTE_UI_CONFIG)
   ],
   exports: [
     TableTestComponent
