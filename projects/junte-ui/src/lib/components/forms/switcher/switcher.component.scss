@@ -1,27 +1,37 @@
 @import "variables";
 
-$switcher-height: 32px;
-$switcher-corner: $corner-normal;
-
 @mixin switcher($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    height: 32px,
+    corner: $corner-normal,
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: flex;
-    min-height: $switcher-height;
-    line-height: $switcher-height;
+    min-height: map-get($vars, height);
+    line-height: map-get($vars, height);
     border: 1px solid $gray-700-color;
-    border-radius: $switcher-corner;
+    border-radius: map-get($vars, corner);
     &[type='vertical'] {
       flex-direction: column;
       [option] {
         &:first-child {
-          border-top-left-radius: $switcher-corner - 1px;
-          border-top-right-radius: $switcher-corner - 1px;
+          border-top-left-radius: map-get($vars, corner) - 1px;
+          border-top-right-radius: map-get($vars, corner) - 1px;
         }
 
         &:last-child {
-          border-bottom-right-radius: $switcher-corner - 1px;
-          border-bottom-left-radius: $switcher-corner - 1px;
+          border-bottom-right-radius: map-get($vars, corner) - 1px;
+          border-bottom-left-radius: map-get($vars, corner) - 1px;
         }
       }
     }
@@ -31,19 +41,19 @@ $switcher-corner: $corner-normal;
         flex: auto;
         justify-content: center;
         &:first-child {
-          border-top-left-radius: $switcher-corner - 1px;
-          border-bottom-left-radius: $switcher-corner - 1px;
+          border-top-left-radius: map-get($vars, corner) - 1px;
+          border-bottom-left-radius: map-get($vars, corner) - 1px;
         }
 
         &:last-child {
-          border-top-right-radius: $switcher-corner - 1px;
-          border-bottom-right-radius: $switcher-corner - 1px;
+          border-top-right-radius: map-get($vars, corner) - 1px;
+          border-bottom-right-radius: map-get($vars, corner) - 1px;
         }
       }
     }
   }
 
-  [option] {
+  #{$context} [option] {
     background-color: $primary-background;
     padding: 0 $gutter-normal;
     color: $primary-text-color;
@@ -72,7 +82,7 @@ $switcher-corner: $corner-normal;
     }
   }
 
-  [label] {
+  #{$context} [label] {
     flex: 0 1 auto;
     overflow: hidden;
     white-space: nowrap;

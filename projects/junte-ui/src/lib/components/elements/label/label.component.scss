@@ -16,7 +16,7 @@
   }
 }
 
-@mixin label($passed: (), $strategy: 'merge') {
+@mixin label($passed: (), $context: null, $strategy: 'merge') {
   $defs: (
     corner: $corner-small,
     background: $primary-color,
@@ -49,7 +49,7 @@
     $declare: true;
   }
 
-  :host {
+  :host, #{$context} {
     @if $declare {
       display: inline-flex;
       align-items: center;

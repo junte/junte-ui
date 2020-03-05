@@ -1,8 +1,5 @@
 @import "variables";
-
-$breadcrumb-link-font-size: 12px;
-$breadcrumb-icon-font-size: 8px;
-$breadcrumb-icon-line-height: 18px;
+@import "components/elements/icon/icon";
 
 @mixin breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
@@ -10,9 +7,9 @@ $breadcrumb-icon-line-height: 18px;
     display: block;
   }
 
-  a {
+  #{$context} a {
     color: $primary-text-light-color;
-    font-size: $breadcrumb-link-font-size;
+    font-size: 12px;
     text-decoration: none;
     user-select: none;
 
@@ -22,16 +19,14 @@ $breadcrumb-icon-line-height: 18px;
     }
   }
 
-  [icon] {
+  #{$context} [icon] {
+    @include icon((
+      size: 8px,
+    ), '&');
     color: $primary-text-light-color;
-    font-size: $breadcrumb-icon-font-size !important;
 
     &:last-child {
       display: none;
     }
-  }
-
-  [icon][child-host=#{$jnt-icon-host}] {
-    line-height: $breadcrumb-icon-line-height;
   }
 }

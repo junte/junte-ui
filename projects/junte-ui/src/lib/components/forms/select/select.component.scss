@@ -1,75 +1,86 @@
 @import "variables";
-
-$select-sizes: (
-  #{$size-small}: (
-    font-size: 11px,
-    icon-size: 11px,
-    min-height: 30px,
-    chips-padding: 2px $gutter-large 2px $gutter-small,
-    input-padding: 2px 0 2px $gutter-small
-  ),
-  #{$size-normal}: (
-    font-size: 14px,
-    icon-size: 14px,
-    min-height: 38px,
-    chips-padding: 3px $gutter-large 3px $gutter-small,
-    input-padding: 3px 0 3px $gutter-small
-  ),
-  #{$size-large}: (
-    font-size: 16px,
-    icon-size: 16px,
-    min-height: 50px,
-    chips-padding: $gutter-small $gutter-large $gutter-small $gutter-small,
-    input-padding: $gutter-small 0 $gutter-small $gutter-small
-  )
-);
+@import "components/elements/icon/icon";
 
 @mixin select-size($size) {
   [select] {
-    font-size: #{map-get($size, font-size)};
-    min-height: #{map-get($size, min-height)};
-    ul li {
-      padding: #{map-get($size, chips-padding)};
-      [icon][deep-host=#{$jnt-icon-host}] {
-        &[type='svg'], &[type='animated'] {
-          min-width: #{map-get($size, icon-size)};
-          width: #{map-get($size, icon-size)};
-          min-height: #{map-get($size, icon-size)};
-          height: #{map-get($size, icon-size)};
-        }
-      }
-      &[query] {
-        padding: #{map-get($size, input-padding)};
-      }
-      input {
-        font-size: #{map-get($size, font-size)};
-      }
-    }
-  }
-  [options] {
-    ul li {
-      [icon][deep-host=#{$jnt-icon-host}] {
-        &[type='svg'], &[type='animated'] {
-          min-width: #{map-get($size, icon-size)};
-          width: #{map-get($size, icon-size)};
-          min-height: #{map-get($size, icon-size)};
-          height: #{map-get($size, icon-size)};
-        }
-      }
-    }
+    font-size: map-get($size, font-size);
+    min-height: map-get($size, height);
   }
 }
 
 @mixin select($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      small: (
+        font-size: 11px,
+        height: 30px,
+        chips: (
+          padding: 2px $gutter-large 2px $gutter-small
+        ),
+        input: (
+          padding: 2px 0 2px $gutter-small
+        ),
+      ),
+      normal: (
+        font-size: 14px,
+        height: 38px,
+        chips: (
+          padding: 3px $gutter-large 3px $gutter-small
+        ),
+        input: (
+          padding: 3px 0 3px $gutter-small
+        ),
+      ),
+      large: (
+        font-size: 16px,
+        height: 50px,
+        chips: (
+          padding: $gutter-small $gutter-large $gutter-small $gutter-small
+        ),
+        input: (
+          padding: $gutter-small 0 $gutter-small $gutter-small
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: inline-block;
     position: relative;
     min-width: 70px;
     color: $primary-text-color;
-    @each $size, $map in $select-sizes {
-      &[size='#{$size}'] {
-        @include select-size($map);
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include select-size($map);
+          [select] {
+            ul li {
+              input {
+                font-size: map_get($map, font-size);
+              }
+              @if map-has-key($map, chips) {
+                $chips: map-get($map, chips);
+                padding: map-get($chips, padding);
+              }
+              @if map-has-key($map, input) {
+                $input: map-get($map, input);
+                &[query] {
+                  padding: map-get($input, padding);
+                }
+              }
+            }
+          }
+        }
       }
     }
     &[disabled='true'] {
@@ -171,7 +182,7 @@ $select-sizes: (
     }
   }
 
-  [select] {
+  #{$context}  [select] {
     border: 1px solid $control-border-color;
     border-radius: $corner-small;
     background-color: $control-background;
@@ -214,8 +225,9 @@ $select-sizes: (
             outline: 0;
           }
           & > [icon] {
-            font-size: 11px;
-            line-height: inherit;
+            @include icon((
+              size: 11px
+            ), '&');
           }
         }
         &:not(:last-child) {
@@ -248,13 +260,14 @@ $select-sizes: (
         outline: 0;
       }
       & > [icon] {
-        font-size: 11px;
-        line-height: inherit;
+        @include icon((
+          size: 11px
+        ), '&');
       }
     }
   }
 
-  [options] {
+  #{$context} [options] {
     position: absolute;
     width: 100%;
     box-sizing: border-box;

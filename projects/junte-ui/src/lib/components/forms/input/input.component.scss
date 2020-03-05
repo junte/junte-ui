@@ -1,100 +1,141 @@
 @import "variables";
-
-$input-sizes: (
-  #{$size-small}: (
-    font-size: 11px,
-    height: 30px,
-    icon-size: 14px,
-    chevron-size: 8px,
-  ),
-  #{$size-normal}: (
-    font-size: 14px,
-    height: 38px,
-    icon-size: 16px,
-    chevron-size: 10px,
-  ),
-  #{$size-large}: (
-    font-size: 16px,
-    height: 50px,
-    icon-size: 18px,
-    chevron-size: 12px,
-  )
-);
-
-$states: (
-  #{$state-normal}: (
-    border-color: $control-border-color,
-    bg-focus: $control-background,
-    shadow-focus: $shadow-primary,
-    border-color-hover: $primary-color,
-    border-color-focus: $primary-color,
-    border-color-disabled: $control-disabled-border-color
-  ),
-  #{$state-success}: (
-    border-color: $success-color,
-  ),
-  #{$state-failed}: (
-    border-color: $fail-color,
-  )
-);
-
-@mixin input-state($state) {
-  input {
-    border-color: #{map-get($state, border-color)};
-    &:focus {
-      box-shadow: #{map-get($state, shadow-focus)};
-      border-color: #{map-get($state, border-color-focus)};
-    }
-    &:hover {
-      border-color: #{map-get($state, border-color-hover)};
-    }
-    &:disabled {
-      border-color: #{map-get($state, border-color-disabled)};
-    }
-  }
-}
+@import "components/elements/icon/icon";
 
 @mixin input-size($size) {
   input {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, height)};
     &[type='number'] {
-      padding-right: calc(#{$gutter-small} * 2 + #{map-get($size, chevron-size)});
+      padding-right: calc(#{$gutter-small} * 2 + #{map-get($size, chevron)});
     }
   }
-  [icon]:not([type='font']) {
-    width: #{map-get($size, icon-size)};
-    height: #{map-get($size, icon-size)};
-  }
-  [arrows] {
-    [icon] {
-      font-size: #{map-get($size, chevron-size)};
-    }
+  [icon] ~ input {
+    padding-left: calc(#{map-get($size, font-size)} + #{$gutter-normal} + #{$gutter-small});
   }
 }
 
 @mixin input($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+    sizes: (
+      small: (
+        font-size: 11px,
+        height: 30px,
+        icon: 14px,
+        chevron: 8px
+      ),
+      normal: (
+        font-size: 14px,
+        height: 38px,
+        icon: 16px,
+        chevron: 10px
+      ),
+      large: (
+        font-size: 16px,
+        height: 50px,
+        icon: 18px,
+        chevron: 12px
+      ),
+    ),
+    states: (
+      normal: (
+        border-color: $control-border-color,
+        hover: (
+          border-color: $primary-color
+        ),
+        focus: (
+          border-color: $primary-color,
+          shadow: $shadow-primary
+        ),
+        disabled: (
+          border-color: $control-disabled-border-color
+        ),
+      ),
+      success: (
+        border-color: $success-color,
+        hover: (
+          border-color: $success-color
+        ),
+        focus: (
+          border-color: $success-color,
+          shadow: null
+        ),
+      ),
+      failed: (
+        border-color: $fail-color,
+        hover: (
+          border-color: $fail-color
+        ),
+        focus: (
+          border-color: $fail-color,
+          shadow: null
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
     display: block;
     width: 100%;
-    @each $state, $map in $states {
-      &[state='#{$state}'] {
-        @include input-state($map);
-      }
-    }
 
-    @each $size, $map in $input-sizes {
-      &[size='#{$size}'] {
-        @include input-size($map);
-        [icon] {
-          font-size: #{map-get($map, font-size)};
-          & + input {
-            padding-left: calc(#{map-get($map, font-size)} + #{$gutter-normal} + #{$gutter-small});
+    @if map-has-key($vars, states) {
+      $states: map-get($vars, states);
+      @each $state, $map in $states {
+        &[state='#{$state}'] {
+          input {
+            border-color: map-get($map, border-color);
+            @if map-has-key($map, focus) {
+              $focus: map-get($map, focus);
+              &:focus {
+                box-shadow: map-get($focus, shadow);
+                border-color: map-get($focus, border-color);
+              }
+            }
+            @if map-has-key($map, hover) {
+              $hover: map-get($map, hover);
+              &:hover {
+                border-color: map-get($hover, border-color);
+              }
+            }
+            @if map-has-key($map, disabled) {
+              $disabled: map-get($map, disabled);
+              &:disabled {
+                border-color: map-get($disabled, border-color);
+              }
+            }
           }
         }
       }
     }
+
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include input-size($map);
+          [icon] {
+            @include icon((
+              size: map-get($map, icon)
+            ), '&');
+          }
+          [arrows] [icon] {
+            @include icon((
+              size: map-get($map, chevron)
+            ), '&');
+          }
+
+        }
+      }
+    }
+
     &[textAlign="right"] {
       input {
         text-align: right;
@@ -107,12 +148,12 @@ $states: (
     }
   }
 
-  form {
+  #{$context} form {
     display: inline-flex;
     align-items: stretch;
     width: 100%;
     position: relative;
-    > [icon][deep-host=#{$jnt-icon-host}] {
+    [icon] {
       position: absolute;
       top: 50%;
       left: $gutter-normal;
@@ -157,6 +198,7 @@ $states: (
       & ~ input {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        padding: 0 $gutter-normal;
       }
     }
 

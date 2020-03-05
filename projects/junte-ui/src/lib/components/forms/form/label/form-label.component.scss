@@ -1,8 +1,5 @@
 @import "variables";
 
-$form-label-font-size: .75rem !default;
-$form-label-color: $primary-text-light-color !default;
-
 @mixin form-label($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
@@ -10,7 +7,7 @@ $form-label-color: $primary-text-light-color !default;
   }
 
   label {
-    font-size: $form-label-font-size;
-    color: $form-label-color;
+    font-size: $font-size-small;
+    color: $primary-text-light-color;
   }
 }

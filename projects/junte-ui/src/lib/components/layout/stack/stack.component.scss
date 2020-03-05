@@ -3,53 +3,53 @@
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
 
-$stack-gutters: (
-  #{$gutter-none-name}: (
-    gutter: $gutter-none
-  ),
-  #{$gutter-tiny-name}: (
-    gutter: $gutter-tiny
-  ),
-  #{$gutter-small-name}: (
-    gutter: $gutter-small
-  ),
-  #{$gutter-normal-name}: (
-    gutter: $gutter-normal
-  ),
-  #{$gutter-big-name}: (
-    gutter: $gutter-big
-  ),
-  #{$gutter-large-name}: (
-    gutter: $gutter-large
-  ),
-  #{$gutter-huge-name}: (
-    gutter: $gutter-huge
-  )
-);
-
 @mixin gutters($property, $gutter) {
   & > :not(:last-child):not(router-outlet) {
-    #{$property}: #{map-get($gutter, gutter)};
+    #{$property}: $gutter;
   }
 }
 
 @mixin stack($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+    gutters: (
+      none: $gutter-none,
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
     display: flex;
     text-align: left;
-    @each $gutter, $value in $stack-gutters {
-      &[gutter = '#{$gutter}'] {
-        &[type = '#{$type-vertical}'] {
-          flex-direction: column;
-          @include gutters(margin-bottom, $value);
-        }
-        &[type = '#{$type-horizontal}'] {
-          flex-direction: row;
-          @include gutters(margin-right, $value);
+    @if map-has-key($vars, gutters) {
+      $gutters: map-get($vars, gutters);
+      @each $gutter, $map in $gutters {
+        &[gutter = '#{$gutter}'] {
+          &[type = '#{$type-vertical}'] {
+            flex-direction: column;
+            @include gutters(margin-bottom, $map);
+          }
+          &[type = '#{$type-horizontal}'] {
+            flex-direction: row;
+            @include gutters(margin-right, $map);
+          }
         }
       }
     }
+
     &[align='start'] {
       align-items: flex-start;
     }

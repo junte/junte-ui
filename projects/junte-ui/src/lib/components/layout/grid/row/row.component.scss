@@ -1,36 +1,34 @@
 @import "variables";
 
-$col-gutters: (
-  #{$gutter-tiny-name}: (
-    gutter: $gutter-tiny
-  ),
-  #{$gutter-small-name}: (
-    gutter: $gutter-small
-  ),
-  #{$gutter-normal-name}: (
-    gutter: $gutter-normal
-  ),
-  #{$gutter-big-name}: (
-    gutter: $gutter-big
-  ),
-  #{$gutter-large-name}: (
-    gutter: $gutter-large
-  ),
-  #{$gutter-huge-name}: (
-    gutter: $gutter-huge
-  )
-);
-
 @mixin col-gutter($gutter) {
   & {
-    margin-top: -#{map-get($gutter, gutter)};
+    margin-top: -$gutter;
     > :not(router-outlet) {
-      margin-top: #{map-get($gutter, gutter)};
+      margin-top: $gutter;
     }
   }
 }
 
 @mixin grid-row($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    gutters: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: flex;
@@ -38,9 +36,12 @@ $col-gutters: (
     flex-wrap: wrap;
     margin: 0 (-$grid-gutter);
 
-    @each $gutter, $value in $col-gutters {
-      &[gutter = '#{$gutter}'] {
-        @include col-gutter($value);
+    @if map-has-key($vars, gutters) {
+      $gutters: map-get($vars, gutters);
+      @each $gutter, $map in $gutters {
+        &[gutter = '#{$gutter}'] {
+          @include col-gutter($map);
+        }
       }
     }
 

@@ -1,10 +1,19 @@
 @import "variables";
 @import "../common";
 
-$avatar-border-width-in-avatar-list: 2px;
-$max-avatar-index-in-avatar-list: 4;
-
 @mixin avatars-list($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    border-width: 2px,
+    avatar-count: 4
+  );
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: inline-block;
@@ -12,20 +21,20 @@ $max-avatar-index-in-avatar-list: 4;
     box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
       &[size='#{$size}'] {
-        min-height: calc(#{map-get($map, size)} + #{$avatar-border-width-in-avatar-list});
+        min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
         @for $i from 1 through 5 {
           &[capacity='#{$i}'] {
-            min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{$avatar-border-width-in-avatar-list});
+            min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
           }
         }
       }
     }
   }
 
-  @for $i from 0 through $max-avatar-index-in-avatar-list {
+  @for $i from 0 through map-get($vars, avatar-count) {
     [avatar-index='#{$i}'] {
       position: absolute;
-      border: $avatar-border-width-in-avatar-list solid $primary-background;
+      border: 2px solid $primary-background;
       cursor: pointer;
       transition: all .5s;
       &:hover {
