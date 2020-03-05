@@ -1,7 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LinkModule, StackModule, TabsModule, GridModule, FormModule, AccordionModule, MenuModule, ButtonModule, DropdownModule } from 'junte-ui';
+import {
+  AccordionModule,
+  ButtonModule,
+  DropdownModule,
+  FormModule,
+  GridModule,
+  LinkModule,
+  MenuModule,
+  StackModule,
+  TabsModule
+} from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { DropdownTestComponent } from './dropdown-test.component';
 
@@ -9,15 +20,15 @@ import { DropdownTestComponent } from './dropdown-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    MenuModule,
-    DropdownModule,
-    ButtonModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    MenuModule.forRoot(JUNTE_UI_CONFIG),
+    DropdownModule.forRoot(JUNTE_UI_CONFIG),
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule
   ],
   exports: [

@@ -1,15 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  LinkModule,
-  StackModule,
-  TabsModule,
-  GridModule,
-  FormModule,
-  AccordionModule,
-  DotModule
-} from 'junte-ui';
+import { AccordionModule, DotModule, FormModule, GridModule, LinkModule, StackModule, TabsModule } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { DotTestComponent } from './dot-test.component';
 
@@ -17,13 +10,13 @@ import { DotTestComponent } from './dot-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    DotModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    DotModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule
   ],
   exports: [

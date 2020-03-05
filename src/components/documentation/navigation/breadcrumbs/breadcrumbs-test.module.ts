@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { BreadCrumbTest1Component } from './tests/test.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbsRoutingModule } from './breadcrumbs-routing.module';
-import { LinkModule, StackModule, TabsModule, GridModule, FormModule, AccordionModule, BreadcrumbsModule, IconModule } from 'junte-ui';
-import { BreadcrumbResolver } from './resolver';
-import { BreadCrumbTest2Component } from './tests/test2.component';
+import { AccordionModule, BreadcrumbsModule, FormModule, GridModule, IconModule, LinkModule, StackModule, TabsModule } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
-import { BreadCrumbTest3Component } from './tests/test3.component';
 import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.module';
 import { HowToUseModule } from '../../shared/how-to-use/how-to-use.module';
+import { BreadcrumbsRoutingModule } from './breadcrumbs-routing.module';
+import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
+import { BreadcrumbResolver } from './resolver';
+import { BreadCrumbTest1Component } from './tests/test.component';
+import { BreadCrumbTest2Component } from './tests/test2.component';
+import { BreadCrumbTest3Component } from './tests/test3.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +25,14 @@ import { HowToUseModule } from '../../shared/how-to-use/how-to-use.module';
     CommonModule,
     FormsModule,
     RouterModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    BreadcrumbsModule,
-    IconModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    BreadcrumbsModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     BreadcrumbsRoutingModule,
     BrowserPreviewModule,
     CodeHighlightModule,

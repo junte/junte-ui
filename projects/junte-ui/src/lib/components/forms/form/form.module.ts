@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JunteUIModuleConfig } from '../../../config';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../../config';
 import { JunteDirectiveModule } from '../../../directives/junte-directive.module';
-import { en } from '../../../i18n/en';
 import { IconModule } from '../../elements/icon/icon.module';
 import { LabelModule } from '../../elements/label/label.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -75,15 +73,7 @@ export class FormModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        }, ...JUNTE_MODULE_PROVIDES
       ]
     };
   }

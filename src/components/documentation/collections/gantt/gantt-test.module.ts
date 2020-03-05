@@ -15,21 +15,23 @@ import {
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { GanttTestComponent } from './gantt-test.component';
+import { JUNTE_UI_CONFIG } from 'src/consts';
+import { DateFnsModule } from 'ngx-date-fns';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    AccordionModule,
-    FormModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    GanttModule,
-    ButtonModule,
-    BlockModule,
+    GanttModule.forRoot(JUNTE_UI_CONFIG),
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
     DatePipeModule
   ],
   exports: [

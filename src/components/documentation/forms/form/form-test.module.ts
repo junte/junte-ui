@@ -2,23 +2,24 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  LinkModule,
-  StackModule,
-  TabsModule,
-  GridModule,
-  FormModule,
   AccordionModule,
-  ButtonModule,
-  InputModule,
   BlockModule,
+  ButtonModule,
   CheckboxModule,
-  IconModule,
-  RadioModule,
   DatePickerModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  InputModule,
+  LinkModule,
+  RadioModule,
   SelectModule,
+  StackModule,
+  SwitcherModule,
   SwitchModule,
-  SwitcherModule
+  TabsModule
 } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { FormTestComponent } from './form-test.component';
 
@@ -27,24 +28,24 @@ import { FormTestComponent } from './form-test.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    GridModule,
+    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    StackModule.forRoot(JUNTE_UI_CONFIG),
+    TabsModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    ButtonModule,
-    CheckboxModule,
-    InputModule,
-    BlockModule,
-    IconModule,
-    RadioModule,
-    DatePickerModule,
-    SelectModule,
-    SwitchModule,
-    SwitcherModule
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    InputModule.forRoot(JUNTE_UI_CONFIG),
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule.forRoot(JUNTE_UI_CONFIG),
+    RadioModule.forRoot(JUNTE_UI_CONFIG),
+    DatePickerModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
+    SwitchModule.forRoot(JUNTE_UI_CONFIG),
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG)
   ],
   exports: [
     FormTestComponent
