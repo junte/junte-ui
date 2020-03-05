@@ -1,13 +1,10 @@
 @import "variables";
 
-$form-message-font-size: .75rem !default;
-$form-message-color: $fail-color !default;
-
 @mixin form-message($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: none;
-    font-size: $form-message-font-size;
-    color: $form-message-color;
+    font-size: $font-size-tiny;
+    color: $fail-color;
   }
 }

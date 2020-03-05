@@ -1,53 +1,53 @@
 @import "variables";
 
-$grid-columns: 12;
-
-$col-paddings: (
-  #{$gutter-tiny-name}: (
-    padding: $gutter-tiny
-  ),
-  #{$gutter-small-name}: (
-    padding: $gutter-small
-  ),
-  #{$gutter-normal-name}: (
-    padding: $gutter-normal
-  ),
-  #{$gutter-big-name}: (
-    padding: $gutter-big
-  ),
-  #{$gutter-large-name}: (
-    padding: $gutter-large
-  ),
-  #{$gutter-huge-name}: (
-    padding: $gutter-huge
-  )
-);
-
 @mixin col-padding($padding) {
   & {
-    padding-left: #{map-get($padding, padding)};
-    padding-right: #{map-get($padding, padding)};
+    padding-left: $padding;
+    padding-right: $padding;
   }
 }
 
 @mixin grid-col($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    grid-columns: 12,
+    padding: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
     box-sizing: border-box;
     position: relative;
 
-    @each $padding, $value in $col-paddings {
-      &[padding = '#{$padding}'] {
-        @include col-padding($value);
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include col-padding($map);
+        }
       }
     }
 
     @each $breakpoints, $value in $grid-breakpoints {
       @media screen and (min-width: $value) {
-        @for $i from 1 through $grid-columns {
+        @for $i from 1 through map-get($vars, grid-columns) {
           &[#{$breakpoints} = '#{$i}'] {
-            $width: $i/$grid-columns;
+            $width: $i/map-get($vars, grid-columns);
             flex: 0 0 percentage($width);
             max-width: percentage($width);
           }
@@ -55,9 +55,9 @@ $col-paddings: (
       }
     }
 
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through map-get($vars, grid-columns) {
       &[span = "#{$i}"] {
-        $width: $i/$grid-columns;
+        $width: $i/map-get($vars, grid-columns);
         flex: 0 0 percentage($width);
         max-width: percentage($width);
       }

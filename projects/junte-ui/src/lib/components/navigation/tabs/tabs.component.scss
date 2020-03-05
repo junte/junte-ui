@@ -1,33 +1,31 @@
 @import "variables";
 
-$tab-paddings: (
-  #{$gutter-tiny-name}: (
-    padding: $gutter-tiny
-  ),
-  #{$gutter-small-name}: (
-    padding: $gutter-small
-  ),
-  #{$gutter-normal-name}: (
-    padding: $gutter-normal
-  ),
-  #{$gutter-big-name}: (
-    padding: $gutter-big
-  ),
-  #{$gutter-large-name}: (
-    padding: $gutter-large
-  ),
-  #{$gutter-huge-name}: (
-    padding: $gutter-huge
-  )
-);
-
 @mixin tab-padding($padding) {
   & {
-    padding: #{map-get($padding, padding)};
+    padding: $padding;
   }
 }
 
 @mixin tabs($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    padding: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
@@ -49,7 +47,7 @@ $tab-paddings: (
     }
   }
 
-  [tabs] {
+  #{$context} [tabs] {
     display: flex;
     border-bottom: 1px solid $muted-color;
     background-color: $primary-background;
@@ -106,11 +104,14 @@ $tab-paddings: (
     }
   }
 
-  [content] {
+  #{$context} [content] {
     position: relative;
-    @each $padding, $value in $tab-paddings {
-      &[padding = '#{$padding}'] {
-        @include tab-padding($value);
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include tab-padding($map);
+        }
       }
     }
   }

@@ -1,48 +1,9 @@
 @import "variables";
+@import "components/elements/icon/icon";
 
-$block-overlay-background: rgba($white-color, 0.75);
-$block-error-icon-size: 40px;
-$block-success-icon-size: 60px;
-
-$block-schemes: (
-  #{$scheme-primary}: (
-    background-color: $primary-background,
-  ),
-  #{$scheme-secondary}: (
-    background-color: $secondary-background
-  ),
-  #{$scheme-success}: (
-    background-color: $success-color
-  ),
-  #{$scheme-fail}: (
-    background-color: $fail-color
-  ),
-);
-
-$block-padding: (
-  #{$gutter-tiny-name}: (
-    padding: $gutter-tiny
-  ),
-  #{$gutter-small-name}: (
-    padding: $gutter-small
-  ),
-  #{$gutter-normal-name}: (
-    padding: $gutter-normal
-  ),
-  #{$gutter-big-name}: (
-    padding: $gutter-big
-  ),
-  #{$gutter-large-name}: (
-    padding: $gutter-large
-  ),
-  #{$gutter-huge-name}: (
-    padding: $gutter-huge
-  ),
-);
-
-@mixin block-padding($size) {
+@mixin block-padding($padding) {
   [body], [footer] {
-    padding: #{map-get($size, padding)};
+    padding: $padding;
   }
 }
 
@@ -53,6 +14,44 @@ $block-padding: (
 }
 
 @mixin block($passed: (), $context: null, $strategy: 'changes') {
+  $defs: (
+    padding: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+    schemes: (
+      primary: (
+        background-color: $primary-background,
+      ),
+      secondary: (
+        background-color: $secondary-background,
+      ),
+      success: (
+        background-color: $success-color,
+      ),
+      fail: (
+        background-color: $fail-color,
+      ),
+    ),
+    overlay: (
+      background-color: rgba($white-color, 0.75),
+      icon: (
+        size: 40px,
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: inline-flex;
@@ -65,21 +64,25 @@ $block-padding: (
     &[width="fluid"] {
       width: 100%;
     }
-
-    @each $scheme, $map in $block-schemes {
-      &[scheme='#{$scheme}'] {
-        @include block-fill($map);
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[scheme='#{$scheme}'] {
+          @include block-fill($map);
+        }
       }
     }
 
-    @each $size, $map in $block-padding {
-      &[padding='#{$size}'] {
-        @include block-padding($map);
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include block-padding($map);
+        }
       }
     }
   }
 
-  [title] {
+  #{$context} [title] {
     padding: 0 $gutter-normal;
     text-align: center;
     color: $primary-color;
@@ -90,7 +93,7 @@ $block-padding: (
     }
   }
 
-  [loading], [error], [success] {
+  #{$context} [loading], #{$context} [error], #{$context} [success] {
     position: absolute;
     top: 0;
     left: 0;
@@ -101,24 +104,17 @@ $block-padding: (
     justify-content: center;
     border-radius: $corner-normal;
     z-index: 1;
-  }
-
-  [loading] {
-    background-color: $block-overlay-background;
-  }
-
-  [success] {
-    background-color: $block-overlay-background;
-    [icon] {
-      width: $block-success-icon-size;
-      height: $block-success-icon-size;
-    }
-  }
-
-  [error] {
-    background-color: $block-overlay-background;
-    [icon] {
-      font-size: $block-error-icon-size;
+    @if map-has-key($vars, overlay) {
+      $overlay: map-get($vars, overlay);
+      background-color: map-get($overlay, background-color);
+      @if map-has-key($overlay, icon) {
+        $icon: map-get($overlay, icon);
+        [icon] {
+          @include icon((
+            size: map-get($icon, size)
+          ), '&');
+        }
+      }
     }
   }
 }

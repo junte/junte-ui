@@ -1,9 +1,5 @@
 @import "variables";
 
-$skeleton-text-line-height: 24px;
-$skeleton-background: $secondary-background;
-$skeleton-to-background: darken($skeleton-background, 5%);
-
 @keyframes loading {
   0% {
     background-position: 100% 50%;
@@ -13,37 +9,51 @@ $skeleton-to-background: darken($skeleton-background, 5%);
   }
 }
 
-$skeleton-avatar-sizes: (
-  #{$size-tiny}: (
-    size: 24px,
-  ),
-  #{$size-small}: (
-    size: 40px,
-  ),
-  #{$size-normal}: (
-    size: 80px,
-  ),
-  #{$size-large}: (
-    size: 120px,
-  )
-) !default;
-
 @mixin skeleton-size($size) {
   [image] {
-    min-width: #{map-get($size, size)};
-    width: #{map-get($size, size)};
-    min-height: #{map-get($size, size)};
-    height: #{map-get($size, size)};
+    min-width: $size;
+    width: $size;
+    min-height: $size;
+    height: $size;
   }
 }
 
 @mixin skeleton($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+    background: (
+      from: $secondary-background,
+      to: darken($secondary-background, 5%),
+    ),
+    line: (
+      height: 24px,
+    ),
+    avatar: (
+      sizes: (
+        tiny: 24px,
+        small: 40px,
+        normal: 80px,
+        large: 120px
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
     display: block;
-    @each $size, $map in $skeleton-avatar-sizes {
-      &[size='#{$size}'] {
-        @include skeleton-size($map);
+    @if map-has-key($vars, avatar) {
+      $sizes: map-get(map-get($vars, avatar), sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include skeleton-size($map);
+        }
       }
     }
     &[type='text'] {
@@ -56,17 +66,23 @@ $skeleton-avatar-sizes: (
     }
   }
 
-  [line] {
-    min-height: $skeleton-text-line-height;
+  #{$context} [line] {
+    @if map-has-key($vars, line) {
+      $line: map-get($vars, line);
+      min-height: map-get($line, height);
+    }
     width: 100%;
   }
 
-  [avatar='true'] {
+  #{$context} [avatar='true'] {
     border-radius: 50%;
   }
 
-  [line], [image] {
-    background: $skeleton-background linear-gradient(90deg, $skeleton-background 25%, $skeleton-to-background 37%, $skeleton-background 63%);
+  #{$context} [line], [image] {
+    @if map-has-key($vars, background) {
+      $background: map-get($vars, background);
+      background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
+    }
     background-size: 400% 100%;
     animation: loading 1.5s ease infinite;
   }

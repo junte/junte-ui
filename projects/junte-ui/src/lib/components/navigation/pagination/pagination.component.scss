@@ -1,6 +1,5 @@
 @import "variables";
-
-$pager-icon-size: 10px;
+@import "components/elements/icon/icon";
 
 @mixin pagination($passed: (), $context: null, $strategy: 'changes') {
 
@@ -8,7 +7,7 @@ $pager-icon-size: 10px;
     display: block;
   }
 
-  div {
+  #{$context} div {
     padding: $gutter-small 0;
 
     &:focus {
@@ -51,7 +50,9 @@ $pager-icon-size: 10px;
     }
 
     [icon] {
-      font-size: $pager-icon-size;
+      @include icon((
+        size: 10px
+      ), '&');
       color: $primary-text-light-color;
     }
   }

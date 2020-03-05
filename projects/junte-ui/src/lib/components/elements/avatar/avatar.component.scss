@@ -4,15 +4,6 @@
 $avatar-shape-circle: 'circle';
 $avatar-shape-square: 'square';
 
-$avatar-shapes: (
-  #{$avatar-shape-circle}: (
-    border-radius: 50%
-  ),
-  #{$avatar-shape-square}: (
-    border-radius: 0
-  ),
-)!default;
-
 @mixin avatar-size($size) {
   min-width: #{map-get($size, size)};
   width: #{map-get($size, size)};
@@ -33,6 +24,25 @@ $avatar-shapes: (
 
 @mixin avatar($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+    shapes: (
+      circle: (
+        border-radius: 50%
+      ),
+      square: (
+        border-radius: 0
+      )
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
     display: flex;
     justify-content: center;
@@ -45,23 +55,28 @@ $avatar-shapes: (
         @include avatar-size($map);
       }
     }
-    @each $shape, $value in $avatar-shapes {
-      &[shape='#{$shape}'] {
-        @include shape(border-radius, $value);
+
+    @if map-has-key($vars, shapes) {
+      $shapes: map-get($vars, shapes);
+      @each $shape, $map in $shapes {
+        &[shape='#{$shape}'] {
+          @include shape(border-radius, $map);
+        }
       }
     }
+
   }
 
-  [text] {
+  #{$context} [text] {
     color: $primary-color;
     font-weight: $font-weight-bold;
   }
 
-  [icon] {
+  #{$context} [icon] {
     color: $secondary-dark-color;
   }
 
-  [image] {
+  #{$context} [image] {
     width: 100%;
     height: 100%;
   }

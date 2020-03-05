@@ -1,22 +1,10 @@
 @import "variables";
 
-$spinner-sizes: (
-  #{$size-small}: (
-    size: 1rem
-  ),
-  #{$size-normal}: (
-    size: 2rem
-  ),
-  #{$size-large}: (
-    size: 3rem
-  )
-);
-
 @mixin spinner-size($size) {
-  width: #{map-get($size, size)};
-  min-width: #{map-get($size, size)};
-  height: #{map-get($size, size)};
-  min-height: #{map-get($size, size)};
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
 }
 
 @keyframes spin {
@@ -27,6 +15,22 @@ $spinner-sizes: (
 
 @mixin spinner($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+    sizes: (
+      small: 1rem,
+      normal: 2rem,
+      large: 3rem
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
     display: inline-block;
     border-radius: 50%;
@@ -34,9 +38,12 @@ $spinner-sizes: (
     border-right-color: transparent !important;
     animation: spin .5s infinite linear;
 
-    @each $size, $map in $spinner-sizes {
-      &[size='#{$size}'] {
-        @include spinner-size($map);
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include spinner-size($map);
+        }
       }
     }
   }

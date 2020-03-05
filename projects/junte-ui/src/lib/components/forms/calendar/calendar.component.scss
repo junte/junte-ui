@@ -1,8 +1,5 @@
 @import "variables";
 
-$calendar-button-arrows-size: 25px;
-$calendar-day-width: 38px;
-
 @mixin calendar($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
@@ -33,8 +30,8 @@ $calendar-day-width: 38px;
       padding: 0;
       vertical-align: middle;
       border-radius: 50%;
-      width: $calendar-button-arrows-size;
-      height: $calendar-button-arrows-size;
+      width: 25px;
+      height: 25px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -86,7 +83,7 @@ $calendar-day-width: 38px;
         }
       }
       td {
-        min-width: $calendar-day-width;
+        min-width: 38px;
         font-size: $font-size-small;
         box-sizing: border-box;
         border-top: 1px solid transparent;

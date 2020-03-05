@@ -1,10 +1,20 @@
 @import "variables";
 @import "../../variables";
 
-$action-content-width: 400px;
-$action-content-height: 400px;
-
 @mixin action($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    width: 400px,
+    height: 400px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     position: relative;
@@ -28,14 +38,14 @@ $action-content-height: 400px;
     }
   }
 
-  [content] {
+  #{$context} [content] {
     background: $primary-background;
     border-radius: 0 0 $corner-small $corner-small;
     padding: $gutter-normal $gutter-big;
     color: $primary-text-color;
-    max-width: $action-content-width;
-    width: $action-content-width;
-    max-height: $action-content-height;
+    max-width: map-get($vars, width);
+    width: map-get($vars, width);
+    max-height: map-get($vars, height);
     box-shadow: $shadow-light;
     overflow-y: auto;
     display: none;
