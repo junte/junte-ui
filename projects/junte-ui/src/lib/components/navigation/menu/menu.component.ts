@@ -54,4 +54,8 @@ export class MenuComponent {
 
   @ContentChildren(forwardRef(() => MenuItemComponent))
   items: QueryList<MenuItemComponent>;
+
+  open(item: MenuItemComponent) {
+    this.items.forEach(i => i.opened = i === item ? !item.opened : false);
+  }
 }
