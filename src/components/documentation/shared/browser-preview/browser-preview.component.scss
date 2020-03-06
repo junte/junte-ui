@@ -7,17 +7,18 @@
   border: 1px solid $secondary-color;
   box-sizing: border-box;
   overflow: hidden;
+  background: $page-background;
   [wrapper] {
-    position: absolute;
-    top: 10.85%;
-    left: 0;
-    right: 0;
-    bottom: 5%;
-    overflow-y: hidden;
-    overflow-y: scroll;
-    padding: $gutter-big;
-    background: $page-background;
+    padding: $gutter-normal;
+    min-height: 300px;
   }
+}
+
+[footer] {
+  height: 30px;
+  background-color: $muted-color;
+  border-bottom-left-radius: $corner-normal;
+  border-bottom-right-radius: $corner-normal;
 }
 
 svg {
