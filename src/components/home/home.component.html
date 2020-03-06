@@ -7,24 +7,26 @@
                      [align]="ui.flex.align.center">
             <jnt-stack [type]="ui.layout.stack.type.horizontal"
                        [justify]="ui.flex.justify.center">
-              <jnt-menu>
+              <jnt-menu menu>
                 <jnt-menu-item
+                  [icon]="localUi.icons.menu.documentation"
                   [title]="'Documentation'"
                   [link]="['docs']">
                 </jnt-menu-item>
                 <jnt-menu-item
+                  [icon]="localUi.icons.menu.contacts"
                   [title]="'Team'"
-                  [link]="['contacts']">
+                  [link]="['team']">
                 </jnt-menu-item>
                 <jnt-menu-item
                   [icon]="ui.icons.gitlab"
                   [title]="'GitLab'"
-                  [link]="['documentation']">
+                  link="https://gitlab.com/junte/junte-ui">
                 </jnt-menu-item>
                 <jnt-menu-item
                   [icon]="ui.icons.figma"
-                  [title]="'Firma'"
-                  [link]="['documentation']">
+                  [title]="'Figma'"
+                  link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
                 </jnt-menu-item>
               </jnt-menu>
             </jnt-stack>
@@ -36,15 +38,15 @@
               <jnt-stack [type]="ui.layout.stack.type.horizontal"
                          [gutter]="ui.gutter.big"
                          [justify]="ui.flex.justify.center">
-                <jnt-label opened label="Opened"
+                <jnt-label label="Opened"
                            [icon]="ui.icons.home"></jnt-label>
-                <jnt-label native label="Native"
+                <jnt-label label="Native"
                            [icon]="ui.icons.home"></jnt-label>
-                <jnt-label i18n label="Multilingual"
+                <jnt-label label="Multilingual"
                            [icon]="ui.icons.home"></jnt-label>
               </jnt-stack>
 
-              <jnt-link title="Tutorial here"
+              <jnt-link link title="Tutorial here"
                         [icon]="ui.icons.link"
                         [outline]="ui.outline.fill"
                         [source]="['docs']"></jnt-link>
