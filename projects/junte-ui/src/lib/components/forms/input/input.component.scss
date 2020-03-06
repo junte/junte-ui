@@ -2,7 +2,7 @@
 @import "components/elements/icon/icon";
 
 @mixin input-size($size) {
-  input {
+  input, textarea {
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, height)};
     &[type='number'] {
@@ -90,7 +90,7 @@
       $states: map-get($vars, states);
       @each $state, $map in $states {
         &[state='#{$state}'] {
-          input {
+          input, textarea {
             border-color: map-get($map, border-color);
             @if map-has-key($map, focus) {
               $focus: map-get($map, focus);
@@ -137,12 +137,12 @@
     }
 
     &[textAlign="right"] {
-      input {
+      input, textarea {
         text-align: right;
       }
     }
     &[textAlign="left"] {
-      input {
+      input, textarea {
         text-align: left;
       }
     }
@@ -153,7 +153,7 @@
     align-items: stretch;
     width: 100%;
     position: relative;
-    [icon] {
+    >[icon] {
       position: absolute;
       top: 50%;
       left: $gutter-normal;
@@ -162,7 +162,7 @@
       fill: $primary-text-light-color;
       line-height: 0;
     }
-    input {
+    input, textarea {
       outline: 0;
       background-color: $control-background;
       color: $primary-text-color;
@@ -195,7 +195,7 @@
       border: 1px solid $control-field-label-border-color;
       border-right: 0;
       white-space: nowrap;
-      & ~ input {
+      & ~ input, textarea {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         padding: 0 $gutter-normal;

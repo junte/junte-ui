@@ -3,11 +3,16 @@
             [icon]="icon"></jnt-icon>
   <div label *ngIf="!!label">{{label}}</div>
 
-  <input formControlName="input"
+  <input *ngIf="!multiline" formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
          [min]="min"
          [max]="max">
+
+  <textarea *ngIf="multiline" formControlName="input"
+            [placeholder]="placeholder"
+            [attr.rows]="rows">
+  </textarea>
 
   <div arrows *ngIf="type === inputType.number">
     <button [disabled]="inputControl.disabled" (click)="up()">

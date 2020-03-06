@@ -25,6 +25,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   labelControl = this.fb.control(false);
   alignControl = this.fb.control(UI.text.align.left);
   disabledControl = this.fb.control(false);
+  multilineControl = this.fb.control(false);
+  rowsControl = this.fb.control(null);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -34,6 +36,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     label: this.labelControl,
     align: this.alignControl,
     disabled: this.disabledControl,
+    multiline: this.multilineControl,
+    rows: this.rowsControl,
   });
 
   inputControl = this.fb.control(null);
