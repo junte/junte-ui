@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: linear-gradient(180deg, rgba(#3949AB, .8) 0%, rgba(#00227B, 1) 100%),
+  background: linear-gradient(180deg, rgba(#3949AB, .1) 0%, rgba(#00227B, 1) 100%),
   url('../../assets/images/about-bg.jpg') no-repeat;
   background-size: 100%, cover;
   mix-blend-mode: darken;
@@ -26,10 +26,28 @@
     color: $white-color;
   }
 
-  [label]::ng-deep {
+  [label] ::ng-deep {
     @include label((
-      background: red !important,
-      font-size: 30px
+      padding: $gutter-small $gutter-normal,
+      font-size: 20px
+    ), '&');
+  }
+
+  [opened] ::ng-deep {
+    @include label((
+      background: rgba($red-color, .2) !important
+    ), '&');
+  }
+
+  [native] ::ng-deep {
+    @include label((
+      background: rgba($green-color, .2) !important
+    ), '&');
+  }
+
+  [multilingual] ::ng-deep {
+    @include label((
+      background: rgba($pale-navy-color, .2) !important
     ), '&');
   }
 
@@ -37,7 +55,7 @@
     @include menu((
       top: (
         item: (
-          color: $white-color,
+          color: $primary-color,
           active: (
             color: $white-color
           ),
@@ -49,7 +67,7 @@
             inner: $gutter-small,
           ),
           hover: (
-            background-color: transparent,
+            background-color: rgba($white-color, .1),
           ),
         ),
       ),
@@ -58,6 +76,7 @@
 
   [link]::ng-deep {
     @include link((
+      font-size: 20px,
       icon: (
         margin-right: $gutter-small,
       ),
