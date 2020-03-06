@@ -1,9 +1,7 @@
 @import "variables";
 @import "components/elements/label/label";
-
-[host=#{$jnt-link-host}] {
-  font-size: 30px;
-}
+@import "components/navigation/menu/menu";
+@import "components/navigation/link/link";
 
 [about] {
   display: flex;
@@ -27,9 +25,44 @@
     font-weight: 200;
     color: $white-color;
   }
-  @include label((
-    background: red !important
-  ), 'changes')
+
+  [label]::ng-deep {
+    @include label((
+      background: red !important,
+      font-size: 30px
+    ), '&');
+  }
+
+  [menu] ::ng-deep {
+    @include menu((
+      top: (
+        item: (
+          color: $white-color,
+          active: (
+            color: $white-color
+          ),
+          icon: (
+            size: $font-size-large
+          ),
+          padding: (
+            outer: $gutter-small $gutter-normal,
+            inner: $gutter-small,
+          ),
+          hover: (
+            background-color: transparent,
+          ),
+        ),
+      ),
+    ), '&');
+  }
+
+  [link]::ng-deep {
+    @include link((
+      icon: (
+        margin-right: $gutter-small,
+      ),
+    ), '&');
+  }
 }
 
 [slide2] {
