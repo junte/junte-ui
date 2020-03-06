@@ -1,108 +1,125 @@
 @import "variables";
+@import "components/forms/button/button";
 
-$table-padding-x: $gutter-normal;
-$table-padding-y: $gutter-normal;
-$table-icon-nodata-size: 80px;
-$table-min-height: 200px;
-$table-min-width: 400px;
 
-:host {
-  display: block;
-  min-width: $table-min-width;
-  padding: $table-padding-x $table-padding-y;
+@mixin table($passed: (), $context: null, $strategy: 'changes') {
 
-  [button][child-host=#{$jnt-button-host}] {
-    button {
-      padding: 0 $gutter-small;
-      color: $gray-800-color;
-    }
+  $defs: (
+    min-height: 200px,
+    min-width: 400px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
   }
 
-  [table] {
-    margin-left: -($table-padding-x);
-    margin-right: -($table-padding-x);
-  }
+  :host {
+    display: block;
+    min-width: map-get($vars, min-width);
+    padding: $gutter-normal;
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    position: relative;
-    [spinner] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba($secondary-background, .6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all .3s;
-      z-index: 1;
-      [icon] {
-        color: $primary-text-light-color;
-      }
+    @include button((
+      sizes: (
+        schemes: (
+          secondary: (
+            inverse-color: $gray-800-color
+          ),
+        ),
+        normal: (
+          padding: 0 $gutter-small,
+        ),
+      ),
+    ), '&');
+
+    [table] {
+      margin-left: -$gutter-normal;
+      margin-right: -$gutter-normal;
     }
-    thead {
-      background-color: $secondary-background;
-      .sortable {
-        cursor: pointer;
-      }
-    }
-    tbody tr {
-      border-bottom: 1px solid $muted-color;
-      background-color: $primary-background;
-      transition: all .3s;
-      &[nodata] {
-        height: $table-min-height;
-        pointer-events: none;
-        border-bottom: 0;
-        td {
-          vertical-align: middle;
-          text-align: center;
-          [icon] {
-            font-size: $table-icon-nodata-size;
-            color: $muted-color;
-          }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      position: relative;
+      [spinner] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($secondary-background, .6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .3s;
+        z-index: 1;
+        [icon] {
+          color: $primary-text-light-color;
         }
       }
-      &[loading] {
-        height: $table-min-height;
-        pointer-events: none;
-        border-bottom: 0;
+      thead {
+        background-color: $secondary-background;
+        .sortable {
+          cursor: pointer;
+        }
       }
-      &:hover {
-        background-color: $highlight-background;
-      }
-      td {
-        &[action] {
-          width: 50px;
-          text-align: center;
-          [menu][child-host=#{$jnt-dropdown-host}] {
-            [button][child-host=#{$jnt-button-host}] {
-              button {
-                padding: 0 $gutter-normal;
+      tbody tr {
+        border-bottom: 1px solid $muted-color;
+        background-color: $primary-background;
+        transition: all .3s;
+        &[nodata] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
+          td {
+            vertical-align: middle;
+            text-align: center;
+            [icon] {
+              font-size: 80px;
+              color: $muted-color;
+            }
+          }
+        }
+        &[loading] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
+        }
+        &:hover {
+          background-color: $highlight-background;
+        }
+        td {
+          &[action] {
+            width: 50px;
+            text-align: center;
+            [menu] {
+              [button][child-host=#{$jnt-button-host}] {
+                button {
+                  padding: 0 $gutter-normal;
+                }
               }
             }
           }
         }
       }
+      td, th {
+        padding: $gutter-normal;
+        box-sizing: border-box;
+      }
     }
-    td, th {
-      padding: $gutter-normal;
-      box-sizing: border-box;
+
+    [pagination] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: -$gutter-normal;
+      [pages] {
+        flex: 1;
+      }
     }
   }
 
-  [pagination] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -($table-padding-x);
-    [pages] {
-      flex: 1;
-    }
-  }
 }
-
-
