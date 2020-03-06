@@ -4,6 +4,7 @@ import { addMonths, subMonths } from 'date-fns';
 import { UI } from '../../../enums/ui';
 import { today } from '../../forms/calendar/utils';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
+import { ContentApi, PropertyApi } from '../../../decorators/api';
 
 @Component({
   selector: 'jnt-gantt',
@@ -20,21 +21,40 @@ export class GanttComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
 
+
   ui = UI;
   addMonths = addMonths;
   subMonths = subMonths;
 
   private _current: Date = new Date();
 
+  @PropertyApi({
+    description: 'Title',
+    type: 'string',
+    default: 'Test title',
+  })
   @Input()
   title: string;
 
+  @PropertyApi({
+    description: 'Loading',
+    type: 'boolean',
+    default: 'false',
+  })
   @Input()
   loading = false;
 
+  @ContentApi({
+    selector: '#toolsTemplate',
+    description: 'Tools template'
+  })
   @ContentChild('toolsTemplate')
   toolsTemplate: TemplateRef<any>;
 
+  @ContentApi({
+    selector: '#titleTemplate',
+    description: 'title template'
+  })
   @ContentChild('titleTemplate')
   titleTemplate: TemplateRef<any>;
 
