@@ -34,7 +34,8 @@ import { WeekComponent } from './week/week.component';
     WeekComponent,
     DayComponent,
     WeekMetricComponent
-  ]
+  ],
+  providers: [...JUNTE_MODULE_PROVIDES]
 })
 export class CalendarModule {
 
@@ -45,7 +46,7 @@ export class CalendarModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
+        }
       ]
     };
   }

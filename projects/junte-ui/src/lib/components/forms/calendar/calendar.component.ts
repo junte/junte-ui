@@ -26,7 +26,7 @@ import {
   startOfWeek,
   subMonths
 } from 'date-fns';
-import { DateFnsConfigurationService } from 'ngx-date-fns';
+import { JunteUIModuleConfig } from '../../../config';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../../decorators/api';
@@ -108,7 +108,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   onChange: (date: Date) => void;
 
-  constructor(public config: DateFnsConfigurationService) {
+  constructor(public config: JunteUIModuleConfig) {
   }
 
   ngOnInit() {
@@ -137,7 +137,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    const start = startOfWeek(this.period, {weekStartsOn: this.config.locale().options.weekStartsOn});
+    const start = startOfWeek(this.period, {weekStartsOn: this.config.locale.dfns.options.weekStartsOn});
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {

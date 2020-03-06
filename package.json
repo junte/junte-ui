@@ -25,7 +25,6 @@
     "encapsulation": "gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd .",
     "encapsulation:watch": "rm -rf projects/junte-ui/src/lib/assets/styles/components && gulp build --gulpfile node_modules/junte-encapsuler/encapsulation.js --cwd . --watch",
     "build:watch": "ng build junte-ui --watch",
-    "styles:watch": "gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts --watch",
     "build:lib": "npm run gulp:iconfont && ng build junte-ui --prod",
     "build:prod": "npm run encapsulation && npm run build:lib && npm run copy:files",
     "npm:pack": "cd dist/junte-ui && npm pack",
