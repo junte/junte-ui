@@ -21,7 +21,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
 
-  switchControl = this.fb.control(null);
+  switchControl = this.fb.control(false);
   form = this.fb.group({
     switch: this.switchControl
   });
@@ -30,7 +30,9 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   _size: Size = Size.normal;
 
   @HostBinding('attr.checked')
-  checked = false;
+  get checked() {
+    return this.switchControl.value;
+  }
 
   @PropertyApi({
     description: 'Label for switch',
@@ -39,28 +41,18 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
 
   @PropertyApi({
-    description: 'Icon for switch-on state',
-    type: 'string',
+    description: 'Icons for states',
+    type: '{on: string, off: string}',
   })
-  @Input() iconOn: string;
+  @Input()
+  icons: { on?: string, off?: string };
 
   @PropertyApi({
-    description: 'Icon for switch-off state',
-    type: 'string',
+    description: 'Tags for states',
+    type: '{on: string, off: string}',
   })
-  @Input() iconOff: string;
-
-  @PropertyApi({
-    description: 'Label for switch-on state',
-    type: 'string',
-  })
-  @Input() labelOn: string;
-
-  @PropertyApi({
-    description: 'Label for switch-off state',
-    type: 'string',
-  })
-  @Input() labelOff: string;
+  @Input()
+  tags: { on?: string, off?: string };
 
   @PropertyApi({
     description: 'Input size',
@@ -76,20 +68,18 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    this.switchControl.valueChanges.subscribe(value => {
-      this.onChange(value);
-      this.checked = value;
-    });
+    this.switchControl.valueChanges
+      .subscribe(value => this.onChange(value));
   }
 
-  onChange(val: boolean) {
+  onChange(value: boolean) {
   }
 
   onTouched() {
   }
 
   writeValue(value) {
-    this.switchControl.patchValue(value);
+    this.switchControl.setValue(value, {emitEvent: false});
   }
 
   registerOnChange(fn) {

@@ -30,9 +30,9 @@ import { SwitchTestComponent } from './switch-test.component';
     GridModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     AvatarModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule,
     SwitchModule.forRoot(JUNTE_UI_CONFIG),
-    CheckboxModule.forRoot(JUNTE_UI_CONFIG)
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    SharedModule
   ],
   exports: [
     SwitchTestComponent

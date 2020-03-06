@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { SwitchComponent } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { SwitchComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,31 +12,27 @@ export class SwitchTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  switch = SwitchComponent;
+  types = {switch: SwitchComponent};
 
   @ViewChild('code') code: TabComponent;
 
-  sizeControl = new FormControl(UI.size.normal);
-  labelControl = new FormControl(true);
-  iconOnControl = new FormControl(false);
-  iconOffControl = new FormControl(false);
-  labelOnControl = new FormControl(false);
-  labelOffControl = new FormControl(false);
-  disabledControl = new FormControl(false);
+  sizeControl = this.fb.control(null);
+  labelControl = this.fb.control(true);
+  iconsControl = this.fb.control(false);
+  tagsControl = this.fb.control(false);
+  disabledControl = this.fb.control(false);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     size: this.sizeControl,
     label: this.labelControl,
-    iconOn: this.iconOnControl,
-    iconOff: this.iconOffControl,
-    labelOn: this.labelOnControl,
-    labelOff: this.labelOffControl,
-    disabled: this.disabledControl,
+    icons: this.iconsControl,
+    tags: this.tagsControl,
+    disabled: this.disabledControl
   });
 
-  switchControl = this.fb.control(true);
+  switchControl = this.fb.control(false);
 
-  switchForm = this.fb.group({
+  form = this.fb.group({
     switch: this.switchControl,
   });
 
@@ -50,7 +44,7 @@ export class SwitchTestComponent implements OnInit {
       disabled ? this.switchControl.disable() : this.switchControl.enable();
     });
 
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 }
