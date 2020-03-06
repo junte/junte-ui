@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { GanttComponent, GanttLineComponent, TabComponent, UI } from 'junte-ui';
 import { REQUESTS } from 'src/components/documentation/collections/gantt/requests';
+import { LocalUI } from '../../../../enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 export enum GanttRequestStatuses {
   accepting = 'accepting',
@@ -18,20 +20,44 @@ export enum GanttRequestStatuses {
 export class GanttTestComponent implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
+  language = Language;
+  types = {gantt: GanttComponent, line: GanttLineComponent};
+
   requests = [];
+  now = new Date();
   statuses = GanttRequestStatuses;
   loading = true;
-  gantt = new FormControl(new Date());
+  gantt = new FormControl(this.now);
   form = this.fb.group({
     gantt: this.gantt
   });
+
+  @ViewChild('code') code: TabComponent;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
     setTimeout(() => {
-      this.requests = REQUESTS;
+      const month = this.now.getMonth();
+      const year = this.now.getFullYear().toString();
+      const currentMonth = ('0' + (month + 1)).slice(-2);
+      const prevMonth = ('0' + month).slice(-2);
+      const nextMonth = ('0' + (month + 2)).slice(-2);
+
+      const req = REQUESTS.replace(/YYYY/g, year)
+        .replace(/MMM/g, nextMonth)
+        .replace(/MM/g, currentMonth)
+        .replace(/M/g, prevMonth);
+
+      this.requests = JSON.parse(req).map(request => {
+        const req = {...request};
+        req.from = new Date(req.from);
+        req.to = new Date(req.to);
+        return req;
+      });
+
       this.loading = false;
     }, 3000);
     this.gantt.valueChanges.subscribe(date => console.log('Date changed: ', date));
