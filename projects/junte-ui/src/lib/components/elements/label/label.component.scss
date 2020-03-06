@@ -3,16 +3,12 @@
 @mixin label-size($size) {
   padding: #{map-get($size, padding)};
   font-size: #{map-get($size, font-size)};
-  height: #{map-get($size, height)};
 
   [icon] {
     &[type='svg'], &[type='animated'] {
       width: #{map-get($size, icon-size)};
       height: #{map-get($size, icon-size)};
     }
-  }
-  [text] {
-    line-height: #{map-get($size, height)};
   }
 }
 
@@ -27,15 +23,13 @@
     ),
     sizes: (
       small: (
-        padding: 0 $gutter-small,
+        padding: 2px $gutter-small,
         font-size: 10px,
-        height: 20px,
         icon-size: 12px
       ),
       normal: (
-        padding: 0 $gutter-small,
+        padding: 3px $gutter-small,
         font-size: 12px,
-        height: 24px,
         icon-size: 14px
       )
     )
@@ -54,7 +48,6 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      line-height: 0;
       box-sizing: border-box;
       [text][child-of=#{$jnt-label-host}] {
         white-space: nowrap;

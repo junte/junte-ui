@@ -1,140 +1,143 @@
 @import "variables";
 
-$gantt-icon-nodata-size: 80px !default;
-$gantt-icon-nodata-color: $muted-color !default;
-$gantt-min-height: 200px !default;
+@mixin gantt($passed: (), $context: null, $strategy: 'changes') {
 
-$gantt-arrows-size: 1rem !default;
-$gantt-arrows-color: $primary-text-color !default;
-$gantt-arrows-hover-color: lighten($gantt-arrows-color, 10%) !default;
-$gantt-button-arrows-size: 25px !default;
-$gantt-button-arrows-corner: 50% !default;
-$gantt-button-arrows-focus-border-color: $primary-color !default;
-$gantt-button-arrows-focus-shadow: $shadow-primary !default;
+  $defs: (
+    min-height: 200px
+  );
 
-:host {
-  display: block;
-  box-sizing: border-box;
-}
+  $vars: $passed;
+  $declare: false;
 
-table {
-  width: 100%;
-  table-layout: fixed;
-  thead {
-    tr {
-      &[timeline] {
-        background-color: $secondary-background;
-      }
-      td {
-        &[controls] {
-          border-right: none;
-          padding: $gutter-normal $gutter-tiny;
-          width: 600px;
-
-          [month] {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-
-          [arrow] {
-            background-color: transparent;
-            border-width: 0;
-            font-size: $gantt-arrows-size;
-            color: $gantt-arrows-color;
-            cursor: pointer;
-            padding: 0;
-            vertical-align: middle;
-            border-radius: $gantt-button-arrows-corner;
-            width: $gantt-button-arrows-size;
-            height: $gantt-button-arrows-size;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            transition: box-shadow .3s;
-            line-height: 0;
-            &:focus {
-              outline: none;
-              box-shadow: $gantt-button-arrows-focus-shadow;
-              border: 1px solid $gantt-button-arrows-focus-border-color;
-            }
-            &:hover {
-              color: $gantt-arrows-hover-color;
-              border: 1px solid $gantt-button-arrows-focus-border-color;
-            }
-          }
-        }
-
-        &[day] {
-          text-align: center;
-          font-size: $font-size-small;
-          padding: $gutter-normal $gutter-tiny;
-
-          &[current='true'] {
-            color: $white-color;
-            background-color: $primary-color;
-          }
-          &[weekend='true'] {
-            background-color: $secondary-dark-color;
-          }
-        }
-        &[gutter] {
-          width: 4px;
-        }
-      }
-    }
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
   }
 
-  tbody {
-    tr {
-      &[nodata] {
-        height: $gantt-min-height;
-        pointer-events: none;
-        border-bottom: 0;
+  :host {
+    display: block;
+    box-sizing: border-box;
+  }
 
+  table {
+    width: 100%;
+    table-layout: fixed;
+    thead {
+      tr {
+        &[timeline] {
+          background-color: $secondary-background;
+        }
         td {
-          vertical-align: middle;
-          text-align: center;
+          &[controls] {
+            border-right: none;
+            padding: $gutter-normal $gutter-tiny;
+            width: 600px;
 
-          [icon] {
-            font-size: $gantt-icon-nodata-size;
-            color: $gantt-icon-nodata-color;
+            [month] {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            [arrow] {
+              background-color: transparent;
+              border-width: 0;
+              font-size: 1rem;
+              color: $primary-text-color;
+              cursor: pointer;
+              padding: 0;
+              vertical-align: middle;
+              border-radius: 50%;
+              width: 25px;
+              height: 25px;
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              transition: box-shadow .3s;
+              line-height: 0;
+              &:focus {
+                outline: none;
+                box-shadow: $shadow-primary;
+                border: 1px solid $primary-color;
+              }
+              &:hover {
+                color: $primary-text-light-color;
+                border: 1px solid $primary-color;
+              }
+            }
           }
-        }
-      }
 
-      &[loading] {
-        pointer-events: none;
-        border-bottom: 0;
-        td {
-          padding: $gutter-normal;
-        }
-      }
+          &[day] {
+            text-align: center;
+            font-size: $font-size-small;
+            padding: $gutter-normal $gutter-tiny;
 
-      &:last-child {
-        td {
-          border-bottom: 0;
+            &[current='true'] {
+              color: $white-color;
+              background-color: $primary-color;
+            }
+            &[weekend='true'] {
+              background-color: $secondary-dark-color;
+            }
+          }
+          &[gutter] {
+            width: 4px;
+          }
         }
       }
     }
 
-    td {
-      border-bottom: 1px solid $gray-400-color;
-      border-right: 1px solid $gray-400-color;
-      padding: $gutter-tiny;
-      height: 59px;
-      box-sizing: border-box;
+    tbody {
+      tr {
+        &[nodata] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
 
-      &:last-child {
-        border-right: 0;
+          td {
+            vertical-align: middle;
+            text-align: center;
+
+            [icon] {
+              font-size: 80px;
+              color: $muted-color;
+            }
+          }
+        }
+
+        &[loading] {
+          pointer-events: none;
+          border-bottom: 0;
+          td {
+            padding: $gutter-normal;
+          }
+        }
+
+        &:last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
       }
 
-      &[empty] {
-        border: none;
-      }
+      td {
+        border-bottom: 1px solid $gray-400-color;
+        border-right: 1px solid $gray-400-color;
+        padding: $gutter-tiny;
+        height: 59px;
+        box-sizing: border-box;
 
-      &[gutter] {
-        border-right: 0;
+        &:last-child {
+          border-right: 0;
+        }
+
+        &[empty] {
+          border: none;
+        }
+
+        &[gutter] {
+          border-right: 0;
+        }
       }
     }
   }

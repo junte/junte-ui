@@ -101,6 +101,7 @@
           cursor: pointer;
           display: flex;
           align-items: center;
+          user-select: none;
 
           [link] {
             width: 100%;
@@ -120,13 +121,14 @@
             display: flex;
           }
           > [title] {
-            pointer-events: none;
+            user-select: none;
             span {
               display: block;
               padding: $gutter-normal 0;
             }
           }
           [link] {
+            user-select: none;
             @include link((
               overflow: true,
               display: block,

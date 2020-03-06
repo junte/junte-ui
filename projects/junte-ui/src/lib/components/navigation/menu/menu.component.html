@@ -4,7 +4,7 @@
            [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
     <div top [jntSubMenu]="item" [collapsed]="collapsed">
-      <div item (click)="item.opened = !item.opened">
+      <div item (click)="open(item)">
         <jnt-link link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"

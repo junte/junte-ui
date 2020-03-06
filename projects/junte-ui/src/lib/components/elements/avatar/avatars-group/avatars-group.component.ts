@@ -18,7 +18,7 @@ export class AvatarsGroupComponent {
   shape = Shape;
 
   @HostBinding('attr.size')
-  _size: Size = Size.normal;
+  _size: Size;
 
   _total = 0;
 
@@ -33,6 +33,10 @@ export class AvatarsGroupComponent {
   })
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  get size() {
+    return this._size;
   }
 
   @PropertyApi({
