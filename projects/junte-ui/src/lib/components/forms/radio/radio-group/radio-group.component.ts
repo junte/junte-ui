@@ -1,8 +1,7 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, OnDestroy, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject, fromEvent, merge, Subscription } from 'rxjs';
-import { filter, mapTo } from 'rxjs/operators';
-import { isObject, isUndefined } from 'util';
+import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { UI } from '../../../../enums/ui';
 import { RadioComponent } from '../radio.component';
 
@@ -18,18 +17,20 @@ import { RadioComponent } from '../radio.component';
   ]
 })
 
-export class RadioGroupComponent implements AfterContentInit, OnDestroy {
+export class RadioGroupComponent implements AfterViewInit {
 
   ui = UI;
 
+  @ViewChildren(RadioComponent) items: QueryList<RadioComponent>;
+
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
 
-  @ContentChildren(RadioComponent, {descendants: true}) listRadioComponent: QueryList<RadioComponent>;
+  @ContentChildren(RadioComponent, {descendants: true})
+  radios: QueryList<RadioComponent>;
 
   @Input() labelField: string;
   @Input() valueField: string;
 
-  private subscribe: Subscription;
   private selected$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   set selected(value: any) {
@@ -40,42 +41,28 @@ export class RadioGroupComponent implements AfterContentInit, OnDestroy {
     return this.selected$.getValue();
   }
 
-  constructor() {
-  }
+  ngAfterViewInit() {
+    this.transformationRadio();
 
-  ngAfterContentInit() {
-    setTimeout(() => this.transformationRadio());
-
-    const changes$ = this.listRadioComponent.map(radio =>
-      fromEvent(radio.getElement(), 'click').pipe(mapTo(radio)));
-
-    this.subscribe = merge(...changes$).subscribe((radio: RadioComponent) =>
-      this.selected = radio.value);
-
-    this.selected$.pipe(filter(v => !isUndefined(v)))
+    this.selected$.pipe(filter(v => v !== undefined))
       .subscribe(value => {
         this.onChange(value);
         this.updateSelected();
       });
   }
 
-  ngOnDestroy() {
-    this.subscribe.unsubscribe();
-  }
-
   private transformationRadio() {
-    this.listRadioComponent.forEach(r => {
-      if (isObject(r.value)) {
-        r.label = r.value[this.labelField];
-        r.value = r.value[this.valueField];
+    this.radios.forEach(item => {
+      if (typeof item.value === 'object') {
+        item.label = item.value[this.labelField];
+        item.value = item.value[this.valueField];
       }
     });
     this.updateSelected();
   }
 
   private updateSelected() {
-    this.listRadioComponent.forEach(r =>
-      r.checked = r.value === this.selected);
+    this.items.forEach(item => item.checked = item.value === this.selected);
   }
 
   writeValue(value: any) {

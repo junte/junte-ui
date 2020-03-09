@@ -1,3 +1,8 @@
 <jnt-stack [gutter]="ui.gutter.small">
-  <ng-content></ng-content>
+  <jnt-radio *ngFor="let item of radios"
+             [size]="item.size"
+             [label]="item.label"
+             [value]="item.value"
+             (click)="selected = item.value">
+  </jnt-radio>
 </jnt-stack>
