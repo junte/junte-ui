@@ -113,6 +113,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this._size = size || Size.normal;
   }
 
+  @PropertyApi({
+    description: 'Allow multiple lines in input',
+    type: 'boolean',
+    default: 'false',
+  })
+  @Input() multiline = false;
+
+  @Input() rows: number;
+
   constructor(private fb: FormBuilder) {
   }
 

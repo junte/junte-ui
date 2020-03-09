@@ -34,6 +34,8 @@
                                [icon]="iconControl.value ? ui.icons.search : null"
                                [label]="labelControl.value ? 'Name' : null"
                                [textAlign]="alignControl.value"
+                               [multiline]="multilineControl.value"
+                               [rows]="rowsControl.value"
                                placeholder="Yes or no?">
                     </jnt-input>
                     <iframe giphy [style.display]="inputControl.value === 'yes' ? 'block' : 'none'"
@@ -155,6 +157,21 @@
                     </jnt-stack>
                   </jnt-form-item>
                 </jnt-stack>
+
+                <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                  <jnt-form-item>
+                    <jnt-checkbox formControlName="multiline"
+                                  label="Multiline"></jnt-checkbox>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="rows">Rows</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-input formControlName="rows" [type]="ui.form.input.type.number"></jnt-input>
+                    </jnt-form-control>
+                  </jnt-form-item>
+                </jnt-stack>
+
 
               </jnt-stack>
             </jnt-form>
