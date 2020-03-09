@@ -10,6 +10,8 @@ import {
   LinkModule,
   StackModule,
   SwitcherModule,
+  BlockModule,
+  DatePeriodModule,
   TabsModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
@@ -31,7 +33,9 @@ import { CalendarTestComponent } from './calendar-test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
-    CalendarModule.forRoot(JUNTE_UI_CONFIG)
+    CalendarModule.forRoot(JUNTE_UI_CONFIG),
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    DatePeriodModule.forRoot(JUNTE_UI_CONFIG)
   ],
   declarations: [
     CalendarTestComponent

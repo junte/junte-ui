@@ -31,7 +31,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
-import { Period } from './models';
+import { Period } from './enums';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';
 

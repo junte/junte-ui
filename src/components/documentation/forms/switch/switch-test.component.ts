@@ -18,8 +18,8 @@ export class SwitchTestComponent implements OnInit {
 
   sizeControl = this.fb.control(null);
   labelControl = this.fb.control(true);
-  iconsControl = this.fb.control(false);
-  tagsControl = this.fb.control(false);
+  iconsControl = this.fb.control(true);
+  tagsControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
 
   builder = this.fb.group({

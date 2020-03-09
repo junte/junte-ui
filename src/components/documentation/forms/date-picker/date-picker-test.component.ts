@@ -21,29 +21,28 @@ export class DatePickerTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   dateFormat = DateFormat;
-  picker = DatePickerComponent;
+  types = {flightDate: DatePickerComponent};
 
   @ViewChild('code') code: TabComponent;
 
   placeholderControl = this.fb.control(true);
   formatControl = this.fb.control(this.dateFormat.fullDate);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     placeholder: this.placeholderControl,
     format: this.formatControl,
   });
 
-  pickerControl = this.fb.control(null);
-
-  pickerForm = this.fb.group({
-    picker: this.pickerControl
+  flightDateControl = this.fb.control(new Date);
+  form = this.fb.group({
+    flightDate: this.flightDateControl
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

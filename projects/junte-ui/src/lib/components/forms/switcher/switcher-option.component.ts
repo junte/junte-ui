@@ -1,7 +1,7 @@
-import { Component, ContentChild, Input } from '@angular/core';
-import { PropertyApi } from '../../../../decorators/api';
-import { BadgeComponent } from '../../../elements/badge/badge.component';
-import { DotComponent } from '../../dot/dot.component';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { PropertyApi } from '../../../decorators/api';
+import { BadgeComponent } from '../../elements/badge/badge.component';
+import { DotComponent } from '../dot/dot.component';
 
 @Component({
   selector: 'jnt-switcher-option',
@@ -35,5 +35,8 @@ export class SwitcherOptionComponent {
 
   @ContentChild(BadgeComponent)
   badge: BadgeComponent;
+
+  @ContentChild('optionTemplate')
+  optionTemplate: TemplateRef<any>;
 
 }

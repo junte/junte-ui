@@ -1,11 +1,9 @@
-import { Component, forwardRef, HostBinding, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format as formatDate } from 'date-fns';
 import { PropertyApi } from '../../../decorators/api';
 import { UI } from '../../../enums/ui';
-import { Subscriptions } from '../../../utils/subscriptions';
-import { PopoverTriggers } from '../../overlays/popover/enums';
-import { PopoverService } from '../../overlays/popover/popover.service';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 
 @Component({
   selector: 'jnt-date-picker',
@@ -18,23 +16,22 @@ import { PopoverService } from '../../overlays/popover/popover.service';
     }
   ]
 })
-export class DatePickerComponent implements OnInit, OnDestroy {
+export class DatePickerComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
   private _format = 'dd.MM.yyyy';
 
-  @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
-
-  subscriptions = new Subscriptions();
   ui = UI;
-  input = this.fb.control(null);
-  calendar = this.fb.control(new Date);
+  popover: PopoverComponent;
+
+  inputControl = this.fb.control(null);
+  calendarControl = this.fb.control(null);
+
   form = this.fb.group({
-    input: this.input,
-    calendar: this.calendar
+    input: this.inputControl,
+    calendar: this.calendarControl
   });
-  options = null;
 
   @PropertyApi({
     description: 'Placeholder for date picker',
@@ -49,43 +46,37 @@ export class DatePickerComponent implements OnInit, OnDestroy {
   })
   @Input() set format(format: string) {
     this._format = format || 'dd.MM.yyyy';
-    this.input.patchValue(!!this.calendar.value ? formatDate(this.calendar.value, this.format) : null);
+    this.inputControl.patchValue(!!this.calendarControl.value
+      ? formatDate(this.calendarControl.value, this.format) : null);
   }
 
   get format() {
     return this._format;
   }
 
-  constructor(private fb: FormBuilder,
-              private popoverService: PopoverService) {
+  @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
+
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.subscriptions.push('calendar', this.calendar.valueChanges.subscribe(date => {
-      this.input.patchValue(!!date ? formatDate(date, this.format) : null);
+    this.calendarControl.valueChanges.subscribe(date => {
+      this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
       this.onChange(date);
-      this.popoverService.hide();
-    }));
-
-    this.options = {
-      contentTemplate: this.calendarTemplate,
-      trigger: PopoverTriggers.click,
-      maxWidth: '100%'
-    };
+      if (!!this.popover) {
+        this.popover.hide();
+      }
+    });
   }
 
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-
-  onChange(val: any) {
+  onChange(value: any) {
   }
 
   onTouched() {
   }
 
   writeValue(value: Date) {
-    this.calendar.patchValue(value);
+    this.calendarControl.patchValue(value);
   }
 
   registerOnChange(fn) {

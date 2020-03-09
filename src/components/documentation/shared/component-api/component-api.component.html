@@ -1,7 +1,7 @@
 <ng-container *ngIf="(properties | keyvalue).length">
-  <pre language="html">
+  <app-code-highlight [language]="language.html">
     <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">]]>
-  </pre>
+  </app-code-highlight>
 
   <table api>
     <thead>
@@ -40,9 +40,9 @@
 </ng-container>
 
 <ng-container *ngIf="(methods | keyvalue).length">
-  <pre language="html">
+  <app-code-highlight [language]="language.html">
     <![CDATA[<]]>{{selector}}<![CDATA[ #selector>]]>
-  </pre>
+  </app-code-highlight>
 
   <table api>
     <thead>
@@ -67,11 +67,12 @@
 </ng-container>
 
 <ng-container *ngIf="(content | keyvalue).length">
-  <pre language="html">
+  <app-code-highlight [language]="language.html">
     <![CDATA[<]]>{{selector}}<![CDATA[>
     ...
-    </]]>{{selector}}<![CDATA[>]]>
-  </pre>
+    </
+  ]]>{{selector}}<![CDATA[>]]>
+  </app-code-highlight>
 
   <table api>
     <thead>

@@ -1,17 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { SwitcherComponent } from 'junte-ui';
-import { SwitcherOptionComponent } from 'junte-ui';
+import { FormBuilder, Validators } from '@angular/forms';
+import { BlockComponent, SwitcherComponent, SwitcherOptionComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-
-export enum Cars {
-  lamborghini = 'lamborghini',
-  astonMartin = 'Aston Martin',
-  bugatti = 'Bugatti',
-  ferrari = 'Ferrari'
-}
+import { Hero } from '../../../../enums/hero';
+import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
   selector: 'app-switcher-test',
@@ -23,35 +15,56 @@ export class SwitcherTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  cars = Cars;
-  switcher = SwitcherComponent;
-  switcherOption = SwitcherOptionComponent;
+  hero = Hero;
+  language = Language;
+  types = {switcher: SwitcherComponent, option: SwitcherOptionComponent};
 
   @ViewChild('code') code: TabComponent;
+  @ViewChild('block') block: BlockComponent;
 
-  typeControl = this.fb.control(UI.orientation.horizontal);
+  typeControl = this.fb.control(null);
   iconControl = this.fb.control(false);
-  dotControl = this.fb.control(false);
+  dotControl = this.fb.control(true);
   badgeControl = this.fb.control(false);
+  templateControl = this.fb.control(false);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     type: this.typeControl,
     icon: this.iconControl,
     dot: this.dotControl,
     badge: this.badgeControl,
+    template: this.templateControl,
   });
 
-  switcherControl = this.fb.control(Cars.lamborghini);
+  heroControl = this.fb.control(null, Validators.required);
 
-  switcherForm = this.fb.group({
-    switcher: this.switcherControl
+  form = this.fb.group({
+    hero: this.heroControl
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    this.templateControl.valueChanges
+      .subscribe(value => {
+        if (value) {
+          this.iconControl.disable();
+          this.dotControl.disable();
+          this.badgeControl.disable();
+        } else {
+          this.iconControl.enable();
+          this.dotControl.enable();
+          this.badgeControl.enable();
+        }
+      });
+  }
+
+  submit() {
+    this.block.success();
+    this.form.reset();
   }
 }

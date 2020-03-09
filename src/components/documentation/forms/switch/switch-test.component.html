@@ -29,19 +29,20 @@
                                 [size]="sizeControl.value"
                                 [label]="labelControl.value ? 'Are you happy?' : null"
                                 [icons]="iconsControl.value ? {on: ui.icons.smile, off: ui.icons.sad} : null"
-                                [tags]="tagsControl.value ? {on: 'On', off: 'Off'} : null">
+                                [tags]="tagsControl.value ? {on: 'Yes', off: 'No'} : null">
                     </jnt-switch>
 
-                    <iframe giphy [style.display]="switchControl.value ? 'block' : 'none'"
+                    <iframe giphy *ngIf="switchControl.value;else unHappyTemplate"
                             src="https://giphy.com/embed/3og0ICmyySyzbmnxqE"
                             width="480"
                             height="270"
                             frameBorder="0"></iframe>
-                    <iframe giphy [style.display]="!switchControl.value ? 'block' : 'none'"
-                            src="https://giphy.com/embed/d2lcHJTG5Tscg"
-                            width="480"
-                            height="270"
-                            frameBorder="0"></iframe>
+                    <ng-template #unHappyTemplate>
+                      <iframe giphy src="https://giphy.com/embed/d2lcHJTG5Tscg"
+                              width="480"
+                              height="270"
+                              frameBorder="0"></iframe>
+                    </ng-template>
 
                   </jnt-stack>
                 </form>

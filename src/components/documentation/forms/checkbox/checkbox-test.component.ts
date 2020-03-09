@@ -2,12 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CheckboxComponent, TabComponent, BlockComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-
-export enum Hero {
-  spiderman = 'spiderman',
-  ironman = 'ironman',
-  captainAmerica = 'captain_america'
-}
+import { Hero } from '../../../../enums/hero';
 
 @Component({
   selector: 'app-checkbox-test',
@@ -18,9 +13,7 @@ export class CheckboxTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-
   hero = Hero;
-
   types = {checkbox: CheckboxComponent};
 
   @ViewChild('code') code: TabComponent;

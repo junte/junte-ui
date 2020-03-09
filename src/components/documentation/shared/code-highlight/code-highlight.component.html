@@ -1,4 +1,4 @@
-<p>
+<p *ngIf="!!file">
   <jnt-link [icon]="copied ? ui.icons.animated.success : ui.icons.copy"
             [outline]="ui.outline.ghost"
             title="Copy"
@@ -7,14 +7,10 @@
             [cbContent]="code"
             (cbOnSuccess)="copy()">
   </jnt-link>
-  <ng-container *ngIf="!!file">
-    the code to <code>{{file}}</code>
-  </ng-container>
+  the code to <code>{{file}}</code>
 </p>
 
-<pre>
-  <code [highlight]="code" [languages]="[language]"></code>
-</pre>
+<pre [highlight]="code" [languages]="[language]"></pre>
 
 <pre #pre (cdkObserveContent)="render()" hidden>
   <ng-content></ng-content>

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { PopoverTriggers } from './enums';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 import { PopoverService } from './popover.service';
@@ -10,6 +10,8 @@ import { PopoverService } from './popover.service';
 export class PopoverDirective {
 
   @Input('jntPopover') options: PopoverOptions;
+
+  @Output('jntCatch') catch = new EventEmitter<PopoverComponent>();
 
   reference: PopoverComponent;
 
@@ -51,6 +53,7 @@ export class PopoverDirective {
 
   private show() {
     this.reference = this.popover.show(this.hostRef, this.options);
+    this.catch.emit(this.reference);
   }
 
   private hide(path: HTMLElement[]) {
@@ -58,6 +61,7 @@ export class PopoverDirective {
       && !this.reference.picked(path)) {
       this.reference.hide();
       this.reference = null;
+      this.catch.emit(this.reference);
     }
   }
 }

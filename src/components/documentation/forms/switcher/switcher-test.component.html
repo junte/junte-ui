@@ -1,92 +1,205 @@
 <jnt-container>
+  <h1 i18n="@@label.switcher">Switcher</h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switcher"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.switcher">Switcher</h1>
-
-  <h3 i18n="@@label.how_to_use">How to use</h3>
-  <app-how-to-use
-    [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
-    scss="forms/switcher"></app-how-to-use>
-
-  <h3 i18n="@@label.playground">Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [type]="ui.layout.stack.type.horizontal">
-          <app-browser-preview>
-            <ng-template #document>
-              <h5 i18n="@@label.choose_car">Choose your favorite car brand:</h5>
-              <form [formGroup]="switcherForm">
-                <jnt-switcher formControlName="switcher" [type]="typeControl.value">
-                  <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini"
-                                       [icon]="iconControl.value ? ui.icons.dashboard : null">
-                    <jnt-dot *ngIf="dotControl.value"></jnt-dot>
-                    <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
-                  </jnt-switcher-option>
-                  <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin"
-                                       [icon]="iconControl.value ? ui.icons.dashboard : null">
-                    <jnt-dot *ngIf="dotControl.value"></jnt-dot>
-                    <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
-                  </jnt-switcher-option>
-                  <jnt-switcher-option label="Bugatti" [value]="cars.bugatti"
-                                       [icon]="iconControl.value ? ui.icons.dashboard : null">
-                    <jnt-dot *ngIf="dotControl.value"></jnt-dot>
-                    <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
-                  </jnt-switcher-option>
-                  <jnt-switcher-option label="Ferrari" [value]="cars.ferrari"
-                                       [icon]="iconControl.value ? ui.icons.dashboard : null">
-                    <jnt-dot *ngIf="dotControl.value"></jnt-dot>
-                    <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
-                  </jnt-switcher-option>
-                </jnt-switcher>
-              </form>
-              <p>Your choose: {{switcherControl.value | titlecase}}</p>
-            </ng-template>
-          </app-browser-preview>
-          <jnt-form [formGroup]="form" builder>
-            <jnt-form-item>
-              <jnt-form-label for="type"
-                              i18n="@@label.type">Type</jnt-form-label>
-              <jnt-switcher formControlName="type">
-                <jnt-switcher-option label="Horizontal"
-                                     i18n-label="@@label.horizontal"
-                                     [value]="ui.orientation.horizontal"></jnt-switcher-option>
-                <jnt-switcher-option label="Vertical"
-                                     i18n-label="@@label.vertical"
-                                     [value]="ui.orientation.vertical"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-item>
+        <jnt-row>
 
-            <jnt-form-item>
-              <jnt-checkbox formControlName="icon"
-                            label="Icon"
-                            i18n-label="@@label.icon"></jnt-checkbox>
-            </jnt-form-item>
+          <jnt-col [desktop]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-block #block title="Your hero"
+                           i18n-title="@@label.your_hero">
+                  <jnt-form [formGroup]="form" (submitted)="submit()">
+                    <jnt-stack [gutter]="ui.gutter.big"
+                               [align]="ui.flex.align.center"
+                               [justify]="ui.flex.justify.center"
+                               [type]="typeControl.value === ui.orientation.vertical ? ui.layout.stack.type.horizontal : ui.layout.stack.type.vertical">
+                      <jnt-form-item>
+                        <jnt-form-label for="hero"
+                                        i18n="@@label.select_hero">Select hero
+                        </jnt-form-label>
+                        <jnt-form-control name="hero">
+                          <jnt-switcher formControlName="hero" [type]="typeControl.value">
+                            <jnt-switcher-option label="Spiderman" [value]="hero.spiderman"
+                                                 [icon]="iconControl.value ? localUi.icons.heroes.spiderman : null">
+                              <jnt-dot *ngIf="dotControl.value"
+                                       [color]="ui.color.red"></jnt-dot>
+                              <jnt-badge *ngIf="badgeControl.value"
+                                         [color]="ui.color.red"
+                                         [value]="5"></jnt-badge>
+                              <ng-container *ngIf="templateControl.value">
+                                <ng-template #optionTemplate>
+                                  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                             [align]="ui.flex.align.center">
+                                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                               [gutter]="ui.gutter.small"
+                                               [align]="ui.flex.align.center">
+                                      <jnt-avatar image="assets/images/heroes/spiderman.svg"
+                                                  [size]="ui.size.small"></jnt-avatar>
+                                      <div>Spiderman</div>
+                                    </jnt-stack>
+                                    <jnt-label label="15"
+                                               [color]="ui.color.red"></jnt-label>
+                                  </jnt-stack>
+                                </ng-template>
+                              </ng-container>
+                            </jnt-switcher-option>
+                            <jnt-switcher-option label="Ironman" [value]="hero.ironman"
+                                                 [icon]="iconControl.value ? localUi.icons.heroes.ironman : null">
+                              <jnt-dot *ngIf="dotControl.value"
+                                       [color]="ui.color.yellow"></jnt-dot>
+                              <jnt-badge *ngIf="badgeControl.value"
+                                         [color]="ui.color.yellow"
+                                         [value]="5"></jnt-badge>
+                              <ng-container *ngIf="templateControl.value">
+                                <ng-template #optionTemplate>
+                                  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                             [align]="ui.flex.align.center">
+                                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                               [gutter]="ui.gutter.small"
+                                               [align]="ui.flex.align.center">
+                                      <jnt-avatar image="assets/images/heroes/ironman.svg"
+                                                  [size]="ui.size.small"></jnt-avatar>
+                                      <div>Iconman</div>
+                                    </jnt-stack>
+                                    <jnt-label label="20"
+                                               [color]="ui.color.yellow"></jnt-label>
+                                  </jnt-stack>
+                                </ng-template>
+                              </ng-container>
+                            </jnt-switcher-option>
+                            <jnt-switcher-option label="Captain America" [value]="hero.captainAmerica"
+                                                 [icon]="iconControl.value ? localUi.icons.heroes.capitan : null">
+                              <jnt-dot *ngIf="dotControl.value"
+                                       [color]="ui.color.blue100"></jnt-dot>
+                              <jnt-badge *ngIf="badgeControl.value"
+                                         [color]="ui.color.blue100"
+                                         [value]="5"></jnt-badge>
+                              <ng-container *ngIf="templateControl.value">
+                                <ng-template #optionTemplate>
+                                  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                             [align]="ui.flex.align.center">
+                                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                               [gutter]="ui.gutter.small"
+                                               [align]="ui.flex.align.center">
+                                      <jnt-avatar image="assets/images/heroes/captain.svg"
+                                                  [size]="ui.size.small"></jnt-avatar>
+                                      <div>Captain America</div>
+                                    </jnt-stack>
+                                    <jnt-label label="25"
+                                               [color]="ui.color.blue100"></jnt-label>
+                                  </jnt-stack>
+                                </ng-template>
+                              </ng-container>
+                            </jnt-switcher-option>
+                          </jnt-switcher>
 
-            <jnt-form-item>
-              <jnt-checkbox formControlName="dot"
-                            label="Dot"
-                            i18n-label="@@label.dot"></jnt-checkbox>
-            </jnt-form-item>
+                          <jnt-form-message [type]="ui.form.validators.typeError.required">
+                            Please select the hero
+                          </jnt-form-message>
+                        </jnt-form-control>
+                      </jnt-form-item>
 
-            <jnt-form-item>
-              <jnt-checkbox formControlName="badge"
-                            label="Badge"
-                            i18n-label="@@label.badge"></jnt-checkbox>
-            </jnt-form-item>
-          </jnt-form>
-        </jnt-stack>
+                      <ng-container [ngSwitch]="heroControl.value">
+                        <jnt-avatar *ngSwitchCase="hero.spiderman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.ironman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.captainAmerica"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/captain.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
+                                    [icon]="ui.icons.question"></jnt-avatar>
+                      </ng-container>
+                    </jnt-stack>
+                    <ng-template #formFooterTemplate>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                 [justify]="ui.flex.justify.between">
+                        <jnt-button text="Submit"
+                                    i18n-text="@@action.submit"
+                                    [type]="ui.form.button.type.submit"></jnt-button>
+                        <jnt-button text="Reset"
+                                    i18n-text="@@action.reset"
+                                    [scheme]="ui.scheme.secondary"
+                                    (click)="form.reset()"></jnt-button>
+                      </jnt-stack>
+                    </ng-template>
+                  </jnt-form>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+
+          <jnt-col [desktop]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.type">Type
+                  </jnt-form-label>
+                  <jnt-select formControlName="type" placeholder="Horizontal">
+                    <jnt-select-option label="Horizontal"
+                                       i18n-label="@@label.horizontal"
+                                       [key]="ui.orientation.horizontal"></jnt-select-option>
+                    <jnt-select-option label="Vertical"
+                                       i18n-label="@@label.vertical"
+                                       [key]="ui.orientation.vertical"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="icon"
+                                    label="Icon"
+                                    i18n-label="@@label.icon"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="dot"
+                                    label="Dot"
+                                    i18n-label="@@label.dot"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="badge"
+                                    label="Badge"
+                                    i18n-label="@@label.badge"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="12">
+                      <jnt-checkbox formControlName="template"
+                                    label="Custom option"
+                                    i18n-label="@@label.custom_option"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+
+        </jnt-row>
       </ng-template>
     </jnt-tab>
 
@@ -94,6 +207,10 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
+          scss="forms/switcher"></app-how-to-use>
+
         <app-code-highlight file="switcher-test.component.html">
           <![CDATA[
           <jnt-switcher
@@ -103,7 +220,7 @@
               [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
             </ng-container>
             <![CDATA[>
-            <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini"]]>
+            <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>
               <ng-container *ngIf="iconControl.value">
                 <![CDATA[
                 [icon]="ui.icons.dashboard"]]>
@@ -111,15 +228,19 @@
               <![CDATA[>]]>
               <ng-container *ngIf="dotControl.value">
                 <![CDATA[
-                <jnt-dot></jnt-dot>]]>
+                <jnt-dot></jnt-dot>
+                ]]>
               </ng-container>
               <ng-container *ngIf="badgeControl.value">
                 <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>]]>
+                <jnt-badge [value]="5"></jnt-badge>
+                ]]>
               </ng-container>
-              <![CDATA[</jnt-switcher-option>]]>
+              <![CDATA[
+            </jnt-switcher-option>
+            ]]>
             <![CDATA[
-            <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin"]]>
+            <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin" ]]>
               <ng-container *ngIf="iconControl.value">
                 <![CDATA[
                 [icon]="ui.icons.dashboard"]]>
@@ -128,15 +249,19 @@
               ]]>
               <ng-container *ngIf="dotControl.value">
                 <![CDATA[
-                <jnt-dot></jnt-dot>]]>
+                <jnt-dot></jnt-dot>
+                ]]>
               </ng-container>
               <ng-container *ngIf="badgeControl.value">
                 <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>]]>
+                <jnt-badge [value]="5"></jnt-badge>
+                ]]>
               </ng-container>
-              <![CDATA[</jnt-switcher-option>]]>
+              <![CDATA[
+            </jnt-switcher-option>
+            ]]>
             <![CDATA[
-            <jnt-switcher-option label="Bugatti" [value]="cars.bugatti"]]>
+            <jnt-switcher-option label="Bugatti" [value]="cars.bugatti" ]]>
               <ng-container *ngIf="iconControl.value">
                 <![CDATA[
                 [icon]="ui.icons.dashboard"]]>
@@ -144,35 +269,43 @@
               <![CDATA[>]]>
               <ng-container *ngIf="dotControl.value">
                 <![CDATA[
-                <jnt-dot></jnt-dot>]]>
+                <jnt-dot></jnt-dot>
+                ]]>
               </ng-container>
               <ng-container *ngIf="badgeControl.value">
                 <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>]]>
+                <jnt-badge [value]="5"></jnt-badge>
+                ]]>
               </ng-container>
-              <![CDATA[</jnt-switcher-option>]]>
-            <![CDATA[<jnt-switcher-option label="Ferrari" [value]="cars.ferrari"]]>
-            <ng-container *ngIf="iconControl.value">
               <![CDATA[
-              [icon]="ui.icons.dashboard"]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <ng-container *ngIf="dotControl.value">
-              <![CDATA[
-              <jnt-dot></jnt-dot>]]>
-            </ng-container>
-            <ng-container *ngIf="badgeControl.value">
-              <![CDATA[
-              <jnt-badge [value]="5"></jnt-badge>]]>
-            </ng-container>
+            </jnt-switcher-option>
+            ]]>
             <![CDATA[
-          </jnt-switcher-option>
+            <jnt-switcher-option label="Ferrari" [value]="cars.ferrari" ]]>
+              <ng-container *ngIf="iconControl.value">
+                <![CDATA[
+                [icon]="ui.icons.dashboard"]]>
+              </ng-container>
+              <![CDATA[>]]>
+              <ng-container *ngIf="dotControl.value">
+                <![CDATA[
+                <jnt-dot></jnt-dot>
+                ]]>
+              </ng-container>
+              <ng-container *ngIf="badgeControl.value">
+                <![CDATA[
+                <jnt-badge [value]="5"></jnt-badge>
+                ]]>
+              </ng-container>
+              <![CDATA[
+            </jnt-switcher-option>
           </jnt-switcher>
           ]]>
         </app-code-highlight>
 
-        <app-code-highlight file="switcher-test.component.ts" lang="js">
-          <pre>
+        <app-code-highlight file="switcher-test.component.ts"
+                            [language]="language.typescript">
+          <!-- @formatter:off -->
             <![CDATA[
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -194,27 +327,27 @@ export enum Cars {
 export class SwitcherTestComponent {
 
   ui = UI;
-  cars = Cars;
-
-  switcherControl = this.fb.control(Cars.lamborghini);
+  hero = Hero;
 
   switcherForm = this.fb.group({
-    switcher: this.switcherControl
+    switcher: this.fb.control(null)
   });
 
   constructor(private fb: FormBuilder) {
   }
 }
           ]]>
-          </pre>
+          <!-- @formatter:on -->
         </app-code-highlight>
       </ng-template>
     </jnt-tab>
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-switcher" [target]="switcher"></app-component-api>
-        <app-component-api selector="jnt-switcher-option" [target]="switcherOption"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-switcher" [target]="types.switcher"></app-component-api>
+          <app-component-api selector="jnt-switcher-option" [target]="types.option"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

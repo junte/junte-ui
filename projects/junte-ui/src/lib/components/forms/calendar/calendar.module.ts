@@ -7,9 +7,7 @@ import { DatePipeModule } from '../../../pipes/date.pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { CalendarComponent } from './calendar.component';
-import { DayComponent } from './week/day/day.component';
 import { WeekMetricComponent } from './week/week-metric.component';
-import { WeekComponent } from './week/week.component';
 
 @NgModule({
   imports: [
@@ -22,17 +20,14 @@ import { WeekComponent } from './week/week.component';
   ],
   declarations: [
     CalendarComponent,
-    WeekComponent,
-    DayComponent,
     WeekMetricComponent
   ],
   entryComponents: [
-    CalendarComponent
+    CalendarComponent,
+    WeekMetricComponent
   ],
   exports: [
     CalendarComponent,
-    WeekComponent,
-    DayComponent,
     WeekMetricComponent
   ],
   providers: [...JUNTE_MODULE_PROVIDES]

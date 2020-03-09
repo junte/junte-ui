@@ -1,10 +1,10 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../../decorators/api';
 import { Orientation } from '../../../enums/orientation';
 import { UI } from '../../../enums/ui';
 import { isEqual } from '../../../utils/equal';
-import { SwitcherOptionComponent } from './option/switcher-option.component';
+import { SwitcherOptionComponent } from './switcher-option.component';
 
 @Component({
   selector: 'jnt-switcher',
@@ -20,6 +20,8 @@ import { SwitcherOptionComponent } from './option/switcher-option.component';
 export class SwitcherComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-switcher-host';
+
+  ui = UI;
 
   @HostBinding('attr.type')
   _type: Orientation = Orientation.horizontal;
@@ -37,8 +39,6 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
-
-  ui = UI;
 
   private _value: any;
 

@@ -7,6 +7,7 @@ import {
   MethodMetadata,
   ContentMetadata
 } from 'junte-ui';
+import { Language } from '../code-highlight/enum';
 
 @Component({
   selector: 'app-component-api',
@@ -14,6 +15,8 @@ import {
   styleUrls: ['./component-api.component.scss']
 })
 export class ComponentApiComponent {
+
+  language = Language;
 
   properties: { [key: string]: PropertyMetadata } = {};
   methods: { [key: string]: MethodMetadata } = {};

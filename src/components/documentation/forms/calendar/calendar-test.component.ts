@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TabComponent, UI } from 'junte-ui';
-import { CalendarComponent } from 'junte-ui';
-import { BehaviorSubject } from 'rxjs';
+import { CalendarComponent, Period, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-
-type Period = { start: Date, end: Date };
 
 export enum Months {
   march = 2,
@@ -21,46 +17,38 @@ export enum Months {
 })
 export class CalendarTestComponent implements OnInit {
 
-  private period$ = new BehaviorSubject<Period>(null);
-
   ui = UI;
   localUi = LocalUI;
   month = Months;
-  calendar = CalendarComponent;
+  types = {calendar: CalendarComponent};
 
   @ViewChild('code') code: TabComponent;
+
+  period: Period;
 
   yearControl = this.fb.control(null);
   monthControl = this.fb.control(null);
   metricsControl = this.fb.control(false);
-  dayControl = this.fb.control(false);
+  customDayControl = this.fb.control(false);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     year: this.yearControl,
     month: this.monthControl,
     metrics: this.metricsControl,
-    day: this.dayControl,
+    customDay: this.customDayControl,
   });
 
-  calendarControl = this.fb.control(new Date());
+  flightDateControl = this.fb.control(new Date());
 
-  calendarForm = this.fb.group({
-    calendar: this.calendarControl
+  form = this.fb.group({
+    flightDate: this.flightDateControl
   });
-
-  set period(period: { start: Date, end: Date }) {
-    this.period$.next(period);
-  }
-
-  get period() {
-    return this.period$.getValue();
-  }
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

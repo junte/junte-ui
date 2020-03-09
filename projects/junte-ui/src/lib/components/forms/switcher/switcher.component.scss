@@ -17,8 +17,6 @@
 
   :host, #{$context} {
     display: flex;
-    min-height: map-get($vars, height);
-    line-height: map-get($vars, height);
     border: 1px solid $gray-700-color;
     border-radius: map-get($vars, corner);
     &[type='vertical'] {
@@ -55,12 +53,16 @@
 
   #{$context} [option] {
     background-color: $primary-background;
-    padding: 0 $gutter-normal;
     color: $primary-text-color;
     user-select: none;
     overflow: hidden;
     cursor: pointer;
     border: 1px solid transparent;
+    padding: 0 $gutter-small;
+
+    &[with-template] {
+      padding: $gutter-small;
+    }
 
     &:focus {
       outline: 0;
@@ -86,5 +88,7 @@
     flex: 0 1 auto;
     overflow: hidden;
     white-space: nowrap;
+    line-height: map-get($vars, height);
   }
+
 }

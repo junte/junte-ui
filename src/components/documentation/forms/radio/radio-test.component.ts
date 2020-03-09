@@ -2,13 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, RadioComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { Hero } from '../../../../enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
-
-export enum Hero {
-  spiderman = 'spiderman',
-  ironman = 'ironman',
-  captainAmerica = 'captain_america'
-}
 
 @Component({
   selector: 'app-radio-test',
