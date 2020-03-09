@@ -1,4 +1,33 @@
+@import "variables";
+
 :host {
   display: block;
 }
 
+table[api] {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Oxygen Mono', monospace;
+
+  td, th {
+    padding: $gutter-small;
+    border: 1px solid $gray-700-color;
+  }
+
+  th {
+    background-color: $secondary-background;
+  }
+
+  td:nth-child(1) {
+    width: 20%;
+  }
+
+  td:nth-child(4) {
+    width: 20%;
+  }
+
+  td:nth-child(3) {
+    color: $primary-text-color;
+    width: 40%;
+  }
+}
