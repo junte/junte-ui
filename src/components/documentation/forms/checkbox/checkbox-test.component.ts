@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CheckboxComponent, TabComponent, BlockComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { Hero } from '../../../../enums/hero';
+import { Hero } from 'src/enums/hero';
 
 @Component({
   selector: 'app-checkbox-test',
