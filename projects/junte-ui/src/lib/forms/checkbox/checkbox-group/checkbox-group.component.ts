@@ -1,7 +1,5 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, OnDestroy, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, QueryList, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { fromEvent, merge, Subscription } from 'rxjs';
-import { mapTo } from 'rxjs/operators';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -16,43 +14,28 @@ import { CheckboxComponent } from '../checkbox.component';
   ]
 })
 
-export class CheckboxGroupComponent implements AfterContentInit, OnDestroy, ControlValueAccessor {
+export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-checkbox-group-host';
 
-  @ContentChildren(CheckboxComponent, {descendants: true}) listCheckboxComponent: QueryList<CheckboxComponent>;
+  @ViewChildren(CheckboxComponent)
+  items: QueryList<CheckboxComponent>;
 
-  private subscribe: Subscription;
+  @ContentChildren(CheckboxComponent, {descendants: true})
+  checkboxes: QueryList<CheckboxComponent>;
+
   private _selectedItems: any[];
 
   set selectedItems(value: any) {
     this._selectedItems = value;
-    this.updateSelected();
   }
 
   get selectedItems() {
     return this._selectedItems;
   }
 
-  ngAfterContentInit() {
-    const changes$ = this.listCheckboxComponent.map(checkbox =>
-      fromEvent(checkbox.element.nativeElement, 'click').pipe(mapTo(checkbox)));
-
-    this.subscribe = merge(...changes$)
-      .subscribe((checkbox: CheckboxComponent) => this.select(checkbox.value));
-
-    this.updateSelected();
-  }
-
-  ngOnDestroy() {
-    this.subscribe.unsubscribe();
-  }
-
-  private updateSelected() {
-    if (!!this.listCheckboxComponent) {
-      this.listCheckboxComponent.forEach(checkbox =>
-        checkbox.checked = this.selectedItems.includes(checkbox.value));
-    }
+  ngAfterViewInit() {
+    this.updateItems();
   }
 
   select(value) {
@@ -65,10 +48,19 @@ export class CheckboxGroupComponent implements AfterContentInit, OnDestroy, Cont
     this.onChange(this.selectedItems);
   }
 
+  updateItems() {
+    if (!!this.items) {
+      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
+    }
+  }
+
   writeValue(value: any) {
     if (!!value) {
       this.selectedItems = Array.isArray(value) ? value : [value];
+    } else {
+      this.selectedItems = [];
     }
+    this.updateItems();
   }
 
   onChange(value: any) {

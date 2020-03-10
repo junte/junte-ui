@@ -37,7 +37,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   @PropertyApi({
     description: 'Label name for checkbox button',
-    type: 'strign'
+    type: 'string'
   })
   @HostBinding('attr.label')
   @Input()

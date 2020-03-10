@@ -50,7 +50,7 @@
                                     image="assets/images/heroes/ironman.svg"></jnt-avatar>
                         <jnt-avatar *ngIf="heroesControl.value | includes:hero.captainAmerica"
                                     image="assets/images/heroes/captain.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="!heroesControl.value.length"
+                        <jnt-avatar *ngIf="!heroesControl.value?.length"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </jnt-avatars-list>
                     </jnt-stack>
