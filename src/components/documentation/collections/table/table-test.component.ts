@@ -17,13 +17,11 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class TableTestComponent implements OnInit {
 
-  private _state = new TableState();
-
   ui = UI;
-
   localUi = LocalUI;
-
   types = {table: TableComponent, column: TableColumnComponent};
+
+  private _state = new TableState();
 
   @ViewChild('code') code: TabComponent;
 

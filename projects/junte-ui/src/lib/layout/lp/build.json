@@ -1,0 +1,48 @@
+{
+  "composition": {
+    "section": "layout",
+    "pathFrom": "../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "lp/layout/lp-layout.scss",
+      "lp/rewind/lp-rewind.scss",
+      "lp/slide/lp-slide.scss"
+    ],
+    "to": "lp.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-lp-layout-host",
+      "html": {
+        "from": "layout/lp-layout.component.html",
+        "to": "layout/lp-layout.encapsulated.html"
+      },
+      "scss": {
+        "from": "layout/lp-layout.component.scss",
+        "to": "../../assets/styles/components/layout/lp/layout/lp-layout.scss"
+      }
+    },
+    {
+      "host": "jnt-lp-rewind-host",
+      "html": {
+        "from": "rewind/lp-rewind.component.html",
+        "to": "rewind/lp-rewind.encapsulated.html"
+      },
+      "scss": {
+        "from": "rewind/lp-rewind.component.scss",
+        "to": "../../assets/styles/components/layout/lp/rewind/lp-rewind.scss"
+      }
+    },
+    {
+      "host": "jnt-lp-slide-host",
+      "html": {
+        "from": "slide/lp-slide.component.html",
+        "to": "slide/lp-slide.encapsulated.html"
+      },
+      "scss": {
+        "from": "slide/lp-slide.component.scss",
+        "to": "../../assets/styles/components/layout/lp/slide/lp-slide.scss"
+      }
+    }
+  ]
+}

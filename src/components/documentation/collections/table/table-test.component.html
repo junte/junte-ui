@@ -17,48 +17,47 @@
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-row>
-          <jnt-col [tablet]="8">
-            <app-browser-preview preview>
-              <ng-template #document let-width="width" let-height="height">
-                <app-table-data [(state)]="state"
-                                [search]="searchControl.value ? [ui.collections.table.features.search] : null"
-                                [filter]="filterControl.value"
-                                [actions]="actionsControl.value">
-                </app-table-data>
-              </ng-template>
-            </app-browser-preview>
-          </jnt-col>
-          <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
-                <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="search"
-                                  label="Search"
-                                  i18n-label="@@label.search"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
+        <jnt-stack>
 
-                <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="filter"
-                                  label="Filter"
-                                  i18n-label="@@label.filter"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
+          <jnt-form [formGroup]="builder">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal">
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="search"
+                                label="Search"
+                                i18n-label="@@label.search"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="actions"
-                                  label="Actions"
-                                  i18n-label="@@label.actions"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
-              </jnt-stack>
-            </jnt-form>
-          </jnt-col>
-        </jnt-row>
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="filter"
+                                label="Filter"
+                                i18n-label="@@label.filter"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="actions"
+                                label="Actions"
+                                i18n-label="@@label.actions"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-stack>
+          </jnt-form>
+
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <app-table-data [(state)]="state"
+                              [search]="searchControl.value ? [ui.collections.table.features.search] : null"
+                              [filter]="filterControl.value"
+                              [actions]="actionsControl.value">
+              </app-table-data>
+            </ng-template>
+          </app-browser-preview>
+
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
 

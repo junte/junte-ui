@@ -1,0 +1,98 @@
+@import "variables";
+
+$type-vertical: 'vertical';
+$type-horizontal: 'horizontal';
+
+@mixin stack-gutters($property, $gutter) {
+  & > :not(:last-child):not(router-outlet) {
+    #{$property}: $gutter;
+  }
+}
+
+@mixin stack($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    gutters: (
+      none: $gutter-none,
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: flex;
+    text-align: left;
+    @if map-has-key($vars, gutters) {
+      $gutters: map-get($vars, gutters);
+      @each $gutter, $map in $gutters {
+        &[gutter = '#{$gutter}'] {
+          &[type = '#{$type-vertical}'] {
+            flex-direction: column;
+            @include stack-gutters(margin-bottom, $map);
+          }
+          &[type = '#{$type-horizontal}'] {
+            flex-direction: row;
+            @include stack-gutters(margin-right, $map);
+          }
+        }
+      }
+    }
+
+    &[align='start'] {
+      align-items: flex-start;
+    }
+    &[align='center'] {
+      align-items: center;
+    }
+    &[align='end'] {
+      align-items: flex-end;
+    }
+    &[align='stretch'] {
+      align-items: stretch;
+    }
+    &[align='baseline'] {
+      align-items: baseline;
+    }
+
+    &[justify='start'] {
+      justify-content: flex-start;
+    }
+    &[justify='center'] {
+      justify-content: center;
+    }
+    &[justify='end'] {
+      justify-content: flex-end;
+    }
+    &[justify='between'] {
+      justify-content: space-between;
+    }
+    &[justify='around'] {
+      justify-content: space-around;
+    }
+    &[justify='evenly'] {
+      justify-content: space-evenly;
+    }
+
+    &[wrap='wrap'] {
+      flex-wrap: wrap;
+    }
+    &[wrap='nowrap'] {
+      flex-wrap: nowrap;
+    }
+    &[wrap='reverse'] {
+      flex-wrap: wrap-reverse;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "composition": {
+    "section": "elements",
+    "pathFrom": "../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "avatar/common.scss",
+      "avatar/avatar.scss",
+      "avatar/avatars-list/avatars-list.scss",
+      "avatar/avatars-group/avatars-group.scss"
+    ],
+    "to": "avatar.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-avatar-host",
+      "html": {
+        "from": "avatar.component.html",
+        "to": "avatar.encapsulated.html"
+      },
+      "scss": {
+        "from": "avatar.component.scss",
+        "to": "../../assets/styles/components/elements/avatar/avatar.scss"
+      }
+    },
+    {
+      "host": "",
+      "scss": {
+        "from": "common.scss",
+        "to": "../../assets/styles/components/elements/avatar/common.scss"
+      }
+    },
+    {
+      "host": "",
+      "scss": {
+        "from": "common.scss",
+        "to": "../../assets/styles/components/elements/avatar/common.scss"
+      }
+    },
+    {
+      "host": "jnt-avatars-list-host",
+      "html": {
+        "from": "avatars-list/avatars-list.component.html",
+        "to": "avatars-list/avatars-list.encapsulated.html"
+      },
+      "scss": {
+        "from": "avatars-list/avatars-list.component.scss",
+        "to": "../../assets/styles/components/elements/avatar/avatars-list/avatars-list.scss"
+      }
+    },
+    {
+      "host": "jnt-avatars-group-host",
+      "html": {
+        "from": "avatars-group/avatars-group.component.html",
+        "to": "avatars-group/avatars-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "avatars-group/avatars-group.component.scss",
+        "to": "../../assets/styles/components/elements/avatar/avatars-group/avatars-group.scss"
+      }
+    }
+  ]
+}
