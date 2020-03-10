@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
 import { Scheme } from '../../../enums/scheme';
 import { PopoverPlacements, PopoverTriggers } from './enums';
+import { PropertyApi } from '../../../decorators/api';
 
 export class PopoverOptions {
   title: string;
@@ -27,6 +28,12 @@ export class PopoverComponent {
   visible = false;
 
   @HostBinding('attr.host') readonly host = 'jnt-popover-host';
+
+  @PropertyApi({
+    description: 'Dot color',
+    type: 'string',
+    default: 'orange',
+  })
 
   @HostBinding('style.display')
   get display() {
