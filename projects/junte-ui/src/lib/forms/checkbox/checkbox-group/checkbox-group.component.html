@@ -1,1 +1,7 @@
-<ng-content></ng-content>
+<jnt-checkbox *ngFor="let item of checkboxes"
+              [size]="item.size"
+              [label]="item.label"
+              [value]="item.value"
+              [disabled]="item.disabled"
+              (click)="!item.disabled ? select(item.value) : null">
+</jnt-checkbox>

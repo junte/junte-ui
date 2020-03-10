@@ -21,9 +21,10 @@ export class RadioGroupComponent implements AfterViewInit {
 
   ui = UI;
 
-  @ViewChildren(RadioComponent) items: QueryList<RadioComponent>;
-
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+
+  @ViewChildren(RadioComponent)
+  items: QueryList<RadioComponent>;
 
   @ContentChildren(RadioComponent, {descendants: true})
   radios: QueryList<RadioComponent>;
@@ -31,7 +32,7 @@ export class RadioGroupComponent implements AfterViewInit {
   @Input() labelField: string;
   @Input() valueField: string;
 
-  private selected$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  private selected$ = new BehaviorSubject<any>(undefined);
 
   set selected(value: any) {
     this.selected$.next(value);
