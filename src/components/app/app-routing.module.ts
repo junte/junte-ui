@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     matcher: docsMatcher,
     data: {breadcrumb: 'Junte UI'},
-    loadChildren: () => import('../documentation/documentation.module').then(m => m.DocumentationModule)
+    loadChildren: () => import('../docs/docs.module').then(m => m.DocsModule)
   },
   {
     path: '**',

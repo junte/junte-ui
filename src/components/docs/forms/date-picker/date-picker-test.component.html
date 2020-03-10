@@ -1,0 +1,82 @@
+<jnt-container>
+  <h1 i18n="@@label.date_picker">Date Picker</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/date-picker"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-stack>
+                  <jnt-form [formGroup]="form">
+                    <jnt-date-picker formControlName="flightDate"
+                                     placeholder="Please enter the date"
+                                     [format]="formatControl.value">
+                    </jnt-date-picker>
+                  </jnt-form>
+                  <div *ngIf="!!flightDateControl.value">
+                    You choose
+                    <jnt-label [label]="flightDateControl.value | dfnsFormat:'dd.MM.yyyy'"></jnt-label>
+                  </div>
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="format"
+                                  i18n="@@label.format">Format
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="format">
+                    <jnt-switcher-option label="dd.MM.yyyy" [value]="dateFormat.fullDate"></jnt-switcher-option>
+                    <jnt-switcher-option label="dd.MM" [value]="dateFormat.shortDate"></jnt-switcher-option>
+                    <jnt-switcher-option label="dd.MM.yy" [value]="dateFormat.longDate"></jnt-switcher-option>
+                    <jnt-switcher-option label="dd MMMM" [value]="dateFormat.fullMonth"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'date-picker-test', type: 'DatePickerTestComponent'}"
+          scss="forms/date-picker"></app-how-to-use>
+        <app-code-highlight file="date-picker-test.component.html">
+          <![CDATA[
+          <jnt-date-picker
+            ]]>
+            <![CDATA[>
+          </jnt-date-picker>
+          ]]>
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-date-picker" [target]="types.flightDate"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>
