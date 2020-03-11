@@ -1,7 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule, GridModule, IconModule, InputModule, LinkModule, PopoverModule, StackModule, TabsModule } from 'junte-ui';
+import {
+  AccordionModule,
+  BlockModule,
+  ButtonModule,
+  GridModule,
+  IconModule,
+  InputModule,
+  LinkModule,
+  PopoverModule,
+  StackModule,
+  TabsModule
+} from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { PopoverTestComponent } from './popover-test.component';
@@ -11,6 +22,8 @@ import { PopoverTestComponent } from './popover-test.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),

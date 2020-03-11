@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
+import { Component, ViewChild } from '@angular/core';
+import { PopoverComponent, TabComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-popover-test',
@@ -7,6 +8,11 @@ import { UI } from 'junte-ui';
   styleUrls: ['./popover-test.component.scss']
 })
 export class PopoverTestComponent {
+
   ui = UI;
-  title = 'Title';
+  localUi = LocalUI;
+  types = {popover: PopoverComponent};
+
+  @ViewChild('code') code: TabComponent;
+
 }
