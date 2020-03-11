@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, QueryList, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UI } from '../../../core/enums/ui';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -15,6 +16,8 @@ import { CheckboxComponent } from '../checkbox.component';
 })
 
 export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-checkbox-group-host';
 
@@ -75,5 +78,9 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.items.forEach(item => item.disabled = isDisabled);
   }
 }
