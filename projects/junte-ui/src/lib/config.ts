@@ -3,8 +3,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { Locale } from 'date-fns';
 import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { DateFnsConfigurationService } from 'ngx-date-fns';
-import { en } from './i18n/en';
-import { I18nLoader } from './i18n/loader';
+import { en } from './core/i18n/en';
+import { I18nLoader } from './core/i18n/loader';
 
 export function I18nLoaderFactory(config?: JunteUIModuleConfig) {
     const conf = config || {};

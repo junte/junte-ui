@@ -1,0 +1,48 @@
+{
+  "composition": {
+    "section": "dynamic",
+    "pathFrom": "../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "circle-bar/circle-bar.scss",
+      "circle-bar/indicator-group/indicator-group.scss",
+      "circle-bar/indicator/indicator.scss"
+    ],
+    "to": "circle-bar.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-circle-bar-host",
+      "html": {
+        "from": "circle-bar.component.html",
+        "to": "circle-bar.encapsulated.html"
+      },
+      "scss": {
+        "from": "circle-bar.component.scss",
+        "to": "../../assets/styles/components/dynamic/circle-bar/circle-bar.scss"
+      }
+    },
+    {
+      "host": "jnt-bar-indicator-group-host",
+      "html": {
+        "from": "indicator-group/indicator-group.component.html",
+        "to": "indicator-group/indicator-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "indicator-group/indicator-group.component.scss",
+        "to": "../../assets/styles/components/dynamic/circle-bar/indicator-group/indicator-group.scss"
+      }
+    },
+    {
+      "host": "jnt-bar-indicator-host",
+      "html": {
+        "from": "indicator/indicator.component.html",
+        "to": "indicator/indicator.encapsulated.html"
+      },
+      "scss": {
+        "from": "indicator/indicator.component.scss",
+        "to": "../../assets/styles/components/dynamic/circle-bar/indicator/indicator.scss"
+      }
+    }
+  ]
+}

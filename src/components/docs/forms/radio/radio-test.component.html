@@ -1,0 +1,208 @@
+<jnt-container>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/radio"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2782"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+
+  <h1>Radio</h1>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document>
+
+                <jnt-block #block title="Your hero"
+                           i18n-title="@@label.your_hero">
+                  <jnt-form [formGroup]="form" (submitted)="submit()">
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                               [gutter]="ui.gutter.big">
+                      <jnt-form-control name="hero">
+                        <jnt-radio-group formControlName="hero">
+                          <jnt-radio label="Spiderman" [value]="hero.spiderman" [size]="sizeControl.value"></jnt-radio>
+                          <jnt-radio label="Ironman" [value]="hero.ironman" [size]="sizeControl.value"></jnt-radio>
+                          <jnt-radio label="Captain America" [value]="hero.captainAmerica" [size]="sizeControl.value"></jnt-radio>
+                        </jnt-radio-group>
+                        <jnt-form-message [type]="ui.form.validators.typeError.required">
+                          Please select the hero
+                        </jnt-form-message>
+                      </jnt-form-control>
+
+                      <ng-container [ngSwitch]="heroControl.value">
+                        <jnt-avatar *ngSwitchCase="hero.spiderman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.ironman"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="hero.captainAmerica"
+                                    [size]="ui.size.large"
+                                    image="assets/images/heroes/captain.svg"></jnt-avatar>
+                        <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
+                                    [icon]="ui.icons.question"></jnt-avatar>
+                      </ng-container>
+                    </jnt-stack>
+                    <ng-template #formFooterTemplate>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                 [justify]="ui.flex.justify.between">
+                        <jnt-button text="Submit"
+                                    i18n-text="@@action.submit"
+                                    [type]="ui.form.button.type.submit"></jnt-button>
+                        <jnt-button text="Reset"
+                                    i18n-text="@@action.reset"
+                                    [scheme]="ui.scheme.secondary"
+                                    (click)="form.reset()"></jnt-button>
+                      </jnt-stack>
+                    </ng-template>
+                  </jnt-form>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.layout.tiny"
+                                         [key]="ui.size.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.layout.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.layout.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.layout.large"
+                                         [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.state">State
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="disable" label="Disabled"
+                                  [value]="false"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <app-how-to-use
+          [test]="{selector:'radio-test', type: 'RadioTestComponent'}"
+          scss="forms/radio"></app-how-to-use>
+        <app-code-highlight file="radio-test.component.html">
+          <ng-template #sizeTemplate>
+            <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+          </ng-template>
+          <![CDATA[
+          <jnt-form [formGroup]="builder">
+            <jnt-radio-group formControlName="radioGroup"> ]]>
+              <![CDATA[
+              <jnt-radio value="Option 1" ]]>
+                <ng-container *ngIf="disableControl.value">
+                  <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                </ng-container>
+                <ng-container *ngIf="sizeControl.value">
+                  <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                </ng-container>
+                <![CDATA[ >
+              </jnt-radio>
+              ]]>
+              <![CDATA[
+              <jnt-radio value="Option 2" label="Label 2" ]]>
+                <ng-container *ngIf="sizeControl.value">
+                  <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                </ng-container>
+                <![CDATA[>
+              </jnt-radio>
+              ]]>
+
+              <![CDATA[
+              <jnt-radio value="Option 3" label="Label 3" ]]>
+                <ng-container *ngIf="sizeControl.value">
+                  <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                </ng-container>
+                <![CDATA[>
+              </jnt-radio>
+              ]]>
+
+              <![CDATA[
+            </jnt-radio-group>
+          </jnt-form>
+          ]]>
+        </app-code-highlight>
+        <app-code-highlight file="radio-test.component.ts"
+                            [language]="language.typescript">
+          <!-- @formatter:off -->
+<![CDATA[
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { RadioComponent, TabComponent, UI } from 'junte/ui';
+
+@Component({
+  selector: 'app-radio-test',
+  templateUrl: './radio-test.component.html',
+  styleUrls: ['./radio-test.component.scss']
+})
+export class RadioTestComponent implements OnInit {
+
+  ui = UI;
+
+  radioGroupControl = new FormControl();
+
+  form = this.fb.group({
+    radioGroup: this.radioGroupControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+
+}
+]]>
+        <!-- @formatter:on -->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+</jnt-container>

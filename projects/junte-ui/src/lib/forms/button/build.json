@@ -1,0 +1,36 @@
+{
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../assets/styles/components",
+    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "from": [
+      "button/button.scss",
+      "button/group/button-group.scss"
+    ],
+    "to": "button.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-button-host",
+      "html": {
+        "from": "button.component.html",
+        "to": "button.encapsulated.html"
+      },
+      "scss": {
+        "from": "button.component.scss",
+        "to": "../../assets/styles/components/forms/button/button.scss"
+      }
+    },
+    {
+      "host": "jnt-button-group-host",
+      "html": {
+        "from": "group/button-group.component.html",
+        "to": "group/button-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "group/button-group.component.scss",
+        "to": "../../assets/styles/components/forms/button/group/button-group.scss"
+      }
+    }
+  ]
+}
