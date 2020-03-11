@@ -1,0 +1,99 @@
+<jnt-container>
+  <h1 i18n="@@label.responsive">Responsive</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/dot"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=187%3A0"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <app-browser-preview preview>
+          <ng-template #document let-width="width" let-height="height">
+            <jnt-stack [type]="ui.layout.stack.type.horizontal">
+              <div *jntMaxFor="ui.breakpoint.mobile">
+                <p>Only for mobile!</p>
+              </div>
+
+              <div *jntMinFor="ui.breakpoint.tablet">
+                <p>Only min for tablet!</p>
+              </div>
+
+              <div *jntFor="ui.breakpoint.tablet">
+                <p>Only for tablet!</p>
+              </div>
+
+              <div *jntMinFor="ui.breakpoint.desktop">
+                <p>Min for desktop!</p>
+              </div>
+
+              <div *jntFor="ui.breakpoint.wide">
+                <p>Only for wide!</p>
+              </div>
+            </jnt-stack>
+          </ng-template>
+        </app-browser-preview>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'responsive-test', type: 'ResponsiveTestComponent'}"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="responsive-test.component.html">
+                <![CDATA[
+                <div *jntMaxFor="ui.breakpoint.mobile">
+                  <p>Only for mobile!</p>
+                </div>
+
+                <div *jntMinFor="ui.breakpoint.tablet">
+                  <p>Only min for tablet!</p>
+                </div>
+
+                <div *jntFor="ui.breakpoint.tablet">
+                  <p>Only for tablet!</p>
+                </div>
+
+                <div *jntMinFor="ui.breakpoint.desktop">
+                  <p>Min for desktop!</p>
+                </div>
+
+                <div *jntFor="ui.breakpoint.wide">
+                  <p>Only for wide!</p>
+                </div>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-responsive" [target]=""></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+</jnt-container>

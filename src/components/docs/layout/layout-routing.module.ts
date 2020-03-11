@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutTestComponent } from 'src/components/docs/layout/app/app-layout-test.component';
 import { BlockTestComponent } from 'src/components/docs/layout/block/block-test.component';
 import { GridTestComponent } from 'src/components/docs/layout/grid/grid-test.component';
+import { ResponsiveTestComponent } from 'src/components/docs/layout/responsive/responsive-test.component';
 import { SkeletonTestComponent } from 'src/components/docs/layout/skeleton/skeleton-test.component';
 import { SpinnerTestComponent } from 'src/components/docs/layout/spinner/spinner-test.component';
 import { StackTestComponent } from 'src/components/docs/layout/stack/stack-test.component';
@@ -22,6 +23,11 @@ export const routes: Routes = [
     path: 'block',
     component: BlockTestComponent,
     data: {breadcrumb: 'Block'}
+  },
+  {
+    path: 'responsive',
+    component: ResponsiveTestComponent,
+    data: {breadcrumb: 'Responsive'}
   },
   {
     path: 'spinner',
