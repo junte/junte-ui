@@ -45,6 +45,13 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Input()
   disabled = false;
 
+  @PropertyApi({
+    description: 'Select key field',
+    type: 'string',
+    default: 'key'
+  })
+  @Input() keyField: string;
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 
@@ -82,7 +89,14 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   selectOption(value: any) {
-    this.value = !isEqual(value, this.value) ? value : null;
+    let isSame = false;
+    if (!!this.keyField && !!this.value && !!value) {
+      isSame = this.value[this.keyField] === value[this.keyField];
+    } else {
+      isSame = isEqual(this.value, value);
+    }
+
+    this.value = !isSame ? value : null;
   }
 
 }
