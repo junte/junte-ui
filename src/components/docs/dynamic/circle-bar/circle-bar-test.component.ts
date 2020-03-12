@@ -23,9 +23,9 @@ export class CircleBarTestComponent implements OnInit {
   value1Control = this.fb.control(10);
   value2Control = this.fb.control(50);
   value3Control = this.fb.control(90);
-  color1Control = this.fb.control('#3949AB');
-  color2Control = this.fb.control('#FF6262');
-  color3Control = this.fb.control('#00CCB1');
+  color1Control = this.fb.control(this.ui.color.purple);
+  color2Control = this.fb.control(this.ui.color.red);
+  color3Control = this.fb.control(this.ui.color.green);
 
   builder = this.fb.group({
     position: this.positionControl,

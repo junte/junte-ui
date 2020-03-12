@@ -11,7 +11,8 @@ import {
   LinkModule,
   SelectModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  DotModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -31,7 +32,8 @@ import { LabelTestComponent } from './label-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    DotModule
   ],
   exports: [
     LabelTestComponent
