@@ -84,4 +84,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
 }

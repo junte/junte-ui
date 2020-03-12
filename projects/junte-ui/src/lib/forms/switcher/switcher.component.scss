@@ -49,6 +49,14 @@
         }
       }
     }
+    &[disabled='true'] {
+      cursor: default;
+      pointer-events: none;
+      [option] {
+        color: $control-disabled-label-color;
+        background-color: $control-disabled-background;
+      }
+    }
   }
 
   #{$context} [option] {

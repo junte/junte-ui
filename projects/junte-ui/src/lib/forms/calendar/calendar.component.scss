@@ -6,6 +6,15 @@
     display: block;
     margin: $gutter-normal;
     box-sizing: border-box;
+
+    &[disabled='true'] {
+      cursor: default;
+      pointer-events: none;
+      table {
+        color: $control-disabled-label-color;
+        background-color: $control-disabled-background;
+      }
+    }
   }
 
   table {
