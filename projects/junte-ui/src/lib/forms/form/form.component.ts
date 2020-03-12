@@ -12,10 +12,10 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormState } from './enums';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
+import { FormState } from './enums';
 
 @Component({
   selector: 'jnt-form',
@@ -69,7 +69,7 @@ export class FormComponent implements OnInit {
   controls: QueryList<FormControlComponent>;
 
   ngOnInit() {
-    this.form.statusChanges.subscribe(() => {
+    this.form.statusChanges.subscribe(status => {
       const controls = this.controls;
       controls.filter(c => !!c.name && !!c.messages.length)
         .forEach(c => {
@@ -83,21 +83,14 @@ export class FormComponent implements OnInit {
   @HostListener('submit')
   onSubmit() {
     if (!!this.form) {
-      this.check(this.form);
+      this.form.markAsDirty();
+      this.form.updateValueAndValidity();
 
       if (this.form.valid) {
         this.submitted.emit();
+        this.form.markAsPristine();
+        this.form.updateValueAndValidity();
       }
     }
   }
-
-  private check(form: any) {
-    for (const i in form.controls) {
-      const control = form.controls[i];
-      control.markAsDirty();
-      control.updateValueAndValidity();
-      this.check(control);
-    }
-  }
-
 }
