@@ -24,7 +24,7 @@
   <h3 i18n="@@label.compability">Compatibility</h3>
   <p>
     <jnt-link source="https://angular.io/guide/releases#support-policy-and-schedule"
-              target="_blank" title="Angular 8">
+              target="_blank" title="Angular 9">
     </jnt-link>
     or higher 🚀
   </p>
@@ -94,29 +94,31 @@ export class AppModule {
 <![CDATA[
 {
   ...
-  "assets": [
-    {
-    "glob": "**/*",
-    "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
-    "output": "./assets/fonts/icons/"
-    },
-    {
+  "options": [
+    ...
+    "assets": [
+      {
       "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/icons/animated/",
-      "output": "./assets/icons/animated/"
-    },
-    {
-      "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/icons/svg/",
-      "output": "./assets/icons/svg/"
-    }
-  ],
-  "styles": [
-    "src/styles.scss",
-    "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
-    "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
-  ]
-  ...
+      "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
+      "output": "./assets/fonts/icons/"
+      },
+      {
+        "glob": "**/*",
+        "input": "node_modules/junte-ui/lib/assets/icons/animated/",
+        "output": "./assets/icons/animated/"
+      },
+      {
+        "glob": "**/*",
+        "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+        "output": "./assets/icons/svg/"
+      }
+    ],
+    "styles": [
+      "src/styles.scss",
+      "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
+      "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
+    ]
+    ...
 }
 ]]>
     </pre>
@@ -181,11 +183,11 @@ export class YourComponent {
       <jnt-button [scheme]="ui.scheme.primary"
                   [size]="ui.size.small"
                   [outline]="ui.outline.ghost"
-                  [icon]="ui.icons.plus"
-                  [badge]="5"
+                  [icon]="ui.icons.add"
                   [loading]="true"
                   [disabled]="false"
                   text="Button">
+        <jnt-badge [value]="5"></jnt-badge>
       </jnt-button>
       ]]>
     </pre>

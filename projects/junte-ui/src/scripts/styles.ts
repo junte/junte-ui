@@ -7,8 +7,8 @@ import * as path from 'path';
 import 'reflect-metadata';
 
 const argument = require('minimist')(process.argv.slice(2));
-const styleFiles = '../lib/components/**/**/*.encapsulated.scss';
-const buildFiles = '../lib/components/**/**/build.json';
+const styleFiles = '../lib/**/*.encapsulated.scss';
+const buildFiles = '../lib/**/build.json';
 
 class Component {
   constructor(public section: string, public name: string) {
