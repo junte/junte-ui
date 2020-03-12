@@ -61,12 +61,4 @@ export class RadioComponent {
     type: 'string'
   })
   @Input() value: string;
-
-  constructor(private element: ElementRef) {
-  }
-
-  getElement() {
-    return this.element.nativeElement;
-  }
-
 }

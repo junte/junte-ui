@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Orientation } from '../../core/enums/orientation';
@@ -32,10 +32,18 @@ export class SwitcherComponent implements ControlValueAccessor {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-
   @Input() set type(type: Orientation) {
     this._type = type || Orientation.horizontal;
   }
+
+  @PropertyApi({
+    description: 'Set disabled state',
+    type: 'boolean',
+    default: 'false',
+  })
+  @HostBinding('attr.disabled')
+  @Input()
+  disabled = false;
 
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
@@ -67,6 +75,10 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 
   selectOption(value: any) {

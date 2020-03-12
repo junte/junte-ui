@@ -75,6 +75,15 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   updated = new EventEmitter<Period>();
 
   @PropertyApi({
+    description: 'Set disabled state',
+    type: 'boolean',
+    default: 'false',
+  })
+  @HostBinding('attr.disabled')
+  @Input()
+  disabled = false;
+
+  @PropertyApi({
     description: 'Set current year',
     type: 'number'
   })
@@ -134,6 +143,10 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   registerOnTouched(fn): void {
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 
   private update() {
