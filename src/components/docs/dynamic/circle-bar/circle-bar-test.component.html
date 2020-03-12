@@ -43,52 +43,59 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder" builder>
+              <jnt-form-label i18n="@@label.first_bar_indicator">First bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color1"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
 
-              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
-                <jnt-form-item>
-                  <jnt-form-label for="value1"
-                                  i18n="@@label.first_value">First value</jnt-form-label>
-                  <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100"
-                             [min]="0"></jnt-input>
-                </jnt-form-item>
+              <jnt-form-label i18n="@@label.second_bar_indicator">Second bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color2"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
 
-                <jnt-form-item>
-                  <jnt-form-label for="color1"
-                                  i18n="@@label.first_color">First color</jnt-form-label>
-                  <input formControlName="color1" type="color">
-                </jnt-form-item>
-              </jnt-stack>
-
-              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
-                <jnt-form-item>
-                  <jnt-form-label for="value2"
-                                  i18n="@@label.second_value">Second value</jnt-form-label>
-                  <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100"
-                             [min]="0"></jnt-input>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-label for="color2"
-                                  i18n="@@label.second_value">Second color</jnt-form-label>
-                  <input formControlName="color2" type="color">
-                </jnt-form-item>
-              </jnt-stack>
-
-
-              <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
-                <jnt-form-item>
-                  <jnt-form-label for="value3"
-                                  i18n="@@label.third_value">Third value</jnt-form-label>
-                  <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100"
-                             [min]="0"></jnt-input>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-label for="color3"
-                                  i18n="@@label.third_color">Third color</jnt-form-label>
-                  <input formControlName="color3" type="color">
-                </jnt-form-item>
-              </jnt-stack>
+              <jnt-form-label i18n="@@label.third_bar_indicator">Third bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color3"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
             </jnt-form>
           </jnt-col>
         </jnt-row>
