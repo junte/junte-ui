@@ -38,11 +38,11 @@ export class Gulpfile {
 
   @Task()
   componentsStyle() {
-    return gulp.src(['../lib/assets/styles/components.scss'])
+    return gulp.src(['../lib/assets/styles/all.scss'])
       .pipe(map((file, cb) => {
         const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib');
         let contents = '';
-        this.components.forEach(component => contents += `@import './components/${component.section}/${component.name}';\n`);
+        this.components.forEach(component => contents += `@import './${component.section}/${component.name}';\n`);
         fs.writeFileSync(filePath, contents);
         return cb(null, file);
       }));

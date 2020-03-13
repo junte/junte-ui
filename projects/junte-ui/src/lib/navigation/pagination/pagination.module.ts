@@ -5,7 +5,6 @@ import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SelectModule } from '../../forms/select/select.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { PageSizeComponent } from './page-size/page-size.component';
 import { PaginationComponent } from './pagination.component';
 
 @NgModule({
@@ -18,15 +17,13 @@ import { PaginationComponent } from './pagination.component';
     SelectModule
   ],
   declarations: [
-    PaginationComponent,
-    PageSizeComponent
+    PaginationComponent
   ],
   entryComponents: [
     PaginationComponent
   ],
   exports: [
-    PaginationComponent,
-    PageSizeComponent
+    PaginationComponent
   ]
 })
 export class PaginationModule {
