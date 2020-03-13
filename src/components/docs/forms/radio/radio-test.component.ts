@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, RadioComponent, TabComponent, UI } from 'junte-ui';
+import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
-import { Hero } from '../../../../enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
@@ -39,8 +39,8 @@ export class RadioTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+    this.disableControl.valueChanges.subscribe(disabled =>
+      disabled ? this.heroControl.disable() : this.heroControl.enable());
   }
 
   submit() {

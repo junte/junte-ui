@@ -17,9 +17,13 @@ import { CheckboxComponent } from '../checkbox.component';
 
 export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
 
+  private disabled = false;
+  private selectedItems: any[];
+
   ui = UI;
 
-  @HostBinding('attr.host') readonly host = 'jnt-checkbox-group-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-checkbox-group-host';
 
   @ViewChildren(CheckboxComponent)
   items: QueryList<CheckboxComponent>;
@@ -27,18 +31,21 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   @ContentChildren(CheckboxComponent, {descendants: true})
   checkboxes: QueryList<CheckboxComponent>;
 
-  private _selectedItems: any[];
-
-  set selectedItems(value: any) {
-    this._selectedItems = value;
-  }
-
-  get selectedItems() {
-    return this._selectedItems;
-  }
-
   ngAfterViewInit() {
-    this.updateItems();
+    this.updateChecked();
+    this.updateDisabled();
+  }
+
+  private updateChecked() {
+    if (!!this.items) {
+      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
+    }
+  }
+
+  private updateDisabled() {
+    if (!!this.items) {
+      this.items.forEach(item => item.disabled = this.disabled);
+    }
   }
 
   select(value) {
@@ -51,19 +58,13 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
     this.onChange(this.selectedItems);
   }
 
-  updateItems() {
-    if (!!this.items) {
-      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
-    }
-  }
-
   writeValue(value: any) {
     if (!!value) {
       this.selectedItems = Array.isArray(value) ? value : [value];
     } else {
       this.selectedItems = [];
     }
-    this.updateItems();
+    this.updateChecked();
   }
 
   onChange(value: any) {
@@ -81,6 +82,7 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.items.forEach(item => item.disabled = isDisabled);
+    this.disabled = isDisabled;
+    this.updateDisabled();
   }
 }
