@@ -35,7 +35,7 @@
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight>
     <pre>
 <![CDATA[
 npm install junte-ui --save
@@ -89,7 +89,7 @@ export class AppModule {
     context!</p>
   <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.json">
     <pre>
 <![CDATA[
 {
@@ -124,9 +124,9 @@ export class AppModule {
     </pre>
   </app-code-highlight>
 
-  <p>Import the style files of the components you need into the global style file <code>style.scss</code></p>
+  <p>Import the style files of the components you need into the global style file <code>styles.scss</code></p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
 @import "~junte-ui/lib/components/button/button.encapsulated";
@@ -139,7 +139,7 @@ export class AppModule {
 
   <p>If you need styles of all the components import the file <code>components.scss</code></p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
 @import "~junte-ui/lib/assets/styles/components";
@@ -148,7 +148,7 @@ export class AppModule {
   </app-code-highlight>
   <p>If you need common styles import the file <code>common.scss</code></p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
 @import "~junte-ui/lib/assets/styles/common";
@@ -184,7 +184,6 @@ export class YourComponent {
                   [size]="ui.size.small"
                   [outline]="ui.outline.ghost"
                   [icon]="ui.icons.add"
-                  [loading]="true"
                   [disabled]="false"
                   text="Button">
         <jnt-badge [value]="5"></jnt-badge>
@@ -193,10 +192,79 @@ export class YourComponent {
     </pre>
   </app-code-highlight>
 
+  <h3 i18n="@@label.strong_html">Import styles</h3>
+    <p>We use mixins for styles, so you need to call it for component you need into the global style file <code>styles.scss</code></p>
+
+    <app-code-highlight [language]="languages.css">
+      <pre>
+      <![CDATA[
+// layout
+@include stack();
+@include grid-container();
+@include grid-col();
+@include grid-row();
+@include block();
+@include skeleton();
+@include spinner();
+
+@include app-layout();
+@include app-aside();
+@include app-header();
+@include app-header-actions();
+@include app-header-action();
+@include app-header-userbar();
+@include app-sub-header();
+@include app-body();
+@include app-content();
+@include app-footer();
+
+// navigation
+@include link();
+@include menu();
+@include breadcrumbs();
+@include tabs();
+@include pagination();
+@include dropdown();
+@include anchor();
+
+// elements
+@include label();
+@include badge();
+@include icon();
+@include avatar();
+@include avatars-list();
+@include avatars-group();
+@include dot();
+
+// forms
+@include button();
+@include calendar();
+@include checkbox();
+@include checkbox-group();
+@include radio();
+@include date-picker();
+@include form();
+@include form-label();
+@include form-message();
+@include input();
+@include select();
+@include switch();
+@include switcher();
+
+// collections
+@include accordion();
+@include gantt();
+@include table();
+        ]]>
+    </pre>
+  </app-code-highlight>
+
+
+
   <h3 i18n="@@label.responsive_design">Responsive Design</h3>
 
   <p>Junte UI has responsive design support.
-    <jnt-link [icon]="ui.icons.link" [source]="['/documentation/grid']" title="Grid"></jnt-link>
+    <jnt-link [icon]="ui.icons.link" [source]="['/docs/grid']" title="Grid"></jnt-link>
     using rows & columns.
   </p>
 
