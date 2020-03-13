@@ -1,9 +1,10 @@
 <jnt-stack [gutter]="ui.gutter.small">
   <jnt-checkbox *ngFor="let item of checkboxes"
+                #checkbox
                 [size]="item.size"
                 [label]="item.label"
                 [value]="item.value"
                 [disabled]="item.disabled"
-                (click)="!item.disabled ? select(item.value) : null">
+                (click)="!checkbox.disabled ? select(item.value) : null">
   </jnt-checkbox>
 </jnt-stack>
