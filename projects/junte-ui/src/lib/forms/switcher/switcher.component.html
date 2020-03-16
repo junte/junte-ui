@@ -8,9 +8,10 @@
   <jnt-icon *ngIf="icon"
             [icon]="icon"></jnt-icon>
   <jnt-stack [type]="ui.layout.stack.type.horizontal"
-             [justify]="ui.flex.justify.center"
+             [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center"
-             [gutter]="ui.gutter.small">
+             [gutter]="ui.gutter.small"
+             title>
     <div label>{{label}}</div>
     <jnt-badge *ngIf="badge"
                [position]="ui.position.inline"
