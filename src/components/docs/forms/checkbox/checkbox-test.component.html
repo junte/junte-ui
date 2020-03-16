@@ -182,7 +182,8 @@
                 </jnt-form>
                 ]]>
               </app-code-highlight>
-              <app-code-highlight file="radio-test.component.ts" lang="js">
+              <app-code-highlight file="checkbox-test.component.ts"
+                                  [language]="language.typescript">
                 <pre><![CDATA[
                   import { Component } from '@angular/core';
                   import { FormBuilder, FormControl } from '@angular/forms';
@@ -195,8 +196,8 @@
                   })
 
                   export class CheckboxTestComponent {
-                    ui = UI;
 
+                    ui = UI;
                     heroesControl = new FormControl([]);
 
                     form = this.fb.group({

@@ -14,7 +14,7 @@
              [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
-          <jnt-col [tablet]="8">
+          <jnt-col [tablet]="12">
             <app-browser-preview>
               <ng-template #document>
                 <jnt-stack>
@@ -32,25 +32,6 @@
               </ng-template>
             </app-browser-preview>
           </jnt-col>
-          <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
-
-                <jnt-form-item>
-                  <jnt-form-label for="format"
-                                  i18n="@@label.format">Format
-                  </jnt-form-label>
-                  <jnt-switcher formControlName="format">
-                    <jnt-switcher-option label="dd.MM.yyyy" [value]="dateFormat.fullDate"></jnt-switcher-option>
-                    <jnt-switcher-option label="dd.MM" [value]="dateFormat.shortDate"></jnt-switcher-option>
-                    <jnt-switcher-option label="dd.MM.yy" [value]="dateFormat.longDate"></jnt-switcher-option>
-                    <jnt-switcher-option label="dd MMMM" [value]="dateFormat.fullMonth"></jnt-switcher-option>
-                  </jnt-switcher>
-                </jnt-form-item>
-
-              </jnt-stack>
-            </jnt-form>
-          </jnt-col>
         </jnt-row>
       </ng-template>
     </jnt-tab>
@@ -59,17 +40,28 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'date-picker-test', type: 'DatePickerTestComponent'}"
-          scss="forms/date-picker"></app-how-to-use>
-        <app-code-highlight file="date-picker-test.component.html">
-          <![CDATA[
-          <jnt-date-picker
-            ]]>
-            <![CDATA[>
-          </jnt-date-picker>
-          ]]>
-        </app-code-highlight>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'date-picker-test', type: 'DatePickerTestComponent'}"
+                scss="forms/date-picker">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Date Picker component template"
+                                 i18n-title="@@label.date_picker_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="date-picker-test.component.html">
+                <![CDATA[
+                <jnt-date-picker>
+                </jnt-date-picker>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

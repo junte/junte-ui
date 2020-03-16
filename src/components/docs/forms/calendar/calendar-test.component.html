@@ -132,59 +132,72 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'calendar-test', type: 'CalendarTestComponent'}"
-          scss="forms/calendar"></app-how-to-use>
-        <app-code-highlight file="calendar-test.template.html">
-          <![CDATA[
-          <jnt-calendar
-            ]]>
-            <ng-container *ngIf="yearControl.value">
-              <![CDATA[
-              [year]="]]>{{yearControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="monthControl.value">
-              <![CDATA[
-              [month]="]]>{{monthControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <ng-container *ngIf="metricsControl.value">
-              <![CDATA[
-              <ng-template #calendarMetricTemplate let-metric="metric" let-date="date">
-                <ng-container [ngSwitch]="metric">
-                  <ng-container *ngSwitchCase="0">
-                    40m
-                  </ng-container>
-                  <ng-container *ngSwitchCase="1">
-                    10km
-                  </ng-container>
-                  <ng-container *ngSwitchCase="2">
-                    3000
-                  </ng-container>
-                </ng-container>
-              </ng-template>
-              <jnt-week-metric title="Time"
-                               i18n-title="@@label.time"></jnt-week-metric>
-              <jnt-week-metric title="Distance"
-                               i18n-title="@@label.distance"></jnt-week-metric>
-              <jnt-week-metric title="Сalories"
-                               i18n-title="@@label.calories"></jnt-week-metric>
-              ]]>
-            </ng-container>
-            <![CDATA[
-          </jnt-calendar>
-          ]]>
-          <ng-container *ngIf="customDayControl.value">
-            <![CDATA[
-            <ng-template #calendarDayTemplate let-date="date">]]>
-              <![CDATA[
-              <div day>]]>{{<![CDATA[date | dfnsGetDate]]>}}<![CDATA[</div>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'calendar-test', type: 'CalendarTestComponent'}"
+                scss="forms/calendar">
+              </app-how-to-use>
             </ng-template>
-            ]]>
-          </ng-container>
-          <![CDATA[
-          You choose: ]]>{{<![CDATA[flightDateControl.value]]>}}
-        </app-code-highlight>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Calendar component template"
+                                 i18n-title="@@label.select_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="calendar-test.template.html">
+                <![CDATA[
+                <jnt-calendar
+                  ]]>
+                  <ng-container *ngIf="yearControl.value">
+                    <![CDATA[
+                    [year]="]]>{{yearControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="monthControl.value">
+                    <![CDATA[
+                    [month]="]]>{{monthControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="metricsControl.value">
+                    <![CDATA[
+                    <ng-template #calendarMetricTemplate let-metric="metric" let-date="date">
+                      <ng-container [ngSwitch]="metric">
+                        <ng-container *ngSwitchCase="0">
+                          40m
+                        </ng-container>
+                        <ng-container *ngSwitchCase="1">
+                          10km
+                        </ng-container>
+                        <ng-container *ngSwitchCase="2">
+                          3000
+                        </ng-container>
+                      </ng-container>
+                    </ng-template>
+                    <jnt-week-metric title="Time"
+                                     i18n-title="@@label.time"></jnt-week-metric>
+                    <jnt-week-metric title="Distance"
+                                     i18n-title="@@label.distance"></jnt-week-metric>
+                    <jnt-week-metric title="Сalories"
+                                     i18n-title="@@label.calories"></jnt-week-metric>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-calendar>
+                ]]>
+                <ng-container *ngIf="customDayControl.value">
+                  <![CDATA[
+                  <ng-template #calendarDayTemplate let-date="date">]]>
+                    <![CDATA[
+                    <div day>]]>{{<![CDATA[date | dfnsGetDate]]>}}<![CDATA[</div>
+                  </ng-template>
+                  ]]>
+                </ng-container>
+                <![CDATA[
+                You choose: ]]>{{<![CDATA[flightDateControl.value]]>}}
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

@@ -21,7 +21,7 @@
       <ng-template #tabContentTemplate>
         <jnt-row>
 
-          <jnt-col [desktop]="8">
+          <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
                 <jnt-block #block title="Your hero"
@@ -149,7 +149,7 @@
             </app-browser-preview>
           </jnt-col>
 
-          <jnt-col [desktop]="4">
+          <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -215,106 +215,114 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
-          scss="forms/switcher"></app-how-to-use>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
+                scss="forms/switcher"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="switcher-test.component.html">
+                <![CDATA[
+                <jnt-switcher
+                  ]]>
+                  <ng-container *ngIf="typeControl.value">
+                    <![CDATA[
+                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                  <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.dashboard"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="dotControl.value">
+                      <![CDATA[
+                      <jnt-dot></jnt-dot>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-switcher-option>
+                  ]]>
+                  <![CDATA[
+                  <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.dashboard"]]>
+                    </ng-container>
+                    <![CDATA[>
+                    ]]>
+                    <ng-container *ngIf="dotControl.value">
+                      <![CDATA[
+                      <jnt-dot></jnt-dot>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-switcher-option>
+                  ]]>
+                  <![CDATA[
+                  <jnt-switcher-option label="Bugatti" [value]="cars.bugatti" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.dashboard"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="dotControl.value">
+                      <![CDATA[
+                      <jnt-dot></jnt-dot>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-switcher-option>
+                  ]]>
+                  <![CDATA[
+                  <jnt-switcher-option label="Ferrari" [value]="cars.ferrari" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.dashboard"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="dotControl.value">
+                      <![CDATA[
+                      <jnt-dot></jnt-dot>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="badgeControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-switcher-option>
+                </jnt-switcher>
+                ]]>
+              </app-code-highlight>
 
-        <app-code-highlight file="switcher-test.component.html">
-          <![CDATA[
-          <jnt-switcher
-            ]]>
-            <ng-container *ngIf="typeControl.value">
-              <![CDATA[
-              [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-            <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>
-              <ng-container *ngIf="iconControl.value">
-                <![CDATA[
-                [icon]="ui.icons.dashboard"]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="dotControl.value">
-                <![CDATA[
-                <jnt-dot></jnt-dot>
-                ]]>
-              </ng-container>
-              <ng-container *ngIf="badgeControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-switcher-option>
-            ]]>
-            <![CDATA[
-            <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin" ]]>
-              <ng-container *ngIf="iconControl.value">
-                <![CDATA[
-                [icon]="ui.icons.dashboard"]]>
-              </ng-container>
-              <![CDATA[>
-              ]]>
-              <ng-container *ngIf="dotControl.value">
-                <![CDATA[
-                <jnt-dot></jnt-dot>
-                ]]>
-              </ng-container>
-              <ng-container *ngIf="badgeControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-switcher-option>
-            ]]>
-            <![CDATA[
-            <jnt-switcher-option label="Bugatti" [value]="cars.bugatti" ]]>
-              <ng-container *ngIf="iconControl.value">
-                <![CDATA[
-                [icon]="ui.icons.dashboard"]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="dotControl.value">
-                <![CDATA[
-                <jnt-dot></jnt-dot>
-                ]]>
-              </ng-container>
-              <ng-container *ngIf="badgeControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-switcher-option>
-            ]]>
-            <![CDATA[
-            <jnt-switcher-option label="Ferrari" [value]="cars.ferrari" ]]>
-              <ng-container *ngIf="iconControl.value">
-                <![CDATA[
-                [icon]="ui.icons.dashboard"]]>
-              </ng-container>
-              <![CDATA[>]]>
-              <ng-container *ngIf="dotControl.value">
-                <![CDATA[
-                <jnt-dot></jnt-dot>
-                ]]>
-              </ng-container>
-              <ng-container *ngIf="badgeControl.value">
-                <![CDATA[
-                <jnt-badge [value]="5"></jnt-badge>
-                ]]>
-              </ng-container>
-              <![CDATA[
-            </jnt-switcher-option>
-          </jnt-switcher>
-          ]]>
-        </app-code-highlight>
-
-        <app-code-highlight file="switcher-test.component.ts"
-                            [language]="language.typescript">
-          <!-- @formatter:off -->
-            <![CDATA[
+              <app-code-highlight file="switcher-test.component.ts"
+                                  [language]="language.typescript">
+                <!-- @formatter:off -->
+<![CDATA[
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
@@ -331,7 +339,8 @@ export enum Cars {
   templateUrl: './switcher-test.component.html',
   styleUrls: ['./switcher-test.component.scss']
 })
-
+                ]]>
+                <![CDATA[
 export class SwitcherTestComponent {
 
   ui = UI;
@@ -344,9 +353,12 @@ export class SwitcherTestComponent {
   constructor(private fb: FormBuilder) {
   }
 }
-          ]]>
-          <!-- @formatter:on -->
-        </app-code-highlight>
+]]>
+              <!-- @formatter:on -->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 
