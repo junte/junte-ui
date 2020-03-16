@@ -92,11 +92,14 @@
     }
   }
 
-  #{$context} [label] {
-    flex: 0 1 auto;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: map-get($vars, height);
+  #{$context} [title] {
+    flex: 1;
+    [label] {
+      flex: 0 1 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      line-height: map-get($vars, height);
+    }
   }
 
 }
