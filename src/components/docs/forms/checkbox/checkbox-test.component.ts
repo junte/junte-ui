@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, CheckboxComponent, TabComponent, UI } from 'junte-ui';
+import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -13,6 +14,7 @@ export class CheckboxTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   hero = Hero;
   types = {checkbox: CheckboxComponent};
 

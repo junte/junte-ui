@@ -120,38 +120,49 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'switch-test', type: 'SwitchTestComponent'}"
-          scss="forms/switch"></app-how-to-use>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'switch-test', type: 'SwitchTestComponent'}"
+                scss="forms/switch"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="switch-test.component.html">
+                <![CDATA[
+                <jnt-switch
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
 
-        <app-code-highlight file="switch-test.component.html">
-          <![CDATA[
-          <jnt-switch
-            ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
+                  <ng-container *ngIf="labelControl.value">
+                    <![CDATA[
+                    label="Turn notifications on"]]>
+                  </ng-container>
 
-            <ng-container *ngIf="labelControl.value">
-              <![CDATA[
-              label="Turn notifications on"]]>
-            </ng-container>
+                  <ng-container *ngIf="iconsControl.value">
+                    <![CDATA[
+                    [icons]="{on: ui.icons.check, off: ui.icons.close}"]]>
+                  </ng-container>
 
-            <ng-container *ngIf="iconsControl.value">
-              <![CDATA[
-              [icons]="{on: ui.icons.check, off: ui.icons.close}"]]>
-            </ng-container>
+                  <ng-container *ngIf="tagsControl.value">
+                    <![CDATA[
+                    [tags]="{on: 'On', off: 'Off'}"]]>
+                  </ng-container>
 
-            <ng-container *ngIf="tagsControl.value">
-              <![CDATA[
-              [tags]="{on: 'On', off: 'Off'}"]]>
-            </ng-container>
-
-            <![CDATA[>
-          </jnt-switch>
-          ]]>
-        </app-code-highlight>
+                  <![CDATA[>
+                </jnt-switch>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

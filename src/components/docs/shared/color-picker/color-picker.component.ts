@@ -1,6 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../../../../projects/junte-ui/src/lib/core/enums/ui';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'jnt-color-picker',
