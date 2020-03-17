@@ -32,7 +32,7 @@
                                 [size]="ui.size.large"></jnt-icon>
                     </div>
                     <jnt-badge [value]="valueControl.value"
-                               [text]="!valueControl.value ? '100$' : null"
+                               [text]="textControl.value ? '100$' : null"
                                [overflow]="overflowControl.value ? overflowControl.value : null"
                                [position]="positionControl.value"
                                [color]="colorControl.value">
@@ -41,7 +41,7 @@
                 </ng-container>
                 <ng-template #positionTemplate>
                   <jnt-badge [value]="valueControl.value"
-                             [text]="!valueControl.value ? '100$' : null"
+                             [text]="textControl.value ? '100$' : null"
                              [overflow]="overflowControl.value ? overflowControl.value : null"
                              [position]="positionControl.value"
                              [color]="colorControl.value">
@@ -97,6 +97,12 @@
                     <jnt-color-picker formControlName="color"></jnt-color-picker>
                   </jnt-form-control>
                 </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-checkbox formControlName="text"
+                                label="Text"
+                                i18n-label="@@label.text"></jnt-checkbox>
+                </jnt-form-item>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -139,6 +145,10 @@
                   <ng-container *ngIf="colorControl.value">
                     <![CDATA[
                     [color]="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="textControl.value">
+                    <![CDATA[
+                    text="100$"]]>
                   </ng-container>
                   <![CDATA[>
                 </jnt-badge>

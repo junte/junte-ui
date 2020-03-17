@@ -26,7 +26,7 @@ export class IconTestComponent implements OnInit {
   });
   sizeControl = this.fb.control(UI.size.large);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     icon: this.iconControl,
     size: this.sizeControl,
   });
@@ -38,7 +38,7 @@ export class IconTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 
