@@ -21,9 +21,8 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.theme') theme = Theme.light;
 
   ui = UI;
-  themes = Theme;
   themeControl = new FormControl();
-  form = this.fb.group({
+  switcher = this.fb.group({
     theme: this.themeControl
   });
 
