@@ -85,28 +85,40 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'label-test', type: 'LabelTestComponent'}"
-          scss="elements/label"></app-how-to-use>
-        <app-code-highlight file="label-test.template.html">
-          <![CDATA[
-          <jnt-label label="Doing"  ]]>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.animated.runningMan"]]>
-            </ng-container>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="colorControl.value">
-              <![CDATA[
-              color="]]>{{colorControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-label>
-          ]]>
-        </app-code-highlight>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'label-test', type: 'LabelTestComponent'}"
+                scss="elements/label"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="label-test.template.html">
+                <![CDATA[
+                <jnt-label label="Doing"  ]]>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.animated.runningMan"]]>
+                  </ng-container>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="colorControl.value">
+                    <![CDATA[
+                    color="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-label>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 
