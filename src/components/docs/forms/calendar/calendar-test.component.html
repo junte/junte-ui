@@ -1,0 +1,211 @@
+<jnt-container>
+  <h1 i18n="@@label.calendar">Calendar</h1>
+
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/calendar"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1824%3A3416"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-block title="Flight date"
+                           [width]="ui.width.fluid">
+                  <jnt-stack [align]="ui.flex.align.stretch">
+                    <jnt-form [formGroup]="form">
+                      <jnt-calendar formControlName="flightDate"
+                                    (updated)="period = $event"
+                                    [year]="yearControl.value"
+                                    [month]="monthControl.value">
+                        <ng-container *ngIf="metricsControl.value">
+                          <ng-template #calendarMetricTemplate
+                                       let-metric="metric"
+                                       let-date="date">
+                            <ng-container [ngSwitch]="metric">
+                              <ng-container *ngSwitchCase="0">40m</ng-container>
+                              <ng-container *ngSwitchCase="1">10km</ng-container>
+                              <ng-container *ngSwitchCase="2">3000</ng-container>
+                            </ng-container>
+                          </ng-template>
+                          <jnt-week-metric title="Min"
+                                           i18n-title="@@label.min_cost"></jnt-week-metric>
+                          <jnt-week-metric title="Avg"
+                                           i18n-title="@@label.avg_cost"></jnt-week-metric>
+                          <jnt-week-metric title="Max"
+                                           i18n-title="@@label.max_cost"></jnt-week-metric>
+                        </ng-container>
+                        <ng-template *ngIf="customDayControl.value" #calendarDayTemplate let-date="date">
+                          <div day>{{date | dfnsGetDate}}</div>
+                        </ng-template>
+                      </jnt-calendar>
+                    </jnt-form>
+
+                    <jnt-date-period [start]="period?.start"
+                                     [end]="period?.end"
+                                     [current]="flightDateControl.value"></jnt-date-period>
+                  </jnt-stack>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="year"
+                                  i18n="@@label.year">Year
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-switcher formControlName="year">
+                      <jnt-switcher-option label="2020" [value]="2020"></jnt-switcher-option>
+                      <jnt-switcher-option label="2010" [value]="2010"></jnt-switcher-option>
+                      <jnt-switcher-option label="1980" [value]="1980"></jnt-switcher-option>
+                      <jnt-switcher-option label="2005" [value]="2005"></jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="month"
+                                  i18n="@@label.month">Month
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-switcher formControlName="month">
+                      <jnt-switcher-option label="March" [value]="month.march"></jnt-switcher-option>
+                      <jnt-switcher-option label="May" [value]="month.may"></jnt-switcher-option>
+                      <jnt-switcher-option label="July" [value]="month.july"></jnt-switcher-option>
+                      <jnt-switcher-option label="April" [value]="month.april"></jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="5">
+                      <jnt-checkbox formControlName="metrics"
+                                    label="Metrics"
+                                    i18n-label="@@label.metrics"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="5">
+                      <jnt-checkbox formControlName="customDay"
+                                    label="Custom day"
+                                    i18n-label="@@label.custom_day"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.state">State
+                  </jnt-form-label>
+                  <jnt-checkbox formControlName="disabled"
+                                label="Disabled"
+                                i18n-label="@@label.disabled"></jnt-checkbox>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'calendar-test', type: 'CalendarTestComponent'}"
+                scss="forms/calendar">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Calendar component template"
+                                 i18n-title="@@label.select_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="calendar-test.template.html">
+                <![CDATA[
+                <jnt-calendar
+                  ]]>
+                  <ng-container *ngIf="yearControl.value">
+                    <![CDATA[
+                    [year]="]]>{{yearControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="monthControl.value">
+                    <![CDATA[
+                    [month]="]]>{{monthControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="metricsControl.value">
+                    <![CDATA[
+                    <ng-template #calendarMetricTemplate let-metric="metric" let-date="date">
+                      <ng-container [ngSwitch]="metric">
+                        <ng-container *ngSwitchCase="0">
+                          40m
+                        </ng-container>
+                        <ng-container *ngSwitchCase="1">
+                          10km
+                        </ng-container>
+                        <ng-container *ngSwitchCase="2">
+                          3000
+                        </ng-container>
+                      </ng-container>
+                    </ng-template>
+                    <jnt-week-metric title="Time"
+                                     i18n-title="@@label.time"></jnt-week-metric>
+                    <jnt-week-metric title="Distance"
+                                     i18n-title="@@label.distance"></jnt-week-metric>
+                    <jnt-week-metric title="Сalories"
+                                     i18n-title="@@label.calories"></jnt-week-metric>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-calendar>
+                ]]>
+                <ng-container *ngIf="customDayControl.value">
+                  <![CDATA[
+                  <ng-template #calendarDayTemplate let-date="date">]]>
+                    <![CDATA[
+                    <div day>]]>{{<![CDATA[date | dfnsGetDate]]>}}<![CDATA[</div>
+                  </ng-template>
+                  ]]>
+                </ng-container>
+                <![CDATA[
+                You choose: ]]>{{<![CDATA[flightDateControl.value]]>}}
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-calendar"
+                           [target]="types.calendar"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>

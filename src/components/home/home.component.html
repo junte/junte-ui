@@ -7,45 +7,47 @@
                      [align]="ui.flex.align.center">
             <jnt-stack [type]="ui.layout.stack.type.horizontal"
                        [justify]="ui.flex.justify.center">
-              <jnt-menu>
+              <jnt-menu menu>
                 <jnt-menu-item
+                  [icon]="localUi.icons.menu.documentation"
                   [title]="'Documentation'"
                   [link]="['docs']">
                 </jnt-menu-item>
                 <jnt-menu-item
+                  [icon]="localUi.icons.menu.contacts"
                   [title]="'Team'"
-                  [link]="['contacts']">
+                  [link]="['team']">
                 </jnt-menu-item>
                 <jnt-menu-item
                   [icon]="ui.icons.gitlab"
-                  [title]="'GitLab'"
-                  [link]="['documentation']">
+                  [title]="'Source Code'"
+                  link="https://gitlab.com/junte/junte-ui">
                 </jnt-menu-item>
                 <jnt-menu-item
                   [icon]="ui.icons.figma"
-                  [title]="'Firma'"
-                  [link]="['documentation']">
+                  [title]="'Design System'"
+                  link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
                 </jnt-menu-item>
               </jnt-menu>
             </jnt-stack>
             <img height="100" src="assets/images/logo-light.svg" alt="logo">
             <h1>Quality Angular<br>UI components kit</h1>
-            <jnt-stack [gutter]="ui.gutter.big"
+            <jnt-stack [gutter]="ui.gutter.large"
                        [align]="ui.flex.align.center">
               <p>Made with love for making beautiful WEB apps!</p>
               <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                         [gutter]="ui.gutter.big"
+                         [gutter]="ui.gutter.large"
                          [justify]="ui.flex.justify.center">
                 <jnt-label opened label="Opened"
-                           [icon]="ui.icons.home"></jnt-label>
+                           [icon]="ui.icons.unlock"></jnt-label>
                 <jnt-label native label="Native"
-                           [icon]="ui.icons.home"></jnt-label>
-                <jnt-label i18n label="Multilingual"
-                           [icon]="ui.icons.home"></jnt-label>
+                           [icon]="ui.icons.skull"></jnt-label>
+                <jnt-label multilingual label="Multilingual"
+                           [icon]="ui.icons.usa"></jnt-label>
               </jnt-stack>
 
-              <jnt-link title="Tutorial here"
-                        [icon]="ui.icons.link"
+              <jnt-link link title="Tutorial here"
+                        [icon]="ui.icons.right"
                         [outline]="ui.outline.fill"
                         [source]="['docs']"></jnt-link>
             </jnt-stack>

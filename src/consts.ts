@@ -32,4 +32,3 @@ switch (CURRENT_LANGUAGE) {
   default:
   // en
 }
-

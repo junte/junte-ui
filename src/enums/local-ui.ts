@@ -13,6 +13,12 @@ export class LocalUI {
     skills: 'skills:font:junte-ui-test-default',
     general: 'general:font:junte-ui-test-default',
 
+    heroes: {
+      spiderman: 'spiderman:svg:local',
+      ironman: 'ironman:svg:local',
+      capitan: 'capitan:svg:local'
+    },
+
     menu: {
       documentation: 'documentation:font:junte-ui-test-default',
       contacts: 'contacts:font:junte-ui-test-default',

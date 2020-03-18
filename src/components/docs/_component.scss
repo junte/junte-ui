@@ -1,0 +1,49 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+
+[resources] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+[giphy] {
+  border-radius: $corner-normal;
+  pointer-events: none;
+  border: 2px solid $secondary-color;
+}
+
+[teaser] {
+  color: $primary-text-light-color;
+}
+
+[playground] ::ng-deep {
+  [tab]:nth-child(1) svg path {
+    fill: url(#purple-light-gradient);
+  }
+  [tab]:nth-child(2) svg path {
+    fill: url(#green-light-gradient);
+  }
+  [tab]:nth-child(3) svg path {
+    fill: url(#blue-light-gradient);
+  }
+}
+
+[block] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary-color;
+  font-weight: bold;
+  background-color: $secondary-color;
+  box-sizing: border-box;
+  border: 2px solid $primary-color;
+  border-radius: $corner-normal;
+}
+
+[preview] {
+  width: 100%;
+}

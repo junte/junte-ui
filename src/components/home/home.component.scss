@@ -1,16 +1,14 @@
 @import "variables";
-@import "components/elements/label/label";
-
-[host=#{$jnt-link-host}] {
-  font-size: 30px;
-}
+@import "elements/label/label";
+@import "navigation/menu/menu";
+@import "navigation/link/link";
 
 [about] {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: linear-gradient(180deg, rgba(#3949AB, .8) 0%, rgba(#00227B, 1) 100%),
+  background: linear-gradient(180deg, rgba(#3949AB, .1) 0%, rgba(#00227B, 1) 100%),
   url('../../assets/images/about-bg.jpg') no-repeat;
   background-size: 100%, cover;
   mix-blend-mode: darken;
@@ -27,9 +25,63 @@
     font-weight: 200;
     color: $white-color;
   }
-  @include label((
-    background: red !important
-  ), 'changes')
+
+  [label] ::ng-deep {
+    @include label((
+      padding: $gutter-small $gutter-normal,
+      font-size: 20px
+    ), '&');
+  }
+
+  [opened] ::ng-deep {
+    @include label((
+      background: rgba($red-color, .2) !important
+    ), '&');
+  }
+
+  [native] ::ng-deep {
+    @include label((
+      background: rgba($green-color, .2) !important
+    ), '&');
+  }
+
+  [multilingual] ::ng-deep {
+    @include label((
+      background: rgba($pale-navy-color, .2) !important
+    ), '&');
+  }
+
+  [menu] ::ng-deep {
+    @include menu((
+      top: (
+        item: (
+          color: $primary-color,
+          active: (
+            color: $white-color
+          ),
+          icon: (
+            size: $font-size-large
+          ),
+          padding: (
+            outer: $gutter-small $gutter-normal,
+            inner: $gutter-small,
+          ),
+          hover: (
+            background-color: rgba($white-color, .1),
+          ),
+        ),
+      ),
+    ), '&');
+  }
+
+  [link]::ng-deep {
+    @include link((
+      font-size: 20px,
+      icon: (
+        margin-right: $gutter-small,
+      ),
+    ), '&');
+  }
 }
 
 [slide2] {

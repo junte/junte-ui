@@ -1,0 +1,32 @@
+@import "variables";
+@import "../../variables";
+
+@mixin app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context}  {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: stretch;
+    padding: 0 $gutter-normal;
+    &:hover {
+      background-color: $primary-color;
+      [menu] {
+        display: block;
+      }
+    }
+  }
+
+  [menu] {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 0;
+    background: $primary-background;
+    border-radius: 0 0 $corner-small $corner-small;
+    min-width: 200px;
+    box-shadow: $shadow-normal;
+    overflow-y: auto;
+  }
+}

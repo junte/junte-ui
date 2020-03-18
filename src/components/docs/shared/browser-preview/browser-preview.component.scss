@@ -1,0 +1,28 @@
+@import "variables";
+
+:host {
+  display: block;
+  position: relative;
+  border-radius: $corner-normal;
+  border: 1px solid $secondary-color;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: $page-background;
+  [wrapper] {
+    padding: $gutter-normal;
+    min-height: 300px;
+  }
+}
+
+[footer] {
+  height: 30px;
+  background-color: $muted-color;
+  border-bottom-left-radius: $corner-normal;
+  border-bottom-right-radius: $corner-normal;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

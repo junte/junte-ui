@@ -1,0 +1,245 @@
+<jnt-container>
+  <h1 i18n="@@label.select">Select</h1>
+
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/select"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A219"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document>
+                <form [formGroup]="selectForm">
+                  <jnt-form-item>
+                    <jnt-select formControlName="select"
+                                [keyField]="'id'"
+                                [labelField]="'name'"
+                                placeholder="Select your hero"
+                                i18n-placeholder="@@label.select_your_hero"
+                                [allowEmpty]="allowEmptyControl.value"
+                                [mode]="modeControl.value"
+                                [search]="searchControl.value"
+                                [size]="sizeControl.value"
+                                [loader]="search()">
+                      <jnt-select-option *ngFor="let h of heroes"
+                                         [label]="h.name"
+                                         [key]="h.id"
+                                         [value]="h">
+                      </jnt-select-option>
+                      <ng-container *ngIf="templateControl.value">
+                        <ng-template #selectOptionTemplate let-hero="value">
+                          <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                     [align]="ui.flex.align.center"
+                                     [justify]="ui.flex.justify.between">
+                            <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                       [gutter]="ui.gutter.small"
+                                       [align]="ui.flex.align.center">
+                              <jnt-avatar [image]="hero.avatar"
+                                          [size]="ui.size.small"></jnt-avatar>
+                              <div>{{hero.name}}</div>
+                            </jnt-stack>
+                            <jnt-label [label]="hero.likes + ' likes'"
+                                       [color]="ui.color.green"></jnt-label>
+                          </jnt-stack>
+                        </ng-template>
+                      </ng-container>
+                    </jnt-select>
+                  </jnt-form-item>
+                </form>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="mode"
+                                  i18n="@@label.mode">Mode
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="mode"
+                                placeholder="Single"
+                                i18n-placeholder="@@label.single">
+                      <jnt-select-option label="Single"
+                                         i18n-label="@@label.single"
+                                         [key]="ui.form.select.mode.single"></jnt-select-option>
+                      <jnt-select-option label="Multiple"
+                                         i18n-label="@@label.multiple"
+                                         [key]="ui.form.select.mode.multiple"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="size"
+                                  i18n="@@label.size">Size
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal">
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [key]="ui.size.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [key]="ui.size.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="allowEmpty"
+                                    label="Allow empty"
+                                    i18n-label="@@label.allow_empty"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="search"
+                                    label="Search"
+                                    i18n-label="@@label.search"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="template"
+                                    label="Custom option"
+                                    i18n-label="@@label.custom_option"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.state">State
+                  </jnt-form-label>
+                  <jnt-checkbox formControlName="disabled"
+                                label="Disabled"
+                                i18n-label="@@label.disabled"></jnt-checkbox>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use [test]="{selector:'select-test', type: 'SelectTestComponent'}"
+                              scss="forms/select">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="select-test.component.html">
+                <![CDATA[
+                <jnt-select [labelField]="'label'"
+                            [keyField]="'key'" ]]>
+                  <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
+                  <ng-container *ngIf="modeControl.value">
+                    <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <![CDATA[
+                  <jnt-select-option *ngFor="let option of heroes"
+                                     [label]="option.label"
+                                     [key]="option.key"
+                                     [value]="option">
+                  </jnt-select-option>
+                  ]]>
+                  <ng-container *ngIf="templateControl.value">
+                    <![CDATA[
+                    <ng-template #selectOptionTemplate let-option="value">
+                      <jnt-stack option [type]="ui.layout.stack.type.horizontal"
+                                 [gutter]="ui.gutter.small"
+                                 [align]="ui.flex.align.center">
+                        <jnt-avatar [size]="ui.size.small"></jnt-avatar>
+                        <div>]]>{{<![CDATA[option.label]] >}}<![CDATA[ with likes</div>
+                        <jnt-label [label]="option.likes"></jnt-label>
+                      </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-select>
+                ]]>
+              </app-code-highlight>
+
+              <app-code-highlight file="select-test.component.ts"
+                                  [language]="language.typescript">
+                <pre>
+                  <![CDATA[
+                  import { Component, OnInit, FormBuilder } from '@angular/core';
+                  import { UI } from 'junte-ui';
+
+                  @Component({
+                              selector: 'app-select-test',
+                              templateUrl: './select-test.component.html',
+                              styleUrls: ['./select-test.component.scss']
+                  })
+
+                  export class SelectTestComponent implements OnInit {
+
+                              ui = UI;
+                              selectControl = this.fb.control(null);
+
+                              selectForm = this.fb.group({
+                      select: this.selectControl
+                    });
+
+                    constructor(private fb: FormBuilder) {
+                    }
+                  }
+                  ]]>
+                </pre>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-select" [target]="select"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>

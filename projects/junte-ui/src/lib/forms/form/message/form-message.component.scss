@@ -1,0 +1,10 @@
+@import "variables";
+
+@mixin form-message($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: none;
+    font-size: $font-size-tiny;
+    color: $fail-color;
+  }
+}

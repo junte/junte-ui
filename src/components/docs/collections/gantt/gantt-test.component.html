@@ -1,0 +1,141 @@
+<jnt-container>
+  <h1>Gantt</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/collections/gantt"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+  <h3>Requirements</h3>
+
+  <ol>
+    <li>The component must be able to accept the date range - the start date and the end</li>
+    <li>The component should be able to accept the string that will be used as the title</li>
+    <li>The component should be able to combine the specified date range into a common block with the specified title
+    </li>
+  </ol>
+
+  <jnt-tabs playground>
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="12">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
+                  <form [formGroup]="form">
+                    <jnt-gantt formControlName="gantt" title="Super" [loading]="loading">
+                      <ng-template #toolsTemplate>
+                        <jnt-button-group>
+                          <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
+                          <jnt-button (click)="add()" text="Add" [icon]="ui.icons.add"></jnt-button>
+                          <jnt-button (click)="remove()" text="Remove" [icon]="ui.icons.delete" [scheme]="ui.scheme.fail"></jnt-button>
+                        </jnt-button-group>
+                      </ng-template>
+                      <ng-template #titleTemplate>
+                        <strong>Test custom title</strong>
+                      </ng-template>
+                      <jnt-gantt-line *ngFor="let request of requests"
+                                      [period]="request"
+                                      [from]="request.from"
+                                      [to]="request.to"
+                                      [title]="request.createdBy.login">
+                        <ng-template #indicator let-period="period" let-current="current" let-today="today">
+                          <div [attr.accepting]="period['status'] === statuses.accepting"
+                               [attr.accepted]="period['status'] === statuses.accepted"
+                               [attr.declined]="period['status'] === statuses.declined"
+                               [attr.used]="(period['to'] | dateDiff:today) < 0"
+                               [attr.self-expense]="period['selfExpense']"
+                               [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
+                               [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
+                               [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
+                          <span label>
+                          {{(period['to'] | dateDiff:period['from']) + 1 }} days
+                        </span>
+                          </div>
+                        </ng-template>
+                      </jnt-gantt-line>
+                    </jnt-gantt>
+                  </form>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'gantt-test', type: 'GanttTestComponent'}"
+                scss="collections/gantt"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="gantt-test.component.html" [language]="language.xml">
+                <![CDATA[
+                <form [formGroup]="form">
+                  <jnt-gantt formControlName="gantt" title="Super" [loading]="loading">
+                    <ng-template #toolsTemplate>
+                      <jnt-button-group>
+                        <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
+                      </jnt-button-group>
+                    </ng-template>
+                    <ng-template #titleTemplate>
+                      <strong>Test custom title</strong>
+                    </ng-template>
+                    <jnt-gantt-line *ngFor="let request of requests"
+                                    [period]="request"
+                                    [from]="request.from"
+                                    [to]="request.to"
+                                    [title]="request.createdBy.login">
+                      <ng-template #indicator let-period="period" let-current="current" let-today="today">
+                        <div [attr.accepting]="period['status'] === statuses.accepting"
+                             [attr.accepted]="period['status'] === statuses.accepted"
+                             [attr.declined]="period['status'] === statuses.declined"
+                             [attr.used]="(period['to'] | dateDiff:today) < 0"
+                             [attr.self-expense]="period['selfExpense']"
+                             [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
+                             [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
+                             [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
+                    <span label> ]]>
+                    {{ <![CDATA[ (period['to'] | dateDiff:period['from']) + 1 ]]> }} <![CDATA[ days
+                  </span>
+                        </div>
+                      </ng-template>
+                    </jnt-gantt-line>
+                  </jnt-gantt>
+                </form>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-gantt" [target]="types.gantt"></app-component-api>
+          <app-component-api [target]="types.line"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>

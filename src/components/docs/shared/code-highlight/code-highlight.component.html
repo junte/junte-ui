@@ -1,0 +1,17 @@
+<p *ngIf="!!file">
+  <jnt-link [icon]="copied ? ui.icons.animated.success : ui.icons.copy"
+            [outline]="ui.outline.ghost"
+            title="Copy"
+            i18n-text="@@action.copy"
+            ngxClipboard
+            [cbContent]="code"
+            (cbOnSuccess)="copy()">
+  </jnt-link>
+  the code to <code>{{file}}</code>
+</p>
+
+<pre [highlight]="code" [languages]="[language]"></pre>
+
+<pre #pre (cdkObserveContent)="render()" hidden>
+  <ng-content></ng-content>
+</pre>

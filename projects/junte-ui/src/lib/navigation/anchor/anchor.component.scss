@@ -1,0 +1,17 @@
+@import "variables";
+
+@mixin anchor($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: inline;
+  }
+
+  #{$context} a {
+    opacity: 0;
+    cursor: pointer;
+    margin-left: $gutter-small;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

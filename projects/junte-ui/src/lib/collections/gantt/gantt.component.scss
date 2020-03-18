@@ -1,0 +1,144 @@
+@import "variables";
+
+@mixin gantt($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    min-height: 200px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    thead {
+      tr {
+        &[timeline] {
+          background-color: $secondary-background;
+        }
+        td {
+          &[controls] {
+            border-right: none;
+            padding: $gutter-normal $gutter-tiny;
+            width: 600px;
+
+            [month] {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            [arrow] {
+              background-color: transparent;
+              border-width: 0;
+              font-size: 1rem;
+              color: $primary-text-color;
+              cursor: pointer;
+              padding: 0;
+              vertical-align: middle;
+              border-radius: 50%;
+              width: 25px;
+              height: 25px;
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              transition: box-shadow .3s;
+              line-height: 0;
+              &:focus {
+                outline: none;
+                box-shadow: $shadow-primary;
+                border: 1px solid $primary-color;
+              }
+              &:hover {
+                color: $primary-text-light-color;
+                border: 1px solid $primary-color;
+              }
+            }
+          }
+
+          &[day] {
+            text-align: center;
+            font-size: $font-size-small;
+            padding: $gutter-normal $gutter-tiny;
+
+            &[current='true'] {
+              color: $white-color;
+              background-color: $primary-color;
+            }
+            &[weekend='true'] {
+              background-color: $secondary-dark-color;
+            }
+          }
+          &[gutter] {
+            width: 4px;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &[nodata] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
+
+          td {
+            vertical-align: middle;
+            text-align: center;
+
+            [icon] {
+              font-size: 80px;
+              color: $muted-color;
+            }
+          }
+        }
+
+        &[loading] {
+          pointer-events: none;
+          border-bottom: 0;
+          td {
+            padding: $gutter-normal;
+          }
+        }
+
+        &:last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+
+      td {
+        border-bottom: 1px solid $gray-400-color;
+        border-right: 1px solid $gray-400-color;
+        padding: $gutter-tiny;
+        height: 59px;
+        box-sizing: border-box;
+
+        &:last-child {
+          border-right: 0;
+        }
+
+        &[empty] {
+          border: none;
+        }
+
+        &[gutter] {
+          border-right: 0;
+        }
+      }
+    }
+  }
+}

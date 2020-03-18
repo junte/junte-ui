@@ -1,0 +1,214 @@
+@import "variables";
+@import "elements/icon/icon";
+
+@mixin switch-size($size) {
+  [switch] {
+    min-width: map-get($size, width);
+    width: map-get($size, width);
+    min-height: map-get($size, height);
+    height: map-get($size, height);
+  }
+}
+
+@mixin switch($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    corner: 35px,
+    padding: 2px,
+    sizes: (
+      tiny: (
+        width: 30px,
+        height: 18px,
+        icon: (
+          size: 6px
+        ),
+        label: (
+          font-size: 6px
+        ),
+      ),
+      small: (
+        width: 38px,
+        height: 22px,
+        icon: (
+          size: 8px
+        ),
+        label: (
+          font-size: 8px
+        ),
+      ),
+      normal: (
+        width: 50px,
+        height: 28px,
+        icon: (
+          size: 11px
+        ),
+        label: (
+          font-size: 11px
+        ),
+      ),
+      large: (
+        width: 67px,
+        height: 36px,
+        icon: (
+          size: 15px
+        ),
+        label: (
+          font-size: 14px
+        ),
+      )
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: block;
+
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include switch-size($map);
+          @if map-has-key($map, label) {
+            $label: map-get($map, label);
+            [label] {
+              margin-left: calc(#{map-get($map, height)} - #{map-get($vars, padding)});
+              font-size: map-get($label, font-size);
+            }
+          }
+          input:checked + [switch] {
+            [label] {
+              margin-right: calc(#{map-get($map, height)} - #{map-get($vars, padding)});
+            }
+          }
+          [slider] {
+            width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
+            height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
+            @if map-has-key($map, icon) {
+              $icon: map-get($map, icon);
+              @include icon((
+                size: map-get($icon, size),
+              ), '&');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #{$context} form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    input {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      opacity: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      &:checked + [switch] {
+        background-color: $primary-color;
+        [label] {
+          margin-left: 0;
+          text-align: right;
+        }
+        [slider] {
+          [icon] {
+            color: $primary-color;
+            fill: $primary-color;
+          }
+        }
+      }
+      &:checked + [switch] > [slider] {
+        left: auto;
+        right: map-get($vars, padding);
+      }
+      &:disabled {
+        cursor: default;
+        & ~ label {
+          color: $control-disabled-label-color;
+        }
+        & + [switch] {
+          background-color: rgba($gray-600-color, .7);
+          [slider] [icon] {
+            color: rgba($gray-600-color, .7);
+          }
+        }
+        &:checked {
+          & + [switch] {
+            background-color: rgba($primary-color, .5);
+            [slider] [icon] {
+              color: rgba($primary-color, .5);
+            }
+          }
+        }
+      }
+      &:focus {
+        & + [switch] {
+          box-shadow: 0 1px 5px $primary-color;
+        }
+      }
+    }
+    label {
+      padding-left: $control-gutter;
+      color: $control-switch-label-color;
+      user-select: none;
+    }
+    [switch] {
+      position: relative;
+      border-radius: map-get($vars, corner);
+      background-color: $gray-600-color;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: 0 map-get($vars, padding);
+      overflow: hidden;
+      transition: all ease .4s;
+      [slider] {
+        border-radius: 50%;
+        background-color: $white-color;
+        position: absolute;
+        left: map-get($vars, padding);
+        right: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .3s;
+        [icon] {
+          color: $gray-600-color;
+          fill: $gray-600-color;
+        }
+      }
+      [label] {
+        color: $white-color;
+        margin-right: 0;
+        width: 100%;
+        text-align: left;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

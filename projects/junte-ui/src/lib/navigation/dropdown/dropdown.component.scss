@@ -1,0 +1,43 @@
+@import "variables";
+
+@mixin opened() {
+  jnt-menu[deep-host=#{$jnt-menu-host}] {
+    transform: scaleY(1);
+  }
+}
+
+@mixin dropdown($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: inline-block;
+    position: relative;
+    &[toggle='true'] {
+      @include opened();
+    }
+
+    jnt-menu[deep-host=#{$jnt-menu-host}] {
+      background-color: $primary-background;
+      min-width: 100%;
+      position: absolute;
+      top: 100%;
+      padding: $gutter-small 0;
+      box-shadow: $shadow-light;
+      border-radius: $corner-small;
+      white-space: nowrap;
+      transform: scaleY(0);
+      transition: all .2s ease-in-out;
+      transform-origin: 0 0;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+  }
+
+  #{$context} [overlay] {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,12 @@
+@import "variables";
+@import "../variables";
+
+@mixin app-body($passed: (), $context: null, $strategy: 'changes') {
+  :host, #{$context} {
+    display: block;
+    box-sizing: border-box;
+    min-height: calc(100vh - #{$app-footer-height} - #{$app-sub-header-height} - #{$app-header-height});
+    padding: $gutter-big 0 $gutter-large 0;
+    background-color: $page-background;
+  }
+}

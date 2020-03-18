@@ -1,0 +1,36 @@
+{
+  "composition": {
+    "section": "forms",
+    "pathFrom": "../../assets/styles",
+    "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
+    "from": [
+      "checkbox/checkbox.scss",
+      "checkbox/checkbox-group/checkbox-group.scss"
+    ],
+    "to": "checkbox.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-checkbox-host",
+      "html": {
+        "from": "checkbox.component.html",
+        "to": "checkbox.encapsulated.html"
+      },
+      "scss": {
+        "from": "checkbox.component.scss",
+        "to": "../../assets/styles/forms/checkbox/checkbox.scss"
+      }
+    },
+    {
+      "host": "jnt-checkbox-group-host",
+      "html": {
+        "from": "checkbox-group/checkbox-group.component.html",
+        "to": "checkbox-group/checkbox-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "checkbox-group/checkbox-group.component.scss",
+        "to": "../../assets/styles/forms/checkbox/checkbox-group/checkbox-group.scss"
+      }
+    }
+  ]
+}

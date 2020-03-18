@@ -1,0 +1,185 @@
+<jnt-container>
+  <h1 i18n="@@label.circle_bar">Circle bar</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/circlbar"
+              target="_blank" title="GitLab">
+    </jnt-link>
+    <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
+              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554"
+              target="_blank" title="Figma">
+    </jnt-link>
+  </jnt-stack>
+
+  <jnt-tabs playground>
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-circle-bar>
+                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value1Control.value"
+                                       [color]="color1Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value2Control.value"
+                                       [color]="color2Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator [value]="value3Control.value"
+                                       [color]="color3Control.value"></jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                </jnt-circle-bar>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder" builder>
+              <jnt-form-label i18n="@@label.first_bar_indicator">First bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color1"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
+
+              <jnt-form-label i18n="@@label.second_bar_indicator">Second bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color2"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
+
+              <jnt-form-label i18n="@@label.third_bar_indicator">Third bar indicator</jnt-form-label>
+              <jnt-container>
+                <jnt-row
+                  [gutter]="ui.gutter.tiny"
+                  [align]="ui.layout.grid.row.align.stretch">
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
+                  </jnt-col>
+                  <jnt-col
+                    [span]="6"
+                    [padding]="ui.gutter.tiny">
+                    <jnt-color-picker formControlName="color3"></jnt-color-picker>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-container>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'circle-bar-test', type: 'CircleBarTestComponent'}"
+                scss="dynamic/circle-bar"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="circle-bar-test.template.html">
+                <![CDATA[
+                <jnt-circle-bar>
+                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value1Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value1Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color1Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color1Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value2Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value2Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color2Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color2Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                  <jnt-bar-indicator-group>
+                    <jnt-bar-indicator
+                      ]]>
+                      <ng-container *ngIf="value3Control.value">
+                        <![CDATA[
+                        [value]="]]>{{value3Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="color3Control.value">
+                        <![CDATA[
+                        [color]="]]>{{color3Control.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-bar-indicator>
+                  </jnt-bar-indicator-group>
+                </jnt-circle-bar>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack>
+          <app-component-api selector="jnt-bar-indicator" [target]="types.indicator"></app-component-api>
+          <app-component-api selector="jnt-circle-bar" [target]="types.bar"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>

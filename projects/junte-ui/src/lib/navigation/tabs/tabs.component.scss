@@ -1,0 +1,118 @@
+@import "variables";
+
+@mixin tab-padding($padding) {
+  & {
+    padding: $padding;
+  }
+}
+
+@mixin tabs($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    padding: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: block;
+    max-width: 100%;
+
+    &[outline='#{$outline-fill}'] {
+      [content] {
+        background-color: $primary-background;
+        box-sizing: border-box;
+        border-bottom-left-radius: $corner-normal;
+        border-bottom-right-radius: $corner-normal;
+      }
+    }
+
+    &[outline='#{$outline-transparent}'] {
+      [content] {
+        background-color: transparent;
+      }
+    }
+  }
+
+  #{$context} [tabs] {
+    display: flex;
+    border-bottom: 1px solid $muted-color;
+    background-color: $primary-background;
+    border-top-left-radius: $corner-normal;
+    border-top-right-radius: $corner-normal;
+
+    [tab] {
+      padding: $gutter-normal;
+      cursor: pointer;
+      color: $primary-text-color;
+      font-size: $font-size-base;
+      position: relative;
+      user-select: none;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      border-bottom: 1px solid transparent;
+      margin-bottom: -1px;
+
+      &:hover {
+        color: $primary-light-color;
+      }
+
+      &:focus {
+        outline: 1px solid $primary-color;
+        box-shadow: $shadow-primary;
+      }
+
+      &[active='true'] {
+        color: $primary-color;
+        border-bottom-color: $primary-color;
+      }
+
+      [label] {
+        position: relative;
+        z-index: 1;
+
+        [icon] {
+          line-height: 0;
+        }
+      }
+
+      [ripple] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: $secondary-color;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  #{$context} [content] {
+    position: relative;
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include tab-padding($map);
+        }
+      }
+    }
+  }
+}

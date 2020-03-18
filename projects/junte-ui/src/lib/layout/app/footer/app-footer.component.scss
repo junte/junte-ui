@@ -1,0 +1,16 @@
+@import "variables";
+@import "../variables";
+
+@mixin app-footer($passed: (), $context: null, $strategy: 'changes') {
+  :host, #{$context}  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    background-color: $primary-dark-color;
+    padding: 0 $gutter-big;
+    min-height: $app-footer-height;
+    color: $white-color;
+  }
+}

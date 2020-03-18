@@ -1,0 +1,48 @@
+{
+  "composition": {
+    "section": "layout",
+    "pathFrom": "../../assets/styles",
+    "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
+    "from": [
+      "grid/container/container.scss",
+      "grid/row/row.scss",
+      "grid/col/col.scss"
+    ],
+    "to": "grid.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-container-host",
+      "html": {
+        "from": "container/container.component.html",
+        "to": "container/container.encapsulated.html"
+      },
+      "scss": {
+        "from": "container/container.component.scss",
+        "to": "../../assets/styles/layout/grid/container/container.scss"
+      }
+    },
+    {
+      "host": "jnt-row-host",
+      "html": {
+        "from": "row/row.component.html",
+        "to": "row/row.encapsulated.html"
+      },
+      "scss": {
+        "from": "row/row.component.scss",
+        "to": "../../assets/styles/layout/grid/row/row.scss"
+      }
+    },
+    {
+      "host": "jnt-col-host",
+      "html": {
+        "from": "col/col.component.html",
+        "to": "col/col.encapsulated.html"
+      },
+      "scss": {
+        "from": "col/col.component.scss",
+        "to": "../../assets/styles/layout/grid/col/col.scss"
+      }
+    }
+  ]
+}

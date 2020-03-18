@@ -1,0 +1,62 @@
+@import "variables";
+
+@mixin col-gutter($gutter) {
+  & {
+    margin-top: -$gutter;
+    > :not(router-outlet) {
+      margin-top: $gutter;
+    }
+  }
+}
+
+@mixin grid-row($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    gutters: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+    margin: 0 (-$grid-gutter);
+
+    @if map-has-key($vars, gutters) {
+      $gutters: map-get($vars, gutters);
+      @each $gutter, $map in $gutters {
+        &[gutter = '#{$gutter}'] {
+          @include col-gutter($map);
+        }
+      }
+    }
+
+    &[align='start'] {
+      align-items: flex-start;
+    }
+    &[align='center'] {
+      align-items: center;
+    }
+    &[align='end'] {
+      align-items: flex-end;
+    }
+    &[align='stretch'] {
+      align-items: stretch;
+    }
+
+  }
+}

@@ -1,0 +1,74 @@
+<jnt-container>
+  <h1 i18n="@@label.date_picker">Date Picker</h1>
+  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/date-picker"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+
+  <jnt-tabs playground>
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="12">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-stack>
+                  <jnt-form [formGroup]="form">
+                    <jnt-date-picker formControlName="flightDate"
+                                     placeholder="Please enter the date"
+                                     [format]="formatControl.value">
+                    </jnt-date-picker>
+                  </jnt-form>
+                  <div *ngIf="!!flightDateControl.value">
+                    You choose
+                    <jnt-label [label]="flightDateControl.value | dfnsFormat:'dd.MM.yyyy'"></jnt-label>
+                  </div>
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'date-picker-test', type: 'DatePickerTestComponent'}"
+                scss="forms/date-picker">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Date Picker component template"
+                                 i18n-title="@@label.date_picker_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="date-picker-test.component.html">
+                <![CDATA[
+                <jnt-date-picker>
+                </jnt-date-picker>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-date-picker" [target]="types.flightDate"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>

@@ -1,0 +1,13 @@
+@import "variables";
+
+@mixin form-label($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: inline-block;
+  }
+
+  label {
+    font-size: $font-size-small;
+    color: $primary-text-light-color;
+  }
+}

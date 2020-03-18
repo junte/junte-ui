@@ -1,0 +1,24 @@
+{
+  "composition": {
+    "section": "overlays",
+    "pathFrom": "../../assets/styles",
+    "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
+    "from": [
+      "modal/modal.scss"
+    ],
+    "to": "modal.scss"
+  },
+  "encapsuler": [
+    {
+      "host": "jnt-modal-host",
+      "html": {
+        "from": "modal.component.html",
+        "to": "modal.encapsulated.html"
+      },
+      "scss": {
+        "from": "modal.component.scss",
+        "to": "../../assets/styles/overlays/modal/modal.scss"
+      }
+    }
+  ]
+}

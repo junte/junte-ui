@@ -1,0 +1,121 @@
+@import "variables";
+@import "elements/icon/icon";
+
+@mixin block-padding($padding) {
+  [body], [footer] {
+    padding: $padding;
+  }
+}
+
+@mixin block-fill($scheme) {
+  & {
+    background-color: #{map-get($scheme, background-color)};
+  }
+}
+
+@mixin block($passed: (), $context: null, $strategy: 'changes') {
+  $defs: (
+    padding: (
+      tiny: $gutter-tiny,
+      small: $gutter-small,
+      normal: $gutter-normal,
+      big: $gutter-big,
+      large: $gutter-large,
+      huge: $gutter-huge,
+    ),
+    schemes: (
+      primary: (
+        background-color: $primary-background,
+      ),
+      secondary: (
+        background-color: $secondary-background,
+      ),
+      success: (
+        background-color: $success-color,
+      ),
+      fail: (
+        background-color: $fail-color,
+      ),
+    ),
+    overlay: (
+      background-color: rgba($white-color, 0.75),
+      icon: (
+        size: 40px,
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 40px;
+    box-shadow: $shadow-normal;
+    border-radius: $corner-normal;
+    box-sizing: border-box;
+    &[width="fluid"] {
+      width: 100%;
+    }
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[scheme='#{$scheme}'] {
+          @include block-fill($map);
+        }
+      }
+    }
+
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include block-padding($map);
+        }
+      }
+    }
+  }
+
+  #{$context} [title] {
+    padding: 0 $gutter-normal;
+    text-align: center;
+    color: $primary-color;
+    font-weight: $font-weight-bold;
+    > div {
+      padding: $gutter-normal 0;
+      border-bottom: 1px solid $muted-color;
+    }
+  }
+
+  #{$context} [loading], #{$context} [error], #{$context} [success] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $corner-normal;
+    z-index: 1;
+    @if map-has-key($vars, overlay) {
+      $overlay: map-get($vars, overlay);
+      background-color: map-get($overlay, background-color);
+      @if map-has-key($overlay, icon) {
+        $icon: map-get($overlay, icon);
+        [icon] {
+          @include icon((
+            size: map-get($icon, size)
+          ), '&');
+        }
+      }
+    }
+  }
+}
+

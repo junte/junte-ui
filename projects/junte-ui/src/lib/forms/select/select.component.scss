@@ -1,0 +1,329 @@
+@import "variables";
+@import "elements/icon/icon";
+
+@mixin select-size($size) {
+  [select] {
+    font-size: map-get($size, font-size);
+    min-height: map-get($size, height);
+  }
+}
+
+@mixin select($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      small: (
+        font-size: 11px,
+        height: 30px,
+        chips: (
+          padding: 2px $gutter-large 2px $gutter-small
+        ),
+        input: (
+          padding: 2px 0 2px $gutter-small
+        ),
+      ),
+      normal: (
+        font-size: 14px,
+        height: 38px,
+        chips: (
+          padding: 3px $gutter-large 3px $gutter-small
+        ),
+        input: (
+          padding: 3px 0 3px $gutter-small
+        ),
+      ),
+      large: (
+        font-size: 16px,
+        height: 50px,
+        chips: (
+          padding: $gutter-small $gutter-large $gutter-small $gutter-small
+        ),
+        input: (
+          padding: $gutter-small 0 $gutter-small $gutter-small
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: inline-block;
+    position: relative;
+    min-width: 70px;
+    color: $primary-text-color;
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[size = '#{$size}'] {
+          @include select-size($map);
+          [select] {
+            ul li {
+              input {
+                font-size: map_get($map, font-size);
+              }
+              @if map-has-key($map, chips) {
+                $chips: map-get($map, chips);
+                padding: map-get($chips, padding);
+              }
+              @if map-has-key($map, input) {
+                $input: map-get($map, input);
+                &[query] {
+                  padding: map-get($input, padding);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &[disabled='true'] {
+      [select] {
+        background-color: $control-disabled-background;
+        border-color: $control-disabled-border-color;
+        pointer-events: none;
+        ul li {
+          background-color: $control-disabled-background;
+          color: $control-disabled-border-color;
+          &[query] {
+            background-color: transparent;
+          }
+        }
+        [close], [toggle] {
+          color: $control-disabled-border-color;
+        }
+      }
+    }
+
+    &[opened='true'] [select] {
+      box-shadow: $shadow-primary;
+      border-color: $primary-color;
+    }
+
+    &[mode='single'] {
+      ul {
+        li {
+          background-color: $primary-background;
+          margin-left: -$gutter-tiny;
+        }
+      }
+      &[opened='true'][search='true'] [select] {
+        ul {
+          li {
+            display: none;
+            &[query] {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      &[empty='false'] [select] {
+        ul {
+          flex: 1;
+          li {
+            width: 100%;
+          }
+        }
+        [query] {
+          display: none;
+        }
+      }
+
+      &[empty='true'] {
+        [select] ul li[query] {
+          padding-right: 0;
+        }
+      }
+
+      &[allow-empty='false'] {
+        [select] ul li {
+          padding-right: $gutter-small;
+          button[close] {
+            display: none;
+          }
+        }
+      }
+      &[search='false'] {
+        [select] ul li {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &[search='false'] {
+      [select] ul li {
+        cursor: default;
+      }
+    }
+    &[empty='true'], &[mode='single'] {
+      [select] ul li[query] {
+        flex: 1;
+        input {
+          width: 100%;
+        }
+      }
+    }
+    [disabled='true'] {
+      [select] {
+        ul li {
+          background-color: $muted-color;
+          &[query] {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  #{$context}  [select] {
+    border: 1px solid $control-border-color;
+    border-radius: $corner-small;
+    background-color: $control-background;
+    padding: $gutter-tiny $gutter-big $gutter-tiny $gutter-small;
+    box-sizing: border-box;
+    position: relative;
+    &:focus {
+      outline: 0;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0 0 (-$gutter-tiny);
+      li {
+        display: flex;
+        align-items: center;
+        position: relative;
+        background-color: $secondary-background;
+        border-radius: $corner-small;
+        margin-bottom: $gutter-tiny;
+        [icon][child-host=#{$jnt-icon-host}] {
+          line-height: 0;
+        }
+        [empty] {
+          width: 50px;
+          height: 10px;
+          background-color: $primary-text-light-color;
+        }
+        [close] {
+          border: 0;
+          background-color: transparent;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          padding: 0 $gutter-small;
+          right: 0;
+          &:focus {
+            outline: 0;
+          }
+          & > [icon] {
+            @include icon((
+              size: 11px
+            ), '&');
+          }
+        }
+        &:not(:last-child) {
+          margin-right: $gutter-tiny;
+        }
+        &[query] {
+          background-color: transparent;
+          input {
+            width: 20px;
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+
+    [toggle] {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      background-color: transparent;
+      padding: 0 $gutter-small;
+      &:focus {
+        outline: 0;
+      }
+      & > [icon] {
+        @include icon((
+          size: 11px
+        ), '&');
+      }
+    }
+  }
+
+  #{$context} [options] {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: $gutter-tiny;
+    background-color: $control-background;
+    border-radius: $corner-small;
+    box-shadow: $shadow-normal;
+    padding: $gutter-small 0;
+    overflow: hidden;
+    z-index: 2;
+    &[loading='true'] {
+      min-height: 100px;
+      height: auto;
+    }
+    [skeleton] {
+      padding: 0 $gutter-small;
+    }
+    [empty] {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      [icon] {
+        font-size: 50px;
+        color: $primary-text-light-color;
+      }
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: scroll;
+      [loading] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($white-color, .5);
+      }
+      li {
+        cursor: pointer;
+        padding: $gutter-small $gutter-normal;
+        border-left: 2px solid transparent;
+        [icon][child-host=#{$jnt-icon-host}] {
+          line-height: 0;
+        }
+        &:hover {
+          background-color: $secondary-background;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+}

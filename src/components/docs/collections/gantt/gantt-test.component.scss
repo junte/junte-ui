@@ -1,0 +1,60 @@
+@import "../../component";
+@import "variables";
+
+[resources] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+[period] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $gutter-tiny;
+  text-align: center;
+  border-radius: $corner-large;
+  background-color: $primary-color;
+  color: $white-color;
+  height: 40px;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &[accepting='true'] {
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  &[accepted='true'] {
+    background-color: $success-color;
+  }
+
+  &[declined='true'] {
+    background-color: $fail-color;
+  }
+
+  &[used='true'] {
+    background-color: $gray-600-color;
+  }
+
+  &[short='true'] {
+    [label] {
+      display: none;
+    }
+  }
+
+  &[over-from='true'] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[over-to='true'] {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &[self-expense='true'] {
+    border: 1px dashed $gray-800-color;
+  }
+}

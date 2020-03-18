@@ -1,0 +1,105 @@
+@import "variables";
+
+@mixin switcher($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    height: 32px,
+    corner: $corner-normal,
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: flex;
+    border: 1px solid $gray-700-color;
+    border-radius: map-get($vars, corner);
+    &[type='vertical'] {
+      flex-direction: column;
+      [option] {
+        &:first-child {
+          border-top-left-radius: map-get($vars, corner) - 1px;
+          border-top-right-radius: map-get($vars, corner) - 1px;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: map-get($vars, corner) - 1px;
+          border-bottom-left-radius: map-get($vars, corner) - 1px;
+        }
+      }
+    }
+    &[type='horizontal'] {
+      flex-direction: row;
+      [option] {
+        flex: auto;
+        justify-content: center;
+        &:first-child {
+          border-top-left-radius: map-get($vars, corner) - 1px;
+          border-bottom-left-radius: map-get($vars, corner) - 1px;
+        }
+
+        &:last-child {
+          border-top-right-radius: map-get($vars, corner) - 1px;
+          border-bottom-right-radius: map-get($vars, corner) - 1px;
+        }
+      }
+    }
+    &[disabled='true'] {
+      cursor: default;
+      pointer-events: none;
+      [option] {
+        color: $control-disabled-label-color;
+        background-color: $control-disabled-background;
+      }
+    }
+  }
+
+  #{$context} [option] {
+    background-color: $primary-background;
+    color: $primary-text-color;
+    user-select: none;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0 $gutter-small;
+
+    &[with-template] {
+      padding: $gutter-small;
+    }
+
+    &:focus {
+      outline: 0;
+      box-shadow: $shadow-primary;
+      border-color: $primary-light-color;
+    }
+
+    &:hover {
+      background-color: $highlight-background;
+    }
+
+    &[active="true"] {
+      color: $white-color;
+      background-color: $primary-light-color;
+    }
+
+    [icon] {
+      line-height: 0;
+    }
+  }
+
+  #{$context} [title] {
+    flex: 1;
+    [label] {
+      flex: 0 1 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      line-height: map-get($vars, height);
+    }
+  }
+
+}

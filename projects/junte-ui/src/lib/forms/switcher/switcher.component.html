@@ -1,0 +1,36 @@
+<ng-template #optionDefaultTemplate
+             let-icon="icon"
+             let-dot="dot"
+             let-badge="badge"
+             let-label="label">
+  <jnt-dot *ngIf="dot"
+           [color]="dot.color"></jnt-dot>
+  <jnt-icon *ngIf="icon"
+            [icon]="icon"></jnt-icon>
+  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+             [justify]="ui.flex.justify.between"
+             [align]="ui.flex.align.center"
+             [gutter]="ui.gutter.small"
+             title>
+    <div label>{{label}}</div>
+    <jnt-badge *ngIf="badge"
+               [position]="ui.position.inline"
+               [color]="badge.color"
+               [text]="badge.text"
+               [value]="badge.value"
+               [overflow]="badge.overflow"></jnt-badge>
+  </jnt-stack>
+</ng-template>
+
+<jnt-stack option *ngFor="let option of options"
+           [attr.with-template]="option.optionTemplate"
+           (click)="selectOption(option.value)"
+           [attr.active]="(option.value | isEqual : value)"
+           [type]="ui.layout.stack.type.horizontal"
+           [align]="ui.flex.align.center"
+           [gutter]="ui.gutter.small"
+           tabindex="0">
+  <ng-container
+    *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: option">
+  </ng-container>
+</jnt-stack>
