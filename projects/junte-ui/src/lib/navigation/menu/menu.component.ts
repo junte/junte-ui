@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Orientation } from '../../core/enums/orientation';
 import { Size } from '../../core/enums/size';
@@ -51,6 +51,9 @@ export class MenuComponent {
   get spacer() {
     return this._spacer;
   }
+
+  @Output()
+  selected = new EventEmitter<MenuItemComponent>();
 
   @ContentChildren(forwardRef(() => MenuItemComponent))
   items: QueryList<MenuItemComponent>;
