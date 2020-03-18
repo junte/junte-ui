@@ -4,15 +4,15 @@
 
   :host, #{$context} {
     display: block;
-    margin: $gutter-normal;
+    margin: $jnt-gutter-normal;
     box-sizing: border-box;
 
     &[disabled='true'] {
       cursor: default;
       pointer-events: none;
       table {
-        color: $control-disabled-label-color;
-        background-color: $control-disabled-background;
+        color: $jnt-control-disabled-label-color;
+        background-color: $jnt-control-disabled-background;
       }
     }
   }
@@ -33,8 +33,8 @@
     [arrow] {
       background-color: transparent;
       border-width: 0;
-      font-size: $font-size-large;
-      color: $primary-text-color;
+      font-size: $jnt-font-size-large;
+      color: $jnt-primary-text-color;
       cursor: pointer;
       padding: 0;
       vertical-align: middle;
@@ -48,24 +48,24 @@
       line-height: 0;
       &:focus {
         outline: none;
-        box-shadow: $shadow-primary;
-        border: 1px solid $primary-color;
+        box-shadow: $jnt-shadow-primary;
+        border: 1px solid $jnt-primary-color;
       }
       &:hover {
-        color: lighten($primary-text-color, 10%);
-        border: 1px solid $primary-color;
+        color: lighten($jnt-primary-text-color, 10%);
+        border: 1px solid $jnt-primary-color;
       }
     }
     [date] {
-      font-weight: $font-weight-bold;
-      font-size: $font-size-base;
+      font-weight: $jnt-font-weight-bold;
+      font-size: $jnt-font-size-base;
     }
     [days] {
       > th {
-        padding: $gutter-normal $gutter-tiny;
-        color: $primary-text-light-color;
-        font-size: $font-size-small;
-        font-weight: $font-weight-bold;
+        padding: $jnt-gutter-normal $jnt-gutter-tiny;
+        color: $jnt-primary-text-light-color;
+        font-size: $jnt-font-size-small;
+        font-weight: $jnt-font-weight-bold;
       }
     }
     .sortable {
@@ -77,30 +77,30 @@
     tr {
       &[current-week='true'] {
         [day], [metric] {
-          border-top-color: $primary-light-color;
-          border-bottom-color: $primary-light-color;
+          border-top-color: $jnt-primary-light-color;
+          border-bottom-color: $jnt-primary-light-color;
           &:first-child {
-            border-top-left-radius: $corner-small;
-            border-bottom-left-radius: $corner-small;
-            border-left-color: $primary-light-color;
+            border-top-left-radius: $jnt-corner-small;
+            border-bottom-left-radius: $jnt-corner-small;
+            border-left-color: $jnt-primary-light-color;
           }
           &:last-child {
-            border-top-right-radius: $corner-small;
-            border-bottom-right-radius: $corner-small;
-            border-right-color: $primary-light-color;
+            border-top-right-radius: $jnt-corner-small;
+            border-bottom-right-radius: $jnt-corner-small;
+            border-right-color: $jnt-primary-light-color;
           }
         }
       }
       td {
         min-width: 38px;
-        font-size: $font-size-small;
+        font-size: $jnt-font-size-small;
         box-sizing: border-box;
         border-top: 1px solid transparent;
         border-bottom: 1px solid transparent;
         user-select: none;
         padding: 0;
         [default] {
-          padding: $gutter-small $gutter-tiny;
+          padding: $jnt-gutter-small $jnt-gutter-tiny;
         }
         &:first-child {
           border-left: 1px solid transparent;
@@ -112,20 +112,20 @@
           cursor: pointer;
           &:nth-child(6),
           &:nth-child(7) {
-            background-color: $secondary-background;
+            background-color: $jnt-secondary-background;
           }
           &:hover {
-            background-color: $highlight-background;
-            color: $primary-text-dark-color;
+            background-color: $jnt-highlight-background;
+            color: $jnt-primary-text-dark-color;
           }
           &:focus {
-            box-shadow: $shadow-primary;
-            outline: 1px solid $primary-light-color;
+            box-shadow: $jnt-shadow-primary;
+            outline: 1px solid $jnt-primary-light-color;
           }
           &[current-day='true'] {
             [default] {
-              background-color: $primary-light-color;
-              color: $white-color;
+              background-color: $jnt-primary-light-color;
+              color: $jnt-white-color;
             }
           }
         }

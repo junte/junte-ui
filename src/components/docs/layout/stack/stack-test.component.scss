@@ -9,12 +9,12 @@
   left: 0;
   margin: auto 0;
   height: 2px;
-  background: $red-color;
+  background: $jnt-red-color;
   width: 100%;
   opacity: .5;
   transform: translateY(50%);
   &[type='horizontal'] {
-    background: $green-color;
+    background: $jnt-green-color;
   }
 }
 
@@ -26,28 +26,28 @@
   left: 0;
   margin: 0 auto;
   height: 100%;
-  background: $green-color;
+  background: $jnt-green-color;
   width: 2px;
   opacity: .5;
   transform: translateX(50%);
   &[type='horizontal'] {
-    background: $red-color;
+    background: $jnt-red-color;
   }
 }
 
 [stack] {
-  border: 1px dashed $secondary-color;
+  border: 1px dashed $jnt-secondary-color;
   height: 100%;
 }
 
 [align][host=#{$jnt-select-host}] ::ng-deep {
   [select][child-of=#{$jnt-select-host}] {
-    border-color: $red-color;
+    border-color: $jnt-red-color;
   }
 }
 
 [justify][host=#{$jnt-select-host}] ::ng-deep {
   [select][child-of=#{$jnt-select-host}] {
-    border-color: $green-color;
+    border-color: $jnt-green-color;
   }
 }

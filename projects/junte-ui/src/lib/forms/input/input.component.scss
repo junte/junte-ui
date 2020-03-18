@@ -6,11 +6,11 @@
     font-size: #{map-get($size, font-size)};
     min-height: #{map-get($size, height)};
     &[type='number'] {
-      padding-right: calc(#{$gutter-small} * 2 + #{map-get($size, chevron)});
+      padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
     }
   }
   [icon] ~ input {
-    padding-left: calc(#{map-get($size, font-size)} + #{$gutter-normal} + #{$gutter-small});
+    padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-normal} + #{$jnt-gutter-small});
   }
 }
 
@@ -39,35 +39,35 @@
     ),
     states: (
       normal: (
-        border-color: $control-border-color,
+        border-color: $jnt-control-border-color,
         hover: (
-          border-color: $primary-color
+          border-color: $jnt-primary-color
         ),
         focus: (
-          border-color: $primary-color,
-          shadow: $shadow-primary
+          border-color: $jnt-primary-color,
+          shadow: $jnt-shadow-primary
         ),
         disabled: (
-          border-color: $control-disabled-border-color
+          border-color: $jnt-control-disabled-border-color
         ),
       ),
       success: (
-        border-color: $success-color,
+        border-color: $jnt-success-color,
         hover: (
-          border-color: $success-color
+          border-color: $jnt-success-color
         ),
         focus: (
-          border-color: $success-color,
+          border-color: $jnt-success-color,
           shadow: null
         ),
       ),
       failed: (
-        border-color: $fail-color,
+        border-color: $jnt-fail-color,
         hover: (
-          border-color: $fail-color
+          border-color: $jnt-fail-color
         ),
         focus: (
-          border-color: $fail-color,
+          border-color: $jnt-fail-color,
           shadow: null
         ),
       ),
@@ -156,25 +156,25 @@
     >[icon] {
       position: absolute;
       top: 50%;
-      left: $gutter-normal;
+      left: $jnt-gutter-normal;
       transform: translateY(-50%);
-      color: $primary-text-light-color;
-      fill: $primary-text-light-color;
+      color: $jnt-primary-text-light-color;
+      fill: $jnt-primary-text-light-color;
       line-height: 0;
     }
     input, textarea {
       outline: 0;
-      background-color: $control-background;
-      color: $primary-text-color;
+      background-color: $jnt-control-background;
+      color: $jnt-primary-text-color;
       width: 100%;
-      padding: 0 $gutter-normal;
-      border-radius: $corner-small;
+      padding: 0 $jnt-gutter-normal;
+      border-radius: $jnt-corner-small;
       border: 1px solid;
       box-sizing: border-box;
       transition: all .3s;
       &:disabled {
-        background-color: $control-disabled-background;
-        color: $control-disabled-label-color;
+        background-color: $jnt-control-disabled-background;
+        color: $jnt-control-disabled-label-color;
         pointer-events: none;
         & + [arrows] {
           button {
@@ -185,20 +185,20 @@
     }
 
     [label] {
-      background-color: $control-field-label-background;
-      padding: $control-field-label-padding;
+      background-color: $jnt-control-field-label-background;
+      padding: $jnt-control-field-label-padding;
       display: flex;
       align-items: center;
-      border-top-left-radius: $corner-small - 1px;
-      border-bottom-left-radius: $corner-small - 1px;
-      color: $control-field-label-color;
-      border: 1px solid $control-field-label-border-color;
+      border-top-left-radius: $jnt-corner-small - 1px;
+      border-bottom-left-radius: $jnt-corner-small - 1px;
+      color: $jnt-control-field-label-color;
+      border: 1px solid $jnt-control-field-label-border-color;
       border-right: 0;
       white-space: nowrap;
       & ~ input, textarea {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        padding: 0 $gutter-normal;
+        padding: 0 $jnt-gutter-normal;
       }
     }
 
@@ -211,10 +211,10 @@
       bottom: 1px;
       button {
         flex: 1;
-        padding: 0 $gutter-small;
+        padding: 0 $jnt-gutter-small;
         height: 50%;
         border: 0;
-        border-radius: $corner-small;
+        border-radius: $jnt-corner-small;
         cursor: pointer;
         line-height: 0;
         background-color: transparent;

@@ -1,6 +1,6 @@
 @import "variables";
 
-@keyframes loading {
+@keyframes jnt-loading {
   0% {
     background-position: 100% 50%;
   }
@@ -22,8 +22,8 @@
 
   $defs: (
     background: (
-      from: $secondary-background,
-      to: darken($secondary-background, 5%),
+      from: $jnt-secondary-background,
+      to: darken($jnt-secondary-background, 5%),
     ),
     line: (
       height: 24px,
@@ -84,6 +84,6 @@
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
     }
     background-size: 400% 100%;
-    animation: loading 1.5s ease infinite;
+    animation: jnt-loading 1.5s ease infinite;
   }
 }

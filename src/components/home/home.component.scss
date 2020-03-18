@@ -16,38 +16,38 @@
   h1 {
     text-align: center;
     font-size: 60px;
-    font-weight: $font-weight-base;
-    color: $white-color;
+    font-weight: $jnt-font-weight-base;
+    color: $jnt-white-color;
     line-height: 1.25em;
   }
   p {
     font-size: 30px;
     font-weight: 200;
-    color: $white-color;
+    color: $jnt-white-color;
   }
 
   [label] ::ng-deep {
     @include label((
-      padding: $gutter-small $gutter-normal,
+      padding: $jnt-gutter-small $jnt-gutter-normal,
       font-size: 20px
     ), '&');
   }
 
   [opened] ::ng-deep {
     @include label((
-      background: rgba($red-color, .2) !important
+      background: rgba($jnt-red-color, .2) !important
     ), '&');
   }
 
   [native] ::ng-deep {
     @include label((
-      background: rgba($green-color, .2) !important
+      background: rgba($jnt-green-color, .2) !important
     ), '&');
   }
 
   [multilingual] ::ng-deep {
     @include label((
-      background: rgba($pale-navy-color, .2) !important
+      background: rgba($jnt-pale-navy-color, .2) !important
     ), '&');
   }
 
@@ -55,19 +55,19 @@
     @include menu((
       top: (
         item: (
-          color: $primary-color,
+          color: $jnt-primary-color,
           active: (
-            color: $white-color
+            color: $jnt-white-color
           ),
           icon: (
-            size: $font-size-large
+            size: $jnt-font-size-large
           ),
           padding: (
-            outer: $gutter-small $gutter-normal,
-            inner: $gutter-small,
+            outer: $jnt-gutter-small $jnt-gutter-normal,
+            inner: $jnt-gutter-small,
           ),
           hover: (
-            background-color: rgba($white-color, .1),
+            background-color: rgba($jnt-white-color, .1),
           ),
         ),
       ),
@@ -78,18 +78,18 @@
     @include link((
       font-size: 20px,
       icon: (
-        margin-right: $gutter-small,
+        margin-right: $jnt-gutter-small,
       ),
     ), '&');
   }
 }
 
 [slide2] {
-  background-color: $green-color;
+  background-color: $jnt-green-color;
   height: 100%;
 }
 
 [slide3] {
-  background-color: $red-color;
+  background-color: $jnt-red-color;
   height: 100%;
 }

@@ -129,7 +129,7 @@
 @mixin button($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    corner: $corner-large,
+    corner: $jnt-corner-large,
     corners: (
       top: (
         left: null,
@@ -146,35 +146,35 @@
       top: null,
       bottom: null
     ),
-    without-text-corner: $corner-small,
+    without-text-corner: $jnt-corner-small,
     padding: null,
     icon: (
-      margin-right: $gutter-small,
+      margin-right: $jnt-gutter-small,
       size: 18px
     ),
     badge: (
-      margin-left: $gutter-small
+      margin-left: $jnt-gutter-small
     ),
     schemes: (
       primary: (
-        color: $primary-color,
-        inverse-color: $white-color,
-        hover-color: $primary-dark-color,
+        color: $jnt-primary-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-primary-dark-color,
       ),
       secondary: (
-        color: $secondary-color,
-        inverse-color: $gray-900-color,
-        hover-color: $blue-100-color
+        color: $jnt-secondary-color,
+        inverse-color: $jnt-gray-900-color,
+        hover-color: $jnt-blue-100-color
       ),
       success: (
-        color: $success-color,
-        inverse-color: $white-color,
-        hover-color: $success-dark-color
+        color: $jnt-success-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-success-dark-color
       ),
       fail: (
-        color: $fail-color,
-        inverse-color: $white-color,
-        hover-color: $fail-dark-color
+        color: $jnt-fail-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-fail-dark-color
       ),
     ),
     sizes: (
@@ -269,8 +269,8 @@
         border: none;
         width: 100%;
         position: relative;
-        font-family: $font-family-base;
-        line-height: $line-height-base;
+        font-family: $jnt-font-family-base;
+        line-height: $jnt-line-height-base;
         [text] {
           line-height: 1em;
           white-space: nowrap;

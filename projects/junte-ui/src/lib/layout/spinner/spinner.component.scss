@@ -7,7 +7,7 @@
   min-height: $size;
 }
 
-@keyframes spin {
+@keyframes jnt-spin {
   100% {
     transform: rotate(360deg);
   }
@@ -36,7 +36,7 @@
     border-radius: 50%;
     border: 1px solid;
     border-right-color: transparent !important;
-    animation: spin .5s infinite linear;
+    animation: jnt-spin .5s infinite linear;
 
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);

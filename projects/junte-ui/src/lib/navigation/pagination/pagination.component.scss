@@ -8,24 +8,24 @@
   }
 
   #{$context} div {
-    padding: $gutter-small 0;
+    padding: $jnt-gutter-small 0;
 
     &:focus {
       outline: 0;
 
       a {
-        box-shadow: $shadow-primary;
+        box-shadow: $jnt-shadow-primary;
       }
     }
 
     a {
       padding: 0 5px;
-      border-radius: $corner-small;
+      border-radius: $jnt-corner-small;
       transition: background-color .3s;
       user-select: none;
 
       &:hover {
-        background-color: $highlight-background;
+        background-color: $jnt-highlight-background;
       }
     }
 
@@ -34,9 +34,9 @@
 
     &[page] {
       &[active="true"] {
-        font-weight: $font-weight-bold;
+        font-weight: $jnt-font-weight-bold;
         pointer-events: none;
-        border-bottom: 2px solid $primary-color;
+        border-bottom: 2px solid $jnt-primary-color;
       }
     }
 
@@ -45,7 +45,7 @@
       pointer-events: none;
 
       [icon] {
-        color: $muted-color;
+        color: $jnt-muted-color;
       }
     }
 
@@ -53,7 +53,7 @@
       @include icon((
         size: 10px
       ), '&');
-      color: $primary-text-light-color;
+      color: $jnt-primary-text-light-color;
     }
   }
 }
