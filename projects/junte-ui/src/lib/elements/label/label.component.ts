@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { PropertyApi } from '../../core/decorators/api';
 import { Color } from '../../core/enums/color';
+import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 
@@ -13,6 +13,9 @@ export class LabelComponent {
   @HostBinding('attr.host') readonly host = 'jnt-label-host';
 
   ui = UI;
+
+  @HostBinding('style.background-color')
+  _color: string = Color.purple;
 
   @HostBinding('attr.size')
   _size: Size = Size.normal;
@@ -34,8 +37,13 @@ export class LabelComponent {
     type: 'string',
     default: 'purple'
   })
-  @HostBinding('style.background-color')
-  @Input() color: string = Color.purpleDark;
+  @Input() set color(color: string) {
+    this._color = color || Color.purple;
+  }
+
+  get color() {
+    return this._color;
+  }
 
   @PropertyApi({
     description: 'Label size',
@@ -43,7 +51,6 @@ export class LabelComponent {
     default: Size.normal,
     options: [Size.small, Size.normal]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
