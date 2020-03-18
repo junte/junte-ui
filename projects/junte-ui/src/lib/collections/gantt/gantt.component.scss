@@ -25,12 +25,12 @@
     thead {
       tr {
         &[timeline] {
-          background-color: $secondary-background;
+          background-color: $jnt-secondary-background;
         }
         td {
           &[controls] {
             border-right: none;
-            padding: $gutter-normal $gutter-tiny;
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
             width: 600px;
 
             [month] {
@@ -43,7 +43,7 @@
               background-color: transparent;
               border-width: 0;
               font-size: 1rem;
-              color: $primary-text-color;
+              color: $jnt-primary-text-color;
               cursor: pointer;
               padding: 0;
               vertical-align: middle;
@@ -57,27 +57,27 @@
               line-height: 0;
               &:focus {
                 outline: none;
-                box-shadow: $shadow-primary;
-                border: 1px solid $primary-color;
+                box-shadow: $jnt-shadow-primary;
+                border: 1px solid $jnt-primary-color;
               }
               &:hover {
-                color: $primary-text-light-color;
-                border: 1px solid $primary-color;
+                color: $jnt-primary-text-light-color;
+                border: 1px solid $jnt-primary-color;
               }
             }
           }
 
           &[day] {
             text-align: center;
-            font-size: $font-size-small;
-            padding: $gutter-normal $gutter-tiny;
+            font-size: $jnt-font-size-small;
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
 
             &[current='true'] {
-              color: $white-color;
-              background-color: $primary-color;
+              color: $jnt-white-color;
+              background-color: $jnt-primary-color;
             }
             &[weekend='true'] {
-              background-color: $secondary-dark-color;
+              background-color: $jnt-secondary-dark-color;
             }
           }
           &[gutter] {
@@ -100,7 +100,7 @@
 
             [icon] {
               font-size: 80px;
-              color: $muted-color;
+              color: $jnt-muted-color;
             }
           }
         }
@@ -109,7 +109,7 @@
           pointer-events: none;
           border-bottom: 0;
           td {
-            padding: $gutter-normal;
+            padding: $jnt-gutter-normal;
           }
         }
 
@@ -121,9 +121,9 @@
       }
 
       td {
-        border-bottom: 1px solid $gray-400-color;
-        border-right: 1px solid $gray-400-color;
-        padding: $gutter-tiny;
+        border-bottom: 1px solid $jnt-gray-400-color;
+        border-right: 1px solid $jnt-gray-400-color;
+        padding: $jnt-gutter-tiny;
         height: 59px;
         box-sizing: border-box;
 

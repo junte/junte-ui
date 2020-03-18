@@ -73,7 +73,7 @@
     width: 100%;
     height: 100%;
     &:checked + [switch] {
-      border-color: $primary-color;
+      border-color: $jnt-primary-color;
       & > [icon] {
         opacity: 1;
       }
@@ -82,39 +82,39 @@
       cursor: default;
       pointer-events: none;
       & ~ label {
-        color: $control-disabled-label-color;
+        color: $jnt-control-disabled-label-color;
       }
       & + [switch] {
-        background-color: $control-disabled-background;
-        border-color: $control-disabled-border-color;
+        background-color: $jnt-control-disabled-background;
+        border-color: $jnt-control-disabled-border-color;
         & > [icon] {
-          color: $control-disabled-indicator-icon-color;
+          color: $jnt-control-disabled-indicator-icon-color;
         }
       }
     }
     &:focus {
       & + [switch] {
-        box-shadow: 0 1px 5px $primary-color;
+        box-shadow: 0 1px 5px $jnt-primary-color;
       }
     }
     &:hover {
       & + [switch] {
-        border-color: $primary-color;
+        border-color: $jnt-primary-color;
       }
     }
   }
 
   label {
-    padding-left: $control-gutter;
-    color: $control-switch-label-color;
+    padding-left: $jnt-control-gutter;
+    color: $jnt-control-switch-label-color;
     user-select: none;
   }
 
   [switch] {
     position: relative;
     border-radius: 3px;
-    background-color: $control-background;
-    border: 1px solid $control-border-color;
+    background-color: $jnt-control-background;
+    border: 1px solid $jnt-control-border-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,7 +122,7 @@
     [icon] {
       opacity: 0;
       line-height: 1;
-      color: $primary-color;
+      color: $jnt-primary-color;
     }
   }
 

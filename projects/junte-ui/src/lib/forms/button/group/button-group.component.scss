@@ -4,7 +4,7 @@
 @mixin button-group($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    corner: $corner-large
+    corner: $jnt-corner-large
   );
 
   $vars: $passed;
@@ -28,7 +28,7 @@
   #{$context} [button] {
 
     @include button ((
-      padding: 0 $gutter-normal,
+      padding: 0 $jnt-gutter-normal,
       corner: 0,
       without-text-corner: 0,
     ), '&');

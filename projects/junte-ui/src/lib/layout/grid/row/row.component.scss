@@ -13,12 +13,12 @@
 
   $defs: (
     gutters: (
-      tiny: $gutter-tiny,
-      small: $gutter-small,
-      normal: $gutter-normal,
-      big: $gutter-big,
-      large: $gutter-large,
-      huge: $gutter-huge,
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
     ),
   );
 
@@ -34,7 +34,7 @@
     display: flex;
     text-align: left;
     flex-wrap: wrap;
-    margin: 0 (-$grid-gutter);
+    margin: 0 (-$jnt-grid-gutter);
 
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);

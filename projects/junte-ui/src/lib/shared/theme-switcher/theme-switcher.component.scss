@@ -5,13 +5,13 @@ $theme-switcher-width: 65px !default;
 $theme-switcher-corner: 15px !default;
 $theme-switcher-padding: 2px !default;
 $theme-switcher-font-size: 12px !default;
-$theme-switcher-color: $white-color !default;
+$theme-switcher-color: $jnt-white-color !default;
 $theme-switcher-icon-font-size: 16px !default;
-$theme-switcher-icon-color: $white-color !default;
-$theme-switcher-light-background: $primary-light-color !default;
-$theme-switcher-light-slider-background: $primary-color !default;
-$theme-switcher-dark-background: $primary-color !default;
-$theme-switcher-dark-slider-background: $primary-light-color !default;
+$theme-switcher-icon-color: $jnt-white-color !default;
+$theme-switcher-light-background: $jnt-primary-light-color !default;
+$theme-switcher-light-slider-background: $jnt-primary-color !default;
+$theme-switcher-dark-background: $jnt-primary-color !default;
+$theme-switcher-dark-slider-background: $jnt-primary-light-color !default;
 
 :host {
   display: inline-flex;
@@ -40,7 +40,7 @@ input {
 
   &:checked {
     & + [switch] {
-      transform: translateX(calc((#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$gutter-tiny} / 2) * (-1)));
+      transform: translateX(calc((#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$jnt-gutter-tiny} / 2) * (-1)));
       background-color: $theme-switcher-light-background;
 
       [icon] {
@@ -52,7 +52,7 @@ input {
 
 [switch] {
   display: flex;
-  min-width: calc(#{$theme-switcher-width} + (#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$gutter-tiny} / 2));
+  min-width: calc(#{$theme-switcher-width} + (#{$theme-switcher-width} - (#{$theme-switcher-height} - #{$theme-switcher-padding}) - #{$jnt-gutter-tiny} / 2));
   height: $theme-switcher-height;
   background-color: $theme-switcher-dark-background;
   -webkit-transition: transform .4s ease-out, background-color .4s;

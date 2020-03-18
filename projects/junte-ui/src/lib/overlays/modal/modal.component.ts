@@ -174,7 +174,7 @@ export class ModalComponent {
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
@@ -185,7 +185,7 @@ export class ModalComponent {
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     }
     this.opened = false;
   }

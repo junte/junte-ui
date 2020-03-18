@@ -1,6 +1,6 @@
 @import "variables";
 
-@keyframes scaleIn {
+@keyframes jnt-scaleIn {
   from {
     transform: scale(1);
   }
@@ -9,7 +9,7 @@
   }
 }
 
-@keyframes scaleOut {
+@keyframes jnt-scaleOut {
   from {
     transform: scale(.9);
   }
@@ -37,10 +37,10 @@
   top: 100%;
 
   [title] {
-    border-top-left-radius: $corner-normal;
-    border-top-right-radius: $corner-normal;
-    padding: $gutter-normal;
-    background-color: $page-background;
+    border-top-left-radius: $jnt-corner-normal;
+    border-top-right-radius: $jnt-corner-normal;
+    padding: $jnt-gutter-normal;
+    background-color: $jnt-page-background;
     font-size: 18px;
 
     [close] {
@@ -55,20 +55,20 @@
     }
 
     [icon]:not([type='font']) {
-      fill: $primary-text-color;
+      fill: $jnt-primary-text-color;
       width: 18px;
       height: 18px;
     }
 
     [text] {
-      color: $primary-text-color;
-      font-weight: $font-weight-bold;
+      color: $jnt-primary-text-color;
+      font-weight: $jnt-font-weight-bold;
     }
   }
 
   [content] {
-    padding: $gutter-normal;
-    font-size: $font-size-base;
+    padding: $jnt-gutter-normal;
+    font-size: $jnt-font-size-base;
     box-sizing: border-box;
     overflow: auto;
   }

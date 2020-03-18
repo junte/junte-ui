@@ -119,15 +119,15 @@
       width: 100%;
       height: 100%;
       &:checked + [switch] {
-        background-color: $primary-color;
+        background-color: $jnt-primary-color;
         [label] {
           margin-left: 0;
           text-align: right;
         }
         [slider] {
           [icon] {
-            color: $primary-color;
-            fill: $primary-color;
+            color: $jnt-primary-color;
+            fill: $jnt-primary-color;
           }
         }
       }
@@ -138,38 +138,38 @@
       &:disabled {
         cursor: default;
         & ~ label {
-          color: $control-disabled-label-color;
+          color: $jnt-control-disabled-label-color;
         }
         & + [switch] {
-          background-color: rgba($gray-600-color, .7);
+          background-color: rgba($jnt-gray-600-color, .7);
           [slider] [icon] {
-            color: rgba($gray-600-color, .7);
+            color: rgba($jnt-gray-600-color, .7);
           }
         }
         &:checked {
           & + [switch] {
-            background-color: rgba($primary-color, .5);
+            background-color: rgba($jnt-primary-color, .5);
             [slider] [icon] {
-              color: rgba($primary-color, .5);
+              color: rgba($jnt-primary-color, .5);
             }
           }
         }
       }
       &:focus {
         & + [switch] {
-          box-shadow: 0 1px 5px $primary-color;
+          box-shadow: 0 1px 5px $jnt-primary-color;
         }
       }
     }
     label {
-      padding-left: $control-gutter;
-      color: $control-switch-label-color;
+      padding-left: $jnt-control-gutter;
+      color: $jnt-control-switch-label-color;
       user-select: none;
     }
     [switch] {
       position: relative;
       border-radius: map-get($vars, corner);
-      background-color: $gray-600-color;
+      background-color: $jnt-gray-600-color;
       box-sizing: border-box;
       display: flex;
       align-items: center;
@@ -178,7 +178,7 @@
       transition: all ease .4s;
       [slider] {
         border-radius: 50%;
-        background-color: $white-color;
+        background-color: $jnt-white-color;
         position: absolute;
         left: map-get($vars, padding);
         right: auto;
@@ -189,12 +189,12 @@
         align-items: center;
         transition: all .3s;
         [icon] {
-          color: $gray-600-color;
-          fill: $gray-600-color;
+          color: $jnt-gray-600-color;
+          fill: $jnt-gray-600-color;
         }
       }
       [label] {
-        color: $white-color;
+        color: $jnt-white-color;
         margin-right: 0;
         width: 100%;
         text-align: left;
