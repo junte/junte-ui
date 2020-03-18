@@ -4,13 +4,15 @@ import { AvatarModule } from './avatar/avatar.module';
 import { BadgeModule } from './badge/badge.module';
 import { IconModule } from './icon/icon.module';
 import { LabelModule } from './label/label.module';
+import { DotModule } from './dot/dot.module';
 
 @NgModule({
   exports: [
     AvatarModule,
     BadgeModule,
     IconModule,
-    LabelModule
+    LabelModule,
+    DotModule
   ]
 })
 export class ElementsModule {

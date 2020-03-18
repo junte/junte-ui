@@ -5,7 +5,7 @@ import { IsEqualPipeModule } from '../../core/pipes/is-equal.pipe.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { DotModule } from '../dot/dot.module';
+import { DotModule } from '../../elements/dot/dot.module';
 import { SwitcherOptionComponent } from './switcher-option.component';
 import { SwitcherComponent } from './switcher.component';
 
