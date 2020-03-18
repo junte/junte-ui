@@ -2,9 +2,9 @@
 
 :host {
   display: flex;
-  box-shadow: $shadow-normal;
-  border-radius: $corner-normal;
-  background-color: $secondary-background;
+  box-shadow: $jnt-shadow-normal;
+  border-radius: $jnt-corner-normal;
+  background-color: $jnt-secondary-background;
 }
 
 [wrapper] {
@@ -16,18 +16,18 @@
     td, th {
       text-align: left;
       vertical-align: middle;
-      padding: 0 $gutter-small;
+      padding: 0 $jnt-gutter-small;
       &:first-child {
-        padding: 0 $gutter-large;
+        padding: 0 $jnt-gutter-large;
       }
     }
     thead {
-      background-color: $secondary-background;
+      background-color: $jnt-secondary-background;
       th:first-child {
-        border-top-left-radius: $corner-normal;
+        border-top-left-radius: $jnt-corner-normal;
       }
       th:last-child {
-        border-top-right-radius: $corner-normal;
+        border-top-right-radius: $jnt-corner-normal;
       }
     }
     tbody {
@@ -36,17 +36,17 @@
         position: relative;
         &:hover, &[selected='true'] {
           td {
-            background-color: $secondary-background;
+            background-color: $jnt-secondary-background;
           }
         }
         &:not(:last-child) {
           td:not(:last-child) {
-            border-bottom: 1px solid $muted-color;
+            border-bottom: 1px solid $jnt-muted-color;
           }
         }
         &:last-child {
           td:first-child {
-            border-bottom-left-radius: $corner-normal;
+            border-bottom-left-radius: $jnt-corner-normal;
           }
         }
         &[nodata] {
@@ -58,18 +58,18 @@
             text-align: center;
             [icon] {
               font-size: 80px;
-              color: $muted-color;
+              color: $jnt-muted-color;
             }
           }
           &:last-child {
             td:last-child {
-              border-bottom-right-radius: $corner-normal;
+              border-bottom-right-radius: $jnt-corner-normal;
             }
           }
         }
       }
       td {
-        background-color: $primary-background;
+        background-color: $jnt-primary-background;
         box-sizing: border-box;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -85,7 +85,7 @@
           width: 300px;
         }
         &:last-child {
-          color: $gray-900-color;
+          color: $jnt-gray-900-color;
           text-align: center;
         }
         [content] {
@@ -97,10 +97,10 @@
 }
 
 svg {
-  background-color: $secondary-background;
-  border-top-right-radius: $corner-normal;
-  border-bottom-right-radius: $corner-normal;
+  background-color: $jnt-secondary-background;
+  border-top-right-radius: $jnt-corner-normal;
+  border-bottom-right-radius: $jnt-corner-normal;
   text {
-    fill: $white-color;
+    fill: $jnt-white-color;
   }
 }

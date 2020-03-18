@@ -22,15 +22,15 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 $gutter-normal;
+    padding: 0 $jnt-gutter-normal;
 
     > jnt-icon[deep-host=#{$jnt-icon-host}] {
       font-size: 20px;
-      color: $white-color;
+      color: $jnt-white-color;
     }
 
     &:hover {
-      background-color: $primary-color;
+      background-color: $jnt-primary-color;
 
       [content] {
         display: block;
@@ -39,14 +39,14 @@
   }
 
   #{$context} [content] {
-    background: $primary-background;
-    border-radius: 0 0 $corner-small $corner-small;
-    padding: $gutter-normal $gutter-big;
-    color: $primary-text-color;
+    background: $jnt-primary-background;
+    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+    padding: $jnt-gutter-normal $jnt-gutter-big;
+    color: $jnt-primary-text-color;
     max-width: map-get($vars, width);
     width: map-get($vars, width);
     max-height: map-get($vars, height);
-    box-shadow: $shadow-light;
+    box-shadow: $jnt-shadow-light;
     overflow-y: auto;
     display: none;
     position: absolute;

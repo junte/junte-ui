@@ -10,8 +10,8 @@
     flex: 0 0 auto;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background-color: $primary-dark-color;
-    padding: 0 $gutter-big;
+    background-color: $jnt-primary-dark-color;
+    padding: 0 $jnt-gutter-big;
     min-height: $app-header-height;
     position: absolute;
     top: 0;
@@ -25,16 +25,16 @@
     @include menu((
       top: (
         item: (
-          color: $white-color,
+          color: $jnt-white-color,
           active: (
-            color: $white-color
+            color: $jnt-white-color
           ),
           icon: (
-            size: $font-size-large
+            size: $jnt-font-size-large
           ),
           padding: (
-            outer: $gutter-small $gutter-normal,
-            inner: $gutter-small,
+            outer: $jnt-gutter-small $jnt-gutter-normal,
+            inner: $jnt-gutter-small,
           ),
           hover: (
             background-color: transparent,
@@ -48,7 +48,7 @@
   [logo] {
     display: flex;
     align-items: center;
-    margin-right: $gutter-huge;
+    margin-right: $jnt-gutter-huge;
     & > * {
       display: block;
     }
@@ -69,7 +69,7 @@
       display: flex;
       align-items: center;
       button {
-        color: $white-color;
+        color: $jnt-white-color;
         background-color: transparent;
         border: 0;
         &:focus {
@@ -80,19 +80,19 @@
         position: absolute;
         top: 100%;
         right: 0;
-        margin-top: $gutter-tiny;
-        background-color: $primary-background;
-        padding: $gutter-small $gutter-normal;
+        margin-top: $jnt-gutter-tiny;
+        background-color: $jnt-primary-background;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
         min-width: 200px;
-        box-shadow: $shadow-normal;
+        box-shadow: $jnt-shadow-normal;
         display: none;
         &[opened='true'] {
           display: block;
         }
         [stack] {
-          background-color: $primary-dark-color;
-          margin: -$gutter-normal (-$gutter-normal) 0 (-$gutter-normal);
-          padding: $gutter-normal;
+          background-color: $jnt-primary-dark-color;
+          margin: -$jnt-gutter-normal (-$jnt-gutter-normal) 0 (-$jnt-gutter-normal);
+          padding: $jnt-gutter-normal;
           [content] {
             flex: 1;
           }

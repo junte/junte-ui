@@ -20,24 +20,24 @@
   :host {
     display: block;
     min-width: map-get($vars, min-width);
-    padding: $gutter-normal;
+    padding: $jnt-gutter-normal;
 
     @include button((
       sizes: (
         schemes: (
           secondary: (
-            inverse-color: $gray-800-color
+            inverse-color: $jnt-gray-800-color
           ),
         ),
         normal: (
-          padding: 0 $gutter-small,
+          padding: 0 $jnt-gutter-small,
         ),
       ),
     ), '&');
 
     [table] {
-      margin-left: -$gutter-normal;
-      margin-right: -$gutter-normal;
+      margin-left: -$jnt-gutter-normal;
+      margin-right: -$jnt-gutter-normal;
     }
 
     table {
@@ -50,25 +50,25 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: rgba($secondary-background, .6);
+        background-color: rgba($jnt-secondary-background, .6);
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all .3s;
         z-index: 1;
         [icon] {
-          color: $primary-text-light-color;
+          color: $jnt-primary-text-light-color;
         }
       }
       thead {
-        background-color: $secondary-background;
+        background-color: $jnt-secondary-background;
         .sortable {
           cursor: pointer;
         }
       }
       tbody tr {
-        border-bottom: 1px solid $muted-color;
-        background-color: $primary-background;
+        border-bottom: 1px solid $jnt-muted-color;
+        background-color: $jnt-primary-background;
         transition: all .3s;
         &[nodata] {
           height: map-get($vars, min-height);
@@ -79,7 +79,7 @@
             text-align: center;
             [icon] {
               font-size: 80px;
-              color: $muted-color;
+              color: $jnt-muted-color;
             }
           }
         }
@@ -89,7 +89,7 @@
           border-bottom: 0;
         }
         &:hover {
-          background-color: $highlight-background;
+          background-color: $jnt-highlight-background;
         }
         td {
           &[action] {
@@ -98,7 +98,7 @@
             [menu] {
               [button][child-host=#{$jnt-button-host}] {
                 button {
-                  padding: 0 $gutter-normal;
+                  padding: 0 $jnt-gutter-normal;
                 }
               }
             }
@@ -106,7 +106,7 @@
         }
       }
       td, th {
-        padding: $gutter-normal;
+        padding: $jnt-gutter-normal;
         box-sizing: border-box;
       }
     }
@@ -115,7 +115,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: -$gutter-normal;
+      margin-bottom: -$jnt-gutter-normal;
       [pages] {
         flex: 1;
       }

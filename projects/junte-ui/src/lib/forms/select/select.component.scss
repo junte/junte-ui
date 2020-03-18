@@ -16,30 +16,30 @@
         font-size: 11px,
         height: 30px,
         chips: (
-          padding: 2px $gutter-large 2px $gutter-small
+          padding: 2px $jnt-gutter-large 2px $jnt-gutter-small
         ),
         input: (
-          padding: 2px 0 2px $gutter-small
+          padding: 2px 0 2px $jnt-gutter-small
         ),
       ),
       normal: (
         font-size: 14px,
         height: 38px,
         chips: (
-          padding: 3px $gutter-large 3px $gutter-small
+          padding: 3px $jnt-gutter-large 3px $jnt-gutter-small
         ),
         input: (
-          padding: 3px 0 3px $gutter-small
+          padding: 3px 0 3px $jnt-gutter-small
         ),
       ),
       large: (
         font-size: 16px,
         height: 50px,
         chips: (
-          padding: $gutter-small $gutter-large $gutter-small $gutter-small
+          padding: $jnt-gutter-small $jnt-gutter-large $jnt-gutter-small $jnt-gutter-small
         ),
         input: (
-          padding: $gutter-small 0 $gutter-small $gutter-small
+          padding: $jnt-gutter-small 0 $jnt-gutter-small $jnt-gutter-small
         ),
       ),
     ),
@@ -57,7 +57,7 @@
     display: inline-block;
     position: relative;
     min-width: 70px;
-    color: $primary-text-color;
+    color: $jnt-primary-text-color;
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -85,32 +85,32 @@
     }
     &[disabled='true'] {
       [select] {
-        background-color: $control-disabled-background;
-        border-color: $control-disabled-border-color;
+        background-color: $jnt-control-disabled-background;
+        border-color: $jnt-control-disabled-border-color;
         pointer-events: none;
         ul li {
-          background-color: $control-disabled-background;
-          color: $control-disabled-border-color;
+          background-color: $jnt-control-disabled-background;
+          color: $jnt-control-disabled-border-color;
           &[query] {
             background-color: transparent;
           }
         }
         [close], [toggle] {
-          color: $control-disabled-border-color;
+          color: $jnt-control-disabled-border-color;
         }
       }
     }
 
     &[opened='true'] [select] {
-      box-shadow: $shadow-primary;
-      border-color: $primary-color;
+      box-shadow: $jnt-shadow-primary;
+      border-color: $jnt-primary-color;
     }
 
     &[mode='single'] {
       ul {
         li {
-          background-color: $primary-background;
-          margin-left: -$gutter-tiny;
+          background-color: $jnt-primary-background;
+          margin-left: -$jnt-gutter-tiny;
         }
       }
       &[opened='true'][search='true'] [select] {
@@ -144,7 +144,7 @@
 
       &[allow-empty='false'] {
         [select] ul li {
-          padding-right: $gutter-small;
+          padding-right: $jnt-gutter-small;
           button[close] {
             display: none;
           }
@@ -173,7 +173,7 @@
     [disabled='true'] {
       [select] {
         ul li {
-          background-color: $muted-color;
+          background-color: $jnt-muted-color;
           &[query] {
             background-color: transparent;
           }
@@ -183,10 +183,10 @@
   }
 
   #{$context}  [select] {
-    border: 1px solid $control-border-color;
-    border-radius: $corner-small;
-    background-color: $control-background;
-    padding: $gutter-tiny $gutter-big $gutter-tiny $gutter-small;
+    border: 1px solid $jnt-control-border-color;
+    border-radius: $jnt-corner-small;
+    background-color: $jnt-control-background;
+    padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
     &:focus {
@@ -197,21 +197,21 @@
       display: flex;
       flex-wrap: wrap;
       padding: 0;
-      margin: 0 0 (-$gutter-tiny);
+      margin: 0 0 (-$jnt-gutter-tiny);
       li {
         display: flex;
         align-items: center;
         position: relative;
-        background-color: $secondary-background;
-        border-radius: $corner-small;
-        margin-bottom: $gutter-tiny;
+        background-color: $jnt-secondary-background;
+        border-radius: $jnt-corner-small;
+        margin-bottom: $jnt-gutter-tiny;
         [icon][child-host=#{$jnt-icon-host}] {
           line-height: 0;
         }
         [empty] {
           width: 50px;
           height: 10px;
-          background-color: $primary-text-light-color;
+          background-color: $jnt-primary-text-light-color;
         }
         [close] {
           border: 0;
@@ -219,7 +219,7 @@
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          padding: 0 $gutter-small;
+          padding: 0 $jnt-gutter-small;
           right: 0;
           &:focus {
             outline: 0;
@@ -231,7 +231,7 @@
           }
         }
         &:not(:last-child) {
-          margin-right: $gutter-tiny;
+          margin-right: $jnt-gutter-tiny;
         }
         &[query] {
           background-color: transparent;
@@ -255,7 +255,7 @@
       right: 0;
       border: 0;
       background-color: transparent;
-      padding: 0 $gutter-small;
+      padding: 0 $jnt-gutter-small;
       &:focus {
         outline: 0;
       }
@@ -271,11 +271,11 @@
     position: absolute;
     width: 100%;
     box-sizing: border-box;
-    margin-top: $gutter-tiny;
-    background-color: $control-background;
-    border-radius: $corner-small;
-    box-shadow: $shadow-normal;
-    padding: $gutter-small 0;
+    margin-top: $jnt-gutter-tiny;
+    background-color: $jnt-control-background;
+    border-radius: $jnt-corner-small;
+    box-shadow: $jnt-shadow-normal;
+    padding: $jnt-gutter-small 0;
     overflow: hidden;
     z-index: 2;
     &[loading='true'] {
@@ -283,7 +283,7 @@
       height: auto;
     }
     [skeleton] {
-      padding: 0 $gutter-small;
+      padding: 0 $jnt-gutter-small;
     }
     [empty] {
       height: 200px;
@@ -292,7 +292,7 @@
       align-items: center;
       [icon] {
         font-size: 50px;
-        color: $primary-text-light-color;
+        color: $jnt-primary-text-light-color;
       }
     }
     ul {
@@ -310,18 +310,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba($white-color, .5);
+        background-color: rgba($jnt-white-color, .5);
       }
       li {
         cursor: pointer;
-        padding: $gutter-small $gutter-normal;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
         border-left: 2px solid transparent;
         [icon][child-host=#{$jnt-icon-host}] {
           line-height: 0;
         }
         &:hover {
-          background-color: $secondary-background;
-          border-color: $primary-color;
+          background-color: $jnt-secondary-background;
+          border-color: $jnt-primary-color;
         }
       }
     }

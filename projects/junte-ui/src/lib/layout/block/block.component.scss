@@ -16,29 +16,29 @@
 @mixin block($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     padding: (
-      tiny: $gutter-tiny,
-      small: $gutter-small,
-      normal: $gutter-normal,
-      big: $gutter-big,
-      large: $gutter-large,
-      huge: $gutter-huge,
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
     ),
     schemes: (
       primary: (
-        background-color: $primary-background,
+        background-color: $jnt-primary-background,
       ),
       secondary: (
-        background-color: $secondary-background,
+        background-color: $jnt-secondary-background,
       ),
       success: (
-        background-color: $success-color,
+        background-color: $jnt-success-color,
       ),
       fail: (
-        background-color: $fail-color,
+        background-color: $jnt-fail-color,
       ),
     ),
     overlay: (
-      background-color: rgba($white-color, 0.75),
+      background-color: rgba($jnt-white-color, 0.75),
       icon: (
         size: 40px,
       ),
@@ -58,8 +58,8 @@
     flex-direction: column;
     position: relative;
     min-height: 40px;
-    box-shadow: $shadow-normal;
-    border-radius: $corner-normal;
+    box-shadow: $jnt-shadow-normal;
+    border-radius: $jnt-corner-normal;
     box-sizing: border-box;
     &[width="fluid"] {
       width: 100%;
@@ -83,13 +83,13 @@
   }
 
   #{$context} [title] {
-    padding: 0 $gutter-normal;
+    padding: 0 $jnt-gutter-normal;
     text-align: center;
-    color: $primary-color;
-    font-weight: $font-weight-bold;
+    color: $jnt-primary-color;
+    font-weight: $jnt-font-weight-bold;
     > div {
-      padding: $gutter-normal 0;
-      border-bottom: 1px solid $muted-color;
+      padding: $jnt-gutter-normal 0;
+      border-bottom: 1px solid $jnt-muted-color;
     }
   }
 
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: $corner-normal;
+    border-radius: $jnt-corner-normal;
     z-index: 1;
     @if map-has-key($vars, overlay) {
       $overlay: map-get($vars, overlay);

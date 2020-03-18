@@ -10,12 +10,12 @@
 
   $defs: (
     padding: (
-      tiny: $gutter-tiny,
-      small: $gutter-small,
-      normal: $gutter-normal,
-      big: $gutter-big,
-      large: $gutter-large,
-      huge: $gutter-huge,
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
     ),
   );
 
@@ -33,10 +33,10 @@
 
     &[outline='#{$outline-fill}'] {
       [content] {
-        background-color: $primary-background;
+        background-color: $jnt-primary-background;
         box-sizing: border-box;
-        border-bottom-left-radius: $corner-normal;
-        border-bottom-right-radius: $corner-normal;
+        border-bottom-left-radius: $jnt-corner-normal;
+        border-bottom-right-radius: $jnt-corner-normal;
       }
     }
 
@@ -49,16 +49,16 @@
 
   #{$context} [tabs] {
     display: flex;
-    border-bottom: 1px solid $muted-color;
-    background-color: $primary-background;
-    border-top-left-radius: $corner-normal;
-    border-top-right-radius: $corner-normal;
+    border-bottom: 1px solid $jnt-muted-color;
+    background-color: $jnt-primary-background;
+    border-top-left-radius: $jnt-corner-normal;
+    border-top-right-radius: $jnt-corner-normal;
 
     [tab] {
-      padding: $gutter-normal;
+      padding: $jnt-gutter-normal;
       cursor: pointer;
-      color: $primary-text-color;
-      font-size: $font-size-base;
+      color: $jnt-primary-text-color;
+      font-size: $jnt-font-size-base;
       position: relative;
       user-select: none;
       max-width: 100%;
@@ -69,17 +69,17 @@
       margin-bottom: -1px;
 
       &:hover {
-        color: $primary-light-color;
+        color: $jnt-primary-light-color;
       }
 
       &:focus {
-        outline: 1px solid $primary-color;
-        box-shadow: $shadow-primary;
+        outline: 1px solid $jnt-primary-color;
+        box-shadow: $jnt-shadow-primary;
       }
 
       &[active='true'] {
-        color: $primary-color;
-        border-bottom-color: $primary-color;
+        color: $jnt-primary-color;
+        border-bottom-color: $jnt-primary-color;
       }
 
       [label] {
@@ -97,7 +97,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background-color: $secondary-color;
+        background-color: $jnt-secondary-color;
         height: 50px;
         width: 50px;
       }
