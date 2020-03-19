@@ -1,5 +1,11 @@
 @import "variables";
 
+:host-context([theme='dark']) {
+  [block] {
+    background-color: $jnt-gray-dark-color;
+  }
+}
+
 :host {
   display: block;
 }
@@ -15,10 +21,10 @@
   pointer-events: none;
   border: 2px solid $jnt-secondary-color;
 }
-
-[teaser] {
-  color: $jnt-primary-text-light-color;
-}
+//
+//[teaser] {
+//  color: $jnt-primary-text-light-color;
+//}
 
 [playground] ::ng-deep {
   [tab]:nth-child(1) svg path {
@@ -38,7 +44,7 @@
   justify-content: center;
   color: $jnt-primary-color;
   font-weight: bold;
-  background-color: $jnt-secondary-color;
+  background-color: $jnt-primary-background;
   box-sizing: border-box;
   border: 2px solid $jnt-primary-color;
   border-radius: $jnt-corner-normal;
