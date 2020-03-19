@@ -1,9 +1,12 @@
 @import "variables";
 
-:host {
-  display: block;
-}
+@mixin confirm($passed: (), $context: null, $strategy: 'changes') {
 
-[message] {
-  margin-bottom: $jnt-gutter-normal;
+  :host, #{$context} {
+    display: block;
+  }
+
+  #{$context} [message] {
+    margin-bottom: $jnt-gutter-normal;
+  }
 }

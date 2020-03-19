@@ -1,30 +1,33 @@
 @import "variables";
 @import "forms/switch/switch";
 
-:host {
-  display: inline-block;
-}
+@mixin theme-switcher($passed: (), $context: null, $strategy: 'changes') {
 
-[switch] {
-  @include switch((
-    padding: 2px,
-    background: (
-      on: $jnt-primary-light-color,
-      off: $jnt-primary-color,
-      slider: (
-        on: $jnt-primary-color,
-        off: $jnt-primary-light-color
+  :host, #{$context} {
+    display: inline-block;
+  }
+
+  #{$context} [switch] {
+    @include switch((
+      padding: 2px,
+      background: (
+        on: $jnt-primary-light-color,
+        off: $jnt-primary-color,
+        slider: (
+          on: $jnt-primary-color,
+          off: $jnt-primary-light-color
+        ),
+        icon: (
+          on: $jnt-white-color,
+          off: $jnt-white-color
+        ),
       ),
-      icon: (
-        on: $jnt-white-color,
-        off: $jnt-white-color
+      sizes: (
+        normal: (
+          width: 65px,
+          height: 28px,
+        ),
       ),
-    ),
-    sizes: (
-      normal: (
-        width: 65px,
-        height: 28px,
-      ),
-    ),
-  ), '&');
+    ), '&');
+  }
 }
