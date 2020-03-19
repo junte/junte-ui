@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { en } from '../../core/i18n/en';
+import { StackModule } from '../../layout/stack/stack.module';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SwitchComponent } from './switch.component';
 
@@ -11,7 +10,8 @@ import { SwitchComponent } from './switch.component';
   imports: [
     CommonModule,
     IconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StackModule
   ],
   exports: [
     SwitchComponent

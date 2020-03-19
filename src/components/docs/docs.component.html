@@ -46,10 +46,12 @@
   </jnt-app-header>
 
   <jnt-app-aside #aside>
-    <ng-template #asideContentTemplate let-collapsed="collapsed">
+    <ng-template #asideContentTemplate let-collapsed="collapsed"
+                 let-toggle="toggle">
       <jnt-menu [collapsed]="collapsed"
                 [type]="ui.orientation.vertical"
-                [spacer]="ui.size.small">
+                [spacer]="ui.size.small"
+                (selected)="toggle()">
 
         <jnt-menu-item title="General"
                        i18n-title="@@label.general"

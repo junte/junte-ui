@@ -13,7 +13,7 @@
                   [scheme]="item.scheme"
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
-                  (click)="item.click.emit()">
+                  (click)="!item.submenus.length ? selected.emit(item) : null;item.click.emit()">
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"
@@ -43,7 +43,7 @@
                     [source]="subitem.link"
                     [scheme]="subitem.scheme"
                     [target]="subitem.target"
-                    (click)="item.click.emit()">
+                    (click)="selected.emit(item);item.click.emit()">
             <jnt-badge *ngFor="let badge of subitem.badges"
                        [value]="badge.value"
                        [position]="ui.position.inline"

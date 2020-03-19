@@ -148,7 +148,7 @@
                 scss="elements/avatar"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template"
+          <jnt-accordion-section title="Avatar component template"
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.component.html">
@@ -165,7 +165,7 @@
                   </ng-container>
                   <ng-container *ngIf="iconControl.value">
                     <![CDATA[
-                    [icon]="ui.icons.photoCamera"]]>
+                    [icon]="ui.icons.user"]]>
                   </ng-container>
                   <ng-container *ngIf="textControl.value">
                     <![CDATA[
@@ -178,6 +178,14 @@
                   <![CDATA[>
                 </jnt-avatar>
                 ]]>
+              </app-code-highlight>
+            </ng-template>
+
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Avatars list component template"
+                                 i18n-title="@@label.avatars_list_component">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="avatar-test.template.html">
                 <![CDATA[
                 <jnt-avatars-list
                   ]]>
@@ -192,7 +200,7 @@
                       ]]>
                       <ng-container *ngIf="iconControl.value">
                         <![CDATA[
-                        [icon]="ui.icons.photoCamera"]]>
+                        [icon]="ui.icons.user"]]>
                       </ng-container>
                       <ng-container *ngIf="textControl.value">
                         <![CDATA[
@@ -209,8 +217,16 @@
                   <![CDATA[
                 </jnt-avatars-list>
                 ]]>
+              </app-code-highlight>
+            </ng-template>
+
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Avatars group component template"
+                                 i18n-title="@@label.avatars_group_component">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="avatar-test.template.html">
                 <![CDATA[
-                <jnt-avatars-group
+                <jnt-avatars-group [total]="9"
                   ]]>
                   <ng-container *ngIf="sizeControl.value">
                     <![CDATA[
@@ -223,7 +239,7 @@
                       ]]>
                       <ng-container *ngIf="iconControl.value">
                         <![CDATA[
-                        [icon]="ui.icons.photoCamera"]]>
+                        [icon]="ui.icons.user"]]>
                       </ng-container>
                       <ng-container *ngIf="textControl.value">
                         <![CDATA[
