@@ -69,13 +69,12 @@ export class FormComponent implements OnInit {
   controls: QueryList<FormControlComponent>;
 
   ngOnInit() {
-    this.form.statusChanges.subscribe(status => {
-      const controls = this.controls;
-      controls.filter(c => !!c.name && !!c.messages.length)
-        .forEach(c => {
-          const control = this.form.get(c.name);
-          const messages = c.messages;
-          messages.forEach(m => m.active = !!(control.hasError(m.type) && control.errors && control.dirty));
+    this.form.statusChanges.subscribe(() => {
+      this.controls.filter(component => !!component.name && !!component.messages.length)
+        .forEach(component => {
+          const control = this.form.get(component.name);
+          const messages = component.messages;
+          messages.forEach(message => message.active = !!(control.hasError(message.type) && control.errors && control.dirty));
         });
     });
   }
@@ -83,14 +82,30 @@ export class FormComponent implements OnInit {
   @HostListener('submit')
   onSubmit() {
     if (!!this.form) {
-      this.form.markAsDirty();
-      this.form.updateValueAndValidity();
+      this.check(this.form);
 
       if (this.form.valid) {
         this.submitted.emit();
-        this.form.markAsPristine();
-        this.form.updateValueAndValidity();
+        this.refresh(this.form);
       }
+    }
+  }
+
+  private check(form: any) {
+    for (const i in form.controls) {
+      const control = form.controls[i];
+      control.markAsDirty();
+      control.updateValueAndValidity();
+      this.check(control);
+    }
+  }
+
+  private refresh(form: any) {
+    for (const i in form.controls) {
+      const control = form.controls[i];
+      control.markAsPristine();
+      control.updateValueAndValidity();
+      this.refresh(control);
     }
   }
 }
