@@ -1,7 +1,7 @@
 @import "variables";
 
 @mixin opened() {
-  jnt-menu[deep-host=#{$jnt-menu-host}] {
+  [content] {
     transform: scaleY(1);
   }
 }
@@ -14,22 +14,22 @@
     &[toggle='true'] {
       @include opened();
     }
+  }
 
-    jnt-menu[deep-host=#{$jnt-menu-host}] {
-      background-color: $jnt-primary-background;
-      min-width: 100%;
-      position: absolute;
-      top: 100%;
-      padding: $jnt-gutter-small 0;
-      box-shadow: $jnt-shadow-light;
-      border-radius: $jnt-corner-small;
-      white-space: nowrap;
-      transform: scaleY(0);
-      transition: all .2s ease-in-out;
-      transform-origin: 0 0;
-      box-sizing: border-box;
-      z-index: 1;
-    }
+  #{$context} [content] {
+    background-color: $jnt-primary-background;
+    min-width: 100%;
+    position: absolute;
+    top: 100%;
+    padding: $jnt-gutter-small 0;
+    box-shadow: $jnt-shadow-light;
+    border-radius: $jnt-corner-small;
+    white-space: nowrap;
+    transform: scaleY(0);
+    transition: all .2s ease-in-out;
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    z-index: 1;
   }
 
   #{$context} [overlay] {
