@@ -1,106 +1,109 @@
 @import "variables";
 
-:host {
-  display: flex;
-  box-shadow: $jnt-shadow-normal;
-  border-radius: $jnt-corner-normal;
-  background-color: $jnt-secondary-background;
-}
+@mixin chart($passed: (), $context: null, $strategy: 'changes') {
 
-[wrapper] {
-  flex: 1;
+  :host, #{$context} {
+    display: flex;
+    box-shadow: $jnt-shadow-normal;
+    border-radius: $jnt-corner-normal;
+    background-color: $jnt-secondary-background;
+  }
 
-  table {
-    border-spacing: 0;
-    width: 100%;
-    td, th {
-      text-align: left;
-      vertical-align: middle;
-      padding: 0 $jnt-gutter-small;
-      &:first-child {
-        padding: 0 $jnt-gutter-large;
-      }
-    }
-    thead {
-      background-color: $jnt-secondary-background;
-      th:first-child {
-        border-top-left-radius: $jnt-corner-normal;
-      }
-      th:last-child {
-        border-top-right-radius: $jnt-corner-normal;
-      }
-    }
-    tbody {
-      tr {
-        cursor: pointer;
-        position: relative;
-        &:hover, &[selected='true'] {
-          td {
-            background-color: $jnt-secondary-background;
-          }
+  #{$context} [wrapper] {
+    flex: 1;
+
+    table {
+      border-spacing: 0;
+      width: 100%;
+      td, th {
+        text-align: left;
+        vertical-align: middle;
+        padding: 0 $jnt-gutter-small;
+        &:first-child {
+          padding: 0 $jnt-gutter-large;
         }
-        &:not(:last-child) {
-          td:not(:last-child) {
-            border-bottom: 1px solid $jnt-muted-color;
-          }
+      }
+      thead {
+        background-color: $jnt-secondary-background;
+        th:first-child {
+          border-top-left-radius: $jnt-corner-normal;
         }
-        &:last-child {
-          td:first-child {
-            border-bottom-left-radius: $jnt-corner-normal;
-          }
+        th:last-child {
+          border-top-right-radius: $jnt-corner-normal;
         }
-        &[nodata] {
-          height: 200px;
-          pointer-events: none;
-          border-bottom: 0;
-          td {
-            vertical-align: middle;
-            text-align: center;
-            [icon] {
-              font-size: 80px;
-              color: $jnt-muted-color;
+      }
+      tbody {
+        tr {
+          cursor: pointer;
+          position: relative;
+          &:hover, &[selected='true'] {
+            td {
+              background-color: $jnt-secondary-background;
+            }
+          }
+          &:not(:last-child) {
+            td:not(:last-child) {
+              border-bottom: 1px solid $jnt-muted-color;
             }
           }
           &:last-child {
-            td:last-child {
-              border-bottom-right-radius: $jnt-corner-normal;
+            td:first-child {
+              border-bottom-left-radius: $jnt-corner-normal;
+            }
+          }
+          &[nodata] {
+            height: 200px;
+            pointer-events: none;
+            border-bottom: 0;
+            td {
+              vertical-align: middle;
+              text-align: center;
+              [icon] {
+                font-size: 80px;
+                color: $jnt-muted-color;
+              }
+            }
+            &:last-child {
+              td:last-child {
+                border-bottom-right-radius: $jnt-corner-normal;
+              }
             }
           }
         }
-      }
-      td {
-        background-color: $jnt-primary-background;
-        box-sizing: border-box;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        min-width: 50px;
-        width: 50px;
-        max-width: 100px;
-        text-align: right;
-        user-select: none;
-        &:first-child {
-          text-align: left;
-          min-width: 150px;
-          width: 300px;
-        }
-        &:last-child {
-          color: $jnt-gray-900-color;
-          text-align: center;
-        }
-        [content] {
+        td {
+          background-color: $jnt-primary-background;
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           overflow: hidden;
+          min-width: 50px;
+          width: 50px;
+          max-width: 100px;
+          text-align: right;
+          user-select: none;
+          &:first-child {
+            text-align: left;
+            min-width: 150px;
+            width: 300px;
+          }
+          &:last-child {
+            color: $jnt-gray-900-color;
+            text-align: center;
+          }
+          [content] {
+            overflow: hidden;
+          }
         }
       }
     }
   }
-}
 
-svg {
-  background-color: $jnt-secondary-background;
-  border-top-right-radius: $jnt-corner-normal;
-  border-bottom-right-radius: $jnt-corner-normal;
-  text {
-    fill: $jnt-white-color;
+  #{$context} svg {
+    background-color: $jnt-secondary-background;
+    border-top-right-radius: $jnt-corner-normal;
+    border-bottom-right-radius: $jnt-corner-normal;
+    text {
+      fill: $jnt-white-color;
+    }
   }
 }

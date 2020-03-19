@@ -1,26 +1,26 @@
 @import "variables";
 
-$progress-bar-height: 3px;
-$progress-bar-corner: 1px;
+@mixin progress-bar($passed: (), $context: null, $strategy: 'changes') {
 
-:host {
-  display: flex;
-  flex-direction: column;
-}
+  :host, #{$context} {
+    display: flex;
+    flex-direction: column;
+  }
 
-[bar] {
-  width: 100%;
-  background-color: $jnt-muted-color;
-  min-height: $progress-bar-height;
-  height: $progress-bar-height;
-  border-radius: $progress-bar-corner;
-  box-sizing: border-box;
-  [progress] {
-    background-color: $jnt-primary-color;
-    height: 100%;
-    border-radius: $progress-bar-corner;
-    &[fail='true'] {
-      background-color: $jnt-fail-color;
+  #{$context} [bar] {
+    width: 100%;
+    background-color: $jnt-muted-color;
+    min-height: 3px;
+    height: 3px;
+    border-radius: 1px;
+    box-sizing: border-box;
+    [progress] {
+      background-color: $jnt-primary-color;
+      height: 100%;
+      border-radius: 1px;
+      &[fail='true'] {
+        background-color: $jnt-fail-color;
+      }
     }
   }
 }
