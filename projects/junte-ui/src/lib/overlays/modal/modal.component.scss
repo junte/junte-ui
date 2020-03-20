@@ -1,76 +1,83 @@
 @import "variables";
 
 @keyframes jnt-scaleIn {
-  from {
+  0% {
     transform: scale(1);
   }
-  to {
+  100% {
     transform: scale(.9);
   }
 }
 
 @keyframes jnt-scaleOut {
-  from {
+  0% {
     transform: scale(.9);
   }
-  to {
+  100% {
     transform: scale(1);
   }
 }
 
-[overlay] {
-  position: fixed;
-  background-color: rgba(0, 0, 0, .4);
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
+@mixin modal($passed: (), $context: null, $strategy: 'changes') {
 
-[modal] {
-  transform: scale(1);
-  position: fixed;
-  z-index: 2;
-  top: 100%;
+  :host, #{$context} {
+    display: block;
+  }
 
-  [title] {
-    border-top-left-radius: $jnt-corner-normal;
-    border-top-right-radius: $jnt-corner-normal;
-    padding: $jnt-gutter-normal;
-    background-color: $jnt-page-background;
-    font-size: 18px;
+  #{$context} [overlay] {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
 
-    [close] {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      line-height: 0;
-      cursor: pointer;
-      &:focus {
-        outline: 0;
+  #{$context} [modal] {
+    transform: scale(1);
+    position: fixed;
+    z-index: 2;
+    top: 100%;
+
+    [title] {
+      border-top-left-radius: $jnt-corner-normal;
+      border-top-right-radius: $jnt-corner-normal;
+      padding: $jnt-gutter-normal;
+      background-color: $jnt-page-background;
+      font-size: 18px;
+
+      [close] {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        line-height: 0;
+        cursor: pointer;
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      [icon]:not([type='font']) {
+        fill: $jnt-primary-text-color;
+        width: 18px;
+        height: 18px;
+      }
+
+      [text] {
+        color: $jnt-primary-text-color;
+        font-weight: $jnt-font-weight-bold;
       }
     }
 
-    [icon]:not([type='font']) {
-      fill: $jnt-primary-text-color;
-      width: 18px;
-      height: 18px;
+    [content] {
+      padding: $jnt-gutter-normal;
+      font-size: $jnt-font-size-base;
+      box-sizing: border-box;
+      overflow: auto;
     }
 
-    [text] {
-      color: $jnt-primary-text-color;
-      font-weight: $jnt-font-weight-bold;
-    }
   }
-
-  [content] {
-    padding: $jnt-gutter-normal;
-    font-size: $jnt-font-size-base;
-    box-sizing: border-box;
-    overflow: auto;
-  }
-
 }

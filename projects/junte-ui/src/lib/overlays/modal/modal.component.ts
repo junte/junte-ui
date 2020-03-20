@@ -56,8 +56,7 @@ enum Display {
 
 @Component({
   selector: 'jnt-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  templateUrl: './modal.encapsulated.html',
   animations: [
     trigger('modal', [
         state(
@@ -118,6 +117,8 @@ enum Display {
 export class ModalComponent {
 
   private _opened: boolean;
+
+  @HostBinding('attr.host') readonly host = 'jnt-modal-host';
 
   ui = UI;
   closing = ModalClosingOption;
