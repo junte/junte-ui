@@ -1,18 +1,21 @@
 <form [formGroup]="form">
-  <jnt-icon *ngIf="!!icon && !label"
+  <jnt-icon *ngIf="!!icon && !label && !multiline"
             [icon]="icon"></jnt-icon>
   <div label *ngIf="!!label">{{label}}</div>
 
-  <input *ngIf="!multiline" formControlName="input"
+  <input *ngIf="!multiline; else textarea" formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
          [min]="min"
          [max]="max">
 
-  <textarea *ngIf="multiline" formControlName="input"
-            [placeholder]="placeholder"
-            [attr.rows]="rows">
-  </textarea>
+  <ng-template #textarea>
+      <textarea formControlName="input"
+                [placeholder]="placeholder"
+                [attr.rows]="rows">
+      </textarea>
+  </ng-template>
+
 
   <div arrows *ngIf="type === inputType.number">
     <button [disabled]="inputControl.disabled" (click)="up()">
