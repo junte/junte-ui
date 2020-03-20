@@ -32,6 +32,15 @@ export class LocalUI {
       overlays: 'overlays:font:junte-ui-test-default',
       dynamic: 'dynamic:font:junte-ui-test-default',
       other: 'other:font:junte-ui-test-default',
+      button: 'button:font:junte-ui-test-layout',
+      calendar: 'calendar:font:junte-ui-test-layout',
+      checkbox: 'checkbox:font:junte-ui-test-layout',
+      datePicker: 'date-picker:font:junte-ui-test-layout',
+      input: 'input:font:junte-ui-test-layout',
+      radio: 'radio:font:junte-ui-test-layout',
+      select: 'select:font:junte-ui-test-layout',
+      switch: 'switch:font:junte-ui-test-layout',
+      switcher: 'switcher:font:junte-ui-test-layout',
     },
 
     layout: {
