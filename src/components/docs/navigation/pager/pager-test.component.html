@@ -3,7 +3,7 @@
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/pagination"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/pager"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -37,9 +37,9 @@
                         </jnt-col>
                       </jnt-row>
                     </jnt-block>
-                    <jnt-pagination [pagesCount]="countControl.value"
+                    <jnt-pager [pagesCount]="countControl.value"
                                     formControlName="page">
-                    </jnt-pagination>
+                    </jnt-pager>
                   </jnt-stack>
                 </form>
               </ng-template>
@@ -73,8 +73,8 @@
                                  i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
-                [test]="{selector:'pagination-test', type: 'PaginationTestComponent'}"
-                scss="navigation/pagination">
+                [test]="{selector:'pager-test', type: 'PagerTestComponent'}"
+                scss="navigation/pager">
               </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
@@ -83,14 +83,14 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
                 <![CDATA[
-                <jnt-pagination
+                <jnt-pager
                   ]]>
                   <ng-container *ngIf="countControl.value">
                     <![CDATA[
                     [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
                   </ng-container>
                   <![CDATA[>
-                </jnt-pagination>
+                </jnt-pager>
                 ]]>
               </app-code-highlight>
             </ng-template>
@@ -101,7 +101,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-pagination" [target]="types.pager"></app-component-api>
+        <app-component-api selector="jnt-pager" [target]="types.pager"></app-component-api>
       </ng-template>
     </jnt-tab>
 

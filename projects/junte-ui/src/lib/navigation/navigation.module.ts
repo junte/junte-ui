@@ -5,7 +5,7 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { LinkModule } from './link/link.module';
 import { MenuModule } from './menu/menu.module';
-import { PaginationModule } from './pagination/pagination.module';
+import { PagerModule } from './pager/pager.module';
 import { TabsModule } from './tabs/tabs.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { TabsModule } from './tabs/tabs.module';
     BreadcrumbsModule,
     DropdownModule,
     MenuModule,
-    PaginationModule,
+    PagerModule,
     TabsModule
   ]
 })

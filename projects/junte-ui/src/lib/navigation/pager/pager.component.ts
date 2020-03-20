@@ -4,15 +4,15 @@ import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 @Component({
-  selector: 'jnt-pagination',
-  templateUrl: './pagination.encapsulated.html',
+  selector: 'jnt-pager',
+  templateUrl: './pager.encapsulated.html',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PaginationComponent),
+    useExisting: forwardRef(() => PagerComponent),
     multi: true
   }]
 })
-export class PaginationComponent {
+export class PagerComponent {
 
   ui = UI;
 
@@ -23,7 +23,7 @@ export class PaginationComponent {
   pages: number[];
 
   @HostBinding('attr.host')
-  readonly host = 'jnt-pagination-host';
+  readonly host = 'jnt-pager-host';
 
   @HostBinding('style.visibility')
   get visible() {
@@ -31,7 +31,7 @@ export class PaginationComponent {
   }
 
   @PropertyApi({
-    description: 'Pages count for pagination',
+    description: 'Pages count for pager',
     type: 'number',
   })
   @Input()

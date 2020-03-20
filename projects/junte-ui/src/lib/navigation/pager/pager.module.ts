@@ -5,7 +5,7 @@ import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SelectModule } from '../../forms/select/select.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { PaginationComponent } from './pagination.component';
+import { PagerComponent } from './pager.component';
 
 @NgModule({
   imports: [
@@ -17,20 +17,20 @@ import { PaginationComponent } from './pagination.component';
     SelectModule
   ],
   declarations: [
-    PaginationComponent
+    PagerComponent
   ],
   entryComponents: [
-    PaginationComponent
+    PagerComponent
   ],
   exports: [
-    PaginationComponent
+    PagerComponent
   ]
 })
-export class PaginationModule {
+export class PagerModule {
 
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<PaginationModule> {
+  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<PagerModule> {
     return {
-      ngModule: PaginationModule,
+      ngModule: PagerModule,
       providers: [
         {
           provide: JunteUIModuleConfig,
