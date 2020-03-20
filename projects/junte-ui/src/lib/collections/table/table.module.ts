@@ -13,7 +13,7 @@ import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
-import { PaginationModule } from '../../navigation/pagination/pagination.module';
+import { PagerModule } from '../../navigation/pager/pager.module';
 import { TableColumnComponent } from './column/table-column.component';
 import { TableComponent } from './table.component';
 
@@ -25,7 +25,7 @@ import { TableComponent } from './table.component';
     DatePipeModule,
     IconModule,
     InputModule,
-    PaginationModule,
+    PagerModule,
     ButtonModule,
     SpinnerModule,
     StackModule,

@@ -1,18 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PaginationComponent, TabComponent, UI } from 'junte-ui';
+import { TabComponent, UI } from 'junte-ui';
+import { PagerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
-  selector: 'app-pagination-test',
-  templateUrl: './pagination-test.component.html',
-  styleUrls: ['./pagination-test.component.scss']
+  selector: 'app-pager-test',
+  templateUrl: './pager-test.component.html',
+  styleUrls: ['./pager-test.component.scss']
 })
-export class PaginationTestComponent implements OnInit {
+export class PagerTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  types = {pager: PaginationComponent};
+  types = {pager: PagerComponent};
 
   countControl = this.fb.control(5);
   pageControl = this.fb.control(1);

@@ -4,7 +4,7 @@ import { AnchorTestComponent } from 'src/components/docs/navigation/anchor/ancho
 import { DropdownTestComponent } from 'src/components/docs/navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from 'src/components/docs/navigation/link/link-test.component';
 import { MenuTestComponent } from 'src/components/docs/navigation/menu/menu-test.component';
-import { PaginationTestComponent } from 'src/components/docs/navigation/pagination/pagination-test.component';
+import { PagerTestComponent } from 'src/components/docs/navigation/pager/pager-test.component';
 import { TabsTestComponent } from 'src/components/docs/navigation/tabs/tabs-test.component';
 
 export const routes: Routes = [
@@ -24,9 +24,9 @@ export const routes: Routes = [
     data: {breadcrumb: 'Tabs'}
   },
   {
-    path: 'pagination',
-    component: PaginationTestComponent,
-    data: {breadcrumb: 'Pagination'}
+    path: 'pager',
+    component: PagerTestComponent,
+    data: {breadcrumb: 'Pager'}
   },
   {
     path: 'dropdown',

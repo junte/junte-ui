@@ -8,14 +8,14 @@ import {
   FormModule,
   GridModule,
   LinkModule,
-  PaginationModule,
   StackModule,
   SwitcherModule,
-  TabsModule
+  TabsModule,
+  PagerModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
-import { PaginationTestComponent } from './pagination-test.component';
+import { PagerTestComponent } from './pager-test.component';
 
 @NgModule({
   imports: [
@@ -28,17 +28,17 @@ import { PaginationTestComponent } from './pagination-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
-    PaginationModule.forRoot(JUNTE_UI_CONFIG),
+    PagerModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipeModule,
     SharedModule
   ],
   exports: [
-    PaginationTestComponent
+    PagerTestComponent
   ],
   declarations: [
-    PaginationTestComponent
+    PagerTestComponent
   ],
 })
-export class PaginationTestModule {
+export class PagerTestModule {
 }
