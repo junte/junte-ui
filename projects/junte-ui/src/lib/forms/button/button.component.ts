@@ -1,12 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
 import { Scheme } from '../../core/enums/scheme';
 import { Size } from '../../core/enums/size';
+import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { BadgeComponent } from '../../elements/badge/badge.component';
-import { PropertyApi } from '../../core/decorators/api';
-import { UI } from '../../core/enums/ui';
 import { ButtonType } from './enums';
 
 @Component({
@@ -186,10 +186,15 @@ export class ButtonComponent {
   text: string;
 
   @PropertyApi({
+    description: 'Click event',
+    path: 'EventEmitter'
+  })
+  @Output() click = new EventEmitter<any>();
+
+  @PropertyApi({
     description: 'Badge on button',
     type: 'number',
   })
-
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 }
