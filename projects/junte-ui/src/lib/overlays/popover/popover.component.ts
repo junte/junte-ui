@@ -47,7 +47,8 @@ export class PopoverComponent {
       scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
       scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    let top = rect.top + scrollTop;
+    // remove 40 when will normal positioning
+    let top = rect.top + scrollTop + 40;
     let left = rect.left + scrollLeft;
     switch (this.options.placement) {
       case PopoverPlacements.top: {

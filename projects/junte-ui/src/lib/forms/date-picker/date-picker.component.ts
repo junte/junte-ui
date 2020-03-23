@@ -1,9 +1,12 @@
 import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { format as formatDate } from 'date-fns';
+import { format as formatDate, parse } from 'date-fns';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
+
+const INPUT_DELAY = 500;
 
 @Component({
   selector: 'jnt-date-picker',
@@ -20,13 +23,13 @@ export class DatePickerComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
-  private _format = 'dd.MM.yyyy';
-
   ui = UI;
   popover: PopoverComponent;
 
   inputControl = this.fb.control(null);
   calendarControl = this.fb.control(null);
+
+  format = 'dd.MM.yyyy';
 
   form = this.fb.group({
     input: this.inputControl,
@@ -39,30 +42,31 @@ export class DatePickerComponent implements OnInit {
   })
   @Input() placeholder = '';
 
-  @PropertyApi({
-    description: 'Date format',
-    type: 'string',
-    default: 'dd.MM.yyyy'
-  })
-  @Input() set format(format: string) {
-    this._format = format || 'dd.MM.yyyy';
-    this.inputControl.patchValue(!!this.calendarControl.value
-      ? formatDate(this.calendarControl.value, this.format) : null);
-  }
-
-  get format() {
-    return this._format;
-  }
-
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.calendarControl.valueChanges.subscribe(date => {
-      this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
-      this.onChange(date);
+    this.calendarControl.valueChanges.pipe(distinctUntilChanged())
+      .subscribe(date => {
+        this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
+        this.onChange(date);
+        if (!!this.popover) {
+          this.popover.hide();
+        }
+      });
+
+    this.inputControl.valueChanges.pipe(
+      debounceTime(INPUT_DELAY),
+      distinctUntilChanged()
+    ).subscribe(date => {
+      const current = parse(date, this.format, new Date());
+      if (current instanceof Date && !isNaN(current.getTime())) {
+        this.calendarControl.patchValue(current);
+      } else {
+        this.inputControl.patchValue(formatDate(new Date(), this.format));
+      }
       if (!!this.popover) {
         this.popover.hide();
       }
