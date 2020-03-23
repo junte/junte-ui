@@ -13,15 +13,14 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { PropertyApi } from '../../core/decorators/api';
+import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
-import { ContentApi, MethodApi } from '../../core/decorators/api';
+import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
 import { isEqual } from '../../core/utils/equal';
-import { Subscriptions } from '../../core/utils/subscriptions';
 import { TableColumnComponent } from './column/table-column.component';
 import { TableFeatures } from './enums';
+import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
 
 const FILTER_DELAY = 500;
 
@@ -41,7 +40,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   ui = UI;
 
   private count: number;
-  private subscriptions = new Subscriptions();
+  private subscriptions = {fetcher: new Subscription()};
 
   tableFeatures = TableFeatures;
   progress = {loading: false};
@@ -59,7 +58,8 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     pageSize: this.pageSize
   });
 
-  @HostBinding('attr.host') readonly host = 'jnt-table-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-table-host';
 
   @PropertyApi({
     description: 'Table features',
@@ -127,19 +127,20 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.fetcher.unsubscribe();
   }
 
   @MethodApi({description: 'reload table'})
   load(filter = this.form.getRawValue()) {
     if (!!this.fetcher) {
       this.progress.loading = true;
-      this.subscriptions.push('rows', this.fetcher(filter)
+      this.subscriptions.fetcher.unsubscribe();
+      this.subscriptions.fetcher = this.fetcher(filter)
         .pipe(finalize(() => this.progress.loading = false))
         .subscribe(resp => {
           this.source = resp.results;
           this.count = resp.count;
-        }));
+        });
     }
   }
 

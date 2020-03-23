@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { DotModule, FormModule, SelectModule, StackModule } from 'junte-ui';
 import { ColorPickerComponent } from './color-picker.component';
-import { FormModule, StackModule, SelectModule, DotModule } from 'junte-ui';
 
 
 @NgModule({
@@ -19,4 +19,5 @@ import { FormModule, StackModule, SelectModule, DotModule } from 'junte-ui';
   ],
   exports: [ColorPickerComponent]
 })
-export class ColorPickerModule { }
+export class ColorPickerModule {
+}
