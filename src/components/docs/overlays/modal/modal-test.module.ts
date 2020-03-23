@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  AccordionModule,
   ButtonModule,
   CalendarModule,
   CheckboxModule,
@@ -22,6 +23,7 @@ import { ModalTestFactoryComponent } from './test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    AccordionModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),

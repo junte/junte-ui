@@ -126,167 +126,179 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'modal-test', type: 'ModalTestComponent'}"
-          scss="overlays/modal">
-          <ng-template #behaviourTemplate>
-            <![CDATA[
-            import { FormBuilder } from '@angular/forms';
-            import { ModalOptions, ModalService, UI, ModalClosingOption } from 'junte-ui';
-            import { ModalTestFactoryComponent } from 'src/components/documentation/overlays/modal/test.component';
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'modal-test', type: 'ModalTestComponent'}"
+                scss="overlays/modal">
+                <ng-template #behaviourTemplate>
+                  <![CDATA[
+                  import { FormBuilder } from '@angular/forms';
+                  import { ModalOptions, ModalService, UI, ModalClosingOption } from 'junte-ui';
+                  import { ModalTestFactoryComponent } from 'src/components/documentation/overlays/modal/test.component';
 
-            @Component({
-            selector: 'app-modal-test',
-            templateUrl: './modal-test.component.html',
-            styleUrls: ['./modal-test.component.scss']
-            })
+                  @Component({
+                  selector: 'app-modal-test',
+                  templateUrl: './modal-test.component.html',
+                  styleUrls: ['./modal-test.component.scss']
+                  })
 
-            export class ModalTestComponent implements OnInit {
+                  export class ModalTestComponent implements OnInit {
 
-            ui = UI;
-            ]]>
-            <ng-container *ngIf="footerControl.value">
-              <![CDATA[
-              @ViewChild('footer', {static: false})
-              footer: TemplateRef
-              <any>;
+                  ui = UI;
+                  ]]>
+                  <ng-container *ngIf="footerControl.value">
+                    <![CDATA[
+                    @ViewChild('footer', {static: false})
+                    footer: TemplateRef
+                    <any>;
+                      ]]>
+                  </ng-container>
+                  <ng-container *ngIf="typeControl.value === contentType.templateRef">
+                    <![CDATA[
+                    @ViewChild('content', {static: false})
+                    content: TemplateRef
+                    <any>;
+
+                      constructor(private modalService: ModalService) {
+                      }
+
+                      openModal() {
+                      const options = new ModalOptions({]]>
+                      <ng-container *ngIf="widthControl.value">
+                        <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
+                      </ng-container>
+                      <ng-container *ngIf="heightControl.value">
+                        <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
+                      </ng-container>
+                      <ng-container *ngIf="closingControl.value">
+                        <![CDATA[closing: ModalClosingOption.enable,]]>
+                      </ng-container>
+                      <ng-container *ngIf="!closingControl.value">
+                        <![CDATA[closing: ModalClosingOption.disable,]]>
+                      </ng-container>
+
+                      <ng-container *ngIf="titleControl.value || iconControl.value">
+                        <![CDATA[title: {]]>
+                        <ng-container *ngIf="titleControl.value">
+                          <![CDATA[ text: 'Modal']]>
+                        </ng-container>
+                        <ng-container *ngIf="iconControl.value">
+                          <![CDATA[ icon: UI.icons.settings]]>
+                        </ng-container>
+                        <![CDATA[}, ]]>
+                      </ng-container>
+
+                      <ng-container *ngIf="footerControl.value">
+                        <![CDATA[footer: this.footer]]>
+                      </ng-container>
+                      <![CDATA[
+                      });
+                      this.modalService.open(this.content, options);
+                      }
+                      ]]>
+                  </ng-container>
+                  <ng-container *ngIf="typeControl.value === contentType.componentRef">
+                    <![CDATA[
+                    constructor(private modalService: ModalService,
+                    private injector: Injector,
+                    private cfr: ComponentFactoryResolver) {
+                    }
+                    openModal() {
+                    const options = new ModalOptions({]]>
+                    <ng-container *ngIf="widthControl.value">
+                      <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
+                    </ng-container>
+                    <ng-container *ngIf="heightControl.value">
+                      <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
+                    </ng-container>
+                    <ng-container *ngIf="closingControl.value">
+                      <![CDATA[closing: ModalClosingOption.enable,]]>
+                    </ng-container>
+                    <ng-container *ngIf="!closingControl.value">
+                      <![CDATA[closing: ModalClosingOption.disable,]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="titleControl.value || iconControl.value">
+                      <![CDATA[title: {]]>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[ text: 'Calendar']]>
+                      </ng-container>
+                      <ng-container *ngIf="iconControl.value">
+                        <![CDATA[ icon: UI.icons.calendar]]>
+                      </ng-container>
+                      <![CDATA[}, ]]>
+                    </ng-container>
+
+                    <ng-container *ngIf="footerControl.value">
+                      <![CDATA[footer: this.footer]]>
+                    </ng-container>
+                    <![CDATA[
+                    });
+                    this.modalService.open(this.content, options);
+                    }
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                  close() {
+                  this.modalService.close();
+                  }
+                  }
+                  ]]>
+                </ng-template>
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="modal-test.template.html">
+                <![CDATA[
+                <jnt-button (click)="openModal()"
+                            text="Open modal"></jnt-button>
                 ]]>
-            </ng-container>
-            <ng-container *ngIf="typeControl.value === contentType.templateRef">
-              <![CDATA[
-              @ViewChild('content', {static: false})
-              content: TemplateRef
-              <any>;
-
-                constructor(private modalService: ModalService) {
-                }
-
-                openModal() {
-                const options = new ModalOptions({]]>
-                <ng-container *ngIf="widthControl.value">
-                  <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
-                </ng-container>
-                <ng-container *ngIf="heightControl.value">
-                  <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
-                </ng-container>
-                <ng-container *ngIf="closingControl.value">
-                  <![CDATA[closing: ModalClosingOption.enable,]]>
-                </ng-container>
-                <ng-container *ngIf="!closingControl.value">
-                  <![CDATA[closing: ModalClosingOption.disable,]]>
-                </ng-container>
-
-                <ng-container *ngIf="titleControl.value || iconControl.value">
-                  <![CDATA[title: {]]>
-                  <ng-container *ngIf="titleControl.value">
-                    <![CDATA[ text: 'Modal']]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value">
-                    <![CDATA[ icon: UI.icons.settings]]>
-                  </ng-container>
-                  <![CDATA[}, ]]>
+                <ng-container *ngIf="typeControl.value === contentType.templateRef">
+                  <![CDATA[
+                  <ng-template #content>
+                    <div>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad animi blanditiis
+                      consectetur
+                      corporis eligendi enim eveniet ex facere inventore ipsa iusto laboriosam minima minus nesciunt nulla
+                      officiis omnis, pariatur perspiciatis placeat provident quae quibusdam quos reiciendis repellat
+                      repellendus sit suscipit tempora unde velit veniam vitae voluptatem. Alias atque ea, eligendi enim
+                      explicabo impedit, magnam odio possimus rerum sunt vel velit voluptate voluptatem. A adipisci
+                      aspernatur, at aut, corporis cum distinctio dolore eligendi est explicabo facilis fuga harum illum
+                      impedit ipsam labore odit officiis perferendis provident quae quia quis quisquam recusandae rem
+                      repellat sapiente totam, unde. Cum, obcaecati soluta.
+                    </div>
+                    ]]>
+                    <ng-container *ngIf="!closingControl.value && !footerControl.value">
+                      <![CDATA[
+                      <jnt-button text="Cancel"
+                                  (click)="close()"></jnt-button>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </ng-template>
+                  ]]>
                 </ng-container>
 
                 <ng-container *ngIf="footerControl.value">
-                  <![CDATA[footer: this.footer]]>
+                  <![CDATA[
+                  <ng-template #footer>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center">
+                      <jnt-button text="Ok"
+                                  (click)="close()"></jnt-button>
+                    </jnt-stack>
+                  </ng-template>
+                  ]]>
                 </ng-container>
-                <![CDATA[
-                });
-                this.modalService.open(this.content, options);
-                }
-                ]]>
-            </ng-container>
-            <ng-container *ngIf="typeControl.value === contentType.componentRef">
-              <![CDATA[
-              constructor(private modalService: ModalService,
-              private injector: Injector,
-              private cfr: ComponentFactoryResolver) {
-              }
-              openModal() {
-              const options = new ModalOptions({]]>
-              <ng-container *ngIf="widthControl.value">
-                <![CDATA[maxWidth:]]> {{this.widthControl.value}}<![CDATA[,]]>
-              </ng-container>
-              <ng-container *ngIf="heightControl.value">
-                <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
-              </ng-container>
-              <ng-container *ngIf="closingControl.value">
-                <![CDATA[closing: ModalClosingOption.enable,]]>
-              </ng-container>
-              <ng-container *ngIf="!closingControl.value">
-                <![CDATA[closing: ModalClosingOption.disable,]]>
-              </ng-container>
-
-              <ng-container *ngIf="titleControl.value || iconControl.value">
-                <![CDATA[title: {]]>
-                <ng-container *ngIf="titleControl.value">
-                  <![CDATA[ text: 'Calendar']]>
-                </ng-container>
-                <ng-container *ngIf="iconControl.value">
-                  <![CDATA[ icon: UI.icons.calendar]]>
-                </ng-container>
-                <![CDATA[}, ]]>
-              </ng-container>
-
-              <ng-container *ngIf="footerControl.value">
-                <![CDATA[footer: this.footer]]>
-              </ng-container>
-              <![CDATA[
-              });
-              this.modalService.open(this.content, options);
-              }
-              ]]>
-            </ng-container>
-            <![CDATA[
-            close() {
-            this.modalService.close();
-            }
-            }
-            ]]>
-          </ng-template>
-        </app-how-to-use>
-        <app-code-highlight file="modal-test.template.html">
-          <![CDATA[
-          <jnt-button (click)="openModal()"
-                      text="Open modal"></jnt-button>
-          ]]>
-          <ng-container *ngIf="typeControl.value === contentType.templateRef">
-            <![CDATA[
-            <ng-template #content>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus ad animi blanditiis
-                consectetur
-                corporis eligendi enim eveniet ex facere inventore ipsa iusto laboriosam minima minus nesciunt nulla
-                officiis omnis, pariatur perspiciatis placeat provident quae quibusdam quos reiciendis repellat
-                repellendus sit suscipit tempora unde velit veniam vitae voluptatem. Alias atque ea, eligendi enim
-                explicabo impedit, magnam odio possimus rerum sunt vel velit voluptate voluptatem. A adipisci
-                aspernatur, at aut, corporis cum distinctio dolore eligendi est explicabo facilis fuga harum illum
-                impedit ipsam labore odit officiis perferendis provident quae quia quis quisquam recusandae rem
-                repellat sapiente totam, unde. Cum, obcaecati soluta.
-              </div>
-              ]]>
-              <ng-container *ngIf="!closingControl.value && !footerControl.value">
-                <![CDATA[
-                <jnt-button text="Cancel"
-                            (click)="close()"></jnt-button>
-                ]]>
-              </ng-container>
-              <![CDATA[
+              </app-code-highlight>
             </ng-template>
-            ]]>
-          </ng-container>
-
-          <ng-container *ngIf="footerControl.value">
-            <![CDATA[
-            <ng-template #footer>
-              <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.center">
-                <jnt-button text="Ok"
-                            (click)="close()"></jnt-button>
-              </jnt-stack>
-            </ng-template>
-            ]]>
-          </ng-container>
-        </app-code-highlight>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

@@ -7,6 +7,7 @@
             [loading]="button.loading"
             [disabled]="button.disabled"
             [type]="button.type"
+            (click)="button.click.emit($event)"
             button>
   <jnt-badge *ngFor="let badge of button.badges"
              [value]="badge.value"
