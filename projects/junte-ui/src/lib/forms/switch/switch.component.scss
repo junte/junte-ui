@@ -73,45 +73,50 @@
   :host, #{$context} {
     display: inline-flex;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: map-get($vars, corner);
-
+    form {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: map-get($vars, corner);
+      //for Safari
+      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[size = '#{$size}'] {
-          min-width: map-get($map, width);
-          width: map-get($map, width);
-          [switch] {
-            min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
-            height: map-get($map, height);
-            [slider] {
-              width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
-              height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
-              [icon] {
-                @if map-has-key($map, icon) {
-                  $icon: map-get($map, icon);
-                  @include icon((
-                    size: map-get($icon, size),
-                  ), '&');
+          form {
+            min-width: map-get($map, width);
+            width: map-get($map, width);
+            [switch] {
+              min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
+              height: map-get($map, height);
+              [slider] {
+                width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
+                height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
+                [icon] {
+                  @if map-has-key($map, icon) {
+                    $icon: map-get($map, icon);
+                    @include icon((
+                      size: map-get($icon, size),
+                    ), '&');
+                  }
+                }
+              }
+              @if map-has-key($map, label) {
+                $label: map-get($map, label);
+                span {
+                  font-size: map-get($label, font-size);
                 }
               }
             }
-            @if map-has-key($map, label) {
-              $label: map-get($map, label);
-              span {
-                font-size: map-get($label, font-size);
-              }
+            input:checked + [switch] {
+              transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
             }
-          }
-          input:checked + [switch] {
-            transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
           }
         }
       }
-      //for Safari
-      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
     }
   }
 
@@ -197,6 +202,10 @@
     span {
       color: $jnt-white-color;
     }
+  }
+
+  #{$context} label {
+    margin-left: $jnt-gutter-small;
   }
 
 }

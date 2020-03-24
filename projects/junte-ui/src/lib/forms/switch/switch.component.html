@@ -11,7 +11,10 @@
                 [icon]="icons.on"></jnt-icon>
       <jnt-icon *ngIf="icons?.off && !checked"
                 [icon]="icons.off"></jnt-icon>
+
     </div>
     <span *ngIf="tags?.on">{{tags.on}}</span>
+
   </jnt-stack>
 </form>
+<label *ngIf="label">{{label}}</label>
