@@ -68,6 +68,11 @@ export class LocalUI {
         default: 'width-default:font:junte-ui-test-layout',
         fluid: 'width-fluid:font:junte-ui-test-layout'
       },
+      textAlign: {
+        left: 'text-align-left:font:junte-ui-test-layout',
+        right: 'text-align-right:font:junte-ui-test-layout'
+      },
+
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
       start: 'start:font:junte-ui-test-layout',
