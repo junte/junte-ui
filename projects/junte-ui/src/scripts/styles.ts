@@ -38,7 +38,7 @@ export class Gulpfile {
 
   @Task()
   componentsStyle() {
-    return gulp.src(['../lib/assets/styles/all.scss'])
+    return gulp.src(['../lib/assets/styles/mixins.scss'])
       .pipe(map((file, cb) => {
         const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib');
         let contents = '';
@@ -68,7 +68,7 @@ export class Gulpfile {
           }
 
           fs.writeFileSync(`${to}/${composition.section}/${composition.to}`,
-            `@import "../../variables";\n${this.clearImports(content)}`);
+            `@import "variables";\n${this.clearImports(content)}`);
 
           fs.appendFileSync(`${to}/${composition.section}.scss`,
             `@import "./${composition.section}/${composition.to}";\n`);

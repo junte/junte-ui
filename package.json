@@ -1,12 +1,12 @@
 {
   "name": "junte-ui-app",
-  "version": "0.0.434",
+  "version": "0.0.446",
   "description": "Junte UI test app",
   "scripts": {
     "sass": "sass",
     "ng": "ng",
     "gulp": "gulp",
-    "gulp:styles": "rm -rf dist/junte-ui/lib/assets/styles/components && gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts",
+    "gulp:styles": "gulp build --gulpfile ./projects/junte-ui/src/scripts/styles.ts",
     "gulp:iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd ./projects/junte-ui",
     "iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd .",
     "clean": "rimraf ./dist",
@@ -16,7 +16,7 @@
     "extract-i18n": "ng xi18n --outputPath=locale && xliffmerge --profile xliffmerge.json",
     "assets:create:folders": "mkdir ./dist/junte-ui/lib/assets/ && mkdir ./dist/junte-ui/lib/assets/icons && mkdir ./dist/junte-ui/lib/assets/fonts && mkdir ./dist/junte-ui/lib/assets/styles",
     "assets:copy:folders": "cp -r ./projects/junte-ui/src/lib/assets/fonts/ ./dist/junte-ui/lib/assets/fonts/ && cp -r projects/junte-ui/src/lib/assets/icons/animated ./dist/junte-ui/lib/assets/icons/animated && cp -r projects/junte-ui/src/lib/assets/icons/svg ./dist/junte-ui/lib/assets/icons/svg",
-    "assets:copy:styles": "cp -r projects/junte-ui/src/lib/assets/styles/ ./dist/junte-ui/lib/assets/styles/",
+    "assets:copy:styles": "cp -r projects/junte-ui/src/lib/assets/styles/_hosts.scss projects/junte-ui/src/lib/assets/styles/_variables.scss projects/junte-ui/src/lib/assets/styles/all.scss projects/junte-ui/src/lib/assets/styles/common.scss projects/junte-ui/src/lib/assets/styles/default.scss projects/junte-ui/src/lib/assets/styles/mixins.scss ./dist/junte-ui/lib/assets/styles/",
     "copy:license": "cp ./projects/junte-ui/README.md ./dist/junte-ui",
     "copy:readme": "cp ./projects/junte-ui/LICENSE ./dist/junte-ui",
     "copy:assets": "rm -rf dist/junte-ui/lib/assets && npm run assets:create:folders && npm run assets:copy:folders && npm run assets:copy:styles",

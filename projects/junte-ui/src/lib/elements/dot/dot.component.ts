@@ -23,4 +23,7 @@ export class DotComponent {
     this._color = color || Color.purple;
   }
 
+  get color() {
+    return this._color;
+  }
 }

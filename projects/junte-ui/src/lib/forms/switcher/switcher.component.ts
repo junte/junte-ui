@@ -99,4 +99,8 @@ export class SwitcherComponent implements ControlValueAccessor {
     this.value = !isSame ? value : null;
   }
 
+  ngAfterViewInit() {
+    console.log(this.options.toArray()[0].dot)
+  }
+
 }

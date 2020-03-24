@@ -17,6 +17,7 @@
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"
+                       [text]="badge.text"
                        [position]="ui.position.inline"
                        [color]="badge.color">
             </jnt-badge>
@@ -46,6 +47,7 @@
                     (click)="selected.emit(item);item.click.emit()">
             <jnt-badge *ngFor="let badge of subitem.badges"
                        [value]="badge.value"
+                       [text]="badge.text"
                        [position]="ui.position.inline"
                        [color]="badge.color">
             </jnt-badge>
