@@ -30,10 +30,10 @@
                     <jnt-stack [type]="ui.layout.stack.type.horizontal"
                                [gutter]="ui.gutter.big">
                       <jnt-form-control name="hero">
-                        <jnt-radio-group formControlName="hero">
-                          <jnt-radio label="Spiderman" [value]="hero.spiderman" [size]="sizeControl.value"></jnt-radio>
-                          <jnt-radio label="Ironman" [value]="hero.ironman" [size]="sizeControl.value"></jnt-radio>
-                          <jnt-radio label="Captain America" [value]="hero.captainAmerica" [size]="sizeControl.value"></jnt-radio>
+                        <jnt-radio-group formControlName="hero" [size]="sizeControl.value">
+                          <jnt-radio label="Spiderman" [value]="hero.spiderman"></jnt-radio>
+                          <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
+                          <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
                         </jnt-radio-group>
                         <jnt-form-message [type]="ui.form.validators.typeError.required">
                           Please select the hero

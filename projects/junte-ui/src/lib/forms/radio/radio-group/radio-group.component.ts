@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { RadioComponent } from '../radio.component';
 
@@ -20,10 +21,21 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   private disabled = false;
   private selected: any;
 
+  _size = Size.normal;
+
   ui = UI;
 
   @Input() labelField: string;
   @Input() valueField: string;
+
+  @Input()
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
+
+  get size() {
+    return this._size;
+  }
 
   @HostBinding('attr.host')
   readonly host = 'jnt-radio-group-host';

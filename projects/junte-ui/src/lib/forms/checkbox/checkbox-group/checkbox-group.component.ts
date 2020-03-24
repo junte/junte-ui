@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { CheckboxComponent } from '../checkbox.component';
 
@@ -20,6 +21,8 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   private disabled = false;
   private selectedItems: any[];
 
+  _size: Size = Size.normal;
+
   ui = UI;
 
   @HostBinding('attr.host')
@@ -30,6 +33,15 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
 
   @ContentChildren(CheckboxComponent, {descendants: true})
   checkboxes: QueryList<CheckboxComponent>;
+
+  @Input()
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
+
+  get size() {
+    return this._size;
+  }
 
   ngAfterViewInit() {
     this.updateChecked();

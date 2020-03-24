@@ -28,18 +28,15 @@
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [type]="ui.layout.stack.type.horizontal">
                       <jnt-form-control name="heroes">
-                        <jnt-checkbox-group formControlName="heroes">
+                        <jnt-checkbox-group formControlName="heroes" [size]="sizeControl.value">
                           <jnt-checkbox label="Spiderman"
-                                        [value]="hero.spiderman"
-                                        [size]="sizeControl.value">
+                                        [value]="hero.spiderman">
                           </jnt-checkbox>
                           <jnt-checkbox label="Ironman"
-                                        [value]="hero.ironman"
-                                        [size]="sizeControl.value">
+                                        [value]="hero.ironman">
                           </jnt-checkbox>
                           <jnt-checkbox label="Captain America"
-                                        [value]="hero.captainAmerica"
-                                        [size]="sizeControl.value">
+                                        [value]="hero.captainAmerica">
                           </jnt-checkbox>
                         </jnt-checkbox-group>
                         <jnt-form-message [type]="ui.form.validators.typeError.required"
