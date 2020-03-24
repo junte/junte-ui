@@ -4,7 +4,7 @@
              [gutter]="ui.gutter.tiny"
              [align]="ui.flex.align.center"
              [justify]="ui.flex.justify.center">
-    <span *ngIf="tags?.off">{{tags.off}}</span>
+    <span *ngIf="tags?.on">{{tags.on}}</span>
 
     <div slider>
       <jnt-icon *ngIf="icons?.on && checked"
@@ -13,8 +13,8 @@
                 [icon]="icons.off"></jnt-icon>
 
     </div>
-    <span *ngIf="tags?.on">{{tags.on}}</span>
 
+    <span *ngIf="tags?.off">{{tags.off}}</span>
   </jnt-stack>
 </form>
 <label *ngIf="label">{{label}}</label>

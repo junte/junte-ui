@@ -26,9 +26,9 @@ import {
   startOfWeek,
   subMonths
 } from 'date-fns';
-import { JunteUIModuleConfig } from '../../config';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { Period } from './enums';
@@ -150,7 +150,9 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    const start = startOfWeek(this.period, {weekStartsOn: this.config.locale.dfns.options.weekStartsOn});
+    const start = startOfWeek(this.period, {
+      weekStartsOn: this.config.locale ? this.config.locale.dfns.options.weekStartsOn : 1
+    });
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {

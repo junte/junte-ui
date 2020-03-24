@@ -47,7 +47,6 @@ export class MenuItemComponent {
   })
   @Input() target: string = DEFAULT_TARGET;
 
-
   @PropertyApi({
     description: 'Methods of matching',
     path: 'ui.url.matching',

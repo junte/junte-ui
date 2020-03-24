@@ -1,10 +1,12 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { ConfirmModule } from './confirm/confirm.module';
+import { ThemeSwitcherModule } from './theme-switcher/theme-switcher.module';
 
 @NgModule({
   exports: [
-    ConfirmModule
+    ConfirmModule,
+    ThemeSwitcherModule
   ]
 })
 export class SharedModule {

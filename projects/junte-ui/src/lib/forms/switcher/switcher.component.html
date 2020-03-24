@@ -3,10 +3,8 @@
              let-dot="dot"
              let-badge="badge"
              let-label="label">
-  <jnt-dot *ngIf="dot"
-           [color]="dot.color"></jnt-dot>
-  <jnt-icon *ngIf="icon"
-            [icon]="icon"></jnt-icon>
+  <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
+  <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
   <jnt-stack [type]="ui.layout.stack.type.horizontal"
              [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center"
@@ -18,7 +16,8 @@
                [color]="badge.color"
                [text]="badge.text"
                [value]="badge.value"
-               [overflow]="badge.overflow"></jnt-badge>
+               [overflow]="badge.overflow">
+    </jnt-badge>
   </jnt-stack>
 </ng-template>
 
