@@ -1,13 +1,19 @@
 @import "variables";
 @import "elements/icon/icon";
+@import "layout/spinner/spinner";
 
 @mixin input-size($size) {
   input, textarea {
-    font-size: #{map-get($size, font-size)};
-    min-height: #{map-get($size, height)};
+    font-size: map-get($size, font-size);
+    min-height: map-get($size, height);
     &[type='number'] {
       padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
     }
+  }
+  [spinner] {
+    @include spinner((
+      size: map-get($size, spinner),
+    ), '&');
   }
   [icon] ~ input {
     padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-normal} + #{$jnt-gutter-small});
@@ -22,22 +28,25 @@
         font-size: 11px,
         height: 30px,
         icon: 14px,
-        chevron: 8px
+        chevron: 8px,
+        spinner: 14px,
       ),
       normal: (
         font-size: 14px,
         height: 38px,
         icon: 16px,
-        chevron: 10px
+        chevron: 10px,
+        spinner: 16px,
       ),
       large: (
         font-size: 16px,
         height: 50px,
         icon: 18px,
-        chevron: 12px
+        chevron: 12px,
+        spinner: 18px,
       ),
     ),
-    states: (
+    scheme: (
       normal: (
         border-color: $jnt-control-border-color,
         hover: (
@@ -86,10 +95,10 @@
     display: block;
     width: 100%;
 
-    @if map-has-key($vars, states) {
-      $states: map-get($vars, states);
-      @each $state, $map in $states {
-        &[state='#{$state}'] {
+    @if map-has-key($vars, scheme) {
+      $schemes: map-get($vars, scheme);
+      @each $scheme, $map in $schemes {
+        &[scheme='#{$scheme}'] {
           input, textarea {
             border-color: map-get($map, border-color);
             @if map-has-key($map, focus) {
@@ -146,6 +155,13 @@
         text-align: left;
       }
     }
+    &[state='loading'] {
+      input, textarea {
+        background-color: $jnt-control-disabled-background;
+        color: $jnt-control-disabled-label-color;
+        pointer-events: none;
+      }
+    }
   }
 
   #{$context} form {
@@ -167,7 +183,7 @@
       background-color: $jnt-control-background;
       color: $jnt-primary-text-color;
       width: 100%;
-      padding: 0 $jnt-gutter-normal;
+      padding: 0 $jnt-gutter-large 0 $jnt-gutter-normal;
       border-radius: $jnt-corner-small;
       border: 1px solid;
       box-sizing: border-box;
@@ -201,6 +217,22 @@
         border-bottom-left-radius: 0;
         padding: 0 $jnt-gutter-normal;
       }
+    }
+
+    [loading], [warning], [checked] {
+      position: absolute;
+      right: $jnt-gutter-small;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 0;
+    }
+
+    [warning] {
+      color: $jnt-fail-color;
+    }
+
+    [checked] {
+      color: $jnt-success-color;
     }
 
     [arrows] {

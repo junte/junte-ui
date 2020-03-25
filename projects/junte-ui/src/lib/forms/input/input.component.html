@@ -16,6 +16,17 @@
       </textarea>
   </ng-template>
 
+  <div *ngIf="state === inputState.loading" loading>
+    <jnt-spinner spinner></jnt-spinner>
+  </div>
+
+  <div *ngIf="state === inputState.warning" warning>
+    <jnt-icon [icon]="ui.icons.warning"></jnt-icon>
+  </div>
+
+  <div *ngIf="state === inputState.checked" checked>
+    <jnt-icon [icon]="ui.icons.checked"></jnt-icon>
+  </div>
 
   <div arrows *ngIf="type === inputType.number">
     <button [disabled]="inputControl.disabled" (click)="up()">
