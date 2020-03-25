@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { ConfirmTestModule } from './confirm/confirm-test.module';
+import { MessageTestModule } from './message/message-test.module';
 import { OtherRoutingModule } from './other-routing.module';
 import { PipesTestModule } from './pipes/pipes-test.module';
-import { ConfirmTestModule } from './confirm/confirm-test.module';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { ConfirmTestModule } from './confirm/confirm-test.module';
   ],
   exports: [
     ConfirmTestModule,
-    PipesTestModule
+    PipesTestModule,
+    MessageTestModule
   ]
 })
 export class OtherModule {
