@@ -19,83 +19,78 @@
     <li>Progress should show the number of days elapsed from the current date</li>
   </ol>
 
-  <hr>
+  <jnt-tabs playground>
 
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-date-period [start]="startControl.value"
+                                 [end]="endControl.value"
+                                 [current]="currentControl.value"></jnt-date-period>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder" builder>
+              <jnt-form-item>
+                <jnt-form-label for="start">Start</jnt-form-label>
+                <jnt-date-picker formControlName="start"></jnt-date-picker>
+              </jnt-form-item>
 
-  <jnt-stack [align]="ui.flex.align.stretch" wrapper>
+              <jnt-form-item>
+                <jnt-form-label for="end">End</jnt-form-label>
+                <jnt-date-picker formControlName="end"></jnt-date-picker>
+              </jnt-form-item>
 
-    <h3>Test</h3>
+              <jnt-form-item>
+                <jnt-form-label for="current">Current</jnt-form-label>
+                <jnt-date-picker formControlName="current"></jnt-date-picker>
+              </jnt-form-item>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
 
-    <jnt-form [formGroup]="form">
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'date-period-test', type: 'DatePeriodTestComponent'}"
+                scss="dynamic/date-period"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="date-period-test.template.html">
+                <![CDATA[
+                <jnt-date-period [start]="{{startControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"
+                                 [end]="{{endControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"
+                                 [current]="{{currentControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"></jnt-date-period>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
 
-      <jnt-form-item>
-        <jnt-form-label for="start">Start</jnt-form-label>
-        <jnt-date-picker formControlName="start"></jnt-date-picker>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="end">End</jnt-form-label>
-        <jnt-date-picker formControlName="end"></jnt-date-picker>
-      </jnt-form-item>
-
-      <jnt-form-item>
-        <jnt-form-label for="current">Current</jnt-form-label>
-        <jnt-date-picker formControlName="current"></jnt-date-picker>
-      </jnt-form-item>
-
-      <jnt-date-period [start]="startControl.value"
-                       [end]="endControl.value"
-                       [current]="currentControl.value"></jnt-date-period>
-    </jnt-form>
-
-    <br>
-
-    <ng-container *ngFor="let date of demo">
-      <p><b>Start:</b> {{!!date.start ? (date.start | date: "dd.MM") : '-'}},
-        <b>End:</b> {{!!date.end ? (date.end | date: "dd.MM") : '-'}},
-        <b>Current:</b> {{date.current || current | date: "dd.MM"}}</p>
-      <jnt-date-period [start]="date.start" [end]="date.end" [current]="date.current || current"></jnt-date-period>
-    </ng-container>
-
-    <pre language="html">
-      <pre><![CDATA[
-<jnt-date-period [start]="start" [end]="end" [current]="current"></jnt-date-period>
-      ]]></pre>
-    </pre>
-
-    <h3>API</h3>
-    <h4>jnt-date-period</h4>
-    <table api>
-      <thead>
-      <tr>
-        <th>Property</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Default</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>[start]</td>
-        <td>-</td>
-        <td>Date</td>
-        <td>new Date()</td>
-      </tr>
-      <tr>
-        <td>[end]</td>
-        <td>-</td>
-        <td>Date</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>[current]</td>
-        <td>-</td>
-        <td>Date</td>
-        <td>new Date()</td>
-      </tr>
-      </tbody>
-    </table>
-
-  </jnt-stack>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-progress-bar" [target]="types.period"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
 
 </jnt-container>
