@@ -19,7 +19,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(null);
-  stateControl = this.fb.control(null);
+  schemeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
@@ -27,10 +27,11 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   disabledControl = this.fb.control(false);
   multilineControl = this.fb.control(false);
   rowsControl = this.fb.control(5);
+  statesControl = this.fb.control(null);
 
   builder = this.fb.group({
     type: this.typeControl,
-    state: this.stateControl,
+    scheme: this.schemeControl,
     size: this.sizeControl,
     icon: this.iconControl,
     label: this.labelControl,
@@ -38,6 +39,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     disabled: this.disabledControl,
     multiline: this.multilineControl,
     rows: this.rowsControl,
+    states: this.statesControl,
   });
 
   inputControl = this.fb.control(null);
