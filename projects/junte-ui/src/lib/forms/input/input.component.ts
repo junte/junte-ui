@@ -4,7 +4,7 @@ import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
-import { InputState, InputType } from './enums';
+import { InputScheme, InputState, InputType } from './enums';
 
 @Component({
   selector: 'jnt-input',
@@ -21,6 +21,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   inputType = InputType;
+  inputState = InputState;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
@@ -29,8 +30,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl
   });
 
-  @HostBinding('attr.state')
-  _state: InputState = InputState.normal;
+  @HostBinding('attr.scheme')
+  _scheme: InputScheme = InputScheme.normal;
 
   @HostBinding('attr.type')
   _type: InputType = InputType.text;
@@ -80,13 +81,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() max: number;
 
   @PropertyApi({
-    description: 'Input states',
+    description: 'Input scheme',
     path: 'ui.state',
-    default: InputState.normal,
-    options: [InputState.normal, InputState.success, InputState.failed]
+    default: InputScheme.normal,
+    options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
   })
-  @Input() set state(state: InputState) {
-    this._state = state || InputState.normal;
+  @Input() set scheme(scheme: InputScheme) {
+    this._scheme = scheme || InputScheme.normal;
   }
 
   @PropertyApi({
@@ -112,6 +113,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
+
+  @PropertyApi({
+    description: 'Input state',
+    path: 'ui.form.input.state',
+    options: [InputState.loading, InputState.warning, InputState.checked]
+  })
+  @HostBinding('attr.state')
+  @Input() state: InputState;
 
   @PropertyApi({
     description: 'Allow multiple lines in input',

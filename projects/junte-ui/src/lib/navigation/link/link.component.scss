@@ -2,8 +2,8 @@
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
-@mixin link-fill($scheme) {
-  [link] {
+@mixin link-fill($scheme, $wrapper) {
+  #{$wrapper} [link] {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
     &:hover {
@@ -21,9 +21,9 @@
   }
 }
 
-@mixin link-ghost($scheme) {
+@mixin link-ghost($scheme, $wrapper) {
 
-  [link] {
+  #{$wrapper} [link] {
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
@@ -72,9 +72,9 @@
   }
 }
 
-@mixin link-transparent($scheme) {
+@mixin link-transparent($scheme, $wrapper) {
 
-  [link] {
+  #{$wrapper} [link] {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
@@ -89,7 +89,7 @@
     }
     [badge] {
       @include badge((
-        background: map-get($scheme, color) !important,
+        background: if(map-get($scheme, color), #{map-get($scheme, color)} !important, null),
         color: map-get($scheme, inverse-color) !important
       ), '&');
     }
@@ -125,10 +125,11 @@
   }
 }
 
-@mixin link($passed: (), $context: null, $strategy: 'changes') {
+@mixin link($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
     font-size: null,
+    text-transform: null,
     padding: $jnt-gutter-tiny $jnt-gutter-small,
     display: inline,
     overflow: false,
@@ -174,6 +175,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: map-merge($defs, $passed);
@@ -196,7 +202,7 @@
           margin-right: 0 !important;
         }
       }
-      [link] {
+      #{$wrapper} [link] {
         text-decoration: none;
         box-sizing: border-box;
         cursor: pointer;
@@ -214,7 +220,7 @@
     }
 
     &[orphan='true'] {
-      [link] {
+      #{$wrapper} [link] {
         pointer-events: none;
         color: map-get($vars, orphan-color) !important;
         &:hover {
@@ -227,20 +233,20 @@
       @each $scheme, $map in map-get($vars, schemes) {
         &[scheme='#{$scheme}'] {
           &[outline='#{$outline-fill}'] {
-            @include link-fill($map);
+            @include link-fill($map, $wrapper);
           }
           &[outline='#{$outline-ghost}'] {
-            @include link-ghost($map);
+            @include link-ghost($map, $wrapper);
           }
           &[outline='#{$outline-transparent}'] {
-            @include link-transparent($map);
+            @include link-transparent($map, $wrapper);
           }
         }
       }
     }
   }
 
-  #{$context} [link] {
+  #{$context} #{$wrapper} [link] {
     @if map-get($vars, display) == inline {
       display: inline-block;
     }
@@ -273,6 +279,7 @@
     padding: map-get($vars, padding);
     height: map-get($vars, height);
     font-size: map-get($vars, font-size);
+    text-transform: map-get($vars, text-transform);
     @if map-has-key($vars, color) {
       color: map-get($vars, color) !important;
     }

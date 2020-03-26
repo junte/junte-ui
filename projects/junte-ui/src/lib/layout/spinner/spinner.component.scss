@@ -16,6 +16,7 @@
 @mixin spinner($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    size: null,
     sizes: (
       small: 1rem,
       normal: 2rem,
@@ -37,6 +38,12 @@
     border: 1px solid;
     border-right-color: transparent !important;
     animation: jnt-spin .5s infinite linear;
+    @if map-get($vars, size) != null {
+      width: map-get($vars, size) !important;
+      min-width: map-get($vars, size) !important;
+      height: map-get($vars, size) !important;
+      min-height: map-get($vars, size) !important;
+    }
 
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);

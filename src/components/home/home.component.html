@@ -2,77 +2,237 @@
   <jnt-lp-slide>
     <ng-template #slideContentTemplate>
       <div about>
-        <jnt-container>
-          <jnt-stack [gutter]="ui.gutter.big"
-                     [align]="ui.flex.align.center">
-            <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                       [justify]="ui.flex.justify.center">
-              <jnt-menu menu>
-                <jnt-menu-item
-                  [icon]="localUi.icons.menu.documentation"
-                  [title]="'Documentation'"
-                  [link]="['docs']">
-                </jnt-menu-item>
-                <jnt-menu-item
-                  [icon]="localUi.icons.menu.contacts"
-                  [title]="'Team'"
-                  [link]="['team']">
-                </jnt-menu-item>
-                <jnt-menu-item
-                  [icon]="ui.icons.gitlab"
-                  [title]="'Source Code'"
-                  link="https://gitlab.com/junte/junte-ui">
-                </jnt-menu-item>
-                <jnt-menu-item
-                  [icon]="ui.icons.figma"
-                  [title]="'Design System'"
-                  link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
-                </jnt-menu-item>
-              </jnt-menu>
-            </jnt-stack>
-            <img height="100" src="assets/images/logo-light.svg" alt="logo">
-            <h1>Quality Angular<br>UI components kit</h1>
+
+        <div bottom>
+
+          <ng-container *jntMinFor="ui.breakpoint.tablet">
+            <svg wave width="835" height="580" viewBox="0 0 835 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.25"
+                    d="M132.111 22.6453C132.111 22.6453 105.617 69.4237 165.051 93.9813C224.485 118.539 253.107 102.215 293.467 206.08C333.827 309.946 359.002 339.566 401.547 335.641C444.092 331.717 510.102 335.274 561.538 410.748C612.987 486.211 739.412 448.035 795.37 487.882C851.332 527.703 831.504 603.109 831.504 603.109L328.088 991.113L-421.999 17.9114C-421.999 17.9114 -325.847 -16.5087 -259.433 21.294C-193.019 59.0966 -183.331 38.88 -140.154 13.7764C-96.9627 -11.3384 12.1374 75.5188 64.004 23.6295C115.896 -28.2563 132.111 22.6453 132.111 22.6453Z"
+                    fill="url(#paint0_radial)"/>
+              <defs>
+                <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(222.867 296.558) rotate(-127.623) scale(496.714 496.781)">
+                  <stop offset="0.00537634" stop-color="#DE3DBF"/>
+                  <stop offset="1" stop-color="#67219E"/>
+                </radialGradient>
+              </defs>
+            </svg>
+
+            <svg wave width="679" height="625" viewBox="0 0 679 625" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.25"
+                    d="M-487.56 9.50001C-479.945 4.6802 -346.59 -27.366 -304.689 62.8123C-262.788 152.991 -218.331 154.094 -151.028 159.65C-83.7254 165.187 -104.032 166.309 -29.1143 214.655C45.8033 263 89.8196 237.852 144.431 220.578C199.042 203.286 286.191 244.733 355.867 208.694C425.542 172.675 428.393 231.8 428.393 231.8C428.393 231.8 409.006 283.383 465.365 319.476C521.741 355.57 494.059 397.164 509.749 463.225C525.438 529.267 678.015 627.08 678.015 627.08L-515.5 564.827L-487.56 9.50001Z"
+                    fill="url(#paint0_radial)"/>
+              <defs>
+                <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(468.95 223.271) scale(749.691 749.792)">
+                  <stop offset="0.00537634" stop-color="#DE3DBF"/>
+                  <stop offset="1" stop-color="#67219E"/>
+                </radialGradient>
+              </defs>
+            </svg>
+
+            <svg wave width="611" height="618" viewBox="0 0 611 618" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g filter="url(#filter0_i)">
+                <path
+                  d="M-495.652 0.000366211C-495.652 0.000366211 -473.745 101.934 -381.353 113.358C-288.961 124.782 -286.11 121.397 -250.868 167.866C-215.626 214.335 -196.57 240.365 -133.718 223.551C-70.8484 206.719 -15.6121 167.038 35.8168 199.25C87.2457 231.48 201.195 286.08 318.657 159.293C436.12 32.5065 397.603 223.551 397.603 223.551C397.603 223.551 316.193 294.487 434.924 358.193C476.825 382.016 470.001 453.063 483.815 499.145C497.628 545.228 610.511 634.137 610.511 634.137C610.511 634.137 -254.547 706.029 -260.267 706.986C-265.988 707.924 -589 529.646 -589 529.646L-495.652 0.000366211Z"
+                  fill="url(#paint0_radial)"/>
+              </g>
+              <defs>
+                <filter id="filter0_i" x="-589" y="0.000366211" width="1199.51" height="714.989"
+                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                 result="hardAlpha"/>
+                  <feOffset dy="8"/>
+                  <feGaussianBlur stdDeviation="10"/>
+                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                  <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+                </filter>
+                <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                gradientTransform="translate(409.213 326.044) scale(1105.33 1105.48)">
+                  <stop offset="0.00537634" stop-color="#DE3DBF"/>
+                  <stop offset="1" stop-color="#67219E"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </ng-container>
+
+          <div planet top>
+            <img src="assets/images/home/wave-small.svg" width="293" height="410" alt="planet">
+          </div>
+
+
+          <div ship>
+            <img src="assets/images/home/star-ship.svg" width="293" height="410" alt="ship">
+
+            <div container>
+              <div fire small>
+                <div red flame></div>
+                <div orange flame></div>
+                <div yellow flame></div>
+                <div white flame></div>
+              </div>
+              <div fire>
+                <div red flame></div>
+                <div orange flame></div>
+                <div yellow flame></div>
+                <div white flame></div>
+              </div>
+              <div fire small>
+                <div red flame></div>
+                <div orange flame></div>
+                <div yellow flame></div>
+                <div white flame></div>
+              </div>
+            </div>
+          </div>
+
+          <ng-container *jntMinFor="ui.breakpoint.tablet">
+            <img planet right src="assets/images/home/planet-bottom-2.svg" alt="planet">
+            <img planet left src="assets/images/home/planet-bottom-2.svg" alt="planet">
+            <img stars src="assets/images/home/stars.svg" alt="stars">
+          </ng-container>
+        </div>
+
+        <div top>
+          <ng-container *jntMinFor="ui.breakpoint.desktop">
+            <svg wave width="900" height="482" viewBox="0 0 900 482" xmlns="http://www.w3.org/2000/svg">
+              <path id="wave" d="M1743.11 -291.936L1549.23 -478.715C1328.81 -627.13 1441.38 -975.416 1112.61
+          -1015.66C776.854 -1056.77 259.175 -729.937 105.91 -444.106C29.5949 -301.779
+          -53.273 -65.3306 44.962 88.3279C113.311 195.254 252.4 204.057 370.539 201.674C516.17
+          198.727 642.471 143.79 779.683 208.073C868.154 249.543 917.123 316.224 989.799
+          379.197C1389.71 725.291 2001 110.549 1743.11 -291.936Z" fill="white"/>
+            </svg>
+          </ng-container>
+
+          <ng-container *jntFor="ui.breakpoint.mobile">
+            <img width="100%" wave src="assets/images/home/wave-top-mobile.svg" alt="wave">
+          </ng-container>
+
+          <ng-container *jntFor="ui.breakpoint.tablet">
+            <svg wave width="703" height="647" viewBox="0 0 703 647" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M206.625 -488.936L400.502 -675.715C620.925 -824.13 508.355 -1172.42 837.122 -1212.66C1172.88 -1253.77 1690.56 -926.937 1843.82 -641.106C1920.14 -498.779 2003.01 -262.331 1904.77 -108.672C1836.42 -1.74601 1697.33 7.05666 1579.2 4.67415C1433.56 1.72662 1307.26 -53.2096 1170.05 11.073C1081.58 52.543 1032.61 119.224 959.935 182.197C560.021 528.291 -51.2694 -86.4506 206.625 -488.936Z"
+                fill="white"/>
+            </svg>
+          </ng-container>
+
+          <div planet>
+            <img src="assets/images/home/wave-small-right.svg" alt="planet">
+          </div>
+        </div>
+
+        <jnt-stack header [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between">
+
+          <img height="94" src="assets/images/logo-lp.svg" alt="logo">
+          <ng-container *jntMinFor="ui.breakpoint.tablet">
+            <jnt-menu menu>
+              <jnt-menu-item
+                [title]="'Documentation'"
+                [link]="['docs']">
+              </jnt-menu-item>
+              <jnt-menu-item
+                [title]="'Team'"
+                [link]="['team']">
+              </jnt-menu-item>
+              <jnt-menu-item
+                [icon]="ui.icons.gitlab"
+                [title]="'GitLab'"
+                link="https://gitlab.com/junte/junte-ui">
+              </jnt-menu-item>
+              <jnt-menu-item
+                [icon]="ui.icons.figma"
+                [title]="'Design System'"
+                link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
+              </jnt-menu-item>
+            </jnt-menu>
+          </ng-container>
+
+          <ng-container *jntFor="ui.breakpoint.mobile">
+            <div dropdown>
+              <button (click)="opened = !opened">
+                <jnt-icon [icon]="ui.icons.menu"></jnt-icon>
+              </button>
+              <div menu [attr.opened]="opened">
+                <jnt-menu [type]="ui.orientation.vertical" menu>
+                  <jnt-menu-item
+                    [title]="'Documentation'"
+                    [link]="['docs']">
+                  </jnt-menu-item>
+                  <jnt-menu-item
+                    [title]="'Team'"
+                    [link]="['team']">
+                  </jnt-menu-item>
+                  <jnt-menu-item
+                    [icon]="ui.icons.gitlab"
+                    [title]="'GitLab'"
+                    link="https://gitlab.com/junte/junte-ui">
+                  </jnt-menu-item>
+                  <jnt-menu-item
+                    [icon]="ui.icons.figma"
+                    [title]="'Design System'"
+                    link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
+                  </jnt-menu-item>
+                </jnt-menu>
+              </div>
+            </div>
+          </ng-container>
+
+        </jnt-stack>
+
+
+        <jnt-container content>
+          <jnt-stack [gutter]="ui.gutter.big" [align]="ui.flex.align.end">
+
             <jnt-stack [gutter]="ui.gutter.large"
-                       [align]="ui.flex.align.center">
+                       [align]="ui.flex.align.center"
+                       [justify]="ui.flex.justify.between">
+
+              <h1>Quality Angular<br>UI components kit</h1>
+
               <p>Made with love for making beautiful WEB apps!</p>
               <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                         [gutter]="ui.gutter.large"
-                         [justify]="ui.flex.justify.center">
-                <jnt-label opened label="Opened"
-                           [icon]="ui.icons.unlock"></jnt-label>
-                <jnt-label native label="Native"
-                           [icon]="ui.icons.skull"></jnt-label>
-                <jnt-label multilingual label="Multilingual"
-                           [icon]="ui.icons.usa"></jnt-label>
+                         [gutter]="ui.gutter.huge"
+                         [wrap]="ui.flex.wrap.wrap"
+                         [justify]="ui.flex.justify.center" tags>
+
+                <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.small"
+                           [align]="ui.flex.align.center" tag>
+                  <div icon>
+                    <img src="assets/images/home/icons/unlock.svg" alt="unlock">
+                  </div>
+                  <span>Opened</span>
+                </jnt-stack>
+
+                <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.small"
+                           [align]="ui.flex.align.center" tag>
+                  <div icon>
+                    <img src="assets/images/home/icons/native.svg" alt="native">
+                  </div>
+                  <span>Native</span>
+                </jnt-stack>
+
+                <jnt-stack [type]="ui.layout.stack.type.horizontal" [gutter]="ui.gutter.small"
+                           [align]="ui.flex.align.center" tag>
+                  <div icon>
+                    <img src="assets/images/home/icons/team.svg" alt="team">
+                  </div>
+                  <span>Multilingual</span>
+                </jnt-stack>
+
               </jnt-stack>
 
-              <jnt-link link title="Tutorial here"
+              <jnt-link tutorial title="Tutorial here"
                         [icon]="ui.icons.right"
                         [outline]="ui.outline.fill"
                         [source]="['docs']"></jnt-link>
             </jnt-stack>
           </jnt-stack>
         </jnt-container>
-      </div>
-    </ng-template>
-  </jnt-lp-slide>
 
-  <jnt-lp-slide>
-    <ng-template #slideContentTemplate>
-      <div slide2>
-        <jnt-container>
-          <h1>Slide 2</h1>
-        </jnt-container>
-      </div>
-    </ng-template>
-  </jnt-lp-slide>
-
-  <jnt-lp-slide>
-    <ng-template #slideContentTemplate>
-      <div slide3>
-        <jnt-container>
-          <h1>Slide 3</h1>
-        </jnt-container>
       </div>
     </ng-template>
   </jnt-lp-slide>
