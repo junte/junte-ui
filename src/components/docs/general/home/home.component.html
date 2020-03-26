@@ -129,9 +129,9 @@ export class AppModule {
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/components/button/button.encapsulated";
-@import "~junte-ui/lib/components/block/block.encapsulated";
-@import "~junte-ui/lib/components/badge/badge.encapsulated";
+@import "~junte-ui/lib/forms/button/button";
+@import "~junte-ui/lib/layout/block/block";
+@import "~junte-ui/lib/elements/badge/badge";
 ...
 ]]>
     </pre>
@@ -142,7 +142,7 @@ export class AppModule {
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/assets/styles/components";
+@import "~junte-ui/lib/assets/styles/all";
 ]]>
     </pre>
   </app-code-highlight>
@@ -238,23 +238,41 @@ export class YourComponent {
 
 // forms
 @include button();
-@include calendar();
-@include checkbox();
-@include checkbox-group();
-@include radio();
-@include date-picker();
+@include button-group();
 @include form();
 @include form-label();
 @include form-message();
 @include input();
+@include checkbox();
+@include checkbox-group();
+@include radio();
+@include radio-group();
 @include select();
 @include switch();
 @include switcher();
+@include calendar();
+@include date-picker();
 
 // collections
-@include accordion();
 @include gantt();
 @include table();
+@include accordion();
+
+//overlays
+@include modal();
+@include popover();
+
+//dynamic
+@include progress-bar();
+@include date-period();
+@include circle-bar();
+@include circle-bar-indicator();
+@include circle-bar-indicator-group();
+@include chart();
+
+//shared
+@include confirm();
+@include theme-switcher();
         ]]>
     </pre>
   </app-code-highlight>
