@@ -1,7 +1,14 @@
 import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
+import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
+import { Scheme } from '../../core/enums/scheme';
 import { BreakpointService } from './breakpoint.service';
+
+const breakpoints = [Breakpoint.mobile,
+  Breakpoint.tablet,
+  Breakpoint.desktop,
+  Breakpoint.wide];
 
 export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
@@ -41,6 +48,12 @@ export abstract class BreakpointDirective implements OnInit, OnDestroy {
 })
 export class ForDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntFor',
+    description: 'Target break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntFor')
   set target(target: Breakpoint) {
     this._target = [target];
@@ -66,6 +79,12 @@ const min = {
 })
 export class ForMinDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntMinFor',
+    description: 'Min break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntMinFor')
   set target(target: Breakpoint) {
     this._target = min[target];
@@ -91,6 +110,12 @@ const max = {
 })
 export class ForMaxDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntMaxFor',
+    description: 'Max break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntMaxFor')
   set target(target: Breakpoint) {
     this._target = max[target];

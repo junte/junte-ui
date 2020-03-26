@@ -19,27 +19,23 @@
       <ng-template #tabContentTemplate>
         <app-browser-preview preview>
           <ng-template #document let-width="width" let-height="height">
-            <jnt-stack [type]="ui.layout.stack.type.horizontal">
-              <div *jntMaxFor="ui.breakpoint.mobile">
-                <p>Only for mobile!</p>
-              </div>
+            <p>Please change you device width in <b>developers tools</b></p>
 
-              <div *jntMinFor="ui.breakpoint.tablet">
-                <p>Only min for tablet!</p>
-              </div>
+            <ng-container *jntFor="ui.breakpoint.mobile">
+              <jnt-icon [icon]="localUi.icons.mobile"></jnt-icon>
+            </ng-container>
 
-              <div *jntFor="ui.breakpoint.tablet">
-                <p>Only for tablet!</p>
-              </div>
+            <ng-container *jntFor="ui.breakpoint.tablet">
+              <jnt-icon [icon]="localUi.icons.tablet"></jnt-icon>
+            </ng-container>
 
-              <div *jntMinFor="ui.breakpoint.desktop">
-                <p>Min for desktop!</p>
-              </div>
+            <ng-container *jntFor="ui.breakpoint.desktop">
+              <jnt-icon [icon]="localUi.icons.desktop"></jnt-icon>
+            </ng-container>
 
-              <div *jntFor="ui.breakpoint.wide">
-                <p>Only for wide!</p>
-              </div>
-            </jnt-stack>
+            <ng-container *jntFor="ui.breakpoint.wide">
+              <jnt-icon [icon]="localUi.icons.wide"></jnt-icon>
+            </ng-container>
           </ng-template>
         </app-browser-preview>
       </ng-template>
@@ -53,8 +49,7 @@
           <jnt-accordion-section title="How to start"
                                  i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
-              <app-how-to-use
-                [test]="{selector:'responsive-test', type: 'ResponsiveTestComponent'}"></app-how-to-use>
+              <app-how-to-use [test]="{selector:'responsive-test', type: 'ResponsiveTestComponent'}"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -62,25 +57,21 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="responsive-test.component.html">
                 <![CDATA[
-                <div *jntMaxFor="ui.breakpoint.mobile">
-                  <p>Only for mobile!</p>
-                </div>
+                <ng-container *jntFor="ui.breakpoint.mobile">
+                  <p>Only for mobile.</p>
+                </ng-container>
 
-                <div *jntMinFor="ui.breakpoint.tablet">
-                  <p>Only min for tablet!</p>
-                </div>
+                <ng-container *jntFor="ui.breakpoint.tablet">
+                  <p>Only min for tablet.</p>
+                </ng-container>
 
-                <div *jntFor="ui.breakpoint.tablet">
-                  <p>Only for tablet!</p>
-                </div>
+                <ng-container *jntFor="ui.breakpoint.desktop">
+                  <p>Min for desktop.</p>
+                </ng-container>
 
-                <div *jntMinFor="ui.breakpoint.desktop">
-                  <p>Min for desktop!</p>
-                </div>
-
-                <div *jntFor="ui.breakpoint.wide">
-                  <p>Only for wide!</p>
-                </div>
+                <ng-container *jntFor="ui.breakpoint.wide">
+                  <p>Only for wide.</p>
+                </ng-container>
                 ]]>
               </app-code-highlight>
             </ng-template>
@@ -91,7 +82,17 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-responsive" [target]=""></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jntFor"
+                             [type]="selectorType.StructuralDirective"
+                             [target]="types.for"></app-component-api>
+          <app-component-api selector="jntMinFor"
+                             [type]="selectorType.StructuralDirective"
+                             [target]="types.min"></app-component-api>
+          <app-component-api selector="jntMaxFor"
+                             [type]="selectorType.StructuralDirective"
+                             [target]="types.max"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

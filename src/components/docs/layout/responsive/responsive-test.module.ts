@@ -5,6 +5,7 @@ import {
   AccordionModule,
   ArrayPipeModule,
   FormModule,
+  IconModule,
   GridModule,
   LinkModule,
   ResponsiveModule,
@@ -20,6 +21,7 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

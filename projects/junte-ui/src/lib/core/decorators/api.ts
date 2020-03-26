@@ -5,6 +5,7 @@ export const COMPONENT_API_METHODS_METADATA_KEY = Symbol('component_api_methods_
 export const COMPONENT_API_CONTENT_METADATA_KEY = Symbol('component_api_content_field_meta');
 
 export class PropertyMetadata {
+  name?: string;
   description: string;
   path?: string;
   type?: string;
@@ -23,24 +24,27 @@ export class ContentMetadata {
 
 export function PropertyApi(data: PropertyMetadata) {
   return function (obj: Object, property: string) {
-    const metadata = Reflect.getMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, obj) || {};
+    const constructor = obj.constructor;
+    const metadata = Reflect.getMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, constructor) || {};
     metadata[property] = data;
-    Reflect.defineMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, metadata, obj);
+    Reflect.defineMetadata(COMPONENT_API_PROPERTIES_METADATA_KEY, metadata, constructor);
   };
 }
 
 export function MethodApi(data: MethodMetadata) {
   return function (obj: Object, property: string) {
-    const metadata = Reflect.getMetadata(COMPONENT_API_METHODS_METADATA_KEY, obj) || {};
+    const constructor = obj.constructor;
+    const metadata = Reflect.getMetadata(COMPONENT_API_METHODS_METADATA_KEY, constructor) || {};
     metadata[property] = data;
-    Reflect.defineMetadata(COMPONENT_API_METHODS_METADATA_KEY, metadata, obj);
+    Reflect.defineMetadata(COMPONENT_API_METHODS_METADATA_KEY, metadata, constructor);
   };
 }
 
 export function ContentApi(data: ContentMetadata) {
   return function (obj: Object, property: string) {
-    const metadata = Reflect.getMetadata(COMPONENT_API_CONTENT_METADATA_KEY, obj) || {};
+    const constructor = obj.constructor;
+    const metadata = Reflect.getMetadata(COMPONENT_API_CONTENT_METADATA_KEY, constructor) || {};
     metadata[property] = data;
-    Reflect.defineMetadata(COMPONENT_API_CONTENT_METADATA_KEY, metadata, obj);
+    Reflect.defineMetadata(COMPONENT_API_CONTENT_METADATA_KEY, metadata, constructor);
   };
 }

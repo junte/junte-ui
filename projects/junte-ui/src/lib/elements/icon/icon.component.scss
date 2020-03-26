@@ -1,22 +1,6 @@
 @import "variables";
 
-@mixin icon-size($vars) {
-  &[type='font'] {
-    &:not([size='auto']) {
-      [icon] {
-        font-size: map-get($vars, size);
-      }
-    }
-  }
-  &[type='svg'], &[type='animated'] {
-    [icon] {
-      width: map-get($vars, size);
-      height: map-get($vars, size);
-    }
-  }
-}
-
-@mixin icon($passed: (), $context: null, $strategy: 'merge') {
+@mixin icon($passed: (), $context: null, $deep: false, $strategy: 'merge') {
   $defs: (
     color: null,
     size: null,
@@ -42,6 +26,11 @@
   $vars: $passed;
   $declare: false;
 
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
     $vars: map-merge($defs, $passed);
     $declare: true;
@@ -54,14 +43,14 @@
     }
 
     &[type='font'] {
-      [icon] {
+      #{$wrapper} [icon] {
         color: map-get($vars, color);
         font-size: #{map-get($vars, size)} !important;
       }
     }
 
     &[type='svg'], &[type='animated'] {
-      [icon] {
+      #{$wrapper} [icon] {
         fill: map-get($vars, color);
         @if map-has-key($vars, size) {
           width: #{map-get($vars, size)} !important;
@@ -71,9 +60,21 @@
     }
 
     @if map-has-key($vars, sizes) {
-      @each $size, $map in map-get($vars, sizes) {
-        &[size='#{$size}'] {
-          @include icon-size($map);
+      @each $key, $size in map-get($vars, sizes) {
+        &[size='#{$key}'] {
+          &[type='font'] {
+            &:not([size='auto']) {
+              #{$wrapper} [icon] {
+                font-size: map-get($size, size);
+              }
+            }
+          }
+          &[type='svg'], &[type='animated'] {
+            #{$wrapper} [icon] {
+              width: map-get($size, size);
+              height: map-get($size, size);
+            }
+          }
         }
       }
     }
