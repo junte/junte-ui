@@ -39,10 +39,10 @@
     border-right-color: transparent !important;
     animation: jnt-spin .5s infinite linear;
     @if map-get($vars, size) != null {
-      width: map-get($vars, size) !important;
-      min-width: map-get($vars, size) !important;
-      height: map-get($vars, size) !important;
-      min-height: map-get($vars, size) !important;
+      width: if(map-get($vars, size), map-get($vars, size) !important, null);
+      min-width: if(map-get($vars, size), map-get($vars, size) !important, null);
+      height: if(map-get($vars, size), map-get($vars, size) !important, null);
+      min-height: if(map-get($vars, size), map-get($vars, size) !important, null);
     }
 
     @if map-has-key($vars, sizes) {
