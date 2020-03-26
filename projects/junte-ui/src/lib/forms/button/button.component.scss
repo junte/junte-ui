@@ -15,8 +15,8 @@
 
     [badge] {
       @include badge((
-        background: map-get($scheme, inverse-color) !important,
-        color: map-get($scheme, color) !important
+        background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+        color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
       ), '&');
     }
   }
@@ -34,8 +34,8 @@
 
       [badge] {
         @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
@@ -45,8 +45,8 @@
 
     [badge] {
       @include badge((
-        background: map-get($scheme, color) !important,
-        color: map-get($scheme, inverse-color) !important
+        background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+        color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
@@ -60,15 +60,15 @@
 
         [badge] {
           @include badge((
-            background: map-get($scheme, color) !important,
-            color: map-get($scheme, inverse-color) !important
+            background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+            color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
       [badge] {
         @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
@@ -92,8 +92,8 @@
 
     [badge] {
       @include badge((
-        background: map-get($scheme, color) !important,
-        color: map-get($scheme, inverse-color) !important
+        background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+        color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
@@ -105,8 +105,8 @@
       }
       [badge] {
         @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
@@ -376,7 +376,7 @@
   #{$context} button {
     border-radius: map-get($vars, corner);
     @if map-get($vars, padding) != null {
-      padding: map-get($vars, padding) !important;
+      padding: if(map-get($vars, padding),map-get($vars, padding) !important, null);
     }
     @if map-has-key($vars, corners) {
       $corners: map-get($vars, corners);
@@ -395,18 +395,10 @@
     }
     @if map-has-key($vars, borders) {
       $borders: map-get($vars, borders);
-      @if map-get($borders, right) != null {
-        border-right: map-get($borders, right) !important;
-      }
-      @if map-get($borders, left) != null {
-        border-left: map-get($borders, left) !important;
-      }
-      @if map-get($borders, top) != null {
-        border-top: map-get($borders, top) !important;
-      }
-      @if map-get($borders, bottom) != null {
-        border-bottom: map-get($borders, bottom) !important;
-      }
+      border-right: if(map-get($borders, right), map-get($borders, right) !important, null);
+      border-left: if(map-get($borders, left), map-get($borders, left) !important, null);
+      border-top: if(map-get($borders, top), map-get($borders, top) !important, null);
+      border-bottom: if(map-get($borders, bottom), map-get($borders, bottom) !important, null);
     }
 
     @if map-has-key($vars, icon) {
