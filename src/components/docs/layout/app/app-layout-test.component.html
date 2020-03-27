@@ -31,34 +31,47 @@
           <jnt-stack>
             <jnt-form [formGroup]="builder">
 
-              <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="header" label="Header"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="logo" label="Logo"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="menu" label="Menu"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="action" label="Actions"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="userMenu" label="User bar"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="subHeader" label="Sub header"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="aside" label="Aside"></jnt-checkbox>
-                  </jnt-form-control>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="footer" label="Footer"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-stack>
-              </jnt-stack>
+              <jnt-form-item>
+                <jnt-form-label i18n="@@label.features">Features
+                </jnt-form-label>
+                <jnt-row>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="header"
+                                  label="Header"
+                                  i18n-label="@@label.header"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="logo"
+                                  label="Logo"
+                                  i18n-label="@@label.logo"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="menu"
+                                  label="Menu"
+                                  i18n-label="@@label.menu"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="action"
+                                  label="Actions"
+                                  i18n-label="@@label.action"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="userMenu"
+                                  label="User bar"
+                                  i18n-label="@@label.userMenu"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="aside"
+                                  label="Sub header"
+                                  i18n-label="@@label.aside"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="footer"
+                                  label="Footer"
+                                  i18n-label="@@label.footer"></jnt-checkbox>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-form-item>
             </jnt-form>
 
             <app-browser-preview preview>

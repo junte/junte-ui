@@ -96,14 +96,22 @@
                     </jnt-form-control>
                   </jnt-form-item>
 
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="icons"
-                                  label="Icons"
-                                  i18n-label="@@label.icons"></jnt-checkbox>
-                    <jnt-checkbox formControlName="badges"
-                                  label="Badges"
-                                  i18n-label="@@label.badges"></jnt-checkbox>
-                  </jnt-stack>
+                  <jnt-form-item>
+                    <jnt-form-label i18n="@@label.features">Features
+                    </jnt-form-label>
+                    <jnt-row>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="icons"
+                                      label="Icons"
+                                      i18n-label="@@label.icons"></jnt-checkbox>
+                      </jnt-col>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="badges"
+                                      label="Badges"
+                                      i18n-label="@@label.badges"></jnt-checkbox>
+                      </jnt-col>
+                    </jnt-row>
+                  </jnt-form-item>
 
                 </jnt-stack>
               </jnt-form>
