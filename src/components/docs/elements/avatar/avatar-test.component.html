@@ -115,17 +115,25 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="icon"
-                                  label="Icon"
-                                  i18n-label="@@label.icon"></jnt-checkbox>
-                    <jnt-checkbox formControlName="text"
-                                  label="Text"
-                                  i18n-label="@@label.text"></jnt-checkbox>
-                    <jnt-checkbox formControlName="image"
-                                  label="Image"
-                                  i18n-label="@@label.image"></jnt-checkbox>
-                  </jnt-stack>
+                  <jnt-form-label i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="icon"
+                                    label="Icon"
+                                    i18n-label="@@label.icon"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="text"
+                                    label="Text"
+                                    i18n-label="@@label.text"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="image"
+                                    label="Image"
+                                    i18n-label="@@label.image"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
                 </jnt-form-item>
 
               </jnt-stack>
