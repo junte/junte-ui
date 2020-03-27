@@ -84,6 +84,7 @@ export class LinkComponent {
     description: 'Link title',
     type: 'string'
   })
+  @HostBinding('attr.title')
   @Input() title: string;
 
   @PropertyApi({

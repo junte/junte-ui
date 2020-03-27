@@ -32,7 +32,8 @@
     "publish": "npm run package && npm publish ./dist/junte-ui/junte-ui-$npm_package_version.tgz",
     "clean:package": "npm cache clean --force && rm -rf -- node_modules doc coverage dist dll package-lock.json",
     "refresh": "npm run clean:package && npm install",
-    "processes": "lsof -Pnl +M -i -cmd | grep -E 'LISTEN|TCP|UDP'"
+    "processes": "lsof -Pnl +M -i -cmd | grep -E 'LISTEN|TCP|UDP'",
+    "e2e": "ng e2e"
   },
   "private": false,
   "dependencies": {
@@ -87,6 +88,7 @@
     "gulp-clean": "0.4.0",
     "gulp-hash": "4.2.2",
     "gulp-iconfont": "10.0.3",
+    "jasmine": "^3.5.0",
     "jasmine-core": "3.5.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.4.1",
