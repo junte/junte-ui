@@ -45,7 +45,7 @@
     &[type='font'] {
       #{$wrapper} [icon] {
         color: map-get($vars, color);
-        font-size: #{map-get($vars, size)} !important;
+        font-size: if(map-get($vars, size), map-get($vars, size) !important, null);
       }
     }
 
@@ -53,8 +53,8 @@
       #{$wrapper} [icon] {
         fill: map-get($vars, color);
         @if map-has-key($vars, size) {
-          width: #{map-get($vars, size)} !important;
-          height: #{map-get($vars, size)} !important;
+          width: if(map-get($vars, size),  map-get($vars, size) !important, null);
+          height: if(map-get($vars, size),  map-get($vars, size) !important, null);
         }
       }
     }
