@@ -144,7 +144,7 @@
     ),
     icon: (
       margin-right: $jnt-gutter-tiny,
-      size: 20px
+      sizes: null
     ),
     badge: (
       margin-left: $jnt-gutter-small
@@ -289,9 +289,10 @@
         [icon] {
           margin-right: map-get($icon, margin-right);
           @include icon((
+            size: map-get($icon, size),
             sizes: (
               auto: (
-                size: map-get($icon, size),
+                size: 18px,
               )
             )
           ), '&');
