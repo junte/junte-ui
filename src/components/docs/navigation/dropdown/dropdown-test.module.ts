@@ -10,7 +10,9 @@ import {
   LinkModule,
   MenuModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  IconModule,
+  AvatarModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -29,6 +31,8 @@ import { DropdownTestComponent } from './dropdown-test.component';
     MenuModule.forRoot(JUNTE_UI_CONFIG),
     DropdownModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule.forRoot(JUNTE_UI_CONFIG),
+    AvatarModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule
   ],
   exports: [
