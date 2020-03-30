@@ -29,6 +29,8 @@ export class LocalUI {
 
       layout: 'layout:font:junte-ui-test-default',
       general: 'general:font:junte-ui-test-default',
+      theming: 'theming:font:junte-ui-test-layout',
+      typography: 'typography:font:junte-ui-test-layout',
       navigation: 'navigation:font:junte-ui-test-default',
       collections: 'collections:font:junte-ui-test-default',
       elements: 'elements:font:junte-ui-test-default',
