@@ -11,7 +11,8 @@ import {
   ResponsiveModule,
   SelectModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  PopoverModule
 } from 'junte-ui';
 import { ResponsiveTestComponent } from 'src/components/docs/layout/responsive/responsive-test.component';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -29,6 +30,7 @@ import { SharedModule } from '../../shared/shared.module';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
+    PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
     ArrayPipeModule,
     SharedModule
