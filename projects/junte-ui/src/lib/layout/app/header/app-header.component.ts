@@ -23,6 +23,14 @@ export class AppHeaderComponent {
   headerMenuTemplate: TemplateRef<any>;
 
   @ContentApi({
+    selector: '#headerMobileMenuTemplate',
+    description: 'Menu template'
+  })
+
+  @ContentChild('headerMobileMenuTemplate')
+  headerMobileMenuTemplate: TemplateRef<any>;
+
+  @ContentApi({
     selector: '#headerLogoTemplate',
     description: 'Logo template'
   })

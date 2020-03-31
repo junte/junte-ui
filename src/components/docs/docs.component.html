@@ -36,6 +36,35 @@
                        [icon]="ui.icons.figma"></jnt-menu-item>
       </jnt-menu>
     </ng-template>
+    <ng-template #headerMobileMenuTemplate>
+      <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.gutter.small">
+        <jnt-menu-item title="Home"
+                       i18n-title="@@label.home"
+                       [icon]="ui.icons.home"
+                       [link]="['/']"></jnt-menu-item>
+        <jnt-menu-item title="Documentation"
+                       i18n-title="@@label.documentation"
+                       [icon]="localUi.icons.menu.documentation"
+                       [link]="['/general/home']"
+                       [matching]="ui.url.matching.wildcard">
+        </jnt-menu-item>
+        <jnt-menu-item title="Team"
+                       i18n-title="@@label.team"
+                       [icon]="localUi.icons.menu.contacts"
+                       [link]="['/team']"
+                       [matching]="ui.url.matching.wildcard"></jnt-menu-item>
+        <jnt-menu-item title="GitLab"
+                       i18n-title="@@label.gitlab"
+                       link="https://gitlab.com/junte/junte-ui"
+                       target="_blank"
+                       [icon]="ui.icons.gitlab"></jnt-menu-item>
+        <jnt-menu-item title="Figma"
+                       i18n-title="@@label.figma"
+                       link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0"
+                       target="_blank"
+                       [icon]="ui.icons.figma"></jnt-menu-item>
+      </jnt-menu>
+    </ng-template>
     <jnt-stack [type]="ui.layout.stack.type.horizontal"
                [align]="ui.flex.align.center">
       <form [formGroup]="themeForm">
