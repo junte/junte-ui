@@ -36,6 +36,8 @@ export class LocalUI {
       responsive: 'responsive:font:junte-ui-test-layout',
       spinner: 'spinner:font:junte-ui-test-layout',
       navigation: 'navigation:font:junte-ui-test-default',
+      pager: 'pager:font:junte-ui-test-layout',
+      breadcrumbs: 'breadcrumbs:font:junte-ui-test-layout',
       collections: 'collections:font:junte-ui-test-default',
       elements: 'elements:font:junte-ui-test-default',
       forms: 'forms:font:junte-ui-test-default',
