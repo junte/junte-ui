@@ -2,8 +2,8 @@
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
-@mixin button-fill($scheme) {
-  button {
+@mixin button-fill($scheme, $wrapper) {
+  #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
     &:hover {
@@ -22,9 +22,9 @@
   }
 }
 
-@mixin button-ghost($scheme) {
+@mixin button-ghost($scheme, $wrapper) {
 
-  button {
+  #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
@@ -51,7 +51,7 @@
     }
   }
   &[scheme=#{$scheme-secondary}] {
-    button {
+    #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
       &:hover {
@@ -75,9 +75,9 @@
   }
 }
 
-@mixin button-transparent($scheme) {
+@mixin button-transparent($scheme, $wrapper) {
 
-  button {
+  #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
@@ -98,7 +98,7 @@
     }
   }
   &[scheme=#{$scheme-secondary}] {
-    button {
+    #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       &:hover {
         color: map-get($scheme, inverse-color);
@@ -113,20 +113,20 @@
   }
 }
 
-@mixin button-size($size) {
-  button {
+@mixin button-size($size, $wrapper) {
+  #{$wrapper} button {
     padding: map-get($size, padding);
     height: map-get($size, height);
     font-size: map-get($size, font-size);
   }
   &[with-text="false"] {
-    button {
+    #{$wrapper} button {
       padding: map-get($size, padding-without-text);
     }
   }
 }
 
-@mixin button($passed: (), $context: null, $strategy: 'changes') {
+@mixin button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large,
@@ -243,6 +243,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: map-merge($defs, $passed);
@@ -254,7 +259,7 @@
       display: inline-flex;
       position: relative;
       max-width: 100%;
-      button {
+      #{$wrapper} button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -281,14 +286,14 @@
         }
       }
       &[loading='true'] {
-        button {
+        #{$wrapper} button {
           cursor: default;
         }
       }
       &[disabled='true'] {
         opacity: .65;
         pointer-events: none;
-        button {
+        #{$wrapper} button {
           cursor: default;
         }
       }
@@ -301,16 +306,16 @@
       @each $scheme, $map in map-get($vars, schemes) {
         &[scheme='#{$scheme}'] {
           &[outline='#{$outline-fill}'] {
-            @include button-fill($map);
+            @include button-fill($map, $wrapper);
           }
           &[outline='#{$outline-ghost}'] {
             [link] {
               border: 1px solid transparent;
             }
-            @include button-ghost($map);
+            @include button-ghost($map, $wrapper);
           }
           &[outline='#{$outline-transparent}'] {
-            @include button-transparent($map);
+            @include button-transparent($map, $wrapper);
           }
         }
       }
@@ -319,7 +324,7 @@
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
         &[size='#{$size}'] {
-          @include button-size($map);
+          @include button-size($map, $wrapper);
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
             [badge] {
@@ -350,7 +355,7 @@
     }
 
     &[with-text="false"] {
-      button {
+      #{$wrapper} button {
         border-radius: map-get($vars, without-text-corner);
         @if map-has-key($vars, corners) {
           $corners: map-get($vars, corners);
@@ -373,7 +378,7 @@
     }
   }
 
-  #{$context} button {
+  #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
     @if map-get($vars, padding) != null {
       padding: if(map-get($vars, padding),map-get($vars, padding) !important, null);
