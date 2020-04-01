@@ -18,7 +18,6 @@ export class AppHeaderComponent {
     selector: '#headerMenuTemplate',
     description: 'Menu template'
   })
-
   @ContentChild('headerMenuTemplate')
   headerMenuTemplate: TemplateRef<any>;
 
@@ -26,7 +25,6 @@ export class AppHeaderComponent {
     selector: '#headerMobileMenuTemplate',
     description: 'Menu template'
   })
-
   @ContentChild('headerMobileMenuTemplate')
   headerMobileMenuTemplate: TemplateRef<any>;
 
