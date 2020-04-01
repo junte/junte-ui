@@ -54,6 +54,10 @@
         padding: $jnt-gutter-small $jnt-gutter-normal,
         height: null,
         color: null,
+        icon: (
+          margin-right: $jnt-gutter-small,
+          sizes: null
+        ),
         hover: (
           background-color: $jnt-highlight-background,
           border-left-color: $jnt-primary-color,
@@ -120,7 +124,7 @@
           &[opened='true'] {
             display: flex;
           }
-          > [title] {
+          > [section] {
             user-select: none;
             span {
               display: block;
@@ -239,7 +243,7 @@
         min-width: map-get($sub, width);
         @if map-has-key($sub, title) {
           $title: map-get($sub, title);
-          > [title] {
+          > [section] {
             padding: map-get($title, padding);
             span {
               border-bottom: map-get($title, border-bottom);
@@ -255,6 +259,15 @@
               padding: map-get($item, padding),
               color: map-get($item, color),
             ), '&');
+            @if map-has-key($item, icon) {
+              $icon: map-get($item, icon);
+              @include link((
+                icon: (
+                  margin-right: map-get($icon, margin-right),
+                  sizes: map-get($icon, sizes)
+                ),
+              ), '&');
+            }
             @if map-has-key($item, hover) {
               $hover: map-get($item, hover);
               &:hover {
