@@ -1,4 +1,5 @@
 @import "variables";
+@import "elements/icon/icon";
 
 :host {
   display: block;
@@ -23,20 +24,23 @@ h1 {
 }
 
 h2 [arnold] {
-  width: 48px;
-  height: 48px;
+  @include icon((
+    size: 48px,
+  ), '&', true);
 }
 
 p {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 16px;
-    height: 16px;
+  jnt-icon {
+    @include icon((
+      size: 16px,
+    ), '&', true);
   }
 }
 
 h5 {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 20px;
-    height: 20px;
+  jnt-icon {
+    @include icon((
+      size: 20px,
+    ), '&', true);
   }
 }

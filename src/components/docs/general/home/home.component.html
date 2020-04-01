@@ -30,18 +30,40 @@
   </p>
   <p>Modern browsers and Internet Explorer 11+</p>
 
-  <h3 i18n="@@label.installation">Installation</h3>
+  <h3>1. Installation Angular CLI</h3>
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
+npm install -g @angular/cli
+]]>
+    </pre>
+  </app-code-highlight>
+
+  <h3>2. Create a New Project</h3>
+  <p>A new project can be created using Angular CLI tools.</p>
+
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
+ng new PROJECT-NAME
+]]>
+    </pre>
+  </app-code-highlight>
+
+  <h3 i18n="@@label.installation">3. Installation Junte UI</h3>
   <p>Install <b>Junte UI</b> with
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
-  <app-code-highlight>
+  <app-code-highlight [language]="languages.typescript">
     <pre>
 <![CDATA[
 npm install junte-ui --save
 ]]>
     </pre>
   </app-code-highlight>
+
+  <h3>4. Import Junte UI Module</h3>
 
   <p>Once installed you need to import our main module.</p>
   <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
@@ -64,29 +86,8 @@ export class AppModule {
     </pre>
   </app-code-highlight>
 
-  <p>Or you can import only modules of target components to decrease bundle size.</p>
-  <app-code-highlight [language]="languages.typescript">
-    <pre>
-<![CDATA[
-import { IconModule } from 'junte-ui';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+  <h3>5. Import styles</h3>
 
-@NgModule({
-  ...
-  imports: [ IconModule, BrowserAnimationsModule, ... ],
-  ...
-})
-
-export class AppModule {
-}
-]]>
-    </pre>
-  </app-code-highlight>
-
-
-  <p><b>We didn't compile styles into components, 🔥</b> but we save encapsulation using our own approach.<br>It
-    means you have full control over styles, you can customize, build, switch themes or customize components in the
-    context!</p>
   <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
   <app-code-highlight [language]="languages.json">
@@ -124,20 +125,7 @@ export class AppModule {
     </pre>
   </app-code-highlight>
 
-  <p>Import the style files of the components you need into the global style file <code>styles.scss</code></p>
-
-  <app-code-highlight [language]="languages.css">
-    <pre>
-<![CDATA[
-@import "~junte-ui/lib/forms/button/button";
-@import "~junte-ui/lib/layout/block/block";
-@import "~junte-ui/lib/elements/badge/badge";
-...
-]]>
-    </pre>
-  </app-code-highlight>
-
-  <p>If you need styles of all the components import the file <code>all.scss</code></p>
+  <p>Import the style files <code>all.scss</code> into the global style file <code>styles.scss</code></p>
 
   <app-code-highlight [language]="languages.css">
     <pre>
@@ -155,189 +143,5 @@ export class AppModule {
 ]]>
     </pre>
   </app-code-highlight>
-
-
-  <h3 i18n="@@label.strong_html">Strong HTML</h3>
-
-  <p>Junte UI uses multiple enums to set the input parameters of a component.
-    Create an alias in your component for using UI enums.</p>
-
-  <app-code-highlight [language]="languages.typescript">
-    <pre>
-<![CDATA[
-import { UI } from 'junte-ui';
-...
-
-export class YourComponent {
-  ui = UI;
-}
-]]>
-    </pre>
-  </app-code-highlight>
-
-  <p>In the template, you can use strong enum values</p>
-
-  <app-code-highlight>
-    <pre>
-      <![CDATA[
-      <jnt-button [scheme]="ui.scheme.primary"
-                  [size]="ui.size.small"
-                  [outline]="ui.outline.ghost"
-                  [icon]="ui.icons.add"
-                  [disabled]="false"
-                  text="Button">
-        <jnt-badge [value]="5"></jnt-badge>
-      </jnt-button>
-      ]]>
-    </pre>
-  </app-code-highlight>
-
-  <h3 i18n="@@label.strong_html">Import styles</h3>
-    <p>We use mixins for styles, so you need to call it for component you need into the global style file <code>styles.scss</code></p>
-
-    <app-code-highlight [language]="languages.css">
-      <pre>
-      <![CDATA[
-// layout
-@include stack();
-@include grid-container();
-@include grid-col();
-@include grid-row();
-@include block();
-@include skeleton();
-@include spinner();
-
-@include app-layout();
-@include app-aside();
-@include app-header();
-@include app-header-actions();
-@include app-header-action();
-@include app-header-userbar();
-@include app-sub-header();
-@include app-body();
-@include app-content();
-@include app-footer();
-
-// navigation
-@include link();
-@include menu();
-@include breadcrumbs();
-@include tabs();
-@include pager();
-@include dropdown();
-@include anchor();
-
-// elements
-@include label();
-@include badge();
-@include icon();
-@include avatar();
-@include avatars-list();
-@include avatars-group();
-@include dot();
-
-// forms
-@include button();
-@include button-group();
-@include form();
-@include form-label();
-@include form-message();
-@include input();
-@include checkbox();
-@include checkbox-group();
-@include radio();
-@include radio-group();
-@include select();
-@include switch();
-@include switcher();
-@include calendar();
-@include date-picker();
-
-// collections
-@include gantt();
-@include table();
-@include accordion();
-
-//overlays
-@include modal();
-@include popover();
-
-//dynamic
-@include progress-bar();
-@include date-period();
-@include circle-bar();
-@include circle-bar-indicator();
-@include circle-bar-indicator-group();
-@include chart();
-
-//shared
-@include confirm();
-@include theme-switcher();
-        ]]>
-    </pre>
-  </app-code-highlight>
-
-
-
-  <h3 i18n="@@label.responsive_design">Responsive Design</h3>
-
-  <p>Junte UI has responsive design support.
-    <jnt-link [icon]="ui.icons.link" [source]="['/docs/grid']" title="Grid"></jnt-link>
-    using rows & columns.
-  </p>
-
-  <app-code-highlight>
-    <pre>
-      <![CDATA[
-      <jnt-container>
-        <jnt-row>
-          <jnt-col [mobile]="12"
-                   [tablet]="6"
-                   [desktop]="4"
-                   [wide]="3">
-            Content here
-          </jnt-col>
-        </jnt-row>
-      </jnt-container>
-      ]]>
-    </pre>
-  </app-code-highlight>
-
-  <h3 i18n="@@label.themes_support">Themes Support</h3>
-  <p>Style files are stored separately from the components, so any style can be changed and the project can be
-    built.</p>
-
-  <p>We use
-    <jnt-link source="https://sass-lang.com/"
-              target="_blank"
-              [icon]="ui.icons.link" title="SASS"></jnt-link>
-    <jnt-link [source]="['/documentation', 'theming']">variables</jnt-link>
-    and you can customize according to personal preferences.
-  </p>
-
-  <h3 i18n="@@label.sources">Sources</h3>
-  <p>Junte UI is an <b>open source</b> project. If you have any problems, you can create a task or bug using
-    <jnt-link [icon]="ui.icons.gitlab" source="https://gitlab.com/junte/junte-ui/issues"
-              target="_blank" title="Gitlab"></jnt-link>
-  </p>
-
-  <p>You can also leave comments in our design system in
-    <jnt-link [icon]="ui.icons.figma"
-              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=0%3A1"
-              target="_blank" title="Figma"></jnt-link>
-  </p>
-
-  <h3 i18n="@@label.contribution">Contribution</h3>
-  <p>We are geeks who love their job. If you want to join to us, please write to
-    <jnt-link [icon]="ui.icons.link"
-              source="mailto:ui@junte.it" title="ui@junte.it"></jnt-link>
-  </p>
-  <p>We very require <b>Designers</b> & <b>Angular</b> developers.</p>
-  <p>All contributors will be published in
-    <jnt-link [icon]="ui.icons.link"
-              [source]="['/contacts']"
-              title="contacts"
-              i18n-title="@@label.contacts"></jnt-link>
-  </p>
 
 </jnt-container>
