@@ -129,6 +129,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   })
   @Input() multiline = false;
 
+  @PropertyApi({
+    description: 'Mask specifies a regular expression the form control\'s value should match',
+    type: 'string',
+  })
+  @Input() mask: string;
+
   @Input() rows: number;
 
   constructor(private fb: FormBuilder) {
