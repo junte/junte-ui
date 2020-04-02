@@ -1,8 +1,8 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
+import { PropertyApi } from '../../../core/decorators/api';
 import { AppAsideComponent } from '../aside/app-aside.component';
 import { AppFooterComponent } from '../footer/app-footer.component';
 import { AppSubHeaderComponent } from '../sub-header/app-sub-header.component';
-import { PropertyApi } from '../../../core/decorators/api';
 
 @Component({
   selector: 'jnt-app-content',
