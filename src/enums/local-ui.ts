@@ -39,10 +39,15 @@ export class LocalUI {
       pager: 'pager:font:junte-ui-test-layout',
       breadcrumbs: 'breadcrumbs:font:junte-ui-test-layout',
       collections: 'collections:font:junte-ui-test-default',
-      elements: 'elements:font:junte-ui-test-default',
       gantt: 'gantt:font:junte-ui-test-layout',
       table: 'table:font:junte-ui-test-layout',
       accordion: 'accordion:font:junte-ui-test-layout',
+      elements: 'elements:font:junte-ui-test-default',
+      icon: 'icon:font:junte-ui-test-layout',
+      avatar: 'avatar:font:junte-ui-test-layout',
+      badge: 'badge:font:junte-ui-test-layout',
+      label: 'label:font:junte-ui-test-layout',
+      dot: 'dot:font:junte-ui-test-layout',
       forms: 'forms:font:junte-ui-test-default',
       overlays: 'overlays:font:junte-ui-test-default',
       dynamic: 'dynamic:font:junte-ui-test-default',
@@ -56,6 +61,7 @@ export class LocalUI {
       select: 'select:font:junte-ui-test-layout',
       switch: 'switch:font:junte-ui-test-layout',
       switcher: 'switcher:font:junte-ui-test-layout',
+
     },
 
     layout: {
