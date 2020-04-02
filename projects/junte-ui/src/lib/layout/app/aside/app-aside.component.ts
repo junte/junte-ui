@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, HostBinding, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { UI } from '../../../core/enums/ui';
 
 const ASIDE_STATE = 'aside_collapsed';
@@ -37,4 +37,5 @@ export class AppAsideComponent implements OnInit {
   toggle() {
     this.opened = !this.opened;
   }
+
 }
