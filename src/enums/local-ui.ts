@@ -50,6 +50,8 @@ export class LocalUI {
       dot: 'dot:font:junte-ui-test-layout',
       forms: 'forms:font:junte-ui-test-default',
       overlays: 'overlays:font:junte-ui-test-default',
+      modal: 'modal:font:junte-ui-test-layout',
+      popover: 'popover:font:junte-ui-test-layout',
       dynamic: 'dynamic:font:junte-ui-test-default',
       other: 'other:font:junte-ui-test-default',
       button: 'button:font:junte-ui-test-layout',
