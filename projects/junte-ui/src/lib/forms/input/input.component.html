@@ -6,6 +6,7 @@
   <input *ngIf="!multiline; else textarea" formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
+         [readonly]="readonly ? readonly : null"
          [min]="min"
          [max]="max">
 
