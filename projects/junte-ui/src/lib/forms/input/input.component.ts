@@ -81,6 +81,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() max: number;
 
   @PropertyApi({
+    description: 'Used to specify that the input field is read-only',
+    type: 'boolean',
+    default: 'false'
+  })
+  @Input() readonly = false;
+
+  @PropertyApi({
     description: 'Input scheme',
     path: 'ui.state',
     default: InputScheme.normal,
