@@ -6,9 +6,9 @@
   <input *ngIf="!multiline; else textarea" formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
+         [maxlength]="maxlenght"
          [min]="min"
-         [max]="max"
-         [pattern]="mask">
+         [max]="max">
 
   <ng-template #textarea>
       <textarea formControlName="input"

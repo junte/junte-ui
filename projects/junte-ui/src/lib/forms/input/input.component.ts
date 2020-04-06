@@ -1,10 +1,15 @@
-import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputState, InputType } from './enums';
+
+export enum Pattern {
+  Date = '??.??.????',
+  Phone = '+7(???)-???-??-??'
+}
 
 @Component({
   selector: 'jnt-input',
@@ -22,6 +27,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   ui = UI;
   inputType = InputType;
   inputState = InputState;
+  pattern = Pattern;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
@@ -29,6 +35,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   form = this.fb.group({
     input: this.inputControl
   });
+
+  _placeholder: string;
 
   @HostBinding('attr.scheme')
   _scheme: InputScheme = InputScheme.normal;
@@ -66,7 +74,22 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Input placeholder',
     type: 'string',
   })
-  @Input() placeholder = '';
+  @Input() set placeholder(placeholder: string) {
+    if (!!this.mask) {
+      if (this.mask === Pattern.Date) {
+        this._placeholder = '__.__.____';
+      }
+      if (this.mask === Pattern.Phone) {
+        this._placeholder = '+7 (___) - ___ - __ - __';
+      }
+    } else {
+      this._placeholder = placeholder;
+    }
+  }
+
+  get placeholder() {
+    return this._placeholder;
+  }
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
@@ -137,7 +160,62 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @Input() rows: number;
 
-  constructor(private fb: FormBuilder) {
+  @Input()
+  get maxlenght() {
+    if (!!this.mask) {
+      if (this.mask === Pattern.Date) {
+        return 10;
+      }
+      if (this.mask === Pattern.Phone) {
+        return 21;
+      }
+    }
+  }
+
+  @HostListener('focusin', ['$event'])
+  addPrefix() {
+    console.log('focus');
+    if (!this.mask && this.mask === Pattern.Phone) {
+      // if (this.inputControl.value === '') {
+        this.inputControl.setValue('+7 ');
+      // }
+    }
+  }
+
+
+  @HostListener('keypress', ['$event'])
+  check(e: KeyboardEvent) {
+    const length = !!this.inputControl.value ? this.inputControl.value.toString().length : 0;
+    if (!!this.mask) {
+      if (this.mask === Pattern.Date) {
+        if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
+          || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
+          return false;
+        }
+        if ((length === 2 || length === 5)) {
+          this.inputControl.setValue(this.inputControl.value + '.');
+        }
+      }
+
+      if (this.mask === Pattern.Phone) {
+        if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
+          || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
+          return false;
+        }
+        if (length === 1) {
+          this.inputControl.setValue('(' + this.inputControl.value);
+        }
+        if (length === 4) {
+          this.inputControl.setValue(this.inputControl.value + ') - ');
+        }
+        if ((length === 11 || length === 16)) {
+          this.inputControl.setValue(this.inputControl.value + ' - ');
+        }
+      }
+    }
+  }
+
+  constructor(private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
   }
 
   ngOnInit() {
