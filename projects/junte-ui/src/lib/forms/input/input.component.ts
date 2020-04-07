@@ -83,7 +83,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         this._placeholder = '+7 (___) - ___ - __ - __';
       }
     } else {
-      this._placeholder = placeholder;
+      this._placeholder = placeholder || '';
     }
   }
 
@@ -172,15 +172,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  @HostListener('focusin', ['$event'])
-  addPrefix() {
-    console.log('focus');
-    if (!this.mask && this.mask === Pattern.Phone) {
-      // if (this.inputControl.value === '') {
-        this.inputControl.setValue('+7 ');
-      // }
-    }
-  }
+  // @HostListener('focusin', ['$event'])
+  // addPrefix() {
+  //   console.log('focus');
+  //   if (!this.mask && this.mask === Pattern.Phone) {
+  //     // if (this.inputControl.value === '') {
+  //       this.inputControl.setValue('+7 ');
+  //     // }
+  //   }
+  // }
 
 
   @HostListener('keypress', ['$event'])
