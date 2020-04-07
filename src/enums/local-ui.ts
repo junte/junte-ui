@@ -58,6 +58,7 @@ export class LocalUI {
       chart: 'chart:font:junte-ui-test-layout',
       datePeriod: 'date-period:font:junte-ui-test-layout',
       other: 'other:font:junte-ui-test-default',
+      confirm: 'confirm:font:junte-ui-test-layout',
       button: 'button:font:junte-ui-test-layout',
       calendar: 'calendar:font:junte-ui-test-layout',
       checkbox: 'checkbox:font:junte-ui-test-layout',
