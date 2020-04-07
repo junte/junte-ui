@@ -54,6 +54,7 @@ export class LocalUI {
       popover: 'popover:font:junte-ui-test-layout',
       dynamic: 'dynamic:font:junte-ui-test-default',
       other: 'other:font:junte-ui-test-default',
+      confirm: 'confirm:font:junte-ui-test-layout',
       button: 'button:font:junte-ui-test-layout',
       calendar: 'calendar:font:junte-ui-test-layout',
       checkbox: 'checkbox:font:junte-ui-test-layout',
