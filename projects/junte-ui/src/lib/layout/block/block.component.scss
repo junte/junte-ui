@@ -61,12 +61,12 @@
     box-shadow: $jnt-shadow-normal;
     border-radius: $jnt-corner-normal;
     box-sizing: border-box;
-    &[width="fluid"] {
+    &[data-width="fluid"] {
       width: 100%;
     }
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
-        &[scheme='#{$scheme}'] {
+        &[data-scheme='#{$scheme}'] {
           @include block-fill($map);
         }
       }
@@ -75,7 +75,7 @@
     @if map-has-key($vars, padding) {
       $padding: map-get($vars, padding);
       @each $padding, $map in $padding {
-        &[padding = '#{$padding}'] {
+        &[data-padding = '#{$padding}'] {
           @include block-padding($map);
         }
       }
@@ -109,7 +109,7 @@
       background-color: map-get($overlay, background-color);
       @if map-has-key($overlay, icon) {
         $icon: map-get($overlay, icon);
-        [icon] {
+        [data-icon] {
           @include icon((
             size: map-get($icon, size)
           ), '&');

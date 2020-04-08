@@ -11,6 +11,8 @@ export class CircleBarComponent {
 
   ui = UI;
 
+  @HostBinding('attr.host') readonly host = 'jnt-circle-bar-host';
+
   @ContentChildren(BarIndicatorGroupComponent)
   groups: QueryList<BarIndicatorGroupComponent>;
 
@@ -21,5 +23,4 @@ export class CircleBarComponent {
   @ContentChild(TemplateRef)
   circleBarContentTemplate: TemplateRef<any>;
 
-  @HostBinding('attr.host') readonly host = 'jnt-circle-bar-host';
 }

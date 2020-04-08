@@ -43,13 +43,10 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   @ContentChildren(ChartIndicatorComponent)
   indicatorsComponents: QueryList<ChartIndicatorComponent>;
 
-  @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
 
-  @HostBinding('attr.widthPoligon')
   @Input() widthPoligon = 50;
 
-  @HostBinding('attr.widthMark')
   @Input()
   set widthMark(width: number) {
     this._widthMark = Math.min(width, 60);

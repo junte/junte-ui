@@ -11,7 +11,7 @@ export class BadgeComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-badge-host';
 
-  @HostBinding('attr.position')
+  @HostBinding('attr.data-position')
   _position: Position = Position.rightTop;
 
   _color: string = Color.purple;

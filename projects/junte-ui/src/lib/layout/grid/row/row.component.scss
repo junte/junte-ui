@@ -39,22 +39,22 @@
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
-        &[gutter = '#{$gutter}'] {
+        &[data-gutter = '#{$gutter}'] {
           @include col-gutter($map);
         }
       }
     }
 
-    &[align='start'] {
+    &[data-align='start'] {
       align-items: flex-start;
     }
-    &[align='center'] {
+    &[data-align='center'] {
       align-items: center;
     }
-    &[align='end'] {
+    &[data-align='end'] {
       align-items: flex-end;
     }
-    &[align='stretch'] {
+    &[data-align='stretch'] {
       align-items: stretch;
     }
 

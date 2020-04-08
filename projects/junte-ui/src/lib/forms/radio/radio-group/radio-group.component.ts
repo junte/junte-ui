@@ -25,6 +25,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   ui = UI;
 
+  @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+
   @Input() labelField: string;
   @Input() valueField: string;
 
@@ -36,9 +38,6 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   get size() {
     return this._size;
   }
-
-  @HostBinding('attr.host')
-  readonly host = 'jnt-radio-group-host';
 
   @ViewChildren(RadioComponent)
   items: QueryList<RadioComponent>;

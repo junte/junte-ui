@@ -51,15 +51,15 @@
     @if map-has-key($vars, avatar) {
       $sizes: map-get(map-get($vars, avatar), sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           @include skeleton-size($map);
         }
       }
     }
-    &[type='text'] {
+    &[data-type='text'] {
       width: 100%;
     }
-    &[animated='false'] {
+    &[data-animated='false'] {
       [line], [image] {
         animation: none;
       }

@@ -1,4 +1,5 @@
 @import "variables";
+@import "elements/icon/icon";
 
 @keyframes jnt-scaleIn {
   0% {
@@ -60,10 +61,11 @@
         }
       }
 
-      [icon]:not([type='font']) {
-        fill: $jnt-primary-text-color;
-        width: 18px;
-        height: 18px;
+      [data-icon] {
+        @include icon ((
+          color: $jnt-primary-text-color,
+          size: 18px,
+        ), '&');
       }
 
       [text] {

@@ -28,7 +28,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
     return this.iconset$.getValue();
   }
 
-  @HostBinding('attr.icon')
+  @HostBinding('attr.data-icon')
   @Input()
   set icon(icon: string) {
     this.icon$.next(icon);

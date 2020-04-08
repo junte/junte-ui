@@ -26,10 +26,9 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
     switch: this.switchControl
   });
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
-  @HostBinding('attr.checked')
   get checked() {
     return this.switchControl.value;
   }

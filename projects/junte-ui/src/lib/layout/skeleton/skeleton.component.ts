@@ -15,7 +15,7 @@ export class SkeletonComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size = Size.normal;
 
   @PropertyApi({
@@ -27,7 +27,7 @@ export class SkeletonComponent {
       SkeletonType.image]
   })
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-type')
   @Input() set type(type: SkeletonType) {
     this._type = type || SkeletonType.text;
   }
@@ -53,7 +53,6 @@ export class SkeletonComponent {
     default: '1'
   })
 
-  @HostBinding('attr.lines')
   @Input() lines = 1;
 
   @PropertyApi({
@@ -62,7 +61,7 @@ export class SkeletonComponent {
     default: 'true'
   })
 
-  @HostBinding('attr.animated')
+  @HostBinding('attr.data-animated')
   @Input() animated = true;
 
 }

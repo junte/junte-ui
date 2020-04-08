@@ -11,10 +11,10 @@ export class RowComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-row-host';
 
-  @HostBinding('attr.align')
+  @HostBinding('attr.data-align')
   _align: RowAlign = RowAlign.start;
 
-  @HostBinding('attr.gutter')
+  @HostBinding('attr.data-gutter')
   _gutter: Gutter = Gutter.normal;
 
   @PropertyApi({

@@ -17,7 +17,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   ui = UI;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @HostBinding('attr.host')
@@ -28,11 +28,9 @@ export class CheckboxComponent implements ControlValueAccessor {
     type: 'boolean',
     default: 'false',
   })
-  @HostBinding('attr.disabled')
   @Input()
   disabled = false;
 
-  @HostBinding('attr.checked')
   checked = false;
 
   @PropertyApi({

@@ -17,7 +17,7 @@
     }
 
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
+      &[data-size='#{$size}'] {
         height: #{map-get($map, size)};
         width: #{map-get($map, size)};
 
@@ -40,7 +40,7 @@
           border-left: 1px solid $jnt-white-color;
         }
 
-        &[capacity='4'] {
+        &[data-capacity='4'] {
           [avatar] {
             min-width: calc(#{map-get($map, size)} / 2);
             width: calc(#{map-get($map, size)} / 2);
@@ -66,7 +66,7 @@
           }
         }
 
-        &[capacity='3'] {
+        &[data-capacity='3'] {
           flex-direction: column;
           flex-wrap: wrap;
           [avatar] {
@@ -92,7 +92,7 @@
           }
         }
 
-        &[capacity='2'] {
+        &[data-capacity='2'] {
           flex-direction: column;
           [avatar] {
             width: #{map-get($map, size)};
@@ -111,7 +111,7 @@
           }
         }
 
-        &[capacity='1'] {
+        &[data-capacity='1'] {
           [avatar] {
             border: none;
           }

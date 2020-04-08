@@ -43,10 +43,10 @@ export class BlockComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
 
-  @HostBinding('attr.padding')
+  @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
 
   @PropertyApi({
@@ -90,7 +90,7 @@ export class BlockComponent {
     options: [Width.default,
       Width.fluid]
   })
-  @HostBinding('attr.width')
+  @HostBinding('attr.data-width')
   @Input()
   width: Width = Width.default;
 

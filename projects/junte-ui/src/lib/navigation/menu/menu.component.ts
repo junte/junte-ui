@@ -15,12 +15,12 @@ export class MenuComponent {
 
   ui = UI;
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-type')
   _type: Orientation = Orientation.horizontal;
 
   _spacer: Size = Size.normal;
 
-  @HostBinding('attr.collapsed')
+  @HostBinding('attr.data-collapsed')
   @Input() collapsed = false;
 
   @PropertyApi({

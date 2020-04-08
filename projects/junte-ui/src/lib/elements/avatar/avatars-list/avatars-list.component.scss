@@ -20,7 +20,7 @@
     position: relative;
     box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
+      &[data-size='#{$size}'] {
         min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
         @for $i from 1 through 5 {
           &[capacity='#{$i}'] {
@@ -42,7 +42,7 @@
         z-index: 1;
       }
       @each $size, $map in $avatar-sizes {
-        &[size='#{$size}'] {
+        &[data-size='#{$size}'] {
           left: calc(#{$i} * (#{map-get($map, size)} / 2));
         }
       }

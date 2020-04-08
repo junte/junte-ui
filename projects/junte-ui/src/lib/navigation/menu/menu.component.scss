@@ -82,7 +82,7 @@
   :host, #{$context} {
     @if $declare {
       display: block;
-      &[type='horizontal'] {
+      &[data-type='horizontal'] {
         [sub] {
           position: absolute;
           top: 100% !important;
@@ -90,7 +90,7 @@
           z-index: 1;
         }
       }
-      &[type='vertical'] {
+      &[data-type='vertical'] {
         [top] {
           width: 100%;
         }
@@ -144,7 +144,7 @@
   }
 
   :host {
-    &[type='horizontal'], &[collapsed='true'] {
+    &[data-type='horizontal'], &[data-collapsed='true'] {
       [sub] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);
@@ -154,7 +154,7 @@
         }
       }
     }
-    &[collapsed='true'] {
+    &[data-collapsed='true'] {
       [sub] {
         @if map-has-key($vars, sub) {
           $collapsed: map-get(map-get($vars, sub), collapsed);

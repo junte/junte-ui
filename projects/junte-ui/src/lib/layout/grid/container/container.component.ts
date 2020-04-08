@@ -10,7 +10,7 @@ export class ContainerComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-container-host';
 
-  @HostBinding('attr.width')
+  @HostBinding('attr.data-width')
   _width = Width.default;
 
   @PropertyApi({

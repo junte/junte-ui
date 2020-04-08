@@ -10,7 +10,7 @@ export class MessageComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-message-host';
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
 
   @PropertyApi({

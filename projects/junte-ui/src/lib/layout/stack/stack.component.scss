@@ -37,12 +37,12 @@ $type-horizontal: 'horizontal';
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
-        &[gutter = '#{$gutter}'] {
-          &[type = '#{$type-vertical}'] {
+        &[data-gutter = '#{$gutter}'] {
+          &[data-type = '#{$type-vertical}'] {
             flex-direction: column;
             @include stack-gutters(margin-bottom, $map);
           }
-          &[type = '#{$type-horizontal}'] {
+          &[data-type = '#{$type-horizontal}'] {
             flex-direction: row;
             @include stack-gutters(margin-right, $map);
           }
@@ -50,48 +50,48 @@ $type-horizontal: 'horizontal';
       }
     }
 
-    &[align='start'] {
+    &[data-align='start'] {
       align-items: flex-start;
     }
-    &[align='center'] {
+    &[data-align='center'] {
       align-items: center;
     }
-    &[align='end'] {
+    &[data-align='end'] {
       align-items: flex-end;
     }
-    &[align='stretch'] {
+    &[data-align='stretch'] {
       align-items: stretch;
     }
-    &[align='baseline'] {
+    &[data-align='baseline'] {
       align-items: baseline;
     }
 
-    &[justify='start'] {
+    &[data-justify='start'] {
       justify-content: flex-start;
     }
-    &[justify='center'] {
+    &[data-justify='center'] {
       justify-content: center;
     }
-    &[justify='end'] {
+    &[data-justify='end'] {
       justify-content: flex-end;
     }
-    &[justify='between'] {
+    &[data-justify='between'] {
       justify-content: space-between;
     }
-    &[justify='around'] {
+    &[data-justify='around'] {
       justify-content: space-around;
     }
-    &[justify='evenly'] {
+    &[data-justify='evenly'] {
       justify-content: space-evenly;
     }
 
-    &[wrap='wrap'] {
+    &[data-wrap='wrap'] {
       flex-wrap: wrap;
     }
-    &[wrap='nowrap'] {
+    &[data-wrap='nowrap'] {
       flex-wrap: nowrap;
     }
-    &[wrap='reverse'] {
+    &[data-wrap='reverse'] {
       flex-wrap: wrap-reverse;
     }
   }

@@ -30,27 +30,24 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl
   });
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
 
-  @HostBinding('attr.type')
   _type: InputType = InputType.text;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Icon for input',
     type: 'string',
   })
-  @HostBinding('attr.icon')
   @Input() icon: string;
 
   @PropertyApi({
     description: 'Label for input',
     type: 'string',
   })
-  @HostBinding('attr.label')
   @Input() label: string;
 
   @PropertyApi({
@@ -59,7 +56,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: TextAlign.left,
     options: [TextAlign.left, TextAlign.right]
   })
-  @HostBinding('attr.textAlign')
+  @HostBinding('attr.data-textAlign')
   @Input() textAlign: TextAlign = TextAlign.left;
 
   @PropertyApi({
@@ -126,7 +123,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     path: 'ui.form.input.state',
     options: [InputState.loading, InputState.warning, InputState.checked]
   })
-  @HostBinding('attr.state')
+  @HostBinding('attr.data-state')
   @Input() state: InputState;
 
   @PropertyApi({

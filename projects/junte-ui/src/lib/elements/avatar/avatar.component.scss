@@ -9,7 +9,7 @@ $avatar-shape-square: 'square';
   width: #{map-get($size, size)};
   min-height: #{map-get($size, size)};
   height: #{map-get($size, size)};
-  [icon] {
+  [data-icon] {
     font-size: #{map-get($size, iconSize)};
   }
   [text] {
@@ -51,7 +51,7 @@ $avatar-shape-square: 'square';
     background-color: $jnt-secondary-background;
     overflow: hidden;
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
+      &[data-size='#{$size}'] {
         @include avatar-size($map);
       }
     }
@@ -59,7 +59,7 @@ $avatar-shape-square: 'square';
     @if map-has-key($vars, shapes) {
       $shapes: map-get($vars, shapes);
       @each $shape, $map in $shapes {
-        &[shape='#{$shape}'] {
+        &[data-shape='#{$shape}'] {
           @include shape(border-radius, $map);
         }
       }
@@ -72,7 +72,7 @@ $avatar-shape-square: 'square';
     font-weight: $jnt-font-weight-bold;
   }
 
-  #{$context} [icon] {
+  #{$context} [data-icon] {
     color: $jnt-secondary-dark-color;
   }
 

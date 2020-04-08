@@ -79,7 +79,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     type: 'boolean',
     default: 'false',
   })
-  @HostBinding('attr.disabled')
+  @HostBinding('attr.data-disabled')
   @Input()
   disabled = false;
 

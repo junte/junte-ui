@@ -4,8 +4,8 @@
   padding: #{map-get($size, padding)};
   font-size: #{map-get($size, font-size)};
 
-  [icon] {
-    &[type='svg'], &[type='animated'] {
+  [data-icon] {
+    &[data-type='svg'], &[data-type='animated'] {
       width: #{map-get($size, icon-size)};
       height: #{map-get($size, icon-size)};
     }
@@ -61,7 +61,7 @@
 
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
-        &[size='#{$size}'] {
+        &[data-size='#{$size}'] {
           @include label-size($map);
         }
       }
@@ -69,7 +69,7 @@
 
     @if map-has-key($vars, icon) {
       $icon: map-get($vars, icon);
-      [icon][host=#{$jnt-icon-host}] {
+      [data-icon] {
         margin-right: map-get($icon, margin-right);
       }
     }

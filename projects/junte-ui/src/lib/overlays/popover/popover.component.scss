@@ -56,7 +56,7 @@
 
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
-        &[scheme='#{$scheme}'] {
+        &[data-scheme='#{$scheme}'] {
           @include popover-scheme($map);
         }
       }

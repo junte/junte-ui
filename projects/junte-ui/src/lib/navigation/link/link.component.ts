@@ -26,13 +26,13 @@ export class LinkComponent {
 
   externalLink = true;
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
 
-  @HostBinding('attr.outline')
+  @HostBinding('attr.data-outline')
   _outline = Outline.transparent;
 
-  @HostBinding('attr.with-title')
+  @HostBinding('attr.data-with-title')
   get withTitle() {
     return !!this.title;
   }
@@ -49,7 +49,7 @@ export class LinkComponent {
     type: 'boolean',
     default: 'false'
   })
-  @HostBinding('attr.disabled')
+  @HostBinding('attr.data-disabled')
   @Input() disabled = false;
 
   @PropertyApi({
@@ -84,7 +84,6 @@ export class LinkComponent {
     description: 'Link title',
     type: 'string'
   })
-  @HostBinding('attr.title')
   @Input() title: string;
 
   @PropertyApi({
@@ -105,7 +104,7 @@ export class LinkComponent {
     return this._source;
   }
 
-  @HostBinding('attr.orphan')
+  @HostBinding('attr.data-orphan')
   _orphan = false;
 
   @PropertyApi({
