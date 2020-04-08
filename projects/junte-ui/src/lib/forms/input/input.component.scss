@@ -15,7 +15,7 @@
       size: map-get($size, spinner),
     ), '&');
   }
-  #{$wrapper} [icon] ~ input {
+  #{$wrapper} [data-icon] ~ input {
     padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-normal} + #{$jnt-gutter-small});
   }
 }
@@ -103,7 +103,7 @@
     @if map-has-key($vars, scheme) {
       $schemes: map-get($vars, scheme);
       @each $scheme, $map in $schemes {
-        &[scheme='#{$scheme}'] {
+        &[data-scheme='#{$scheme}'] {
           #{$wrapper} form {
             input, textarea {
               border-color: map-get($map, border-color);
@@ -135,14 +135,14 @@
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           @include input-size($map, $wrapper);
-          #{$wrapper} [icon] {
+          #{$wrapper} [data-icon] {
             @include icon((
               size: map-get($map, icon)
             ), '&');
           }
-          #{$wrapper} [arrows] [icon] {
+          #{$wrapper} [arrows] [data-icon] {
             @include icon((
               size: map-get($map, chevron)
             ), '&');
@@ -152,17 +152,17 @@
       }
     }
 
-    &[textAlign="right"] {
+    &[data-textAlign="right"] {
       #{$wrapper} input, #{$wrapper} textarea {
         text-align: right;
       }
     }
-    &[textAlign="left"] {
+    &[data-textAlign="left"] {
       #{$wrapper} input, #{$wrapper} textarea {
         text-align: left;
       }
     }
-    &[state='loading'] {
+    &[data-state='loading'] {
       #{$wrapper} input, #{$wrapper} textarea {
         background-color: $jnt-control-disabled-background;
         color: $jnt-control-disabled-label-color;
@@ -176,7 +176,7 @@
     align-items: stretch;
     width: 100%;
     position: relative;
-    >[icon] {
+    >[data-icon] {
       position: absolute;
       top: 50%;
       left: $jnt-gutter-normal;
@@ -225,7 +225,6 @@
       & ~  textarea {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        padding: 0 $jnt-gutter-normal;
       }
     }
 

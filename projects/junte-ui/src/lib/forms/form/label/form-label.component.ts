@@ -13,7 +13,6 @@ export class FormLabelComponent {
     description: 'The identifier of the item to associate with',
     type: 'string',
   })
-  @HostBinding('attr.for')
   @Input()
   for: string;
 

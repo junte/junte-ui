@@ -12,19 +12,19 @@ export class StackComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-type')
   _type = StackType.vertical;
 
-  @HostBinding('attr.gutter')
+  @HostBinding('attr.data-gutter')
   _gutter = Gutter.normal;
 
-  @HostBinding('attr.align')
+  @HostBinding('attr.data-align')
   _align: FlexAlign = FlexAlign.start;
 
-  @HostBinding('attr.justify')
+  @HostBinding('attr.data-justify')
   _justify: FlexJustify = FlexJustify.start;
 
-  @HostBinding('attr.wrap')
+  @HostBinding('attr.data-wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
 
   @PropertyApi({

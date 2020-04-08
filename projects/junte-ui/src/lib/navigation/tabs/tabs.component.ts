@@ -50,7 +50,7 @@ export class TabsComponent {
   @HostBinding('attr.host')
   readonly host = 'jnt-tabs-host';
 
-  @HostBinding('attr.outline')
+  @HostBinding('attr.data-outline')
   _outline: Outline = Outline.fill;
 
   @PropertyApi({

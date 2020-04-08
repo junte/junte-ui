@@ -9,7 +9,7 @@
     position: relative;
     font-family: $jnt-app-layout-font-family;
 
-    &[with-header='false'] {
+    &[data-with-header='false'] {
       jnt-app-content[deep-host=#{$jnt-app-content-host}] {
         padding-top: 0;
       }
@@ -21,7 +21,7 @@
       }
     }
 
-    &[position='default'] {
+    &[data-position='default'] {
       > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
         position: absolute;
       }
@@ -39,7 +39,7 @@
       }
     }
 
-    &[position='fixed'] {
+    &[data-position='fixed'] {
       > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
         position: fixed;
       }

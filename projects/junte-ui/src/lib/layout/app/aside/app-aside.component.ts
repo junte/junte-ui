@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, HostBinding, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { UI } from '../../../core/enums/ui';
 
 const ASIDE_STATE = 'aside_collapsed';
@@ -27,7 +27,7 @@ export class AppAsideComponent implements OnInit {
   @ContentChild(TemplateRef, {static: true})
   asideContentTemplate: TemplateRef<any>;
 
-  @HostBinding('attr.opened')
+  @HostBinding('attr.data-opened')
   @Input() opened = false;
 
   ngOnInit() {

@@ -47,7 +47,7 @@
       ), '&');
     }
   }
-  &[scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$scheme-secondary}] {
     [link] {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
@@ -102,7 +102,7 @@
 
     }
   }
-  &[scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$scheme-secondary}] {
     [link] {
       color: map-get($scheme, inverse-color);
       &:hover {
@@ -144,7 +144,8 @@
     ),
     icon: (
       margin-right: $jnt-gutter-tiny,
-      sizes: null
+      size: null,
+      sizes: 18px
     ),
     badge: (
       margin-left: $jnt-gutter-small
@@ -190,15 +191,15 @@
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
-      &[disabled="true"] {
+      &[data-disabled="true"] {
         [link] {
           opacity: .65;
           pointer-events: none;
           cursor: default;
         }
       }
-      &[with-title='false'] {
-        [link] [icon] {
+      &[data-with-title='false'] {
+        [link] [data-icon] {
           margin-right: 0 !important;
         }
       }
@@ -212,14 +213,14 @@
         }
         [title] {
           white-space: nowrap;
-          [icon], span {
+          [data-icon], span {
             transition: color .3s;
           }
         }
       }
     }
 
-    &[orphan='true'] {
+    &[data-orphan='true'] {
       #{$wrapper} [link] {
         pointer-events: none;
         color: if(map-get($vars, orphan-color), map-get($vars, orphan-color) !important, null);
@@ -231,14 +232,14 @@
 
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
-        &[scheme='#{$scheme}'] {
-          &[outline='#{$outline-fill}'] {
+        &[data-scheme='#{$scheme}'] {
+          &[data-outline='#{$outline-fill}'] {
             @include link-fill($map, $wrapper);
           }
-          &[outline='#{$outline-ghost}'] {
+          &[data-outline='#{$outline-ghost}'] {
             @include link-ghost($map, $wrapper);
           }
-          &[outline='#{$outline-transparent}'] {
+          &[data-outline='#{$outline-transparent}'] {
             @include link-transparent($map, $wrapper);
           }
         }
@@ -286,13 +287,13 @@
     [title] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
-        [icon] {
+        [data-icon] {
           margin-right: map-get($icon, margin-right);
           @include icon((
             size: map-get($icon, size),
             sizes: (
               auto: (
-                size: 18px,
+                size: map-get($icon, sizes)
               )
             )
           ), '&');

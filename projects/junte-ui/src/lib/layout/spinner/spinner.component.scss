@@ -48,7 +48,7 @@
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           @include spinner-size($map);
         }
       }

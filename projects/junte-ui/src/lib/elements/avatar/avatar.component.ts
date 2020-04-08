@@ -14,10 +14,10 @@ export class AvatarComponent {
 
   ui = UI;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
-  @HostBinding('attr.shape')
+  @HostBinding('attr.data-shape')
   _shape: Shape = Shape.circle;
 
   @PropertyApi({
@@ -29,7 +29,6 @@ export class AvatarComponent {
       Size.normal,
       Size.large]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
@@ -40,7 +39,6 @@ export class AvatarComponent {
     default: Shape.circle,
     options: [Shape.circle, Shape.square]
   })
-
   @Input() set shape(shape: Shape) {
     this._shape = shape || Shape.circle;
   }
@@ -50,24 +48,18 @@ export class AvatarComponent {
     type: 'string',
     default: 'ui.icons.user',
   })
-
-  @HostBinding('attr.icon')
   @Input() icon: string = UI.icons.user;
 
   @PropertyApi({
     description: 'Text on avatar',
     type: 'string'
   })
-
-  @HostBinding('attr.text')
   @Input() text: string;
 
   @PropertyApi({
     description: 'Image on avatar',
     type: 'string'
   })
-
-  @HostBinding('attr.image')
   @Input() image: string;
 
 }

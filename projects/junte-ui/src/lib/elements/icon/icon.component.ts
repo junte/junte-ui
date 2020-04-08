@@ -15,10 +15,10 @@ export class IconComponent {
 
   iconType = IconType;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.auto;
 
-  @HostBinding('attr.icon')
+  @HostBinding('attr.data-icon')
   _icon: string;
 
   @PropertyApi({
@@ -36,7 +36,7 @@ export class IconComponent {
     this._size = size || Size.auto;
   }
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-type')
   type: IconType = IconType.font;
   iconset: string = DEFAULT_ICONSET;
 

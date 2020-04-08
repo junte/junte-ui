@@ -42,15 +42,15 @@
       vertical-align: middle;
     }
 
-    &[type='font'] {
-      #{$wrapper} [icon] {
+    &[data-type='font'] {
+      #{$wrapper} [data-icon] {
         color: map-get($vars, color);
         font-size: if(map-get($vars, size), map-get($vars, size) !important, null);
       }
     }
 
-    &[type='svg'], &[type='animated'] {
-      #{$wrapper} [icon] {
+    &[data-type='svg'], &[data-type='animated'] {
+      #{$wrapper} [data-icon] {
         fill: map-get($vars, color);
         @if map-has-key($vars, size) {
           width: if(map-get($vars, size),  map-get($vars, size) !important, null);
@@ -61,16 +61,16 @@
 
     @if map-has-key($vars, sizes) {
       @each $key, $size in map-get($vars, sizes) {
-        &[size='#{$key}'] {
-          &[type='font'] {
-            &:not([size='auto']) {
-              #{$wrapper} [icon] {
+        &[data-size='#{$key}'] {
+          &[data-type='font'] {
+            &:not([data-size='auto']) {
+              #{$wrapper} [data-icon] {
                 font-size: map-get($size, size);
               }
             }
           }
-          &[type='svg'], &[type='animated'] {
-            #{$wrapper} [icon] {
+          &[data-type='svg'], &[data-type='animated'] {
+            #{$wrapper} [data-icon] {
               width: map-get($size, size);
               height: map-get($size, size);
             }

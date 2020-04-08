@@ -17,7 +17,7 @@ export class AvatarsGroupComponent {
 
   shape = Shape;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size;
 
   _total = 0;
@@ -55,7 +55,7 @@ export class AvatarsGroupComponent {
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.capacity')
+  @HostBinding('attr.data-capacity')
   get capacity() {
     return Math.min(this.avatars.length, MAX_CAPACITY);
   }

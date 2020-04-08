@@ -18,11 +18,11 @@ export class AppLayoutComponent {
   @ContentChild(AppHeaderComponent)
   header: AppHeaderComponent;
 
-  @HostBinding('attr.with-header')
+  @HostBinding('attr.data-with-header')
   get withHeader() {
     return !!this.header;
   }
 
-  @HostBinding('attr.position')
+  @HostBinding('attr.data-position')
   @Input() position: AppLayoutPosition = AppLayoutPosition.default;
 }

@@ -10,7 +10,7 @@ export class FontIconComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-font-icon-host';
 
-  @HostBinding('attr.icon')
+  @HostBinding('attr.data-icon')
   @Input() icon: string;
 
   @HostBinding('style.font-family')

@@ -33,7 +33,7 @@ export class PopoverComponent {
     return this.visible ? 'block' : 'none';
   }
 
-  @HostBinding('attr.scheme')
+  @HostBinding('attr.data-scheme')
   get scheme() {
     return this.options.scheme ? this.options.scheme : Scheme.primary;
   }

@@ -50,7 +50,7 @@
       ), '&');
     }
   }
-  &[scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$scheme-secondary}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
@@ -97,7 +97,7 @@
       ), '&');
     }
   }
-  &[scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$scheme-secondary}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       &:hover {
@@ -119,7 +119,7 @@
     height: map-get($size, height);
     font-size: map-get($size, font-size);
   }
-  &[with-text="false"] {
+  &[data-with-text="false"] {
     #{$wrapper} button {
       padding: map-get($size, padding-without-text);
     }
@@ -285,36 +285,36 @@
           position: absolute;
         }
       }
-      &[loading='true'] {
+      &[data-loading='true'] {
         #{$wrapper} button {
           cursor: default;
         }
       }
-      &[disabled='true'] {
+      &[data-disabled='true'] {
         opacity: .65;
         pointer-events: none;
         #{$wrapper} button {
           cursor: default;
         }
       }
-      &[width='fluid'] {
+      &[data-width='fluid'] {
         width: 100%;
       }
     }
 
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
-        &[scheme='#{$scheme}'] {
-          &[outline='#{$outline-fill}'] {
+        &[data-scheme='#{$scheme}'] {
+          &[data-outline='#{$outline-fill}'] {
             @include button-fill($map, $wrapper);
           }
-          &[outline='#{$outline-ghost}'] {
+          &[data-outline='#{$outline-ghost}'] {
             [link] {
               border: 1px solid transparent;
             }
             @include button-ghost($map, $wrapper);
           }
-          &[outline='#{$outline-transparent}'] {
+          &[data-outline='#{$outline-transparent}'] {
             @include button-transparent($map, $wrapper);
           }
         }
@@ -323,7 +323,7 @@
 
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
-        &[size='#{$size}'] {
+        &[data-size='#{$size}'] {
           @include button-size($map, $wrapper);
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
@@ -335,7 +335,7 @@
           }
           @if map-has-key($map, icon) {
             $icon: map-get($map, icon);
-            [icon] {
+            [data-icon] {
               @include icon((
                 size: map-get($icon, size)
               ), '&');
@@ -354,7 +354,7 @@
       }
     }
 
-    &[with-text="false"] {
+    &[data-with-text="false"] {
       #{$wrapper} button {
         border-radius: map-get($vars, without-text-corner);
         @if map-has-key($vars, corners) {
@@ -371,7 +371,7 @@
             border-bottom-left-radius: map-get($bottom, left);
           }
         }
-        [icon] {
+        [data-icon] {
           margin-right: 0;
         }
       }
@@ -408,7 +408,7 @@
 
     @if map-has-key($vars, icon) {
       $icon: map-get($vars, icon);
-      [icon] {
+      [data-icon] {
         margin-right: map-get($icon, margin-right);
       }
     }

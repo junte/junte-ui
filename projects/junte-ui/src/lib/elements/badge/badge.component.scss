@@ -54,7 +54,7 @@
 
     @if map-has-key($vars, positions) {
       @each $position, $map in map-get($vars, positions) {
-        &[position='#{$position}'] {
+        &[data-position='#{$position}'] {
           @include badge-position($map);
         }
       }

@@ -37,7 +37,7 @@
     @if map-has-key($vars, padding) {
       $padding: map-get($vars, padding);
       @each $padding, $map in $padding {
-        &[padding = '#{$padding}'] {
+        &[data-padding = '#{$padding}'] {
           @include col-padding($map);
         }
       }
@@ -56,7 +56,7 @@
     }
 
     @for $i from 1 through map-get($vars, grid-columns) {
-      &[span = "#{$i}"] {
+      &[data-span = "#{$i}"] {
         $width: $i/map-get($vars, grid-columns);
         flex: 0 0 percentage($width);
         max-width: percentage($width);

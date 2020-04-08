@@ -12,17 +12,17 @@ export class AppContentComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-app-content-host';
 
-  @HostBinding('attr.with-aside') get withAside() {
+  @HostBinding('attr.data-with-aside') get withAside() {
     if (!!this.aside) {
       return this.aside.collapsed ? 'collapsed' : 'full';
     }
   }
 
-  @HostBinding('attr.with-sub-header') get withSubHeader() {
+  @HostBinding('attr.data-with-sub-header') get withSubHeader() {
     return !!this.subHeader;
   }
 
-  @HostBinding('attr.with-footer') get withFooter() {
+  @HostBinding('attr.data-with-footer') get withFooter() {
     return !!this.footer;
   }
 

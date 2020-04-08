@@ -17,7 +17,7 @@ export class LabelComponent {
   @HostBinding('style.background-color')
   _color: string = Color.purple;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({

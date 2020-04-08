@@ -91,7 +91,7 @@
 
   @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
     :host, #{$context} {
-      &[opened="true"] {
+      &[data-opened="true"] {
         width: 100%;
         [overlay] {
           width: 100%;
@@ -102,7 +102,7 @@
           transform: translate3d(0, 0, 0);
         }
       }
-      &[opened="false"] {
+      &[data-opened="false"] {
         width: 0;
         [overlay] {
           opacity: 0;

@@ -48,9 +48,9 @@
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           @include checkbox-size(map-get($map, indicator));
-          [switch] [icon] {
+          [switch] [data-icon] {
             @include icon((
               size: map-get($map, icon),
             ), '&');
@@ -74,7 +74,7 @@
     height: 100%;
     &:checked + [switch] {
       border-color: $jnt-primary-color;
-      & > [icon] {
+      & > [data-icon] {
         opacity: 1;
       }
     }
@@ -87,7 +87,7 @@
       & + [switch] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
-        & > [icon] {
+        & > [data-icon] {
           color: $jnt-control-disabled-indicator-icon-color;
         }
       }
@@ -119,7 +119,7 @@
     justify-content: center;
     align-items: center;
     transition: all .3s;
-    [icon] {
+    [data-icon] {
       opacity: 0;
       line-height: 1;
       color: $jnt-primary-color;

@@ -23,7 +23,7 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   ui = UI;
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-type')
   _type: Orientation = Orientation.horizontal;
 
   @PropertyApi({
@@ -41,7 +41,7 @@ export class SwitcherComponent implements ControlValueAccessor {
     type: 'boolean',
     default: 'false',
   })
-  @HostBinding('attr.disabled')
+  @HostBinding('attr.data-disabled')
   @Input()
   disabled = false;
 
@@ -97,10 +97,6 @@ export class SwitcherComponent implements ControlValueAccessor {
     }
 
     this.value = !isSame ? value : null;
-  }
-
-  ngAfterViewInit() {
-    console.log(this.options.toArray()[0].dot)
   }
 
 }

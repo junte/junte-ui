@@ -14,7 +14,7 @@ export class AvatarsListComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size;
 
   ui = UI;
@@ -34,7 +34,6 @@ export class AvatarsListComponent {
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }

@@ -10,7 +10,7 @@ export class SpinnerComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-spinner-host';
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
@@ -21,7 +21,6 @@ export class SpinnerComponent {
       Size.normal,
       Size.large]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }

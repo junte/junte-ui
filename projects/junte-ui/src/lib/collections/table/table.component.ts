@@ -58,15 +58,13 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     pageSize: this.pageSize
   });
 
-  @HostBinding('attr.host')
-  readonly host = 'jnt-table-host';
+  @HostBinding('attr.host') readonly host = 'jnt-table-host';
 
   @PropertyApi({
     description: 'Table features',
     path: 'ui.collections.table.features',
     options: [TableFeatures.search]
   })
-  @HostBinding('attr.features')
   @Input() features: TableFeatures[] = [];
 
   @PropertyApi({

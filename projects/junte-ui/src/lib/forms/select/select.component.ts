@@ -104,17 +104,16 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input() required = false;
 
-  @HostBinding('attr.mode')
+  @HostBinding('attr.data-mode')
   _mode: SelectMode = SelectMode.single;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Select label',
     type: 'string'
   })
-  @HostBinding('attr.label')
   @Input() label: string;
 
   @PropertyApi({
@@ -122,7 +121,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     type: 'boolean',
     default: 'true'
   })
-  @HostBinding('attr.allow-empty')
+  @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
 
   @ViewChild('queryInput', {static: true})
@@ -140,7 +139,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
-  @HostBinding('attr.opened')
+  @HostBinding('attr.data-opened')
   set opened(opened: boolean) {
     this._opened = opened;
     if (!opened) {
@@ -182,7 +181,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select search',
     type: 'boolean'
   })
-  @HostBinding('attr.search')
+  @HostBinding('attr.data-search')
   @Input() set search(search: boolean) {
     search ? this.queryControl.enable() : this.queryControl.disable();
   }
@@ -191,7 +190,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     return !this.queryControl.disabled;
   }
 
-  @HostBinding('attr.disabled')
+  @HostBinding('attr.data-disabled')
   @Input()
   disabled = false;
 
@@ -205,7 +204,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this._size = size || Size.normal;
   }
 
-  @HostBinding('attr.empty')
+  @HostBinding('attr.data-empty')
   get empty() {
     return this.selected.length === 0;
   }

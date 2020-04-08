@@ -85,7 +85,7 @@
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           form {
             min-width: map-get($map, width);
             width: map-get($map, width);
@@ -96,7 +96,7 @@
               [slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
-                [icon] {
+                [data-icon] {
                   @if map-has-key($map, icon) {
                     $icon: map-get($map, icon);
                     @include icon((
@@ -144,7 +144,7 @@
               $slider: map-get($background, slider);
               background-color: map-get($slider, on);
             }
-            [icon] {
+            [data-icon] {
               @if map-has-key($background, icon) {
                 $icon-bg: map-get($background, icon);
                 @include icon((
@@ -180,7 +180,7 @@
           $slider: map-get($background, slider);
           background-color: map-get($slider, off);
         }
-        [icon] {
+        [data-icon] {
           @if map-has-key($background, icon) {
             $icon-bg: map-get($background, icon);
             @include icon((
