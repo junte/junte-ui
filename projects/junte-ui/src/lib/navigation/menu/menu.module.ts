@@ -19,7 +19,9 @@ import { MenuComponent } from './menu.component';
   ],
   exports: [
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    SubMenuDirective,
+    SubMenuItemsDirective
   ],
   entryComponents: [
     MenuComponent,

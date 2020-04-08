@@ -59,6 +59,8 @@ export class MenuComponent {
   items: QueryList<MenuItemComponent>;
 
   open(item: MenuItemComponent) {
-    this.items.forEach(i => i.opened = i === item ? !item.opened : false);
+    if (item.submenus.length) {
+      this.items.forEach(i => i.opened = i === item ? !item.opened : false);
+    }
   }
 }
