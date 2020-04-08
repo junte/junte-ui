@@ -12,7 +12,7 @@ export class DatePeriodTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-  format = 'dd.MM.yyyy';
+  format = 'yyyy-MM-dd';
   types = {period: DatePeriodComponent};
 
   startControl = this.fb.control(new Date);

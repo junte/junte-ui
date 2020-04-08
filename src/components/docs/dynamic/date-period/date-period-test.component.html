@@ -75,9 +75,9 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="date-period-test.template.html">
                 <![CDATA[
-                <jnt-date-period [start]="{{startControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"
-                                 [end]="{{endControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"
-                                 [current]="{{currentControl.value | dfnsFormat:'yyyy-MM-dd\'T\'HH:mm:ssxxx'}}"></jnt-date-period>
+                <jnt-date-period [start]="'{{startControl.value | dfnsFormat:format}}' | dfnsParse"
+                                 [end]="'{{endControl.value | dfnsFormat:format}}' | dfnsParse"
+                                 [current]="'{{currentControl.value | dfnsFormat:format}}' | dfnsParse"></jnt-date-period>
                 ]]>
               </app-code-highlight>
             </ng-template>
