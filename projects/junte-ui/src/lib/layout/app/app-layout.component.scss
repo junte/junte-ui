@@ -22,14 +22,13 @@
     }
 
     &[data-position='default'] {
-      > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: absolute;
-      }
       > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: absolute;
       }
-      > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: absolute;
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+          position: absolute;
+        }
       }
       > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: absolute;
@@ -40,14 +39,13 @@
     }
 
     &[data-position='fixed'] {
-      > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: fixed;
-      }
       > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: fixed;
       }
-      > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: fixed;
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+          position: fixed;
+        }
       }
       > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: fixed;

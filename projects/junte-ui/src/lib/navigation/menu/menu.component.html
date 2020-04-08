@@ -31,28 +31,46 @@
       </div>
 
       <div sub [attr.opened]="item.opened" jntSubMenuItems>
-        <ng-container *ngFor="let submenu of item.submenus">
-          <div section *ngIf="collapsed">
+        <ng-container *ngIf="!!item.submenus.length; else only">
+          <ng-container *ngFor="let submenu of item.submenus">
+            <div section *ngIf="collapsed">
             <span>
               {{item.title}}
             </span>
-          </div>
-          <jnt-link link *ngFor="let subitem of submenu.items"
-                    [title]="subitem.title"
-                    [icon]="subitem.icon"
-                    [matching]="subitem.matching"
-                    [source]="subitem.link"
-                    [scheme]="subitem.scheme"
-                    [target]="subitem.target"
-                    (click)="selected.emit(item);item.click.emit()">
-            <jnt-badge *ngFor="let badge of subitem.badges"
+            </div>
+            <jnt-link link *ngFor="let subitem of submenu.items"
+                      [title]="subitem.title"
+                      [icon]="subitem.icon"
+                      [matching]="subitem.matching"
+                      [source]="subitem.link"
+                      [scheme]="subitem.scheme"
+                      [target]="subitem.target"
+                      (click)="selected.emit(item);item.click.emit()">
+              <jnt-badge *ngFor="let badge of subitem.badges"
+                         [value]="badge.value"
+                         [text]="badge.text"
+                         [position]="ui.position.inline"
+                         [color]="badge.color">
+              </jnt-badge>
+            </jnt-link>
+          </ng-container>
+        </ng-container>
+        <ng-template #only>
+          <jnt-link link
+                    [title]="item.title"
+                    [icon]="item.icon"
+                    [matching]="item.matching"
+                    [source]="item.link"
+                    [scheme]="item.scheme"
+                    [target]="item.target">
+            <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"
                        [text]="badge.text"
                        [position]="ui.position.inline"
                        [color]="badge.color">
             </jnt-badge>
           </jnt-link>
-        </ng-container>
+        </ng-template>
       </div>
     </div>
   </ng-container>
