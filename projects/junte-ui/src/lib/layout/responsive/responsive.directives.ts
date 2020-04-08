@@ -2,7 +2,6 @@ import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } fr
 import { takeWhile } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
-import { Scheme } from '../../core/enums/scheme';
 import { BreakpointService } from './breakpoint.service';
 
 const breakpoints = [Breakpoint.mobile,
