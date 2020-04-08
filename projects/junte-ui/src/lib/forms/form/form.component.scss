@@ -7,6 +7,10 @@
     position: relative;
   }
 
+  #{$context} form {
+    height: 100%;
+  }
+
   #{$context} [loading], #{$context} [error] {
     position: absolute;
     top: 0;
@@ -18,9 +22,5 @@
     justify-content: center;
     background-color: rgba($jnt-primary-background, .5);
     z-index: 1;
-  }
-
-  #{$context} footer {
-    margin-top: $jnt-gutter-large;
   }
 }

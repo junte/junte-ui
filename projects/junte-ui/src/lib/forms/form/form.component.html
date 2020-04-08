@@ -3,13 +3,9 @@
     <h3>{{title}}</h3>
   </header>
 
-  <div content>
-    <ng-content></ng-content>
-  </div>
+  <ng-content></ng-content>
 
-  <footer *ngIf="footerTemplate">
-    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
-  </footer>
+  <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
 
   <div *ngIf="state === formState.loading" loading>
     <jnt-spinner [size]="ui.size.large"></jnt-spinner>
