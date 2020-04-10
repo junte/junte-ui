@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Breakpoint } from '../../core/enums/breakpoint';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class BreakpointService {
 
   private queries = {
