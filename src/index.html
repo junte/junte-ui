@@ -11,11 +11,13 @@
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16">
   <style>
     #app-loader {
+      height: 50%;
       position: absolute;
       width: 100%;
-      min-height: 100%;
-      left: 0;
-      top: 0;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%)
     }
   </style>
 </head>
@@ -37,7 +39,7 @@
 </svg>
 
 <app-root>
-    <svg id="app-loader" width="97" height="38" viewBox="0 0 97 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg id="app-loader" viewBox="0 0 97 38" fill="none">
       <style>
         .dot {
           animation: dot 1s ease normal forwards;
