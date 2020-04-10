@@ -1,0 +1,270 @@
+@import "jnt-variables";
+@import "elements/icon/icon";
+@import "layout/spinner/spinner";
+
+@mixin input-size($size, $wrapper) {
+  #{$wrapper} input[child-of=#{$jnt-input-host}], #{$wrapper} textarea[child-of=#{$jnt-input-host}] {
+    font-size: map-get($size, font-size);
+    min-height: map-get($size, height);
+    &[type='number'] {
+      padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
+    }
+  }
+  #{$wrapper} [spinner][child-of=#{$jnt-input-host}] {
+    @include jnt-spinner((
+      size: map-get($size, spinner),
+    ), '&');
+  }
+  #{$wrapper} [data-icon][child-of=#{$jnt-input-host}] ~ input[child-of=#{$jnt-input-host}] {
+    padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-normal} + #{$jnt-gutter-small});
+  }
+}
+
+@mixin jnt-input($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      small: (
+        font-size: 11px,
+        height: 30px,
+        icon: 14px,
+        chevron: 8px,
+        spinner: 14px,
+      ),
+      normal: (
+        font-size: 14px,
+        height: 38px,
+        icon: 16px,
+        chevron: 10px,
+        spinner: 16px,
+      ),
+      large: (
+        font-size: 16px,
+        height: 50px,
+        icon: 18px,
+        chevron: 12px,
+        spinner: 18px,
+      ),
+    ),
+    scheme: (
+      normal: (
+        border-color: $jnt-control-border-color,
+        hover: (
+          border-color: $jnt-primary-color
+        ),
+        focus: (
+          border-color: $jnt-primary-color,
+          shadow: $jnt-shadow-primary
+        ),
+        disabled: (
+          border-color: $jnt-control-disabled-border-color
+        ),
+      ),
+      success: (
+        border-color: $jnt-success-color,
+        hover: (
+          border-color: $jnt-success-color
+        ),
+        focus: (
+          border-color: $jnt-success-color,
+          shadow: null
+        ),
+      ),
+      failed: (
+        border-color: $jnt-fail-color,
+        hover: (
+          border-color: $jnt-fail-color
+        ),
+        focus: (
+          border-color: $jnt-fail-color,
+          shadow: null
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-input[host=#{$jnt-input-host}], #{$context} {
+    display: block;
+    width: 100%;
+
+    @if map-has-key($vars, scheme) {
+      $schemes: map-get($vars, scheme);
+      @each $scheme, $map in $schemes {
+        &[data-scheme='#{$scheme}'] {
+          #{$wrapper} form[child-of=#{$jnt-input-host}] {
+            input[child-of=#{$jnt-input-host}], textarea[child-of=#{$jnt-input-host}] {
+              border-color: map-get($map, border-color);
+              @if map-has-key($map, hover) {
+                $hover: map-get($map, hover);
+                &:hover {
+                  border-color: map-get($hover, border-color);
+                }
+              }
+              @if map-has-key($map, focus) {
+                $focus: map-get($map, focus);
+                &:focus {
+                  box-shadow: map-get($focus, shadow);
+                  border-color: map-get($focus, border-color);
+                }
+              }
+              @if map-has-key($map, disabled) {
+                $disabled: map-get($map, disabled);
+                &:disabled {
+                  border-color: map-get($disabled, border-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[data-size = '#{$size}'] {
+          @include input-size($map, $wrapper);
+          #{$wrapper} [data-icon][child-of=#{$jnt-input-host}] {
+            @include jnt-icon((
+              size: map-get($map, icon)
+            ), '&');
+          }
+          #{$wrapper} [arrows][child-of=#{$jnt-input-host}] [data-icon][child-of=#{$jnt-input-host}] {
+            @include jnt-icon((
+              size: map-get($map, chevron)
+            ), '&');
+          }
+
+        }
+      }
+    }
+
+    &[data-textAlign="right"] {
+      #{$wrapper} input[child-of=#{$jnt-input-host}], #{$wrapper} textarea[child-of=#{$jnt-input-host}] {
+        text-align: right;
+      }
+    }
+    &[data-textAlign="left"] {
+      #{$wrapper} input[child-of=#{$jnt-input-host}], #{$wrapper} textarea[child-of=#{$jnt-input-host}] {
+        text-align: left;
+      }
+    }
+    &[data-state='loading'] {
+      #{$wrapper} input[child-of=#{$jnt-input-host}], #{$wrapper} textarea[child-of=#{$jnt-input-host}] {
+        background-color: $jnt-control-disabled-background;
+        color: $jnt-control-disabled-label-color;
+        pointer-events: none;
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} form[child-of=#{$jnt-input-host}] {
+    display: inline-flex;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+    >[data-icon][child-of=#{$jnt-input-host}] {
+      position: absolute;
+      top: 50%;
+      left: $jnt-gutter-normal;
+      transform: translateY(-50%);
+      color: $jnt-primary-text-light-color;
+      fill: $jnt-primary-text-light-color;
+      line-height: 0;
+    }
+    input[child-of=#{$jnt-input-host}], textarea[child-of=#{$jnt-input-host}] {
+      outline: 0;
+      background-color: $jnt-control-background;
+      color: $jnt-primary-text-color;
+      width: 100%;
+      padding: 0 $jnt-gutter-large 0 $jnt-gutter-normal;
+      border-radius: $jnt-corner-small;
+      border: 1px solid;
+      box-sizing: border-box;
+      transition: all .3s;
+      &:disabled {
+        background-color: $jnt-control-disabled-background;
+        color: $jnt-control-disabled-label-color;
+        pointer-events: none;
+        & + [arrows] {
+          button[child-of=#{$jnt-input-host}] {
+            cursor: default;
+          }
+        }
+      }
+      &:read-only {
+        pointer-events: none;
+      }
+    }
+
+    [label][child-of=#{$jnt-input-host}] {
+      background-color: $jnt-control-field-label-background;
+      padding: $jnt-control-field-label-padding;
+      display: flex;
+      align-items: center;
+      border-top-left-radius: $jnt-corner-small - 1px;
+      border-bottom-left-radius: $jnt-corner-small - 1px;
+      color: $jnt-control-field-label-color;
+      border: 1px solid $jnt-control-field-label-border-color;
+      border-right: 0;
+      white-space: nowrap;
+      & ~ input[child-of=#{$jnt-input-host}],
+      & ~  textarea[child-of=#{$jnt-input-host}] {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    [loading][child-of=#{$jnt-input-host}], [warning][child-of=#{$jnt-input-host}], [checked][child-of=#{$jnt-input-host}] {
+      position: absolute;
+      right: $jnt-gutter-small;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 0;
+    }
+
+    [warning][child-of=#{$jnt-input-host}] {
+      color: $jnt-fail-color;
+    }
+
+    [checked][child-of=#{$jnt-input-host}] {
+      color: $jnt-success-color;
+    }
+
+    [arrows][child-of=#{$jnt-input-host}] {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      bottom: 1px;
+      button[child-of=#{$jnt-input-host}] {
+        flex: 1;
+        padding: 0 $jnt-gutter-small;
+        height: 50%;
+        border: 0;
+        border-radius: $jnt-corner-small;
+        cursor: pointer;
+        line-height: 0;
+        background-color: transparent;
+        color: $jnt-primary-text-light-color;
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+  }
+}

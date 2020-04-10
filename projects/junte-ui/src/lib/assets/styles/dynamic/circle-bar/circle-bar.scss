@@ -1,0 +1,22 @@
+@import "jnt-variables";
+
+@mixin jnt-circle-bar($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-circle-bar[host=#{$jnt-circle-bar-host}], #{$context} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+  }
+
+  #{$context} [content][child-of=#{$jnt-circle-bar-host}] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
 @keyframes jnt-scaleIn {
@@ -19,7 +19,7 @@
   }
 }
 
-@mixin modal($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-modal($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
@@ -62,7 +62,7 @@
       }
 
       [data-icon] {
-        @include icon ((
+        @include jnt-icon ((
           color: $jnt-primary-text-color,
           size: 18px,
         ), '&');

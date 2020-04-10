@@ -1,0 +1,46 @@
+@import "jnt-variables";
+@import "layout/app/variables";
+
+@mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-app-content[host=#{$jnt-app-content-host}], #{$context} {
+    display: block;
+    flex: auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    background-color: $jnt-page-background;
+    z-index: 1;
+    padding-top: $app-header-height;
+
+    &[data-with-aside='full'] {
+      padding-left: $app-aside-width;
+    }
+
+    &[data-with-aside='collapsed'] {
+      padding-left: $app-aside-collapsed-width;
+    }
+
+    @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      padding-left: 0 !important;
+    }
+
+    &[data-with-sub-header="false"] {
+      jnt-app-body[host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
+      }
+    }
+
+    &[data-with-footer="false"] {
+      jnt-app-body[host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
+      }
+    }
+    &[data-with-sub-header="false"][data-with-footer="false"] {
+      jnt-app-body[host=#{$jnt-app-body-host}] {
+        min-height: calc(100vh - #{$app-header-height});
+      }
+    }
+  }
+}

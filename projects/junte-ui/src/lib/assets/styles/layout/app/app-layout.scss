@@ -1,0 +1,55 @@
+@import "variables";
+@import "layout/app/variables";
+
+@mixin jnt-app-layout($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-app-layout[host=#{$jnt-app-layout-host}], #{$context} {
+    display: block;
+    overflow-x: hidden;
+    position: relative;
+    font-family: $jnt-app-layout-font-family;
+
+    &[data-with-header='false'] {
+      jnt-app-content[host=#{$jnt-app-content-host}] {
+        padding-top: 0;
+      }
+
+      jnt-app-aside[host=#{$jnt-app-aside-host}] {
+        [drawer][child-of=#{$jnt-app-aside-host}] {
+          padding-top: 0;
+        }
+      }
+    }
+
+    &[data-position='default'] {
+      > jnt-app-header[host=#{$jnt-app-header-host}] {
+        position: absolute;
+      }
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[host=#{$jnt-app-aside-host}] {
+          position: absolute;
+        }
+      }
+      > * > jnt-app-header[host=#{$jnt-app-header-host}] {
+        position: absolute;
+      }
+      jnt-app-body[host=#{$jnt-app-body-host}] {
+        min-height: 0 !important;
+      }
+    }
+
+    &[data-position='fixed'] {
+      > jnt-app-header[host=#{$jnt-app-header-host}] {
+        position: fixed;
+      }
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[host=#{$jnt-app-aside-host}] {
+          position: fixed;
+        }
+      }
+      > * > jnt-app-header[host=#{$jnt-app-header-host}] {
+        position: fixed;
+      }
+    }
+  }
+}

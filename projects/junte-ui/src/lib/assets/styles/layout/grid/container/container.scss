@@ -1,0 +1,17 @@
+@import "jnt-variables";
+
+@mixin jnt-grid-container($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-container[host=#{$jnt-container-host}], #{$context} {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 $jnt-grid-gutter;
+    box-sizing: border-box;
+    &[data-width="fluid"] {
+      max-width: 100%;
+    }
+  }
+}

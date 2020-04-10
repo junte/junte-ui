@@ -1,0 +1,51 @@
+@import "jnt-variables";
+@import "elements/avatar/common";
+
+@mixin jnt-avatars-list($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    border-width: 2px,
+    avatar-count: 4
+  );
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-avatars-list[host=#{$jnt-avatars-list-host}], #{$context} {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    @each $size, $map in $avatar-sizes {
+      &[data-size='#{$size}'] {
+        min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
+        @for $i from 1 through 5 {
+          &[capacity='#{$i}'] {
+            min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
+          }
+        }
+      }
+    }
+  }
+
+  @for $i from 0 through map-get($vars, avatar-count) {
+    [avatar-index='#{$i}'][child-of=#{$jnt-avatars-list-host}] {
+      position: absolute;
+      border: 2px solid $jnt-primary-background;
+      cursor: pointer;
+      transition: all .5s;
+      &:hover {
+        border-color: $jnt-purple-light-color;
+        z-index: 1;
+      }
+      @each $size, $map in $avatar-sizes {
+        &[data-size='#{$size}'] {
+          left: calc(#{$i} * (#{map-get($map, size)} / 2));
+        }
+      }
+    }
+  }
+}

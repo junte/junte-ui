@@ -1,0 +1,144 @@
+@import "jnt-variables";
+
+@mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-calendar[host=#{$jnt-calendar-host}], #{$context} {
+    display: block;
+    margin: $jnt-gutter-normal;
+    box-sizing: border-box;
+
+    &[data-disabled='true'] {
+      cursor: default;
+      pointer-events: none;
+      table[child-of=#{$jnt-calendar-host}] {
+        tbody[child-of=#{$jnt-calendar-host}] tr[child-of=#{$jnt-calendar-host}] td[child-of=#{$jnt-calendar-host}], th[child-of=#{$jnt-calendar-host}] {
+          color: $jnt-control-disabled-label-color;
+          background-color: $jnt-control-disabled-background;
+        }
+      }
+    }
+  }
+
+  table[child-of=#{$jnt-calendar-host}] {
+    table-layout: auto;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  thead[child-of=#{$jnt-calendar-host}] {
+    [arrow-left][child-of=#{$jnt-calendar-host}] {
+      text-align: left;
+    }
+    [arrow-right][child-of=#{$jnt-calendar-host}] {
+      text-align: right;
+    }
+    [arrow][child-of=#{$jnt-calendar-host}] {
+      background-color: transparent;
+      border-width: 0;
+      font-size: $jnt-font-size-large;
+      color: $jnt-primary-text-color;
+      cursor: pointer;
+      padding: 0;
+      vertical-align: middle;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      transition: box-shadow .3s;
+      line-height: 0;
+      &:focus {
+        outline: none;
+        box-shadow: $jnt-shadow-primary;
+        border: 1px solid $jnt-primary-color;
+      }
+      &:hover {
+        color: lighten($jnt-primary-text-color, 10%);
+        border: 1px solid $jnt-primary-color;
+      }
+    }
+    [date][child-of=#{$jnt-calendar-host}] {
+      font-weight: $jnt-font-weight-bold;
+      font-size: $jnt-font-size-base;
+    }
+    [days][child-of=#{$jnt-calendar-host}] {
+      > th[child-of=#{$jnt-calendar-host}] {
+        padding: $jnt-gutter-normal $jnt-gutter-tiny;
+        color: $jnt-primary-text-light-color;
+        font-size: $jnt-font-size-small;
+        font-weight: $jnt-font-weight-bold;
+      }
+    }
+    .sortable {
+      cursor: pointer;
+    }
+  }
+
+  tbody[child-of=#{$jnt-calendar-host}] {
+    tr[child-of=#{$jnt-calendar-host}] {
+      &[current-week='true'] {
+        [day][child-of=#{$jnt-calendar-host}], [metric][child-of=#{$jnt-calendar-host}] {
+          border-top-color: $jnt-primary-light-color;
+          border-bottom-color: $jnt-primary-light-color;
+          &:first-child {
+            border-top-left-radius: $jnt-corner-small;
+            border-bottom-left-radius: $jnt-corner-small;
+            border-left-color: $jnt-primary-light-color;
+          }
+          &:last-child {
+            border-top-right-radius: $jnt-corner-small;
+            border-bottom-right-radius: $jnt-corner-small;
+            border-right-color: $jnt-primary-light-color;
+          }
+        }
+      }
+      td[child-of=#{$jnt-calendar-host}] {
+        min-width: 38px;
+        font-size: $jnt-font-size-small;
+        box-sizing: border-box;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        user-select: none;
+        padding: 0;
+        [default][child-of=#{$jnt-calendar-host}] {
+          padding: $jnt-gutter-small $jnt-gutter-tiny;
+        }
+        &:first-child {
+          border-left: 1px solid transparent;
+        }
+        &:last-child {
+          border-right: 1px solid transparent;
+        }
+        &[day] {
+          cursor: pointer;
+          &:nth-child(6),
+          &:nth-child(7) {
+            background-color: $jnt-secondary-background;
+          }
+          &:hover {
+            background-color: $jnt-highlight-background;
+            color: $jnt-primary-text-dark-color;
+          }
+          &:focus {
+            box-shadow: $jnt-shadow-primary;
+            outline: 1px solid $jnt-primary-light-color;
+          }
+          &[current-day='true'] {
+            [default][child-of=#{$jnt-calendar-host}] {
+              background-color: $jnt-primary-light-color;
+              color: $jnt-white-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  td[child-of=#{$jnt-calendar-host}], th[child-of=#{$jnt-calendar-host}] {
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+  }
+
+}

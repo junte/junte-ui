@@ -1,0 +1,55 @@
+@import "jnt-variables";
+
+@mixin message-scheme($scheme) {
+  & {
+    background-color: #{map-get($scheme, background-color)};
+    border-color: #{map-get($scheme, border-color)};
+  }
+}
+
+@mixin jnt-message($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    schemes: (
+      primary: (
+        background-color: $jnt-primary-background,
+        border-color: $jnt-muted-color,
+      ),
+      secondary: (
+        background-color: $jnt-secondary-background,
+        border-color: $jnt-muted-color,
+      ),
+      success: (
+        background-color: rgba($jnt-success-color, .3),
+        border-color: $jnt-success-color,
+      ),
+      fail: (
+        background-color: rgba($jnt-fail-color, .3),
+        border-color: $jnt-fail-color,
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-message[host=#{$jnt-message-host}], #{$context} {
+    display: block;
+    border-radius: $jnt-corner-small;
+    padding: $jnt-gutter-normal;
+    border: 1px solid;
+
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[data-scheme='#{$scheme}'] {
+          @include message-scheme($map);
+        }
+      }
+    }
+  }
+}

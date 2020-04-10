@@ -1,0 +1,121 @@
+@import "jnt-variables";
+@import "elements/icon/icon";
+
+@mixin block-padding($padding) {
+  [body][child-of=#{$jnt-block-host}], [footer][child-of=#{$jnt-block-host}] {
+    padding: $padding;
+  }
+}
+
+@mixin block-fill($scheme) {
+  & {
+    background-color: #{map-get($scheme, background-color)};
+  }
+}
+
+@mixin jnt-block($passed: (), $context: null, $strategy: 'changes') {
+  $defs: (
+    padding: (
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
+    ),
+    schemes: (
+      primary: (
+        background-color: $jnt-primary-background,
+      ),
+      secondary: (
+        background-color: $jnt-secondary-background,
+      ),
+      success: (
+        background-color: $jnt-success-color,
+      ),
+      fail: (
+        background-color: $jnt-fail-color,
+      ),
+    ),
+    overlay: (
+      background-color: rgba($jnt-primary-background, 0.75),
+      icon: (
+        size: 40px,
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-block[host=#{$jnt-block-host}], #{$context} {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 40px;
+    box-shadow: $jnt-shadow-normal;
+    border-radius: $jnt-corner-normal;
+    box-sizing: border-box;
+    &[data-width="fluid"] {
+      width: 100%;
+    }
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[data-scheme='#{$scheme}'] {
+          @include block-fill($map);
+        }
+      }
+    }
+
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[data-padding = '#{$padding}'] {
+          @include block-padding($map);
+        }
+      }
+    }
+  }
+
+  #{$context} [title][child-of=#{$jnt-block-host}] {
+    padding: 0 $jnt-gutter-normal;
+    text-align: center;
+    color: $jnt-primary-color;
+    font-weight: $jnt-font-weight-bold;
+    > div[child-of=#{$jnt-block-host}] {
+      padding: $jnt-gutter-normal 0;
+      border-bottom: 1px solid $jnt-muted-color;
+    }
+  }
+
+  #{$context} [loading][child-of=#{$jnt-block-host}], #{$context} [error][child-of=#{$jnt-block-host}], #{$context} [success][child-of=#{$jnt-block-host}] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $jnt-corner-normal;
+    z-index: 1;
+    @if map-has-key($vars, overlay) {
+      $overlay: map-get($vars, overlay);
+      background-color: map-get($overlay, background-color);
+      @if map-has-key($overlay, icon) {
+        $icon: map-get($overlay, icon);
+        [data-icon][child-of=#{$jnt-block-host}] {
+          @include jnt-icon((
+            size: map-get($icon, size)
+          ), '&');
+        }
+      }
+    }
+  }
+}
+

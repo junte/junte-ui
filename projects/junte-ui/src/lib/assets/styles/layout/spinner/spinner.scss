@@ -1,0 +1,58 @@
+@import "jnt-variables";
+
+@mixin spinner-size($size) {
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
+}
+
+@keyframes jnt-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin jnt-spinner($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    size: null,
+    sizes: (
+      small: 1rem,
+      normal: 2rem,
+      large: 3rem
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-spinner[host=#{$jnt-spinner-host}], #{$context} {
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid;
+    border-right-color: transparent !important;
+    animation: jnt-spin .5s infinite linear;
+    @if map-get($vars, size) != null {
+      width: if(map-get($vars, size), map-get($vars, size) !important, null);
+      min-width: if(map-get($vars, size), map-get($vars, size) !important, null);
+      height: if(map-get($vars, size), map-get($vars, size) !important, null);
+      min-height: if(map-get($vars, size), map-get($vars, size) !important, null);
+    }
+
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[data-size = '#{$size}'] {
+          @include spinner-size($map);
+        }
+      }
+    }
+  }
+
+}

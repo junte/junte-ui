@@ -1,0 +1,156 @@
+@import "jnt-variables";
+@import "layout/app/variables";
+@import "navigation/menu/menu";
+
+@mixin jnt-app-aside($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-app-aside[host=#{$jnt-app-aside-host}], #{$context} {
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    @include jnt-menu((
+      top: (
+        item: (
+          height: 50px,
+          orphan-color: $jnt-primary-text-light-color,
+          orphan-hover-color: $jnt-primary-text-dark-color,
+          color: $jnt-primary-text-light-color,
+          active: (
+            underline: false,
+            color: $jnt-primary-color
+          ),
+          icon: (
+            margin-right: $jnt-gutter-normal,
+            size: 20px
+          ),
+          padding: (
+            inner: 0 $jnt-gutter-normal,
+            outer: 0,
+          ),
+          toggle: (
+            toggle: false
+          ),
+        ),
+      ),
+      sub: (
+        collapsed: (
+          position: fixed,
+          left: $app-aside-collapsed-width,
+          item: (
+            padding: 0 $jnt-gutter-normal,
+          ),
+        ),
+        item: (
+          color: $jnt-primary-text-light-color,
+          padding: 0 0 0 50px,
+          active: (
+            underline: false,
+            background-color: $jnt-secondary-background,
+            color: $jnt-primary-color
+          ),
+          height: 50px,
+        ),
+      ),
+    ), '&');
+  }
+
+  button[child-of=#{$jnt-app-aside-host}] {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $jnt-muted-color;
+    background-color: $jnt-primary-background;
+    color: $jnt-primary-text-light-color;
+    font-size: .875rem;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 $jnt-gutter-normal;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 0;
+    &:focus {
+      outline: 0;
+    }
+    &:hover {
+      color: $jnt-primary-text-light-color;
+      background-color: $jnt-secondary-background;
+    }
+    span[child-of=#{$jnt-app-aside-host}] {
+      text-overflow: clip;
+      opacity: 1;
+    }
+    jnt-icon[child-of=#{$jnt-app-aside-host}] {
+      color: $jnt-primary-text-color;
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+    jnt-app-aside[host=#{$jnt-app-aside-host}], #{$context} {
+      &[data-opened="true"] {
+        width: 100%;
+        [overlay][child-of=#{$jnt-app-aside-host}] {
+          width: 100%;
+          height: 100%;
+          opacity: 1;
+        }
+        [drawer][child-of=#{$jnt-app-aside-host}] {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      &[data-opened="false"] {
+        width: 0;
+        [overlay][child-of=#{$jnt-app-aside-host}] {
+          opacity: 0;
+        }
+        [drawer][child-of=#{$jnt-app-aside-host}] {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+    }
+    [button][child-of=#{$jnt-app-aside-host}] {
+      display: none;
+    }
+  }
+
+  [overlay][child-of=#{$jnt-app-aside-host}] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    background-color: rgba(0, 0, 0, .4);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  [drawer][child-of=#{$jnt-app-aside-host}] {
+    position: absolute;
+    padding: $app-header-height 0 0 0;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    background-color: $jnt-primary-background;
+    box-shadow: $jnt-shadow-normal;
+    box-sizing: border-box;
+    transform: translate3d(0, 0, 0);
+    transition: transform .3s linear, width .3s linear;
+    [scroll][child-of=#{$jnt-app-aside-host}] {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    &[collapsed="true"] {
+      width: $app-aside-collapsed-width;
+    }
+    &[collapsed="false"] {
+      width: $app-aside-width;
+    }
+  }
+
+}

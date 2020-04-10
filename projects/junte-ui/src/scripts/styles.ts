@@ -32,13 +32,19 @@ export class Gulpfile {
 
   private components: Component[] = [];
 
-  private clearImports(content: string) {
-    return content.replace(/@import.*$/gm, '').replace(/(\n){2,}/gm, '\n');
+  private clearImports(content: string, section: string, to: string) {
+    let imports = content.match(/@import.*$/gm);
+    imports = imports.filter(file => !file.includes('jnt-variables') && !file.includes(`${section}/${to.replace('.scss', '')}`));
+    imports = [...(new Set(imports))];
+    console.log(imports);
+    let cleared = content.replace(/@import.*$/gm, '').replace(/(\n){2,}/gm, '\n');
+    imports.forEach(file => cleared = `${Array.from(new Set(file.replace('";', '').split('/'))).join('/')}";\n${cleared}`);
+    return `@import "jnt-variables";\n${cleared}`;
   }
 
   @Task()
   componentsStyle() {
-    return gulp.src(['../lib/assets/styles/mixins.scss'])
+    return gulp.src(['../lib/assets/styles/jnt-mixins.scss'])
       .pipe(map((file, cb) => {
         const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib');
         let contents = '';
@@ -68,7 +74,7 @@ export class Gulpfile {
           }
 
           fs.writeFileSync(`${to}/${composition.section}/${composition.to}`,
-            `@import "variables";\n${this.clearImports(content)}`);
+            this.clearImports(content, composition.section, composition.to));
 
           fs.appendFileSync(`${to}/${composition.section}.scss`,
             `@import "./${composition.section}/${composition.to}";\n`);

@@ -1,7 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "navigation/link/link";
 
-@mixin menu($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     top: (
@@ -109,7 +109,7 @@
 
           [link] {
             width: 100%;
-            @include link((
+            @include jnt-link((
               overflow: true,
               display: block,
             ), '&');
@@ -133,7 +133,7 @@
           }
           [link] {
             user-select: none;
-            @include link((
+            @include jnt-link((
               overflow: true,
               display: block,
             ), '&');
@@ -164,7 +164,7 @@
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
             [link] {
-              @include link((
+              @include jnt-link((
                 padding: map-get($item, padding),
               ), '&');
             }
@@ -179,7 +179,7 @@
     [item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
-        @include link((
+        @include jnt-link((
           height: map-get($title, height),
           orphan-color: map-get($title, orphan-color),
           orphan-hover-color: map-get($title, orphan-hover-color),
@@ -189,7 +189,7 @@
 
         @if map-has-key($title, active) {
           $active: map-get($title, active);
-          @include link((
+          @include jnt-link((
             active: (
               underline: map-get($active, underline),
               background-color: map-get($active, background-color),
@@ -200,7 +200,7 @@
 
           @if map-has-key($title, icon) {
           $icon: map-get($title, icon);
-          @include link((
+          @include jnt-link((
             icon: (
               margin-right: map-get($icon, margin-right),
               size: map-get($icon, size)
@@ -211,7 +211,7 @@
         @if map-has-key($title, padding) {
           $padding: map-get($title, padding);
           padding: map-get($padding, outer);
-          @include link((
+          @include jnt-link((
             padding: map-get($padding, inner),
           ), '&');
         }
@@ -254,14 +254,14 @@
         @if map-has-key($sub, item) {
           $item: map-get($sub, item);
           [link] {
-            @include link((
+            @include jnt-link((
               height: map-get($item, height),
               padding: map-get($item, padding),
               color: map-get($item, color),
             ), '&');
             @if map-has-key($item, icon) {
               $icon: map-get($item, icon);
-              @include link((
+              @include jnt-link((
                 icon: (
                   margin-right: map-get($icon, margin-right),
                   sizes: map-get($icon, sizes)
@@ -277,7 +277,7 @@
             }
             @if map-has-key($item, active) {
               $active: map-get($item, active);
-              @include link((
+              @include jnt-link((
                 active: (
                   underline: map-get($active, underline),
                   background-color: map-get($active, background-color),

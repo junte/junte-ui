@@ -1,14 +1,14 @@
-@import "variables";
+@import "jnt-variables";
 @import "forms/switch/switch";
 
-@mixin theme-switcher($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-theme-switcher($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: inline-block;
   }
 
   #{$context} [switch] {
-    @include switch((
+    @include jnt-switch((
       padding: 2px,
       background: (
         on: $jnt-primary-light-color,
