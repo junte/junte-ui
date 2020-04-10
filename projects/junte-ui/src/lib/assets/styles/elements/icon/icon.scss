@@ -1,0 +1,82 @@
+@import "jnt-variables";
+
+@mixin jnt-icon($passed: (), $context: null, $deep: false, $strategy: 'merge') {
+  $defs: (
+    color: null,
+    size: null,
+    sizes: (
+      auto: (
+        size: 22px,
+      ),
+      tiny: (
+        size: 11px,
+      ),
+      small: (
+        size: 13px,
+      ),
+      normal: (
+        size: 16px,
+      ),
+      large: (
+        size: 20px,
+      )
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-icon[host=#{$jnt-icon-host}], #{$context} {
+    @if $declare {
+      display: inline-flex;
+      vertical-align: middle;
+    }
+
+    &[data-type='font'] {
+      #{$wrapper} [data-icon][child-of=#{$jnt-icon-host}] {
+        color: map-get($vars, color);
+        font-size: if(map-get($vars, size), map-get($vars, size) !important, null);
+      }
+    }
+
+    &[data-type='svg'], &[data-type='animated'] {
+      #{$wrapper} [data-icon][child-of=#{$jnt-icon-host}] {
+        fill: map-get($vars, color);
+        @if map-has-key($vars, size) {
+          width: if(map-get($vars, size),  map-get($vars, size) !important, null);
+          height: if(map-get($vars, size),  map-get($vars, size) !important, null);
+        }
+      }
+    }
+
+    @if map-has-key($vars, sizes) {
+      @each $key, $size in map-get($vars, sizes) {
+        &[data-size='#{$key}'] {
+          &[data-type='font'] {
+            &:not([data-size='auto'][child-of=#{$jnt-icon-host}]) {
+              #{$wrapper} [data-icon][child-of=#{$jnt-icon-host}] {
+                font-size: map-get($size, size);
+              }
+            }
+          }
+          &[data-type='svg'], &[data-type='animated'] {
+            #{$wrapper} [data-icon][child-of=#{$jnt-icon-host}] {
+              width: map-get($size, size);
+              height: map-get($size, size);
+            }
+          }
+        }
+      }
+    }
+  }
+}

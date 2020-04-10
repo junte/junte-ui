@@ -1,0 +1,206 @@
+@import "jnt-variables";
+
+@mixin popover-scheme($scheme) {
+  [wrapper][child-of=#{$jnt-popover-host}] {
+    background-color: map-get($scheme, background-color);
+    [title][child-of=#{$jnt-popover-host}] {
+      color: map-get($scheme, color);
+    }
+  }
+  [arrow][child-of=#{$jnt-popover-host}] {
+    border-top-color: map-get($scheme, background-color);
+  }
+  [title][child-of=#{$jnt-popover-host}] {
+    color: map-get($scheme, color);
+  }
+}
+
+@mixin jnt-popover($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    spacing: 14px,
+    arrow-shift: $jnt-gutter-normal,
+    schemes: (
+      primary: (
+        background-color: $jnt-primary-light-color,
+        color: $jnt-white-color
+      ),
+      secondary: (
+        background-color: $jnt-secondary-background,
+        color: $jnt-primary-text-color
+      ),
+      success: (
+        background-color: $jnt-success-color,
+        color: $jnt-white-color
+      ),
+      fail: (
+        background-color: $jnt-fail-color,
+        color: $jnt-white-color
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-popover[host=#{$jnt-popover-host}], #{$context} {
+    position: absolute;
+    z-index: 100;
+    user-select: text;
+    display: block;
+
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[data-scheme='#{$scheme}'] {
+          @include popover-scheme($map);
+        }
+      }
+    }
+
+    [arrow][child-of=#{$jnt-popover-host}] {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      position: absolute;
+      display: none;
+    }
+
+    &.top,
+    &.top-left,
+    &.top-right {
+      padding-bottom: map-get($vars, spacing);
+
+      [arrow][child-of=#{$jnt-popover-host}] {
+        top: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.right,
+    &.right-top,
+    &.right-bottom {
+      padding-left: map-get($vars, spacing);
+
+      [arrow][child-of=#{$jnt-popover-host}] {
+        right: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.bottom,
+    &.bottom-left,
+    &.bottom-right {
+      padding-top: map-get($vars, spacing);
+
+      [arrow][child-of=#{$jnt-popover-host}] {
+        bottom: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.left,
+    &.left-top,
+    &.left-bottom {
+      padding-right: map-get($vars, spacing);
+
+      [arrow][child-of=#{$jnt-popover-host}] {
+        left: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.top,
+    &.bottom {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        left: 50%;
+      }
+    }
+
+    &.left,
+    &.right {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        top: 50%;
+      }
+    }
+
+    &.top-left,
+    &.bottom-left {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        left: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.top-right,
+    &.bottom-right {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        right: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.left-top,
+    &.right-top {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        top: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.left-bottom,
+    &.right-bottom {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        bottom: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.right-top,
+    &.right-bottom {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        transform: rotate(90deg);
+      }
+    }
+
+    &.bottom-left,
+    &.bottom-right {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.left-top,
+    &.left-bottom {
+      [arrow][child-of=#{$jnt-popover-host}] {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &.top [arrow] {
+      transform: translateX(-50%);
+    }
+
+    &.right [arrow] {
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    &.bottom [arrow] {
+      transform: translateX(-50%) rotate(180deg);
+    }
+
+    &.left [arrow] {
+      transform: translateY(-50%) rotate(-90deg);
+    }
+  }
+
+  #{$context} [wrapper][child-of=#{$jnt-popover-host}] {
+    border-radius: $jnt-corner-small;
+    box-shadow: $jnt-shadow-normal;
+    padding: $jnt-gutter-normal;
+
+    [title][child-of=#{$jnt-popover-host}] {
+      font-weight: $jnt-font-weight-bold;
+      margin-bottom: $jnt-gutter-normal;
+    }
+    [content][child-of=#{$jnt-popover-host}] {
+      max-width: 300px;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@import "jnt-variables";
+@import "forms/button/button";
+
+@mixin jnt-button-group($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    corner: $jnt-corner-large
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-button-group[host=#{$jnt-button-group-host}], #{$context} {
+    display: flex;
+    &[data-width='fluid'] {
+      width: 100%;
+      [button][child-of=#{$jnt-button-group-host}] {
+        flex: 1;
+      }
+    }
+  }
+
+  #{$context} [button][child-of=#{$jnt-button-group-host}] {
+
+    @include jnt-button ((
+      padding: 0 $jnt-gutter-normal,
+      corner: 0,
+      without-text-corner: 0,
+    ), '&');
+
+
+    &:first-child {
+      @include jnt-button ((
+        corners: (
+          top: (
+            left: map-get($vars, corner),
+          ),
+          bottom: (
+            left: map-get($vars, corner),
+          ),
+        ),
+        borders: (
+          right: 0,
+        ),
+      ), '&');
+    }
+
+    &:last-child {
+      @include jnt-button ((
+        corners: (
+          top: (
+            right: map-get($vars, corner),
+          ),
+          bottom: (
+            right: map-get($vars, corner),
+          ),
+        ),
+        borders: (
+          left: 0,
+        ),
+      ), '&');
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
 @mixin block-padding($padding) {
@@ -13,7 +13,7 @@
   }
 }
 
-@mixin block($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-block($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     padding: (
       tiny: $jnt-gutter-tiny,
@@ -110,7 +110,7 @@
       @if map-has-key($overlay, icon) {
         $icon: map-get($overlay, icon);
         [data-icon] {
-          @include icon((
+          @include jnt-icon((
             size: map-get($icon, size)
           ), '&');
         }

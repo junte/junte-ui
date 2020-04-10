@@ -1,0 +1,57 @@
+@import "jnt-variables";
+
+@mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    width: 400px,
+    height: 400px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-app-header-action[host=#{$jnt-app-header-action-host}], #{$context} {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 $jnt-gutter-normal;
+
+    > jnt-icon[host=#{$jnt-icon-host}] {
+      font-size: 20px;
+      color: $jnt-white-color;
+    }
+
+    &:hover {
+      background-color: $jnt-primary-color;
+
+      [content][child-of=#{$jnt-app-header-action-host}] {
+        display: block;
+      }
+    }
+  }
+
+  #{$context} [content][child-of=#{$jnt-app-header-action-host}] {
+    background: $jnt-primary-background;
+    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+    padding: $jnt-gutter-normal $jnt-gutter-big;
+    color: $jnt-primary-text-color;
+    max-width: map-get($vars, width);
+    width: map-get($vars, width);
+    max-height: map-get($vars, height);
+    box-shadow: $jnt-shadow-light;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    right: 0;
+  }
+}
+

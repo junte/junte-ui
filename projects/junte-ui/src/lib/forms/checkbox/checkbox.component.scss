@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
 @mixin checkbox-size($size) {
@@ -10,7 +10,7 @@
   }
 }
 
-@mixin checkbox($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-checkbox($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -51,7 +51,7 @@
         &[data-size = '#{$size}'] {
           @include checkbox-size(map-get($map, indicator));
           [switch] [data-icon] {
-            @include icon((
+            @include jnt-icon((
               size: map-get($map, icon),
             ), '&');
           }

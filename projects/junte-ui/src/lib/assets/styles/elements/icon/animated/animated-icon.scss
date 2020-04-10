@@ -1,0 +1,15 @@
+@import "jnt-variables";
+
+jnt-animated-icon[host=#{$jnt-animated-icon-host}] {
+  display: inline-flex;
+
+  [mock][child-of=#{$jnt-animated-icon-host}] {
+    opacity: .5;
+  }
+
+  > * {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+}

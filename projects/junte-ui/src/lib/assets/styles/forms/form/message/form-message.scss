@@ -1,0 +1,10 @@
+@import "jnt-variables";
+
+@mixin jnt-form-message($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-form-message[host=#{$jnt-form-message-host}], #{$context} {
+    display: none;
+    font-size: $jnt-font-size-tiny;
+    color: $jnt-fail-color;
+  }
+}

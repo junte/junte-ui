@@ -1,0 +1,13 @@
+@import "jnt-variables";
+
+@mixin jnt-date-picker($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-date-picker[host=#{$jnt-date-picker-host}], #{$context} {
+    display: block;
+  }
+
+  [calendar][child-of=#{$jnt-date-picker-host}] {
+    margin: 0;
+  }
+
+}

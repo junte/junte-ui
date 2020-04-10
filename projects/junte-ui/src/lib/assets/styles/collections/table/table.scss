@@ -1,0 +1,124 @@
+@import "jnt-variables";
+@import "forms/button/button";
+
+@mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    min-height: 200px,
+    min-width: 400px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-table[host=#{$jnt-table-host}] {
+    display: block;
+    min-width: map-get($vars, min-width);
+    padding: $jnt-gutter-normal;
+
+    @include jnt-button((
+      sizes: (
+        schemes: (
+          secondary: (
+            inverse-color: $jnt-gray-800-color
+          ),
+        ),
+        normal: (
+          padding: 0 $jnt-gutter-small,
+        ),
+      ),
+    ), '&');
+
+    [table][child-of=#{$jnt-table-host}] {
+      margin-left: -$jnt-gutter-normal;
+      margin-right: -$jnt-gutter-normal;
+    }
+
+    table[child-of=#{$jnt-table-host}] {
+      width: 100%;
+      border-collapse: collapse;
+      position: relative;
+      [spinner][child-of=#{$jnt-table-host}] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($jnt-secondary-background, .6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .3s;
+        z-index: 1;
+        [data-icon][child-of=#{$jnt-table-host}] {
+          color: $jnt-primary-text-light-color;
+        }
+      }
+      thead[child-of=#{$jnt-table-host}] {
+        background-color: $jnt-secondary-background;
+        .sortable {
+          cursor: pointer;
+        }
+      }
+      tbody[child-of=#{$jnt-table-host}] tr[child-of=#{$jnt-table-host}] {
+        border-bottom: 1px solid $jnt-muted-color;
+        background-color: $jnt-primary-background;
+        transition: all .3s;
+        &[nodata] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
+          td[child-of=#{$jnt-table-host}] {
+            vertical-align: middle;
+            text-align: center;
+            [data-icon][child-of=#{$jnt-table-host}] {
+              font-size: 80px;
+              color: $jnt-muted-color;
+            }
+          }
+        }
+        &[loading] {
+          height: map-get($vars, min-height);
+          pointer-events: none;
+          border-bottom: 0;
+        }
+        &:hover {
+          background-color: $jnt-highlight-background;
+        }
+        td[child-of=#{$jnt-table-host}] {
+          &[action] {
+            width: 50px;
+            text-align: center;
+            [menu][child-of=#{$jnt-table-host}] {
+              [button][host=#{$jnt-button-host}][child-of=#{$jnt-table-host}] {
+                button[child-of=#{$jnt-button-host}] {
+                  padding: 0 $jnt-gutter-normal;
+                }
+              }
+            }
+          }
+        }
+      }
+      td[child-of=#{$jnt-table-host}], th[child-of=#{$jnt-table-host}] {
+        padding: $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
+    }
+
+    [pagination][child-of=#{$jnt-table-host}] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: -$jnt-gutter-normal;
+      [pages][child-of=#{$jnt-table-host}] {
+        flex: 1;
+      }
+    }
+  }
+
+}

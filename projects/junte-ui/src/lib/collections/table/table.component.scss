@@ -1,8 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "forms/button/button";
 
-
-@mixin table($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     min-height: 200px,
@@ -22,7 +21,7 @@
     min-width: map-get($vars, min-width);
     padding: $jnt-gutter-normal;
 
-    @include button((
+    @include jnt-button((
       sizes: (
         schemes: (
           secondary: (

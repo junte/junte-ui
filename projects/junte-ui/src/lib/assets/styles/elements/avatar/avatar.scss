@@ -1,0 +1,83 @@
+@import "jnt-variables";
+@import "elements/avatar/common";
+
+$avatar-shape-circle: 'circle';
+$avatar-shape-square: 'square';
+
+@mixin avatar-size($size) {
+  min-width: #{map-get($size, size)};
+  width: #{map-get($size, size)};
+  min-height: #{map-get($size, size)};
+  height: #{map-get($size, size)};
+  [data-icon][child-of=#{$jnt-avatar-host}] {
+    font-size: #{map-get($size, iconSize)};
+  }
+  [text][child-of=#{$jnt-avatar-host}] {
+    font-size: #{map-get($size, textSize)};
+  }
+}
+
+@mixin shape($property, $shape) {
+  #{$property}: #{map-get($shape, border-radius)};
+
+}
+
+@mixin jnt-avatar($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    shapes: (
+      circle: (
+        border-radius: 50%
+      ),
+      square: (
+        border-radius: 0
+      )
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-avatar[host=#{$jnt-avatar-host}], #{$context} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    background-color: $jnt-secondary-background;
+    overflow: hidden;
+    @each $size, $map in $avatar-sizes {
+      &[data-size='#{$size}'] {
+        @include avatar-size($map);
+      }
+    }
+
+    @if map-has-key($vars, shapes) {
+      $shapes: map-get($vars, shapes);
+      @each $shape, $map in $shapes {
+        &[data-shape='#{$shape}'] {
+          @include shape(border-radius, $map);
+        }
+      }
+    }
+
+  }
+
+  #{$context} [text][child-of=#{$jnt-avatar-host}] {
+    color: $jnt-primary-color;
+    font-weight: $jnt-font-weight-bold;
+  }
+
+  #{$context} [data-icon][child-of=#{$jnt-avatar-host}] {
+    color: $jnt-secondary-dark-color;
+  }
+
+  #{$context} [image][child-of=#{$jnt-avatar-host}] {
+    width: 100%;
+    height: 100%;
+  }
+}

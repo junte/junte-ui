@@ -1,0 +1,12 @@
+@import "jnt-variables";
+
+@mixin jnt-confirm($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-confirm[host=#{$jnt-confirm-host}], #{$context} {
+    display: block;
+  }
+
+  #{$context} [message][child-of=#{$jnt-confirm-host}] {
+    margin-bottom: $jnt-gutter-normal;
+  }
+}

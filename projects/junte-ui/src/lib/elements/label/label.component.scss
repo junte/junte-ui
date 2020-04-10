@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 
 @mixin label-size($size) {
   padding: #{map-get($size, padding)};
@@ -12,7 +12,7 @@
   }
 }
 
-@mixin label($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-label($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
     background: $jnt-primary-color,

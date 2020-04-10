@@ -1,0 +1,119 @@
+@import "jnt-variables";
+@import "elements/icon/icon";
+
+@mixin tab-padding($padding) {
+  & {
+    padding: $padding;
+  }
+}
+
+@mixin jnt-tabs($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    padding: (
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-tabs[host=#{$jnt-tabs-host}], #{$context} {
+    display: block;
+    max-width: 100%;
+
+    &[data-outline='#{$outline-fill}'] {
+      [content][child-of=#{$jnt-tabs-host}] {
+        background-color: $jnt-primary-background;
+        box-sizing: border-box;
+        border-bottom-left-radius: $jnt-corner-normal;
+        border-bottom-right-radius: $jnt-corner-normal;
+      }
+    }
+
+    &[data-outline='#{$outline-transparent}'] {
+      [content][child-of=#{$jnt-tabs-host}] {
+        background-color: transparent;
+      }
+    }
+  }
+
+  #{$context} [tabs][child-of=#{$jnt-tabs-host}] {
+    display: flex;
+    border-bottom: 1px solid $jnt-muted-color;
+    background-color: $jnt-primary-background;
+    border-top-left-radius: $jnt-corner-normal;
+    border-top-right-radius: $jnt-corner-normal;
+
+    [tab][child-of=#{$jnt-tabs-host}] {
+      padding: $jnt-gutter-normal;
+      cursor: pointer;
+      color: $jnt-primary-text-color;
+      font-size: $jnt-font-size-base;
+      position: relative;
+      user-select: none;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      border-bottom: 1px solid transparent;
+      margin-bottom: -1px;
+
+      &:hover {
+        color: $jnt-primary-light-color;
+      }
+
+      &:focus {
+        outline: 1px solid $jnt-primary-color;
+        box-shadow: $jnt-shadow-primary;
+      }
+
+      &[active='true'] {
+        color: $jnt-primary-color;
+        border-bottom-color: $jnt-primary-color;
+      }
+
+      [label][child-of=#{$jnt-tabs-host}] {
+        position: relative;
+        z-index: 1;
+
+        [data-icon][child-of=#{$jnt-tabs-host}] {
+          line-height: 0;
+        }
+      }
+
+      [ripple][child-of=#{$jnt-tabs-host}] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: $jnt-secondary-background;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+
+  #{$context} [content][child-of=#{$jnt-tabs-host}] {
+    position: relative;
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[padding = '#{$padding}'] {
+          @include tab-padding($map);
+        }
+      }
+    }
+  }
+}

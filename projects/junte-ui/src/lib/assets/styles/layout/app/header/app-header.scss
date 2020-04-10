@@ -1,0 +1,106 @@
+@import "jnt-variables";
+@import "layout/app/variables";
+@import "navigation/menu/menu";
+
+@mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
+
+  jnt-app-header[host=#{$jnt-app-header-host}], #{$context}  {
+    display: flex;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    background-color: $jnt-primary-dark-color;
+    padding: 0 $jnt-gutter-big;
+    min-height: $app-header-height;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+  > [menu][child-of=#{$jnt-app-header-host}] {
+    display: flex;
+    align-items: center;
+    @include jnt-menu((
+      top: (
+        item: (
+          color: $jnt-white-color,
+          active: (
+            color: $jnt-white-color
+          ),
+          icon: (
+            size: $jnt-font-size-large
+          ),
+          padding: (
+            outer: $jnt-gutter-small $jnt-gutter-normal,
+            inner: $jnt-gutter-small,
+          ),
+          hover: (
+            background-color: transparent,
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+  [logo][child-of=#{$jnt-app-header-host}] {
+    display: flex;
+    align-items: center;
+    margin-right: $jnt-gutter-huge;
+    & > * {
+      display: block;
+    }
+  }
+
+  [actions][child-of=#{$jnt-app-header-host}] {
+    margin-left: auto;
+  }
+
+  [content][child-of=#{$jnt-app-header-host}] {
+    display: flex;
+    align-items: center;
+  }
+
+  [action][child-of=#{$jnt-app-header-host}] {
+    position: relative;
+    [dropdown][child-of=#{$jnt-app-header-host}] {
+      display: flex;
+      align-items: center;
+      button[child-of=#{$jnt-app-header-host}] {
+        color: $jnt-white-color;
+        background-color: transparent;
+        border: 0;
+        &:focus {
+          outline: 0;
+        }
+      }
+      > [menu][child-of=#{$jnt-app-header-host}] {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: $jnt-gutter-tiny;
+        background-color: $jnt-primary-background;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+        min-width: 200px;
+        box-shadow: $jnt-shadow-normal;
+        display: none;
+        &[opened='true'] {
+          display: block;
+        }
+        [stack][child-of=#{$jnt-app-header-host}] {
+          background-color: $jnt-primary-dark-color;
+          margin: -$jnt-gutter-normal (-$jnt-gutter-normal) 0 (-$jnt-gutter-normal);
+          padding: $jnt-gutter-normal;
+          [content][child-of=#{$jnt-app-header-host}] {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

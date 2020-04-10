@@ -1,0 +1,332 @@
+@import "jnt-variables";
+@import "elements/icon/icon";
+
+@mixin select-size($size) {
+  [select][child-of=#{$jnt-select-host}] {
+    font-size: map-get($size, font-size);
+    min-height: map-get($size, height);
+  }
+}
+
+@mixin jnt-select($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      small: (
+        font-size: 11px,
+        height: 30px,
+        chips: (
+          padding: 2px $jnt-gutter-large 2px $jnt-gutter-small
+        ),
+        input: (
+          padding: 2px 0 2px $jnt-gutter-small
+        ),
+      ),
+      normal: (
+        font-size: 14px,
+        height: 38px,
+        chips: (
+          padding: 3px $jnt-gutter-large 3px $jnt-gutter-small
+        ),
+        input: (
+          padding: 3px 0 3px $jnt-gutter-small
+        ),
+      ),
+      large: (
+        font-size: 16px,
+        height: 50px,
+        chips: (
+          padding: $jnt-gutter-small $jnt-gutter-large $jnt-gutter-small $jnt-gutter-small
+        ),
+        input: (
+          padding: $jnt-gutter-small 0 $jnt-gutter-small $jnt-gutter-small
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-select[host=#{$jnt-select-host}], #{$context} {
+    display: inline-block;
+    position: relative;
+    min-width: 70px;
+    color: $jnt-primary-text-color;
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[data-size = '#{$size}'] {
+          @include select-size($map);
+          [select][child-of=#{$jnt-select-host}] {
+            ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+              input[child-of=#{$jnt-select-host}] {
+                font-size: map_get($map, font-size);
+              }
+              @if map-has-key($map, chips) {
+                $chips: map-get($map, chips);
+                padding: map-get($chips, padding);
+              }
+              @if map-has-key($map, input) {
+                $input: map-get($map, input);
+                &[query] {
+                  padding: map-get($input, padding);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &[data-disabled='true'] {
+      [select][child-of=#{$jnt-select-host}] {
+        background-color: $jnt-control-disabled-background;
+        border-color: $jnt-control-disabled-border-color;
+        pointer-events: none;
+        ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+          background-color: $jnt-control-disabled-background;
+          color: $jnt-control-disabled-border-color;
+          &[query] {
+            background-color: transparent;
+          }
+        }
+        [close][child-of=#{$jnt-select-host}], [toggle][child-of=#{$jnt-select-host}] {
+          color: $jnt-control-disabled-border-color;
+        }
+      }
+    }
+
+    &[data-opened='true'] [select] {
+      box-shadow: $jnt-shadow-primary;
+      border-color: $jnt-primary-color;
+    }
+
+    &[data-mode='single'] {
+      ul[child-of=#{$jnt-select-host}] {
+        li[child-of=#{$jnt-select-host}] {
+          background-color: $jnt-primary-background;
+          margin-left: -$jnt-gutter-tiny;
+        }
+      }
+      &[data-opened='true'][data-search='true'] [select] {
+        ul[child-of=#{$jnt-select-host}] {
+          li[child-of=#{$jnt-select-host}] {
+            display: none;
+            &[query] {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      &[data-empty='false'] [select] {
+        ul[child-of=#{$jnt-select-host}] {
+          flex: 1;
+          li[child-of=#{$jnt-select-host}] {
+            width: 100%;
+          }
+        }
+        [query][child-of=#{$jnt-select-host}] {
+          display: none;
+        }
+      }
+
+      &[data-empty='true'] {
+        [select][child-of=#{$jnt-select-host}] ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}][query][child-of=#{$jnt-select-host}] {
+          padding-right: 0;
+        }
+      }
+
+      &[data-allow-empty='false'] {
+        [select][child-of=#{$jnt-select-host}] ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+          padding-right: $jnt-gutter-small;
+          button[child-of=#{$jnt-select-host}][close][child-of=#{$jnt-select-host}] {
+            display: none;
+          }
+        }
+      }
+      &[data-search='false'] {
+        [select][child-of=#{$jnt-select-host}] ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &[data-search='false'] {
+      [select][child-of=#{$jnt-select-host}] ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+        cursor: default;
+      }
+    }
+    &[data-empty='true'], &[data-mode='single'] {
+      [select][child-of=#{$jnt-select-host}] ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}][query][child-of=#{$jnt-select-host}] {
+        flex: 1;
+        input[child-of=#{$jnt-select-host}] {
+          width: 100%;
+        }
+      }
+    }
+    [data-disabled='true'][child-of=#{$jnt-select-host}] {
+      [select][child-of=#{$jnt-select-host}] {
+        ul[child-of=#{$jnt-select-host}] li[child-of=#{$jnt-select-host}] {
+          background-color: $jnt-muted-color;
+          &[query] {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  #{$context}  [select][child-of=#{$jnt-select-host}] {
+    border: 1px solid $jnt-control-border-color;
+    border-radius: $jnt-corner-small;
+    background-color: $jnt-control-background;
+    padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
+    box-sizing: border-box;
+    position: relative;
+    &:focus {
+      outline: 0;
+    }
+    ul[child-of=#{$jnt-select-host}] {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0 0 (-$jnt-gutter-tiny);
+      li[child-of=#{$jnt-select-host}] {
+        display: flex;
+        align-items: center;
+        position: relative;
+        background-color: $jnt-secondary-background;
+        border-radius: $jnt-corner-small;
+        margin-bottom: $jnt-gutter-tiny;
+        [data-icon][child-of=#{$jnt-select-host}] {
+          line-height: 0;
+        }
+        [empty][child-of=#{$jnt-select-host}] {
+          width: 50px;
+          height: 10px;
+          background-color: $jnt-primary-text-light-color;
+        }
+        [close][child-of=#{$jnt-select-host}] {
+          border: 0;
+          background-color: transparent;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          padding: 0 $jnt-gutter-small;
+          color: $jnt-primary-text-light-color;
+          right: 0;
+          &:focus {
+            outline: 0;
+          }
+          & > [data-icon] {
+            @include jnt-icon((
+              size: 11px
+            ), '&');
+          }
+        }
+        &:not(:last-child) {
+          margin-right: $jnt-gutter-tiny;
+        }
+        &[query] {
+          background-color: transparent;
+          input[child-of=#{$jnt-select-host}] {
+            width: 20px;
+            border: none;
+            background-color: transparent;
+            color: $jnt-primary-text-color;
+            padding: 0;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+
+    [toggle][child-of=#{$jnt-select-host}] {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      background-color: transparent;
+      padding: 0 $jnt-gutter-small;
+      color: $jnt-primary-text-light-color;
+      &:focus {
+        outline: 0;
+      }
+      & > [data-icon] {
+        @include jnt-icon((
+          size: 11px
+        ), '&');
+      }
+    }
+  }
+
+  #{$context} [options][child-of=#{$jnt-select-host}] {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: $jnt-gutter-tiny;
+    background-color: $jnt-control-background;
+    border-radius: $jnt-corner-small;
+    box-shadow: $jnt-shadow-normal;
+    padding: $jnt-gutter-small 0;
+    overflow: hidden;
+    z-index: 2;
+    &[loading='true'] {
+      min-height: 100px;
+      height: auto;
+    }
+    [skeleton][child-of=#{$jnt-select-host}] {
+      padding: 0 $jnt-gutter-small;
+    }
+    [empty][child-of=#{$jnt-select-host}] {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      [data-icon][child-of=#{$jnt-select-host}] {
+        font-size: 50px;
+        color: $jnt-primary-text-light-color;
+      }
+    }
+    ul[child-of=#{$jnt-select-host}] {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: scroll;
+      [loading][child-of=#{$jnt-select-host}] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($jnt-primary-background, .5);
+      }
+      li[child-of=#{$jnt-select-host}] {
+        cursor: pointer;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+        border-left: 2px solid transparent;
+        [data-icon][child-of=#{$jnt-select-host}] {
+          line-height: 0;
+        }
+        &:hover {
+          background-color: $jnt-secondary-background;
+          border-color: $jnt-primary-color;
+        }
+      }
+    }
+  }
+}

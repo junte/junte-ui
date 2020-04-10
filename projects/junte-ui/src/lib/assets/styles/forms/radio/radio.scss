@@ -1,0 +1,124 @@
+@import "jnt-variables";
+
+@mixin radio-size($size) {
+  [switch][child-of=#{$jnt-radio-host}] {
+    min-width: $size;
+    width: $size;
+    min-height: $size;
+    height: $size;
+    border-radius: $size / 2;
+  }
+  [indicator][child-of=#{$jnt-radio-host}] {
+    min-width: $size - 8px;
+    width: $size - 8px;
+    min-height: $size - 8px;
+    height: $size - 8px;
+    border-radius: ($size - 8px) / 2;
+  }
+}
+
+@mixin jnt-radio($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      tiny: 12px,
+      small: 14px,
+      normal: 18px,
+      large: 24px,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-radio[host=#{$jnt-radio-host}], #{$context} {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      @each $size, $map in $sizes {
+        &[data-size = '#{$size}'] {
+          @include radio-size($map);
+        }
+      }
+    }
+  }
+
+  #{$context} input[child-of=#{$jnt-radio-host}] {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    &:checked + [switch] {
+      border-color: $jnt-primary-color;
+      & > [indicator] {
+        opacity: 1;
+      }
+    }
+    &:disabled {
+      cursor: default;
+      pointer-events: none;
+      & ~ label[child-of=#{$jnt-radio-host}] {
+        color: $jnt-control-disabled-label-color;
+      }
+      & + [switch] {
+        background-color: $jnt-control-disabled-background;
+        border-color: $jnt-control-disabled-border-color;
+      }
+      & + [switch] > [indicator] {
+        background-color: $jnt-control-disabled-indicator-icon-color;
+      }
+    }
+    &:focus {
+      & + [switch] {
+        box-shadow: 0 1px 5px $jnt-primary-color;
+      }
+    }
+    &:hover {
+      & + [switch] {
+        border-color: $jnt-primary-color;
+      }
+    }
+  }
+
+  #{$context} label[child-of=#{$jnt-radio-host}] {
+    padding-left: $jnt-control-gutter;
+    color: $jnt-control-switch-label-color;
+    user-select: none;
+  }
+
+  #{$context} [switch][child-of=#{$jnt-radio-host}] {
+    position: relative;
+    background-color: $jnt-control-background;
+    border: 1px solid $jnt-control-border-color;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all .3s;
+  }
+
+  #{$context} [indicator][child-of=#{$jnt-radio-host}] {
+    display: inline-block;
+    opacity: 0;
+    background-color: $jnt-primary-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .3s;
+  }
+
+}

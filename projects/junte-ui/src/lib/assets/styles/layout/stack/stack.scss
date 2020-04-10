@@ -1,0 +1,98 @@
+@import "jnt-variables";
+
+$type-vertical: 'vertical';
+$type-horizontal: 'horizontal';
+
+@mixin stack-gutters($property, $gutter) {
+  & > :not(:last-child):not(router-outlet) {
+    #{$property}: $gutter;
+  }
+}
+
+@mixin jnt-stack($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    gutters: (
+      none: $jnt-gutter-none,
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  jnt-stack[host=#{$jnt-stack-host}], #{$context} {
+    display: flex;
+    text-align: left;
+    @if map-has-key($vars, gutters) {
+      $gutters: map-get($vars, gutters);
+      @each $gutter, $map in $gutters {
+        &[data-gutter = '#{$gutter}'] {
+          &[data-type = '#{$type-vertical}'] {
+            flex-direction: column;
+            @include stack-gutters(margin-bottom, $map);
+          }
+          &[data-type = '#{$type-horizontal}'] {
+            flex-direction: row;
+            @include stack-gutters(margin-right, $map);
+          }
+        }
+      }
+    }
+
+    &[data-align='start'] {
+      align-items: flex-start;
+    }
+    &[data-align='center'] {
+      align-items: center;
+    }
+    &[data-align='end'] {
+      align-items: flex-end;
+    }
+    &[data-align='stretch'] {
+      align-items: stretch;
+    }
+    &[data-align='baseline'] {
+      align-items: baseline;
+    }
+
+    &[data-justify='start'] {
+      justify-content: flex-start;
+    }
+    &[data-justify='center'] {
+      justify-content: center;
+    }
+    &[data-justify='end'] {
+      justify-content: flex-end;
+    }
+    &[data-justify='between'] {
+      justify-content: space-between;
+    }
+    &[data-justify='around'] {
+      justify-content: space-around;
+    }
+    &[data-justify='evenly'] {
+      justify-content: space-evenly;
+    }
+
+    &[data-wrap='wrap'] {
+      flex-wrap: wrap;
+    }
+    &[data-wrap='nowrap'] {
+      flex-wrap: nowrap;
+    }
+    &[data-wrap='reverse'] {
+      flex-wrap: wrap-reverse;
+    }
+  }
+}
