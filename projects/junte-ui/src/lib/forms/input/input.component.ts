@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -36,8 +36,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl
   });
 
-  _placeholder: string;
-
   @HostBinding('attr.scheme')
   _scheme: InputScheme = InputScheme.normal;
 
@@ -74,22 +72,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Input placeholder',
     type: 'string',
   })
-  @Input() set placeholder(placeholder: string) {
-    if (!!this.mask) {
-      if (this.mask === Pattern.Date) {
-        this._placeholder = '__.__.____';
-      }
-      if (this.mask === Pattern.Phone) {
-        this._placeholder = '+7 (___) - ___ - __ - __';
-      }
-    } else {
-      this._placeholder = placeholder || '';
-    }
-  }
-
-  get placeholder() {
-    return this._placeholder;
-  }
+  @Input() placeholder = '';
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
@@ -172,46 +155,42 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  // @HostListener('focusin', ['$event'])
-  // addPrefix() {
-  //   console.log('focus');
-  //   if (!this.mask && this.mask === Pattern.Phone) {
-  //     // if (this.inputControl.value === '') {
-  //       this.inputControl.setValue('+7 ');
-  //     // }
-  //   }
-  // }
+  get masking() {
+    return this.mask ? this.mask.replace(/\?/g, '_') : null;
+  }
 
+  @ViewChild('input') input: ElementRef;
+
+  @HostListener('mouseenter', ['$event'])
+  checkEnter(e: KeyboardEvent) {
+    if (!!this.masking && !this.inputControl.value) {
+      this.inputControl.patchValue(this.masking);
+    }
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  checkLeave(e: KeyboardEvent) {
+    if (this.inputControl.value === this.masking) {
+      this.inputControl.reset();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  setFocus() {
+    this.input.nativeElement.setSelectionRange(this.inputControl.value.indexOf('_'), this.inputControl.value.indexOf('_'));
+    this.input.nativeElement.focus();
+  }
 
   @HostListener('keypress', ['$event'])
-  check(e: KeyboardEvent) {
-    const length = !!this.inputControl.value ? this.inputControl.value.toString().length : 0;
-    if (!!this.mask) {
-      if (this.mask === Pattern.Date) {
-        if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
-          || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
-          return false;
-        }
-        if ((length === 2 || length === 5)) {
-          this.inputControl.setValue(this.inputControl.value + '.');
-        }
+  press(e: KeyboardEvent) {
+    if (!!this.masking) {
+      if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
+        || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
+        return false;
       }
-
-      if (this.mask === Pattern.Phone) {
-        if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
-          || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
-          return false;
-        }
-        if (length === 1) {
-          this.inputControl.setValue('(' + this.inputControl.value);
-        }
-        if (length === 4) {
-          this.inputControl.setValue(this.inputControl.value + ') - ');
-        }
-        if ((length === 11 || length === 16)) {
-          this.inputControl.setValue(this.inputControl.value + ' - ');
-        }
-      }
+      console.log(this.inputControl.value);
+      this.inputControl.patchValue(this.inputControl.value.replace('_', e.key));
+      this.input.nativeElement.setSelectionRange(this.inputControl.value.indexOf('_'), this.inputControl.value.indexOf('_'));
     }
   }
 

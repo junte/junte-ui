@@ -4,6 +4,7 @@
   <div label *ngIf="!!label">{{label}}</div>
 
   <input *ngIf="!multiline; else textarea" formControlName="input"
+         #input
          [type]="type"
          [placeholder]="placeholder"
          [maxlength]="maxlenght"
