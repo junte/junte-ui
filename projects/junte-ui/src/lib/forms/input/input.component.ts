@@ -188,7 +188,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
         return false;
       }
-      console.log(this.inputControl.value);
+      e.preventDefault();
       this.inputControl.patchValue(this.inputControl.value.replace('_', e.key));
       this.input.nativeElement.setSelectionRange(this.inputControl.value.indexOf('_'), this.inputControl.value.indexOf('_'));
     }
