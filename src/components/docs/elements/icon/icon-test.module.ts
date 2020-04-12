@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   ButtonModule,
   FormModule,
   GridModule,
@@ -35,7 +35,7 @@ import { SelectIconComponent } from './select-icon/select-icon.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

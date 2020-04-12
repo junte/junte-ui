@@ -26,13 +26,13 @@ export class LinkTestComponent implements OnInit {
   targetControl = this.fb.control(null);
   iconControl = this.fb.control(true);
   badgeControl = this.fb.control(true);
-  disableControl = this.fb.control(false);
+  disabledControl = this.fb.control(false);
   builder = this.fb.group({
     scheme: this.schemeControl,
     outline: this.outlineControl,
     icon: this.iconControl,
     source: this.sourceControl,
-    disable: this.disableControl,
+    disabled: this.disabledControl,
     target: this.targetControl,
     badge: this.badgeControl
   });
