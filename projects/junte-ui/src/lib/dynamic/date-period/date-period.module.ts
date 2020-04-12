@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { DatePipeModule } from '../../core/pipes/date.pipe.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { DatePeriodComponent } from './date-period.component';
 
@@ -13,7 +13,7 @@ import { DatePeriodComponent } from './date-period.component';
   imports: [
     CommonModule,
     StackModule,
-    DatePipeModule
+    DatePipesModule
   ],
   exports: [
     DatePeriodComponent

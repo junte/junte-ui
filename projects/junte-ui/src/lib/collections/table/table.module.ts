@@ -3,8 +3,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ArrayPipeModule } from '../../core/pipes/array.pipe.module';
-import { DatePipeModule } from '../../core/pipes/date.pipe.module';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { InputModule } from '../../forms/input/input.module';
@@ -22,7 +22,7 @@ import { TableComponent } from './table.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DatePipeModule,
+    DatePipesModule,
     IconModule,
     InputModule,
     PagerModule,
@@ -31,7 +31,7 @@ import { TableComponent } from './table.component';
     StackModule,
     SkeletonModule,
     DropdownModule,
-    ArrayPipeModule,
+    ArrayPipesModule,
     SelectModule,
     TranslateModule
   ],

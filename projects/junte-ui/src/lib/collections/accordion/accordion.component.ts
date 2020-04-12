@@ -1,6 +1,6 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { AccordionSectionComponent } from './section/accordion-section.component';
 import { UI } from '../../core/enums/ui';
+import { AccordionSectionComponent } from './section/accordion-section.component';
 
 @Component({
   selector: 'jnt-accordion',

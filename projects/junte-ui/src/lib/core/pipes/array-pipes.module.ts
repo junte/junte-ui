@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IncludesPipe, JoinPipe, MockArrayPipe, NumberArrayPipe } from './array.pipe';
+import { IncludesPipe, JoinPipe, MockArrayPipe } from './array.pipe';
 
 @NgModule({
   declarations: [
     MockArrayPipe,
-    NumberArrayPipe,
     JoinPipe,
     IncludesPipe
   ],
@@ -14,10 +13,9 @@ import { IncludesPipe, JoinPipe, MockArrayPipe, NumberArrayPipe } from './array.
   ],
   exports: [
     MockArrayPipe,
-    NumberArrayPipe,
     JoinPipe,
     IncludesPipe
   ]
 })
-export class ArrayPipeModule {
+export class ArrayPipesModule {
 }

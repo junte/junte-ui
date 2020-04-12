@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ColorPipeModule } from '../../core/pipes/color.pipe.module';
+import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { BadgeComponent } from './badge.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ColorPipeModule
+    ColorPipesModule
   ],
   declarations: [
     BadgeComponent

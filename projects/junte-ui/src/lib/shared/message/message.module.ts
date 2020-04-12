@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { MessageComponent } from './message.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { MessageComponent } from './message.component';
 
 @NgModule({
   declarations: [

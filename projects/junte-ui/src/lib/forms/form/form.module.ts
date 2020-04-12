@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { JunteDirectiveModule } from '../../core/directives/junte-directive.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { LabelModule } from '../../elements/label/label.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -26,7 +25,6 @@ import { FieldTouchedHasErrorPipe } from './pipes';
   imports: [
     CommonModule,
     FormsModule,
-    JunteDirectiveModule,
     CheckboxModule,
     LabelModule,
     StackModule,

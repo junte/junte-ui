@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Color } from '../../core/enums/color';
 import { PropertyApi } from '../../core/decorators/api';
+import { Color } from '../../core/enums/color';
 
 @Component({
   selector: 'jnt-dot',

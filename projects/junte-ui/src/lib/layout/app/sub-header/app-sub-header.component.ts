@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
-import { UI } from '../../../core/enums/ui';
 import { PropertyApi } from '../../../core/decorators/api';
+import { UI } from '../../../core/enums/ui';
 
 @Component({
   selector: 'jnt-app-sub-header',

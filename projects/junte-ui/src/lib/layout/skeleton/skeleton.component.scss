@@ -60,7 +60,7 @@
       width: 100%;
     }
     &[data-animated='false'] {
-      [line], [image] {
+      [line], [avatar] {
         animation: none;
       }
     }
@@ -78,7 +78,7 @@
     border-radius: 50%;
   }
 
-  #{$context} [line], [image] {
+  #{$context} [line], [avatar] {
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);

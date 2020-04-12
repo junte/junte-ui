@@ -1,9 +1,9 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Shape } from '../../../core/enums/shape';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { AvatarComponent } from '../avatar.component';
-import { PropertyApi } from '../../../core/decorators/api';
 
 const MAX_CAPACITY = 4;
 

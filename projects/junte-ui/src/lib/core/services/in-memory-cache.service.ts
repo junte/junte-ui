@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
-export class CacheService {
+export class InMemoryCacheService {
 
-  private store: any = {};
+  private store: { [key: string]: any } = {};
 
   contains(key: string) {
     return this.store[key] !== undefined;

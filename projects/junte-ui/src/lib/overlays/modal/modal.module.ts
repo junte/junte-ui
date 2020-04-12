@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { SanitizePipeModule } from '../../core/pipes/sanitize.pipe.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { BlockModule } from '../../layout/block/block.module';
@@ -17,8 +16,7 @@ import { ModalComponent } from './modal.component';
     BlockModule,
     ButtonModule,
     StackModule,
-    IconModule,
-    SanitizePipeModule
+    IconModule
   ],
   entryComponents: [
     ModalComponent

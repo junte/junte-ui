@@ -16,7 +16,7 @@
           (click)="selected = indicator.data"
           [attr.selected]="(!!keyField && !!selected
             ? selected[keyField] === indicator.data[keyField]
-            : (selected | isEqual: indicator.data))"
+            : (selected === indicator.data))"
           [style.height.px]="heightIndicator"
           [style.max-height.px]="heightIndicator"
           [style.min-height.px]="heightIndicator">
@@ -33,8 +33,8 @@
         <td>
           {{indicator.label}}
         </td>
-        <td [style.background-color]="indicator.color | lightenDarkenColor : -20">
-          <span [style.color]="getTextBrightness(indicator.color | lightenDarkenColor : -20)">
+        <td [style.background-color]="indicator.color | lightenDarken : -20">
+          <span [style.color]="indicator.color | lightenDarken : -20 | textBrightness">
             {{indicator.value | number: '1.0-0'}}%
           </span>
         </td>
@@ -52,7 +52,7 @@
   <ng-container *ngFor="let indicator of indicators; trackBy: trackByFn; let i = index; let first = first">
     <polygon
       [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPoligon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
-      [attr.fill]="indicator.color | lightenDarkenColor: 10"></polygon>
+      [attr.fill]="indicator.color | lightenDarken: 10"></polygon>
     <rect [attr.x]="widthPoligon"
           [attr.y]="first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg"
           [attr.width]="widthMark"

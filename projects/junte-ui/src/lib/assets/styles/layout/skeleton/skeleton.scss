@@ -60,7 +60,7 @@
       width: 100%;
     }
     &[data-animated='false'] {
-      [line][child-of=#{$jnt-skeleton-host}], [image][child-of=#{$jnt-skeleton-host}] {
+      [line][child-of=#{$jnt-skeleton-host}], [avatar][child-of=#{$jnt-skeleton-host}] {
         animation: none;
       }
     }
@@ -78,7 +78,7 @@
     border-radius: 50%;
   }
 
-  #{$context} [line][child-of=#{$jnt-skeleton-host}], [image][child-of=#{$jnt-skeleton-host}] {
+  #{$context} [line][child-of=#{$jnt-skeleton-host}], [avatar][child-of=#{$jnt-skeleton-host}] {
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);

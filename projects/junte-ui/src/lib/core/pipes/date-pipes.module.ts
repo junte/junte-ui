@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-  DatesInMonthPipe,
   AfterPipe,
   BeforePipe,
   DateDiffPipe,
+  DatesInMonthPipe,
   FullMonthPipe,
   IsEqualDatePipe,
   IsSameMonthPipe,
+  IsTodayPipe,
   IsWeekendPipe,
-  RemnantDayPipe,
-  IsTodayPipe
+  RemnantDayPipe
 } from './date.pipe';
 
 @NgModule({
@@ -42,5 +42,5 @@ import {
     IsTodayPipe
   ]
 })
-export class DatePipeModule {
+export class DatePipesModule {
 }

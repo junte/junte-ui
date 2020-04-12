@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ContentChild,
-  ContentChildren,
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  QueryList
-} from '@angular/core';
+import { ContentChild, ContentChildren, Directive, ElementRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { LinkComponent } from '../link/link.component';
 import { MenuItemComponent } from './menu-item.component';
 
@@ -20,10 +10,10 @@ export class SubMenuItemsDirective {
 }
 
 @Directive({selector: '[jntSubMenu]'})
-export class SubMenuDirective implements AfterViewInit {
+export class SubMenuDirective {
 
   @Input('jntSubMenu') item: MenuItemComponent;
-  @Input() collapsed;
+  @Input() collapsed = false;
 
   @ContentChild(SubMenuItemsDirective)
   submenu: SubMenuItemsDirective;
@@ -49,6 +39,4 @@ export class SubMenuDirective implements AfterViewInit {
   constructor(private host: ElementRef) {
   }
 
-  ngAfterViewInit() {
-  }
 }
