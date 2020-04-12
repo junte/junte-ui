@@ -12,7 +12,7 @@ $avatar-shape-square: 'square';
   [data-icon][child-of=#{$jnt-avatar-host}] {
     font-size: #{map-get($size, iconSize)};
   }
-  [text][child-of=#{$jnt-avatar-host}] {
+  [data-text][child-of=#{$jnt-avatar-host}] {
     font-size: #{map-get($size, textSize)};
   }
 }
@@ -67,7 +67,7 @@ $avatar-shape-square: 'square';
 
   }
 
-  #{$context} [text][child-of=#{$jnt-avatar-host}] {
+  #{$context} [data-text][child-of=#{$jnt-avatar-host}] {
     color: $jnt-primary-color;
     font-weight: $jnt-font-weight-bold;
   }
@@ -76,7 +76,7 @@ $avatar-shape-square: 'square';
     color: $jnt-secondary-dark-color;
   }
 
-  #{$context} [image][child-of=#{$jnt-avatar-host}] {
+  #{$context} [data-image][child-of=#{$jnt-avatar-host}] {
     width: 100%;
     height: 100%;
   }
