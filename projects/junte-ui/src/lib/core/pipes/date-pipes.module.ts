@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import {
   AfterPipe,
   BeforePipe,
-  FullMonthPipe
+  FullMonthPipe,
+  DatesInMonthPipe
 } from './date.pipe';
 
 @NgModule({
@@ -13,12 +14,14 @@ import {
   declarations: [
     AfterPipe,
     BeforePipe,
-    FullMonthPipe
+    FullMonthPipe,
+    DatesInMonthPipe
   ],
   exports: [
     AfterPipe,
     BeforePipe,
-    FullMonthPipe
+    FullMonthPipe,
+    DatesInMonthPipe
   ]
 })
 export class DatePipesModule {
