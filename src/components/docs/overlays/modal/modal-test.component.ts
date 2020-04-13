@@ -30,7 +30,6 @@ export class ModalTestComponent implements OnInit {
   language = Language;
   size = Size;
   contentType = ContentType;
-  modal = ModalComponent;
   types = {modal: ModalComponent, options: ModalOptions};
 
   @ViewChild('code') code: TabComponent;
@@ -43,7 +42,7 @@ export class ModalTestComponent implements OnInit {
   footerControl = this.fb.control(false);
   typeControl = this.fb.control(ContentType.templateRef);
 
-  form = this.fb.group({
+  builder = this.fb.group({
     width: this.widthControl,
     height: this.heightControl,
     closing: this.closingControl,
@@ -66,7 +65,7 @@ export class ModalTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form.valueChanges
+    this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }
 

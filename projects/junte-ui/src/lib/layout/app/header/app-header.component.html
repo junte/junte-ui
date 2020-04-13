@@ -1,6 +1,7 @@
 <ng-template #menuTemplate let-menu="menu" let-orientation="orientation">
   <div menu *ngIf="!!menu">
-    <jnt-menu [orientation]="orientation">
+    <jnt-menu [orientation]="orientation"
+              (selected)="opened = false">
       <jnt-menu-item *ngFor="let i of menu.items"
                      [title]="i.title"
                      [link]="i.link"
@@ -40,6 +41,8 @@
         <jnt-icon [icon]="ui.icons.actions" [size]="ui.size.large"></jnt-icon>
       </button>
       <div menu [attr.opened]="opened">
+        <ng-container
+          *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical}"></ng-container>
         <jnt-stack stack [type]="ui.orientation.horizontal"
                    [gutter]="ui.gutter.small"
                    [align]="ui.flex.align.stretch">
@@ -48,7 +51,6 @@
           </div>
           <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
         </jnt-stack>
-        <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical}"></ng-container>
       </div>
     </div>
   </jnt-stack>

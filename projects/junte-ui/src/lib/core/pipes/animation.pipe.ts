@@ -8,7 +8,6 @@ enum VisibleElement {
 @Pipe({
   name: 'visible'
 })
-
 export class VisibleElementPipe implements PipeTransform {
   transform(visibility: boolean): string {
     return !!visibility ? VisibleElement.hide : VisibleElement.show;

@@ -83,6 +83,7 @@ export class TableDataComponent implements OnInit {
   })();
 
   constructor(private fb: FormBuilder) {
+
   }
 
   ngOnInit() {
@@ -92,7 +93,8 @@ export class TableDataComponent implements OnInit {
 
       let results = this.mocks;
       if (!!filter.q) {
-        results = results.filter(({person}) => person.toLowerCase().indexOf(filter.q.toLowerCase()) !== -1);
+        results = results.filter(({person}) => person.toLowerCase()
+          .indexOf(filter.q.toLowerCase()) !== -1);
       }
 
       if (!!filter.job) {

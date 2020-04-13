@@ -29,6 +29,10 @@ export class CodeHighlightComponent implements AfterViewInit {
       .replace(/\> +\</g, '><');
   }
 
+  private formatTS(source: string) {
+    return source.replace(/\s\<\sany\s\>\s;/g, '<any>;');
+  }
+
   constructor(private cd: ChangeDetectorRef) {
   }
 
@@ -57,6 +61,7 @@ export class CodeHighlightComponent implements AfterViewInit {
             indent_level: 0,
             wrap_attributes_indent_size: 4
           });
+          code = this.formatTS(code);
           break;
       }
 
