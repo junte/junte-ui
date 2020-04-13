@@ -11,14 +11,14 @@
 
 <div bar>
   <div *ngIf="!!start && !!end && start < end && start <= current && current < end" progress
-       [style.width.%]="(current | dateDiff:start:base) / (end || current | dateDiff:start:base) * 100">
+       [style.width.%]="(current | dfnsDifferenceInDays:start) / (end || current | dfnsDifferenceInDays:start) * 100">
   </div>
 
   <div *ngIf="(current >= end) || (!!start && !end && current > start)" progress full></div>
 </div>
 
 <div *ngIf="!!start && !!end" days>
-  {{current < end ? (end | dateDiff:start:base) - (current | dateDiff:start:base) :
-  (end | dateDiff:start:base) - (start | dateDiff:start:base)}} {{base}}
+  {{current < end ? (end | dfnsDifferenceInDays:start) - (current | dfnsDifferenceInDays:start) :
+  (end | dfnsDifferenceInDays:start) - (start | dfnsDifferenceInDays:start)}} days
 </div>
 

@@ -3,14 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   AfterPipe,
   BeforePipe,
-  DateDiffPipe,
-  DatesInMonthPipe,
-  FullMonthPipe,
-  IsEqualDatePipe,
-  IsSameMonthPipe,
-  IsTodayPipe,
-  IsWeekendPipe,
-  RemnantDayPipe
+  FullMonthPipe
 } from './date.pipe';
 
 @NgModule({
@@ -18,28 +11,14 @@ import {
     CommonModule
   ],
   declarations: [
-    IsEqualDatePipe,
-    IsSameMonthPipe,
     AfterPipe,
     BeforePipe,
-    DateDiffPipe,
-    FullMonthPipe,
-    RemnantDayPipe,
-    IsWeekendPipe,
-    DatesInMonthPipe,
-    IsTodayPipe
+    FullMonthPipe
   ],
   exports: [
-    IsEqualDatePipe,
-    IsSameMonthPipe,
     AfterPipe,
     BeforePipe,
-    DateDiffPipe,
-    FullMonthPipe,
-    RemnantDayPipe,
-    IsWeekendPipe,
-    DatesInMonthPipe,
-    IsTodayPipe
+    FullMonthPipe
   ]
 })
 export class DatePipesModule {
