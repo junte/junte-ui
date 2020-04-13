@@ -35,7 +35,7 @@
       <ng-container
         *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
     </td>
-    <td day *ngFor="let day of (current | dfnsGetDaysInMonth)"
+    <td day *ngFor="let day of (current | datesInMonth)"
         [attr.current]="day | dfnsIsToday"
         [attr.weekend]="day | dfnsIsWeekend">
       {{day | dfnsGetDate}}

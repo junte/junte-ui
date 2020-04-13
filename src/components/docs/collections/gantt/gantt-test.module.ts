@@ -13,6 +13,7 @@ import {
   StackModule,
   TabsModule
 } from 'junte-ui';
+import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { GanttTestComponent } from './gantt-test.component';
@@ -30,7 +31,9 @@ import { GanttTestComponent } from './gantt-test.component';
     GanttModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    DatePipesModule
+    DatePipesModule,
+    SharedModule,
+    DateFnsModule
   ],
   exports: [
     GanttTestComponent

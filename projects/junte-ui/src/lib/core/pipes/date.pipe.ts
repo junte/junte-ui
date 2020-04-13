@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { getDate, getDaysInMonth, getMonth, getYear } from 'date-fns';
+import { addDays, getDate, getDaysInMonth, getMonth, getYear, setDate } from 'date-fns';
 
 const MONTHS_IN_YEAR = 12;
 
@@ -30,3 +30,15 @@ export class AfterPipe implements PipeTransform {
   }
 }
 
+@Pipe({name: 'datesInMonth'})
+export class DatesInMonthPipe implements PipeTransform {
+  transform(date: Date): Date[] {
+    const first = setDate(date, 1);
+    const days = getDaysInMonth(date);
+    const dates = [];
+    for (let i = 0; i < days; i++) {
+      dates.push(addDays(first, i));
+    }
+    return dates;
+  }
+}
