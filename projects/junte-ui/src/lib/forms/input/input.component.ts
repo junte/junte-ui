@@ -6,11 +6,6 @@ import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputState, InputType } from './enums';
 
-export enum Pattern {
-  Date = '??.??.????',
-  Phone = '+7(???)-???-??-??'
-}
-
 @Component({
   selector: 'jnt-input',
   templateUrl: './input.encapsulated.html',
@@ -27,7 +22,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   ui = UI;
   inputType = InputType;
   inputState = InputState;
-  pattern = Pattern;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
@@ -145,32 +139,25 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @Input()
   get maxlenght() {
-    if (!!this.mask) {
-      if (this.mask === Pattern.Date) {
-        return 10;
-      }
-      if (this.mask === Pattern.Phone) {
-        return 21;
-      }
-    }
+    return !!this.mask ? this.mask.length : null;
   }
 
-  get masking() {
+  get pattern() {
     return this.mask ? this.mask.replace(/\?/g, '_') : null;
   }
 
   @ViewChild('input') input: ElementRef;
 
   @HostListener('mouseenter', ['$event'])
-  checkEnter(e: KeyboardEvent) {
-    if (!!this.masking && !this.inputControl.value) {
-      this.inputControl.patchValue(this.masking);
+  checkEnter() {
+    if (!!this.pattern && !this.inputControl.value) {
+      this.inputControl.patchValue(this.pattern);
     }
   }
 
   @HostListener('mouseleave', ['$event'])
-  checkLeave(e: KeyboardEvent) {
-    if (this.inputControl.value === this.masking) {
+  checkLeave() {
+    if (this.inputControl.value === this.pattern) {
       this.inputControl.reset();
     }
   }
@@ -183,7 +170,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostListener('keypress', ['$event'])
   press(e: KeyboardEvent) {
-    if (!!this.masking) {
+    if (!!this.pattern) {
       if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
         || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
         return false;
@@ -194,7 +181,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
