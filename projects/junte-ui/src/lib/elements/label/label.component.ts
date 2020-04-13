@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Color } from '../../core/enums/color';
 import { PropertyApi } from '../../core/decorators/api';
+import { Color } from '../../core/enums/color';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 

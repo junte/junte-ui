@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
 @mixin select-size($size) {
@@ -8,7 +8,7 @@
   }
 }
 
-@mixin select($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-select($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -226,7 +226,7 @@
             outline: 0;
           }
           & > [data-icon] {
-            @include icon((
+            @include jnt-icon((
               size: 11px
             ), '&');
           }
@@ -263,7 +263,7 @@
         outline: 0;
       }
       & > [data-icon] {
-        @include icon((
+        @include jnt-icon((
           size: 11px
         ), '&');
       }

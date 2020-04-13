@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
@@ -14,7 +14,7 @@
     }
 
     [badge] {
-      @include badge((
+      @include jnt-badge((
         background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
         color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
       ), '&');
@@ -33,7 +33,7 @@
       color: map-get($scheme, inverse-color);
 
       [badge] {
-        @include badge((
+        @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
@@ -44,7 +44,7 @@
     }
 
     [badge] {
-      @include badge((
+      @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
@@ -59,14 +59,14 @@
         color: map-get($scheme, color);
 
         [badge] {
-          @include badge((
+          @include jnt-badge((
             background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
             color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
       [badge] {
-        @include badge((
+        @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
@@ -91,7 +91,7 @@
     }
 
     [badge] {
-      @include badge((
+      @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
@@ -104,7 +104,7 @@
         color: map-get($scheme, inverse-color);
       }
       [badge] {
-        @include badge((
+        @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
@@ -126,7 +126,7 @@
   }
 }
 
-@mixin button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large,
@@ -328,7 +328,7 @@
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
             [badge] {
-              @include badge((
+              @include jnt-badge((
                 size: map-get($badge, size)
               ), '&');
             }
@@ -336,7 +336,7 @@
           @if map-has-key($map, icon) {
             $icon: map-get($map, icon);
             [data-icon] {
-              @include icon((
+              @include jnt-icon((
                 size: map-get($icon, size)
               ), '&');
             }

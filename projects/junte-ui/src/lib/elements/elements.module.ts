@@ -2,9 +2,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AvatarModule } from './avatar/avatar.module';
 import { BadgeModule } from './badge/badge.module';
+import { DotModule } from './dot/dot.module';
 import { IconModule } from './icon/icon.module';
 import { LabelModule } from './label/label.module';
-import { DotModule } from './dot/dot.module';
 
 @NgModule({
   exports: [

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   AvatarModule,
   BlockModule,
   CheckboxModule,
@@ -32,7 +32,7 @@ import { AvatarTestComponent } from './avatar-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

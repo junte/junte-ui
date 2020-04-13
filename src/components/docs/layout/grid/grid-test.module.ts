@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   FormModule,
   GridModule,
   LinkModule,
@@ -29,7 +29,7 @@ import { GridTestComponent } from './grid-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     GridModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

@@ -19,7 +19,7 @@ import { CheckboxComponent } from '../checkbox.component';
 export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
 
   private disabled = false;
-  private selectedItems: any[];
+  private selectedItems: any[] = [];
 
   _size: Size = Size.normal;
 

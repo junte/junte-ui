@@ -24,7 +24,7 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-menu [type]="typeControl.value" [spacer]="spacingControl.value"
+                <jnt-menu [orientation]="orientationControl.value" [spacer]="spacingControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
                                  [target]="targetControl.value"
@@ -68,10 +68,10 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="type"
-                                  i18n="@@label.type">Type</jnt-form-label>
+                  <jnt-form-label for="orientation"
+                                  i18n="@@label.orientation">Orientation</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="type" placeholder="Horizontal">
+                    <jnt-select formControlName="orientation" placeholder="Horizontal">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.layout.horizontal"
@@ -168,9 +168,9 @@
                 <![CDATA[
                 <jnt-menu
                   ]]>
-                  <ng-container *ngIf="typeControl.value">
+                  <ng-container *ngIf="orientationControl.value">
                     <![CDATA[
-                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+                    [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="spacingControl.value">
                     <![CDATA[

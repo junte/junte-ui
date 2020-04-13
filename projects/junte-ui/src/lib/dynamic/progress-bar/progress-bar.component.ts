@@ -1,6 +1,5 @@
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { ContentApi } from '../../core/decorators/api';
-import { PropertyApi } from '../../core/decorators/api';
+import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 @Component({

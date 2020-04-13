@@ -7,7 +7,11 @@
 </ng-template>
 
 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-  <jnt-button [type]="ui.form.button.type.submit" [text]="'action.ok' | translate" (click)="ok.emit()"></jnt-button>
-  <jnt-button [scheme]="ui.scheme.secondary" [text]="'action.cancel' | translate" (click)="cancel.emit()"></jnt-button>
+  <jnt-button [type]="ui.form.button.type.submit"
+              [text]="'action.ok' | translate"
+              (click)="ok.emit()"></jnt-button>
+  <jnt-button [scheme]="ui.scheme.secondary"
+              [text]="'action.cancel' | translate"
+              (click)="cancel.emit()"></jnt-button>
 </jnt-stack>
 

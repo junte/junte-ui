@@ -63,7 +63,7 @@
   <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
     <tr *ngFor="let line of lines" (click)="line.click.emit($event)">
       <ng-template #noRequest>
-        <td *ngFor="let day of (current | dfnsGetDaysInMonth) | numberArray: 1"></td>
+        <td *ngFor="let day of (current | dfnsGetDaysInMonth) | mockArray: 1"></td>
       </ng-template>
 
       <td gutter></td>
@@ -74,13 +74,13 @@
 
       <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)
         || ((current | dateDiff:line.from:'months') > 0 && (line.to | dateDiff:current:'months') > 0); else noRequest">
-        <td *ngFor="let day of (line.from | before: current) - 1 | numberArray"></td>
+        <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
         <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
           <ng-container *ngTemplateOutlet="line.indicatorTemplate;
             context: {period: line.period, current: current, today: today}">
           </ng-container>
         </td>
-        <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | numberArray"></td>
+        <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | mockArray"></td>
       </ng-container>
     </tr>
   </ng-container>

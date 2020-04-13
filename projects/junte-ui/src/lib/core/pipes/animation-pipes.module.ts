@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { VisibleElementPipe } from './animation.pipe';
 
 @NgModule({
@@ -13,5 +13,5 @@ import { VisibleElementPipe } from './animation.pipe';
     VisibleElementPipe
   ]
 })
-export class AnimationPipeModule {
+export class AnimationPipesModule {
 }

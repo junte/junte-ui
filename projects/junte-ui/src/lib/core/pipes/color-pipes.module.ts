@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { LightenDarkenPipe, TextBrightnessPipe } from './color.pipe';
 
 @NgModule({
@@ -14,5 +14,5 @@ import { LightenDarkenPipe, TextBrightnessPipe } from './color.pipe';
   ]
 })
 
-export class ColorPipeModule {
+export class ColorPipesModule {
 }

@@ -1,7 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
-@mixin switch($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-switch($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     corner: 35px,
@@ -99,7 +99,7 @@
                 [data-icon] {
                   @if map-has-key($map, icon) {
                     $icon: map-get($map, icon);
-                    @include icon((
+                    @include jnt-icon((
                       size: map-get($icon, size),
                     ), '&');
                   }
@@ -147,7 +147,7 @@
             [data-icon] {
               @if map-has-key($background, icon) {
                 $icon-bg: map-get($background, icon);
-                @include icon((
+                @include jnt-icon((
                   color: map-get($icon-bg, on)
                 ), '&');
               }
@@ -183,7 +183,7 @@
         [data-icon] {
           @if map-has-key($background, icon) {
             $icon-bg: map-get($background, icon);
-            @include icon((
+            @include jnt-icon((
               color: map-get($icon-bg, off)
             ), '&');
           }

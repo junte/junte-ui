@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   BlockModule,
   FormModule,
   GridModule,
@@ -30,7 +30,7 @@ import { PagerTestComponent } from './pager-test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     PagerModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

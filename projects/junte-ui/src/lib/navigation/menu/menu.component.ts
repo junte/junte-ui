@@ -15,8 +15,8 @@ export class MenuComponent {
 
   ui = UI;
 
-  @HostBinding('attr.data-type')
-  _type: Orientation = Orientation.horizontal;
+  @HostBinding('attr.data-orientation')
+  _orientation: Orientation = Orientation.horizontal;
 
   _spacer: Size = Size.normal;
 
@@ -29,12 +29,12 @@ export class MenuComponent {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-  @Input() set type(type: Orientation) {
-    this._type = type || Orientation.horizontal;
+  @Input() set orientation(orientation: Orientation) {
+    this._orientation = orientation || Orientation.horizontal;
   }
 
-  get type() {
-    return this._type;
+  get orientation() {
+    return this._orientation;
   }
 
   @PropertyApi({
@@ -59,7 +59,7 @@ export class MenuComponent {
   items: QueryList<MenuItemComponent>;
 
   open(item: MenuItemComponent) {
-    if (item.submenus.length) {
+    if (item.submenu) {
       this.items.forEach(i => i.opened = i === item ? !item.opened : false);
     }
   }

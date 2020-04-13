@@ -1,5 +1,12 @@
-<ng-template #contentTemplate>
-  <ng-content></ng-content>
+<ng-template #menuTemplate let-menu="menu" let-orientation="orientation">
+  <div menu *ngIf="!!menu">
+    <jnt-menu [orientation]="orientation">
+      <jnt-menu-item *ngFor="let i of menu.items"
+                     [title]="i.title"
+                     [link]="i.link"
+                     [icon]="i.icon"></jnt-menu-item>
+    </jnt-menu>
+  </div>
 </ng-template>
 
 <ng-container *jntMinFor="ui.breakpoint.desktop">
@@ -7,13 +14,12 @@
     <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
 
-  <div menu>
-    <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
-  </div>
+  <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal}"></ng-container>
+
   <jnt-stack actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.flex.align.stretch">
-    <div content>
+    <div content *ngIf="contentTemplate">
       <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
     </div>
     <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
@@ -42,7 +48,6 @@
           </div>
           <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
         </jnt-stack>
-        <ng-container *ngTemplateOutlet="headerMenuTemplate"></ng-container>
       </div>
     </div>
   </jnt-stack>

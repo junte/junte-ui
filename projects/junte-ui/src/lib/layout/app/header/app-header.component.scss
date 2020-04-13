@@ -1,8 +1,8 @@
-@import "variables";
-@import "../variables";
-@import "../../assets/styles/navigation/menu/menu";
+@import "jnt-variables";
+@import "layout/app/variables";
+@import "navigation/menu/menu";
 
-@mixin app-header($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context}  {
     display: flex;
@@ -22,7 +22,7 @@
   > [menu] {
     display: flex;
     align-items: center;
-    @include menu((
+    @include jnt-menu((
       top: (
         item: (
           color: $jnt-white-color,

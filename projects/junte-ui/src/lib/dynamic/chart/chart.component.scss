@@ -1,7 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
-@mixin chart($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-chart($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: flex;
@@ -60,7 +60,7 @@
               vertical-align: middle;
               text-align: center;
               [data-icon] {
-                @include icon((
+                @include jnt-icon((
                   color: $jnt-muted-color,
                   size: 80px
                 ), '&');

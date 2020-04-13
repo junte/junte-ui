@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Size } from '../../core/enums/size';
 import { PropertyApi } from '../../core/decorators/api';
+import { Size } from '../../core/enums/size';
 
 @Component({
   selector: 'jnt-spinner',

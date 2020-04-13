@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { EmptyPipe } from './text.pipe';
 
 @NgModule({
@@ -13,5 +13,5 @@ import { EmptyPipe } from './text.pipe';
     EmptyPipe
   ]
 })
-export class TextPipeModule {
+export class TextPipesModule {
 }

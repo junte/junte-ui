@@ -1,7 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
-@mixin breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
@@ -20,7 +20,7 @@
   }
 
   #{$context} [data-icon] {
-    @include icon((
+    @include jnt-icon((
       size: 8px,
     ), '&');
     color: $jnt-primary-text-light-color;

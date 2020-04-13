@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 @import "layout/spinner/spinner";
 
@@ -11,7 +11,7 @@
     }
   }
   #{$wrapper} [spinner] {
-    @include spinner((
+    @include jnt-spinner((
       size: map-get($size, spinner),
     ), '&');
   }
@@ -20,7 +20,7 @@
   }
 }
 
-@mixin input($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-input($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -138,12 +138,12 @@
         &[data-size = '#{$size}'] {
           @include input-size($map, $wrapper);
           #{$wrapper} [data-icon] {
-            @include icon((
+            @include jnt-icon((
               size: map-get($map, icon)
             ), '&');
           }
           #{$wrapper} [arrows] [data-icon] {
-            @include icon((
+            @include jnt-icon((
               size: map-get($map, chevron)
             ), '&');
           }

@@ -1,11 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { JunteDirectiveModule } from '../../core/directives/junte-directive.module';
-import { en } from '../../core/i18n/en';
-import { ArrayPipeModule } from '../../core/pipes/array.pipe.module';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -28,9 +25,8 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     IconModule,
     SpinnerModule,
     SkeletonModule,
-    JunteDirectiveModule,
     ButtonModule,
-    ArrayPipeModule,
+    ArrayPipesModule,
     StackModule
   ],
   entryComponents: [SelectComponent],

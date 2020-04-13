@@ -1,7 +1,7 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/icon/icon";
 
-@mixin pager($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
@@ -50,7 +50,7 @@
     }
 
     [data-icon] {
-      @include icon((
+      @include jnt-icon((
         size: 10px
       ), '&');
       color: $jnt-primary-text-light-color;

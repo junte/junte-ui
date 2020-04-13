@@ -5,7 +5,7 @@ import {
   AccordionModule,
   BlockModule,
   ButtonModule,
-  DatePipeModule,
+  DatePipesModule,
   FormModule,
   GanttModule,
   GridModule,
@@ -13,10 +13,9 @@ import {
   StackModule,
   TabsModule
 } from 'junte-ui';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { GanttTestComponent } from './gantt-test.component';
-import { JUNTE_UI_CONFIG } from 'src/consts';
-import { DateFnsModule } from 'ngx-date-fns';
 
 @NgModule({
   imports: [
@@ -32,7 +31,7 @@ import { DateFnsModule } from 'ngx-date-fns';
     GanttModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    DatePipeModule
+    DatePipesModule
   ],
   exports: [
     GanttTestComponent

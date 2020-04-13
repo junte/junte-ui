@@ -1,4 +1,4 @@
-@import "variables";
+@import "jnt-variables";
 @import "elements/label/label";
 @import "navigation/menu/menu";
 @import "navigation/link/link";
@@ -35,7 +35,7 @@
     }
 
     [label] ::ng-deep {
-      @include label((
+      @include jnt-label((
         padding: $jnt-gutter-small $jnt-gutter-normal,
         font-size: 20px
       ), '&');
@@ -54,7 +54,7 @@
       }
     }
     [menu] ::ng-deep {
-      @include menu((
+      @include jnt-menu((
         top: (
           item: (
             color: $jnt-primary-color,
@@ -98,7 +98,7 @@
   }
 
   [tutorial] {
-    @include link((
+    @include jnt-link((
       corner: 34px,
       font-size: 18px,
       text-transform: uppercase,
