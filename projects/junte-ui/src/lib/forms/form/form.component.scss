@@ -3,7 +3,7 @@
 @mixin form($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    layout: 'default',
+    height: 'default',
   );
 
   $vars: $passed;
@@ -25,7 +25,7 @@
   }
 
   #{$context} #{$wrapper} form {
-    @if map-get($vars, layout) == 'stretch' {
+    @if map-get($vars, height) == 'fluid' {
       & {
         height: 100%;
         display: flex;
