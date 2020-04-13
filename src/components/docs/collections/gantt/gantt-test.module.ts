@@ -27,11 +27,11 @@ import { GanttTestComponent } from './gantt-test.component';
     GridModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     FormModule.forRoot(JUNTE_UI_CONFIG),
+    SharedModule,
     GanttModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    DatePipesModule,
-    SharedModule
+    DatePipesModule
   ],
   exports: [
     GanttTestComponent
