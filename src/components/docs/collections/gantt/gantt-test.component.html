@@ -51,13 +51,13 @@
                           <div [attr.accepting]="period['status'] === statuses.accepting"
                                [attr.accepted]="period['status'] === statuses.accepted"
                                [attr.declined]="period['status'] === statuses.declined"
-                               [attr.used]="(period['to'] | dateDiff:today) < 0"
+                               [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
                                [attr.self-expense]="period['selfExpense']"
                                [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
                                [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
                                [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
                           <span label>
-                          {{(period['to'] | dateDiff:period['from']) + 1 }} days
+                          {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
                         </span>
                           </div>
                         </ng-template>
@@ -108,13 +108,13 @@
                         <div [attr.accepting]="period['status'] === statuses.accepting"
                              [attr.accepted]="period['status'] === statuses.accepted"
                              [attr.declined]="period['status'] === statuses.declined"
-                             [attr.used]="(period['to'] | dateDiff:today) < 0"
+                             [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
                              [attr.self-expense]="period['selfExpense']"
                              [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
                              [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
                              [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
                     <span label> ]]>
-                    {{ <![CDATA[ (period['to'] | dateDiff:period['from']) + 1 ]]> }} <![CDATA[ days
+                    {{ <![CDATA[ (period['to'] | dfnsDifferenceInDays:period['from']) + 1 ]]> }} <![CDATA[ days
                   </span>
                         </div>
                       </ng-template>

@@ -35,9 +35,9 @@
       <ng-container
         *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
     </td>
-    <td day *ngFor="let day of (current | datesInMonth)"
-        [attr.current]="day | isToday"
-        [attr.weekend]="day | isWeekend">
+    <td day *ngFor="let day of (current | dfnsGetDaysInMonth)"
+        [attr.current]="day | dfnsIsToday"
+        [attr.weekend]="day | dfnsIsWeekend">
       {{day | dfnsGetDate}}
     </td>
   </tr>
@@ -72,8 +72,8 @@
           *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
       </td>
 
-      <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)
-        || ((current | dateDiff:line.from:'months') > 0 && (line.to | dateDiff:current:'months') > 0); else noRequest">
+      <ng-container *ngIf="(line.from | dfnsIsSameMonth: current) || (line.to | dfnsIsSameMonth: current)
+        || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
         <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
         <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
           <ng-container *ngTemplateOutlet="line.indicatorTemplate;

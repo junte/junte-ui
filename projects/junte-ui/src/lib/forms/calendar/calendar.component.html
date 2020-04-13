@@ -31,9 +31,9 @@
 
   <tbody>
   <tr *ngFor="let w of weeks"
-      [attr.current-week]="(current | dfnsStartOfWeek) | isEqualDate: (w.date | dfnsStartOfWeek)">
+      [attr.current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
     <td day *ngFor="let d of w.days"
-        [attr.current-day]="(d | dfnsStartOfDay) | isEqualDate: (current | dfnsStartOfDay)"
+        [attr.current-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
         (click)="onChange(d)" tabindex="0">
       <ng-container
         *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">

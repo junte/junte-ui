@@ -18,11 +18,11 @@ import { GanttComponent } from './gantt.component';
   imports: [
     CommonModule,
     DatePipesModule,
-    DateFnsModule,
     ArrayPipesModule,
     IconModule,
     SkeletonModule,
-    ButtonModule
+    ButtonModule,
+    DateFnsModule
   ],
   exports: [
     GanttComponent,
