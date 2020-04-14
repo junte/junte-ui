@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { VisibleElementPipe } from './animation.pipe';
+import { VisibleElementPipe } from './animation/visible-element.pipe';
 
 @NgModule({
   imports: [
