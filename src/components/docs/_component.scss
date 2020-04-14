@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "elements/icon/icon";
 
 :host-context([theme='dark']) {
   [block] {
@@ -8,6 +9,24 @@
 
 :host {
   display: block;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+[data-thumbnail] {
+  display: inline-flex;
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+  padding: $jnt-gutter-small $jnt-gutter-normal;
+  margin-right: $jnt-gutter-normal;
+  [data-icon] {
+    @include jnt-icon((
+      size: 30px
+    ), '&', true);
+  }
 }
 
 [resources] {
@@ -21,6 +40,7 @@
   pointer-events: none;
   border: 2px solid $jnt-secondary-color;
 }
+
 //
 //[teaser] {
 //  color: $jnt-primary-text-light-color;

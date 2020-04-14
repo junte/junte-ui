@@ -1,20 +1,24 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.chart"></jnt-icon>
+    </span>
+    <span i18n="@@label.chart">Chart</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/chart"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A70"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-
-  <h1 i18n="@@label.chart">Chart</h1>
-
-  <div teaser>
-    <p></p>
-  </div>
 
   <jnt-tabs playground>
 
@@ -24,42 +28,30 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <!-- preview -->
-                <jnt-stack [align]="ui.flex.align.stretch">
-                  <jnt-stack [type]="ui.layout.stack.type.vertical">
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                      <jnt-label label="Selected chart" [color]="ui.color.red"></jnt-label>
-                      {{form.value | json}}
-                    </jnt-stack>
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                      <jnt-button text="Add Chart" (click)="addChart()"></jnt-button>
-                      <jnt-button text="Remove Chart" [scheme]="ui.scheme.fail" (click)="removeChart()"></jnt-button>
-                    </jnt-stack>
-                    <jnt-form [formGroup]="form">
-                      <jnt-chart formControlName="selected" [title]="titleChartControl.value" [metric]="metricChartControl.value">
-                        <jnt-chart-indicator [data]="{hero: 9}"
-                                             [value]="2"
-                                             title="Ironman"
-                                             label="Smart"
-                                             [color]="ui.color.purple">
-                        </jnt-chart-indicator>
-                        <jnt-chart-indicator [data]="{hero: 10}" [value]="0" title="Tor" label="God of thunder"
-                                             [color]="ui.color.yellow"></jnt-chart-indicator>
-
-                        <ng-container *ngFor="let chart of charts; let i = index">
-                          <jnt-chart-indicator
-                            [data]="{hero: i + 10}"
-                            [title]="chart.title"
-                            [value]="chart.value"
-                            [label]="chart.label"
-                            [color]="chart.color">
-                          </jnt-chart-indicator>
-                        </ng-container>
-                      </jnt-chart>
-                    </jnt-form>
-                  </jnt-stack>
-                </jnt-stack>
-                <!-- preview -->
+                <jnt-form [formGroup]="form">
+                  <jnt-chart formControlName="hero"
+                             [title]="titleChartControl.value"
+                             [metric]="metricChartControl.value">
+                    <jnt-chart-indicator [data]="{likes: 30}"
+                                         [value]="10"
+                                         title="Spiderman"
+                                         label="10k"
+                                         [color]="ui.color.red">
+                    </jnt-chart-indicator>
+                    <jnt-chart-indicator [data]="{likes: 30}"
+                                         [value]="30"
+                                         title="Ironman"
+                                         label="10k"
+                                         [color]="ui.color.yellow">
+                    </jnt-chart-indicator>
+                    <jnt-chart-indicator [data]="{likes: 40}"
+                                         [value]="40"
+                                         title="Captain America"
+                                         label="20k"
+                                         [color]="ui.color.blue100">
+                    </jnt-chart-indicator>
+                  </jnt-chart>
+                </jnt-form>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -111,7 +103,8 @@
                                        label="God of thunder"
                                        [color]="ui.color.red">
                   </jnt-chart-indicator>
-                </jnt-chart>]]>
+                </jnt-chart>
+                ]]>
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

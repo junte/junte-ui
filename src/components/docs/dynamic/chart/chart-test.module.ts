@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  IconModule,
   AccordionModule,
   BlockModule,
   ButtonModule,
@@ -23,6 +24,7 @@ import { ChartTestComponent } from './chart-test.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
@@ -31,10 +33,10 @@ import { ChartTestComponent } from './chart-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     ChartModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule,
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
-    InputModule.forRoot(JUNTE_UI_CONFIG)
+    InputModule.forRoot(JUNTE_UI_CONFIG),
+    SharedModule,
   ],
   exports: [
     ChartTestComponent

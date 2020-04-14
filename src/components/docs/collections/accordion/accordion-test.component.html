@@ -1,18 +1,24 @@
 <jnt-container>
-  <h1 i18n="@@label.accordion">Accordion</h1>
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.accordion"></jnt-icon>
+    </span>
+    <span i18n="@@label.accordion">Accordion</span>
+  </h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/collections/accordion"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=6587%3A0"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
 
-  <h3 i18n="@@label.playground">Playground</h3>
   <jnt-tabs playground>
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -20,21 +26,27 @@
       <ng-template #tabContentTemplate>
         <app-browser-preview>
           <ng-template #document>
-            <h5 i18n="@@label.frontend_developer_tools">Frontend developer tools:</h5>
             <jnt-accordion>
               <jnt-accordion-section title="Gitlab">
                 <ng-template #accordionContentTemplate>
-                  GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
+                  GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and
+                  makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
+                  together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility and
+                  higher levels of efficiency in a single application across the DevOps lifecycle.
                 </ng-template>
               </jnt-accordion-section>
               <jnt-accordion-section title="Figma">
                 <ng-template #accordionContentTemplate>
-                  Figma is the only platform that brings together powerful design features you already love and a more efficient workflow to boot.
+                  Figma is the only platform that brings together powerful design features you already love and a more
+                  efficient workflow to boot.
                 </ng-template>
               </jnt-accordion-section>
               <jnt-accordion-section title="Git">
                 <ng-template #accordionContentTemplate>
-                  Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+                  Git is a distributed version-control system for tracking changes in source code during software
+                  development. It is designed for coordinating work among programmers, but it can be used to track
+                  changes in any set of files. Its goals include speed, data integrity, and support for distributed,
+                  non-linear workflows.
                 </ng-template>
               </jnt-accordion-section>
             </jnt-accordion>
@@ -64,17 +76,24 @@
                 <jnt-accordion>
                   <jnt-accordion-section title="Gitlab">
                     <ng-template #accordionContentTemplate>
-                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
+                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
+                      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
+                      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
+                      and higher levels of efficiency in a single application across the DevOps lifecycle.
                     </ng-template>
                   </jnt-accordion-section>
                   <jnt-accordion-section title="Figma">
                     <ng-template #accordionContentTemplate>
-                      Figma is the only platform that brings together powerful design features you already love and a more efficient workflow to boot.
+                      Figma is the only platform that brings together powerful design features you already love and a
+                      more efficient workflow to boot.
                     </ng-template>
                   </jnt-accordion-section>
                   <jnt-accordion-section title="Git">
                     <ng-template #accordionContentTemplate>
-                      Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
+                      Git is a distributed version-control system for tracking changes in source code during software
+                      development. It is designed for coordinating work among programmers, but it can be used to track
+                      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
+                      non-linear workflows.
                     </ng-template>
                   </jnt-accordion-section>
                 </jnt-accordion>
@@ -88,7 +107,8 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-accordion-section" [target]="section"></app-component-api>
+        <app-component-api selector="jnt-accordion-section"
+                           [target]="types.section"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

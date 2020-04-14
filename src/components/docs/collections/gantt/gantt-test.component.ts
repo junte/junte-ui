@@ -39,7 +39,7 @@ export class GanttTestComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.requests = Array.from({ length: 5 }, () => ({
+      this.requests = Array.from({length: 5}, () => ({
         date: faker.name.findName(),
         id: faker.random.number(100),
         createdAt: faker.date.recent(25),

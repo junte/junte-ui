@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
+  IconModule,
   BlockModule,
   ButtonModule,
   DatePipesModule,
@@ -22,6 +23,7 @@ import { GanttTestComponent } from './gantt-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

@@ -1,5 +1,6 @@
 <jnt-container>
   <h1 i18n="@@label.input">Input</h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -132,9 +133,11 @@
                                 i18n-placeholder="@@label.left">
                     <jnt-switcher-option label="Left"
                                          i18n-label="@@label.left"
+                                         [icon]="localUi.icons.layout.start"
                                          [value]="ui.text.align.left"></jnt-switcher-option>
                     <jnt-switcher-option label="Right"
                                          i18n-label="@@label.right"
+                                         [icon]="localUi.icons.layout.end"
                                          [value]="ui.text.align.right"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
@@ -162,8 +165,12 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="states">
                     <jnt-switcher-option label="Loading" [value]="ui.form.input.state.loading"></jnt-switcher-option>
-                    <jnt-switcher-option label="Warning" [value]="ui.form.input.state.warning"></jnt-switcher-option>
-                    <jnt-switcher-option label="Checked" [value]="ui.form.input.state.checked"></jnt-switcher-option>
+                    <jnt-switcher-option label="Warning"
+                                         [icon]="ui.icons.warning"
+                                         [value]="ui.form.input.state.warning"></jnt-switcher-option>
+                    <jnt-switcher-option label="Checked"
+                                         [icon]="ui.icons.checked"
+                                         [value]="ui.form.input.state.checked"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 

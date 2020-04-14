@@ -12,6 +12,6 @@ export class AccordionTestComponent {
 
   ui = UI;
   localUi = LocalUI;
-  section = AccordionSectionComponent;
+  types = {section: AccordionSectionComponent};
 
 }
