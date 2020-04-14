@@ -4,7 +4,6 @@ import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { DateFnsConfigurationService } from 'ngx-date-fns';
 import { CollectionsModule } from './collections/collections.module';
 import { I18nLoaderFactory, JunteUIModuleConfig } from './config';
-import { AnimationPipesModule } from './core/pipes/animation-pipes.module';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { DatePipesModule } from './core/pipes/date-pipes.module';
@@ -29,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
     OverlaysModule,
     DynamicModule,
 
-    AnimationPipesModule,
     ArrayPipesModule,
     ColorPipesModule,
     DatePipesModule,

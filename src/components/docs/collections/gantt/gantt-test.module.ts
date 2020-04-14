@@ -18,8 +18,6 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { GanttTestComponent } from './gantt-test.component';
-import { JUNTE_UI_CONFIG } from 'src/consts';
-import { DateFnsModule } from 'ngx-date-fns';
 
 @NgModule({
   imports: [

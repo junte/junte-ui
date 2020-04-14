@@ -6,25 +6,25 @@
     display: block;
   }
 
-  #{$context} [data-section][child-of=#{$jnt-accordion-host}] {
+  #{$context} [section][child-of=#{$jnt-accordion-host}] {
     &:not(:last-child) {
-      [data-title][child-of=#{$jnt-accordion-host}] {
+      [title][child-of=#{$jnt-accordion-host}] {
         border-bottom: 0;
       }
     }
     &:first-child {
-      [data-title][child-of=#{$jnt-accordion-host}] {
+      [title][child-of=#{$jnt-accordion-host}] {
         border-top-left-radius: $jnt-corner-small;
         border-top-right-radius: $jnt-corner-small;
       }
     }
     &:last-child {
-      [data-title][child-of=#{$jnt-accordion-host}] {
+      [title][child-of=#{$jnt-accordion-host}] {
         border-bottom-left-radius: $jnt-corner-small;
         border-bottom-right-radius: $jnt-corner-small;
       }
     }
-    [data-title][child-of=#{$jnt-accordion-host}] {
+    [title][child-of=#{$jnt-accordion-host}] {
       padding: $jnt-gutter-small $jnt-gutter-normal;
       background-color: $jnt-secondary-background;
       border: 1px solid $jnt-muted-color;
@@ -41,7 +41,7 @@
         margin-right: $jnt-gutter-small;
       }
     }
-    [data-content][child-of=#{$jnt-accordion-host}] {
+    [content][child-of=#{$jnt-accordion-host}] {
       padding: $jnt-gutter-normal;
     }
   }
