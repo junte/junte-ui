@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  AfterPipe,
-  BeforePipe,
-  FullMonthPipe,
-  DatesInMonthPipe
-} from './date.pipe';
+import { AfterPipe } from './date/after.pipe';
+import { BeforePipe } from './date/before.pipe';
+import { FullMonthPipe } from './date/full-month.pipe';
+import { DatesInMonthPipe } from './date/dates-in-month.pipe';
 
 @NgModule({
   imports: [
