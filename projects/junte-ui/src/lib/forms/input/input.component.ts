@@ -171,8 +171,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostListener('keypress', ['$event'])
   press(e: KeyboardEvent) {
     if (!!this.pattern) {
-      if (!(+e.key === 1 || +e.key === 2 || +e.key === 3 || +e.key === 4 || +e.key === 5 || +e.key === 6 || +e.key === 7
-        || +e.key === 8 || +e.key === 9 || +e.key === 0)) {
+      if (!/^[0-9]$/.test(e.key)) {
         return false;
       }
       e.preventDefault();
