@@ -47,7 +47,7 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     [data-link] {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
@@ -102,7 +102,7 @@
 
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     [data-link] {
       color: map-get($scheme, inverse-color);
       &:hover {
@@ -233,13 +233,13 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          &[data-outline='#{$outline-fill}'] {
+          &[data-outline='#{$jnt-outline-fill-name}'] {
             @include link-fill($map, $wrapper);
           }
-          &[data-outline='#{$outline-ghost}'] {
+          &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include link-ghost($map, $wrapper);
           }
-          &[data-outline='#{$outline-transparent}'] {
+          &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include link-transparent($map, $wrapper);
           }
         }
