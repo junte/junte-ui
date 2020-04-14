@@ -1,4 +1,4 @@
-<div wrapper>
+<div data-wrapper>
   <table>
     <thead>
     <tr [style.height.px]="heightIndicator" [style.min-height.px]="heightIndicator">
@@ -22,7 +22,7 @@
           [style.min-height.px]="heightIndicator">
         <td>
           <ng-container *ngIf="indicator.titleTemplate; else indicatorTitle">
-            <div content [style.max-height.px]="heightIndicator - 1">
+            <div data-content [style.max-height.px]="heightIndicator - 1">
               <ng-container *ngTemplateOutlet="indicator.titleTemplate"></ng-container>
             </div>
           </ng-container>
@@ -65,7 +65,7 @@
 
 <ng-template #noDataTemplate>
   <ng-container *ngIf="!progress.loading;">
-    <tr nodata>
+    <tr data-nodata>
       <td [attr.colspan]="3">
         <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
       </td>

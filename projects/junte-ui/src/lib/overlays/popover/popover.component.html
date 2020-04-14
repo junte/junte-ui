@@ -1,12 +1,12 @@
 <ng-template #defaultContentTemplate>
-  <div content>
+  <div data-content>
     {{options.content}}
   </div>
 </ng-template>
 
-<div arrow></div>
-<div wrapper role="popover" [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
-  <div title *ngIf="options.title">{{options.title}}</div>
+<div data-arrow></div>
+<div data-wrapper role="popover" [ngStyle]="{'max-height': options?.maxHeight, 'max-width': options?.maxWidth}">
+  <div data-title *ngIf="options.title">{{options.title}}</div>
 
   <ng-container *ngTemplateOutlet="!!options.contentTemplate ? options.contentTemplate : defaultContentTemplate"></ng-container>
 </div>

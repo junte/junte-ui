@@ -1,23 +1,23 @@
 <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.end">
-  <div *ngIf="start" date left>
+  <div *ngIf="start" data-date data-left>
     <div>{{start | date: "dd.MM"}}</div>
-    <div line><div arrow></div></div>
+    <div data-line><div data-arrow></div></div>
   </div>
-  <div *ngIf="end" date right>
+  <div *ngIf="end" data-date data-right>
     <div>{{end | date: "dd.MM"}}</div>
-    <div line><div arrow></div></div>
+    <div data-line><div data-arrow></div></div>
   </div>
 </jnt-stack>
 
-<div bar>
-  <div *ngIf="!!start && !!end && start < end && start <= current && current < end" progress
+<div data-bar>
+  <div *ngIf="!!start && !!end && start < end && start <= current && current < end" data-progress
        [style.width.%]="(current | dfnsDifferenceInDays:start) / (end || current | dfnsDifferenceInDays:start) * 100">
   </div>
 
-  <div *ngIf="(current >= end) || (!!start && !end && current > start)" progress full></div>
+  <div *ngIf="(current >= end) || (!!start && !end && current > start)" data-progress data-full></div>
 </div>
 
-<div *ngIf="!!start && !!end" days>
+<div *ngIf="!!start && !!end" data-days>
   {{current < end ? (end | dfnsDifferenceInDays:start) - (current | dfnsDifferenceInDays:start) :
   (end | dfnsDifferenceInDays:start) - (start | dfnsDifferenceInDays:start)}} days
 </div>

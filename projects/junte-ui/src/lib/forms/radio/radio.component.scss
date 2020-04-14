@@ -1,14 +1,14 @@
 @import "jnt-variables";
 
 @mixin radio-size($size) {
-  [switch] {
+  [data-switch] {
     min-width: $size;
     width: $size;
     min-height: $size;
     height: $size;
     border-radius: $size / 2;
   }
-  [indicator] {
+  [data-indicator] {
     min-width: $size - 8px;
     width: $size - 8px;
     min-height: $size - 8px;
@@ -63,9 +63,9 @@
     margin: 0;
     width: 100%;
     height: 100%;
-    &:checked + [switch] {
+    &:checked + [data-switch] {
       border-color: $jnt-primary-color;
-      & > [indicator] {
+      & > [data-indicator] {
         opacity: 1;
       }
     }
@@ -75,21 +75,21 @@
       & ~ label {
         color: $jnt-control-disabled-label-color;
       }
-      & + [switch] {
+      & + [data-switch] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
       }
-      & + [switch] > [indicator] {
+      & + [data-switch] > [data-indicator] {
         background-color: $jnt-control-disabled-indicator-icon-color;
       }
     }
     &:focus {
-      & + [switch] {
+      & + [data-switch] {
         box-shadow: 0 1px 5px $jnt-primary-color;
       }
     }
     &:hover {
-      & + [switch] {
+      & + [data-switch] {
         border-color: $jnt-primary-color;
       }
     }
@@ -101,7 +101,7 @@
     user-select: none;
   }
 
-  #{$context} [switch] {
+  #{$context} [data-switch] {
     position: relative;
     background-color: $jnt-control-background;
     border: 1px solid $jnt-control-border-color;
@@ -110,7 +110,7 @@
     transition: all .3s;
   }
 
-  #{$context} [indicator] {
+  #{$context} [data-indicator] {
     display: inline-block;
     opacity: 0;
     background-color: $jnt-primary-color;

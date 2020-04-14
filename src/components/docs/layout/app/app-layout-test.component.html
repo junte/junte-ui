@@ -62,8 +62,12 @@
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-checkbox formControlName="aside"
-                                  label="Sub header"
+                                  label="Aside"
                                   i18n-label="@@label.aside"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="subHeader"
+                                  label="subHeader"></jnt-checkbox>
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-checkbox formControlName="footer"
@@ -82,20 +86,20 @@
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
                     </ng-template>
 
-                    <jnt-menu *ngIf="menuControl.value">
-                      <jnt-menu-item title="Home"
-                                     i18n-title="@@label.home"
-                                     [icon]="ui.icons.home"></jnt-menu-item>
-                      <jnt-menu-item title="My network"
-                                     i18n-title="@@label.my_network"
-                                     [icon]="localUi.icons.network"></jnt-menu-item>
-                      <jnt-menu-item title="Jobs"
-                                     i18n-title="@@label.jobs"
-                                     [icon]="localUi.icons.jobs"></jnt-menu-item>
-                      <jnt-menu-item title="Messages"
-                                     i18n-title="@@label.messages"
-                                     [icon]="ui.icons.messages"></jnt-menu-item>
-                    </jnt-menu>
+                      <jnt-menu *ngIf="menuControl.value">
+                        <jnt-menu-item title="Home"
+                                       i18n-title="@@label.home"
+                                       [icon]="ui.icons.home"></jnt-menu-item>
+                        <jnt-menu-item title="My network"
+                                       i18n-title="@@label.my_network"
+                                       [icon]="localUi.icons.network"></jnt-menu-item>
+                        <jnt-menu-item title="Jobs"
+                                       i18n-title="@@label.jobs"
+                                       [icon]="localUi.icons.jobs"></jnt-menu-item>
+                        <jnt-menu-item title="Messages"
+                                       i18n-title="@@label.messages"
+                                       [icon]="ui.icons.messages"></jnt-menu-item>
+                      </jnt-menu>
 
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
                       <jnt-app-header-actions actions>
@@ -261,7 +265,6 @@
                         </ng-container>
                         <ng-container *ngIf="menuControl.value">
                           <![CDATA[
-                          <ng-template #headerMenuTemplate>
                             <jnt-menu>
                               <jnt-menu-item [icon]="ui.icons.home"
                                              title="Home"></jnt-menu-item>
@@ -272,7 +275,6 @@
                               <jnt-menu-item [icon]="localUi.icons.massages"
                                              title="Messages"></jnt-menu-item>
                             </jnt-menu>
-                          </ng-template>
                           ]]>
                         </ng-container>
                         <ng-container *ngIf="actionControl.value">
@@ -350,7 +352,7 @@
                                 </jnt-stack>
                               </jnt-stack>
 
-                              <jnt-menu [type]="ui.orientation.vertical"
+                              <jnt-menu [orientation]="ui.orientation.vertical"
                                         [spacer]="ui.size.small">
                                 <jnt-menu-item title="General"
                                                [icon]="localUi.icons.general">

@@ -6,25 +6,25 @@
     display: block;
   }
 
-  #{$context} [section] {
+  #{$context} [data-section] {
     &:not(:last-child) {
-      [title] {
+      [data-title] {
         border-bottom: 0;
       }
     }
     &:first-child {
-      [title] {
+      [data-title] {
         border-top-left-radius: $jnt-corner-small;
         border-top-right-radius: $jnt-corner-small;
       }
     }
     &:last-child {
-      [title] {
+      [data-title] {
         border-bottom-left-radius: $jnt-corner-small;
         border-bottom-right-radius: $jnt-corner-small;
       }
     }
-    [title] {
+    [data-title] {
       padding: $jnt-gutter-small $jnt-gutter-normal;
       background-color: $jnt-secondary-background;
       border: 1px solid $jnt-muted-color;
@@ -41,7 +41,7 @@
         margin-right: $jnt-gutter-small;
       }
     }
-    [content] {
+    [data-content] {
       padding: $jnt-gutter-normal;
     }
   }

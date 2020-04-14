@@ -1,12 +1,12 @@
 <form [formGroup]="form">
   <input type="checkbox" formControlName="switch">
-  <jnt-stack switch [type]="ui.layout.stack.type.horizontal"
+  <jnt-stack data-switch [type]="ui.layout.stack.type.horizontal"
              [gutter]="ui.gutter.tiny"
              [align]="ui.flex.align.center"
              [justify]="ui.flex.justify.center">
     <span *ngIf="tags?.on">{{tags.on}}</span>
 
-    <div slider>
+    <div data-slider>
       <jnt-icon *ngIf="icons?.on && checked"
                 [icon]="icons.on"></jnt-icon>
       <jnt-icon *ngIf="icons?.off && !checked"

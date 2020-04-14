@@ -2,7 +2,7 @@
 @import "elements/icon/icon";
 
 @mixin select-size($size) {
-  [select] {
+  [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
   }
@@ -63,7 +63,7 @@
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
           @include select-size($map);
-          [select] {
+          [data-select] {
             ul li {
               input {
                 font-size: map_get($map, font-size);
@@ -74,7 +74,7 @@
               }
               @if map-has-key($map, input) {
                 $input: map-get($map, input);
-                &[query] {
+                &[data-query] {
                   padding: map-get($input, padding);
                 }
               }
@@ -84,24 +84,24 @@
       }
     }
     &[data-disabled='true'] {
-      [select] {
+      [data-select] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
         pointer-events: none;
         ul li {
           background-color: $jnt-control-disabled-background;
           color: $jnt-control-disabled-border-color;
-          &[query] {
+          &[data-query] {
             background-color: transparent;
           }
         }
-        [close], [toggle] {
+        [data-close], [data-toggle] {
           color: $jnt-control-disabled-border-color;
         }
       }
     }
 
-    &[data-opened='true'] [select] {
+    &[data-opened='true'] [data-select] {
       box-shadow: $jnt-shadow-primary;
       border-color: $jnt-primary-color;
     }
@@ -113,57 +113,57 @@
           margin-left: -$jnt-gutter-tiny;
         }
       }
-      &[data-opened='true'][data-search='true'] [select] {
+      &[data-opened='true'][data-search='true'] [data-select] {
         ul {
           li {
             display: none;
-            &[query] {
+            &[data-query] {
               display: flex;
             }
           }
         }
       }
 
-      &[data-empty='false'] [select] {
+      &[data-empty='false'] [data-select] {
         ul {
           flex: 1;
           li {
             width: 100%;
           }
         }
-        [query] {
+        [data-query] {
           display: none;
         }
       }
 
       &[data-empty='true'] {
-        [select] ul li[query] {
+        [data-select] ul li[data-query] {
           padding-right: 0;
         }
       }
 
       &[data-allow-empty='false'] {
-        [select] ul li {
+        [data-select] ul li {
           padding-right: $jnt-gutter-small;
-          button[close] {
+          button[data-close] {
             display: none;
           }
         }
       }
       &[data-search='false'] {
-        [select] ul li {
+        [data-select] ul li {
           margin-right: 0;
         }
       }
     }
 
     &[data-search='false'] {
-      [select] ul li {
+      [data-select] ul li {
         cursor: default;
       }
     }
     &[data-empty='true'], &[data-mode='single'] {
-      [select] ul li[query] {
+      [data-select] ul li[data-query] {
         flex: 1;
         input {
           width: 100%;
@@ -171,10 +171,10 @@
       }
     }
     [data-disabled='true'] {
-      [select] {
+      [data-select] {
         ul li {
           background-color: $jnt-muted-color;
-          &[query] {
+          &[data-query] {
             background-color: transparent;
           }
         }
@@ -182,7 +182,7 @@
     }
   }
 
-  #{$context}  [select] {
+  #{$context}  [data-select] {
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;
@@ -208,12 +208,12 @@
         [data-icon] {
           line-height: 0;
         }
-        [empty] {
+        [data-empty] {
           width: 50px;
           height: 10px;
           background-color: $jnt-primary-text-light-color;
         }
-        [close] {
+        [data-close] {
           border: 0;
           background-color: transparent;
           position: absolute;
@@ -234,7 +234,7 @@
         &:not(:last-child) {
           margin-right: $jnt-gutter-tiny;
         }
-        &[query] {
+        &[data-query] {
           background-color: transparent;
           input {
             width: 20px;
@@ -250,7 +250,7 @@
       }
     }
 
-    [toggle] {
+    [data-toggle] {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -270,7 +270,7 @@
     }
   }
 
-  #{$context} [options] {
+  #{$context} [data-options] {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
@@ -281,14 +281,14 @@
     padding: $jnt-gutter-small 0;
     overflow: hidden;
     z-index: 2;
-    &[loading='true'] {
+    &[data-loading='true'] {
       min-height: 100px;
       height: auto;
     }
-    [skeleton] {
+    [data-skeleton] {
       padding: 0 $jnt-gutter-small;
     }
-    [empty] {
+    [data-empty] {
       height: 200px;
       display: flex;
       justify-content: center;
@@ -304,7 +304,7 @@
       padding: 0;
       max-height: 200px;
       overflow-y: scroll;
-      [loading] {
+      [data-loading] {
         position: absolute;
         top: 0;
         right: 0;

@@ -46,7 +46,7 @@
     @each $breakpoints, $value in $grid-breakpoints {
       @media screen and (min-width: $value) {
         @for $i from 1 through map-get($vars, grid-columns) {
-          &[data-#{$breakpoints} = '#{$i}'] {
+          &[#{$breakpoints} = '#{$i}'] {
             $width: $i/map-get($vars, grid-columns);
             flex: 0 0 percentage($width);
             max-width: percentage($width);
