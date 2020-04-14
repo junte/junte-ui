@@ -24,22 +24,22 @@
     table-layout: fixed;
     thead[child-of=#{$jnt-gantt-host}] {
       tr[child-of=#{$jnt-gantt-host}] {
-        &[data-timeline] {
+        &[timeline] {
           background-color: $jnt-secondary-background;
         }
         td[child-of=#{$jnt-gantt-host}] {
-          &[data-controls] {
+          &[controls] {
             border-right: none;
             padding: $jnt-gutter-normal $jnt-gutter-tiny;
             width: 600px;
 
-            [data-month][child-of=#{$jnt-gantt-host}] {
+            [month][child-of=#{$jnt-gantt-host}] {
               display: flex;
               justify-content: space-between;
               align-items: center;
             }
 
-            [data-arrow][child-of=#{$jnt-gantt-host}] {
+            [arrow][child-of=#{$jnt-gantt-host}] {
               background-color: transparent;
               border-width: 0;
               font-size: 1rem;
@@ -67,20 +67,20 @@
             }
           }
 
-          &[data-day] {
+          &[day] {
             text-align: center;
             font-size: $jnt-font-size-small;
             padding: $jnt-gutter-normal $jnt-gutter-tiny;
 
-            &[data-current='true'] {
+            &[current='true'] {
               color: $jnt-white-color;
               background-color: $jnt-primary-color;
             }
-            &[data-weekend='true'] {
+            &[weekend='true'] {
               background-color: $jnt-secondary-dark-color;
             }
           }
-          &[data-gutter] {
+          &[gutter] {
             width: 4px;
           }
         }
@@ -89,7 +89,7 @@
 
     tbody[child-of=#{$jnt-gantt-host}] {
       tr[child-of=#{$jnt-gantt-host}] {
-        &[data-nodata] {
+        &[nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -105,7 +105,7 @@
           }
         }
 
-        &[data-loading] {
+        &[loading] {
           pointer-events: none;
           border-bottom: 0;
           td[child-of=#{$jnt-gantt-host}] {
@@ -131,11 +131,11 @@
           border-right: 0;
         }
 
-        &[data-empty] {
+        &[empty] {
           border: none;
         }
 
-        &[data-gutter] {
+        &[gutter] {
           border-right: 0;
         }
       }

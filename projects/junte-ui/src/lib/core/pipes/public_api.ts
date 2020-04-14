@@ -1,5 +1,3 @@
-export * from './animation-pipes.module';
-export * from './animation/visible-element.pipe';
 export * from './array-pipes.module';
 export * from './array/includes.pipe';
 export * from './array/join.pipe';
