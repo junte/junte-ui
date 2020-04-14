@@ -50,7 +50,7 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
@@ -97,7 +97,7 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       &:hover {
@@ -305,13 +305,13 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          &[data-outline='#{$outline-fill}'] {
+          &[data-outline='#{$jnt-outline-fill-name}'] {
             @include button-fill($map, $wrapper);
           }
-          &[data-outline='#{$outline-ghost}'] {
+          &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include button-ghost($map, $wrapper);
           }
-          &[data-outline='#{$outline-transparent}'] {
+          &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include button-transparent($map, $wrapper);
           }
         }

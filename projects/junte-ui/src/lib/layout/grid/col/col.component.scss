@@ -43,7 +43,7 @@
       }
     }
 
-    @each $breakpoints, $value in $grid-breakpoints {
+    @each $breakpoints, $value in $jnt-grid-breakpoints {
       @media screen and (min-width: $value) {
         @for $i from 1 through map-get($vars, grid-columns) {
           &[data-#{$breakpoints} = '#{$i}'] {
