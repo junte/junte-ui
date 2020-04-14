@@ -82,32 +82,32 @@
   jnt-menu[host=#{$jnt-menu-host}], #{$context} {
     @if $declare {
       display: block;
-      &[data-type='horizontal'] {
-        [sub][child-of=#{$jnt-menu-host}] {
+      &[data-orientation='horizontal'] {
+        [data-sub][child-of=#{$jnt-menu-host}] {
           position: absolute;
           top: 100% !important;
           left: 0;
           z-index: 1;
         }
       }
-      &[data-type='vertical'] {
+      &[data-orientation='vertical'] {
         [top][child-of=#{$jnt-menu-host}] {
           width: 100%;
         }
       }
 
-      [top][child-of=#{$jnt-menu-host}] {
+      [data-top][child-of=#{$jnt-menu-host}] {
         position: relative;
         white-space: nowrap;
         box-sizing: border-box;
 
-        [item][child-of=#{$jnt-menu-host}] {
+        [data-item][child-of=#{$jnt-menu-host}] {
           cursor: pointer;
           display: flex;
           align-items: center;
           user-select: none;
 
-          [link][child-of=#{$jnt-menu-host}] {
+          [data-link][child-of=#{$jnt-menu-host}] {
             width: 100%;
             @include jnt-link((
               overflow: true,
@@ -116,22 +116,22 @@
           }
         }
 
-        [sub][child-of=#{$jnt-menu-host}] {
+        [data-sub][child-of=#{$jnt-menu-host}] {
           width: 100%;
           display: none;
           align-items: stretch;
           flex-direction: column;
-          &[opened='true'] {
+          &[data-opened='true'] {
             display: flex;
           }
-          > [section][child-of=#{$jnt-menu-host}] {
+          > [data-section][child-of=#{$jnt-menu-host}] {
             user-select: none;
             span[child-of=#{$jnt-menu-host}] {
               display: block;
               padding: $jnt-gutter-normal 0;
             }
           }
-          [link][child-of=#{$jnt-menu-host}] {
+          [data-link][child-of=#{$jnt-menu-host}] {
             user-select: none;
             @include jnt-link((
               overflow: true,
@@ -144,8 +144,8 @@
   }
 
   jnt-menu[host=#{$jnt-menu-host}] {
-    &[data-type='horizontal'], &[data-collapsed='true'] {
-      [sub][child-of=#{$jnt-menu-host}] {
+    &[data-orientation='horizontal'], &[data-collapsed='true'] {
+      [data-sub][child-of=#{$jnt-menu-host}] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);
           background-color: map-get($sub, background-color);
@@ -155,7 +155,7 @@
       }
     }
     &[data-collapsed='true'] {
-      [sub][child-of=#{$jnt-menu-host}] {
+      [data-sub][child-of=#{$jnt-menu-host}] {
         @if map-has-key($vars, sub) {
           $collapsed: map-get(map-get($vars, sub), collapsed);
           position: map-get($collapsed, position);
@@ -163,7 +163,7 @@
           left: map-get($collapsed, left);
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
-            [link][child-of=#{$jnt-menu-host}] {
+            [data-link][child-of=#{$jnt-menu-host}] {
               @include jnt-link((
                 padding: map-get($item, padding),
               ), '&');
@@ -175,8 +175,8 @@
   }
 
 
-  #{$context} [top][child-of=#{$jnt-menu-host}] {
-    [item][child-of=#{$jnt-menu-host}] {
+  #{$context} [data-top][child-of=#{$jnt-menu-host}] {
+    [data-item][child-of=#{$jnt-menu-host}] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
         @include jnt-link((
@@ -219,11 +219,11 @@
         @if map-has-key($title, toggle) {
           $toggle: map-get($title, toggle);
           @if map-get($toggle, toggle) == false {
-            [toggle][child-of=#{$jnt-menu-host}] {
+            [data-toggle][child-of=#{$jnt-menu-host}] {
               display: none;
             }
           }
-          [toggle][child-of=#{$jnt-menu-host}] {
+          [data-toggle][child-of=#{$jnt-menu-host}] {
             margin-left: map-get($toggle, margin-left);
           }
         }
@@ -237,13 +237,13 @@
       }
     }
 
-    [sub][child-of=#{$jnt-menu-host}] {
+    [data-sub][child-of=#{$jnt-menu-host}] {
       @if map-has-key($vars, sub) {
         $sub: map-get($vars, sub);
         min-width: map-get($sub, width);
         @if map-has-key($sub, title) {
           $title: map-get($sub, title);
-          > [section][child-of=#{$jnt-menu-host}] {
+          > [data-section][child-of=#{$jnt-menu-host}] {
             padding: map-get($title, padding);
             span[child-of=#{$jnt-menu-host}] {
               border-bottom: map-get($title, border-bottom);
@@ -253,7 +253,7 @@
 
         @if map-has-key($sub, item) {
           $item: map-get($sub, item);
-          [link][child-of=#{$jnt-menu-host}] {
+          [data-link][child-of=#{$jnt-menu-host}] {
             @include jnt-link((
               height: map-get($item, height),
               padding: map-get($item, padding),

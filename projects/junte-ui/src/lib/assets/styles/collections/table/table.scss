@@ -34,7 +34,7 @@
       ),
     ), '&');
 
-    [table][child-of=#{$jnt-table-host}] {
+    [data-table][child-of=#{$jnt-table-host}] {
       margin-left: -$jnt-gutter-normal;
       margin-right: -$jnt-gutter-normal;
     }
@@ -43,7 +43,7 @@
       width: 100%;
       border-collapse: collapse;
       position: relative;
-      [spinner][child-of=#{$jnt-table-host}] {
+      [data-spinner][child-of=#{$jnt-table-host}] {
         position: absolute;
         top: 0;
         left: 0;
@@ -69,7 +69,7 @@
         border-bottom: 1px solid $jnt-muted-color;
         background-color: $jnt-primary-background;
         transition: all .3s;
-        &[nodata] {
+        &[data-nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -82,7 +82,7 @@
             }
           }
         }
-        &[loading] {
+        &[data-loading] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -91,14 +91,18 @@
           background-color: $jnt-highlight-background;
         }
         td[child-of=#{$jnt-table-host}] {
-          &[action] {
+          &[data-action] {
             width: 50px;
             text-align: center;
-            [menu][child-of=#{$jnt-table-host}] {
-              [button][host=#{$jnt-button-host}][child-of=#{$jnt-table-host}] {
-                button[child-of=#{$jnt-button-host}] {
-                  padding: 0 $jnt-gutter-normal;
-                }
+            [data-menu][child-of=#{$jnt-table-host}] {
+              [data-button][child-of=#{$jnt-table-host}] {
+                @include jnt-button((
+                  sizes: (
+                    normal: (
+                      padding: 0 $jnt-gutter-normal,
+                    ),
+                  ),
+                ), '&');
               }
             }
           }
@@ -110,12 +114,12 @@
       }
     }
 
-    [pagination][child-of=#{$jnt-table-host}] {
+    [data-pagination][child-of=#{$jnt-table-host}] {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: -$jnt-gutter-normal;
-      [pages][child-of=#{$jnt-table-host}] {
+      [data-pages][child-of=#{$jnt-table-host}] {
         flex: 1;
       }
     }

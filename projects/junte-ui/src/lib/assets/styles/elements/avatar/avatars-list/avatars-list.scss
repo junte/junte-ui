@@ -23,7 +23,7 @@
       &[data-size='#{$size}'] {
         min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
         @for $i from 1 through 5 {
-          &[capacity='#{$i}'] {
+          &[data-capacity='#{$i}'] {
             min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
           }
         }
@@ -32,7 +32,7 @@
   }
 
   @for $i from 0 through map-get($vars, avatar-count) {
-    [avatar-index='#{$i}'][child-of=#{$jnt-avatars-list-host}] {
+    [data-avatar-index='#{$i}'][child-of=#{$jnt-avatars-list-host}] {
       position: absolute;
       border: 2px solid $jnt-primary-background;
       cursor: pointer;

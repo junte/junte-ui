@@ -33,7 +33,7 @@
     max-width: 100%;
 
     &[data-outline='#{$outline-fill}'] {
-      [content][child-of=#{$jnt-tabs-host}] {
+      [data-content][child-of=#{$jnt-tabs-host}] {
         background-color: $jnt-primary-background;
         box-sizing: border-box;
         border-bottom-left-radius: $jnt-corner-normal;
@@ -42,20 +42,20 @@
     }
 
     &[data-outline='#{$outline-transparent}'] {
-      [content][child-of=#{$jnt-tabs-host}] {
+      [data-content][child-of=#{$jnt-tabs-host}] {
         background-color: transparent;
       }
     }
   }
 
-  #{$context} [tabs][child-of=#{$jnt-tabs-host}] {
+  #{$context} [data-tabs][child-of=#{$jnt-tabs-host}] {
     display: flex;
     border-bottom: 1px solid $jnt-muted-color;
     background-color: $jnt-primary-background;
     border-top-left-radius: $jnt-corner-normal;
     border-top-right-radius: $jnt-corner-normal;
 
-    [tab][child-of=#{$jnt-tabs-host}] {
+    [data-tab][child-of=#{$jnt-tabs-host}] {
       padding: $jnt-gutter-normal;
       cursor: pointer;
       color: $jnt-primary-text-color;
@@ -78,12 +78,12 @@
         box-shadow: $jnt-shadow-primary;
       }
 
-      &[active='true'] {
+      &[data-active='true'] {
         color: $jnt-primary-color;
         border-bottom-color: $jnt-primary-color;
       }
 
-      [label][child-of=#{$jnt-tabs-host}] {
+      [data-label][child-of=#{$jnt-tabs-host}] {
         position: relative;
         z-index: 1;
 
@@ -92,7 +92,7 @@
         }
       }
 
-      [ripple][child-of=#{$jnt-tabs-host}] {
+      [data-ripple][child-of=#{$jnt-tabs-host}] {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -105,12 +105,12 @@
     }
   }
 
-  #{$context} [content][child-of=#{$jnt-tabs-host}] {
+  #{$context} [data-content][child-of=#{$jnt-tabs-host}] {
     position: relative;
     @if map-has-key($vars, padding) {
       $padding: map-get($vars, padding);
       @each $padding, $map in $padding {
-        &[padding = '#{$padding}'] {
+        &[data-padding = '#{$padding}'] {
           @include tab-padding($map);
         }
       }

@@ -26,13 +26,13 @@
   }
 
   thead[child-of=#{$jnt-calendar-host}] {
-    [arrow-left][child-of=#{$jnt-calendar-host}] {
+    [data-arrow-left][child-of=#{$jnt-calendar-host}] {
       text-align: left;
     }
-    [arrow-right][child-of=#{$jnt-calendar-host}] {
+    [data-arrow-right][child-of=#{$jnt-calendar-host}] {
       text-align: right;
     }
-    [arrow][child-of=#{$jnt-calendar-host}] {
+    [data-arrow][child-of=#{$jnt-calendar-host}] {
       background-color: transparent;
       border-width: 0;
       font-size: $jnt-font-size-large;
@@ -58,11 +58,11 @@
         border: 1px solid $jnt-primary-color;
       }
     }
-    [date][child-of=#{$jnt-calendar-host}] {
+    [data-date][child-of=#{$jnt-calendar-host}] {
       font-weight: $jnt-font-weight-bold;
       font-size: $jnt-font-size-base;
     }
-    [days][child-of=#{$jnt-calendar-host}] {
+    [data-days][child-of=#{$jnt-calendar-host}] {
       > th[child-of=#{$jnt-calendar-host}] {
         padding: $jnt-gutter-normal $jnt-gutter-tiny;
         color: $jnt-primary-text-light-color;
@@ -77,8 +77,8 @@
 
   tbody[child-of=#{$jnt-calendar-host}] {
     tr[child-of=#{$jnt-calendar-host}] {
-      &[current-week='true'] {
-        [day][child-of=#{$jnt-calendar-host}], [metric][child-of=#{$jnt-calendar-host}] {
+      &[data-current-week='true'] {
+        [data-day][child-of=#{$jnt-calendar-host}], [data-metric][child-of=#{$jnt-calendar-host}] {
           border-top-color: $jnt-primary-light-color;
           border-bottom-color: $jnt-primary-light-color;
           &:first-child {
@@ -101,7 +101,7 @@
         border-bottom: 1px solid transparent;
         user-select: none;
         padding: 0;
-        [default][child-of=#{$jnt-calendar-host}] {
+        [data-default][child-of=#{$jnt-calendar-host}] {
           padding: $jnt-gutter-small $jnt-gutter-tiny;
         }
         &:first-child {
@@ -110,7 +110,7 @@
         &:last-child {
           border-right: 1px solid transparent;
         }
-        &[day] {
+        &[data-day] {
           cursor: pointer;
           &:nth-child(6),
           &:nth-child(7) {
@@ -124,8 +124,8 @@
             box-shadow: $jnt-shadow-primary;
             outline: 1px solid $jnt-primary-light-color;
           }
-          &[current-day='true'] {
-            [default][child-of=#{$jnt-calendar-host}] {
+          &[data-current-day='true'] {
+            [data-default][child-of=#{$jnt-calendar-host}] {
               background-color: $jnt-primary-light-color;
               color: $jnt-white-color;
             }

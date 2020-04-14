@@ -2,7 +2,7 @@
 @import "elements/icon/icon";
 
 @mixin block-padding($padding) {
-  [body][child-of=#{$jnt-block-host}], [footer][child-of=#{$jnt-block-host}] {
+  [data-body][child-of=#{$jnt-block-host}], [data-footer][child-of=#{$jnt-block-host}] {
     padding: $padding;
   }
 }
@@ -82,7 +82,7 @@
     }
   }
 
-  #{$context} [title][child-of=#{$jnt-block-host}] {
+  #{$context} [data-title][child-of=#{$jnt-block-host}] {
     padding: 0 $jnt-gutter-normal;
     text-align: center;
     color: $jnt-primary-color;
@@ -93,7 +93,7 @@
     }
   }
 
-  #{$context} [loading][child-of=#{$jnt-block-host}], #{$context} [error][child-of=#{$jnt-block-host}], #{$context} [success][child-of=#{$jnt-block-host}] {
+  #{$context} [data-loading][child-of=#{$jnt-block-host}], #{$context} [data-error][child-of=#{$jnt-block-host}], #{$context} [data-success][child-of=#{$jnt-block-host}] {
     position: absolute;
     top: 0;
     left: 0;

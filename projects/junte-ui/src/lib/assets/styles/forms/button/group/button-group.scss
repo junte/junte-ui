@@ -19,13 +19,13 @@
     display: flex;
     &[data-width='fluid'] {
       width: 100%;
-      [button][child-of=#{$jnt-button-group-host}] {
+      [data-button][child-of=#{$jnt-button-group-host}] {
         flex: 1;
       }
     }
   }
 
-  #{$context} [button][child-of=#{$jnt-button-group-host}] {
+  #{$context} [data-button][child-of=#{$jnt-button-group-host}] {
 
     @include jnt-button ((
       padding: 0 $jnt-gutter-normal,

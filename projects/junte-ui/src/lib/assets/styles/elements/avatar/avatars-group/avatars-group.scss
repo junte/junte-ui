@@ -10,7 +10,7 @@
     border-radius: 50%;
     position: relative;
 
-    [avatar][child-of=#{$jnt-avatars-group-host}] {
+    [data-avatar][child-of=#{$jnt-avatars-group-host}] {
       overflow: hidden;
       border: 1px solid $jnt-white-color;
       box-sizing: border-box;
@@ -21,7 +21,7 @@
         height: #{map-get($map, size)};
         width: #{map-get($map, size)};
 
-        [overflow][child-of=#{$jnt-avatars-group-host}] {
+        [data-overflow][child-of=#{$jnt-avatars-group-host}] {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -41,7 +41,7 @@
         }
 
         &[data-capacity='4'] {
-          [avatar][child-of=#{$jnt-avatars-group-host}] {
+          [data-avatar][child-of=#{$jnt-avatars-group-host}] {
             min-width: calc(#{map-get($map, size)} / 2);
             width: calc(#{map-get($map, size)} / 2);
             min-height: calc(#{map-get($map, size)} / 2);
@@ -69,7 +69,7 @@
         &[data-capacity='3'] {
           flex-direction: column;
           flex-wrap: wrap;
-          [avatar][child-of=#{$jnt-avatars-group-host}] {
+          [data-avatar][child-of=#{$jnt-avatars-group-host}] {
             min-width: calc(#{map-get($map, size)} / 2);
             width: calc(#{map-get($map, size)} / 2);
             min-height: calc(#{map-get($map, size)} / 2);
@@ -94,7 +94,7 @@
 
         &[data-capacity='2'] {
           flex-direction: column;
-          [avatar][child-of=#{$jnt-avatars-group-host}] {
+          [data-avatar][child-of=#{$jnt-avatars-group-host}] {
             width: #{map-get($map, size)};
             height: #{map-get($map, size)};
             transform: translateX(50%);
@@ -112,7 +112,7 @@
         }
 
         &[data-capacity='1'] {
-          [avatar][child-of=#{$jnt-avatars-group-host}] {
+          [data-avatar][child-of=#{$jnt-avatars-group-host}] {
             border: none;
           }
         }

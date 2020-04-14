@@ -1,7 +1,7 @@
 @import "jnt-variables";
 
 @mixin opened() {
-  [content][child-of=#{$jnt-dropdown-host}] {
+  [data-content][child-of=#{$jnt-dropdown-host}] {
     transform: scaleY(1);
   }
 }
@@ -16,7 +16,7 @@
     }
   }
 
-  #{$context} [content][child-of=#{$jnt-dropdown-host}] {
+  #{$context} [data-content][child-of=#{$jnt-dropdown-host}] {
     background-color: $jnt-primary-background;
     min-width: 100%;
     position: absolute;
@@ -32,7 +32,7 @@
     z-index: 1;
   }
 
-  #{$context} [overlay][child-of=#{$jnt-dropdown-host}] {
+  #{$context} [data-overlay][child-of=#{$jnt-dropdown-host}] {
     position: fixed;
     top: 0;
     bottom: 0;

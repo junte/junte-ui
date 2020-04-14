@@ -1,16 +1,16 @@
 @import "jnt-variables";
 
 @mixin popover-scheme($scheme) {
-  [wrapper][child-of=#{$jnt-popover-host}] {
+  [data-wrapper][child-of=#{$jnt-popover-host}] {
     background-color: map-get($scheme, background-color);
-    [title][child-of=#{$jnt-popover-host}] {
+    [data-title][child-of=#{$jnt-popover-host}] {
       color: map-get($scheme, color);
     }
   }
-  [arrow][child-of=#{$jnt-popover-host}] {
+  [data-arrow][child-of=#{$jnt-popover-host}] {
     border-top-color: map-get($scheme, background-color);
   }
-  [title][child-of=#{$jnt-popover-host}] {
+  [data-title][child-of=#{$jnt-popover-host}] {
     color: map-get($scheme, color);
   }
 }
@@ -62,7 +62,7 @@
       }
     }
 
-    [arrow][child-of=#{$jnt-popover-host}] {
+    [data-arrow][child-of=#{$jnt-popover-host}] {
       width: 0;
       height: 0;
       border: 10px solid transparent;
@@ -75,7 +75,7 @@
     &.top-right {
       padding-bottom: map-get($vars, spacing);
 
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         top: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -85,7 +85,7 @@
     &.right-bottom {
       padding-left: map-get($vars, spacing);
 
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         right: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -95,7 +95,7 @@
     &.bottom-right {
       padding-top: map-get($vars, spacing);
 
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         bottom: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -105,101 +105,101 @@
     &.left-bottom {
       padding-right: map-get($vars, spacing);
 
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         left: calc(100% - #{map-get($vars, spacing)});
       }
     }
 
     &.top,
     &.bottom {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         left: 50%;
       }
     }
 
     &.left,
     &.right {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         top: 50%;
       }
     }
 
     &.top-left,
     &.bottom-left {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         left: map-get($vars, arrow-shift);
       }
     }
 
     &.top-right,
     &.bottom-right {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         right: map-get($vars, arrow-shift);
       }
     }
 
     &.left-top,
     &.right-top {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         top: map-get($vars, arrow-shift);
       }
     }
 
     &.left-bottom,
     &.right-bottom {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         bottom: map-get($vars, arrow-shift);
       }
     }
 
     &.right-top,
     &.right-bottom {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         transform: rotate(90deg);
       }
     }
 
     &.bottom-left,
     &.bottom-right {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         transform: rotate(180deg);
       }
     }
 
     &.left-top,
     &.left-bottom {
-      [arrow][child-of=#{$jnt-popover-host}] {
+      [data-arrow][child-of=#{$jnt-popover-host}] {
         transform: rotate(-90deg);
       }
     }
 
-    &.top [arrow] {
+    &.top [data-arrow] {
       transform: translateX(-50%);
     }
 
-    &.right [arrow] {
+    &.right [data-arrow] {
       transform: translateY(-50%) rotate(90deg);
     }
 
-    &.bottom [arrow] {
+    &.bottom [data-arrow] {
       transform: translateX(-50%) rotate(180deg);
     }
 
-    &.left [arrow] {
+    &.left [data-arrow] {
       transform: translateY(-50%) rotate(-90deg);
     }
   }
 
-  #{$context} [wrapper][child-of=#{$jnt-popover-host}] {
+  #{$context} [data-wrapper][child-of=#{$jnt-popover-host}] {
     border-radius: $jnt-corner-small;
     box-shadow: $jnt-shadow-normal;
     padding: $jnt-gutter-normal;
 
-    [title][child-of=#{$jnt-popover-host}] {
+    [data-title][child-of=#{$jnt-popover-host}] {
       font-weight: $jnt-font-weight-bold;
       margin-bottom: $jnt-gutter-normal;
     }
-    [content][child-of=#{$jnt-popover-host}] {
+    [data-content][child-of=#{$jnt-popover-host}] {
       max-width: 300px;
     }
   }

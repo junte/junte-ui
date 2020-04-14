@@ -1,7 +1,7 @@
 @import "jnt-variables";
 
 @mixin badge-position($position) {
-  [text][child-of=#{$jnt-badge-host}] {
+  [data-text][child-of=#{$jnt-badge-host}] {
     position: map-get($position, position);
     left: map-get($position, left);
     right: map-get($position, right);
@@ -61,7 +61,7 @@
     }
   }
 
-  #{$context} [text][child-of=#{$jnt-badge-host}] {
+  #{$context} [data-text][child-of=#{$jnt-badge-host}] {
     @if $declare {
       top: 0;
       display: inline-block;

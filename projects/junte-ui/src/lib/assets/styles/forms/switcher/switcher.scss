@@ -21,7 +21,7 @@
     border-radius: map-get($vars, corner);
     &[data-type='vertical'] {
       flex-direction: column;
-      [option][child-of=#{$jnt-switcher-host}] {
+      [data-option][child-of=#{$jnt-switcher-host}] {
         &:first-child {
           border-top-left-radius: map-get($vars, corner) - 1px;
           border-top-right-radius: map-get($vars, corner) - 1px;
@@ -35,7 +35,7 @@
     }
     &[data-type='horizontal'] {
       flex-direction: row;
-      [option][child-of=#{$jnt-switcher-host}] {
+      [data-option][child-of=#{$jnt-switcher-host}] {
         flex: auto;
         justify-content: center;
         &:first-child {
@@ -52,14 +52,14 @@
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
-      [option][child-of=#{$jnt-switcher-host}] {
+      [data-option][child-of=#{$jnt-switcher-host}] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
   }
 
-  #{$context} [option][child-of=#{$jnt-switcher-host}] {
+  #{$context} [data-option][child-of=#{$jnt-switcher-host}] {
     background-color: $jnt-primary-background;
     color: $jnt-primary-text-color;
     user-select: none;
@@ -68,7 +68,7 @@
     border: 1px solid transparent;
     padding: 0 $jnt-gutter-small;
 
-    &[with-template] {
+    &[data-with-template] {
       padding: $jnt-gutter-small;
     }
 
@@ -82,7 +82,7 @@
       background-color: $jnt-highlight-background;
     }
 
-    &[active="true"] {
+    &[data-active="true"] {
       color: $jnt-white-color;
       background-color: $jnt-primary-light-color;
     }
@@ -92,9 +92,9 @@
     }
   }
 
-  #{$context} [title][child-of=#{$jnt-switcher-host}] {
+  #{$context} [data-title][child-of=#{$jnt-switcher-host}] {
     flex: 1;
-    [label][child-of=#{$jnt-switcher-host}] {
+    [data-label][child-of=#{$jnt-switcher-host}] {
       flex: 0 1 auto;
       overflow: hidden;
       white-space: nowrap;

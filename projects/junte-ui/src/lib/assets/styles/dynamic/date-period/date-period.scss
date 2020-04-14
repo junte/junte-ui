@@ -7,23 +7,23 @@
     flex-direction: column;
   }
 
-  #{$context} [date][child-of=#{$jnt-date-period-host}] {
+  #{$context} [data-date][child-of=#{$jnt-date-period-host}] {
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    &[left] {
+    &[data-left] {
       align-items: flex-start;
     }
-    &[right] {
+    &[data-right] {
       align-items: flex-end;
       margin-left: auto;
     }
-    [line][child-of=#{$jnt-date-period-host}] {
+    [data-line][child-of=#{$jnt-date-period-host}] {
       display: inline-flex;
       height: 8px;
       border-top: 2px solid $jnt-primary-color;
       border-radius: 1px 1px 0 0;
-      [arrow][child-of=#{$jnt-date-period-host}] {
+      [data-arrow][child-of=#{$jnt-date-period-host}] {
         display: inline-block;
         border: 5px solid transparent;
         border-top: 8px solid $jnt-primary-color;
@@ -31,26 +31,26 @@
     }
   }
 
-  #{$context} [bar][child-of=#{$jnt-date-period-host}] {
+  #{$context} [data-bar][child-of=#{$jnt-date-period-host}] {
     background-color: $jnt-muted-color;
     min-height: 3px;
     height: 3px;
     border-radius: 1px;
     box-sizing: border-box;
-    [progress][child-of=#{$jnt-date-period-host}] {
+    [data-progress][child-of=#{$jnt-date-period-host}] {
       background-color: $jnt-primary-color;
       height: 100%;
       border-radius: 1px;
       width: 0;
       max-width: 100%;
 
-      &[full] {
+      &[data-full] {
         width: 100%;
       }
     }
   }
 
-  #{$context} [days][child-of=#{$jnt-date-period-host}] {
+  #{$context} [data-days][child-of=#{$jnt-date-period-host}] {
     text-align: center;
     margin-top: $jnt-gutter-small;
     font-size: 12px;

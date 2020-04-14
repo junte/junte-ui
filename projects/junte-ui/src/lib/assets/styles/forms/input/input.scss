@@ -10,7 +10,7 @@
       padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
     }
   }
-  #{$wrapper} [spinner][child-of=#{$jnt-input-host}] {
+  #{$wrapper} [data-spinner][child-of=#{$jnt-input-host}] {
     @include jnt-spinner((
       size: map-get($size, spinner),
     ), '&');
@@ -142,7 +142,7 @@
               size: map-get($map, icon)
             ), '&');
           }
-          #{$wrapper} [arrows][child-of=#{$jnt-input-host}] [data-icon][child-of=#{$jnt-input-host}] {
+          #{$wrapper} [data-arrows][child-of=#{$jnt-input-host}] [data-icon][child-of=#{$jnt-input-host}] {
             @include jnt-icon((
               size: map-get($map, chevron)
             ), '&');
@@ -199,7 +199,7 @@
         background-color: $jnt-control-disabled-background;
         color: $jnt-control-disabled-label-color;
         pointer-events: none;
-        & + [arrows] {
+        & + [data-arrows] {
           button[child-of=#{$jnt-input-host}] {
             cursor: default;
           }
@@ -210,7 +210,7 @@
       }
     }
 
-    [label][child-of=#{$jnt-input-host}] {
+    [data-label][child-of=#{$jnt-input-host}] {
       background-color: $jnt-control-field-label-background;
       padding: $jnt-control-field-label-padding;
       display: flex;
@@ -228,7 +228,7 @@
       }
     }
 
-    [loading][child-of=#{$jnt-input-host}], [warning][child-of=#{$jnt-input-host}], [checked][child-of=#{$jnt-input-host}] {
+    [data-loading][child-of=#{$jnt-input-host}], [data-warning][child-of=#{$jnt-input-host}], [data-checked][child-of=#{$jnt-input-host}] {
       position: absolute;
       right: $jnt-gutter-small;
       top: 50%;
@@ -236,15 +236,15 @@
       line-height: 0;
     }
 
-    [warning][child-of=#{$jnt-input-host}] {
+    [data-warning][child-of=#{$jnt-input-host}] {
       color: $jnt-fail-color;
     }
 
-    [checked][child-of=#{$jnt-input-host}] {
+    [data-checked][child-of=#{$jnt-input-host}] {
       color: $jnt-success-color;
     }
 
-    [arrows][child-of=#{$jnt-input-host}] {
+    [data-arrows][child-of=#{$jnt-input-host}] {
       display: flex;
       flex-direction: column;
       position: absolute;

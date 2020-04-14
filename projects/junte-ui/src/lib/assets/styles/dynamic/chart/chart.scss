@@ -10,7 +10,7 @@
     background-color: $jnt-secondary-background;
   }
 
-  #{$context} [wrapper][child-of=#{$jnt-chart-host}] {
+  #{$context} [data-wrapper][child-of=#{$jnt-chart-host}] {
     flex: 1;
 
     table[child-of=#{$jnt-chart-host}] {
@@ -52,7 +52,7 @@
               border-bottom-left-radius: $jnt-corner-normal;
             }
           }
-          &[nodata] {
+          &[data-nodata] {
             height: 200px;
             pointer-events: none;
             border-bottom: 0;
@@ -93,7 +93,7 @@
             color: $jnt-gray-900-color;
             text-align: center;
           }
-          [content][child-of=#{$jnt-chart-host}] {
+          [data-content][child-of=#{$jnt-chart-host}] {
             overflow: hidden;
           }
         }

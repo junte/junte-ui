@@ -3,7 +3,7 @@
 @import "elements/icon/icon";
 
 @mixin link-fill($scheme, $wrapper) {
-  #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+  #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
     &:hover {
@@ -12,7 +12,7 @@
     &:focus {
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
-    [badge][child-of=#{$jnt-link-host}] {
+    [data-badge][child-of=#{$jnt-link-host}] {
       @include jnt-badge((
         background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
         color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -23,14 +23,14 @@
 
 @mixin link-ghost($scheme, $wrapper) {
 
-  #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+  #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
     &:hover {
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
-      [badge][child-of=#{$jnt-link-host}] {
+      [data-badge][child-of=#{$jnt-link-host}] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -40,7 +40,7 @@
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
-    [badge][child-of=#{$jnt-link-host}] {
+    [data-badge][child-of=#{$jnt-link-host}] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
@@ -48,21 +48,21 @@
     }
   }
   &[data-scheme=#{$scheme-secondary}] {
-    [link][child-of=#{$jnt-link-host}] {
+    [data-link][child-of=#{$jnt-link-host}] {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
       &:hover {
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
 
-        [badge][child-of=#{$jnt-link-host}] {
+        [data-badge][child-of=#{$jnt-link-host}] {
           @include jnt-badge((
             background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
             color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
-      [badge][child-of=#{$jnt-link-host}] {
+      [data-badge][child-of=#{$jnt-link-host}] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -74,7 +74,7 @@
 
 @mixin link-transparent($scheme, $wrapper) {
 
-  #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+  #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
@@ -87,14 +87,14 @@
       outline-offset: 1px;
       outline: map-get($scheme, color) auto 1px;
     }
-    [badge][child-of=#{$jnt-link-host}] {
+    [data-badge][child-of=#{$jnt-link-host}] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
-    &[active="true"] {
-      [title][child-of=#{$jnt-link-host}] {
+    &[data-active="true"] {
+      [data-title][child-of=#{$jnt-link-host}] {
         span[child-of=#{$jnt-link-host}] {
           border-bottom: 1px solid map-get($scheme, color);
         }
@@ -103,19 +103,19 @@
     }
   }
   &[data-scheme=#{$scheme-secondary}] {
-    [link][child-of=#{$jnt-link-host}] {
+    [data-link][child-of=#{$jnt-link-host}] {
       color: map-get($scheme, inverse-color);
       &:hover {
         color: map-get($scheme, inverse-color);
       }
-      [badge][child-of=#{$jnt-link-host}] {
+      [data-badge][child-of=#{$jnt-link-host}] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         ), '&');
       }
-      &[active="true"] {
-        [title][child-of=#{$jnt-link-host}] {
+      &[data-active="true"] {
+        [data-title][child-of=#{$jnt-link-host}] {
           span[child-of=#{$jnt-link-host}] {
             border-bottom: 1px solid map-get($scheme, inverse-color);
           }
@@ -192,18 +192,18 @@
       display: inline-block;
       box-sizing: border-box;
       &[data-disabled="true"] {
-        [link][child-of=#{$jnt-link-host}] {
+        [data-link][child-of=#{$jnt-link-host}] {
           opacity: .65;
           pointer-events: none;
           cursor: default;
         }
       }
       &[data-with-title='false'] {
-        [link][child-of=#{$jnt-link-host}] [data-icon][child-of=#{$jnt-link-host}] {
+        [data-link][child-of=#{$jnt-link-host}] [data-icon][child-of=#{$jnt-link-host}] {
           margin-right: 0 !important;
         }
       }
-      #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+      #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
         text-decoration: none;
         box-sizing: border-box;
         cursor: pointer;
@@ -211,7 +211,7 @@
         &:focus {
           outline: none;
         }
-        [title][child-of=#{$jnt-link-host}] {
+        [data-title][child-of=#{$jnt-link-host}] {
           white-space: nowrap;
           [data-icon][child-of=#{$jnt-link-host}], span[child-of=#{$jnt-link-host}] {
             transition: color .3s;
@@ -221,7 +221,7 @@
     }
 
     &[data-orphan='true'] {
-      #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+      #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
         pointer-events: none;
         color: if(map-get($vars, orphan-color), map-get($vars, orphan-color) !important, null);
         &:hover {
@@ -247,7 +247,7 @@
     }
   }
 
-  #{$context} #{$wrapper} [link][child-of=#{$jnt-link-host}] {
+  #{$context} #{$wrapper} [data-link][child-of=#{$jnt-link-host}] {
     @if map-get($vars, display) == inline {
       display: inline-block;
     }
@@ -255,22 +255,22 @@
       display: inline-flex;
       align-items: center;
       width: 100%;
-      [title][child-of=#{$jnt-link-host}] {
+      [data-title][child-of=#{$jnt-link-host}] {
         vertical-align: middle;
       }
     }
     @if map-has-key($vars, active) {
       $active: map-get($vars, active);
-      &[active='true'] {
+      &[data-active='true'] {
         background-color: map-get($active, background-color);
         color: if(map-get($active, color), map-get($active, color) !important, null);
-        [title][child-of=#{$jnt-link-host}] span[child-of=#{$jnt-link-host}] {
+        [data-title][child-of=#{$jnt-link-host}] span[child-of=#{$jnt-link-host}] {
           border-bottom-color: if(map-get($active, color), map-get($active, color) !important, null);
         }
       }
       @if map-get($active, underline) == false {
-        &[active='true'] {
-          [title][child-of=#{$jnt-link-host}] span[child-of=#{$jnt-link-host}] {
+        &[data-active='true'] {
+          [data-title][child-of=#{$jnt-link-host}] span[child-of=#{$jnt-link-host}] {
             border-bottom: 0;
           }
         }
@@ -284,7 +284,7 @@
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
     }
-    [title][child-of=#{$jnt-link-host}] {
+    [data-title][child-of=#{$jnt-link-host}] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         [data-icon][child-of=#{$jnt-link-host}] {
@@ -309,7 +309,7 @@
     }
     @if map-has-key($vars, badge) {
       $badge: map-get($vars, badge);
-      [badge][child-of=#{$jnt-link-host}] {
+      [data-badge][child-of=#{$jnt-link-host}] {
         margin-left: map-get($badge, margin-left);
       }
     }

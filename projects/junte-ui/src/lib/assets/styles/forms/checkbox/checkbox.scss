@@ -2,7 +2,7 @@
 @import "elements/icon/icon";
 
 @mixin checkbox-size($size) {
-  [switch][child-of=#{$jnt-checkbox-host}] {
+  [data-switch][child-of=#{$jnt-checkbox-host}] {
     min-width: $size;
     width: $size;
     min-height: $size;
@@ -50,7 +50,7 @@
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
           @include checkbox-size(map-get($map, indicator));
-          [switch][child-of=#{$jnt-checkbox-host}] [data-icon][child-of=#{$jnt-checkbox-host}] {
+          [data-switch][child-of=#{$jnt-checkbox-host}] [data-icon][child-of=#{$jnt-checkbox-host}] {
             @include jnt-icon((
               size: map-get($map, icon),
             ), '&');
@@ -72,7 +72,7 @@
     margin: 0;
     width: 100%;
     height: 100%;
-    &:checked + [switch] {
+    &:checked + [data-switch] {
       border-color: $jnt-primary-color;
       & > [data-icon] {
         opacity: 1;
@@ -84,7 +84,7 @@
       & ~ label[child-of=#{$jnt-checkbox-host}] {
         color: $jnt-control-disabled-label-color;
       }
-      & + [switch] {
+      & + [data-switch] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
         & > [data-icon] {
@@ -93,12 +93,12 @@
       }
     }
     &:focus {
-      & + [switch] {
+      & + [data-switch] {
         box-shadow: 0 1px 5px $jnt-primary-color;
       }
     }
     &:hover {
-      & + [switch] {
+      & + [data-switch] {
         border-color: $jnt-primary-color;
       }
     }
@@ -110,7 +110,7 @@
     user-select: none;
   }
 
-  [switch][child-of=#{$jnt-checkbox-host}] {
+  [data-switch][child-of=#{$jnt-checkbox-host}] {
     position: relative;
     border-radius: 3px;
     background-color: $jnt-control-background;
