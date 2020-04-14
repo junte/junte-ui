@@ -4,9 +4,9 @@
   [align]="ui.flex.align.stretch"
   [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
-    <div top [jntSubMenu]="item" [collapsed]="collapsed">
-      <div item (click)="open(item)">
-        <jnt-link link
+    <div data-top [jntSubMenu]="item" [collapsed]="collapsed">
+      <div data-item (click)="open(item)">
+        <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
                   [matching]="item.matching"
@@ -27,18 +27,18 @@
         <jnt-icon *ngIf="!!item.submenu"
                   [size]="ui.size.tiny"
                   [icon]="item.opened ? ui.icons.chevronUp : ui.icons.chevronDown"
-                  toggle>
+                  data-toggle>
         </jnt-icon>
       </div>
 
-      <div sub [attr.opened]="item.opened" jntSubMenuItems>
+      <div data-sub [attr.data-opened]="item.opened" jntSubMenuItems>
         <ng-container *ngIf="!!item.submenu; else only">
-          <div section *ngIf="collapsed">
+          <div data-section *ngIf="collapsed">
             <span>
               {{item.title}}
             </span>
           </div>
-          <jnt-link link *ngFor="let subItem of item.submenu.items"
+          <jnt-link data-link *ngFor="let subItem of item.submenu.items"
                     [title]="subItem.title"
                     [icon]="subItem.icon"
                     [matching]="subItem.matching"
@@ -56,7 +56,7 @@
         </ng-container>
 
         <ng-template #only>
-          <jnt-link link
+          <jnt-link data-link
                     [title]="item.title"
                     [icon]="item.icon"
                     [matching]="item.matching"

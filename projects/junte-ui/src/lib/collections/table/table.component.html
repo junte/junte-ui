@@ -7,7 +7,7 @@
       <jnt-stack [type]="ui.layout.stack.type.horizontal"
                  [align]="ui.flex.align.center"
                  [wrap]="ui.flex.wrap.wrap">
-        <jnt-button button [text]="'action.reload' | translate"
+        <jnt-button data-button [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
                     [outline]="ui.outline.transparent"
                     [scheme]="ui.scheme.secondary"
@@ -31,9 +31,9 @@
     </jnt-stack>
 
     <jnt-stack [align]="ui.flex.align.stretch">
-      <div table>
+      <div data-table>
         <table>
-          <div spinner *ngIf="source.length && progress.loading">
+          <div data-spinner *ngIf="source.length && progress.loading">
             <jnt-spinner [size]="ui.size.large"></jnt-spinner>
           </div>
 
@@ -55,10 +55,10 @@
           <tbody>
           <ng-container *ngIf="source.length; else noDataTemplate">
             <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-              <td *ngIf="!!tableRowActionsTemplate" action>
-                <jnt-dropdown menu>
+              <td *ngIf="!!tableRowActionsTemplate" data-action>
+                <jnt-dropdown data-menu>
                   <ng-template #triggerTemplate let-action="trigger">
-                    <jnt-button button [outline]="ui.outline.transparent"
+                    <jnt-button data-button [outline]="ui.outline.transparent"
                                 [icon]="ui.icons.actions"
                                 (click)="action()"></jnt-button>
                   </ng-template>
@@ -74,14 +74,14 @@
           </ng-container>
           <ng-template #noDataTemplate>
             <ng-container *ngIf="!progress.loading; else skeletonTemplate">
-              <tr nodata>
+              <tr data-nodata>
                 <td [attr.colspan]="!!tableRowActionsTemplate ? columns.length + 1 : columns.length">
                   <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
                 </td>
               </tr>
             </ng-container>
             <ng-template #skeletonTemplate>
-              <tr loading>
+              <tr data-loading>
                 <td [attr.colspan]="!!tableRowActionsTemplate ? columns.length + 1 : columns.length">
                   <jnt-skeleton [lines]="4"></jnt-skeleton>
                 </td>
@@ -93,8 +93,8 @@
       </div>
 
       <ng-container *ngIf="pagesCount > 1">
-        <div pagination>
-          <jnt-pager [pagesCount]="pagesCount" formControlName="page" pages></jnt-pager>
+        <div data-pagination>
+          <jnt-pager [pagesCount]="pagesCount" formControlName="page" data-pages></jnt-pager>
           <jnt-select formControlName="pageSize" [size]="ui.size.small" [allowEmpty]="false">
             <jnt-select-option label="10" key="10"></jnt-select-option>
             <jnt-select-option label="20" key="20"></jnt-select-option>

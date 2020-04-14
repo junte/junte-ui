@@ -1,9 +1,9 @@
-<div tabs>
-  <div tab *ngFor="let tab of tabs;let i = index"
-       [attr.active]="i === active"
+<div data-tabs>
+  <div data-tab *ngFor="let tab of tabs;let i = index"
+       [attr.data-active]="i === active"
        (click)="active = i"
        tabindex="0">
-    <jnt-stack label [type]="ui.layout.stack.type.horizontal"
+    <jnt-stack data-label [type]="ui.layout.stack.type.horizontal"
                [gutter]="ui.gutter.tiny"
                [align]="ui.flex.align.center">
       <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
@@ -23,12 +23,12 @@
         </jnt-stack>
       </jnt-stack>
     </jnt-stack>
-    <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" ripple></div>
+    <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
   </div>
 </div>
 <ng-container *ngFor="let tab of tabs;let i = index">
-  <div content *ngIf="i === active && tab.tabContentTemplate"
-       [attr.padding]="tab.padding">
+  <div data-content *ngIf="i === active && tab.tabContentTemplate"
+       [attr.data-padding]="tab.padding">
     <ng-container *ngTemplateOutlet="tab.tabContentTemplate"></ng-container>
   </div>
 </ng-container>

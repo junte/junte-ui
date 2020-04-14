@@ -82,7 +82,7 @@
   jnt-menu[host=#{$jnt-menu-host}], #{$context} {
     @if $declare {
       display: block;
-      &[data-orientation='horizontal'] {
+      &[data-type='horizontal'] {
         [sub][child-of=#{$jnt-menu-host}] {
           position: absolute;
           top: 100% !important;
@@ -90,7 +90,7 @@
           z-index: 1;
         }
       }
-      &[data-orientation='vertical'] {
+      &[data-type='vertical'] {
         [top][child-of=#{$jnt-menu-host}] {
           width: 100%;
         }
@@ -144,7 +144,7 @@
   }
 
   jnt-menu[host=#{$jnt-menu-host}] {
-    &[data-orientation='horizontal'], &[data-collapsed='true'] {
+    &[data-type='horizontal'], &[data-collapsed='true'] {
       [sub][child-of=#{$jnt-menu-host}] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);

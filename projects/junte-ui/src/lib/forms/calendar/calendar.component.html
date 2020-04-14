@@ -1,16 +1,16 @@
 <table>
   <thead>
   <tr>
-    <td arrow-left>
-      <button arrow (click)="period = subMonths(period, 1)">
+    <td data-arrow-left>
+      <button data-arrow (click)="period = subMonths(period, 1)">
         <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
       </button>
     </td>
-    <td colspan="5" date>
+    <td colspan="5" data-date>
       {{period | dfnsFormat: 'MMMM'}}, {{period | dfnsFormat: 'yyyy'}}
     </td>
-    <td arrow-right>
-      <button arrow (click)="period = addMonths(period, 1)">
+    <td data-arrow-right>
+      <button data-arrow (click)="period = addMonths(period, 1)">
         <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
       </button>
     </td>
@@ -20,7 +20,7 @@
       Metrics
     </td>
   </tr>
-  <tr days>
+  <tr data-days>
     <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | dfnsWeekdayName:'x2'}}</th>
 
     <th *ngFor="let m of metrics">
@@ -31,16 +31,16 @@
 
   <tbody>
   <tr *ngFor="let w of weeks"
-      [attr.current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
-    <td day *ngFor="let d of w.days"
-        [attr.current-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
+      [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
+    <td data-day *ngFor="let d of w.days"
+        [attr.data-current-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
         (click)="onChange(d)" tabindex="0">
       <ng-container
         *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
       </ng-container>
     </td>
 
-    <td metric *ngFor="let m of metrics;let i = index;">
+    <td data-metric *ngFor="let m of metrics;let i = index;">
       <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
       </ng-container>
     </td>
@@ -49,6 +49,6 @@
 </table>
 
 <ng-template #defaultDayTemplate let-date="date">
-  <div default>{{date | dfnsGetDate}}</div>
+  <div data-default>{{date | dfnsGetDate}}</div>
 </ng-template>
 

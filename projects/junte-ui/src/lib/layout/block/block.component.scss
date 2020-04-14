@@ -2,7 +2,7 @@
 @import "elements/icon/icon";
 
 @mixin block-padding($padding) {
-  [body], [footer] {
+  [data-body], [data-footer] {
     padding: $padding;
   }
 }
@@ -82,7 +82,7 @@
     }
   }
 
-  #{$context} [title] {
+  #{$context} [data-title] {
     padding: 0 $jnt-gutter-normal;
     text-align: center;
     color: $jnt-primary-color;
@@ -93,7 +93,7 @@
     }
   }
 
-  #{$context} [loading], #{$context} [error], #{$context} [success] {
+  #{$context} [data-loading], #{$context} [data-error], #{$context} [data-success] {
     position: absolute;
     top: 0;
     left: 0;

@@ -1,5 +1,5 @@
-<div drawer [attr.collapsed]="collapsed">
-  <div scroll>
+<div data-drawer [attr.data-collapsed]="collapsed">
+  <div data-scroll>
     <button (click)="collapsed = !collapsed">
       <jnt-stack [type]="ui.layout.stack.type.horizontal">
         <jnt-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>
@@ -28,4 +28,4 @@
     </jnt-stack>
   </div>
 </div>
-<div overlay (click)="opened = false"></div>
+<div data-overlay (click)="opened = false"></div>

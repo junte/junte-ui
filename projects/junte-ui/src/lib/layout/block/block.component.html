@@ -1,21 +1,21 @@
-<div *ngIf="title" title>
+<div *ngIf="title" data-title>
   <div>{{title}}</div>
 </div>
 
-<div body>
+<div data-body>
   <ng-content></ng-content>
 </div>
 
-<div *ngIf="state === blockState.loading" loading>
+<div *ngIf="state === blockState.loading" data-loading>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
 </div>
-<div *ngIf="state === blockState.error" error>
+<div *ngIf="state === blockState.error" data-error>
   <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
 </div>
-<div *ngIf="_state.success" [@success]="_state.success" success>
+<div *ngIf="_state.success" [@success]="_state.success" data-success>
   <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
 </div>
 
-<div *ngIf="!!blockFooterTemplate" footer>
+<div *ngIf="!!blockFooterTemplate" data-footer>
   <ng-container *ngTemplateOutlet="blockFooterTemplate"></ng-container>
 </div>

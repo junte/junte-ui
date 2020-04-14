@@ -1,16 +1,16 @@
 @import "jnt-variables";
 
 @mixin popover-scheme($scheme) {
-  [wrapper] {
+  [data-wrapper] {
     background-color: map-get($scheme, background-color);
-    [title] {
+    [data-title] {
       color: map-get($scheme, color);
     }
   }
-  [arrow] {
+  [data-arrow] {
     border-top-color: map-get($scheme, background-color);
   }
-  [title] {
+  [data-title] {
     color: map-get($scheme, color);
   }
 }
@@ -62,7 +62,7 @@
       }
     }
 
-    [arrow] {
+    [data-arrow] {
       width: 0;
       height: 0;
       border: 10px solid transparent;
@@ -75,7 +75,7 @@
     &.top-right {
       padding-bottom: map-get($vars, spacing);
 
-      [arrow] {
+      [data-arrow] {
         top: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -85,7 +85,7 @@
     &.right-bottom {
       padding-left: map-get($vars, spacing);
 
-      [arrow] {
+      [data-arrow] {
         right: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -95,7 +95,7 @@
     &.bottom-right {
       padding-top: map-get($vars, spacing);
 
-      [arrow] {
+      [data-arrow] {
         bottom: calc(100% - #{map-get($vars, spacing)});
       }
     }
@@ -105,101 +105,101 @@
     &.left-bottom {
       padding-right: map-get($vars, spacing);
 
-      [arrow] {
+      [data-arrow] {
         left: calc(100% - #{map-get($vars, spacing)});
       }
     }
 
     &.top,
     &.bottom {
-      [arrow] {
+      [data-arrow] {
         left: 50%;
       }
     }
 
     &.left,
     &.right {
-      [arrow] {
+      [data-arrow] {
         top: 50%;
       }
     }
 
     &.top-left,
     &.bottom-left {
-      [arrow] {
+      [data-arrow] {
         left: map-get($vars, arrow-shift);
       }
     }
 
     &.top-right,
     &.bottom-right {
-      [arrow] {
+      [data-arrow] {
         right: map-get($vars, arrow-shift);
       }
     }
 
     &.left-top,
     &.right-top {
-      [arrow] {
+      [data-arrow] {
         top: map-get($vars, arrow-shift);
       }
     }
 
     &.left-bottom,
     &.right-bottom {
-      [arrow] {
+      [data-arrow] {
         bottom: map-get($vars, arrow-shift);
       }
     }
 
     &.right-top,
     &.right-bottom {
-      [arrow] {
+      [data-arrow] {
         transform: rotate(90deg);
       }
     }
 
     &.bottom-left,
     &.bottom-right {
-      [arrow] {
+      [data-arrow] {
         transform: rotate(180deg);
       }
     }
 
     &.left-top,
     &.left-bottom {
-      [arrow] {
+      [data-arrow] {
         transform: rotate(-90deg);
       }
     }
 
-    &.top [arrow] {
+    &.top [data-arrow] {
       transform: translateX(-50%);
     }
 
-    &.right [arrow] {
+    &.right [data-arrow] {
       transform: translateY(-50%) rotate(90deg);
     }
 
-    &.bottom [arrow] {
+    &.bottom [data-arrow] {
       transform: translateX(-50%) rotate(180deg);
     }
 
-    &.left [arrow] {
+    &.left [data-arrow] {
       transform: translateY(-50%) rotate(-90deg);
     }
   }
 
-  #{$context} [wrapper] {
+  #{$context} [data-wrapper] {
     border-radius: $jnt-corner-small;
     box-shadow: $jnt-shadow-normal;
     padding: $jnt-gutter-normal;
 
-    [title] {
+    [data-title] {
       font-weight: $jnt-font-weight-bold;
       margin-bottom: $jnt-gutter-normal;
     }
-    [content] {
+    [data-content] {
       max-width: 300px;
     }
   }

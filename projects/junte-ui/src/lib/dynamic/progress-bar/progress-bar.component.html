@@ -1,6 +1,6 @@
 <ng-container *ngTemplateOutlet="progressBarLegendTemplate"></ng-container>
-<div bar>
-  <div *ngIf="value >= 0" progress [style.width.%]="value > 100 ? 100 : value"
-       [attr.fail]="value > 100"></div>
+<div data-bar>
+  <div *ngIf="value >= 0" data-progress [style.width.%]="value > 100 ? 100 : value"
+       [attr.data-fail]="value > 100"></div>
 </div>
 

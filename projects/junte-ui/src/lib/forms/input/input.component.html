@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <jnt-icon *ngIf="!!icon && !label && !multiline"
             [icon]="icon"></jnt-icon>
-  <div label *ngIf="!!label">{{label}}</div>
+  <div data-label *ngIf="!!label">{{label}}</div>
 
   <input *ngIf="!multiline; else textarea" formControlName="input"
          [type]="type"
@@ -17,19 +17,19 @@
       </textarea>
   </ng-template>
 
-  <div *ngIf="state === inputState.loading" loading>
-    <jnt-spinner spinner></jnt-spinner>
+  <div *ngIf="state === inputState.loading" data-loading>
+    <jnt-spinner data-spinner></jnt-spinner>
   </div>
 
-  <div *ngIf="state === inputState.warning" warning>
+  <div *ngIf="state === inputState.warning" data-warning>
     <jnt-icon [icon]="ui.icons.warning"></jnt-icon>
   </div>
 
-  <div *ngIf="state === inputState.checked" checked>
+  <div *ngIf="state === inputState.checked" data-checked>
     <jnt-icon [icon]="ui.icons.checked"></jnt-icon>
   </div>
 
-  <div arrows *ngIf="type === inputType.number">
+  <div data-arrows *ngIf="type === inputType.number">
     <button [disabled]="inputControl.disabled" (click)="up()">
       <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
     </button>

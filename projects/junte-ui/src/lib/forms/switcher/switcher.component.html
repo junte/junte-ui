@@ -9,8 +9,8 @@
              [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center"
              [gutter]="ui.gutter.small"
-             title>
-    <div label>{{label}}</div>
+             data-title>
+    <div data-label>{{label}}</div>
     <jnt-badge *ngIf="badge"
                [position]="ui.position.inline"
                [color]="badge.color"
@@ -21,10 +21,10 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack option *ngFor="let option of options"
-           [attr.with-template]="option.optionTemplate"
+<jnt-stack data-option *ngFor="let option of options"
+           [attr.data-with-template]="option.optionTemplate"
            (click)="selectOption(option.value)"
-           [attr.active]="option.value === value"
+           [attr.data-active]="option.value === value"
            [type]="ui.layout.stack.type.horizontal"
            [align]="ui.flex.align.center"
            [gutter]="ui.gutter.small"

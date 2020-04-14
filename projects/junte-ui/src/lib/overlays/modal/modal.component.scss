@@ -25,7 +25,7 @@
     display: block;
   }
 
-  #{$context} [overlay] {
+  #{$context} [data-overlay] {
     position: fixed;
     background-color: rgba(0, 0, 0, .4);
     width: 100%;
@@ -37,20 +37,20 @@
     right: 0;
   }
 
-  #{$context} [modal] {
+  #{$context} [data-modal] {
     transform: scale(1);
     position: fixed;
     z-index: 2;
     top: 100%;
 
-    [title] {
+    [data-title] {
       border-top-left-radius: $jnt-corner-normal;
       border-top-right-radius: $jnt-corner-normal;
       padding: $jnt-gutter-normal;
       background-color: $jnt-page-background;
       font-size: 18px;
 
-      [close] {
+      [data-close] {
         background-color: transparent;
         border: 0;
         padding: 0;
@@ -68,13 +68,13 @@
         ), '&');
       }
 
-      [text] {
+      [data-text] {
         color: $jnt-primary-text-color;
         font-weight: $jnt-font-weight-bold;
       }
     }
 
-    [content] {
+    [data-content] {
       padding: $jnt-gutter-normal;
       font-size: $jnt-font-size-base;
       box-sizing: border-box;
