@@ -19,6 +19,7 @@ var FontConfig = /** @class */ (function () {
         this.svgPath = '';
         this.fontsPath = '';
         this.fontName = '';
+        this.className = '';
     }
     return FontConfig;
 }());
@@ -66,7 +67,7 @@ var Gulpfile = /** @class */ (function () {
                     glyphs: glyphs,
                     fontName: font.fontName,
                     fontPath: '~/assets/fonts',
-                    className: 'icon'
+                    className: font.className || 'icon'
                 }))
                     .pipe(rename(font.fontName + "-font.scss"))
                     .pipe(gulp.dest(font.fontsPath + "/" + font.fontName));

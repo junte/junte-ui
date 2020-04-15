@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
 @mixin checkbox-size($size) {
@@ -37,7 +38,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
