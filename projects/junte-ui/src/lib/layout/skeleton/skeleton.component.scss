@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @keyframes jnt-loading {
   0% {
@@ -42,7 +43,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
