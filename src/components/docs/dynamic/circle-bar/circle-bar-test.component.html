@@ -1,5 +1,11 @@
 <jnt-container>
-  <h1 i18n="@@label.circle_bar">Circle bar</h1>
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.circlBar"></jnt-icon>
+    </span>
+    <span i18n="@@label.circl_bar">Circle bar</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
@@ -24,7 +30,9 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-circle-bar>
-                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
+                  <ng-template #circleBarContentTemplate>
+                    <jnt-avatar image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                  </ng-template>
                   <jnt-bar-indicator-group>
                     <jnt-bar-indicator [value]="value1Control.value"
                                        [color]="color1Control.value"></jnt-bar-indicator>
@@ -41,61 +49,56 @@
               </ng-template>
             </app-browser-preview>
           </jnt-col>
+
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder" builder>
-              <jnt-form-label i18n="@@label.first_bar_indicator">First bar indicator</jnt-form-label>
-              <jnt-container>
-                <jnt-row
-                  [gutter]="ui.gutter.tiny"
-                  [align]="ui.layout.grid.row.align.stretch">
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-input formControlName="value1" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
-                  </jnt-col>
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-color-picker formControlName="color1"></jnt-color-picker>
-                  </jnt-col>
-                </jnt-row>
-              </jnt-container>
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-label i18n="@@label.second_bar_indicator">Second bar indicator</jnt-form-label>
-              <jnt-container>
-                <jnt-row
-                  [gutter]="ui.gutter.tiny"
-                  [align]="ui.layout.grid.row.align.stretch">
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-input formControlName="value2" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
-                  </jnt-col>
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-color-picker formControlName="color2"></jnt-color-picker>
-                  </jnt-col>
-                </jnt-row>
-              </jnt-container>
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.first_bar_indicator">1st indicator</jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-input formControlName="value1"
+                                 [type]="ui.form.input.type.number"
+                                 [max]="100"
+                                 [min]="0"></jnt-input>
+                    </jnt-col>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-color-picker formControlName="color1"></jnt-color-picker>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
 
-              <jnt-form-label i18n="@@label.third_bar_indicator">Third bar indicator</jnt-form-label>
-              <jnt-container>
-                <jnt-row
-                  [gutter]="ui.gutter.tiny"
-                  [align]="ui.layout.grid.row.align.stretch">
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-input formControlName="value3" [type]="ui.form.input.type.number" [max]="100" [min]="0"></jnt-input>
-                  </jnt-col>
-                  <jnt-col
-                    [span]="6"
-                    [padding]="ui.gutter.tiny">
-                    <jnt-color-picker formControlName="color3"></jnt-color-picker>
-                  </jnt-col>
-                </jnt-row>
-              </jnt-container>
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.second_bar_indicator">2nd indicator</jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-input formControlName="value2"
+                                 [type]="ui.form.input.type.number"
+                                 [max]="100"
+                                 [min]="0"></jnt-input>
+                    </jnt-col>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-color-picker formControlName="color2"></jnt-color-picker>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.third_bar_indicator">3rd indicator</jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-input formControlName="value3"
+                                 [type]="ui.form.input.type.number"
+                                 [max]="100"
+                                 [min]="0"></jnt-input>
+                    </jnt-col>
+                    <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
+                      <jnt-color-picker formControlName="color3"></jnt-color-picker>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>
@@ -175,7 +178,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack>
+        <jnt-stack [align]="ui.flex.align.stretch">
           <app-component-api selector="jnt-bar-indicator" [target]="types.indicator"></app-component-api>
           <app-component-api selector="jnt-circle-bar" [target]="types.bar"></app-component-api>
         </jnt-stack>
