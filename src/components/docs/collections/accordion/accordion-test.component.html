@@ -29,29 +29,37 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-accordion>
-                  <jnt-accordion-section title="Gitlab" [icon]="iconControl.value ? ui.icons.gitlab : null">
+                  <jnt-accordion-section title="Spiderman"
+                                         [icon]="iconControl.value ? localUi.icons.heroes.spiderman : null">
                     <ng-template #accordionContentTemplate>
-                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
-                      and
-                      makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
-                      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
-                      and
-                      higher levels of efficiency in a single application across the DevOps lifecycle.
+                      <p>Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve
+                        Ditko. He first appeared in the anthology comic book Amazing Fantasy #15 (August 1962) in the
+                        Silver Age of Comic Books.</p>
+                      <iframe giphy src="https://giphy.com/embed/yFqLQzipdekuI" width="480" height="313"
+                              frameBorder="0"></iframe>
                     </ng-template>
                   </jnt-accordion-section>
-                  <jnt-accordion-section title="Figma" [icon]="iconControl.value ? ui.icons.figma : null">
+                  <jnt-accordion-section title="Ironman"
+                                         [icon]="iconControl.value ? localUi.icons.heroes.ironman : null">
                     <ng-template #accordionContentTemplate>
-                      Figma is the only platform that brings together powerful design features you already love and a
-                      more
-                      efficient workflow to boot.
+                      <p>Iron Man is a fictional superhero appearing in American comic books published by Marvel Comics.
+                        The character was co-created by writer and editor Stan Lee, developed by scripter Larry Lieber,
+                        and designed by artists Don Heck and Jack Kirby. The character made his first appearance in
+                        Tales of Suspense #39 (cover dated March 1963), and received his own title in Iron Man #1 (May
+                        1968).</p>
+                      <iframe giphy src="https://giphy.com/embed/6rQbT4VC8dTY4" width="480" height="294"
+                              frameBorder="0"></iframe>
                     </ng-template>
                   </jnt-accordion-section>
-                  <jnt-accordion-section title="Git" [icon]="iconControl.value ? ui.icons.github : null">
+                  <jnt-accordion-section title="Captain America"
+                                         [icon]="iconControl.value ? localUi.icons.heroes.capitan : null">
                     <ng-template #accordionContentTemplate>
-                      Git is a distributed version-control system for tracking changes in source code during software
-                      development. It is designed for coordinating work among programmers, but it can be used to track
-                      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
-                      non-linear workflows.
+                      <p>Captain America is a fictional superhero appearing in American comic books published by Marvel
+                        Comics. Created by cartoonists Joe Simon and Jack Kirby, the character first appeared in Captain
+                        America Comics #1 (cover dated March 1941) from Timely Comics, a predecessor of Marvel
+                        Comics.</p>
+                      <iframe giphy src="https://giphy.com/embed/aShBCHV3Cu6FG" width="480" height="204"
+                              frameBorder="0"></iframe>
                     </ng-template>
                   </jnt-accordion-section>
                 </jnt-accordion>
@@ -62,6 +70,9 @@
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.features">Features
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="icon" label="Icon"></jnt-checkbox>
                   </jnt-form-control>
@@ -93,51 +104,51 @@
                 <![CDATA[
                 <jnt-accordion>
                   <jnt-accordion-section title="Gitlab" ]]>
-                  <ng-container *ngIf="iconControl.value">
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.gitlab"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
                     <![CDATA[
-                    [icon]="ui.icons.gitlab"]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <![CDATA[
-                  <ng-template #accordionContentTemplate>
-                    GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
-                    and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
-                    together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
-                    and higher levels of efficiency in a single application across the DevOps lifecycle.
-                  </ng-template>
-          </jnt-accordion-section>
-          <jnt-accordion-section title="Figma"]]>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.figma"]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <![CDATA[
-            <ng-template #accordionContentTemplate>
-              Figma is the only platform that brings together powerful design features you already love and a
-              more efficient workflow to boot.
-            </ng-template>
-          </jnt-accordion-section>
-          <jnt-accordion-section title="Git"]]>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.github"]]>
-            </ng-container>
-            <![CDATA[>]]>
-            <![CDATA[
-            <ng-template #accordionContentTemplate>
-              Git is a distributed version-control system for tracking changes in source code during software
-              development. It is designed for coordinating work among programmers, but it can be used to track
-              changes in any set of files. Its goals include speed, data integrity, and support for distributed,
-              non-linear workflows.
+                    <ng-template #accordionContentTemplate>
+                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
+                      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
+                      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
+                      and higher levels of efficiency in a single application across the DevOps lifecycle.
+                    </ng-template>
+                  </jnt-accordion-section>
+                  <jnt-accordion-section title="Figma" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.figma"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <![CDATA[
+                    <ng-template #accordionContentTemplate>
+                      Figma is the only platform that brings together powerful design features you already love and a
+                      more efficient workflow to boot.
+                    </ng-template>
+                  </jnt-accordion-section>
+                  <jnt-accordion-section title="Git" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.github"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <![CDATA[
+                    <ng-template #accordionContentTemplate>
+                      Git is a distributed version-control system for tracking changes in source code during software
+                      development. It is designed for coordinating work among programmers, but it can be used to track
+                      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
+                      non-linear workflows.
+                    </ng-template>
+                  </jnt-accordion-section>
+                </jnt-accordion>
+                ]]>
+              </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>
-        ]]>
-        </app-code-highlight>
-      </ng-template>
-      </jnt-accordion-section>
-      </jnt-accordion>
       </ng-template>
     </jnt-tab>
 
