@@ -18,6 +18,6 @@ export class FontIconComponent {
 
   @HostBinding('class')
   get class() {
-    return `icon-${this.icon}`;
+    return `jnt-icon-${this.icon}`;
   }
 }

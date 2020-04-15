@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @mixin jnt-form($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -15,7 +16,7 @@
   }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
