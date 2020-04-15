@@ -3,21 +3,16 @@
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/date-period"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
+              [outline]="ui.outline.ghost"
               source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5857%3A2331"
               target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
-
-  <h3 i18n="@@label.requirements">Requirements</h3>
-
-  <ol>
-    <li>Date period should a timeline with start and end dates</li>
-    <li>Progress should show the number of days elapsed from the current date</li>
-  </ol>
 
   <jnt-tabs playground>
 
@@ -36,21 +31,23 @@
             </app-browser-preview>
           </jnt-col>
           <jnt-col [tablet]="4">
-            <jnt-form [formGroup]="builder" builder>
-              <jnt-form-item>
-                <jnt-form-label for="start">Start</jnt-form-label>
-                <jnt-date-picker formControlName="start"></jnt-date-picker>
-              </jnt-form-item>
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-label for="start">Start</jnt-form-label>
+                  <jnt-date-picker formControlName="start"></jnt-date-picker>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="end">End</jnt-form-label>
-                <jnt-date-picker formControlName="end"></jnt-date-picker>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="end">End</jnt-form-label>
+                  <jnt-date-picker formControlName="end"></jnt-date-picker>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="current">Current</jnt-form-label>
-                <jnt-date-picker formControlName="current"></jnt-date-picker>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="current">Current</jnt-form-label>
+                  <jnt-date-picker formControlName="current"></jnt-date-picker>
+                </jnt-form-item>
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>
