@@ -58,7 +58,7 @@ enum Display {
   selector: 'jnt-modal',
   templateUrl: './modal.encapsulated.html',
   animations: [
-    trigger('modal', [
+    trigger('move', [
         state(
           'hidden',
           style({
@@ -90,7 +90,7 @@ enum Display {
       ]
     ),
 
-    trigger('overlay', [
+    trigger('blackout', [
         state(
           'void',
           style({

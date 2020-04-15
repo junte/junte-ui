@@ -1,9 +1,9 @@
 <button [type]="type" [disabled]="disabled || loading">
-  <jnt-spinner data-loading *ngIf="loading" [@spinner]="loading"></jnt-spinner>
-  <jnt-icon *ngIf="icon" [@text]="loading  ? 'hide' : 'show'" [icon]="icon"></jnt-icon>
-  <div data-text [@text]="loading  ? 'hide' : 'show'">{{text}}</div>
+  <jnt-spinner data-loading *ngIf="loading" [@appear]="loading"></jnt-spinner>
+  <jnt-icon *ngIf="icon" [@visibility]="loading  ? 'hide' : 'show'" [icon]="icon"></jnt-icon>
+  <div data-text [@visibility]="loading  ? 'hide' : 'show'">{{text}}</div>
   <jnt-stack data-badges *ngIf="badges.length"
-             [@text]="loading  ? 'hide' : 'show'"
+             [@visibility]="loading  ? 'hide' : 'show'"
              [type]="ui.layout.stack.type.horizontal"
              [gutter]="ui.gutter.tiny">
     <jnt-badge data-badge *ngFor="let badge of badges"
