@@ -17,12 +17,12 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
+    display: flex;
     position: relative;
     box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
       &[data-size='#{$size}'] {
-        min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
+        min-height: map-get($map, size);
         @for $i from 1 through 5 {
           &[data-capacity='#{$i}'] {
             min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
