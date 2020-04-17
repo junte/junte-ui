@@ -51,6 +51,7 @@ $avatar-shape-square: 'square';
     line-height: 0;
     background-color: $jnt-secondary-background;
     overflow: hidden;
+    box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
       &[data-size='#{$size}'] {
         @include avatar-size($map);
