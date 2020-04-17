@@ -3,12 +3,14 @@
             [icon]="icon"></jnt-icon>
   <div data-label *ngIf="!!label">{{label}}</div>
 
-  <input *ngIf="!multiline; else textarea" formControlName="input"
+  <input #input *ngIf="!multiline; else textarea"
+         formControlName="input"
          [type]="type"
          [placeholder]="placeholder"
          [readonly]="readonly ? readonly : null"
          [min]="min"
-         [max]="max">
+         [max]="max"
+         (keydown)="!!mask ? keydown($event) : null">
 
   <ng-template #textarea>
       <textarea formControlName="input"

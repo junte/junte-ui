@@ -45,7 +45,7 @@ export class CheckboxTestComponent implements OnInit {
 
   submit() {
     this.block.success();
-    this.form.reset();
+    setTimeout(() => this.form.reset(), 3000);
   }
 
 }

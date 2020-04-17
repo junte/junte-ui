@@ -23,6 +23,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   sizeControl = this.fb.control(null);
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
+  maskControl = this.fb.control(false);
   alignControl = this.fb.control(UI.text.align.left);
   disabledControl = this.fb.control(false);
   readonlyControl = this.fb.control(false);
@@ -36,6 +37,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     size: this.sizeControl,
     icon: this.iconControl,
     label: this.labelControl,
+    mask: this.maskControl,
     align: this.alignControl,
     disabled: this.disabledControl,
     readonly: this.readonlyControl,

@@ -1,10 +1,13 @@
-import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { BACKSPACE } from '@angular/cdk/keycodes';
+import { Component, ElementRef, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputState, InputType } from './enums';
+
+const DIGIT_MASK_CHAR = '_';
 
 @Component({
   selector: 'jnt-input',
@@ -23,12 +26,18 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   inputType = InputType;
   inputState = InputState;
 
+  // used for masked value
+  private value = '';
+
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   inputControl = this.fb.control(null);
   form = this.fb.group({
     input: this.inputControl
   });
+
+  @ViewChild('input', {read: ElementRef, static: false})
+  input: ElementRef<any>;
 
   @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
@@ -133,14 +142,64 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   })
   @Input() multiline = false;
 
-  @Input() rows: number;
+  @PropertyApi({
+    description: 'Max rows for multi line mode',
+    type: 'int',
+    default: 5,
+  })
+  @Input() rows = 5;
+
+  @PropertyApi({
+    description: 'Mask patter where _ - is digit',
+    type: 'string',
+    default: null
+  })
+  @Input() mask: string;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.inputControl.valueChanges
-      .subscribe(value => this.onChange(value));
+      .subscribe(value => {
+        if (!!this.mask) {
+          let i, index = 0;
+          let output = '';
+          for (i = 0; i < this.mask.length; i++) {
+            const char = this.mask.charAt(i);
+            if (char === DIGIT_MASK_CHAR) {
+              output += this.value.charAt(index++);
+            } else {
+              output += char;
+            }
+
+            if (index >= this.value.length) {
+              break;
+            }
+          }
+          output += this.mask.substr(i + 1);
+          this.inputControl.setValue(output, {emitEvent: false});
+
+          this.onChange(this.value);
+
+          if (!!this.input) {
+            this.input.nativeElement.setSelectionRange(i + 1, i + 1);
+          }
+        } else {
+          this.onChange(value);
+        }
+      });
+  }
+
+  keydown(event: KeyboardEvent) {
+    if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(event.key)
+      && this.value.length < this.mask.split(DIGIT_MASK_CHAR).length - 1) {
+      this.value += event.key;
+    } else if (event.keyCode === BACKSPACE) {
+      this.value = this.value.substring(0, this.value.length - 1);
+    } else {
+      event.preventDefault();
+    }
   }
 
   writeValue(value) {
