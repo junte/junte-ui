@@ -60,6 +60,10 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     });
   }
 
+  test() {
+    this.form.patchValue({input: '90515513360'});
+  }
+
   ngAfterViewInit() {
     this.builder.valueChanges.subscribe(() => this.code.flash());
   }

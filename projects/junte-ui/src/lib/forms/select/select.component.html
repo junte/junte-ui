@@ -52,9 +52,9 @@
     | getOptions:selected:changes.selected:changes.options) as options">
     <ul *ngIf="options.length;else noOptionsTemplate">
       <div data-loading *ngIf="loading">
-        <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+        <jnt-spinner></jnt-spinner>
       </div>
-      <ng-container *ngFor="let o of options">
+      <ng-container *ngFor="let o of options;trackBy:trackOption">
         <li (click)="select(o)">
           <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
               : optionDefaultTemplate;context: o">
@@ -64,5 +64,3 @@
     </ul>
   </ng-container>
 </div>
-
-<ng-content></ng-content>

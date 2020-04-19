@@ -35,30 +35,29 @@
                                 [mode]="modeControl.value"
                                 [search]="searchControl.value"
                                 [size]="sizeControl.value"
-                                [loader]="search()">
-                      <jnt-select-option *ngFor="let h of heroes"
+                                [loader]="search()"
+                                [optionTemplate]="templateControl.value ? heroOptionTemplate : null">
+                      <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
                                          [key]="h.id"
                                          [value]="h">
                       </jnt-select-option>
-                      <ng-container *ngIf="templateControl.value">
-                        <ng-template #selectOptionTemplate let-hero="value">
-                          <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                                     [align]="ui.flex.align.center"
-                                     [justify]="ui.flex.justify.between">
-                            <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                                       [gutter]="ui.gutter.small"
-                                       [align]="ui.flex.align.center">
-                              <jnt-avatar [image]="hero.avatar"
-                                          [size]="ui.size.small"></jnt-avatar>
-                              <div>{{hero.name}}</div>
-                            </jnt-stack>
-                            <jnt-label [label]="hero.likes + ' likes'"
-                                       [color]="ui.color.green"></jnt-label>
-                          </jnt-stack>
-                        </ng-template>
-                      </ng-container>
                     </jnt-select>
+                    <ng-template #heroOptionTemplate let-hero="value">
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                 [align]="ui.flex.align.center"
+                                 [justify]="ui.flex.justify.between">
+                        <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.flex.align.center">
+                          <jnt-avatar [image]="hero.avatar"
+                                      [size]="ui.size.small"></jnt-avatar>
+                          <div>{{hero.name}}</div>
+                        </jnt-stack>
+                        <jnt-label [label]="hero.likes + ' likes'"
+                                   [color]="ui.color.green"></jnt-label>
+                      </jnt-stack>
+                    </ng-template>
                   </jnt-form-item>
                 </form>
               </ng-template>
@@ -186,7 +185,7 @@
                   ]]>
                   <ng-container *ngIf="templateControl.value">
                     <![CDATA[
-                    <ng-template #selectOptionTemplate let-option="value">
+                    <ng-template #heroOptionTemplate let-option="value">
                       <jnt-stack option [type]="ui.layout.stack.type.horizontal"
                                  [gutter]="ui.gutter.small"
                                  [align]="ui.flex.align.center">

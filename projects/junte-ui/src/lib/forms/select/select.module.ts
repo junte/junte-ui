@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -27,7 +28,8 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     SkeletonModule,
     ButtonModule,
     ArrayPipesModule,
-    StackModule
+    StackModule,
+    LoggerModule
   ],
   entryComponents: [SelectComponent],
   exports: [
@@ -44,7 +46,11 @@ export class SelectModule {
         {
           provide: JunteUIModuleConfig,
           useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
+        },
+        ...LoggerModule.forRoot({
+          level: NgxLoggerLevel.DEBUG
+        }).providers,
+        ...JUNTE_MODULE_PROVIDES
       ]
     };
   }
