@@ -157,9 +157,10 @@
       align-items: center;
       background: linear-gradient(90deg, #FEA7AF 0.54%, #FDA1AF 4.53%, #F57AAE 32.45%, #EF5EAD 58.13%, #EB4DAC 80.58%, #EA47AC 97.31%), linear-gradient(90deg, #FEA7AF 0.54%, #EA47AC 97.31%);
       overflow: hidden;
-      img {
+      svg {
         opacity: .5;
         animation: move 2s linear infinite forwards;
+        overflow: visible;
       }
     }
 
@@ -312,7 +313,8 @@
       @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         right: 0;
       }
-      img {
+      svg {
+        overflow: visible;
         opacity: .5;
         animation: move 2s linear infinite forwards;
       }
