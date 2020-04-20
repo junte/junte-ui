@@ -12,6 +12,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { PopoverOptions } from 'projects/junte-ui/src/lib/overlays/popover/popover.component';
 import { MethodApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
@@ -36,8 +37,9 @@ export class ModalOptions {
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
+  content?: TemplateRef<any>;
 
-  constructor(defs:any = null) {
+  constructor(defs: any = null) {
     Object.assign(this, defs);
   }
 }
@@ -129,7 +131,7 @@ export class ModalComponent {
 
   @Output() opened$ = new EventEmitter<boolean>();
 
-  @ViewChild('container', { read: ViewContainerRef }) container;
+  @ViewChild('container', {read: ViewContainerRef}) container;
 
   @HostBinding('style.display') display = Display.none;
 
