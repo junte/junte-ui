@@ -18,6 +18,9 @@
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </ng-container>
+      <ng-container *ngIf="!!options?.content">
+        <ng-container *ngTemplateOutlet="options.content"></ng-container>
+      </ng-container>
     </ng-container>
   </div>
   <ng-container *ngIf="!!options?.footer">
@@ -25,4 +28,4 @@
   </ng-container>
 
 </jnt-block>
-<div *ngIf="!!opened" data-overlay (click)="options?.closing === closing.enable ? close() : null" [@blackout]="opened"></div>
+<div *ngIf="!!opened" #backdrop data-overlay (click)="options?.closing === closing.enable ? close() : null" [@blackout]="opened"></div>

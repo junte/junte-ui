@@ -30,13 +30,14 @@ export class ModalTestComponent implements OnInit {
   language = Language;
   size = Size;
   contentType = ContentType;
+  closingOptions = ModalClosingOption;
   types = {modal: ModalComponent, options: ModalOptions};
 
   @ViewChild('code') code: TabComponent;
 
   widthControl = this.fb.control(Size.large);
   heightControl = this.fb.control(Size.large);
-  closingControl = this.fb.control(ModalClosingOption.enable);
+  closingControl = this.fb.control(true);
   titleControl = this.fb.control(true);
   iconControl = this.fb.control(false);
   footerControl = this.fb.control(false);
