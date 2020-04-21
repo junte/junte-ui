@@ -7,7 +7,8 @@ import { LocalUI } from 'src/enums/local-ui';
 export enum Sketch {
   User = 'user',
   VerticalPost = 'verticalPost',
-  HorizontalPost = 'horizontalPost'
+  HorizontalPost = 'horizontalPost',
+  Cards = 'cards'
 }
 
 @Component({

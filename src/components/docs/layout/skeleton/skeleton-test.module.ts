@@ -11,7 +11,8 @@ import {
   SelectModule,
   SkeletonModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  ArrayPipesModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -32,7 +33,8 @@ import { SkeletonTestComponent } from './skeleton-test.component';
     SkeletonModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    ArrayPipesModule
   ],
   exports: [
     SkeletonTestComponent

@@ -19,7 +19,7 @@
   }
 }
 
-@mixin jnt-skeleton($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-skeleton($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     background: (
@@ -37,10 +37,19 @@
         large: 120px
       ),
     ),
+    card: (
+      height: 70px,
+      corner: null,
+    ),
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -61,13 +70,13 @@
       width: 100%;
     }
     &[data-animated='false'] {
-      [data-line], [data-avatar] {
+      [data-line], [data-avatar], [data-card] {
         animation: none;
       }
     }
   }
 
-  #{$context} [data-line] {
+  #{$context} #{$wrapper} [data-line] {
     @if map-has-key($vars, line) {
       $line: map-get($vars, line);
       min-height: map-get($line, height);
@@ -75,11 +84,20 @@
     width: 100%;
   }
 
-  #{$context} [data-avatar='true'] {
+  #{$context} #{$wrapper} [data-card] {
+    @if map-has-key($vars, card) {
+      $card: map-get($vars, card);
+      min-height: map-get($card, height);
+      border-radius: map-get($card, corner);
+    }
+    width: 100%;
+  }
+
+  #{$context} #{$wrapper} [data-avatar='true'] {
     border-radius: 50%;
   }
 
-  #{$context} [data-line], [data-avatar] {
+  #{$context} #{$wrapper} [data-line], [data-avatar], [data-card] {
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
