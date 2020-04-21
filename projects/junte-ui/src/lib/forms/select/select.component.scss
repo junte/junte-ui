@@ -59,6 +59,7 @@
     position: relative;
     min-width: 70px;
     color: $jnt-primary-text-color;
+    line-height: $jnt-line-height-base;
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -243,6 +244,7 @@
             background-color: transparent;
             color: $jnt-primary-text-color;
             padding: 0;
+            line-height: $jnt-line-height-base;
             &:focus {
               outline: none;
             }
