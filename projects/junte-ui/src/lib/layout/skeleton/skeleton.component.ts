@@ -23,6 +23,7 @@ export class SkeletonComponent {
     path: 'ui.skeleton.type',
     default: SkeletonType.text,
     options: [SkeletonType.text,
+      SkeletonType.card,
       SkeletonType.avatar,
       SkeletonType.image]
   })
