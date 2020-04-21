@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, ArrayPipeModule, FormModule, GridModule, LinkModule, SelectModule, StackModule, TabsModule } from 'junte-ui';
+import { AccordionModule, ArrayPipesModule, FormModule, GridModule, LinkModule, SelectModule, StackModule, TabsModule } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { StackTestComponent } from './stack-test.component';
@@ -19,7 +19,7 @@ import { StackTestComponent } from './stack-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     GridModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    ArrayPipeModule
+    ArrayPipesModule
   ],
   exports: [
     StackTestComponent

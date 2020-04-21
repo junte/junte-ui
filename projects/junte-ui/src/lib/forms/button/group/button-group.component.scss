@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "forms/button/button";
 
 @mixin jnt-button-group($passed: (), $context: null, $strategy: 'changes') {
@@ -11,7 +12,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -19,13 +20,13 @@
     display: flex;
     &[data-width='fluid'] {
       width: 100%;
-      [button] {
+      [data-button] {
         flex: 1;
       }
     }
   }
 
-  #{$context} [button] {
+  #{$context} [data-button] {
 
     @include jnt-button ((
       padding: 0 $jnt-gutter-normal,

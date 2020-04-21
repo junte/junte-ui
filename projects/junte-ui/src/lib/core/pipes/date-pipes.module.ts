@@ -1,45 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  AfterPipe,
-  BeforePipe,
-  DateDiffPipe,
-  DatesInMonthPipe,
-  FullMonthPipe,
-  IsEqualDatePipe,
-  IsSameMonthPipe,
-  IsTodayPipe,
-  IsWeekendPipe,
-  RemnantDayPipe
-} from './date.pipe';
+import { AfterPipe } from './date/after.pipe';
+import { BeforePipe } from './date/before.pipe';
+import { FullMonthPipe } from './date/full-month.pipe';
+import { DatesInMonthPipe } from './date/dates-in-month.pipe';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    IsEqualDatePipe,
-    IsSameMonthPipe,
     AfterPipe,
     BeforePipe,
-    DateDiffPipe,
     FullMonthPipe,
-    RemnantDayPipe,
-    IsWeekendPipe,
-    DatesInMonthPipe,
-    IsTodayPipe
+    DatesInMonthPipe
   ],
   exports: [
-    IsEqualDatePipe,
-    IsSameMonthPipe,
     AfterPipe,
     BeforePipe,
-    DateDiffPipe,
     FullMonthPipe,
-    RemnantDayPipe,
-    IsWeekendPipe,
-    DatesInMonthPipe,
-    IsTodayPipe
+    DatesInMonthPipe
   ]
 })
 export class DatePipesModule {

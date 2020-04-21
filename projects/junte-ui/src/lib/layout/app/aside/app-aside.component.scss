@@ -89,35 +89,32 @@
     }
   }
 
-  @media (max-width: #{map-get($grid-breakpoints, tablet)}) {
+  @media (max-width: #{map-get($jnt-grid-breakpoints, tablet)}) {
     :host, #{$context} {
       &[data-opened="true"] {
         width: 100%;
-        [overlay] {
+        [data-overlay] {
           width: 100%;
           height: 100%;
           opacity: 1;
         }
-        [drawer] {
+        [data-drawer] {
           transform: translate3d(0, 0, 0);
         }
       }
       &[data-opened="false"] {
         width: 0;
-        [overlay] {
+        [data-overlay] {
           opacity: 0;
         }
-        [drawer] {
+        [data-drawer] {
           transform: translate3d(-100%, 0, 0);
         }
       }
     }
-    [button] {
-      display: none;
-    }
   }
 
-  [overlay] {
+  [data-overlay] {
     position: absolute;
     top: 0;
     right: 0;
@@ -127,7 +124,7 @@
     z-index: 1;
   }
 
-  [drawer] {
+  [data-drawer] {
     position: absolute;
     padding: $app-header-height 0 0 0;
     top: 0;
@@ -139,16 +136,16 @@
     box-sizing: border-box;
     transform: translate3d(0, 0, 0);
     transition: transform .3s linear, width .3s linear;
-    [scroll] {
+    [data-scroll] {
       width: 100%;
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
     }
-    &[collapsed="true"] {
+    &[data-collapsed="true"] {
       width: $app-aside-collapsed-width;
     }
-    &[collapsed="false"] {
+    &[data-collapsed="false"] {
       width: $app-aside-width;
     }
   }

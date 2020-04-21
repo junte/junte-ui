@@ -8,43 +8,43 @@
 <table border="0" cellpadding="5" [cellSpacing]="0">
   <thead>
   <tr>
-    <td gutter></td>
-    <td empty>
+    <td data-gutter></td>
+    <td data-empty>
       <ng-container *ngIf="toolsTemplate">
         <ng-container *ngTemplateOutlet="toolsTemplate"></ng-container>
       </ng-container>
     </td>
-    <td controls [attr.colspan]="(current | dfnsGetDaysInMonth)">
-      <div month>
-        <button arrow (click)="current = subMonths(current, 1)">
+    <td data-controls [attr.colspan]="(current | dfnsGetDaysInMonth)">
+      <div data-month>
+        <button data-arrow (click)="current = subMonths(current, 1)">
           <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
         </button>
         <div>
           {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
         </div>
-        <button arrow (click)="current = addMonths(current, 1)">
+        <button data-arrow (click)="current = addMonths(current, 1)">
           <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
         </button>
       </div>
     </td>
   </tr>
 
-  <tr timeline>
-    <td gutter></td>
+  <tr data-timeline>
+    <td data-gutter></td>
     <td>
       <ng-container
         *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
     </td>
     <td day *ngFor="let day of (current | datesInMonth)"
-        [attr.current]="day | isToday"
-        [attr.weekend]="day | isWeekend">
+        [attr.data-current]="day | dfnsIsToday"
+        [attr.data-weekend]="day | dfnsIsWeekend">
       {{day | dfnsGetDate}}
     </td>
   </tr>
   </thead>
   <tbody>
   <ng-template #noDataTemplate>
-    <tr nodata>
+    <tr data-nodata>
       <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 1">
         <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
       </td>
@@ -52,7 +52,7 @@
   </ng-template>
   <ng-template #skeletonTemplate>
     <ng-container *ngIf="loading; else noDataTemplate">
-      <tr loading>
+      <tr data-loading>
         <td [attr.colspan]="(current | dfnsGetDaysInMonth) + 2">
           <jnt-skeleton [type]="ui.layout.skeleton.type.text" [lines]="8"></jnt-skeleton>
         </td>
@@ -66,14 +66,14 @@
         <td *ngFor="let day of (current | dfnsGetDaysInMonth) | mockArray: 1"></td>
       </ng-template>
 
-      <td gutter></td>
-      <td title>
+      <td data-gutter></td>
+      <td data-title>
         <ng-container
           *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
       </td>
 
-      <ng-container *ngIf="(line.from | isSameMonth: current) || (line.to | isSameMonth: current)
-        || ((current | dateDiff:line.from:'months') > 0 && (line.to | dateDiff:current:'months') > 0); else noRequest">
+      <ng-container *ngIf="(line.from | dfnsIsSameMonth: current) || (line.to | dfnsIsSameMonth: current)
+        || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
         <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
         <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
           <ng-container *ngTemplateOutlet="line.indicatorTemplate;

@@ -62,8 +62,12 @@
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-checkbox formControlName="aside"
-                                  label="Sub header"
+                                  label="Aside"
                                   i18n-label="@@label.aside"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="subHeader"
+                                  label="subHeader"></jnt-checkbox>
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-checkbox formControlName="footer"
@@ -81,8 +85,8 @@
                     <ng-template #headerLogoTemplate *ngIf="logoControl.value">
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
                     </ng-template>
-                    <ng-template #headerMenuTemplate *ngIf="menuControl.value">
-                      <jnt-menu>
+
+                      <jnt-menu *ngIf="menuControl.value">
                         <jnt-menu-item title="Home"
                                        i18n-title="@@label.home"
                                        [icon]="ui.icons.home"></jnt-menu-item>
@@ -96,7 +100,7 @@
                                        i18n-title="@@label.messages"
                                        [icon]="ui.icons.messages"></jnt-menu-item>
                       </jnt-menu>
-                    </ng-template>
+
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
                       <jnt-app-header-actions actions>
                         <jnt-app-header-action>
@@ -174,7 +178,7 @@
                   <ng-container *ngIf="asideControl.value; else withoutAsideTemplate">
                     <jnt-app-aside #sider>
                       <ng-template let-collapsed="collapsed" #asideContentTemplate>
-                        <jnt-stack aside [align]="ui.flex.align.stretch">
+                        <div aside>
                           <jnt-stack [align]="ui.flex.align.center">
                             <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
                                         [image]="'assets/images/elon.jpeg'"></jnt-avatar>
@@ -185,41 +189,39 @@
                                          [color]="ui.color.paleNavy"></jnt-label>
                             </jnt-stack>
                           </jnt-stack>
-
-                          <jnt-menu [collapsed]="collapsed"
-                                    [type]="ui.orientation.vertical"
-                                    [spacer]="ui.size.small">
-                            <jnt-menu-item title="General"
-                                           i18n-title="@@label.general"
-                                           [icon]="localUi.icons.general">
-                              <jnt-menu>
-                                <jnt-menu-item title="About"
-                                               i18n-title="@@label.about"
-                                               [icon]="localUi.icons.bio"></jnt-menu-item>
-                                <jnt-menu-item title="Education"
-                                               i18n-title="@@label.education"
-                                               [icon]="ui.icons.knowledge"></jnt-menu-item>
-                              </jnt-menu>
-                            </jnt-menu-item>
-
-                            <jnt-menu-item title="Profession"
-                                           i18n-title="@@label.profession"
-                                           [icon]="localUi.icons.certificate">
-                              <jnt-menu>
-                                <jnt-menu-item title="Skills"
-                                               i18n-title="@@label.skills"
-                                               [icon]="ui.icons.skull"></jnt-menu-item>
-                                <jnt-menu-item title="Experience"
-                                               i18n-title="@@label.experience"
-                                               [icon]="localUi.icons.experience"></jnt-menu-item>
-                                <jnt-menu-item title="Certificates"
-                                               i18n-title="@@label.certificates"
-                                               [icon]="localUi.icons.certificate"></jnt-menu-item>
-                              </jnt-menu>
-                            </jnt-menu-item>
-                          </jnt-menu>
-                        </jnt-stack>
+                        </div>
                       </ng-template>
+
+                      <jnt-menu>
+                        <jnt-menu-item title="General"
+                                       i18n-title="@@label.general"
+                                       [icon]="localUi.icons.general">
+                          <jnt-menu>
+                            <jnt-menu-item title="About"
+                                           i18n-title="@@label.about"
+                                           [icon]="localUi.icons.bio"></jnt-menu-item>
+                            <jnt-menu-item title="Education"
+                                           i18n-title="@@label.education"
+                                           [icon]="ui.icons.knowledge"></jnt-menu-item>
+                          </jnt-menu>
+                        </jnt-menu-item>
+
+                        <jnt-menu-item title="Profession"
+                                       i18n-title="@@label.profession"
+                                       [icon]="localUi.icons.certificate">
+                          <jnt-menu>
+                            <jnt-menu-item title="Skills"
+                                           i18n-title="@@label.skills"
+                                           [icon]="ui.icons.skull"></jnt-menu-item>
+                            <jnt-menu-item title="Experience"
+                                           i18n-title="@@label.experience"
+                                           [icon]="localUi.icons.experience"></jnt-menu-item>
+                            <jnt-menu-item title="Certificates"
+                                           i18n-title="@@label.certificates"
+                                           [icon]="localUi.icons.certificate"></jnt-menu-item>
+                          </jnt-menu>
+                        </jnt-menu-item>
+                      </jnt-menu>
                     </jnt-app-aside>
                     <ng-container *ngTemplateOutlet="withoutAsideTemplate;context: {sider: sider}"></ng-container>
                   </ng-container>
@@ -263,7 +265,6 @@
                         </ng-container>
                         <ng-container *ngIf="menuControl.value">
                           <![CDATA[
-                          <ng-template #headerMenuTemplate>
                             <jnt-menu>
                               <jnt-menu-item [icon]="ui.icons.home"
                                              title="Home"></jnt-menu-item>
@@ -274,7 +275,6 @@
                               <jnt-menu-item [icon]="localUi.icons.massages"
                                              title="Messages"></jnt-menu-item>
                             </jnt-menu>
-                          </ng-template>
                           ]]>
                         </ng-container>
                         <ng-container *ngIf="actionControl.value">
@@ -352,7 +352,7 @@
                                 </jnt-stack>
                               </jnt-stack>
 
-                              <jnt-menu [type]="ui.orientation.vertical"
+                              <jnt-menu [orientation]="ui.orientation.vertical"
                                         [spacer]="ui.size.small">
                                 <jnt-menu-item title="General"
                                                [icon]="localUi.icons.general">

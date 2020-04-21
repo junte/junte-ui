@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
 @mixin jnt-switch($passed: (), $context: null, $strategy: 'changes') {
@@ -66,7 +67,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -89,11 +90,11 @@
           form {
             min-width: map-get($map, width);
             width: map-get($map, width);
-            [switch] {
+            [data-switch] {
               min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
               height: map-get($map, height);
               transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
-              [slider] {
+              [data-slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 [data-icon] {
@@ -112,7 +113,7 @@
                 }
               }
             }
-            input:checked + [switch] {
+            input:checked + [data-switch] {
               transform: translateX(0);
             }
           }
@@ -135,11 +136,11 @@
     height: 100%;
 
     &:checked {
-      & + [switch] {
+      & + [data-switch] {
         @if map-has-key($vars, background) {
           $background: map-get($vars, background);
           background-color: map-get($background, on);
-          [slider] {
+          [data-slider] {
             @if map-has-key($background, slider) {
               $slider: map-get($background, slider);
               background-color: map-get($slider, on);
@@ -159,23 +160,23 @@
 
     &:disabled {
       cursor: default;
-      & + [switch] {
+      & + [data-switch] {
         opacity: .5;
       }
       &:checked {
-        & + [switch] {
+        & + [data-switch] {
           opacity: .5;
         }
       }
     }
   }
 
-  #{$context} [switch] {
+  #{$context} [data-switch] {
     display: flex;
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background-color: map-get($background, off);
-      [slider] {
+      [data-slider] {
         @if map-has-key($background, slider) {
           $slider: map-get($background, slider);
           background-color: map-get($slider, off);
@@ -192,7 +193,7 @@
     }
     transition: transform .4s ease-out, background-color .4s;
 
-    [slider] {
+    [data-slider] {
       border-radius: 50%;
       display: flex;
       align-items: center;

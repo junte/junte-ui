@@ -1,11 +1,12 @@
-<div *ngFor="let section of sections; let i = index;" section>
-  <div title tabindex="0" (click)="active == i ? active = null : active = i"
+<div *ngFor="let section of sections; let i = index;" data-section>
+  <div data-title tabindex="0" (click)="active == i ? active = null : active = i"
        [attr.active]="active == i">
     <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown"
-              [size]="ui.size.small"></jnt-icon>
-    {{section.title}}
+              [size]="ui.size.small" chevron></jnt-icon>
+    <jnt-icon *ngIf="section.icon" [icon]="section.icon" [size]="ui.size.normal"></jnt-icon>
+    <span>{{section.title}}</span>
   </div>
-  <div *ngIf="active == i" content>
+  <div *ngIf="active == i" data-content>
     <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>
   </div>
 </div>

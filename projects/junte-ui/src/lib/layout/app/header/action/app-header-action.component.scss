@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
 
@@ -11,7 +12,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -31,13 +32,13 @@
     &:hover {
       background-color: $jnt-primary-color;
 
-      [content] {
+      [data-content] {
         display: block;
       }
     }
   }
 
-  #{$context} [content] {
+  #{$context} [data-content] {
     background: $jnt-primary-background;
     border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
     padding: $jnt-gutter-normal $jnt-gutter-big;

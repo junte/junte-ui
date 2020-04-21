@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @mixin jnt-switcher($passed: (), $context: null, $strategy: 'changes') {
 
@@ -11,7 +12,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -21,7 +22,7 @@
     border-radius: map-get($vars, corner);
     &[data-type='vertical'] {
       flex-direction: column;
-      [option] {
+      [data-option] {
         &:first-child {
           border-top-left-radius: map-get($vars, corner) - 1px;
           border-top-right-radius: map-get($vars, corner) - 1px;
@@ -35,7 +36,7 @@
     }
     &[data-type='horizontal'] {
       flex-direction: row;
-      [option] {
+      [data-option] {
         flex: auto;
         justify-content: center;
         &:first-child {
@@ -52,14 +53,14 @@
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
-      [option] {
+      [data-option] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
   }
 
-  #{$context} [option] {
+  #{$context} [data-option] {
     background-color: $jnt-primary-background;
     color: $jnt-primary-text-color;
     user-select: none;
@@ -68,7 +69,7 @@
     border: 1px solid transparent;
     padding: 0 $jnt-gutter-small;
 
-    &[with-template] {
+    &[data-with-template] {
       padding: $jnt-gutter-small;
     }
 
@@ -82,7 +83,7 @@
       background-color: $jnt-highlight-background;
     }
 
-    &[active="true"] {
+    &[data-active="true"] {
       color: $jnt-white-color;
       background-color: $jnt-primary-light-color;
     }
@@ -92,9 +93,9 @@
     }
   }
 
-  #{$context} [title] {
+  #{$context} [data-title] {
     flex: 1;
-    [label] {
+    [data-label] {
       flex: 0 1 auto;
       overflow: hidden;
       white-space: nowrap;

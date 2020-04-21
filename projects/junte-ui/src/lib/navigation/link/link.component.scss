@@ -1,9 +1,10 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
 @mixin link-fill($scheme, $wrapper) {
-  #{$wrapper} [link] {
+  #{$wrapper} [data-link] {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
     &:hover {
@@ -12,7 +13,7 @@
     &:focus {
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
         color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -23,14 +24,14 @@
 
 @mixin link-ghost($scheme, $wrapper) {
 
-  #{$wrapper} [link] {
+  #{$wrapper} [data-link] {
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
     &:hover {
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -40,29 +41,29 @@
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
-    [link] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
+    [data-link] {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
       &:hover {
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
 
-        [badge] {
+        [data-badge] {
           @include jnt-badge((
             background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
             color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -74,7 +75,7 @@
 
 @mixin link-transparent($scheme, $wrapper) {
 
-  #{$wrapper} [link] {
+  #{$wrapper} [data-link] {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
@@ -87,14 +88,14 @@
       outline-offset: 1px;
       outline: map-get($scheme, color) auto 1px;
     }
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
-    &[active="true"] {
-      [title] {
+    &[data-active="true"] {
+      [data-title] {
         span {
           border-bottom: 1px solid map-get($scheme, color);
         }
@@ -102,20 +103,20 @@
 
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
-    [link] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
+    [data-link] {
       color: map-get($scheme, inverse-color);
       &:hover {
         color: map-get($scheme, inverse-color);
       }
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         ), '&');
       }
-      &[active="true"] {
-        [title] {
+      &[data-active="true"] {
+        [data-title] {
           span {
             border-bottom: 1px solid map-get($scheme, inverse-color);
           }
@@ -183,7 +184,7 @@
   }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -192,18 +193,18 @@
       display: inline-block;
       box-sizing: border-box;
       &[data-disabled="true"] {
-        [link] {
+        [data-link] {
           opacity: .65;
           pointer-events: none;
           cursor: default;
         }
       }
       &[data-with-title='false'] {
-        [link] [data-icon] {
+        [data-link] [data-icon] {
           margin-right: 0 !important;
         }
       }
-      #{$wrapper} [link] {
+      #{$wrapper} [data-link] {
         text-decoration: none;
         box-sizing: border-box;
         cursor: pointer;
@@ -211,7 +212,7 @@
         &:focus {
           outline: none;
         }
-        [title] {
+        [data-title] {
           white-space: nowrap;
           [data-icon], span {
             transition: color .3s;
@@ -221,7 +222,7 @@
     }
 
     &[data-orphan='true'] {
-      #{$wrapper} [link] {
+      #{$wrapper} [data-link] {
         pointer-events: none;
         color: if(map-get($vars, orphan-color), map-get($vars, orphan-color) !important, null);
         &:hover {
@@ -233,13 +234,13 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          &[data-outline='#{$outline-fill}'] {
+          &[data-outline='#{$jnt-outline-fill-name}'] {
             @include link-fill($map, $wrapper);
           }
-          &[data-outline='#{$outline-ghost}'] {
+          &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include link-ghost($map, $wrapper);
           }
-          &[data-outline='#{$outline-transparent}'] {
+          &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include link-transparent($map, $wrapper);
           }
         }
@@ -247,7 +248,7 @@
     }
   }
 
-  #{$context} #{$wrapper} [link] {
+  #{$context} #{$wrapper} [data-link] {
     @if map-get($vars, display) == inline {
       display: inline-block;
     }
@@ -255,22 +256,22 @@
       display: inline-flex;
       align-items: center;
       width: 100%;
-      [title] {
+      [data-title] {
         vertical-align: middle;
       }
     }
     @if map-has-key($vars, active) {
       $active: map-get($vars, active);
-      &[active='true'] {
+      &[data-active='true'] {
         background-color: map-get($active, background-color);
         color: if(map-get($active, color), map-get($active, color) !important, null);
-        [title] span {
+        [data-title] span {
           border-bottom-color: if(map-get($active, color), map-get($active, color) !important, null);
         }
       }
       @if map-get($active, underline) == false {
-        &[active='true'] {
-          [title] span {
+        &[data-active='true'] {
+          [data-title] span {
             border-bottom: 0;
           }
         }
@@ -284,7 +285,7 @@
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
     }
-    [title] {
+    [data-title] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         [data-icon] {
@@ -309,7 +310,7 @@
     }
     @if map-has-key($vars, badge) {
       $badge: map-get($vars, badge);
-      [badge] {
+      [data-badge] {
         margin-left: map-get($badge, margin-left);
       }
     }

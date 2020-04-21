@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/avatar/common";
 
 $avatar-shape-circle: 'circle';
@@ -39,7 +40,7 @@ $avatar-shape-square: 'square';
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -50,6 +51,7 @@ $avatar-shape-square: 'square';
     line-height: 0;
     background-color: $jnt-secondary-background;
     overflow: hidden;
+    box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
       &[data-size='#{$size}'] {
         @include avatar-size($map);

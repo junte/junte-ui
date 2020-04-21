@@ -23,7 +23,7 @@ export class AvatarsListComponent {
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.capacity')
+  @HostBinding('attr.data-capacity')
   get capacity() {
     return Math.min(this.avatars.length, MAX_CAPACITY);
   }

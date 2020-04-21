@@ -6,44 +6,44 @@
     <div>{{label}}</div>
   </jnt-stack>
 </ng-template>
-<div select tabindex="0">
-  <div *ngIf="label" label>{{label}}</div>
+<div data-select tabindex="0">
+  <div *ngIf="label" data-label>{{label}}</div>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == selectMode.single ? opened = true : null">
         <ng-template #noOptionTemplate>
-          <div empty></div>
+          <div data-empty></div>
         </ng-template>
         <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
           <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
             : optionDefaultTemplate;context: option">
           </ng-container>
         </div>
-        <button close type="button" (click)="remove(key)">
+        <button data-close type="button" (click)="remove(key)">
           <jnt-icon [icon]="ui.icons.close"
                     [size]="ui.size.tiny"></jnt-icon>
         </button>
       </li>
     </ng-container>
 
-    <li [formGroup]="form" (click)="opened = true" query>
+    <li [formGroup]="form" (click)="opened = true" data-query>
       <input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
              formControlName="query">
     </li>
   </ul>
-  <button toggle type="button" (click)="opened = !opened">
+  <button data-toggle type="button" (click)="opened = !opened">
     <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
               [size]="ui.size.small"></jnt-icon>
   </button>
 </div>
-<div options *ngIf="opened" [attr.loading]="loading">
+<div data-options *ngIf="opened" [attr.data-loading]="loading">
   <ng-template #noOptionsTemplate>
-    <div skeleton>
+    <div data-skeleton>
       <jnt-skeleton *ngIf="loading; else emptyOptions"
                     [type]="ui.layout.skeleton.type.text" [lines]="5"></jnt-skeleton>
     </div>
     <ng-template #emptyOptions>
-      <div empty>
+      <div data-empty>
         <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
       </div>
     </ng-template>
@@ -51,10 +51,10 @@
   <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
     | getOptions:selected:changes.selected:changes.options) as options">
     <ul *ngIf="options.length;else noOptionsTemplate">
-      <div loading *ngIf="loading">
-        <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+      <div data-loading *ngIf="loading">
+        <jnt-spinner></jnt-spinner>
       </div>
-      <ng-container *ngFor="let o of options">
+      <ng-container *ngFor="let o of options;trackBy:trackOption">
         <li (click)="select(o)">
           <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
               : optionDefaultTemplate;context: o">
@@ -64,5 +64,3 @@
     </ul>
   </ng-container>
 </div>
-
-<ng-content></ng-content>

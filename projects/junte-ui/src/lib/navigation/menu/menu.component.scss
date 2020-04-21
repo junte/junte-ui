@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "navigation/link/link";
 
 @mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
@@ -75,39 +76,39 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
   :host, #{$context} {
     @if $declare {
       display: block;
-      &[data-type='horizontal'] {
-        [sub] {
+      &[data-orientation='horizontal'] {
+        [data-sub] {
           position: absolute;
           top: 100% !important;
           left: 0;
           z-index: 1;
         }
       }
-      &[data-type='vertical'] {
+      &[data-orientation='vertical'] {
         [top] {
           width: 100%;
         }
       }
 
-      [top] {
+      [data-top] {
         position: relative;
         white-space: nowrap;
         box-sizing: border-box;
 
-        [item] {
+        [data-item] {
           cursor: pointer;
           display: flex;
           align-items: center;
           user-select: none;
 
-          [link] {
+          [data-link] {
             width: 100%;
             @include jnt-link((
               overflow: true,
@@ -116,22 +117,22 @@
           }
         }
 
-        [sub] {
+        [data-sub] {
           width: 100%;
           display: none;
           align-items: stretch;
           flex-direction: column;
-          &[opened='true'] {
+          &[data-opened='true'] {
             display: flex;
           }
-          > [section] {
+          > [data-section] {
             user-select: none;
             span {
               display: block;
               padding: $jnt-gutter-normal 0;
             }
           }
-          [link] {
+          [data-link] {
             user-select: none;
             @include jnt-link((
               overflow: true,
@@ -144,8 +145,8 @@
   }
 
   :host {
-    &[data-type='horizontal'], &[data-collapsed='true'] {
-      [sub] {
+    &[data-orientation='horizontal'], &[data-collapsed='true'] {
+      [data-sub] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);
           background-color: map-get($sub, background-color);
@@ -155,7 +156,7 @@
       }
     }
     &[data-collapsed='true'] {
-      [sub] {
+      [data-sub] {
         @if map-has-key($vars, sub) {
           $collapsed: map-get(map-get($vars, sub), collapsed);
           position: map-get($collapsed, position);
@@ -163,7 +164,7 @@
           left: map-get($collapsed, left);
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
-            [link] {
+            [data-link] {
               @include jnt-link((
                 padding: map-get($item, padding),
               ), '&');
@@ -175,8 +176,8 @@
   }
 
 
-  #{$context} [top] {
-    [item] {
+  #{$context} [data-top] {
+    [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
         @include jnt-link((
@@ -219,11 +220,11 @@
         @if map-has-key($title, toggle) {
           $toggle: map-get($title, toggle);
           @if map-get($toggle, toggle) == false {
-            [toggle] {
+            [data-toggle] {
               display: none;
             }
           }
-          [toggle] {
+          [data-toggle] {
             margin-left: map-get($toggle, margin-left);
           }
         }
@@ -237,13 +238,13 @@
       }
     }
 
-    [sub] {
+    [data-sub] {
       @if map-has-key($vars, sub) {
         $sub: map-get($vars, sub);
         min-width: map-get($sub, width);
         @if map-has-key($sub, title) {
           $title: map-get($sub, title);
-          > [section] {
+          > [data-section] {
             padding: map-get($title, padding);
             span {
               border-bottom: map-get($title, border-bottom);
@@ -253,7 +254,7 @@
 
         @if map-has-key($sub, item) {
           $item: map-get($sub, item);
-          [link] {
+          [data-link] {
             @include jnt-link((
               height: map-get($item, height),
               padding: map-get($item, padding),

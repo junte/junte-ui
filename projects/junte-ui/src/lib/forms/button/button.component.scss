@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
@@ -13,7 +14,7 @@
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
 
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
         color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -32,7 +33,7 @@
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
 
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -43,14 +44,14 @@
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
 
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
@@ -58,14 +59,14 @@
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
 
-        [badge] {
+        [data-badge] {
           @include jnt-badge((
             background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
             color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -90,20 +91,20 @@
       outline: map-get($scheme, color) auto 1px;
     }
 
-    [badge] {
+    [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
-  &[data-scheme=#{$scheme-secondary}] {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       &:hover {
         color: map-get($scheme, inverse-color);
       }
-      [badge] {
+      [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
@@ -250,7 +251,7 @@
   }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -277,11 +278,11 @@
         font-family: $jnt-font-family-base;
         line-height: $jnt-line-height-base;
         overflow: hidden;
-        [text] {
+        [data-text] {
           line-height: 1em;
           white-space: nowrap;
         }
-        [loading] {
+        [data-loading] {
           position: absolute;
         }
       }
@@ -305,16 +306,13 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          &[data-outline='#{$outline-fill}'] {
+          &[data-outline='#{$jnt-outline-fill-name}'] {
             @include button-fill($map, $wrapper);
           }
-          &[data-outline='#{$outline-ghost}'] {
-            [link] {
-              border: 1px solid transparent;
-            }
+          &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include button-ghost($map, $wrapper);
           }
-          &[data-outline='#{$outline-transparent}'] {
+          &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include button-transparent($map, $wrapper);
           }
         }
@@ -327,7 +325,7 @@
           @include button-size($map, $wrapper);
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
-            [badge] {
+            [data-badge] {
               @include jnt-badge((
                 size: map-get($badge, size)
               ), '&');
@@ -343,7 +341,7 @@
           }
           @if map-has-key($map, spinner) {
             $spinner: map-get($map, spinner);
-            [loading][child-host=#{$jnt-spinner-host}] {
+            [data-loading] {
               width: map-get($spinner, size);
               min-width: map-get($spinner, size);
               height: map-get($spinner, size);
@@ -415,7 +413,7 @@
 
     @if map-has-key($vars, badge) {
       $badge: map-get($vars, badge);
-      [badge] {
+      [data-badge] {
         margin-left: map-get($badge, margin-left);
       }
     }

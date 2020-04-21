@@ -26,13 +26,13 @@
   }
 
   thead {
-    [arrow-left] {
+    [data-arrow-left] {
       text-align: left;
     }
-    [arrow-right] {
+    [data-arrow-right] {
       text-align: right;
     }
-    [arrow] {
+    [data-arrow] {
       background-color: transparent;
       border-width: 0;
       font-size: $jnt-font-size-large;
@@ -58,11 +58,11 @@
         border: 1px solid $jnt-primary-color;
       }
     }
-    [date] {
+    [data-date] {
       font-weight: $jnt-font-weight-bold;
       font-size: $jnt-font-size-base;
     }
-    [days] {
+    [data-days] {
       > th {
         padding: $jnt-gutter-normal $jnt-gutter-tiny;
         color: $jnt-primary-text-light-color;
@@ -77,8 +77,8 @@
 
   tbody {
     tr {
-      &[current-week='true'] {
-        [day], [metric] {
+      &[data-current-week='true'] {
+        [data-day], [data-metric] {
           border-top-color: $jnt-primary-light-color;
           border-bottom-color: $jnt-primary-light-color;
           &:first-child {
@@ -101,7 +101,7 @@
         border-bottom: 1px solid transparent;
         user-select: none;
         padding: 0;
-        [default] {
+        [data-default] {
           padding: $jnt-gutter-small $jnt-gutter-tiny;
         }
         &:first-child {
@@ -110,7 +110,7 @@
         &:last-child {
           border-right: 1px solid transparent;
         }
-        &[day] {
+        &[data-day] {
           cursor: pointer;
           &:nth-child(6),
           &:nth-child(7) {
@@ -124,8 +124,8 @@
             box-shadow: $jnt-shadow-primary;
             outline: 1px solid $jnt-primary-light-color;
           }
-          &[current-day='true'] {
-            [default] {
+          &[data-current-day='true'] {
+            [data-default] {
               background-color: $jnt-primary-light-color;
               color: $jnt-white-color;
             }

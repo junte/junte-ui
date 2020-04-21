@@ -1,5 +1,5 @@
 <ng-container *ngFor="let avatar of avatars; let i = index;">
-  <jnt-avatar *ngIf="i < max " avatar
+  <jnt-avatar *ngIf="i < max " data-avatar
               [shape]="shape.square"
               [image]="avatar.image"
               [icon]="avatar.icon"
@@ -8,4 +8,4 @@
   </jnt-avatar>
 </ng-container>
 
-<div *ngIf="overflow" overflow>+{{overflow}}</div>
+<div *ngIf="overflow" data-overflow>+{{overflow}}</div>

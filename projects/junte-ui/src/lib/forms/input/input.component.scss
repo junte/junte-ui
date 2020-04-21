@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/spinner/spinner";
 
@@ -10,7 +11,7 @@
       padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
     }
   }
-  #{$wrapper} [spinner] {
+  #{$wrapper} [data-spinner] {
     @include jnt-spinner((
       size: map-get($size, spinner),
     ), '&');
@@ -92,7 +93,7 @@
   }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -142,7 +143,7 @@
               size: map-get($map, icon)
             ), '&');
           }
-          #{$wrapper} [arrows] [data-icon] {
+          #{$wrapper} [data-arrows] [data-icon] {
             @include jnt-icon((
               size: map-get($map, chevron)
             ), '&');
@@ -199,7 +200,7 @@
         background-color: $jnt-control-disabled-background;
         color: $jnt-control-disabled-label-color;
         pointer-events: none;
-        & + [arrows] {
+        & + [data-arrows] {
           button {
             cursor: default;
           }
@@ -210,7 +211,7 @@
       }
     }
 
-    [label] {
+    [data-label] {
       background-color: $jnt-control-field-label-background;
       padding: $jnt-control-field-label-padding;
       display: flex;
@@ -228,7 +229,7 @@
       }
     }
 
-    [loading], [warning], [checked] {
+    [data-loading], [data-warning], [data-checked] {
       position: absolute;
       right: $jnt-gutter-small;
       top: 50%;
@@ -236,15 +237,15 @@
       line-height: 0;
     }
 
-    [warning] {
+    [data-warning] {
       color: $jnt-fail-color;
     }
 
-    [checked] {
+    [data-checked] {
       color: $jnt-success-color;
     }
 
-    [arrows] {
+    [data-arrows] {
       display: flex;
       flex-direction: column;
       position: absolute;

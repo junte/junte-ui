@@ -10,7 +10,7 @@
     background-color: $jnt-secondary-background;
   }
 
-  #{$context} [wrapper] {
+  #{$context} [data-wrapper] {
     flex: 1;
 
     table {
@@ -52,7 +52,7 @@
               border-bottom-left-radius: $jnt-corner-normal;
             }
           }
-          &[nodata] {
+          &[data-nodata] {
             height: 200px;
             pointer-events: none;
             border-bottom: 0;
@@ -93,7 +93,7 @@
             color: $jnt-gray-900-color;
             text-align: center;
           }
-          [content] {
+          [data-content] {
             overflow: hidden;
           }
         }

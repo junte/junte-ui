@@ -1,12 +1,31 @@
-<div drawer [attr.collapsed]="collapsed">
-  <div scroll>
+<div data-drawer [attr.data-collapsed]="collapsed">
+  <div data-scroll>
     <button (click)="collapsed = !collapsed">
       <jnt-stack [type]="ui.layout.stack.type.horizontal">
         <jnt-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>
         <span *ngIf="!collapsed">{{'action.hide_sidebar' | translate}}</span>
       </jnt-stack>
     </button>
-    <ng-container *ngTemplateOutlet="asideContentTemplate; context: {collapsed: collapsed, toggle: toggle.bind(this)}"></ng-container>
+    <jnt-stack [align]="ui.flex.align.stretch">
+      <ng-container *ngTemplateOutlet="asideContentTemplate; context: {collapsed: collapsed, toggle: toggle.bind(this)}"></ng-container>
+      <jnt-menu *ngIf="!!menu" [orientation]="ui.orientation.vertical"
+                [collapsed]="collapsed"
+                [spacer]="ui.size.small"
+                (selected)="toggle()">
+        <jnt-menu-item *ngFor="let i of menu.items"
+                       [title]="i.title"
+                       [link]="i.link"
+                       [icon]="i.icon">
+          <jnt-menu *ngIf="!!i.submenu">
+            <jnt-menu-item *ngFor="let j of i?.submenu.items"
+                           [title]="j.title"
+                           [link]="j.link"
+                           [icon]="j.icon">
+            </jnt-menu-item>
+          </jnt-menu>
+        </jnt-menu-item>
+      </jnt-menu>
+    </jnt-stack>
   </div>
 </div>
-<div overlay (click)="opened = false"></div>
+<div data-overlay (click)="opened = false"></div>

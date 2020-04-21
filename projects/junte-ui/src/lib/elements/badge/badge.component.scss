@@ -1,7 +1,8 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @mixin badge-position($position) {
-  [text] {
+  [data-text] {
     position: map-get($position, position);
     left: map-get($position, left);
     right: map-get($position, right);
@@ -38,7 +39,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -61,7 +62,7 @@
     }
   }
 
-  #{$context} [text] {
+  #{$context} [data-text] {
     @if $declare {
       top: 0;
       display: inline-block;

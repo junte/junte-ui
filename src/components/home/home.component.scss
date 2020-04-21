@@ -9,15 +9,15 @@
   height: 100%;
   background-color: $jnt-secondary-background;
   text-align: center;
-  @media screen and (max-width: map-get($grid-breakpoints, desktop)) {
+  @media screen and (max-width: map-get($jnt-grid-breakpoints, desktop)) {
     padding: 0 $jnt-gutter-big;
   }
   [content] {
     font-size: 2rem;
-    @media screen and (max-width: map-get($grid-breakpoints, desktop)) {
+    @media screen and (max-width: map-get($jnt-grid-breakpoints, desktop)) {
       font-size: 1.4rem;
     }
-    @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+    @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
       font-size: 1.125rem;
     }
     h1 {
@@ -49,7 +49,7 @@
     position: relative;
     z-index: 1;
     img {
-      @media screen and (max-width: map-get($grid-breakpoints, desktop)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, desktop)) {
         height: 40px;
       }
     }
@@ -127,11 +127,11 @@
     width: 835px;
     height: 600px;
 
-    @media screen and (max-width: map-get($grid-breakpoints, desktop)) {
+    @media screen and (max-width: map-get($jnt-grid-breakpoints, desktop)) {
       left: -145px;
     }
 
-    @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+    @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
       bottom: 0;
       width: 100%;
       height: 400px;
@@ -140,7 +140,7 @@
     [wave] {
       left: 0;
       bottom: 0;
-      @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         width: 100%;
         height: auto;
       }
@@ -157,9 +157,10 @@
       align-items: center;
       background: linear-gradient(90deg, #FEA7AF 0.54%, #FDA1AF 4.53%, #F57AAE 32.45%, #EF5EAD 58.13%, #EB4DAC 80.58%, #EA47AC 97.31%), linear-gradient(90deg, #FEA7AF 0.54%, #EA47AC 97.31%);
       overflow: hidden;
-      img {
+      svg {
         opacity: .5;
         animation: move 2s linear infinite forwards;
+        overflow: visible;
       }
     }
 
@@ -179,7 +180,7 @@
       bottom: 20px;
       left: 20px;
       animation: flash 2s ease-in-out forwards infinite;
-      @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         width: 100%;
       }
     }
@@ -189,7 +190,7 @@
       top: 0;
       left: 178px;
       animation: bounce 0.5s infinite;
-      @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         top: auto;
         bottom: 45px;
       }
@@ -289,7 +290,7 @@
     [wave] {
       top: 0;
       right: 0;
-      @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         top: -50px;
       }
     }
@@ -305,14 +306,15 @@
       align-items: center;
       background: linear-gradient(102.56deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%), linear-gradient(90deg, #FEA7AF 0.54%, #FDA1AF 4.53%, #F57AAE 32.45%, #EF5EAD 58.13%, #EB4DAC 80.58%, #EA47AC 97.31%), linear-gradient(90deg, #FEA7AF 0.54%, #EA47AC 97.31%);
       overflow: hidden;
-      @media screen and (max-width: map-get($grid-breakpoints, desktop)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, desktop)) {
         top: 100px;
         right: 20px;
       }
-      @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+      @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
         right: 0;
       }
-      img {
+      svg {
+        overflow: visible;
         opacity: .5;
         animation: move 2s linear infinite forwards;
       }

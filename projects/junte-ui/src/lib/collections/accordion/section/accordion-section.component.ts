@@ -16,6 +16,12 @@ export class AccordionSectionComponent {
   })
   @Input() title: string;
 
+  @PropertyApi({
+    description: 'Accordion section icon',
+    type: 'string'
+  })
+  @Input() icon: string;
+
   @ContentChild('accordionContentTemplate')
   accordionContentTemplate: TemplateRef<any>;
 

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  IconModule,
   AccordionModule,
   BlockModule,
   CheckboxModule,
@@ -23,6 +24,7 @@ import { TableTestComponent } from './table-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
@@ -31,10 +33,10 @@ import { TableTestComponent } from './table-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     TableModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule,
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    MenuModule.forRoot(JUNTE_UI_CONFIG)
+    MenuModule.forRoot(JUNTE_UI_CONFIG),
+    SharedModule,
   ],
   exports: [
     TableTestComponent

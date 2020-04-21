@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "forms/button/button";
 
 @mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
@@ -12,7 +13,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -34,7 +35,7 @@
       ),
     ), '&');
 
-    [table] {
+    [data-table] {
       margin-left: -$jnt-gutter-normal;
       margin-right: -$jnt-gutter-normal;
     }
@@ -43,7 +44,7 @@
       width: 100%;
       border-collapse: collapse;
       position: relative;
-      [spinner] {
+      [data-spinner] {
         position: absolute;
         top: 0;
         left: 0;
@@ -69,7 +70,7 @@
         border-bottom: 1px solid $jnt-muted-color;
         background-color: $jnt-primary-background;
         transition: all .3s;
-        &[nodata] {
+        &[data-nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -82,7 +83,7 @@
             }
           }
         }
-        &[loading] {
+        &[data-loading] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -91,14 +92,18 @@
           background-color: $jnt-highlight-background;
         }
         td {
-          &[action] {
+          &[data-action] {
             width: 50px;
             text-align: center;
-            [menu] {
-              [button][child-host=#{$jnt-button-host}] {
-                button {
-                  padding: 0 $jnt-gutter-normal;
-                }
+            [data-menu] {
+              [data-button] {
+                @include jnt-button((
+                  sizes: (
+                    normal: (
+                      padding: 0 $jnt-gutter-normal,
+                    ),
+                  ),
+                ), '&');
               }
             }
           }
@@ -110,12 +115,12 @@
       }
     }
 
-    [pagination] {
+    [data-pagination] {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: -$jnt-gutter-normal;
-      [pages] {
+      [data-pages] {
         flex: 1;
       }
     }

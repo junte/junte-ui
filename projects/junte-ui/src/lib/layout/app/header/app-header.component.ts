@@ -1,6 +1,7 @@
 import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { ContentApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
+import { MenuComponent } from '../../../navigation/menu/menu.component';
 
 @Component({
   selector: 'jnt-app-header',
@@ -15,19 +16,21 @@ export class AppHeaderComponent {
   opened = false;
 
   @ContentApi({
-    selector: '#headerMenuTemplate',
-    description: 'Menu template'
-  })
-
-  @ContentChild('headerMenuTemplate')
-  headerMenuTemplate: TemplateRef<any>;
-
-  @ContentApi({
     selector: '#headerLogoTemplate',
     description: 'Logo template'
   })
   @ContentChild('headerLogoTemplate')
   headerLogoTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#headerMenuTemplate',
+    description: 'Menu template'
+  })
+  @ContentChild('contentTemplate')
+  contentTemplate: TemplateRef<any>;
+
+  @ContentChild(MenuComponent, {static: true})
+  menu: MenuComponent;
 
   @ContentApi({
     selector: '#headerUserbarTemplate',

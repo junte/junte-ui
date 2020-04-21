@@ -13,7 +13,7 @@ import { ButtonType } from './enums';
   selector: 'jnt-button',
   templateUrl: './button.encapsulated.html',
   animations: [
-    trigger('spinner', [
+    trigger('appear', [
         state(
           'void',
           style({
@@ -39,7 +39,7 @@ import { ButtonType } from './enums';
       ]
     ),
 
-    trigger('text', [
+    trigger('visibility', [
       state('show', style({
         visibility: 'visible',
         opacity: 1

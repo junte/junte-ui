@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModalDirective } from './modal.directive';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -9,7 +10,8 @@ import { ModalComponent } from './modal.component';
 
 @NgModule({
   declarations: [
-    ModalComponent
+    ModalComponent,
+    ModalDirective
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ModalComponent } from './modal.component';
     ModalComponent
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    ModalDirective
   ]
 })
 export class ModalModule {

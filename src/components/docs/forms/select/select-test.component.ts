@@ -56,8 +56,10 @@ export class SelectTestComponent implements OnInit {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable() : this.selectControl.enable());
+  }
 
-    this.selectControl.valueChanges.subscribe(value => console.log(value));
+  trackHero(index, hero: { id: number }) {
+    return hero.id;
   }
 
   search() {

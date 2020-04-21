@@ -1,8 +1,9 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
 @mixin block-padding($padding) {
-  [body], [footer] {
+  [data-body], [data-footer] {
     padding: $padding;
   }
 }
@@ -49,7 +50,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -82,7 +83,7 @@
     }
   }
 
-  #{$context} [title] {
+  #{$context} [data-title] {
     padding: 0 $jnt-gutter-normal;
     text-align: center;
     color: $jnt-primary-color;
@@ -93,7 +94,7 @@
     }
   }
 
-  #{$context} [loading], #{$context} [error], #{$context} [success] {
+  #{$context} [data-loading], #{$context} [data-error], #{$context} [data-success] {
     position: absolute;
     top: 0;
     left: 0;

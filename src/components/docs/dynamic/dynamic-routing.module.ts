@@ -14,7 +14,7 @@ export const routes: Routes = [
   {
     path: 'circle-bar',
     component: CircleBarTestComponent,
-    data: {breadcrumb: 'Circle-bar'}
+    data: {breadcrumb: 'Circle bar'}
   },
   {
     path: 'chart',

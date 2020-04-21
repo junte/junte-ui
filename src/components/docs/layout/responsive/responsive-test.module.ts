@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   FormModule,
   IconModule,
   GridModule,
@@ -32,7 +32,7 @@ import { SharedModule } from '../../shared/shared.module';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [
