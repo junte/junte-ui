@@ -1,7 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, FormModule, GridModule, LinkModule, SelectModule, SpinnerModule, StackModule, TabsModule } from 'junte-ui';
+import {
+  AccordionModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  LinkModule,
+  SelectModule,
+  SpinnerModule,
+  StackModule,
+  TabsModule
+} from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { SpinnerTestComponent } from './spinner-test.component';
@@ -10,6 +20,7 @@ import { SpinnerTestComponent } from './spinner-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

@@ -16,7 +16,8 @@ import {
   BlockModule,
   TabsModule,
   LabelModule,
-  ButtonModule
+  ButtonModule,
+  IconModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -26,6 +27,7 @@ import { SwitcherTestComponent } from './switcher-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

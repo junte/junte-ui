@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LinkModule, StackModule, TabsModule, GridModule, AccordionModule, ProgressBarModule, FormModule, InputModule, CheckboxModule } from 'junte-ui';
+import { LinkModule, IconModule, StackModule, TabsModule, GridModule, AccordionModule, ProgressBarModule, FormModule, InputModule, CheckboxModule } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { ProgressBarTestComponent } from './progress-bar-test.component';
@@ -10,6 +10,7 @@ import { ProgressBarTestComponent } from './progress-bar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
