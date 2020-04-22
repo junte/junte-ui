@@ -6,6 +6,7 @@ import {
   ArrayPipesModule,
   FormModule,
   GridModule,
+  IconModule,
   LinkModule,
   ResponsiveModule,
   SelectModule,
@@ -20,6 +21,7 @@ import { GridTestComponent } from './grid-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
