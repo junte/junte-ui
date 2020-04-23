@@ -136,6 +136,7 @@ export const icons = {
     settings: 'settings:animated:default',
     time: 'time:animated:default',
     bell: 'bell:animated:default',
-    reload: 'reload:animated:default'
+    reload: 'reload:animated:default',
+    spinner: 'spinner:animated:default'
   }
 };
