@@ -17,7 +17,7 @@ export class AppAsideComponent implements OnInit {
 
   @Input()
   set collapsed(collapsed: boolean) {
-    this._collapsed = collapsed;
+    this._collapsed = collapsed || false;
     localStorage.setItem(ASIDE_STATE, JSON.stringify(collapsed));
   }
 
