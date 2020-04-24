@@ -12,6 +12,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { PopoverOptions } from 'projects/junte-ui/src/lib/overlays/popover/popover.component';
 import { MethodApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
@@ -33,8 +34,6 @@ interface ModalTitle {
 export class ModalOptions {
   maxWidth = '800';
   maxHeight = '800';
-  minWidth = '0';
-  minHeight = '0';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
@@ -192,6 +191,5 @@ export class ModalComponent {
       this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     }
     this.opened = false;
-    this.content = null;
   }
 }

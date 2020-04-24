@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   Component,
+  ContentChild,
   ContentChildren,
   ElementRef,
   forwardRef,
@@ -15,15 +16,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { Breakpoint } from '../../core/enums/breakpoint';
-import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
-import { ModalClosingOption, ModalOptions } from '../../overlays/modal/modal.component';
-import { ModalService } from '../../overlays/modal/modal.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
@@ -64,8 +61,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ui = UI;
   selectMode = SelectMode;
-  closingOptions = ModalClosingOption;
-  mobile: boolean =  this.breakpoint.current === Breakpoint.mobile;
+
   private _opened = false;
   private fetcher: Subscription;
 
@@ -80,9 +76,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       query: this.queryControl
     }
   );
-
-  @ViewChild('dropdownTemplate')
-  dropdownTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Select label field',
@@ -161,7 +154,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     const checking = () => {
       const style = getComputedStyle(input);
       if (style.display !== 'none') {
-        if (opened && !this.mobile) {
+        if (opened) {
           input.focus();
         }
       } else {
@@ -233,9 +226,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
               private fb: FormBuilder,
-              private logger: NGXLogger,
-              private modalService: ModalService,
-              private breakpoint: BreakpointService) {
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {
@@ -298,9 +289,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   select(option: IOption) {
-    if (this.mobile) {
-      this.modalService.close();
-    }
     this.logger.debug('option is selected');
     this.options.persisted[option.key.toString()] = option;
     this.changes.options++;
@@ -313,8 +301,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
   }
 
-  remove(key: Key, event) {
-    event.stopPropagation();
+  remove(key: Key) {
     const index = this.selected.findIndex(i => i === key);
     if (index !== -1) {
       this.logger.debug('option has been removed');
@@ -322,19 +309,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this.changes.selected++;
       this.onChange(this.mode === SelectMode.multiple ? this.selected : null);
     }
-  }
-
-  openModal() {
-    const options = new ModalOptions({
-      minHeight: '300',
-      closing: ModalClosingOption.enable,
-      title: {
-        text: this.placeholder,
-        icon: null
-      },
-    });
-    this.queryControl.reset();
-    this.modalService.open(this.dropdownTemplate, options);
   }
 
   @HostListener('document:click', ['$event'])
@@ -348,16 +322,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
     switch (this.mode) {
       case SelectMode.single:
-        if (this.mobile) {
-          this.openModal();
-        }
         break;
       case SelectMode.multiple:
         if (target === this.selectedList.nativeElement) {
           this.opened = true;
-        }
-        if (this.mobile) {
-          this.openModal();
         }
         break;
 

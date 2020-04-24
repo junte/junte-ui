@@ -19,7 +19,7 @@
             : optionDefaultTemplate;context: option">
           </ng-container>
         </div>
-        <button data-close type="button" (click)="remove(key, $event)">
+        <button data-close type="button" (click)="remove(key)">
           <jnt-icon [icon]="ui.icons.close"
                     [size]="ui.size.tiny"></jnt-icon>
         </button>
@@ -31,21 +31,12 @@
              formControlName="query">
     </li>
   </ul>
-  <ng-container *jntMinFor="ui.breakpoint.tablet">
-    <button data-toggle type="button" (click)="opened = !opened">
-      <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
-                [size]="ui.size.small"></jnt-icon>
-    </button>
-  </ng-container>
-  <ng-container *jntFor="ui.breakpoint.mobile">
-    <button data-toggle type="button" (click)="openModal()">
-      <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
-                [size]="ui.size.small"></jnt-icon>
-    </button>
-  </ng-container>
+  <button data-toggle type="button" (click)="opened = !opened">
+    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"
+              [size]="ui.size.small"></jnt-icon>
+  </button>
 </div>
-
-<ng-template #dropdownTemplate>
+<div data-options *ngIf="opened" [attr.data-loading]="loading">
   <ng-template #noOptionsTemplate>
     <div data-skeleton>
       <jnt-skeleton *ngIf="loading; else emptyOptions"
@@ -59,13 +50,7 @@
   </ng-template>
   <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
     | getOptions:selected:changes.selected:changes.options) as options">
-    <ng-container *jntFor="ui.breakpoint.mobile">
-      <div *ngIf="search" [formGroup]="form" data-mobile-search>
-        <jnt-input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
-                   formControlName="query"></jnt-input>
-      </div>
-    </ng-container>
-    <ul *ngIf="options.length;else noOptionsTemplate" data-options>
+    <ul *ngIf="options.length;else noOptionsTemplate">
       <div data-loading *ngIf="loading">
         <jnt-spinner></jnt-spinner>
       </div>
@@ -78,11 +63,4 @@
       </ng-container>
     </ul>
   </ng-container>
-</ng-template>
-
-<ng-container *jntMinFor="ui.breakpoint.tablet">
-  <div data-dropdown *ngIf="opened" [attr.data-loading]="loading">
-    <ng-container *ngTemplateOutlet="dropdownTemplate"></ng-container>
-  </div>
-</ng-container>
-
+</div>

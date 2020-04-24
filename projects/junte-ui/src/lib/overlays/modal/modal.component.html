@@ -13,7 +13,7 @@
     </button>
   </jnt-stack>
 
-  <div [ngStyle]="{'max-height.px': options?.maxHeight, 'max-width.px': options?.maxWidth, 'min-width.px': options?.minWidth, 'min-height.px': options?.minHeight}" data-content>
+  <div [ngStyle]="{'max-height.px': options?.maxHeight, 'max-width.px': options?.maxWidth}" data-content>
     <ng-container #container>
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>

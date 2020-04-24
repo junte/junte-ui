@@ -86,10 +86,10 @@
       }
     }
     &[data-disabled='true'] {
-      pointer-events: none;
       [data-select] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
+        pointer-events: none;
         ul li {
           background-color: $jnt-control-disabled-background;
           color: $jnt-control-disabled-border-color;
@@ -273,7 +273,7 @@
     }
   }
 
-  #{$context} [data-dropdown] {
+  #{$context} [data-options] {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
@@ -288,52 +288,48 @@
       min-height: 100px;
       height: auto;
     }
-  }
-  [data-skeleton] {
-    padding: 0 $jnt-gutter-small;
-  }
-  [data-empty] {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    [data-icon] {
-      font-size: 50px;
-      color: $jnt-primary-text-light-color;
+    [data-skeleton] {
+      padding: 0 $jnt-gutter-small;
     }
-  }
-  ul[data-options] {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 200px;
-    overflow-y: scroll;
-    [data-loading] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+    [data-empty] {
+      height: 200px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      background-color: rgba($jnt-primary-background, .5);
-    }
-    li {
-      cursor: pointer;
-      padding: $jnt-gutter-small $jnt-gutter-normal;
-      border-left: 2px solid transparent;
+      align-items: center;
       [data-icon] {
-        line-height: 0;
-      }
-      &:hover {
-        background-color: $jnt-secondary-background;
-        border-color: $jnt-primary-color;
+        font-size: 50px;
+        color: $jnt-primary-text-light-color;
       }
     }
-  }
-
-  [data-mobile-search] {
-    margin-bottom: $jnt-gutter-normal;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: scroll;
+      [data-loading] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($jnt-primary-background, .5);
+      }
+      li {
+        cursor: pointer;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+        border-left: 2px solid transparent;
+        [data-icon] {
+          line-height: 0;
+        }
+        &:hover {
+          background-color: $jnt-secondary-background;
+          border-color: $jnt-primary-color;
+        }
+      }
+    }
   }
 }
