@@ -79,6 +79,14 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
 
+  @PropertyApi({
+    description: 'Display marks',
+    type: 'boolean',
+    default: 'true'
+  })
+  @HostBinding('attr.data-allow-empty')
+  @Input() marks = false;
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 

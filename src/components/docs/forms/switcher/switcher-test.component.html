@@ -45,6 +45,7 @@
                           <jnt-switcher formControlName="hero"
                                         [mode]="modeControl.value"
                                         [allowEmpty]="allowEmptyControl.value"
+                                        [marks]="marksControl.value"
                                         [orientation]="orientationControl.value">
                             <jnt-switcher-option label="Spiderman" [value]="hero.spiderman"
                                                  [icon]="iconControl.value ? localUi.icons.heroes.spiderman : null">
@@ -219,10 +220,15 @@
                                     label="Custom option"
                                     i18n-label="@@label.custom_option"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="12">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="allowEmpty"
                                     label="Allow empty"
                                     i18n-label="@@label.allow_empty"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="marks"
+                                    label="Display marks"
+                                    i18n-label="@@label.display_marks"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>

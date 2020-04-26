@@ -29,6 +29,7 @@ export class SwitcherTestComponent implements OnInit {
   badgeControl = this.fb.control(false);
   templateControl = this.fb.control(false);
   allowEmptyControl = this.fb.control(true);
+  marksControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
 
   builder = this.fb.group({
@@ -39,6 +40,7 @@ export class SwitcherTestComponent implements OnInit {
     badge: this.badgeControl,
     template: this.templateControl,
     allowEmpty: this.allowEmptyControl,
+    marks: this.marksControl,
     disabled: this.disabledControl
   });
 
