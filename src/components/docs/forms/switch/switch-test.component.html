@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.switch">Switch</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.switch"></jnt-icon>
+    </span>
+    <span i18n="@@label.switch">Switch</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switch"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switch"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"

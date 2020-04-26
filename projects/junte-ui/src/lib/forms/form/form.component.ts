@@ -37,13 +37,6 @@ export class FormComponent implements OnInit {
   form: FormGroup;
 
   @PropertyApi({
-    description: 'Form loading',
-    type: 'boolean',
-  })
-  @Input()
-  loading = false;
-
-  @PropertyApi({
     description: 'Title for form',
     type: 'string',
   })
@@ -52,7 +45,7 @@ export class FormComponent implements OnInit {
 
   @PropertyApi({
     description: 'State of form',
-    path: 'ui.form.state',
+    path: 'ui.forms.state',
     options: [FormState.error,
       FormState.loading]
   })

@@ -59,6 +59,7 @@
     position: relative;
     min-width: 70px;
     color: $jnt-primary-text-color;
+    line-height: $jnt-line-height-base;
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -125,8 +126,8 @@
         }
       }
 
-      &[data-empty='false'] [data-select] {
-        ul {
+      &[data-empty='false'] {
+        [data-select] ul {
           flex: 1;
           li {
             width: 100%;
@@ -158,6 +159,14 @@
       }
     }
 
+    &[data-empty='false'] {
+      &[data-opened='false'] {
+        [data-query] {
+          display: none;
+        }
+      }
+    }
+
     &[data-search='false'] {
       [data-select] ul li {
         cursor: default;
@@ -183,7 +192,7 @@
     }
   }
 
-  #{$context}  [data-select] {
+  #{$context} [data-select] {
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;
@@ -243,6 +252,7 @@
             background-color: transparent;
             color: $jnt-primary-text-color;
             padding: 0;
+            line-height: $jnt-line-height-base;
             &:focus {
               outline: none;
             }

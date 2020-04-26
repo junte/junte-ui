@@ -1,8 +1,16 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.tabs"></jnt-icon>
+    </span>
+    <span i18n="@@label.tabs">Tabs</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/tabs"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/tabs"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -12,7 +20,6 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.tabs">Tabs</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 

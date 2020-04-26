@@ -1,8 +1,16 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.skeleton"></jnt-icon>
+    </span>
+    <span i18n="@@label.skeleton">Skeleton</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/skeleton"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/skeleton"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -12,7 +20,6 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.skeleton">Skeleton</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -61,6 +68,16 @@
                                       [animated]="animationControl.value"></jnt-skeleton>
                       </jnt-stack>
                     </ng-container>
+
+                    <ng-container *ngSwitchCase="sketch.Cards">
+                      <jnt-row>
+                        <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
+                          <jnt-skeleton data-card [type]="ui.layout.skeleton.type.card"
+                                        [animated]="animationControl.value"></jnt-skeleton>
+                        </jnt-col>
+                      </jnt-row>
+                    </ng-container>
+
                   </jnt-block>
 
                 </ng-template>
@@ -84,6 +101,8 @@
                         <jnt-select-option label=" Horizontal post"
                                            i18n-label="@@label.horizontal_post"
                                            [key]="sketch.HorizontalPost"></jnt-select-option>
+                        <jnt-select-option label="Cards"
+                                           [key]="sketch.Cards"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -183,6 +202,20 @@
                           <![CDATA[>
                         </jnt-skeleton>
                       </jnt-stack>
+                      ]]>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="sketch.Cards">
+                      <![CDATA[
+                      <jnt-row>
+                        <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
+                          <jnt-skeleton [type]="ui.layout.skeleton.type.card"]]>
+                            <ng-container *ngIf="!animationControl.value">
+                              <![CDATA[[animated]="false"]]>
+                            </ng-container>
+                            <![CDATA[></jnt-skeleton>
+                        </jnt-col>
+                      </jnt-row>
                       ]]>
                     </ng-container>
                   </ng-container>

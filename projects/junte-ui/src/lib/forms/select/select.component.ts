@@ -1,7 +1,6 @@
 import {
   AfterContentInit,
   Component,
-  ContentChild,
   ContentChildren,
   ElementRef,
   forwardRef,
@@ -337,7 +336,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.opened = false;
   }
 
-  writeValue(value: Key) {
+  writeValue(value: Key | Key[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
   }
 

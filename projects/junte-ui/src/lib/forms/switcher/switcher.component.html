@@ -1,10 +1,13 @@
 <ng-template #optionDefaultTemplate
-             let-icon="icon"
-             let-dot="dot"
-             let-badge="badge"
-             let-label="label">
+             let-icon="option.icon"
+             let-dot="option.dot"
+             let-badge="option.badge"
+             let-label="option.label"
+             let-selected="selected">
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
+  <jnt-icon data-mark *ngIf="marks"
+            [icon]="selected ? (mode === selectMode.single ? ui.icons.radioChecked : ui.icons.checkboxChecked) : (mode === selectMode.single ? ui.icons.radioUnchecked : ui.icons.checkboxUnchecked)"></jnt-icon>
   <jnt-stack [type]="ui.layout.stack.type.horizontal"
              [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center"
@@ -23,13 +26,13 @@
 
 <jnt-stack data-option *ngFor="let option of options"
            [attr.data-with-template]="option.optionTemplate"
-           (click)="selectOption(option.value)"
-           [attr.data-active]="option.value === value"
+           [attr.data-selected]="option.value | check:selected:keyField:version"
+           (click)="select(option.value)"
            [type]="ui.layout.stack.type.horizontal"
            [align]="ui.flex.align.center"
            [gutter]="ui.gutter.small"
            tabindex="0">
   <ng-container
-    *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: option">
+    *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
   </ng-container>
 </jnt-stack>

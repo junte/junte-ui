@@ -1,10 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.calendar">Calendar</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.calendar"></jnt-icon>
+    </span>
+    <span i18n="@@label.calendar">Calendar</span>
+  </h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/calendar"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/calendar"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"

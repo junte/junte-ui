@@ -12,7 +12,8 @@ import {
   StackModule,
   SwitcherModule,
   ButtonModule,
-  TabsModule
+  TabsModule,
+  IconModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -22,6 +23,7 @@ import { InputTestComponent } from './input-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),

@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.badge">Badge</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.badge"></jnt-icon>
+    </span>
+    <span i18n="@@label.badge">Badge</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/badge"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/badge"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"

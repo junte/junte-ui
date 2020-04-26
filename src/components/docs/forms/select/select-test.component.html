@@ -1,10 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.select">Select</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.select"></jnt-icon>
+    </span>
+    <span i18n="@@label.select">Select</span>
+  </h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/select"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -43,6 +49,7 @@
                                          [value]="h">
                       </jnt-select-option>
                     </jnt-select>
+                    <p>test</p>
                     <ng-template #heroOptionTemplate let-hero="value">
                       <jnt-stack [type]="ui.layout.stack.type.horizontal"
                                  [align]="ui.flex.align.center"
@@ -78,10 +85,10 @@
                                 i18n-placeholder="@@label.single">
                       <jnt-select-option label="Single"
                                          i18n-label="@@label.single"
-                                         [key]="ui.form.select.mode.single"></jnt-select-option>
+                                         [key]="ui.forms.select.mode.single"></jnt-select-option>
                       <jnt-select-option label="Multiple"
                                          i18n-label="@@label.multiple"
-                                         [key]="ui.form.select.mode.multiple"></jnt-select-option>
+                                         [key]="ui.forms.select.mode.multiple"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>

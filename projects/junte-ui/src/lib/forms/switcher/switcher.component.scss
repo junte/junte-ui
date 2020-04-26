@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon/icon";
 
 @mixin jnt-switcher($passed: (), $context: null, $strategy: 'changes') {
 
@@ -20,7 +21,7 @@
     display: flex;
     border: 1px solid $jnt-gray-700-color;
     border-radius: map-get($vars, corner);
-    &[data-type='vertical'] {
+    &[data-orientation='vertical'] {
       flex-direction: column;
       [data-option] {
         &:first-child {
@@ -34,7 +35,7 @@
         }
       }
     }
-    &[data-type='horizontal'] {
+    &[data-orientation='horizontal'] {
       flex-direction: row;
       [data-option] {
         flex: auto;
@@ -83,13 +84,13 @@
       background-color: $jnt-highlight-background;
     }
 
-    &[data-active="true"] {
+    &[data-selected="true"] {
       color: $jnt-white-color;
       background-color: $jnt-primary-light-color;
     }
 
-    [data-icon] {
-      line-height: 0;
+    [data-mark] {
+      @include jnt-icon((color: $jnt-primary-color), '&');
     }
   }
 

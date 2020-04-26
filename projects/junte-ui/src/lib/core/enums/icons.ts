@@ -128,6 +128,11 @@ export const icons = {
   dribbble: 'dribbble:svg:apps',
   github: 'github:svg:apps',
   figma: 'figma:svg:apps',
+  // controls
+  checkboxUnchecked: 'checkbox-unchecked:svg:controls',
+  checkboxChecked: 'checkbox-checked:svg:controls',
+  radioUnchecked: 'radio-unchecked:svg:controls',
+  radioChecked: 'radio-checked:svg:controls',
   animated: {
     runningMan: 'running-man:animated:default',
     success: 'success:animated:default',
@@ -136,6 +141,7 @@ export const icons = {
     settings: 'settings:animated:default',
     time: 'time:animated:default',
     bell: 'bell:animated:default',
-    reload: 'reload:animated:default'
+    reload: 'reload:animated:default',
+    spinner: 'spinner:animated:default'
   }
 };

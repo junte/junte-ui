@@ -1,10 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.switcher">Switcher</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.switcher"></jnt-icon>
+    </span>
+    <span i18n="@@label.switcher">Switcher</span>
+  </h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/switcher"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switcher"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -30,13 +36,17 @@
                     <jnt-stack [gutter]="ui.gutter.big"
                                [align]="ui.flex.align.center"
                                [justify]="ui.flex.justify.center"
-                               [type]="typeControl.value === ui.orientation.vertical ? ui.layout.stack.type.horizontal : ui.layout.stack.type.vertical">
+                               [type]="orientationControl.value === ui.orientation.vertical ? ui.layout.stack.type.horizontal : ui.layout.stack.type.vertical">
                       <jnt-form-item>
                         <jnt-form-label for="hero"
                                         i18n="@@label.select_hero">Select hero
                         </jnt-form-label>
                         <jnt-form-control name="hero">
-                          <jnt-switcher formControlName="hero" [type]="typeControl.value">
+                          <jnt-switcher formControlName="hero"
+                                        [mode]="modeControl.value"
+                                        [allowEmpty]="allowEmptyControl.value"
+                                        [marks]="marksControl.value"
+                                        [orientation]="orientationControl.value">
                             <jnt-switcher-option label="Spiderman" [value]="hero.spiderman"
                                                  [icon]="iconControl.value ? localUi.icons.heroes.spiderman : null">
                               <jnt-dot *ngIf="dotControl.value"
@@ -111,7 +121,7 @@
                             </jnt-switcher-option>
                           </jnt-switcher>
 
-                          <jnt-form-message [type]="ui.form.validators.typeError.required">
+                          <jnt-form-message [type]="ui.forms.validators.typeError.required">
                             Please select the hero
                           </jnt-form-message>
                         </jnt-form-control>
@@ -136,7 +146,7 @@
                                  [justify]="ui.flex.justify.between">
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"
-                                    [type]="ui.form.button.type.submit"></jnt-button>
+                                    [type]="ui.forms.button.type.submit"></jnt-button>
                         <jnt-button text="Reset"
                                     i18n-text="@@action.reset"
                                     [scheme]="ui.scheme.secondary"
@@ -154,10 +164,28 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="type"
-                                  i18n="@@label.type">Type
+                  <jnt-form-label for="mode"
+                                  i18n="@@label.mode">Mode
                   </jnt-form-label>
-                  <jnt-select formControlName="type" placeholder="Horizontal">
+                  <jnt-form-control>
+                    <jnt-select formControlName="mode"
+                                placeholder="Single"
+                                i18n-placeholder="@@label.single">
+                      <jnt-select-option label="Single"
+                                         i18n-label="@@label.single"
+                                         [key]="ui.forms.select.mode.single"></jnt-select-option>
+                      <jnt-select-option label="Multiple"
+                                         i18n-label="@@label.multiple"
+                                         [key]="ui.forms.select.mode.multiple"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="orientation"
+                                  i18n="@@label.orientation">Orientation
+                  </jnt-form-label>
+                  <jnt-select formControlName="orientation" placeholder="Horizontal">
                     <jnt-select-option label="Horizontal"
                                        i18n-label="@@label.horizontal"
                                        [key]="ui.orientation.horizontal"></jnt-select-option>
@@ -191,6 +219,16 @@
                       <jnt-checkbox formControlName="template"
                                     label="Custom option"
                                     i18n-label="@@label.custom_option"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="allowEmpty"
+                                    label="Allow empty"
+                                    i18n-label="@@label.allow_empty"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="marks"
+                                    label="Display marks"
+                                    i18n-label="@@label.display_marks"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
@@ -231,9 +269,9 @@
                 <![CDATA[
                 <jnt-switcher
                   ]]>
-                  <ng-container *ngIf="typeControl.value">
+                  <ng-container *ngIf="orientationControl.value">
                     <![CDATA[
-                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+                    [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
                   </ng-container>
                   <![CDATA[>
                   <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>

@@ -1,15 +1,17 @@
 <jnt-container>
-  <h1 i18n="@@label.responsive">Responsive</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.responsive"></jnt-icon>
+    </span>
+    <span i18n="@@label.responsive">Responsive</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/dot"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/responsive"
               target="_blank" title="GitLab">
-    </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
-              [outline]="ui.outline.ghost"
-              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=187%3A0"
-              target="_blank" title="Figma">
     </jnt-link>
   </jnt-stack>
   <jnt-tabs playground>

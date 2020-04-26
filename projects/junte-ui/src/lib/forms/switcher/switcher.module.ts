@@ -5,6 +5,7 @@ import { BadgeModule } from '../../elements/badge/badge.module';
 import { DotModule } from '../../elements/dot/dot.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { CheckSelectedPipe } from './pipes';
 import { SwitcherOptionComponent } from './switcher-option.component';
 import { SwitcherComponent } from './switcher.component';
 
@@ -18,7 +19,8 @@ import { SwitcherComponent } from './switcher.component';
   ],
   declarations: [
     SwitcherComponent,
-    SwitcherOptionComponent
+    SwitcherOptionComponent,
+    CheckSelectedPipe
   ],
   entryComponents: [
     SwitcherComponent,

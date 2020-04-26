@@ -10,6 +10,7 @@ import {
   CheckboxModule,
   FormModule,
   GridModule,
+  IconModule,
   LabelModule,
   LinkModule,
   SelectModule,
@@ -24,6 +25,7 @@ import { CheckboxTestComponent } from './checkbox-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

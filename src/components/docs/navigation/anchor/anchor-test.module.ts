@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, AnchorModule, FormModule, GridModule, LinkModule, StackModule, TabsModule } from 'junte-ui';
+import {AccordionModule, AnchorModule, FormModule, GridModule, IconModule, LinkModule, StackModule, TabsModule} from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AnchorTestComponent } from './anchor-test.component';
@@ -10,6 +10,7 @@ import { AnchorTestComponent } from './anchor-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

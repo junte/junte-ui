@@ -12,7 +12,8 @@ import {
   SwitcherModule,
   BlockModule,
   DatePeriodModule,
-  TabsModule
+  TabsModule,
+  IconModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
@@ -25,6 +26,7 @@ import { CalendarTestComponent } from './calendar-test.component';
     ReactiveFormsModule,
     DateFnsModule,
     SharedModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     GridModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),

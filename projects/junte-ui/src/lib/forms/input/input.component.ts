@@ -107,7 +107,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input typeControl',
-    path: 'ui.form.input',
+    path: 'ui.forms.input',
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
@@ -131,7 +131,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input state',
-    path: 'ui.form.input.state',
+    path: 'ui.forms.input.state',
     options: [InputState.loading, InputState.warning, InputState.checked]
   })
   @HostBinding('attr.data-state')

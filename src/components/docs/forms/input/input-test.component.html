@@ -1,10 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.input">Input</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.input"></jnt-icon>
+    </span>
+    <span i18n="@@label.input">Input</span>
+  </h1>
 
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/input"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -75,13 +81,13 @@
                                 i18n-placeholder="@@label.text">
                       <jnt-select-option label="Text"
                                          i18n-label="@@label.text"
-                                         [key]="ui.form.input.type.text"></jnt-select-option>
+                                         [key]="ui.forms.input.type.text"></jnt-select-option>
                       <jnt-select-option label="Number"
                                          i18n-label="@@label.number"
-                                         [key]="ui.form.input.type.number"></jnt-select-option>
+                                         [key]="ui.forms.input.type.number"></jnt-select-option>
                       <jnt-select-option label="Password"
                                          i18n-label="@@label.password"
-                                         [key]="ui.form.input.type.password"></jnt-select-option>
+                                         [key]="ui.forms.input.type.password"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -96,13 +102,13 @@
                                 i18n-placeholder="@@label.normal">
                       <jnt-select-option label="Normal"
                                          i18n-label="@@label.normal"
-                                         [key]="ui.form.input.scheme.normal"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.normal"></jnt-select-option>
                       <jnt-select-option label="Success"
                                          i18n-label="@@label.success"
-                                         [key]="ui.form.input.scheme.success"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.success"></jnt-select-option>
                       <jnt-select-option label="Failed"
                                          i18n-label="@@label.failed"
-                                         [key]="ui.form.input.scheme.failed"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.failed"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -168,13 +174,13 @@
                                   i18n="@@label.state">States
                   </jnt-form-label>
                   <jnt-switcher formControlName="states">
-                    <jnt-switcher-option label="Loading" [value]="ui.form.input.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Loading" [value]="ui.forms.input.state.loading"></jnt-switcher-option>
                     <jnt-switcher-option label="Warning"
                                          [icon]="ui.icons.warning"
-                                         [value]="ui.form.input.state.warning"></jnt-switcher-option>
+                                         [value]="ui.forms.input.state.warning"></jnt-switcher-option>
                     <jnt-switcher-option label="Checked"
                                          [icon]="ui.icons.checked"
-                                         [value]="ui.form.input.state.checked"></jnt-switcher-option>
+                                         [value]="ui.forms.input.state.checked"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -211,7 +217,7 @@
                   <jnt-col [span]="6">
                     <jnt-form-item>
                       <jnt-form-control>
-                        <jnt-input formControlName="rows" [type]="ui.form.input.type.number"></jnt-input>
+                        <jnt-input formControlName="rows" [type]="ui.forms.input.type.number"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
                   </jnt-col>
@@ -247,7 +253,7 @@
                 <jnt-input
                   ]]>
                   <ng-container *ngIf="typeControl.value">
-                    <![CDATA[[type]="ui.form.input.]]>{{typeControl.value}}<![CDATA["]]>
+                    <![CDATA[[type]="ui.forms.input.]]>{{typeControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="schemeControl.value">
                     <![CDATA[[state]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>

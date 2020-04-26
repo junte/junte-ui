@@ -61,7 +61,7 @@ export class UI {
       target: LinkTarget
     }
   };
-  static form = {
+  static forms = {
     input: {type: InputType, scheme: InputScheme, state: InputState},
     select: {mode: SelectMode},
     button: {type: ButtonType},

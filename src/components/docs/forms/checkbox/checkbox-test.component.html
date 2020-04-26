@@ -1,8 +1,16 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.menu.checkbox"></jnt-icon>
+    </span>
+    <span i18n="@@label.checkbox">Checkbox</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/checkbox"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/checkbox"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -12,7 +20,6 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.checkbox">Checkbox</h1>
 
   <jnt-tabs playground>
     <jnt-tab title="Preview"
@@ -39,7 +46,7 @@
                                         [value]="hero.captainAmerica">
                           </jnt-checkbox>
                         </jnt-checkbox-group>
-                        <jnt-form-message [type]="ui.form.validators.typeError.required"
+                        <jnt-form-message [type]="ui.forms.validators.typeError.required"
                                           i18n="@@label.please_select_any_hero">
                           Please select any hero
                         </jnt-form-message>
@@ -61,7 +68,7 @@
                                  [justify]="ui.flex.justify.between">
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"
-                                    [type]="ui.form.button.type.submit"></jnt-button>
+                                    [type]="ui.forms.button.type.submit"></jnt-button>
                         <jnt-button text="Reset"
                                     i18n-text="@@action.reset"
                                     [scheme]="ui.scheme.secondary"

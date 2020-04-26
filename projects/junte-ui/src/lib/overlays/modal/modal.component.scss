@@ -41,7 +41,13 @@
     transform: scale(1);
     position: fixed;
     z-index: 2;
+    min-width: max-content;
+    max-width: 100%;
     top: 100%;
+
+    @media screen and (max-width: $jnt-tablet-breakpoint) {
+      min-width: calc(100% - #{$jnt-gutter-normal} * 2);
+    }
 
     [data-title] {
       border-top-left-radius: $jnt-corner-normal;
@@ -54,7 +60,6 @@
         background-color: transparent;
         border: 0;
         padding: 0;
-        line-height: 0;
         cursor: pointer;
         &:focus {
           outline: 0;
