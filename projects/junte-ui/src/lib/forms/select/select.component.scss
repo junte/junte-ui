@@ -126,8 +126,8 @@
         }
       }
 
-      &[data-empty='false'] [data-select] {
-        ul {
+      &[data-empty='false'] {
+        [data-select] ul {
           flex: 1;
           li {
             width: 100%;
@@ -159,6 +159,14 @@
       }
     }
 
+    &[data-empty='false'] {
+      &[data-opened='false'] {
+        [data-query] {
+          display: none;
+        }
+      }
+    }
+
     &[data-search='false'] {
       [data-select] ul li {
         cursor: default;
@@ -184,7 +192,7 @@
     }
   }
 
-  #{$context}  [data-select] {
+  #{$context} [data-select] {
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;

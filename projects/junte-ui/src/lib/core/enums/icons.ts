@@ -128,6 +128,11 @@ export const icons = {
   dribbble: 'dribbble:svg:apps',
   github: 'github:svg:apps',
   figma: 'figma:svg:apps',
+  // controls
+  checkboxUnchecked: 'checkbox-unchecked:svg:controls',
+  checkboxChecked: 'checkbox-checked:svg:controls',
+  radioUnchecked: 'radio-unchecked:svg:controls',
+  radioChecked: 'radio-checked:svg:controls',
   animated: {
     runningMan: 'running-man:animated:default',
     success: 'success:animated:default',

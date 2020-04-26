@@ -154,7 +154,7 @@ export class ButtonComponent {
 
   @PropertyApi({
     description: 'Button typeControl',
-    path: 'ui.form.button.type',
+    path: 'ui.forms.button.type',
     default: ButtonType.button,
     options: [ButtonType.button, ButtonType.submit]
   })
