@@ -112,6 +112,11 @@ export const icons = {
   hand: 'hand:font',
   down: 'pointer-down:font',
   left: 'pointer-left:font',
+  // controls
+  checkboxUnchecked: 'checkbox-unchecked:font',
+  checkboxChecked: 'checkbox-checked:font',
+  radioUnchecked: 'radio-unchecked:font',
+  radioChecked: 'radio-checked:font',
   // flags
   russia: 'russia:svg:flags',
   germany: 'germany:svg:flags',
@@ -128,11 +133,6 @@ export const icons = {
   dribbble: 'dribbble:svg:apps',
   github: 'github:svg:apps',
   figma: 'figma:svg:apps',
-  // controls
-  checkboxUnchecked: 'checkbox-unchecked:svg:controls',
-  checkboxChecked: 'checkbox-checked:svg:controls',
-  radioUnchecked: 'radio-unchecked:svg:controls',
-  radioChecked: 'radio-checked:svg:controls',
   animated: {
     runningMan: 'running-man:animated:default',
     success: 'success:animated:default',
