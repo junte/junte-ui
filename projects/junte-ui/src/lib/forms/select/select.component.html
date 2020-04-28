@@ -6,8 +6,9 @@
     <div>{{label}}</div>
   </jnt-stack>
 </ng-template>
-<div data-select tabindex="0">
+<div data-select tabindex="0" [attr.data-has-icon]="!!icon">
   <div *ngIf="label" data-label>{{label}}</div>
+  <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == selectMode.single ? opened = true : null">
