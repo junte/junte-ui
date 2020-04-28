@@ -2,14 +2,17 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin select-size($size) {
-  [data-select] {
+@mixin select-size($size, $wrapper) {
+  #{$wrapper} [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
+    &[data-has-icon = 'true'] {
+      padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-small} + #{$jnt-gutter-small});
+    }
   }
 }
 
-@mixin jnt-select($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-select($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -48,6 +51,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -64,7 +72,7 @@
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
-          @include select-size($map);
+          @include select-size($map, $wrapper);
           [data-select] {
             ul li {
               input {
@@ -192,13 +200,19 @@
     }
   }
 
-  #{$context} [data-select] {
+  #{$context} #{$wrapper} [data-select] {
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;
     padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
+    > [data-icon] {
+      position: absolute;
+      top: 50%;
+      left: $jnt-gutter-small;
+      transform: translateY(-50%);
+    }
     &:focus {
       outline: 0;
     }
@@ -281,7 +295,7 @@
     }
   }
 
-  #{$context} [data-options] {
+  #{$context} #{$wrapper} [data-options] {
     position: absolute;
     width: 100%;
     box-sizing: border-box;

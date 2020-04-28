@@ -43,6 +43,7 @@
                         </jnt-form-label>
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
+                                        [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
                                         [allowEmpty]="allowEmptyControl.value"
                                         [marks]="marksControl.value"
@@ -229,6 +230,10 @@
                       <jnt-checkbox formControlName="marks"
                                     label="Display marks"
                                     i18n-label="@@label.display_marks"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="8">
+                      <jnt-checkbox formControlName="height"
+                                    label="Height limit"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
