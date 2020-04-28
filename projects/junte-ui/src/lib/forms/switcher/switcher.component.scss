@@ -2,15 +2,25 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin jnt-switcher($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    height: 32px,
     corner: $jnt-corner-normal,
+    horizontal: (
+      height: 32px,
+    ),
+    vertical: (
+      max-height: null,
+    )
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -18,36 +28,48 @@
   }
 
   :host, #{$context} {
-    display: flex;
+    display: block;
     border: 1px solid $jnt-gray-700-color;
     border-radius: map-get($vars, corner);
+    [data-options] {
+      display: flex;
+    }
     &[data-orientation='vertical'] {
-      flex-direction: column;
-      [data-option] {
-        &:first-child {
-          border-top-left-radius: map-get($vars, corner) - 1px;
-          border-top-right-radius: map-get($vars, corner) - 1px;
-        }
+      @if map-has-key($vars, vertical) {
+        $vertical: map-get($vars, vertical);
+        max-height: if(map-get($vertical, maxheight), map-get($vertical, maxheight), null);
+        overflow-y: auto;
+      }
+      [data-options] {
+        flex-direction: column;
+        [data-option] {
+          &:first-child {
+            border-top-left-radius: map-get($vars, corner) - 1px;
+            border-top-right-radius: map-get($vars, corner) - 1px;
+          }
 
-        &:last-child {
-          border-bottom-right-radius: map-get($vars, corner) - 1px;
-          border-bottom-left-radius: map-get($vars, corner) - 1px;
+          &:last-child {
+            border-bottom-right-radius: map-get($vars, corner) - 1px;
+            border-bottom-left-radius: map-get($vars, corner) - 1px;
+          }
         }
       }
     }
     &[data-orientation='horizontal'] {
-      flex-direction: row;
-      [data-option] {
-        flex: auto;
-        justify-content: center;
-        &:first-child {
-          border-top-left-radius: map-get($vars, corner) - 1px;
-          border-bottom-left-radius: map-get($vars, corner) - 1px;
-        }
+      [data-options] {
+        flex-direction: row;
+        [data-option] {
+          flex: auto;
+          justify-content: center;
+          &:first-child {
+            border-top-left-radius: map-get($vars, corner) - 1px;
+            border-bottom-left-radius: map-get($vars, corner) - 1px;
+          }
 
-        &:last-child {
-          border-top-right-radius: map-get($vars, corner) - 1px;
-          border-bottom-right-radius: map-get($vars, corner) - 1px;
+          &:last-child {
+            border-top-right-radius: map-get($vars, corner) - 1px;
+            border-bottom-right-radius: map-get($vars, corner) - 1px;
+          }
         }
       }
     }
@@ -61,7 +83,7 @@
     }
   }
 
-  #{$context} [data-option] {
+  #{$context} #{$wrapper} [data-option] {
     background-color: $jnt-primary-background;
     color: $jnt-primary-text-color;
     user-select: none;
@@ -94,13 +116,17 @@
     }
   }
 
-  #{$context} [data-title] {
+  #{$context} #{$wrapper} [data-title] {
     flex: 1;
     [data-label] {
       flex: 0 1 auto;
       overflow: hidden;
       white-space: nowrap;
-      line-height: map-get($vars, height);
+      @if map-has-key($vars, horizontal) {
+        $horizontal: map-get($vars, horizontal);
+        line-height: map-get($horizontal, height);
+      }
+
     }
   }
 
