@@ -42,6 +42,7 @@
                                 [search]="searchControl.value"
                                 [size]="sizeControl.value"
                                 [loader]="search()"
+                                [icon]="iconControl.value ? ui.icons.user : null"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null">
                       <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
@@ -134,6 +135,10 @@
                                     label="Custom option"
                                     i18n-label="@@label.custom_option"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="icon"
+                                    label="Icon"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -181,6 +186,9 @@
                   <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
                   <ng-container *ngIf="sizeControl.value">
                     <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[[icon]="ui.icon.user"]]>
                   </ng-container>
                   <![CDATA[>]]>
                   <![CDATA[

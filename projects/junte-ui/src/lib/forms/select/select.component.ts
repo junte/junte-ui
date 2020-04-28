@@ -124,6 +124,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
 
+  @PropertyApi({
+    description: 'Icon for select',
+    type: 'string',
+  })
+  @Input() icon: string;
+
   @ViewChild('queryInput', {static: true})
   queryInput: ElementRef<HTMLInputElement>;
 
