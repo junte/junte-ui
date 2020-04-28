@@ -1,4 +1,3 @@
-import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ComponentRef,
@@ -12,7 +11,6 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { PopoverOptions } from 'projects/junte-ui/src/lib/overlays/popover/popover.component';
 import { MethodApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
@@ -33,7 +31,7 @@ interface ModalTitle {
 
 export class ModalOptions {
   maxWidth = '800';
-  maxHeight = '800';
+  maxHeight = '600';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
@@ -59,61 +57,6 @@ enum Display {
 @Component({
   selector: 'jnt-modal',
   templateUrl: './modal.encapsulated.html',
-  animations: [
-    trigger('move', [
-        state(
-          'hidden',
-          style({
-            top: '100%',
-            left: '50%',
-            transform: 'translate(-50%, 0)',
-          })
-        ),
-        state(
-          'visible',
-          style({
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          })
-        ),
-        transition(
-          'hidden => visible',
-          [
-            animate('.5s cubic-bezier(0.165, 0.840, 0.440, 1.000)')
-          ],
-        ),
-        transition(
-          'visible => hidden',
-          [
-            animate('.3s cubic-bezier(0.165, 0.840, 0.440, 1.000)')
-          ],
-        ),
-      ]
-    ),
-
-    trigger('blackout', [
-        state(
-          'void',
-          style({
-            opacity: 0,
-          })
-        ),
-        state(
-          '*',
-          style({
-            opacity: 1,
-          })
-        ),
-        transition(
-          'void <=> *',
-          [
-            animate('.5s ease-in-out')
-          ]
-        ),
-      ]
-    ),
-  ]
 })
 
 export class ModalComponent {
@@ -133,9 +76,8 @@ export class ModalComponent {
 
   @ViewChild('container', {read: ViewContainerRef}) container;
 
-  @HostBinding('style.display') display = Display.none;
-
   @Input()
+  @HostBinding('attr.opened')
   set opened(opened: boolean) {
     this._opened = opened;
     this.opened$.emit(opened);
@@ -159,25 +101,12 @@ export class ModalComponent {
   constructor(private renderer: Renderer2) {
   }
 
-  start(event: AnimationEvent) {
-    if (event.fromState === ModalState.hidden) {
-      this.display = Display.block;
-    }
-  }
-
-  done(event: AnimationEvent) {
-    if (event.toState === ModalState.hidden) {
-      this.display = Display.none;
-    }
-  }
-
   @MethodApi({description: 'show modal'})
   open(content: ModalContent, options: ModalOptions = new ModalOptions()) {
     this.options = options;
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
@@ -188,7 +117,6 @@ export class ModalComponent {
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
     }
     this.opened = false;
   }
