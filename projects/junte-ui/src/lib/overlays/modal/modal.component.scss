@@ -23,6 +23,28 @@
 
   :host, #{$context} {
     display: block;
+    &[opened='true'] {
+      display: block;
+      [data-modal] {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    &[opened='false'] {
+      display: none;
+      [data-modal] {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+    @media screen and (max-width: $jnt-tablet-breakpoint) {
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: $jnt-gutter-small;
+      box-sizing: border-box;
+    }
   }
 
   #{$context} [data-overlay] {
@@ -47,6 +69,9 @@
 
     @media screen and (max-width: $jnt-tablet-breakpoint) {
       min-width: calc(100% - #{$jnt-gutter-normal} * 2);
+      position: relative;
+      top: 0 !important;
+      transform: translate(-50%, 0) !important;
     }
 
     [data-title] {
@@ -84,6 +109,10 @@
       font-size: $jnt-font-size-base;
       box-sizing: border-box;
       overflow: auto;
+      @media screen and (max-width: $jnt-tablet-breakpoint) {
+        overflow: visible;
+        max-height: none !important;
+      }
     }
 
   }

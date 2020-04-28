@@ -7,6 +7,7 @@ import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Size {
+  tiny = 200,
   small = 400,
   normal = 600,
   large = 800
@@ -36,7 +37,7 @@ export class ModalTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   widthControl = this.fb.control(Size.large);
-  heightControl = this.fb.control(Size.large);
+  heightControl = this.fb.control(Size.normal);
   closingControl = this.fb.control(true);
   titleControl = this.fb.control(true);
   iconControl = this.fb.control(false);
