@@ -28,47 +28,88 @@
   }
 
   :host, #{$context} {
-    display: block;
-    border: 1px solid $jnt-gray-700-color;
-    border-radius: map-get($vars, corner);
-    [data-options] {
-      display: flex;
+    @if $declare {
+      display: block;
+      border: 1px solid $jnt-gray-700-color;
+      #{$wrapper} [data-options] {
+        display: flex;
+        [data-option] {
+          background-color: $jnt-primary-background;
+          color: $jnt-primary-text-color;
+          user-select: none;
+          overflow: hidden;
+          cursor: pointer;
+          border: 1px solid transparent;
+          padding: 0 $jnt-gutter-small;
+
+          &[data-with-template] {
+            padding: $jnt-gutter-small;
+          }
+
+          &:focus {
+            outline: 0;
+            box-shadow: $jnt-shadow-primary;
+            border-color: $jnt-primary-light-color;
+          }
+
+          &:hover {
+            background-color: $jnt-highlight-background;
+          }
+
+          &[data-selected="true"] {
+            color: $jnt-white-color;
+            background-color: $jnt-primary-light-color;
+            [data-mark] {
+              @include jnt-icon((color: $jnt-white-color), '&');
+            }
+          }
+          [data-title] {
+            flex: 1;
+            [data-label] {
+              flex: 0 1 auto;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
     }
+    border-radius: map-get($vars, corner);
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
         $vertical: map-get($vars, vertical);
-        max-height: if(map-get($vertical, maxheight), map-get($vertical, maxheight), null);
+        max-height: if(map-get($vertical, max-height), map-get($vertical, max-height), null);
         overflow-y: auto;
       }
-      [data-options] {
+      #{$wrapper} [data-options] {
         flex-direction: column;
         [data-option] {
           &:first-child {
-            border-top-left-radius: map-get($vars, corner) - 1px;
-            border-top-right-radius: map-get($vars, corner) - 1px;
+            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
           }
 
           &:last-child {
-            border-bottom-right-radius: map-get($vars, corner) - 1px;
-            border-bottom-left-radius: map-get($vars, corner) - 1px;
+            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
           }
         }
       }
     }
     &[data-orientation='horizontal'] {
-      [data-options] {
+      #{$wrapper} [data-options] {
         flex-direction: row;
         [data-option] {
           flex: auto;
           justify-content: center;
           &:first-child {
-            border-top-left-radius: map-get($vars, corner) - 1px;
-            border-bottom-left-radius: map-get($vars, corner) - 1px;
+            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
           }
 
           &:last-child {
-            border-top-right-radius: map-get($vars, corner) - 1px;
-            border-bottom-right-radius: map-get($vars, corner) - 1px;
+            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
           }
         }
       }
@@ -76,61 +117,23 @@
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
-      [data-option] {
+      #{$wrapper} [data-option] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
   }
 
-  #{$context} #{$wrapper} [data-option] {
-    background-color: $jnt-primary-background;
-    color: $jnt-primary-text-color;
-    user-select: none;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid transparent;
-    padding: 0 $jnt-gutter-small;
-
-    &[data-with-template] {
-      padding: $jnt-gutter-small;
-    }
-
-    &:focus {
-      outline: 0;
-      box-shadow: $jnt-shadow-primary;
-      border-color: $jnt-primary-light-color;
-    }
-
-    &:hover {
-      background-color: $jnt-highlight-background;
-    }
-
-    &[data-selected="true"] {
-      color: $jnt-white-color;
-      background-color: $jnt-primary-light-color;
-      [data-mark] {
-        @include jnt-icon((color: $jnt-white-color), '&');
-      }
-    }
-
-    [data-mark] {
-      @include jnt-icon((color: $jnt-primary-color), '&');
-    }
+  #{$context} #{$wrapper} [data-mark] {
+    @include jnt-icon((color: $jnt-primary-color), '&');
   }
 
   #{$context} #{$wrapper} [data-title] {
-    flex: 1;
-    [data-label] {
-      flex: 0 1 auto;
-      overflow: hidden;
-      white-space: nowrap;
-      @if map-has-key($vars, horizontal) {
-        $horizontal: map-get($vars, horizontal);
-        line-height: map-get($horizontal, height);
-      }
-
+    @if map-has-key($vars, horizontal) {
+      $horizontal: map-get($vars, horizontal);
+      line-height: map-get($horizontal, height);
     }
-  }
 
+  }
 }
+
