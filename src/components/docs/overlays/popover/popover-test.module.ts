@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
   BlockModule,
-  ButtonModule,
+  ButtonModule, FormModule,
   GridModule,
   IconModule,
   InputModule,
   LinkModule,
   PopoverModule,
-  StackModule,
+  StackModule, SwitcherModule,
   TabsModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -32,6 +32,8 @@ import { PopoverTestComponent } from './popover-test.component';
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule
   ],
   exports: [

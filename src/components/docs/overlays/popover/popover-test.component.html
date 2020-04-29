@@ -26,7 +26,7 @@
              [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-row>
-          <jnt-col [tablet]="12">
+          <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document let-height="height">
                 <jnt-stack [type]="ui.layout.stack.type.vertical">
@@ -125,6 +125,28 @@
                 </ng-template>
               </ng-template>
             </app-browser-preview>
+          </jnt-col>
+
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+
+              <jnt-form-item>
+                <jnt-form-label for="type"
+                                i18n="@@label.content_type">Content type</jnt-form-label>
+                <jnt-switcher formControlName="type">
+                  <jnt-switcher-option label="TemplateRef" [value]="contentType.templateRef"></jnt-switcher-option>
+                  <jnt-switcher-option label="ComponentRef" [value]="contentType.componentRef"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="title"
+                                label="Title"
+                                i18n-label="@@label.title"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+            </jnt-form>
           </jnt-col>
         </jnt-row>
       </ng-template>
