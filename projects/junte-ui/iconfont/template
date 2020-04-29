@@ -10,7 +10,7 @@ $fontname: '<%= fontName %>';
   url($fontname + '.svg#<%= fontName %>') format('svg');
 }
 
-<% _.each(glyphs, function(glyph) { %>.<%= className %>-<%= glyph.name %>:before {
+<% _.each(glyphs, function(glyph) { %>.<%= fontName %>-<%= glyph.name %>:before {
   content: "\<%= glyph.unicode[0] %>"
 }
 <% }); %>
