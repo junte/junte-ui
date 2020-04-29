@@ -1,6 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AccordionModule, BlockModule, ConfirmModule, GridModule, IconModule, LinkModule, StackModule, TabsModule } from 'junte-ui';
+import {
+  AccordionModule,
+  BlockModule,
+  ConfirmModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  LinkModule,
+  SelectModule,
+  StackModule,
+  SwitcherModule,
+  TabsModule
+} from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { ConfirmTestComponent } from './confirm-test.component';
@@ -16,6 +28,9 @@ import { ConfirmTestComponent } from './confirm-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
+    FormModule.forRoot(JUNTE_UI_CONFIG),
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
   ],
   exports: [
