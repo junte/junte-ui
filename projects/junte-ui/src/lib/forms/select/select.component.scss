@@ -68,6 +68,10 @@
     min-width: 70px;
     color: $jnt-primary-text-color;
     line-height: $jnt-line-height-base;
+    @media screen and (max-width: $jnt-tablet-breakpoint) {
+      border: 1px solid $jnt-control-border-color;
+      border-radius: $jnt-corner-small;
+    }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -114,6 +118,9 @@
     &[data-opened='true'] [data-select] {
       box-shadow: $jnt-shadow-primary;
       border-color: $jnt-primary-color;
+      @media screen and (max-width: $jnt-tablet-breakpoint) {
+        box-shadow: none;
+      }
     }
 
     &[data-mode='single'] {
@@ -207,6 +214,9 @@
     padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
+    @media screen and (max-width: $jnt-tablet-breakpoint) {
+      border: 0;
+    }
     > [data-icon] {
       position: absolute;
       top: 50%;
@@ -306,6 +316,12 @@
     padding: $jnt-gutter-small 0;
     overflow: hidden;
     z-index: 2;
+    @media screen and (max-width: $jnt-tablet-breakpoint) {
+      position: static;
+      margin-top: 0;
+      border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+      box-shadow: none;
+    }
     &[data-loading='true'] {
       min-height: 100px;
       height: auto;
