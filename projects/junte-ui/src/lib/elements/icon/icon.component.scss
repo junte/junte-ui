@@ -1,7 +1,10 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon/svg/svg-icon";
+@import "elements/icon/font/font-icon";
+@import "elements/icon/animated/animated-icon";
 
-@mixin jnt-icon($passed: (), $context: null, $deep: false, $strategy: 'merge') {
+@mixin jnt-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     color: null,
     size: null,
@@ -45,36 +48,68 @@
 
     &[data-type='font'] {
       #{$wrapper} [data-icon] {
-        color: map-get($vars, color);
-        font-size: if(map-get($vars, size), map-get($vars, size) !important, null);
+        @include jnt-font-icon((
+          color: map-get($vars, color),
+          font-size: if(map-get($vars, size), map-get($vars, size) !important, null),
+        ), '&');
       }
     }
 
-    &[data-type='svg'], &[data-type='animated'] {
+    &[data-type='animated'] {
       #{$wrapper} [data-icon] {
-        fill: map-get($vars, color);
+        @include jnt-animated-icon((
+          fill: map-get($vars, color),
+        ), '&');
         @if map-has-key($vars, size) {
-          width: if(map-get($vars, size),  map-get($vars, size) !important, null);
-          height: if(map-get($vars, size),  map-get($vars, size) !important, null);
+          @include jnt-animated-icon((
+            width: if(map-get($vars, size), map-get($vars, size) !important, null),
+            height: if(map-get($vars, size), map-get($vars, size) !important, null)
+          ), '&');
         }
       }
     }
 
-    @if map-has-key($vars, sizes) {
-      @each $key, $size in map-get($vars, sizes) {
-        &[data-size='#{$key}'] {
-          &[data-type='font'] {
-            &:not([data-size='auto']) {
-              #{$wrapper} [data-icon] {
-                font-size: map-get($size, size);
-              }
+    &[data-type='svg'] {
+      #{$wrapper} [data-icon] {
+        @include jnt-svg-icon((
+          fill: map-get($vars, color),
+        ), '&');
+        @if map-has-key($vars, size) {
+          @include jnt-svg-icon((
+            width: if(map-get($vars, size), map-get($vars, size) !important, null),
+            height: if(map-get($vars, size), map-get($vars, size) !important, null)
+          ), '&');
+        }
+      }
+    }
+  }
+
+  @if map-has-key($vars, sizes) {
+    @each $key, $size in map-get($vars, sizes) {
+      &[data-size='#{$key}'] {
+        &[data-type='font'] {
+          &:not([data-size='auto']) {
+            #{$wrapper} [data-icon] {
+              @include jnt-font-icon((
+                font-size: map-get($size, size)
+              ), '&');
             }
           }
-          &[data-type='svg'], &[data-type='animated'] {
-            #{$wrapper} [data-icon] {
-              width: map-get($size, size);
-              height: map-get($size, size);
-            }
+        }
+        &[data-type='animated'] {
+          #{$wrapper} [data-icon] {
+            @include jnt-animated-icon((
+              width: map-get($size, size),
+              height: map-get($size, size),
+            ), '&');
+          }
+        }
+        &[data-type='svg'] {
+          #{$wrapper} [data-icon] {
+            @include jnt-svg-icon((
+              width: map-get($size, size),
+              height: map-get($size, size),
+            ), '&');
           }
         }
       }

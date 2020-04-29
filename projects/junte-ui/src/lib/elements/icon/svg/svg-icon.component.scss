@@ -1,14 +1,42 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
-:host {
-  display: inline-flex;
-  line-height: 0;
-  svg {
-    width: 100%;
-    height: 100%;
-    [data-mock] {
-      opacity: .5;
+@mixin jnt-svg-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    width: null,
+    height: null,
+    fill: null
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    @if $declare {
+      display: inline-flex;
+      line-height: 0;
+      svg {
+        width: 100%;
+        height: 100%;
+        [data-mock] {
+          opacity: .5;
+        }
+      }
     }
+    fill: map-get($vars, fill);
+    width: map-get($vars, width);
+    height: map-get($vars, height);
   }
 
 }
