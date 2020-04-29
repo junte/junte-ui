@@ -17,7 +17,6 @@ class FontConfig {
   svgPath = '';
   fontsPath = '';
   fontName = '';
-  className = '';
 }
 
 @Gulpclass()
@@ -62,8 +61,7 @@ export class Gulpfile {
             .pipe(consolidate('lodash', {
               glyphs: glyphs,
               fontName: font.fontName,
-              fontPath: '~/assets/fonts',
-              className: font.className || 'icon'
+              fontPath: '~/assets/fonts'
             }))
             .pipe(rename(`${font.fontName}-font.scss`))
             .pipe(gulp.dest(`${font.fontsPath}/${font.fontName}`));
