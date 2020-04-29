@@ -23,22 +23,6 @@
 
   :host, #{$context} {
     display: block;
-    &[opened='true'] {
-      display: block;
-      [data-modal] {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-    &[opened='false'] {
-      display: none;
-      [data-modal] {
-        top: 100%;
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
-    }
     @media screen and (max-width: $jnt-tablet-breakpoint) {
       max-height: 100vh;
       overflow-y: auto;
@@ -68,10 +52,11 @@
     top: 100%;
 
     @media screen and (max-width: $jnt-tablet-breakpoint) {
-      min-width: calc(100% - #{$jnt-gutter-normal} * 2);
+      min-width: 100%;
       position: relative;
       top: 0 !important;
-      transform: translate(-50%, 0) !important;
+      left: 0 !important;
+      transform: none !important;
     }
 
     [data-title] {
