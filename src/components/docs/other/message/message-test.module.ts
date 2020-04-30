@@ -10,7 +10,8 @@ import {
   FormModule,
   SelectModule,
   AccordionModule,
-  IconModule
+  IconModule,
+  DotModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -28,6 +29,8 @@ import { MessageTestComponent } from './message-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule.forRoot(JUNTE_UI_CONFIG),
+    DotModule,
     SharedModule,
     ReactiveFormsModule,
   ],
