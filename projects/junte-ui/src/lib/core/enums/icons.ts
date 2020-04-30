@@ -339,7 +339,7 @@ export const icons = {
   sintMaarten: 'sint-maarten:svg:countries',
   slovakia: 'slovakia:svg:countries',
   slovenia: 'slovenia:svg:countries',
-  solomonIslands: 'olomon-islands:svg:countries',
+  solomonIslands: 'solomon-islands:svg:countries',
   somalia: 'somalia:svg:countries',
   somaliland: 'somaliland:svg:countries',
   southAfrica: 'south-africa:svg:countries',
