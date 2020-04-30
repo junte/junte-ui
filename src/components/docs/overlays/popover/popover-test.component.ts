@@ -1,12 +1,16 @@
 import { Component, ComponentFactoryResolver, Injector, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ModalClosingOption, ModalService, PopoverComponent, TabComponent, UI } from 'junte-ui';
-import { ContentType, Size } from 'src/components/docs/overlays/modal/modal-test.component';
+import { PopoverComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
+export enum TriggerType {
+  click = 'click',
+  hover = 'hover'
+}
+
 export enum ContentType {
-  templateRef = 'templateRef',
-  componentRef = 'componentRef'
+  default = 'default',
+  custom = 'custom'
 }
 
 @Component({
@@ -19,12 +23,15 @@ export class PopoverTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {popover: PopoverComponent};
+  triggerType = TriggerType;
   contentType = ContentType;
 
   titleControl = this.fb.control(true);
-  typeControl = this.fb.control(ContentType.templateRef);
+  triggerControl = this.fb.control(TriggerType.click);
+  typeControl = this.fb.control(ContentType.default);
 
   builder = this.fb.group({
+    trigger: this.triggerControl,
     title: this.titleControl,
     type: this.typeControl,
   });

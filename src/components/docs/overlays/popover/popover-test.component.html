@@ -131,11 +131,20 @@
             <jnt-form [formGroup]="builder">
 
               <jnt-form-item>
+                <jnt-form-label for="trigger"
+                                i18n="@@label.trigger_type">Trigger type</jnt-form-label>
+                <jnt-switcher formControlName="trigger">
+                  <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
+                  <jnt-switcher-option label="Hover" [value]="triggerType.custom"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+
+              <jnt-form-item>
                 <jnt-form-label for="type"
                                 i18n="@@label.content_type">Content type</jnt-form-label>
                 <jnt-switcher formControlName="type">
-                  <jnt-switcher-option label="TemplateRef" [value]="contentType.templateRef"></jnt-switcher-option>
-                  <jnt-switcher-option label="ComponentRef" [value]="contentType.componentRef"></jnt-switcher-option>
+                  <jnt-switcher-option label="Default" [value]="contentType.default"></jnt-switcher-option>
+                  <jnt-switcher-option label="Custom" [value]="contentType.custom"></jnt-switcher-option>
                 </jnt-switcher>
               </jnt-form-item>
 
