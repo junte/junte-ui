@@ -15,6 +15,9 @@
 @mixin jnt-select($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
+    icon: (
+      color: $jnt-primary-text-color,
+    ),
     sizes: (
       small: (
         font-size: 11px,
@@ -222,6 +225,12 @@
       top: 50%;
       left: $jnt-gutter-small;
       transform: translateY(-50%);
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        @include jnt-icon((
+          color: map-get($icon, color)
+        ), '&');
+      }
     }
     &:focus {
       outline: 0;
