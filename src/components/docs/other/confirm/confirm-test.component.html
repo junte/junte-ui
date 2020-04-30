@@ -1,8 +1,8 @@
 <jnt-container>
   <h1 i18n="@@label.confirm">Confirm</h1>
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
-    <jnt-link [icon]="ui.icons.link"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/grid"
+    <jnt-link [icon]="ui.icons.gitlab"
+              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/shared/confirm"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -55,9 +55,11 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="type">
                     <jnt-switcher-option label="Template"
-                                         [value]="contentType.modal"></jnt-switcher-option>
+                                         [value]="contentType.modal">
+                    </jnt-switcher-option>
                     <jnt-switcher-option label="Component"
-                                         [value]="contentType.popover"></jnt-switcher-option>
+                                         [value]="contentType.popover">
+                    </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
