@@ -1,4 +1,4 @@
-import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Directive, EmbeddedViewRef, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
@@ -12,6 +12,7 @@ const breakpoints = [Breakpoint.mobile,
 export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
   private destroyed = false;
+  private view: EmbeddedViewRef<any>;
   protected _target = [];
 
   protected constructor(private breakpoint: BreakpointService,
@@ -32,11 +33,14 @@ export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
   private matched(breakpoint: Breakpoint) {
     if (this._target.includes(breakpoint)) {
-      if (this.viewContainerRef.length === 0) {
-        this.viewContainerRef.createEmbeddedView(this.templateRef);
+      if (!this.view) {
+        this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
       }
     } else {
-      this.viewContainerRef.clear();
+      if (!!this.view) {
+        this.viewContainerRef.clear();
+        this.view = null;
+      }
     }
   }
 
@@ -60,7 +64,8 @@ export class ForDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -91,7 +96,8 @@ export class ForMinDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -122,7 +128,8 @@ export class ForMaxDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 

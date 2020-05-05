@@ -11,7 +11,7 @@
 </ng-template>
 
 <ng-container *jntMinFor="ui.breakpoint.desktop">
-  <div data-logo *ngIf="headerLogoTemplate">
+  <div data-logo data-desktop *ngIf="headerLogoTemplate">
     <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
 
@@ -29,7 +29,7 @@
 </ng-container>
 
 <ng-container *jntMaxFor="ui.breakpoint.tablet">
-  <div data-logo *ngIf="headerLogoTemplate">
+  <div data-logo data-tablet *ngIf="headerLogoTemplate">
     <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
   <jnt-stack data-action

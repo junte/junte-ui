@@ -1,6 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { GridModule, LabelModule, LinkModule, LpModule, MenuModule, StackModule, ResponsiveModule, ButtonModule, IconModule } from 'junte-ui';
+import {
+  ArrayPipesModule,
+  GridModule,
+  LabelModule,
+  LinkModule,
+  LpModule,
+  MenuModule,
+  StackModule,
+  ResponsiveModule,
+  ButtonModule,
+  IconModule
+} from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -20,7 +31,8 @@ import { HomeComponent } from './home.component';
     MenuModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     HomeRoutingModule,
-    ResponsiveModule
+    ResponsiveModule,
+    ArrayPipesModule
   ]
 })
 export class HomeModule {
