@@ -13,7 +13,6 @@ import { RadioModule } from '../radio/radio.module';
 import { SelectModule } from '../select/select.module';
 import { SwitchModule } from '../switch/switch.module';
 import { FormControlComponent } from './control/form-control.component';
-import { ValidationDirective } from './directives';
 import { FormComponent } from './form.component';
 import { FormItemComponent } from './item/form-item.component';
 import { FormLabelComponent } from './label/form-label.component';
@@ -43,7 +42,6 @@ import { FieldTouchedHasErrorPipe } from './pipes';
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    ValidationDirective,
     FieldTouchedHasErrorPipe
   ],
   entryComponents: [
@@ -58,7 +56,6 @@ import { FieldTouchedHasErrorPipe } from './pipes';
     FormItemComponent,
     FormLabelComponent,
     FormMessageComponent,
-    ValidationDirective,
     FieldTouchedHasErrorPipe
   ]
 })

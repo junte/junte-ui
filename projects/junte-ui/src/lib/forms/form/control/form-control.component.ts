@@ -1,4 +1,5 @@
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, Host, HostBinding, Input, Optional, QueryList, SkipSelf } from '@angular/core';
+import { ControlContainer, FormArrayName, FormGroupDirective, FormGroupName } from '@angular/forms';
 import { PropertyApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
 import { FormMessageComponent } from '../message/form-message.component';
@@ -22,5 +23,17 @@ export class FormControlComponent {
   })
   @Input()
   name: string;
+
+  constructor(@Optional() @Host() @SkipSelf() private parent: ControlContainer) {
+    console.log(parent);
+  }
+
+  getControl() {
+    if (this.parent instanceof FormGroupName
+      || this.parent instanceof FormGroupDirective
+      || this.parent instanceof FormArrayName) {
+      return this.parent.control.get(this.name);
+    }
+  }
 
 }

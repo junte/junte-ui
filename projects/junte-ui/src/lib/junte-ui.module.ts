@@ -1,9 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { enUS as dfnsEnUS } from 'date-fns/locale';
-import { DateFnsConfigurationService } from 'ngx-date-fns';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CollectionsModule } from './collections/collections.module';
-import { I18nLoaderFactory, JunteUIModuleConfig } from './config';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { DatePipesModule } from './core/pipes/date-pipes.module';
@@ -37,28 +35,17 @@ import { SharedModule } from './shared/shared.module';
 export class JunteUiModule {
 
   static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<JunteUiModule> {
-    const fnsConfig = new DateFnsConfigurationService();
-    const locale = config.locale || {};
-    fnsConfig.setLocale(locale.dfns || dfnsEnUS);
     return {
       ngModule: JunteUiModule,
       providers: [
+        ...LoggerModule.forRoot({
+          level: NgxLoggerLevel.DEBUG
+        }).providers,
         {
           provide: JunteUIModuleConfig,
           useValue: config
         },
-        {
-          provide: DateFnsConfigurationService,
-          useValue: fnsConfig
-        },
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: I18nLoaderFactory,
-            deps: [JunteUIModuleConfig]
-          },
-          defaultLanguage: 'en'
-        }).providers
+        ...JUNTE_MODULE_PROVIDES
       ]
     };
   }
