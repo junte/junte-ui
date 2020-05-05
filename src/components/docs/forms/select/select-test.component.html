@@ -43,6 +43,7 @@
                                 [size]="sizeControl.value"
                                 [loader]="search()"
                                 [icon]="iconControl.value ? ui.icons.user : null"
+                                [emptyOptionsTemplate]="emptyOptionsTemplate"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null">
                       <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
@@ -51,6 +52,12 @@
                       </jnt-select-option>
                     </jnt-select>
                     <p>test</p>
+                    <ng-template #emptyOptionsTemplate let-query="query" let-close="close">
+                      <jnt-stack>
+                        <p>{{query}}</p>
+                        <jnt-button text="Create" (click)="close()"></jnt-button>
+                      </jnt-stack>
+                    </ng-template>
                     <ng-template #heroOptionTemplate let-hero="value">
                       <jnt-stack [type]="ui.layout.stack.type.horizontal"
                                  [align]="ui.flex.align.center"

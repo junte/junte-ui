@@ -146,6 +146,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input()
   optionTemplate: TemplateRef<any>;
 
+  @PropertyApi({
+    description: 'Template for empty options',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  emptyOptionsTemplate: TemplateRef<any>;
+
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 

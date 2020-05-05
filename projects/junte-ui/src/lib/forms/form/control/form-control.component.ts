@@ -25,15 +25,13 @@ export class FormControlComponent {
   name: string;
 
   constructor(@Optional() @Host() @SkipSelf() private parent: ControlContainer) {
-    console.log(parent);
   }
 
   getControl() {
-    if (this.parent instanceof FormGroupName
-      || this.parent instanceof FormGroupDirective
-      || this.parent instanceof FormArrayName) {
-      return this.parent.control.get(this.name);
-    }
+    return this.parent instanceof FormGroupName
+    || this.parent instanceof FormGroupDirective
+    || this.parent instanceof FormArrayName
+      ? this.parent.control.get(this.name) : null;
   }
 
 }
