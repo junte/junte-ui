@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { IconModule } from '../../elements/icon/icon.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { StackModule } from '../../layout/stack/stack.module';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
@@ -8,7 +9,8 @@ import { RadioComponent } from './radio.component';
 @NgModule({
   imports: [
     CommonModule,
-    StackModule
+    StackModule,
+    IconModule
   ],
   exports: [
     RadioComponent,

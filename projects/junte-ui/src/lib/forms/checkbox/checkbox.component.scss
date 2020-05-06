@@ -2,40 +2,49 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin checkbox-size($size) {
-  [data-switch] {
-    min-width: $size;
-    width: $size;
-    min-height: $size;
-    height: $size;
+@mixin checkbox-size($size, $wrapper) {
+  #{$wrapper} [data-switch] {
+    min-width: map-get($size, indicator);
+    width: map-get($size, indicator);
+    min-height: map-get($size, indicator);
+    height: map-get($size, indicator);
+    [data-icon] {
+      width: map-get($size, icon);
+      height: map-get($size, icon);
+    }
   }
 }
 
-@mixin jnt-checkbox($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-checkbox($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     sizes: (
       tiny: (
         indicator: 12px,
-        icon: .5rem
+        icon: 6px
       ),
       small: (
         indicator: 14px,
-        icon: .6rem
+        icon: 8px
       ),
       normal: (
         indicator: 18px,
-        icon: .7rem
+        icon: 10px
       ),
       large: (
         indicator: 24px,
-        icon: 1rem
+        icon: 14px
       ),
     ),
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -50,18 +59,13 @@
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
-          @include checkbox-size(map-get($map, indicator));
-          [data-switch] [data-icon] {
-            @include jnt-icon((
-              size: map-get($map, icon),
-            ), '&');
-          }
+          @include checkbox-size($map, $wrapper);
         }
       }
     }
   }
 
-  input {
+  #{$wrapper} input {
     position: absolute;
     top: 0;
     z-index: 1;
@@ -75,9 +79,6 @@
     height: 100%;
     &:checked + [data-switch] {
       border-color: $jnt-primary-color;
-      & > [data-icon] {
-        opacity: 1;
-      }
     }
     &:disabled {
       cursor: default;
@@ -105,25 +106,25 @@
     }
   }
 
-  label {
+  #{$wrapper} label {
     padding-left: $jnt-control-gutter;
     color: $jnt-control-switch-label-color;
     user-select: none;
   }
 
-  [data-switch] {
+  #{$wrapper} [data-switch] {
     position: relative;
-    border-radius: 3px;
+    border-radius: $jnt-corner-base;
     background-color: $jnt-control-background;
     border: 1px solid $jnt-control-border-color;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all .3s;
+    box-sizing: border-box;
     [data-icon] {
-      opacity: 0;
-      line-height: 1;
-      color: $jnt-primary-color;
+      background-color: $jnt-primary-color;
+      border-radius: 2px;
     }
   }
 
