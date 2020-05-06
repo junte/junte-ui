@@ -16,18 +16,13 @@ export class LocalUI {
     network: 'network:font:junte-ui-test-default',
     skills: 'skills:font:junte-ui-test-default',
     general: 'general:font:junte-ui-test-default',
-
-    heroes: {
+    // heroes
       spiderman: 'spiderman:svg:local',
       ironman: 'ironman:svg:local',
-      capitan: 'capitan:svg:local'
-    },
-
-    menu: {
+      capitan: 'capitan:svg:local',
+    // menu:
       documentation: 'documentation:font:junte-ui-test-default',
       contacts: 'contacts:font:junte-ui-test-default',
-
-      general: 'general:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
       theming: 'theming:font:junte-ui-test-layout',
       typography: 'typography:font:junte-ui-test-layout',
@@ -76,17 +71,15 @@ export class LocalUI {
       switcher: 'switcher:font:junte-ui-test-layout',
       pipes: 'pipes:font:junte-ui-test-layout',
       message: 'message:font:junte-ui-test-layout',
-    },
-
-    layout: {
-      padding: {
-        tiny: 'padding-tiny:font:junte-ui-test-layout',
-        small: 'padding-small:font:junte-ui-test-layout',
-        normal: 'padding-normal:font:junte-ui-test-layout',
-        large: 'padding-large:font:junte-ui-test-layout',
-        big: 'padding-big:font:junte-ui-test-layout',
-        huge: 'padding-huge:font:junte-ui-test-layout'
-      },
+    // layout
+     padding: {
+       tiny: 'padding-tiny:font:junte-ui-test-layout',
+       small: 'padding-small:font:junte-ui-test-layout',
+       normal: 'padding-normal:font:junte-ui-test-layout',
+       large: 'padding-large:font:junte-ui-test-layout',
+       big: 'padding-big:font:junte-ui-test-layout',
+       huge: 'padding-huge:font:junte-ui-test-layout',
+     },
       gutter: {
         tiny: 'gutter-tiny:font:junte-ui-test-layout',
         small: 'gutter-small:font:junte-ui-test-layout',
@@ -95,14 +88,12 @@ export class LocalUI {
         large: 'gutter-large:font:junte-ui-test-layout',
         huge: 'gutter-huge:font:junte-ui-test-layout',
       },
-      width: {
+      // width
         default: 'width-default:font:junte-ui-test-layout',
-        fluid: 'width-fluid:font:junte-ui-test-layout'
-      },
-      textAlign: {
+        fluid: 'width-fluid:font:junte-ui-test-layout',
+      // textAlign
         left: 'text-align-left:font:junte-ui-test-layout',
-        right: 'text-align-right:font:junte-ui-test-layout'
-      },
+        right: 'text-align-right:font:junte-ui-test-layout',
 
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
@@ -117,6 +108,5 @@ export class LocalUI {
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
       baseline: 'baseline:font:junte-ui-test-layout',
-    }
   };
 }
