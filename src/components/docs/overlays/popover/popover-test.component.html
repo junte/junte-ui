@@ -129,32 +129,50 @@
 
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
 
-              <jnt-form-item>
-                <jnt-form-label for="trigger"
-                                i18n="@@label.trigger_type">Trigger type</jnt-form-label>
-                <jnt-switcher formControlName="trigger">
-                  <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
-                  <jnt-switcher-option label="Hover" [value]="triggerType.custom"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="trigger"
+                                  i18n="@@label.trigger_type">Trigger type</jnt-form-label>
+                  <jnt-switcher formControlName="trigger">
+                    <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
+                    <jnt-switcher-option label="Hover" [value]="triggerType.hover"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-label for="type"
-                                i18n="@@label.content_type">Content type</jnt-form-label>
-                <jnt-switcher formControlName="type">
-                  <jnt-switcher-option label="Default" [value]="contentType.default"></jnt-switcher-option>
-                  <jnt-switcher-option label="Custom" [value]="contentType.custom"></jnt-switcher-option>
-                </jnt-switcher>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.content_type">Content type</jnt-form-label>
+                  <jnt-switcher formControlName="type">
+                    <jnt-switcher-option label="Default" [value]="contentType.default"></jnt-switcher-option>
+                    <jnt-switcher-option label="Custom" [value]="contentType.custom"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
 
-              <jnt-form-item>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="title"
-                                label="Title"
-                                i18n-label="@@label.title"></jnt-checkbox>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label for="scheme"
+                                  i18n="@@label.scheme">Scheme selecting</jnt-form-label>
+                  <jnt-select formControlName="scheme">
+                    <jnt-select-option *ngFor="let scheme of keys(schemas)" [value]="schemas[scheme]" [label]="scheme" [key]="scheme"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="layout"
+                                  i18n="@@label.layout">Layout selecting</jnt-form-label>
+                  <jnt-select formControlName="layout">
+                    <jnt-select-option *ngFor="let layout of keys(layouts)" [value]="layouts[layout]" [label]="layout" [key]="layout"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="title"
+                                  label="Title"
+                                  i18n-label="@@label.title"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+              </jnt-stack>
             </jnt-form>
           </jnt-col>
         </jnt-row>
@@ -217,63 +235,6 @@
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
         <app-component-api selector="jnt-popover" [target]="types.popover"></app-component-api>
-        <jnt-block>
-          <h3>API</h3>
-          <h4>[jntPopover]=&#123;...&#125;</h4>
-          <table api>
-            <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>title</td>
-              <td>-</td>
-              <td>string</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>content</td>
-              <td>-</td>
-              <td>string | TemplateRef</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>trigger</td>
-              <td>ui.overlays.popover.trigger</td>
-              <td>hover | click | focus</td>
-              <td>hover</td>
-            </tr>
-            <tr>
-              <td>placement</td>
-              <td>ui.overlays.popover.placement</td>
-              <td>
-                top | top-left | top-right<br>
-                left | left-top | left-bottom<br>
-                bottom | bottom-left | bottom-right<br>
-                right | right-top | right-bottom<br>
-              </td>
-              <td>top</td>
-            </tr>
-            <tr>
-              <td>enterDelay</td>
-              <td>seconds</td>
-              <td>number</td>
-              <td>0.15</td>
-            </tr>
-            <tr>
-              <td>leaveDelay</td>
-              <td>seconds</td>
-              <td>number</td>
-              <td>0.15</td>
-            </tr>
-            </tbody>
-          </table>
-        </jnt-block>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
