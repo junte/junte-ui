@@ -2,7 +2,7 @@
 
   <h1>
     <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.menu.switcher"></jnt-icon>
+      <jnt-icon [icon]="localUi.icons.switcher"></jnt-icon>
     </span>
     <span i18n="@@label.switcher">Switcher</span>
   </h1>
@@ -49,7 +49,7 @@
                                         [marks]="marksControl.value"
                                         [orientation]="orientationControl.value">
                             <jnt-switcher-option label="Spiderman" [value]="hero.spiderman"
-                                                 [icon]="iconControl.value ? localUi.icons.heroes.spiderman : null">
+                                                 [icon]="iconControl.value ? localUi.icons.spiderman : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.red"></jnt-dot>
                               <jnt-badge *ngIf="badgeControl.value"
@@ -73,7 +73,7 @@
                               </ng-container>
                             </jnt-switcher-option>
                             <jnt-switcher-option label="Ironman" [value]="hero.ironman"
-                                                 [icon]="iconControl.value ? localUi.icons.heroes.ironman : null">
+                                                 [icon]="iconControl.value ? localUi.icons.ironman : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.yellow"></jnt-dot>
                               <jnt-badge *ngIf="badgeControl.value"
@@ -97,7 +97,7 @@
                               </ng-container>
                             </jnt-switcher-option>
                             <jnt-switcher-option label="Captain America" [value]="hero.captainAmerica"
-                                                 [icon]="iconControl.value ? localUi.icons.heroes.capitan : null">
+                                                 [icon]="iconControl.value ? localUi.icons.capitan : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.blue100"></jnt-dot>
                               <jnt-badge *ngIf="badgeControl.value"
