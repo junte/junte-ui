@@ -1,11 +1,14 @@
-@import "variables";
+@import "jnt-variables";
 @import "../../component";
+@import "elements/icon/icon";
 
-[icon][host=#{$jnt-icon-host}][type='font']::ng-deep {
-  font-size: 70px;
+[data-icon] {
   line-height: 0;
+  @include jnt-icon ((
+    size: 70px
+  ), '&', true);
 }
 
 [page] {
-  padding: $gutter-normal;
+  padding: $jnt-gutter-normal;
 }

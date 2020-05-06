@@ -1,7 +1,7 @@
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { FormState, ValidationTypeError } from '../../forms/form/enums';
-import { InputState, InputType } from '../../forms/input/enums';
+import { InputScheme, InputState, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
 import { AppLayoutPosition } from '../../layout/app/enums';
 import { BlockState } from '../../layout/block/enums';
@@ -61,8 +61,8 @@ export class UI {
       target: LinkTarget
     }
   };
-  static form = {
-    input: {type: InputType, state: InputState},
+  static forms = {
+    input: {type: InputType, scheme: InputScheme, state: InputState},
     select: {mode: SelectMode},
     button: {type: ButtonType},
     validators: {

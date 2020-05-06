@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { I18nLoaderFactory, JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { en } from '../../core/i18n/en';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { InputComponent } from './input.component';
 
 @NgModule({
@@ -12,7 +11,8 @@ import { InputComponent } from './input.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IconModule
+    IconModule,
+    SpinnerModule
   ],
   exports: [
     InputComponent,

@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.badge">Badge</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.badge"></jnt-icon>
+    </span>
+    <span i18n="@@label.badge">Badge</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/badge"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/badge"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -32,7 +39,7 @@
                                 [size]="ui.size.large"></jnt-icon>
                     </div>
                     <jnt-badge [value]="valueControl.value"
-                               [text]="!valueControl.value ? '100$' : null"
+                               [text]="textControl.value ? '100$' : null"
                                [overflow]="overflowControl.value ? overflowControl.value : null"
                                [position]="positionControl.value"
                                [color]="colorControl.value">
@@ -41,7 +48,7 @@
                 </ng-container>
                 <ng-template #positionTemplate>
                   <jnt-badge [value]="valueControl.value"
-                             [text]="!valueControl.value ? '100$' : null"
+                             [text]="textControl.value ? '100$' : null"
                              [overflow]="overflowControl.value ? overflowControl.value : null"
                              [position]="positionControl.value"
                              [color]="colorControl.value">
@@ -92,13 +99,23 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color"
-                                  i18n="@@label.background_color">Background color</jnt-form-label>
+                  <jnt-form-label for="color" i18n="@@label.background_color">Color</jnt-form-label>
                   <jnt-form-control>
-                    <input type="color" formControlName="color">
+                    <jnt-color-picker formControlName="color"></jnt-color-picker>
                   </jnt-form-control>
                 </jnt-form-item>
 
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="text"
+                                    label="Text"
+                                    i18n-label="@@label.text"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -140,7 +157,11 @@
                   </ng-container>
                   <ng-container *ngIf="colorControl.value">
                     <![CDATA[
-                    [color]="]]>{{colorControl.value}}<![CDATA["]]>
+                    color="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="textControl.value">
+                    <![CDATA[
+                    text="100$"]]>
                   </ng-container>
                   <![CDATA[>
                 </jnt-badge>

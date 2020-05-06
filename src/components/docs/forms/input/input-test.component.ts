@@ -19,25 +19,31 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(null);
-  stateControl = this.fb.control(null);
+  schemeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
+  maskControl = this.fb.control(false);
   alignControl = this.fb.control(UI.text.align.left);
   disabledControl = this.fb.control(false);
+  readonlyControl = this.fb.control(false);
   multilineControl = this.fb.control(false);
   rowsControl = this.fb.control(5);
+  statesControl = this.fb.control(null);
 
   builder = this.fb.group({
     type: this.typeControl,
-    state: this.stateControl,
+    scheme: this.schemeControl,
     size: this.sizeControl,
     icon: this.iconControl,
     label: this.labelControl,
+    mask: this.maskControl,
     align: this.alignControl,
     disabled: this.disabledControl,
+    readonly: this.readonlyControl,
     multiline: this.multilineControl,
     rows: this.rowsControl,
+    states: this.statesControl,
   });
 
   inputControl = this.fb.control(null);
@@ -52,6 +58,10 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     this.disabledControl.valueChanges.subscribe(disabled => {
       disabled ? this.inputControl.disable() : this.inputControl.enable();
     });
+  }
+
+  test() {
+    this.form.patchValue({input: '90515513360'});
   }
 
   ngAfterViewInit() {

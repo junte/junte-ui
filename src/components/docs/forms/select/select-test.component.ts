@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SelectComponent, TabComponent, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,6 +15,7 @@ export class SelectTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   select = SelectComponent;
 
   @ViewChild('code') code: TabComponent;
@@ -25,6 +27,7 @@ export class SelectTestComponent implements OnInit {
   searchControl = this.fb.control(false);
   loaderControl = this.fb.control(null);
   templateControl = this.fb.control(false);
+  iconControl = this.fb.control(false);
 
   builder = this.fb.group({
     mode: this.modeControl,
@@ -33,7 +36,8 @@ export class SelectTestComponent implements OnInit {
     allowEmpty: this.allowEmptyControl,
     search: this.searchControl,
     loader: this.loaderControl,
-    template: this.templateControl
+    template: this.templateControl,
+    icon: this.iconControl
   });
 
   selectControl = this.fb.control(null);
@@ -54,8 +58,10 @@ export class SelectTestComponent implements OnInit {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable() : this.selectControl.enable());
+  }
 
-    this.selectControl.valueChanges.subscribe(value => console.log(value));
+  trackHero(index, hero: { id: number }) {
+    return hero.id;
   }
 
   search() {

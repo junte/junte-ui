@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, SwitcherComponent, SwitcherOptionComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { Hero } from '../../../../enums/hero';
+import { Hero } from 'src/enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
@@ -22,18 +22,28 @@ export class SwitcherTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
 
-  typeControl = this.fb.control(null);
+  modeControl = this.fb.control(null);
+  orientationControl = this.fb.control(null);
   iconControl = this.fb.control(false);
   dotControl = this.fb.control(true);
   badgeControl = this.fb.control(false);
   templateControl = this.fb.control(false);
+  allowEmptyControl = this.fb.control(true);
+  marksControl = this.fb.control(true);
+  disabledControl = this.fb.control(false);
+  heightControl = this.fb.control(false);
 
   builder = this.fb.group({
-    type: this.typeControl,
+    mode: this.modeControl,
+    orientation: this.orientationControl,
     icon: this.iconControl,
     dot: this.dotControl,
     badge: this.badgeControl,
     template: this.templateControl,
+    allowEmpty: this.allowEmptyControl,
+    marks: this.marksControl,
+    disabled: this.disabledControl,
+    height: this.heightControl
   });
 
   heroControl = this.fb.control(null, Validators.required);
@@ -61,6 +71,10 @@ export class SwitcherTestComponent implements OnInit {
           this.badgeControl.enable();
         }
       });
+
+    this.disabledControl.valueChanges.subscribe((disabled) => {
+      disabled ? this.heroControl.disable() : this.heroControl.enable();
+    });
   }
 
   submit() {

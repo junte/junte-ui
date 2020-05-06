@@ -1,20 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ColorPipeModule } from '../../core/pipes/color.pipe.module';
-import { ConvertionPipeModule } from '../../core/pipes/convertion.pipe.module';
-import { IsEqualPipeModule } from '../../core/pipes/is-equal.pipe.module';
+import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
-import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
+import { ChartIndicatorComponent } from './chart-indicator.component';
 import { ChartComponent } from './chart.component';
-import { SumIndicatorsPipe } from './sum-indicator.pipe';
+import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
 
 @NgModule({
   imports: [
     CommonModule,
-    ConvertionPipeModule,
-    ColorPipeModule,
-    IsEqualPipeModule,
+    ColorPipesModule,
     IconModule
   ],
   exports: [
@@ -24,6 +20,7 @@ import { SumIndicatorsPipe } from './sum-indicator.pipe';
   declarations: [
     ChartComponent,
     ChartIndicatorComponent,
+    PercentToNumberPipe,
     SumIndicatorsPipe
   ],
   entryComponents: [

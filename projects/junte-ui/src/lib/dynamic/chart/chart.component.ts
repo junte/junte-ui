@@ -1,10 +1,9 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { UI } from '../../core/enums/ui';
-import { getTextBrightness } from '../../core/utils/brightness';
-import { isEqual } from '../../core/utils/equal';
-import { ChartIndicatorComponent } from './chart-indicator/chart-indicator.component';
 import { PropertyApi } from '../../core/decorators/api';
+import { UI } from '../../core/enums/ui';
+import { isEqual } from '../../core/utils/equal';
+import { ChartIndicatorComponent } from './chart-indicator.component';
 
 @Component({
   selector: 'jnt-chart',
@@ -19,37 +18,37 @@ import { PropertyApi } from '../../core/decorators/api';
 })
 export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
+  @HostBinding('attr.host') readonly host = 'jnt-chart-host';
+
+  ui = UI;
+
   private _selected: number;
   private _widthMark = 100;
-  ui = UI;
-  getTextBrightness = getTextBrightness;
+
   progress = {loading: false};
   indicators: ChartIndicatorComponent[] = [];
-
-  @HostBinding('attr.host') readonly host = 'jnt-chart-host';
 
   @Input() keyField: string;
   @PropertyApi({
     description: 'Title of the charts group',
     type: 'string'
   })
+
   @Input() title: string;
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
+
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
   indicatorsComponents: QueryList<ChartIndicatorComponent>;
 
-  @HostBinding('attr.heightIndicator')
   @Input() heightIndicator = 55;
 
-  @HostBinding('attr.widthPoligon')
   @Input() widthPoligon = 50;
 
-  @HostBinding('attr.widthMark')
   @Input()
   set widthMark(width: number) {
     this._widthMark = Math.min(width, 60);

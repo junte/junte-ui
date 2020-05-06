@@ -1,24 +1,30 @@
-@import "variables";
+@import "jnt-variables";
+
+:host-context([theme='dark']) {
+  & {
+    background-color: $jnt-gray-dark-color;
+  }
+}
 
 :host {
   display: block;
   position: relative;
-  border-radius: $corner-normal;
-  border: 1px solid $secondary-color;
+  border-radius: $jnt-corner-normal;
+  border: 1px solid $jnt-secondary-color;
   box-sizing: border-box;
   overflow: hidden;
-  background: $page-background;
+  background: $jnt-page-background;
   [wrapper] {
-    padding: $gutter-normal;
+    padding: $jnt-gutter-normal;
     min-height: 300px;
   }
 }
 
 [footer] {
   height: 30px;
-  background-color: $muted-color;
-  border-bottom-left-radius: $corner-normal;
-  border-bottom-right-radius: $corner-normal;
+  background-color: $jnt-muted-color;
+  border-bottom-left-radius: $jnt-corner-normal;
+  border-bottom-right-radius: $jnt-corner-normal;
 }
 
 svg {

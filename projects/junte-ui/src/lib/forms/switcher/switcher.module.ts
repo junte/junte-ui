@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { IsEqualPipeModule } from '../../core/pipes/is-equal.pipe.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
+import { DotModule } from '../../elements/dot/dot.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { DotModule } from '../dot/dot.module';
+import { CheckSelectedPipe } from './pipes';
 import { SwitcherOptionComponent } from './switcher-option.component';
 import { SwitcherComponent } from './switcher.component';
 
@@ -15,12 +15,12 @@ import { SwitcherComponent } from './switcher.component';
     BadgeModule,
     DotModule,
     StackModule,
-    IsEqualPipeModule,
     IconModule
   ],
   declarations: [
     SwitcherComponent,
-    SwitcherOptionComponent
+    SwitcherOptionComponent,
+    CheckSelectedPipe
   ],
   entryComponents: [
     SwitcherComponent,

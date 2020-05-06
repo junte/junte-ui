@@ -1,15 +1,15 @@
-@import "variables";
-@import "variables";
+@import "jnt-variables";
+@import "layout/app/variables";
 
-@mixin app-layout($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-layout($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
     overflow-x: hidden;
     position: relative;
-    font-family: $app-layout-font-family;
+    font-family: $jnt-app-layout-font-family;
 
-    &[with-header='false'] {
+    &[data-with-header='false'] {
       jnt-app-content[deep-host=#{$jnt-app-content-host}] {
         padding-top: 0;
       }
@@ -21,15 +21,14 @@
       }
     }
 
-    &[position='default'] {
-      > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: absolute;
-      }
+    &[data-position='default'] {
       > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: absolute;
       }
-      > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: absolute;
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+          position: absolute;
+        }
       }
       > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: absolute;
@@ -39,15 +38,14 @@
       }
     }
 
-    &[position='fixed'] {
-      > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: fixed;
-      }
+    &[data-position='fixed'] {
       > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: fixed;
       }
-      > * > jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
-        position: fixed;
+      >, > * >, > * > * >, > * > * > * > {
+        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+          position: fixed;
+        }
       }
       > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
         position: fixed;

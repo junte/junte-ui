@@ -65,8 +65,7 @@ var Gulpfile = /** @class */ (function () {
                     .pipe(consolidate('lodash', {
                     glyphs: glyphs,
                     fontName: font.fontName,
-                    fontPath: '~/assets/fonts',
-                    className: 'icon'
+                    fontPath: '~/assets/fonts'
                 }))
                     .pipe(rename(font.fontName + "-font.scss"))
                     .pipe(gulp.dest(font.fontsPath + "/" + font.fontName));

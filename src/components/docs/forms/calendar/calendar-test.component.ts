@@ -30,12 +30,14 @@ export class CalendarTestComponent implements OnInit {
   monthControl = this.fb.control(null);
   metricsControl = this.fb.control(false);
   customDayControl = this.fb.control(false);
+  disabledControl = this.fb.control(false);
 
   builder = this.fb.group({
     year: this.yearControl,
     month: this.monthControl,
     metrics: this.metricsControl,
     customDay: this.customDayControl,
+    disabled: this.disabledControl
   });
 
   flightDateControl = this.fb.control(new Date());
@@ -50,6 +52,10 @@ export class CalendarTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    this.disabledControl.valueChanges.subscribe((disabled) => {
+      disabled ? this.flightDateControl.disable() : this.flightDateControl.enable();
+    });
   }
 
 }

@@ -1,29 +1,29 @@
-@import "variables";
-@import "components/elements/icon/icon";
+@import "jnt-variables";
+@import "elements/icon/icon";
 
-@mixin breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
   }
 
   #{$context} a {
-    color: $primary-text-light-color;
+    color: $jnt-primary-text-light-color;
     font-size: 12px;
     text-decoration: none;
     user-select: none;
 
     &:last-of-type {
-      color: $primary-text-dark-color;
+      color: $jnt-primary-text-dark-color;
       pointer-events: none;
     }
   }
 
-  #{$context} [icon] {
-    @include icon((
+  #{$context} [data-icon] {
+    @include jnt-icon((
       size: 8px,
     ), '&');
-    color: $primary-text-light-color;
+    color: $jnt-primary-text-light-color;
 
     &:last-child {
       display: none;

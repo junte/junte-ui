@@ -1,22 +1,24 @@
-@import "variables";
+@import "jnt-variables";
 
-$max-groups: 3;
+@mixin jnt-circle-bar-indicator-group($passed: (), $context: null, $strategy: 'changes') {
 
-:host {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  position: absolute;
+  :host, #{$context} {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
 
-  @for $i from 1 through $max-groups {
-    @for $j from 0 through $max-groups - 1 {
-      &[groups='#{$i}'][index='#{$j}'] {
-        $size: percentage(1 - ($j / $i) * .5);
-        width: $size;
-        height: $size;
+    @for $i from 1 through 3 {
+      @for $j from 0 through 3 - 1 {
+        &[data-groups='#{$i}'][data-index='#{$j}'] {
+          $size: percentage(1 - ($j / $i) * .5);
+          width: $size;
+          height: $size;
+        }
       }
     }
   }
+
 }

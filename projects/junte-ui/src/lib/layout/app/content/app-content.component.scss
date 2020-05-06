@@ -1,7 +1,8 @@
-@import "variables";
-@import "../variables";
+@import "jnt-variables";
+@import "layout/app/variables";
+@import "layout/responsive/responsive";
 
-@mixin app-content($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
@@ -10,34 +11,34 @@
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
+    background-color: $jnt-page-background;
     z-index: 1;
     padding-top: $app-header-height;
 
-    &[with-aside='full'] {
+    &[data-with-aside='full'] {
       padding-left: $app-aside-width;
-      transition: padding-left .3s;
     }
 
-    &[with-aside='collapsed'] {
+    &[data-with-aside='collapsed'] {
       padding-left: $app-aside-collapsed-width;
     }
 
-    @media screen and (max-width: map-get($grid-breakpoints, tablet)) {
+    @include for-mobile() {
       padding-left: 0 !important;
     }
 
-    &[with-sub-header="false"] {
+    &[data-with-sub-header="false"] {
       jnt-app-body[deep-host=#{$jnt-app-body-host}] {
         min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
       }
     }
 
-    &[with-footer="false"] {
+    &[data-with-footer="false"] {
       jnt-app-body[deep-host=#{$jnt-app-body-host}] {
         min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
       }
     }
-    &[with-sub-header="false"][with-footer="false"] {
+    &[data-with-sub-header="false"][data-with-footer="false"] {
       jnt-app-body[deep-host=#{$jnt-app-body-host}] {
         min-height: calc(100vh - #{$app-header-height});
       }

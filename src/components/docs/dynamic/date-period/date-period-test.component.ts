@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import { DatePeriodComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-date-period-test',
@@ -10,30 +11,19 @@ import { UI } from 'junte-ui';
 export class DatePeriodTestComponent {
 
   ui = UI;
+  localUi = LocalUI;
+  format = 'yyyy-MM-dd';
+  types = {period: DatePeriodComponent};
 
-  demo = [
-    {start: new Date(2019, 9, 10), end: new Date(2019, 9, 30), current: new Date(2019, 9, 15)},
-    {start: new Date(2019, 9, 30), end: new Date(2019, 9, 9)},
-    {end: new Date(2019, 9, 9)},
-    {end: new Date(2019, 9, 31)},
-    {start: new Date(2019, 9, 9), current: new Date(2019, 9, 15)},
-    {start: new Date(2019, 9, 9), current: new Date(2019, 9, 8)},
-    {},
-  ];
+  startControl = this.fb.control(new Date);
+  endControl = this.fb.control(new Date);
+  currentControl = this.fb.control(new Date);
 
-  startControl = new FormControl(this.demo[0]['start']);
-  endControl = new FormControl(this.demo[0]['end']);
-  currentControl = new FormControl(this.demo[0]['current']);
-
-  current = new Date();
-
-
-  form = this.fb.group({
+  builder = this.fb.group({
     start: this.startControl,
     end: this.endControl,
     current: this.currentControl
   });
-
 
   constructor(private fb: FormBuilder) {
   }

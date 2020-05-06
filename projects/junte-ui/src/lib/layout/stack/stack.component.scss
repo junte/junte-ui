@@ -1,4 +1,5 @@
-@import "variables";
+@import "jnt-variables";
+@import "jnt-functions";
 
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
@@ -9,17 +10,17 @@ $type-horizontal: 'horizontal';
   }
 }
 
-@mixin stack($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-stack($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     gutters: (
-      none: $gutter-none,
-      tiny: $gutter-tiny,
-      small: $gutter-small,
-      normal: $gutter-normal,
-      big: $gutter-big,
-      large: $gutter-large,
-      huge: $gutter-huge,
+      none: $jnt-gutter-none,
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
     ),
   );
 
@@ -27,7 +28,7 @@ $type-horizontal: 'horizontal';
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -37,12 +38,12 @@ $type-horizontal: 'horizontal';
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
-        &[gutter = '#{$gutter}'] {
-          &[type = '#{$type-vertical}'] {
+        &[data-gutter = '#{$gutter}'] {
+          &[data-type = '#{$type-vertical}'] {
             flex-direction: column;
             @include stack-gutters(margin-bottom, $map);
           }
-          &[type = '#{$type-horizontal}'] {
+          &[data-type = '#{$type-horizontal}'] {
             flex-direction: row;
             @include stack-gutters(margin-right, $map);
           }
@@ -50,48 +51,48 @@ $type-horizontal: 'horizontal';
       }
     }
 
-    &[align='start'] {
+    &[data-align='start'] {
       align-items: flex-start;
     }
-    &[align='center'] {
+    &[data-align='center'] {
       align-items: center;
     }
-    &[align='end'] {
+    &[data-align='end'] {
       align-items: flex-end;
     }
-    &[align='stretch'] {
+    &[data-align='stretch'] {
       align-items: stretch;
     }
-    &[align='baseline'] {
+    &[data-align='baseline'] {
       align-items: baseline;
     }
 
-    &[justify='start'] {
+    &[data-justify='start'] {
       justify-content: flex-start;
     }
-    &[justify='center'] {
+    &[data-justify='center'] {
       justify-content: center;
     }
-    &[justify='end'] {
+    &[data-justify='end'] {
       justify-content: flex-end;
     }
-    &[justify='between'] {
+    &[data-justify='between'] {
       justify-content: space-between;
     }
-    &[justify='around'] {
+    &[data-justify='around'] {
       justify-content: space-around;
     }
-    &[justify='evenly'] {
+    &[data-justify='evenly'] {
       justify-content: space-evenly;
     }
 
-    &[wrap='wrap'] {
+    &[data-wrap='wrap'] {
       flex-wrap: wrap;
     }
-    &[wrap='nowrap'] {
+    &[data-wrap='nowrap'] {
       flex-wrap: nowrap;
     }
-    &[wrap='reverse'] {
+    &[data-wrap='reverse'] {
       flex-wrap: wrap-reverse;
     }
   }

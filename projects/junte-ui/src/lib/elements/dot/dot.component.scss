@@ -1,0 +1,26 @@
+@import "jnt-variables";
+@import "jnt-functions";
+
+@mixin jnt-dot($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    size: 12px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: inline-block;
+    border-radius: 50%;
+    min-width: map-get($vars, size);
+    min-height: map-get($vars, size);
+    width: map-get($vars, size);
+    height: map-get($vars, size);
+  }
+}

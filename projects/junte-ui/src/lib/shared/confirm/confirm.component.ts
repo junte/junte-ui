@@ -7,11 +7,16 @@ import { UI } from '../../core/enums/ui';
 })
 export class ConfirmComponent {
 
-  ui = UI;
   @HostBinding('attr.host') readonly host = 'jnt-confirm-host';
+
+  ui = UI;
+
   @Input() message: string;
+
   @Input() messageTemplate: TemplateRef<any>;
+
   @Output() ok = new EventEmitter();
+
   @Output() cancel = new EventEmitter();
 
 }

@@ -11,7 +11,8 @@ import {
   StackModule,
   SwitcherModule,
   LabelModule,
-  TabsModule
+  TabsModule,
+  IconModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -23,6 +24,7 @@ import { DatePickerTestComponent } from './date-picker-test.component';
     CommonModule,
     ReactiveFormsModule,
     DateFnsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

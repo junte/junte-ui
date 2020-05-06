@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TextPipeModule } from 'junte-ui';
+import { TextPipesModule } from 'junte-ui';
 import { CodeHighlightModule } from '../code-highlight/code-highlight.module';
 import { ComponentApiComponent } from './component-api.component';
 
@@ -8,7 +8,7 @@ import { ComponentApiComponent } from './component-api.component';
   imports: [
     CommonModule,
     CodeHighlightModule,
-    TextPipeModule
+    TextPipesModule
   ],
   exports: [
     ComponentApiComponent

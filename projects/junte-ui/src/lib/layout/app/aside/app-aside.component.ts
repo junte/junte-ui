@@ -1,5 +1,6 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { UI } from '../../../core/enums/ui';
+import { MenuComponent } from '../../../navigation/menu/menu.component';
 
 const ASIDE_STATE = 'aside_collapsed';
 
@@ -16,7 +17,7 @@ export class AppAsideComponent implements OnInit {
 
   @Input()
   set collapsed(collapsed: boolean) {
-    this._collapsed = collapsed;
+    this._collapsed = collapsed || false;
     localStorage.setItem(ASIDE_STATE, JSON.stringify(collapsed));
   }
 
@@ -24,10 +25,13 @@ export class AppAsideComponent implements OnInit {
     return this._collapsed;
   }
 
-  @ContentChild(TemplateRef, {static: true})
+  @ContentChild(TemplateRef, {static: false})
   asideContentTemplate: TemplateRef<any>;
 
-  @HostBinding('attr.opened')
+  @ContentChild(MenuComponent, {static: false})
+  menu: MenuComponent;
+
+  @HostBinding('attr.data-opened')
   @Input() opened = false;
 
   ngOnInit() {
@@ -37,4 +41,5 @@ export class AppAsideComponent implements OnInit {
   toggle() {
     this.opened = !this.opened;
   }
+
 }

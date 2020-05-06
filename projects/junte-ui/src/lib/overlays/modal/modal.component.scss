@@ -1,76 +1,108 @@
-@import "variables";
+@import "jnt-variables";
+@import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
-@keyframes scaleIn {
-  from {
+@keyframes jnt-scaleIn {
+  0% {
     transform: scale(1);
   }
-  to {
+  100% {
     transform: scale(.9);
   }
 }
 
-@keyframes scaleOut {
-  from {
+@keyframes jnt-scaleOut {
+  0% {
     transform: scale(.9);
   }
-  to {
+  100% {
     transform: scale(1);
   }
 }
 
-[overlay] {
-  position: fixed;
-  background-color: rgba(0, 0, 0, .4);
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
+@mixin jnt-modal($passed: (), $context: null, $strategy: 'changes') {
 
-[modal] {
-  transform: scale(1);
-  position: fixed;
-  z-index: 2;
-  top: 100%;
+  :host, #{$context} {
+    display: block;
+    @include for-mobile() {
+      position: fixed;
+      z-index: 2;
+      max-width: 100%;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: $jnt-gutter-small;
+      box-sizing: border-box;
+    }
+  }
 
-  [title] {
-    border-top-left-radius: $corner-normal;
-    border-top-right-radius: $corner-normal;
-    padding: $gutter-normal;
-    background-color: $page-background;
-    font-size: 18px;
+  #{$context} [data-overlay] {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
 
-    [close] {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      line-height: 0;
-      cursor: pointer;
-      &:focus {
-        outline: 0;
+  #{$context} [data-modal] {
+    transform: scale(1);
+    position: fixed;
+    z-index: 2;
+    min-width: max-content;
+    max-width: 100%;
+    top: 100%;
+
+    @include for-mobile() {
+      min-width: 100%;
+      position: relative;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+    }
+
+    [data-title] {
+      border-top-left-radius: $jnt-corner-normal;
+      border-top-right-radius: $jnt-corner-normal;
+      padding: $jnt-gutter-normal;
+      background-color: $jnt-page-background;
+      font-size: 18px;
+
+      [data-close] {
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      [data-icon] {
+        @include jnt-icon ((
+          color: $jnt-primary-text-color,
+          size: 18px,
+        ), '&');
+      }
+
+      [data-text] {
+        color: $jnt-primary-text-color;
+        font-weight: $jnt-font-weight-bold;
       }
     }
 
-    [icon]:not([type='font']) {
-      fill: $primary-text-color;
-      width: 18px;
-      height: 18px;
+    [data-content] {
+      padding: $jnt-gutter-normal;
+      font-size: $jnt-font-size-base;
+      box-sizing: border-box;
+      overflow: auto;
+      @include for-mobile() {
+        overflow: visible;
+        max-height: none !important;
+      }
     }
 
-    [text] {
-      color: $primary-text-color;
-      font-weight: $font-weight-bold;
-    }
   }
-
-  [content] {
-    padding: $gutter-normal;
-    font-size: $font-size-base;
-    box-sizing: border-box;
-    overflow: auto;
-  }
-
 }

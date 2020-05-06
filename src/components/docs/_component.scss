@@ -1,7 +1,32 @@
-@import "variables";
+@import "jnt-variables";
+@import "elements/icon/icon";
+
+:host-context([theme='dark']) {
+  [block] {
+    background-color: $jnt-gray-dark-color;
+  }
+}
 
 :host {
   display: block;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+[data-thumbnail] {
+  display: inline-flex;
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+  padding: $jnt-gutter-small $jnt-gutter-normal;
+  margin-right: $jnt-gutter-normal;
+  [data-icon] {
+    @include jnt-icon((
+      size: 30px
+    ), '&', true);
+  }
 }
 
 [resources] {
@@ -11,37 +36,26 @@
 }
 
 [giphy] {
-  border-radius: $corner-normal;
+  border-radius: $jnt-corner-normal;
   pointer-events: none;
-  border: 2px solid $secondary-color;
+  border: 2px solid $jnt-secondary-color;
 }
 
-[teaser] {
-  color: $primary-text-light-color;
-}
-
-[playground] ::ng-deep {
-  [tab]:nth-child(1) svg path {
-    fill: url(#purple-light-gradient);
-  }
-  [tab]:nth-child(2) svg path {
-    fill: url(#green-light-gradient);
-  }
-  [tab]:nth-child(3) svg path {
-    fill: url(#blue-light-gradient);
-  }
-}
+//
+//[teaser] {
+//  color: $jnt-primary-text-light-color;
+//}
 
 [block] {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $primary-color;
+  color: $jnt-primary-color;
   font-weight: bold;
-  background-color: $secondary-color;
+  background-color: $jnt-primary-background;
   box-sizing: border-box;
-  border: 2px solid $primary-color;
-  border-radius: $corner-normal;
+  border: 2px solid $jnt-primary-color;
+  border-radius: $jnt-corner-normal;
 }
 
 [preview] {

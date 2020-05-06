@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   BadgeModule,
   BlockModule,
   ButtonModule,
@@ -39,7 +39,7 @@ import { ButtonTestComponent } from './button-test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     BadgeModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

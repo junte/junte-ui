@@ -1,11 +1,22 @@
-@import "variables";
+@import "jnt-variables";
 
-@mixin calendar($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
-    margin: $gutter-normal;
+    margin: $jnt-gutter-normal;
     box-sizing: border-box;
+
+    &[data-disabled='true'] {
+      cursor: default;
+      pointer-events: none;
+      table {
+        tbody tr td, th {
+          color: $jnt-control-disabled-label-color;
+          background-color: $jnt-control-disabled-background;
+        }
+      }
+    }
   }
 
   table {
@@ -15,17 +26,17 @@
   }
 
   thead {
-    [arrow-left] {
+    [data-arrow-left] {
       text-align: left;
     }
-    [arrow-right] {
+    [data-arrow-right] {
       text-align: right;
     }
-    [arrow] {
+    [data-arrow] {
       background-color: transparent;
       border-width: 0;
-      font-size: $font-size-large;
-      color: $primary-text-color;
+      font-size: $jnt-font-size-large;
+      color: $jnt-primary-text-color;
       cursor: pointer;
       padding: 0;
       vertical-align: middle;
@@ -39,24 +50,24 @@
       line-height: 0;
       &:focus {
         outline: none;
-        box-shadow: $shadow-primary;
-        border: 1px solid $primary-color;
+        box-shadow: $jnt-shadow-primary;
+        border: 1px solid $jnt-primary-color;
       }
       &:hover {
-        color: lighten($primary-text-color, 10%);
-        border: 1px solid $primary-color;
+        color: lighten($jnt-primary-text-color, 10%);
+        border: 1px solid $jnt-primary-color;
       }
     }
-    [date] {
-      font-weight: $font-weight-bold;
-      font-size: $font-size-base;
+    [data-date] {
+      font-weight: $jnt-font-weight-bold;
+      font-size: $jnt-font-size-base;
     }
-    [days] {
+    [data-days] {
       > th {
-        padding: $gutter-normal $gutter-tiny;
-        color: $primary-text-light-color;
-        font-size: $font-size-small;
-        font-weight: $font-weight-bold;
+        padding: $jnt-gutter-normal $jnt-gutter-tiny;
+        color: $jnt-primary-text-light-color;
+        font-size: $jnt-font-size-small;
+        font-weight: $jnt-font-weight-bold;
       }
     }
     .sortable {
@@ -66,32 +77,32 @@
 
   tbody {
     tr {
-      &[current-week='true'] {
-        [day], [metric] {
-          border-top-color: $primary-light-color;
-          border-bottom-color: $primary-light-color;
+      &[data-current-week='true'] {
+        [data-day], [data-metric] {
+          border-top-color: $jnt-primary-light-color;
+          border-bottom-color: $jnt-primary-light-color;
           &:first-child {
-            border-top-left-radius: $corner-small;
-            border-bottom-left-radius: $corner-small;
-            border-left-color: $primary-light-color;
+            border-top-left-radius: $jnt-corner-small;
+            border-bottom-left-radius: $jnt-corner-small;
+            border-left-color: $jnt-primary-light-color;
           }
           &:last-child {
-            border-top-right-radius: $corner-small;
-            border-bottom-right-radius: $corner-small;
-            border-right-color: $primary-light-color;
+            border-top-right-radius: $jnt-corner-small;
+            border-bottom-right-radius: $jnt-corner-small;
+            border-right-color: $jnt-primary-light-color;
           }
         }
       }
       td {
         min-width: 38px;
-        font-size: $font-size-small;
+        font-size: $jnt-font-size-small;
         box-sizing: border-box;
         border-top: 1px solid transparent;
         border-bottom: 1px solid transparent;
         user-select: none;
         padding: 0;
-        [default] {
-          padding: $gutter-small $gutter-tiny;
+        [data-default] {
+          padding: $jnt-gutter-small $jnt-gutter-tiny;
         }
         &:first-child {
           border-left: 1px solid transparent;
@@ -99,24 +110,24 @@
         &:last-child {
           border-right: 1px solid transparent;
         }
-        &[day] {
+        &[data-day] {
           cursor: pointer;
           &:nth-child(6),
           &:nth-child(7) {
-            background-color: $secondary-background;
+            background-color: $jnt-secondary-background;
           }
           &:hover {
-            background-color: $highlight-background;
-            color: $primary-text-dark-color;
+            background-color: $jnt-highlight-background;
+            color: $jnt-primary-text-dark-color;
           }
           &:focus {
-            box-shadow: $shadow-primary;
-            outline: 1px solid $primary-light-color;
+            box-shadow: $jnt-shadow-primary;
+            outline: 1px solid $jnt-primary-light-color;
           }
-          &[current-day='true'] {
-            [default] {
-              background-color: $primary-light-color;
-              color: $white-color;
+          &[data-current-day='true'] {
+            [data-default] {
+              background-color: $jnt-primary-light-color;
+              color: $jnt-white-color;
             }
           }
         }

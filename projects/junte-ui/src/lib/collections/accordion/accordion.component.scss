@@ -1,48 +1,51 @@
-@import "variables";
+@import "jnt-variables";
 
-@mixin accordion($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
   }
 
-  #{$context} [section] {
+  #{$context} [data-section] {
     &:not(:last-child) {
-      [title] {
+      [data-title] {
         border-bottom: 0;
       }
     }
     &:first-child {
-      [title] {
-        border-top-left-radius: $corner-small;
-        border-top-right-radius: $corner-small;
+      [data-title] {
+        border-top-left-radius: $jnt-corner-small;
+        border-top-right-radius: $jnt-corner-small;
       }
     }
     &:last-child {
-      [title] {
-        border-bottom-left-radius: $corner-small;
-        border-bottom-right-radius: $corner-small;
+      [data-title] {
+        border-bottom-left-radius: $jnt-corner-small;
+        border-bottom-right-radius: $jnt-corner-small;
       }
     }
-    [title] {
-      padding: $gutter-small $gutter-normal;
-      background-color: $secondary-background;
-      border: 1px solid $muted-color;
+    [data-title] {
+      padding: $jnt-gutter-small $jnt-gutter-normal;
+      background-color: $jnt-secondary-background;
+      border: 1px solid $jnt-muted-color;
       cursor: pointer;
       &[active='true'] {
-        background-color: $primary-color;
-        color: $white-color;
+        background-color: $jnt-primary-color;
+        color: $jnt-white-color;
       }
       &:focus {
         outline: 0;
-        box-shadow: $shadow-primary;
+        box-shadow: $jnt-shadow-primary;
       }
-      [icon] {
-        margin-right: $gutter-small;
+      [data-icon] {
+        margin-right: $jnt-gutter-tiny;
+        &[chevron] {
+          margin-right: $jnt-gutter-normal;
+        }
       }
     }
-    [content] {
-      padding: $gutter-normal;
+    [data-content] {
+      padding: $jnt-gutter-normal;
     }
   }
 

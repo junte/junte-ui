@@ -1,9 +1,9 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Shape } from '../../../core/enums/shape';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { AvatarComponent } from '../avatar.component';
-import { PropertyApi } from '../../../core/decorators/api';
 
 const MAX_CAPACITY = 4;
 
@@ -17,7 +17,7 @@ export class AvatarsGroupComponent {
 
   shape = Shape;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size;
 
   _total = 0;
@@ -55,7 +55,7 @@ export class AvatarsGroupComponent {
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.capacity')
+  @HostBinding('attr.data-capacity')
   get capacity() {
     return Math.min(this.avatars.length, MAX_CAPACITY);
   }

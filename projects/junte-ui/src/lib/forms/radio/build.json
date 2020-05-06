@@ -1,10 +1,11 @@
 {
   "composition": {
     "section": "forms",
-    "pathFrom": "../../assets/styles/components",
-    "pathTo": "../../../../../../../dist/junte-ui/lib/assets/styles/components",
+    "pathFrom": "../../assets/styles",
+    "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
     "from": [
-      "radio/radio.scss"
+      "radio/radio.scss",
+      "radio/radio-group/radio-group.scss"
     ],
     "to": "radio.scss"
   },
@@ -17,7 +18,7 @@
       },
       "scss": {
         "from": "radio.component.scss",
-        "to": "../../assets/styles/components/forms/radio/radio.scss"
+        "to": "../../assets/styles/forms/radio/radio.scss"
       }
     },
     {
@@ -25,6 +26,10 @@
       "html": {
         "from": "radio-group/radio-group.component.html",
         "to": "radio-group/radio-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "radio-group/radio-group.component.scss",
+        "to": "../../assets/styles/forms/radio/radio-group/radio-group.scss"
       }
     }
   ]

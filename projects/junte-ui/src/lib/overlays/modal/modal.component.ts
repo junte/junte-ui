@@ -1,4 +1,4 @@
-import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import {
   Component,
   ComponentRef,
@@ -12,8 +12,10 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { MethodApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 
 export enum ModalClosingOption {
   enable = 'enable',
@@ -32,12 +34,13 @@ interface ModalTitle {
 
 export class ModalOptions {
   maxWidth = '800';
-  maxHeight = '800';
+  maxHeight = '600';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
+  content?: TemplateRef<any>;
 
-  constructor(defs:any = null) {
+  constructor(defs: any = null) {
     Object.assign(this, defs);
   }
 }
@@ -56,10 +59,9 @@ enum Display {
 
 @Component({
   selector: 'jnt-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  templateUrl: './modal.encapsulated.html',
   animations: [
-    trigger('modal', [
+    trigger('move', [
         state(
           'hidden',
           style({
@@ -91,7 +93,7 @@ enum Display {
       ]
     ),
 
-    trigger('overlay', [
+    trigger('blackout', [
         state(
           'void',
           style({
@@ -119,16 +121,19 @@ export class ModalComponent {
 
   private _opened: boolean;
 
+  @HostBinding('attr.host') readonly host = 'jnt-modal-host';
+
   ui = UI;
   closing = ModalClosingOption;
   contentTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
+  mobile: boolean = this.breakpoint.current === Breakpoint.mobile;
 
   @Input() backdrop: ElementRef;
 
   @Output() opened$ = new EventEmitter<boolean>();
 
-  @ViewChild('container', { read: ViewContainerRef }) container;
+  @ViewChild('container', {read: ViewContainerRef}) container;
 
   @HostBinding('style.display') display = Display.none;
 
@@ -153,7 +158,8 @@ export class ModalComponent {
     }
   }
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+              private breakpoint: BreakpointService) {
   }
 
   start(event: AnimationEvent) {
@@ -174,7 +180,9 @@ export class ModalComponent {
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      if (!this.mobile) {
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      }
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
@@ -185,7 +193,9 @@ export class ModalComponent {
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      if (!this.mobile) {
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      }
     }
     this.opened = false;
   }

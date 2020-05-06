@@ -1,8 +1,8 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { AvatarComponent } from '../avatar.component';
-import { PropertyApi } from '../../../core/decorators/api';
 
 const MAX_CAPACITY = 5;
 
@@ -14,7 +14,7 @@ export class AvatarsListComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size;
 
   ui = UI;
@@ -23,7 +23,7 @@ export class AvatarsListComponent {
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
-  @HostBinding('attr.capacity')
+  @HostBinding('attr.data-capacity')
   get capacity() {
     return Math.min(this.avatars.length, MAX_CAPACITY);
   }
@@ -34,7 +34,6 @@ export class AvatarsListComponent {
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }

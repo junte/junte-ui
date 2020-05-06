@@ -1,7 +1,6 @@
 import {
   AfterContentInit,
   Component,
-  ContentChild,
   ContentChildren,
   ElementRef,
   forwardRef,
@@ -15,9 +14,10 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { PropertyApi } from '../../core/decorators/api';
+import { NGXLogger } from 'ngx-logger';
 import { of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
+import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { SelectMode } from './enums';
@@ -104,17 +104,16 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input() required = false;
 
-  @HostBinding('attr.mode')
+  @HostBinding('attr.data-mode')
   _mode: SelectMode = SelectMode.single;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Select label',
     type: 'string'
   })
-  @HostBinding('attr.label')
   @Input() label: string;
 
   @PropertyApi({
@@ -122,8 +121,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     type: 'boolean',
     default: 'true'
   })
-  @HostBinding('attr.allow-empty')
+  @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
+
+  @PropertyApi({
+    description: 'Icon for select',
+    type: 'string',
+  })
+  @Input() icon: string;
 
   @ViewChild('queryInput', {static: true})
   queryInput: ElementRef<HTMLInputElement>;
@@ -134,17 +139,28 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ViewChild('query')
   query: ElementRef<HTMLInputElement>;
 
-  @ContentChild('selectOptionTemplate')
+  @PropertyApi({
+    description: 'Template for option',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
   optionTemplate: TemplateRef<any>;
+
+  @PropertyApi({
+    description: 'Template for empty options',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  emptyOptionsTemplate: TemplateRef<any>;
 
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
-  @HostBinding('attr.opened')
+  @HostBinding('attr.data-opened')
   set opened(opened: boolean) {
     this._opened = opened;
     if (!opened) {
-      this.queryControl.setValue('');
+      this.queryControl.setValue(null);
     }
     const input = this.queryInput.nativeElement;
     const checking = () => {
@@ -182,7 +198,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select search',
     type: 'boolean'
   })
-  @HostBinding('attr.search')
+  @HostBinding('attr.data-search')
   @Input() set search(search: boolean) {
     search ? this.queryControl.enable() : this.queryControl.disable();
   }
@@ -191,7 +207,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     return !this.queryControl.disabled;
   }
 
-  @HostBinding('attr.disabled')
+  @HostBinding('attr.data-disabled')
   @Input()
   disabled = false;
 
@@ -205,7 +221,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this._size = size || Size.normal;
   }
 
-  @HostBinding('attr.empty')
+  @HostBinding('attr.data-empty')
   get empty() {
     return this.selected.length === 0;
   }
@@ -221,7 +237,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {
@@ -249,15 +266,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         });
     };
 
-    this.queryControl.valueChanges.pipe(tap(query => {
-        if (!!query) {
-          this.loading = true;
-        } else {
-          this.loading = false;
-          this.options.found = this.options.persisted;
-          this.changes.options++;
-        }
-
+    this.queryControl.valueChanges.pipe(distinctUntilChanged(),
+      tap(query => {
+        this.logger.debug('query has been changed');
+        this.loading = !!query;
         const input = this.queryInput.nativeElement;
         if (!!query && query.length > 0) {
           const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
@@ -267,7 +279,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         }
       }),
       debounceTime(SEARCH_DELAY),
-      distinctUntilChanged(),
       filter(query => !!query))
       .subscribe(query => loadOptions(query));
   }
@@ -281,14 +292,18 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     };
 
     convert(this.optionsFromMarkup.toArray());
-    this.optionsFromMarkup.changes.subscribe(options =>
-      convert(options.toArray()));
+    this.optionsFromMarkup.changes.pipe(tap(() => this.logger.debug('options from markup changed')))
+      .subscribe(options => convert(options.toArray()));
+  }
+
+  trackOption(option: IOption) {
+    return option.key;
   }
 
   select(option: IOption) {
+    this.logger.debug('option is selected');
     this.options.persisted[option.key.toString()] = option;
     this.changes.options++;
-    this.queryControl.setValue(null);
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
     } else {
@@ -301,6 +316,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   remove(key: Key) {
     const index = this.selected.findIndex(i => i === key);
     if (index !== -1) {
+      this.logger.debug('option has been removed');
       this.selected.splice(index, 1);
       this.changes.selected++;
       this.onChange(this.mode === SelectMode.multiple ? this.selected : null);
@@ -333,7 +349,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.opened = false;
   }
 
-  writeValue(value: Key) {
+  writeValue(value: Key | Key[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
   }
 

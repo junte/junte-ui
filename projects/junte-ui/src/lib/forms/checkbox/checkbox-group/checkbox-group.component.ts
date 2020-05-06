@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Size } from '../../../core/enums/size';
+import { UI } from '../../../core/enums/ui';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -16,7 +18,15 @@ import { CheckboxComponent } from '../checkbox.component';
 
 export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-checkbox-group-host';
+  private disabled = false;
+  private selectedItems: any[] = [];
+
+  _size: Size = Size.normal;
+
+  ui = UI;
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-checkbox-group-host';
 
   @ViewChildren(CheckboxComponent)
   items: QueryList<CheckboxComponent>;
@@ -24,18 +34,30 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   @ContentChildren(CheckboxComponent, {descendants: true})
   checkboxes: QueryList<CheckboxComponent>;
 
-  private _selectedItems: any[];
-
-  set selectedItems(value: any) {
-    this._selectedItems = value;
+  @Input()
+  set size(size: Size) {
+    this._size = size || Size.normal;
   }
 
-  get selectedItems() {
-    return this._selectedItems;
+  get size() {
+    return this._size;
   }
 
   ngAfterViewInit() {
-    this.updateItems();
+    this.updateChecked();
+    this.updateDisabled();
+  }
+
+  private updateChecked() {
+    if (!!this.items) {
+      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
+    }
+  }
+
+  private updateDisabled() {
+    if (!!this.items) {
+      this.items.forEach(item => item.disabled = this.disabled);
+    }
   }
 
   select(value) {
@@ -48,19 +70,13 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
     this.onChange(this.selectedItems);
   }
 
-  updateItems() {
-    if (!!this.items) {
-      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
-    }
-  }
-
   writeValue(value: any) {
     if (!!value) {
       this.selectedItems = Array.isArray(value) ? value : [value];
     } else {
       this.selectedItems = [];
     }
-    this.updateItems();
+    this.updateChecked();
   }
 
   onChange(value: any) {
@@ -75,5 +91,10 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+    this.updateDisabled();
   }
 }

@@ -14,6 +14,8 @@ export class AppHeaderActionsComponent {
 
   ui = UI;
 
+  @HostBinding('attr.host') readonly host = 'jnt-app-header-actions-host';
+
   @PropertyApi({
     description: 'Elements gutter',
     path: 'ui.gutter',
@@ -33,8 +35,6 @@ export class AppHeaderActionsComponent {
   get gutter() {
     return this._gutter;
   }
-
-  @HostBinding('attr.host') readonly host = 'jnt-app-header-actions-host';
 
   @ContentChildren(AppHeaderActionComponent)
   actions: QueryList<AppHeaderActionComponent>;

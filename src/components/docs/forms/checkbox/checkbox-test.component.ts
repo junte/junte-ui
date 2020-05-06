@@ -1,18 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CheckboxComponent, TabComponent, BlockComponent, UI } from 'junte-ui';
-import { LocalUI } from 'src/enums/local-ui';
+import { BlockComponent, CheckboxComponent, TabComponent, UI } from 'junte-ui';
+import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
+import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-checkbox-test',
   templateUrl: './checkbox-test.component.html',
   styleUrls: ['./checkbox-test.component.scss']
 })
-export class CheckboxTestComponent {
+export class CheckboxTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   hero = Hero;
   types = {checkbox: CheckboxComponent};
 
@@ -36,9 +38,14 @@ export class CheckboxTestComponent {
   constructor(private fb: FormBuilder) {
   }
 
+  ngOnInit() {
+    this.disableControl.valueChanges.subscribe(disabled =>
+      disabled ? this.heroesControl.disable() : this.heroesControl.enable());
+  }
+
   submit() {
     this.block.success();
-    this.form.reset();
+    setTimeout(() => this.form.reset(), 3000);
   }
 
 }

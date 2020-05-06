@@ -27,7 +27,7 @@ export class MenuTestComponent implements OnInit {
   schemeControl = this.fb.control(null);
   linkControl = this.fb.control(null);
   targetControl = this.fb.control(null);
-  typeControl = this.fb.control(null);
+  orientationControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
@@ -37,7 +37,7 @@ export class MenuTestComponent implements OnInit {
     scheme: this.schemeControl,
     link: this.linkControl,
     target: this.targetControl,
-    type: this.typeControl,
+    orientation: this.orientationControl,
     spacing: this.spacingControl,
     icons: this.iconsControl,
     badges: this.badgesControl,

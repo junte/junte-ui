@@ -1,0 +1,59 @@
+@import "jnt-variables";
+@import "elements/icon/icon";
+
+@mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
+
+  :host, #{$context} {
+    display: block;
+  }
+
+  #{$context} div {
+    padding: $jnt-gutter-small 0;
+
+    &:focus {
+      outline: 0;
+
+      a {
+        box-shadow: $jnt-shadow-primary;
+      }
+    }
+
+    a {
+      padding: 0 5px;
+      border-radius: $jnt-corner-small;
+      transition: background-color .3s;
+      user-select: none;
+
+      &:hover {
+        background-color: $jnt-highlight-background;
+      }
+    }
+
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &[page] {
+      &[active="true"] {
+        font-weight: $jnt-font-weight-bold;
+        pointer-events: none;
+        border-bottom: 2px solid $jnt-primary-color;
+      }
+    }
+
+    &[disabled="true"] {
+      cursor: default;
+      pointer-events: none;
+
+      [data-icon] {
+        color: $jnt-muted-color;
+      }
+    }
+
+    [data-icon] {
+      @include jnt-icon((
+        size: 10px
+      ), '&');
+      color: $jnt-primary-text-light-color;
+    }
+  }
+}

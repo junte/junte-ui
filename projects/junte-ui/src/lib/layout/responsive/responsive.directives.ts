@@ -1,11 +1,18 @@
-import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Directive, EmbeddedViewRef, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
+import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from './breakpoint.service';
+
+const breakpoints = [Breakpoint.mobile,
+  Breakpoint.tablet,
+  Breakpoint.desktop,
+  Breakpoint.wide];
 
 export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
   private destroyed = false;
+  private view: EmbeddedViewRef<any>;
   protected _target = [];
 
   protected constructor(private breakpoint: BreakpointService,
@@ -26,11 +33,14 @@ export abstract class BreakpointDirective implements OnInit, OnDestroy {
 
   private matched(breakpoint: Breakpoint) {
     if (this._target.includes(breakpoint)) {
-      if (this.viewContainerRef.length === 0) {
-        this.viewContainerRef.createEmbeddedView(this.templateRef);
+      if (!this.view) {
+        this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
       }
     } else {
-      this.viewContainerRef.clear();
+      if (!!this.view) {
+        this.viewContainerRef.clear();
+        this.view = null;
+      }
     }
   }
 
@@ -41,6 +51,12 @@ export abstract class BreakpointDirective implements OnInit, OnDestroy {
 })
 export class ForDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntFor',
+    description: 'Target break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntFor')
   set target(target: Breakpoint) {
     this._target = [target];
@@ -48,7 +64,8 @@ export class ForDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -66,6 +83,12 @@ const min = {
 })
 export class ForMinDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntMinFor',
+    description: 'Min break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntMinFor')
   set target(target: Breakpoint) {
     this._target = min[target];
@@ -73,7 +96,8 @@ export class ForMinDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -91,6 +115,12 @@ const max = {
 })
 export class ForMaxDirective extends BreakpointDirective {
 
+  @PropertyApi({
+    name: 'jntMaxFor',
+    description: 'Max break point for rendering',
+    path: 'ui.breakpoints',
+    options: breakpoints
+  })
   @Input('jntMaxFor')
   set target(target: Breakpoint) {
     this._target = max[target];
@@ -98,7 +128,8 @@ export class ForMaxDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef) {
+              viewContainerRef: ViewContainerRef,
+              cd: ChangeDetectorRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 

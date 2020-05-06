@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { JunteDirectiveModule } from '../../core/directives/junte-directive.module';
 import { PopoverComponent } from './popover.component';
 import { PopoverDirective } from './popover.directive';
 
@@ -11,8 +10,7 @@ import { PopoverDirective } from './popover.directive';
     PopoverDirective
   ],
   imports: [
-    CommonModule,
-    JunteDirectiveModule
+    CommonModule
   ],
   entryComponents: [
     PopoverComponent

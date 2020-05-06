@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { ElementRef, EventEmitter, Injectable } from '@angular/core';
 import { ModalComponent, ModalContent, ModalOptions } from './modal.component';
 
 @Injectable({providedIn: 'root'})
@@ -19,7 +19,7 @@ export class ModalService {
     this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
   }
 
-  open(content: ModalContent, options?: ModalOptions) {
+  open(content?: ModalContent, options?: ModalOptions) {
     this.checkRegistration();
     this.modal.open(content, options);
   }

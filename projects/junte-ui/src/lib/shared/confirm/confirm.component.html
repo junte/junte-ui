@@ -1,13 +1,17 @@
-<div *ngIf="!!messageTemplate; else text" message>
+<div *ngIf="!!messageTemplate; else text" data-message>
   <ng-container *ngTemplateOutlet="messageTemplate"></ng-container>
 </div>
 
 <ng-template #text>
-  <div message>{{message}}</div>
+  <div data-message>{{message}}</div>
 </ng-template>
 
 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-  <jnt-button [type]="ui.form.button.type.submit" [text]="'action.ok' | translate" (click)="ok.emit()"></jnt-button>
-  <jnt-button [scheme]="ui.scheme.secondary" [text]="'action.cancel' | translate" (click)="cancel.emit()"></jnt-button>
+  <jnt-button [type]="ui.forms.button.type.submit"
+              [text]="'action.ok' | translate"
+              (click)="ok.emit()"></jnt-button>
+  <jnt-button [scheme]="ui.scheme.secondary"
+              [text]="'action.cancel' | translate"
+              (click)="cancel.emit()"></jnt-button>
 </jnt-stack>
 

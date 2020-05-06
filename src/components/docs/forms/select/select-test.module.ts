@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  ButtonModule,
   AccordionModule,
   AvatarModule,
   CheckboxModule,
   FormModule,
   GridModule,
+  IconModule,
   InputModule,
   LabelModule,
   LinkModule,
@@ -22,6 +24,8 @@ import { SelectTestComponent } from './select-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

@@ -1,5 +1,6 @@
-@import "variables";
-@import "common";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/avatar/common";
 
 $avatar-shape-circle: 'circle';
 $avatar-shape-square: 'square';
@@ -9,10 +10,10 @@ $avatar-shape-square: 'square';
   width: #{map-get($size, size)};
   min-height: #{map-get($size, size)};
   height: #{map-get($size, size)};
-  [icon] {
+  [data-icon] {
     font-size: #{map-get($size, iconSize)};
   }
-  [text] {
+  [data-text] {
     font-size: #{map-get($size, textSize)};
   }
 }
@@ -22,7 +23,7 @@ $avatar-shape-square: 'square';
 
 }
 
-@mixin avatar($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-avatar($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     shapes: (
@@ -39,7 +40,7 @@ $avatar-shape-square: 'square';
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -48,10 +49,11 @@ $avatar-shape-square: 'square';
     justify-content: center;
     align-items: center;
     line-height: 0;
-    background-color: $secondary-background;
+    background-color: $jnt-secondary-background;
     overflow: hidden;
+    box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
+      &[data-size='#{$size}'] {
         @include avatar-size($map);
       }
     }
@@ -59,7 +61,7 @@ $avatar-shape-square: 'square';
     @if map-has-key($vars, shapes) {
       $shapes: map-get($vars, shapes);
       @each $shape, $map in $shapes {
-        &[shape='#{$shape}'] {
+        &[data-shape='#{$shape}'] {
           @include shape(border-radius, $map);
         }
       }
@@ -67,16 +69,16 @@ $avatar-shape-square: 'square';
 
   }
 
-  #{$context} [text] {
-    color: $primary-color;
-    font-weight: $font-weight-bold;
+  #{$context} [data-text] {
+    color: $jnt-primary-color;
+    font-weight: $jnt-font-weight-bold;
   }
 
-  #{$context} [icon] {
-    color: $secondary-dark-color;
+  #{$context} [data-icon] {
+    color: $jnt-secondary-dark-color;
   }
 
-  #{$context} [image] {
+  #{$context} [data-image] {
     width: 100%;
     height: 100%;
   }

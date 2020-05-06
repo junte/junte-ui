@@ -19,22 +19,20 @@ export class CircleBarTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  positionControl = this.fb.control(null);
-  value1Control = this.fb.control(10);
-  value2Control = this.fb.control(50);
-  value3Control = this.fb.control(90);
-  color1Control = this.fb.control('#3949AB');
-  color2Control = this.fb.control('#FF6262');
-  color3Control = this.fb.control('#00CCB1');
+  likesControl = this.fb.control(50);
+  powerControl = this.fb.control(60);
+  healthControl = this.fb.control(80);
+  likesColorControl = this.fb.control(this.ui.color.purple);
+  powerColorControl = this.fb.control(this.ui.color.red);
+  healthColorControl = this.fb.control(this.ui.color.green);
 
   builder = this.fb.group({
-    position: this.positionControl,
-    value1: this.value1Control,
-    value2: this.value2Control,
-    value3: this.value3Control,
-    color1: this.color1Control,
-    color2: this.color2Control,
-    color3: this.color3Control,
+    likes: this.likesControl,
+    power: this.powerControl,
+    health: this.healthControl,
+    likesColor: this.likesColorControl,
+    powerColor: this.powerColorControl,
+    healthColor: this.healthColorControl,
   });
 
   constructor(private fb: FormBuilder) {

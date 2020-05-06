@@ -5,9 +5,9 @@ import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { LinkModule } from '../link/link.module';
-import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
 import { MenuItemComponent } from './menu-item.component';
 import { MenuComponent } from './menu.component';
+import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
 
 @NgModule({
   imports: [
@@ -19,7 +19,9 @@ import { MenuComponent } from './menu.component';
   ],
   exports: [
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    SubMenuDirective,
+    SubMenuItemsDirective
   ],
   entryComponents: [
     MenuComponent,

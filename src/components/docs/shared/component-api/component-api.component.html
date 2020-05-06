@@ -1,6 +1,16 @@
 <ng-container *ngIf="(properties | keyvalue).length">
   <app-code-highlight [language]="language.html">
-    <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">]]>
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="selectorType.Component">
+        <![CDATA[<]]>{{selector}}<![CDATA[ [property]="value">]]>
+      </ng-container>
+      <ng-container *ngSwitchCase="selectorType.Directive">
+        <![CDATA[<tag []]>{{selector}}<![CDATA[]>]]>
+      </ng-container>
+      <ng-container *ngSwitchCase="selectorType.StructuralDirective">
+        <![CDATA[<tag *]]>{{selector}}<![CDATA[="value">]]>
+      </ng-container>
+    </ng-container>
   </app-code-highlight>
 
   <table api>
@@ -14,10 +24,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let p of properties | keyvalue">
-      <td>
-        [{{p.key}}]
-      </td>
       <ng-container *ngIf="p.value as api">
+        <td>
+          [{{api.name || p.key}}]
+        </td>
         <td>
           <span *ngIf="api.type">{{api.type}}</span>
           <span *ngIf="api.path">{{api.path}}.</span>
@@ -70,7 +80,7 @@
   <app-code-highlight [language]="language.html">
     <![CDATA[<]]>{{selector}}<![CDATA[>
     ...
-    </
+  </
   ]]>{{selector}}<![CDATA[>]]>
   </app-code-highlight>
 

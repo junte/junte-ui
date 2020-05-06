@@ -1,3 +1,3 @@
 <jnt-icon *ngIf="icon && !text && !image" [icon]="icon"></jnt-icon>
-<span *ngIf="text && !image" text>{{text[0]}}</span>
-<img *ngIf="image" [src]="image" image>
+<span data-text *ngIf="text && !image">{{text[0]}}</span>
+<img data-image *ngIf="image" [src]="image">

@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
 
 @Component({

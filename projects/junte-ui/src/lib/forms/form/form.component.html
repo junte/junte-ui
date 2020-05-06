@@ -1,9 +1,10 @@
 <form>
+
   <header *ngIf="!!title">
     <h3>{{title}}</h3>
   </header>
 
-  <div content>
+  <div data-content>
     <ng-content></ng-content>
   </div>
 
@@ -11,10 +12,10 @@
     <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
   </footer>
 
-  <div *ngIf="state === formState.loading" loading>
+  <div *ngIf="state === formState.loading" data-loading>
     <jnt-spinner [size]="ui.size.large"></jnt-spinner>
   </div>
-  <div *ngIf="state === formState.error" error>
+  <div *ngIf="state === formState.error" data-error>
     <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
   </div>
 

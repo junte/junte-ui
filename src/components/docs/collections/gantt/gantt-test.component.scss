@@ -1,5 +1,5 @@
 @import "../../component";
-@import "variables";
+@import "jnt-variables";
 
 [resources] {
   position: absolute;
@@ -11,11 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: $gutter-tiny;
+  margin: $jnt-gutter-tiny;
   text-align: center;
-  border-radius: $corner-large;
-  background-color: $primary-color;
-  color: $white-color;
+  border-radius: $jnt-corner-large;
+  background-color: $jnt-primary-color;
+  color: $jnt-white-color;
   height: 40px;
   pointer-events: none;
   overflow: hidden;
@@ -27,15 +27,15 @@
   }
 
   &[accepted='true'] {
-    background-color: $success-color;
+    background-color: $jnt-success-color;
   }
 
   &[declined='true'] {
-    background-color: $fail-color;
+    background-color: $jnt-fail-color;
   }
 
   &[used='true'] {
-    background-color: $gray-600-color;
+    background-color: $jnt-gray-600-color;
   }
 
   &[short='true'] {
@@ -55,6 +55,6 @@
   }
 
   &[self-expense='true'] {
-    border: 1px dashed $gray-800-color;
+    border: 1px dashed $jnt-gray-800-color;
   }
 }

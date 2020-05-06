@@ -1,4 +1,4 @@
-import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
@@ -47,7 +47,6 @@ export class MenuItemComponent {
   })
   @Input() target: string = DEFAULT_TARGET;
 
-
   @PropertyApi({
     description: 'Methods of matching',
     path: 'ui.url.matching',
@@ -81,6 +80,6 @@ export class MenuItemComponent {
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
-  @ContentChildren(MenuComponent)
-  submenus: QueryList<MenuComponent>;
+  @ContentChild(MenuComponent, {static: false})
+  submenu: MenuComponent;
 }

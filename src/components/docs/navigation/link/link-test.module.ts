@@ -7,6 +7,7 @@ import {
   CheckboxModule,
   FormModule,
   GridModule,
+  IconModule,
   LinkModule,
   SelectModule,
   StackModule,
@@ -20,6 +21,7 @@ import { LinkTestComponent } from './link-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),

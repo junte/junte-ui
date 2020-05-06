@@ -11,11 +11,11 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormState } from './enums';
+import { FormArray, FormGroup } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
+import { FormState } from './enums';
 
 @Component({
   selector: 'jnt-form',
@@ -37,13 +37,6 @@ export class FormComponent implements OnInit {
   form: FormGroup;
 
   @PropertyApi({
-    description: 'Form loading',
-    type: 'boolean',
-  })
-  @Input()
-  loading = false;
-
-  @PropertyApi({
     description: 'Title for form',
     type: 'string',
   })
@@ -52,7 +45,7 @@ export class FormComponent implements OnInit {
 
   @PropertyApi({
     description: 'State of form',
-    path: 'ui.form.state',
+    path: 'ui.forms.state',
     options: [FormState.error,
       FormState.loading]
   })
@@ -69,15 +62,19 @@ export class FormComponent implements OnInit {
   controls: QueryList<FormControlComponent>;
 
   ngOnInit() {
-    this.form.statusChanges.subscribe(() => {
-      const controls = this.controls;
-      controls.filter(c => !!c.name && !!c.messages.length)
-        .forEach(c => {
-          const control = this.form.get(c.name);
-          const messages = c.messages;
-          messages.forEach(m => m.active = !!(control.hasError(m.type) && control.errors && control.dirty));
-        });
-    });
+    if (!!this.form) {
+      this.form.statusChanges.subscribe(() => {
+        this.controls.filter(component => !!component.name && !!component.messages.length)
+          .forEach(component => {
+            const control = component.getControl();
+            if (!!control) {
+              const messages = component.messages;
+              messages.forEach(message => message.active = !!(control.hasError(message.type)
+                && control.errors && control.dirty));
+            }
+          });
+      });
+    }
   }
 
   @HostListener('submit')
@@ -87,17 +84,34 @@ export class FormComponent implements OnInit {
 
       if (this.form.valid) {
         this.submitted.emit();
+        this.refresh(this.form);
       }
     }
   }
 
-  private check(form: any) {
-    for (const i in form.controls) {
-      const control = form.controls[i];
-      control.markAsDirty();
-      control.updateValueAndValidity();
-      this.check(control);
-    }
+  private check(form: FormGroup | FormArray) {
+    Object.keys(form.controls).forEach((key: string) => {
+      const control = form.controls[key];
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.check(control);
+      } else {
+        control.markAsDirty();
+        control.updateValueAndValidity();
+      }
+    });
   }
 
+  private refresh(form: FormGroup | FormArray) {
+    Object.keys(form.controls).forEach((key: string) => {
+      const control = form.controls[key];
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.refresh(control);
+      } else {
+        control.markAsPristine();
+        control.markAsPristine();
+      }
+    });
+  }
 }

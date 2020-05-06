@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
+import { StackModule } from '../../layout/stack/stack.module';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { CheckboxComponent } from './checkbox.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    IconModule
+    IconModule,
+    StackModule
   ],
   exports: [
     CheckboxComponent,

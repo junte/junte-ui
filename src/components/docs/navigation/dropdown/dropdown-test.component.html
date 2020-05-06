@@ -1,8 +1,16 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.select"></jnt-icon>
+    </span>
+    <span i18n="@@label.dropdown">Dropdown</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/navigation/dropdown"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/dropdown"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -12,7 +20,6 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.dropdown">Dropdown</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -29,30 +36,35 @@
         <ng-template #tabContentTemplate>
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
-              <jnt-dropdown>
-                <ng-template #triggerTemplate let-action="trigger">
-                  <jnt-button [icon]="ui.icons.actions" text="More" (click)="action()"></jnt-button>
-                </ng-template>
-                <ng-template #dropdownTemplate let-action="trigger">
-                  <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-                    <jnt-menu-item title="Edit"
-                                   i18n-title="@@label.edit"
-                                   [icon]="ui.icons.edit"
-                                   (click)="action()">
-                    </jnt-menu-item>
-                    <jnt-menu-item title="Delete"
-                                   i18n-title="@@label.delete"
-                                   [icon]="ui.icons.delete"
-                                   (click)="action()">
-                    </jnt-menu-item>
-                    <jnt-menu-item title="Copy"
-                                   i18n-title="@@label.copy"
-                                   [icon]="ui.icons.copy"
-                                   (click)="action()">
-                    </jnt-menu-item>
-                  </jnt-menu>
-                </ng-template>
-              </jnt-dropdown>
+              <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                <jnt-dropdown>
+                  <ng-template #triggerTemplate let-action="trigger">
+                    <jnt-button [icon]="ui.icons.actions" text="Links" (click)="action()"></jnt-button>
+                  </ng-template>
+                  <ng-template #dropdownTemplate let-action="trigger">
+                    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
+                      <jnt-menu-item title="Home"
+                                     i18n-title="@@label.home"
+                                     [icon]="ui.icons.home"
+                                     [link]="['/']"></jnt-menu-item>
+                      <jnt-menu-item title="Google"
+                                     [icon]="ui.icons.link"
+                                     link="https:\\google.com"
+                                     [matching]="ui.url.matching.wildcard">
+                      </jnt-menu-item>
+                    </jnt-menu>
+                  </ng-template>
+                </jnt-dropdown>
+
+                <jnt-dropdown>
+                  <ng-template #triggerTemplate let-action="trigger">
+                    <jnt-button [icon]="ui.icons.actions" text="More" (click)="action()"></jnt-button>
+                  </ng-template>
+                  <ng-template #dropdownTemplate let-action="trigger">
+                    <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
+                  </ng-template>
+                </jnt-dropdown>
+              </jnt-stack>
             </ng-template>
           </app-browser-preview>
         </ng-template>

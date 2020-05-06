@@ -16,7 +16,7 @@ export class DotTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  colorControl = this.fb.control(UI.color.orange);
+  colorControl = this.fb.control(UI.color.purple);
 
   builder = this.fb.group({
     color: this.colorControl

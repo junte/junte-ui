@@ -6,6 +6,7 @@ import { SkeletonTestModule } from './skeleton/skeleton-test.module';
 import { GridTestModule } from './grid/grid-test.module';
 import { BlockTestModule } from './block/block-test.module';
 import { AppLayoutTestModule } from './app/app-layout-test.module';
+import { ResponsiveTestModule } from './responsive/responsive-test.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AppLayoutTestModule } from './app/app-layout-test.module';
     GridTestModule,
     SkeletonTestModule,
     SpinnerTestModule,
-    StackTestModule
+    StackTestModule,
+    ResponsiveTestModule
   ]
 })
 export class LayoutTestModule {

@@ -1,204 +1,207 @@
-@import "variables";
+@import "jnt-variables";
+@import "jnt-functions";
 
-$popover-arrow-width: 10px !default;
-$popover-arrow-shift: $gutter-normal !default;
-$popover-distance: $gutter-tiny !default;
-$popover-spacing: $popover-arrow-width + $popover-distance;
-$popover-background: $primary-light-color !default;
-$popover-corner: $corner-small !default;
-$popover-min-width: 50px !default;
-$popover-shadow: $shadow-normal !default;
-$popover-padding-x: $gutter-normal !default;
-$popover-padding-y: $gutter-normal !default;
-
-$popover-title-color: $white-color !default;
-$popover-title-spacing: $gutter-normal !default;
-$popover-title-font-weight: $font-weight-bold !default;
-$popover-content-color: $white-color !default;
-
-$popover-schemes: (
-  #{$scheme-primary}: (
-    background-color: $primary-light-color,
-    color: $white-color
-  ),
-  #{$scheme-secondary}: (
-    background-color: $secondary-color,
-    color: $primary-text-color
-  ),
-  #{$scheme-success}: (
-    background-color: $success-color,
-    color: $white-color
-  ),
-  #{$scheme-fail}: (
-    background-color: $fail-color,
-    color: $white-color
-  ),
-) !default;
-
-@mixin scheme($scheme) {
-  [wrapper] {
-    background-color: #{map-get($scheme, background-color)};
-    [title] {
-      color: #{map-get($scheme, color)};
+@mixin popover-scheme($scheme) {
+  [data-wrapper] {
+    background-color: map-get($scheme, background-color);
+    [data-title] {
+      color: map-get($scheme, color);
     }
   }
-  [title] {
-    color: #{map-get($scheme, color)};
+  [data-arrow] {
+    border-top-color: map-get($scheme, background-color);
+  }
+  [data-title] {
+    color: map-get($scheme, color);
   }
 }
 
-:host {
-  position: absolute;
-  z-index: 100;
-  user-select: text;
-  display: block;
+@mixin jnt-popover($passed: (), $context: null, $strategy: 'changes') {
 
-  @each $scheme, $map in $popover-schemes {
-    &[scheme='#{$scheme}'] {
-      @include scheme($map);
-    }
+  $defs: (
+    spacing: 14px,
+    arrow-shift: $jnt-gutter-normal,
+    schemes: (
+      primary: (
+        background-color: $jnt-primary-light-color,
+        color: $jnt-white-color
+      ),
+      secondary: (
+        background-color: $jnt-secondary-background,
+        color: $jnt-primary-text-color
+      ),
+      success: (
+        background-color: $jnt-success-color,
+        color: $jnt-white-color
+      ),
+      fail: (
+        background-color: $jnt-fail-color,
+        color: $jnt-white-color
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
   }
 
-  [arrow] {
-    width: 0;
-    height: 0;
-    border: $popover-arrow-width solid transparent;
-    border-top-color: $popover-background;
+  :host, #{$context} {
     position: absolute;
-    display: none;
-  }
+    z-index: 100;
+    user-select: text;
+    display: block;
 
-  &.top,
-  &.top-left,
-  &.top-right {
-    padding-bottom: $popover-spacing;
+    @if map-has-key($vars, schemes) {
+      @each $scheme, $map in map-get($vars, schemes) {
+        &[data-scheme='#{$scheme}'] {
+          @include popover-scheme($map);
+        }
+      }
+    }
 
-    [arrow] {
-      top: calc(100% - #{$popover-spacing});
+    [data-arrow] {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      position: absolute;
+      display: none;
+    }
+
+    &.top,
+    &.top-left,
+    &.top-right {
+      padding-bottom: map-get($vars, spacing);
+
+      [data-arrow] {
+        top: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.right,
+    &.right-top,
+    &.right-bottom {
+      padding-left: map-get($vars, spacing);
+
+      [data-arrow] {
+        right: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.bottom,
+    &.bottom-left,
+    &.bottom-right {
+      padding-top: map-get($vars, spacing);
+
+      [data-arrow] {
+        bottom: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.left,
+    &.left-top,
+    &.left-bottom {
+      padding-right: map-get($vars, spacing);
+
+      [data-arrow] {
+        left: calc(100% - #{map-get($vars, spacing)});
+      }
+    }
+
+    &.top,
+    &.bottom {
+      [data-arrow] {
+        left: 50%;
+      }
+    }
+
+    &.left,
+    &.right {
+      [data-arrow] {
+        top: 50%;
+      }
+    }
+
+    &.top-left,
+    &.bottom-left {
+      [data-arrow] {
+        left: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.top-right,
+    &.bottom-right {
+      [data-arrow] {
+        right: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.left-top,
+    &.right-top {
+      [data-arrow] {
+        top: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.left-bottom,
+    &.right-bottom {
+      [data-arrow] {
+        bottom: map-get($vars, arrow-shift);
+      }
+    }
+
+    &.right-top,
+    &.right-bottom {
+      [data-arrow] {
+        transform: rotate(90deg);
+      }
+    }
+
+    &.bottom-left,
+    &.bottom-right {
+      [data-arrow] {
+        transform: rotate(180deg);
+      }
+    }
+
+    &.left-top,
+    &.left-bottom {
+      [data-arrow] {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &.top [data-arrow] {
+      transform: translateX(-50%);
+    }
+
+    &.right [data-arrow] {
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    &.bottom [data-arrow] {
+      transform: translateX(-50%) rotate(180deg);
+    }
+
+    &.left [data-arrow] {
+      transform: translateY(-50%) rotate(-90deg);
     }
   }
 
-  &.right,
-  &.right-top,
-  &.right-bottom {
-    padding-left: $popover-spacing;
+  #{$context} [data-wrapper] {
+    border-radius: $jnt-corner-small;
+    box-shadow: $jnt-shadow-normal;
+    padding: $jnt-gutter-normal;
 
-    [arrow] {
-      right: calc(100% - #{$popover-spacing});
+    [data-title] {
+      font-weight: $jnt-font-weight-bold;
+      margin-bottom: $jnt-gutter-normal;
     }
-  }
-
-  &.bottom,
-  &.bottom-left,
-  &.bottom-right {
-    padding-top: $popover-spacing;
-
-    [arrow] {
-      bottom: calc(100% - #{$popover-spacing});
+    [data-content] {
+      max-width: 300px;
     }
-  }
-
-  &.left,
-  &.left-top,
-  &.left-bottom {
-    padding-right: $popover-spacing;
-
-    [arrow] {
-      left: calc(100% - #{$popover-spacing});
-    }
-  }
-
-  &.top,
-  &.bottom {
-    [arrow] {
-      left: 50%;
-    }
-  }
-
-  &.left,
-  &.right {
-    [arrow] {
-      top: 50%;
-    }
-  }
-
-  &.top-left,
-  &.bottom-left {
-    [arrow] {
-      left: $popover-arrow-shift;
-    }
-  }
-
-  &.top-right,
-  &.bottom-right {
-    [arrow] {
-      right: $popover-arrow-shift;
-    }
-  }
-
-  &.left-top,
-  &.right-top {
-    [arrow] {
-      top: $popover-arrow-shift;
-    }
-  }
-
-  &.left-bottom,
-  &.right-bottom {
-    [arrow] {
-      bottom: $popover-arrow-shift;
-    }
-  }
-
-  &.right-top,
-  &.right-bottom {
-    [arrow] {
-      transform: rotate(90deg);
-    }
-  }
-
-  &.bottom-left,
-  &.bottom-right {
-    [arrow] {
-      transform: rotate(180deg);
-    }
-  }
-
-  &.left-top,
-  &.left-bottom {
-    [arrow] {
-      transform: rotate(-90deg);
-    }
-  }
-
-  &.top [arrow] {
-    transform: translateX(-50%);
-  }
-
-  &.right [arrow] {
-    transform: translateY(-50%) rotate(90deg);
-  }
-
-  &.bottom [arrow] {
-    transform: translateX(-50%) rotate(180deg);
-  }
-
-  &.left [arrow] {
-    transform: translateY(-50%) rotate(-90deg);
-  }
-}
-
-[wrapper] {
-  border-radius: $popover-corner;
-  box-shadow: $popover-shadow;
-  padding: $popover-padding-x $popover-padding-y;
-
-  [title] {
-    font-weight: $popover-title-font-weight;
-    margin-bottom: $popover-title-spacing;
-  }
-  [content] {
-    opacity: .5;
-    max-width: 300px;
   }
 }

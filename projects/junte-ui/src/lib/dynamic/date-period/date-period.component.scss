@@ -1,63 +1,58 @@
-@import "variables";
+@import "jnt-variables";
 
-$date-period-background: $muted-color;
-$date-period-height: 3px;
-$date-period-font-size: 12px;
-$date-period-arrow-color: $primary-color;
-$date-period-progress-background: $primary-color;
-$date-period-fail-progress-background: $fail-color;
-$date-period-corner: 1px;
+@mixin jnt-date-period($passed: (), $context: null, $strategy: 'changes') {
 
-:host {
-  display: flex;
-  flex-direction: column;
-}
-
-[date] {
-  font-size: $date-period-font-size;
-  display: flex;
-  flex-direction: column;
-  &[left] {
-    align-items: flex-start;
+  :host, #{$context} {
+    display: flex;
+    flex-direction: column;
   }
-  &[right] {
-    align-items: flex-end;
-    margin-left: auto;
-  }
-  [line] {
-    display: inline-flex;
-    height: 8px;
-    border-top: 2px solid $date-period-arrow-color;
-    border-radius: $date-period-corner $date-period-corner 0 0;
-    [arrow] {
-      display: inline-block;
-      border: 5px solid transparent;
-      border-top: 8px solid $date-period-arrow-color;
+
+  #{$context} [data-date] {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    &[data-left] {
+      align-items: flex-start;
+    }
+    &[data-right] {
+      align-items: flex-end;
+      margin-left: auto;
+    }
+    [data-line] {
+      display: inline-flex;
+      height: 8px;
+      border-top: 2px solid $jnt-primary-color;
+      border-radius: 1px 1px 0 0;
+      [data-arrow] {
+        display: inline-block;
+        border: 5px solid transparent;
+        border-top: 8px solid $jnt-primary-color;
+      }
     }
   }
-}
 
-[bar] {
-  background-color: $date-period-background;
-  min-height: $date-period-height;
-  height: $date-period-height;
-  border-radius: $date-period-corner;
-  box-sizing: border-box;
-  [progress] {
-    background-color: $date-period-progress-background;
-    height: 100%;
-    border-radius: $date-period-corner;
-    width: 0;
-    max-width: 100%;
+  #{$context} [data-bar] {
+    background-color: $jnt-muted-color;
+    min-height: 3px;
+    height: 3px;
+    border-radius: 1px;
+    box-sizing: border-box;
+    [data-progress] {
+      background-color: $jnt-primary-color;
+      height: 100%;
+      border-radius: 1px;
+      width: 0;
+      max-width: 100%;
 
-    &[full] {
-      width: 100%;
+      &[data-full] {
+        width: 100%;
+      }
     }
   }
-}
 
-[days] {
-  text-align: center;
-  margin-top: $gutter-small;
-  font-size: $date-period-font-size;
+  #{$context} [data-days] {
+    text-align: center;
+    margin-top: $jnt-gutter-small;
+    font-size: 12px;
+  }
 }

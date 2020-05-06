@@ -26,9 +26,9 @@ import {
   startOfWeek,
   subMonths
 } from 'date-fns';
-import { JunteUIModuleConfig } from '../../config';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { Period } from './enums';
@@ -73,6 +73,15 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   @Output()
   updated = new EventEmitter<Period>();
+
+  @PropertyApi({
+    description: 'Set disabled state',
+    type: 'boolean',
+    default: 'false',
+  })
+  @HostBinding('attr.data-disabled')
+  @Input()
+  disabled = false;
 
   @PropertyApi({
     description: 'Set current year',
@@ -136,8 +145,14 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   registerOnTouched(fn): void {
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
   private update() {
-    const start = startOfWeek(this.period, {weekStartsOn: this.config.locale.dfns.options.weekStartsOn});
+    const start = startOfWeek(this.period, {
+      weekStartsOn: this.config.locale ? this.config.locale.dfns.options.weekStartsOn : 1
+    });
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {

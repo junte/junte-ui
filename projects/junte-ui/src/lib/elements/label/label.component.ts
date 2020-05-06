@@ -14,7 +14,10 @@ export class LabelComponent {
 
   ui = UI;
 
-  @HostBinding('attr.size')
+  @HostBinding('style.background-color')
+  _color: string = Color.purple;
+
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
@@ -34,8 +37,13 @@ export class LabelComponent {
     type: 'string',
     default: 'purple'
   })
-  @HostBinding('style.background-color')
-  @Input() color: string = Color.purpleDark;
+  @Input() set color(color: string) {
+    this._color = color || Color.purple;
+  }
+
+  get color() {
+    return this._color;
+  }
 
   @PropertyApi({
     description: 'Label size',
@@ -43,7 +51,6 @@ export class LabelComponent {
     default: Size.normal,
     options: [Size.small, Size.normal]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }

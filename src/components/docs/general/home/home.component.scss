@@ -1,4 +1,5 @@
-@import "variables";
+@import "jnt-variables";
+@import "elements/icon/icon";
 
 :host {
   display: block;
@@ -9,34 +10,37 @@ h1, h2 {
 }
 
 h3 {
-  color: $primary-color;
+  color: $jnt-primary-color;
 }
 
 h1 {
   span {
-    border: 3px solid $primary-text-color;
-    border-radius: $corner-normal;
-    padding: 0 $gutter-small;
-    background: $secondary-color;
-    color: $green-dark-color;
+    border: 3px solid $jnt-primary-text-color;
+    border-radius: $jnt-corner-normal;
+    padding: 0 $jnt-gutter-small;
+    background: $jnt-secondary-color;
+    color: $jnt-green-dark-color;
   }
 }
 
 h2 [arnold] {
-  width: 48px;
-  height: 48px;
+  @include jnt-icon((
+    size: 48px,
+  ), '&', true);
 }
 
 p {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 16px;
-    height: 16px;
+  jnt-icon {
+    @include jnt-icon((
+      size: 16px,
+    ), '&', true);
   }
 }
 
 h5 {
-  ::ng-deep jnt-icon[host=#{$jnt-icon-host}]:not([type='font']) {
-    width: 20px;
-    height: 20px;
+  jnt-icon {
+    @include jnt-icon((
+      size: 20px,
+    ), '&', true);
   }
 }

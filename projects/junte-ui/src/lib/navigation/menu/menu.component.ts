@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Orientation } from '../../core/enums/orientation';
 import { Size } from '../../core/enums/size';
@@ -15,12 +15,12 @@ export class MenuComponent {
 
   ui = UI;
 
-  @HostBinding('attr.type')
-  _type: Orientation = Orientation.horizontal;
+  @HostBinding('attr.data-orientation')
+  _orientation: Orientation = Orientation.horizontal;
 
   _spacer: Size = Size.normal;
 
-  @HostBinding('attr.collapsed')
+  @HostBinding('attr.data-collapsed')
   @Input() collapsed = false;
 
   @PropertyApi({
@@ -29,12 +29,12 @@ export class MenuComponent {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-  @Input() set type(type: Orientation) {
-    this._type = type || Orientation.horizontal;
+  @Input() set orientation(orientation: Orientation) {
+    this._orientation = orientation || Orientation.horizontal;
   }
 
-  get type() {
-    return this._type;
+  get orientation() {
+    return this._orientation;
   }
 
   @PropertyApi({
@@ -52,10 +52,15 @@ export class MenuComponent {
     return this._spacer;
   }
 
+  @Output()
+  selected = new EventEmitter<MenuItemComponent>();
+
   @ContentChildren(forwardRef(() => MenuItemComponent))
   items: QueryList<MenuItemComponent>;
 
   open(item: MenuItemComponent) {
-    this.items.forEach(i => i.opened = i === item ? !item.opened : false);
+    if (item.submenu) {
+      this.items.forEach(i => i.opened = i === item ? !item.opened : false);
+    }
   }
 }

@@ -11,7 +11,8 @@ import {
   SelectModule,
   StackModule,
   SwitcherModule,
-  TabsModule
+  TabsModule,
+  DotModule, CheckboxModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -31,7 +32,9 @@ import { BadgeTestComponent } from './badge-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    SharedModule,
+    DotModule
   ],
   exports: [
     BadgeTestComponent

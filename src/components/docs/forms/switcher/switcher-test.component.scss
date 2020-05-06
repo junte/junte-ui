@@ -1,1 +1,10 @@
 @import "../../component";
+@import "forms/switcher/switcher";
+
+[max-height='true'] {
+  @include jnt-switcher((
+    vertical: (
+      max-height: 50px
+    )
+  ), '&', true)
+}

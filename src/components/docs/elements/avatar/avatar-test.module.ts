@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  ArrayPipeModule,
+  ArrayPipesModule,
   AvatarModule,
   BlockModule,
   CheckboxModule,
   FormModule,
   GridModule,
+  IconModule,
   LinkModule,
   SelectModule,
   StackModule,
@@ -22,6 +23,7 @@ import { AvatarTestComponent } from './avatar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
@@ -32,7 +34,7 @@ import { AvatarTestComponent } from './avatar-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    ArrayPipeModule,
+    ArrayPipesModule,
     SharedModule
   ],
   exports: [

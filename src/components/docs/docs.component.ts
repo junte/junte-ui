@@ -50,5 +50,4 @@ export class DocsComponent implements OnInit, AfterViewInit {
     this.modalService.register(this.modal);
     this.popoverService.register(this.popover);
   }
-
 }

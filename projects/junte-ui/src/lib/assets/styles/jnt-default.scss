@@ -1,0 +1,57 @@
+@import "jnt-variables";
+
+input, textarea, select {
+  height: 38px;
+  outline: 0;
+  background-color: $jnt-control-background;
+  color: $jnt-primary-text-color;
+  padding: 0 $jnt-gutter-normal;
+  border-radius: $jnt-corner-small;
+  border: 1px solid $jnt-control-border-color;
+  box-sizing: border-box;
+  transition: all .3s;
+  &:disabled {
+    background-color: $jnt-control-disabled-background;
+    pointer-events: none;
+  }
+  &:hover {
+    border-color: $jnt-primary-color;
+  }
+  &:focus {
+    box-shadow: $jnt-shadow-primary;
+    border-color: $jnt-primary-color;
+  }
+}
+
+textarea {
+  height: auto;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+button {
+  color: $jnt-white-color;
+  background-color: $jnt-primary-color;
+  padding: 0 38px;
+  font-size: $jnt-font-size-base;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  outline: 0;
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: $jnt-corner-large;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  &:hover, &:focus {
+    background-color: $jnt-primary-dark-color;
+  }
+  &:focus {
+    box-shadow: 0 1px 5px $jnt-primary-color;
+  }
+}

@@ -4,6 +4,10 @@ export class LocalUI {
     preview: 'preview:svg:local',
     code: 'code:svg:local',
     api: 'api:svg:local',
+    mobile: 'mobile:svg:local',
+    tablet: 'tablet:svg:local',
+    desktop: 'desktop:svg:local',
+    wide: 'wide:svg:local',
     cup: 'cup:font:junte-ui-test-layout',
     bio: 'bio:font:junte-ui-test-default',
     certificate: 'certificate:font:junte-ui-test-default',
@@ -12,37 +16,70 @@ export class LocalUI {
     network: 'network:font:junte-ui-test-default',
     skills: 'skills:font:junte-ui-test-default',
     general: 'general:font:junte-ui-test-default',
-
-    heroes: {
+    // heroes
       spiderman: 'spiderman:svg:local',
       ironman: 'ironman:svg:local',
-      capitan: 'capitan:svg:local'
-    },
-
-    menu: {
+      capitan: 'capitan:svg:local',
+    // menu:
       documentation: 'documentation:font:junte-ui-test-default',
       contacts: 'contacts:font:junte-ui-test-default',
-
+      home: 'home:font:junte-ui-test-layout',
+      theming: 'theming:font:junte-ui-test-layout',
+      typography: 'typography:font:junte-ui-test-layout',
       layout: 'layout:font:junte-ui-test-default',
-      general: 'general:font:junte-ui-test-default',
+      grid: 'grid:font:junte-ui-test-layout',
+      block: 'block:font:junte-ui-test-layout',
+      responsive: 'responsive:font:junte-ui-test-layout',
+      skeleton: 'skeleton:font:junte-ui-test-layout',
+      spinner: 'spinner:font:junte-ui-test-layout',
       navigation: 'navigation:font:junte-ui-test-default',
+      link: 'link:font:junte-ui-test-layout',
+      menu: 'menu:font:junte-ui-test-layout',
+      tabs: 'tabs:font:junte-ui-test-layout',
+      pager: 'pager:font:junte-ui-test-layout',
+      breadcrumbs: 'breadcrumbs:font:junte-ui-test-layout',
+      anchor: 'anchor:font:junte-ui-test-layout',
       collections: 'collections:font:junte-ui-test-default',
+      gantt: 'gantt:font:junte-ui-test-layout',
+      table: 'table:font:junte-ui-test-layout',
+      accordion: 'accordion:font:junte-ui-test-layout',
       elements: 'elements:font:junte-ui-test-default',
+      icon: 'icon:font:junte-ui-test-layout',
+      avatar: 'avatar:font:junte-ui-test-layout',
+      badge: 'badge:font:junte-ui-test-layout',
+      label: 'label:font:junte-ui-test-layout',
+      dot: 'dot:font:junte-ui-test-layout',
       forms: 'forms:font:junte-ui-test-default',
       overlays: 'overlays:font:junte-ui-test-default',
+      modal: 'modal:font:junte-ui-test-layout',
+      popover: 'popover:font:junte-ui-test-layout',
       dynamic: 'dynamic:font:junte-ui-test-default',
+      progressBar: 'progress-bar:font:junte-ui-test-layout',
+      circleBar: 'circle-bar:font:junte-ui-test-layout',
+      chart: 'chart:font:junte-ui-test-layout',
+      datePeriod: 'date-period:font:junte-ui-test-layout',
       other: 'other:font:junte-ui-test-default',
-    },
-
-    layout: {
-      padding: {
-        tiny: 'padding-tiny:font:junte-ui-test-layout',
-        small: 'padding-small:font:junte-ui-test-layout',
-        normal: 'padding-normal:font:junte-ui-test-layout',
-        large: 'padding-large:font:junte-ui-test-layout',
-        big: 'padding-big:font:junte-ui-test-layout',
-        huge: 'padding-huge:font:junte-ui-test-layout'
-      },
+      confirm: 'confirm:font:junte-ui-test-layout',
+      button: 'button:font:junte-ui-test-layout',
+      calendar: 'calendar:font:junte-ui-test-layout',
+      checkbox: 'checkbox:font:junte-ui-test-layout',
+      datePicker: 'date-picker:font:junte-ui-test-layout',
+      input: 'input:font:junte-ui-test-layout',
+      radio: 'radio:font:junte-ui-test-layout',
+      select: 'select:font:junte-ui-test-layout',
+      switch: 'switch:font:junte-ui-test-layout',
+      switcher: 'switcher:font:junte-ui-test-layout',
+      pipes: 'pipes:font:junte-ui-test-layout',
+      message: 'message:font:junte-ui-test-layout',
+    // layout
+     padding: {
+       tiny: 'padding-tiny:font:junte-ui-test-layout',
+       small: 'padding-small:font:junte-ui-test-layout',
+       normal: 'padding-normal:font:junte-ui-test-layout',
+       large: 'padding-large:font:junte-ui-test-layout',
+       big: 'padding-big:font:junte-ui-test-layout',
+       huge: 'padding-huge:font:junte-ui-test-layout',
+     },
       gutter: {
         tiny: 'gutter-tiny:font:junte-ui-test-layout',
         small: 'gutter-small:font:junte-ui-test-layout',
@@ -51,10 +88,13 @@ export class LocalUI {
         large: 'gutter-large:font:junte-ui-test-layout',
         huge: 'gutter-huge:font:junte-ui-test-layout',
       },
-      width: {
+      // width
         default: 'width-default:font:junte-ui-test-layout',
-        fluid: 'width-fluid:font:junte-ui-test-layout'
-      },
+        fluid: 'width-fluid:font:junte-ui-test-layout',
+      // textAlign
+        left: 'text-align-left:font:junte-ui-test-layout',
+        right: 'text-align-right:font:junte-ui-test-layout',
+
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
       start: 'start:font:junte-ui-test-layout',
@@ -68,6 +108,5 @@ export class LocalUI {
       evenly: 'evenly:font:junte-ui-test-layout',
       between: 'between:font:junte-ui-test-layout',
       baseline: 'baseline:font:junte-ui-test-layout',
-    }
   };
 }

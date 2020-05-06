@@ -1,0 +1,212 @@
+@import "hosts";
+
+/* -------------------------------------------------------------------
+ Palette
+------------------------------------------------------------------- */
+
+$jnt-white-color: white !default;
+$jnt-black-color: black !default;
+$jnt-teal-color: #1D2932 !default;
+$jnt-yellow-color: #F8DB42 !default;
+$jnt-orange-color: #EE8030 !default;
+
+$jnt-blue-color: #E7F5FF !default;
+$jnt-blue-100-color: #E6E9FA !default;
+
+$jnt-green-color: #00CCB1 !default;
+$jnt-green-dark-color: #00B89F !default;
+$jnt-red-color: #FF6262 !default;
+$jnt-red-dark-color: #DE5B5B !default;
+
+$jnt-purple-color: #3949AB !default;
+$jnt-purple-dark-color: #00227B !default;
+$jnt-purple-light-color: #6F74DD !default;
+$jnt-purple-lighten-color: #C4C9E7 !default;
+
+$jnt-gray-100-color: #F5F5F5 !default;
+$jnt-gray-200-color: #F7F7F7 !default;
+$jnt-gray-300-color: #F0F0F0 !default;
+$jnt-gray-400-color: #E9E9E9 !default;
+$jnt-pale-navy-color: #F3F4FC !default;
+$jnt-gray-600-color: #C4C4C4 !default;
+$jnt-gray-700-color: #D0D0D0 !default;
+$jnt-gray-800-color: #828282 !default;
+$jnt-gray-900-color: #4F4F4F !default;
+$jnt-gray-dark-color: #343434 !default;
+
+/* -------------------------------------------------------------------
+ Scheme
+------------------------------------------------------------------- */
+
+$jnt-primary-color: $jnt-purple-color !default;
+$jnt-primary-dark-color: $jnt-purple-dark-color !default;
+$jnt-primary-light-color: $jnt-purple-light-color !default;
+
+$jnt-secondary-color: $jnt-pale-navy-color !default;
+$jnt-secondary-dark-color: $jnt-blue-100-color !default;
+
+$jnt-success-color: $jnt-green-color !default;
+$jnt-success-dark-color: $jnt-green-dark-color !default;
+
+$jnt-warning-color: $jnt-orange-color !default;
+
+$jnt-fail-color: $jnt-red-color !default;
+$jnt-fail-dark-color: $jnt-red-dark-color !default;
+
+$jnt-muted-color: $jnt-gray-400-color !default;
+
+/* -------------------------------------------------------------------
+ Outline
+------------------------------------------------------------------- */
+
+$jnt-outline-fill-name: 'fill';
+$jnt-outline-ghost-name: 'ghost';
+$jnt-outline-transparent-name: 'transparent';
+
+/* -------------------------------------------------------------------
+ Background
+------------------------------------------------------------------- */
+
+$jnt-primary-background: $jnt-white-color !default;
+$jnt-secondary-background: $jnt-secondary-color !default;
+$jnt-highlight-background: $jnt-gray-300-color !default;
+
+/* TODO: think about it */
+$jnt-page-background: $jnt-gray-200-color !default;
+
+/* -------------------------------------------------------------------
+ Gutters
+------------------------------------------------------------------- */
+
+$jnt-gutter-base: 4px !default;
+
+$jnt-gutter-none: 0 !default;
+$jnt-gutter-tiny: $jnt-gutter-base !default;
+$jnt-gutter-small: $jnt-gutter-base * 2 !default;
+$jnt-gutter-normal: $jnt-gutter-base * 4 !default;
+$jnt-gutter-big: $jnt-gutter-base * 6 !default;
+$jnt-gutter-large: $jnt-gutter-base * 8 !default;
+$jnt-gutter-huge: $jnt-gutter-base * 12 !default;
+
+/* -------------------------------------------------------------------
+ Corners
+------------------------------------------------------------------- */
+
+$jnt-corner-base: 4px !default;
+
+$jnt-corner-small: $jnt-corner-base !default;
+$jnt-corner-normal: $jnt-corner-base * 2 !default;
+$jnt-corner-large: $jnt-corner-base * 10 !default;
+
+/* -------------------------------------------------------------------
+ Shadows
+------------------------------------------------------------------- */
+
+$jnt-shadow-light: 0px 4px 10px rgba($jnt-black-color, .15) !default;
+$jnt-shadow-normal: 0px 2px 8px rgba($jnt-black-color, .25) !default;
+$jnt-shadow-primary: 0px 2px 8px rgba($jnt-primary-color, .25) !default;
+
+/* -------------------------------------------------------------------
+ Grid break points
+------------------------------------------------------------------- */
+
+$jnt-grid-gutter: $jnt-gutter-normal !default;
+$jnt-mobile-breakpoint: 0;
+$jnt-tablet-breakpoint: 768px;
+$jnt-desktop-breakpoint: 992px;
+$jnt-wide-breakpoint: 1200px;
+
+$jnt-grid-breakpoints: (
+  mobile: $jnt-mobile-breakpoint,
+  tablet: $jnt-tablet-breakpoint,
+  desktop: $jnt-desktop-breakpoint,
+  wide: $jnt-wide-breakpoint
+) !default;
+
+/* -------------------------------------------------------------------
+ Text
+------------------------------------------------------------------- */
+
+$jnt-primary-text-color: $jnt-gray-900-color !default;
+$jnt-primary-text-dark-color: $jnt-gray-dark-color !default;
+$jnt-primary-text-light-color: $jnt-gray-800-color !default;
+$jnt-primary-text-inverse-color: $jnt-white-color !default;
+
+/* -------------------------------------------------------------------
+ Typography
+------------------------------------------------------------------- */
+$jnt-font-size-tiny: 11px !default;
+$jnt-font-size-small: 13px !default;
+$jnt-font-size-base: 14px !default;
+$jnt-font-size-large: 16px !default;
+
+$jnt-font-weight-light: 300 !default;
+$jnt-font-weight-base: 400 !default;
+$jnt-font-weight-bold: 600 !default;
+
+$jnt-line-height-base: 1.5 !default;
+$jnt-line-height-large: 2.5 !default;
+$jnt-line-height-small: 1 !default;
+
+$jnt-font-family-base: Open Sans, Arial !default;
+
+$jnt-h1-font-size: $jnt-font-size-base * 4 !default;
+$jnt-h2-font-size: $jnt-font-size-base * 3 !default;
+$jnt-h3-font-size: $jnt-font-size-base * 1.85 !default;
+$jnt-h4-font-size: $jnt-font-size-base * 1.28 !default;
+$jnt-h5-font-size: $jnt-font-size-base * 1.2 !default;
+$jnt-h6-font-size: $jnt-font-size-base;
+
+$jnt-headings-margin-bottom: $jnt-gutter-normal !default;
+
+/* -------------------------------------------------------------------
+ Form control
+------------------------------------------------------------------- */
+
+$jnt-control-gutter: $jnt-gutter-small !default;
+$jnt-control-border-color: $jnt-gray-700-color !default;
+$jnt-control-switch-label-color: $jnt-primary-text-color !default;
+$jnt-control-background: $jnt-primary-background;
+
+$jnt-control-field-label-background: $jnt-secondary-background !default;
+$jnt-control-field-label-padding: 0 $jnt-gutter-small !default;
+$jnt-control-field-label-color: $jnt-primary-text-light-color !default;
+$jnt-control-field-label-border-color: $jnt-gray-600-color !default;
+
+$jnt-control-disabled-border-color: $jnt-gray-600-color !default;
+$jnt-control-disabled-indicator-icon-color: $jnt-gray-800-color !default;
+$jnt-control-disabled-label-color: $jnt-primary-text-light-color !default;
+$jnt-control-disabled-background: $jnt-gray-100-color !default;
+
+$jnt-scheme-primary-name: 'primary';
+$jnt-scheme-secondary-name: 'secondary';
+$jnt-scheme-success-name: 'success';
+$jnt-scheme-fail-name: 'fail';
+
+$jnt-state-normal-name: 'normal';
+$jnt-state-success-name: 'success';
+$jnt-state-failed-name: 'failed';
+
+$jnt-size-tiny-name: 'tiny';
+$jnt-size-small-name: 'small';
+$jnt-size-normal-name: 'normal';
+$jnt-size-large-name: 'large';
+
+$jnt-gutter-none-name: 'none';
+$jnt-gutter-tiny-name: 'tiny';
+$jnt-gutter-small-name: 'small';
+$jnt-gutter-normal-name: 'normal';
+$jnt-gutter-big-name: 'big';
+$jnt-gutter-large-name: 'large';
+$jnt-gutter-huge-name: 'huge';
+
+/* -------------------------------------------------------------------
+ Body
+------------------------------------------------------------------- */
+
+$jnt-body-color: $jnt-primary-text-color !default;
+$jnt-app-layout-font-family: $jnt-font-family-base !default;
+$jnt-lp-layout-font-family: 'Montserrat', sans-serif !default;
+$jnt-body-font-weight: $jnt-font-weight-base !default;
+$jnt-body-line-height: $jnt-line-height-base !default;
+$jnt-body-font-size: $jnt-font-size-base !default;

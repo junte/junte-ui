@@ -1,22 +1,10 @@
-@import "variables";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/svg/svg-icon";
+@import "elements/icon/font/font-icon";
+@import "elements/icon/animated/animated-icon";
 
-@mixin icon-size($vars) {
-  &[type='font'] {
-    &:not([size='auto']) {
-      [icon] {
-        font-size: map-get($vars, size);
-      }
-    }
-  }
-  &[type='svg'], &[type='animated'] {
-    [icon] {
-      width: map-get($vars, size);
-      height: map-get($vars, size);
-    }
-  }
-}
-
-@mixin icon($passed: (), $context: null, $strategy: 'merge') {
+@mixin jnt-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     color: null,
     size: null,
@@ -42,8 +30,13 @@
   $vars: $passed;
   $declare: false;
 
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -53,27 +46,71 @@
       vertical-align: middle;
     }
 
-    &[type='font'] {
-      [icon] {
-        color: map-get($vars, color);
-        font-size: #{map-get($vars, size)} !important;
+    &[data-type='font'] {
+      #{$wrapper} [data-icon] {
+        @include jnt-font-icon((
+          color: map-get($vars, color),
+          font-size: if(map-get($vars, size), map-get($vars, size) !important, null),
+        ), '&');
       }
     }
 
-    &[type='svg'], &[type='animated'] {
-      [icon] {
-        fill: map-get($vars, color);
+    &[data-type='animated'] {
+      #{$wrapper} [data-icon] {
+        @include jnt-animated-icon((
+          fill: map-get($vars, color),
+        ), '&');
         @if map-has-key($vars, size) {
-          width: #{map-get($vars, size)} !important;
-          height: #{map-get($vars, size)} !important;
+          @include jnt-animated-icon((
+            width: if(map-get($vars, size), map-get($vars, size) !important, null),
+            height: if(map-get($vars, size), map-get($vars, size) !important, null)
+          ), '&');
         }
       }
     }
 
-    @if map-has-key($vars, sizes) {
-      @each $size, $map in map-get($vars, sizes) {
-        &[size='#{$size}'] {
-          @include icon-size($map);
+    &[data-type='svg'] {
+      #{$wrapper} [data-icon] {
+        @include jnt-svg-icon((
+          fill: map-get($vars, color),
+        ), '&');
+        @if map-has-key($vars, size) {
+          @include jnt-svg-icon((
+            width: if(map-get($vars, size), map-get($vars, size) !important, null),
+            height: if(map-get($vars, size), map-get($vars, size) !important, null)
+          ), '&');
+        }
+      }
+    }
+  }
+
+  @if map-has-key($vars, sizes) {
+    @each $key, $size in map-get($vars, sizes) {
+      &[data-size='#{$key}'] {
+        &[data-type='font'] {
+          &:not([data-size='auto']) {
+            #{$wrapper} [data-icon] {
+              @include jnt-font-icon((
+                font-size: map-get($size, size)
+              ), '&');
+            }
+          }
+        }
+        &[data-type='animated'] {
+          #{$wrapper} [data-icon] {
+            @include jnt-animated-icon((
+              width: map-get($size, size),
+              height: map-get($size, size),
+            ), '&');
+          }
+        }
+        &[data-type='svg'] {
+          #{$wrapper} [data-icon] {
+            @include jnt-svg-icon((
+              width: map-get($size, size),
+              height: map-get($size, size),
+            ), '&');
+          }
         }
       }
     }

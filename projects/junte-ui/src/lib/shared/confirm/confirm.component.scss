@@ -1,9 +1,12 @@
-@import "variables";
+@import "jnt-variables";
 
-:host {
-  display: block;
-}
+@mixin jnt-confirm($passed: (), $context: null, $strategy: 'changes') {
 
-[message] {
-  margin-bottom: $gutter-normal;
+  :host, #{$context} {
+    display: block;
+  }
+
+  #{$context} [data-message] {
+    margin-bottom: $jnt-gutter-normal;
+  }
 }

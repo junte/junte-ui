@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { loadChildren } from '../../utils/routing';
 
 export function docsMatcher() {
   return {consumed: []};
@@ -9,12 +10,14 @@ const routes: Routes = [
   {
     path: '',
     data: {breadcrumb: 'Home'},
-    loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
+    loadChildren: () => loadChildren(import('../home/home.module')
+      .then(m => m.HomeModule))
   },
   {
     matcher: docsMatcher,
     data: {breadcrumb: 'Junte UI'},
-    loadChildren: () => import('../docs/docs.module').then(m => m.DocsModule)
+    loadChildren: () => loadChildren(import('../docs/docs.module')
+      .then(m => m.DocsModule))
   },
   {
     path: '**',

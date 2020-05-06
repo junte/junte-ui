@@ -1,8 +1,16 @@
 <jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.block"></jnt-icon>
+    </span>
+    <span i18n="@@label.block">Block</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/layout/block"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/block"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -12,7 +20,6 @@
     </jnt-link>
   </jnt-stack>
 
-  <h1 i18n="@@label.block">Block</h1>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
@@ -114,11 +121,11 @@
                                   i18n-primary="@@label.default">
                       <jnt-switcher-option label="Default"
                                            i18n-label="@@label.default"
-                                           [icon]="localUi.icons.layout.width.default"
+                                           [icon]="localUi.icons.default"
                                            [value]="ui.width.default"></jnt-switcher-option>
                       <jnt-switcher-option label="Fluid"
                                            i18n-label="@@label.fluid"
-                                           [icon]="localUi.icons.layout.width.fluid"
+                                           [icon]="localUi.icons.fluid"
                                            [value]="ui.width.fluid"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-item>
@@ -136,14 +143,22 @@
                     </jnt-switcher>
                   </jnt-form-item>
 
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                    <jnt-checkbox formControlName="title"
-                                  label="Title"
-                                  i18n-label="@@label.title"></jnt-checkbox>
-                    <jnt-checkbox formControlName="footer"
-                                  label="Footer"
-                                  i18n-label="@@label.footer"></jnt-checkbox>
-                  </jnt-stack>
+                  <jnt-form-item>
+                    <jnt-form-label i18n="@@label.features">Features
+                    </jnt-form-label>
+                    <jnt-row>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="title"
+                                       label="Title"
+                                       i18n-label="@@label.title"></jnt-checkbox>
+                      </jnt-col>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="footer"
+                                      label="Footer"
+                                      i18n-label="@@label.footer"></jnt-checkbox>
+                      </jnt-col>
+                    </jnt-row>
+                  </jnt-form-item>
 
                   <jnt-button [scheme]="ui.scheme.success"
                               [size]="ui.size.small"

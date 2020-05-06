@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { DatePipeModule } from '../../core/pipes/date.pipe.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { CalendarComponent } from './calendar.component';
@@ -14,7 +14,7 @@ import { WeekMetricComponent } from './week/week-metric.component';
     CommonModule,
     TranslateModule,
     IconModule,
-    DatePipeModule,
+    DatePipesModule,
     StackModule,
     DateFnsModule
   ],

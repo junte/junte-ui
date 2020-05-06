@@ -1,6 +1,6 @@
-@import "variables";
+@import "jnt-variables";
 
-@mixin anchor($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-anchor($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: inline;
@@ -9,7 +9,7 @@
   #{$context} a {
     opacity: 0;
     cursor: pointer;
-    margin-left: $gutter-small;
+    margin-left: $jnt-gutter-small;
     &:hover {
       opacity: 1;
     }

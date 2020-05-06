@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { RadioComponent } from '../radio.component';
 
@@ -17,11 +16,28 @@ import { RadioComponent } from '../radio.component';
   ]
 })
 
-export class RadioGroupComponent implements AfterViewInit {
+export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor {
+
+  private disabled = false;
+  private selected: any;
+
+  _size = Size.normal;
 
   ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+
+  @Input() labelField: string;
+  @Input() valueField: string;
+
+  @Input()
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
+
+  get size() {
+    return this._size;
+  }
 
   @ViewChildren(RadioComponent)
   items: QueryList<RadioComponent>;
@@ -29,27 +45,9 @@ export class RadioGroupComponent implements AfterViewInit {
   @ContentChildren(RadioComponent, {descendants: true})
   radios: QueryList<RadioComponent>;
 
-  @Input() labelField: string;
-  @Input() valueField: string;
-
-  private selected$ = new BehaviorSubject<any>(undefined);
-
-  set selected(value: any) {
-    this.selected$.next(value);
-  }
-
-  get selected() {
-    return this.selected$.getValue();
-  }
-
   ngAfterViewInit() {
     this.transformationRadio();
-
-    this.selected$.pipe(filter(v => v !== undefined))
-      .subscribe(value => {
-        this.onChange(value);
-        this.updateSelected();
-      });
+    this.updateDisabled();
   }
 
   private transformationRadio() {
@@ -59,17 +57,30 @@ export class RadioGroupComponent implements AfterViewInit {
         item.value = item.value[this.valueField];
       }
     });
-    this.updateSelected();
+    this.updateChecked();
   }
 
-  private updateSelected() {
-    this.items.forEach(item => item.checked = item.value === this.selected);
+  private updateChecked() {
+    if (!!this.items) {
+      this.items.forEach(item => item.checked = item.value === this.selected);
+    }
+  }
+
+  private updateDisabled() {
+    if (!!this.items) {
+      this.items.forEach(item => item.disabled = this.disabled);
+    }
+  }
+
+  select(value) {
+    this.selected = value || null;
+    this.updateChecked();
+    this.onChange(value);
   }
 
   writeValue(value: any) {
-    if (!!value) {
-      this.selected = value;
-    }
+    this.selected = value || null;
+    this.updateChecked();
   }
 
   onChange(value: any) {
@@ -84,5 +95,10 @@ export class RadioGroupComponent implements AfterViewInit {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+    this.updateDisabled();
   }
 }

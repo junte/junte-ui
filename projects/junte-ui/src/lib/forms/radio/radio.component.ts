@@ -1,7 +1,7 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { UI } from '../../core/enums/ui';
-import { Size } from '../../core/enums/size';
+import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
+import { Size } from '../../core/enums/size';
+import { UI } from '../../core/enums/ui';
 
 @Component({
   selector: 'jnt-radio',
@@ -13,7 +13,7 @@ export class RadioComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-host';
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size = Size.normal;
 
   @PropertyApi({
@@ -21,7 +21,6 @@ export class RadioComponent {
     type: 'boolean',
     default: 'false',
   })
-  @HostBinding('attr.disabled')
   @Input()
   disabled = false;
 
@@ -31,7 +30,6 @@ export class RadioComponent {
   //   type: 'boolean',
   //   default: 'false'
   // })
-  @HostBinding('attr.checked')
   @Input()
   checked = false;
 
@@ -61,12 +59,4 @@ export class RadioComponent {
     type: 'string'
   })
   @Input() value: string;
-
-  constructor(private element: ElementRef) {
-  }
-
-  getElement() {
-    return this.element.nativeElement;
-  }
-
 }

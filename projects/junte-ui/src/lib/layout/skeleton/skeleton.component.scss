@@ -1,6 +1,7 @@
-@import "variables";
+@import "jnt-variables";
+@import "jnt-functions";
 
-@keyframes loading {
+@keyframes jnt-loading {
   0% {
     background-position: 100% 50%;
   }
@@ -10,7 +11,7 @@
 }
 
 @mixin skeleton-size($size) {
-  [image] {
+  [data-avatar] {
     min-width: $size;
     width: $size;
     min-height: $size;
@@ -18,12 +19,12 @@
   }
 }
 
-@mixin skeleton($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-skeleton($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     background: (
-      from: $secondary-background,
-      to: darken($secondary-background, 5%),
+      from: $jnt-highlight-background,
+      to: darken($jnt-highlight-background, 5%),
     ),
     line: (
       height: 24px,
@@ -36,13 +37,22 @@
         large: 120px
       ),
     ),
+    card: (
+      height: 70px,
+      corner: null,
+    ),
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -51,22 +61,22 @@
     @if map-has-key($vars, avatar) {
       $sizes: map-get(map-get($vars, avatar), sizes);
       @each $size, $map in $sizes {
-        &[size = '#{$size}'] {
+        &[data-size = '#{$size}'] {
           @include skeleton-size($map);
         }
       }
     }
-    &[type='text'] {
+    &[data-type='text'] {
       width: 100%;
     }
-    &[animated='false'] {
-      [line], [image] {
+    &[data-animated='false'] {
+      [data-line], [data-avatar], [data-card] {
         animation: none;
       }
     }
   }
 
-  #{$context} [line] {
+  #{$context} #{$wrapper} [data-line] {
     @if map-has-key($vars, line) {
       $line: map-get($vars, line);
       min-height: map-get($line, height);
@@ -74,16 +84,25 @@
     width: 100%;
   }
 
-  #{$context} [avatar='true'] {
+  #{$context} #{$wrapper} [data-card] {
+    @if map-has-key($vars, card) {
+      $card: map-get($vars, card);
+      min-height: map-get($card, height);
+      border-radius: map-get($card, corner);
+    }
+    width: 100%;
+  }
+
+  #{$context} #{$wrapper} [data-avatar='true'] {
     border-radius: 50%;
   }
 
-  #{$context} [line], [image] {
+  #{$context} #{$wrapper} [data-line], [data-avatar], [data-card] {
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
     }
     background-size: 400% 100%;
-    animation: loading 1.5s ease infinite;
+    animation: jnt-loading 1.5s ease infinite;
   }
 }

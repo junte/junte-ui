@@ -26,8 +26,6 @@ export class ButtonGroupComponent {
     options: [Size.tiny, Size.small, Size.normal, Size.large],
     default: Size.normal
   })
-
-  @HostBinding('attr.size')
   @Input() size: Size = Size.normal;
 
   @PropertyApi({
@@ -36,8 +34,6 @@ export class ButtonGroupComponent {
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
     default: Scheme.primary
   })
-
-  @HostBinding('attr.scheme')
   @Input() scheme: Scheme = Scheme.primary;
 
   @PropertyApi({
@@ -46,8 +42,6 @@ export class ButtonGroupComponent {
     default: Outline.fill,
     options: [Outline.transparent, Outline.ghost, Outline.fill]
   })
-
-  @HostBinding('attr.outline')
   @Input() outline: Outline = Outline.fill;
 
   @PropertyApi({
@@ -56,8 +50,7 @@ export class ButtonGroupComponent {
     default: Width.default,
     options: [Width.default, Width.fluid]
   })
-
-  @HostBinding('attr.width')
+  @HostBinding('attr.data-width')
   @Input() width: Width = Width.default;
 
 }

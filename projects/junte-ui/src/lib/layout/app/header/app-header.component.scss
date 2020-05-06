@@ -1,8 +1,8 @@
-@import "variables";
-@import "../variables";
-@import "../../assets/styles/components/navigation/menu/menu";
+@import "jnt-variables";
+@import "layout/app/variables";
+@import "navigation/menu/menu";
 
-@mixin app-header($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context}  {
     display: flex;
@@ -10,8 +10,8 @@
     flex: 0 0 auto;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background-color: $primary-dark-color;
-    padding: 0 $gutter-big;
+    background-color: $jnt-primary-dark-color;
+    padding: 0 $jnt-gutter-big;
     min-height: $app-header-height;
     position: absolute;
     top: 0;
@@ -19,22 +19,22 @@
     right: 0;
     z-index: 3;
 
-  > [menu] {
+  > [data-menu] {
     display: flex;
     align-items: center;
-    @include menu((
+    @include jnt-menu((
       top: (
         item: (
-          color: $white-color,
+          color: $jnt-white-color,
           active: (
-            color: $white-color
+            color: $jnt-white-color
           ),
           icon: (
-            size: $font-size-large
+            size: $jnt-font-size-large
           ),
           padding: (
-            outer: $gutter-small $gutter-normal,
-            inner: $gutter-small,
+            outer: $jnt-gutter-small $jnt-gutter-normal,
+            inner: $jnt-gutter-small,
           ),
           hover: (
             background-color: transparent,
@@ -45,55 +45,53 @@
   }
 }
 
-  [logo] {
+  [data-logo] {
     display: flex;
     align-items: center;
-    margin-right: $gutter-huge;
+    margin-right: $jnt-gutter-huge;
     & > * {
       display: block;
     }
   }
 
-  [actions] {
+  [data-actions] {
     margin-left: auto;
   }
 
-  [content] {
+  [data-content] {
     display: flex;
     align-items: center;
   }
 
-  [action] {
+  [data-action] {
     position: relative;
-    [dropdown] {
+    [data-dropdown] {
       display: flex;
       align-items: center;
       button {
-        color: $white-color;
+        color: $jnt-white-color;
         background-color: transparent;
         border: 0;
         &:focus {
           outline: 0;
         }
       }
-      > [menu] {
+      > [data-menu] {
         position: absolute;
         top: 100%;
         right: 0;
-        margin-top: $gutter-tiny;
-        background-color: $primary-background;
-        padding: $gutter-small $gutter-normal;
+        margin-top: $jnt-gutter-tiny;
+        background-color: $jnt-primary-background;
         min-width: 200px;
-        box-shadow: $shadow-normal;
+        box-shadow: $jnt-shadow-normal;
         display: none;
-        &[opened='true'] {
+        &[data-opened='true'] {
           display: block;
         }
-        [stack] {
-          background-color: $primary-dark-color;
-          margin: -$gutter-normal (-$gutter-normal) 0 (-$gutter-normal);
-          padding: $gutter-normal;
-          [content] {
+        [data-stack] {
+          background-color: $jnt-primary-dark-color;
+          padding: $jnt-gutter-normal;
+          [data-content] {
             flex: 1;
           }
         }

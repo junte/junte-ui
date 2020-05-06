@@ -1,106 +1,112 @@
-@import "variables";
+@import "jnt-variables";
+@import "elements/icon/icon";
 
-:host {
-  display: flex;
-  box-shadow: $shadow-normal;
-  border-radius: $corner-normal;
-  background-color: $secondary-background;
-}
+@mixin jnt-chart($passed: (), $context: null, $strategy: 'changes') {
 
-[wrapper] {
-  flex: 1;
+  :host, #{$context} {
+    display: flex;
+    box-shadow: $jnt-shadow-normal;
+    border-radius: $jnt-corner-normal;
+    background-color: $jnt-secondary-background;
+  }
 
-  table {
-    border-spacing: 0;
-    width: 100%;
-    td, th {
-      text-align: left;
-      vertical-align: middle;
-      padding: 0 $gutter-small;
-      &:first-child {
-        padding: 0 $gutter-large;
-      }
-    }
-    thead {
-      background-color: $secondary-background;
-      th:first-child {
-        border-top-left-radius: $corner-normal;
-      }
-      th:last-child {
-        border-top-right-radius: $corner-normal;
-      }
-    }
-    tbody {
-      tr {
-        cursor: pointer;
-        position: relative;
-        &:hover, &[selected='true'] {
-          td {
-            background-color: $secondary-background;
-          }
+  #{$context} [data-wrapper] {
+    flex: 1;
+
+    table {
+      border-spacing: 0;
+      width: 100%;
+      td, th {
+        text-align: left;
+        vertical-align: middle;
+        padding: 0 $jnt-gutter-small;
+        &:first-child {
+          padding: 0 $jnt-gutter-large;
         }
-        &:not(:last-child) {
-          td:not(:last-child) {
-            border-bottom: 1px solid $muted-color;
-          }
+      }
+      thead {
+        background-color: $jnt-secondary-background;
+        th:first-child {
+          border-top-left-radius: $jnt-corner-normal;
         }
-        &:last-child {
-          td:first-child {
-            border-bottom-left-radius: $corner-normal;
-          }
+        th:last-child {
+          border-top-right-radius: $jnt-corner-normal;
         }
-        &[nodata] {
-          height: 200px;
-          pointer-events: none;
-          border-bottom: 0;
-          td {
-            vertical-align: middle;
-            text-align: center;
-            [icon] {
-              font-size: 80px;
-              color: $muted-color;
+      }
+      tbody {
+        tr {
+          cursor: pointer;
+          position: relative;
+          &:hover, &[selected='true'] {
+            td {
+              background-color: $jnt-secondary-background;
+            }
+          }
+          &:not(:last-child) {
+            td:not(:last-child) {
+              border-bottom: 1px solid $jnt-muted-color;
             }
           }
           &:last-child {
-            td:last-child {
-              border-bottom-right-radius: $corner-normal;
+            td:first-child {
+              border-bottom-left-radius: $jnt-corner-normal;
+            }
+          }
+          &[data-nodata] {
+            height: 200px;
+            pointer-events: none;
+            border-bottom: 0;
+            td {
+              vertical-align: middle;
+              text-align: center;
+              [data-icon] {
+                @include jnt-icon((
+                  color: $jnt-muted-color,
+                  size: 80px
+                ), '&');
+              }
+            }
+            &:last-child {
+              td:last-child {
+                border-bottom-right-radius: $jnt-corner-normal;
+              }
             }
           }
         }
-      }
-      td {
-        background-color: $primary-background;
-        box-sizing: border-box;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        min-width: 50px;
-        width: 50px;
-        max-width: 100px;
-        text-align: right;
-        user-select: none;
-        &:first-child {
-          text-align: left;
-          min-width: 150px;
-          width: 300px;
-        }
-        &:last-child {
-          color: $gray-900-color;
-          text-align: center;
-        }
-        [content] {
+        td {
+          background-color: $jnt-primary-background;
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           overflow: hidden;
+          min-width: 50px;
+          width: 50px;
+          max-width: 100px;
+          text-align: right;
+          user-select: none;
+          &:first-child {
+            text-align: left;
+            min-width: 150px;
+            width: 300px;
+          }
+          &:last-child {
+            color: $jnt-gray-900-color;
+            text-align: center;
+          }
+          [data-content] {
+            overflow: hidden;
+          }
         }
       }
     }
   }
-}
 
-svg {
-  background-color: $secondary-background;
-  border-top-right-radius: $corner-normal;
-  border-bottom-right-radius: $corner-normal;
-  text {
-    fill: $white-color;
+  #{$context} svg {
+    background-color: $jnt-secondary-background;
+    border-top-right-radius: $jnt-corner-normal;
+    border-bottom-right-radius: $jnt-corner-normal;
+    text {
+      fill: $jnt-white-color;
+    }
   }
 }

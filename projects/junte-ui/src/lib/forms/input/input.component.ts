@@ -1,10 +1,15 @@
-import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { BACKSPACE } from '@angular/cdk/keycodes';
+import { Component, ElementRef, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
-import { InputState, InputType } from './enums';
+import { InputScheme, InputState, InputType } from './enums';
+
+const DIGIT_MASK_CHAR = '_';
+const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 @Component({
   selector: 'jnt-input',
@@ -21,35 +26,39 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   inputType = InputType;
+  inputState = InputState;
+  private _mask: string;
 
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   inputControl = this.fb.control(null);
+  formattedControl = this.fb.control(null);
   form = this.fb.group({
-    input: this.inputControl
+    input: this.inputControl,
+    formatted: this.formattedControl
   });
 
-  @HostBinding('attr.state')
-  _state: InputState = InputState.normal;
+  @ViewChild('input', {read: ElementRef, static: false})
+  input: ElementRef<any>;
 
-  @HostBinding('attr.type')
+  @HostBinding('attr.data-scheme')
+  _scheme: InputScheme = InputScheme.normal;
+
   _type: InputType = InputType.text;
 
-  @HostBinding('attr.size')
+  @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Icon for input',
     type: 'string',
   })
-  @HostBinding('attr.icon')
   @Input() icon: string;
 
   @PropertyApi({
     description: 'Label for input',
     type: 'string',
   })
-  @HostBinding('attr.label')
   @Input() label: string;
 
   @PropertyApi({
@@ -58,7 +67,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: TextAlign.left,
     options: [TextAlign.left, TextAlign.right]
   })
-  @HostBinding('attr.textAlign')
+  @HostBinding('attr.data-textAlign')
   @Input() textAlign: TextAlign = TextAlign.left;
 
   @PropertyApi({
@@ -80,18 +89,25 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() max: number;
 
   @PropertyApi({
-    description: 'Input states',
-    path: 'ui.state',
-    default: InputState.normal,
-    options: [InputState.normal, InputState.success, InputState.failed]
+    description: 'Used to specify that the input field is read-only',
+    type: 'boolean',
+    default: 'false'
   })
-  @Input() set state(state: InputState) {
-    this._state = state || InputState.normal;
+  @Input() readonly = false;
+
+  @PropertyApi({
+    description: 'Input scheme',
+    path: 'ui.state',
+    default: InputScheme.normal,
+    options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
+  })
+  @Input() set scheme(scheme: InputScheme) {
+    this._scheme = scheme || InputScheme.normal;
   }
 
   @PropertyApi({
     description: 'Input typeControl',
-    path: 'ui.form.input',
+    path: 'ui.forms.input',
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
@@ -114,13 +130,43 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
+    description: 'Input state',
+    path: 'ui.forms.input.state',
+    options: [InputState.loading, InputState.warning, InputState.checked]
+  })
+  @HostBinding('attr.data-state')
+  @Input() state: InputState;
+
+  @PropertyApi({
     description: 'Allow multiple lines in input',
     type: 'boolean',
     default: 'false',
   })
   @Input() multiline = false;
 
-  @Input() rows: number;
+  @PropertyApi({
+    description: 'Max rows for multi line mode',
+    type: 'int',
+    default: 5,
+  })
+  @Input() rows = 5;
+
+  @PropertyApi({
+    description: 'Mask patter where _ - is digit',
+    type: 'string',
+    default: null
+  })
+  @Input()
+  set mask(mask: string) {
+    this._mask = mask;
+    if (!!mask) {
+      this.formattedControl.setValue(mask);
+    }
+  }
+
+  get mask() {
+    return this._mask;
+  }
 
   constructor(private fb: FormBuilder) {
   }
@@ -128,10 +174,51 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     this.inputControl.valueChanges
       .subscribe(value => this.onChange(value));
+    this.formattedControl.valueChanges
+      .subscribe(formatted => {
+        if (!!this.input) {
+          const position = formatted.indexOf(DIGIT_MASK_CHAR);
+          this.input.nativeElement.setSelectionRange(position, position);
+        }
+      });
+  }
+
+  private masking(value: string = null): {
+    input: string,
+    formatted: string
+  } {
+    let i, j = 0;
+    const chars = value || '';
+    let formatted = '';
+    for (i = 0; i < this.mask.length; i++) {
+      const char = this.mask.charAt(i);
+      formatted += char === DIGIT_MASK_CHAR
+        ? chars.charAt(j++) : char;
+      if (j >= chars.length) {
+        break;
+      }
+    }
+    formatted += this.mask.substr(i + 1);
+    return {input: chars.substr(0, j) || null, formatted};
+  }
+
+  keydown(event: KeyboardEvent) {
+    event.preventDefault();
+    const value = this.inputControl.value || '';
+    let data;
+    if (DIGIT_KEYS.includes(event.key)) {
+      data = this.masking(value + event.key);
+    } else if (event.keyCode === BACKSPACE) {
+      data = this.masking(value.substr(0, value.length - 1));
+    } else {
+      return;
+    }
+    this.form.setValue(data);
   }
 
   writeValue(value) {
-    this.inputControl.patchValue(value);
+    this.form.patchValue(!!this.mask
+      ? this.masking(value) : {input: value});
   }
 
   onChange(value: any) {

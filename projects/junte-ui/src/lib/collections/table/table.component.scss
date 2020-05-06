@@ -1,8 +1,8 @@
-@import "variables";
-@import "components/forms/button/button";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "forms/button/button";
 
-
-@mixin table($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     min-height: 200px,
@@ -13,110 +13,114 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
   :host {
     display: block;
     min-width: map-get($vars, min-width);
-    padding: $gutter-normal;
+    padding: $jnt-gutter-normal;
 
-    @include button((
+    @include jnt-button((
       sizes: (
         schemes: (
           secondary: (
-            inverse-color: $gray-800-color
+            inverse-color: $jnt-gray-800-color
           ),
         ),
         normal: (
-          padding: 0 $gutter-small,
+          padding: 0 $jnt-gutter-small,
         ),
       ),
     ), '&');
 
-    [table] {
-      margin-left: -$gutter-normal;
-      margin-right: -$gutter-normal;
+    [data-table] {
+      margin-left: -$jnt-gutter-normal;
+      margin-right: -$jnt-gutter-normal;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       position: relative;
-      [spinner] {
+      [data-spinner] {
         position: absolute;
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: rgba($secondary-background, .6);
+        background-color: rgba($jnt-secondary-background, .6);
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all .3s;
         z-index: 1;
-        [icon] {
-          color: $primary-text-light-color;
+        [data-icon] {
+          color: $jnt-primary-text-light-color;
         }
       }
       thead {
-        background-color: $secondary-background;
+        background-color: $jnt-secondary-background;
         .sortable {
           cursor: pointer;
         }
       }
       tbody tr {
-        border-bottom: 1px solid $muted-color;
-        background-color: $primary-background;
+        border-bottom: 1px solid $jnt-muted-color;
+        background-color: $jnt-primary-background;
         transition: all .3s;
-        &[nodata] {
+        &[data-nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
           td {
             vertical-align: middle;
             text-align: center;
-            [icon] {
+            [data-icon] {
               font-size: 80px;
-              color: $muted-color;
+              color: $jnt-muted-color;
             }
           }
         }
-        &[loading] {
+        &[data-loading] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
         }
         &:hover {
-          background-color: $highlight-background;
+          background-color: $jnt-highlight-background;
         }
         td {
-          &[action] {
+          &[data-action] {
             width: 50px;
             text-align: center;
-            [menu] {
-              [button][child-host=#{$jnt-button-host}] {
-                button {
-                  padding: 0 $gutter-normal;
-                }
+            [data-menu] {
+              [data-button] {
+                @include jnt-button((
+                  sizes: (
+                    normal: (
+                      padding: 0 $jnt-gutter-normal,
+                    ),
+                  ),
+                ), '&');
               }
             }
           }
         }
       }
       td, th {
-        padding: $gutter-normal;
+        padding: $jnt-gutter-normal;
         box-sizing: border-box;
       }
     }
 
-    [pagination] {
+    [data-pagination] {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: -$gutter-normal;
-      [pages] {
+      margin-bottom: -$jnt-gutter-normal;
+      [data-pages] {
         flex: 1;
       }
     }

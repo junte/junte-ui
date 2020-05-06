@@ -1,27 +1,27 @@
-@import "variables";
-@import "../common";
+@import "jnt-variables";
+@import "elements/avatar/common";
 
-@mixin avatars-group($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-avatars-group($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap-reverse;
     overflow: hidden;
     border-radius: 50%;
     position: relative;
 
-    [avatar] {
+    [data-avatar] {
       overflow: hidden;
-      border: 1px solid $white-color;
+      border: 1px solid $jnt-white-color;
       box-sizing: border-box;
     }
 
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
+      &[data-size='#{$size}'] {
         height: #{map-get($map, size)};
         width: #{map-get($map, size)};
 
-        [overflow] {
+        [data-overflow] {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -32,16 +32,16 @@
           z-index: 1;
           bottom: 0;
           right: 0;
-          color: $white-color;
+          color: $jnt-white-color;
           background-color: rgba(black, .5);
           font-weight: 300;
           font-size: #{map-get($map, overflowTextSize)};
-          border-top: 1px solid $white-color;
-          border-left: 1px solid $white-color;
+          border-top: 1px solid $jnt-white-color;
+          border-left: 1px solid $jnt-white-color;
         }
 
-        &[capacity='4'] {
-          [avatar] {
+        &[data-capacity='4'] {
+          [data-avatar] {
             min-width: calc(#{map-get($map, size)} / 2);
             width: calc(#{map-get($map, size)} / 2);
             min-height: calc(#{map-get($map, size)} / 2);
@@ -66,10 +66,10 @@
           }
         }
 
-        &[capacity='3'] {
+        &[data-capacity='3'] {
           flex-direction: column;
           flex-wrap: wrap;
-          [avatar] {
+          [data-avatar] {
             min-width: calc(#{map-get($map, size)} / 2);
             width: calc(#{map-get($map, size)} / 2);
             min-height: calc(#{map-get($map, size)} / 2);
@@ -92,9 +92,9 @@
           }
         }
 
-        &[capacity='2'] {
+        &[data-capacity='2'] {
           flex-direction: column;
-          [avatar] {
+          [data-avatar] {
             width: #{map-get($map, size)};
             height: #{map-get($map, size)};
             transform: translateX(50%);
@@ -111,8 +111,8 @@
           }
         }
 
-        &[capacity='1'] {
-          [avatar] {
+        &[data-capacity='1'] {
+          [data-avatar] {
             border: none;
           }
         }

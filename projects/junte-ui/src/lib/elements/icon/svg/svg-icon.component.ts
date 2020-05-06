@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { CacheService } from '../../../core/services/cache.service';
+import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
 const DEFAULT_ICONSET = 'default';
 
@@ -39,7 +39,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     return this.iconset$.getValue();
   }
 
-  @HostBinding('attr.icon')
+  @HostBinding('attr.data-icon')
   @Input()
   set icon(icon: string) {
     this.icon$.next(icon);
@@ -58,7 +58,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private http: HttpClient,
-              private cache: CacheService,
+              private cache: InMemoryCacheService,
               private renderer: Renderer2) {
   }
 

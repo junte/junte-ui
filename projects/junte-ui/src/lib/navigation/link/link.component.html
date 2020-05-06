@@ -1,33 +1,34 @@
 <ng-container *ngIf="externalLink; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else emptySourceTemplate">
-    <a link [href]="source" [target]="'_' + target">
+    <a data-link [href]="source" [target]="'_' + target">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-container>
   <ng-template #emptySourceTemplate>
-    <a link>
+    <a data-link>
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-template>
 </ng-container>
 
 <ng-template #internalLinkTemplate>
-  <a link [routerLink]="source" #link="routerLinkActive" routerLinkActive
+  <a data-link [routerLink]="source" #link="routerLinkActive" routerLinkActive
      [routerLinkActiveOptions]="{exact: matching === urlMatching.fullMatch}"
-     [attr.active]="link.isActive">
+     [attr.data-active]="link.isActive">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>
 
 <ng-template #linkTemplate>
-  <span title>
+  <span data-title>
     <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
     <span>{{title}}</span>
   </span>
   <ng-container *ngIf="badges.length">
-    <jnt-badge badge *ngFor="let badge of badges"
+    <jnt-badge data-badge *ngFor="let badge of badges"
                [color]="badge.color"
                [value]="badge.value"
+               [text]="badge.text"
                [position]="ui.position.inline">
     </jnt-badge>
   </ng-container>

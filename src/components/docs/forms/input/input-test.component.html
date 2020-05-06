@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.input">Input</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.input"></jnt-icon>
+    </span>
+    <span i18n="@@label.input">Input</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/input"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -27,17 +34,23 @@
                 <jnt-form [formGroup]="form">
                   <jnt-stack>
                     <p>Write <b>yes</b> here if you are happy</p>
+                    <p>{{inputControl.value}}</p>
+                    <jnt-button text="Test" (click)="test()"></jnt-button>
                     <jnt-input formControlName="input"
                                [type]="typeControl.value"
-                               [state]="stateControl.value"
+                               [scheme]="schemeControl.value"
+                               [state]="statesControl.value"
                                [size]="sizeControl.value"
                                [icon]="iconControl.value ? ui.icons.search : null"
                                [label]="labelControl.value ? 'Name' : null"
                                [textAlign]="alignControl.value"
                                [multiline]="multilineControl.value"
                                [rows]="rowsControl.value"
-                               placeholder="Yes or no?">
+                               [readonly]="readonlyControl.value"
+                               placeholder="Yes or no?"
+                               [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
+
                     <iframe giphy *ngIf="inputControl.value === 'yes'"
                             src="https://giphy.com/embed/3og0ICmyySyzbmnxqE"
                             width="480"
@@ -68,34 +81,34 @@
                                 i18n-placeholder="@@label.text">
                       <jnt-select-option label="Text"
                                          i18n-label="@@label.text"
-                                         [key]="ui.form.input.type.text"></jnt-select-option>
+                                         [key]="ui.forms.input.type.text"></jnt-select-option>
                       <jnt-select-option label="Number"
                                          i18n-label="@@label.number"
-                                         [key]="ui.form.input.type.number"></jnt-select-option>
+                                         [key]="ui.forms.input.type.number"></jnt-select-option>
                       <jnt-select-option label="Password"
                                          i18n-label="@@label.password"
-                                         [key]="ui.form.input.type.password"></jnt-select-option>
+                                         [key]="ui.forms.input.type.password"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="state"
-                                  i18n="@@label.state">State
+                  <jnt-form-label for="scheme"
+                                  i18n="@@label.state">Scheme
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="state"
+                    <jnt-select formControlName="scheme"
                                 placeholder="Normal"
                                 i18n-placeholder="@@label.normal">
                       <jnt-select-option label="Normal"
                                          i18n-label="@@label.normal"
-                                         [key]="ui.form.input.state.normal"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.normal"></jnt-select-option>
                       <jnt-select-option label="Success"
                                          i18n-label="@@label.success"
-                                         [key]="ui.form.input.state.success"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.success"></jnt-select-option>
                       <jnt-select-option label="Failed"
                                          i18n-label="@@label.failed"
-                                         [key]="ui.form.input.state.failed"></jnt-select-option>
+                                         [key]="ui.forms.input.scheme.failed"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -130,9 +143,11 @@
                                 i18n-placeholder="@@label.left">
                     <jnt-switcher-option label="Left"
                                          i18n-label="@@label.left"
+                                         [icon]="localUi.icons.left"
                                          [value]="ui.text.align.left"></jnt-switcher-option>
                     <jnt-switcher-option label="Right"
                                          i18n-label="@@label.right"
+                                         [icon]="localUi.icons.right"
                                          [value]="ui.text.align.right"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
@@ -147,7 +162,26 @@
                                     label="Disabled"
                                     i18n-label="@@label.disabled"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="readonly"
+                                    label="Readonly"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="states"
+                                  i18n="@@label.state">States
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="states">
+                    <jnt-switcher-option label="Loading" [value]="ui.forms.input.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Warning"
+                                         [icon]="ui.icons.warning"
+                                         [value]="ui.forms.input.state.warning"></jnt-switcher-option>
+                    <jnt-switcher-option label="Checked"
+                                         [icon]="ui.icons.checked"
+                                         [value]="ui.forms.input.state.checked"></jnt-switcher-option>
+                  </jnt-switcher>
                 </jnt-form-item>
 
                 <jnt-form-item>
@@ -165,6 +199,11 @@
                                     label="Label"
                                     i18n-label="@@label.label"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="mask"
+                                    label="Mask"
+                                    i18n-label="@@label.mask"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -178,7 +217,7 @@
                   <jnt-col [span]="6">
                     <jnt-form-item>
                       <jnt-form-control>
-                        <jnt-input formControlName="rows" [type]="ui.form.input.type.number"></jnt-input>
+                        <jnt-input formControlName="rows" [type]="ui.forms.input.type.number"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
                   </jnt-col>
@@ -196,60 +235,82 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'input-test', type: 'InputTestComponent'}"
-          scss="forms/input"></app-how-to-use>
-        <app-code-highlight file="input-test.component.html">
-          <![CDATA[
-          <jnt-input
-            ]]>
-            <ng-container *ngIf="typeControl.value">
-              <![CDATA[[type]="ui.form.input.]]>{{typeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="stateControl.value">
-              <![CDATA[[state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[[icon]="ui.icons.search"]]>
-            </ng-container>
-            <ng-container *ngIf="labelControl.value">
-              <![CDATA[label="Name"]]>
-            </ng-container>
-            <ng-container *ngIf="alignControl.value">
-              <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-input>
-          <div>Value:]]>{{<![CDATA[inputControl.value]]>}}<![CDATA[</div>
-          ]]>
-        </app-code-highlight>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'input-test', type: 'InputTestComponent'}"
+                scss="forms/input">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="input-test.component.html">
+                <![CDATA[
+                <jnt-input
+                  ]]>
+                  <ng-container *ngIf="typeControl.value">
+                    <![CDATA[[type]="ui.forms.input.]]>{{typeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="schemeControl.value">
+                    <![CDATA[[state]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[[icon]="ui.icons.search"]]>
+                  </ng-container>
+                  <ng-container *ngIf="multilineControl.value">
+                    <![CDATA[[multiline]="true"]]>
+                  </ng-container>
+                  <ng-container *ngIf="labelControl.value">
+                    <![CDATA[label="Name"]]>
+                  </ng-container>
+                  <ng-container *ngIf="alignControl.value">
+                    <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="rowsControl.value">
+                    <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-input>
+                ]]>
+              </app-code-highlight>
 
-        <app-code-highlight file="input-test.component.ts"
-                            [language]="language.typescript">
-          <![CDATA[
-          import { Component, OnInit, FormBuilder } from '@angular/core';
-          import { UI } from 'junte-ui';
+              <app-code-highlight file="input-test.component.ts"
+                                  [language]="language.typescript">
+                <pre>
+                  <![CDATA[
+                  import { Component, OnInit, FormBuilder } from '@angular/core';
+                  import { UI } from 'junte-ui';
 
-          @Component({
-          selector: 'app-input-test',
-          templateUrl: './input-test.component.html',
-          styleUrls: ['./input-test.component.scss']
-          })
-          export class InputTestComponent implements OnInit {
+                  @Component({
+                    selector: 'app-input-test',
+                    templateUrl: './input-test.component.html',
+                    styleUrls: ['./input-test.component.scss']
+                  })
 
-          ui = UI;
+                  export class InputTestComponent implements OnInit {
 
-          inputForm = this.fb.group({
-          input: []
-          });
+                    ui = UI;
 
-          constructor(private fb: FormBuilder) {
-          }
-          ]]>
-        </app-code-highlight>
+                    inputForm = this.fb.group({
+                    input: []
+                  });
+
+                    constructor(private fb: FormBuilder) {
+                    }
+                  }
+                  ]]>
+                </pre>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

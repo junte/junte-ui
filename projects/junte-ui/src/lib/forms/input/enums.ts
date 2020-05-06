@@ -3,8 +3,13 @@ export enum InputType {
   password = 'password',
   number = 'number'
 }
-export enum InputState {
+export enum InputScheme {
   normal = 'normal',
   failed = 'failed',
   success = 'success'
+}
+export enum InputState {
+  loading = 'loading',
+  warning = 'warning',
+  checked = 'checked'
 }

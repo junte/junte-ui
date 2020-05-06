@@ -11,5 +11,5 @@ export class HomeComponent {
 
   ui = UI;
   localUi = LocalUI;
-
+  opened = false;
 }

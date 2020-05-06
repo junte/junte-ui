@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ColorPipeModule } from '../../core/pipes/color.pipe.module';
+import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { IconModule } from '../icon/icon.module';
 import { LabelComponent } from './label.component';
@@ -11,7 +11,7 @@ import { LabelComponent } from './label.component';
     CommonModule,
     IconModule,
     StackModule,
-    ColorPipeModule
+    ColorPipesModule
   ],
   exports: [
     LabelComponent

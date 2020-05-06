@@ -1,9 +1,10 @@
-@import "variables";
-@import "components/elements/badge/badge";
-@import "components/elements/icon/icon";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/badge/badge";
+@import "elements/icon/icon";
 
-@mixin button-fill($scheme) {
-  button {
+@mixin button-fill($scheme, $wrapper) {
+  #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
     &:hover {
@@ -13,18 +14,18 @@
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
 
-    [badge] {
-      @include badge((
-        background: map-get($scheme, inverse-color) !important,
-        color: map-get($scheme, color) !important
+    [data-badge] {
+      @include jnt-badge((
+        background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+        color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
       ), '&');
     }
   }
 }
 
-@mixin button-ghost($scheme) {
+@mixin button-ghost($scheme, $wrapper) {
 
-  button {
+  #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
@@ -32,10 +33,10 @@
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
 
-      [badge] {
-        @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+      [data-badge] {
+        @include jnt-badge((
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
@@ -43,41 +44,41 @@
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
 
-    [badge] {
-      @include badge((
-        background: map-get($scheme, color) !important,
-        color: map-get($scheme, inverse-color) !important
+    [data-badge] {
+      @include jnt-badge((
+        background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+        color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
-  &[scheme=#{$scheme-secondary}] {
-    button {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
+    #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
       &:hover {
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
 
-        [badge] {
-          @include badge((
-            background: map-get($scheme, color) !important,
-            color: map-get($scheme, inverse-color) !important
+        [data-badge] {
+          @include jnt-badge((
+            background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+            color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
           ), '&');
         }
       }
-      [badge] {
-        @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+      [data-badge] {
+        @include jnt-badge((
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
   }
 }
 
-@mixin button-transparent($scheme) {
+@mixin button-transparent($scheme, $wrapper) {
 
-  button {
+  #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
@@ -90,74 +91,91 @@
       outline: map-get($scheme, color) auto 1px;
     }
 
-    [badge] {
-      @include badge((
-        background: map-get($scheme, color) !important,
-        color: map-get($scheme, inverse-color) !important
+    [data-badge] {
+      @include jnt-badge((
+        background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
+        color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
   }
-  &[scheme=#{$scheme-secondary}] {
-    button {
+  &[data-scheme=#{$jnt-scheme-secondary-name}] {
+    #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       &:hover {
         color: map-get($scheme, inverse-color);
       }
-      [badge] {
-        @include badge((
-          background: map-get($scheme, inverse-color) !important,
-          color: map-get($scheme, color) !important
+      [data-badge] {
+        @include jnt-badge((
+          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
+          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
         ), '&');
       }
     }
   }
 }
 
-@mixin button-size($size) {
-  button {
+@mixin button-size($size, $wrapper) {
+  #{$wrapper} button {
     padding: map-get($size, padding);
     height: map-get($size, height);
     font-size: map-get($size, font-size);
   }
-  &[with-text="false"] {
-    button {
+  &[data-with-text="false"] {
+    #{$wrapper} button {
       padding: map-get($size, padding-without-text);
     }
   }
 }
 
-@mixin button($passed: (), $strategy: 'merge') {
+@mixin jnt-button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    corner: $corner-large,
-    without-text-corner: $corner-small,
+    corner: $jnt-corner-large,
+    corners: (
+      top: (
+        left: null,
+        right: null,
+      ),
+      bottom: (
+        left: null,
+        right: null,
+      ),
+    ),
+    borders: (
+      right: null,
+      left: null,
+      top: null,
+      bottom: null
+    ),
+    without-text-corner: $jnt-corner-small,
+    padding: null,
     icon: (
-      margin-right: $gutter-small,
+      margin-right: $jnt-gutter-small,
       size: 18px
     ),
     badge: (
-      margin-left: $gutter-small
+      margin-left: $jnt-gutter-small
     ),
     schemes: (
       primary: (
-        color: $primary-color,
-        inverse-color: $white-color,
-        hover-color: $primary-dark-color,
+        color: $jnt-primary-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-primary-dark-color,
       ),
       secondary: (
-        color: $secondary-color,
-        inverse-color: $gray-900-color,
-        hover-color: $blue-100-color
+        color: $jnt-secondary-color,
+        inverse-color: $jnt-gray-900-color,
+        hover-color: $jnt-blue-100-color
       ),
       success: (
-        color: $success-color,
-        inverse-color: $white-color,
-        hover-color: $success-dark-color
+        color: $jnt-success-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-success-dark-color
       ),
       fail: (
-        color: $fail-color,
-        inverse-color: $white-color,
-        hover-color: $fail-dark-color
+        color: $jnt-fail-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-fail-dark-color
       ),
     ),
     sizes: (
@@ -226,18 +244,23 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
-  :host {
+  :host, #{$context} {
     @if $declare {
       display: inline-flex;
       position: relative;
       max-width: 100%;
-      button {
+      #{$wrapper} button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -252,48 +275,45 @@
         border: none;
         width: 100%;
         position: relative;
-        font-family: $font-family-base;
-        line-height: $line-height-base;
-        [text] {
+        font-family: $jnt-font-family-base;
+        line-height: $jnt-line-height-base;
+        overflow: hidden;
+        [data-text] {
           line-height: 1em;
           white-space: nowrap;
         }
-        [loading] {
+        [data-loading] {
           position: absolute;
         }
       }
-      &[loading='true'] {
-        button {
+      &[data-loading='true'] {
+        #{$wrapper} button {
           cursor: default;
         }
       }
-      &[disabled='true'] {
+      &[data-disabled='true'] {
         opacity: .65;
         pointer-events: none;
-        button {
+        #{$wrapper} button {
           cursor: default;
         }
       }
-      &[width='fluid'] {
+      &[data-width='fluid'] {
         width: 100%;
       }
     }
 
-
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
-        &[scheme='#{$scheme}'] {
-          &[outline='#{$outline-fill}'] {
-            @include button-fill($map);
+        &[data-scheme='#{$scheme}'] {
+          &[data-outline='#{$jnt-outline-fill-name}'] {
+            @include button-fill($map, $wrapper);
           }
-          &[outline='#{$outline-ghost}'] {
-            [link] {
-              border: 1px solid transparent;
-            }
-            @include button-ghost($map);
+          &[data-outline='#{$jnt-outline-ghost-name}'] {
+            @include button-ghost($map, $wrapper);
           }
-          &[outline='#{$outline-transparent}'] {
-            @include button-transparent($map);
+          &[data-outline='#{$jnt-outline-transparent-name}'] {
+            @include button-transparent($map, $wrapper);
           }
         }
       }
@@ -301,27 +321,27 @@
 
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
-        &[size='#{$size}'] {
-          @include button-size($map);
+        &[data-size='#{$size}'] {
+          @include button-size($map, $wrapper);
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
-            [badge] {
-              @include badge((
+            [data-badge] {
+              @include jnt-badge((
                 size: map-get($badge, size)
               ), '&');
             }
           }
           @if map-has-key($map, icon) {
             $icon: map-get($map, icon);
-            [icon] {
-              @include icon((
+            [data-icon] {
+              @include jnt-icon((
                 size: map-get($icon, size)
               ), '&');
             }
           }
           @if map-has-key($map, spinner) {
             $spinner: map-get($map, spinner);
-            [loading][child-host=#{$jnt-spinner-host}] {
+            [data-loading] {
               width: map-get($spinner, size);
               min-width: map-get($spinner, size);
               height: map-get($spinner, size);
@@ -332,30 +352,70 @@
       }
     }
 
-    &[with-text="false"] {
-      button {
+    &[data-with-text="false"] {
+      #{$wrapper} button {
         border-radius: map-get($vars, without-text-corner);
-        [icon] {
-          margin-right: 0;
-        }
-      }
-    }
-    button {
-      border-radius: map-get($vars, corner);
-      @if map-has-key($vars, icon) {
-        $icon: map-get($vars, icon);
-        [icon] {
-          margin-right: map-get($icon, margin-right);
-        }
-      }
+        @if map-has-key($vars, corners) {
+          $corners: map-get($vars, corners);
+          @if map-has-key($corners, top) {
+            $top: map-get($corners, top);
+            border-top-left-radius: map-get($top, left);
+            border-top-right-radius: map-get($top, right);
 
-      @if map-has-key($vars, badge) {
-        $badge: map-get($vars, badge);
-        [badge] {
-          margin-left: map-get($badge, margin-left);
+          }
+          @if map-has-key($corners, bottom) {
+            $bottom: map-get($corners, bottom);
+            border-bottom-right-radius: map-get($bottom, right);
+            border-bottom-left-radius: map-get($bottom, left);
+          }
+        }
+        [data-icon] {
+          margin-right: 0;
         }
       }
     }
   }
 
+  #{$context} #{$wrapper} button {
+    border-radius: map-get($vars, corner);
+    @if map-get($vars, padding) != null {
+      padding: if(map-get($vars, padding),map-get($vars, padding) !important, null);
+    }
+    @if map-has-key($vars, corners) {
+      $corners: map-get($vars, corners);
+      @if map-has-key($corners, top) {
+        $top: map-get($corners, top);
+        border-top-left-radius: map-get($top, left);
+        border-top-right-radius: map-get($top, right);
+
+      }
+      @if map-has-key($corners, bottom) {
+        $bottom: map-get($corners, bottom);
+        border-bottom-right-radius: map-get($bottom, right);
+        border-bottom-left-radius: map-get($bottom, left);
+
+      }
+    }
+    @if map-has-key($vars, borders) {
+      $borders: map-get($vars, borders);
+      border-right: if(map-get($borders, right), map-get($borders, right) !important, null);
+      border-left: if(map-get($borders, left), map-get($borders, left) !important, null);
+      border-top: if(map-get($borders, top), map-get($borders, top) !important, null);
+      border-bottom: if(map-get($borders, bottom), map-get($borders, bottom) !important, null);
+    }
+
+    @if map-has-key($vars, icon) {
+      $icon: map-get($vars, icon);
+      [data-icon] {
+        margin-right: map-get($icon, margin-right);
+      }
+    }
+
+    @if map-has-key($vars, badge) {
+      $badge: map-get($vars, badge);
+      [data-badge] {
+        margin-left: map-get($badge, margin-left);
+      }
+    }
+  }
 }

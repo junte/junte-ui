@@ -1,13 +1,19 @@
-@import "variables";
+@import "jnt-variables";
 @import "../../component";
 
+:host-context([theme='dark']) {
+  [footer] {
+    background-color: #121212;
+  }
+}
+
 [footer] {
-  padding: $gutter-normal;
-  background-color: $page-background;
-  border-bottom-left-radius: $corner-normal;
-  border-bottom-right-radius: $corner-normal;
+  padding: $jnt-gutter-normal;
+  background-color: $jnt-page-background;
+  border-bottom-left-radius: $jnt-corner-normal;
+  border-bottom-right-radius: $jnt-corner-normal;
 }
 
 [cancel] {
-  margin-top: $gutter-normal;
+  margin-top: $jnt-gutter-normal;
 }

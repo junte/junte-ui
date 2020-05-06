@@ -23,27 +23,27 @@ export class ColComponent {
 
   overrides: Overrides[] = [];
 
-  @HostBinding('attr.mobile')
+  @HostBinding('attr.data-mobile')
   get forMobile() {
     return this._mobile;
   }
 
-  @HostBinding('attr.tablet')
+  @HostBinding('attr.data-tablet')
   get forTablet() {
     return this.overrides.includes(Overrides.tablet) ? this._tablet : this.forMobile;
   }
 
-  @HostBinding('attr.desktop')
+  @HostBinding('attr.data-desktop')
   get forDesktop() {
     return this.overrides.includes(Overrides.desktop) ? this._desktop : this.forTablet;
   }
 
-  @HostBinding('attr.wide')
+  @HostBinding('attr.data-wide')
   get forWide() {
     return this.overrides.includes(Overrides.wide) ? this._wide : this.forDesktop;
   }
 
-  @HostBinding('attr.padding')
+  @HostBinding('attr.data-padding')
   _padding: Gutter = Gutter.normal;
 
   @PropertyApi({
@@ -75,7 +75,6 @@ export class ColComponent {
     this.overrides.push(Overrides.desktop);
   }
 
-
   @PropertyApi({
     description: 'Number of cells to occupy on screen >= 1200px',
     type: 'number: 1...12',
@@ -91,7 +90,7 @@ export class ColComponent {
     type: 'number: 1...12',
     default: 'null'
   })
-  @HostBinding('attr.span')
+  @HostBinding('attr.data-span')
   @Input() span = null;
 
   @PropertyApi({

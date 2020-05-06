@@ -1,6 +1,7 @@
-@import "variables";
+@import "jnt-variables";
+@import "jnt-functions";
 
-@mixin gantt($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-gantt($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     min-height: 200px
@@ -10,7 +11,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -24,26 +25,26 @@
     table-layout: fixed;
     thead {
       tr {
-        &[timeline] {
-          background-color: $secondary-background;
+        &[data-timeline] {
+          background-color: $jnt-secondary-background;
         }
         td {
-          &[controls] {
+          &[data-controls] {
             border-right: none;
-            padding: $gutter-normal $gutter-tiny;
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
             width: 600px;
 
-            [month] {
+            [data-month] {
               display: flex;
               justify-content: space-between;
               align-items: center;
             }
 
-            [arrow] {
+            [data-arrow] {
               background-color: transparent;
               border-width: 0;
               font-size: 1rem;
-              color: $primary-text-color;
+              color: $jnt-primary-text-color;
               cursor: pointer;
               padding: 0;
               vertical-align: middle;
@@ -57,30 +58,30 @@
               line-height: 0;
               &:focus {
                 outline: none;
-                box-shadow: $shadow-primary;
-                border: 1px solid $primary-color;
+                box-shadow: $jnt-shadow-primary;
+                border: 1px solid $jnt-primary-color;
               }
               &:hover {
-                color: $primary-text-light-color;
-                border: 1px solid $primary-color;
+                color: $jnt-primary-text-light-color;
+                border: 1px solid $jnt-primary-color;
               }
             }
           }
 
-          &[day] {
+          &[data-day] {
             text-align: center;
-            font-size: $font-size-small;
-            padding: $gutter-normal $gutter-tiny;
+            font-size: $jnt-font-size-small;
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
 
-            &[current='true'] {
-              color: $white-color;
-              background-color: $primary-color;
+            &[data-current='true'] {
+              color: $jnt-white-color;
+              background-color: $jnt-primary-color;
             }
-            &[weekend='true'] {
-              background-color: $secondary-dark-color;
+            &[data-weekend='true'] {
+              background-color: $jnt-secondary-dark-color;
             }
           }
-          &[gutter] {
+          &[data-gutter] {
             width: 4px;
           }
         }
@@ -89,7 +90,7 @@
 
     tbody {
       tr {
-        &[nodata] {
+        &[data-nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
@@ -98,18 +99,18 @@
             vertical-align: middle;
             text-align: center;
 
-            [icon] {
+            [data-icon] {
               font-size: 80px;
-              color: $muted-color;
+              color: $jnt-muted-color;
             }
           }
         }
 
-        &[loading] {
+        &[data-loading] {
           pointer-events: none;
           border-bottom: 0;
           td {
-            padding: $gutter-normal;
+            padding: $jnt-gutter-normal;
           }
         }
 
@@ -121,9 +122,9 @@
       }
 
       td {
-        border-bottom: 1px solid $gray-400-color;
-        border-right: 1px solid $gray-400-color;
-        padding: $gutter-tiny;
+        border-bottom: 1px solid $jnt-gray-400-color;
+        border-right: 1px solid $jnt-gray-400-color;
+        padding: $jnt-gutter-tiny;
         height: 59px;
         box-sizing: border-box;
 
@@ -131,11 +132,11 @@
           border-right: 0;
         }
 
-        &[empty] {
+        &[data-empty] {
           border: none;
         }
 
-        &[gutter] {
+        &[data-gutter] {
           border-right: 0;
         }
       }

@@ -1,7 +1,7 @@
-@import "variables";
-@import "../../variables";
+@import "jnt-variables";
+@import "jnt-functions";
 
-@mixin app-header-action($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     width: 400px,
@@ -12,7 +12,7 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
@@ -22,31 +22,31 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 $gutter-normal;
+    padding: 0 $jnt-gutter-normal;
 
     > jnt-icon[deep-host=#{$jnt-icon-host}] {
       font-size: 20px;
-      color: $white-color;
+      color: $jnt-white-color;
     }
 
     &:hover {
-      background-color: $primary-color;
+      background-color: $jnt-primary-color;
 
-      [content] {
+      [data-content] {
         display: block;
       }
     }
   }
 
-  #{$context} [content] {
-    background: $primary-background;
-    border-radius: 0 0 $corner-small $corner-small;
-    padding: $gutter-normal $gutter-big;
-    color: $primary-text-color;
+  #{$context} [data-content] {
+    background: $jnt-primary-background;
+    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+    padding: $jnt-gutter-normal $jnt-gutter-big;
+    color: $jnt-primary-text-color;
     max-width: map-get($vars, width);
     width: map-get($vars, width);
     max-height: map-get($vars, height);
-    box-shadow: $shadow-light;
+    box-shadow: $jnt-shadow-light;
     overflow-y: auto;
     display: none;
     position: absolute;

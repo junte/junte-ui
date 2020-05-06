@@ -1,7 +1,8 @@
-@import "variables";
-@import "../common";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/avatar/common";
 
-@mixin avatars-list($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-avatars-list($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     border-width: 2px,
@@ -11,19 +12,19 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
   :host, #{$context} {
-    display: inline-block;
+    display: flex;
     position: relative;
     box-sizing: border-box;
     @each $size, $map in $avatar-sizes {
-      &[size='#{$size}'] {
-        min-height: calc(#{map-get($map, size)} + #{map-get($vars, border-width)});
+      &[data-size='#{$size}'] {
+        min-height: map-get($map, size);
         @for $i from 1 through 5 {
-          &[capacity='#{$i}'] {
+          &[data-capacity='#{$i}'] {
             min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
           }
         }
@@ -32,17 +33,17 @@
   }
 
   @for $i from 0 through map-get($vars, avatar-count) {
-    [avatar-index='#{$i}'] {
+    [data-avatar-index='#{$i}'] {
       position: absolute;
-      border: 2px solid $primary-background;
+      border: 2px solid $jnt-primary-background;
       cursor: pointer;
-      transition: all .5s;
+      transition: border-color .5s, z-index .5s;
       &:hover {
-        border-color: $purple-light-color;
+        border-color: $jnt-purple-light-color;
         z-index: 1;
       }
       @each $size, $map in $avatar-sizes {
-        &[size='#{$size}'] {
+        &[data-size='#{$size}'] {
           left: calc(#{$i} * (#{map-get($map, size)} / 2));
         }
       }

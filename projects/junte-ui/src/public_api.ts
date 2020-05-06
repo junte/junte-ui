@@ -1,7 +1,6 @@
 export * from './lib/core/i18n/public_api';
 export * from './lib/core/enums/ui';
 export * from './lib/core/decorators/public_api';
-export * from './lib/core/directives/public_api';
 export * from './lib/core/utils/public_api';
 export * from './lib/collections/table/types';
 export * from './lib/core/services/public_api';

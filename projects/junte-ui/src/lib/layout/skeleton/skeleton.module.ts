@@ -1,17 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { JunteDirectiveModule } from '../../core/directives/junte-directive.module';
-import { ArrayPipeModule } from '../../core/pipes/array.pipe.module';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { StackModule } from '../stack/stack.module';
 import { SkeletonComponent } from './skeleton.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    JunteDirectiveModule,
     StackModule,
-    ArrayPipeModule
+    ArrayPipesModule
   ],
   declarations: [
     SkeletonComponent

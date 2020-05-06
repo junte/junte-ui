@@ -1,1 +1,10 @@
 @import "../../component";
+@import "layout/skeleton/skeleton";
+
+[data-card] {
+  @include jnt-skeleton((
+    card: (
+      corner: $jnt-corner-small
+    ),
+  ), '&', true);
+}

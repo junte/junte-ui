@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ArrayPipeModule } from '../../core/pipes/array.pipe.module';
-import { DatePipeModule } from '../../core/pipes/date.pipe.module';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
@@ -17,12 +17,12 @@ import { GanttComponent } from './gantt.component';
   ],
   imports: [
     CommonModule,
-    DatePipeModule,
-    DateFnsModule,
-    ArrayPipeModule,
+    DatePipesModule,
+    ArrayPipesModule,
     IconModule,
     SkeletonModule,
-    ButtonModule
+    ButtonModule,
+    DateFnsModule
   ],
   exports: [
     GanttComponent,

@@ -7,243 +7,292 @@
     <ng-template #headerLogoTemplate>
       <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">
     </ng-template>
-    <ng-template #headerMenuTemplate>
-      <jnt-menu>
-        <jnt-menu-item title="Home"
-                       i18n-title="@@label.home"
-                       [icon]="ui.icons.home"
-                       [link]="['/']"></jnt-menu-item>
-        <jnt-menu-item title="Documentation"
-                       i18n-title="@@label.documentation"
-                       [icon]="localUi.icons.menu.documentation"
-                       [link]="['/general/home']"
-                       [matching]="ui.url.matching.wildcard">
-        </jnt-menu-item>
-        <jnt-menu-item title="Team"
-                       i18n-title="@@label.team"
-                       [icon]="localUi.icons.menu.contacts"
-                       [link]="['/team']"
-                       [matching]="ui.url.matching.wildcard"></jnt-menu-item>
-        <jnt-menu-item title="GitLab"
-                       i18n-title="@@label.gitlab"
-                       link="https://gitlab.com/junte/junte-ui"
-                       target="_blank"
-                       [icon]="ui.icons.gitlab"></jnt-menu-item>
-        <jnt-menu-item title="Figma"
-                       i18n-title="@@label.figma"
-                       link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0"
-                       target="_blank"
-                       [icon]="ui.icons.figma"></jnt-menu-item>
-      </jnt-menu>
+
+    <jnt-menu>
+      <jnt-menu-item title="Home"
+                     i18n-title="@@label.home"
+                     [icon]="ui.icons.home"
+                     [link]="['/']"></jnt-menu-item>
+      <jnt-menu-item title="Documentation"
+                     i18n-title="@@label.documentation"
+                     [icon]="localUi.icons.documentation"
+                     [link]="['/general/home']"
+                     [matching]="ui.url.matching.wildcard">
+      </jnt-menu-item>
+      <jnt-menu-item title="Team"
+                     i18n-title="@@label.team"
+                     [icon]="localUi.icons.contacts"
+                     [link]="['/team']"
+                     [matching]="ui.url.matching.wildcard"></jnt-menu-item>
+      <jnt-menu-item title="GitLab"
+                     i18n-title="@@label.gitlab"
+                     link="https://gitlab.com/junte/junte-ui"
+                     target="_blank"
+                     [icon]="ui.icons.gitlab"></jnt-menu-item>
+      <jnt-menu-item title="Figma"
+                     i18n-title="@@label.figma"
+                     link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0"
+                     target="_blank"
+                     [icon]="ui.icons.figma"></jnt-menu-item>
+    </jnt-menu>
+
+    <ng-template #contentTemplate>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                 [align]="ui.flex.align.center">
+        <form [formGroup]="themeForm">
+          <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
+        </form>
+        <app-select-lang></app-select-lang>
+      </jnt-stack>
     </ng-template>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal"
-               [align]="ui.flex.align.center">
-      <form [formGroup]="themeForm">
-        <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
-      </form>
-      <app-select-lang></app-select-lang>
-    </jnt-stack>
   </jnt-app-header>
 
   <jnt-app-aside #aside>
-    <ng-template #asideContentTemplate let-collapsed="collapsed">
-      <jnt-menu [collapsed]="collapsed"
-                [type]="ui.orientation.vertical"
-                [spacer]="ui.size.small">
+    <jnt-menu>
 
-        <jnt-menu-item title="General"
-                       i18n-title="@@label.general"
-                       [icon]="localUi.icons.menu.general">
-          <jnt-menu>
-            <jnt-menu-item title="Home"
-                           i18n-title="@@label.home"
-                           [link]="['/general/home']"></jnt-menu-item>
-            <jnt-menu-item title="Theming"
-                           i18n-title="@@label.theming"
-                           [link]="['/general/theming']"></jnt-menu-item>
-            <jnt-menu-item title="Typography"
-                           i18n-title="@@label.typography"
-                           [link]="['/general/typography']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
-
-
-        <jnt-menu-item title="Layout"
-                       i18n-title="@@label.layout"
-                       [icon]="localUi.icons.menu.layout">
-          <jnt-menu>
-            <jnt-menu-item title="Stack"
-                           i18n-title="@@label.stack"
-                           [link]="['/layout/stack']"></jnt-menu-item>
-            <jnt-menu-item title="Grid"
-                           i18n-title="@@label.grid"
-                           [link]="['/layout/grid']"></jnt-menu-item>
-            <jnt-menu-item title="Block"
-                           i18n-title="@@label.block"
-                           [link]="['/layout/block']"></jnt-menu-item>
-            <jnt-menu-item title="Skeleton"
-                           i18n-title="@@label.skeleton"
-                           [link]="['/layout/skeleton']"></jnt-menu-item>
-            <jnt-menu-item title="Spinner"
-                           i18n-title="@@label.spinner"
-                           [link]="['/layout/spinner']"></jnt-menu-item>
-            <jnt-menu-item title="Application"
-                           i18n-title="@@label.application"
-                           [link]="['/layout/application']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
-
-        <jnt-menu-item title="Navigation"
-                       i18n-title="@@label.navigation"
-                       [icon]="localUi.icons.menu.navigation">
-          <jnt-menu>
-            <jnt-menu-item title="Link"
-                           i18n-title="@@label.link"
-                           [link]="['/navigation/link']"></jnt-menu-item>
-            <jnt-menu-item title="Menu"
-                           i18n-title="@@label.menu"
-                           [link]="['/navigation/menu']"></jnt-menu-item>
-            <jnt-menu-item title="Tabs"
-                           i18n-title="@@label.tabs"
-                           [link]="['/navigation/tabs']"></jnt-menu-item>
-            <jnt-menu-item title="Pagination"
-                           i18n-title="@@label.pagination"
-                           [link]="['/navigation/pagination']"></jnt-menu-item>
-            <jnt-menu-item title="Dropdown"
-                           i18n-title="@@label.dropdown"
-                           [link]="['/navigation/dropdown']"></jnt-menu-item>
-            <jnt-menu-item title="Breadcrumbs"
-                           i18n-title="@@label.breadcrumbs"
-                           [link]="['/navigation/breadcrumbs']"></jnt-menu-item>
-            <jnt-menu-item title="Anchor"
-                           i18n-title="@@label.anchor"
-                           [link]="['/navigation/anchor']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
-
-        <jnt-menu-item title="UI Elements"
-                       i18n-title="@@label.ui_elements"
-                       [icon]="localUi.icons.menu.elements">
-          <jnt-menu>
-            <jnt-menu-item title="Icon"
-                           i18n-title="@@label.icon"
-                           [link]="['/ui-elements/icon']"></jnt-menu-item>
-            <jnt-menu-item title="Avatar"
-                           i18n-title="@@label.avatar"
-                           [link]="['/ui-elements/avatar']"></jnt-menu-item>
-            <jnt-menu-item title="Badge"
-                           i18n-title="@@label.badge"
-                           [link]="['/ui-elements/badge']"></jnt-menu-item>
-            <jnt-menu-item title="Label"
-                           i18n-title="@@label.label"
-                           [link]="['/ui-elements/label']"></jnt-menu-item>
-            <jnt-menu-item title="Dot"
-                           i18n-title="@@label.dot"
-                           [link]="['/ui-elements/dot']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
-
-        <jnt-menu-item title="Forms"
-                       i18n-title="@@label.forms"
-                       [icon]="localUi.icons.menu.forms">
-          <jnt-menu>
-            <jnt-menu-item title="Button"
-                           i18n-title="@@label.button"
-                           [link]="['/forms/button']"></jnt-menu-item>
-            <jnt-menu-item title="Form"
-                           i18n-title="@@label.form"
-                           [link]="['/forms/form']"></jnt-menu-item>
-            <jnt-menu-item title="Input"
-                           i18n-title="@@label.input"
-                           [link]="['/forms/input']"></jnt-menu-item>
-            <jnt-menu-item title="Checkbox"
-                           i18n-title="@@label.checkbox"
-                           [link]="['/forms/checkbox']"></jnt-menu-item>
-            <jnt-menu-item title="Radio"
-                           i18n-title="@@label.radio"
-                           [link]="['/forms/radio']"></jnt-menu-item>
-            <jnt-menu-item title="Select"
-                           i18n-title="@@label.select"
-                           [link]="['/forms/select']"></jnt-menu-item>
-            <jnt-menu-item title="Switch"
-                           i18n-title="@@label.switch"
-                           [link]="['/forms/switch']"></jnt-menu-item>
-            <jnt-menu-item title="Switcher"
-                           i18n-title="@@label.switcher"
-                           [link]="['/forms/switcher']"></jnt-menu-item>
-            <jnt-menu-item title="Calendar"
-                           i18n-title="@@label.calendar"
-                           [link]="['/forms/calendar']"></jnt-menu-item>
-            <jnt-menu-item title="Date Picker"
-                           i18n-title="@@label.date_picker"
-                           [link]="['/forms/date-picker']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
+      <jnt-menu-item title="General"
+                     i18n-title="@@label.general"
+                     [icon]="localUi.icons.general">
+        <jnt-menu>
+          <jnt-menu-item title="Home"
+                         i18n-title="@@label.home"
+                         [link]="['/general/home']"
+                         [icon]="localUi.icons.home"></jnt-menu-item>
+          <jnt-menu-item title="Theming"
+                         i18n-title="@@label.theming"
+                         [link]="['/general/theming']"
+                         [icon]="localUi.icons.theming"></jnt-menu-item>
+          <jnt-menu-item title="Typography"
+                         i18n-title="@@label.typography"
+                         [link]="['/general/typography']"
+                         [icon]="localUi.icons.typography"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
 
-        <jnt-menu-item title="Collections"
-                       i18n-title="@@label.collections"
-                       [icon]="localUi.icons.menu.collections">
-          <jnt-menu>
-            <jnt-menu-item title="Gantt"
-                           i18n-title="@@label.gantt"
-                           [link]="['/collections/gantt']"></jnt-menu-item>
-            <jnt-menu-item title="Table"
-                           i18n-title="@@label.table"
-                           [link]="['/collections/table']"></jnt-menu-item>
-            <jnt-menu-item title="Accordion"
-                           i18n-title="@@label.accordition"
-                           [link]="['/collections/accordion']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
+      <jnt-menu-item title="Layout"
+                     i18n-title="@@label.layout"
+                     [icon]="localUi.icons.layout">
+        <jnt-menu>
+          <jnt-menu-item title="Stack"
+                         i18n-title="@@label.stack"
+                         [link]="['/layout/stack']"
+                         [icon]="localUi.icons.between"></jnt-menu-item>
+          <jnt-menu-item title="Grid"
+                         i18n-title="@@label.grid"
+                         [link]="['/layout/grid']"
+                         [icon]="localUi.icons.grid"></jnt-menu-item>
+          <jnt-menu-item title="Block"
+                         i18n-title="@@label.block"
+                         [link]="['/layout/block']"
+                         [icon]="localUi.icons.block"></jnt-menu-item>
+          <jnt-menu-item title="Responsive"
+                         i18n-title="@@label.responsive"
+                         [link]="['/layout/responsive']"
+                         [icon]="localUi.icons.responsive"></jnt-menu-item>
+          <jnt-menu-item title="Skeleton"
+                         i18n-title="@@label.skeleton"
+                         [link]="['/layout/skeleton']"
+                         [icon]="localUi.icons.skeleton"></jnt-menu-item>
+          <jnt-menu-item title="Spinner"
+                         i18n-title="@@label.spinner"
+                         [link]="['/layout/spinner']"
+                         [icon]="localUi.icons.spinner"></jnt-menu-item>
+          <jnt-menu-item title="Application"
+                         i18n-title="@@label.application"
+                         [link]="['/layout/application']"
+                         [icon]="localUi.icons.layout"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-        <jnt-menu-item title="Overlays"
-                       i18n-title="@@label.overlays"
-                       [icon]="localUi.icons.menu.overlays">
-          <jnt-menu>
-            <jnt-menu-item title="Modal"
-                           i18n-title="@@label.modal"
-                           [link]="['/overlays/modal']"></jnt-menu-item>
-            <jnt-menu-item title="Popover"
-                           i18n-title="@@label.popover"
-                           [link]="['/overlays/popover']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
+      <jnt-menu-item title="Navigation"
+                     i18n-title="@@label.navigation"
+                     [icon]="localUi.icons.navigation">
+        <jnt-menu>
+          <jnt-menu-item title="Link"
+                         i18n-title="@@label.link"
+                         [link]="['/navigation/link']"
+                         [icon]="localUi.icons.link"></jnt-menu-item>
+          <jnt-menu-item title="Menu"
+                         i18n-title="@@label.menu"
+                         [link]="['/navigation/menu']"
+                         [icon]="localUi.icons.menu"></jnt-menu-item>
+          <jnt-menu-item title="Tabs"
+                         i18n-title="@@label.tabs"
+                         [link]="['/navigation/tabs']"
+                         [icon]="localUi.icons.tabs"></jnt-menu-item>
+          <jnt-menu-item title="Pager"
+                         i18n-title="@@label.pager"
+                         [link]="['/navigation/pager']"
+                         [icon]="localUi.icons.pager"></jnt-menu-item>
+          <jnt-menu-item title="Dropdown"
+                         i18n-title="@@label.dropdown"
+                         [link]="['/navigation/dropdown']"
+                         [icon]="localUi.icons.select"></jnt-menu-item>
+          <jnt-menu-item title="Breadcrumbs"
+                         i18n-title="@@label.breadcrumbs"
+                         [link]="['/navigation/breadcrumbs']"
+                         [icon]="localUi.icons.breadcrumbs"></jnt-menu-item>
+          <jnt-menu-item title="Anchor"
+                         i18n-title="@@label.anchor"
+                         [link]="['/navigation/anchor']"
+                         [icon]="localUi.icons.anchor"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-        <jnt-menu-item title="Dynamic Data"
-                       i18n-title="@@label.dynamic_data"
-                       [icon]="localUi.icons.menu.dynamic">
-          <jnt-menu>
-            <jnt-menu-item title="Progress bar"
-                           i18n-title="@@label.progress_bar"
-                           [link]="['/dynamic-data/progress-bar']"></jnt-menu-item>
-            <jnt-menu-item title="Circle bar"
-                           i18n-title="@@label.circle_bar"
-                           [link]="['/dynamic-data/circle-bar']"></jnt-menu-item>
-            <jnt-menu-item title="Chart"
-                           i18n-title="@@label.chart"
-                           [link]="['/dynamic-data/chart']"></jnt-menu-item>
-            <jnt-menu-item title="Date Period"
-                           i18n-title="@@label.date_period"
-                           [link]="['/dynamic-data/date-period']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
+      <jnt-menu-item title="UI Elements"
+                     i18n-title="@@label.ui_elements"
+                     [icon]="localUi.icons.elements">
+        <jnt-menu>
+          <jnt-menu-item title="Icon"
+                         i18n-title="@@label.icon"
+                         [link]="['/ui-elements/icon']"
+                         [icon]="localUi.icons.icon"></jnt-menu-item>
+          <jnt-menu-item title="Avatar"
+                         i18n-title="@@label.avatar"
+                         [link]="['/ui-elements/avatar']"
+                         [icon]="localUi.icons.avatar"></jnt-menu-item>
+          <jnt-menu-item title="Badge"
+                         i18n-title="@@label.badge"
+                         [link]="['/ui-elements/badge']"
+                         [icon]="localUi.icons.badge"></jnt-menu-item>
+          <jnt-menu-item title="Label"
+                         i18n-title="@@label.label"
+                         [link]="['/ui-elements/label']"
+                         [icon]="localUi.icons.label"></jnt-menu-item>
+          <jnt-menu-item title="Dot"
+                         i18n-title="@@label.dot"
+                         [link]="['/ui-elements/dot']"
+                         [icon]="localUi.icons.dot"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-        <jnt-menu-item title="Other"
-                       i18n-title="@@label.other"
-                       [icon]="localUi.icons.menu.other">
-          <jnt-menu>
-            <jnt-menu-item title="Pipes"
-                           i18n-title="@@label.pipes"
-                           [link]="['/other/pipes']"></jnt-menu-item>
-            <jnt-menu-item title="Confirm"
-                           i18n-title="@@label.confirm"
-                           [link]="['/other/confirm']"></jnt-menu-item>
-          </jnt-menu>
-        </jnt-menu-item>
+      <jnt-menu-item title="Forms"
+                     i18n-title="@@label.forms"
+                     [icon]="localUi.icons.forms">
+        <jnt-menu>
+          <jnt-menu-item title="Button"
+                         i18n-title="@@label.button"
+                         [link]="['/forms/button']"
+                         [icon]="localUi.icons.button"></jnt-menu-item>
+          <jnt-menu-item title="Form"
+                         i18n-title="@@label.form"
+                         [link]="['/forms/form']"
+                         [icon]="localUi.icons.forms"></jnt-menu-item>
+          <jnt-menu-item title="Input"
+                         i18n-title="@@label.input"
+                         [link]="['/forms/input']"
+                         [icon]="localUi.icons.input"></jnt-menu-item>
+          <jnt-menu-item title="Checkbox"
+                         i18n-title="@@label.checkbox"
+                         [link]="['/forms/checkbox']"
+                         [icon]="localUi.icons.checkbox"></jnt-menu-item>
+          <jnt-menu-item title="Radio"
+                         i18n-title="@@label.radio"
+                         [link]="['/forms/radio']"
+                         [icon]="localUi.icons.radio"></jnt-menu-item>
+          <jnt-menu-item title="Select"
+                         i18n-title="@@label.select"
+                         [link]="['/forms/select']"
+                         [icon]="localUi.icons.select"></jnt-menu-item>
+          <jnt-menu-item title="Switch"
+                         i18n-title="@@label.switch"
+                         [link]="['/forms/switch']"
+                         [icon]="localUi.icons.switch"></jnt-menu-item>
+          <jnt-menu-item title="Switcher"
+                         i18n-title="@@label.switcher"
+                         [link]="['/forms/switcher']"
+                         [icon]="localUi.icons.switcher"></jnt-menu-item>
+          <jnt-menu-item title="Calendar"
+                         i18n-title="@@label.calendar"
+                         [link]="['/forms/calendar']"
+                         [icon]="localUi.icons.calendar"></jnt-menu-item>
+          <jnt-menu-item title="Date Picker"
+                         i18n-title="@@label.date_picker"
+                         [link]="['/forms/date-picker']"
+                         [icon]="localUi.icons.datePicker"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
 
-      </jnt-menu>
-    </ng-template>
+
+      <jnt-menu-item title="Collections"
+                     i18n-title="@@label.collections"
+                     [icon]="localUi.icons.collections">
+        <jnt-menu>
+          <jnt-menu-item title="Gantt"
+                         i18n-title="@@label.gantt"
+                         [link]="['/collections/gantt']"
+                         [icon]="localUi.icons.gantt"></jnt-menu-item>
+          <jnt-menu-item title="Table"
+                         i18n-title="@@label.table"
+                         [link]="['/collections/table']"
+                         [icon]="localUi.icons.table"></jnt-menu-item>
+          <jnt-menu-item title="Accordion"
+                         i18n-title="@@label.accordition"
+                         [link]="['/collections/accordion']"
+                         [icon]="localUi.icons.accordion"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+      <jnt-menu-item title="Overlays"
+                     i18n-title="@@label.overlays"
+                     [icon]="localUi.icons.overlays">
+        <jnt-menu>
+          <jnt-menu-item title="Modal"
+                         i18n-title="@@label.modal"
+                         [link]="['/overlays/modal']"
+                         [icon]="localUi.icons.modal">>
+          </jnt-menu-item>
+          <jnt-menu-item title="Popover"
+                         i18n-title="@@label.popover"
+                         [link]="['/overlays/popover']"
+                         [icon]="localUi.icons.popover">>
+          </jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+      <jnt-menu-item title="Dynamic Data"
+                     i18n-title="@@label.dynamic_data"
+                     [icon]="localUi.icons.dynamic">
+        <jnt-menu>
+          <jnt-menu-item title="Progress bar"
+                         i18n-title="@@label.progress_bar"
+                         [link]="['/dynamic-data/progress-bar']"
+                         [icon]="localUi.icons.progressBar"></jnt-menu-item>
+          <jnt-menu-item title="Circle bar"
+                         i18n-title="@@label.circle_bar"
+                         [link]="['/dynamic-data/circle-bar']"
+                         [icon]="localUi.icons.circleBar"></jnt-menu-item>
+          <jnt-menu-item title="Chart"
+                         i18n-title="@@label.chart"
+                         [link]="['/dynamic-data/chart']"
+                         [icon]="localUi.icons.chart"></jnt-menu-item>
+          <jnt-menu-item title="Date Period"
+                         i18n-title="@@label.date_period"
+                         [link]="['/dynamic-data/date-period']"
+                         [icon]="localUi.icons.datePeriod"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+      <jnt-menu-item title="Other"
+                     i18n-title="@@label.other"
+                     [icon]="localUi.icons.other">
+        <jnt-menu>
+          <jnt-menu-item title="Pipes"
+                         i18n-title="@@label.pipes"
+                         [link]="['/other/pipes']"
+                         [icon]="localUi.icons.pipes"></jnt-menu-item>
+          <jnt-menu-item title="Confirm"
+                         i18n-title="@@label.confirm"
+                         [link]="['/other/confirm']"
+                         [icon]="localUi.icons.confirm"></jnt-menu-item>
+          <jnt-menu-item title="Message"
+                         [link]="['/other/message']"
+                         [icon]="localUi.icons.message"></jnt-menu-item>
+        </jnt-menu>
+      </jnt-menu-item>
+
+    </jnt-menu>
 
   </jnt-app-aside>
 

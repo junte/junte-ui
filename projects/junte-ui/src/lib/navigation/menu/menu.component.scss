@@ -1,29 +1,31 @@
-@import "variables";
-@import "components/navigation/link/link";
+@import "jnt-variables";
+@import "jnt-functions";
+@import "navigation/link/link";
 
-@mixin menu($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     top: (
       item: (
         height: null,
-        orphan-color: $primary-text-color,
-        orphan-hover-color: $primary-text-dark-color,
+        orphan-color: $jnt-primary-text-color,
+        orphan-hover-color: $jnt-primary-text-dark-color,
         color: null,
+        text-transform: null,
         icon: (
-          margin-right: $gutter-tiny,
+          margin-right: $jnt-gutter-tiny,
           size: 18px
         ),
         padding: (
           inner: 0,
-          outer: $gutter-small $gutter-normal,
+          outer: $jnt-gutter-small $jnt-gutter-normal,
         ),
         toggle: (
           toggle: true,
-          margin-left: $gutter-small,
+          margin-left: $jnt-gutter-small,
         ),
         hover: (
-          background-color: $highlight-background,
+          background-color: $jnt-highlight-background,
         ),
         active: (
           underline: true,
@@ -34,28 +36,32 @@
     ),
     sub: (
       width: 200px,
-      background-color: $primary-background,
-      shadow: $shadow-normal,
-      corner: $corner-small,
+      background-color: $jnt-primary-background,
+      shadow: $jnt-shadow-normal,
+      corner: $jnt-corner-small,
       collapsed: (
         position: null,
         top: null,
         left: null,
         item: (
-          padding: $gutter-small $gutter-normal,
+          padding: $jnt-gutter-small $jnt-gutter-normal,
         ),
       ),
       title: (
-        padding: 0 $gutter-normal,
-        border-bottom: 1px solid $muted-color,
+        padding: 0 $jnt-gutter-normal,
+        border-bottom: 1px solid $jnt-muted-color,
       ),
       item: (
-        padding: $gutter-small $gutter-normal,
+        padding: $jnt-gutter-small $jnt-gutter-normal,
         height: null,
         color: null,
+        icon: (
+          margin-right: $jnt-gutter-small,
+          sizes: null
+        ),
         hover: (
-          background-color: $highlight-background,
-          border-left-color: $primary-color,
+          background-color: $jnt-highlight-background,
+          border-left-color: $jnt-primary-color,
         ),
         active: (
           underline: true,
@@ -70,66 +76,65 @@
   $declare: false;
 
   @if $passed == () or $strategy == 'merge' {
-    $vars: map-merge($defs, $passed);
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
   :host, #{$context} {
     @if $declare {
       display: block;
-      flex: 1;
-      &[type='horizontal'] {
-        [sub] {
+      &[data-orientation='horizontal'] {
+        [data-sub] {
           position: absolute;
           top: 100% !important;
           left: 0;
           z-index: 1;
         }
       }
-      &[type='vertical'] {
+      &[data-orientation='vertical'] {
         [top] {
           width: 100%;
         }
       }
 
-      [top] {
+      [data-top] {
         position: relative;
         white-space: nowrap;
         box-sizing: border-box;
 
-        [item] {
+        [data-item] {
           cursor: pointer;
           display: flex;
           align-items: center;
           user-select: none;
 
-          [link] {
+          [data-link] {
             width: 100%;
-            @include link((
+            @include jnt-link((
               overflow: true,
               display: block,
             ), '&');
           }
         }
 
-        [sub] {
+        [data-sub] {
           width: 100%;
           display: none;
           align-items: stretch;
           flex-direction: column;
-          &[opened='true'] {
+          &[data-opened='true'] {
             display: flex;
           }
-          > [title] {
+          > [data-section] {
             user-select: none;
             span {
               display: block;
-              padding: $gutter-normal 0;
+              padding: $jnt-gutter-normal 0;
             }
           }
-          [link] {
+          [data-link] {
             user-select: none;
-            @include link((
+            @include jnt-link((
               overflow: true,
               display: block,
             ), '&');
@@ -140,8 +145,8 @@
   }
 
   :host {
-    &[type='horizontal'], &[collapsed='true'] {
-      [sub] {
+    &[data-orientation='horizontal'], &[data-collapsed='true'] {
+      [data-sub] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);
           background-color: map-get($sub, background-color);
@@ -150,8 +155,8 @@
         }
       }
     }
-    &[collapsed='true'] {
-      [sub] {
+    &[data-collapsed='true'] {
+      [data-sub] {
         @if map-has-key($vars, sub) {
           $collapsed: map-get(map-get($vars, sub), collapsed);
           position: map-get($collapsed, position);
@@ -159,8 +164,8 @@
           left: map-get($collapsed, left);
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
-            [link] {
-              @include link((
+            [data-link] {
+              @include jnt-link((
                 padding: map-get($item, padding),
               ), '&');
             }
@@ -171,20 +176,21 @@
   }
 
 
-  #{$context} [top] {
-    [item] {
+  #{$context} [data-top] {
+    [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
-        @include link((
+        @include jnt-link((
           height: map-get($title, height),
           orphan-color: map-get($title, orphan-color),
           orphan-hover-color: map-get($title, orphan-hover-color),
           color: map-get($title, color),
+          text-transform: map-get($title, text-transform),
         ), '&');
 
         @if map-has-key($title, active) {
           $active: map-get($title, active);
-          @include link((
+          @include jnt-link((
             active: (
               underline: map-get($active, underline),
               background-color: map-get($active, background-color),
@@ -195,7 +201,7 @@
 
           @if map-has-key($title, icon) {
           $icon: map-get($title, icon);
-          @include link((
+          @include jnt-link((
             icon: (
               margin-right: map-get($icon, margin-right),
               size: map-get($icon, size)
@@ -206,7 +212,7 @@
         @if map-has-key($title, padding) {
           $padding: map-get($title, padding);
           padding: map-get($padding, outer);
-          @include link((
+          @include jnt-link((
             padding: map-get($padding, inner),
           ), '&');
         }
@@ -214,11 +220,11 @@
         @if map-has-key($title, toggle) {
           $toggle: map-get($title, toggle);
           @if map-get($toggle, toggle) == false {
-            [toggle] {
+            [data-toggle] {
               display: none;
             }
           }
-          [toggle] {
+          [data-toggle] {
             margin-left: map-get($toggle, margin-left);
           }
         }
@@ -232,13 +238,13 @@
       }
     }
 
-    [sub] {
+    [data-sub] {
       @if map-has-key($vars, sub) {
         $sub: map-get($vars, sub);
         min-width: map-get($sub, width);
         @if map-has-key($sub, title) {
           $title: map-get($sub, title);
-          > [title] {
+          > [data-section] {
             padding: map-get($title, padding);
             span {
               border-bottom: map-get($title, border-bottom);
@@ -248,12 +254,21 @@
 
         @if map-has-key($sub, item) {
           $item: map-get($sub, item);
-          [link] {
-            @include link((
+          [data-link] {
+            @include jnt-link((
               height: map-get($item, height),
               padding: map-get($item, padding),
               color: map-get($item, color),
             ), '&');
+            @if map-has-key($item, icon) {
+              $icon: map-get($item, icon);
+              @include jnt-link((
+                icon: (
+                  margin-right: map-get($icon, margin-right),
+                  sizes: map-get($icon, sizes)
+                ),
+              ), '&');
+            }
             @if map-has-key($item, hover) {
               $hover: map-get($item, hover);
               &:hover {
@@ -263,7 +278,7 @@
             }
             @if map-has-key($item, active) {
               $active: map-get($item, active);
-              @include link((
+              @include jnt-link((
                 active: (
                   underline: map-get($active, underline),
                   background-color: map-get($active, background-color),

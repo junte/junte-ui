@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.label">Label</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.label"></jnt-icon>
+    </span>
+    <span i18n="@@label.label">Label</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/elements/label"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/label"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -60,19 +67,22 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="color"
-                                  i18n="@@label.background_color">Background color</jnt-form-label>
+                  <jnt-form-label for="color" i18n="@@label.background_color">Background color</jnt-form-label>
                   <jnt-form-control>
-                    <input type="color" formControlName="color">
+                    <jnt-color-picker formControlName="color"></jnt-color-picker>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="icon"
-                                  label="Icon"
-                                  i18n-label="@@label.icon"></jnt-checkbox>
-                  </jnt-form-control>
+                  <jnt-form-label i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="icon"
+                                    label="Icon"
+                                    i18n-label="@@label.icon"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
                 </jnt-form-item>
 
               </jnt-stack>
@@ -86,28 +96,40 @@
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
-        <app-how-to-use
-          [test]="{selector:'label-test', type: 'LabelTestComponent'}"
-          scss="elements/label"></app-how-to-use>
-        <app-code-highlight file="label-test.template.html">
-          <![CDATA[
-          <jnt-label label="Doing"  ]]>
-            <ng-container *ngIf="iconControl.value">
-              <![CDATA[
-              [icon]="ui.icons.animated.runningMan"]]>
-            </ng-container>
-            <ng-container *ngIf="sizeControl.value">
-              <![CDATA[
-              [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-            </ng-container>
-            <ng-container *ngIf="colorControl.value">
-              <![CDATA[
-              color="]]>{{colorControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-label>
-          ]]>
-        </app-code-highlight>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'label-test', type: 'LabelTestComponent'}"
+                scss="elements/label"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="label-test.template.html">
+                <![CDATA[
+                <jnt-label label="Doing"  ]]>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.animated.runningMan"]]>
+                  </ng-container>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="colorControl.value">
+                    <![CDATA[
+                    color="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-label>
+                ]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
       </ng-template>
     </jnt-tab>
 

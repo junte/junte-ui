@@ -1,9 +1,16 @@
 <jnt-container>
-  <h1 i18n="@@label.button">Button</h1>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="localUi.icons.button"></jnt-icon>
+    </span>
+    <span i18n="@@label.button">Button</span>
+  </h1>
+
   <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/forms/button"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/button"
               target="_blank" title="GitLab">
     </jnt-link>
     <jnt-link [icon]="ui.icons.figma"
@@ -174,10 +181,10 @@
                                 i18n-placeholder="@@label.button">
                     <jnt-switcher-option label="Button"
                                          i18n-label="@@label.button"
-                                         [value]="ui.form.button.type.button"></jnt-switcher-option>
+                                         [value]="ui.forms.button.type.button"></jnt-switcher-option>
                     <jnt-switcher-option label="Submit"
                                          i18n-label="@@label.submit"
-                                         [value]="ui.form.button.type.submit"></jnt-switcher-option>
+                                         [value]="ui.forms.button.type.submit"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -271,7 +278,7 @@
                   </ng-container>
                   <ng-container *ngIf="typeControl.value">
                     <![CDATA[
-                    [type]="ui.form.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+                    [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="loadingControl.value">
                     <![CDATA[
@@ -332,7 +339,7 @@
                       </ng-container>
                       <ng-container *ngIf="typeControl.value">
                         <![CDATA[
-                        [type]="ui.form.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+                        [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
                       </ng-container>
                       <ng-container *ngIf="loadingControl.value">
                         <![CDATA[
