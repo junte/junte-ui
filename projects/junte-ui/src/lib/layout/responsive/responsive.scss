@@ -1,0 +1,49 @@
+@import "jnt-variables";
+
+@mixin for-mobile() {
+  @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-tablet() {
+  @media screen and (min-width: $jnt-tablet-breakpoint) and (max-width: $jnt-desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-desktop() {
+  @media screen and (min-width: $jnt-desktop-breakpoint) and (max-width: $jnt-wide-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-wide() {
+  @media screen and (min-width: $jnt-wide-breakpoint) {
+    @content;
+  }
+}
+
+@mixin min-for-tablet() {
+  @media screen and (min-width: $jnt-tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin min-for-desktop() {
+  @media screen and (min-width: $jnt-desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin max-for-tablet() {
+  @media screen and (max-width: $jnt-desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin max-for-desktop() {
+  @media screen and (max-width: $jnt-wide-breakpoint) {
+    @content;
+  }
+}

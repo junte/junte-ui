@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
 @keyframes jnt-scaleIn {
   0% {
@@ -23,7 +24,7 @@
 
   :host, #{$context} {
     display: block;
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @include for-mobile() {
       position: fixed;
       z-index: 2;
       max-width: 100%;
@@ -54,7 +55,7 @@
     max-width: 100%;
     top: 100%;
 
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @include for-mobile() {
       min-width: 100%;
       position: relative;
       top: 0 !important;
@@ -97,7 +98,7 @@
       font-size: $jnt-font-size-base;
       box-sizing: border-box;
       overflow: auto;
-      @media screen and (max-width: $jnt-tablet-breakpoint) {
+      @include for-mobile() {
         overflow: visible;
         max-height: none !important;
       }
