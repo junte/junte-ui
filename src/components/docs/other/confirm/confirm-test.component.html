@@ -21,27 +21,35 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
-                  <jnt-stack [type]="ui.layout.stack.type.vertical">
-                    <h4 i18n="@@label.test">Test</h4>
+                <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                  <jnt-button [jntPopover]="{contentTemplate: confirmPopover, trigger: ui.overlays.popover.trigger.click}"
+                              (jntCatch)="popover = $event"
+                              text="Open in popover">
+                  </jnt-button>
+                  <jnt-button [jntModal]="{content: confirmModal}"
+                              text="Open in modal">
+                  </jnt-button>
 
+                  <ng-template #confirmPopover>
                     <jnt-confirm message="Delete this ticket?"
                                  i18n-message="@@message.delete_this_ticket"
-                                 (ok)="success()"
-                                 (cancel)="fail()"></jnt-confirm>
+                                 (ok)="popover.hide()"
+                                 (cancel)="popover.hide()"></jnt-confirm>
+                  </ng-template>
+                  <ng-template #confirmModal>
+                    <jnt-confirm message="Delete this ticket?"
+                                 i18n-message="@@message.delete_this_ticket"
+                                 (ok)="modalService.close()"
+                                 (cancel)="modalService.close()"></jnt-confirm>
+                  </ng-template>
 
-                    <h4 i18n="@@label.title_template">Title template</h4>
-
-                    <jnt-confirm [messageTemplate]="messageTemplate"></jnt-confirm>
-
-                    <ng-template #messageTemplate>
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
-                        <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
-                        <span i18n="@@label.edit_this_ticket">Edit this ticket?</span>
-                      </jnt-stack>
-                    </ng-template>
-                  </jnt-stack>
-                </jnt-block>
+                  <ng-template #messageTemplate>
+                    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                      <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
+                      <span i18n="@@label.edit_this_ticket">Edit this ticket?</span>
+                    </jnt-stack>
+                  </ng-template>
+                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -54,11 +62,11 @@
                                   i18n="@@label.content_type">Content type
                   </jnt-form-label>
                   <jnt-switcher formControlName="type">
-                    <jnt-switcher-option label="Template"
-                                         [value]="contentType.modal">
-                    </jnt-switcher-option>
-                    <jnt-switcher-option label="Component"
+                    <jnt-switcher-option label="Popover"
                                          [value]="contentType.popover">
+                    </jnt-switcher-option>
+                    <jnt-switcher-option label="Modal"
+                                         [value]="contentType.modal">
                     </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
@@ -87,9 +95,11 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="confirm-test.template.html">
+                <!-- @formatter:off-->
                 <![CDATA[
 
                 ]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
@@ -99,7 +109,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-message" [target]="types.message"></app-component-api>
+        <app-component-api selector="jnt-confirm" [target]="types.confirm"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

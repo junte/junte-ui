@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  BlockModule,
+  BlockModule, ButtonModule,
   ConfirmModule,
   FormModule,
   GridModule,
   IconModule,
-  LinkModule,
+  LinkModule, ModalModule, PopoverModule,
   SelectModule,
   StackModule,
   SwitcherModule,
@@ -20,6 +21,7 @@ import { ConfirmTestComponent } from './confirm-test.component';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ConfirmModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
@@ -31,6 +33,9 @@ import { ConfirmTestComponent } from './confirm-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
+    PopoverModule.forRoot(JUNTE_UI_CONFIG),
+    ModalModule.forRoot(JUNTE_UI_CONFIG),
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
   ],
   exports: [
