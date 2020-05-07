@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DateFnsModule } from 'ngx-date-fns';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BlockModule } from '../../layout/block/block.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
@@ -23,7 +24,8 @@ import { DatePickerComponent } from './date-picker.component';
     InputModule,
     CalendarModule,
     BlockModule,
-    PopoverModule
+    PopoverModule,
+    ResponsiveModule
   ],
   entryComponents: [
     DatePickerComponent

@@ -1,7 +1,6 @@
 import { BACKSPACE } from '@angular/cdk/keycodes';
-import { Component, ElementRef, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BehaviorSubject, combineLatest } from 'rxjs';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
@@ -167,6 +166,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   get mask() {
     return this._mask;
   }
+
+  @PropertyApi({
+    description: 'Click event',
+    path: 'EventEmitter'
+  })
+  @Output() click = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) {
   }

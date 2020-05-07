@@ -29,8 +29,7 @@
           <jnt-col [tablet]="12">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-stack>
-                  <jnt-form [formGroup]="form">
+                  <jnt-form [formGroup]="form" data-form>
                     <jnt-date-picker formControlName="flightDate"
                                      placeholder="Please enter the date"
                                      [format]="formatControl.value">
@@ -40,7 +39,6 @@
                     You choose
                     <jnt-label [label]="flightDateControl.value | dfnsFormat:'dd.MM.yyyy'"></jnt-label>
                   </div>
-                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>

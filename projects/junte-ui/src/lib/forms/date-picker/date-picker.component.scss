@@ -1,13 +1,39 @@
 @import "jnt-variables";
+@import "layout/responsive/responsive";
+@import "forms/input/input";
 
 @mixin jnt-date-picker($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
     display: block;
+    @include for-mobile() {
+      border: 1px solid $jnt-control-border-color;
+      border-radius: $jnt-corner-small;
+      @include jnt-input((
+        scheme: (
+          normal: (
+            border-color: transparent,
+            hover: (
+              border-color: transparent
+            ),
+            focus: (
+              border-color: transparent,
+              shadow: none
+            ),
+          )
+        )
+      ), '&');
+    }
   }
 
   [data-calendar] {
     margin: 0;
+    min-width: 265px;
+  }
+
+  [dropdown] {
+    background-color: $jnt-primary-background;
+    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
   }
 
 }
