@@ -1,4 +1,8 @@
-<ng-template #optionDefaultTemplate let-icon="icon" let-label="label">
+<ng-template #emptyOptionsDefaultTemplate let-query="query">
+  <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
+</ng-template>
+
+<ng-template #optionDefaultTemplate let-query="query" let-icon="icon" let-label="label">
   <jnt-stack [type]="ui.layout.stack.type.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.flex.align.center">
@@ -6,8 +10,10 @@
     <div>{{label}}</div>
   </jnt-stack>
 </ng-template>
-<div data-select tabindex="0">
+
+<div data-select tabindex="0" [attr.data-has-icon]="!!icon">
   <div *ngIf="label" data-label>{{label}}</div>
+  <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == selectMode.single ? opened = true : null">
@@ -39,12 +45,14 @@
 <div data-options *ngIf="opened" [attr.data-loading]="loading">
   <ng-template #noOptionsTemplate>
     <div data-skeleton>
-      <jnt-skeleton *ngIf="loading; else emptyOptions"
+      <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
                     [type]="ui.layout.skeleton.type.text" [lines]="5"></jnt-skeleton>
     </div>
-    <ng-template #emptyOptions>
-      <div data-empty>
-        <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
+    <ng-template #optionsNotFoundTemplate>
+      <div data-empty-options>
+        <ng-container *ngTemplateOutlet="!!emptyOptionsTemplate ? emptyOptionsTemplate
+              : emptyOptionsDefaultTemplate;context: {query: queryControl.value, close: close.bind(this)}">
+        </ng-container>
       </div>
     </ng-template>
   </ng-template>

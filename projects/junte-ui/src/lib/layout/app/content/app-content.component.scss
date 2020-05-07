@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "layout/app/variables";
+@import "layout/responsive/responsive";
 
 @mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
@@ -22,7 +23,7 @@
       padding-left: $app-aside-collapsed-width;
     }
 
-    @media screen and (max-width: map-get($jnt-grid-breakpoints, tablet)) {
+    @include for-mobile() {
       padding-left: 0 !important;
     }
 

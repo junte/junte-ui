@@ -41,35 +41,35 @@ export class FormTestComponent implements OnInit {
     state: this.stateControl,
   });
 
-  nameControl = this.fb.control(null, [ Validators.required, Validators.minLength(3) ]);
-  lastNameControl = this.fb.control(null);
-  emailControl = this.fb.control(null);
-  passwordControl = this.fb.control(null);
-  genderControl = this.fb.control(Gender.man);
-  birthdayControl = this.fb.control(new Date());
-  countryControl = this.fb.control(this.countries[0]);
-  notificationControl = this.fb.control(true);
-  petsControl = this.fb.control(null);
-  statusControl = this.fb.control(this.status[0]);
-
   form = this.fb.group({
-    name: this.nameControl,
-    lastName: this.lastNameControl,
-    email: this.emailControl,
-    password: this.passwordControl,
-    gender: this.genderControl,
-    birthday: this.birthdayControl,
-    country: this.countryControl,
-    notification: this.notificationControl,
-    pets: this.petsControl,
-    status: this.statusControl,
+    personals: this.fb.group({
+      deep: this.fb.group({
+        firstName: this.fb.control(null, [Validators.required, Validators.minLength(3)]),
+        lastName: this.fb.control(null)
+      })
+    }),
+    children: this.fb.array([
+      this.fb.group({
+        name: this.fb.control(null, [Validators.required])
+      }),
+      this.fb.group({
+        name: this.fb.control(null, [Validators.required])
+      })
+    ]),
+    email: this.fb.control(null),
+    password: this.fb.control(null),
+    gender: this.fb.control(Gender.man),
+    birthday: this.fb.control(new Date()),
+    country: this.fb.control(this.countries[0]),
+    notification: this.fb.control(true),
+    pets: this.fb.control(null),
+    status: this.fb.control(this.status[0])
   });
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    console.log(this.nameControl);
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }

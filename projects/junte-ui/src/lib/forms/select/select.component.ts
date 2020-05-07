@@ -124,6 +124,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
 
+  @PropertyApi({
+    description: 'Icon for select',
+    type: 'string',
+  })
+  @Input() icon: string;
+
   @ViewChild('queryInput', {static: true})
   queryInput: ElementRef<HTMLInputElement>;
 
@@ -139,6 +145,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input()
   optionTemplate: TemplateRef<any>;
+
+  @PropertyApi({
+    description: 'Template for empty options',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  emptyOptionsTemplate: TemplateRef<any>;
 
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;

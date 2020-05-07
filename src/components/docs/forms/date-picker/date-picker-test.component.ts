@@ -31,7 +31,7 @@ export class DatePickerTestComponent implements OnInit {
     format: this.formatControl,
   });
 
-  flightDateControl = this.fb.control(new Date);
+  flightDateControl = this.fb.control(null);
   form = this.fb.group({
     flightDate: this.flightDateControl
   });

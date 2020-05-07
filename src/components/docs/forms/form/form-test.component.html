@@ -2,7 +2,7 @@
 
   <h1>
     <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.menu.forms"></jnt-icon>
+      <jnt-icon [icon]="localUi.icons.forms"></jnt-icon>
     </span>
     <span i18n="@@label.form">Form</span>
   </h1>
@@ -52,46 +52,65 @@
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-                <jnt-form [formGroup]="form" [title]="titleControl.value ? 'Registration' : null"
+                <jnt-form [formGroup]="form"
+                          [title]="titleControl.value ? 'Registration' : null"
                           [state]="stateControl.value" (submitted)="submit()">
 
                   <jnt-stack [align]="ui.flex.align.stretch">
 
-                    <jnt-row>
-                      <jnt-col [tablet]="6" [mobile]="12">
+                    <ng-container formGroupName="personals">
+                      <jnt-row formGroupName="deep">
+                        <jnt-col [tablet]="6" [mobile]="12">
+                          <jnt-form-item>
+                            <jnt-form-label for="firstName"
+                                            i18n="@@label.your_name">Your Name
+                            </jnt-form-label>
+                            <jnt-form-control name="firstName">
+                              <jnt-input formControlName="firstName" [type]="ui.forms.input.type.text"></jnt-input>
+                              <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                                This field is required
+                              </jnt-form-message>
+                            </jnt-form-control>
+                          </jnt-form-item>
+                        </jnt-col>
+
+                        <jnt-col [tablet]="6" [mobile]="12">
+                          <jnt-form-item>
+                            <jnt-form-label for="lastName"
+                                            i18n="@@label.your_last_name">Your Last name
+                            </jnt-form-label>
+                            <jnt-form-control>
+                              <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
+                            </jnt-form-control>
+                          </jnt-form-item>
+                        </jnt-col>
+                      </jnt-row>
+                    </ng-container>
+
+                    <ng-container formGroupName="children">
+                      <ng-container formGroupName="0">
                         <jnt-form-item>
-                          <jnt-form-label for="name"
-                                          i18n="@@label.your_name">Your Name
-                          </jnt-form-label>
-                          <jnt-form-control>
+                          <jnt-form-label>Children</jnt-form-label>
+                          <jnt-form-control name="name">
                             <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
-                            <jnt-form-message [type]="ui.forms.validators.typeError.required">This field is required
+                            <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                              This field is required
                             </jnt-form-message>
                           </jnt-form-control>
                         </jnt-form-item>
-                      </jnt-col>
-
-                      <jnt-col [tablet]="6" [mobile]="12">
+                      </ng-container>
+                      <ng-container formGroupName="1">
                         <jnt-form-item>
-                          <jnt-form-label for="lastName"
-                                          i18n="@@label.your_last_name">Your Last name
-                          </jnt-form-label>
-                          <jnt-form-control>
-                            <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
+                          <jnt-form-label>Children</jnt-form-label>
+                          <jnt-form-control name="name">
+                            <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
+                            <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                              This field is required
+                            </jnt-form-message>
                           </jnt-form-control>
                         </jnt-form-item>
-                      </jnt-col>
-                    </jnt-row>
-
-
-                    <jnt-form-item>
-                      <jnt-form-label for="email"
-                                      i18n="@@label.your_email">Your E-mail
-                      </jnt-form-label>
-                      <jnt-form-control>
-                        <jnt-input formControlName="email" [type]="ui.forms.input.type.text"></jnt-input>
-                      </jnt-form-control>
-                    </jnt-form-item>
+                      </ng-container>
+                    </ng-container>
 
                     <jnt-form-item>
                       <jnt-form-label for="password"

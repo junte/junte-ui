@@ -11,7 +11,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
@@ -62,14 +62,19 @@ export class FormComponent implements OnInit {
   controls: QueryList<FormControlComponent>;
 
   ngOnInit() {
-    this.form.statusChanges.subscribe(() => {
-      this.controls.filter(component => !!component.name && !!component.messages.length)
-        .forEach(component => {
-          const control = this.form.get(component.name);
-          const messages = component.messages;
-          messages.forEach(message => message.active = !!(control.hasError(message.type) && control.errors && control.dirty));
-        });
-    });
+    if (!!this.form) {
+      this.form.statusChanges.subscribe(() => {
+        this.controls.filter(component => !!component.name && !!component.messages.length)
+          .forEach(component => {
+            const control = component.getControl();
+            if (!!control) {
+              const messages = component.messages;
+              messages.forEach(message => message.active = !!(control.hasError(message.type)
+                && control.errors && control.dirty));
+            }
+          });
+      });
+    }
   }
 
   @HostListener('submit')
@@ -84,21 +89,29 @@ export class FormComponent implements OnInit {
     }
   }
 
-  private check(form: any) {
-    for (const i in form.controls) {
-      const control = form.controls[i];
-      control.markAsDirty();
-      control.updateValueAndValidity();
-      this.check(control);
-    }
+  private check(form: FormGroup | FormArray) {
+    Object.keys(form.controls).forEach((key: string) => {
+      const control = form.controls[key];
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.check(control);
+      } else {
+        control.markAsDirty();
+        control.updateValueAndValidity();
+      }
+    });
   }
 
-  private refresh(form: any) {
-    for (const i in form.controls) {
-      const control = form.controls[i];
-      control.markAsPristine();
-      control.updateValueAndValidity();
-      this.refresh(control);
-    }
+  private refresh(form: FormGroup | FormArray) {
+    Object.keys(form.controls).forEach((key: string) => {
+      const control = form.controls[key];
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        this.refresh(control);
+      } else {
+        control.markAsPristine();
+        control.markAsPristine();
+      }
+    });
   }
 }

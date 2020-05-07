@@ -2,15 +2,25 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin jnt-switcher($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    height: 32px,
     corner: $jnt-corner-normal,
+    horizontal: (
+      height: 32px,
+    ),
+    vertical: (
+      max-height: null,
+    )
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -18,90 +28,112 @@
   }
 
   :host, #{$context} {
-    display: flex;
-    border: 1px solid $jnt-gray-700-color;
+    @if $declare {
+      display: block;
+      border: 1px solid $jnt-gray-700-color;
+      #{$wrapper} [data-options] {
+        display: flex;
+        [data-option] {
+          background-color: $jnt-primary-background;
+          color: $jnt-primary-text-color;
+          user-select: none;
+          overflow: hidden;
+          cursor: pointer;
+          border: 1px solid transparent;
+          padding: 0 $jnt-gutter-small;
+
+          &[data-with-template] {
+            padding: $jnt-gutter-small;
+          }
+
+          &:focus {
+            outline: 0;
+            box-shadow: $jnt-shadow-primary;
+            border-color: $jnt-primary-light-color;
+          }
+
+          &:hover {
+            background-color: $jnt-highlight-background;
+          }
+
+          &[data-selected="true"] {
+            color: $jnt-white-color;
+            background-color: $jnt-primary-light-color;
+            [data-mark] {
+              @include jnt-icon((color: $jnt-white-color), '&');
+            }
+          }
+          [data-title] {
+            flex: 1;
+            [data-label] {
+              flex: 0 1 auto;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
     border-radius: map-get($vars, corner);
     &[data-orientation='vertical'] {
-      flex-direction: column;
-      [data-option] {
-        &:first-child {
-          border-top-left-radius: map-get($vars, corner) - 1px;
-          border-top-right-radius: map-get($vars, corner) - 1px;
-        }
+      @if map-has-key($vars, vertical) {
+        $vertical: map-get($vars, vertical);
+        max-height: if(map-get($vertical, max-height), map-get($vertical, max-height), null);
+        overflow-y: auto;
+      }
+      #{$wrapper} [data-options] {
+        flex-direction: column;
+        [data-option] {
+          &:first-child {
+            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
+          }
 
-        &:last-child {
-          border-bottom-right-radius: map-get($vars, corner) - 1px;
-          border-bottom-left-radius: map-get($vars, corner) - 1px;
+          &:last-child {
+            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
+          }
         }
       }
     }
     &[data-orientation='horizontal'] {
-      flex-direction: row;
-      [data-option] {
-        flex: auto;
-        justify-content: center;
-        &:first-child {
-          border-top-left-radius: map-get($vars, corner) - 1px;
-          border-bottom-left-radius: map-get($vars, corner) - 1px;
-        }
+      #{$wrapper} [data-options] {
+        flex-direction: row;
+        [data-option] {
+          flex: auto;
+          justify-content: center;
+          &:first-child {
+            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
+          }
 
-        &:last-child {
-          border-top-right-radius: map-get($vars, corner) - 1px;
-          border-bottom-right-radius: map-get($vars, corner) - 1px;
+          &:last-child {
+            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
+            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
+          }
         }
       }
     }
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
-      [data-option] {
+      #{$wrapper} [data-option] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
   }
 
-  #{$context} [data-option] {
-    background-color: $jnt-primary-background;
-    color: $jnt-primary-text-color;
-    user-select: none;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid transparent;
-    padding: 0 $jnt-gutter-small;
-
-    &[data-with-template] {
-      padding: $jnt-gutter-small;
-    }
-
-    &:focus {
-      outline: 0;
-      box-shadow: $jnt-shadow-primary;
-      border-color: $jnt-primary-light-color;
-    }
-
-    &:hover {
-      background-color: $jnt-highlight-background;
-    }
-
-    &[data-selected="true"] {
-      color: $jnt-white-color;
-      background-color: $jnt-primary-light-color;
-    }
-
-    [data-mark] {
-      @include jnt-icon((color: $jnt-primary-color), '&');
-    }
+  #{$context} #{$wrapper} [data-mark] {
+    @include jnt-icon((color: $jnt-primary-color), '&');
   }
 
-  #{$context} [data-title] {
-    flex: 1;
-    [data-label] {
-      flex: 0 1 auto;
-      overflow: hidden;
-      white-space: nowrap;
-      line-height: map-get($vars, height);
+  #{$context} #{$wrapper} [data-title] {
+    @if map-has-key($vars, horizontal) {
+      $horizontal: map-get($vars, horizontal);
+      line-height: map-get($horizontal, height);
     }
-  }
 
+  }
 }
+

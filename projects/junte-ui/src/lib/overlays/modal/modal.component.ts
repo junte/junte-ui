@@ -1,4 +1,4 @@
-import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import {
   Component,
   ComponentRef,
@@ -12,9 +12,10 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { PopoverOptions } from 'projects/junte-ui/src/lib/overlays/popover/popover.component';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { MethodApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 
 export enum ModalClosingOption {
   enable = 'enable',
@@ -33,7 +34,7 @@ interface ModalTitle {
 
 export class ModalOptions {
   maxWidth = '800';
-  maxHeight = '800';
+  maxHeight = '600';
   closing: ModalClosingOption = ModalClosingOption.enable;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
@@ -126,6 +127,7 @@ export class ModalComponent {
   closing = ModalClosingOption;
   contentTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
+  mobile: boolean = this.breakpoint.current === Breakpoint.mobile;
 
   @Input() backdrop: ElementRef;
 
@@ -156,7 +158,8 @@ export class ModalComponent {
     }
   }
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,
+              private breakpoint: BreakpointService) {
   }
 
   start(event: AnimationEvent) {
@@ -177,7 +180,9 @@ export class ModalComponent {
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      if (!this.mobile) {
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      }
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
@@ -188,7 +193,9 @@ export class ModalComponent {
     this.renderer.setStyle(document.body, 'overflow', 'auto');
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
-      this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      if (!this.mobile) {
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scaleOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      }
     }
     this.opened = false;
   }

@@ -2,7 +2,7 @@
 
   <h1>
     <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.menu.table"></jnt-icon>
+      <jnt-icon [icon]="localUi.icons.table"></jnt-icon>
     </span>
     <span i18n="@@label.table">Table</span>
   </h1>
@@ -124,7 +124,7 @@
                         <ng-container *ngIf="actionsControl.value">
                           <![CDATA[
                           <ng-template #tableRowActionsTemplate let-row="row">
-                            <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
+                            <jnt-menu [orientation]="ui.orientation.vertical" [spacer]="ui.size.small">
                               <jnt-menu-item title="Edit"></jnt-menu-item>
                               <jnt-menu-item title="Delete"></jnt-menu-item>
                             </jnt-menu>

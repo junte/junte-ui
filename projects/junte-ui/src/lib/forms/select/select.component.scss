@@ -1,17 +1,24 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
-@mixin select-size($size) {
-  [data-select] {
+@mixin select-size($size, $wrapper) {
+  #{$wrapper} [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
+    &[data-has-icon = 'true'] {
+      padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-small} + #{$jnt-gutter-small});
+    }
   }
 }
 
-@mixin jnt-select($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-select($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
+    icon: (
+      color: $jnt-primary-text-color,
+    ),
     sizes: (
       small: (
         font-size: 11px,
@@ -48,6 +55,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -60,11 +72,15 @@
     min-width: 70px;
     color: $jnt-primary-text-color;
     line-height: $jnt-line-height-base;
+    @include for-mobile() {
+      border: 1px solid $jnt-control-border-color;
+      border-radius: $jnt-corner-small;
+    }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
-          @include select-size($map);
+          @include select-size($map, $wrapper);
           [data-select] {
             ul li {
               input {
@@ -106,6 +122,9 @@
     &[data-opened='true'] [data-select] {
       box-shadow: $jnt-shadow-primary;
       border-color: $jnt-primary-color;
+      @include for-mobile() {
+        box-shadow: none;
+      }
     }
 
     &[data-mode='single'] {
@@ -192,13 +211,28 @@
     }
   }
 
-  #{$context} [data-select] {
+  #{$context} #{$wrapper} [data-select] {
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;
     padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
+    @include for-mobile() {
+      border: 0;
+    }
+    > [data-icon] {
+      position: absolute;
+      top: 50%;
+      left: $jnt-gutter-small;
+      transform: translateY(-50%);
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        @include jnt-icon((
+          color: map-get($icon, color)
+        ), '&');
+      }
+    }
     &:focus {
       outline: 0;
     }
@@ -218,7 +252,7 @@
         [data-icon] {
           line-height: 0;
         }
-        [data-empty] {
+        [data-empty-options] {
           width: 50px;
           height: 10px;
           background-color: $jnt-primary-text-light-color;
@@ -281,7 +315,7 @@
     }
   }
 
-  #{$context} [data-options] {
+  #{$context} #{$wrapper} [data-options] {
     position: absolute;
     width: 100%;
     box-sizing: border-box;
@@ -292,6 +326,12 @@
     padding: $jnt-gutter-small 0;
     overflow: hidden;
     z-index: 2;
+    @include for-mobile() {
+      position: static;
+      margin-top: 0;
+      border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+      box-shadow: none;
+    }
     &[data-loading='true'] {
       min-height: 100px;
       height: auto;
@@ -299,7 +339,7 @@
     [data-skeleton] {
       padding: 0 $jnt-gutter-small;
     }
-    [data-empty] {
+    [data-empty-options] {
       height: 200px;
       display: flex;
       justify-content: center;

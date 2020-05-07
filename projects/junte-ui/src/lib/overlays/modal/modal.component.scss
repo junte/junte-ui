@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
 @keyframes jnt-scaleIn {
   0% {
@@ -23,6 +24,15 @@
 
   :host, #{$context} {
     display: block;
+    @include for-mobile() {
+      position: fixed;
+      z-index: 2;
+      max-width: 100%;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: $jnt-gutter-small;
+      box-sizing: border-box;
+    }
   }
 
   #{$context} [data-overlay] {
@@ -45,8 +55,12 @@
     max-width: 100%;
     top: 100%;
 
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
-      min-width: calc(100% - #{$jnt-gutter-normal} * 2);
+    @include for-mobile() {
+      min-width: 100%;
+      position: relative;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
     }
 
     [data-title] {
@@ -84,6 +98,10 @@
       font-size: $jnt-font-size-base;
       box-sizing: border-box;
       overflow: auto;
+      @include for-mobile() {
+        overflow: visible;
+        max-height: none !important;
+      }
     }
 
   }

@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import "layout/app/variables";
 @import "navigation/menu/menu";
+@import "layout/responsive/responsive";
 
 @mixin jnt-app-aside($passed: (), $context: null, $strategy: 'changes') {
 
@@ -89,7 +90,7 @@
     }
   }
 
-  @media (max-width: #{map-get($jnt-grid-breakpoints, tablet)}) {
+  @include for-mobile() {
     :host, #{$context} {
       &[data-opened="true"] {
         width: 100%;

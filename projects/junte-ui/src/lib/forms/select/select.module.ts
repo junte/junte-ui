@@ -43,13 +43,13 @@ export class SelectModule {
     return {
       ngModule: SelectModule,
       providers: [
+        ...LoggerModule.forRoot({
+          level: NgxLoggerLevel.DEBUG
+        }).providers,
         {
           provide: JunteUIModuleConfig,
           useValue: config
         },
-        ...LoggerModule.forRoot({
-          level: NgxLoggerLevel.DEBUG
-        }).providers,
         ...JUNTE_MODULE_PROVIDES
       ]
     };

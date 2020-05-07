@@ -27,6 +27,7 @@ export class SelectTestComponent implements OnInit {
   searchControl = this.fb.control(false);
   loaderControl = this.fb.control(null);
   templateControl = this.fb.control(false);
+  iconControl = this.fb.control(false);
 
   builder = this.fb.group({
     mode: this.modeControl,
@@ -35,7 +36,8 @@ export class SelectTestComponent implements OnInit {
     allowEmpty: this.allowEmptyControl,
     search: this.searchControl,
     loader: this.loaderControl,
-    template: this.templateControl
+    template: this.templateControl,
+    icon: this.iconControl
   });
 
   selectControl = this.fb.control(null);

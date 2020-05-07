@@ -24,7 +24,9 @@ import {
   setYear,
   startOfMonth,
   startOfWeek,
-  subMonths
+  subMonths,
+  addYears,
+  subYears
 } from 'date-fns';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -37,6 +39,14 @@ import { WeekMetricComponent } from './week/week-metric.component';
 
 const WEEKS_DISPLAYED = 5;
 const DAYS_IN_WEEK = 7;
+const DATE_ROWS = 3;
+const DATE_COLS = 4;
+
+enum ViewType {
+  date = 'date',
+  year = 'year',
+  month = 'month'
+}
 
 @Component({
   selector: 'jnt-calendar',
@@ -61,6 +71,10 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   current: Date = today();
   weeks = [];
+  months = [];
+  years = [];
+  viewType = ViewType;
+  view: ViewType = ViewType.date;
 
   @ContentChildren(WeekMetricComponent)
   metrics: QueryList<WeekMetricComponent>;
@@ -73,6 +87,9 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   @Output()
   updated = new EventEmitter<Period>();
+
+  @Output()
+  selected = new EventEmitter();
 
   @PropertyApi({
     description: 'Set disabled state',
@@ -113,7 +130,10 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   format = format;
   addMonths = addMonths;
   subMonths = subMonths;
+  addYears = addYears;
+  subYears = subYears;
   isEqual = isEqual;
+  getYear = getYear;
 
   onChange: (date: Date) => void;
 
@@ -124,13 +144,15 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     this.period = startOfMonth(this.current);
 
     combineLatest(this.year$, this.month$)
-      .pipe(filter(([year, month]) => !!year && !!month))
+      .pipe(filter(([year, month]) => year !== null && year !== undefined && month !== null && month !== undefined))
       .subscribe(([year, month]) =>
         this.period = setDate(setMonth(setYear(new Date(), year), month), 1));
   }
 
   writeValue(date: Date): void {
-    this.current = date;
+    if (!!date) {
+      this.current = this.period = date;
+    }
   }
 
   registerOnChange(callback: (date: Date) => void): void {
@@ -138,6 +160,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
       if (!isEqual(date, this.current)) {
         this.current = date;
         callback(date);
+        this.selected.emit();
       }
     };
   }
@@ -163,6 +186,20 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
       date = addWeeks(date, 1);
     }
     this.updated.emit({start: start, end: date});
+
+    for (let i = 0; i < DATE_ROWS; i++) {
+      this.months[i] = [];
+      for (let j = 0; j < DATE_COLS; j++) {
+        this.months[i].push(new Date(getYear(this.period), i * DATE_COLS + j, 1));
+      }
+    }
+
+    for (let i = 0; i < DATE_ROWS; i++) {
+      this.years[i] = [];
+      for (let j = 0; j < DATE_COLS; j++) {
+        this.years[i].push(new Date(getYear(this.period) - 4 + i * DATE_COLS + j, i * DATE_COLS + j, 1));
+      }
+    }
   }
 
 }
