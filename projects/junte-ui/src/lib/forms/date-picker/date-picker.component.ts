@@ -25,9 +25,10 @@ export class DatePickerComponent implements OnInit {
 
   ui = UI;
   popover: PopoverComponent;
+  opened: boolean;
 
   inputControl = this.fb.control(null);
-  calendarControl = this.fb.control(null);
+  calendarControl = this.fb.control(new Date());
 
   format = 'dd.MM.yyyy';
 
@@ -61,16 +62,17 @@ export class DatePickerComponent implements OnInit {
       debounceTime(INPUT_DELAY),
       distinctUntilChanged()
     ).subscribe(date => {
-      const current = parse(date, this.format, new Date());
-      if (current instanceof Date && !isNaN(current.getTime())) {
-        this.calendarControl.patchValue(current);
-      } else {
-        this.inputControl.patchValue(formatDate(new Date(), this.format));
-      }
+      this.updateCalendar(parse(date, this.format, new Date()));
       if (!!this.popover) {
         this.popover.hide();
       }
     });
+  }
+
+  updateCalendar(date: Date) {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      this.calendarControl.patchValue(date);
+    }
   }
 
   onChange(value: any) {
@@ -80,7 +82,7 @@ export class DatePickerComponent implements OnInit {
   }
 
   writeValue(value: Date) {
-    this.calendarControl.patchValue(value);
+    this.updateCalendar(value);
   }
 
   registerOnChange(fn) {

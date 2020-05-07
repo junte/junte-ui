@@ -61,6 +61,18 @@
     [data-date] {
       font-weight: $jnt-font-weight-bold;
       font-size: $jnt-font-size-base;
+      cursor: pointer;
+      &[data-year] {
+        pointer-events: none;
+        user-select: none;
+        color: $jnt-control-disabled-label-color;
+      }
+      &:hover {
+        background-color: $jnt-highlight-background;
+      }
+      &:focus {
+        outline: 0;
+      }
     }
     [data-days] {
       > th {
@@ -129,6 +141,23 @@
               background-color: $jnt-primary-light-color;
               color: $jnt-white-color;
             }
+          }
+        }
+        &[data-day-extend] {
+          cursor: pointer;
+          padding: $jnt-gutter-small $jnt-gutter-tiny;
+          height: 68px;
+          &:hover {
+            background-color: $jnt-highlight-background;
+            color: $jnt-primary-text-dark-color;
+          }
+          &:focus {
+            box-shadow: $jnt-shadow-primary;
+            outline: 1px solid $jnt-primary-light-color;
+          }
+          &[data-current-year='true'], &[data-current-month='true'] {
+            background-color: $jnt-primary-light-color;
+            color: $jnt-white-color;
           }
         }
       }

@@ -2,15 +2,21 @@
   <thead>
   <tr>
     <td data-arrow-left>
-      <button data-arrow (click)="period = subMonths(period, 1)">
+      <button data-arrow (click)="view === viewType.date ? period = subMonths(period, 1) : view === viewType.month ? period = subYears(period, 1) : period = subYears(period, 12)">
         <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
       </button>
     </td>
-    <td colspan="5" data-date>
-      {{period | dfnsFormat: 'LLLL'}}, {{period | dfnsFormat: 'yyyy'}}
+    <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5" data-date tabindex="0">
+        {{period | dfnsFormat: 'LLLL'}}, {{period | dfnsFormat: 'yyyy'}}
+    </td>
+    <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2" data-date tabindex="0">
+      {{period | dfnsFormat: 'yyyy'}}
+    </td>
+    <td *ngIf="view === viewType.year" colspan="2" data-date data-year tabindex="0">
+        {{getYear(period) - 4}} - {{getYear(period) + 7}}
     </td>
     <td data-arrow-right>
-      <button data-arrow (click)="period = addMonths(period, 1)">
+      <button data-arrow (click)="view === viewType.date ? period = addMonths(period, 1) : view === viewType.month ? period = addYears(period, 1) : period = addYears(period, 12)">
         <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
       </button>
     </td>
@@ -20,31 +26,60 @@
       Metrics
     </td>
   </tr>
-  <tr data-days>
+  <tr *ngIf="view === viewType.date; else empty" data-days>
     <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | dfnsWeekdayName:'x2'}}</th>
 
     <th *ngFor="let m of metrics">
       {{m.title}}
     </th>
   </tr>
+
+  <ng-template #empty>
+    <tr data-days>
+      <th *ngFor="let col of [1,2,3,4]"></th>
+    </tr>
+  </ng-template>
   </thead>
 
   <tbody>
-  <tr *ngFor="let w of weeks"
-      [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
-    <td data-day *ngFor="let d of w.days"
-        [attr.data-current-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
-        (click)="onChange(d)" tabindex="0">
-      <ng-container
-        *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
-      </ng-container>
-    </td>
+  <ng-container *ngIf="view === viewType.date">
+    <tr *ngFor="let w of weeks"
+        [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
+      <td data-day *ngFor="let d of w.days"
+          [attr.data-current-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
+          (click)="onChange(d)" tabindex="0">
+        <ng-container
+          *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
+        </ng-container>
+      </td>
 
-    <td data-metric *ngFor="let m of metrics;let i = index;">
-      <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
-      </ng-container>
-    </td>
-  </tr>
+      <td data-metric *ngFor="let m of metrics;let i = index;">
+        <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
+        </ng-container>
+      </td>
+    </tr>
+  </ng-container>
+
+  <ng-container *ngIf="view === viewType.month">
+    <tr *ngFor="let row of months">
+      <td data-day-extend *ngFor="let month of row"
+          [attr.data-current-month]="(month | dfnsStartOfMonth) | dfnsIsEqual: (current | dfnsStartOfMonth)"
+          (click)="period = month; view = viewType.date">
+        {{month | dfnsFormat: 'LLL'}}
+      </td>
+    </tr>
+  </ng-container>
+
+  <ng-container *ngIf="view === viewType.year">
+    <tr *ngFor="let row of years">
+      <td data-day-extend *ngFor="let year of row"
+          [attr.data-current-year]="(year | dfnsStartOfYear) | dfnsIsEqual: (current | dfnsStartOfYear)"
+          (click)="period = year; view = viewType.month">
+        {{year | dfnsFormat: 'yyyy'}}
+      </td>
+    </tr>
+  </ng-container>
+
   </tbody>
 </table>
 
