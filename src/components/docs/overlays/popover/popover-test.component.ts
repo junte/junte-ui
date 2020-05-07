@@ -27,7 +27,7 @@ export class PopoverTestComponent {
   layouts = PopoverPlacements;
 
   titleControl = this.fb.control(true);
-  triggerControl = this.fb.control(PopoverTriggers.click);
+  triggerControl = this.fb.control(PopoverTriggers.hover);
   typeControl = this.fb.control(ContentType.default);
   schemeControl = this.fb.control(Scheme.primary);
   layoutControl = this.fb.control(PopoverPlacements.top);

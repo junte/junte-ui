@@ -135,8 +135,8 @@
                   <jnt-form-label for="trigger"
                                   i18n="@@label.trigger_type">Trigger type</jnt-form-label>
                   <jnt-switcher formControlName="trigger">
-                    <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
                     <jnt-switcher-option label="Hover" [value]="triggerType.hover"></jnt-switcher-option>
+                    <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -196,35 +196,47 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="popover-test.template.html">
-                <![CDATA[
-                <jnt-button [jntPopover]="{title: 'Title', content: 'Click content', trigger: ui.overlays.popover.trigger.click}"
-                            text="Click me">
-                 </jnt-button>
-                 <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.overlays.popover.trigger.hover}"
-                             text="Without title">
-                 </jnt-button>
-                 <jnt-button [jntPopover]="{title: 'Mouse enter delay', content: 'Enter delay 1 sec',
-                      enterDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
-                             text="Enter delay">
-                 </jnt-button>
-                 <jnt-button [jntPopover]="{title: 'Mouse leave delay', content: 'Leave delay 1 sec',
-                      leaveDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
-                             text="Leave delay">
-                 </jnt-button>
-                 <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.overlays.popover.trigger.hover}"
-                             text="Custom content">
-                 </jnt-button>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-button [jntPopover]= ]]><![CDATA["{]]>
+<ng-container *ngIf="titleControl.value">
+  <![CDATA[
+  title: ]]>{{titleControl.value ? "'Title'" : null}}
+  <![CDATA[,]]>
+</ng-container>
+<ng-container *ngIf="contentControl.value">
+  <![CDATA[
+  trigger: 'ui.overlays.popover.trigger.]]>{{triggerControl.value}}<![CDATA[',]]>
+  <![CDATA[
+  text: 'Any text']]>
+  <![CDATA[}" >
+ </jnt-button> ]]>
+ <jnt-button [jntPopover]="{content: 'Without title', trigger: ui.overlays.popover.trigger.hover}"
+             text="Without title">
+ </jnt-button>
+ <jnt-button [jntPopover]="{title: 'Mouse enter delay', content: 'Enter delay 1 sec',
+      enterDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
+             text="Enter delay">
+ </jnt-button>
+ <jnt-button [jntPopover]="{title: 'Mouse leave delay', content: 'Leave delay 1 sec',
+      leaveDelay: 1, trigger: ui.overlays.popover.trigger.hover}"
+             text="Leave delay">
+ </jnt-button>
+ <jnt-button [jntPopover]="{title: 'Custom', content: content, trigger: ui.overlays.popover.trigger.hover}"
+             text="Custom content">
+ </jnt-button>
 
-                <ng-template #content>
-                   <jnt-stack [type]="ui.layout.stack.type.vertical">
-                      <jnt-link>"It is custom content!</jnt-link>
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                        <jnt-button text="Ok"></jnt-button>
-                        <jnt-button text="Cancel"></jnt-button>
-                      </jnt-stack>
-                   </jnt-stack>
-                </ng-template>
-                    ]]>
+<ng-template #content>
+   <jnt-stack [type]="ui.layout.stack.type.vertical">
+      <jnt-link>"It is custom content!</jnt-link>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+        <jnt-button text="Ok"></jnt-button>
+        <jnt-button text="Cancel"></jnt-button>
+      </jnt-stack>
+   </jnt-stack>
+</ng-template>
+    ]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
