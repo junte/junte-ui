@@ -22,26 +22,26 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-                  <jnt-button [jntPopover]="{contentTemplate: confirmPopover, trigger: ui.overlays.popover.trigger.click}"
-                              (jntCatch)="popover = $event"
-                              text="Open in popover">
-                  </jnt-button>
-                  <jnt-button [jntModal]="{content: confirmModal}"
-                              text="Open in modal">
-                  </jnt-button>
-
-                  <ng-template #confirmPopover>
-                    <jnt-confirm message="Delete this ticket?"
-                                 i18n-message="@@message.delete_this_ticket"
-                                 (ok)="popover.hide()"
-                                 (cancel)="popover.hide()"></jnt-confirm>
-                  </ng-template>
-                  <ng-template #confirmModal>
-                    <jnt-confirm message="Delete this ticket?"
-                                 i18n-message="@@message.delete_this_ticket"
-                                 (ok)="modalService.close()"
-                                 (cancel)="modalService.close()"></jnt-confirm>
-                  </ng-template>
+                  <ng-container *ngIf="usingControl.value === usingType.popover">
+                    <jnt-button [jntPopover]="{contentTemplate: confirmPopover, trigger: ui.overlays.popover.trigger.click}"
+                                text="Open in popover">
+                    </jnt-button>
+                    <ng-template #confirmPopover>
+                      <jnt-confirm message="Delete this ticket?"
+                                   i18n-message="@@message.delete_this_ticket"></jnt-confirm>
+                    </ng-template>
+                  </ng-container>
+                  <ng-container *ngIf="usingControl.value === usingType.modal">
+                    <jnt-button [jntModal]="{content: confirmModal}"
+                                text="Open in modal">
+                    </jnt-button>
+                    <ng-template #confirmModal>
+                      <jnt-confirm message="Delete this ticket?"
+                                   i18n-message="@@message.delete_this_ticket"
+                                   (ok)="modalService.close()"
+                                   (cancel)="modalService.close()"></jnt-confirm>
+                    </ng-template>
+                  </ng-container>
 
                   <ng-template #messageTemplate>
                     <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
@@ -59,14 +59,14 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="type"
-                                  i18n="@@label.content_type">Content type
+                                  i18n="@@label.using">Using
                   </jnt-form-label>
-                  <jnt-switcher formControlName="type">
+                  <jnt-switcher formControlName="using">
                     <jnt-switcher-option label="Popover"
-                                         [value]="contentType.popover">
+                                         [value]="usingType.popover">
                     </jnt-switcher-option>
                     <jnt-switcher-option label="Modal"
-                                         [value]="contentType.modal">
+                                         [value]="usingType.modal">
                     </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
@@ -88,7 +88,38 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'confirm-test', type: 'ConfirmTestComponent'}"
-                scss="shared/confirm"></app-how-to-use>
+                scss="shared/confirm">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component } from '@angular/core';
+import { UI,]]>
+<ng-container *ngIf="usingControl.value === usingType.modal">
+  <![CDATA[
+  ModalService
+  ]]>
+</ng-container>
+<![CDATA[ } from 'junte-ui';
+
+@Component({
+  selector: 'app-confirm-test',
+  templateUrl: './confirm-test.component.html',
+  styleUrls: ['./confirm-test.component.scss']
+})
+
+export class ConfirmTestComponent {
+ui = UI;
+]]>
+<ng-container *ngIf="usingControl.value === usingType.modal">
+<![CDATA[
+  constructor(private modalService: ModalService) {
+  } ]]>
+</ng-container>
+<![CDATA[
+} ]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -96,9 +127,29 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="confirm-test.template.html">
                 <!-- @formatter:off-->
-                <![CDATA[
+<ng-container *ngIf="usingControl.value === usingType.popover">
+  <![CDATA[
+  <jnt-button [jntPopover]="{contentTemplate: confirmPopover, trigger: ui.overlays.popover.trigger.click}"
+              text="Open in popover">
+  </jnt-button>
+  <ng-template #confirmPopover>
+    <jnt-confirm message="Delete this ticket?"></jnt-confirm>
+  </ng-template>
+  ]]>
+</ng-container>
 
-                ]]>
+<ng-container *ngIf="usingControl.value === usingType.modal">
+  <![CDATA[
+  <jnt-button [jntModal]="{content: confirmModal}"
+              text="Open in modal">
+  </jnt-button>
+  <ng-template #confirmModal>
+    <jnt-confirm message="Delete this ticket?"
+                 (ok)="modalService.close()"
+                 (cancel)="modalService.close()"></jnt-confirm>
+  </ng-template>
+  ]]>
+</ng-container>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

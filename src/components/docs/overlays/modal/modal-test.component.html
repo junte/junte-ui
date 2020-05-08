@@ -167,7 +167,6 @@
 <![CDATA[
 import { FormBuilder } from '@angular/forms';
 import { ModalOptions, ModalService, UI, ModalClosingOption } from 'junte-ui';
-import { ModalTestFactoryComponent } from 'src/components/documentation/overlays/modal/test.component';
 
 @Component({
   selector: 'app-modal-test',
@@ -175,7 +174,7 @@ import { ModalTestFactoryComponent } from 'src/components/documentation/overlays
   styleUrls: ['./modal-test.component.scss']
 })
 
-export class ModalTestComponent implements OnInit {
+export class ModalTestComponent{
   ui = UI;
 ]]>
 <ng-container *ngIf="footerControl.value">

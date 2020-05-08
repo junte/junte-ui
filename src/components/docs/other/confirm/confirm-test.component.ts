@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
-import { PopoverComponent } from 'projects/junte-ui/src/lib/overlays/popover/popover.component';
 import { LocalUI } from 'src/enums/local-ui';
 
-export enum ContentType {
+export enum UsingType {
   popover = 'popover',
   modal = 'modal'
 }
@@ -18,16 +17,15 @@ export class ConfirmTestComponent  implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  contentType = ContentType;
+  usingType = UsingType;
   types = {confirm: ConfirmComponent};
-  popover: PopoverComponent;
 
   @ViewChild('code') code: TabComponent;
 
-  typeControl = this.fb.control(ContentType.popover);
+  usingControl = this.fb.control(UsingType.popover);
 
   builder = this.fb.group({
-    type: this.typeControl
+    using: this.usingControl
   });
 
   constructor(private modalService: ModalService,

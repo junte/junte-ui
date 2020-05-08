@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 @Component({
@@ -11,6 +12,10 @@ export class ConfirmComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'Message text',
+    type: 'string'
+  })
   @Input() message: string;
 
   @Input() messageTemplate: TemplateRef<any>;
