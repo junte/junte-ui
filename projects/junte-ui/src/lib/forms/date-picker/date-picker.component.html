@@ -1,10 +1,23 @@
 <jnt-form [formGroup]="form">
-  <jnt-input [placeholder]="placeholder || ''" formControlName="input"
-             [jntPopover]="{contentTemplate: calendarTemplate, trigger: ui.overlays.popover.trigger.click}"
-             (jntCatch)="popover = $event"
-             [icon]="ui.icons.calendar">
-  </jnt-input>
-  <ng-template #calendarTemplate>
-    <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
-  </ng-template>
+  <ng-container *jntMinFor="ui.breakpoint.tablet">
+    <jnt-input [placeholder]="placeholder || ''" formControlName="input"
+               [jntPopover]="{contentTemplate: calendarTemplate, trigger: ui.overlays.popover.trigger.click}"
+               (jntCatch)="popover = $event"
+               [icon]="ui.icons.calendar">
+    </jnt-input>
+    <ng-template #calendarTemplate>
+      <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
+    </ng-template>
+  </ng-container>
+  <ng-container *jntMaxFor="ui.breakpoint.mobile">
+    <jnt-input [placeholder]="placeholder || ''" formControlName="input"
+               [icon]="ui.icons.calendar"
+               (click)="opened = !opened">
+    </jnt-input>
+    <div *ngIf="opened" dropdown>
+      <jnt-calendar data-calendar formControlName="calendar" (selected)="opened = false"></jnt-calendar>
+    </div>
+  </ng-container>
 </jnt-form>
+
+

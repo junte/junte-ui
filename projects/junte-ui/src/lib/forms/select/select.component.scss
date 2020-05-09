@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
 @mixin select-size($size, $wrapper) {
   #{$wrapper} [data-select] {
@@ -71,7 +72,7 @@
     min-width: 70px;
     color: $jnt-primary-text-color;
     line-height: $jnt-line-height-base;
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @include for-mobile() {
       border: 1px solid $jnt-control-border-color;
       border-radius: $jnt-corner-small;
     }
@@ -121,7 +122,7 @@
     &[data-opened='true'] [data-select] {
       box-shadow: $jnt-shadow-primary;
       border-color: $jnt-primary-color;
-      @media screen and (max-width: $jnt-tablet-breakpoint) {
+      @include for-mobile() {
         box-shadow: none;
       }
     }
@@ -217,7 +218,7 @@
     padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @include for-mobile() {
       border: 0;
     }
     > [data-icon] {
@@ -325,7 +326,7 @@
     padding: $jnt-gutter-small 0;
     overflow: hidden;
     z-index: 2;
-    @media screen and (max-width: $jnt-tablet-breakpoint) {
+    @include for-mobile() {
       position: static;
       margin-top: 0;
       border-radius: 0 0 $jnt-corner-small $jnt-corner-small;

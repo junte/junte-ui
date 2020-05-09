@@ -1,36 +1,46 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon/icon";
 
-@mixin radio-size($size) {
-  [data-switch] {
+@mixin radio-size($size, $wrapper) {
+  #{$wrapper} [data-switch] {
     min-width: $size;
     width: $size;
     min-height: $size;
     height: $size;
-    border-radius: $size / 2;
-  }
-  [data-indicator] {
-    min-width: $size - 8px;
-    width: $size - 8px;
-    min-height: $size - 8px;
-    height: $size - 8px;
-    border-radius: ($size - 8px) / 2;
   }
 };
 
-@mixin jnt-radio($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-radio($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     sizes: (
-      tiny: 12px,
-      small: 14px,
-      normal: 18px,
-      large: 24px,
+      tiny: (
+        indicator: 12px,
+        icon: 4px
+      ),
+      small: (
+        indicator: 14px,
+        icon: 6px
+      ),
+      normal: (
+        indicator: 18px,
+        icon: 10px
+      ),
+      large: (
+        indicator: 24px,
+        icon: 14px
+      ),
     ),
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -46,13 +56,17 @@
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
-          @include radio-size($map);
+          @include radio-size(map-get($map, indicator), $wrapper);
+          [data-indicator] {
+            width: map-get($map, icon);
+            height: map-get($map, icon);
+          }
         }
       }
     }
   }
 
-  #{$context} input {
+  #{$context} #{$wrapper} input {
     position: absolute;
     top: 0;
     z-index: 1;
@@ -66,9 +80,6 @@
     height: 100%;
     &:checked + [data-switch] {
       border-color: $jnt-primary-color;
-      & > [data-indicator] {
-        opacity: 1;
-      }
     }
     &:disabled {
       cursor: default;
@@ -79,9 +90,9 @@
       & + [data-switch] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
-      }
-      & + [data-switch] > [data-indicator] {
-        background-color: $jnt-control-disabled-indicator-icon-color;
+        > [data-indicator] {
+          background-color: $jnt-control-disabled-indicator-icon-color;
+        }
       }
     }
     &:focus {
@@ -96,30 +107,30 @@
     }
   }
 
-  #{$context} label {
+  #{$context} #{$wrapper} label {
     padding-left: $jnt-control-gutter;
     color: $jnt-control-switch-label-color;
     user-select: none;
   }
 
-  #{$context} [data-switch] {
+  #{$context} #{$wrapper} [data-switch] {
     position: relative;
     background-color: $jnt-control-background;
     border: 1px solid $jnt-control-border-color;
     box-sizing: border-box;
     text-align: center;
+    border-radius: 50%;
     transition: all .3s;
-  }
-
-  #{$context} [data-indicator] {
-    display: inline-block;
-    opacity: 0;
-    background-color: $jnt-primary-color;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all .3s;
+    [data-indicator] {
+      display: inline-block;
+      background-color: $jnt-primary-color;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all .3s;
+      border-radius: 50%;
+    }
   }
 
 }

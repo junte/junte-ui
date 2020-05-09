@@ -1,2 +1,11 @@
 @import "jnt-variables";
 @import "../../component";
+@import "../../layout/responsive/responsive";
+
+[data-form] {
+  margin-bottom: $jnt-gutter-normal;
+  width: 300px;
+  @include for-mobile() {
+    width: 100%;
+  }
+}
