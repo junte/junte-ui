@@ -2,6 +2,8 @@ import { enUS as dfnsEnUS, ru as dfnsRu } from 'date-fns/locale';
 import { en as jntEn, ru as jntRu } from 'junte-ui';
 import { Language } from './enums/language';
 
+export const PRELOADING_DELAY = 5000;
+
 export const CURRENT_LANGUAGE = (() => {
   const base = document.querySelector('base')
     .getAttribute('href');
