@@ -8,6 +8,11 @@ export enum UsingType {
   modal = 'modal'
 }
 
+export enum ContentType {
+  message = 'message',
+  messageTemplate = 'messageTemplate'
+}
+
 @Component({
   selector: 'app-confirm-test',
   templateUrl: './confirm-test.component.html',
@@ -18,14 +23,17 @@ export class ConfirmTestComponent  implements OnInit {
   ui = UI;
   localUi = LocalUI;
   usingType = UsingType;
+  contentType = ContentType;
   types = {confirm: ConfirmComponent};
 
   @ViewChild('code') code: TabComponent;
 
   usingControl = this.fb.control(UsingType.popover);
+  contentControl = this.fb.control(ContentType.message);
 
   builder = this.fb.group({
-    using: this.usingControl
+    using: this.usingControl,
+    content: this.contentControl
   });
 
   constructor(private modalService: ModalService,

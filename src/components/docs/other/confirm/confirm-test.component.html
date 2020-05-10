@@ -27,8 +27,15 @@
                                 text="Open in popover">
                     </jnt-button>
                     <ng-template #confirmPopover>
-                      <jnt-confirm message="Delete this ticket?"
-                                   i18n-message="@@message.delete_this_ticket"></jnt-confirm>
+
+                      <ng-container *ngIf="contentControl.value === contentType.message">
+                        <jnt-confirm message="Delete this ticket?"
+                                     i18n-message="@@message.delete_this_ticket"></jnt-confirm>
+                      </ng-container>
+                      <ng-container *ngIf="contentControl.value === contentType.messageTemplate">
+                        <jnt-confirm [messageTemplate]="messageTemplate"></jnt-confirm>
+                      </ng-container>
+
                     </ng-template>
                   </ng-container>
                   <ng-container *ngIf="usingControl.value === usingType.modal">
@@ -36,10 +43,20 @@
                                 text="Open in modal">
                     </jnt-button>
                     <ng-template #confirmModal>
-                      <jnt-confirm message="Delete this ticket?"
-                                   i18n-message="@@message.delete_this_ticket"
-                                   (ok)="modalService.close()"
-                                   (cancel)="modalService.close()"></jnt-confirm>
+
+                      <ng-container *ngIf="contentControl.value === contentType.message">
+                        <jnt-confirm message="Delete this ticket?"
+                                     i18n-message="@@message.delete_this_ticket"
+                                     (ok)="modalService.close()"
+                                     (cancel)="modalService.close()"></jnt-confirm>
+
+                      </ng-container>
+                      <ng-container *ngIf="contentControl.value === contentType.messageTemplate">
+                        <jnt-confirm [messageTemplate]="messageTemplate"
+                        (ok)="modalService.close()"
+                        (cancel)="modalService.close()"></jnt-confirm>
+                      </ng-container>
+
                     </ng-template>
                   </ng-container>
 
@@ -58,7 +75,7 @@
               <jnt-stack [align]="ui.flex.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="type"
+                  <jnt-form-label for="using"
                                   i18n="@@label.using">Using
                   </jnt-form-label>
                   <jnt-switcher formControlName="using">
@@ -67,6 +84,20 @@
                     </jnt-switcher-option>
                     <jnt-switcher-option label="Modal"
                                          [value]="usingType.modal">
+                    </jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="content"
+                                  i18n="@@label.content_type">Content type
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="content">
+                    <jnt-switcher-option label="Message"
+                                         [value]="contentType.message">
+                    </jnt-switcher-option>
+                    <jnt-switcher-option label="Message Template"
+                                         [value]="contentType.messageTemplate">
                     </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
@@ -131,11 +162,22 @@ ui = UI;
   <![CDATA[
   <jnt-button [jntPopover]="{contentTemplate: confirmPopover, trigger: ui.overlays.popover.trigger.click}"
               text="Open in popover">
-  </jnt-button>
-  <ng-template #confirmPopover>
-    <jnt-confirm message="Delete this ticket?"></jnt-confirm>
-  </ng-template>
-  ]]>
+  </jnt-button>]]>
+
+  <ng-container *ngIf="contentControl.value === contentType.message">
+    <![CDATA[ <jnt-confirm message="Delete this ticket?"></jnt-confirm>]]>
+  </ng-container>
+
+  <ng-container *ngIf="contentControl.value === contentType.messageTemplate">
+    <![CDATA[
+    <jnt-confirm [messageTemplate]="messageTemplate"></jnt-confirm>
+    <ng-template #messageTemplate>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+        <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
+        <span>Edit this ticket?</span>
+      </jnt-stack>
+    </ng-template>]]>
+  </ng-container>
 </ng-container>
 
 <ng-container *ngIf="usingControl.value === usingType.modal">

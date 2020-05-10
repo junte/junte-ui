@@ -18,6 +18,10 @@ export class ConfirmComponent {
   })
   @Input() message: string;
 
+  @PropertyApi({
+    description: 'Message template',
+    type: 'string'
+  })
   @Input() messageTemplate: TemplateRef<any>;
 
   @Output() ok = new EventEmitter();

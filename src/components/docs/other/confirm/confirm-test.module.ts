@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  BlockModule, ButtonModule,
+  BlockModule,
+  ButtonModule,
   ConfirmModule,
   FormModule,
   GridModule,
   IconModule,
-  LinkModule, ModalModule, PopoverModule,
+  LinkModule,
+  ModalModule,
+  PopoverModule,
   SelectModule,
   StackModule,
   SwitcherModule,
