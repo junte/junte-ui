@@ -7,7 +7,7 @@
     <span i18n="@@label.tabs">Tabs</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/tabs"
@@ -54,7 +54,7 @@
                       <jnt-badge *ngIf="badgesControl.value"
                                  [text]="'5h'"></jnt-badge>
                       <ng-template #tabContentTemplate>
-                        <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                        <jnt-stack [orientation]="ui.orientation.horizontal">
                           <jnt-skeleton [type]="ui.layout.skeleton.type.avatar"
                                         [size]="ui.size.large"
                                         [animated]="false"></jnt-skeleton>
@@ -69,7 +69,7 @@
                       <jnt-badge *ngIf="badgesControl.value"
                                  [text]="100 | currency"></jnt-badge>
                       <ng-template #tabContentTemplate>
-                        <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                        <jnt-stack [orientation]="ui.orientation.horizontal">
                           <jnt-skeleton [lines]="5"
                                         [animated]="false"></jnt-skeleton>
                           <jnt-skeleton [type]="ui.layout.skeleton.type.image"

@@ -7,7 +7,7 @@
     <span i18n="@@label.form">Form</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/form"
@@ -27,7 +27,7 @@
         <jnt-stack [align]="ui.flex.align.stretch">
 
           <jnt-form [formGroup]="builder">
-            <jnt-stack [type]="ui.layout.stack.type.horizontal">
+            <jnt-stack [orientation]="ui.orientation.horizontal">
 
               <jnt-form-item>
                 <jnt-form-control>
@@ -126,7 +126,7 @@
                                       i18n="@@label.gender">Gender
                       </jnt-form-label>
                       <jnt-radio-group formControlName="gender">
-                        <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                        <jnt-stack [orientation]="ui.orientation.horizontal">
                           <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
                           <jnt-radio label="Woman" [value]="gender.woman"></jnt-radio>
                         </jnt-stack>
@@ -176,7 +176,7 @@
                       </jnt-form-label>
                       <jnt-form-control>
                         <jnt-checkbox-group formControlName="pets">
-                          <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                          <jnt-stack [orientation]="ui.orientation.horizontal">
                             <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
                           </jnt-stack>
                         </jnt-checkbox-group>
@@ -271,7 +271,7 @@
                     <jnt-form-item>
                       <jnt-form-label for="gender">Gender</jnt-form-label>
                       <jnt-radio-group formControlName="gender">
-                        <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                        <jnt-stack [orientation]="ui.orientation.horizontal">
                           <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
                           <jnt-radio label="Woman" [value]="gender.woman"></jnt-radio>
                         </jnt-stack>
@@ -313,7 +313,7 @@
                       <jnt-form-label for="pets">Your pets:</jnt-form-label>
                       <jnt-form-control>
                         <jnt-checkbox-group formControlName="pets">
-                          <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                          <jnt-stack [orientation]="ui.orientation.horizontal">
                             <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
                           </jnt-stack>
                         </jnt-checkbox-group>

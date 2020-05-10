@@ -7,7 +7,7 @@
     <span i18n="@@label.table">Table</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/table"
@@ -29,7 +29,7 @@
         <jnt-stack>
 
           <jnt-form [formGroup]="builder">
-            <jnt-stack [type]="ui.layout.stack.type.horizontal">
+            <jnt-stack [orientation]="ui.orientation.horizontal">
               <jnt-form-item>
                 <jnt-form-label i18n="@@label.features">Features
                 </jnt-form-label>
@@ -88,8 +88,7 @@
 <![CDATA[
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form">
-    <jnt-stack [type]="ui.layout.stack.type.vertical"
-               [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+    <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table formControlName="table" ]]>
         <ng-container *ngIf="searchControl.value">
           <![CDATA[[features]="[ui.collections.table.features.search]"]]>

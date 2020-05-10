@@ -7,7 +7,7 @@
 <!--    <span i18n="@@label.confirm">Confirm</span>-->
 <!--  </h1>-->
   <h1 i18n="@@label.confirm">Confirm</h1>
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/shared/confirm"
@@ -40,7 +40,7 @@
   <jnt-confirm [messageTemplate]="messageTemplate"></jnt-confirm>
 
   <ng-template #messageTemplate>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center">
       <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
       <span i18n="@@label.edit_this_ticket">Edit this ticket?</span>
     </jnt-stack>

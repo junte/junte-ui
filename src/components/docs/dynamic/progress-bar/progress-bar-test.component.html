@@ -7,7 +7,7 @@
     <span i18n="@@label.progress_bar">Progress bar</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/progress-bar"
@@ -32,7 +32,7 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-progress-bar [value]="valueControl.value">
                   <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center"
+                    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center"
                                [justify]="ui.flex.justify.between">
                       <span>{{math.round(valueControl.value * 10)/10}}%</span>
                       <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
@@ -98,7 +98,7 @@
                   <ng-container *ngIf="legendControl.value">
                     <![CDATA[
                     <ng-template #progressBarLegendTemplate>
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center"
+                      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center"
                                  [justify]="ui.flex.justify.between">
                         <span>{{math.round(valueControl.value * 10)/10}}%</span>
                         <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
