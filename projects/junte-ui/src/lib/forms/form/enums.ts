@@ -1,6 +1,11 @@
 export enum ValidationTypeError {
   required = 'required',
-  minlength = 'minlength'
+  minLength = 'minlength',
+  maxLength = 'maxlength',
+  min = 'min',
+  max = 'max',
+  email = 'email',
+  pattern = 'pattern'
 }
 
 export enum FormState {
