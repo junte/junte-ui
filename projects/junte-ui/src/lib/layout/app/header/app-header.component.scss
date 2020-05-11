@@ -1,10 +1,27 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "layout/app/variables";
 @import "navigation/menu/menu";
+@import "elements/icon/icon";
 
-@mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-app-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
-  :host, #{$context}  {
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
     display: flex;
     justify-content: space-between;
     flex: 0 0 auto;
@@ -19,33 +36,33 @@
     right: 0;
     z-index: 3;
 
-  > [data-menu] {
-    display: flex;
-    align-items: center;
-    @include jnt-menu((
-      top: (
-        item: (
-          color: $jnt-white-color,
-          active: (
-            color: $jnt-white-color
-          ),
-          icon: (
-            size: $jnt-font-size-large
-          ),
-          padding: (
-            outer: $jnt-gutter-small $jnt-gutter-normal,
-            inner: $jnt-gutter-small,
-          ),
-          hover: (
-            background-color: transparent,
+    > [data-menu] {
+      display: flex;
+      align-items: center;
+      @include jnt-menu((
+        top: (
+          item: (
+            color: $jnt-white-color,
+            active: (
+              color: $jnt-white-color
+            ),
+            icon: (
+              size: $jnt-font-size-normal
+            ),
+            padding: (
+              outer: $jnt-gutter-small $jnt-gutter-normal,
+              inner: $jnt-gutter-small,
+            ),
+            hover: (
+              background-color: transparent,
+            ),
           ),
         ),
-      ),
-    ));
+      ));
+    }
   }
-}
 
-  [data-logo] {
+  #{$context} #{$wrapper} [data-logo] {
     display: flex;
     align-items: center;
     margin-right: $jnt-gutter-huge;
@@ -54,16 +71,23 @@
     }
   }
 
-  [data-actions] {
+  #{$context} #{$wrapper} button {
+    cursor: pointer;
+    [data-menu-icon] {
+      @include jnt-icon((size: 24px), '&');
+    }
+  }
+
+  #{$context} #{$wrapper} [data-actions] {
     margin-left: auto;
   }
 
-  [data-content] {
+  #{$context} #{$wrapper} [data-content] {
     display: flex;
     align-items: center;
   }
 
-  [data-action] {
+  #{$context} #{$wrapper} [data-action] {
     position: relative;
     [data-dropdown] {
       display: flex;

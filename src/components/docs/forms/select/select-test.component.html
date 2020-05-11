@@ -7,7 +7,7 @@
     <span i18n="@@label.select">Select</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select"
@@ -59,10 +59,10 @@
                       </jnt-stack>
                     </ng-template>
                     <ng-template #heroOptionTemplate let-hero="value">
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                      <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [align]="ui.flex.align.center"
                                  [justify]="ui.flex.justify.between">
-                        <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [gutter]="ui.gutter.small"
                                    [align]="ui.flex.align.center">
                           <jnt-avatar [image]="hero.avatar"
@@ -208,7 +208,7 @@
                   <ng-container *ngIf="templateControl.value">
                     <![CDATA[
                     <ng-template #heroOptionTemplate let-option="value">
-                      <jnt-stack option [type]="ui.layout.stack.type.horizontal"
+                      <jnt-stack option [orientation]="ui.orientation.horizontal"
                                  [gutter]="ui.gutter.small"
                                  [align]="ui.flex.align.center">
                         <jnt-avatar [size]="ui.size.small"></jnt-avatar>

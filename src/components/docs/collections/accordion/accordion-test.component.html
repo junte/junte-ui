@@ -7,7 +7,7 @@
     <span i18n="@@label.accordion">Accordion</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/accordion"
@@ -102,50 +102,52 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="accordion-test.template.html">
-                <![CDATA[
-                <jnt-accordion>
-                  <jnt-accordion-section title="Gitlab" ]]>
-                    <ng-container *ngIf="iconControl.value">
-                      <![CDATA[
-                      [icon]="ui.icons.gitlab"]]>
-                    </ng-container>
-                    <![CDATA[>]]>
-                    <![CDATA[
-                    <ng-template #accordionContentTemplate>
-                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
-                      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
-                      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
-                      and higher levels of efficiency in a single application across the DevOps lifecycle.
-                    </ng-template>
-                  </jnt-accordion-section>
-                  <jnt-accordion-section title="Figma" ]]>
-                    <ng-container *ngIf="iconControl.value">
-                      <![CDATA[
-                      [icon]="ui.icons.figma"]]>
-                    </ng-container>
-                    <![CDATA[>]]>
-                    <![CDATA[
-                    <ng-template #accordionContentTemplate>
-                      Figma is the only platform that brings together powerful design features you already love and a
-                      more efficient workflow to boot.
-                    </ng-template>
-                  </jnt-accordion-section>
-                  <jnt-accordion-section title="Git" ]]>
-                    <ng-container *ngIf="iconControl.value">
-                      <![CDATA[
-                      [icon]="ui.icons.github"]]>
-                    </ng-container>
-                    <![CDATA[>]]>
-                    <![CDATA[
-                    <ng-template #accordionContentTemplate>
-                      Git is a distributed version-control system for tracking changes in source code during software
-                      development. It is designed for coordinating work among programmers, but it can be used to track
-                      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
-                      non-linear workflows.
-                    </ng-template>
-                  </jnt-accordion-section>
-                </jnt-accordion>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-accordion>
+  <jnt-accordion-section title="Gitlab" ]]>
+    <ng-container *ngIf="iconControl.value">
+      <![CDATA[
+      [icon]="ui.icons.gitlab"]]>
+    </ng-container>
+    <![CDATA[>]]>
+    <![CDATA[
+    <ng-template #accordionContentTemplate>
+      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
+      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
+      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
+      and higher levels of efficiency in a single application across the DevOps lifecycle.
+    </ng-template>
+  </jnt-accordion-section>
+  <jnt-accordion-section title="Figma" ]]>
+    <ng-container *ngIf="iconControl.value">
+      <![CDATA[
+      [icon]="ui.icons.figma"]]>
+    </ng-container>
+    <![CDATA[>]]>
+    <![CDATA[
+    <ng-template #accordionContentTemplate>
+      Figma is the only platform that brings together powerful design features you already love and a
+      more efficient workflow to boot.
+    </ng-template>
+  </jnt-accordion-section>
+  <jnt-accordion-section title="Git" ]]>
+    <ng-container *ngIf="iconControl.value">
+      <![CDATA[
+      [icon]="ui.icons.github"]]>
+    </ng-container>
+    <![CDATA[>]]>
+    <![CDATA[
+    <ng-template #accordionContentTemplate>
+      Git is a distributed version-control system for tracking changes in source code during software
+      development. It is designed for coordinating work among programmers, but it can be used to track
+      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
+      non-linear workflows.
+    </ng-template>
+  </jnt-accordion-section>
+</jnt-accordion>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

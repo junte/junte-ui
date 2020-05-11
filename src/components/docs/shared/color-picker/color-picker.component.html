@@ -7,7 +7,7 @@
             <jnt-select-option [label]="i.key | titlecase" [key]="i.value" [value]="i">
             </jnt-select-option>
             <ng-template #selectOptionTemplate let-color="value">
-              <jnt-stack [type]="ui.layout.stack.type.horizontal"
+              <jnt-stack [orientation]="ui.orientation.horizontal"
                          [align]="ui.flex.align.center">
                 <jnt-dot class="dot" [color]="color.value"></jnt-dot>
                 {{color.key | titlecase}}

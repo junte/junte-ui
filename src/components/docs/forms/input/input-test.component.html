@@ -7,7 +7,7 @@
     <span i18n="@@label.input">Input</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input"
@@ -47,6 +47,7 @@
                                [multiline]="multilineControl.value"
                                [rows]="rowsControl.value"
                                [readonly]="readonlyControl.value"
+                               autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
@@ -174,7 +175,9 @@
                                   i18n="@@label.state">States
                   </jnt-form-label>
                   <jnt-switcher formControlName="states">
-                    <jnt-switcher-option label="Loading" [value]="ui.forms.input.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Loading"
+                                         [icon]="ui.icons.animated.spinner"
+                                         [value]="ui.forms.input.state.loading"></jnt-switcher-option>
                     <jnt-switcher-option label="Warning"
                                          [icon]="ui.icons.warning"
                                          [value]="ui.forms.input.state.warning"></jnt-switcher-option>

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Directive, EmbeddedViewRef, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile, tap } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from './breakpoint.service';
@@ -64,8 +64,7 @@ export class ForDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef,
-              cd: ChangeDetectorRef) {
+              viewContainerRef: ViewContainerRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -96,8 +95,7 @@ export class ForMinDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef,
-              cd: ChangeDetectorRef) {
+              viewContainerRef: ViewContainerRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
@@ -128,8 +126,7 @@ export class ForMaxDirective extends BreakpointDirective {
 
   constructor(breakpoint: BreakpointService,
               templateRef: TemplateRef<any>,
-              viewContainerRef: ViewContainerRef,
-              cd: ChangeDetectorRef) {
+              viewContainerRef: ViewContainerRef) {
     super(breakpoint, templateRef, viewContainerRef);
   }
 
