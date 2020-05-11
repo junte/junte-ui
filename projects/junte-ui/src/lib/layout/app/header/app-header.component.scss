@@ -71,8 +71,11 @@
     }
   }
 
-  #{$wrapper} [data-menu-icon] {
-    @include jnt-icon((size: 24px), '&');
+  #{$wrapper} button {
+    cursor: pointer;
+    [data-menu-icon] {
+      @include jnt-icon((size: 24px), '&');
+    }
   }
 
   #{$wrapper} [data-actions] {
