@@ -61,6 +61,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
 
   @PropertyApi({
+    description: 'Auto complete for input',
+    type: 'string',
+  })
+  @Input() autocomplete: string;
+
+  @PropertyApi({
     description: 'Input text align',
     path: 'ui.text.align.',
     default: TextAlign.left,

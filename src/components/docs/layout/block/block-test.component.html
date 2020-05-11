@@ -63,7 +63,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="scheme"
-                                    i18n="@@label.scheme">Scheme</jnt-form-label>
+                                    i18n="@@label.scheme">Scheme
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="scheme"
                                   placeholder="Primary"
@@ -86,7 +87,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="padding"
-                                    i18n="@@label.padding">Padding</jnt-form-label>
+                                    i18n="@@label.padding">Padding
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="padding"
                                   placeholder="Normal"
@@ -115,7 +117,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="width"
-                                    i18n="@@label.width">Width</jnt-form-label>
+                                    i18n="@@label.width">Width
+                    </jnt-form-label>
                     <jnt-switcher formControlName="width"
                                   placeholder="Default"
                                   i18n-primary="@@label.default">
@@ -132,13 +135,16 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="state"
-                                    i18n="@@label.states">States</jnt-form-label>
+                                    i18n="@@label.states">States
+                    </jnt-form-label>
                     <jnt-switcher formControlName="state">
                       <jnt-switcher-option label="Loading"
                                            i18n-label="@@label.loading"
+                                           [icon]="ui.icons.animated.spinner"
                                            [value]="ui.layout.block.state.loading"></jnt-switcher-option>
                       <jnt-switcher-option label="Error"
                                            i18n-label="@@label.error"
+                                           [icon]="ui.icons.warning"
                                            [value]="ui.layout.block.state.error"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-item>
@@ -149,8 +155,8 @@
                     <jnt-row>
                       <jnt-col [span]="4">
                         <jnt-checkbox formControlName="title"
-                                       label="Title"
-                                       i18n-label="@@label.title"></jnt-checkbox>
+                                      label="Title"
+                                      i18n-label="@@label.title"></jnt-checkbox>
                       </jnt-col>
                       <jnt-col [span]="4">
                         <jnt-checkbox formControlName="footer"
@@ -174,8 +180,8 @@
       </jnt-tab>
 
       <jnt-tab #code title="Code"
-             i18n-title="@@label.code"
-             [icon]="localUi.icons.code">
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"
@@ -221,7 +227,8 @@
                       <ng-template #blockFooterTemplate>
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [justify]="ui.flex.justify.between">
-                          <jnt-button text="Ok"</jnt-button>
+                          <jnt-button text="Ok"
+                          </jnt-button>
                           <jnt-button [scheme]="ui.scheme.secondary"
                                       text="Cancel"></jnt-button>
                         </jnt-stack>

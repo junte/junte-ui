@@ -5,7 +5,7 @@
              let-label="option.label"
              let-selected="selected">
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
-  <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
+  <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
   <jnt-icon data-mark *ngIf="marks"
             [icon]="selected ? (mode === selectMode.single ? ui.icons.radioChecked : ui.icons.checkboxChecked) : (mode === selectMode.single ? ui.icons.radioUnchecked : ui.icons.checkboxUnchecked)"></jnt-icon>
   <jnt-stack [orientation]="ui.orientation.horizontal"

@@ -47,6 +47,7 @@
                                [multiline]="multilineControl.value"
                                [rows]="rowsControl.value"
                                [readonly]="readonlyControl.value"
+                               autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
@@ -174,7 +175,9 @@
                                   i18n="@@label.state">States
                   </jnt-form-label>
                   <jnt-switcher formControlName="states">
-                    <jnt-switcher-option label="Loading" [value]="ui.forms.input.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Loading"
+                                         [icon]="ui.icons.animated.spinner"
+                                         [value]="ui.forms.input.state.loading"></jnt-switcher-option>
                     <jnt-switcher-option label="Warning"
                                          [icon]="ui.icons.warning"
                                          [value]="ui.forms.input.state.warning"></jnt-switcher-option>
