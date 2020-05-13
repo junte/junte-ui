@@ -296,7 +296,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       .subscribe(options => convert(options.toArray()));
   }
 
-  trackOption(option: IOption) {
+  trackOption(index: number, option: IOption) {
     return option.key;
   }
 
@@ -316,7 +316,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   remove(key: Key) {
     const index = this.selected.findIndex(i => i === key);
     if (index !== -1) {
-      this.logger.debug('option has been removed');
+      this.logger.debug(`option ${index} has been removed`);
       this.selected.splice(index, 1);
       this.changes.selected++;
       this.onChange(this.mode === SelectMode.multiple ? this.selected : null);

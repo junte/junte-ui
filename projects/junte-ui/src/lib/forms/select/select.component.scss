@@ -178,6 +178,14 @@
       }
     }
 
+    &[data-mode='multiple'] {
+      &[data-empty='false'] {
+        [data-query] {
+          display: none;
+        }
+      }
+    }
+
     &[data-empty='false'] {
       &[data-opened='false'] {
         [data-query] {
@@ -191,6 +199,7 @@
         cursor: default;
       }
     }
+
     &[data-empty='true'], &[data-mode='single'] {
       [data-select] ul li[data-query] {
         flex: 1;
@@ -199,6 +208,7 @@
         }
       }
     }
+
     [data-disabled='true'] {
       [data-select] {
         ul li {

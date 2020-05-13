@@ -7,7 +7,7 @@
     <span i18n="@@label.skeleton">Skeleton</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/skeleton"
@@ -41,7 +41,7 @@
 
                     <ng-container *ngSwitchCase="sketch.User">
                       <jnt-stack [align]="ui.flex.align.center"
-                                 [type]="ui.layout.stack.type.vertical">
+                                 [type]="ui.orientation.vertical">
                         <jnt-skeleton [type]="ui.layout.skeleton.type.avatar"
                                       [animated]="animationControl.value"></jnt-skeleton>
                         <jnt-skeleton [lines]="2"
@@ -60,7 +60,7 @@
                     </ng-container>
 
                     <ng-container *ngSwitchCase="sketch.HorizontalPost">
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-stack [orientation]="ui.orientation.horizontal">
                         <jnt-skeleton [type]="ui.layout.skeleton.type.image"
                                       [size]="ui.size.normal"
                                       [animated]="animationControl.value"></jnt-skeleton>
@@ -148,7 +148,7 @@
                     <ng-container *ngSwitchCase="sketch.User">
                       <![CDATA[
                       <jnt-stack [align]="ui.flex.align.center"
-                                 [type]="ui.layout.stack.type.vertical">
+                                 [type]="orientation.vertical">
                         <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
                           <ng-container *ngIf="!animationControl.value">
                             <![CDATA[[animated]="false"]]>
@@ -187,7 +187,7 @@
 
                     <ng-container *ngSwitchCase="sketch.HorizontalPost">
                       <![CDATA[
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+                      <jnt-stack [orientation]="ui.orientation.horizontal">
                         <jnt-skeleton [type]="ui.layout.skeleton.type.image"
                                       [size]="ui.size.large" ]]>
                           <ng-container *ngIf="!animationControl.value">

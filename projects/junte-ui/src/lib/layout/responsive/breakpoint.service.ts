@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, NgZone } from '@angular/core';
 import { Breakpoint } from '../../core/enums/breakpoint';
 
 @Injectable()
@@ -14,14 +14,16 @@ export class BreakpointService {
   current: Breakpoint = null;
   changed = new EventEmitter<Breakpoint>(null);
 
-  constructor() {
+  constructor(private zone: NgZone) {
     for (const i of Object.keys(this.queries)) {
       const breakpoint = i as Breakpoint;
       const query = this.queries[i];
       const checker = q => {
         if (q.matches) {
-          this.current = breakpoint;
-          this.changed.emit(breakpoint);
+          zone.run(() => {
+            this.current = breakpoint;
+            this.changed.emit(breakpoint);
+          });
         }
       };
       checker(query);

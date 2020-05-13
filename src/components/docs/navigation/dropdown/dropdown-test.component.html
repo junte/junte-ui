@@ -7,7 +7,7 @@
     <span i18n="@@label.dropdown">Dropdown</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/dropdown"
@@ -36,7 +36,7 @@
         <ng-template #tabContentTemplate>
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
-              <jnt-stack [type]="ui.layout.stack.type.horizontal">
+              <jnt-stack [orientation]="ui.orientation.horizontal">
                 <jnt-dropdown>
                   <ng-template #triggerTemplate let-action="trigger">
                     <jnt-button [icon]="ui.icons.actions" text="Links" (click)="action()"></jnt-button>

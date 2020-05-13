@@ -7,7 +7,7 @@
     <span i18n="@@label.stack">Stack</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack"
@@ -39,7 +39,7 @@
                            [justify]="justifyControl.value"
                            [wrap]="wrapControl.value">
                   <ng-container [ngSwitch]="typeControl.value">
-                    <ng-container *ngSwitchCase="ui.layout.stack.type.vertical">
+                    <ng-container *ngSwitchCase="ui.orientation.vertical">
                       <div block
                            *ngFor="let block of (wrapControl.value === ui.flex.wrap.wrap ? 8 : 4) | mockArray"
                            [style.height.px]="height / 8"
@@ -75,11 +75,11 @@
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.horizontal"
-                                         [key]="ui.layout.stack.type.horizontal"></jnt-select-option>
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
                       <jnt-select-option label="Vertical"
                                          i18n-label="@@label.vertical"
                                          [icon]="localUi.icons.vertical"
-                                         [key]="ui.layout.stack.type.vertical"></jnt-select-option>
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -239,7 +239,7 @@
                   ]]>
                   <ng-container *ngIf="typeControl.value">
                     <![CDATA[
-                    [type]="ui.layout.stack.type.]]>{{typeControl.value}}<![CDATA["]]>
+                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="gutterControl.value">
                     <![CDATA[

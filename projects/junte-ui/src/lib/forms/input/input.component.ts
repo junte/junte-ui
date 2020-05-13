@@ -1,4 +1,4 @@
-import { BACKSPACE } from '@angular/cdk/keycodes';
+import { BACKSPACE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
@@ -59,6 +59,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'string',
   })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Auto complete for input',
+    type: 'string',
+  })
+  @Input() autocomplete: string;
 
   @PropertyApi({
     description: 'Input text align',
@@ -208,17 +214,21 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   keydown(event: KeyboardEvent) {
-    event.preventDefault();
     const value = this.inputControl.value || '';
     let data;
     if (DIGIT_KEYS.includes(event.key)) {
       data = this.masking(value + event.key);
     } else if (event.keyCode === BACKSPACE) {
       data = this.masking(value.substr(0, value.length - 1));
-    } else {
+    } else if (event.keyCode === TAB
+      || event.keyCode === LEFT_ARROW
+      || event.keyCode === RIGHT_ARROW) {
       return;
     }
-    this.form.setValue(data);
+    event.preventDefault();
+    if (data !== undefined) {
+      this.form.setValue(data);
+    }
   }
 
   writeValue(value) {

@@ -7,7 +7,7 @@
     <span i18n="@@label.badge">Badge</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/badge"
@@ -32,7 +32,7 @@
               <ng-template #document let-width="width" let-height="height">
                 <ng-container
                   *ngIf="positionControl.value === ui.position.inline || !positionControl.value; else positionTemplate">
-                  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                  <jnt-stack [orientation]="ui.orientation.horizontal"
                              [align]="ui.flex.align.center">
                     <div block>
                       <jnt-icon [icon]="ui.icons.bell"

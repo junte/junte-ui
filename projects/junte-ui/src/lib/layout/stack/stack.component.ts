@@ -2,6 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { FlexAlign, FlexJustify, FlexWrap } from '../../core/enums/flex';
 import { Gutter } from '../../core/enums/gutter';
+import { Orientation } from '../../core/enums/orientation';
 import { StackType } from './enums';
 
 @Component({
@@ -12,8 +13,8 @@ export class StackComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-stack-host';
 
-  @HostBinding('attr.data-type')
-  _type = StackType.vertical;
+  @HostBinding('attr.data-orientation')
+  _orientation = Orientation.vertical;
 
   @HostBinding('attr.data-gutter')
   _gutter = Gutter.normal;
@@ -27,14 +28,19 @@ export class StackComponent {
   @HostBinding('attr.data-wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
 
+  @Input() set type(type: StackType) {
+    this._orientation = !!type ? (type === StackType.vertical
+      ? Orientation.vertical : Orientation.horizontal) : Orientation.vertical;
+  }
+
   @PropertyApi({
     description: 'Defined main axis of elements align',
-    path: 'ui.layout.stack.type',
+    path: 'ui.orientation',
     default: StackType.vertical,
     options: [StackType.vertical, StackType.horizontal]
   })
-  @Input() set type(type: StackType) {
-    this._type = type || StackType.vertical;
+  @Input() set orientation(orientation: Orientation) {
+    this._orientation = orientation || Orientation.vertical;
   }
 
   @PropertyApi({

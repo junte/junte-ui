@@ -1,7 +1,6 @@
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form">
-    <jnt-stack [type]="ui.layout.stack.type.vertical"
-               [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+    <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table [features]="search ? [ui.collections.table.features.search] : null"
                  formControlName="table">
         <jnt-table-column title="#" sort="id">

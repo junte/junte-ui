@@ -39,11 +39,11 @@ $type-horizontal: 'horizontal';
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
         &[data-gutter = '#{$gutter}'] {
-          &[data-type = '#{$type-vertical}'] {
+          &[data-orientation = '#{$type-vertical}'] {
             flex-direction: column;
             @include stack-gutters(margin-bottom, $map);
           }
-          &[data-type = '#{$type-horizontal}'] {
+          &[data-orientation = '#{$type-horizontal}'] {
             flex-direction: row;
             @include stack-gutters(margin-right, $map);
           }

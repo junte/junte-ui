@@ -7,7 +7,7 @@
     <span i18n="@@label.radio">Radio</span>
   </h1>
 
-  <jnt-stack resources [type]="ui.layout.stack.type.horizontal">
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
     <jnt-link [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/radio"
@@ -34,7 +34,7 @@
                 <jnt-block #block title="Your hero"
                            i18n-title="@@label.your_hero">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
-                    <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                    <jnt-stack [orientation]="ui.orientation.horizontal"
                                [gutter]="ui.gutter.big">
                       <jnt-form-control name="hero">
                         <jnt-radio-group formControlName="hero" [size]="sizeControl.value">
@@ -62,7 +62,7 @@
                       </ng-container>
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
-                      <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                      <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [justify]="ui.flex.justify.between">
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"

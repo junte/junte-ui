@@ -3,9 +3,9 @@
            [@move]="opened ? 'visible' : 'hidden'"
            (@move.start)='start($event)'
            (@move.done)='done($event)'>
-  <jnt-stack [type]="ui.layout.stack.type.horizontal" [justify]="ui.flex.justify.between"
+  <jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center" data-title>
-    <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
+    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
       <jnt-icon *ngIf="!!options?.title?.icon" [icon]="options?.title.icon" data-iconTitle></jnt-icon>
       <span data-text *ngIf="!!options?.title?.text">{{options?.title?.text}}</span>
     </jnt-stack>
