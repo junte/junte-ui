@@ -10,11 +10,11 @@
     font-family: $jnt-app-layout-font-family;
 
     &[data-with-header='false'] {
-      jnt-app-content[deep-host=#{$jnt-app-content-host}] {
+      jnt-app-content {
         padding-top: 0;
       }
 
-      jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+      jnt-app-aside {
         [drawer] {
           padding-top: 0;
         }
@@ -22,32 +22,32 @@
     }
 
     &[data-position='default'] {
-      > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      > jnt-app-header {
         position: absolute;
       }
       >, > * >, > * > * >, > * > * > * > {
-        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+        jnt-app-aside {
           position: absolute;
         }
       }
-      > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      > * > jnt-app-header {
         position: absolute;
       }
-      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+      jnt-app-body {
         min-height: 0 !important;
       }
     }
 
     &[data-position='fixed'] {
-      > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      > jnt-app-header {
         position: fixed;
       }
       >, > * >, > * > * >, > * > * > * > {
-        jnt-app-aside[deep-host=#{$jnt-app-aside-host}] {
+        jnt-app-aside {
           position: fixed;
         }
       }
-      > * > jnt-app-header[deep-host=#{$jnt-app-header-host}] {
+      > * > jnt-app-header {
         position: fixed;
       }
     }
