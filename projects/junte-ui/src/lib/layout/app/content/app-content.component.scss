@@ -28,18 +28,18 @@
     }
 
     &[data-with-sub-header="false"] {
-      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+      jnt-app-body {
         min-height: calc(100vh - #{$app-footer-height} - #{$app-header-height});
       }
     }
 
     &[data-with-footer="false"] {
-      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+      jnt-app-body {
         min-height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height});
       }
     }
     &[data-with-sub-header="false"][data-with-footer="false"] {
-      jnt-app-body[deep-host=#{$jnt-app-body-host}] {
+      jnt-app-body {
         min-height: calc(100vh - #{$app-header-height});
       }
     }
