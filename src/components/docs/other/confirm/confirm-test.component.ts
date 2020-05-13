@@ -10,7 +10,7 @@ export enum UsingType {
 
 export enum ContentType {
   message = 'message',
-  messageTemplate = 'messageTemplate'
+  template = 'template'
 }
 
 @Component({
