@@ -1,21 +1,48 @@
-import { Component } from '@angular/core';
-import { UI } from 'junte-ui';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
+import { LocalUI } from 'src/enums/local-ui';
+
+export enum UsingType {
+  popover = 'popover',
+  modal = 'modal'
+}
+
+export enum ContentType {
+  message = 'message',
+  template = 'template'
+}
 
 @Component({
   selector: 'app-confirm-test',
   templateUrl: './confirm-test.component.html',
   styleUrls: ['./confirm-test.component.scss']
 })
-export class ConfirmTestComponent {
+export class ConfirmTestComponent  implements OnInit {
 
   ui = UI;
+  localUi = LocalUI;
+  usingType = UsingType;
+  contentType = ContentType;
+  types = {confirm: ConfirmComponent};
 
-  success() {
-    console.log('success');
+  @ViewChild('code') code: TabComponent;
+
+  usingControl = this.fb.control(UsingType.popover);
+  contentControl = this.fb.control(ContentType.message);
+
+  builder = this.fb.group({
+    using: this.usingControl,
+    content: this.contentControl
+  });
+
+  constructor(private modalService: ModalService,
+              private fb: FormBuilder) {
   }
 
-  fail() {
-    console.log('fail');
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
 }
