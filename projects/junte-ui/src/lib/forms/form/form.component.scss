@@ -23,20 +23,24 @@
   :host, #{$context} {
     display: block;
     position: relative;
+    @if map-get($vars, height) == 'fluid' {
+      & {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      #{$wrapper} form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        [data-content] {
+          flex: 1;
+        }
+      }
+    }
   }
 
   #{$context} #{$wrapper} form {
-    @if map-get($vars, height) == 'fluid' {
-      & {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      [data-content] {
-        flex: 1;
-      }
-    }
-
     footer {
       margin-top: $jnt-gutter-large;
     }
