@@ -90,7 +90,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 
-  selected: any[];
+  selected: any[] = [];
 
   version = 0;
 
