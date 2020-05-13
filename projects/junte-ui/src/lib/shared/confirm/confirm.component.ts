@@ -22,7 +22,7 @@ export class ConfirmComponent {
     description: 'Message template',
     type: 'string'
   })
-  @Input() template: TemplateRef<any>;
+  @Input() messageTemplate: TemplateRef<any>;
 
   @Output() ok = new EventEmitter();
 
