@@ -1,16 +1,31 @@
 <button [type]="type" [disabled]="disabled || loading">
   <jnt-spinner data-loading *ngIf="loading" [@appear]="loading"></jnt-spinner>
-  <jnt-icon *ngIf="icon" [@visibility]="loading  ? 'hide' : 'show'" [icon]="icon"></jnt-icon>
-  <div data-text [@visibility]="loading  ? 'hide' : 'show'">{{text}}</div>
-  <jnt-stack data-badges *ngIf="badges.length"
-             [@visibility]="loading  ? 'hide' : 'show'"
-             [orientation]="ui.orientation.horizontal"
-             [gutter]="ui.gutter.tiny">
-    <jnt-badge data-badge *ngFor="let badge of badges"
-               [color]="badge.color"
-               [value]="badge.value"
-               [overflow]="badge.overflow"
-               [position]="ui.position.inline">
-    </jnt-badge>
+  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+             [align]="ui.flex.align.center"
+             [gutter]="ui.gutter.small">
+    <jnt-icon *ngIf="!!icon && icon.position === ui.position.left"
+              [@visibility]="loading  ? 'hide' : 'show'"
+              [icon]="icon?.icon"></jnt-icon>
+
+    <div *ngIf="!!text" data-text
+         [@visibility]="loading  ? 'hide' : 'show'">
+      {{text}}
+    </div>
+
+    <jnt-stack data-badges *ngIf="badges.length > 0"
+               [@visibility]="loading  ? 'hide' : 'show'"
+               [type]="ui.layout.stack.type.horizontal"
+               [gutter]="ui.gutter.tiny">
+      <jnt-badge data-badge *ngFor="let badge of badges"
+                 [color]="badge.color"
+                 [value]="badge.value"
+                 [overflow]="badge.overflow"
+                 [position]="ui.position.inline">
+      </jnt-badge>
+    </jnt-stack>
+
+    <jnt-icon *ngIf="!!icon && icon.position === ui.position.right"
+              [@visibility]="loading  ? 'hide' : 'show'"
+              [icon]="icon?.icon"></jnt-icon>
   </jnt-stack>
 </button>

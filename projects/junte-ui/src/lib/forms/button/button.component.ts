@@ -2,12 +2,18 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
+import { Position } from '../../core/enums/position';
 import { Scheme } from '../../core/enums/scheme';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { ButtonType } from './enums';
+
+interface Icon {
+  icon: string;
+  position: Position;
+}
 
 @Component({
   selector: 'jnt-button',
@@ -55,10 +61,13 @@ import { ButtonType } from './enums';
   ]
 })
 
-
 export class ButtonComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-button-host';
+
+  ui = UI;
+
+  icon: Icon;
 
   @HostBinding('attr.data-scheme')
   _scheme: Scheme = Scheme.primary;
@@ -74,8 +83,6 @@ export class ButtonComponent {
 
   _type: ButtonType = ButtonType.button;
 
-  ui = UI;
-
   @PropertyApi({
     description: 'Set the loading status of button',
     type: 'boolean',
@@ -87,9 +94,13 @@ export class ButtonComponent {
 
   @PropertyApi({
     description: 'Icon for button',
-    type: 'string'
+    type: 'string | {icon: string, position: Position}'
   })
-  @Input() icon: string;
+  @Input('icon')
+  set __icon__(icon: string | Icon) {
+    this.icon = (typeof(icon) === 'string'
+      ? {icon: icon, position: Position.left} : icon) as Icon;
+  }
 
   @PropertyApi({
     description: 'Button color scheme',
@@ -144,6 +155,7 @@ export class ButtonComponent {
   get disable() {
     return this.disabled || this.loading;
   }
+
   @PropertyApi({
     description: 'Set disabled state',
     type: 'boolean',
