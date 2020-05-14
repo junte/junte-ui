@@ -1,17 +1,39 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
-@mixin jnt-grid-container($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-grid-container($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    width: 1140px,
+    padding: 0 $jnt-grid-gutter
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
-    display: block;
-    position: relative;
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 $jnt-grid-gutter;
-    box-sizing: border-box;
-    &[data-width="fluid"] {
-      max-width: 100%;
+    @if $declare {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      &[data-width="fluid"] {
+        max-width: 100%;
+      }
     }
+    max-width: map-get($vars, width);
+    padding: map-get($vars, padding);
+    @content;
   }
 }
