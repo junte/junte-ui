@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SelectableTestModule } from 'src/components/docs/forms/selectable/selectable-test.module';
 import { FormsRoutingModule } from './forms-routing.module';
 import { SwitcherTestModule } from './switcher/switcher-test.module';
 import { SwitchTestModule } from './switch/switch-test.module';
@@ -25,7 +26,8 @@ import { ButtonTestModule } from './button/button-test.module';
     RadioTestModule,
     SelectTestModule,
     SwitchTestModule,
-    SwitcherTestModule
+    SwitcherTestModule,
+    SelectableTestModule
   ]
 })
 export class FormsTestModule {

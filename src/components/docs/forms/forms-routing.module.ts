@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SelectableTestComponent } from 'src/components/docs/forms/selectable/selectable-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
@@ -61,6 +62,11 @@ export const routes: Routes = [
     path: 'date-picker',
     component: DatePickerTestComponent,
     data: {breadcrumb: 'Date picker'}
+  },
+  {
+    path: 'selectable',
+    component: SelectableTestComponent,
+    data: {breadcrumb: 'Selectable'}
   }
 ];
 
