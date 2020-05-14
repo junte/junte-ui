@@ -150,11 +150,8 @@
     without-text-corner: $jnt-corner-small,
     padding: null,
     icon: (
-      margin-right: $jnt-gutter-small,
+      margin: $jnt-gutter-small,
       size: 18px
-    ),
-    badge: (
-      margin-left: $jnt-gutter-small
     ),
     schemes: (
       primary: (
@@ -238,8 +235,8 @@
         spinner: (
           size: 18px
         )
-      ),
-    ),
+      )
+    )
   );
 
   $vars: $passed;
@@ -369,9 +366,6 @@
             border-bottom-left-radius: map-get($bottom, left);
           }
         }
-        [data-icon] {
-          margin-right: 0;
-        }
       }
     }
   }
@@ -379,7 +373,7 @@
   #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
     @if map-get($vars, padding) != null {
-      padding: if(map-get($vars, padding),map-get($vars, padding) !important, null);
+      padding: if(map-get($vars, padding), map-get($vars, padding) !important, null);
     }
     @if map-has-key($vars, corners) {
       $corners: map-get($vars, corners);
@@ -402,20 +396,6 @@
       border-left: if(map-get($borders, left), map-get($borders, left) !important, null);
       border-top: if(map-get($borders, top), map-get($borders, top) !important, null);
       border-bottom: if(map-get($borders, bottom), map-get($borders, bottom) !important, null);
-    }
-
-    @if map-has-key($vars, icon) {
-      $icon: map-get($vars, icon);
-      [data-icon] {
-        margin-right: map-get($icon, margin-right);
-      }
-    }
-
-    @if map-has-key($vars, badge) {
-      $badge: map-get($vars, badge);
-      [data-badge] {
-        margin-left: map-get($badge, margin-left);
-      }
     }
   }
 }

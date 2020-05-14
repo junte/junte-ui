@@ -41,7 +41,8 @@
                                 [type]="typeControl.value"
                                 [loading]="loadingControl.value"
                                 [disabled]="disabledControl.value"
-                                [icon]="iconControl.value ? ui.icons.user : null">
+                                [icon]="iconControl.value ? {icon: ui.icons.user,
+                                        position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
                       <jnt-badge *ngIf="badgeControl.value"
                                  [value]="5"></jnt-badge>
                     </jnt-button>
@@ -57,7 +58,8 @@
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? ui.icons.user : null">
+                                  [icon]="iconControl.value ? {icon: ui.icons.user,
+                                          position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
                         <jnt-badge *ngIf="badgeControl.value"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
@@ -65,7 +67,8 @@
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? ui.icons.gitlab : null">
+                                  [icon]="iconControl.value ? {icon: ui.icons.gitlab,
+                                          position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
                         <jnt-badge *ngIf="badgeControl.value"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
@@ -73,7 +76,8 @@
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? ui.icons.figma : null">
+                                  [icon]="iconControl.value ? {icon: ui.icons.figma,
+                                          position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
                         <jnt-badge *ngIf="badgeControl.value"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
@@ -169,6 +173,18 @@
                     <jnt-switcher-option label="Fluid"
                                          i18n-label="@@label.fluid"
                                          [value]="ui.width.fluid"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="position">Icon position
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="position"
+                                placeholder="Left">
+                    <jnt-switcher-option label="Left"
+                                         [value]="ui.position.left"></jnt-switcher-option>
+                    <jnt-switcher-option label="Right"
+                                         [value]="ui.position.right"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -288,9 +304,13 @@
                     <![CDATA[
                     [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
                   </ng-container>
-                  <ng-container *ngIf="iconControl.value">
+                  <ng-container *ngIf="iconControl.value && !positionControl.value">
                     <![CDATA[
                     [icon]="ui.icons.user"]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value && !!positionControl.value">
+                    <![CDATA[
+                    [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
                   </ng-container>
                   <![CDATA[>]]>
                   <ng-container *ngIf="badgeControl.value">
@@ -349,9 +369,13 @@
                         <![CDATA[
                         [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
                       </ng-container>
-                      <ng-container *ngIf="iconControl.value">
+                      <ng-container *ngIf="iconControl.value && !positionControl.value">
                         <![CDATA[
                         [icon]="ui.icons.user"]]>
+                      </ng-container>
+                      <ng-container *ngIf="iconControl.value && !!positionControl.value">
+                        <![CDATA[
+                        [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
                       </ng-container>
                       <![CDATA[>]]>
                       <ng-container *ngIf="badgeControl.value">
