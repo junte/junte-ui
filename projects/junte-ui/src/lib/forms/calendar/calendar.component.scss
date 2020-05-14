@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "elements/icon/icon";
 
 @mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -47,7 +48,7 @@
       justify-content: center;
       align-items: center;
       transition: box-shadow .3s;
-      line-height: 0;
+      @include jnt-icon((size: 16px), '&');
       &:focus {
         outline: none;
         box-shadow: $jnt-shadow-primary;
