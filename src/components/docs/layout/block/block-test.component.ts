@@ -26,6 +26,7 @@ export class BlockTestComponent implements OnInit {
   titleControl = this.fb.control(true);
   footerControl = this.fb.control(true);
   stateControl = this.fb.control(null);
+  adaptedControl = this.fb.control(false);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -33,7 +34,8 @@ export class BlockTestComponent implements OnInit {
     footer: this.footerControl,
     state: this.stateControl,
     width: this.widthControl,
-    scheme: this.schemeControl
+    scheme: this.schemeControl,
+    adapted: this.adaptedControl
   });
 
   constructor(private fb: FormBuilder) {

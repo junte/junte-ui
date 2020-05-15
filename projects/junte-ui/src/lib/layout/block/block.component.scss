@@ -1,20 +1,24 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
-@mixin block-padding($padding) {
-  [data-body], [data-footer] {
+@mixin block-padding($padding, $wrapper) {
+  #{$wrapper} [data-body], #{$wrapper}[data-footer] {
     padding: $padding;
   }
 }
 
-@mixin block-fill($scheme) {
+@mixin block-fill($scheme, $wrapper) {
   & {
-    background-color: #{map-get($scheme, background-color)};
+    background-color: map-get($scheme, background-color);
+    #{$wrapper} [data-title] {
+      color: map-get($scheme, title-color);
+    }
   }
 }
 
-@mixin jnt-block($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-block($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     padding: (
       tiny: $jnt-gutter-tiny,
@@ -27,15 +31,19 @@
     schemes: (
       primary: (
         background-color: $jnt-primary-background,
+        title-color: $jnt-primary-color
       ),
       secondary: (
         background-color: $jnt-secondary-background,
+        title-color: $jnt-primary-color
       ),
       success: (
         background-color: $jnt-success-color,
+        title-color: $jnt-white-color
       ),
       fail: (
         background-color: $jnt-fail-color,
+        title-color: $jnt-white-color
       ),
     ),
     overlay: (
@@ -48,6 +56,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -68,7 +81,17 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          @include block-fill($map);
+          @include block-fill($map, $wrapper);
+        }
+      }
+    }
+
+    &[data-features*='adapted'] {
+      @include for-mobile() {
+        box-shadow: none;
+        background-color: transparent;
+        #{$wrapper} [data-title] {
+          color: $jnt-primary-color;
         }
       }
     }
@@ -77,16 +100,15 @@
       $padding: map-get($vars, padding);
       @each $padding, $map in $padding {
         &[data-padding = '#{$padding}'] {
-          @include block-padding($map);
+          @include block-padding($map, $wrapper);
         }
       }
     }
   }
 
-  #{$context} [data-title] {
+  #{$context} #{$wrapper} [data-title] {
     padding: 0 $jnt-gutter-normal;
     text-align: center;
-    color: $jnt-primary-color;
     font-weight: $jnt-font-weight-bold;
     > div {
       padding: $jnt-gutter-normal 0;
@@ -94,7 +116,7 @@
     }
   }
 
-  #{$context} [data-loading], #{$context} [data-error], #{$context} [data-success] {
+  #{$context} #{$wrapper} [data-loading], #{$context} #{$wrapper} [data-error], #{$context} #{$wrapper} [data-success] {
     position: absolute;
     top: 0;
     left: 0;
