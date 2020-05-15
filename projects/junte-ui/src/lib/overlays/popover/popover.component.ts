@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, Renderer2, TemplateRef } from '@angular/core';
+import { PropertyApi } from '../../core/decorators/api';
 import { Scheme } from '../../core/enums/scheme';
 import { PopoverPlacements, PopoverTriggers } from './enums';
 
@@ -33,10 +34,59 @@ export class PopoverComponent {
     return this.visible ? 'block' : 'none';
   }
 
+  @PropertyApi({
+    description: 'scheme',
+    type: 'primary | secondary | success | fail',
+    default: 'primary'
+  })
   @HostBinding('attr.data-scheme')
   get scheme() {
     return this.options.scheme ? this.options.scheme : Scheme.primary;
   }
+
+  @PropertyApi({
+    description: 'Title',
+    type: 'string',
+  })
+  @Input() title: string;
+
+  @PropertyApi({
+    description: 'Label icon',
+    type: 'string | TemplateRef',
+  })
+  @Input() content: string;
+
+  @PropertyApi({
+    description: 'ui.overlays.popover.trigger',
+    type: 'hover | click | focus',
+    default: 'hover'
+  })
+  get trigger() {
+    return this.options.trigger ? this.options.trigger : PopoverTriggers.hover;
+  }
+
+  @PropertyApi({
+    description: 'ui.overlays.popover.position',
+    type: 'top | left | bottom | rights',
+    default: 'top'
+  })
+  get placement() {
+    return this.options.placement ? this.options.placement : PopoverPlacements.top;
+  }
+
+  @PropertyApi({
+    description: 'seconds',
+    type: 'number',
+    default: 0.15
+  })
+  @Input() enterDelay: number;
+
+  @PropertyApi({
+    description: 'seconds',
+    type: 'number',
+    default: 0.15
+  })
+  @Input() leaveDelay: number;
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {
