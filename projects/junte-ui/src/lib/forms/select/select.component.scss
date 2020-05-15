@@ -124,6 +124,7 @@
       border-color: $jnt-primary-color;
       @include for-mobile() {
         box-shadow: none;
+        border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
       }
     }
 
@@ -230,6 +231,7 @@
     position: relative;
     @include for-mobile() {
       border: 0;
+      border-radius: calc(#{$jnt-corner-small} - 1px);
     }
     > [data-icon] {
       position: absolute;
@@ -339,7 +341,7 @@
     @include for-mobile() {
       position: static;
       margin-top: 0;
-      border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
+      border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
       box-shadow: none;
     }
     &[data-loading='true'] {
