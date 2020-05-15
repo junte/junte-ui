@@ -1,3 +1,4 @@
+import { Feature } from './feature';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { FormState, ValidationTypeError } from '../../forms/form/enums';
@@ -41,6 +42,7 @@ export class UI {
   static text = {align: TextAlign};
   static icons = icons;
   static url = {matching: UrlMatching};
+  static feature = Feature;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,

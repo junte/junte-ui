@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Feature } from '../../core/enums/feature';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Gutter } from '../../core/enums/gutter';
 import { Scheme } from '../../core/enums/scheme';
@@ -102,6 +103,15 @@ export class BlockComponent {
   })
   @Input()
   state: BlockState;
+
+  @PropertyApi({
+    description: 'Adapted block on mobile view',
+    path: 'ui.feature',
+    options: [Feature.adapted]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @ContentChild('blockFooterTemplate')
   blockFooterTemplate: TemplateRef<any>;
