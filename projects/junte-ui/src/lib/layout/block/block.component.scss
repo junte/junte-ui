@@ -86,6 +86,15 @@
       }
     }
 
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[data-padding = '#{$padding}'] {
+          @include block-padding($map, $wrapper);
+        }
+      }
+    }
+
     &[data-features*='adapted'] {
       @include for-mobile() {
         box-shadow: none;
@@ -93,14 +102,9 @@
         #{$wrapper} [data-title] {
           color: $jnt-primary-color;
         }
-      }
-    }
-
-    @if map-has-key($vars, padding) {
-      $padding: map-get($vars, padding);
-      @each $padding, $map in $padding {
-        &[data-padding = '#{$padding}'] {
-          @include block-padding($map, $wrapper);
+        #{$wrapper} [data-body] {
+          padding-left: 0;
+          padding-right: 0;
         }
       }
     }
