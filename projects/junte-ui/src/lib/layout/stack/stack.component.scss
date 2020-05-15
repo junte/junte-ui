@@ -4,13 +4,13 @@
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
 
-@mixin stack-gutters($property, $gutter) {
-  & > :not(:last-child):not(router-outlet) {
+@mixin stack-gutters($property, $gutter, $wrapper) {
+  & > #{$wrapper} :not(:last-child):not(router-outlet) {
     #{$property}: $gutter;
   }
 }
 
-@mixin jnt-stack($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-stack($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     gutters: (
@@ -22,10 +22,19 @@ $type-horizontal: 'horizontal';
       large: $jnt-gutter-large,
       huge: $jnt-gutter-huge,
     ),
+    padding: null,
+    border: null,
+    corner: null,
+    background: null
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -33,67 +42,74 @@ $type-horizontal: 'horizontal';
   }
 
   :host, #{$context} {
-    display: flex;
-    text-align: left;
+    @if $declare {
+      display: flex;
+      text-align: left;
+
+      &[data-align='start'] {
+        align-items: flex-start;
+      }
+      &[data-align='center'] {
+        align-items: center;
+      }
+      &[data-align='end'] {
+        align-items: flex-end;
+      }
+      &[data-align='stretch'] {
+        align-items: stretch;
+      }
+      &[data-align='baseline'] {
+        align-items: baseline;
+      }
+
+      &[data-justify='start'] {
+        justify-content: flex-start;
+      }
+      &[data-justify='center'] {
+        justify-content: center;
+      }
+      &[data-justify='end'] {
+        justify-content: flex-end;
+      }
+      &[data-justify='between'] {
+        justify-content: space-between;
+      }
+      &[data-justify='around'] {
+        justify-content: space-around;
+      }
+      &[data-justify='evenly'] {
+        justify-content: space-evenly;
+      }
+
+      &[data-wrap='wrap'] {
+        flex-wrap: wrap;
+      }
+      &[data-wrap='nowrap'] {
+        flex-wrap: nowrap;
+      }
+      &[data-wrap='reverse'] {
+        flex-wrap: wrap-reverse;
+      }
+    }
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
         &[data-gutter = '#{$gutter}'] {
           &[data-orientation = '#{$type-vertical}'] {
             flex-direction: column;
-            @include stack-gutters(margin-bottom, $map);
+            @include stack-gutters(margin-bottom, $map, $wrapper);
           }
           &[data-orientation = '#{$type-horizontal}'] {
             flex-direction: row;
-            @include stack-gutters(margin-right, $map);
+            @include stack-gutters(margin-right, $map, $wrapper);
           }
         }
       }
     }
-
-    &[data-align='start'] {
-      align-items: flex-start;
-    }
-    &[data-align='center'] {
-      align-items: center;
-    }
-    &[data-align='end'] {
-      align-items: flex-end;
-    }
-    &[data-align='stretch'] {
-      align-items: stretch;
-    }
-    &[data-align='baseline'] {
-      align-items: baseline;
-    }
-
-    &[data-justify='start'] {
-      justify-content: flex-start;
-    }
-    &[data-justify='center'] {
-      justify-content: center;
-    }
-    &[data-justify='end'] {
-      justify-content: flex-end;
-    }
-    &[data-justify='between'] {
-      justify-content: space-between;
-    }
-    &[data-justify='around'] {
-      justify-content: space-around;
-    }
-    &[data-justify='evenly'] {
-      justify-content: space-evenly;
-    }
-
-    &[data-wrap='wrap'] {
-      flex-wrap: wrap;
-    }
-    &[data-wrap='nowrap'] {
-      flex-wrap: nowrap;
-    }
-    &[data-wrap='reverse'] {
-      flex-wrap: wrap-reverse;
-    }
+    padding: map-get($vars, padding);
+    border: map-get($vars, border);
+    border-radius: map-get($vars, corner);
+    background: map-get($vars, background);
+    @content;
   }
 }

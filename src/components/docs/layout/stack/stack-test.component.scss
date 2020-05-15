@@ -1,5 +1,7 @@
 @import "jnt-variables";
 @import "../../component";
+@import "layout/stack/stack";
+@import "forms/select/select";
 
 [axis1] {
   position: absolute;
@@ -36,8 +38,9 @@
 }
 
 [stack] {
-  border: 1px dashed $jnt-secondary-color;
-  height: 100%;
+  @include jnt-stack((
+    border: 1px dashed $jnt-primary-text-color,
+  ), '&', true);
 }
 
 [align][host=jnt-select-host] ::ng-deep {
