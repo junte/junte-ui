@@ -3,6 +3,7 @@ import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
 import { GridModule } from './grid/grid.module';
+import { InformerModule } from './informer/informer.module';
 import { LpModule } from './lp/lp.module';
 import { ResponsiveModule } from './responsive/responsive.module';
 import { SkeletonModule } from './skeleton/skeleton.module';
@@ -18,7 +19,8 @@ import { StackModule } from './stack/stack.module';
     SkeletonModule,
     SpinnerModule,
     AppLayoutModule,
-    LpModule
+    LpModule,
+    InformerModule
   ]
 })
 export class LayoutModule {
