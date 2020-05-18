@@ -62,6 +62,7 @@ export const icons = {
   sync: 'sync:font',
   sorting: 'sorting:font',
   view: 'view:font',
+  viewHide: 'view-hide:font',
   bubble: 'bubble:font',
   // programming
   code: 'code:font',
