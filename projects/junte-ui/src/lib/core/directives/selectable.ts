@@ -166,5 +166,5 @@ export class SelectableDirective implements OnInit {
     SelectableDirective
   ]
 })
-export class SelectableDirectiveModule {
+export class SelectableModule {
 }

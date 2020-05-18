@@ -12,7 +12,7 @@ import {
   InputModule,
   LabelModule,
   LinkModule,
-  SelectableDirectiveModule,
+  SelectableModule,
   SelectModule,
   StackModule,
   TabsModule
@@ -43,7 +43,7 @@ import { SelectableTestComponent } from './selectable-test.component';
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
-    SelectableDirectiveModule
+    SelectableModule
   ]
 })
 export class SelectableTestModule {
