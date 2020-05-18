@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { LayoutRoutingModule } from './layout-routing.module';
-import { StackTestModule } from './stack/stack-test.module';
-import { SpinnerTestModule } from './spinner/spinner-test.module';
-import { SkeletonTestModule } from './skeleton/skeleton-test.module';
-import { GridTestModule } from './grid/grid-test.module';
-import { BlockTestModule } from './block/block-test.module';
+import { InformerTestModule } from 'src/components/docs/layout/informer/informer-test.module';
 import { AppLayoutTestModule } from './app/app-layout-test.module';
+import { BlockTestModule } from './block/block-test.module';
+import { GridTestModule } from './grid/grid-test.module';
+import { LayoutRoutingModule } from './layout-routing.module';
 import { ResponsiveTestModule } from './responsive/responsive-test.module';
+import { SkeletonTestModule } from './skeleton/skeleton-test.module';
+import { SpinnerTestModule } from './spinner/spinner-test.module';
+import { StackTestModule } from './stack/stack-test.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ResponsiveTestModule } from './responsive/responsive-test.module';
     SkeletonTestModule,
     SpinnerTestModule,
     StackTestModule,
+    InformerTestModule,
     ResponsiveTestModule
   ]
 })
