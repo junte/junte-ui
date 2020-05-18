@@ -1,5 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { SelectableModule } from './core/directives/selectable';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
@@ -29,7 +30,8 @@ import { SharedModule } from './shared/shared.module';
     ArrayPipesModule,
     ColorPipesModule,
     DatePipesModule,
-    TextPipesModule
+    TextPipesModule,
+    SelectableModule
   ]
 })
 export class JunteUiModule {
