@@ -13,7 +13,7 @@
   <ng-template #inputTemplate>
     <input *ngIf="!multiline; else textareaTemplate"
            formControlName="input"
-           [type]="type"
+           [type]="type === inputType.password && view.password.display ? inputType.text : type"
            [placeholder]="placeholder"
            [readonly]="readonly ? readonly : null"
            [autocomplete]="autocomplete"
@@ -48,4 +48,9 @@
       <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
     </button>
   </div>
+
+  <button data-view *ngIf="type === inputType.password"
+          (click)="view.password.display = !view.password.display">
+    <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
+  </button>
 </form>
