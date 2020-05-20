@@ -1,4 +1,15 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, ElementRef, HostListener, TemplateRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  TemplateRef
+} from '@angular/core';
+import { Gutter } from 'projects/junte-ui/src/lib/core/enums/gutter';
 
 @Component({
   selector: 'app-browser-preview',
@@ -9,6 +20,13 @@ export class BrowserPreviewComponent implements AfterViewInit {
 
   width: number;
   height: number;
+
+  @HostBinding('attr.data-padding')
+  _padding = Gutter.normal;
+
+  @Input() set padding(padding: Gutter) {
+    this._padding = padding || Gutter.normal;
+  }
 
   @ContentChild('document')
   documentTemplate: TemplateRef<any>;
