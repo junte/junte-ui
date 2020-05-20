@@ -36,6 +36,16 @@
         icon: 14px
       ),
     ),
+    label: (
+      color: $jnt-control-switch-label-color,
+    ),
+    switch: (
+      background: $jnt-control-background,
+      border-color: $jnt-control-border-color,
+      active: (
+        color: $jnt-primary-color
+      )
+    )
   );
 
   $vars: $passed;
@@ -65,7 +75,7 @@
     }
   }
 
-  #{$wrapper} input {
+  #{$context} #{$wrapper} input {
     position: absolute;
     top: 0;
     z-index: 1;
@@ -78,7 +88,13 @@
     width: 100%;
     height: 100%;
     &:checked + [data-switch] {
-      border-color: $jnt-primary-color;
+      @if map-has-key($vars, switch) {
+        $switch: map-get($vars, switch);
+        @if map-has-key($switch, active) {
+          $active: map-get($switch, active);
+          border-color: map-get($active, color);
+        }
+      }
     }
     &:disabled {
       cursor: default;
@@ -96,34 +112,57 @@
     }
     &:focus {
       & + [data-switch] {
-        box-shadow: 0 1px 5px $jnt-primary-color;
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, active) {
+            $active: map-get($switch, active);
+            box-shadow: 0 1px 5px map-get($active, color);
+          }
+        }
       }
     }
     &:hover {
       & + [data-switch] {
-        border-color: $jnt-primary-color;
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, active) {
+            $active: map-get($switch, active);
+            border-color: map-get($active, color);
+          }
+        }
       }
     }
   }
 
-  #{$wrapper} label {
+  #{$context} #{$wrapper} label {
     padding-left: $jnt-control-gutter;
-    color: $jnt-control-switch-label-color;
+    @if map-has-key($vars, label) {
+      $label: map-get($vars, label);
+      color: map-get($label, color);
+    }
     user-select: none;
   }
 
-  #{$wrapper} [data-switch] {
+  #{$context} #{$wrapper} [data-switch] {
     position: relative;
     border-radius: $jnt-corner-base;
-    background-color: $jnt-control-background;
-    border: 1px solid $jnt-control-border-color;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all .3s;
     box-sizing: border-box;
+    @if map-has-key($vars, switch) {
+      $switch: map-get($vars, switch);
+      border: 1px solid map-get($switch, border-color);
+      background-color: map-get($switch, background);
+      [data-icon] {
+        @if map-has-key($switch, active) {
+          $active: map-get($switch, active);
+          background-color: map-get($active, color);
+        }
+      }
+    }
     [data-icon] {
-      background-color: $jnt-primary-color;
       border-radius: 2px;
     }
   }

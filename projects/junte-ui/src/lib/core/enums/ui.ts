@@ -1,3 +1,4 @@
+import { Height } from './height';
 import { Feature } from './feature';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
@@ -38,6 +39,7 @@ export class UI {
   static shape = Shape;
   static orientation = Orientation;
   static width = Width;
+  static height = Height;
   static color = Color;
   static text = {align: TextAlign};
   static icons = icons;

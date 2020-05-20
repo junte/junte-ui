@@ -1,3 +1,3 @@
-<jnt-lp-slide *ngFor="let slide of slides">
+<jnt-lp-slide *ngFor="let slide of slides" [height]="slide.height">
     <ng-container *ngTemplateOutlet="slide.slideContentTemplate"></ng-container>
 </jnt-lp-slide>
