@@ -106,7 +106,7 @@ export class ColComponent {
       Gutter.huge]
   })
   @Input() set padding(padding: Gutter) {
-    this._padding = padding || Gutter.normal;
+    this._padding = padding || Gutter.small;
   }
 
 }

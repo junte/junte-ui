@@ -1,5 +1,29 @@
 @import "jnt-variables";
 
+$padding: (
+  #{$jnt-gutter-none-name}: (
+    padding: $jnt-gutter-none
+  ),
+  #{$jnt-gutter-tiny-name}: (
+    padding: $jnt-gutter-tiny
+  ),
+  #{$jnt-gutter-small-name}: (
+    padding: $jnt-gutter-small
+  ),
+  #{$jnt-gutter-normal-name}: (
+    padding: $jnt-gutter-normal
+  ),
+  #{$jnt-gutter-big-name}: (
+    padding: $jnt-gutter-big
+  ),
+  #{$jnt-gutter-large-name}: (
+    padding: $jnt-gutter-large
+  ),
+  #{$jnt-gutter-huge-name}: (
+    padding: $jnt-gutter-huge
+  ),
+);
+
 :host-context([theme='dark']) {
   & {
     background-color: $jnt-gray-dark-color;
@@ -14,8 +38,14 @@
   box-sizing: border-box;
   overflow: hidden;
   background: $jnt-page-background;
+  @each $padding, $map in $padding {
+    &[data-padding = '#{$padding}'] {
+      [wrapper] {
+        padding: map-get($map, padding);
+      }
+    }
+  }
   [wrapper] {
-    padding: $jnt-gutter-normal;
     min-height: 300px;
   }
 }

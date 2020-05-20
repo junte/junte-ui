@@ -30,12 +30,12 @@
         <ng-template #tabContentTemplate>
           <jnt-row>
             <jnt-col [tablet]="8">
-              <app-browser-preview>
+              <app-browser-preview [padding]="ui.gutter.none">
                 <ng-template #document let-height="height">
                   <jnt-container>
-                    <jnt-row row [align]="alignControl.value"
+                    <jnt-row [align]="alignControl.value"
                              [gutter]="gutterControl.value">
-                      <jnt-col col *ngFor="let block of 24 | mockArray"
+                      <jnt-col *ngFor="let block of 24 | mockArray"
                                [span]="spanControl.value"
                                [padding]="paddingControl.value">
                         <div block
