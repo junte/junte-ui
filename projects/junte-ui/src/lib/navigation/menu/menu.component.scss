@@ -2,7 +2,7 @@
 @import "jnt-functions";
 @import "navigation/link/link";
 
-@mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-menu($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     top: (
@@ -74,6 +74,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -84,7 +89,7 @@
     @if $declare {
       display: block;
       &[data-orientation='horizontal'] {
-        [data-sub] {
+        #{$wrapper} [data-sub] {
           position: absolute;
           top: 100% !important;
           left: 0;
@@ -92,12 +97,12 @@
         }
       }
       &[data-orientation='vertical'] {
-        [top] {
+        #{$wrapper} [top] {
           width: 100%;
         }
       }
 
-      [data-top] {
+      #{$wrapper} [data-top] {
         position: relative;
         white-space: nowrap;
         box-sizing: border-box;
@@ -144,9 +149,9 @@
     }
   }
 
-  :host {
+  :host, #{$context} {
     &[data-orientation='horizontal'], &[data-collapsed='true'] {
-      [data-sub] {
+      #{$wrapper} [data-sub] {
         @if map-has-key($vars, sub) {
           $sub: map-get($vars, sub);
           background-color: map-get($sub, background-color);
@@ -156,7 +161,7 @@
       }
     }
     &[data-collapsed='true'] {
-      [data-sub] {
+      #{$wrapper} [data-sub] {
         @if map-has-key($vars, sub) {
           $collapsed: map-get(map-get($vars, sub), collapsed);
           position: map-get($collapsed, position);
@@ -176,7 +181,7 @@
   }
 
 
-  #{$context} [data-top] {
+  #{$context} #{$wrapper} [data-top] {
     [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);

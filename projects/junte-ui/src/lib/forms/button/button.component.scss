@@ -148,7 +148,9 @@
       bottom: null
     ),
     without-text-corner: $jnt-corner-small,
+    text-transform: null,
     padding: null,
+    font-weight: $jnt-font-weight-base,
     icon: (
       margin: $jnt-gutter-small,
       size: 18px
@@ -322,23 +324,15 @@
           @include button-size($map, $wrapper);
           @if map-has-key($map, badge) {
             $badge: map-get($map, badge);
-            [data-badge] {
+            #{$wrapper} [data-badge] {
               @include jnt-badge((
                 size: map-get($badge, size)
               ), '&');
             }
           }
-          @if map-has-key($map, icon) {
-            $icon: map-get($map, icon);
-            [data-icon] {
-              @include jnt-icon((
-                size: map-get($icon, size)
-              ), '&');
-            }
-          }
           @if map-has-key($map, spinner) {
             $spinner: map-get($map, spinner);
-            [data-loading] {
+            #{$wrapper} [data-loading] {
               width: map-get($spinner, size);
               min-width: map-get($spinner, size);
               height: map-get($spinner, size);
@@ -372,6 +366,16 @@
 
   #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
+    text-transform: map-get($vars, text-transform);
+    font-weight: map-get($vars, font-weight);
+    @if map-has-key($vars, icon) {
+      $icon: map-get($vars, icon);
+      #{$wrapper} [data-icon] {
+        @include jnt-icon((
+          size: map-get($icon, size)
+        ), '&');
+      }
+    }
     @if map-get($vars, padding) != null {
       padding: if(map-get($vars, padding), map-get($vars, padding) !important, null);
     }
