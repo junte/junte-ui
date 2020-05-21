@@ -53,14 +53,20 @@
             padding: $jnt-gutter-small;
           }
 
+          &[data-selected="false"]:hover {
+            background-color: $jnt-highlight-background;
+          }
+
           &:focus {
             outline: 0;
             box-shadow: $jnt-shadow-primary;
-            border-color: $jnt-primary-light-color;
-          }
-
-          &:hover {
-            background-color: $jnt-highlight-background;
+            @if map-has-key($vars, option) {
+              $option: map-get($vars, option);
+              @if map-has-key($option, active) {
+                $active: map-get($option, active);
+                border-color: map-get($active, background);
+              }
+            }
           }
 
           [data-title] {
