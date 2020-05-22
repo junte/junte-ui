@@ -1,0 +1,118 @@
+<jnt-container>
+  <h1>Collapsible</h1>
+  <jnt-stack resources [orientation]="ui.orientation.horizontal">
+    <jnt-link [icon]="ui.icons.gitlab"
+              [outline]="ui.outline.ghost"
+              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/informer"
+              target="_blank" title="GitLab">
+    </jnt-link>
+  </jnt-stack>
+
+  <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-tabs playground>
+      <jnt-tab title="Preview"
+               i18n-title="@@label.preview"
+               [icon]="localUi.icons.preview">
+        <ng-template #tabContentTemplate>
+          <jnt-row>
+            <jnt-col [tablet]="8">
+              <app-browser-preview>
+                <ng-template #document let-height="height">
+                  <jnt-collapsible [title]="!titleControl.value ? 'Filters' : null"
+                                   [icon]="iconControl.value ? ui.icons.settings : null">
+                    <ng-template *ngIf="titleControl.value" #collapsibleTitleTemplate>
+                      <jnt-stack [orientation]="ui.orientation.horizontal"
+                                 [gutter]="ui.gutter.small"
+                                 [align]="ui.flex.align.center">
+                        <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
+                        <p>We’re determined to examine filters from your profile’s <b> data </b>,
+                          You see <b> personalized </b> job offers.</p>
+                      </jnt-stack>
+                    </ng-template>
+                    <ng-template #collapsibleContentTemplate>
+                      Your personal filters are here
+                    </ng-template>
+                  </jnt-collapsible>
+                </ng-template>
+              </app-browser-preview>
+            </jnt-col>
+            <jnt-col [tablet]="4">
+              <jnt-form [formGroup]="builder">
+                <jnt-stack [align]="ui.flex.align.stretch">
+                  <jnt-form-item>
+                    <jnt-form-label>Features</jnt-form-label>
+                    <jnt-checkbox formControlName="title"
+                                  label="Custom title"></jnt-checkbox>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-checkbox formControlName="icon"
+                                  label="Icon"
+                                  i18n-label="@@label.icon"></jnt-checkbox>
+                  </jnt-form-item>
+                </jnt-stack>
+              </jnt-form>
+            </jnt-col>
+          </jnt-row>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab #code title="Code"
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
+        <ng-template #tabContentTemplate>
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start"
+                                   i18n-title="@@label.how_to_start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'collapsible-test', type: 'CollapsibleTestComponent'}"
+                  scss="layout/collapsible"></app-how-to-use>
+              </ng-template>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template"
+                                   i18n-title="@@label.component_template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight file="collapsible-test.template.html">
+                  <![CDATA[
+                  <jnt-collapsible ]]>
+                  <ng-container *ngIf="!titleControl.value">
+                    <![CDATA[ title="Filters"]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[ [icon]="ui.icons.settings"]]>
+                    </ng-container>
+                  </ng-container>
+                  <![CDATA[>]]>
+                    <ng-container *ngIf="titleControl.value">
+                      <![CDATA[<ng-template #collapsibleTitleTemplate>
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.flex.align.center">
+                          <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
+                          <p>We’re determined to examine filters from your profile’s <b> data </b>,
+                            You see <b> personalized </b> job offers.</p>
+                        </jnt-stack>
+                      </ng-template>]]>
+                    </ng-container>
+                    <![CDATA[
+                    <ng-template #collapsibleContentTemplate>
+                      Your personal filters are here
+                    </ng-template>
+                  </jnt-collapsible>
+                  ]]>
+                </app-code-highlight>
+              </ng-template>
+            </jnt-accordion-section>
+          </jnt-accordion>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="API" [icon]="localUi.icons.api">
+        <ng-template #tabContentTemplate>
+          <app-component-api selector="jnt-collapsible" [target]="types.collapsible"></app-component-api>
+        </ng-template>
+      </jnt-tab>
+    </jnt-tabs>
+  </jnt-stack>
+
+</jnt-container>

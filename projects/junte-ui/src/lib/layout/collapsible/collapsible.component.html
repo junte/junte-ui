@@ -1,0 +1,22 @@
+<ng-template #defaultTitleTemplate>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [gutter]="ui.gutter.small"
+               [align]="ui.flex.align.center">
+        <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
+        <div data-title>{{title}}</div>
+    </jnt-stack>
+</ng-template>
+
+<jnt-stack [orientation]="ui.orientation.horizontal"
+           [align]="ui.flex.align.center"
+           [justify]="ui.flex.justify.between">
+    <ng-container *ngTemplateOutlet="!!titleTemplate ? titleTemplate : defaultTitleTemplate"></ng-container>
+    <jnt-button [icon]="ui.icons.chevronDown"
+                [outline]="ui.outline.ghost"
+                [size]="ui.size.small"
+                (click)="opened = !opened"></jnt-button>
+</jnt-stack>
+
+<div data-content *ngIf="opened">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</div>

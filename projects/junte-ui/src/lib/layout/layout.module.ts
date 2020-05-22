@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CollapsibleModule } from './collapsible/collapsible.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
@@ -20,7 +21,8 @@ import { StackModule } from './stack/stack.module';
     SpinnerModule,
     AppLayoutModule,
     LpModule,
-    InformerModule
+    InformerModule,
+    CollapsibleModule
   ]
 })
 export class LayoutModule {

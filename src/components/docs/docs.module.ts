@@ -12,6 +12,7 @@ import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { CollapsibleTestComponent } from './layout/collapsible/collapsible-test.component';
 
 export function getHighlightLanguages() {
   return {
