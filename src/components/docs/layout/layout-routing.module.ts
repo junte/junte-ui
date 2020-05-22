@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CollectionsTestModule } from 'src/components/docs/collections/collections-test.module';
 import { AppLayoutTestComponent } from 'src/components/docs/layout/app/app-layout-test.component';
 import { BlockTestComponent } from 'src/components/docs/layout/block/block-test.component';
+import { CollapsibleTestComponent } from 'src/components/docs/layout/collapsible/collapsible-test.component';
 import { GridTestComponent } from 'src/components/docs/layout/grid/grid-test.component';
 import { InformerTestComponent } from 'src/components/docs/layout/informer/informer-test.component';
 import { ResponsiveTestComponent } from 'src/components/docs/layout/responsive/responsive-test.component';
@@ -49,6 +51,11 @@ export const routes: Routes = [
     path: 'informer',
     component: InformerTestComponent,
     data: {breadcrumb: 'Informer'}
+  },
+  {
+    path: 'collapsible',
+    component: CollapsibleTestComponent,
+    data: {breadcrumb: 'Collapsible'}
   }
 ];
 

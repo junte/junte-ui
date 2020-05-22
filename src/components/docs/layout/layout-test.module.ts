@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { InformerTestModule } from 'src/components/docs/layout/informer/informer-test.module';
+import { CollapsibleTestModule } from './collapsible/collapsible-test.module';
+import { CollectionsTestModule } from '../collections/collections-test.module';
+import { InformerTestModule } from './informer/informer-test.module';
 import { AppLayoutTestModule } from './app/app-layout-test.module';
 import { BlockTestModule } from './block/block-test.module';
 import { GridTestModule } from './grid/grid-test.module';
@@ -21,7 +23,9 @@ import { StackTestModule } from './stack/stack-test.module';
     SpinnerTestModule,
     StackTestModule,
     InformerTestModule,
-    ResponsiveTestModule
+    CollectionsTestModule,
+    ResponsiveTestModule,
+    CollapsibleTestModule
   ]
 })
 export class LayoutTestModule {
