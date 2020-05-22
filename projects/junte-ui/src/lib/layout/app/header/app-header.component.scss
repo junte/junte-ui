@@ -6,7 +6,12 @@
 
 @mixin jnt-app-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
-  $defs: ();
+  $defs: (
+    position: absolute,
+    background: $jnt-primary-dark-color,
+    padding: 0 $jnt-gutter-big,
+    height: $app-header-height
+  );
 
   $vars: $passed;
   $declare: false;
@@ -27,10 +32,10 @@
     flex: 0 0 auto;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background-color: $jnt-primary-dark-color;
-    padding: 0 $jnt-gutter-big;
-    min-height: $app-header-height;
-    position: absolute;
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    min-height: map-get($vars, height);
+    position: map-get($vars, position);
     top: 0;
     left: 0;
     right: 0;
