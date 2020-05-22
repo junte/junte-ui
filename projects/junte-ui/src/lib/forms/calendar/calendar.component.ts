@@ -88,9 +88,6 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   @Output()
   updated = new EventEmitter<Period>();
 
-  @Output()
-  selected = new EventEmitter();
-
   @PropertyApi({
     description: 'Set disabled state',
     type: 'boolean',
@@ -155,14 +152,8 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  registerOnChange(callback: (date: Date) => void): void {
-    this.onChange = (date: Date) => {
-      if (!isEqual(date, this.current)) {
-        this.current = date;
-        callback(date);
-        this.selected.emit();
-      }
-    };
+  registerOnChange(fn: (date: Date) => void): void {
+    this.onChange = fn;
   }
 
   registerOnTouched(fn): void {
@@ -170,6 +161,11 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
 
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
+  }
+
+  select(date: Date) {
+    this.current = date;
+    this.onChange(date);
   }
 
   private update() {

@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "elements/icon/icon";
+@import "forms/button/button";
 
 @mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -27,54 +28,34 @@
   }
 
   thead {
-    [data-arrow-left] {
-      text-align: left;
-    }
-    [data-arrow-right] {
-      text-align: right;
-    }
     [data-arrow] {
-      background-color: transparent;
-      border-width: 0;
-      font-size: $jnt-font-size-normal;
-      color: $jnt-primary-text-color;
-      cursor: pointer;
-      padding: 0;
-      vertical-align: middle;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      transition: box-shadow .3s;
-      @include jnt-icon((size: 16px), '&');
-      &:focus {
-        outline: none;
-        box-shadow: $jnt-shadow-primary;
-        border: 1px solid $jnt-primary-color;
-      }
-      &:hover {
-        color: lighten($jnt-primary-text-color, 10%);
-        border: 1px solid $jnt-primary-color;
-      }
+      @include jnt-button((
+        sizes: (
+          small: (
+            height: 28px,
+            padding-without-text: 0 $jnt-gutter-tiny,
+            icon: (
+              size: 16px,
+            ),
+          )
+        )
+      ), '&');
     }
+
     [data-date] {
-      font-weight: $jnt-font-weight-bold;
-      font-size: $jnt-font-size-base;
-      cursor: pointer;
-      &[data-year] {
-        pointer-events: none;
-        user-select: none;
-        color: $jnt-control-disabled-label-color;
-      }
-      &:hover {
-        background-color: $jnt-highlight-background;
-      }
-      &:focus {
-        outline: 0;
-      }
+      @include jnt-button((
+        sizes: (
+          small: (
+            height: 28px,
+            font-size: 14px,
+          )
+        )
+      ), '&');
     }
+    [data-year] {
+      color: $jnt-control-disabled-label-color;
+    }
+
     [data-days] {
       > th {
         padding: $jnt-gutter-normal $jnt-gutter-tiny;

@@ -49,19 +49,18 @@ export class DatePickerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.calendarControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(date => {
+    this.calendarControl.valueChanges.subscribe(date => {
         this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
         this.onChange(date);
+        this.opened = false;
         if (!!this.popover) {
           this.popover.hide();
         }
       });
 
-    this.inputControl.valueChanges.pipe(
-      debounceTime(INPUT_DELAY),
-      distinctUntilChanged()
-    ).subscribe(date => {
+    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY),
+      distinctUntilChanged())
+      .subscribe(date => {
       this.updateCalendar(parse(date, this.format, new Date()));
       if (!!this.popover) {
         this.popover.hide();

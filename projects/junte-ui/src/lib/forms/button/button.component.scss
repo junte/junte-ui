@@ -339,6 +339,14 @@
               min-height: map-get($spinner, size);
             }
           }
+          @if map-has-key($map, icon) {
+            $icon: map-get($map, icon);
+            #{$wrapper} [data-icon] {
+              @include jnt-icon((
+                size: map-get($icon, size)
+              ), '&');
+            }
+          }
         }
       }
     }
