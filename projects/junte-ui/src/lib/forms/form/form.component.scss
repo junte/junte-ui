@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon/icon";
 
 @mixin jnt-form($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -57,6 +58,7 @@
       background-color: rgba($jnt-primary-background, .5);
       border-radius: $jnt-corner-normal;
       z-index: 1;
+      @include jnt-icon((size: 48px), '&');
     }
   }
 }
