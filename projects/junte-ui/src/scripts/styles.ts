@@ -37,9 +37,12 @@ export class Gulpfile {
     imports = imports.filter(file => !file.includes('jnt-variables') && !file.includes(`${section}/${to.replace('.scss', '')}`));
     imports = [...(new Set(imports))];
     console.log(imports);
-    let cleared = content.replace(/@import.*$/gm, '').replace(/(\n){2,}/gm, '\n');
-    imports.forEach(file => cleared = `${Array.from(new Set(file.replace('";', '').split('/'))).join('/')}";\n${cleared}`);
-    return `@import "jnt-variables";\n${cleared}`;
+    let cleared = content
+      .replace(/@import.*$/gm, '')
+      .replace(/(\n){2,}/gm, '\n');
+    const clean = file => file.replace('";', '').replace('@import "', '@import "../').split('/');
+    imports.forEach(file => cleared = `${Array.from(new Set(clean(file))).join('/')}";\n${cleared}`);
+    return `@import "../jnt-variables";\n${cleared}`;
   }
 
   @Task()
