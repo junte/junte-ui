@@ -44,7 +44,7 @@ export class ColComponent {
   }
 
   @HostBinding('attr.data-padding')
-  _padding: Gutter = Gutter.normal;
+  _padding: Gutter = Gutter.small;
 
   @PropertyApi({
     description: 'Number of cells to occupy on screen < 768px',
