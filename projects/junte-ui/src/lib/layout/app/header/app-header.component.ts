@@ -29,7 +29,7 @@ export class AppHeaderComponent {
   @ContentChild('contentTemplate')
   contentTemplate: TemplateRef<any>;
 
-  @ContentChild(MenuComponent, {static: true})
+  @ContentChild(MenuComponent, {static: false})
   menu: MenuComponent;
 
   @ContentApi({
