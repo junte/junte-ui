@@ -52,6 +52,9 @@ export class FormComponent implements OnInit {
   @Input()
   state: FormState;
 
+  @ContentChild('formTitleTemplate')
+  titleTemplate: TemplateRef<any>;
+
   @ContentChild('formFooterTemplate')
   footerTemplate: TemplateRef<any>;
 
