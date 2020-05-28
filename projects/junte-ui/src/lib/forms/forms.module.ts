@@ -10,12 +10,14 @@ import { RadioModule } from './radio/radio.module';
 import { SelectModule } from './select/select.module';
 import { SwitchModule } from './switch/switch.module';
 import { SwitcherModule } from './switcher/switcher.module';
+import { CodeModule } from './code/code.module';
 
 @NgModule({
   exports: [
     ButtonModule,
     CalendarModule,
     CheckboxModule,
+    CodeModule,
     DatePickerModule,
     FormModule,
     InputModule,
@@ -23,7 +25,7 @@ import { SwitcherModule } from './switcher/switcher.module';
     SelectModule,
     SwitchModule,
     SwitcherModule
-  ]
+  ],
 })
 export class UiFormsModule {
 

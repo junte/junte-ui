@@ -11,6 +11,7 @@ import { DatePickerTestModule } from './date-picker/date-picker-test.module';
 import { CheckboxTestModule } from './checkbox/checkbox-test.module';
 import { CalendarTestModule } from './calendar/calendar-test.module';
 import { ButtonTestModule } from './button/button-test.module';
+import { CodeTestModule } from './code/code-test.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ButtonTestModule } from './button/button-test.module';
     ButtonTestModule,
     CalendarTestModule,
     CheckboxTestModule,
+    CodeTestModule,
     DatePickerTestModule,
     FormTestModule,
     InputTestModule,
@@ -28,7 +30,7 @@ import { ButtonTestModule } from './button/button-test.module';
     SwitchTestModule,
     SwitcherTestModule,
     SelectableTestModule
-  ]
+  ],
 })
 export class FormsTestModule {
 }

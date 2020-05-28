@@ -4,6 +4,7 @@ import { SelectableTestComponent } from 'src/components/docs/forms/selectable/se
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
+import { CodeTestComponent } from './code/code-test.component';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { FormTestComponent } from './form/form-test.component';
 import { InputTestComponent } from './input/input-test.component';
@@ -67,6 +68,11 @@ export const routes: Routes = [
     path: 'selectable',
     component: SelectableTestComponent,
     data: {breadcrumb: 'Selectable'}
+  },
+  {
+    path: 'code',
+    component: CodeTestComponent,
+    data: {breadcrumb: 'Code'}
   }
 ];
 

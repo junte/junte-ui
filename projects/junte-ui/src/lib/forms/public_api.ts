@@ -2,6 +2,7 @@ export * from './forms.module';
 export * from './button/public_api';
 export * from './calendar/public_api';
 export * from './checkbox/public_api';
+export * from './code/public_api';
 export * from './date-picker/public_api';
 export * from './form/public_api';
 export * from './input/public_api';
