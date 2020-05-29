@@ -89,22 +89,24 @@
           <jnt-accordion-section title="Component template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight [language]="language.html" file="chart-test.template.html">
-                <![CDATA[
-                <jnt-chart title="{{titleChartControl.value}}" metric="{{metricChartControl.value}}">
-                  <jnt-chart-indicator title="Ironman"
-                                       [data]="{hero: 1}"
-                                       [value]="32"
-                                       label="Smart"
-                                       [color]="ui.color.purple">
-                  </jnt-chart-indicator>
-                  <jnt-chart-indicator title="Tor"
-                                       [data]="{hero: 2}"
-                                       [value]="28"
-                                       label="God of thunder"
-                                       [color]="ui.color.red">
-                  </jnt-chart-indicator>
-                </jnt-chart>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-chart title="{{titleChartControl.value}}" metric="{{metricChartControl.value}}">
+  <jnt-chart-indicator title="Ironman"
+                       [data]="{hero: 1}"
+                       [value]="32"
+                       label="Smart"
+                       [color]="ui.color.purple">
+  </jnt-chart-indicator>
+  <jnt-chart-indicator title="Tor"
+                       [data]="{hero: 2}"
+                       [value]="28"
+                       label="God of thunder"
+                       [color]="ui.color.red">
+  </jnt-chart-indicator>
+</jnt-chart>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

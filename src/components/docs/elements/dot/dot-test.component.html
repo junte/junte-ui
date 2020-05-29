@@ -62,15 +62,17 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="dot-test.component.html">
-                <![CDATA[
-                <jnt-dot ]]>
-                  <ng-container *ngIf="colorControl.value">
-                    <![CDATA[
-                    color="]]>{{colorControl.value}}<![CDATA["]]>
-                  </ng-container>
-                <![CDATA[>
-                </jnt-dot>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-dot ]]>
+  <ng-container *ngIf="colorControl.value">
+    <![CDATA[
+    color="]]>{{colorControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>
+</jnt-dot>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

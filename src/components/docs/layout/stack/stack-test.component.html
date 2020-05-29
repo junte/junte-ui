@@ -235,35 +235,37 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="stack-test.template.html">
-                <![CDATA[
-                <jnt-stack
-                  ]]>
-                  <ng-container *ngIf="typeControl.value">
-                    <![CDATA[
-                    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="gutterControl.value">
-                    <![CDATA[
-                    [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="alignControl.value">
-                    <![CDATA[
-                    [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="justifyControl.value">
-                    <![CDATA[
-                    [justify]="ui.flex.justify.]]>{{justifyControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="wrapControl.value">
-                    <![CDATA[
-                    [wrap]="ui.flex.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                </jnt-stack>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-stack
+]]>
+  <ng-container *ngIf="typeControl.value">
+    <![CDATA[
+    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="gutterControl.value">
+    <![CDATA[
+    [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="alignControl.value">
+    <![CDATA[
+    [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="justifyControl.value">
+    <![CDATA[
+    [justify]="ui.flex.justify.]]>{{justifyControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="wrapControl.value">
+    <![CDATA[
+    [wrap]="ui.flex.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</jnt-stack>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

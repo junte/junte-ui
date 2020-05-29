@@ -146,20 +146,21 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="selectable-test.component.html" [language]="language.html">
-                <![CDATA[
-                <jnt-block [jntSelectable]="{
-                                  mode: modeControl.value,
-                                  enabled: !disabledControl.value,
-                                  allowEmpty: allowEmptyControl.value
-                                }" ]]>
-                  <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
-                  <ng-container *ngIf="modeControl.value">
-                    <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <![CDATA[
-                </jnt-block>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-block [jntSelectable]="{
+    mode: modeControl.value,
+    enabled: !disabledControl.value,
+    allowEmpty: allowEmptyControl.value
+  }" ]]>
+<![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
+<ng-container *ngIf="modeControl.value">
+  <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
+</ng-container>
+  <![CDATA[>]]>
+  <![CDATA[
+</jnt-block>
+]]>
               </app-code-highlight>
 
               <app-code-highlight file="selectable-test.component.ts"
@@ -189,6 +190,7 @@
                   }
                   ]]>
                 </pre>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

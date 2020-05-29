@@ -269,58 +269,60 @@
                                  i18n-title="@@label.button_component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="button-test.template.html">
-                <![CDATA[
-                <jnt-button
-                  ]]>
-                  <ng-container *ngIf="textControl.value">
-                    <![CDATA[
-                    text="Button"]]>
-                  </ng-container>
-                  <ng-container *ngIf="schemeControl.value">
-                    <![CDATA[
-                    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="outlineControl.value">
-                    <![CDATA[
-                    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="widthControl.value">
-                    <![CDATA[
-                    [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="typeControl.value">
-                    <![CDATA[
-                    [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="loadingControl.value">
-                    <![CDATA[
-                    [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="disabledControl.value">
-                    <![CDATA[
-                    [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value && !positionControl.value">
-                    <![CDATA[
-                    [icon]="ui.icons.user"]]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value && !!positionControl.value">
-                    <![CDATA[
-                    [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngIf="badgeControl.value">
-                    <![CDATA[
-                    <jnt-badge [value]="5"></jnt-badge>
-                    ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-button>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-button
+  ]]>
+  <ng-container *ngIf="textControl.value">
+    <![CDATA[
+    text="Button"]]>
+  </ng-container>
+  <ng-container *ngIf="schemeControl.value">
+    <![CDATA[
+    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="outlineControl.value">
+    <![CDATA[
+    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="widthControl.value">
+    <![CDATA[
+    [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="typeControl.value">
+    <![CDATA[
+    [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="loadingControl.value">
+    <![CDATA[
+    [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="disabledControl.value">
+    <![CDATA[
+    [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="iconControl.value && !positionControl.value">
+    <![CDATA[
+    [icon]="ui.icons.user"]]>
+  </ng-container>
+  <ng-container *ngIf="iconControl.value && !!positionControl.value">
+    <![CDATA[
+    [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
+  </ng-container>
+  <![CDATA[>]]>
+  <ng-container *ngIf="badgeControl.value">
+    <![CDATA[
+    <jnt-badge [value]="5"></jnt-badge>
+      ]]>
+  </ng-container>
+  <![CDATA[
+</jnt-button>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
 
@@ -329,67 +331,69 @@
                                  i18n-title="@@label.buttons_group_component">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="button-test.template.html">
-                <![CDATA[
-                <jnt-button-group
-                  ]]>
-                  <ng-container *ngIf="schemeControl.value">
-                    <![CDATA[
-                    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="outlineControl.value">
-                    <![CDATA[
-                    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="widthControl.value">
-                    <![CDATA[
-                    [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngFor="let btn of 3 | mockArray">
-                    <![CDATA[
-                    <jnt-button
-                      ]]>
-                      <ng-container *ngIf="textControl.value">
-                        <![CDATA[
-                        text="Button"]]>
-                      </ng-container>
-                      <ng-container *ngIf="typeControl.value">
-                        <![CDATA[
-                        [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="loadingControl.value">
-                        <![CDATA[
-                        [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="disabledControl.value">
-                        <![CDATA[
-                        [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="iconControl.value && !positionControl.value">
-                        <![CDATA[
-                        [icon]="ui.icons.user"]]>
-                      </ng-container>
-                      <ng-container *ngIf="iconControl.value && !!positionControl.value">
-                        <![CDATA[
-                        [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
-                      </ng-container>
-                      <![CDATA[>]]>
-                      <ng-container *ngIf="badgeControl.value">
-                        <![CDATA[
-                        <jnt-badge [value]="5"></jnt-badge>
-                        ]]>
-                      </ng-container>
-                      <![CDATA[
-                    </jnt-button>
-                    ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-button-group>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-button-group
+]]>
+  <ng-container *ngIf="schemeControl.value">
+    <![CDATA[
+    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="outlineControl.value">
+    <![CDATA[
+    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="widthControl.value">
+    <![CDATA[
+    [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>]]>
+  <ng-container *ngFor="let btn of 3 | mockArray">
+    <![CDATA[
+    <jnt-button
+      ]]>
+      <ng-container *ngIf="textControl.value">
+        <![CDATA[
+        text="Button"]]>
+      </ng-container>
+      <ng-container *ngIf="typeControl.value">
+        <![CDATA[
+        [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="loadingControl.value">
+        <![CDATA[
+        [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="disabledControl.value">
+        <![CDATA[
+        [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="iconControl.value && !positionControl.value">
+        <![CDATA[
+        [icon]="ui.icons.user"]]>
+      </ng-container>
+      <ng-container *ngIf="iconControl.value && !!positionControl.value">
+        <![CDATA[
+        [icon]="{ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
+      </ng-container>
+      <![CDATA[>]]>
+      <ng-container *ngIf="badgeControl.value">
+        <![CDATA[
+        <jnt-badge [value]="5"></jnt-badge>
+        ]]>
+      </ng-container>
+      <![CDATA[
+    </jnt-button>
+    ]]>
+  </ng-container>
+  <![CDATA[
+</jnt-button-group>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

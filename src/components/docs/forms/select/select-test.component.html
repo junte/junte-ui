@@ -183,43 +183,44 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="select-test.component.html">
-                <![CDATA[
-                <jnt-select [labelField]="'label'"
-                            [keyField]="'key'" ]]>
-                  <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
-                  <ng-container *ngIf="modeControl.value">
-                    <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value">
-                    <![CDATA[[icon]="ui.icon.user"]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <![CDATA[
-                  <jnt-select-option *ngFor="let option of heroes"
-                                     [label]="option.label"
-                                     [key]="option.key"
-                                     [value]="option">
-                  </jnt-select-option>
-                  ]]>
-                  <ng-container *ngIf="templateControl.value">
-                    <![CDATA[
-                    <ng-template #heroOptionTemplate let-option="value">
-                      <jnt-stack option [orientation]="ui.orientation.horizontal"
-                                 [gutter]="ui.gutter.small"
-                                 [align]="ui.flex.align.center">
-                        <jnt-avatar [size]="ui.size.small"></jnt-avatar>
-                        <div>]]>{{<![CDATA[option.label]] >}}<![CDATA[ with likes</div>
-                        <jnt-label [label]="option.likes"></jnt-label>
-                      </jnt-stack>
-                    </ng-template>
-                    ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-select>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-select [labelField]="'label'"
+            [keyField]="'key'" ]]>
+<![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
+<ng-container *ngIf="modeControl.value">
+  <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
+</ng-container>
+<![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
+<ng-container *ngIf="sizeControl.value">
+  <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+</ng-container>
+<ng-container *ngIf="iconControl.value">
+  <![CDATA[[icon]="ui.icon.user"]]>
+</ng-container>
+  <![CDATA[>]]>
+  <![CDATA[
+  <jnt-select-option *ngFor="let option of heroes"
+                     [label]="option.label"
+                     [key]="option.key"
+                     [value]="option">
+  </jnt-select-option>
+  ]]>
+  <ng-container *ngIf="templateControl.value">
+    <![CDATA[
+    <ng-template #heroOptionTemplate let-option="value">
+      <jnt-stack option [orientation]="ui.orientation.horizontal"
+                 [gutter]="ui.gutter.small"
+                 [align]="ui.flex.align.center">
+        <jnt-avatar [size]="ui.size.small"></jnt-avatar>
+        <div>]]>{{<![CDATA[option.label]] >}}<![CDATA[ with likes</div>
+        <jnt-label [label]="option.likes"></jnt-label>
+      </jnt-stack>
+    </ng-template>
+  ]]>
+  </ng-container>
+  <![CDATA[
+</jnt-select>
                 ]]>
               </app-code-highlight>
 
@@ -250,6 +251,7 @@
                   }
                   ]]>
                 </pre>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

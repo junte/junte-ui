@@ -221,176 +221,177 @@
           <jnt-accordion-section title="Component template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="form-test.template.html">
-                <![CDATA[
-                <jnt-form [formGroup]="form" ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-form [formGroup]="form" ]]>
 
-                  <ng-container *ngIf="titleControl.value">
-                    <![CDATA[
-                    title="Registration"]]>
-                  </ng-container>
-                  <ng-container *ngIf="loadingControl.value">
-                    <![CDATA[
-                    [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                  <jnt-stack [align]="ui.flex.align.stretch">
+  <ng-container *ngIf="titleControl.value">
+    <![CDATA[
+    title="Registration"]]>
+  </ng-container>
+  <ng-container *ngIf="loadingControl.value">
+    <![CDATA[
+    [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>
+    <jnt-stack [align]="ui.flex.align.stretch">
 
-                    <jnt-row>
-                      <jnt-col [tablet]="6" [mobile]="12">
-                        <jnt-form-item>
-                          <jnt-form-label for="name">Your Name</jnt-form-label>
-                          <jnt-form-control>
-                            <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
-                          </jnt-form-control>
-                        </jnt-form-item>
-                      </jnt-col>
+      <jnt-row>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="name">Your Name</jnt-form-label>
+            <jnt-form-control>
+              <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
 
-                      <jnt-col [tablet]="6" [mobile]="12">
-                        <jnt-form-item>
-                          <jnt-form-label for="lastName">Your Last name</jnt-form-label>
-                          <jnt-form-control>
-                            <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
-                          </jnt-form-control>
-                        </jnt-form-item>
-                      </jnt-col>
-                    </jnt-row>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="lastName">Your Last name</jnt-form-label>
+            <jnt-form-control>
+              <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+      </jnt-row>
 
 
-                    <jnt-form-item>
-                      <jnt-form-label for="email">Your E-mail</jnt-form-label>
-                      <jnt-form-control>
-                        <jnt-input formControlName="email" [type]="ui.forms.input.type.text"></jnt-input>
-                      </jnt-form-control>
-                    </jnt-form-item>
+      <jnt-form-item>
+        <jnt-form-label for="email">Your E-mail</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input formControlName="email" [type]="ui.forms.input.type.text"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
 
-                    <jnt-form-item>
-                      <jnt-form-label for="password">Password</jnt-form-label>
-                      <jnt-form-control>
-                        <jnt-input formControlName="password" [type]="ui.forms.input.type.password"></jnt-input>
-                      </jnt-form-control>
-                    </jnt-form-item>
+      <jnt-form-item>
+        <jnt-form-label for="password">Password</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input formControlName="password" [type]="ui.forms.input.type.password"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
 
-                    <jnt-form-item>
-                      <jnt-form-label for="gender">Gender</jnt-form-label>
-                      <jnt-radio-group formControlName="gender">
-                        <jnt-stack [orientation]="ui.orientation.horizontal">
-                          <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
-                          <jnt-radio label="Woman" [value]="gender.woman"></jnt-radio>
-                        </jnt-stack>
-                      </jnt-radio-group>
-                    </jnt-form-item>
+      <jnt-form-item>
+        <jnt-form-label for="gender">Gender</jnt-form-label>
+        <jnt-radio-group formControlName="gender">
+          <jnt-stack [orientation]="ui.orientation.horizontal">
+            <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
+            <jnt-radio label="Woman" [value]="gender.woman"></jnt-radio>
+          </jnt-stack>
+        </jnt-radio-group>
+      </jnt-form-item>
 
-                    <jnt-row>
-                      <jnt-col [tablet]="6" [mobile]="12">
-                        <jnt-form-item>
-                          <jnt-form-label for="birthday">Birthday</jnt-form-label>
-                          <jnt-date-picker formControlName="birthday"></jnt-date-picker>
-                        </jnt-form-item>
-                      </jnt-col>
+      <jnt-row>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="birthday">Birthday</jnt-form-label>
+            <jnt-date-picker formControlName="birthday"></jnt-date-picker>
+          </jnt-form-item>
+        </jnt-col>
 
-                      <jnt-col [tablet]="6" [mobile]="12">
-                        <jnt-form-item>
-                          <jnt-form-label for="country">Country</jnt-form-label>
-                          <jnt-form-control>
-                            <jnt-select formControlName="country" placeholder="Country" [search]="true"
-                                        [allowEmpty]="false">
-                              <jnt-select-option *ngFor="let country of countries" [label]="country"
-                                                 [key]="country"></jnt-select-option>
-                            </jnt-select>
-                          </jnt-form-control>
-                        </jnt-form-item>
-                      </jnt-col>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="country">Country</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="country" placeholder="Country" [search]="true"
+                            [allowEmpty]="false">
+                <jnt-select-option *ngFor="let country of countries" [label]="country"
+                                   [key]="country"></jnt-select-option>
+                </jnt-select>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+      </jnt-row>
 
-                    </jnt-row>
+      <jnt-form-item>
+        <jnt-form-label for="status">Marital Status</jnt-form-label>
+        <jnt-switcher formControlName="status">
+          <jnt-switcher-option *ngFor="let stat of status" [label]="stat"
+                               [value]="stat"></jnt-switcher-option>
+        </jnt-switcher>
+      </jnt-form-item>
 
-                    <jnt-form-item>
-                      <jnt-form-label for="status">Marital Status</jnt-form-label>
-                      <jnt-switcher formControlName="status">
-                        <jnt-switcher-option *ngFor="let stat of status" [label]="stat"
-                                             [value]="stat"></jnt-switcher-option>
-                      </jnt-switcher>
-                    </jnt-form-item>
+      <jnt-form-item>
+        <jnt-form-label for="pets">Your pets:</jnt-form-label>
+          <jnt-form-control>
+            <jnt-checkbox-group formControlName="pets">
+              <jnt-stack [orientation]="ui.orientation.horizontal">
+                <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
+              </jnt-stack>
+            </jnt-checkbox-group>
+          </jnt-form-control>
+      </jnt-form-item>
 
-                    <jnt-form-item>
-                      <jnt-form-label for="pets">Your pets:</jnt-form-label>
-                      <jnt-form-control>
-                        <jnt-checkbox-group formControlName="pets">
-                          <jnt-stack [orientation]="ui.orientation.horizontal">
-                            <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
-                          </jnt-stack>
-                        </jnt-checkbox-group>
-                      </jnt-form-control>
-                    </jnt-form-item>
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-switch formControlName="notification" label="Enable notifications"></jnt-switch>
+        </jnt-form-control>
+      </jnt-form-item>
 
-                    <jnt-form-item>
-                      <jnt-form-control>
-                        <jnt-switch formControlName="notification" label="Enable notifications"></jnt-switch>
-                      </jnt-form-control>
-                    </jnt-form-item>
+      <ng-template #formFooterTemplate>
+        <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.forms.button.type.submit"
+                    save></jnt-button>
+      </ng-template>
 
-                    <ng-template #formFooterTemplate>
-                      <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.forms.button.type.submit"
-                                  save></jnt-button>
-                    </ng-template>
-
-                  </jnt-stack>
-                </jnt-form>
-                ]]>
+    </jnt-stack>
+</jnt-form>
+]]>
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component code">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="form-test.component.ts" [language]="language.typescript">
-                <![CDATA[
+<![CDATA[
 
-                import { Component, OnInit } from '@angular/core';
-                import { FormBuilder, Validators } from '@angular/forms';
+  import { Component, OnInit } from '@angular/core';
+  import { FormBuilder, Validators } from '@angular/forms';
 
-                enum Gender {
-                man = 'man',
-                woman = 'woman'
-                }
+  enum Gender {
+  man = 'man',
+  woman = 'woman'
+  }
 
-                @Component({
-                selector: 'app-form-test',
-                templateUrl: './form-test.component.html',
-                styleUrls: ['./form-test.component.scss']
-                })
+  @Component({
+  selector: 'app-form-test',
+  templateUrl: './form-test.component.html',
+  styleUrls: ['./form-test.component.scss']
+  })
 
-                gender = Gender;
-                countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco',
-                'Ukraine'];
-                pets: string[] = ['cat', 'dog', 'fish', 'parrot'];
-                status: string[] = ['married', 'not married', 'is actively looking'];
+  gender = Gender;
+  countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco',
+  'Ukraine'];
+  pets: string[] = ['cat', 'dog', 'fish', 'parrot'];
+  status: string[] = ['married', 'not married', 'is actively looking'];
 
-                nameControl = this.fb.control(null);
-                lastNameControl = this.fb.control(null);
-                emailControl = this.fb.control(null);
-                passwordControl = this.fb.control(null);
-                genderControl = this.fb.control(Gender.man);
-                birthdayControl = this.fb.control(new Date());
-                countryControl = this.fb.control(this.countries[0]);
-                notificationControl = this.fb.control(true);
-                petsControl = this.fb.control(null);
-                statusControl = this.fb.control(this.status[0]);
+  nameControl = this.fb.control(null);
+  lastNameControl = this.fb.control(null);
+  emailControl = this.fb.control(null);
+  passwordControl = this.fb.control(null);
+  genderControl = this.fb.control(Gender.man);
+  birthdayControl = this.fb.control(new Date());
+  countryControl = this.fb.control(this.countries[0]);
+  notificationControl = this.fb.control(true);
+  petsControl = this.fb.control(null);
+  statusControl = this.fb.control(this.status[0]);
 
-                form = this.fb.group({
-                name: this.nameControl,
-                lastName: this.lastNameControl,
-                email: this.emailControl,
-                password: this.passwordControl,
-                gender: this.genderControl,
-                birthday: this.birthdayControl,
-                country: this.countryControl,
-                notification: this.notificationControl,
-                pets: this.petsControl,
-                status: this.statusControl,
-                });
+  form = this.fb.group({
+  name: this.nameControl,
+  lastName: this.lastNameControl,
+  email: this.emailControl,
+  password: this.passwordControl,
+  gender: this.genderControl,
+  birthday: this.birthdayControl,
+  country: this.countryControl,
+  notification: this.notificationControl,
+  pets: this.petsControl,
+  status: this.statusControl,
+  });
 
-                constructor(private fb: FormBuilder) {
-                }
-                ]]>
+  constructor(private fb: FormBuilder) {
+  }
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

@@ -74,32 +74,36 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="collapsible-test.template.html">
-                  <![CDATA[
-                  <jnt-collapsible ]]>
-                  <ng-container *ngIf="!titleControl.value">
-                    <![CDATA[ title="Filters"]]>
-                    <ng-container *ngIf="iconControl.value">
-                      <![CDATA[ [icon]="ui.icons.settings"]]>
-                    </ng-container>
-                  </ng-container>
-                  <![CDATA[>]]>
-                    <ng-container *ngIf="titleControl.value">
-                      <![CDATA[<ng-template #collapsibleTitleTemplate>
-                        <jnt-stack [orientation]="ui.orientation.horizontal"
-                                   [gutter]="ui.gutter.small"
-                                   [align]="ui.flex.align.center">
-                          <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
-                          <p>We’re determined to examine filters from your profile’s <b> data </b>,
-                            You see <b> personalized </b> job offers.</p>
-                        </jnt-stack>
-                      </ng-template>]]>
-                    </ng-container>
-                    <![CDATA[
-                    <ng-template #collapsibleContentTemplate>
-                      Your personal filters are here
-                    </ng-template>
-                  </jnt-collapsible>
-                  ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-collapsible ]]>
+<ng-container *ngIf="!titleControl.value">
+  <![CDATA[ title="Filters"]]>
+  <ng-container *ngIf="iconControl.value">
+    <![CDATA[ [icon]="ui.icons.settings"]]>
+  </ng-container>
+</ng-container>
+  <![CDATA[>]]>
+    <ng-container *ngIf="titleControl.value">
+    <![CDATA[
+    <ng-template #collapsibleTitleTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+        [gutter]="ui.gutter.small"
+        [align]="ui.flex.align.center">
+        <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
+          <p>We’re determined to examine filters from your profile’s <b> data </b>,
+            You see <b> personalized </b> job offers.</p>
+      </jnt-stack>
+    </ng-template>
+    ]]>
+  </ng-container>
+  <![CDATA[
+  <ng-template #collapsibleContentTemplate>
+    Your personal filters are here
+</ng-template>
+</jnt-collapsible>
+]]>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

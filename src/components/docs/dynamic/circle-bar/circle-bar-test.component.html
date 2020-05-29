@@ -123,53 +123,55 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="circle-bar-test.template.html">
-                <![CDATA[
-                <jnt-circle-bar>
-                  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
-                  <jnt-bar-indicator-group>
-                    <jnt-bar-indicator
-                      ]]>
-                      <ng-container *ngIf="likesControl.value">
-                        <![CDATA[
-                        [value]="]]>{{likesControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="likesColorControl.value">
-                        <![CDATA[
-                        [color]="]]>{{likesColorControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-bar-indicator>
-                  </jnt-bar-indicator-group>
-                  <jnt-bar-indicator-group>
-                    <jnt-bar-indicator
-                      ]]>
-                      <ng-container *ngIf="powerControl.value">
-                        <![CDATA[
-                        [value]="]]>{{powerControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="powerColorControl.value">
-                        <![CDATA[
-                        [color]="]]>{{powerColorControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-bar-indicator>
-                  </jnt-bar-indicator-group>
-                  <jnt-bar-indicator-group>
-                    <jnt-bar-indicator
-                      ]]>
-                      <ng-container *ngIf="healthControl.value">
-                        <![CDATA[
-                        [value]="]]>{{healthControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="healthColorControl.value">
-                        <![CDATA[
-                        [color]="]]>{{healthColorControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-bar-indicator>
-                  </jnt-bar-indicator-group>
-                </jnt-circle-bar>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-circle-bar>
+  <ng-template #circleBarContentTemplate i18n="@@label.content">Content</ng-template>
+  <jnt-bar-indicator-group>
+    <jnt-bar-indicator
+    ]]>
+      <ng-container *ngIf="likesControl.value">
+        <![CDATA[
+        [value]="]]>{{likesControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="likesColorControl.value">
+        <![CDATA[
+        [color]="]]>{{likesColorControl.value}}<![CDATA["]]>
+      </ng-container>
+        <![CDATA[>
+    </jnt-bar-indicator>
+  </jnt-bar-indicator-group>
+  <jnt-bar-indicator-group>
+    <jnt-bar-indicator
+    ]]>
+      <ng-container *ngIf="powerControl.value">
+        <![CDATA[
+        [value]="]]>{{powerControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="powerColorControl.value">
+        <![CDATA[
+        [color]="]]>{{powerColorControl.value}}<![CDATA["]]>
+      </ng-container>
+      <![CDATA[>
+    </jnt-bar-indicator>
+  </jnt-bar-indicator-group>
+  <jnt-bar-indicator-group>
+    <jnt-bar-indicator
+    ]]>
+      <ng-container *ngIf="healthControl.value">
+        <![CDATA[
+        [value]="]]>{{healthControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="healthColorControl.value">
+        <![CDATA[
+        [color]="]]>{{healthColorControl.value}}<![CDATA["]]>
+      </ng-container>
+        <![CDATA[>
+    </jnt-bar-indicator>
+  </jnt-bar-indicator-group>
+</jnt-circle-bar>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
