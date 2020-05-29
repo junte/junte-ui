@@ -69,23 +69,25 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="responsive-test.component.html">
-                <![CDATA[
-                <ng-container *jntFor="ui.breakpoint.mobile">
-                  <p>Only for mobile.</p>
-                </ng-container>
+<!-- @formatter:off-->
+<![CDATA[
+<ng-container *jntFor="ui.breakpoint.mobile">
+  <p>Only for mobile.</p>
+</ng-container>
 
-                <ng-container *jntFor="ui.breakpoint.tablet">
-                  <p>Only min for tablet.</p>
-                </ng-container>
+<ng-container *jntFor="ui.breakpoint.tablet">
+  <p>Only min for tablet.</p>
+</ng-container>
 
-                <ng-container *jntFor="ui.breakpoint.desktop">
-                  <p>Min for desktop.</p>
-                </ng-container>
+<ng-container *jntFor="ui.breakpoint.desktop">
+  <p>Min for desktop.</p>
+</ng-container>
 
-                <ng-container *jntFor="ui.breakpoint.wide">
-                  <p>Only for wide.</p>
-                </ng-container>
-                ]]>
+<ng-container *jntFor="ui.breakpoint.wide">
+  <p>Only for wide.</p>
+</ng-container>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

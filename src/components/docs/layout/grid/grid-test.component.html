@@ -192,42 +192,43 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="grid-test.template.html">
-                  <![CDATA[
-                  <jnt-container>
-                    <jnt-row
-                      ]]>
-                      <ng-container *ngIf="gutterControl.value">
-                        <![CDATA[
-                        [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="alignControl.value">
-                        <![CDATA[
-                        [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[>]]>
-                      <ng-container *ngFor="let i of 12 | mockArray">
-                        <![CDATA[
-                        <jnt-col
-                          ]]>
-                          <ng-container *ngIf="spanControl.value">
-                            <![CDATA[
-                            [span]="]]>{{spanControl.value}}<![CDATA["]]>
-                          </ng-container>
-                          <ng-container *ngIf="paddingControl.value">
-                            <![CDATA[
-                            [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-                          </ng-container>
-                          <![CDATA[>
-                          <div>]]>{{i + 1}}<![CDATA[</div>
-                        </jnt-col>
-                        ]]>
-                      </ng-container>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-container>
+  <jnt-row
+  ]]>
+  <ng-container *ngIf="gutterControl.value">
+    <![CDATA[
+    [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="alignControl.value">
+    <![CDATA[
+    [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>]]>
+  <ng-container *ngFor="let i of 12 | mockArray">
+    <![CDATA[
+    <jnt-col
+    ]]>
+      <ng-container *ngIf="spanControl.value">
+        <![CDATA[
+        [span]="]]>{{spanControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="paddingControl.value">
+        <![CDATA[
+        [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+      </ng-container>
+      <![CDATA[>
+      <div>]]>{{i + 1}}<![CDATA[</div>
+    </jnt-col>
+      ]]>
+  </ng-container>
 
-                      <![CDATA[
-                    </jnt-row>
-                  </jnt-container>
-                  ]]>
-
+  <![CDATA[
+  </jnt-row>
+</jnt-container>
+]]>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

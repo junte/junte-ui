@@ -18,9 +18,10 @@ ng g c ]]>{{test.selector}}<![CDATA[
 <app-code-highlight *ngIf="!behaviourTemplate; else customBehaviourTemplate"
                     [language]="language.typescript"
                     file="{{test.selector}}.component.ts">
+  <!-- @formatter:off-->
 <![CDATA[
 import { Component } from '@angular/core';
-import { UI } from '@junte/ui';
+import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-]]>{{test.selector}}<![CDATA[',
@@ -30,6 +31,7 @@ import { UI } from '@junte/ui';
 export class ]]>{{test.type}}<![CDATA[ {
   ui = UI; // link to junte UI enum
 }]]>
+  <!-- @formatter:on-->
 </app-code-highlight>
 
 <ng-container *ngIf="!!scss">

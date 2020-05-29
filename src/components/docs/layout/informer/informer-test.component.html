@@ -55,11 +55,13 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="informer-test.template.html">
-                  <![CDATA[
-                  <jnt-informer [backdrop]="backdrop" (ok)="errors = []">
-                    <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
-                  </jnt-informer>
-                  ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-informer [backdrop]="backdrop" (ok)="errors = []">
+  <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
+</jnt-informer>
+]]>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

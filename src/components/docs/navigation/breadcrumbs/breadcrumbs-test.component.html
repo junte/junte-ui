@@ -72,9 +72,11 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
+                <!-- @formatter:off-->
                 <![CDATA[
                 <jnt-breadcrumb></jnt-breadcrumb>
                 ]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
@@ -82,42 +84,44 @@
                                  i18n-title="@@label.routing">
             <ng-template #accordionContentTemplate>
               <app-code-highlight  [language]="language.typescript">
-                <![CDATA[
-                const routes: Routes = [
-                  {
-                    path: '',
-                    component: BreadcrumbsTestComponent,
-                    data: {breadcrumb: 'Home'},
-                    children: [
-                      {
-                        path: 'page',
-                        component: BreadCrumbTest1Component,
-                        data: {breadcrumb: getLabel},
-                        resolve: {obj: BreadcrumbResolver},
-                        children: [
-                          {
-                            path: 'page-2',
-                            component: BreadCrumbTest2Component,
-                            data: {breadcrumb: 'Second page'},
-                            children: [
-                              {
-                                path: 'page-3',
-                                component: BreadCrumbTest3Component,
-                                data: {breadcrumb: 'Third page'}
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ];
+                <!-- @formatter:off-->
+<![CDATA[
+  const routes: Routes = [
+    {
+      path: '',
+      component: BreadcrumbsTestComponent,
+      data: {breadcrumb: 'Home'},
+      children: [
+        {
+          path: 'page',
+          component: BreadCrumbTest1Component,
+          data: {breadcrumb: getLabel},
+          resolve: {obj: BreadcrumbResolver},
+          children: [
+            {
+              path: 'page-2',
+              component: BreadCrumbTest2Component,
+              data: {breadcrumb: 'Second page'},
+              children: [
+                {
+                  path: 'page-3',
+                  component: BreadCrumbTest3Component,
+                  data: {breadcrumb: 'Third page'}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ];
 
-                @NgModule({
-                  imports: [RouterModule.forChild(routes)],
-                  exports: [RouterModule]
-                })
-                ]]>
+    @NgModule({
+      imports: [RouterModule.forChild(routes)],
+      exports: [RouterModule]
+    })
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
@@ -125,21 +129,23 @@
                                  i18n-title="@@label.resolver">
             <ng-template #accordionContentTemplate>
               <app-code-highlight [language]="language.typescript">
-                <![CDATA[
-                class Breadcrumb {
-                  public label = 'First page';
-                }
+                <!-- @formatter:off-->
+<![CDATA[
+  class Breadcrumb {
+    public label = 'First page';
+  }
 
-                @Injectable()
-                export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
-                  constructor() {
-                  }
+  @Injectable()
+    export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
+    constructor() {
+    }
 
-                  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
-                  return of(new Breadcrumb());
-                  }
-                }
-                ]]>
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
+    return of(new Breadcrumb());
+    }
+  }
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

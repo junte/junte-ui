@@ -142,53 +142,54 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="radio-test.component.html">
-                <ng-template #sizeTemplate>
-                  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                </ng-template>
-                <![CDATA[
-                <jnt-form [formGroup]="builder">
-                  <jnt-radio-group formControlName="radioGroup"> ]]>
-                    <![CDATA[
-                    <jnt-radio value="Option 1" ]]>
-                      <ng-container *ngIf="disableControl.value">
-                        <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="sizeControl.value">
-                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                      </ng-container>
-                      <![CDATA[ >
-                    </jnt-radio>
-                    ]]>
-                    <![CDATA[
-                    <jnt-radio value="Option 2" label="Label 2" ]]>
-                      <ng-container *ngIf="sizeControl.value">
-                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-radio>
-                    ]]>
+                <!-- @formatter:off-->
+<ng-template #sizeTemplate>
+  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+</ng-template>
+  <![CDATA[
+  <jnt-form [formGroup]="builder">
+    <jnt-radio-group formControlName="radioGroup"> ]]>
+      <![CDATA[
+      <jnt-radio value="Option 1" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+        </ng-container>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+        </ng-container>
+          <![CDATA[ >
+      </jnt-radio>
+      ]]>
+      <![CDATA[
+      <jnt-radio value="Option 2" label="Label 2" ]]>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+        </ng-container>
+        <![CDATA[>
+      </jnt-radio>
+      ]]>
 
-                    <![CDATA[
-                    <jnt-radio value="Option 3" label="Label 3" ]]>
-                      <ng-container *ngIf="sizeControl.value">
-                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-radio>
-                    ]]>
+      <![CDATA[
+      <jnt-radio value="Option 3" label="Label 3" ]]>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+        </ng-container>
+          <![CDATA[>
+      </jnt-radio>
+      ]]>
 
-                    <![CDATA[
-                  </jnt-radio-group>
-                </jnt-form>
-                ]]>
+      <![CDATA[
+    </jnt-radio-group>
+</jnt-form>
+]]>
               </app-code-highlight>
               <app-code-highlight file="radio-test.component.ts"
                                   [language]="language.typescript">
-                <pre>
+  <pre>
                   <![CDATA[
                   import { Component, OnInit, ViewChild } from '@angular/core';
                   import { FormBuilder, FormControl } from '@angular/forms';
-                  import { RadioComponent, TabComponent, UI } from 'junte/ui';
+                  import { RadioComponent, TabComponent, UI } from 'junte-ui';
 
                   @Component({
                     selector: 'app-radio-test',
@@ -212,6 +213,7 @@
                   }
                   ]]>
                </pre>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

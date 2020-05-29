@@ -102,15 +102,17 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="icon-test.template.html">
-                <![CDATA[
-                <jnt-icon [icon]="]]>ui.{{iconControl.value.path | join:'.'}}.{{iconControl.value.name}}<![CDATA[" ]]>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-icon>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-icon [icon]="]]>ui.{{iconControl.value.path | join:'.'}}.{{iconControl.value.name}}<![CDATA[" ]]>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>
+</jnt-icon>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

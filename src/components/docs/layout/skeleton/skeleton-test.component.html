@@ -143,83 +143,85 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="skeleton-test.template.html">
-                  <ng-container [ngSwitch]="sketchControl.value">
+<!-- @formatter:off-->
+<ng-container [ngSwitch]="sketchControl.value">
 
-                    <ng-container *ngSwitchCase="sketch.User">
-                      <![CDATA[
-                      <jnt-stack [align]="ui.flex.align.center"
-                                 [type]="orientation.vertical">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                        <jnt-skeleton [lines]="2" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                      </jnt-stack>
-                      ]]>
-                    </ng-container>
+  <ng-container *ngSwitchCase="sketch.User">
+    <![CDATA[
+    <jnt-stack [align]="ui.flex.align.center"
+               [type]="ui.orientation.vertical">
+      <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+      <jnt-skeleton [lines]="2" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+    </jnt-stack>
+          ]]>
+  </ng-container>
 
-                    <ng-container *ngSwitchCase="sketch.VerticalPost">
-                      <![CDATA[
-                      <jnt-stack [align]="ui.flex.align.center">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
-                                      [size]="ui.size.large" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                        <jnt-skeleton [lines]="3" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                      </jnt-stack>
-                      ]]>
-                    </ng-container>
+  <ng-container *ngSwitchCase="sketch.VerticalPost">
+    <![CDATA[
+    <jnt-stack [align]="ui.flex.align.center">
+      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                    [size]="ui.size.large" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+      <jnt-skeleton [lines]="3" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+    </jnt-stack>
+      ]]>
+  </ng-container>
 
-                    <ng-container *ngSwitchCase="sketch.HorizontalPost">
-                      <![CDATA[
-                      <jnt-stack [orientation]="ui.orientation.horizontal">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
-                                      [size]="ui.size.large" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                        <jnt-skeleton [lines]="5" ]]>
-                          <ng-container *ngIf="!animationControl.value">
-                            <![CDATA[[animated]="false"]]>
-                          </ng-container>
-                          <![CDATA[>
-                        </jnt-skeleton>
-                      </jnt-stack>
-                      ]]>
-                    </ng-container>
+  <ng-container *ngSwitchCase="sketch.HorizontalPost">
+    <![CDATA[
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                    [size]="ui.size.large" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+      <jnt-skeleton [lines]="5" ]]>
+        <ng-container *ngIf="!animationControl.value">
+          <![CDATA[[animated]="false"]]>
+        </ng-container>
+          <![CDATA[>
+      </jnt-skeleton>
+    </jnt-stack>
+      ]]>
+  </ng-container>
 
-                    <ng-container *ngSwitchCase="sketch.Cards">
-                      <![CDATA[
-                      <jnt-row>
-                        <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
-                          <jnt-skeleton [type]="ui.layout.skeleton.type.card"]]>
-                            <ng-container *ngIf="!animationControl.value">
-                              <![CDATA[[animated]="false"]]>
-                            </ng-container>
-                            <![CDATA[></jnt-skeleton>
-                        </jnt-col>
-                      </jnt-row>
-                      ]]>
-                    </ng-container>
-                  </ng-container>
-
+  <ng-container *ngSwitchCase="sketch.Cards">
+    <![CDATA[
+    <jnt-row>
+      <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
+        <jnt-skeleton [type]="ui.layout.skeleton.type.card"]]>
+          <ng-container *ngIf="!animationControl.value">
+            <![CDATA[[animated]="false"]]>
+          </ng-container>
+            <![CDATA[>
+        </jnt-skeleton>
+      </jnt-col>
+    </jnt-row>
+    ]]>
+  </ng-container>
+</ng-container>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

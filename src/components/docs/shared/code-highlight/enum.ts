@@ -3,5 +3,6 @@ export enum Language {
   xml = 'xml',
   css = 'css',
   typescript = 'typescript',
-  json = 'json'
+  json = 'json',
+  bash = 'bash'
 }
