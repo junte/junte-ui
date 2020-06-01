@@ -36,13 +36,13 @@
         <ng-template #tabContentTemplate>
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
-              <jnt-stack [orientation]="ui.orientation.horizontal">
+              <jnt-stack [type]="ui.layout.stack.type.horizontal">
                 <jnt-dropdown>
                   <ng-template #triggerTemplate let-action="trigger">
                     <jnt-button [icon]="ui.icons.actions" text="Links" (click)="action()"></jnt-button>
                   </ng-template>
                   <ng-template #dropdownTemplate let-action="trigger">
-                    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
+                    <jnt-menu [orientation]="ui.orientation.vertical" [spacer]="ui.size.small">
                       <jnt-menu-item title="Home"
                                      i18n-title="@@label.home"
                                      [icon]="ui.icons.home"
@@ -90,27 +90,26 @@
               <ng-template #accordionContentTemplate>
                 <app-code-highlight>
                   <!-- @formatter:off-->
-<![CDATA[
-<jnt-dropdown>
-  <ng-template #trigger let-close="trigger">
-    <jnt-button text="Dropdown"
-      (click)="close()">
-    </jnt-button>
-  </ng-template>
-  <ng-template #dropdown let-close="trigger">
-    <jnt-menu [type]="ui.orientation.vertical" [spacer]="ui.size.small">
-      <jnt-menu-item title="Edit"
-                     (click)="close()"></jnt-menu-item>
-      <jnt-menu-item title="Delete"
-                     (click)="close()"></jnt-menu-item>
-      <jnt-menu-item title="Add"
-                     (click)="close()"></jnt-menu-item>
-      <jnt-menu-item title="Copy"
-                     (click)="close()"></jnt-menu-item>
-    </jnt-menu>
-  </ng-template>
-</jnt-dropdown>
-]]>
+                  <![CDATA[
+                  <jnt-dropdown>
+                    <ng-template #trigger let-close="trigger">
+                      <jnt-button text="Dropdown"
+                                  (click)="close()"></jnt-button>
+                    </ng-template>
+                    <ng-template #dropdown let-close="trigger">
+                      <jnt-menu [orientation]="ui.orientation.vertical" [spacer]="ui.size.small">
+                        <jnt-menu-item title="Edit"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Delete"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Add"
+                                       (click)="close()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy"
+                                       (click)="close()"></jnt-menu-item>
+                      </jnt-menu>
+                    </ng-template>
+                  </jnt-dropdown>
+                  ]]>
                   <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>

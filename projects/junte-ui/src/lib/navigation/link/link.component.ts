@@ -38,7 +38,7 @@ export class LinkComponent {
   }
 
   // TODO: we must find better solution
-  @HostBinding('attr.active')
+  @HostBinding('attr.data-active')
   get linkActive(): boolean {
     this.cdr.detectChanges();
     return !!this.linkRef ? this.linkRef.isActive : false;
