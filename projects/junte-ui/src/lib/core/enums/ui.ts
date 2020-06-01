@@ -7,7 +7,7 @@ import { InputScheme, InputState, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
 import { AppLayoutPosition } from '../../layout/app/enums';
 import { BlockState } from '../../layout/block/enums';
-import { RowAlign } from '../../layout/grid/enums';
+import { RowAlign, RowJustify } from '../../layout/grid/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { StackType } from '../../layout/stack/enums';
 import { LinkTarget } from '../../navigation/link/enums';
@@ -54,7 +54,7 @@ export class UI {
     alignSelf: FlexAlignSelf
   };
   static layout = {
-    grid: {row: {align: RowAlign}},
+    grid: {row: {align: RowAlign, justify: RowJustify}},
     stack: {type: StackType},
     block: {state: BlockState},
     skeleton: {type: SkeletonType},

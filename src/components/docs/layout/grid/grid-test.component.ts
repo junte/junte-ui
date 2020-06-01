@@ -18,13 +18,17 @@ export class GridTestComponent implements OnInit {
 
   gutterControl = this.fb.control(null);
   alignControl = this.fb.control(null);
+  justifyControl = this.fb.control(null);
   spanControl = this.fb.control(2);
+  countControl = this.fb.control(4);
   paddingControl = this.fb.control(null);
 
   builder = this.fb.group({
     gutter: this.gutterControl,
     align: this.alignControl,
+    justify: this.justifyControl,
     span: this.spanControl,
+    count: this.countControl,
     padding: this.paddingControl
   });
 
