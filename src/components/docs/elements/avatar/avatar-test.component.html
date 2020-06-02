@@ -166,32 +166,34 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.component.html">
-                <![CDATA[
-                <jnt-avatar
-                  ]]>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="shapeControl.value">
-                    <![CDATA[
-                    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value">
-                    <![CDATA[
-                    [icon]="ui.icons.user"]]>
-                  </ng-container>
-                  <ng-container *ngIf="textControl.value">
-                    <![CDATA[
-                    text="User"]]>
-                  </ng-container>
-                  <ng-container *ngIf="imageControl.value">
-                    <![CDATA[
-                    image="assets/images/bob.jpeg"]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-avatar>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-avatar
+]]>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="shapeControl.value">
+    <![CDATA[
+    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="iconControl.value">
+    <![CDATA[
+    [icon]="ui.icons.user"]]>
+  </ng-container>
+  <ng-container *ngIf="textControl.value">
+    <![CDATA[
+    text="User"]]>
+  </ng-container>
+  <ng-container *ngIf="imageControl.value">
+    <![CDATA[
+    image="assets/images/bob.jpeg"]]>
+  </ng-container>
+<![CDATA[>
+</jnt-avatar>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
 
@@ -200,37 +202,39 @@
                                  i18n-title="@@label.avatars_list_component">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.template.html">
-                <![CDATA[
-                <jnt-avatars-list
-                  ]]>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngFor="let av of 4 | mockArray">
-                    <![CDATA[
-                    <jnt-avatar
-                      ]]>
-                      <ng-container *ngIf="iconControl.value">
-                        <![CDATA[
-                        [icon]="ui.icons.user"]]>
-                      </ng-container>
-                      <ng-container *ngIf="textControl.value">
-                        <![CDATA[
-                        text="User"]]>
-                      </ng-container>
-                      <ng-container *ngIf="imageControl.value">
-                        <![CDATA[
-                        image="assets/images/bob.jpeg"]]>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-avatar>
-                    ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-avatars-list>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-avatars-list
+]]>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>]]>
+  <ng-container *ngFor="let av of 4 | mockArray">
+    <![CDATA[
+    <jnt-avatar
+    ]]>
+      <ng-container *ngIf="iconControl.value">
+        <![CDATA[
+        [icon]="ui.icons.user"]]>
+      </ng-container>
+      <ng-container *ngIf="textControl.value">
+        <![CDATA[
+        text="User"]]>
+      </ng-container>
+      <ng-container *ngIf="imageControl.value">
+        <![CDATA[
+        image="assets/images/bob.jpeg"]]>
+      </ng-container>
+      <![CDATA[>
+    </jnt-avatar>
+      ]]>
+  </ng-container>
+<![CDATA[
+</jnt-avatars-list>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
 
@@ -239,37 +243,39 @@
                                  i18n-title="@@label.avatars_group_component">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.template.html">
-                <![CDATA[
-                <jnt-avatars-group [total]="9"
-                  ]]>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[
-                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>]]>
-                  <ng-container *ngFor="let av of 5 | mockArray">
-                    <![CDATA[
-                    <jnt-avatar
-                      ]]>
-                      <ng-container *ngIf="iconControl.value">
-                        <![CDATA[
-                        [icon]="ui.icons.user"]]>
-                      </ng-container>
-                      <ng-container *ngIf="textControl.value">
-                        <![CDATA[
-                        text="User"]]>
-                      </ng-container>
-                      <ng-container *ngIf="imageControl.value">
-                        <![CDATA[
-                        image="assets/images/bob.jpeg"]]>
-                      </ng-container>
-                      <![CDATA[>
-                    </jnt-avatar>
-                    ]]>
-                  </ng-container>
-                  <![CDATA[
-                </jnt-avatars-group>
-                ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-avatars-group [total]="9"
+]]>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>]]>
+  <ng-container *ngFor="let av of 5 | mockArray">
+    <![CDATA[
+    <jnt-avatar
+    ]]>
+      <ng-container *ngIf="iconControl.value">
+        <![CDATA[
+        [icon]="ui.icons.user"]]>
+      </ng-container>
+      <ng-container *ngIf="textControl.value">
+        <![CDATA[
+        text="User"]]>
+      </ng-container>
+      <ng-container *ngIf="imageControl.value">
+        <![CDATA[
+        image="assets/images/bob.jpeg"]]>
+      </ng-container>
+        <![CDATA[>
+    </jnt-avatar>
+  ]]>
+  </ng-container>
+  <![CDATA[
+</jnt-avatars-group>
+  ]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

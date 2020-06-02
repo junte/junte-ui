@@ -34,8 +34,9 @@
                 <ng-template #document let-height="height">
                   <jnt-container>
                     <jnt-row [align]="alignControl.value"
+                             [justify]="justifyControl.value"
                              [gutter]="gutterControl.value">
-                      <jnt-col *ngFor="let block of 24 | mockArray"
+                      <jnt-col *ngFor="let block of countControl.value | mockArray"
                                [span]="spanControl.value"
                                [padding]="paddingControl.value">
                         <div block
@@ -51,6 +52,29 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.flex.align.stretch">
+
+                  <jnt-form-item>
+                    <jnt-form-label for="count">Column count</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="count" placeholder="1" [allowEmpty]="false">
+                        <jnt-select-option *ngFor="let count of 24 | mockArray: 1"
+                                           [label]="count"
+                                           [key]="count"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="span"
+                                    i18n="@@label.column_span">Column span</jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="span" placeholder="1">
+                        <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
+                                           [label]="count"
+                                           [key]="count"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
 
                   <jnt-form-item>
                     <jnt-form-label for="gutter"
@@ -118,13 +142,36 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="span"
-                                    i18n="@@label.column_span">Column span</jnt-form-label>
+                    <jnt-form-label for="justify"
+                                    i18n="@@label.justify">Justify</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="span" placeholder="1">
-                        <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
-                                           [label]="count"
-                                           [key]="count"></jnt-select-option>
+                      <jnt-select formControlName="justify"
+                                  placeholder="Start"
+                                  i18n-placeholder="@@label.start">
+                        <jnt-select-option label="Start"
+                                           i18n-label="@@label.start"
+                                           [icon]="localUi.icons.start"
+                                           [key]="ui.layout.grid.row.justify.start"></jnt-select-option>
+                        <jnt-select-option label="Center"
+                                           i18n-label="@@label.center"
+                                           [icon]="localUi.icons.center"
+                                           [key]="ui.layout.grid.row.justify.center"></jnt-select-option>
+                        <jnt-select-option label="End"
+                                           i18n-label="@@label.end"
+                                           [icon]="localUi.icons.end"
+                                           [key]="ui.layout.grid.row.justify.end"></jnt-select-option>
+                        <jnt-select-option label="Between"
+                                           i18n-label="@@label.between"
+                                           [icon]="localUi.icons.between"
+                                           [key]="ui.layout.grid.row.justify.between"></jnt-select-option>
+                        <jnt-select-option label="Around"
+                                           i18n-label="@@label.around"
+                                           [icon]="localUi.icons.around"
+                                           [key]="ui.layout.grid.row.justify.around"></jnt-select-option>
+                        <jnt-select-option label="Evenly"
+                                           i18n-label="@@label.evenly"
+                                           [icon]="localUi.icons.evenly"
+                                           [key]="ui.layout.grid.row.justify.evenly"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -192,42 +239,47 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="grid-test.template.html">
-                  <![CDATA[
-                  <jnt-container>
-                    <jnt-row
-                      ]]>
-                      <ng-container *ngIf="gutterControl.value">
-                        <![CDATA[
-                        [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <ng-container *ngIf="alignControl.value">
-                        <![CDATA[
-                        [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
-                      </ng-container>
-                      <![CDATA[>]]>
-                      <ng-container *ngFor="let i of 12 | mockArray">
-                        <![CDATA[
-                        <jnt-col
-                          ]]>
-                          <ng-container *ngIf="spanControl.value">
-                            <![CDATA[
-                            [span]="]]>{{spanControl.value}}<![CDATA["]]>
-                          </ng-container>
-                          <ng-container *ngIf="paddingControl.value">
-                            <![CDATA[
-                            [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-                          </ng-container>
-                          <![CDATA[>
-                          <div>]]>{{i + 1}}<![CDATA[</div>
-                        </jnt-col>
-                        ]]>
-                      </ng-container>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-container>
+  <jnt-row
+  ]]>
+  <ng-container *ngIf="gutterControl.value">
+    <![CDATA[
+    [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="alignControl.value">
+    <![CDATA[
+    [align]="ui.layout.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
+  </ng-container>
+    <ng-container *ngIf="justifyControl.value">
+      <![CDATA[
+      [justify]="ui.layout.grid.row.justify.]]>{{justifyControl.value}}<![CDATA["]]>
+    </ng-container>
+  <![CDATA[>]]>
+  <ng-container *ngFor="let i of countControl.value | mockArray">
+    <![CDATA[
+    <jnt-col
+    ]]>
+      <ng-container *ngIf="spanControl.value">
+        <![CDATA[
+        [span]="]]>{{spanControl.value}}<![CDATA["]]>
+      </ng-container>
+      <ng-container *ngIf="paddingControl.value">
+        <![CDATA[
+        [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+      </ng-container>
+      <![CDATA[>
+      <div>]]>{{i + 1}}<![CDATA[</div>
+    </jnt-col>
+      ]]>
+  </ng-container>
 
-                      <![CDATA[
-                    </jnt-row>
-                  </jnt-container>
-                  ]]>
-
+  <![CDATA[
+  </jnt-row>
+</jnt-container>
+]]>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

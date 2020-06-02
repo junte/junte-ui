@@ -1,4 +1,6 @@
-import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { PropertyApi } from '../../core/decorators/api';
+import { Position } from '../../core/enums/position';
 import { UI } from '../../core/enums/ui';
 
 @Component({
@@ -13,6 +15,9 @@ export class DropdownComponent {
 
   @HostBinding('attr.data-toggle') _visible: boolean;
 
+  @HostBinding('attr.data-position')
+  _position: Position = Position.right;
+
   @ContentChild('triggerTemplate')
   triggerTemplate: TemplateRef<any>;
 
@@ -25,6 +30,16 @@ export class DropdownComponent {
 
   get visible() {
     return this._visible;
+  }
+
+  @PropertyApi({
+    description: 'Dropdown position',
+    path: 'ui.position',
+    default: 'right',
+    options: [Position.right, Position.left]
+  })
+  @Input() set position(position: Position) {
+    this._position = position || Position.left;
   }
 
   toggle() {

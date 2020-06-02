@@ -8,6 +8,18 @@
   $defs: (
     padding: $app-header-height 0 0 0,
     position: absolute,
+    background: $jnt-primary-background,
+    menu: (
+      item: (
+        color: $jnt-primary-text-light-color,
+        active: (
+          background-color: null
+        )
+      ),
+      sub: (
+        background-color: $jnt-primary-background,
+      )
+    )
   );
 
   $vars: $passed;
@@ -37,10 +49,9 @@
           height: 50px,
           orphan-color: $jnt-primary-text-light-color,
           orphan-hover-color: $jnt-primary-text-dark-color,
-          color: $jnt-primary-text-light-color,
           active: (
             underline: false,
-            color: $jnt-primary-color
+            color: $jnt-primary-color,
           ),
           icon: (
             margin-right: $jnt-gutter-normal,
@@ -77,12 +88,53 @@
     ));
   }
 
-  #{$wrapper} button {
+  @if map-has-key($vars, menu) {
+    $menu: map-get($vars, menu);
+    @if map-has-key($menu, item) {
+      $item: map-get($menu, item);
+      #{$context} #{$wrapper} jnt-menu {
+        @include jnt-menu((
+          top: (
+            item: (
+              color: map-get($item, color),
+            )
+          )
+        ), '&', true);
+      }
+
+      @if map-has-key($item, active) {
+        $active: map-get($item, active);
+        #{$context} #{$wrapper} jnt-menu {
+          @include jnt-menu((
+            top: (
+              item: (
+                active: (
+                  background-color: map-get($active, background-color)
+                ),
+              )
+            )
+          ), '&', true);
+        }
+      }
+    }
+    @if map-has-key($menu, sub) {
+      $sub: map-get($menu, sub);
+      #{$context} #{$wrapper} jnt-menu {
+        @include jnt-menu((
+          sub: (
+            background-color: map-get($sub, background-color)
+          )
+        ), '&');
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} button {
     display: block;
     width: 100%;
     border: 0;
     border-bottom: 1px solid $jnt-muted-color;
-    background-color: $jnt-primary-background;
+    background-color: map-get($vars, background);
     color: $jnt-primary-text-light-color;
     font-size: .875rem;
     height: 50px;
@@ -91,17 +143,21 @@
     cursor: pointer;
     white-space: nowrap;
     border-radius: 0;
+
     &:focus {
       outline: 0;
     }
+
     &:hover {
       color: $jnt-primary-text-light-color;
       background-color: $jnt-secondary-background;
     }
+
     span {
       text-overflow: clip;
       opacity: 1;
     }
+
     jnt-icon {
       color: $jnt-primary-text-color;
       font-size: 20px;
@@ -112,20 +168,25 @@
     :host, #{$context} {
       &[data-opened="true"] {
         width: 100%;
+
         #{$wrapper} [data-overlay] {
           width: 100%;
           height: 100%;
           opacity: 1;
         }
+
         #{$wrapper} [data-drawer] {
           transform: translate3d(0, 0, 0);
         }
       }
+
       &[data-opened="false"] {
         width: 0;
+
         #{$wrapper} [data-overlay] {
           opacity: 0;
         }
+
         #{$wrapper} [data-drawer] {
           transform: translate3d(-100%, 0, 0);
           transition: none;
@@ -134,7 +195,7 @@
     }
   }
 
-  #{$wrapper} [data-overlay] {
+  #{$context} #{$wrapper} [data-overlay] {
     position: absolute;
     top: 0;
     right: 0;
@@ -144,27 +205,30 @@
     z-index: 1;
   }
 
-  #{$wrapper} [data-drawer] {
+  #{$context} #{$wrapper} [data-drawer] {
     position: map-get($vars, position);
     padding: map-get($vars, padding);
     top: 0;
     left: 0;
     z-index: 2;
     height: 100%;
-    background-color: $jnt-primary-background;
+    background-color: map-get($vars, background);
     box-shadow: $jnt-shadow-normal;
     box-sizing: border-box;
     transform: translate3d(0, 0, 0);
     transition: transform .3s linear, width .3s linear;
+
     [data-scroll] {
       width: 100%;
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
     }
+
     &[data-collapsed="true"] {
       width: $app-aside-collapsed-width;
     }
+
     &[data-collapsed="false"] {
       width: $app-aside-width;
     }

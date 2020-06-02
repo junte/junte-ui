@@ -31,20 +31,19 @@
   <p>Modern browsers and Internet Explorer 11+</p>
 
   <h3>1. Installation Angular CLI</h3>
-  <app-code-highlight [language]="languages.">
-
-    <!-- @formatter:off-->
+  <!-- @formatter:off-->
+  <app-code-highlight [language]="languages.bash">
+    <pre>
 <![CDATA[
 npm install -g @angular/cli
 ]]>
-
-    <!-- @formatter:on-->
+    </pre>
   </app-code-highlight>
 
   <h3>2. Create a New Project</h3>
   <p>A new project can be created using Angular CLI tools.</p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
 ng new PROJECT-NAME
@@ -57,7 +56,7 @@ ng new PROJECT-NAME
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
-  <app-code-highlight [language]="languages.typescript">
+  <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
 npm install junte-ui --save
@@ -69,7 +68,7 @@ npm install junte-ui --save
 
   <p>Once installed you need to import our main module.</p>
   <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
-    application.</p>
+    application.<code>app.module.ts</code></p>
   <app-code-highlight [language]="languages.typescript">
     <pre>
 <![CDATA[
@@ -88,7 +87,7 @@ export class AppModule {
     </pre>
   </app-code-highlight>
 
-  <h3>5. Import styles</h3>
+  <h3>4. Import styles</h3>
 
   <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
 
@@ -119,7 +118,7 @@ export class AppModule {
     "styles": [
       "src/styles.scss",
       "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
-      "node_modules/junte-ui/lib/assets/fonts/open-sans/import.scss"
+      "node_modules/junte-ui/lib/assets/fonts/open-sans/regular-400.scss"
     ]
     ...
 }
@@ -127,23 +126,37 @@ export class AppModule {
     </pre>
   </app-code-highlight>
 
-  <p>Import the style files <code>all.scss</code> into the global style file <code>styles.scss</code></p>
+  <p>Import the style files <code>jnt-all.scss</code> into the global style file <code>styles.scss</code></p>
 
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/assets/styles/all";
+@import "~junte-ui/lib/assets/styles/jnt-all";
 ]]>
     </pre>
   </app-code-highlight>
-  <p>If you need common styles import the file <code>common.scss</code></p>
+  <app-code-highlight [language]="languages.css">
+    <pre>
+<![CDATA[
+body {
+      font-family: "Open Sans", Tahoma;
+      font-weight: 500;
+      font-size: $jnt-font-size;
+      color: $jnt-primary-text-color;
+      margin: 0;
+}
+]]>
+    </pre>
+  </app-code-highlight>
+  <p>If you need common styles import the file <code>jnt-common.scss</code></p>
 
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/assets/styles/common";
+@import "~junte-ui/lib/assets/styles/jnt-common";
 ]]>
     </pre>
   </app-code-highlight>
+  <!-- @formatter:on-->
 
 </jnt-container>

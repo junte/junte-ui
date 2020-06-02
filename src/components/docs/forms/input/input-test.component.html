@@ -252,64 +252,66 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="input-test.component.html">
-                <![CDATA[
-                <jnt-input
-                  ]]>
-                  <ng-container *ngIf="typeControl.value">
-                    <![CDATA[[type]="ui.forms.input.]]>{{typeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="schemeControl.value">
-                    <![CDATA[[state]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="sizeControl.value">
-                    <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="iconControl.value">
-                    <![CDATA[[icon]="ui.icons.search"]]>
-                  </ng-container>
-                  <ng-container *ngIf="multilineControl.value">
-                    <![CDATA[[multiline]="true"]]>
-                  </ng-container>
-                  <ng-container *ngIf="labelControl.value">
-                    <![CDATA[label="Name"]]>
-                  </ng-container>
-                  <ng-container *ngIf="alignControl.value">
-                    <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="rowsControl.value">
-                    <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-input>
-                ]]>
-              </app-code-highlight>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-input
+]]>
+  <ng-container *ngIf="typeControl.value">
+    <![CDATA[[type]="ui.forms.input.]]>{{typeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="schemeControl.value">
+    <![CDATA[[state]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="iconControl.value">
+    <![CDATA[[icon]="ui.icons.search"]]>
+  </ng-container>
+  <ng-container *ngIf="multilineControl.value">
+    <![CDATA[[multiline]="true"]]>
+  </ng-container>
+  <ng-container *ngIf="labelControl.value">
+    <![CDATA[label="Name"]]>
+  </ng-container>
+  <ng-container *ngIf="alignControl.value">
+    <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="rowsControl.value">
+    <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>
+</jnt-input>
+]]>
+</app-code-highlight>
 
-              <app-code-highlight file="input-test.component.ts"
+<app-code-highlight file="input-test.component.ts"
                                   [language]="language.typescript">
-                <pre>
-                  <![CDATA[
-                  import { Component, OnInit, FormBuilder } from '@angular/core';
-                  import { UI } from 'junte-ui';
+  <pre>
+    <![CDATA[
+    import { Component, OnInit, FormBuilder } from '@angular/core';
+    import { UI } from 'junte-ui';
 
-                  @Component({
-                    selector: 'app-input-test',
-                    templateUrl: './input-test.component.html',
-                    styleUrls: ['./input-test.component.scss']
-                  })
+    @Component({
+      selector: 'app-input-test',
+      templateUrl: './input-test.component.html',
+      styleUrls: ['./input-test.component.scss']
+    })
 
-                  export class InputTestComponent implements OnInit {
+    export class InputTestComponent implements OnInit {
 
-                    ui = UI;
+      ui = UI;
 
-                    inputForm = this.fb.group({
-                    input: []
-                  });
+      inputForm = this.fb.group({
+      input: []
+    });
 
-                    constructor(private fb: FormBuilder) {
-                    }
-                  }
-                  ]]>
-                </pre>
+    constructor(private fb: FormBuilder) {
+      }
+    }
+]]>
+</pre>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

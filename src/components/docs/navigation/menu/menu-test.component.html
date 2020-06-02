@@ -172,111 +172,113 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="menu-test.component.html">
-                <![CDATA[
-                <jnt-menu
-                  ]]>
-                  <ng-container *ngIf="orientationControl.value">
-                    <![CDATA[
-                    [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="spacingControl.value">
-                    <![CDATA[
-                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="collapseControl.value">
-                    <![CDATA[
-                    collapse="]]>{{collapseControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                  <jnt-menu-item
-                    ]]>
-                    <ng-container *ngIf="schemeControl.value">
-                      <![CDATA[
-                      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                    </ng-container>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-menu
+  ]]>
+  <ng-container *ngIf="orientationControl.value">
+    <![CDATA[
+    [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="spacingControl.value">
+    <![CDATA[
+    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="collapseControl.value">
+    <![CDATA[
+    collapse="]]>{{collapseControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>
+  <jnt-menu-item
+    ]]>
+  <ng-container *ngIf="schemeControl.value">
+    <![CDATA[
+    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+  </ng-container>
 
-                    <ng-container *ngIf="iconsControl.value">
-                      <![CDATA[
-                      [icon]="ui.icons.search"]]>
-                    </ng-container>
+  <ng-container *ngIf="iconsControl.value">
+    <![CDATA[
+    [icon]="ui.icons.search"]]>
+  </ng-container>
 
-                    <ng-container *ngIf="linkControl.value == sourceType.external">
-                      <![CDATA[
-                      link="https://google.com"]]>
-                    </ng-container>
+  <ng-container *ngIf="linkControl.value == sourceType.external">
+    <![CDATA[
+    link="https://google.com"]]>
+  </ng-container>
 
-                    <ng-container *ngIf="linkControl.value == sourceType.local">
-                      <![CDATA[
-                      [link]="['/documentation', 'block']"]]>
-                    </ng-container>
+  <ng-container *ngIf="linkControl.value == sourceType.local">
+    <![CDATA[
+    [link]="['/documentation', 'block']"]]>
+  </ng-container>
 
-                    <ng-container *ngIf="targetControl.value">
-                      <![CDATA[
-                      target="]]>{{targetControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <![CDATA[>]]>
-                    <ng-container *ngIf="badgesControl.value">
-                      <![CDATA[
-                      <jnt-badge [text]="'text'"></jnt-badge>
-                      ]]>
-                    </ng-container>
-                    <![CDATA[
-                  </jnt-menu-item>
-                  <jnt-submenu title="General"
-                               i18n-title="@@label.general" ]]>
-                    <ng-container *ngIf="iconsControl.value">
-                      <![CDATA[
-                      [icon]="ui.icons.crown"]]>
-                    </ng-container>
-                    <![CDATA[>]]>
-                    <ng-container *ngIf="badgesControl.value">
-                      <![CDATA[
-                      <jnt-badge [value]="5"></jnt-badge>
-                      ]]>
-                    </ng-container>
+  <ng-container *ngIf="targetControl.value">
+    <![CDATA[
+    target="]]>{{targetControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>]]>
+  <ng-container *ngIf="badgesControl.value">
+    <![CDATA[
+     <jnt-badge [text]="'text'"></jnt-badge>
+    ]]>
+  </ng-container>
+    <![CDATA[
+    </jnt-menu-item>
+    <jnt-submenu title="General"
+          i18n-title="@@label.general" ]]>
+    <ng-container *ngIf="iconsControl.value">
+      <![CDATA[
+      [icon]="ui.icons.crown"]]>
+    </ng-container>
+        <![CDATA[>]]>
+      <ng-container *ngIf="badgesControl.value">
+        <![CDATA[
+        <jnt-badge [value]="5"></jnt-badge>
+        ]]>
+      </ng-container>
 
-                    <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
-                      <![CDATA[
-                      <jnt-menu-item ]]>
+      <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+        <![CDATA[
+        <jnt-menu-item ]]>
 
-                        <ng-container *ngIf="schemeControl.value">
-                          <![CDATA[
-                          [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                        </ng-container>
+        <ng-container *ngIf="schemeControl.value">
+          <![CDATA[
+          [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+        </ng-container>
 
-                        <ng-container *ngIf="iconsControl.value">
-                          <![CDATA[
-                          [icon]="ui.icons.search"]]>
-                        </ng-container>
+        <ng-container *ngIf="iconsControl.value">
+          <![CDATA[
+          [icon]="ui.icons.search"]]>
+        </ng-container>
 
-                        <ng-container *ngIf="targetControl.value">
-                          <![CDATA[
-                          target="]]>{{targetControl.value}}<![CDATA["]]>
-                        </ng-container>
+        <ng-container *ngIf="targetControl.value">
+          <![CDATA[
+          target="]]>{{targetControl.value}}<![CDATA["]]>
+        </ng-container>
 
-                        <ng-container *ngIf="linkControl.value == sourceType.external">
-                          <![CDATA[
-                          link="https://google.com"]]>
-                        </ng-container>
+        <ng-container *ngIf="linkControl.value == sourceType.external">
+          <![CDATA[
+          link="https://google.com"]]>
+        </ng-container>
 
-                        <ng-container *ngIf="linkControl.value == sourceType.local">
-                          <![CDATA[
-                          [link]="['/documentation', 'block']"]]>
-                        </ng-container>
-                        <![CDATA[>]]>
-                        <ng-container *ngIf="badgesControl.value">
-                          <![CDATA[
-                          <jnt-badge [value]="5"></jnt-badge>
-                          ]]>
-                        </ng-container>
-                        <![CDATA[
-                      </jnt-menu-item>
-                      ]]>
-                    </ng-container>
-                    <![CDATA[
-                  </jnt-submenu>
-                </jnt-menu>
-                ]]>
+        <ng-container *ngIf="linkControl.value == sourceType.local">
+          <![CDATA[
+          [link]="['/documentation', 'block']"]]>
+        </ng-container>
+          <![CDATA[>]]>
+        <ng-container *ngIf="badgesControl.value">
+          <![CDATA[
+          <jnt-badge [value]="5"></jnt-badge>
+          ]]>
+        </ng-container>
+          <![CDATA[
+            </jnt-menu-item>
+          ]]>
+        </ng-container>
+          <![CDATA[
+          </jnt-submenu>
+        </jnt-menu>
+           ]]>
+  <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
