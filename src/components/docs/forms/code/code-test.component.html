@@ -30,7 +30,7 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-form [formGroup]="form">
-                  <jnt-code></jnt-code>
+                  <jnt-code [inputsCount]="countControl.value"></jnt-code>
                 </jnt-form>
               </ng-template>
             </app-browser-preview>
@@ -46,20 +46,6 @@
                     <jnt-switcher formControlName="count">
                       <jnt-switcher-option *ngFor="let input of [4,5,6]" [label]="input"
                                            [value]="input">
-                      </jnt-switcher-option>
-                    </jnt-switcher>
-                  </jnt-form-control>
-                </jnt-form-item>
-                <jnt-form-item>
-                  <jnt-form-label for="type"
-                                  i18n="@@label.input_count">Code type</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-switcher formControlName="codeType">
-                      <jnt-switcher-option label="number"
-                                           [value]="ui.forms.input.type.number">
-                      </jnt-switcher-option>
-                      <jnt-switcher-option label="password"
-                                           [value]="ui.forms.input.type.password">
                       </jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-control>

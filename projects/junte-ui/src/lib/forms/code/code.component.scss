@@ -2,3 +2,28 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
+input {
+  height: var(--item-height);
+  color: inherit;
+  background: var(--item-background);
+  text-align: center;
+  font-size: inherit;
+  border: var(--item-border);
+  border-bottom: var(--item-border-bottom);
+  border-radius: var(--item-border-radius);
+  -webkit-appearance: none;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  outline: none;
+
+  &.has-value {
+    border: var(--item-border-has-value);
+    border-bottom: var(--item-border-bottom-has-value);
+  }
+
+  &:focus {
+    border: var(--item-border-focused);
+    border-bottom: var(--item-border-bottom-focused);
+    box-shadow: var(--item-shadow-focused);
+  }
+}

@@ -27,13 +27,33 @@ export class CodeComponent {
 
   ui = UI;
   inputs: HTMLInputElement[] = [];
+  private _inputsCount: number;
+  inputsSlots: number[];
 
   @PropertyApi({
     description: 'Count of inputs',
     type: 'int',
     default: 4,
   })
-  @Input() inputSlots = 4;
+  @Input()
+  set inputsCount(inputsCount: number) {
+    this._inputsCount = inputsCount;
+    this.updateInputs();
+  }
+
+
+  get inputsCount() {
+    return this._inputsCount;
+  }
+
+  updateInputs() {
+    const inputsSlots: number[] = [];
+
+    for (let i = 0; i < this.inputsCount; i++) {
+      inputsSlots.push(i);
+    }
+    this.inputsSlots = inputsSlots;
+  }
   @Input() codeLength = 4;
   @Input() readonly code?: string | number;
   @ViewChildren('input') inputsList: QueryList<ElementRef>;

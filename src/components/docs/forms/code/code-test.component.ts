@@ -16,13 +16,8 @@ export class CodeTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   countControl = this.fb.control(4);
-  typeControl = this.fb.control('')
   builder = this.fb.group({
-
     count: this.countControl,
-  });
-  codeControl = this.fb.control(null);
-  form = this.fb.group({
   });
 
   constructor(private fb: FormBuilder) {
