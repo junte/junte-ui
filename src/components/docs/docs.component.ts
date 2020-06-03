@@ -11,16 +11,14 @@ export enum Theme {
 @Component({
   selector: 'app-documentation',
   templateUrl: './docs.component.html',
-  styleUrls: ['./docs.component.scss']
+  styleUrls: ['./docs.component.scss'],
 })
 export class DocsComponent implements OnInit, AfterViewInit {
 
   ui = UI;
   localUi = LocalUI;
   theme = Theme;
-
   loading = false;
-
   themeControl = new FormControl(localStorage.theme || Theme.light);
   themeForm = this.builder.group({
     theme: this.themeControl

@@ -1,6 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
-@import "layout/app/variables";
+@import "layout/responsive/responsive";
 
 @mixin jnt-app-body($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -26,6 +26,10 @@
   :host, #{$context} {
     display: block;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transform-style: preserve-3d;
     min-height: map-get($vars, height);
     padding: map-get($vars, padding);
     background-color: map-get($vars, background);

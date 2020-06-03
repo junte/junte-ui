@@ -8,17 +8,17 @@ export const routes: Routes = [
   {
     path: 'pipes',
     component: PipesTestComponent,
-    data: {breadcrumb: 'Pipes'}
+    data: {breadcrumb: 'Pipes', animation: 'Pipes'}
   },
   {
     path: 'confirm',
     component: ConfirmTestComponent,
-    data: {breadcrumb: 'Confirm'}
+    data: {breadcrumb: 'Confirm', animation: 'Confirm'}
   },
   {
     path: 'message',
     component: MessageTestComponent,
-    data: {breadcrumb: 'Message'}
+    data: {breadcrumb: 'Message', animation: 'Message'}
   }
 ];
 

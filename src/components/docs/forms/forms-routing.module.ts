@@ -16,57 +16,57 @@ export const routes: Routes = [
   {
     path: 'button',
     component: ButtonTestComponent,
-    data: {breadcrumb: 'Button'}
+    data: {breadcrumb: 'Button', animation: 'Button'}
   },
   {
     path: 'form',
     component: FormTestComponent,
-    data: {breadcrumb: 'Form'}
+    data: {breadcrumb: 'Form', animation: 'Form'}
   },
   {
     path: 'input',
     component: InputTestComponent,
-    data: {breadcrumb: 'Input'}
+    data: {breadcrumb: 'Input', animation: 'Input'}
   },
   {
     path: 'checkbox',
     component: CheckboxTestComponent,
-    data: {breadcrumb: 'Checkbox'}
+    data: {breadcrumb: 'Checkbox', animation: 'Checkbox'}
   },
   {
     path: 'radio',
     component: RadioTestComponent,
-    data: {breadcrumb: 'Radio'}
+    data: {breadcrumb: 'Radio', animation: 'Radio'}
   },
   {
     path: 'select',
     component: SelectTestComponent,
-    data: {breadcrumb: 'Select'}
+    data: {breadcrumb: 'Select', animation: 'Select'}
   },
   {
     path: 'switch',
     component: SwitchTestComponent,
-    data: {breadcrumb: 'Switch'}
+    data: {breadcrumb: 'Switch', animation: 'Switch'}
   },
   {
     path: 'switcher',
     component: SwitcherTestComponent,
-    data: {breadcrumb: 'Switcher'}
+    data: {breadcrumb: 'Switcher', animation: 'Switcher'}
   },
   {
     path: 'calendar',
     component: CalendarTestComponent,
-    data: {breadcrumb: 'Calendar'}
+    data: {breadcrumb: 'Calendar', animation: 'Calendar'}
   },
   {
     path: 'date-picker',
     component: DatePickerTestComponent,
-    data: {breadcrumb: 'Date picker'}
+    data: {breadcrumb: 'Date picker', animation: 'Date picker'}
   },
   {
     path: 'selectable',
     component: SelectableTestComponent,
-    data: {breadcrumb: 'Selectable'}
+    data: {breadcrumb: 'Selectable', animation: 'Selectable'}
   }
 ];
 

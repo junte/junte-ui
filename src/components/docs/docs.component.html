@@ -311,8 +311,8 @@
     <jnt-app-sub-header (burgerToggle)="aside.toggle()">
       <jnt-breadcrumb></jnt-breadcrumb>
     </jnt-app-sub-header>
-    <jnt-app-body>
-      <router-outlet></router-outlet>
+    <jnt-app-body [outlet]="o">
+      <router-outlet #o="outlet"></router-outlet>
     </jnt-app-body>
     <jnt-app-footer>
       <app-footer></app-footer>
