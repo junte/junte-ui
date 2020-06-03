@@ -13,17 +13,17 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    data: {breadcrumb: 'Home'}
+    data: {breadcrumb: 'Home', animation: 'Home'}
   },
   {
     path: 'theming',
     component: ThemingComponent,
-    data: {breadcrumb: 'Theming'}
+    data: {breadcrumb: 'Theming', animation: 'Theming'}
   },
   {
     path: 'typography',
     component: TypographyTestComponent,
-    data: {breadcrumb: 'Typography'}
+    data: {breadcrumb: 'Typography', animation: 'Typography'}
   }
 ];
 

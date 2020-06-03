@@ -8,17 +8,17 @@ export const routes: Routes = [
   {
     path: 'gantt',
     component: GanttTestComponent,
-    data: {breadcrumb: 'Gantt'}
+    data: {breadcrumb: 'Gantt', animation: 'Gantt'}
   },
   {
     path: 'table',
     component: TableTestComponent,
-    data: {breadcrumb: 'Table'}
+    data: {breadcrumb: 'Table', animation: 'Table'}
   },
   {
     path: 'accordion',
     component: AccordionTestComponent,
-    data: {breadcrumb: 'Accordion'}
+    data: {breadcrumb: 'Accordion', animation: 'Accordion'}
   },
 ];
 

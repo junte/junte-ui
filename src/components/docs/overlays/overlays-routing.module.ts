@@ -7,12 +7,12 @@ export const routes: Routes = [
   {
     path: 'modal',
     component: ModalTestComponent,
-    data: {breadcrumb: 'Modal'}
+    data: {breadcrumb: 'Modal', animation: 'Modal'}
   },
   {
     path: 'popover',
     component: PopoverTestComponent,
-    data: {breadcrumb: 'Popover'}
+    data: {breadcrumb: 'Popover', animation: 'Popover'}
   },
 ];
 
