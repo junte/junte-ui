@@ -1,3 +1,4 @@
+import { GanttTypes } from '../../collections/gantt/enums';
 import { Height } from './height';
 import { Feature } from './feature';
 import { TableFeatures } from '../../collections/table/enums';
@@ -82,7 +83,7 @@ export class UI {
 
   };
   static collections = {
-    table: {features: TableFeatures}
-
+    table: {features: TableFeatures},
+    gantt: {type: GanttTypes}
   };
 }

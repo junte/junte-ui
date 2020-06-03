@@ -5,10 +5,5 @@ export * from './array/mock-array.pipe'
 export * from './color-pipes.module';
 export * from './color/lighten-darken.pipe';
 export * from './color/text-brightness.pipe';
-export * from './date-pipes.module';
-export * from './date/after.pipe';
-export * from './date/before.pipe';
-export * from './date/dates-in-month.pipe';
-export * from './date/full-month.pipe';
 export * from './text-pipes.module';
 export * from './text/empty.pipe';
