@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum Theme {
   light = 'light',
@@ -15,6 +16,7 @@ export enum Theme {
 })
 export class DocsComponent implements OnInit, AfterViewInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   theme = Theme;
