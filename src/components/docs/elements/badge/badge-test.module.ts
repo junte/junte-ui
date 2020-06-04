@@ -17,6 +17,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { BadgeTestComponent } from './badge-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { BadgeTestComponent } from './badge-test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    DotModule
+    DotModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     BadgeTestComponent

@@ -4,6 +4,7 @@ import { PopoverComponent, TabComponent, UI } from 'junte-ui';
 import { Scheme } from 'projects/junte-ui/src/lib/core/enums/scheme';
 import { PopoverPlacements, PopoverTriggers } from 'projects/junte-ui/src/lib/overlays/popover/enums';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum ContentType {
   default = 'default',
@@ -17,6 +18,7 @@ export enum ContentType {
 })
 export class PopoverTestComponent {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {popover: PopoverComponent};

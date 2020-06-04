@@ -13,6 +13,7 @@ import { BreadcrumbResolver } from './resolver';
 import { BreadCrumbTest1Component } from './tests/test.component';
 import { BreadCrumbTest2Component } from './tests/test2.component';
 import { BreadCrumbTest3Component } from './tests/test3.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BreadCrumbTest3Component } from './tests/test3.component';
     BreadcrumbsRoutingModule,
     BrowserPreviewModule,
     CodeHighlightModule,
-    HowToUseModule
+    HowToUseModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     BreadcrumbsTestComponent,

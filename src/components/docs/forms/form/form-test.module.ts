@@ -22,6 +22,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { FormTestComponent } from './form-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { FormTestComponent } from './form-test.component';
     DatePickerModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     SwitchModule.forRoot(JUNTE_UI_CONFIG),
-    SwitcherModule.forRoot(JUNTE_UI_CONFIG)
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     FormTestComponent

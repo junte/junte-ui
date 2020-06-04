@@ -20,6 +20,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { ButtonTestComponent } from './button-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { ButtonTestComponent } from './button-test.component';
     BadgeModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     ButtonTestComponent

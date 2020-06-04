@@ -20,6 +20,7 @@ import {
 import { SharedModule } from '../../shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { ConfirmTestComponent } from './confirm-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { ConfirmTestComponent } from './confirm-test.component';
     ModalModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     ConfirmTestComponent

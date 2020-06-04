@@ -18,6 +18,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AvatarTestComponent } from './avatar-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { AvatarTestComponent } from './avatar-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     AvatarTestComponent

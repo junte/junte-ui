@@ -22,6 +22,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { SwitcherTestComponent } from './switcher-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { SwitcherTestComponent } from './switcher-test.component';
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     SwitcherTestComponent

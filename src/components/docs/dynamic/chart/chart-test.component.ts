@@ -4,6 +4,7 @@ import { ChartComponent, ChartIndicatorComponent, TabComponent, UI } from 'junte
 import { LocalUI } from 'src/enums/local-ui';
 import { Hero } from '../../../../enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-chart-test',
@@ -12,6 +13,7 @@ import { Language } from '../../shared/code-highlight/enum';
 })
 export class ChartTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

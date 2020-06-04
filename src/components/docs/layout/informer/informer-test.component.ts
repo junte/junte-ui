@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { InformerComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-informer-test',
@@ -9,6 +10,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class InformerTestComponent {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {informer: InformerComponent};

@@ -14,6 +14,7 @@ export enum Theme {
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
 })
+
 export class DocsComponent implements OnInit, AfterViewInit {
 
   analyticsType = AnalyticsType;

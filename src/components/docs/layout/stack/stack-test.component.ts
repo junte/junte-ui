@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { StackComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-stack-test',
@@ -11,6 +12,7 @@ import { Language } from '../../shared/code-highlight/enum';
 })
 export class StackTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

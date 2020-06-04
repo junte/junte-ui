@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-select-test',
@@ -13,6 +14,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class SelectTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

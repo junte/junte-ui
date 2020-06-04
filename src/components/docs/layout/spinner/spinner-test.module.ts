@@ -15,6 +15,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { SpinnerTestComponent } from './spinner-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { SpinnerTestComponent } from './spinner-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     GridModule.forRoot(JUNTE_UI_CONFIG),
     SpinnerModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     SpinnerTestComponent

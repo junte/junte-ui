@@ -18,6 +18,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { SkeletonTestComponent } from './skeleton-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { SkeletonTestComponent } from './skeleton-test.component';
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     SkeletonTestComponent

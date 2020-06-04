@@ -19,6 +19,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { IconTestComponent } from './icon-test.component';
 import { GetGroupsPipe, GetIconsPipe, GetPathPipe, IconsListComponent } from './select-icon/icons-list/icons-list.component';
 import { SelectIconComponent } from './select-icon/select-icon.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { SelectIconComponent } from './select-icon/select-icon.component';
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     IconTestComponent

@@ -17,6 +17,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { LabelTestComponent } from './label-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { LabelTestComponent } from './label-test.component';
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    DotModule
+    DotModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     LabelTestComponent

@@ -19,7 +19,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { BlockTestComponent } from './block-test.component';
-import { AnalyticsDirectivesModule } from '../../../../directives/analytics.module';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -40,7 +40,7 @@ import { AnalyticsDirectivesModule } from '../../../../directives/analytics.modu
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
-    AnalyticsDirectivesModule // TODO: think about
+    AnalyticsDirectivesModule
   ],
   exports: [
     BlockTestComponent

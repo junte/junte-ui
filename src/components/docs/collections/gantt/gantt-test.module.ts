@@ -19,6 +19,7 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { GanttTestComponent } from './gantt-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { GanttTestComponent } from './gantt-test.component';
         GanttPipesModule,
         SharedModule,
         DateFnsModule,
-        StackModule
+        StackModule,
+        AnalyticsDirectivesModule
     ],
   exports: [
     GanttTestComponent

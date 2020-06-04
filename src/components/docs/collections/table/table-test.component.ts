@@ -9,6 +9,7 @@ import { TableComponent } from 'junte-ui';
 import { TableColumnComponent } from 'junte-ui';
 import { TableState } from './data/table-data.component';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-table-test',
@@ -17,6 +18,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class TableTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {table: TableComponent, column: TableColumnComponent};

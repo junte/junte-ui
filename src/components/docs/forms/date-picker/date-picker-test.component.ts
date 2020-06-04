@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { TabComponent, UI } from 'junte-ui';
 import { DatePickerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum DateFormat {
   fullDate = 'dd.MM.yyyy',
@@ -18,6 +19,7 @@ export enum DateFormat {
 })
 export class DatePickerTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   dateFormat = DateFormat;

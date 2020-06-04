@@ -18,6 +18,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { ChartTestComponent } from './chart-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { ChartTestComponent } from './chart-test.component';
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     ChartTestComponent

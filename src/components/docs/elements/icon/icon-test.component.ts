@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { IconComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { SelectIconComponent } from './select-icon/select-icon.component';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-icon-test',
@@ -11,6 +12,7 @@ import { SelectIconComponent } from './select-icon/select-icon.component';
 })
 export class IconTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   icon = IconComponent;

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ColComponent, ContainerComponent, RowComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-grid-test',
@@ -10,6 +11,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class GridTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {container: ContainerComponent, row: RowComponent, col: ColComponent};

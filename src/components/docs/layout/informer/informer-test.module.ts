@@ -20,7 +20,7 @@ import {
 import { SharedModule } from 'src/components/docs/shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { InformerTestComponent } from './informer-test.component';
-
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [InformerTestComponent],
@@ -43,7 +43,8 @@ import { InformerTestComponent } from './informer-test.component';
         BlockModule.forRoot(JUNTE_UI_CONFIG),
         CheckboxModule.forRoot(JUNTE_UI_CONFIG),
         SharedModule,
-        InformerModule
+        InformerModule,
+        AnalyticsDirectivesModule
     ],
   exports: [InformerTestComponent]
 })

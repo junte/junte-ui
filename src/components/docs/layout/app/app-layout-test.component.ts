@@ -9,6 +9,7 @@ import { AppHeaderActionsComponent } from 'junte-ui';
 import { AppHeaderActionComponent } from 'junte-ui';
 import { AppContentComponent } from 'junte-ui';
 import { AppSubHeaderComponent } from 'junte-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-layout-test',
@@ -17,6 +18,7 @@ import { AppSubHeaderComponent } from 'junte-ui';
 })
 export class AppLayoutTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
 

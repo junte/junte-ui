@@ -17,6 +17,7 @@ import {
 import { ResponsiveTestComponent } from 'src/components/docs/layout/responsive/responsive-test.component';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { SharedModule } from '../../shared/shared.module';
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     ResponsiveTestComponent

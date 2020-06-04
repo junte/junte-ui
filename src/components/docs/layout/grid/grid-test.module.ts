@@ -16,6 +16,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { GridTestComponent } from './grid-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { GridTestComponent } from './grid-test.component';
     GridModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     GridTestComponent

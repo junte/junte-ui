@@ -17,6 +17,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { PagerTestComponent } from './pager-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { PagerTestComponent } from './pager-test.component';
     PagerModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     PagerTestComponent

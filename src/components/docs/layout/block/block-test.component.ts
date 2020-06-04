@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BlockComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { AnalyticsType } from '../../../../enums/analyticsType';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-blocks-test',

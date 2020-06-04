@@ -20,6 +20,7 @@ import {
 import { SharedModule } from 'src/components/docs/shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SelectableTestComponent } from './selectable-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SelectableTestComponent } from './selectable-test.component';
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
-    SelectableModule
+    SelectableModule,
+    AnalyticsDirectivesModule
   ]
 })
 export class SelectableTestModule {

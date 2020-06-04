@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum UsingType {
   popover = 'popover',
@@ -20,6 +21,7 @@ export enum ContentType {
 })
 export class ConfirmTestComponent  implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   usingType = UsingType;

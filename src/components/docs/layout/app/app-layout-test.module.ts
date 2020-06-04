@@ -22,6 +22,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AppLayoutTestComponent } from './app-layout-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { AppLayoutTestComponent } from './app-layout-test.component';
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     BreadcrumbsModule.forRoot(JUNTE_UI_CONFIG),
-    CalendarModule.forRoot(JUNTE_UI_CONFIG)
+    CalendarModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     AppLayoutTestComponent

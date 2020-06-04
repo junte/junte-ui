@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { TabComponent, UI } from 'junte-ui';
 import { PagerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-pager-test',
@@ -11,6 +12,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class PagerTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {pager: PagerComponent};

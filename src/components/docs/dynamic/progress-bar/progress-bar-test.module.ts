@@ -5,6 +5,7 @@ import { LinkModule, IconModule, StackModule, TabsModule, GridModule, AccordionM
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { ProgressBarTestComponent } from './progress-bar-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ProgressBarTestComponent } from './progress-bar-test.component';
     ProgressBarModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
     FormModule.forRoot(JUNTE_UI_CONFIG),
-    CheckboxModule.forRoot(JUNTE_UI_CONFIG)
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     ProgressBarTestComponent

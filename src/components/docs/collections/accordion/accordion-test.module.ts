@@ -8,6 +8,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AccordionTestComponent } from './accordion-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { AccordionTestComponent } from './accordion-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     FormModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     AccordionTestComponent

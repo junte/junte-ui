@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { CollapsibleComponent, TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-collapsible-test',
@@ -11,6 +12,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class CollapsibleTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {collapsible: CollapsibleComponent};

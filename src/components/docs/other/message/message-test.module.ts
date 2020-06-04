@@ -16,6 +16,7 @@ import {
 import { SharedModule } from '../../shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { MessageTestComponent } from './message-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { MessageTestComponent } from './message-test.component';
     DotModule,
     SharedModule,
     ReactiveFormsModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     MessageTestComponent

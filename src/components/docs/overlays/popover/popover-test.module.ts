@@ -16,6 +16,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { PopoverTestComponent } from './popover-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { PopoverTestComponent } from './popover-test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     PopoverTestComponent

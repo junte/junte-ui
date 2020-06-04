@@ -19,6 +19,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { RadioTestComponent } from './radio-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { RadioTestComponent } from './radio-test.component';
     AvatarModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    BlockModule.forRoot(JUNTE_UI_CONFIG)
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     RadioTestComponent

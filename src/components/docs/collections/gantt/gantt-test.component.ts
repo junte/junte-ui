@@ -4,13 +4,13 @@ import { GanttComponent, GanttLineComponent, TabComponent, UI, GanttTypes } from
 import { LocalUI } from '../../../../enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
 import * as faker from 'faker';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum GanttRequestStatuses {
   accepting = 'accepting',
   accepted = 'accepted',
   declined = 'declined'
 }
-
 
 @Component({
   selector: 'app-gantt-test',
@@ -19,6 +19,7 @@ export enum GanttRequestStatuses {
 })
 export class GanttTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

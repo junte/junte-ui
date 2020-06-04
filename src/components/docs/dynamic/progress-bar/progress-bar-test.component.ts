@@ -4,6 +4,7 @@ import { UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { ProgressBarComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-progress-bar-test',
@@ -12,6 +13,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class ProgressBarTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   math = Math;

@@ -5,6 +5,7 @@ import {AccordionModule, AnchorModule, FormModule, GridModule, IconModule, LinkM
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AnchorTestComponent } from './anchor-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { AnchorTestComponent } from './anchor-test.component';
     FormModule.forRoot(JUNTE_UI_CONFIG),
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     AnchorModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     AnchorTestComponent

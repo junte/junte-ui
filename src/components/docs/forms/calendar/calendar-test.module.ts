@@ -19,6 +19,7 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { CalendarTestComponent } from './calendar-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CalendarTestComponent } from './calendar-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     CalendarModule.forRoot(JUNTE_UI_CONFIG),
     BlockModule.forRoot(JUNTE_UI_CONFIG),
-    DatePeriodModule.forRoot(JUNTE_UI_CONFIG)
+    DatePeriodModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   declarations: [
     CalendarTestComponent

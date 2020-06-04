@@ -17,6 +17,7 @@ import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 
 import { CircleBarTestComponent } from './circle-bar-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CircleBarTestComponent } from './circle-bar-test.component';
     CircleBarModule.forRoot(JUNTE_UI_CONFIG),
     FormsModule,
     SharedModule,
-    InputModule.forRoot(JUNTE_UI_CONFIG)
+    InputModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     CircleBarTestComponent

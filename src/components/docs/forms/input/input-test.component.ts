@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { InputComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-input-test',
@@ -11,6 +12,7 @@ import { Language } from '../../shared/code-highlight/enum';
 })
 export class InputTestComponent implements OnInit, AfterViewInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   input = InputComponent;

@@ -5,6 +5,7 @@ import { CircleBarComponent } from 'junte-ui';
 import { BarIndicatorComponent } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-circle-bar-test',
@@ -13,6 +14,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class CircleBarTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {indicator: BarIndicatorComponent, bar: CircleBarComponent};

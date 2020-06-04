@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ButtonComponent, ButtonGroupComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-button-test',
@@ -10,6 +11,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class ButtonTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {button: ButtonComponent, group: ButtonGroupComponent};

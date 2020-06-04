@@ -19,6 +19,7 @@ import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { ModalTestComponent } from './modal-test.component';
 import { ModalTestFactoryComponent } from './test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { ModalTestFactoryComponent } from './test.component';
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     CalendarModule.forRoot(JUNTE_UI_CONFIG),
-    ModalModule.forRoot(JUNTE_UI_CONFIG)
+    ModalModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     ModalTestComponent,

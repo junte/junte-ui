@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-avatar-test',
@@ -10,6 +11,7 @@ import { LocalUI } from '../../../../enums/local-ui';
 })
 export class AvatarTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {

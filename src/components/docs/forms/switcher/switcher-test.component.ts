@@ -4,6 +4,7 @@ import { BlockComponent, SwitcherComponent, SwitcherOptionComponent, TabComponen
 import { LocalUI } from 'src/enums/local-ui';
 import { Hero } from 'src/enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-switcher-test',
@@ -13,6 +14,7 @@ import { Language } from '../../shared/code-highlight/enum';
 
 export class SwitcherTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   hero = Hero;

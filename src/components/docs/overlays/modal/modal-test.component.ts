@@ -5,6 +5,7 @@ import { ModalComponent } from 'junte-ui';
 import { ModalTestFactoryComponent } from 'src/components/docs/overlays/modal/test.component';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum Size {
   tiny = 200,
@@ -26,6 +27,7 @@ export enum ContentType {
 
 export class ModalTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

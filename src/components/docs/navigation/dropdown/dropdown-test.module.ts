@@ -17,6 +17,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { DropdownTestComponent } from './dropdown-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { DropdownTestComponent } from './dropdown-test.component';
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
     AvatarModule.forRoot(JUNTE_UI_CONFIG),
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     DropdownTestComponent

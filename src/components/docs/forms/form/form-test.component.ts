@@ -8,6 +8,7 @@ import { FormLabelComponent } from 'junte-ui';
 import { FormMessageComponent } from 'junte-ui';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 enum Gender {
   man = 'man',
@@ -22,6 +23,7 @@ enum Gender {
 
 export class FormTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   types = {form: FormComponent, control: FormControlComponent, label: FormLabelComponent, message: FormMessageComponent};

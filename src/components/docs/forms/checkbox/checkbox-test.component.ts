@@ -4,6 +4,7 @@ import { BlockComponent, CheckboxComponent, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-checkbox-test',
@@ -12,6 +13,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class CheckboxTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   language = Language;

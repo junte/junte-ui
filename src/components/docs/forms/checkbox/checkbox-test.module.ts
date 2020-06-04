@@ -20,6 +20,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { CheckboxTestComponent } from './checkbox-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { CheckboxTestComponent } from './checkbox-test.component';
     BlockModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
-    ButtonModule.forRoot(JUNTE_UI_CONFIG)
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    AnalyticsDirectivesModule
   ],
   exports: [
     CheckboxTestComponent

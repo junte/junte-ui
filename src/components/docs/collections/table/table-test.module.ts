@@ -19,6 +19,7 @@ import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { TableDataComponent } from './data/table-data.component';
 import { TableTestComponent } from './table-test.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { TableTestComponent } from './table-test.component';
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     MenuModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     TableTestComponent

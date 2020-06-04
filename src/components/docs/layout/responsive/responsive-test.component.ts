@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TabComponent, UI, ForDirective, ForMinDirective, ForMaxDirective } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { SelectorType } from '../../shared/component-api/enums';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-responsive-test',
@@ -10,6 +11,7 @@ import { SelectorType } from '../../shared/component-api/enums';
 })
 export class ResponsiveTestComponent {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   selectorType = SelectorType;

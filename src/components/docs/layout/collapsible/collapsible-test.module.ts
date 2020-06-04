@@ -19,6 +19,7 @@ import {
 import { CollapsibleTestComponent } from './collapsible-test.component';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { SharedModule } from '../../shared/shared.module';
     CollapsibleModule,
     ResponsiveModule,
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    AnalyticsDirectivesModule
   ],
   exports: [
     CollapsibleTestComponent

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SkeletonComponent, UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 export enum Sketch {
   User = 'user',
@@ -18,6 +19,7 @@ export enum Sketch {
 })
 export class SkeletonTestComponent implements OnInit {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   sketch = Sketch;
   localUi = LocalUI;
