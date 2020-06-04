@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Gutter } from '../../../core/enums/gutter';
-import { RowAlign } from '../enums';
+import { RowAlign, RowJustify } from '../enums';
 
 @Component({
   selector: 'jnt-row',
@@ -17,6 +17,9 @@ export class RowComponent {
   @HostBinding('attr.data-gutter')
   _gutter: Gutter = Gutter.normal;
 
+  @HostBinding('attr.data-justify')
+  _justify: RowJustify = RowJustify.start;
+
   @PropertyApi({
     description: 'Vertical align columns',
     path: 'ui.layout.row.align',
@@ -28,6 +31,21 @@ export class RowComponent {
   })
   @Input() set align(align: RowAlign) {
     this._align = align || RowAlign.start;
+  }
+
+  @PropertyApi({
+    description: 'Horizontal align of elements',
+    path: 'ui.flex.justify',
+    default: RowJustify.start,
+    options: [RowJustify.start,
+      RowJustify.center,
+      RowJustify.end,
+      RowJustify.between,
+      RowJustify.around,
+      RowJustify.evenly]
+  })
+  @Input() set justify(justify: RowJustify) {
+    this._justify = justify || RowJustify.start;
   }
 
   @PropertyApi({

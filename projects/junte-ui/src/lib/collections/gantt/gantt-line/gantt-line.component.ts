@@ -45,6 +45,13 @@ export class GanttLineComponent {
   indicatorTemplate: TemplateRef<any>;
 
   @ContentApi({
+    selector: '#indicatorYearTemplate',
+    description: 'indicator year template'
+  })
+  @ContentChild('indicatorYear')
+  indicatorYearTemplate: TemplateRef<any>;
+
+  @ContentApi({
     selector: '#titleTemplate',
     description: 'title template'
   })

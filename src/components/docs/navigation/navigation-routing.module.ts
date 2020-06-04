@@ -11,32 +11,32 @@ export const routes: Routes = [
   {
     path: 'link',
     component: LinkTestComponent,
-    data: {breadcrumb: 'Link'}
+    data: {breadcrumb: 'Link', animation: 'Link'}
   },
   {
     path: 'menu',
     component: MenuTestComponent,
-    data: {breadcrumb: 'Menu'}
+    data: {breadcrumb: 'Menu', animation: 'Menu'}
   },
   {
     path: 'tabs',
     component: TabsTestComponent,
-    data: {breadcrumb: 'Tabs'}
+    data: {breadcrumb: 'Tabs', animation: 'Tabs'}
   },
   {
     path: 'pager',
     component: PagerTestComponent,
-    data: {breadcrumb: 'Pager'}
+    data: {breadcrumb: 'Pager', animation: 'Pager'}
   },
   {
     path: 'dropdown',
     component: DropdownTestComponent,
-    data: {breadcrumb: 'Dropdown'}
+    data: {breadcrumb: 'Dropdown', animation: 'Dropdown'}
   },
   {
     path: 'anchor',
     component: AnchorTestComponent,
-    data: {breadcrumb: 'Anchor'}
+    data: {breadcrumb: 'Anchor', animation: 'Anchor'}
   },
   {
     path: 'breadcrumbs',

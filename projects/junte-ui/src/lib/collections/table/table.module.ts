@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
-import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { InputModule } from '../../forms/input/input.module';
@@ -22,7 +21,6 @@ import { TableComponent } from './table.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DatePipesModule,
     IconModule,
     InputModule,
     PagerModule,

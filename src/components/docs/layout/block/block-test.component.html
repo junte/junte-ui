@@ -37,7 +37,7 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document let-height="height">
-                  <jnt-block #block [title]="titleControl.value ? 'Block title' : null"
+                  <jnt-block #block data-block [title]="titleControl.value ? 'Block title' : null"
                              [padding]="paddingControl.value"
                              [scheme]="schemeControl.value"
                              [width]="widthControl.value"
@@ -201,52 +201,54 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="block-test.template.html">
-                  <![CDATA[
-                  <jnt-block
-                    ]]>
-                    <ng-container *ngIf="titleControl.value">
-                      <![CDATA[
-                      [title]="'Block title'"]]>
-                    </ng-container>
-                    <ng-container *ngIf="paddingControl.value">
-                      <![CDATA[
-                      [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <ng-container *ngIf="schemeControl.value">
-                      <![CDATA[
-                      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <ng-container *ngIf="widthControl.value">
-                      <![CDATA[
-                      [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <ng-container *ngIf="stateControl.value">
-                      <![CDATA[
-                      [state]="ui.layout.block.state.]]>{{stateControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <ng-container *ngIf="adaptedControl.value">
-                      <![CDATA[
-                      [features]="[ui.feature.adapted]"]]>
-                    </ng-container>
-                    <![CDATA[>
-                    <jnt-skeleton [lines]="3" [animated]="false"></jnt-skeleton>
-                    ]]>
-                    <ng-container *ngIf="footerControl.value">
-                      <![CDATA[
-                      <ng-template #blockFooterTemplate>
-                        <jnt-stack [orientation]="ui.orientation.horizontal"
-                                   [justify]="ui.flex.justify.between">
-                          <jnt-button text="Ok">
-                          </jnt-button>
-                          <jnt-button [scheme]="ui.scheme.secondary"
-                                      text="Cancel"></jnt-button>
-                        </jnt-stack>
-                      </ng-template>
-                      ]]>
-                    </ng-container>
-                    <![CDATA[
-                  </jnt-block>
-                  ]]>
+<!-- @formatter:off-->
+<![CDATA[
+<jnt-block
+]]>
+  <ng-container *ngIf="titleControl.value">
+    <![CDATA[
+    [title]="'Block title'"]]>
+  </ng-container>
+    <ng-container *ngIf="paddingControl.value">
+      <![CDATA[
+      [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+    </ng-container>
+    <ng-container *ngIf="schemeControl.value">
+      <![CDATA[
+      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+    </ng-container>
+    <ng-container *ngIf="widthControl.value">
+       <![CDATA[
+       [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+    </ng-container>
+    <ng-container *ngIf="stateControl.value">
+      <![CDATA[
+      [state]="ui.layout.block.state.]]>{{stateControl.value}}<![CDATA["]]>
+    </ng-container>
+    <ng-container *ngIf="adaptedControl.value">
+      <![CDATA[
+      [features]="[ui.feature.adapted]"]]>
+    </ng-container>
+      <![CDATA[>
+      <jnt-skeleton [lines]="3" [animated]="false"></jnt-skeleton>
+      ]]>
+    <ng-container *ngIf="footerControl.value">
+      <![CDATA[
+      <ng-template #blockFooterTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [justify]="ui.flex.justify.between">
+          <jnt-button text="Ok">
+          </jnt-button>
+          <jnt-button [scheme]="ui.scheme.secondary"
+                      text="Cancel"></jnt-button>
+        </jnt-stack>
+      </ng-template>
+      ]]>
+    </ng-container>
+<![CDATA[
+</jnt-block>
+]]>
+                  <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
             </jnt-accordion-section>

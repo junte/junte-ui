@@ -5,7 +5,6 @@ import { DateFnsModule } from 'ngx-date-fns';
 import { ButtonModule } from '../button/button.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { CalendarComponent } from './calendar.component';
@@ -16,7 +15,6 @@ import { WeekMetricComponent } from './week/week-metric.component';
     CommonModule,
     TranslateModule,
     IconModule,
-    DatePipesModule,
     StackModule,
     DateFnsModule,
     ArrayPipesModule,

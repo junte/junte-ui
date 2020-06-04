@@ -1,7 +1,10 @@
 <form>
 
-  <header *ngIf="!!title">
-    <h3>{{title}}</h3>
+  <header *ngIf="!!title || !!titleTemplate">
+    <h3 *ngIf="!!title && !titleTemplate">{{title}}</h3>
+    <ng-container *ngIf="!!titleTemplate">
+      <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+    </ng-container>
   </header>
 
   <div data-content>

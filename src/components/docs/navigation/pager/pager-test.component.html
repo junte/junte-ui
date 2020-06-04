@@ -88,16 +88,18 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
-                <![CDATA[
-                <jnt-pager
-                  ]]>
-                  <ng-container *ngIf="countControl.value">
-                    <![CDATA[
-                    [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-pager>
-                ]]>
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-pager
+]]>
+  <ng-container *ngIf="countControl.value">
+    <![CDATA[
+    [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>
+</jnt-pager>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
