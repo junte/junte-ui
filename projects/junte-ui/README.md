@@ -1,6 +1,7 @@
 ![pipleline](https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg)
 # Quality Angular UI components kit
 Rich & fully native components collection for your beautiful 🤩 angular apps! 
+
 See more demos here 👉 https://junte-ui.com/
 
 ## Killer features
@@ -32,14 +33,12 @@ export class AppModule { }
 Import styles and icons assets in `angular.json`
 ```json
 {
-  ...
-  "options": [
-    ...
+  "options": {
     "assets": [
       {
-      "glob": "**/*",
-      "input": "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/",
-      "output": "./assets/fonts/icons/"
+        "glob": "**/*",
+        "input": "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/",
+        "output": "./assets/fonts/icons/"
       },
       {
         "glob": "**/*",
@@ -57,11 +56,12 @@ Import styles and icons assets in `angular.json`
       "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
       "node_modules/@junte/ui/lib/assets/fonts/open-sans/regular-400.scss"
     ]
-    ...
+  }
 }
 ```
-Import the styles into the global app style `styles.scss`
-```sass
+
+Import the styles into the global app style `src/styles.scss`
+```scss
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
 body {
@@ -69,7 +69,6 @@ body {
       font-weight: $jnt-font-weight-light;
       font-size: $jnt-font-size;
       color: $jnt-primary-text-color;
-      margin: 0;
 }
 ```
 Done! It is a very fast but rude installation with importing all components & assets.
@@ -100,4 +99,6 @@ Add `button` in your `app.template.html`
 </jnt-button>
 ```
 
-You should see the button! Or do you have a problem? Please, add issue here 👉 https://gitlab.com/junte/junte-ui/-/issues
+You should see the button 😎
+
+Problems 🙀? Please, add issue here 👉 https://gitlab.com/junte/junte-ui/-/issues
