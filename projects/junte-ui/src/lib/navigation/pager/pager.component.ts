@@ -2,6 +2,7 @@ import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { PagerMode } from './enums';
 
 @Component({
   selector: 'jnt-pager',
@@ -40,6 +41,12 @@ export class PagerComponent {
     this.updatePages();
   }
 
+  @Input()
+  pageSize = 10;
+
+  @Input()
+  mode: PagerMode = PagerMode.page;
+
   get pagesCount() {
     return this._pagesCount;
   }
@@ -69,7 +76,14 @@ export class PagerComponent {
 
   setPage(page: number) {
     if (page >= 1 && page <= this.pagesCount) {
-      this.onModelChange(page);
+      switch (this.mode) {
+        case PagerMode.page:
+          this.onModelChange(page);
+          break;
+        case PagerMode.offset:
+          this.onModelChange((page - 1) * this.pageSize);
+          break;
+      }
       this.selectedPage = page;
     }
   }

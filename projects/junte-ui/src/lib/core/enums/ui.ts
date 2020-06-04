@@ -1,3 +1,4 @@
+import { PagerMode } from '../../navigation/pager/enums';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { Height } from './height';
 import { Feature } from './feature';
@@ -64,6 +65,9 @@ export class UI {
   static navigation = {
     link: {
       target: LinkTarget
+    },
+    pager: {
+      mode: PagerMode
     }
   };
   static forms = {
