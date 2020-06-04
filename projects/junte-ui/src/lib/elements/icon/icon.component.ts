@@ -21,21 +21,6 @@ export class IconComponent {
   @HostBinding('attr.data-icon')
   _icon: string;
 
-  @PropertyApi({
-    description: 'Icon size',
-    path: 'ui.size',
-    default: Size.auto,
-    options: [Size.tiny,
-      Size.small,
-      Size.normal,
-      Size.large
-    ]
-  })
-  @Input()
-  set size(size: Size) {
-    this._size = size || Size.auto;
-  }
-
   @HostBinding('attr.data-type')
   type: IconType = IconType.font;
   iconset: string = DEFAULT_ICONSET;
