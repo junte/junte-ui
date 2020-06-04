@@ -1,7 +1,57 @@
 {
-  "name": "junte-ui",
-  "version": "0.0.550",
-  "description": "Junte UI – this is very strong UI framework",
+  "name": "@junte/ui",
+  "version": "1.0.11",
+  "description": "Quality Angular UI components kit",
+  "keywords": [
+    "angular",
+    "components",
+    "ui",
+    "user interface",
+    "ui kit",
+    "material"
+  ],
+  "homepage": "https://junte-ui.com/",
+  "bugs": "https://gitlab.com/junte/junte-ui/-/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Anton Breslavsky",
+    "email": "anton@junte.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/junte/junte-ui.git"
+  },
+  "scripts": {
+    "sass": "sass",
+    "ng": "ng",
+    "gulp": "gulp",
+    "cp": "cp",
+
+    "clean": "rimraf ./dist/junte-ui",
+
+    "gulp:styles": "gulp build --gulpfile ./src/scripts/styles.ts --cwd ./",
+    "gulp:iconfont": "gulp build --gulpfile ./src/scripts/iconfont/iconfont.ts --cwd ./",
+
+    "encapsulation": "gulp build --gulpfile ./node_modules/junte-encapsuler/encapsulation.js --cwd ./",
+    "encapsulation:watch": "gulp build --gulpfile ./node_modules/junte-encapsuler/encapsulation.js --cwd ./ --watch",
+
+    "assets:create": "rm -rf ./../../dist/junte-ui/lib/assets && mkdir ./../../dist/junte-ui/lib/assets/ && mkdir ./../../dist/junte-ui/lib/assets/icons && mkdir ./../../dist/junte-ui/lib/assets/fonts && mkdir ./../../dist/junte-ui/lib/assets/styles",
+    "assets:copy:fonts": "cp -r ./src/lib/assets/fonts/ ./../../dist/junte-ui/lib/assets/fonts/",
+    "assets:copy:icons": "cp -r ./src/lib/assets/icons/animated ./../../dist/junte-ui/lib/assets/icons/animated && cp -r ./src/lib/assets/icons/svg ./../../dist/junte-ui/lib/assets/icons/svg",
+    "assets:copy:styles": "cp ./src/lib/assets/styles/*.scss ./../../dist/junte-ui/lib/assets/styles",
+    "copy:assets": "npm run assets:create && npm run assets:copy:fonts && npm run assets:copy:icons && npm run assets:copy:styles",
+
+    "copy:iconfont": "cd ./src/scripts/iconfont && tsc && cp -r iconfont.js template ../../../../../dist/junte-ui",
+    "copy:readme": "cp ./README.md ./../../dist/junte-ui",
+    "copy:license": "cp ./../../LICENSE ./../../dist/junte-ui",
+
+    "copy:files": "npm run copy:license && npm run copy:readme && npm run copy:assets && npm run copy:iconfont",
+
+    "build": "npm run clean && ng build junte-ui --prod && npm run gulp:iconfont && npm run copy:files && npm run gulp:styles",
+    "pack": "cd ../../dist/junte-ui && npm pack",
+    "publish": "npm run build && npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
+    "publish:next": "tag=next npm run publish"
+  },
   "devDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0",
@@ -18,7 +68,9 @@
     "gulp-iconfont": "10.0.1",
     "gulp-rename": "1.4.0",
     "gulpclass": "0.2.0",
-    "zone.js": "0.10.2"
+    "minimist": "1.2.0",
+    "zone.js": "0.10.2",
+    "junte-encapsuler": "0.0.40"
   },
   "dependencies": {
     "date-fns": "2.10.0",

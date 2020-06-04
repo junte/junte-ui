@@ -7,8 +7,8 @@ import * as path from 'path';
 import 'reflect-metadata';
 
 const argument = require('minimist')(process.argv.slice(2));
-const styleFiles = '../lib/**/*.encapsulated.scss';
-const buildFiles = '../lib/**/build.json';
+const styleFiles = './src/lib/**/*.encapsulated.scss';
+const buildFiles = './src/lib/**/build.json';
 
 class Component {
   constructor(public section: string, public name: string) {
@@ -34,7 +34,8 @@ export class Gulpfile {
 
   private clearImports(content: string, section: string, to: string) {
     let imports = content.match(/@import.*$/gm);
-    imports = imports.filter(file => !file.includes('jnt-variables') && !file.includes(`${section}/${to.replace('.scss', '')}`));
+    imports = imports.filter(file => !file.includes('jnt-variables')
+      && !file.includes(`${section}/${to.replace('.scss', '')}`));
     imports = [...(new Set(imports))];
     console.log(imports);
     let cleared = content
@@ -47,12 +48,11 @@ export class Gulpfile {
 
   @Task()
   componentsStyle() {
-    return gulp.src(['../lib/assets/styles/jnt-mixins.scss'])
+    return gulp.src(['./src/lib/assets/styles/jnt-mixins.scss'])
       .pipe(map((file, cb) => {
-        const filePath = file.path.replace('projects/junte-ui/src/lib', 'dist/junte-ui/lib');
-        let contents = '';
-        this.components.forEach(component => contents += `@import './${component.section}/${component.name}';\n`);
-        fs.writeFileSync(filePath, contents);
+        const contents = [];
+        this.components.forEach(component => contents.push(`@import './${component.section}/${component.name}';`));
+        fs.writeFileSync('./../../dist/junte-ui/lib/assets/styles/jnt-mixins.scss', contents.join('\r\n'));
         return cb(null, file);
       }));
   }
@@ -90,17 +90,16 @@ export class Gulpfile {
 
   @SequenceTask()
   build() {
-    const listTask = ['styles', 'componentsStyle'];
-
+    const tasks = ['styles', 'componentsStyle'];
     if (argument.watch) {
-      listTask.push('watch');
+      tasks.push('watch');
     }
-
-    return listTask;
+    return tasks;
   }
 
   @Task()
   watch() {
-    return gulp.watch([styleFiles, buildFiles], {ignoreInitial: true}, gulp.series('styles'));
+    return gulp.watch([styleFiles, buildFiles],
+      {ignoreInitial: true}, gulp.series('styles'));
   }
 }
