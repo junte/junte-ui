@@ -120,7 +120,7 @@
         <ng-container
           *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
       </td>
-      <td day *ngFor="let day of (current | datesInMonth)"
+      <td data-day *ngFor="let day of (current | datesInMonth)"
           [attr.data-current]="day | dfnsIsToday"
           [attr.data-weekend]="day | dfnsIsWeekend">
         {{day | dfnsGetDate}}
