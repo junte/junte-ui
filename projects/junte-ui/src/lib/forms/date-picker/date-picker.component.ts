@@ -1,5 +1,5 @@
 import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format as formatDate, parse } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
@@ -19,7 +19,7 @@ const INPUT_DELAY = 500;
     }
   ]
 })
-export class DatePickerComponent implements OnInit {
+export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
@@ -50,27 +50,29 @@ export class DatePickerComponent implements OnInit {
 
   ngOnInit() {
     this.calendarControl.valueChanges.subscribe(date => {
-        this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
-        this.onChange(date);
-        this.opened = false;
-        if (!!this.popover) {
-          this.popover.hide();
-        }
-      });
-
-    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY),
-      distinctUntilChanged())
-      .subscribe(date => {
-      this.updateCalendar(parse(date, this.format, new Date()));
+      this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
+      this.onChange(date);
+      this.opened = false;
       if (!!this.popover) {
         this.popover.hide();
       }
     });
+
+    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY),
+      distinctUntilChanged())
+      .subscribe(date => {
+        this.updateCalendar(parse(date, this.format, new Date()));
+        if (!!this.popover) {
+          this.popover.hide();
+        }
+      });
   }
 
   updateCalendar(date: Date) {
     if (date instanceof Date && !isNaN(date.getTime())) {
       this.calendarControl.patchValue(date);
+    } else {
+      this.inputControl.patchValue(null);
     }
   }
 
@@ -90,6 +92,10 @@ export class DatePickerComponent implements OnInit {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    disabled ? this.inputControl.disable() : this.inputControl.enable();
   }
 
 }

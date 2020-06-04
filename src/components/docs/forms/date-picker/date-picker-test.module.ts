@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
+  ButtonModule,
   CheckboxModule,
   DatePickerModule,
   FormModule,
   GridModule,
+  IconModule,
+  LabelModule,
   LinkModule,
   StackModule,
   SwitcherModule,
-  LabelModule,
-  TabsModule,
-  IconModule
+  TabsModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -24,6 +25,7 @@ import { DatePickerTestComponent } from './date-picker-test.component';
     CommonModule,
     ReactiveFormsModule,
     DateFnsModule,
+    ButtonModule.forRoot(JUNTE_UI_CONFIG),
     IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
