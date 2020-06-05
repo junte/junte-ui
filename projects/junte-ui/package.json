@@ -1,6 +1,6 @@
 {
   "name": "@junte/ui",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Quality Angular UI components kit",
   "keywords": [
     "angular",
@@ -40,9 +40,12 @@
     "copy:readme": "cp ./README.md ./../../dist/junte-ui",
     "copy:license": "cp ./../../LICENSE ./../../dist/junte-ui",
     "copy:files": "npm run copy:license && npm run copy:readme && npm run copy:assets && npm run copy:iconfont",
-    "build": "npm run clean && npm run encapsulation && ng build junte-ui --prod && npm run gulp:iconfont && npm run copy:files && npm run gulp:styles",
+    "build": "npm run clean && npm run encapsulation && npm run ng build junte-ui --prod && npm run gulp:iconfont && npm run copy:files && npm run gulp:styles",
+    "serve": "run-p --continue-on-error=false -l -n *:watch",
+    "build:watch": "npm run ng build junte-ui --watch",
     "pack": "cd ../../dist/junte-ui && npm pack",
-    "publish": "npm run build && npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
+    "publish": "npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
+    "publish:unstable": "tag=unstable npm run publish",
     "publish:next": "tag=next npm run publish"
   },
   "devDependencies": {
@@ -52,6 +55,7 @@
     "@angular/forms": "^9.0.0",
     "@angular/router": "^9.0.0",
     "@ngx-translate/core": "12.1.2",
+    "@angular/cli": "9.0.4",
     "rxjs": "^6.5.3",
     "map-stream": "0.0.7",
     "reflect-metadata": "^0.1.13",
@@ -63,7 +67,8 @@
     "gulpclass": "0.2.0",
     "minimist": "1.2.0",
     "zone.js": "0.10.2",
-    "junte-encapsuler": "0.0.40"
+    "junte-encapsuler": "0.0.40",
+    "npm-run-all": "4.1.5"
   },
   "dependencies": {
     "date-fns": "2.10.0",
