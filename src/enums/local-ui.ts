@@ -21,9 +21,12 @@ export class LocalUI {
       ironman: 'ironman:svg:local',
       capitan: 'capitan:svg:local',
     // menu:
-      documentation: 'documentation:font:junte-ui-test-default',
+    top: {
+      home: 'home:svg:local',
+      documentation: 'documentation:svg:local',
+      team: 'team:svg:local',
+    },
       contacts: 'contacts:font:junte-ui-test-default',
-      team: 'team:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
       theming: 'theming:font:junte-ui-test-layout',
       typography: 'typography:font:junte-ui-test-layout',
