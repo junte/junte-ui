@@ -65,9 +65,9 @@ Import the styles into the global app style `src/styles.scss`
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
 body {
-      font-family: "Open Sans", Tahoma;
+      font-family: $jnt-font-family-base;
       font-weight: $jnt-font-weight-light;
-      font-size: $jnt-font-size;
+      font-size: $jnt-font-size-normal;
       color: $jnt-primary-text-color;
 }
 ```
