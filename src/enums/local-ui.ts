@@ -1,5 +1,6 @@
 export class LocalUI {
   static icons = {
+    npm: 'npm:svg:local',
     builder: 'builder:svg:local',
     preview: 'preview:svg:local',
     code: 'code:svg:local',
