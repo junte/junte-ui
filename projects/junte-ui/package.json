@@ -44,7 +44,7 @@
     "build": "npm run clean && npm run encapsulation && npm run ng build junte-ui --prod && npm run iconfont && npm run copy:files && npm run styles",
     "serve": "run-p --continue-on-error=false -l -n *:watch",
     "build:watch": "npm run ng build junte-ui --watch",
-    "analize": "npm run clean && npm run encapsulation && npm run ng build junte-ui --prod --stats-json && npm run webpack-bundle-analyzer dist/junte-ui/stats.json",
+    "analize": "npm run clean && npm run encapsulation && npm run ng build junte-ui --prod --stats-json && npm run webpack-bundle-analyzer ../../dist/junte-ui/stats.json",
     "pack": "cd ../../dist/junte-ui && npm pack",
     "publish": "npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
     "publish:unstable": "tag=unstable npm run publish",
