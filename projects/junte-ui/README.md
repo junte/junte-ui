@@ -34,16 +34,18 @@ import { NgModule } from '@angular/core';
 import { JunteUiModule } from '@junte/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppComponent } from './app.component';
+
 @NgModule({
-declarations: [
+  declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
     JunteUiModule.forRoot(), 
-    BrowserAnimationsModule,
-    bootstrap: [AppComponent]
-  ]
+    BrowserAnimationsModule
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
