@@ -7,13 +7,10 @@
     <span i18n="@@label.informer">Informer</span>
   </h1>
 
-  <jnt-stack resources [orientation]="ui.orientation.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
-              [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/informer"
-              target="_blank" title="GitLab">
-    </jnt-link>
-  </jnt-stack>
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/informer">
+    <!--TODO: add figma-->
+  </app-resources>
 
   <jnt-stack [align]="ui.flex.align.stretch">
     <jnt-tabs playground>

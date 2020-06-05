@@ -7,14 +7,10 @@
     <span i18n="@@label.stack">Stack</span>
   </h1>
 
-  <jnt-stack resources [orientation]="ui.orientation.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
-              [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack"
-              target="_blank" title="GitLab">
-    </jnt-link>
-  </jnt-stack>
-
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack">
+    <!--TODO: add figma-->
+  </app-resources>
 
   <div teaser>
     <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex

@@ -6,7 +6,7 @@ import { TypographyTestModule } from './typography/typography-test.module';
 
 @NgModule({
   imports: [
-    GeneralRoutingModule,
+    GeneralRoutingModule
   ],
   exports: [
     ThemingModule,

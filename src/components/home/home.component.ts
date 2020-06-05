@@ -3,6 +3,7 @@ import { UI } from 'junte-ui';
 import { Breakpoint } from 'projects/junte-ui/src/lib/core/enums/breakpoint';
 import { BreakpointService } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { AnalyticsType } from 'src/enums/analyticsType';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class HomeComponent {
 
+  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   opened = false;
