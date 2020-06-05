@@ -1,26 +1,20 @@
-find . -name "*.encapsulated.scss" -exec rm -rf {} \;
+# Junte UI test application
 
+The project contains sources for `Junte UI` & test app.
 
-## For development:
-On windows please install cygwin.
+See demo here 👉 https://junte-ui.com/
+
+For using `Junte UI` in your apps please check https://www.npmjs.com/package/@junte/ui
+
+## For development
 
 ```
 npm i
+cd ./projects/junte-ui
+npm i
+cd -
 npm run iconfont
-npm run encapsulation
-npm run build:lib
 npm start
-ng serve
 ```
 
-## For publication:
-```
-npm run package
-npm login
-npm publish ./dist/junte-ui/junte-ui-0.0.251.tgz
-```
-
-
-Developing
-
-For developing component please use https://gitlab.com/junte/junte-ui/-/wikis/Component-check-list
+Open in browser http://localhost:4200/
