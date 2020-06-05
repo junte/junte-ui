@@ -30,59 +30,65 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <jnt-stack [orientation]="ui.orientation.horizontal"
-                           [wrap]="ui.flex.wrap.wrap">
-                  <jnt-block title="Elon Musk" [padding]="ui.gutter.large">
-                    <jnt-avatar [size]="sizeControl.value"
-                                [shape]="shapeControl.value"
-                                [icon]="iconControl.value ? ui.icons.user : null"
-                                [text]="textControl.value ? 'User' : null"
-                                [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
-                    </jnt-avatar>
-                  </jnt-block>
-
-                  <jnt-block title="Inventors" [padding]="ui.gutter.large">
-                    <jnt-avatars-list [size]="sizeControl.value">
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Mark' : null"
-                                  [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Bill' : null"
-                                  [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Steve' : null"
-                                  [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Elon' : null"
+                <jnt-row>
+                  <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
+                    <jnt-block title="Elon Musk" [padding]="ui.gutter.large" [width]="ui.width.fluid">
+                      <jnt-avatar [size]="sizeControl.value"
+                                  [shape]="shapeControl.value"
+                                  [icon]="iconControl.value ? ui.icons.user : null"
+                                  [text]="textControl.value ? 'User' : null"
                                   [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                       </jnt-avatar>
-                    </jnt-avatars-list>
-                  </jnt-block>
+                    </jnt-block>
+                  </jnt-col>
 
-                  <jnt-block title="Inventors" [padding]="ui.gutter.large">
-                    <jnt-avatars-group [size]="sizeControl.value" [total]="10">
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Mark' : null"
-                                  [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Bill' : null"
-                                  [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Steve' : null"
-                                  [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
-                      </jnt-avatar>
-                      <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'Elon' : null"
-                                  [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
-                      </jnt-avatar>
-                    </jnt-avatars-group>
-                  </jnt-block>
-                </jnt-stack>
+                  <jnt-col [desktop]="6" [tablet]="12" [mobile]="12">
+                    <jnt-block title="Inventors" [padding]="ui.gutter.large" [width]="ui.width.fluid">
+                      <jnt-avatars-list [size]="sizeControl.value">
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Mark' : null"
+                                    [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Bill' : null"
+                                    [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Steve' : null"
+                                    [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Elon' : null"
+                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                        </jnt-avatar>
+                      </jnt-avatars-list>
+                    </jnt-block>
+                  </jnt-col>
+
+                  <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
+                    <jnt-block title="Inventors" [padding]="ui.gutter.large" [width]="ui.width.fluid">
+                      <jnt-avatars-group [size]="sizeControl.value" [total]="10">
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Mark' : null"
+                                    [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Bill' : null"
+                                    [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Steve' : null"
+                                    [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                        </jnt-avatar>
+                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'Elon' : null"
+                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                        </jnt-avatar>
+                      </jnt-avatars-group>
+                    </jnt-block>
+                  </jnt-col>
+
+                </jnt-row>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -92,7 +98,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="size"
-                                  i18n="@@label.size">Size</jnt-form-label>
+                                  i18n="@@label.size">Size
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -115,7 +122,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="shape"
-                                  i18n="@@label.shape">Shape</jnt-form-label>
+                                  i18n="@@label.shape">Shape
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="shape" placeholder="Circle">
                       <jnt-select-option label="Circle"
@@ -174,33 +182,33 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.component.html">
-<!-- @formatter:off-->
-<![CDATA[
-<jnt-avatar
-]]>
-  <ng-container *ngIf="sizeControl.value">
-    <![CDATA[
-    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="shapeControl.value">
-    <![CDATA[
-    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="iconControl.value">
-    <![CDATA[
-    [icon]="ui.icons.user"]]>
-  </ng-container>
-  <ng-container *ngIf="textControl.value">
-    <![CDATA[
-    text="User"]]>
-  </ng-container>
-  <ng-container *ngIf="imageControl.value">
-    <![CDATA[
-    image="assets/images/bob.jpeg"]]>
-  </ng-container>
-<![CDATA[>
-</jnt-avatar>
-]]>
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-avatar
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="shapeControl.value">
+                    <![CDATA[
+                    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.user"]]>
+                  </ng-container>
+                  <ng-container *ngIf="textControl.value">
+                    <![CDATA[
+                    text="User"]]>
+                  </ng-container>
+                  <ng-container *ngIf="imageControl.value">
+                    <![CDATA[
+                    image="assets/images/bob.jpeg"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-avatar>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
@@ -210,38 +218,38 @@
                                  i18n-title="@@label.avatars_list_component">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.template.html">
-<!-- @formatter:off-->
-<![CDATA[
-<jnt-avatars-list
-]]>
-  <ng-container *ngIf="sizeControl.value">
-    <![CDATA[
-    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-  </ng-container>
-    <![CDATA[>]]>
-  <ng-container *ngFor="let av of 4 | mockArray">
-    <![CDATA[
-    <jnt-avatar
-    ]]>
-      <ng-container *ngIf="iconControl.value">
-        <![CDATA[
-        [icon]="ui.icons.user"]]>
-      </ng-container>
-      <ng-container *ngIf="textControl.value">
-        <![CDATA[
-        text="User"]]>
-      </ng-container>
-      <ng-container *ngIf="imageControl.value">
-        <![CDATA[
-        image="assets/images/bob.jpeg"]]>
-      </ng-container>
-      <![CDATA[>
-    </jnt-avatar>
-      ]]>
-  </ng-container>
-<![CDATA[
-</jnt-avatars-list>
-]]>
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-avatars-list
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngFor="let av of 4 | mockArray">
+                    <![CDATA[
+                    <jnt-avatar
+                      ]]>
+                      <ng-container *ngIf="iconControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.user"]]>
+                      </ng-container>
+                      <ng-container *ngIf="textControl.value">
+                        <![CDATA[
+                        text="User"]]>
+                      </ng-container>
+                      <ng-container *ngIf="imageControl.value">
+                        <![CDATA[
+                        image="assets/images/bob.jpeg"]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-avatar>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-avatars-list>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
@@ -251,38 +259,38 @@
                                  i18n-title="@@label.avatars_group_component">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="avatar-test.template.html">
-<!-- @formatter:off-->
-<![CDATA[
-<jnt-avatars-group [total]="9"
-]]>
-  <ng-container *ngIf="sizeControl.value">
-    <![CDATA[
-    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-  </ng-container>
-  <![CDATA[>]]>
-  <ng-container *ngFor="let av of 5 | mockArray">
-    <![CDATA[
-    <jnt-avatar
-    ]]>
-      <ng-container *ngIf="iconControl.value">
-        <![CDATA[
-        [icon]="ui.icons.user"]]>
-      </ng-container>
-      <ng-container *ngIf="textControl.value">
-        <![CDATA[
-        text="User"]]>
-      </ng-container>
-      <ng-container *ngIf="imageControl.value">
-        <![CDATA[
-        image="assets/images/bob.jpeg"]]>
-      </ng-container>
-        <![CDATA[>
-    </jnt-avatar>
-  ]]>
-  </ng-container>
-  <![CDATA[
-</jnt-avatars-group>
-  ]]>
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-avatars-group [total]="9"
+                                   ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngFor="let av of 5 | mockArray">
+                    <![CDATA[
+                    <jnt-avatar
+                      ]]>
+                      <ng-container *ngIf="iconControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.user"]]>
+                      </ng-container>
+                      <ng-container *ngIf="textControl.value">
+                        <![CDATA[
+                        text="User"]]>
+                      </ng-container>
+                      <ng-container *ngIf="imageControl.value">
+                        <![CDATA[
+                        image="assets/images/bob.jpeg"]]>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-avatar>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-avatars-group>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

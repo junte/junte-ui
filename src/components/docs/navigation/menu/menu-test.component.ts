@@ -19,8 +19,7 @@ export class MenuTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sourceType = SourceType;
-  menuItem = MenuItemComponent;
-  menu = MenuComponent;
+  types = {menu: MenuComponent, menuItem: MenuItemComponent};
 
   @ViewChild('code') code: TabComponent;
 
