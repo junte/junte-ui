@@ -23,6 +23,7 @@ export class LocalUI {
     // menu:
       documentation: 'documentation:font:junte-ui-test-default',
       contacts: 'contacts:font:junte-ui-test-default',
+      team: 'team:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
       theming: 'theming:font:junte-ui-test-layout',
       typography: 'typography:font:junte-ui-test-layout',
