@@ -1,12 +1,18 @@
 @import "jnt-variables";
 @import "../../component";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
-[data-icon] {
-  line-height: 0;
+[data-home] {
   @include jnt-icon ((
     size: 70px
   ), '&', true);
+
+  @include for-mobile() {
+    @include jnt-icon ((
+      size: 30px
+    ), '&', true);
+  }
 }
 
 [page] {
