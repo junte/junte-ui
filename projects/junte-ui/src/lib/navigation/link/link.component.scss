@@ -130,6 +130,7 @@
   $defs: (
     corner: $jnt-corner-small,
     font-size: null,
+    font-weight: null,
     text-transform: null,
     padding: $jnt-gutter-tiny $jnt-gutter-small,
     display: inline,
@@ -281,6 +282,7 @@
     padding: map-get($vars, padding);
     height: map-get($vars, height);
     font-size: map-get($vars, font-size);
+    font-weight: map-get($vars, font-weight);
     text-transform: map-get($vars, text-transform);
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
