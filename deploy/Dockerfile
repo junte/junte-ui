@@ -5,13 +5,13 @@ WORKDIR /src
 COPY package.json .
 
 RUN npm i \
-  && cd projects/junte-ui \
+  && cd ./projects/junte-ui \
   && npm i
 
 COPY . .
 
 RUN npm run build \
-  && cd projects/junte-ui \
+  && cd ./projects/junte-ui \
   && npm run publish:unstable
 
 
