@@ -24,10 +24,11 @@ ng new junte-ui-test --style=scss --routing=false
 cd junte-ui-test
 ```
 
+Install `Junte UI` package
 ```bash
 npm install @junte/ui  --save-dev
 ```
-Import `Junte UI` & `Browser Animations` modules into your app module `src/app/app.module.ts`
+Import `Junte UI` & `Browser Animations` modules into your app module in `src/app/app.module.ts`
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
