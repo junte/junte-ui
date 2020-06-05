@@ -30,6 +30,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   multilineControl = this.fb.control(false);
   rowsControl = this.fb.control(5);
   statesControl = this.fb.control(null);
+  minControl = this.fb.control(null);
+  maxControl = this.fb.control(null);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -44,6 +46,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     multiline: this.multilineControl,
     rows: this.rowsControl,
     states: this.statesControl,
+    min: this.minControl,
+    max: this.maxControl
   });
 
   inputControl = this.fb.control(null);

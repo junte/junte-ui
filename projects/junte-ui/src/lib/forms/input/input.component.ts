@@ -1,12 +1,16 @@
-import { BACKSPACE, LEFT_ARROW, RIGHT_ARROW, TAB } from '@angular/cdk/keycodes';
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputState, InputType } from './enums';
 
+const BACKSPACE = 8;
+const LEFT_ARROW = 37;
+const RIGHT_ARROW = 39;
+const TAB = 9;
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -87,13 +91,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Minimum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() min: number;
+  @Input() min: number = null;
 
   @PropertyApi({
     description: 'Maximum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() max: number;
+  @Input() max: number = null;
 
   @PropertyApi({
     description: 'Used to specify that the input field is read-only',
@@ -185,8 +189,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges
+    this.inputControl.valueChanges.pipe(distinctUntilChanged())
       .subscribe(value => this.onChange(value));
+
     this.formattedControl.valueChanges
       .subscribe(formatted => {
         if (!!this.input) {
@@ -233,6 +238,27 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  blur() {
+    if (this.type === InputType.number) {
+      if (this.inputControl.value === '' || this.inputControl.value === null) {
+        this.inputControl.patchValue(null);
+        return;
+      }
+
+      let number = +this.inputControl.value;
+
+      if (this.max !== null && number > this.max) {
+        number = this.max;
+      }
+
+      if (this.min !== null && number < this.min) {
+        number = this.min;
+      }
+
+      this.inputControl.patchValue(number);
+    }
+  }
+
   writeValue(value) {
     this.form.patchValue(!!this.mask
       ? this.masking(value) : {input: value});
@@ -257,28 +283,20 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   up() {
-    if (this.max !== undefined) {
-      if (this.inputControl.value === null) {
-        this.inputControl.patchValue(0);
-      }
-      if (this.inputControl.value < this.max) {
-        this.inputControl.patchValue(+this.inputControl.value + 1);
-      }
-    } else {
-      this.inputControl.patchValue(+this.inputControl.value + 1);
+    let number = +this.inputControl.value;
+    if (this.inputControl.value === '' || this.inputControl.value === null) {
+      this.inputControl.patchValue(number);
+    } else if (this.max === null || number < this.max) {
+      this.inputControl.patchValue(++number);
     }
   }
 
   down() {
-    if (this.min !== undefined) {
-      if (this.inputControl.value === null) {
-        this.inputControl.patchValue(0);
-      }
-      if (this.inputControl.value > this.min) {
-        this.inputControl.patchValue(+this.inputControl.value - 1);
-      }
-    } else {
-      this.inputControl.patchValue(+this.inputControl.value - 1);
+    let number = +this.inputControl.value;
+    if (this.inputControl.value === '' || this.inputControl.value === null) {
+      this.inputControl.patchValue(number);
+    } else if (this.max === null || number < this.max) {
+      this.inputControl.patchValue(--number);
     }
   }
 }
