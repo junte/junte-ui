@@ -47,11 +47,12 @@
     "publish:npm": "npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
     "publish": "tag=unstable npm run publish:npm",
     "publish:rc": "tag=next npm run publish:npm",
-    "publish:prod": "tag=latest npm run publish:npm"
+    "publish:prod": "tag=latest npm run publish:npm",
+    "clean:npm": "npm cache clean --force && rm -rf -- node_modules package-lock.json",
+    "refresh": "npm run clean:npm && npm install"
   },
   "devDependencies": {
     "@angular/animations": "9.0.4",
-    "@angular/cdk": "9.1.0",
     "@angular/common": "9.0.4",
     "@angular/compiler": "9.0.4",
     "@angular/core": "9.0.4",
@@ -76,7 +77,7 @@
     "gulp-iconfont": "10.0.1",
     "gulp-rename": "1.4.0",
     "gulpclass": "0.2.0",
-    "minimist": "1.2.0",
+    "minimist": "1.2.5",
     "zone.js": "0.10.2",
     "junte-encapsuler": "0.0.40",
     "typescript": "3.6.4",
