@@ -4,16 +4,15 @@ WORKDIR /src
 
 COPY package.json .
 
-RUN npm i \
-  && cd ./projects/junte-ui \
-  && npm i
+RUN npm i
+
+COPY projects/junte-ui/package.json projects/junte-ui/package.json
+
+RUN cd projects/junte-ui && npm i
 
 COPY . .
 
-RUN npm run build \
-  && cd ./projects/junte-ui \
-  && npm run publish:unstable
-
+RUN npm run build
 
 FROM nginx:1.17.4-alpine
 
