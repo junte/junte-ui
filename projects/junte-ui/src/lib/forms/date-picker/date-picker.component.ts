@@ -58,8 +58,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
       }
     });
 
-    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY),
-      distinctUntilChanged())
+    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
         this.updateCalendar(parse(date, this.format, new Date()));
         if (!!this.popover) {
