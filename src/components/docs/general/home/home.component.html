@@ -76,14 +76,21 @@ npm install @junte/ui  --save-dev
   <app-code-highlight [language]="languages.typescript">
     <pre>
 <![CDATA[
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { JunteUiModule } from '@junte/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [
-      JunteUiModule.forRoot(),
-      BrowserAnimationsModule
-    ]
+declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    JunteUiModule.forRoot(),
+    BrowserAnimationsModule,
+    bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
 ]]>
@@ -131,6 +138,7 @@ export class AppModule { }
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
+/* You can add global styles to this file, and also import other style files */
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
 body {

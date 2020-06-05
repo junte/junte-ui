@@ -27,16 +27,23 @@ cd junte-ui-test
 ```bash
 npm install @junte/ui  --save-dev
 ```
-Import `Junte UI` & `BrowserAnimationsModule` modules into your app module `src/app/app.module.ts`
+Import `Junte UI` & `Browser Animations` modules into your app module `src/app/app.module.ts`
 ```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { JunteUiModule } from '@junte/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [
-      JunteUiModule.forRoot(), 
-      BrowserAnimationsModule
-    ]
+declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    JunteUiModule.forRoot(), 
+    BrowserAnimationsModule,
+    bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
 ```
@@ -72,6 +79,7 @@ Import styles and assets in `angular.json`
 
 Import the styles into the global app styles `src/styles.scss`
 ```scss
+/* You can add global styles to this file, and also import other style files */
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
 body {
