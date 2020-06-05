@@ -1,17 +1,18 @@
 FROM node:10.13 as build
 
-RUN npm install -g @angular/cli@8.3.3
-
 WORKDIR /src
 
 COPY package.json .
-RUN npm install
+
+RUN npm i
+
+COPY projects/junte-ui/package.json projects/junte-ui/package.json
+
+RUN cd projects/junte-ui && npm i
 
 COPY . .
 
-RUN npm run build:prod \
-    && npm run build
-
+RUN npm run build
 
 FROM nginx:1.17.4-alpine
 

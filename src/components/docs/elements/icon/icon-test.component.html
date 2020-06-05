@@ -34,15 +34,13 @@
               <ng-template #document>
                 <jnt-stack>
                   <div block>
-                    <jnt-icon [icon]="iconControl.value.value"
-                              [size]="sizeControl.value"></jnt-icon>
+                    <jnt-icon [icon]="iconControl.value.value"></jnt-icon>
                   </div>
                   <jnt-label
                     [label]="'ui.' + (iconControl.value.path | join:'.') + '.' + iconControl.value.name"></jnt-label>
                 </jnt-stack>
                 <p>The icon is inline element by default and we should write some text for tests
-                  <jnt-icon [icon]="iconControl.value.value"
-                            [size]="sizeControl.value"></jnt-icon>
+                  <jnt-icon [icon]="iconControl.value.value"></jnt-icon>
                   thus the text is here. We also need secondary line of the text and we will try to write some thing.
                 </p>
               </ng-template>
@@ -56,30 +54,6 @@
                             i18n-text="@@action.pick_icon"
                             [icon]="iconControl.value.value"
                             (click)="select()"></jnt-button>
-
-                <jnt-form-item>
-                  <jnt-form-label for="size"
-                                  i18n="@@label.size">Size</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="size"
-                                placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
-                      <jnt-select-option label="Tiny"
-                                         i18n-label="@@label.tiny"
-                                         [key]="ui.size.tiny"></jnt-select-option>
-                      <jnt-select-option label="Small"
-                                         i18n-label="@@label.small"
-                                         [key]="ui.size.small"></jnt-select-option>
-                      <jnt-select-option label="Normal"
-                                         i18n-label="@@label.normal"
-                                         [key]="ui.size.normal"></jnt-select-option>
-                      <jnt-select-option label="Large"
-                                         i18n-label="@@label.large"
-                                         [key]="ui.size.large"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
-
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -107,10 +81,6 @@
                 <!-- @formatter:off-->
 <![CDATA[
 <jnt-icon [icon]="]]>ui.{{iconControl.value.path | join:'.'}}.{{iconControl.value.name}}<![CDATA[" ]]>
-  <ng-container *ngIf="sizeControl.value">
-    <![CDATA[
-    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-  </ng-container>
   <![CDATA[>
 </jnt-icon>
 ]]>

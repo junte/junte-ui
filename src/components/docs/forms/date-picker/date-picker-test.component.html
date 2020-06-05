@@ -31,16 +31,18 @@
           <jnt-col [tablet]="12">
             <app-browser-preview>
               <ng-template #document>
-                  <jnt-form [formGroup]="form" data-form>
-                    <jnt-date-picker formControlName="flightDate"
-                                     placeholder="Please enter the date"
-                                     [format]="formatControl.value">
-                    </jnt-date-picker>
-                  </jnt-form>
-                  <div *ngIf="!!flightDateControl.value">
-                    You choose
-                    <jnt-label [label]="flightDateControl.value | dfnsFormat:'dd.MM.yyyy'"></jnt-label>
-                  </div>
+                <jnt-form [formGroup]="form" data-form>
+                  <jnt-date-picker formControlName="flightDate"
+                                   placeholder="Please enter the date"
+                                   [format]="formatControl.value">
+                  </jnt-date-picker>
+                </jnt-form>
+                <jnt-stack *ngIf="!!flightDateControl.value" [type]="ui.layout.stack.type.horizontal"
+                           [align]="ui.flex.align.center" [gutter]="ui.gutter.small">
+                  <div>You choose:</div>
+                  <jnt-label [label]="flightDateControl.value | dfnsFormat:'dd.MM.yyyy'"></jnt-label>
+                  <jnt-button text="Clear" (click)="flightDateControl.patchValue(null)"></jnt-button>
+                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -67,10 +69,10 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="date-picker-test.component.html">
                 <!-- @formatter:off-->
-<![CDATA[
-<jnt-date-picker>
-</jnt-date-picker>
-]]>
+                <![CDATA[
+                <jnt-date-picker>
+                </jnt-date-picker>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

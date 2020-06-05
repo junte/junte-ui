@@ -26,11 +26,9 @@ export class IconTestComponent implements OnInit {
     name: 'map',
     value: UI.icons.animated.runningMan
   });
-  sizeControl = this.fb.control(UI.size.large);
 
   builder = this.fb.group({
     icon: this.iconControl,
-    size: this.sizeControl,
   });
 
   constructor(private modal: ModalService,
