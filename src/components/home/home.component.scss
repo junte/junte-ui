@@ -7,6 +7,8 @@
 @import "layout/responsive/responsive";
 @import "layout/grid/container/container";
 
+$angular-color: #E23237;
+
 @include jnt-grid-container((), null, true) {
   position: static;
   display: flex;
@@ -46,6 +48,9 @@
       line-height: 140%;
       margin-top: $jnt-gutter-huge;
       position: relative;
+      span {
+        color: $angular-color;
+      }
       [data-label] {
         @include jnt-label(
             (
@@ -95,6 +100,7 @@
           item: (
             color: $jnt-primary-color,
             text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
             active: (
               color: $jnt-white-color
             ),
@@ -140,23 +146,46 @@
   }
 
   [tutorial] {
+    position: relative;
+    z-index: 1;
+    border-radius: 34px;
+    border: 2px solid $jnt-page-background;
+    background-image: linear-gradient(138.17deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%);
     @include max-for-tablet() {
       align-self: center;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(326.21deg, #DE3DBF 8.92%, #C337B8 21.82%, #A22FAE 40.86%, #8829A7 60.46%, #7624A2 80.57%, #6B229F 101.52%, #67219E 124.65%);
+      z-index: -1;
+      transition: opacity 0.3s linear;
+      opacity: 0;
+      border-radius: 34px;
+    }
+    &:hover:before {
+      opacity: 1;
     }
     @include jnt-link((
       corner: 34px,
       font-size: 18px,
       text-transform: uppercase,
-      padding: $jnt-gutter-normal $jnt-gutter-large,
+      font-weight: $jnt-font-weight-semi-bold,
+      padding: $jnt-gutter-small $jnt-gutter-large,
       schemes: (
         primary: (
-          color: $jnt-primary-light-color,
+          color: transparent,
           inverse-color: $jnt-white-color,
-          hover-color: $jnt-primary-color,
+          hover-color: transparent,
         ),
       ),
       icon: (
-        margin-right: $jnt-gutter-small,
+        margin-right: $jnt-gutter-normal,
+        size: 28px,
       ),
     ), '&', true);
   }
@@ -234,7 +263,7 @@
     [ship] {
       position: absolute;
       top: 0;
-      left: 178px;
+      left: 190px;
       animation: bounce 0.5s infinite;
       @include for-mobile() {
         top: auto;
