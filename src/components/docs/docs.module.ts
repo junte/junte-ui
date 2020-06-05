@@ -19,6 +19,7 @@ import { OutletModule } from '../outlet/outlet.module';
 import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
@@ -48,7 +49,8 @@ export function getHighlightLanguages() {
     AppFooterModule,
     DocsRoutingModule,
     ModalTestModule,
-    ResponsiveModule
+    ResponsiveModule,
+    AnalyticsDirectivesModule
   ],
   declarations: [
     DocsComponent,

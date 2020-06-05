@@ -7,19 +7,10 @@
     <span i18n="@@label.block">Block</span>
   </h1>
 
-  <jnt-stack resources [orientation]="ui.orientation.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
-              [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/block"
-              target="_blank" title="GitLab">
-    </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
-              [outline]="ui.outline.ghost"
-              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2389%3A4155"
-              target="_blank" title="Figma">
-    </jnt-link>
-  </jnt-stack>
-
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/block"
+    figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2389%3A4155">
+  </app-resources>
 
   <jnt-stack [align]="ui.flex.align.stretch">
 
