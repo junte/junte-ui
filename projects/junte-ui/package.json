@@ -40,7 +40,7 @@
     "copy:readme": "cp ./README.md ./../../dist/junte-ui",
     "copy:license": "cp ./../../LICENSE ./../../dist/junte-ui",
     "copy:files": "npm run copy:license && npm run copy:readme && npm run copy:assets && npm run copy:iconfont",
-    "build": "npm run clean && npm run encapsulation && npm run ng build junte-ui --prod && npm run iconfont && npm run copy:files && npm run styles",
+    "build": "npm run clean && npm run encapsulation && npm run ng build junte-ui -- --prod && npm run iconfont && npm run copy:files && npm run styles",
     "serve": "run-p --continue-on-error=false -l -n *:watch",
     "build:watch": "npm run ng build junte-ui --watch",
     "pack": "cd ../../dist/junte-ui && npm pack",
