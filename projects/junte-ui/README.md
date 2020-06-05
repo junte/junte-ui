@@ -13,11 +13,21 @@ See more demos here 👉 https://junte-ui.com/
 * mobile components adaptation from box
 
 ## How to install
-In your angular app
-```bash
-npm install @junte/ui
+Install angular `ngc` if you have no yet.
 ```
-Then add Junte UI module into your app module
+npm i -g @angular/cli
+```
+
+Create a new angular project
+```bash
+ng new junte-ui-test --style=scss --routing=false
+cd junte-ui-test
+```
+
+```bash
+npm install @junte/ui  --save-dev
+```
+Import `Junte UI` & `BrowserAnimationsModule` modules into your app module `src/app/app.module.ts`
 ```typescript
 import { JunteUiModule } from '@junte/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AppModule { }
 ```
-Import styles and icons assets in `angular.json`
+Import styles and assets in `angular.json`
 ```json
 {
   "options": {
@@ -60,7 +70,7 @@ Import styles and icons assets in `angular.json`
 }
 ```
 
-Import the styles into the global app style `src/styles.scss`
+Import the styles into the global app styles `src/styles.scss`
 ```scss
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
@@ -69,19 +79,25 @@ body {
       font-weight: $jnt-font-weight-light;
       font-size: $jnt-font-size-normal;
       color: $jnt-primary-text-color;
+      margin: 20px;
 }
 ```
-Done! It is a very fast but rude installation with importing all components & assets.
+Bingo 👏 Start your project.
+```bash
+ng serve
+``` 
+
+It is a very fast but rude installation with importing all components & assets.
 
 ## How to try
 You can go to research all components specifications https://junte-ui.com/
 
-For fast test add link to `UI` enum in `app.component.ts`
+For fast test add link to `UI` enum in `src/app/app.component.ts`
 ```typescript
 import { Component } from '@angular/core';
 import { UI } from '@junte/ui';
 @Component({
-    selector: 'app',
+    selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
@@ -90,7 +106,7 @@ export class AppComponent {
 }
 ```
 
-Add `button` in your `app.template.html`
+Add `jnt-button` in to your `src/app/app.component.html`
 
 ```html
 <jnt-button text="Click on me"
@@ -101,4 +117,4 @@ Add `button` in your `app.template.html`
 
 You should see the button 😎
 
-Problems 🙀? Please, add issue here 👉 https://gitlab.com/junte/junte-ui/-/issues
+Problems 🙀? Please, add issue an here 👉 https://gitlab.com/junte/junte-ui/-/issues
