@@ -15,7 +15,8 @@ import {
   SwitcherModule,
   CheckboxModule,
   CardModule,
-  SkeletonModule
+  SkeletonModule,
+  MenuModule
 } from 'junte-ui';
 import { CardTestComponent } from './card-test.component';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -37,6 +38,7 @@ import { SharedModule } from '../../shared/shared.module';
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     CardModule.forRoot(JUNTE_UI_CONFIG),
     SkeletonModule.forRoot(JUNTE_UI_CONFIG),
+    MenuModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
     ArrayPipesModule,
     SharedModule

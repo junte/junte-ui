@@ -25,6 +25,7 @@ export class CardTestComponent implements OnInit {
   stateControl = this.fb.control(null);
   clickableControl = this.fb.control(false);
   iconControl = this.fb.control(false);
+  actionsControl = this.fb.control(false);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -33,7 +34,8 @@ export class CardTestComponent implements OnInit {
     scheme: this.schemeControl,
     title: this.titleControl,
     clickable: this.clickableControl,
-    icon: this.iconControl
+    icon: this.iconControl,
+    actions: this.actionsControl
   });
 
   constructor(private fb: FormBuilder) {
