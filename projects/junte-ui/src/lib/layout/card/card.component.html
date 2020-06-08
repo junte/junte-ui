@@ -9,11 +9,20 @@
   </ng-container>
 </div>
 
-<div data-body>
-  <ng-content></ng-content>
-</div>
+<ng-content></ng-content>
 
-<div *ngIf="state === cardState.loading" data-loading>
+<jnt-dropdown *ngIf="!!cardActionsTemplate" data-action [position]="ui.position.right">
+  <ng-template #triggerTemplate let-action="trigger">
+    <jnt-button data-trigger [outline]="ui.outline.transparent"
+                [icon]="ui.icons.actions"
+                (click)="action()"></jnt-button>
+  </ng-template>
+  <ng-template #dropdownTemplate>
+    <ng-container *ngTemplateOutlet="cardActionsTemplate"></ng-container>
+  </ng-template>
+</jnt-dropdown>
+
+<div *ngIf="state === cardState.loading" data-load>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
 </div>
 <div *ngIf="state === cardState.error" data-error>

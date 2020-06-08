@@ -2,9 +2,10 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
+@import "forms/button/button";
 
 @mixin card-padding($padding, $wrapper) {
-  #{$wrapper} [data-body] {
+  & {
     padding: $padding;
   }
 }
@@ -24,7 +25,8 @@
     corner: $jnt-corner-normal,
     border: null,
     title: (
-      padding: $jnt-gutter-normal,
+      padding: 0,
+      margin: 0 0 $jnt-gutter-normal 0,
       color: $jnt-primary-text-color,
       text-align: left,
       font-weight: $jnt-font-weight-bold,
@@ -40,6 +42,17 @@
       big: $jnt-gutter-big,
       large: $jnt-gutter-large,
       huge: $jnt-gutter-huge,
+    ),
+    action: (
+      position: absolute,
+      top: 0,
+      right: 0,
+      left: auto,
+      bottom: auto,
+      transform: null,
+      trigger: (
+        size: 18px
+      )
     ),
     schemes: (
       primary: (
@@ -142,6 +155,7 @@
     @if map-has-key($vars, title) {
       $title: map-get($vars, title);
       padding: map-get($title, padding);
+      margin: map-get($title, margin);
       text-align: map-get($title, text-align);
       font-weight: map-get($title, font-weight);
       color: map-get($title, color);
@@ -149,7 +163,7 @@
     }
   }
 
-  #{$context} #{$wrapper} [data-loading],
+  #{$context} #{$wrapper} [data-load],
   #{$context} #{$wrapper} [data-error] {
     position: absolute;
     top: 0;
@@ -170,6 +184,24 @@
           @include jnt-icon((
             size: map-get($icon, size)
           ), '&');
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-action] {
+    @if map-has-key($vars, action) {
+      $action: map-get($vars, action);
+      position: map-get($action, position);
+      right: map-get($action, right);
+      top: map-get($action, top);
+      left: map-get($action, left);
+      bottom: map-get($action, bottom);
+      transform: map-get($action, transform);
+      @if map-has-key($action, trigger) {
+        $trigger: map-get($action, trigger);
+        [data-trigger] {
+          @include jnt-button((icon: (size: map-get($trigger, size))), '&');
         }
       }
     }

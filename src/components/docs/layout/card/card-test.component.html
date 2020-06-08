@@ -55,6 +55,12 @@
                         <span>Edit card</span>
                       </jnt-stack>
                     </ng-template>
+                    <ng-template *ngIf="actionsControl.value" #cardActionsTemplate>
+                      <jnt-menu [orientation]="ui.orientation.vertical">
+                        <jnt-menu-item title="Edit"></jnt-menu-item>
+                        <jnt-menu-item title="Copy"></jnt-menu-item>
+                      </jnt-menu>
+                    </ng-template>
                   </jnt-card>
                 </jnt-stack>
               </ng-template>
@@ -178,6 +184,11 @@
                       <jnt-checkbox formControlName="icon"
                                     label="Icon"></jnt-checkbox>
                     </jnt-col>
+
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="actions"
+                                    label="Actions"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
               </jnt-stack>
@@ -243,6 +254,16 @@
                         <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
                         <span>Edit card</span>
                       </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="actionsControl.value">
+                    <![CDATA[
+                    <ng-template #cardActionsTemplate>
+                      <jnt-menu [orientation]="ui.orientation.vertical">
+                        <jnt-menu-item title="Edit"></jnt-menu-item>
+                        <jnt-menu-item title="Copy"></jnt-menu-item>
+                      </jnt-menu>
                     </ng-template>
                     ]]>
                   </ng-container>

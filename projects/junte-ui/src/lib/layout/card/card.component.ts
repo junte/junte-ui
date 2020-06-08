@@ -39,6 +39,13 @@ export class CardComponent {
   @ContentChild('cardTitleTemplate')
   titleTemplate: TemplateRef<any>;
 
+  @ContentApi({
+    selector: '#cardActionsTemplate',
+    description: 'card actions template'
+  })
+  @ContentChild('cardActionsTemplate')
+  cardActionsTemplate: TemplateRef<any>;
+
   @PropertyApi({
     description: 'Icon indicator',
     type: 'string'
