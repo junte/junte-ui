@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CardTestModule } from './card/card-test.module';
 import { CollapsibleTestModule } from './collapsible/collapsible-test.module';
 import { CollectionsTestModule } from '../collections/collections-test.module';
 import { InformerTestModule } from './informer/informer-test.module';
@@ -25,7 +26,8 @@ import { StackTestModule } from './stack/stack-test.module';
     InformerTestModule,
     CollectionsTestModule,
     ResponsiveTestModule,
-    CollapsibleTestModule
+    CollapsibleTestModule,
+    CardTestModule
   ]
 })
 export class LayoutTestModule {

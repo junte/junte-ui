@@ -1,0 +1,21 @@
+<div *ngIf="!!icon" data-indicator>
+  <jnt-icon [icon]="icon"></jnt-icon>
+</div>
+
+<div *ngIf="!!title || !!titleTemplate" data-title>
+  <span *ngIf="!!title && !titleTemplate">{{title}}</span>
+  <ng-container *ngIf="!!titleTemplate">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+  </ng-container>
+</div>
+
+<div data-body>
+  <ng-content></ng-content>
+</div>
+
+<div *ngIf="state === cardState.loading" data-loading>
+  <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+</div>
+<div *ngIf="state === cardState.error" data-error>
+  <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
+</div>

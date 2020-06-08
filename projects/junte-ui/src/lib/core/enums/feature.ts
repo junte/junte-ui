@@ -1,3 +1,4 @@
 export enum Feature {
-  adapted = 'adapted'
+  adapted = 'adapted',
+  clickable = 'clickable',
 }
