@@ -1,3 +1,4 @@
+import { CardState } from '../../layout/card/enums';
 import { PagerMode } from '../../navigation/pager/enums';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { Height } from './height';
@@ -59,6 +60,7 @@ export class UI {
     grid: {row: {align: RowAlign, justify: RowJustify}},
     stack: {type: StackType},
     block: {state: BlockState},
+    card: {state: CardState},
     skeleton: {type: SkeletonType},
     app: {position: AppLayoutPosition}
   };

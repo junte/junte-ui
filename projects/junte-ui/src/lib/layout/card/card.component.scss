@@ -3,25 +3,36 @@
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
 
-@mixin block-padding($padding, $wrapper) {
-  #{$wrapper} [data-body], #{$wrapper}[data-footer] {
+@mixin card-padding($padding, $wrapper) {
+  #{$wrapper} [data-body] {
     padding: $padding;
   }
 }
 
-@mixin block-fill($scheme, $wrapper) {
+@mixin card-fill($scheme, $wrapper) {
   & {
     background-color: map-get($scheme, background-color);
-    #{$wrapper} [data-title] {
-      color: map-get($scheme, title-color);
-    }
+  }
+  #{$wrapper} [data-indicator] {
+    border-color: map-get($scheme, background-color);
   }
 }
 
-@mixin jnt-block($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-card($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
-    shadow: $jnt-shadow-normal,
+    shadow: null,
     corner: $jnt-corner-normal,
+    border: null,
+    title: (
+      padding: $jnt-gutter-normal,
+      color: $jnt-primary-text-color,
+      text-align: left,
+      font-weight: $jnt-font-weight-bold,
+      font-size: $jnt-font-size-normal
+    ),
+    hover: (
+      shadow: $jnt-shadow-normal,
+    ),
     padding: (
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
@@ -33,19 +44,15 @@
     schemes: (
       primary: (
         background-color: $jnt-primary-background,
-        title-color: $jnt-primary-color
       ),
       secondary: (
         background-color: $jnt-secondary-background,
-        title-color: $jnt-primary-color
       ),
       success: (
         background-color: $jnt-success-color,
-        title-color: $jnt-white-color
       ),
       fail: (
         background-color: $jnt-fail-color,
-        title-color: $jnt-white-color
       ),
     ),
     overlay: (
@@ -70,12 +77,12 @@
   }
 
   :host, #{$context} {
-    display: inline-flex;
-    flex-direction: column;
+    display: block;
     position: relative;
     min-height: 40px;
     box-shadow: map-get($vars, shadow);
     border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
     box-sizing: border-box;
     &[data-width="fluid"] {
       width: 100%;
@@ -83,7 +90,7 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          @include block-fill($map, $wrapper);
+          @include card-fill($map, $wrapper);
         }
       }
     }
@@ -92,40 +99,58 @@
       $padding: map-get($vars, padding);
       @each $padding, $map in $padding {
         &[data-padding = '#{$padding}'] {
-          @include block-padding($map, $wrapper);
+          @include card-padding($map, $wrapper);
         }
       }
     }
 
-    &[data-features*='adapted'] {
-      @include for-mobile() {
-        box-shadow: none;
-        background-color: transparent;
-        #{$wrapper} [data-title] {
-          color: $jnt-primary-color;
-        }
-        #{$wrapper} [data-body],
-        #{$wrapper} [data-footer] {
-          padding-left: 0;
-          padding-right: 0;
+    &[data-features*='clickable'] {
+      cursor: pointer;
+      &:hover {
+        @if map-has-key($vars, hover) {
+          $hover: map-get($vars, hover);
+          box-shadow: map-get($hover, shadow);
         }
       }
+      &:focus {
+        outline: 0;
+      }
     }
+    @content;
+  }
+
+  #{$context} #{$wrapper} [data-indicator] {
+    width: 32px;
+    height: 32px;
+    background-color: $jnt-secondary-background;
+    border-radius: $jnt-corner-normal;
+    border: 2px solid;
+    position: absolute;
+    top: -$jnt-gutter-small;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    @include jnt-icon((
+      size: 16px,
+      color: $jnt-primary-light-color,
+    ), '&');
   }
 
   #{$context} #{$wrapper} [data-title] {
-    padding: 0 $jnt-gutter-normal;
-    text-align: center;
-    font-weight: $jnt-font-weight-bold;
-    > div {
-      padding: $jnt-gutter-normal 0;
-      border-bottom: 1px solid $jnt-muted-color;
+    @if map-has-key($vars, title) {
+      $title: map-get($vars, title);
+      padding: map-get($title, padding);
+      text-align: map-get($title, text-align);
+      font-weight: map-get($title, font-weight);
+      color: map-get($title, color);
+      font-size: map-get($title, font-size);
     }
   }
 
   #{$context} #{$wrapper} [data-loading],
-  #{$context} #{$wrapper} [data-error],
-  #{$context} #{$wrapper} [data-success] {
+  #{$context} #{$wrapper} [data-error] {
     position: absolute;
     top: 0;
     left: 0;
@@ -150,4 +175,3 @@
     }
   }
 }
-
