@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CardModule } from './card/card.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AppLayoutModule } from './app/app-layout.module';
@@ -22,7 +23,8 @@ import { StackModule } from './stack/stack.module';
     AppLayoutModule,
     LpModule,
     InformerModule,
-    CollapsibleModule
+    CollapsibleModule,
+    CardModule
   ]
 })
 export class LayoutModule {
