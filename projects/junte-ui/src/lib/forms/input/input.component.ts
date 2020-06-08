@@ -238,8 +238,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  keydown() {
-    if (this.type === InputType.number && (this.inputControl.value === '' || this.inputControl.value === null)) {
+  keydown(event: KeyboardEvent) {
+    if (this.type === InputType.number && (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
       this.inputControl.patchValue(null);
     }
   }
@@ -261,7 +261,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         number = this.min;
       }
 
-      this.inputControl.patchValue(number);
+      this.inputControl.patchValue(number.toString());
     }
   }
 
