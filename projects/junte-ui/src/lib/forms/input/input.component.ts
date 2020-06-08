@@ -220,7 +220,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     return {input: chars.substr(0, j) || null, formatted};
   }
 
-  keydown(event: KeyboardEvent) {
+  keydownMask(event: KeyboardEvent) {
     const value = this.inputControl.value || '';
     let data;
     if (DIGIT_KEYS.includes(event.key)) {
@@ -235,6 +235,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     event.preventDefault();
     if (data !== undefined) {
       this.form.setValue(data);
+    }
+  }
+
+  keydown() {
+    if (this.type === InputType.number && (this.inputControl.value === '' || this.inputControl.value === null)) {
+      this.inputControl.patchValue(null);
     }
   }
 
