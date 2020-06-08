@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
 import { PopoverTriggers } from './enums';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 import { PopoverService } from './popover.service';
@@ -7,13 +7,18 @@ import { PopoverService } from './popover.service';
   selector: '[jntPopover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective {
+export class PopoverDirective implements OnDestroy {
 
   @Input('jntPopover') options: PopoverOptions;
 
-  @Output('jntCatch') catch = new EventEmitter<PopoverComponent>();
-
   reference: PopoverComponent;
+
+  ngOnDestroy() {
+    if (!!this.reference) {
+      this.reference.hide();
+      this.reference = null;
+    }
+  }
 
   @HostListener('mouseenter')
   mouseEnter() {
@@ -37,7 +42,7 @@ export class PopoverDirective {
   }
 
   @HostListener('document:click', ['$event'])
-  documentClick(e: any) {
+  documentClick(e: { path: HTMLElement[] }) {
     if (!!this.options && this.options.trigger === PopoverTriggers.click) {
       this.hide(e.path);
     }
@@ -53,7 +58,6 @@ export class PopoverDirective {
 
   private show() {
     this.reference = this.popover.show(this.hostRef, this.options);
-    this.catch.emit(this.reference);
   }
 
   private hide(path: HTMLElement[]) {
@@ -61,7 +65,6 @@ export class PopoverDirective {
       && !this.reference.picked(path)) {
       this.reference.hide();
       this.reference = null;
-      this.catch.emit(this.reference);
     }
   }
 }

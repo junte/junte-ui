@@ -24,7 +24,8 @@
                 <jnt-row>
                   <jnt-col [mobile]="12" [tablet]="4">
                     <jnt-button (click)="typeControl.value === contentType.templateRef ? openModal() : openCalendar()"
-                                text="Open modal"
+                                [width]="ui.width.fluid"
+                                text="Open from code"
                                 i18n-text="@@action.open_modal"></jnt-button>
                   </jnt-col>
                   <jnt-col [mobile]="12" [tablet]="4">
@@ -32,6 +33,7 @@
                                         content: contentDirective, footer: footerControl.value ? footer : null,
                                         closing: closingControl.value ? closingOptions.enable : closingOptions.disable,
                                         maxWidth: widthControl.value, maxHeight: heightControl.value}"
+                                [width]="ui.width.fluid"
                                 text="Open in directive">
                     </jnt-button>
                   </jnt-col>
