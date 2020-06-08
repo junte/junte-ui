@@ -15,7 +15,7 @@ See more demos here 👉 https://junte-ui.com/
 ## How to install
 Install angular `ngc` if you have no yet.
 ```
-npm i -g @angular/cli
+sudo npm i -g @angular/cli
 ```
 
 Create a new angular project
