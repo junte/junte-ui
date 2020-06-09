@@ -9,9 +9,13 @@ import { PopoverService } from './popover.service';
 })
 export class PopoverDirective implements OnDestroy {
 
-  @Input('jntPopover') options: PopoverOptions;
+  private options: PopoverOptions;
+  private reference: PopoverComponent;
 
-  reference: PopoverComponent;
+  @Input('jntPopover')
+  set __options__(options: PopoverOptions) {
+    this.options = new PopoverOptions(options);
+  }
 
   ngOnDestroy() {
     if (!!this.reference) {
@@ -22,28 +26,28 @@ export class PopoverDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   mouseEnter() {
-    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === PopoverTriggers.hover) {
       this.show();
     }
   }
 
   @HostListener('document:mousemove', ['$event'])
   documentMouseMove(e: any) {
-    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === PopoverTriggers.hover) {
       this.hide(e.path);
     }
   }
 
   @HostListener('click')
   click() {
-    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
+    if (this.options.trigger === PopoverTriggers.click) {
       this.show();
     }
   }
 
   @HostListener('document:click', ['$event'])
   documentClick(e: { path: HTMLElement[] }) {
-    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
+    if (this.options.trigger === PopoverTriggers.click) {
       this.hide(e.path);
     }
   }

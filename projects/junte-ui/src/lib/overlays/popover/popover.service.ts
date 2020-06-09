@@ -26,4 +26,5 @@ export class PopoverService {
     this.checkRegistration();
     this.popover.hide();
   }
+
 }
