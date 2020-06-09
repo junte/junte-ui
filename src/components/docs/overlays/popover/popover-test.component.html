@@ -29,7 +29,7 @@
                               contentTemplate: contentTypeControl.value === 'custom' ? contentTemplate : null,
                               scheme: schemeControl.value,
                               placement: layoutControl.value}"
-                              text="Click me"
+                              [text]="triggerControl.value == ui.overlays.popover.trigger.click ? 'Click me' : 'Hover on me'"
                               i18n-text="@@action.click_me">
                   </jnt-button>
 
