@@ -21,11 +21,11 @@ build:
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
-    - docker build \
-          --cache-from $DOCKER_CACHE_IMAGE \
-          --target build \
-          -t $DOCKER_CACHE_IMAGE \
-          -t $DOCKER_BUILD_IMAGE \
+    - docker build
+          --cache-from $DOCKER_CACHE_IMAGE
+          --target build
+          -t $DOCKER_CACHE_IMAGE
+          -t $DOCKER_BUILD_IMAGE
           -f deploy/Dockerfile .
     - docker build --cache-from $DOCKER_CACHE_IMAGE -t $DOCKER_IMAGE -f deploy/Dockerfile .
     - docker push $DOCKER_IMAGE
