@@ -27,7 +27,7 @@ import {
   subMonths,
   addYears,
   subYears
-} from 'date-fns';
+} from 'date-fns/esm';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { JunteUIModuleConfig } from '../../config';
