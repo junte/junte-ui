@@ -54,14 +54,14 @@ deploy:
 .publish:
   image: $DOCKER_BUILD_IMAGE
   stage: publish
-  services:
-    - docker:dind
+  allow_failure: true
+  before_script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_master:
   extends: .publish
   script:
-    - cd /src/projects/junte-ui
-    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish
   only:
     - master
