@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { getMonth, getYear } from 'date-fns';
+import { getMonth, getYear } from 'date-fns/esm';
 
 @Pipe({name: 'yearAfter'})
 export class YearAfterPipe implements PipeTransform {

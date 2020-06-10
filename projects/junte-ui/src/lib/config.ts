@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { Locale } from 'date-fns';
-import { enUS as dfnsEnUS } from 'date-fns/locale';
+import { enUS as dfnsEnUS } from 'date-fns/esm/locale';
 import { DateFnsConfigurationService } from 'ngx-date-fns';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { en } from './core/i18n/en';
@@ -24,7 +23,7 @@ export function DfnsFactory(config: JunteUIModuleConfig) {
 export class JunteUIModuleConfig {
   i18n?: any;
   locale?: {
-    dfns?: Locale
+    dfns?: any
   };
 }
 

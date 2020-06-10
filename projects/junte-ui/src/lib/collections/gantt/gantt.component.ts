@@ -1,6 +1,6 @@
 import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addMonths, addYears, subMonths, subYears } from 'date-fns';
+import { addMonths, addYears, subMonths, subYears } from 'date-fns/esm';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
