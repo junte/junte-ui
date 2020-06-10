@@ -1,7 +1,7 @@
 image: docker:18
 variables:
   DOCKER_DRIVER: overlay
-  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
   DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE:build-$CI_PIPELINE_IID
   DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE:cache
   GIT_STRATEGY: none
@@ -9,7 +9,7 @@ variables:
 stages:
   - build
   - deploy
-  - publish
+  - publish_npm
 
 build:
   stage: build
@@ -51,17 +51,32 @@ deploy:
   only:
     - master
 
-.publish:
+.publish_npm:
   image: $DOCKER_BUILD_IMAGE
-  stage: publish
+  stage: publish_npm
+  dependencies: []
   allow_failure: true
   before_script:
     - cd /src/projects/junte-ui
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
-publish_master:
+publish_npm_master:
   extends: .publish
   script:
     - npm run publish
   only:
     - master
+
+publish_npm_rc:
+  extends: .publish
+  script:
+    - npm run publish:rc
+  only:
+    - rc
+
+publish_npm_prod:
+  extends: .publish
+  script:
+    - npm run publish:prod
+  only:
+    - prod
