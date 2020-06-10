@@ -61,21 +61,21 @@ deploy:
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_npm_master:
-  extends: .publish
+  extends: .publish_npm
   script:
     - npm run publish
   only:
     - master
 
 publish_npm_rc:
-  extends: .publish
+  extends: .publish_npm
   script:
     - npm run publish:rc
   only:
     - rc
 
 publish_npm_prod:
-  extends: .publish
+  extends: .publish_npm
   script:
     - npm run publish:prod
   only:
