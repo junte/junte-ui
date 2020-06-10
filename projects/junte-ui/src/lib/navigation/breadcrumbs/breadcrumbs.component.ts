@@ -3,7 +3,6 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { isArray, isObject, isString } from 'util';
 import { UI } from '../../core/enums/ui';
 
 class Breadcrumb {
@@ -54,12 +53,12 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       if (route.routeConfig && route.routeConfig.data) {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
-          (isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(b => {
-            if (isString(b)) {
+          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(b => {
+            if (typeof b === 'string') {
               if (!!b) {
                 breadcrumbs.push(new Breadcrumb(route, b));
               }
-            } else if (isObject(b)) {
+            } else if (b !== null && typeof b === 'object') {
               const title = b.label;
               if (!!title) {
                 breadcrumbs.push(new Breadcrumb(route, title, b.url));
