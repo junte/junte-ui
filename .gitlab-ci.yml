@@ -57,6 +57,8 @@ deploy:
 publish_master:
   extends: .publish
   script:
+    - pwd
+    - ls -l
     - npm run publish
   only:
     - master
