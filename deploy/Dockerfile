@@ -14,6 +14,8 @@ COPY . .
 
 RUN npm run build
 
+###
+
 FROM nginx:1.17.4-alpine
 
 WORKDIR /var/www

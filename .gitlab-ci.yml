@@ -2,6 +2,7 @@ image: docker:18
 variables:
   DOCKER_DRIVER: overlay
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
+  DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE:build-$CI_PIPELINE_IID
   DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE:cache
   GIT_STRATEGY: none
 
@@ -19,10 +20,16 @@ build:
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
-    - docker build --cache-from $DOCKER_CACHE_IMAGE --target build -t $DOCKER_CACHE_IMAGE -f deploy/Dockerfile .
+    - docker build \
+          --cache-from $DOCKER_CACHE_IMAGE \
+          --target build \
+          -t $DOCKER_CACHE_IMAGE \
+          -t $DOCKER_BUILD_IMAGE \
+          -f deploy/Dockerfile .
     - docker build --cache-from $DOCKER_CACHE_IMAGE -t $DOCKER_IMAGE -f deploy/Dockerfile .
     - docker push $DOCKER_IMAGE
     - docker push $DOCKER_CACHE_IMAGE
+    - docker push $DOCKER_BUILD_IMAGE
 
 deploy:
   image: junte/helm-deploy:1.3-helm2.16.1
@@ -37,5 +44,18 @@ deploy:
   environment:
     name: production
     url: $SITE_ADDRESS
+  only:
+    - master
+
+.publish:
+  image: $DOCKER_BUILD_IMAGE
+  stage: publish
+  services:
+    - docker:dind
+
+publish_master:
+  extends: .publish
+  script:
+    - npm run publish
   only:
     - master
