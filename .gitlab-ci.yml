@@ -61,8 +61,7 @@ publish_master:
   extends: .publish
   script:
     - cd /src/projects/junte-ui
-    - pwd
-    - ls -l
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish
   only:
     - master
