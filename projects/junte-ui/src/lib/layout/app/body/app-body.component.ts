@@ -1,8 +1,8 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Breakpoint } from '../../../core/enums/breakpoint';
-import { moveFromRight } from './animations';
 import { BreakpointService } from '../../responsive/breakpoint.service';
+import { moveFromRight } from './animations';
 
 @Component({
   selector: 'jnt-app-body',

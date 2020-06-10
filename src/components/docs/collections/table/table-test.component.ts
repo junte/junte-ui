@@ -1,14 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { fake } from 'faker';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { DEFAULT_FIRST, DEFAULT_OFFSET } from 'junte-ui';
-import { TableComponent } from 'junte-ui';
-import { TableColumnComponent } from 'junte-ui';
-import { TableState } from './data/table-data.component';
+import { DEFAULT_FIRST, DEFAULT_OFFSET, TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { TableState } from './data/table-data.component';
 
 @Component({
   selector: 'app-table-test',
