@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AccordionModule, BreadcrumbsModule, FormModule, GridModule, IconModule, LinkModule, StackModule, TabsModule } from 'junte-ui';
+import { ResourcesModule } from 'src/components/docs/shared/resources/resources.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
 import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.module';
@@ -13,7 +14,6 @@ import { BreadcrumbResolver } from './resolver';
 import { BreadCrumbTest1Component } from './tests/test.component';
 import { BreadCrumbTest2Component } from './tests/test2.component';
 import { BreadCrumbTest3Component } from './tests/test3.component';
-import { ResourcesModule } from 'src/components/docs/shared/resources/resources.module';
 
 @NgModule({
   declarations: [
