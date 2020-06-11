@@ -10,6 +10,15 @@ $type-horizontal: 'horizontal';
   }
 }
 
+@mixin stack-spacing($gutter, $wrapper) {
+  & {
+    margin-top: -$gutter;
+    > #{$wrapper}:not(router-outlet) {
+      margin-top: $gutter;
+    }
+  }
+}
+
 @mixin jnt-stack($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
@@ -102,6 +111,11 @@ $type-horizontal: 'horizontal';
           &[data-orientation = '#{$type-horizontal}'] {
             flex-direction: row;
             @include stack-gutters(margin-right, $map, $wrapper);
+          }
+        }
+        &[data-spacing = '#{$gutter}'] {
+          &[data-orientation = '#{$type-horizontal}'] {
+            @include stack-spacing($map, $wrapper);
           }
         }
       }
