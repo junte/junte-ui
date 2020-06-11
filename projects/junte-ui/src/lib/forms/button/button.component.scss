@@ -131,6 +131,7 @@
 
   $defs: (
     corner: $jnt-corner-large,
+    border: null,
     corners: (
       top: (
         left: null,
@@ -374,6 +375,7 @@
 
   #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
     text-transform: map-get($vars, text-transform);
     font-weight: map-get($vars, font-weight);
     @if map-has-key($vars, icon) {
