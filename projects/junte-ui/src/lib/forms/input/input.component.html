@@ -8,7 +8,7 @@
          type="string"
          [placeholder]="placeholder"
          [readonly]="readonly ? readonly : null"
-         (keydown)="keydown($event)">
+         (keydown)="keydownMask($event)">
 
   <ng-template #inputTemplate>
     <input *ngIf="!multiline; else textareaTemplate"
@@ -18,7 +18,9 @@
            [readonly]="readonly ? readonly : null"
            [autocomplete]="autocomplete"
            [min]="min"
-           [max]="max">
+           [max]="max"
+           (blur)="blur()"
+           (keydown)="keydown($event)">
   </ng-template>
 
   <ng-template #textareaTemplate>

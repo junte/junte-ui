@@ -11,6 +11,7 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class AccordionTestComponent implements OnInit {
 
+
   ui = UI;
   localUi = LocalUI;
   types = {section: AccordionSectionComponent};

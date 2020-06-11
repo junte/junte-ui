@@ -15,6 +15,7 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './home.component';
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     HomeRoutingModule,
     ResponsiveModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    AnalyticsDirectivesModule
   ]
 })
 export class HomeModule {

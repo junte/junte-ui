@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {GridModule, IconModule, LinkModule, StackModule} from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { TypographyTestComponent } from './typography-test.component';
+import { ResourcesModule } from 'src/components/docs/shared/resources/resources.module';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { TypographyTestComponent } from './typography-test.component';
     IconModule.forRoot(JUNTE_UI_CONFIG),
     LinkModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
-    GridModule.forRoot(JUNTE_UI_CONFIG)
+    GridModule.forRoot(JUNTE_UI_CONFIG),
+    ResourcesModule
   ],
   exports: [
     TypographyTestComponent

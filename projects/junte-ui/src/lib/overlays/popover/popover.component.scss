@@ -20,7 +20,6 @@
 
   $defs: (
     spacing: 14px,
-    arrow-shift: $jnt-gutter-normal,
     schemes: (
       primary: (
         background-color: $jnt-primary-light-color,
@@ -37,8 +36,8 @@
       fail: (
         background-color: $jnt-fail-color,
         color: $jnt-white-color
-      ),
-    ),
+      )
+    )
   );
 
   $vars: $passed;
@@ -53,6 +52,7 @@
     position: absolute;
     z-index: 100;
     user-select: text;
+    padding: map-get($vars, spacing);
     display: block;
 
     @if map-has-key($vars, schemes) {
@@ -68,126 +68,38 @@
       height: 0;
       border: 10px solid transparent;
       position: absolute;
-      display: none;
     }
 
-    &.top,
-    &.top-left,
-    &.top-right {
-      padding-bottom: map-get($vars, spacing);
-
+    &[data-placement='top'] {
       [data-arrow] {
+        left: 50%;
+        transform: translateX(-50%);
         top: calc(100% - #{map-get($vars, spacing)});
       }
     }
 
-    &.right,
-    &.right-top,
-    &.right-bottom {
-      padding-left: map-get($vars, spacing);
-
+    &[data-placement='right'] {
       [data-arrow] {
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
         right: calc(100% - #{map-get($vars, spacing)});
       }
     }
 
-    &.bottom,
-    &.bottom-left,
-    &.bottom-right {
-      padding-top: map-get($vars, spacing);
-
+    &[data-placement='bottom'] {
       [data-arrow] {
+        left: 50%;
+        transform: translateX(-50%) rotate(180deg);
         bottom: calc(100% - #{map-get($vars, spacing)});
       }
     }
 
-    &.left,
-    &.left-top,
-    &.left-bottom {
-      padding-right: map-get($vars, spacing);
-
-      [data-arrow] {
-        left: calc(100% - #{map-get($vars, spacing)});
-      }
-    }
-
-    &.top,
-    &.bottom {
-      [data-arrow] {
-        left: 50%;
-      }
-    }
-
-    &.left,
-    &.right {
+    &[data-placement='left'] {
       [data-arrow] {
         top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        left: calc(100% - #{map-get($vars, spacing)});
       }
-    }
-
-    &.top-left,
-    &.bottom-left {
-      [data-arrow] {
-        left: map-get($vars, arrow-shift);
-      }
-    }
-
-    &.top-right,
-    &.bottom-right {
-      [data-arrow] {
-        right: map-get($vars, arrow-shift);
-      }
-    }
-
-    &.left-top,
-    &.right-top {
-      [data-arrow] {
-        top: map-get($vars, arrow-shift);
-      }
-    }
-
-    &.left-bottom,
-    &.right-bottom {
-      [data-arrow] {
-        bottom: map-get($vars, arrow-shift);
-      }
-    }
-
-    &.right-top,
-    &.right-bottom {
-      [data-arrow] {
-        transform: rotate(90deg);
-      }
-    }
-
-    &.bottom-left,
-    &.bottom-right {
-      [data-arrow] {
-        transform: rotate(180deg);
-      }
-    }
-
-    &.left-top,
-    &.left-bottom {
-      [data-arrow] {
-        transform: rotate(-90deg);
-      }
-    }
-
-    &.top [data-arrow] {
-      transform: translateX(-50%);
-    }
-
-    &.right [data-arrow] {
-      transform: translateY(-50%) rotate(90deg);
-    }
-
-    &.bottom [data-arrow] {
-      transform: translateX(-50%) rotate(180deg);
-    }
-
-    &.left [data-arrow] {
-      transform: translateY(-50%) rotate(-90deg);
     }
   }
 

@@ -4,7 +4,7 @@ import { format as formatDate, parse } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
+import { PopoverService } from '../../overlays/popover/popover.service';
 
 const INPUT_DELAY = 500;
 
@@ -24,7 +24,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
   ui = UI;
-  popover: PopoverComponent;
   opened: boolean;
 
   inputControl = this.fb.control(null);
@@ -45,7 +44,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private popover: PopoverService) {
   }
 
   ngOnInit() {
@@ -53,17 +53,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
       this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
       this.onChange(date);
       this.opened = false;
-      if (!!this.popover) {
-        this.popover.hide();
-      }
+      this.popover.hide();
     });
 
     this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
         this.updateCalendar(parse(date, this.format, new Date()));
-        if (!!this.popover) {
-          this.popover.hide();
-        }
+        this.popover.hide();
       });
   }
 

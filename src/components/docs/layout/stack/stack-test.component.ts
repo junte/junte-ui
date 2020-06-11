@@ -21,6 +21,7 @@ export class StackTestComponent implements OnInit {
 
   typeControl = this.fb.control(UI.layout.stack.type.horizontal);
   gutterControl = this.fb.control(null);
+  spacingControl = this.fb.control(null);
   alignControl = this.fb.control(null);
   justifyControl = this.fb.control(null);
   wrapControl = this.fb.control(null);
@@ -28,6 +29,7 @@ export class StackTestComponent implements OnInit {
   builder = this.fb.group({
     type: this.typeControl,
     gutter: this.gutterControl,
+    spacing: this.spacingControl,
     align: this.alignControl,
     justify: this.justifyControl,
     wrap: this.wrapControl

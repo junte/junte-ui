@@ -1,6 +1,6 @@
 {
   "name": "@junte/ui",
-  "version": "1.0.37",
+  "version": "1.0.42",
   "description": "Quality Angular UI components kit",
   "keywords": [
     "angular",
@@ -42,9 +42,10 @@
     "serve": "run-p --continue-on-error=false -l -n *:watch",
     "build:watch": "ng build junte-ui --watch",
     "pack": "cd ../../dist/junte-ui && npm pack",
-    "publish": "npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
-    "publish:unstable": "tag=unstable npm run publish",
-    "publish:next": "tag=next npm run publish",
+    "publish:npm": "npm run pack && npm publish --tag ${tag:-latest} --access public ./../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
+    "publish": "tag=unstable npm run publish:npm",
+    "publish:rc": "tag=next npm run publish:npm",
+    "publish:prod": "tag=latest npm run publish:npm",
     "clean:npm": "npm cache clean --force && rm -rf -- node_modules package-lock.json",
     "refresh": "npm run clean:npm && npm install"
   },
@@ -82,15 +83,14 @@
     "ts-node": "8.6.2",
     "query-ast": "1.0.3",
     "rxjs": "^6.5.3",
-    "scss-parser": "1.0.4"
+    "scss-parser": "1.0.4",
+    "fibers": "^5.0.0",
+    "html-webpack-plugin": "^4.3.0"
   },
   "dependencies": {
     "date-fns": "2.10.0",
-    "fibers": "^5.0.0",
-    "html-webpack-plugin": "^4.3.0",
     "ngx-date-fns": "6.3.0",
-    "ngx-logger": "4.1.8",
-    "typescript": "3.6.4"
+    "ngx-logger": "4.1.8"
   },
   "peerDependencies": {
     "@angular/animations": "^9.0.0"

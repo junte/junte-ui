@@ -32,27 +32,22 @@
                 </defs>
               </svg>
 
-              <svg wave width="611" height="618" viewBox="0 0 611 618" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg wave width="611" height="615" viewBox="0 0 611 615" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_i)">
-                  <path
-                    d="M-495.652 0.000366211C-495.652 0.000366211 -473.745 101.934 -381.353 113.358C-288.961 124.782 -286.11 121.397 -250.868 167.866C-215.626 214.335 -196.57 240.365 -133.718 223.551C-70.8484 206.719 -15.6121 167.038 35.8168 199.25C87.2457 231.48 201.195 286.08 318.657 159.293C436.12 32.5065 397.603 223.551 397.603 223.551C397.603 223.551 316.193 294.487 434.924 358.193C476.825 382.016 470.001 453.063 483.815 499.145C497.628 545.228 610.511 634.137 610.511 634.137C610.511 634.137 -254.547 706.029 -260.267 706.986C-265.988 707.924 -589 529.646 -589 529.646L-495.652 0.000366211Z"
-                    fill="url(#paint0_radial)"/>
+                  <path d="M-381.354 113.358C-473.745 101.934 -495.652 0.000366211 -495.652 0.000366211L-495.652 634.137H610.51C610.51 634.137 497.628 545.228 483.814 499.145C470 453.063 530.5 376.5 434.924 358.193C339.348 339.887 418.342 268.207 348.999 218.5C279.657 168.793 158.5 309.986 37.9995 210C-35.8174 148.75 -70.849 206.719 -133.719 223.551C-196.57 240.365 -215.626 214.335 -250.868 167.866C-286.111 121.397 -288.962 124.782 -381.354 113.358Z" fill="url(#paint0_radial)"/>
                 </g>
                 <defs>
-                  <filter id="filter0_i" x="-589" y="0.000366211" width="1199.51" height="714.989"
-                          filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <filter id="filter0_i" x="-495.652" y="0.000366211" width="1106.16" height="642.136" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                     <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                     <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                   result="hardAlpha"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset dy="8"/>
                     <feGaussianBlur stdDeviation="10"/>
                     <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
                     <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
                     <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
                   </filter>
-                  <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                                  gradientTransform="translate(409.213 326.044) scale(1105.33 1105.48)">
+                  <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(409.213 326.044) scale(1105.33 1105.48)">
                     <stop offset="0.00537634" stop-color="#DE3DBF"/>
                     <stop offset="1" stop-color="#67219E"/>
                   </radialGradient>
@@ -536,23 +531,25 @@
               <jnt-menu menu>
                 <jnt-menu-item
                   [title]="'Documentation'"
-                  [icon]="localUi.icons.documentation"
+                  [icon]="localUi.icons.top.documentation"
                   [link]="['docs']">
                 </jnt-menu-item>
                 <jnt-menu-item
                   [title]="'Team'"
-                  [icon]="localUi.icons.contacts"
+                  [icon]="localUi.icons.top.team"
                   [link]="['team']">
                 </jnt-menu-item>
                 <jnt-menu-item
+                  [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
                   [icon]="ui.icons.gitlab"
                   [title]="'GitLab'"
                   link="https://gitlab.com/junte/junte-ui">
                 </jnt-menu-item>
                 <jnt-menu-item
-                  [icon]="ui.icons.figma"
-                  [title]="'Design System'"
-                  link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
+                  [analytics]="{ type: analyticsType.goal, goal: 'npm' }"
+                  [icon]="localUi.icons.npm"
+                  [title]="'NPM'"
+                  link="https://www.npmjs.com/package/@junte/ui">
                 </jnt-menu-item>
               </jnt-menu>
             </ng-container>
@@ -573,14 +570,16 @@
                       [link]="['team']">
                     </jnt-menu-item>
                     <jnt-menu-item
+                      [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
                       [icon]="ui.icons.gitlab"
                       [title]="'GitLab'"
                       link="https://gitlab.com/junte/junte-ui">
                     </jnt-menu-item>
                     <jnt-menu-item
-                      [icon]="ui.icons.figma"
-                      [title]="'Design System'"
-                      link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0">
+                      [analytics]="{ type: analyticsType.goal, goal: 'npm' }"
+                      [icon]="localUi.icons.npm"
+                      [title]="'NPM'"
+                      link="https://www.npmjs.com/package/@junte/ui">
                     </jnt-menu-item>
                   </jnt-menu>
                 </div>
@@ -596,7 +595,7 @@
             <jnt-stack [gutter]="ui.gutter.huge">
 
               <jnt-stack [gutter]="ui.gutter.small">
-                <h1>Quality Angular
+                <h1>Quality <span>Angular</span>
                   <br>
                   UI components kit
                   <jnt-label data-label label="Alpha version"></jnt-label>
