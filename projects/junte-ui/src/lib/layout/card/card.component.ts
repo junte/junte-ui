@@ -7,6 +7,12 @@ import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { CardState } from './enums';
 
+interface Picture {
+  url: string;
+  width: number;
+  height: number;
+}
+
 @Component({
   selector: 'jnt-card',
   templateUrl: './card.encapsulated.html'
@@ -18,6 +24,28 @@ export class CardComponent {
   @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
   cardState = CardState;
+  feature = Feature;
+  picture: Picture;
+
+  @HostBinding('attr.data-has-color')
+  get hasColor() {
+    return !!this.color;
+  }
+
+  @HostBinding('attr.data-has-icon')
+  get hasAction() {
+    return !!this.icon || !!this.cardActionsTemplate;
+  }
+
+  @HostBinding('attr.data-has-header')
+  get hasHeader() {
+    return !!this.title || !!this.headerTemplate;
+  }
+
+  @HostBinding('attr.data-has-picture')
+  get hasPicture() {
+    return !!this.picture;
+  }
 
   @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
@@ -32,12 +60,29 @@ export class CardComponent {
   @Input()
   title: string;
 
-  @ContentApi({
-    selector: '#cardTitleTemplate',
-    description: 'Card title template'
+  @PropertyApi({
+    description: 'Picture on card',
+    type: 'string'
   })
-  @ContentChild('cardTitleTemplate')
-  titleTemplate: TemplateRef<any>;
+  @Input('picture')
+  set __picture__(picture: string | Picture) {
+    this.picture = (typeof (picture) === 'string'
+      ? {url: picture, width: 70, height: 70} : picture) as Picture;
+  }
+
+  @ContentApi({
+    selector: '#cardHeaderTemplate',
+    description: 'Card header template'
+  })
+  @ContentChild('cardHeaderTemplate')
+  headerTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#cardFooterTemplate',
+    description: 'Card footer template'
+  })
+  @ContentChild('cardFooterTemplate')
+  footerTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#cardActionsTemplate',
@@ -111,10 +156,19 @@ export class CardComponent {
   features: Feature[] = [];
 
   @PropertyApi({
-    description: 'Output event of click',
+    description: 'Card indicator color',
+    type: 'string',
+    default: 'purple'
+  })
+  @Input()
+  @HostBinding('style.border-color')
+  color: string;
+
+  @PropertyApi({
+    description: 'Output event of click on card content',
     type: 'Event Emitter'
   })
-  @Output() click = new EventEmitter<any>();
+  @Output() selected = new EventEmitter<any>();
 
   @HostBinding('attr.tabindex')
   get tabindex() {
