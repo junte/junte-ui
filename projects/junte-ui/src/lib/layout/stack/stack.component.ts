@@ -19,6 +19,9 @@ export class StackComponent {
   @HostBinding('attr.data-gutter')
   _gutter = Gutter.normal;
 
+  @HostBinding('attr.data-spacing')
+  _spacing = Gutter.none;
+
   @HostBinding('attr.data-align')
   _align: FlexAlign = FlexAlign.start;
 
@@ -56,6 +59,22 @@ export class StackComponent {
   })
   @Input() set gutter(gutter: Gutter) {
     this._gutter = gutter || Gutter.normal;
+  }
+
+  @PropertyApi({
+    description: 'Space between elements when wrapping on horizontal mode',
+    path: 'ui.gutter',
+    default: Gutter.none,
+    options: [Gutter.none,
+      Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.big,
+      Gutter.large,
+      Gutter.huge]
+  })
+  @Input() set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.none;
   }
 
   @PropertyApi({
