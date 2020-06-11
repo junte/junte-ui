@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { addDays, getDaysInMonth, setDate } from 'date-fns/esm';
+import { addDays, getDaysInMonth, setDate } from 'date-fns';
 
 @Pipe({name: 'datesInMonth'})
 export class DatesInMonthPipe implements PipeTransform {

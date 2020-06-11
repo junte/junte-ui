@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { getDate, getDaysInMonth, getMonth, getYear } from 'date-fns/esm';
+import { getDate, getDaysInMonth, getMonth, getYear } from 'date-fns';
 import { getFullMonth } from './utils';
 
 @Pipe({name: 'after'})

@@ -1,6 +1,6 @@
 import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { format as formatDate, parse } from 'date-fns/esm';
+import { format as formatDate, parse } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
