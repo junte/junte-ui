@@ -34,6 +34,7 @@ export class LocalUI {
       layout: 'layout:font:junte-ui-test-default',
       grid: 'grid:font:junte-ui-test-layout',
       block: 'block:font:junte-ui-test-layout',
+      card: 'card:font:junte-ui-test-layout',
       responsive: 'responsive:font:junte-ui-test-layout',
       skeleton: 'skeleton:font:junte-ui-test-layout',
       spinner: 'spinner:font:junte-ui-test-layout',
