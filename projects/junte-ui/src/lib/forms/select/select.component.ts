@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -230,10 +230,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select loader',
     type: 'function'
   })
-  @Input() loader(q: string) {
-    const options = Object.values(this.options.persisted);
-    return of(options.filter(o => o.label.startsWith(q)));
-  }
+  @Input() loader = null;
 
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
@@ -243,33 +240,43 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ngOnInit() {
     const loadOptions = (query: string) => {
-      if (this.fetcher) {
+      if (!!this.fetcher) {
         this.fetcher.unsubscribe();
       }
-      this.fetcher = this.loader(query)
-        .pipe(finalize(() => this.loading = false))
-        .subscribe(objects => {
-          this.options.found = {};
-          objects.forEach((o, index) => {
-            const key = o[this.keyField];
-            if (!!key) {
-              this.options.found[key.toString()] = {
-                index,
-                key,
-                label: o[this.labelField],
-                icon: o.icon,
-                value: o
-              };
-            }
+
+      if (!!this.loader) {
+        this.fetcher = this.loader(query)
+          .pipe(finalize(() => this.loading = false))
+          .subscribe(objects => {
+            this.options.found = {};
+            objects.forEach((o, index) => {
+              const key = o[this.keyField];
+              if (!!key) {
+                this.options.found[key.toString()] = {
+                  index,
+                  key,
+                  label: o[this.labelField],
+                  icon: o.icon,
+                  value: o
+                };
+              }
+            });
+            this.changes.options++;
           });
-          this.changes.options++;
-        });
+      } else {
+        this.options.found = {};
+        let options = Object.values(this.options.persisted);
+        options = options.filter(o => o.label.toLocaleLowerCase()
+          .includes(query.toLocaleLowerCase()));
+        options.forEach(option => this.options.found[option.key] = option);
+        this.changes.options++;
+      }
     };
 
     this.queryControl.valueChanges.pipe(distinctUntilChanged(),
       tap(query => {
         this.logger.debug('query has been changed');
-        this.loading = !!query;
+        this.loading = !!query && !!this.loader;
         const input = this.queryInput.nativeElement;
         if (!!query && query.length > 0) {
           const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
