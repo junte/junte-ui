@@ -42,7 +42,7 @@ build:
   variables:
     GIT_DEPTH: 5
     GIT_STRATEGY: fetch
-    HELM_IMAGE_TAG: $CI_PIPELINE_IID
+    HELM_IMAGE_TAG: $CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
   script:
     - helm_deploy
 
