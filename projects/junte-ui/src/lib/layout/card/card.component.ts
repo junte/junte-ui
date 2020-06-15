@@ -1,4 +1,5 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -26,6 +27,7 @@ export class CardComponent {
   cardState = CardState;
   feature = Feature;
   picture: Picture;
+  popover: PopoverComponent;
 
   @HostBinding('attr.data-has-color')
   get hasColor() {
@@ -173,6 +175,10 @@ export class CardComponent {
   @HostBinding('attr.tabindex')
   get tabindex() {
     return !!this.features && this.features.includes(Feature.clickable) ? 1 : null;
+  }
+
+  hideActions() {
+    this.popover.hide();
   }
 
 }

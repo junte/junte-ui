@@ -51,10 +51,10 @@
                     <ng-template *ngIf="footerControl.value" #cardFooterTemplate>
                       Card footer
                     </ng-template>
-                    <ng-template *ngIf="actionsControl.value" #cardActionsTemplate>
+                    <ng-template *ngIf="actionsControl.value" #cardActionsTemplate let-hide="hide">
                       <jnt-menu [orientation]="ui.orientation.vertical">
-                        <jnt-menu-item title="Edit"></jnt-menu-item>
-                        <jnt-menu-item title="Copy"></jnt-menu-item>
+                        <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy"(click)="hide()"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                   </jnt-card>
@@ -285,10 +285,10 @@
                   </ng-container>
                   <ng-container *ngIf="actionsControl.value">
                     <![CDATA[
-                    <ng-template #cardActionsTemplate>
+                    <ng-template #cardActionsTemplate let-hide="hide">
                       <jnt-menu [orientation]="ui.orientation.vertical">
-                        <jnt-menu-item title="Edit"></jnt-menu-item>
-                        <jnt-menu-item title="Copy"></jnt-menu-item>
+                        <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                     ]]>

@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AnchorModule } from './anchor/anchor.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
-import { DropdownModule } from './dropdown/dropdown.module';
 import { LinkModule } from './link/link.module';
 import { MenuModule } from './menu/menu.module';
 import { PagerModule } from './pager/pager.module';
@@ -13,7 +12,6 @@ import { TabsModule } from './tabs/tabs.module';
     LinkModule,
     AnchorModule,
     BreadcrumbsModule,
-    DropdownModule,
     MenuModule,
     PagerModule,
     TabsModule
