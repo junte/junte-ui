@@ -3,6 +3,7 @@ import { PagerMode } from '../../navigation/pager/enums';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { Height } from './height';
 import { Feature } from './feature';
+import { DatePickerFeatures } from '../../forms/date-picker/enums';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { FormState, ValidationTypeError } from '../../forms/form/enums';
@@ -80,6 +81,7 @@ export class UI {
       typeError: ValidationTypeError
     },
     form: {state: FormState},
+    datePicker: {features: DatePickerFeatures}
   };
   static overlays = {
     popover: {
