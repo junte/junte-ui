@@ -1,5 +1,6 @@
 import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
@@ -24,6 +25,7 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   ui = UI;
   selectMode = SelectMode;
+  feature = Feature;
 
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
@@ -78,6 +80,15 @@ export class SwitcherComponent implements ControlValueAccessor {
   })
   @HostBinding('attr.data-allow-empty')
   @Input() allowEmpty = true;
+
+  @PropertyApi({
+    description: 'Add badge with the number of selected items',
+    path: 'ui.feature',
+    options: [Feature.badge]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @PropertyApi({
     description: 'Display marks',
