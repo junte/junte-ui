@@ -1,6 +1,6 @@
 {
   "name": "@junte/ui",
-  "version": "1.0.42",
+  "version": "1.0.47",
   "description": "Quality Angular UI components kit",
   "keywords": [
     "angular",
@@ -32,7 +32,7 @@
     "encapsulation": "gulp build --gulpfile ./node_modules/junte-encapsuler/encapsulation.js --cwd ./",
     "encapsulation:watch": "gulp build --gulpfile ./node_modules/junte-encapsuler/encapsulation.js --cwd ./ --watch",
     "assets:create": "rm -rf ./../../dist/junte-ui/lib/assets && mkdir ./../../dist/junte-ui/lib/assets/ && mkdir ./../../dist/junte-ui/lib/assets/icons && mkdir ./../../dist/junte-ui/lib/assets/fonts && mkdir ./../../dist/junte-ui/lib/assets/styles",
-    "assets:copy:fonts": "cp -r ./src/lib/assets/fonts/ ./../../dist/junte-ui/lib/assets/fonts/",
+    "assets:copy:fonts": "cp -r ./src/lib/assets/fonts ./../../dist/junte-ui/lib/assets/fonts",
     "assets:copy:icons": "cp -r ./src/lib/assets/icons/animated ./../../dist/junte-ui/lib/assets/icons/animated && cp -r ./src/lib/assets/icons/svg ./../../dist/junte-ui/lib/assets/icons/svg",
     "assets:copy:styles": "cp ./src/lib/assets/styles/*.scss ./../../dist/junte-ui/lib/assets/styles",
     "copy:assets": "npm run assets:create && npm run assets:copy:fonts && npm run assets:copy:icons && npm run assets:copy:styles",

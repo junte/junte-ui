@@ -35,21 +35,40 @@ build:
     - docker push $DOCKER_CACHE_IMAGE
     - docker push $DOCKER_BUILD_IMAGE
 
-deploy:
+.deploy:
   image: junte/helm-deploy:1.3-helm2.16.1
   stage: deploy
   dependencies: []
   variables:
     GIT_DEPTH: 5
     GIT_STRATEGY: fetch
-    HELM_IMAGE_TAG: $CI_PIPELINE_IID
+    HELM_IMAGE_TAG: $CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
   script:
     - helm_deploy
+
+deploy_master:
+  extends: .deploy
+  environment:
+    name: development
+    url: $SITE_ADDRESS
+  only:
+    - master
+
+deploy_rc:
+  extends: .deploy
+  environment:
+    name: staging
+    url: $SITE_ADDRESS
+  only:
+    - rc
+
+deploy_prod:
+  extends: .deploy
   environment:
     name: production
     url: $SITE_ADDRESS
   only:
-    - master
+    - prod
 
 .publish_npm:
   image: $DOCKER_BUILD_IMAGE

@@ -1,9 +1,9 @@
 <div *ngFor="let section of sections; let i = index;" data-section>
   <div data-title tabindex="0" (click)="active == i ? active = null : active = i"
        [attr.active]="active == i">
-    <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown" chevron></jnt-icon>
     <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
     <span>{{section.title}}</span>
+    <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown" data-chevron></jnt-icon>
   </div>
   <div *ngIf="active == i" data-content>
     <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>

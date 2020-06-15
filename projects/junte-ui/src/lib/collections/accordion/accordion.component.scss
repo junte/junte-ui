@@ -28,6 +28,8 @@
       padding: $jnt-gutter-small $jnt-gutter-normal;
       background-color: $jnt-secondary-background;
       border: 1px solid $jnt-muted-color;
+      display: flex;
+      align-items: center;
       cursor: pointer;
       &[active='true'] {
         background-color: $jnt-primary-color;
@@ -37,15 +39,12 @@
         outline: 0;
         box-shadow: $jnt-shadow-primary;
       }
-      [data-icon] {
-        margin-right: $jnt-gutter-tiny;
-        &[chevron] {
-          margin-right: $jnt-gutter-normal;
-        }
+      span {
+        margin: 0 $jnt-gutter-tiny;
       }
-    }
-    [data-content] {
-      padding: $jnt-gutter-normal;
+      [data-chevron] {
+        margin-left: auto;
+      }
     }
   }
 

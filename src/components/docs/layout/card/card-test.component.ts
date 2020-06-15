@@ -21,11 +21,14 @@ export class CardTestComponent implements OnInit {
   schemeControl = this.fb.control(null);
   paddingControl = this.fb.control(null);
   titleControl = this.fb.control(false);
+  footerControl = this.fb.control(false);
   widthControl = this.fb.control(null);
   stateControl = this.fb.control(null);
   clickableControl = this.fb.control(false);
   iconControl = this.fb.control(false);
   actionsControl = this.fb.control(false);
+  pictureControl = this.fb.control(false);
+  colorControl = this.fb.control(null);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -33,9 +36,12 @@ export class CardTestComponent implements OnInit {
     width: this.widthControl,
     scheme: this.schemeControl,
     title: this.titleControl,
+    footer: this.footerControl,
     clickable: this.clickableControl,
     icon: this.iconControl,
-    actions: this.actionsControl
+    actions: this.actionsControl,
+    color: this.colorControl,
+    picture: this.pictureControl,
   });
 
   constructor(private fb: FormBuilder) {
