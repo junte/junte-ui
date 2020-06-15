@@ -1,26 +1,36 @@
-<div *ngIf="!!icon" data-indicator>
+<div *ngIf="!!icon && !cardActionsTemplate" data-indicator>
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<div *ngIf="!!title || !!titleTemplate" data-title>
-  <span *ngIf="!!title && !titleTemplate">{{title}}</span>
-  <ng-container *ngIf="!!titleTemplate">
-    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+<div *ngIf="!!title || !!headerTemplate" data-header>
+  <span *ngIf="!!title && !headerTemplate">{{title}}</span>
+  <ng-container *ngIf="!!headerTemplate">
+    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
   </ng-container>
 </div>
 
-<ng-content></ng-content>
+<div data-content (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+  <div data-picture *ngIf="!!picture">
+    <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+  </div>
+  <ng-content></ng-content>
+</div>
 
-<jnt-dropdown *ngIf="!!cardActionsTemplate" data-action [position]="ui.position.right">
-  <ng-template #triggerTemplate let-action="trigger">
-    <jnt-button data-trigger [outline]="ui.outline.transparent"
-                [icon]="ui.icons.actions"
-                (click)="action()"></jnt-button>
-  </ng-template>
-  <ng-template #dropdownTemplate>
-    <ng-container *ngTemplateOutlet="cardActionsTemplate"></ng-container>
-  </ng-template>
-</jnt-dropdown>
+<div *ngIf="!!footerTemplate" data-footer>
+  <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+</div>
+
+
+<jnt-button *ngIf="!!cardActionsTemplate"
+            data-action
+            [scheme]="ui.scheme.secondary"
+            [size]="ui.size.small"
+            [icon]="ui.icons.actions"
+            [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}"></jnt-button>
+
+<ng-template #dropdownTemplate>
+  <ng-container *ngTemplateOutlet="cardActionsTemplate"></ng-container>
+</ng-template>
 
 <div *ngIf="state === cardState.loading" data-load>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
