@@ -25,12 +25,14 @@
           </ng-template>
         </jnt-table-column>
 
-        <ng-template *ngIf="actions" #tableRowActionsTemplate let-row="row">
+        <ng-template *ngIf="actions" #tableRowActionsTemplate let-row="row" let-hide="hide">
           <jnt-menu [orientation]="ui.orientation.vertical" [spacer]="ui.size.small">
             <jnt-menu-item title="Edit"
-                           i18n-title="@@action.edit"></jnt-menu-item>
+                           i18n-title="@@action.edit"
+                           (click)="hide()"></jnt-menu-item>
             <jnt-menu-item title="Delete"
-                           i18n-title="@@action.delete"></jnt-menu-item>
+                           i18n-title="@@action.delete"
+                           (click)="hide()"></jnt-menu-item>
           </jnt-menu>
         </ng-template>
 
