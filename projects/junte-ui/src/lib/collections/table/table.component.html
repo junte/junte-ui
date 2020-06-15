@@ -56,16 +56,15 @@
           <ng-container *ngIf="source.length; else noDataTemplate">
             <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
               <td *ngIf="!!tableRowActionsTemplate" data-action>
-                <jnt-dropdown data-menu>
-                  <ng-template #triggerTemplate let-action="trigger">
-                    <jnt-button data-button [outline]="ui.outline.transparent"
-                                [icon]="ui.icons.actions"
-                                (click)="action()"></jnt-button>
-                  </ng-template>
-                  <ng-template #dropdownTemplate>
-                    <ng-container *ngTemplateOutlet="tableRowActionsTemplate;context: {row: row}"></ng-container>
-                  </ng-template>
-                </jnt-dropdown>
+                <jnt-button data-trigger
+                            [outline]="ui.outline.transparent"
+                            [icon]="ui.icons.actions"
+                            (jntPopoverDisplayed)="popover = $event"
+                            [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+                </jnt-button>
+                <ng-template #dropdownTemplate>
+                  <ng-container *ngTemplateOutlet="tableRowActionsTemplate;context: {row: row, hide: hideActions.bind(this)}"></ng-container>
+                </ng-template>
               </td>
               <td *ngFor="let column of columns">
                 <ng-container *ngTemplateOutlet="column.tableCellTemplate;context:row"></ng-container>

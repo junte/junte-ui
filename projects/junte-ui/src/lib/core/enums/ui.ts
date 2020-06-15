@@ -1,5 +1,9 @@
+import { CardState } from '../../layout/card/enums';
+import { PagerMode } from '../../navigation/pager/enums';
+import { GanttTypes } from '../../collections/gantt/enums';
 import { Height } from './height';
 import { Feature } from './feature';
+import { DatePickerFeatures } from '../../forms/date-picker/enums';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { FormState, ValidationTypeError } from '../../forms/form/enums';
@@ -57,12 +61,16 @@ export class UI {
     grid: {row: {align: RowAlign, justify: RowJustify}},
     stack: {type: StackType},
     block: {state: BlockState},
+    card: {state: CardState},
     skeleton: {type: SkeletonType},
     app: {position: AppLayoutPosition}
   };
   static navigation = {
     link: {
       target: LinkTarget
+    },
+    pager: {
+      mode: PagerMode
     }
   };
   static forms = {
@@ -73,6 +81,7 @@ export class UI {
       typeError: ValidationTypeError
     },
     form: {state: FormState},
+    datePicker: {features: DatePickerFeatures}
   };
   static overlays = {
     popover: {
@@ -82,7 +91,7 @@ export class UI {
 
   };
   static collections = {
-    table: {features: TableFeatures}
-
+    table: {features: TableFeatures},
+    gantt: {type: GanttTypes}
   };
 }

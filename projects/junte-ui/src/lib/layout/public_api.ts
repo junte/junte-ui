@@ -9,3 +9,4 @@ export * from './stack/public_api';
 export * from './lp/public_api';
 export * from './informer/public_api';
 export * from './collapsible/public_api';
+export * from './card/public_api';

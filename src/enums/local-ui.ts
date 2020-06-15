@@ -1,5 +1,6 @@
 export class LocalUI {
   static icons = {
+    npm: 'npm:svg:local',
     builder: 'builder:svg:local',
     preview: 'preview:svg:local',
     code: 'code:svg:local',
@@ -21,7 +22,11 @@ export class LocalUI {
       ironman: 'ironman:svg:local',
       capitan: 'capitan:svg:local',
     // menu:
-      documentation: 'documentation:font:junte-ui-test-default',
+    top: {
+      home: 'home:svg:local',
+      documentation: 'documentation:svg:local',
+      team: 'team:svg:local',
+    },
       contacts: 'contacts:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
       theming: 'theming:font:junte-ui-test-layout',
@@ -29,6 +34,7 @@ export class LocalUI {
       layout: 'layout:font:junte-ui-test-default',
       grid: 'grid:font:junte-ui-test-layout',
       block: 'block:font:junte-ui-test-layout',
+      card: 'card:font:junte-ui-test-layout',
       responsive: 'responsive:font:junte-ui-test-layout',
       skeleton: 'skeleton:font:junte-ui-test-layout',
       spinner: 'spinner:font:junte-ui-test-layout',

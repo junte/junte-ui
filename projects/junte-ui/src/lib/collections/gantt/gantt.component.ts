@@ -1,9 +1,10 @@
 import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addMonths, subMonths } from 'date-fns';
+import { addMonths, addYears, subMonths, subYears } from 'date-fns';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
+import { GanttTypes } from './enums';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
 
 @Component({
@@ -25,8 +26,19 @@ export class GanttComponent implements ControlValueAccessor {
   ui = UI;
   addMonths = addMonths;
   subMonths = subMonths;
+  addYears = addYears;
+  subYears = subYears;
+  types = GanttTypes;
 
   private _current: Date = new Date();
+
+  @PropertyApi({
+    description: 'Type of gantt',
+    type: 'ui.collections.gantt.type.month | ui.collections.gantt.type.year',
+    default: GanttTypes.month,
+  })
+  @Input()
+  type: GanttTypes = GanttTypes.month;
 
   @PropertyApi({
     description: 'Title',

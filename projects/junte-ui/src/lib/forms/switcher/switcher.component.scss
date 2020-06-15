@@ -38,8 +38,10 @@
     @if $declare {
       display: block;
       border: 1px solid $jnt-gray-700-color;
+      position: relative;
       #{$wrapper} [data-options] {
         display: flex;
+
         [data-option] {
           background-color: $jnt-primary-background;
           color: $jnt-primary-text-color;
@@ -71,6 +73,7 @@
 
           [data-title] {
             flex: 1;
+
             [data-label] {
               flex: 0 1 auto;
               overflow: hidden;
@@ -81,14 +84,21 @@
       }
     }
     border-radius: map-get($vars, corner);
+
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
         $vertical: map-get($vars, vertical);
-        max-height: if(map-get($vertical, max-height), map-get($vertical, max-height), null);
-        overflow-y: auto;
+        @if map-has-key($vertical, max-height) {
+          #{$wrapper} [data-scroll] {
+            max-height: map-get($vertical, max-height);
+            overflow-y: auto;
+          }
+        }
       }
+
       #{$wrapper} [data-options] {
         flex-direction: column;
+
         [data-option] {
           &:first-child {
             border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
@@ -102,9 +112,11 @@
         }
       }
     }
+
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
         flex-direction: row;
+
         [data-option] {
           flex: auto;
           justify-content: center;
@@ -114,6 +126,7 @@
               justify-content: map-get($option, align);
             }
           }
+
           &:first-child {
             border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
             border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
@@ -126,14 +139,20 @@
         }
       }
     }
+
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
+
       #{$wrapper} [data-option] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-scroll] {
+    border-radius: map-get($vars, corner);
   }
 
   #{$context} #{$wrapper} [data-options] {
@@ -147,6 +166,7 @@
             background-color: map-get($active, background);
           }
         }
+
         [data-mark] {
           @include jnt-icon((color: $jnt-white-color), '&');
         }
@@ -167,7 +187,13 @@
       $horizontal: map-get($vars, horizontal);
       line-height: map-get($horizontal, height);
     }
+  }
 
+  #{$context} #{$wrapper} [data-count] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-50%, 50%);
   }
 }
 

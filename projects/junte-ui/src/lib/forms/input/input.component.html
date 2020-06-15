@@ -8,7 +8,7 @@
          type="string"
          [placeholder]="placeholder"
          [readonly]="readonly ? readonly : null"
-         (keydown)="keydown($event)">
+         (keydown)="keydownMask($event)">
 
   <ng-template #inputTemplate>
     <input *ngIf="!multiline; else textareaTemplate"
@@ -18,7 +18,9 @@
            [readonly]="readonly ? readonly : null"
            [autocomplete]="autocomplete"
            [min]="min"
-           [max]="max">
+           [max]="max"
+           (blur)="blur()"
+           (keydown)="keydown($event)">
   </ng-template>
 
   <ng-template #textareaTemplate>
@@ -41,16 +43,16 @@
   </div>
 
   <div data-arrows *ngIf="type === inputType.number">
-    <button [disabled]="inputControl.disabled" (click)="up()">
+    <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
       <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
     </button>
-    <button [disabled]="inputControl.disabled" (click)="down()">
+    <button [disabled]="inputControl.disabled" (click)="down()" tabindex="-1">
       <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
     </button>
   </div>
 
   <button data-view *ngIf="type === inputType.password"
-          (click)="view.password.display = !view.password.display">
+          (click)="view.password.display = !view.password.display" tabindex="-1">
     <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
   </button>
 </form>

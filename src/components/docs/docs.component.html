@@ -11,36 +11,39 @@
     <jnt-menu>
       <jnt-menu-item title="Home"
                      i18n-title="@@label.home"
-                     [icon]="ui.icons.home"
+                     [icon]="localUi.icons.top.home"
                      [link]="['/']"></jnt-menu-item>
       <jnt-menu-item title="Documentation"
                      i18n-title="@@label.documentation"
-                     [icon]="localUi.icons.documentation"
+                     [icon]="localUi.icons.top.documentation"
                      [link]="['/general/home']"
                      [matching]="ui.url.matching.wildcard">
       </jnt-menu-item>
       <jnt-menu-item title="Team"
                      i18n-title="@@label.team"
-                     [icon]="localUi.icons.contacts"
+                     [icon]="localUi.icons.top.team"
                      [link]="['/team']"
                      [matching]="ui.url.matching.wildcard"></jnt-menu-item>
+      <!-- TODO: add [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"-->
       <jnt-menu-item title="GitLab"
                      i18n-title="@@label.gitlab"
                      link="https://gitlab.com/junte/junte-ui"
                      target="_blank"
                      [icon]="ui.icons.gitlab"></jnt-menu-item>
-      <jnt-menu-item title="Figma"
-                     i18n-title="@@label.figma"
-                     link="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=793%3A0"
+      <!-- TODO: add [analytics]="{ type: analyticsType.goal, goal: 'Figma' }"-->
+      <jnt-menu-item title="NPM"
+                     i18n-title="@@label.npm"
+                     link="https://www.npmjs.com/package/@junte/ui"
                      target="_blank"
-                     [icon]="ui.icons.figma"></jnt-menu-item>
+                     [icon]="localUi.icons.npm"></jnt-menu-item>
     </jnt-menu>
 
     <ng-template #contentTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.flex.align.center">
         <form [formGroup]="themeForm">
-          <jnt-theme-switcher formControlName="theme"></jnt-theme-switcher>
+          <jnt-theme-switcher [analytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
+                              formControlName="theme"></jnt-theme-switcher>
         </form>
         <app-select-lang></app-select-lang>
       </jnt-stack>
@@ -86,6 +89,10 @@
                          i18n-title="@@label.block"
                          [link]="['/layout/block']"
                          [icon]="localUi.icons.block"></jnt-menu-item>
+          <jnt-menu-item title="Card"
+                         i18n-title="@@label.card"
+                         [link]="['/layout/card']"
+                         [icon]="localUi.icons.card"></jnt-menu-item>
           <jnt-menu-item title="Responsive"
                          i18n-title="@@label.responsive"
                          [link]="['/layout/responsive']"
@@ -132,10 +139,6 @@
                          i18n-title="@@label.pager"
                          [link]="['/navigation/pager']"
                          [icon]="localUi.icons.pager"></jnt-menu-item>
-          <jnt-menu-item title="Dropdown"
-                         i18n-title="@@label.dropdown"
-                         [link]="['/navigation/dropdown']"
-                         [icon]="localUi.icons.select"></jnt-menu-item>
           <jnt-menu-item title="Breadcrumbs"
                          i18n-title="@@label.breadcrumbs"
                          [link]="['/navigation/breadcrumbs']"
@@ -315,8 +318,8 @@
     <jnt-app-sub-header (burgerToggle)="aside.toggle()">
       <jnt-breadcrumb></jnt-breadcrumb>
     </jnt-app-sub-header>
-    <jnt-app-body>
-      <router-outlet></router-outlet>
+    <jnt-app-body [outlet]="o">
+      <router-outlet #o="outlet"></router-outlet>
     </jnt-app-body>
     <jnt-app-footer>
       <app-footer></app-footer>

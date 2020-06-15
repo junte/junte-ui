@@ -1,11 +1,19 @@
 {
-  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/junte-ui",
+  "assets": [
+    "LICENSE"
+  ],
   "lib": {
     "entryFile": "src/public_api.ts",
     "styleIncludePaths": ["./src/lib/assets/styles"],
     "umdModuleIds": {
-      "date-fns": "date-fns"
+      "date-fns": "date-fns",
+      "date-fns/locale": "date-fns/locale",
+      "ngx-date-fns": "ngx-date-fns",
+      "ngx-logger": "ngx-logger",
+      "util": "util",
+      "@ngx-translate/core": "@ngx-translate/core"
     }
   },
   "whitelistedNonPeerDependencies": [

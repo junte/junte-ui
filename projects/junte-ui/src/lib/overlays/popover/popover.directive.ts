@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { PopoverTriggers } from './enums';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 import { PopoverService } from './popover.service';
@@ -7,38 +7,50 @@ import { PopoverService } from './popover.service';
   selector: '[jntPopover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective {
+export class PopoverDirective implements OnDestroy {
 
-  @Input('jntPopover') options: PopoverOptions;
+  private options: PopoverOptions;
+  private reference: PopoverComponent;
 
-  @Output('jntCatch') catch = new EventEmitter<PopoverComponent>();
+  @Input('jntPopover')
+  set __options__(options: PopoverOptions) {
+    this.options = new PopoverOptions(options);
+  }
 
-  reference: PopoverComponent;
+  @Output('jntPopoverDisplayed')
+  displayed = new EventEmitter<PopoverComponent>();
+
+  ngOnDestroy() {
+    if (!!this.reference) {
+      this.reference.hide();
+      this.reference = null;
+    }
+  }
 
   @HostListener('mouseenter')
   mouseEnter() {
-    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === PopoverTriggers.hover) {
       this.show();
     }
   }
 
   @HostListener('document:mousemove', ['$event'])
   documentMouseMove(e: any) {
-    if (!!this.options && this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === PopoverTriggers.hover) {
       this.hide(e.path);
     }
   }
 
   @HostListener('click')
   click() {
-    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
+    if (this.options.trigger === PopoverTriggers.click) {
       this.show();
     }
   }
 
   @HostListener('document:click', ['$event'])
-  documentClick(e: any) {
-    if (!!this.options && this.options.trigger === PopoverTriggers.click) {
+  documentClick(e: { path: HTMLElement[] }) {
+    if (this.options.trigger === PopoverTriggers.click) {
       this.hide(e.path);
     }
   }
@@ -53,7 +65,7 @@ export class PopoverDirective {
 
   private show() {
     this.reference = this.popover.show(this.hostRef, this.options);
-    this.catch.emit(this.reference);
+    this.displayed.emit(this.reference);
   }
 
   private hide(path: HTMLElement[]) {
@@ -61,7 +73,6 @@ export class PopoverDirective {
       && !this.reference.picked(path)) {
       this.reference.hide();
       this.reference = null;
-      this.catch.emit(this.reference);
     }
   }
 }

@@ -5,11 +5,11 @@
     <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
     framework!
   </h2>
+
   <h5><b>Junte UI</b> is a collection of quality UI components for Angular
     <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
     with design system in Figma
     <jnt-icon [icon]="ui.icons.figma"></jnt-icon>
-
   </h5>
 
   <p>We love Angular and we want to implement all beautiful apps from
@@ -30,133 +30,182 @@
   </p>
   <p>Modern browsers and Internet Explorer 11+</p>
 
+  <img src="https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg">
+
   <h3>1. Installation Angular CLI</h3>
   <!-- @formatter:off-->
   <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
-npm install -g @angular/cli
+sudo npm install -g @angular/cli
 ]]>
     </pre>
   </app-code-highlight>
 
-  <h3>2. Create a New Project</h3>
+  <h3>2. Create a new Project</h3>
+
   <p>A new project can be created using Angular CLI tools.</p>
 
   <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
-ng new PROJECT-NAME
+ng new junte-ui-test --style=scss --routing=false
+cd junte-ui-test
 ]]>
     </pre>
   </app-code-highlight>
 
   <h3 i18n="@@label.installation">3. Installation Junte UI</h3>
-  <p>Install <b>Junte UI</b> with
+
+  <p>Install <b>Junte UI</b> package
     <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
   </p>
 
   <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
-npm install junte-ui --save
+npm install @junte/ui  --save-dev
 ]]>
     </pre>
   </app-code-highlight>
 
-  <h3>4. Import Junte UI Module</h3>
+  <h3>4. Import Junte UI module</h3>
 
-  <p>Once installed you need to import our main module.</p>
-  <p>Some components use angular animation, you need to import <code>BrowserAnimationsModule</code> to your
-    application.<code>app.module.ts</code></p>
+  <p>Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
+    <code>src/app/app.module.ts</code></p>
   <app-code-highlight [language]="languages.typescript">
     <pre>
 <![CDATA[
-import { JunteUiModule } from 'junte-ui';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { JunteUiModule } from '@junte/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-@NgModule({
-  ...
-  imports: [ JunteUiModule, BrowserAnimationsModule, ... ],
-  ...
-})
+import { AppComponent } from './app.component';
 
-export class AppModule {
-}
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    JunteUiModule.forRoot(),
+    BrowserAnimationsModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ]]>
     </pre>
   </app-code-highlight>
 
-  <h3>4. Import styles</h3>
+  <h3>5. Import styles & assets</h3>
 
-  <p>Import style and SVG icon assets file link to <code>angular.json</code></p>
-
+  <p>Import styles and assets in <code>angular.json</code></p>
   <app-code-highlight [language]="languages.json">
     <pre>
 <![CDATA[
 {
-  ...
-  "options": [
-    ...
+  "options": {
     "assets": [
       {
-      "glob": "**/*",
-      "input": "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/",
-      "output": "./assets/fonts/icons/"
+        "glob": "**/*",
+        "input": "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/",
+        "output": "./assets/fonts/icons/"
       },
       {
         "glob": "**/*",
-        "input": "node_modules/junte-ui/lib/assets/icons/animated/",
+        "input": "node_modules/@junte/ui/lib/assets/icons/animated/",
         "output": "./assets/icons/animated/"
       },
       {
         "glob": "**/*",
-        "input": "node_modules/junte-ui/lib/assets/icons/svg/",
+        "input": "node_modules/@junte/ui/lib/assets/icons/svg/",
         "output": "./assets/icons/svg/"
       }
     ],
     "styles": [
       "src/styles.scss",
-      "node_modules/junte-ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
-      "node_modules/junte-ui/lib/assets/fonts/open-sans/regular-400.scss"
+      "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
+      "node_modules/@junte/ui/lib/assets/fonts/open-sans/regular-400.scss"
     ]
-    ...
+  }
 }
 ]]>
     </pre>
   </app-code-highlight>
 
-  <p>Import the style files <code>jnt-all.scss</code> into the global style file <code>styles.scss</code></p>
+  <p>Import the styles into the global app styles <code>src/styles.scss</code></p>
 
   <app-code-highlight [language]="languages.css">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/assets/styles/jnt-all";
-]]>
-    </pre>
-  </app-code-highlight>
-  <app-code-highlight [language]="languages.css">
-    <pre>
-<![CDATA[
+/* You can add global styles to this file, and also import other style files */
+@import "~@junte/ui/lib/assets/styles/jnt-all";
+@import "~@junte/ui/lib/assets/styles/jnt-common";
 body {
-      font-family: "Open Sans", Tahoma;
-      font-weight: 500;
-      font-size: $jnt-font-size;
+      font-family: $jnt-font-family-base;
+      font-weight: $jnt-font-weight-light;
+      font-size: $jnt-font-size-normal;
       color: $jnt-primary-text-color;
-      margin: 0;
+      margin: 20px;
 }
 ]]>
     </pre>
   </app-code-highlight>
-  <p>If you need common styles import the file <code>jnt-common.scss</code></p>
 
-  <app-code-highlight [language]="languages.css">
+  <p>Bingo 👏 Start your project.</p>
+  <app-code-highlight [language]="languages.bash">
     <pre>
 <![CDATA[
-@import "~junte-ui/lib/assets/styles/jnt-common";
+ng serve
 ]]>
     </pre>
   </app-code-highlight>
+
+  <p>It is a very fast but rude installation with importing all components & assets.</p>
+
+  <h3>How to try</h3>
+  <p>You can go to research all components specifications.</p>
+
+  <p>For fast test add link to <code>UI</code> enum in <code>src/app/app.component.ts</code></p>
+  <app-code-highlight [language]="languages.typescript">
+    <pre>
+<![CDATA[
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+    ui = UI; // link to junte UI enum
+}
+]]>
+    </pre>
+  </app-code-highlight>
+
+  <p>Add <code>jnt-button</code> in to your <code>src/app/app.component.html</code></p>
+
+  <app-code-highlight [language]="languages.html">
+    <pre>
+<![CDATA[
+<jnt-button text="Click on me"
+    [icon]="ui.icons.user">
+    <jnt-badge [value]="5"></jnt-badge>
+</jnt-button>
+]]>
+    </pre>
+  </app-code-highlight>
+
+  <p>You should see the button 😎</p>
+
+  <p>Problems 🙀? Please, add an issue here 👉 <jnt-link
+    title="Issues tracker"
+    [outline]="ui.outline.ghost"
+    source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link></p>
+
   <!-- @formatter:on-->
 
 </jnt-container>

@@ -7,18 +7,10 @@
     <span i18n="@@label.switcher">Switcher</span>
   </h1>
 
-  <jnt-stack resources [orientation]="ui.orientation.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
-              [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switcher"
-              target="_blank" title="GitLab">
-    </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
-              [outline]="ui.outline.ghost"
-              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997"
-              target="_blank" title="Figma">
-    </jnt-link>
-  </jnt-stack>
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switcher"
+    figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997">
+  </app-resources>
 
   <jnt-tabs playground>
     <jnt-tab title="Preview"
@@ -43,6 +35,7 @@
                         </jnt-form-label>
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
+                                        [features]="indicatorControl.value ? [ui.feature.badge] : null"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
                                         [allowEmpty]="allowEmptyControl.value"
@@ -189,9 +182,11 @@
                   <jnt-select formControlName="orientation" placeholder="Horizontal">
                     <jnt-select-option label="Horizontal"
                                        i18n-label="@@label.horizontal"
+                                       [icon]="localUi.icons.horizontal"
                                        [key]="ui.orientation.horizontal"></jnt-select-option>
                     <jnt-select-option label="Vertical"
                                        i18n-label="@@label.vertical"
+                                       [icon]="localUi.icons.vertical"
                                        [key]="ui.orientation.vertical"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-item>
@@ -216,10 +211,14 @@
                                     label="Badge"
                                     i18n-label="@@label.badge"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="12">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="template"
                                     label="Custom option"
                                     i18n-label="@@label.custom_option"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="indicator"
+                                    label="Count indicator"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="allowEmpty"
@@ -278,6 +277,10 @@
   <ng-container *ngIf="orientationControl.value">
     <![CDATA[
     [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="indicatorControl.value">
+    <![CDATA[
+    [features]="[ui.feature.badge]"]]>
   </ng-container>
   <![CDATA[>
   <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>

@@ -3,35 +3,71 @@
 @import "navigation/menu/menu";
 @import "navigation/link/link";
 @import "elements/icon/icon";
+@import "elements/label/label";
 @import "layout/responsive/responsive";
+@import "layout/grid/container/container";
+
+$angular-color: #E23237;
+
+@include jnt-grid-container((), null, true) {
+  position: static;
+  display: flex;
+  flex-direction: column;
+};
 
 [about] {
-  padding: 0 150px;
   height: 100%;
   background-color: $jnt-secondary-background;
   text-align: center;
+  display: flex;
+  box-sizing: border-box;
   @include max-for-tablet() {
     padding: 0 $jnt-gutter-big;
   }
+  @include for-mobile() {
+    padding: 0 0 $jnt-gutter-large 0;
+    background: $jnt-secondary-background url("../../assets/images/bg-home-mobile.png") no-repeat bottom left;
+    background-size: cover;
+    min-height: 100vh;
+  }
+
   [content] {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    position: relative;
     @include max-for-tablet() {
       font-size: 1.4rem;
     }
     @include for-mobile() {
-      font-size: 1.125rem;
+      font-size: 1rem;
     }
     h1 {
-      text-align: center;
-      font-size: 2.56em;
-      font-weight: $jnt-font-weight-base;
+      text-align: left;
+      font-size: 2.5em;
+      font-weight: $jnt-font-weight-semi-bold;
       color: $jnt-primary-text-dark-color;
       line-height: 140%;
-      margin-top: $jnt-gutter-big;
+      margin-top: $jnt-gutter-huge;
+      position: relative;
+      span {
+        color: $angular-color;
+      }
+      [data-label] {
+        @include jnt-label(
+            (
+              background: #FF6262 linear-gradient(134.84deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%),
+              font-size: $jnt-font-size-base),
+            '&', true);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+        height: 28px;
+        font-weight: $jnt-font-weight-base;
+      }
+
     }
     p {
       font-size: .875em;
-      font-weight: 200;
       color: $jnt-primary-text-dark-color;
     }
 
@@ -49,6 +85,10 @@
     margin-bottom: $jnt-gutter-huge;
     position: relative;
     z-index: 1;
+    @include for-mobile() {
+      margin-bottom: $jnt-gutter-normal;
+      padding-bottom: $jnt-gutter-normal;
+    }
     img {
       @include max-for-tablet() {
         height: 40px;
@@ -60,6 +100,7 @@
           item: (
             color: $jnt-primary-color,
             text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
             active: (
               color: $jnt-white-color
             ),
@@ -80,6 +121,8 @@
   }
 
   [tags] {
+    // TODO need fix row
+    margin-left: -$jnt-gutter-large;
     [tag] {
       [icon] {
         min-width: 74px;
@@ -94,25 +137,55 @@
       span {
         text-transform: uppercase;
         font-size: .75em;
+        font-weight: $jnt-font-weight-semi-bold;
+        @include for-mobile() {
+          font-size: 1em;
+        }
       }
     }
   }
 
   [tutorial] {
+    position: relative;
+    z-index: 1;
+    border-radius: 34px;
+    border: 2px solid $jnt-page-background;
+    background-image: linear-gradient(138.17deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%);
+    @include max-for-tablet() {
+      align-self: center;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(326.21deg, #DE3DBF 8.92%, #C337B8 21.82%, #A22FAE 40.86%, #8829A7 60.46%, #7624A2 80.57%, #6B229F 101.52%, #67219E 124.65%);
+      z-index: -1;
+      transition: opacity 0.3s linear;
+      opacity: 0;
+      border-radius: 34px;
+    }
+    &:hover:before {
+      opacity: 1;
+    }
     @include jnt-link((
       corner: 34px,
       font-size: 18px,
       text-transform: uppercase,
-      padding: $jnt-gutter-normal $jnt-gutter-large,
+      font-weight: $jnt-font-weight-semi-bold,
+      padding: $jnt-gutter-small $jnt-gutter-large,
       schemes: (
         primary: (
-          color: $jnt-primary-light-color,
+          color: transparent,
           inverse-color: $jnt-white-color,
-          hover-color: $jnt-primary-color,
+          hover-color: transparent,
         ),
       ),
       icon: (
-        margin-right: $jnt-gutter-small,
+        margin-right: $jnt-gutter-normal,
+        size: 28px,
       ),
     ), '&', true);
   }
@@ -173,8 +246,7 @@
     }
 
     [planet][left] {
-      bottom: 0;
-      transform: translateY(50%);
+      bottom: 10px;
       left: 150px;
     }
 
@@ -191,7 +263,7 @@
     [ship] {
       position: absolute;
       top: 0;
-      left: 178px;
+      left: 190px;
       animation: bounce 0.5s infinite;
       @include for-mobile() {
         top: auto;
@@ -294,12 +366,13 @@
       top: 0;
       right: 0;
       @include for-mobile() {
-        top: -50px;
+        width: 100%;
+        height: auto;
       }
     }
 
     [planet] {
-      top: 125px;
+      top: 100px;
       right: 155px;
       width: 120px;
       height: 120px;

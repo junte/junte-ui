@@ -12,6 +12,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
@@ -66,7 +67,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     if (!!this.form) {
-      this.form.statusChanges.subscribe(() => {
+      this.form.statusChanges.pipe(filter(() => !!this.controls)).subscribe(() => {
         this.controls.filter(component => !!component.name && !!component.messages.length)
           .forEach(component => {
             const control = component.getControl();

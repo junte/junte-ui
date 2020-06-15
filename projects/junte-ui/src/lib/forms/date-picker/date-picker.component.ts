@@ -1,12 +1,18 @@
 import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { format as formatDate, parse } from 'date-fns';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { format as formatDate, parse, setHours, setMinutes } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
+import { PopoverService } from '../../overlays/popover/popover.service';
+import { DatePickerFeatures } from './enums';
 
 const INPUT_DELAY = 500;
+
+export enum CLOCK_TYPE {
+  HOURS = 1,
+  MINUTES = 2
+}
 
 @Component({
   selector: 'jnt-date-picker',
@@ -19,13 +25,19 @@ const INPUT_DELAY = 500;
     }
   ]
 })
-export class DatePickerComponent implements OnInit {
+export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
   ui = UI;
-  popover: PopoverComponent;
+  datePickerFeatures = DatePickerFeatures;
   opened: boolean;
+  timeMeridien = 'AM';
+  VIEW_HOURS = CLOCK_TYPE.HOURS;
+  VIEW_MINUTES = CLOCK_TYPE.MINUTES;
+  currentView: CLOCK_TYPE = this.VIEW_HOURS;
+  hours = 0;
+  minutes = 0;
 
   inputControl = this.fb.control(null);
   calendarControl = this.fb.control(new Date());
@@ -43,34 +55,41 @@ export class DatePickerComponent implements OnInit {
   })
   @Input() placeholder = '';
 
+  @PropertyApi({
+    description: 'Date picker features',
+    path: 'ui.form.datePicker.features',
+    options: [DatePickerFeatures.clock]
+  })
+  @HostBinding('attr.features')
+  @Input() features: DatePickerFeatures[] = [];
+
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private popover: PopoverService) {
   }
 
   ngOnInit() {
-    this.calendarControl.valueChanges.subscribe(date => {
+    this.calendarControl.valueChanges.pipe(distinctUntilChanged())
+      .subscribe(date => {
         this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
         this.onChange(date);
         this.opened = false;
-        if (!!this.popover) {
-          this.popover.hide();
-        }
+        this.popover.hide();
       });
 
-    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY),
-      distinctUntilChanged())
+    this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
-      this.updateCalendar(parse(date, this.format, new Date()));
-      if (!!this.popover) {
+        this.updateCalendar(parse(date, this.format, new Date()));
         this.popover.hide();
-      }
-    });
+      });
   }
 
   updateCalendar(date: Date) {
     if (date instanceof Date && !isNaN(date.getTime())) {
       this.calendarControl.patchValue(date);
+    } else {
+      this.inputControl.patchValue(null);
     }
   }
 
@@ -80,7 +99,20 @@ export class DatePickerComponent implements OnInit {
   onTouched() {
   }
 
+  writeHour(hour: any): void {
+    this.hours = (this.timeMeridien === 'AM' ? hour : hour + 12);
+    this.currentView = this.VIEW_MINUTES;
+  }
+
+  writeMinutes(minute: any): void {
+    this.minutes = minute;
+    this.currentView = this.VIEW_HOURS;
+    this.calendarControl.patchValue(setMinutes(this.calendarControl.value, minute * 5));
+    this.calendarControl.patchValue(setHours(this.calendarControl.value, this.hours));
+  }
+
   writeValue(value: Date) {
+    this.calendarControl.patchValue(value);
     this.updateCalendar(value);
   }
 
@@ -90,6 +122,20 @@ export class DatePickerComponent implements OnInit {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    disabled ? this.inputControl.disable() : this.inputControl.enable();
+  }
+
+  setCurrentView(type: CLOCK_TYPE) {
+    this.currentView = type;
+  }
+
+  public setMeridien(m: 'PM' | 'AM') {
+    this.timeMeridien = m;
+    this.calendarControl.patchValue(setMinutes(this.calendarControl.value, this.minutes * 5));
+    this.calendarControl.patchValue(setHours(this.calendarControl.value, this.timeMeridien === 'AM' ? this.hours : this.hours + 12));
   }
 
 }

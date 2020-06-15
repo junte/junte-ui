@@ -1,7 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppLayoutModule, BreadcrumbsModule, MenuModule, ModalModule, PopoverModule, StackModule, ThemeSwitcherModule } from 'junte-ui';
+import {
+  AppLayoutModule,
+  BreadcrumbsModule,
+  MenuModule,
+  ModalModule,
+  PopoverModule,
+  ResponsiveModule,
+  StackModule,
+  ThemeSwitcherModule
+} from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
 import { AppFooterModule } from '../footer/app-footer.module';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
@@ -10,9 +19,9 @@ import { OutletModule } from '../outlet/outlet.module';
 import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { CollapsibleTestComponent } from './layout/collapsible/collapsible-test.component';
 
 export function getHighlightLanguages() {
   return {
@@ -39,7 +48,9 @@ export function getHighlightLanguages() {
     SelectLangModule,
     AppFooterModule,
     DocsRoutingModule,
-    ModalTestModule
+    ModalTestModule,
+    ResponsiveModule,
+    AnalyticsDirectivesModule
   ],
   declarations: [
     DocsComponent,

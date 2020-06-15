@@ -7,18 +7,10 @@
     <span i18n="@@label.input">Input</span>
   </h1>
 
-  <jnt-stack resources [orientation]="ui.orientation.horizontal">
-    <jnt-link [icon]="ui.icons.gitlab"
-              [outline]="ui.outline.ghost"
-              source="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input"
-              target="_blank" title="GitLab">
-    </jnt-link>
-    <jnt-link [icon]="ui.icons.figma"
-              [outline]="ui.outline.ghost"
-              source="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=700%3A0"
-              target="_blank" title="Figma">
-    </jnt-link>
-  </jnt-stack>
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input"
+    figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=700%3A0">
+  </app-resources>
 
   <jnt-tabs playground>
 
@@ -47,6 +39,8 @@
                                [multiline]="multilineControl.value"
                                [rows]="rowsControl.value"
                                [readonly]="readonlyControl.value"
+                               [min]="minControl.value"
+                               [max]="maxControl.value"
                                autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -124,12 +118,15 @@
                                 i18n-placeholder="@@label.normal">
                       <jnt-select-option label="Small"
                                          i18n-label="@@label.small"
+                                         [icon]="localUi.icons.padding.small"
                                          [key]="ui.size.small"></jnt-select-option>
                       <jnt-select-option label="Normal"
                                          i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.padding.normal"
                                          [key]="ui.size.normal"></jnt-select-option>
                       <jnt-select-option label="Large"
                                          i18n-label="@@label.large"
+                                         [icon]="localUi.icons.padding.large"
                                          [key]="ui.size.large"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
@@ -226,6 +223,25 @@
                   </jnt-col>
                 </jnt-row>
 
+                <jnt-row [align]="ui.layout.grid.row.align.center">
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label>Min</jnt-form-label>
+                      <jnt-form-control>
+                        <jnt-input formControlName="min" [type]="ui.forms.input.type.number"></jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label>Max</jnt-form-label>
+                      <jnt-form-control>
+                        <jnt-input formControlName="max" [type]="ui.forms.input.type.number"></jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -279,6 +295,12 @@
   </ng-container>
   <ng-container *ngIf="rowsControl.value">
     <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="minControl.value">
+    <![CDATA[[min]="]]>{{minControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="maxControl.value">
+    <![CDATA[[max]="]]>{{maxControl.value}}<![CDATA["]]>
   </ng-container>
     <![CDATA[>
 </jnt-input>

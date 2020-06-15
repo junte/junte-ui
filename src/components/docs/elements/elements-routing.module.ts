@@ -2,35 +2,35 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
+import { DotTestComponent } from './dot/dot-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { LabelTestComponent } from './label/label-test.component';
-import { DotTestComponent } from './dot/dot-test.component';
 
 export const routes: Routes = [
   {
     path: 'icon',
     component: IconTestComponent,
-    data: {breadcrumb: 'Icon'}
+    data: {breadcrumb: 'Icon', animation: 'Icon'}
   },
   {
     path: 'avatar',
     component: AvatarTestComponent,
-    data: {breadcrumb: 'Avatar'}
+    data: {breadcrumb: 'Avatar', animation: 'Avatar'}
   },
   {
     path: 'badge',
     component: BadgeTestComponent,
-    data: {breadcrumb: 'Badge'}
+    data: {breadcrumb: 'Badge', animation: 'Badge'}
   },
   {
     path: 'label',
     component: LabelTestComponent,
-    data: {breadcrumb: 'Label'}
+    data: {breadcrumb: 'Label', animation: 'Label'}
   },
   {
     path: 'dot',
     component: DotTestComponent,
-    data: {breadcrumb: 'Dot'}
+    data: {breadcrumb: 'Dot', animation: 'Dot'}
   }
 ];
 

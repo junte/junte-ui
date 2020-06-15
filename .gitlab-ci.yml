@@ -1,13 +1,15 @@
 image: docker:18
 variables:
   DOCKER_DRIVER: overlay
-  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_PIPELINE_IID
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
+  DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE:build-$CI_PIPELINE_IID
   DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE:cache
   GIT_STRATEGY: none
 
 stages:
   - build
   - deploy
+  - publish_npm
 
 build:
   stage: build
@@ -19,23 +21,81 @@ build:
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
-    - docker build --cache-from $DOCKER_CACHE_IMAGE --target build -t $DOCKER_CACHE_IMAGE -f deploy/Dockerfile .
-    - docker build --cache-from $DOCKER_CACHE_IMAGE -t $DOCKER_IMAGE -f deploy/Dockerfile .
+    - docker build
+          --cache-from $DOCKER_CACHE_IMAGE
+          --target build
+          -t $DOCKER_CACHE_IMAGE
+          -t $DOCKER_BUILD_IMAGE
+          -f deploy/Dockerfile .
+    - docker build 
+             --cache-from $DOCKER_CACHE_IMAGE 
+             -t $DOCKER_IMAGE 
+             -f deploy/Dockerfile .
     - docker push $DOCKER_IMAGE
     - docker push $DOCKER_CACHE_IMAGE
+    - docker push $DOCKER_BUILD_IMAGE
 
-deploy:
+.deploy:
   image: junte/helm-deploy:1.3-helm2.16.1
   stage: deploy
   dependencies: []
   variables:
     GIT_DEPTH: 5
     GIT_STRATEGY: fetch
-    HELM_IMAGE_TAG: $CI_PIPELINE_IID
+    HELM_IMAGE_TAG: $CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
   script:
     - helm_deploy
+
+deploy_master:
+  extends: .deploy
+  environment:
+    name: development
+    url: $SITE_ADDRESS
+  only:
+    - master
+
+deploy_rc:
+  extends: .deploy
+  environment:
+    name: staging
+    url: $SITE_ADDRESS
+  only:
+    - rc
+
+deploy_prod:
+  extends: .deploy
   environment:
     name: production
     url: $SITE_ADDRESS
   only:
+    - prod
+
+.publish_npm:
+  image: $DOCKER_BUILD_IMAGE
+  stage: publish_npm
+  dependencies: []
+  allow_failure: true
+  before_script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+
+publish_npm_master:
+  extends: .publish_npm
+  script:
+    - npm run publish
+  only:
     - master
+
+publish_npm_rc:
+  extends: .publish_npm
+  script:
+    - npm run publish:rc
+  only:
+    - rc
+
+publish_npm_prod:
+  extends: .publish_npm
+  script:
+    - npm run publish:prod
+  only:
+    - prod

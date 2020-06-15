@@ -20,6 +20,8 @@
 
 @mixin jnt-block($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
+    shadow: $jnt-shadow-normal,
+    corner: $jnt-corner-normal,
     padding: (
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
@@ -72,8 +74,8 @@
     flex-direction: column;
     position: relative;
     min-height: 40px;
-    box-shadow: $jnt-shadow-normal;
-    border-radius: $jnt-corner-normal;
+    box-shadow: map-get($vars, shadow);
+    border-radius: map-get($vars, corner);
     box-sizing: border-box;
     &[data-width="fluid"] {
       width: 100%;

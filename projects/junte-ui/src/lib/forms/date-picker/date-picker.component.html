@@ -2,11 +2,51 @@
   <ng-container *jntMinFor="ui.breakpoint.tablet">
     <jnt-input [placeholder]="placeholder || ''" formControlName="input"
                [jntPopover]="{contentTemplate: calendarTemplate, trigger: ui.overlays.popover.trigger.click}"
-               (jntCatch)="popover = $event"
                [icon]="ui.icons.calendar">
     </jnt-input>
+
     <ng-template #calendarTemplate>
-      <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
+      <jnt-stack [type]="ui.layout.stack.type.horizontal">
+        <jnt-calendar calendar formControlName="calendar"></jnt-calendar>
+        <div *ngIf="features | includes : datePickerFeatures.clock" time-picker class="timePicker">
+          <div time-panel>
+            <jnt-stack [type]="ui.layout.stack.type.horizontal" time>
+              <div selected-time>
+                <span
+                      [attr.active]="currentView === VIEW_HOURS"
+                      (click)="setCurrentView(VIEW_HOURS)">{{hours | timeFormat}}:</span>
+                <span
+                      [attr.active]="currentView === VIEW_MINUTES"
+                      (click)="setCurrentView(VIEW_MINUTES)">{{minutes * 5 | timeFormat}}</span>
+              </div>
+              <div ampm>
+                <span am [attr.active]="timeMeridien === 'AM'"
+                      (click)="setMeridien('AM')">AM</span>
+                <span pm [attr.active]="timeMeridien === 'PM'"
+                      (click)="setMeridien('PM')">PM</span>
+              </div>
+            </jnt-stack>
+          </div>
+          <div clock>
+            <ng-container *ngIf="currentView === VIEW_HOURS">
+            <div hours *ngFor="let hour of (12 | mockArray:1)"
+                 [style.left.px]="hour | styleTop"
+                 [style.top.px]="hour | styleLeft"
+                 (click)="writeHour(hour)">
+              {{hour}}
+            </div>
+            </ng-container>
+            <ng-container *ngIf="currentView === VIEW_MINUTES">
+            <div minutes *ngFor="let minute of (12 | mockArray)"
+                 [style.left.px]="minute | styleTop"
+                 [style.top.px]="minute | styleLeft"
+                 (click)="writeMinutes(minute)">
+              {{minute * 5}}
+            </div>
+            </ng-container>
+          </div>
+        </div>
+      </jnt-stack>
     </ng-template>
   </ng-container>
   <ng-container *jntMaxFor="ui.breakpoint.mobile">
@@ -19,5 +59,3 @@
     </div>
   </ng-container>
 </jnt-form>
-
-

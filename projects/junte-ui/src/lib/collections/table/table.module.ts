@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
-import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { InputModule } from '../../forms/input/input.module';
@@ -12,7 +12,6 @@ import { SelectModule } from '../../forms/select/select.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { DropdownModule } from '../../navigation/dropdown/dropdown.module';
 import { PagerModule } from '../../navigation/pager/pager.module';
 import { TableColumnComponent } from './column/table-column.component';
 import { TableComponent } from './table.component';
@@ -22,7 +21,6 @@ import { TableComponent } from './table.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DatePipesModule,
     IconModule,
     InputModule,
     PagerModule,
@@ -30,10 +28,10 @@ import { TableComponent } from './table.component';
     SpinnerModule,
     StackModule,
     SkeletonModule,
-    DropdownModule,
     ArrayPipesModule,
     SelectModule,
-    TranslateModule
+    TranslateModule,
+    PopoverModule
   ],
   declarations: [
     TableComponent,
