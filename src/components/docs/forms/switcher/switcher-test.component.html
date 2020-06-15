@@ -35,6 +35,7 @@
                         </jnt-form-label>
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
+                                        [features]="indicatorControl.value ? [ui.feature.badge] : null"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
                                         [allowEmpty]="allowEmptyControl.value"
@@ -210,10 +211,14 @@
                                     label="Badge"
                                     i18n-label="@@label.badge"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="12">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="template"
                                     label="Custom option"
                                     i18n-label="@@label.custom_option"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="indicator"
+                                    label="Count indicator"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="allowEmpty"
@@ -272,6 +277,10 @@
   <ng-container *ngIf="orientationControl.value">
     <![CDATA[
     [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="indicatorControl.value">
+    <![CDATA[
+    [features]="[ui.feature.badge]"]]>
   </ng-container>
   <![CDATA[>
   <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>
