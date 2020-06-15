@@ -11,7 +11,7 @@ import {
   SimpleChanges,
   ViewChildren
 } from '@angular/core';
-import { PropertyApi } from 'projects/junte-ui/src/lib/core/decorators/api';
+import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 enum InputState {
