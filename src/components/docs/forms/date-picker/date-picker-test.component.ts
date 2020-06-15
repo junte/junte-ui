@@ -4,13 +4,6 @@ import { TabComponent, UI } from 'junte-ui';
 import { DatePickerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
-export enum DateFormat {
-  fullDate = 'dd.MM.yyyy',
-  shortDate = 'dd.MM',
-  longDate = 'dd.MM.yy',
-  fullMonth = 'dd MMMM'
-}
-
 @Component({
   selector: 'app-date-picker-test',
   templateUrl: './date-picker-test.component.html',
@@ -20,15 +13,14 @@ export class DatePickerTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  dateFormat = DateFormat;
   types = {flightDate: DatePickerComponent};
 
   @ViewChild('code') code: TabComponent;
 
-  formatControl = this.fb.control(this.dateFormat.fullDate);
+  clockControl = this.fb.control(false);
 
   builder = this.fb.group({
-    format: this.formatControl,
+    clock: this.clockControl,
   });
 
   flightDateControl = this.fb.control(null);
