@@ -29,20 +29,18 @@
     corner: $jnt-corner-normal,
     border: null,
     title: (
-      padding: $jnt-gutter-normal,
-      margin: 0,
+      padding: 0,
+      margin: 0 0 $jnt-gutter-normal 0,
       color: $jnt-primary-text-color,
       text-align: left,
       font-weight: $jnt-font-weight-bold,
       font-size: $jnt-font-size-normal
     ),
+    header: (
+      padding: $jnt-gutter-normal,
+    ),
     footer: (
       padding: $jnt-gutter-normal,
-      margin: 0,
-      color: $jnt-primary-text-color,
-      text-align: left,
-      font-weight: $jnt-font-weight-bold,
-      font-size: $jnt-font-size-normal
     ),
     picture: (
       padding: 0 $jnt-gutter-normal 0 0,
@@ -106,9 +104,11 @@
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
     box-sizing: border-box;
+
     &[data-width="fluid"] {
       width: 100%;
     }
+
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
@@ -130,12 +130,14 @@
       #{$wrapper} [data-body] {
         cursor: pointer;
       }
+
       &:hover {
         @if map-has-key($vars, hover) {
           $hover: map-get($vars, hover);
           box-shadow: map-get($hover, shadow);
         }
       }
+
       &:focus {
         outline: 0;
       }
@@ -154,12 +156,8 @@
           padding-top: $jnt-gutter-big;
         }
       }
-      &[data-has-header='false'][data-has-title='true'] {
-        #{$wrapper} [data-title] {
-          padding-top: $jnt-gutter-big;
-        }
-      }
-      &[data-has-header='false'][data-has-title='false'] {
+
+      &[data-has-header='false'] {
         #{$wrapper} [data-body] {
           padding-top: $jnt-gutter-big;
         }
@@ -169,11 +167,13 @@
     &[data-has-picture='true'] {
       #{$wrapper} [data-body] {
         display: flex;
+
         [data-content] {
           flex: 1;
         }
       }
     }
+
     @content;
   }
 
@@ -229,15 +229,24 @@
     ), '&');
   }
 
-  #{$context} #{$wrapper} [data-text] {
+  #{$context} #{$wrapper} [data-title] {
     @if map-has-key($vars, title) {
       $title: map-get($vars, title);
       padding: map-get($title, padding);
       margin: map-get($title, margin);
-      text-align: map-get($title, text-align);
-      font-weight: map-get($title, font-weight);
-      color: map-get($title, color);
-      font-size: map-get($title, font-size);
+      [data-text] {
+        text-align: map-get($title, text-align);
+        font-weight: map-get($title, font-weight);
+        color: map-get($title, color);
+        font-size: map-get($title, font-size);
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-header] {
+    @if map-has-key($vars, header) {
+      $header: map-get($vars, header);
+      padding: map-get($header, padding);
     }
   }
 
@@ -245,11 +254,6 @@
     @if map-has-key($vars, footer) {
       $footer: map-get($vars, footer);
       padding: map-get($footer, padding);
-      margin: map-get($footer, margin);
-      text-align: map-get($footer, text-align);
-      font-weight: map-get($footer, font-weight);
-      color: map-get($footer, color);
-      font-size: map-get($footer, font-size);
     }
   }
 
