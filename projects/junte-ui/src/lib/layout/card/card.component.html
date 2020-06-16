@@ -2,18 +2,24 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<div *ngIf="!!title || !!headerTemplate" data-header>
-  <span *ngIf="!!title && !headerTemplate">{{title}}</span>
-  <ng-container *ngIf="!!headerTemplate">
-    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+<div *ngIf="!!headerTemplate" data-header>
+  <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+</div>
+
+<div *ngIf="!!title || !!titleTemplate" data-title>
+  <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
+  <ng-container *ngIf="!!titleTemplate">
+    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
   </ng-container>
 </div>
 
-<div data-content (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+<div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
   <div data-picture *ngIf="!!picture">
     <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
   </div>
-  <ng-content></ng-content>
+  <div data-content>
+    <ng-content></ng-content>
+  </div>
 </div>
 
 <div *ngIf="!!footerTemplate" data-footer>

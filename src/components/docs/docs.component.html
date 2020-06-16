@@ -8,7 +8,7 @@
       <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">
     </ng-template>
 
-    <jnt-menu>
+    <jnt-menu [spacer]="ui.gutter.normal">
       <jnt-menu-item title="Home"
                      i18n-title="@@label.home"
                      [icon]="localUi.icons.top.home"

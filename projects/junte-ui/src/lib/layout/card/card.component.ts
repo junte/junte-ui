@@ -41,7 +41,12 @@ export class CardComponent {
 
   @HostBinding('attr.data-has-header')
   get hasHeader() {
-    return !!this.title || !!this.headerTemplate;
+    return !!this.headerTemplate;
+  }
+
+  @HostBinding('attr.data-has-title')
+  get hasTitle() {
+    return !!this.title || !!this.titleTemplate;
   }
 
   @HostBinding('attr.data-has-picture')
@@ -78,6 +83,13 @@ export class CardComponent {
   })
   @ContentChild('cardHeaderTemplate')
   headerTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#cardTitleTemplate',
+    description: 'Card title template'
+  })
+  @ContentChild('cardTitleTemplate')
+  titleTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#cardFooterTemplate',

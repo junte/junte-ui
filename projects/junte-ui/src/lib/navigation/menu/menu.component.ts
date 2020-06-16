@@ -1,4 +1,5 @@
 import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Gutter } from '../../core/enums/gutter';
 import { PropertyApi } from '../../core/decorators/api';
 import { Orientation } from '../../core/enums/orientation';
 import { Size } from '../../core/enums/size';
@@ -18,7 +19,7 @@ export class MenuComponent {
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
-  _spacer: Size = Size.normal;
+  _spacer: Gutter = Gutter.none;
 
   @HostBinding('attr.data-collapsed')
   @Input() collapsed = false;
@@ -39,13 +40,13 @@ export class MenuComponent {
 
   @PropertyApi({
     description: 'Size of spacing between menu items',
-    path: 'ui.size',
-    default: Size.large,
-    options: [Size.tiny, Size.small, Size.normal, Size.large]
+    path: 'ui.gutter',
+    default: Gutter.none,
+    options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
   })
   @Input()
-  set spacer(spacer: Size) {
-    this._spacer = spacer || Size.normal;
+  set spacer(spacer: Gutter) {
+    this._spacer = spacer || Gutter.none;
   }
 
   get spacer() {
