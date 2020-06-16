@@ -6,18 +6,17 @@
   <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
 </div>
 
-<div *ngIf="!!title || !!titleTemplate" data-title>
-  <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
-  <ng-container *ngIf="!!titleTemplate">
-    <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
-  </ng-container>
-</div>
-
 <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
   <div data-picture *ngIf="!!picture">
     <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
   </div>
   <div data-content>
+    <div *ngIf="!!title || !!titleTemplate" data-title>
+      <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
+      <ng-container *ngIf="!!titleTemplate">
+        <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+      </ng-container>
+    </div>
     <ng-content></ng-content>
   </div>
 </div>

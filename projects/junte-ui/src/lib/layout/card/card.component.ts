@@ -44,11 +44,6 @@ export class CardComponent {
     return !!this.headerTemplate;
   }
 
-  @HostBinding('attr.data-has-title')
-  get hasTitle() {
-    return !!this.title || !!this.titleTemplate;
-  }
-
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
     return !!this.picture;
