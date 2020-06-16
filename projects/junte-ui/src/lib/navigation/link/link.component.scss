@@ -85,8 +85,8 @@
       color: map-get($scheme, hover-color);
     }
     &:focus {
-      outline-offset: 1px;
-      outline: map-get($scheme, color) auto 1px;
+      outline-offset: -1px;
+      outline: map-get($scheme, color) solid 1px;
     }
     [data-badge] {
       @include jnt-badge((
