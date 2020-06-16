@@ -1,25 +1,26 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin popover-scheme($scheme) {
-  [data-wrapper] {
+@mixin popover-scheme($scheme, $wrapper) {
+  #{$wrapper} [data-wrapper] {
     background-color: map-get($scheme, background-color);
     [data-title] {
       color: map-get($scheme, color);
     }
   }
-  [data-arrow] {
+  #{$wrapper} [data-arrow] {
     border-top-color: map-get($scheme, background-color);
   }
-  [data-title] {
+  #{$wrapper} [data-title] {
     color: map-get($scheme, color);
   }
 }
 
-@mixin jnt-popover($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-popover($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     spacing: 14px,
+    padding: $jnt-gutter-small,
     schemes: (
       primary: (
         background-color: $jnt-primary-light-color,
@@ -42,6 +43,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -58,7 +64,7 @@
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
-          @include popover-scheme($map);
+          @include popover-scheme($map, $wrapper);
         }
       }
     }
@@ -103,10 +109,10 @@
     }
   }
 
-  #{$context} [data-wrapper] {
+  #{$context} #{$wrapper} [data-wrapper] {
     border-radius: $jnt-corner-small;
     box-shadow: $jnt-shadow-normal;
-    padding: $jnt-gutter-normal;
+    padding: map-get($vars, padding);
 
     [data-title] {
       font-weight: $jnt-font-weight-bold;

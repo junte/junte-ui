@@ -42,7 +42,13 @@
                     <jnt-stack data-content [type]="ui.layout.stack.type.horizontal">
                       <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                     </jnt-stack>
-                    <ng-template *ngIf="titleControl.value" #cardHeaderTemplate>
+                    <ng-template *ngIf="headerControl.value" #cardHeaderTemplate>
+                      <jnt-stack data-header [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                        <jnt-icon [icon]="ui.icons.dashboard"></jnt-icon>
+                        <span>Card header</span>
+                      </jnt-stack>
+                    </ng-template>
+                    <ng-template *ngIf="titleControl.value" #cardTitleTemplate>
                       <jnt-stack data-title [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
                         <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
                         <span>Edit card</span>
@@ -54,7 +60,7 @@
                     <ng-template *ngIf="actionsControl.value" #cardActionsTemplate let-hide="hide">
                       <jnt-menu [orientation]="ui.orientation.vertical">
                         <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
-                        <jnt-menu-item title="Copy"(click)="hide()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
                       </jnt-menu>
                     </ng-template>
                   </jnt-card>
@@ -173,10 +179,15 @@
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.features">Features</jnt-form-label>
                   <jnt-row>
-                    <jnt-col [span]="6">
+                    <jnt-col [span]="12">
                       <jnt-checkbox formControlName="title"
                                     label="Title template"
                                     i18n-label="@@label.title"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="header"
+                                    label="Header"
+                                    i18n-label="@@label.header"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="footer"
@@ -268,6 +279,7 @@
                     [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', width: 70, height: 70}]]><![CDATA["]]>
                   </ng-container>
                   <![CDATA[>]]>
+                  <ng-container *ngIf="titleControl.value">
                     <![CDATA[
                     <ng-template #cardTitleTemplate>
                       <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
@@ -276,6 +288,7 @@
                       </jnt-stack>
                     </ng-template>
                     ]]>
+                  </ng-container>
                   <ng-container *ngIf="footerControl.value">
                     <![CDATA[
                     <ng-template #cardFooterTemplate>
@@ -290,6 +303,16 @@
                         <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
                         <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
                       </jnt-menu>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="headerControl.value">
+                    <![CDATA[
+                    <ng-template #cardHeaderTemplate>
+                      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+                        <jnt-icon [icon]="ui.icons.dashboard"></jnt-icon>
+                        <span>Card header</span>
+                      </jnt-stack>
                     </ng-template>
                     ]]>
                   </ng-container>
