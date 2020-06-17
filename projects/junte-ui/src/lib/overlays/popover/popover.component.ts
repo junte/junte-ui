@@ -11,7 +11,7 @@ export class PopoverOptions {
   maxWidth: string;
   maxHeight: string;
   smarty = true;
-  scheme: Scheme = Scheme.secondary;
+  scheme: Scheme = Scheme.primary;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
