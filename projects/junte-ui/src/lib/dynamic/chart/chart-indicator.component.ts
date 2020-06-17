@@ -42,7 +42,10 @@ export class ChartIndicatorComponent {
   @Input()
   data: any;
 
-  @ContentChild('titleTemplate')
+  @PropertyApi({
+    description: 'Template for title',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
   titleTemplate: TemplateRef<any>;
-
 }
