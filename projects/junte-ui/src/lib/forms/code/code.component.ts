@@ -131,7 +131,7 @@ export class CodeComponent {
       return;
     }
 
-    if (isTargetEmpty ) {
+    if (isTargetEmpty) {
       this.inputs[prev].focus();
     }
   }
@@ -187,7 +187,7 @@ export class CodeComponent {
   }
 
   private isEmpty(value: any): boolean {
-    return  value === null || value === undefined || !value.toString().length;
+    return value === null || value === undefined || !value.toString().length;
   }
 
 }
