@@ -23,7 +23,7 @@
         <td>
           <ng-container *ngIf="indicator.titleTemplate; else indicatorTitle">
             <div data-content [style.max-height.px]="heightIndicator - 1">
-              <ng-container *ngTemplateOutlet="indicator.titleTemplate"></ng-container>
+              <ng-container *ngTemplateOutlet="indicator.titleTemplate; context: indicator"></ng-container>
             </div>
           </ng-container>
           <ng-template #indicatorTitle>

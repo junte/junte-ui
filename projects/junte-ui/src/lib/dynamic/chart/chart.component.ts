@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -29,17 +29,17 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   indicators: ChartIndicatorComponent[] = [];
 
   @Input() keyField: string;
+
   @PropertyApi({
     description: 'Title of the charts group',
     type: 'string'
   })
-
   @Input() title: string;
+
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
-
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
