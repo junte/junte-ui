@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -8,6 +9,7 @@ import { LinkModule } from '../link/link.module';
 import { MenuItemComponent } from './menu-item.component';
 import { MenuComponent } from './menu.component';
 import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
+import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
   exports: [
     MenuComponent,
     MenuItemComponent,
+    SubMenuComponent,
+    SubMenuItemComponent,
     SubMenuDirective,
     SubMenuItemsDirective
   ],
@@ -30,6 +34,8 @@ import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
   declarations: [
     MenuComponent,
     MenuItemComponent,
+    SubMenuComponent,
+    SubMenuItemComponent,
     SubMenuDirective,
     SubMenuItemsDirective
   ],

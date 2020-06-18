@@ -1,8 +1,7 @@
-import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, Output, QueryList } from '@angular/core';
-import { Gutter } from '../../core/enums/gutter';
+import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
+import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
-import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { MenuItemComponent } from './menu-item.component';
 
@@ -56,7 +55,7 @@ export class MenuComponent {
   @Output()
   selected = new EventEmitter<MenuItemComponent>();
 
-  @ContentChildren(forwardRef(() => MenuItemComponent))
+  @ContentChildren(MenuItemComponent)
   items: QueryList<MenuItemComponent>;
 
   open(item: MenuItemComponent) {
