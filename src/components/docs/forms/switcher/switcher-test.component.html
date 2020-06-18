@@ -22,13 +22,12 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-block #block title="Your hero"
+                <jnt-block #block data-block title="Your hero"
                            i18n-title="@@label.your_hero">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [gutter]="ui.gutter.big"
                                [align]="ui.flex.align.center"
-                               [justify]="ui.flex.justify.center"
-                               [orientation]="orientationControl.value">
+                               [justify]="ui.flex.justify.center">
                       <jnt-form-item>
                         <jnt-form-label for="hero"
                                         i18n="@@label.select_hero">Select hero
@@ -136,16 +135,22 @@
                       </ng-container>
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
-                      <jnt-stack [orientation]="ui.orientation.horizontal"
-                                 [justify]="ui.flex.justify.between">
-                        <jnt-button text="Submit"
-                                    i18n-text="@@action.submit"
-                                    [type]="ui.forms.button.type.submit"></jnt-button>
-                        <jnt-button text="Reset"
-                                    i18n-text="@@action.reset"
-                                    [scheme]="ui.scheme.secondary"
-                                    (click)="form.reset()"></jnt-button>
-                      </jnt-stack>
+                      <jnt-row [justify]="ui.flex.justify.between">
+                        <jnt-col [tablet]="5" [mobile]="12">
+                          <jnt-button text="Submit"
+                                      i18n-text="@@action.submit"
+                                      [width]="ui.width.fluid"
+                                      [type]="ui.forms.button.type.submit"></jnt-button>
+                        </jnt-col>
+
+                        <jnt-col [tablet]="5" [mobile]="12">
+                          <jnt-button text="Reset"
+                                      i18n-text="@@action.reset"
+                                      [width]="ui.width.fluid"
+                                      [scheme]="ui.scheme.secondary"
+                                      (click)="form.reset()"></jnt-button>
+                        </jnt-col>
+                      </jnt-row>
                     </ng-template>
                   </jnt-form>
                 </jnt-block>
