@@ -7,7 +7,7 @@
   $defs: (
     corner: $jnt-corner-normal,
     horizontal: (
-      height: 32px,
+      height: 38px,
     ),
     vertical: (
       max-height: null,
@@ -48,7 +48,6 @@
           user-select: none;
           overflow: hidden;
           cursor: pointer;
-          border: 1px solid transparent;
           padding: 0 $jnt-gutter-small;
 
           &[data-with-template] {
@@ -60,15 +59,8 @@
           }
 
           &:focus {
-            outline: 0;
             box-shadow: $jnt-shadow-primary;
-            @if map-has-key($vars, option) {
-              $option: map-get($vars, option);
-              @if map-has-key($option, active) {
-                $active: map-get($option, active);
-                border-color: map-get($active, background);
-              }
-            }
+            outline: 0;
           }
 
           [data-title] {
