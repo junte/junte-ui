@@ -49,9 +49,6 @@ export class CardComponent {
     return !!this.picture;
   }
 
-  @HostBinding('attr.data-scheme')
-  _scheme = Scheme.primary;
-
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
 
@@ -115,19 +112,6 @@ export class CardComponent {
   })
   @Input()
   state: CardState;
-
-  @PropertyApi({
-    description: 'Card color scheme',
-    path: 'ui.schemes',
-    default: Scheme.primary,
-    options: [Scheme.primary,
-      Scheme.secondary,
-      Scheme.success,
-      Scheme.fail]
-  })
-  @Input() set scheme(scheme: Scheme) {
-    this._scheme = scheme || Scheme.primary;
-  }
 
   @PropertyApi({
     description: 'Padding for card',

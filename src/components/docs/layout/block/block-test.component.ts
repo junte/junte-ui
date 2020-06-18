@@ -20,7 +20,6 @@ export class BlockTestComponent implements OnInit {
   @ViewChild('code')
   code: TabComponent;
 
-  schemeControl = this.fb.control(null);
   paddingControl = this.fb.control(null);
   widthControl = this.fb.control(null);
   titleControl = this.fb.control(true);
@@ -34,7 +33,6 @@ export class BlockTestComponent implements OnInit {
     footer: this.footerControl,
     state: this.stateControl,
     width: this.widthControl,
-    scheme: this.schemeControl,
     adapted: this.adaptedControl
   });
 
