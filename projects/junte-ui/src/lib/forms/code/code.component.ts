@@ -27,7 +27,7 @@ export class CodeComponent {
 
   ui = UI;
   inputs: HTMLInputElement[] = [];
-  private _inputsCount: number;
+  private _codeLength: number;
   inputsSlots: number[];
 
   @PropertyApi({
@@ -36,25 +36,24 @@ export class CodeComponent {
     default: 4,
   })
   @Input()
-  set inputsCount(inputsCount: number) {
-    this._inputsCount = inputsCount;
+  set codeLength(codeLength: number) {
+    this._codeLength = +codeLength;
     this.updateInputs();
   }
 
 
-  get inputsCount() {
-    return this._inputsCount;
+  get codeLength() {
+    return this._codeLength;
   }
 
   updateInputs() {
     const inputsSlots: number[] = [];
 
-    for (let i = 0; i < this.inputsCount; i++) {
+    for (let i = 0; i < this._codeLength; i++) {
       inputsSlots.push(i);
     }
     this.inputsSlots = inputsSlots;
   }
-  @Input() codeLength = 4;
   @Input() readonly code?: string | number;
   @ViewChildren('input') inputsList: QueryList<ElementRef>;
   @Output() codeChanged = new EventEmitter<string>();
@@ -101,7 +100,7 @@ export class CodeComponent {
     this.setInputValue(target, value.toString().charAt(0));
     this.emitChanges();
 
-    if (next > this.codeLength - 1) {
+    if (next > this._codeLength - 1) {
       target.blur();
       return;
     }
