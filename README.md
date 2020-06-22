@@ -17,4 +17,10 @@ npm run iconfont
 npm start
 ```
 
+## For npm clean cache and install packages
+
+```
+npm run refresh
+```
+
 Open in browser http://localhost:4200/
