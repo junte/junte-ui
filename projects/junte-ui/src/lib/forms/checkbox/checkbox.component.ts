@@ -62,7 +62,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   constructor(public element: ElementRef) {
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

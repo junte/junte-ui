@@ -36,7 +36,7 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
     });
   }
 
-  onChange(val: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

@@ -274,7 +274,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       ? this.masking(value) : {input: value});
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

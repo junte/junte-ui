@@ -304,7 +304,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   trackOption(index: number, option: IOption) {
-    return option.key;
+    return option.key || index;
   }
 
   select(option: IOption) {
@@ -360,7 +360,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
   }
 
-  onChange(value: Key | Key[]) {
+  onChange(_value: Key | Key[]) {
     // will be overridden
   }
 

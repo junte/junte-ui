@@ -5,7 +5,7 @@ export class I18nLoader implements TranslateLoader {
   constructor(private keys: any) {
   }
 
-  getTranslation(lang: string): Observable<any> {
+  getTranslation(_lang: string): Observable<any> {
     return of(this.keys);
   }
 }

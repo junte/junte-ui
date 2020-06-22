@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Directive, EmbeddedViewRef, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { takeWhile, tap } from 'rxjs/operators';
+import { Directive, EmbeddedViewRef, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { takeWhile } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from './breakpoint.service';

@@ -118,7 +118,7 @@ export class SwitcherComponent implements ControlValueAccessor {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {
