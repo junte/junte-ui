@@ -7,7 +7,7 @@
   $defs: (
     corner: $jnt-corner-normal,
     horizontal: (
-      height: 38px,
+      height: 32px,
     ),
     vertical: (
       max-height: null,
@@ -39,6 +39,7 @@
       display: block;
       border: 1px solid $jnt-gray-700-color;
       position: relative;
+      overflow: hidden;
       #{$wrapper} [data-options] {
         display: flex;
 
@@ -90,18 +91,6 @@
 
       #{$wrapper} [data-options] {
         flex-direction: column;
-
-        [data-option] {
-          &:first-child {
-            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
-          }
-
-          &:last-child {
-            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
-          }
-        }
       }
     }
 
