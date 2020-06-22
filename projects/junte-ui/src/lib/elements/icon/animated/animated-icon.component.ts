@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
@@ -81,12 +81,12 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
   private load() {
     const path = `assets/icons/animated/${this.iconset}/${this.icon}.svg`;
 
-    const source = this.cache.get<string>(path);
+    const source = this.cache.get(path);
     if (source === undefined) {
       this.http.get(path, {responseType: 'text'})
         .subscribe(response => {
           this.source = response;
-          this.cache.set<Observable<string>>(path, response);
+          this.cache.set(path, response);
         });
     } else {
       this.source = source;

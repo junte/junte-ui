@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -84,7 +84,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
       .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
-  onChange(value: any): void {
+  onChange(_value: any): void {
   }
 
   onTouched(): void {
@@ -103,7 +103,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   trackByFn(index, indicator) {
-    return index;
+    return indicator.data.id || index;
   }
 
 }

@@ -132,8 +132,6 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   isEqual = isEqual;
   getYear = getYear;
 
-  onChange: (date: Date) => void;
-
   constructor(public config: JunteUIModuleConfig) {
   }
 
@@ -152,11 +150,18 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     }
   }
 
+  onTouched() {
+  }
+
+  onChange (_date: Date) {
+  };
+
   registerOnChange(fn: (date: Date) => void): void {
     this.onChange = fn;
   }
 
   registerOnTouched(fn): void {
+    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean) {

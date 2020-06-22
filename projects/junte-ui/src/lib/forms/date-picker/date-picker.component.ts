@@ -93,12 +93,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
   writeHour(hour: any): void {
     this.hours = (this.timeMeridien === 'AM' ? hour : hour + 12);
     this.currentView = this.VIEW_MINUTES;
@@ -109,6 +103,12 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     this.currentView = this.VIEW_HOURS;
     this.calendarControl.patchValue(setMinutes(this.calendarControl.value, minute * 5));
     this.calendarControl.patchValue(setHours(this.calendarControl.value, this.hours));
+  }
+
+  onChange(_value: any) {
+  }
+
+  onTouched() {
   }
 
   writeValue(value: Date) {

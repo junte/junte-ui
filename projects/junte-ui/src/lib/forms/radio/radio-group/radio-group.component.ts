@@ -83,7 +83,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
     this.updateChecked();
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

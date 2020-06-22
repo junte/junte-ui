@@ -158,7 +158,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     });
   }
 
-  onChange(filter: DefaultSearchFilter) {
+  onChange(_filter: DefaultSearchFilter) {
   }
 
   onTouched() {

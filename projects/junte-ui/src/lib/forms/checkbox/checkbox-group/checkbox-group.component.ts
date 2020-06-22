@@ -79,7 +79,7 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
     this.updateChecked();
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {
