@@ -158,10 +158,6 @@
             background-color: map-get($active, background);
           }
         }
-
-        [data-mark] {
-          @include jnt-icon((color: $jnt-white-color), '&');
-        }
       }
     }
   }
@@ -170,8 +166,45 @@
     @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
   }
 
-  #{$context} #{$wrapper} [data-mark] {
-    @include jnt-icon((color: $jnt-primary-color), '&');
+  #{$context} #{$wrapper} [data-switch] {
+    position: relative;
+    background-color: $jnt-control-background;
+    border: 1px solid $jnt-primary-light-color;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    min-width: 18px;
+    width: 18px;
+    min-height: 18px;
+    height: 18px;
+
+    &[data-single='true'] {
+      border-radius: 50%;
+
+      [data-indicator] {
+        border-radius: 50%;
+      }
+    }
+
+    &[data-single='false'] {
+      border-radius: $jnt-corner-base;
+
+      [data-indicator] {
+        border-radius: 2px;
+      }
+    }
+
+    [data-indicator] {
+      background-color: $jnt-control-background;
+      border: 1px solid $jnt-primary-light-color;
+      min-width: 10px;
+      width: 10px;
+      min-height: 10px;
+      height: 10px;
+    }
   }
 
   #{$context} #{$wrapper} [data-title] {
