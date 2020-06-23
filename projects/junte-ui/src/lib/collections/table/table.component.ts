@@ -15,6 +15,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
@@ -41,6 +42,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   private count: number;
   private subscriptions = {fetcher: new Subscription()};
+  popover: PopoverComponent;
 
   tableFeatures = TableFeatures;
   progress = {loading: false};
@@ -156,7 +158,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     });
   }
 
-  onChange(filter: DefaultSearchFilter) {
+  onChange(_filter: DefaultSearchFilter) {
   }
 
   onTouched() {
@@ -168,5 +170,9 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   registerOnTouched(fn) {
     this.onTouched = fn;
+  }
+
+  hideActions() {
+    this.popover.hide();
   }
 }

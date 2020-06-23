@@ -10,7 +10,8 @@ import {
   StackModule,
   ResponsiveModule,
   ButtonModule,
-  IconModule
+  IconModule,
+  PopoverModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { HomeRoutingModule } from './home-routing.module';
@@ -31,6 +32,7 @@ import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
     IconModule.forRoot(JUNTE_UI_CONFIG),
     MenuModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
+    PopoverModule.forRoot(JUNTE_UI_CONFIG),
     HomeRoutingModule,
     ResponsiveModule,
     ArrayPipesModule,

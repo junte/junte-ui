@@ -89,7 +89,10 @@ export class GanttComponent implements ControlValueAccessor {
     this._current = date;
   }
 
-  onChange(date: Date) {
+  onChange(_date: Date) {
+  }
+
+  onTouched() {
   }
 
   registerOnChange(fn): void {
@@ -97,5 +100,6 @@ export class GanttComponent implements ControlValueAccessor {
   }
 
   registerOnTouched(fn): void {
+    this.onTouched = fn;
   }
 }

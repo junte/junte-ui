@@ -2,9 +2,9 @@ import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, Temp
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
-import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { CardState } from './enums';
 
 interface Picture {
@@ -26,6 +26,7 @@ export class CardComponent {
   cardState = CardState;
   feature = Feature;
   picture: Picture;
+  popover: PopoverComponent;
 
   @HostBinding('attr.data-has-color')
   get hasColor() {
@@ -39,16 +40,13 @@ export class CardComponent {
 
   @HostBinding('attr.data-has-header')
   get hasHeader() {
-    return !!this.title || !!this.headerTemplate;
+    return !!this.headerTemplate;
   }
 
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
     return !!this.picture;
   }
-
-  @HostBinding('attr.data-scheme')
-  _scheme = Scheme.primary;
 
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
@@ -76,6 +74,13 @@ export class CardComponent {
   })
   @ContentChild('cardHeaderTemplate')
   headerTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#cardTitleTemplate',
+    description: 'Card title template'
+  })
+  @ContentChild('cardTitleTemplate')
+  titleTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#cardFooterTemplate',
@@ -106,19 +111,6 @@ export class CardComponent {
   })
   @Input()
   state: CardState;
-
-  @PropertyApi({
-    description: 'Card color scheme',
-    path: 'ui.schemes',
-    default: Scheme.primary,
-    options: [Scheme.primary,
-      Scheme.secondary,
-      Scheme.success,
-      Scheme.fail]
-  })
-  @Input() set scheme(scheme: Scheme) {
-    this._scheme = scheme || Scheme.primary;
-  }
 
   @PropertyApi({
     description: 'Padding for card',
@@ -173,6 +165,10 @@ export class CardComponent {
   @HostBinding('attr.tabindex')
   get tabindex() {
     return !!this.features && this.features.includes(Feature.clickable) ? 1 : null;
+  }
+
+  hideActions() {
+    this.popover.hide();
   }
 
 }

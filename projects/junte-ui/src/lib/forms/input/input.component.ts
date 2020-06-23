@@ -11,6 +11,7 @@ const BACKSPACE = 8;
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
 const TAB = 9;
+const ENTER = 13;
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -242,6 +243,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (this.type === InputType.number && (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
       this.inputControl.patchValue(null);
     }
+    if (event.keyCode === ENTER) {
+      event.preventDefault();
+    }
   }
 
   blur() {
@@ -270,7 +274,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       ? this.masking(value) : {input: value});
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

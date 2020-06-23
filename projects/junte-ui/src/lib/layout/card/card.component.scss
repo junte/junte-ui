@@ -3,9 +3,10 @@
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
 @import "forms/button/button";
+@import "overlays/popover/popover";
 
 @mixin card-padding($padding, $wrapper) {
-  #{$wrapper} [data-content] {
+  #{$wrapper} [data-body] {
     padding: $padding;
   }
 }
@@ -27,24 +28,23 @@
     shadow: null,
     corner: $jnt-corner-normal,
     border: null,
-    header: (
-      padding: $jnt-gutter-normal,
-      margin: 0,
+    background: $jnt-primary-background,
+    title: (
+      padding: 0,
+      margin: 0 0 $jnt-gutter-normal 0,
       color: $jnt-primary-text-color,
       text-align: left,
       font-weight: $jnt-font-weight-bold,
       font-size: $jnt-font-size-normal
+    ),
+    header: (
+      padding: $jnt-gutter-normal,
     ),
     footer: (
       padding: $jnt-gutter-normal,
-      margin: 0,
-      color: $jnt-primary-text-color,
-      text-align: left,
-      font-weight: $jnt-font-weight-bold,
-      font-size: $jnt-font-size-normal
     ),
     picture: (
-      padding: $jnt-gutter-normal,
+      padding: 0 $jnt-gutter-normal 0 0,
       margin: null,
       border-right: null,
     ),
@@ -61,20 +61,6 @@
       big: $jnt-gutter-big,
       large: $jnt-gutter-large,
       huge: $jnt-gutter-huge,
-    ),
-    schemes: (
-      primary: (
-        background-color: $jnt-primary-background,
-      ),
-      secondary: (
-        background-color: $jnt-secondary-background,
-      ),
-      success: (
-        background-color: $jnt-success-color,
-      ),
-      fail: (
-        background-color: $jnt-fail-color,
-      ),
     ),
     overlay: (
       background-color: rgba($jnt-primary-background, 0.75),
@@ -103,17 +89,12 @@
     min-height: 40px;
     box-shadow: map-get($vars, shadow);
     border-radius: map-get($vars, corner);
+    background-color: map-get($vars, background);
     border: map-get($vars, border);
     box-sizing: border-box;
+
     &[data-width="fluid"] {
       width: 100%;
-    }
-    @if map-has-key($vars, schemes) {
-      @each $scheme, $map in map-get($vars, schemes) {
-        &[data-scheme='#{$scheme}'] {
-          @include card-fill($map, $wrapper);
-        }
-      }
     }
 
     @if map-has-key($vars, padding) {
@@ -126,15 +107,17 @@
     }
 
     &[data-features*='clickable'] {
-      #{$wrapper} [data-content] {
+      #{$wrapper} [data-body] {
         cursor: pointer;
       }
+
       &:hover {
         @if map-has-key($vars, hover) {
           $hover: map-get($vars, hover);
           box-shadow: map-get($hover, shadow);
         }
       }
+
       &:focus {
         outline: 0;
       }
@@ -153,25 +136,28 @@
           padding-top: $jnt-gutter-big;
         }
       }
+
       &[data-has-header='false'] {
-        #{$wrapper} [data-content] {
+        #{$wrapper} [data-body] {
           padding-top: $jnt-gutter-big;
         }
       }
     }
 
     &[data-has-picture='true'] {
-      #{$wrapper} [data-content] {
+      #{$wrapper} [data-body] {
         display: flex;
+
+        [data-content] {
+          flex: 1;
+        }
       }
     }
+
     @content;
   }
 
   #{$context} #{$wrapper} [data-picture] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     @if map-has-key($vars, picture) {
       $picture: map-get($vars, picture);
       padding: map-get($picture, padding);
@@ -196,7 +182,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid;
+    border: 2px solid map-get($vars, background);
     @include jnt-icon((
       size: 16px,
       color: $jnt-primary-light-color,
@@ -206,6 +192,7 @@
   #{$context} #{$wrapper} [data-action] {
     @include jnt-button((
       without-text-corner: $jnt-corner-normal,
+      border: 2px solid map-get($vars, background),
       schemes: (
         secondary: (
           inverse-color: $jnt-primary-color
@@ -223,15 +210,24 @@
     ), '&');
   }
 
+  #{$context} #{$wrapper} [data-title] {
+    @if map-has-key($vars, title) {
+      $title: map-get($vars, title);
+      padding: map-get($title, padding);
+      margin: map-get($title, margin);
+      [data-text] {
+        text-align: map-get($title, text-align);
+        font-weight: map-get($title, font-weight);
+        color: map-get($title, color);
+        font-size: map-get($title, font-size);
+      }
+    }
+  }
+
   #{$context} #{$wrapper} [data-header] {
     @if map-has-key($vars, header) {
       $header: map-get($vars, header);
       padding: map-get($header, padding);
-      margin: map-get($header, margin);
-      text-align: map-get($header, text-align);
-      font-weight: map-get($header, font-weight);
-      color: map-get($header, color);
-      font-size: map-get($header, font-size);
     }
   }
 
@@ -239,11 +235,6 @@
     @if map-has-key($vars, footer) {
       $footer: map-get($vars, footer);
       padding: map-get($footer, padding);
-      margin: map-get($footer, margin);
-      text-align: map-get($footer, text-align);
-      font-weight: map-get($footer, font-weight);
-      color: map-get($footer, color);
-      font-size: map-get($footer, font-size);
     }
   }
 

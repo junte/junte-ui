@@ -1,5 +1,4 @@
-import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
-import { Scheme } from '../../core/enums/scheme';
+import { Component, ElementRef, HostBinding, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { PopoverPlacements, PopoverTriggers } from './enums';
 
 export class PopoverOptions {
@@ -11,7 +10,6 @@ export class PopoverOptions {
   maxWidth: string;
   maxHeight: string;
   smarty = true;
-  scheme: Scheme = Scheme.secondary;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -37,25 +35,24 @@ export class PopoverComponent {
     return this.visible ? 'block' : 'none';
   }
 
-  @HostBinding('attr.data-scheme')
-  get scheme() {
-    return this.options.scheme;
-  }
-
   @HostBinding('attr.data-placement')
   placement: PopoverPlacements;
+
+  @ViewChild('arrow') arrow: ElementRef;
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {
   }
 
-  private getPosition(): { top, left } {
+  private getPosition(): { top, left, shiftX, shiftY } {
     const rect = this.target.getBoundingClientRect(),
       scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
       scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     let top = rect.top + scrollTop;
     let left = rect.left + scrollLeft;
+    let shiftX = 0;
+    let shiftY = 0;
 
     const {nativeElement: host} = this.hostRef;
 
@@ -86,25 +83,37 @@ export class PopoverComponent {
     }
 
     switch (this.placement) {
-      case PopoverPlacements.top:
+      case PopoverPlacements.top: {
         top -= host.clientHeight;
         left += (this.target.clientWidth - host.clientWidth) / 2;
+        shiftX = left < 0 ? left : (left > window.innerWidth - host.clientWidth
+          ? host.clientWidth - (window.innerWidth - left) : 0);
         break;
-      case PopoverPlacements.right:
+      }
+      case PopoverPlacements.right: {
         top += (this.target.clientHeight - host.clientHeight) / 2;
         left += this.target.clientWidth;
+        shiftY = top < 0 ? top : (top > window.innerHeight - host.clientHeight
+          ? host.clientHeight - (window.innerHeight - top) : 0);
         break;
-      case PopoverPlacements.bottom:
+      }
+      case PopoverPlacements.bottom: {
         top += this.target.clientHeight;
         left += (this.target.clientWidth - host.clientWidth) / 2;
+        shiftX = left < 0 ? left : (left > window.innerWidth - host.clientWidth
+          ? host.clientWidth - (window.innerWidth - left) : 0);
         break;
-      case PopoverPlacements.left:
+      }
+      case PopoverPlacements.left: {
         top += (this.target.clientHeight - host.clientHeight) / 2;
         left -= host.clientWidth;
+        shiftY = top < 0 ? top : (top > window.innerHeight - host.clientHeight
+          ? host.clientHeight - (window.innerHeight - top) : 0);
         break;
+      }
     }
 
-    return {top: top, left};
+    return {top, left, shiftX, shiftY};
   }
 
   show({nativeElement: target}: { nativeElement: HTMLElement },
@@ -116,7 +125,6 @@ export class PopoverComponent {
       subtree: true
     });
 
-    this.update();
     this.visible = true;
   }
 
@@ -127,8 +135,22 @@ export class PopoverComponent {
   update() {
     const {nativeElement: host} = this.hostRef;
     const position = this.getPosition();
-    this.renderer.setStyle(host, 'top', `${position.top}px`);
-    this.renderer.setStyle(host, 'left', `${position.left}px`);
+    this.renderer.setStyle(host, 'top', `${position.top - position.shiftY}px`);
+    this.renderer.setStyle(host, 'left', `${position.left - position.shiftX}px`);
+    switch (this.placement) {
+      case PopoverPlacements.top:
+      case PopoverPlacements.bottom: {
+        this.renderer.setStyle(this.arrow.nativeElement, 'left',
+          `calc(50% + ${position.shiftX}px)`);
+        break;
+      }
+      case PopoverPlacements.right:
+      case PopoverPlacements.left: {
+        this.renderer.setStyle(this.arrow.nativeElement, 'top',
+          `calc(50% + ${position.shiftY}px)`);
+        break;
+      }
+    }
   }
 
   hide(): void {

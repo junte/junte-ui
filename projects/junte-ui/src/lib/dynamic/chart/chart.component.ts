@@ -29,17 +29,17 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   indicators: ChartIndicatorComponent[] = [];
 
   @Input() keyField: string;
+
   @PropertyApi({
     description: 'Title of the charts group',
     type: 'string'
   })
-
   @Input() title: string;
+
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
-
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
@@ -84,7 +84,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
       .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
-  onChange(value: any): void {
+  onChange(_value: any): void {
   }
 
   onTouched(): void {
@@ -103,7 +103,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   trackByFn(index, indicator) {
-    return index;
+    return indicator.data.id || index;
   }
 
 }

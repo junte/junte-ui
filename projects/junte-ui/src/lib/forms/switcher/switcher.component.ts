@@ -1,6 +1,9 @@
 import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
@@ -24,8 +27,8 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   ui = UI;
   selectMode = SelectMode;
+  feature = Feature;
 
-  @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
   @PropertyApi({
@@ -34,8 +37,13 @@ export class SwitcherComponent implements ControlValueAccessor {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
+  @HostBinding('attr.data-orientation')
   @Input() set orientation(type: Orientation) {
     this._orientation = type || Orientation.horizontal;
+  }
+
+  get orientation() {
+    return this.breakpoint.current === Breakpoint.mobile ? Orientation.vertical : this._orientation;
   }
 
   @PropertyApi({
@@ -80,6 +88,15 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Input() allowEmpty = true;
 
   @PropertyApi({
+    description: 'Add badge with the number of selected items',
+    path: 'ui.feature',
+    options: [Feature.badge]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
+  @PropertyApi({
     description: 'Display marks',
     type: 'boolean',
     default: 'true'
@@ -94,11 +111,14 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   version = 0;
 
+  constructor(private breakpoint: BreakpointService) {
+  }
+
   writeValue(value: any | any[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
   }
 
-  onChange(value: any) {
+  onChange(_value: any) {
   }
 
   onTouched() {

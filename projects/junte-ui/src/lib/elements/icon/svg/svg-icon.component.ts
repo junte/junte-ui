@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
@@ -94,12 +94,12 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     const path = `assets/icons/svg/${this.iconset}.xml`;
     const key = `${path}|${this.icon}`;
 
-    const source = this.cache.get<string>(key);
+    const source = this.cache.get(key);
     if (source === undefined) {
       let iconset$ = this.cache.get(path);
       if (iconset$ === undefined) {
         iconset$ = new BehaviorSubject<Document>(null);
-        this.cache.set<Observable<string>>(path, iconset$);
+        this.cache.set(path, iconset$);
 
         this.http.get(path, {responseType: 'text'}).subscribe(response =>
           iconset$.next(new DOMParser().parseFromString(response, 'application/xml')));

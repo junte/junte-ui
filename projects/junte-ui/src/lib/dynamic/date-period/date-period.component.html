@@ -1,24 +1,36 @@
 <jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.flex.justify.between" [align]="ui.flex.align.end">
   <div *ngIf="start" data-date data-left>
     <div>{{start | date: "dd.MM"}}</div>
-    <div data-line><div data-arrow></div></div>
+    <div data-line>
+      <div data-arrow></div>
+    </div>
   </div>
   <div *ngIf="end" data-date data-right>
     <div>{{end | date: "dd.MM"}}</div>
-    <div data-line><div data-arrow></div></div>
+    <div data-line>
+      <div data-arrow></div>
+    </div>
   </div>
 </jnt-stack>
-
-<div data-bar>
-  <div *ngIf="!!start && !!end && start < end && start <= current && current < end" data-progress
-       [style.width.%]="(current | dfnsDifferenceInDays:start) / (end || current | dfnsDifferenceInDays:start) * 100">
+<ng-container *ngIf="!!current; else noCurrent">
+  <div data-bar>
+    <div *ngIf="!!start && !!end && start < end && start <= current && current < end" data-progress
+         [style.width.%]="(current | dfnsDifferenceInDays:start) / (end || current | dfnsDifferenceInDays:start) * 100">
+    </div>
+    <div *ngIf="(current >= end) || (!!start && !end && current > start)" data-progress data-full></div>
   </div>
 
-  <div *ngIf="(current >= end) || (!!start && !end && current > start)" data-progress data-full></div>
-</div>
+  <div *ngIf="!!start && !!end" data-days>
+    {{current < end ? (end | dfnsDifferenceInDays:start) - (current | dfnsDifferenceInDays:start) :
+    (end | dfnsDifferenceInDays:start) - (start | dfnsDifferenceInDays:start)}} days
+  </div>
+</ng-container>
 
-<div *ngIf="!!start && !!end" data-days>
-  {{current < end ? (end | dfnsDifferenceInDays:start) - (current | dfnsDifferenceInDays:start) :
-  (end | dfnsDifferenceInDays:start) - (start | dfnsDifferenceInDays:start)}} days
-</div>
-
+<ng-template #noCurrent>
+  <div data-bar>
+    <div *ngIf="!!start && !!end && start < end" data-progress data-full></div>
+  </div>
+  <div *ngIf="!!start && !!end" data-days>
+    {{start < end ? (end | dfnsDifferenceInDays:start) : '0' }} days
+  </div>
+</ng-template>

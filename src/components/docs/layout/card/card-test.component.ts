@@ -18,10 +18,10 @@ export class CardTestComponent implements OnInit {
 
   types = {card: CardComponent};
 
-  schemeControl = this.fb.control(null);
   paddingControl = this.fb.control(null);
   titleControl = this.fb.control(false);
   footerControl = this.fb.control(false);
+  headerControl = this.fb.control(false);
   widthControl = this.fb.control(null);
   stateControl = this.fb.control(null);
   clickableControl = this.fb.control(false);
@@ -34,9 +34,9 @@ export class CardTestComponent implements OnInit {
     padding: this.paddingControl,
     state: this.stateControl,
     width: this.widthControl,
-    scheme: this.schemeControl,
     title: this.titleControl,
     footer: this.footerControl,
+    header: this.headerControl,
     clickable: this.clickableControl,
     icon: this.iconControl,
     actions: this.actionsControl,

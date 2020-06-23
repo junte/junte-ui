@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnchorTestComponent } from 'src/components/docs/navigation/anchor/anchor-test.component';
-import { DropdownTestComponent } from 'src/components/docs/navigation/dropdown/dropdown-test.component';
 import { LinkTestComponent } from 'src/components/docs/navigation/link/link-test.component';
 import { MenuTestComponent } from 'src/components/docs/navigation/menu/menu-test.component';
 import { PagerTestComponent } from 'src/components/docs/navigation/pager/pager-test.component';
@@ -29,11 +28,6 @@ export const routes: Routes = [
     data: {breadcrumb: 'Pager', animation: 'Pager'}
   },
   {
-    path: 'dropdown',
-    component: DropdownTestComponent,
-    data: {breadcrumb: 'Dropdown', animation: 'Dropdown'}
-  },
-  {
     path: 'anchor',
     component: AnchorTestComponent,
     data: {breadcrumb: 'Anchor', animation: 'Anchor'}
@@ -41,7 +35,8 @@ export const routes: Routes = [
   {
     path: 'breadcrumbs',
     data: {breadcrumb: {label: 'Breadcrumbs'}},
-    loadChildren: () => import('../navigation/breadcrumbs/breadcrumbs-test.module').then(m => m.BreadcrumbsTestModule)
+    loadChildren: () => import('../navigation/breadcrumbs/breadcrumbs-test.module')
+      .then(m => m.BreadcrumbsTestModule)
   }
 ];
 

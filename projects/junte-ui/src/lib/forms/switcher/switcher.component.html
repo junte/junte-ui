@@ -6,8 +6,9 @@
              let-selected="selected">
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
-  <jnt-icon data-mark *ngIf="marks"
-            [icon]="selected ? (mode === selectMode.single ? ui.icons.radioChecked : ui.icons.checkboxChecked) : (mode === selectMode.single ? ui.icons.radioUnchecked : ui.icons.checkboxUnchecked)"></jnt-icon>
+
+  <div *ngIf="marks" data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected" data-indicator></span></div>
+
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center"
@@ -24,18 +25,25 @@
   </jnt-stack>
 </ng-template>
 
-<div data-options>
-  <jnt-stack data-option *ngFor="let option of options"
-             [attr.data-with-template]="option.optionTemplate"
-             [attr.data-selected]="option.value | check:selected:keyField:version"
-             (click)="select(option.value)"
-             [orientation]="ui.orientation.horizontal"
-             [align]="ui.flex.align.center"
-             [gutter]="ui.gutter.small"
-             tabindex="0">
-    <ng-container
-      *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
-    </ng-container>
-  </jnt-stack>
+<div data-scroll>
+  <div data-options>
+    <jnt-stack data-option *ngFor="let option of options"
+               [attr.data-with-template]="option.optionTemplate"
+               [attr.data-selected]="option.value | check:selected:keyField:version"
+               (click)="select(option.value)"
+               [orientation]="ui.orientation.horizontal"
+               [align]="ui.flex.align.center"
+               [gutter]="ui.gutter.small"
+               tabindex="0">
+      <ng-container
+        *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
+      </ng-container>
+    </jnt-stack>
+  </div>
 </div>
+
+
+<jnt-badge data-count *ngIf="!!features && features.includes(feature.badge) && mode === selectMode.multiple && selected.length > 0"
+           [color]="ui.color.green"
+           [value]="selected.length"></jnt-badge>
 

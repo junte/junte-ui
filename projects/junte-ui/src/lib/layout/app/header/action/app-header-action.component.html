@@ -1,4 +1,7 @@
-<ng-container *ngTemplateOutlet="actionLabelTemplate"></ng-container>
-<div data-content>
-  <ng-container *ngTemplateOutlet="actionContentTemplate"></ng-container>
+<div [jntPopover]="{contentTemplate: actionContent, trigger: ui.overlays.popover.trigger.hover}">
+  <ng-container *ngTemplateOutlet="actionLabelTemplate"></ng-container>
 </div>
+
+<ng-template #actionContent>
+  <ng-container *ngTemplateOutlet="actionContentTemplate"></ng-container>
+</ng-template>

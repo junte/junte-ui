@@ -34,8 +34,7 @@ export class DatePeriodComponent {
   @PropertyApi({
     description: 'Current date',
     type: 'Date',
-    default: 'new Date()'
   })
-  @Input() current: Date = new Date();
+  @Input() current: Date;
 
 }

@@ -71,7 +71,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
       .subscribe(value => this.onChange(value));
   }
 
-  onChange(value: boolean) {
+  onChange(_value: boolean) {
   }
 
   onTouched() {

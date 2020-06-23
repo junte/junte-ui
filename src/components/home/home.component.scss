@@ -6,29 +6,85 @@
 @import "elements/label/label";
 @import "layout/responsive/responsive";
 @import "layout/grid/container/container";
+@import "layout/app/variables";
+@import "layout/lp/slide/lp-slide";
+@import "layout/lp/header/lp-header";
 
 $angular-color: #E23237;
 
 @include jnt-grid-container((), null, true) {
-  position: static;
   display: flex;
   flex-direction: column;
-};
+  align-items: stretch;
+}
+
+[wave], [planet], [stars], [ship] {
+  position: absolute;
+}
+
+[top] {
+  [wave] {
+    top: 0;
+    right: 0;
+    @include for-mobile() {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  [planet] {
+    top: 100px;
+    right: 155px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 50%;
+    align-items: center;
+    background: linear-gradient(102.56deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%), linear-gradient(90deg, #FEA7AF 0.54%, #FDA1AF 4.53%, #F57AAE 32.45%, #EF5EAD 58.13%, #EB4DAC 80.58%, #EA47AC 97.31%), linear-gradient(90deg, #FEA7AF 0.54%, #EA47AC 97.31%);
+    overflow: hidden;
+    //for Safari
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    @include max-for-tablet() {
+      top: 100px;
+      right: 20px;
+    }
+    @include for-mobile() {
+      right: 0;
+    }
+
+    svg {
+      overflow: visible;
+      opacity: .5;
+      animation: move 2s linear infinite forwards;
+    }
+  }
+}
+
+[data-logo] {
+  @include max-for-tablet() {
+    height: 40px;
+  }
+}
+
+@include for-mobile() {
+  @include jnt-lp-header((
+    background: $jnt-secondary-background,
+  ), null, true);
+}
+
 
 [about] {
-  height: 100%;
   background-color: $jnt-secondary-background;
-  text-align: center;
-  display: flex;
-  box-sizing: border-box;
-  @include max-for-tablet() {
-    padding: 0 $jnt-gutter-big;
-  }
   @include for-mobile() {
-    padding: 0 0 $jnt-gutter-large 0;
+    @include jnt-lp-slide((
+      padding: (
+        bottom: $jnt-gutter-large,
+      ),
+    ), '&', true);
     background: $jnt-secondary-background url("../../assets/images/bg-home-mobile.png") no-repeat bottom left;
     background-size: cover;
-    min-height: 100vh;
+    min-height: calc(100vh - #{$lp-header-height});
   }
 
   [content] {
@@ -40,6 +96,7 @@ $angular-color: #E23237;
     @include for-mobile() {
       font-size: 1rem;
     }
+
     h1 {
       text-align: left;
       font-size: 2.5em;
@@ -48,9 +105,11 @@ $angular-color: #E23237;
       line-height: 140%;
       margin-top: $jnt-gutter-huge;
       position: relative;
+
       span {
         color: $angular-color;
       }
+
       [data-label] {
         @include jnt-label(
             (
@@ -66,6 +125,7 @@ $angular-color: #E23237;
       }
 
     }
+
     p {
       font-size: .875em;
       color: $jnt-primary-text-dark-color;
@@ -79,50 +139,10 @@ $angular-color: #E23237;
     }
   }
 
-
-  [header] {
-    padding: $jnt-gutter-large 0 $jnt-gutter-huge 0;
-    margin-bottom: $jnt-gutter-huge;
-    position: relative;
-    z-index: 1;
-    @include for-mobile() {
-      margin-bottom: $jnt-gutter-normal;
-      padding-bottom: $jnt-gutter-normal;
-    }
-    img {
-      @include max-for-tablet() {
-        height: 40px;
-      }
-    }
-    [menu] ::ng-deep {
-      @include jnt-menu((
-        top: (
-          item: (
-            color: $jnt-primary-color,
-            text-transform: uppercase,
-            font-weight: $jnt-font-weight-semi-bold,
-            active: (
-              color: $jnt-white-color
-            ),
-            icon: (
-              size: $jnt-font-size-normal
-            ),
-            padding: (
-              outer: $jnt-gutter-small $jnt-gutter-normal,
-              inner: $jnt-gutter-small,
-            ),
-            hover: (
-              background-color: rgba($jnt-white-color, .1),
-            ),
-          ),
-        ),
-      ), '&');
-    }
-  }
-
   [tags] {
     // TODO need fix row
     margin-left: -$jnt-gutter-large;
+
     [tag] {
       [icon] {
         min-width: 74px;
@@ -134,6 +154,7 @@ $angular-color: #E23237;
         justify-content: center;
         align-items: center;
       }
+
       span {
         text-transform: uppercase;
         font-size: .75em;
@@ -154,6 +175,7 @@ $angular-color: #E23237;
     @include max-for-tablet() {
       align-self: center;
     }
+
     &:before {
       position: absolute;
       content: "";
@@ -167,9 +189,11 @@ $angular-color: #E23237;
       opacity: 0;
       border-radius: 34px;
     }
+
     &:hover:before {
       opacity: 1;
     }
+
     @include jnt-link((
       corner: 34px,
       font-size: 18px,
@@ -188,10 +212,6 @@ $angular-color: #E23237;
         size: 28px,
       ),
     ), '&', true);
-  }
-
-  [wave], [planet], [stars], [ship] {
-    position: absolute;
   }
 
   [bottom] {
@@ -233,6 +253,7 @@ $angular-color: #E23237;
       overflow: hidden;
       //for Safari
       -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+
       svg {
         opacity: .5;
         animation: move 2s linear infinite forwards;
@@ -269,6 +290,7 @@ $angular-color: #E23237;
         top: auto;
         bottom: 45px;
       }
+
       [container] {
         position: absolute;
         bottom: -30px;
@@ -276,6 +298,7 @@ $angular-color: #E23237;
         transform: rotate(210deg);
         z-index: -1;
         display: flex;
+
         [fire] {
           margin: 80px auto;
           width: 60px;
@@ -339,18 +362,22 @@ $angular-color: #E23237;
             width: 30px;
             height: 30px;
             margin: 130px auto;
+
             [yellow] {
               width: 15px;
               height: 15px;
             }
+
             [orange] {
               width: 20px;
               height: 20px;
             }
+
             [red] {
               width: 25px;
               height: 25px;
             }
+
             [white] {
               width: 5px;
               height: 5px;
@@ -361,58 +388,23 @@ $angular-color: #E23237;
     }
   }
 
-  [top] {
-    [wave] {
-      top: 0;
-      right: 0;
-      @include for-mobile() {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    [planet] {
-      top: 100px;
-      right: 155px;
-      width: 120px;
-      height: 120px;
-      display: flex;
-      justify-content: flex-end;
-      border-radius: 50%;
-      align-items: center;
-      background: linear-gradient(102.56deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%), linear-gradient(90deg, #FEA7AF 0.54%, #FDA1AF 4.53%, #F57AAE 32.45%, #EF5EAD 58.13%, #EB4DAC 80.58%, #EA47AC 97.31%), linear-gradient(90deg, #FEA7AF 0.54%, #EA47AC 97.31%);
-      overflow: hidden;
-      //for Safari
-      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-      @include max-for-tablet() {
-        top: 100px;
-        right: 20px;
-      }
-      @include for-mobile() {
-        right: 0;
-      }
-      svg {
-        overflow: visible;
-        opacity: .5;
-        animation: move 2s linear infinite forwards;
-      }
-    }
-  }
-
   [dropdown] {
     display: flex;
     align-items: center;
     position: relative;
+
     button {
       color: $jnt-purple-color;
       background-color: transparent;
       border: 0;
       cursor: pointer;
       font-size: 24px;
+
       &:focus {
         outline: 0;
       }
     }
+
     > [menu] {
       position: absolute;
       top: 100%;
@@ -423,13 +415,16 @@ $angular-color: #E23237;
       min-width: 200px;
       box-shadow: $jnt-shadow-normal;
       display: none;
+
       &[opened='true'] {
         display: block;
       }
+
       [stack] {
         background-color: $jnt-primary-dark-color;
         margin: -$jnt-gutter-normal (-$jnt-gutter-normal) 0 (-$jnt-gutter-normal);
         padding: $jnt-gutter-normal;
+
         [content] {
           flex: 1;
         }

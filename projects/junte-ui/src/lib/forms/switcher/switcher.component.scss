@@ -38,15 +38,17 @@
     @if $declare {
       display: block;
       border: 1px solid $jnt-gray-700-color;
+      position: relative;
+      overflow: hidden;
       #{$wrapper} [data-options] {
         display: flex;
+
         [data-option] {
           background-color: $jnt-primary-background;
           color: $jnt-primary-text-color;
           user-select: none;
           overflow: hidden;
           cursor: pointer;
-          border: 1px solid transparent;
           padding: 0 $jnt-gutter-small;
 
           &[data-with-template] {
@@ -58,19 +60,13 @@
           }
 
           &:focus {
-            outline: 0;
             box-shadow: $jnt-shadow-primary;
-            @if map-has-key($vars, option) {
-              $option: map-get($vars, option);
-              @if map-has-key($option, active) {
-                $active: map-get($option, active);
-                border-color: map-get($active, background);
-              }
-            }
+            outline: 0;
           }
 
           [data-title] {
             flex: 1;
+
             [data-label] {
               flex: 0 1 auto;
               overflow: hidden;
@@ -81,30 +77,27 @@
       }
     }
     border-radius: map-get($vars, corner);
+
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
         $vertical: map-get($vars, vertical);
-        max-height: if(map-get($vertical, max-height), map-get($vertical, max-height), null);
-        overflow-y: auto;
-      }
-      #{$wrapper} [data-options] {
-        flex-direction: column;
-        [data-option] {
-          &:first-child {
-            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
-          }
-
-          &:last-child {
-            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
+        @if map-has-key($vertical, max-height) {
+          #{$wrapper} [data-scroll] {
+            max-height: map-get($vertical, max-height);
+            overflow-y: auto;
           }
         }
       }
+
+      #{$wrapper} [data-options] {
+        flex-direction: column;
+      }
     }
+
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
         flex-direction: row;
+
         [data-option] {
           flex: auto;
           justify-content: center;
@@ -114,6 +107,7 @@
               justify-content: map-get($option, align);
             }
           }
+
           &:first-child {
             border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
             border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
@@ -126,14 +120,20 @@
         }
       }
     }
+
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
+
       #{$wrapper} [data-option] {
         color: $jnt-control-disabled-label-color;
         background-color: $jnt-control-disabled-background;
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-scroll] {
+    border-radius: map-get($vars, corner);
   }
 
   #{$context} #{$wrapper} [data-options] {
@@ -147,9 +147,6 @@
             background-color: map-get($active, background);
           }
         }
-        [data-mark] {
-          @include jnt-icon((color: $jnt-white-color), '&');
-        }
       }
     }
   }
@@ -158,8 +155,45 @@
     @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
   }
 
-  #{$context} #{$wrapper} [data-mark] {
-    @include jnt-icon((color: $jnt-primary-color), '&');
+  #{$context} #{$wrapper} [data-switch] {
+    position: relative;
+    background-color: $jnt-control-background;
+    border: 1px solid $jnt-primary-light-color;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+    min-width: 18px;
+    width: 18px;
+    min-height: 18px;
+    height: 18px;
+
+    &[data-single='true'] {
+      border-radius: 50%;
+
+      [data-indicator] {
+        border-radius: 50%;
+      }
+    }
+
+    &[data-single='false'] {
+      border-radius: $jnt-corner-base;
+
+      [data-indicator] {
+        border-radius: 2px;
+      }
+    }
+
+    [data-indicator] {
+      background-color: $jnt-control-background;
+      border: 1px solid $jnt-primary-light-color;
+      min-width: 10px;
+      width: 10px;
+      min-height: 10px;
+      height: 10px;
+    }
   }
 
   #{$context} #{$wrapper} [data-title] {
@@ -167,7 +201,13 @@
       $horizontal: map-get($vars, horizontal);
       line-height: map-get($horizontal, height);
     }
+  }
 
+  #{$context} #{$wrapper} [data-count] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-50%, 50%);
   }
 }
 

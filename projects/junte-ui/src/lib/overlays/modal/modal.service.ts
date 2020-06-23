@@ -1,4 +1,4 @@
-import { ElementRef, EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ModalComponent, ModalContent, ModalOptions } from './modal.component';
 
 @Injectable({providedIn: 'root'})

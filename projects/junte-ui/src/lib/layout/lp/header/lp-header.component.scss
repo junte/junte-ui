@@ -1,23 +1,26 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/app/variables";
-@import "navigation/menu/menu";
-@import "elements/icon/icon";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'elements/icon/icon';
+@import 'navigation/menu/menu';
+@import 'layout/responsive/responsive';
+@import 'layout/grid/container/container';
+@import 'forms/button/button';
 
-@mixin jnt-app-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-lp-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    position: absolute,
-    background: $jnt-primary-dark-color,
-    padding: 0 $jnt-gutter-big,
-    height: $app-header-height
+    position: fixed,
+    background: transparent,
+    padding: $jnt-gutter-large 0 $jnt-gutter-huge 0,
+    height: $lp-header-height,
+    mobile-height: $lp-header-height-mobile,
+    z-index: 1,
   );
 
   $vars: $passed;
   $declare: false;
-
   $wrapper: null;
+
   @if $deep {
     $wrapper: '::ng-deep';
   }
@@ -28,27 +31,31 @@
   }
 
   :host, #{$context} {
-    display: flex;
-    justify-content: space-between;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-    box-sizing: border-box;
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
     position: map-get($vars, position);
+    box-sizing: border-box;
     top: 0;
     left: 0;
     right: 0;
     z-index: 3;
 
-    > [data-menu] {
+    @include max-for-tablet() {
+      min-height: map-get($vars, mobile-height);
+      height: map-get($vars, mobile-height);
+      padding: $jnt-gutter-big 0;
+    }
+
+    [data-menu] {
       display: flex;
       align-items: center;
       @include jnt-menu((
         top: (
           item: (
-            color: $jnt-white-color,
+            color: $jnt-primary-color,
+            text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
             active: (
               color: $jnt-white-color
             ),
@@ -59,14 +66,19 @@
               outer: $jnt-gutter-small $jnt-gutter-normal,
               inner: $jnt-gutter-small,
             ),
-            hover: (
-              background-color: transparent,
-            ),
           ),
         ),
-      ));
+      ), '&');
     }
   }
+
+  [data-container] {
+    @include jnt-grid-container((), '&', true) {
+      display: flex;
+      justify-content: space-between;
+    };
+  }
+
 
   #{$context} #{$wrapper} [data-logo] {
     display: flex;
@@ -78,7 +90,7 @@
   }
 
   #{$context} #{$wrapper} [data-burger] {
-    @include jnt-button((schemes: (primary: (color: $jnt-white-color, hover-color: $jnt-white-color)), icon: (size: 24px)), '&');
+    @include jnt-button((icon: (size: 24px)), '&');
   }
 
   #{$context} #{$wrapper} [data-actions] {
@@ -89,7 +101,5 @@
     display: flex;
     align-items: center;
   }
+
 }
-
-
-

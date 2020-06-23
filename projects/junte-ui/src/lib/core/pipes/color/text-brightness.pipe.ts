@@ -11,12 +11,11 @@ enum BrightnessColors {
 function getBrightness(color: string): number {
   color = color.substr(1);
   if (color.length === 3) {
-    color = color.split('').map(v => v + v).join('');
+    color = color.split('').map(value => value + value).join('');
   }
 
-  const rgb = [0, 0, 0];
-  return rgb.map((v, i) => (RATIO_RGB[i] * parseInt(color.substr(i * 2, 2), 16)) / 1000)
-    .reduce((a, c) => a + c);
+  return RATIO_RGB.map((value, index) => (value * parseInt(color.substr(index * 2, 2), 16)) / 1000)
+    .reduce((accumulator, current) => accumulator + current);
 }
 
 export function getTextBrightness(background: string): string {
@@ -26,6 +25,6 @@ export function getTextBrightness(background: string): string {
 @Pipe({name: 'textBrightness'})
 export class TextBrightnessPipe implements PipeTransform {
   transform(color: string): string {
-    return getTextBrightness(color);
+    return getTextBrightness(color).toString();
   }
 }

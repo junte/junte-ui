@@ -1,9 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { Feature } from '../../core/enums/feature';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
-import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { BlockState } from './enums';
@@ -44,9 +43,6 @@ export class BlockComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
 
-  @HostBinding('attr.data-scheme')
-  _scheme = Scheme.primary;
-
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
 
@@ -56,19 +52,6 @@ export class BlockComponent {
   })
   @Input()
   title: string;
-
-  @PropertyApi({
-    description: 'Block color scheme',
-    path: 'ui.schemes',
-    default: Scheme.primary,
-    options: [Scheme.primary,
-      Scheme.secondary,
-      Scheme.success,
-      Scheme.fail]
-  })
-  @Input() set scheme(scheme: Scheme) {
-    this._scheme = scheme || Scheme.primary;
-  }
 
   @PropertyApi({
     description: 'Padding for content & footer',

@@ -44,6 +44,7 @@
       width: 100%;
       border-collapse: collapse;
       position: relative;
+
       [data-spinner] {
         position: absolute;
         top: 0;
@@ -56,59 +57,69 @@
         align-items: center;
         transition: all .3s;
         z-index: 1;
+
         [data-icon] {
           color: $jnt-primary-text-light-color;
         }
       }
+
       thead {
         background-color: $jnt-secondary-background;
+
         .sortable {
           cursor: pointer;
         }
       }
+
       tbody tr {
         border-bottom: 1px solid $jnt-muted-color;
         background-color: $jnt-primary-background;
         transition: all .3s;
+
         &[data-nodata] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
+
           td {
             vertical-align: middle;
             text-align: center;
+
             [data-icon] {
               font-size: 80px;
               color: $jnt-muted-color;
             }
           }
         }
+
         &[data-loading] {
           height: map-get($vars, min-height);
           pointer-events: none;
           border-bottom: 0;
         }
+
         &:hover {
           background-color: $jnt-highlight-background;
         }
+
         td {
           &[data-action] {
             width: 50px;
             text-align: center;
-            [data-menu] {
-              [data-button] {
-                @include jnt-button((
-                  sizes: (
-                    normal: (
-                      padding: 0 $jnt-gutter-normal,
-                    ),
+
+            [data-trigger] {
+              @include jnt-button((
+                sizes: (
+                  normal: (
+                    padding: 0 $jnt-gutter-normal,
                   ),
-                ), '&');
-              }
+                ),
+              ), '&');
             }
           }
         }
       }
+
       td, th {
         padding: $jnt-gutter-normal;
         box-sizing: border-box;
@@ -120,6 +131,7 @@
       justify-content: center;
       align-items: center;
       margin-bottom: -$jnt-gutter-normal;
+
       [data-pages] {
         flex: 1;
       }

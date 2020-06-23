@@ -21,29 +21,53 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-form [formGroup]="form">
-                  <jnt-chart formControlName="hero"
-                             title="Hero"
-                             metric="Likes">
-                    <jnt-chart-indicator [data]="{likes: 30}"
-                                         [value]="10"
-                                         title="Spiderman"
-                                         label="10k"
-                                         [color]="ui.color.red">
-                    </jnt-chart-indicator>
-                    <jnt-chart-indicator [data]="{likes: 30}"
-                                         [value]="30"
-                                         title="Ironman"
-                                         label="10k"
-                                         [color]="ui.color.yellow">
-                    </jnt-chart-indicator>
-                    <jnt-chart-indicator [data]="{likes: 40}"
-                                         [value]="40"
-                                         title="Captain America"
-                                         label="20k"
-                                         [color]="ui.color.blue100">
-                    </jnt-chart-indicator>
-                  </jnt-chart>
+                  <jnt-stack [align]="ui.flex.align.stretch">
+                    <jnt-form-item>
+                      <jnt-chart formControlName="hero"
+                                 title="Hero"
+                                 metric="Likes">
+                        <jnt-chart-indicator *ngFor="let hero of heroes"
+                                             [data]="hero"
+                                             [value]="hero.value"
+                                             [titleTemplate]="templateControl.value ? heroOptionTemplate : null"
+                                             [title]="hero.title"
+                                             [label]="hero.label"
+                                             [color]="hero.color">
+                        </jnt-chart-indicator>
+                      </jnt-chart>
+                    </jnt-form-item>
+                    <ng-container [ngSwitch]="heroControl.value?.name">
+                      <iframe giphy *ngSwitchCase="hero.spiderman"
+                              src="https://giphy.com/embed/yFqLQzipdekuI"
+                              width="480" height="313"
+                              frameBorder="0"></iframe>
+                      <iframe giphy *ngSwitchCase="hero.ironman"
+                              src="https://giphy.com/embed/wEgs1cd7vDTt6"
+                              width="480" height="198"
+                              frameBorder="0"></iframe>
+                      <iframe giphy *ngSwitchCase="hero.captainAmerica"
+                              src="https://giphy.com/embed/aShBCHV3Cu6FG"
+                              width="480" height="204"
+                              frameBorder="0"></iframe>
+                    </ng-container>
+                  </jnt-stack>
                 </jnt-form>
+                <ng-template #heroOptionTemplate let-hero="data">
+                  <jnt-stack [orientation]="ui.orientation.horizontal"
+                             [align]="ui.flex.align.center"
+                             [justify]="ui.flex.justify.between">
+                    <jnt-stack [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.flex.align.center">
+                      <jnt-avatar [image]="hero.avatar"
+                                  [size]="ui.size.small"></jnt-avatar>
+                      <div>{{hero.title}}</div>
+                    </jnt-stack>
+                    <jnt-label [label]="hero.likes + ' likes'"
+                               [color]="ui.color.green"></jnt-label>
+                  </jnt-stack>
+                </ng-template>
+
               </ng-template>
             </app-browser-preview>
           </jnt-col>
@@ -51,16 +75,9 @@
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
-                  <jnt-form-label for="titleChart">Custom title</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-input formControlName="titleChart" [type]="ui.forms.input.type.text"></jnt-input>
-                  </jnt-form-control>
-                </jnt-form-item>
-                <jnt-form-item>
-                  <jnt-form-label for="metricChart">Custom metric</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-input formControlName="metricChart" [type]="ui.forms.input.type.text"></jnt-input>
-                  </jnt-form-control>
+                  <jnt-checkbox formControlName="template"
+                                label="Custom option"
+                                i18n-label="@@label.custom_option"></jnt-checkbox>
                 </jnt-form-item>
               </jnt-stack>
             </jnt-form>
@@ -80,24 +97,53 @@
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template">
             <ng-template #accordionContentTemplate>
-              <app-code-highlight [language]="language.html" file="chart-test.template.html">
-<!-- @formatter:off-->
+              <app-code-highlight file="chart-test.template.html">
+                <!-- @formatter:off-->
 <![CDATA[
-<jnt-chart title="{{titleChartControl.value}}" metric="{{metricChartControl.value}}">
+<jnt-chart title="Heroes" metric="Likes">
   <jnt-chart-indicator title="Ironman"
                        [data]="{hero: 1}"
                        [value]="32"
                        label="Smart"
-                       [color]="ui.color.purple">
+                       [color]="ui.color.purple"
+                       ]]>
+    <ng-container *ngIf="templateControl.value">
+      <![CDATA[[titleTemplate]="heroOptionTemplate"]]>
+    </ng-container>
+    <![CDATA[>
   </jnt-chart-indicator>
   <jnt-chart-indicator title="Tor"
                        [data]="{hero: 2}"
                        [value]="28"
                        label="God of thunder"
-                       [color]="ui.color.red">
+                       [color]="ui.color.red"
+                       ]]>
+    <ng-container *ngIf="templateControl.value">
+      <![CDATA[[titleTemplate]="heroOptionTemplate"]]>
+    </ng-container>
+    <![CDATA[>
   </jnt-chart-indicator>
 </jnt-chart>
 ]]>
+<ng-container *ngIf="templateControl.value">
+  <![CDATA[
+  <ng-template #heroOptionTemplate let-hero="data">
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [align]="ui.flex.align.center"
+               [justify]="ui.flex.justify.between">
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [gutter]="ui.gutter.small"
+                 [align]="ui.flex.align.center">
+        <jnt-avatar [image]="hero.avatar"
+                    [size]="ui.size.small"></jnt-avatar>
+        <div>]]>{{<![CDATA[hero.title]]>}}<![CDATA[</div>
+      </jnt-stack>
+      <jnt-label [label]="hero.likes + ' likes'"
+                 [color]="ui.color.green"></jnt-label>
+    </jnt-stack>
+  </ng-template>
+  ]]>
+</ng-container>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

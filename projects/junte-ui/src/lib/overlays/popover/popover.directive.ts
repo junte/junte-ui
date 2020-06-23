@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { PopoverTriggers } from './enums';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 import { PopoverService } from './popover.service';
@@ -16,6 +16,9 @@ export class PopoverDirective implements OnDestroy {
   set __options__(options: PopoverOptions) {
     this.options = new PopoverOptions(options);
   }
+
+  @Output('jntPopoverDisplayed')
+  displayed = new EventEmitter<PopoverComponent>();
 
   ngOnDestroy() {
     if (!!this.reference) {
@@ -62,6 +65,7 @@ export class PopoverDirective implements OnDestroy {
 
   private show() {
     this.reference = this.popover.show(this.hostRef, this.options);
+    this.displayed.emit(this.reference);
   }
 
   private hide(path: HTMLElement[]) {

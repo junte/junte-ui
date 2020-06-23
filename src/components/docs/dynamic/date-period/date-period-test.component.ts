@@ -17,7 +17,7 @@ export class DatePeriodTestComponent {
 
   startControl = this.fb.control(new Date);
   endControl = this.fb.control(new Date);
-  currentControl = this.fb.control(new Date);
+  currentControl = this.fb.control(null);
 
   builder = this.fb.group({
     start: this.startControl,
