@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, HostListener, Input, TemplateRef } from '@angular/core';
+import { Component, HostBinding, HostListener, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Height } from '../../../core/enums/height';
 

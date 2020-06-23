@@ -1,11 +1,10 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
-import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { CardState } from './enums';
 
 interface Picture {
