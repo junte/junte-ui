@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Breakpoint, BreakpointService, UI } from 'junte-ui';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Breakpoint, BreakpointService, PopoverComponent, PopoverService, UI } from 'junte-ui';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -8,14 +8,20 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
 
   analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   opened = false;
   point = Breakpoint;
+  @ViewChild('popover', {static: true}) popover: PopoverComponent;
 
-  constructor(public breakpoint: BreakpointService) {
+  constructor(public breakpoint: BreakpointService,
+              private popoverService: PopoverService) {
+  }
+
+  ngAfterViewInit() {
+    this.popoverService.register(this.popover);
   }
 }

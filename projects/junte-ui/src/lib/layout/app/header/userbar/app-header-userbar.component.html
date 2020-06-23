@@ -1,9 +1,30 @@
-<jnt-stack [orientation]="ui.orientation.horizontal"
-           [align]="ui.flex.align.center">
-  <ng-content></ng-content>
+<ng-template #content>
   <ng-container *ngTemplateOutlet="userbarAvatarTemplate"></ng-container>
-</jnt-stack>
+  <ng-content></ng-content>
+</ng-template>
 
-<div data-menu>
-  <ng-container *ngTemplateOutlet="userbarMenuTemplate"></ng-container>
-</div>
+<ng-container *jntMinFor="ui.breakpoint.desktop">
+  <jnt-stack data-user
+             [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.hover}"
+             [orientation]="ui.orientation.horizontal"
+             [align]="ui.flex.align.center">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </jnt-stack>
+
+  <ng-template #dropdownTemplate>
+    <ng-container *ngTemplateOutlet="userbarMenuTemplate"></ng-container>
+  </ng-template>
+</ng-container>
+
+<ng-container *jntMaxFor="ui.breakpoint.tablet">
+  <jnt-stack data-user
+             [orientation]="ui.orientation.horizontal"
+             [align]="ui.flex.align.center">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </jnt-stack>
+
+  <div data-menu>
+    <ng-container *ngTemplateOutlet="userbarMenuTemplate"></ng-container>
+  </div>
+</ng-container>
+

@@ -1,4 +1,5 @@
 import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { UI } from '../../../../core/enums/ui';
 import { PropertyApi } from '../../../../core/decorators/api';
 
 @Component({
@@ -9,6 +10,8 @@ export class AppHeaderActionComponent {
 
   @HostBinding('attr.host')
   readonly host = 'jnt-app-header-action-host';
+
+  ui = UI;
 
   @PropertyApi({
     description: 'Action label template',
