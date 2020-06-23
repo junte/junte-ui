@@ -16,7 +16,8 @@
     <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
 
-  <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
+  <ng-container
+    *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
 
   <jnt-stack data-actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
@@ -33,27 +34,23 @@
   <div data-logo data-tablet *ngIf="headerLogoTemplate">
     <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
   </div>
-  <jnt-stack data-action
-             [orientation]="ui.orientation.horizontal"
-             [align]="ui.flex.align.center">
-    <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
-    <div data-dropdown>
-      <button (click)="opened = !opened">
-        <jnt-icon data-menu-icon [icon]="ui.icons.menu"></jnt-icon>
-      </button>
-      <div data-menu [attr.data-opened]="opened">
-        <ng-container
-          *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical}"></ng-container>
-        <jnt-stack data-stack [type]="ui.orientation.horizontal"
-                   [gutter]="ui.gutter.small"
-                   [align]="ui.flex.align.stretch">
-          <div data-content>
-            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-          </div>
-          <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
-        </jnt-stack>
+  <jnt-stack data-actions [type]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.small"
+             [align]="ui.flex.align.stretch">
+    <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+    <jnt-button data-burger
+                [icon]="opened ? ui.icons.cancel : ui.icons.menu"
+                [outline]="ui.outline.transparent"
+                [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+    </jnt-button>
+    <ng-template #dropdownTemplate>
+      <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+      <ng-container
+        *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical}"></ng-container>
+      <div *ngIf="!!contentTemplate" data-content>
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>
-    </div>
+    </ng-template>
   </jnt-stack>
 </ng-container>
 

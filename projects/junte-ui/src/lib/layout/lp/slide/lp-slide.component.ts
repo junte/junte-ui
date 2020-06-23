@@ -30,9 +30,6 @@ export class LpSlideComponent {
     return this._height;
   }
 
-  @ContentChild('slideContentTemplate')
-  slideContentTemplate: TemplateRef<any>;
-
   @HostListener('window:resize')
   sizeChange() {
     this.slideHeight = document.documentElement.clientHeight;

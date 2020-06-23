@@ -1,8 +1,25 @@
 @import "jnt-variables";
 @import "elements/label/label";
+@import "layout/lp/slide/lp-slide";
+@import "layout/responsive/responsive";
 
 :host {
   display: block;
   font-family: $jnt-lp-layout-font-family;
   overflow-x: hidden;
+
+  &[data-with-lp-header="true"] {
+    @include jnt-lp-slide((
+      padding: (
+        top: $lp-header-height
+      ),
+    ));
+    @include max-for-tablet() {
+      @include jnt-lp-slide((
+        padding: (
+          top: $lp-header-height-mobile,
+        ),
+      ));
+    }
+  }
 }
