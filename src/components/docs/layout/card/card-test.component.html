@@ -34,7 +34,6 @@
                             [color]="colorControl.value"
                             [width]="widthControl.value"
                             [padding]="paddingControl.value"
-                            [scheme]="schemeControl.value"
                             [state]="stateControl.value"
                             [icon]="iconControl.value ? ui.icons.menu : null"
                             [picture]="pictureControl.value ? 'assets/images/steve.jpeg' : null"
@@ -71,30 +70,6 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
-
-                <jnt-form-item>
-                  <jnt-form-label for="scheme"
-                                  i18n="@@label.scheme">Scheme
-                  </jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-select formControlName="scheme"
-                                placeholder="Primary"
-                                i18n-placeholder="@@label.primary">
-                      <jnt-select-option label="Primary"
-                                         i18n-label="@@label.primary"
-                                         [key]="ui.scheme.primary"></jnt-select-option>
-                      <jnt-select-option label="Secondary"
-                                         i18n-label="@@label.secondary"
-                                         [key]="ui.scheme.secondary"></jnt-select-option>
-                      <jnt-select-option label="Success"
-                                         i18n-label="@@label.success"
-                                         [key]="ui.scheme.success"></jnt-select-option>
-                      <jnt-select-option label="Fail"
-                                         i18n-label="@@label.fail"
-                                         [key]="ui.scheme.fail"></jnt-select-option>
-                    </jnt-select>
-                  </jnt-form-control>
-                </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-label for="padding"
@@ -249,10 +224,6 @@
                   <ng-container *ngIf="paddingControl.value">
                     <![CDATA[
                     [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="schemeControl.value">
-                    <![CDATA[
-                    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="widthControl.value">
                     <![CDATA[

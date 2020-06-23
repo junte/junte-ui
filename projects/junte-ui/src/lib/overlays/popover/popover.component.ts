@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostBinding, Renderer2, TemplateRef } from '@angular/core';
-import { Scheme } from '../../core/enums/scheme';
 import { PopoverPlacements, PopoverTriggers } from './enums';
 
 export class PopoverOptions {
@@ -11,7 +10,6 @@ export class PopoverOptions {
   maxWidth: string;
   maxHeight: string;
   smarty = true;
-  scheme: Scheme = Scheme.primary;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -35,11 +33,6 @@ export class PopoverComponent {
   @HostBinding('style.display')
   get display() {
     return this.visible ? 'block' : 'none';
-  }
-
-  @HostBinding('attr.data-scheme')
-  get scheme() {
-    return this.options.scheme;
   }
 
   @HostBinding('attr.data-placement')
