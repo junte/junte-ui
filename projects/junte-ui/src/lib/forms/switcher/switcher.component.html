@@ -7,7 +7,7 @@
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
 
-  <div data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected" data-indicator></span></div>
+  <div *ngIf="marks" data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected" data-indicator></span></div>
 
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [justify]="ui.flex.justify.between"

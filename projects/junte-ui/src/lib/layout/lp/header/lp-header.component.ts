@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { UI } from '../../../core/enums/ui';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
 
