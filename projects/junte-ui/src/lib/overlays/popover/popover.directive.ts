@@ -48,10 +48,10 @@ export class PopoverDirective implements OnDestroy {
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  documentClick(e: { path: HTMLElement[] }) {
+  @HostListener('document:click', ['$event.path'])
+  documentClick(path: HTMLElement[]) {
     if (this.options.trigger === PopoverTriggers.click) {
-      this.hide(e.path);
+      this.hide(path);
     }
   }
 
@@ -68,9 +68,8 @@ export class PopoverDirective implements OnDestroy {
     this.displayed.emit(this.reference);
   }
 
-  private hide(path: HTMLElement[]) {
-    if (!!this.reference && !this.picked(path)
-      && !this.reference.picked(path)) {
+  private hide(path: HTMLElement[] = []) {
+    if (!!this.reference && !this.picked(path) && !this.reference.picked(path)) {
       this.reference.hide();
       this.reference = null;
     }

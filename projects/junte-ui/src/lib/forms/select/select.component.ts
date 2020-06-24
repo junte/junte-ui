@@ -20,6 +20,9 @@ import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
+import { PopoverTriggers } from '../../overlays/popover/enums';
+import { PopoverFeature, PopoverOptions } from '../../overlays/popover/popover.component';
+import { PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
@@ -156,6 +159,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
+  @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
+
   @HostBinding('attr.data-opened')
   set opened(opened: boolean) {
     this._opened = opened;
@@ -174,6 +179,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       }
     };
     setTimeout(() => checking(), 100);
+    opened ? this.popover.show(this.hostRef, new PopoverOptions({
+      trigger: PopoverTriggers.click,
+      contentTemplate: this.optionsTemplate,
+      features: [PopoverFeature.dropdown]
+    })) : this.popover.hide();
   }
 
   get opened() {
@@ -232,9 +242,35 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input() loader = null;
 
+  @HostListener('document:click', ['$event.path'])
+  outside(path: HTMLElement[]) {
+    if (this.opened && path.indexOf(this.hostRef.nativeElement) === -1) {
+      this.close();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
+    switch (this.mode) {
+      case SelectMode.single:
+        break;
+      case SelectMode.multiple:
+        if (target === this.selectedList.nativeElement) {
+          this.opened = true;
+        }
+        break;
+    }
+  }
+
+  @HostListener('blur')
+  close() {
+    this.opened = false;
+  }
+  
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
               private fb: FormBuilder,
+              private popover: PopoverService,
               private logger: NGXLogger) {
   }
 
@@ -328,32 +364,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this.changes.selected++;
       this.onChange(this.mode === SelectMode.multiple ? this.selected : null);
     }
-  }
-
-  @HostListener('document:click', ['$event'])
-  outside(e: { path: HTMLElement[] }) {
-    if (this.opened && e.path.indexOf(this.hostRef.nativeElement) === -1) {
-      this.close();
-    }
-  }
-
-  @HostListener('click', ['$event'])
-  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
-    switch (this.mode) {
-      case SelectMode.single:
-        break;
-      case SelectMode.multiple:
-        if (target === this.selectedList.nativeElement) {
-          this.opened = true;
-        }
-        break;
-
-    }
-  }
-
-  @HostListener('blur')
-  close() {
-    this.opened = false;
   }
 
   writeValue(value: Key | Key[]) {
