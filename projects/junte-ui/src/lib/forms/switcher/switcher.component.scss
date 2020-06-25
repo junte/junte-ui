@@ -81,7 +81,7 @@
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
         $vertical: map-get($vars, vertical);
-        @if map-has-key($vertical, max-height) {
+        @if map-get($vertical, max-height) != null {
           #{$wrapper} [data-scroll] {
             max-height: map-get($vertical, max-height);
             overflow-y: auto;
@@ -130,10 +130,6 @@
         background-color: $jnt-control-disabled-background;
       }
     }
-  }
-
-  #{$context} #{$wrapper} [data-scroll] {
-    border-radius: map-get($vars, corner);
   }
 
   #{$context} #{$wrapper} [data-options] {
@@ -187,8 +183,7 @@
     }
 
     [data-indicator] {
-      background-color: $jnt-control-background;
-      border: 1px solid $jnt-primary-light-color;
+      background-color: $jnt-primary-light-color;
       min-width: 10px;
       width: 10px;
       min-height: 10px;

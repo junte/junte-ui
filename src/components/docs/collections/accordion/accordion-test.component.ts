@@ -19,9 +19,11 @@ export class AccordionTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   iconControl = this.fb.control(true);
+  gutterControl = this.fb.control(null);
 
   builder = this.fb.group({
     icon: this.iconControl,
+    gutter: this.gutterControl
   });
 
   constructor(private fb: FormBuilder) {

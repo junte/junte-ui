@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule, IconModule, BlockModule,
-  FormModule, GridModule, LinkModule, StackModule, TabsModule, CheckboxModule
+  FormModule, GridModule, LinkModule, StackModule, TabsModule, CheckboxModule, SelectModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -23,6 +23,7 @@ import { AccordionTestComponent } from './accordion-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     FormModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
   ],
   exports: [
     AccordionTestComponent

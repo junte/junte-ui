@@ -42,7 +42,7 @@ export class Gulpfile {
       .replace(/@import.*$/gm, '')
       .replace(/(\n){2,}/gm, '\n');
     const clean = file => file.replace('";', '').replace('@import "', '@import "../').split('/');
-    imports.forEach(file => cleared = `${Array.from(new Set(clean(file))).join('/')}";\n${cleared}`);
+    imports.forEach(file => cleared = `${clean(file).slice(0, 3).join('/')}";\n${cleared}`);
     return `@import "../jnt-variables";\n${cleared}`;
   }
 

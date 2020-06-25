@@ -34,29 +34,30 @@ export class PopoverDirective implements OnDestroy {
     }
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  documentMouseMove(e: any) {
+  @HostListener('document:mousemove', ['$event.path'])
+  documentMouseMove(path: HTMLElement[]) {
     if (this.options.trigger === PopoverTriggers.hover) {
-      this.hide(e.path);
+      this.hide(path);
     }
   }
 
   @HostListener('click')
   click() {
     if (this.options.trigger === PopoverTriggers.click) {
-      this.show();
+      !this.reference ? this.show() : this.hide();
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  documentClick(e: { path: HTMLElement[] }) {
-    if (this.options.trigger === PopoverTriggers.click) {
-      this.hide(e.path);
+  @HostListener('document:click', ['$event.path'])
+  documentClick(path: HTMLElement[]) {
+    if (this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
+      this.hide(path);
     }
   }
 
   constructor(private popover: PopoverService,
               private hostRef: ElementRef) {
+    popover.hided.subscribe(() => this.reference = null);
   }
 
   private picked(elements: HTMLElement[]) {
@@ -68,9 +69,8 @@ export class PopoverDirective implements OnDestroy {
     this.displayed.emit(this.reference);
   }
 
-  private hide(path: HTMLElement[]) {
-    if (!!this.reference && !this.picked(path)
-      && !this.reference.picked(path)) {
+  private hide(path: HTMLElement[] = []) {
+    if (!!this.reference && !this.reference.picked(path)) {
       this.reference.hide();
       this.reference = null;
     }

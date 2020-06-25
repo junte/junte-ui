@@ -21,7 +21,7 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-accordion>
+                <jnt-accordion [gutter]="gutterControl.value">
                   <jnt-accordion-section title="Spiderman"
                                          [icon]="iconControl.value ? localUi.icons.spiderman : null">
                     <ng-template #accordionContentTemplate>
@@ -63,6 +63,43 @@
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
+                  <jnt-form-label for="gutter"
+                                  i18n="@@label.gutter">Gutter</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="gutter"
+                                placeholder="Tiny"
+                                i18n-placeholder="@@label.tiny">
+                      <jnt-select-option label="None"
+                                         i18n-label="@@label.none"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.gutter.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.gutter.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.gutter.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.gutter.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.gutter.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.gutter.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+                <jnt-form-item>
                   <jnt-form-label for="type"
                                   i18n="@@label.features">Features
                   </jnt-form-label>
@@ -96,7 +133,14 @@
               <app-code-highlight file="accordion-test.template.html">
                 <!-- @formatter:off-->
 <![CDATA[
-<jnt-accordion>
+<jnt-accordion
+  ]]>
+  <ng-container *ngIf="gutterControl.value">
+    <![CDATA[
+    [gutter]="]]>{{gutterControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>]]>
+  <![CDATA[
   <jnt-accordion-section title="Gitlab" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[

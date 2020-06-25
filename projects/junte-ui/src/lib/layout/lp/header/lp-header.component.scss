@@ -1,10 +1,10 @@
-@import 'jnt-variables';
-@import 'jnt-functions';
-@import 'elements/icon/icon';
-@import 'navigation/menu/menu';
-@import 'layout/responsive/responsive';
-@import 'layout/grid/container/container';
-@import 'forms/button/button';
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/icon";
+@import "navigation/menu/menu";
+@import "layout/responsive/responsive";
+@import "layout/grid/container/container";
+@import "forms/button/button";
 
 @mixin jnt-lp-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -12,9 +12,56 @@
     position: fixed,
     background: transparent,
     padding: $jnt-gutter-large 0 $jnt-gutter-huge 0,
+    mobile-padding: $jnt-gutter-big 0,
     height: $lp-header-height,
     mobile-height: $lp-header-height-mobile,
     z-index: 1,
+    container-width: null,
+    menu: (
+      desktop: (
+        top: (
+          item: (
+            color: $jnt-primary-color,
+            text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
+            active: (
+              color: $jnt-white-color
+            ),
+            icon: (
+              size: $jnt-font-size-normal
+            ),
+            padding: (
+              outer: $jnt-gutter-small $jnt-gutter-normal,
+              inner: $jnt-gutter-small,
+            ),
+          ),
+        ),
+      ),
+      tablet: (
+        top: (
+          item: (
+            color: $jnt-primary-color,
+            text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
+            active: (
+              color: $jnt-white-color
+            ),
+            icon: (
+              size: $jnt-font-size-normal
+            ),
+            padding: (
+              outer: $jnt-gutter-small $jnt-gutter-normal,
+              inner: $jnt-gutter-small,
+            ),
+          ),
+        ),
+      ),
+      burger: (
+        icon: (
+          size: 24px,
+        ),
+      ),
+    ),
   );
 
   $vars: $passed;
@@ -34,6 +81,7 @@
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
+    height: map-get($vars, height);
     position: map-get($vars, position);
     box-sizing: border-box;
     top: 0;
@@ -44,41 +92,40 @@
     @include max-for-tablet() {
       min-height: map-get($vars, mobile-height);
       height: map-get($vars, mobile-height);
-      padding: $jnt-gutter-big 0;
-    }
-
-    [data-menu] {
-      display: flex;
-      align-items: center;
-      @include jnt-menu((
-        top: (
-          item: (
-            color: $jnt-primary-color,
-            text-transform: uppercase,
-            font-weight: $jnt-font-weight-semi-bold,
-            active: (
-              color: $jnt-white-color
-            ),
-            icon: (
-              size: $jnt-font-size-normal
-            ),
-            padding: (
-              outer: $jnt-gutter-small $jnt-gutter-normal,
-              inner: $jnt-gutter-small,
-            ),
-          ),
-        ),
-      ), '&');
+      padding: map-get($vars, mobile-padding);
     }
   }
 
-  [data-container] {
-    @include jnt-grid-container((), '&', true) {
+  #{$context} #{$wrapper} [data-container] {
+    @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
       display: flex;
       justify-content: space-between;
     };
+    &[data-desktop] {
+      [data-menu] {
+        display: flex;
+        align-items: center;
+        @if map-has-key($vars, menu) {
+          $menu: map-get($vars, menu);
+          @include jnt-menu((
+            map-get($menu, desktop)
+          ), '&');
+        }
+      }
+    }
+    &[data-tablet] {
+      [data-menu] {
+        display: flex;
+        align-items: center;
+        @if map-has-key($vars, menu) {
+          $menu: map-get($vars, menu);
+          @include jnt-menu((
+            map-get($menu, tablet)
+          ), '&');
+        }
+      }
+    }
   }
-
 
   #{$context} #{$wrapper} [data-logo] {
     display: flex;
@@ -90,7 +137,13 @@
   }
 
   #{$context} #{$wrapper} [data-burger] {
-    @include jnt-button((icon: (size: 24px)), '&');
+    @if map-has-key($vars, menu) {
+      $menu: map-get($vars, menu);
+      @if map-has-key($menu, burger) {
+        $burger: map-get($menu, burger);
+        @include jnt-button(($burger), '&');
+      }
+    }
   }
 
   #{$context} #{$wrapper} [data-actions] {

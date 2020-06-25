@@ -4,35 +4,26 @@
 
   :host, #{$context} {
     display: block;
+    background-color: $jnt-primary-background;
+    padding: $jnt-gutter-normal;
+    border-radius: $jnt-corner-normal;
+    border: 1px solid $jnt-page-background;
   }
 
   #{$context} [data-section] {
-    &:not(:last-child) {
-      [data-title] {
-        border-bottom: 0;
-      }
-    }
-    &:first-child {
-      [data-title] {
-        border-top-left-radius: $jnt-corner-small;
-        border-top-right-radius: $jnt-corner-small;
-      }
-    }
-    &:last-child {
-      [data-title] {
-        border-bottom-left-radius: $jnt-corner-small;
-        border-bottom-right-radius: $jnt-corner-small;
-      }
-    }
     [data-title] {
       padding: $jnt-gutter-small $jnt-gutter-normal;
-      background-color: $jnt-secondary-background;
-      border: 1px solid $jnt-muted-color;
+      background-color: $jnt-secondary-dark-color;
+      border-radius: $jnt-corner-normal;
+      color: $jnt-primary-light-color;
       display: flex;
       align-items: center;
       cursor: pointer;
+      line-height: 1.6;
       &[active='true'] {
-        background-color: $jnt-primary-color;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: $jnt-primary-light-color;
         color: $jnt-white-color;
       }
       &:focus {

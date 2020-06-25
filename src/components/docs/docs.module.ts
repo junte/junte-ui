@@ -12,6 +12,7 @@ import {
   ThemeSwitcherModule
 } from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
+import { ComponentsModule } from 'src/components/docs/components/components.module';
 import { AppFooterModule } from '../footer/app-footer.module';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -50,6 +51,7 @@ export function getHighlightLanguages() {
     DocsRoutingModule,
     ModalTestModule,
     ResponsiveModule,
+    ComponentsModule,
     AnalyticsDirectivesModule
   ],
   declarations: [

@@ -1,0 +1,21 @@
+@import "jnt-variables";
+@import "../component";
+@import "elements/icon/icon";
+
+:host {
+
+}
+h1, h4 {
+  color: $jnt-primary-light-color;
+}
+
+h4 {
+  margin-bottom: 0;
+}
+
+[data-card] {
+  height: 100%;
+  [data-icon] {
+    @include jnt-icon((size: 30px, color: $jnt-primary-light-color), '&', true);
+  }
+}
