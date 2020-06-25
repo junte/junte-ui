@@ -7,37 +7,25 @@
     display: block;
   }
 
-  #{$context} div {
-    padding: $jnt-gutter-small 0;
+  a {
+    padding: 1px $jnt-gutter-small;
+    border-radius: $jnt-corner-small;
+    transition: background-color .3s;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $jnt-highlight-background;
+    }
 
     &:focus {
       outline: 0;
-
-      a {
-        box-shadow: $jnt-shadow-primary;
-      }
+      box-shadow: $jnt-shadow-primary;
     }
-
-    a {
-      padding: 0 5px;
-      border-radius: $jnt-corner-small;
-      transition: background-color .3s;
-      user-select: none;
-
-      &:hover {
-        background-color: $jnt-highlight-background;
-      }
-    }
-
-    box-sizing: border-box;
-    cursor: pointer;
-
-    &[page] {
-      &[active="true"] {
-        font-weight: $jnt-font-weight-bold;
-        pointer-events: none;
-        border-bottom: 2px solid $jnt-primary-color;
-      }
+    &[active="true"] {
+      pointer-events: none;
+      background-color: $jnt-primary-color;
+      color: $jnt-white-color;
     }
 
     &[disabled="true"] {

@@ -1,4 +1,4 @@
-<div data-tabs>
+<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
   <div data-tab *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
        (click)="active = i"
@@ -14,7 +14,7 @@
                    [orientation]="ui.orientation.horizontal"
                    [gutter]="ui.gutter.tiny"
                    [align]="ui.flex.align.center">
-          <jnt-badge *ngFor="let badge of tab.badges"
+          <jnt-badge data-badge *ngFor="let badge of tab.badges"
                      [color]="badge.color"
                      [text]="badge.text"
                      [value]="badge.value"
@@ -25,7 +25,7 @@
     </jnt-stack>
     <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
   </div>
-</div>
+</jnt-stack>
 <ng-container *ngFor="let tab of tabs;let i = index">
   <div data-content *ngIf="i === active && tab.tabContentTemplate"
        [attr.data-padding]="tab.padding">
