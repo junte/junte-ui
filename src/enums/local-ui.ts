@@ -26,6 +26,7 @@ export class LocalUI {
       home: 'home:svg:local',
       documentation: 'documentation:svg:local',
       team: 'team:svg:local',
+      components: 'components:svg:local'
     },
       contacts: 'contacts:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
