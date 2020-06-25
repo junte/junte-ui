@@ -1,25 +1,11 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
-
-@mixin tab-padding($padding) {
-  & {
-    padding: $padding;
-  }
-}
+@import "elements/badge/badge";
 
 @mixin jnt-tabs($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: (
-    padding: (
-      tiny: $jnt-gutter-tiny,
-      small: $jnt-gutter-small,
-      normal: $jnt-gutter-normal,
-      big: $jnt-gutter-big,
-      large: $jnt-gutter-large,
-      huge: $jnt-gutter-huge,
-    ),
-  );
+  $defs: ();
 
   $vars: $passed;
   $declare: false;
@@ -32,6 +18,11 @@
   :host, #{$context} {
     display: block;
     max-width: 100%;
+    padding: $jnt-gutter-normal;
+    background-color: $jnt-primary-background;
+    border-top-left-radius: $jnt-corner-normal;
+    border-top-right-radius: $jnt-corner-normal;
+    border: 1px solid $jnt-page-background;
 
     &[data-outline='#{$jnt-outline-fill-name}'] {
       [data-content] {
@@ -50,48 +41,41 @@
   }
 
   #{$context} [data-tabs] {
-    display: flex;
-    border-bottom: 1px solid $jnt-muted-color;
-    background-color: $jnt-primary-background;
     border-top-left-radius: $jnt-corner-normal;
     border-top-right-radius: $jnt-corner-normal;
+    margin-bottom: 1px;
 
     [data-tab] {
-      padding: $jnt-gutter-normal;
+      padding: $jnt-gutter-small $jnt-gutter-normal;
       cursor: pointer;
       color: $jnt-primary-text-color;
       font-size: $jnt-font-size-base;
+      border-radius: $jnt-corner-normal;
+      line-height: 1.6;
       position: relative;
       user-select: none;
       max-width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      border-bottom: 1px solid transparent;
-      margin-bottom: -1px;
 
       &:hover {
         color: $jnt-primary-light-color;
       }
 
       &:focus {
-        outline: 1px solid $jnt-primary-color;
-        outline-offset: -1px;
+        outline: 1px auto $jnt-primary-color;
         box-shadow: $jnt-shadow-primary;
       }
 
       &[data-active='true'] {
-        color: $jnt-primary-color;
-        border-bottom-color: $jnt-primary-color;
+        color: $jnt-primary-light-color;
+        background-color: $jnt-secondary-dark-color;
       }
 
       [data-label] {
         position: relative;
         z-index: 1;
-
-        [data-icon] {
-          line-height: 0;
-        }
       }
 
       [data-ripple] {
@@ -104,18 +88,15 @@
         height: 50px;
         width: 50px;
       }
+
+      [data-badge] {
+        @include jnt-badge((size: 21px), '&');
+      }
     }
   }
 
   #{$context} [data-content] {
     position: relative;
-    @if map-has-key($vars, padding) {
-      $padding: map-get($vars, padding);
-      @each $padding, $map in $padding {
-        &[data-padding = '#{$padding}'] {
-          @include tab-padding($map);
-        }
-      }
-    }
+    padding: $jnt-gutter-normal 0;
   }
 }

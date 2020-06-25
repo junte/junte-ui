@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { StackModule } from '../../layout/stack/stack.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { AccordionComponent } from './accordion.component';
@@ -8,7 +9,8 @@ import { AccordionSectionComponent } from './section/accordion-section.component
 @NgModule({
   imports: [
     CommonModule,
-    IconModule
+    IconModule,
+    StackModule
   ],
   declarations: [
     AccordionComponent,

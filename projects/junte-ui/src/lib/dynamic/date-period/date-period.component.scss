@@ -7,26 +7,18 @@
     flex-direction: column;
   }
 
-  #{$context} [data-date] {
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    &[data-left] {
-      align-items: flex-start;
-    }
-    &[data-right] {
-      align-items: flex-end;
-      margin-left: auto;
-    }
-    [data-line] {
-      display: inline-flex;
-      height: 8px;
-      border-top: 2px solid $jnt-primary-color;
-      border-radius: 1px 1px 0 0;
-      [data-arrow] {
-        display: inline-block;
-        border: 5px solid transparent;
-        border-top: 8px solid $jnt-primary-color;
+  [data-dates] {
+    margin-bottom: $jnt-gutter-tiny;
+    #{$context} [data-date] {
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      &[data-left] {
+        align-items: flex-start;
+      }
+      &[data-right] {
+        align-items: flex-end;
+        margin-left: auto;
       }
     }
   }
@@ -37,10 +29,25 @@
     height: 3px;
     border-radius: 1px;
     box-sizing: border-box;
+    position: relative;
+    [data-line] {
+      position: absolute;
+      bottom: 0;
+      height: 6px;
+      width: 3px;
+      border-radius: 2px 2px 0 0;
+      background-color: $jnt-primary-color;
+      &[data-left] {
+        left: 0;
+      }
+      &[data-right] {
+        right: 0;
+      }
+    }
     [data-progress] {
       background-color: $jnt-primary-color;
       height: 100%;
-      border-radius: 1px;
+      border-radius: 0 0 1px 1px;
       width: 0;
       max-width: 100%;
 

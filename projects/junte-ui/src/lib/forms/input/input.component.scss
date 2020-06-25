@@ -8,13 +8,20 @@
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
     &[type='number'] {
-      padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)});
+      padding-right: calc(#{$jnt-gutter-small} * 2 + #{map-get($size, chevron)} + #{map-get($size, state-icon)});
     }
   }
   #{$wrapper} [data-spinner] {
     @include jnt-spinner((
-      size: map-get($size, spinner),
+      size: map-get($size, state-icon),
     ), '&');
+  }
+  #{$wrapper} [data-warning], #{$wrapper} [data-checked] {
+    [data-icon] {
+      @include jnt-icon((
+        size: map-get($size, state-icon),
+      ), '&');
+    }
   }
   #{$wrapper} [data-icon] ~ input {
     padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-normal} + #{$jnt-gutter-small});
@@ -30,21 +37,21 @@
         height: 30px,
         icon: 14px,
         chevron: 8px,
-        spinner: 14px,
+        state-icon: 14px,
       ),
       normal: (
         font-size: 14px,
         height: 38px,
         icon: 16px,
         chevron: 10px,
-        spinner: 16px,
+        state-icon: 16px,
       ),
       large: (
         font-size: 16px,
         height: 50px,
         icon: 18px,
         chevron: 12px,
-        spinner: 18px,
+        state-icon: 18px,
       ),
     ),
     scheme: (
@@ -210,6 +217,11 @@
       &:read-only {
         pointer-events: none;
       }
+      &[type='number'] {
+        & + [data-loading], & + [data-warning], & + [data-checked] {
+          right: $jnt-gutter-big;
+        }
+      }
     }
 
     [data-label] {
@@ -235,7 +247,7 @@
       right: $jnt-gutter-small;
       top: 50%;
       transform: translateY(-50%);
-      line-height: 0;
+      line-height: 1;
     }
 
     [data-warning] {
