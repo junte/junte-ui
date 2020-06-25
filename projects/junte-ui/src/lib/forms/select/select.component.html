@@ -51,7 +51,7 @@
       <ng-template #optionsNotFoundTemplate>
         <div data-empty-options>
           <ng-container *ngTemplateOutlet="!!emptyOptionsTemplate ? emptyOptionsTemplate
-              : emptyOptionsDefaultTemplate;context: {query: queryControl.value, options: (options.persisted | getOptions:[]:changes.options), close: close.bind(this)}">
+              : emptyOptionsDefaultTemplate;context: {query: queryControl.value, close: close.bind(this)}">
           </ng-container>
         </div>
       </ng-template>
