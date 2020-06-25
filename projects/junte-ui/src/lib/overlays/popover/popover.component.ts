@@ -1,9 +1,6 @@
 import { Component, ElementRef, HostBinding, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { Feature } from '../../core/enums/feature';
 import { PopoverPlacements, PopoverTriggers } from './enums';
-
-export enum PopoverFeature {
-  dropdown = 'dropdown'
-}
 
 export class PopoverOptions {
   title: string;
@@ -14,7 +11,7 @@ export class PopoverOptions {
   maxWidth: string;
   maxHeight: string;
   smarty = true;
-  features: PopoverFeature[] = [];
+  features: Feature[] = [];
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -53,7 +50,7 @@ export class PopoverComponent {
 
   @HostBinding('attr.data-dropdown')
   get dropdown() {
-    return this.options.features.includes(PopoverFeature.dropdown);
+    return this.options.features.includes(Feature.dropdown);
   }
 
   @ViewChild('arrow') arrow: ElementRef;
@@ -137,7 +134,6 @@ export class PopoverComponent {
 
   show({nativeElement: target}: { nativeElement: HTMLElement },
        options: PopoverOptions): void {
-    console.log('show');
     this.target = target;
     this.options = new PopoverOptions(options);
     this.observer.observe(this.hostRef.nativeElement, {
@@ -156,13 +152,13 @@ export class PopoverComponent {
     const {nativeElement: host} = this.hostRef;
     this.renderer.removeStyle(host, 'min-width');
     const position = this.getPosition();
-    const left = this.options.features.includes(PopoverFeature.dropdown)
+    const left = this.options.features.includes(Feature.dropdown)
       ? this.target.getBoundingClientRect().left
       : position.left - position.shiftX;
     this.renderer.setStyle(host, 'top', `${position.top - position.shiftY}px`);
     this.renderer.setStyle(host, 'left', `${left}px`);
 
-    if (this.options.features.includes(PopoverFeature.dropdown)) {
+    if (this.options.features.includes(Feature.dropdown)) {
       this.renderer.setStyle(host, 'min-width', `${this.target.clientWidth}px`);
     } else {
       switch (this.placement) {
@@ -183,7 +179,6 @@ export class PopoverComponent {
   }
 
   hide(): void {
-    console.log('hide');
     this.observer.disconnect();
     this.options = new PopoverOptions();
     this.visible = false;

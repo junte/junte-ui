@@ -17,11 +17,12 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { PopoverTriggers } from '../../overlays/popover/enums';
-import { PopoverFeature, PopoverOptions } from '../../overlays/popover/popover.component';
+import { PopoverOptions } from '../../overlays/popover/popover.component';
 import { PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
@@ -182,7 +183,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     opened ? this.popover.show(this.hostRef, new PopoverOptions({
       trigger: PopoverTriggers.click,
       contentTemplate: this.optionsTemplate,
-      features: [PopoverFeature.dropdown]
+      features: [Feature.dropdown]
     })) : this.popover.hide();
   }
 
@@ -266,7 +267,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   close() {
     this.opened = false;
   }
-  
+
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
               private fb: FormBuilder,

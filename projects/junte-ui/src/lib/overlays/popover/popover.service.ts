@@ -1,10 +1,11 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { ElementRef, EventEmitter, Injectable } from '@angular/core';
 import { PopoverComponent, PopoverOptions } from './popover.component';
 
 @Injectable({providedIn: 'root'})
 export class PopoverService {
 
   private popover: PopoverComponent;
+  hided = new EventEmitter<any>();
 
   register(popover: PopoverComponent): void {
     this.popover = popover;
@@ -25,6 +26,7 @@ export class PopoverService {
   hide(): void {
     this.checkRegistration();
     this.popover.hide();
+    this.hided.emit();
   }
 
 }
