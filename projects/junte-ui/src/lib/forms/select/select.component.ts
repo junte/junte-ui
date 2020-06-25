@@ -118,7 +118,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select label',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Select allow empty',
@@ -126,7 +127,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     default: 'true'
   })
   @HostBinding('attr.data-allow-empty')
-  @Input() allowEmpty = true;
+  @Input()
+  allowEmpty = true;
 
   @PropertyApi({
     description: 'Icon for select',
@@ -156,6 +158,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input()
   emptyOptionsTemplate: TemplateRef<any>;
+
+  @PropertyApi({
+    description: 'Template for header options',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  headerOptionsTemplate: TemplateRef<any>;
 
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
