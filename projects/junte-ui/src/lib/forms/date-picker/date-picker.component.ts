@@ -10,8 +10,8 @@ import { DatePickerFeatures } from './enums';
 const INPUT_DELAY = 500;
 
 export enum CLOCK_TYPE {
-  HOURS = 1,
-  MINUTES = 2
+  hours = 1,
+  minutes = 2
 }
 
 @Component({
@@ -32,10 +32,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   ui = UI;
   datePickerFeatures = DatePickerFeatures;
   opened: boolean;
-  timeMeridien = 'AM';
-  VIEW_HOURS = CLOCK_TYPE.HOURS;
-  VIEW_MINUTES = CLOCK_TYPE.MINUTES;
-  currentView: CLOCK_TYPE = this.VIEW_HOURS;
+  timeMeridian = 'AM';
+  clockType = CLOCK_TYPE;
+  currentView: CLOCK_TYPE = CLOCK_TYPE.hours;
   hours = 0;
   minutes = 0;
 
@@ -80,27 +79,22 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
     this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
-        this.updateCalendar(parse(date, this.format, new Date()));
+        let parsed = parse(date, this.format, new Date());
+        if (parsed instanceof Date && !isNaN(parsed.getTime())) {
+          this.calendarControl.patchValue(parsed);
+        }
         this.popover.hide();
       });
   }
 
-  updateCalendar(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      this.calendarControl.patchValue(date);
-    } else {
-      this.inputControl.patchValue(null);
-    }
-  }
-
   writeHour(hour: any): void {
-    this.hours = (this.timeMeridien === 'AM' ? hour : hour + 12);
-    this.currentView = this.VIEW_MINUTES;
+    this.hours = (this.timeMeridian === 'AM' ? hour : hour + 12);
+    this.currentView = CLOCK_TYPE.minutes;
   }
 
   writeMinutes(minute: any): void {
     this.minutes = minute;
-    this.currentView = this.VIEW_HOURS;
+    this.currentView = CLOCK_TYPE.hours;
     this.calendarControl.patchValue(setMinutes(this.calendarControl.value, minute * 5));
     this.calendarControl.patchValue(setHours(this.calendarControl.value, this.hours));
   }
@@ -111,9 +105,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   onTouched() {
   }
 
-  writeValue(value: Date) {
-    this.calendarControl.patchValue(value);
-    this.updateCalendar(value);
+  writeValue(date: Date) {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      this.calendarControl.patchValue(date, {emitEvent: false});
+      this.inputControl.patchValue(formatDate(date, this.format), {emitEvent: false});
+    } else {
+      this.inputControl.patchValue(null, {emitEvent: false});
+    }
   }
 
   registerOnChange(fn) {
@@ -132,10 +130,10 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     this.currentView = type;
   }
 
-  public setMeridien(m: 'PM' | 'AM') {
-    this.timeMeridien = m;
+  public setMeridian(m: 'PM' | 'AM') {
+    this.timeMeridian = m;
     this.calendarControl.patchValue(setMinutes(this.calendarControl.value, this.minutes * 5));
-    this.calendarControl.patchValue(setHours(this.calendarControl.value, this.timeMeridien === 'AM' ? this.hours : this.hours + 12));
+    this.calendarControl.patchValue(setHours(this.calendarControl.value,
+      this.timeMeridian === 'AM' ? this.hours : this.hours + 12));
   }
-
 }
