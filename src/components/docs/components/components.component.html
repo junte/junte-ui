@@ -1,0 +1,34 @@
+<jnt-container>
+  <jnt-stack [align]="ui.flex.align.stretch">
+    <div *ngFor="let category of categories">
+      <jnt-stack
+        [type]="ui.layout.stack.type.horizontal"
+        [align]="ui.flex.align.center">
+        <h1>
+          <span data-thumbnail>
+            <jnt-icon [icon]="category.icon"></jnt-icon>
+          </span>
+          <span>{{category.name}}</span>
+        </h1>
+        <jnt-label [label]="category.components.length + '  components'"></jnt-label>
+      </jnt-stack>
+      <jnt-row [align]="ui.flex.align.stretch">
+        <jnt-col *ngFor="let component of category.components"
+                 [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
+          <jnt-card data-card [features]="[ui.feature.clickable]"
+                    (selected)="router.navigate([category.link, component.link])">
+            <ng-template #cardTitleTemplate>
+              <jnt-stack
+                [type]="ui.layout.stack.type.horizontal"
+                [align]="ui.flex.align.center">
+                <jnt-icon [icon]="component.icon"></jnt-icon>
+                <h4>{{component.name}}</h4>
+              </jnt-stack>
+            </ng-template>
+            <span>{{component.teaser}}</span>
+          </jnt-card>
+        </jnt-col>
+      </jnt-row>
+    </div>
+  </jnt-stack>
+</jnt-container>
