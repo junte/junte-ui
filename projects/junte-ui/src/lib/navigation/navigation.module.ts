@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { AccordionModule } from './accordion/accordion.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AnchorModule } from './anchor/anchor.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
@@ -14,7 +15,8 @@ import { TabsModule } from './tabs/tabs.module';
     BreadcrumbsModule,
     MenuModule,
     PagerModule,
-    TabsModule
+    TabsModule,
+    AccordionModule
   ]
 })
 export class NavigationModule {
