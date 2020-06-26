@@ -11,19 +11,25 @@ export const routes: Routes = [
     redirectTo: 'home'
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    data: {breadcrumb: 'Home', animation: 'Home'}
-  },
-  {
-    path: 'theming',
-    component: ThemingComponent,
-    data: {breadcrumb: 'Theming', animation: 'Theming'}
-  },
-  {
-    path: 'typography',
-    component: TypographyTestComponent,
-    data: {breadcrumb: 'Typography', animation: 'Typography'}
+    path: '',
+    data: {breadcrumb: 'General'},
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        data: {breadcrumb: 'Home', animation: 'Home'}
+      },
+      {
+        path: 'theming',
+        component: ThemingComponent,
+        data: {breadcrumb: 'Theming', animation: 'Theming'}
+      },
+      {
+        path: 'typography',
+        component: TypographyTestComponent,
+        data: {breadcrumb: 'Typography', animation: 'Typography'}
+      }
+    ]
   }
 ];
 

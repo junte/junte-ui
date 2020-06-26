@@ -8,29 +8,35 @@ import { LabelTestComponent } from './label/label-test.component';
 
 export const routes: Routes = [
   {
-    path: 'icon',
-    component: IconTestComponent,
-    data: {breadcrumb: 'Icon', animation: 'Icon'}
-  },
-  {
-    path: 'avatar',
-    component: AvatarTestComponent,
-    data: {breadcrumb: 'Avatar', animation: 'Avatar'}
-  },
-  {
-    path: 'badge',
-    component: BadgeTestComponent,
-    data: {breadcrumb: 'Badge', animation: 'Badge'}
-  },
-  {
-    path: 'label',
-    component: LabelTestComponent,
-    data: {breadcrumb: 'Label', animation: 'Label'}
-  },
-  {
-    path: 'dot',
-    component: DotTestComponent,
-    data: {breadcrumb: 'Dot', animation: 'Dot'}
+    path: '',
+    data: {breadcrumb: 'Elements'},
+    children: [
+      {
+        path: 'icon',
+        component: IconTestComponent,
+        data: {breadcrumb: 'Icon', animation: 'Icon'}
+      },
+      {
+        path: 'avatar',
+        component: AvatarTestComponent,
+        data: {breadcrumb: 'Avatar', animation: 'Avatar'}
+      },
+      {
+        path: 'badge',
+        component: BadgeTestComponent,
+        data: {breadcrumb: 'Badge', animation: 'Badge'}
+      },
+      {
+        path: 'label',
+        component: LabelTestComponent,
+        data: {breadcrumb: 'Label', animation: 'Label'}
+      },
+      {
+        path: 'dot',
+        component: DotTestComponent,
+        data: {breadcrumb: 'Dot', animation: 'Dot'}
+      }
+    ]
   }
 ];
 

@@ -5,15 +5,21 @@ import { TableTestComponent } from './table/table-test.component';
 
 export const routes: Routes = [
   {
-    path: 'gantt',
-    component: GanttTestComponent,
-    data: {breadcrumb: 'Gantt', animation: 'Gantt'}
-  },
-  {
-    path: 'table',
-    component: TableTestComponent,
-    data: {breadcrumb: 'Table', animation: 'Table'}
-  },
+    path: '',
+    data: {breadcrumb: 'Collections'},
+    children: [
+      {
+        path: 'gantt',
+        component: GanttTestComponent,
+        data: {breadcrumb: 'Gantt', animation: 'Gantt'}
+      },
+      {
+        path: 'table',
+        component: TableTestComponent,
+        data: {breadcrumb: 'Table', animation: 'Table'}
+      },
+    ]
+  }
 ];
 
 @NgModule({
