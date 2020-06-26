@@ -186,6 +186,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   })
   @Output() click = new EventEmitter<any>();
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -249,6 +254,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   blur() {
+    this.onTouched();
     if (this.type === InputType.number) {
       if (this.inputControl.value === '' || this.inputControl.value === null) {
         this.inputControl.patchValue(null);
@@ -270,22 +276,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value) {
-    this.form.patchValue(!!this.mask
-      ? this.masking(value) : {input: value});
-  }
-
-  onChange(_value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
+    this.form.patchValue(!!this.mask ? this.masking(value) : {input: value}, {emitEvent: false});
   }
 
   setDisabledState(disabled: boolean) {

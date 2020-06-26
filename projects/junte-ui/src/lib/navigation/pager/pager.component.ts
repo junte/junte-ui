@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
+import { Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -47,6 +47,12 @@ export class PagerComponent implements ControlValueAccessor {
   @Input()
   mode: PagerMode = PagerMode.page;
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   get pagesCount() {
     return this._pagesCount;
   }
@@ -58,21 +64,6 @@ export class PagerComponent implements ControlValueAccessor {
 
   get selectedPage() {
     return this._selectedPage;
-  }
-
-  onChange(_value: number) {
-  }
-
-  onTouched() {
-    // will be overridden
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
   }
 
   writeValue(value: number): void {
@@ -107,5 +98,4 @@ export class PagerComponent implements ControlValueAccessor {
     }
     this.pages = pages;
   }
-
 }

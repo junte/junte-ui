@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -49,6 +49,12 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
   @Input() widthPoligon = 50;
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   @Input()
   set widthMark(width: number) {
     this._widthMark = Math.min(width, 60);
@@ -59,7 +65,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   set selected(value: any) {
-    let isSame = false;
+    let isSame: boolean;
     if (!!this.keyField && !!this._selected && !!value) {
       isSame = this._selected[this.keyField] === value[this.keyField];
     } else {
@@ -84,26 +90,11 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
       .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
-  onChange(_value: any): void {
-  }
-
-  onTouched(): void {
-  }
-
   writeValue(value: any): void {
     this._selected = value;
-  }
-
-  registerOnChange(fn): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
-    this.onTouched = fn;
   }
 
   trackByFn(index, indicator) {
     return indicator.data.id || index;
   }
-
 }

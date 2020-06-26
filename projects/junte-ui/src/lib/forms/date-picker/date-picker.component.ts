@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format as formatDate, parse, setHours, setMinutes } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -64,6 +64,12 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(private fb: FormBuilder,
               private popover: PopoverService) {
   }
@@ -99,12 +105,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     this.calendarControl.patchValue(setHours(this.calendarControl.value, this.hours));
   }
 
-  onChange(_value: any) {
-  }
-
-  onTouched() {
-  }
-
   writeValue(date: Date) {
     if (date instanceof Date && !isNaN(date.getTime())) {
       this.calendarControl.patchValue(date, {emitEvent: false});
@@ -112,14 +112,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     } else {
       this.inputControl.patchValue(null, {emitEvent: false});
     }
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {

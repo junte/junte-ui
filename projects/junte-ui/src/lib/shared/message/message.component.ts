@@ -25,5 +25,4 @@ export class MessageComponent {
   @Input() set scheme(scheme: Scheme) {
     this._scheme = scheme || Scheme.primary;
   }
-
 }

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -15,10 +16,10 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { TableColumnComponent } from './column/table-column.component';
 import { TableFeatures } from './enums';
 import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
@@ -108,6 +109,12 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     return Math.ceil(this.count / this.pageSize.value);
   }
 
+  onChange: (filter: DefaultSearchFilter) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -156,20 +163,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
       pageSize: first,
       page: Math.floor(offset / first) + 1
     });
-  }
-
-  onChange(_filter: DefaultSearchFilter) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   hideActions() {

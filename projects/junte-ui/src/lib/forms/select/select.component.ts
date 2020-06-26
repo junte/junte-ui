@@ -274,8 +274,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostListener('blur')
   close() {
+    this.onTouched();
     this.opened = false;
   }
+
+  onChange: (value: Key | Key[]) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
 
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
@@ -378,22 +384,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   writeValue(value: Key | Key[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
-  }
-
-  onChange(_value: Key | Key[]) {
-    // will be overridden
-  }
-
-  onTouched() {
-    // will be overridden
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {

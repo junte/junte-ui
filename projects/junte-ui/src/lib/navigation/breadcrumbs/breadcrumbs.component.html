@@ -3,8 +3,9 @@
            [gutter]="ui.gutter.small"
            [align]="ui.flex.align.center">
   <ng-container *ngFor="let crumb of breadcrumbs">
-    <a (click)="go(crumb)" href="javascript:;">{{crumb.title}}</a>
-    <jnt-icon [icon]="ui.icons.chevronRight">
-    </jnt-icon>
+    <a (click)="router.navigate([crumb.url], {relativeTo: crumb.route})" href="javascript:;">
+      {{crumb.title}}
+    </a>
+    <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
   </ng-container>
 </jnt-stack>
