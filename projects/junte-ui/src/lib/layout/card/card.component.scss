@@ -6,7 +6,7 @@
 @import "overlays/popover/popover";
 
 @mixin card-padding($padding, $wrapper) {
-  #{$wrapper} [data-body] {
+  & {
     padding: $padding;
   }
 }
@@ -38,10 +38,10 @@
       font-size: $jnt-font-size-normal
     ),
     header: (
-      padding: $jnt-gutter-normal,
+      padding: 0,
     ),
     footer: (
-      padding: $jnt-gutter-normal,
+      padding: 0,
     ),
     picture: (
       padding: 0 $jnt-gutter-normal 0 0,
@@ -131,17 +131,7 @@
     }
 
     &[data-has-icon='true'] {
-      &[data-has-header='true'] {
-        #{$wrapper} [data-header] {
-          padding-top: $jnt-gutter-big;
-        }
-      }
-
-      &[data-has-header='false'] {
-        #{$wrapper} [data-body] {
-          padding-top: $jnt-gutter-big;
-        }
-      }
+      padding-top: $jnt-gutter-big;
     }
 
     &[data-has-picture='true'] {

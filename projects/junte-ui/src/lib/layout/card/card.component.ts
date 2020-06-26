@@ -38,11 +38,6 @@ export class CardComponent {
     return !!this.icon || !!this.cardActionsTemplate;
   }
 
-  @HostBinding('attr.data-has-header')
-  get hasHeader() {
-    return !!this.headerTemplate;
-  }
-
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
     return !!this.picture;

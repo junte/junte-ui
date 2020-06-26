@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { StackModule } from '../stack/stack.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SpinnerModule } from '../spinner/spinner.module';
@@ -16,7 +17,8 @@ import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
     IconModule,
     SpinnerModule,
     ButtonModule,
-    PopoverModule
+    PopoverModule,
+    StackModule
   ],
   entryComponents: [
     CardComponent
