@@ -1,4 +1,14 @@
-import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
@@ -21,7 +31,6 @@ import { GanttLineComponent } from './gantt-line/gantt-line.component';
 export class GanttComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
-
 
   ui = UI;
   addMonths = addMonths;
@@ -76,6 +85,12 @@ export class GanttComponent implements ControlValueAccessor {
   today = today();
   error: Error;
 
+  onChange: (date: Date) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   get current() {
     return this._current;
   }
@@ -87,19 +102,5 @@ export class GanttComponent implements ControlValueAccessor {
 
   writeValue(date: Date): void {
     this._current = date;
-  }
-
-  onChange(_date: Date) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
-    this.onTouched = fn;
   }
 }

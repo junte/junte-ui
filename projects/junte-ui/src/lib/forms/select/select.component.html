@@ -58,18 +58,23 @@
     </ng-template>
     <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
     | getOptions:selected:changes.selected:changes.options) as options">
-      <ul *ngIf="options.length;else noOptionsTemplate">
+      <ng-container *ngIf="options.length;else noOptionsTemplate">
         <div data-loading *ngIf="loading">
           <jnt-spinner></jnt-spinner>
         </div>
-        <ng-container *ngFor="let o of options;trackBy:trackOption">
-          <li (click)="select(o)">
-            <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <div data-options-header *ngIf="!!headerOptionsTemplate">
+            <ng-container *ngTemplateOutlet="headerOptionsTemplate;context: {close: close.bind(this)}"></ng-container>
+          </div>
+          <ul>
+            <li *ngFor="let o of options;trackBy:trackOption" (click)="select(o)">
+              <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
               : optionDefaultTemplate;context: o">
-            </ng-container>
-          </li>
-        </ng-container>
-      </ul>
+              </ng-container>
+            </li>
+          </ul>
+        </jnt-stack>
+      </ng-container>
     </ng-container>
   </div>
 </ng-template>

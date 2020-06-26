@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AccordionTestModule } from './accordion/accordion-test.module';
 import { NavigationRoutingModule } from './navigation-routing.module';
 import { TabsTestModule } from './tabs/tabs-test.module';
 import { PagerTestModule } from './pager/pager-test.module';
@@ -17,7 +18,8 @@ import { AnchorTestModule } from './anchor/anchor-test.module';
     LinkTestModule,
     MenuTestModule,
     PagerTestModule,
-    TabsTestModule
+    TabsTestModule,
+    AccordionTestModule
   ]
 })
 export class NavigationTestModule {

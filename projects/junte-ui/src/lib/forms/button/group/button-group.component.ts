@@ -52,5 +52,4 @@ export class ButtonGroupComponent {
   })
   @HostBinding('attr.data-width')
   @Input() width: Width = Width.default;
-
 }

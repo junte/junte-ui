@@ -36,6 +36,7 @@
                                 [loader]="search()"
                                 [icon]="iconControl.value ? ui.icons.user : null"
                                 [emptyOptionsTemplate]="emptyOptionsTemplate"
+                                [headerOptionsTemplate]="headerOptionsTemplate"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null">
                       <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
@@ -44,10 +45,17 @@
                       </jnt-select-option>
                     </jnt-select>
                     <p>test</p>
+                    <ng-template #headerOptionsTemplate let-query="query" let-close="close">
+                      <jnt-button text="Close"
+                                  [icon]="ui.icons.add"
+                                  (click)="close()"></jnt-button>
+                    </ng-template>
                     <ng-template #emptyOptionsTemplate let-query="query" let-close="close">
-                      <jnt-stack>
-                        <p>{{query}}</p>
-                        <jnt-button text="Create" (click)="close()"></jnt-button>
+                      <jnt-stack [align]="ui.flex.align.center">
+                        <p>Hero <b>{{query}}</b> not found</p>
+                        <jnt-button text="Create"
+                                    [icon]="ui.icons.add"
+                                    (click)="close()"></jnt-button>
                       </jnt-stack>
                     </ng-template>
                     <ng-template #heroOptionTemplate let-hero="value">

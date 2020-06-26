@@ -2,29 +2,30 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<div *ngIf="!!headerTemplate" data-header>
-  <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-</div>
-
-<div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
-  <div data-picture *ngIf="!!picture">
-    <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+<jnt-stack [align]="ui.flex.align.stretch">
+  <div *ngIf="!!headerTemplate" data-header>
+    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
   </div>
-  <div data-content>
-    <div *ngIf="!!title || !!titleTemplate" data-title>
-      <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
-      <ng-container *ngIf="!!titleTemplate">
-        <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
-      </ng-container>
+
+  <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+    <div data-picture *ngIf="!!picture">
+      <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
     </div>
-    <ng-content></ng-content>
+    <div data-content>
+      <div *ngIf="!!title || !!titleTemplate" data-title>
+        <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
+        <ng-container *ngIf="!!titleTemplate">
+          <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+        </ng-container>
+      </div>
+      <ng-content></ng-content>
+    </div>
   </div>
-</div>
 
-<div *ngIf="!!footerTemplate" data-footer>
-  <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
-</div>
-
+  <div *ngIf="!!footerTemplate" data-footer>
+    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+  </div>
+</jnt-stack>
 
 <jnt-button *ngIf="!!cardActionsTemplate"
             data-action

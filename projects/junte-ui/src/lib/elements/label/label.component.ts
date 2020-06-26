@@ -54,5 +54,4 @@ export class LabelComponent {
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
-
 }

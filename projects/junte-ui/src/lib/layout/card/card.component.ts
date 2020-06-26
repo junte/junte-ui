@@ -38,11 +38,6 @@ export class CardComponent {
     return !!this.icon || !!this.cardActionsTemplate;
   }
 
-  @HostBinding('attr.data-has-header')
-  get hasHeader() {
-    return !!this.headerTemplate;
-  }
-
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
     return !!this.picture;
@@ -153,7 +148,7 @@ export class CardComponent {
     default: 'purple'
   })
   @Input()
-  @HostBinding('style.border-color')
+  @HostBinding('style.border-left-color')
   color: string;
 
   @PropertyApi({

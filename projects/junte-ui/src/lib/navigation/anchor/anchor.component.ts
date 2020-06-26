@@ -20,12 +20,6 @@ export class AnchorComponent {
   })
   @Input() anchor: string;
 
-  constructor(private router: Router) {
+  constructor(public router: Router) {
   }
-
-  navigate() {
-    this.router.navigate([], {fragment: this.anchor})
-      .then(_ => null);
-  }
-
 }

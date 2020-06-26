@@ -65,5 +65,4 @@ export class TabsComponent {
 
   @ContentChildren(TabComponent)
   tabs: QueryList<TabComponent>;
-
 }

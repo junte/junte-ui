@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -16,6 +17,7 @@ import {
   addDays,
   addMonths,
   addWeeks,
+  addYears,
   format,
   getYear,
   isEqual,
@@ -25,7 +27,6 @@ import {
   startOfMonth,
   startOfWeek,
   subMonths,
-  addYears,
   subYears
 } from 'date-fns';
 import { BehaviorSubject, combineLatest } from 'rxjs';
@@ -132,14 +133,21 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   isEqual = isEqual;
   getYear = getYear;
 
+  onChange: (date: Date) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(public config: JunteUIModuleConfig) {
   }
 
   ngOnInit() {
     this.period = startOfMonth(this.current);
 
-    combineLatest(this.year$, this.month$)
-      .pipe(filter(([year, month]) => year !== null && year !== undefined && month !== null && month !== undefined))
+    combineLatest([this.year$, this.month$])
+      .pipe(filter(([year, month]) =>
+        year !== null && year !== undefined && month !== null && month !== undefined))
       .subscribe(([year, month]) =>
         this.period = setDate(setMonth(setYear(new Date(), year), month), 1));
   }
@@ -148,20 +156,6 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     if (!!date) {
       this.current = this.period = date;
     }
-  }
-
-  onTouched() {
-  }
-
-  onChange (_date: Date) {
-  };
-
-  registerOnChange(fn: (date: Date) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
-    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean) {
@@ -202,5 +196,4 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
       }
     }
   }
-
 }

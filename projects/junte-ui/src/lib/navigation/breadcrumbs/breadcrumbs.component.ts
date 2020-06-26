@@ -28,7 +28,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   @HostBinding('attr.host') readonly host = 'jnt-breadcrumbs-host';
 
-  constructor(private router: Router,
+  constructor(public router: Router,
               private titleService: Title,
               private metaService: Meta) {
   }
@@ -80,9 +80,5 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     const metaTitle = this.breadcrumbs.map(crumb => crumb.title).join(' · ');
     this.titleService.setTitle(metaTitle);
     this.metaService.updateTag({name: 'description', content: metaTitle});
-  }
-
-  go(crumb: Breadcrumb) {
-    this.router.navigate([crumb.url], {relativeTo: crumb.route});
   }
 }

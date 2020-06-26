@@ -39,5 +39,4 @@ export class IconComponent {
     [this._icon, this.type, this.iconset] =
       [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET];
   }
-
 }

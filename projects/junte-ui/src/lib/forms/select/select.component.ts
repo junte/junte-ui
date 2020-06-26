@@ -17,8 +17,8 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
-import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { PopoverTriggers } from '../../overlays/popover/enums';
@@ -118,7 +118,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select label',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Select allow empty',
@@ -126,7 +127,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     default: 'true'
   })
   @HostBinding('attr.data-allow-empty')
-  @Input() allowEmpty = true;
+  @Input()
+  allowEmpty = true;
 
   @PropertyApi({
     description: 'Icon for select',
@@ -156,6 +158,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input()
   emptyOptionsTemplate: TemplateRef<any>;
+
+  @PropertyApi({
+    description: 'Template for header options',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  headerOptionsTemplate: TemplateRef<any>;
 
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
@@ -265,8 +274,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostListener('blur')
   close() {
+    this.onTouched();
     this.opened = false;
   }
+
+  onChange: (value: Key | Key[]) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
 
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
@@ -353,7 +368,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     } else {
       this.selected = [option.key];
     }
-    this.opened = false;
+    this.close();
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
   }
 
@@ -369,22 +384,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   writeValue(value: Key | Key[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
-  }
-
-  onChange(_value: Key | Key[]) {
-    // will be overridden
-  }
-
-  onTouched() {
-    // will be overridden
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {

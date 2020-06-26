@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccordionTestComponent } from './accordion/accordion-test.component';
 import { GanttTestComponent } from './gantt/gantt-test.component';
 import { TableTestComponent } from './table/table-test.component';
 
@@ -14,11 +13,6 @@ export const routes: Routes = [
     path: 'table',
     component: TableTestComponent,
     data: {breadcrumb: 'Table', animation: 'Table'}
-  },
-  {
-    path: 'accordion',
-    component: AccordionTestComponent,
-    data: {breadcrumb: 'Accordion', animation: 'Accordion'}
   },
 ];
 
