@@ -5,15 +5,21 @@ import { PopoverTestComponent } from './popover/popover-test.component';
 
 export const routes: Routes = [
   {
-    path: 'modal',
-    component: ModalTestComponent,
-    data: {breadcrumb: 'Modal', animation: 'Modal'}
-  },
-  {
-    path: 'popover',
-    component: PopoverTestComponent,
-    data: {breadcrumb: 'Popover', animation: 'Popover'}
-  },
+    path: '',
+    data: {breadcrumb: 'Overlays'},
+    children: [
+      {
+        path: 'modal',
+        component: ModalTestComponent,
+        data: {breadcrumb: 'Modal', animation: 'Modal'}
+      },
+      {
+        path: 'popover',
+        component: PopoverTestComponent,
+        data: {breadcrumb: 'Popover', animation: 'Popover'}
+      },
+    ]
+  }
 ];
 
 @NgModule({
