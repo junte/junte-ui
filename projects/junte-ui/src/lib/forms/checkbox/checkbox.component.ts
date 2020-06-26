@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -16,6 +16,7 @@ import { UI } from '../../core/enums/ui';
 export class CheckboxComponent implements ControlValueAccessor {
 
   ui = UI;
+  checked = false;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
@@ -30,8 +31,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   })
   @Input()
   disabled = false;
-
-  checked = false;
 
   @PropertyApi({
     description: 'Label name for checkbox button',
@@ -59,13 +58,13 @@ export class CheckboxComponent implements ControlValueAccessor {
   })
   @Input() value: any;
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(public element: ElementRef) {
-  }
-
-  onChange(_value: any) {
-  }
-
-  onTouched() {
   }
 
   writeValue(value: any) {
@@ -74,15 +73,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
@@ -111,25 +111,17 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   version = 0;
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(private breakpoint: BreakpointService) {
   }
 
   writeValue(value: any | any[]) {
     this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
-  }
-
-  onChange(_value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {
@@ -171,5 +163,4 @@ export class SwitcherComponent implements ControlValueAccessor {
         break;
     }
   }
-
 }

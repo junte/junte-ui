@@ -27,5 +27,4 @@ export class ConfirmComponent {
   @Output() ok = new EventEmitter();
 
   @Output() cancel = new EventEmitter();
-
 }

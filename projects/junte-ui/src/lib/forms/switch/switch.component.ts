@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -63,6 +63,12 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
     this._size = size || Size.normal;
   }
 
+  onChange: (value: any) => {};
+  onTouched: () => {};
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -71,22 +77,8 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
       .subscribe(value => this.onChange(value));
   }
 
-  onChange(_value: boolean) {
-  }
-
-  onTouched() {
-  }
-
   writeValue(value) {
     this.switchControl.setValue(value, {emitEvent: false});
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean) {
