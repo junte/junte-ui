@@ -36,7 +36,7 @@ export class PopoverDirective implements OnDestroy {
 
   @HostListener('document:mousemove', ['$event.path'])
   documentMouseMove(path: HTMLElement[]) {
-    if (this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
       this.hide(path);
     }
   }

@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ModalOptions, ModalService, TabComponent, UI, ModalClosingOption } from 'junte-ui';
-import { ModalComponent } from 'junte-ui';
+import { ModalClosingOption, ModalComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
 import { ModalTestFactoryComponent } from 'src/components/docs/overlays/modal/test.component';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -54,6 +53,17 @@ export class ModalTestComponent implements OnInit {
     type: this.typeControl,
   });
 
+  selectControl = this.fb.control(null);
+  selectForm = this.fb.group({
+    select: this.selectControl
+  });
+
+  heroes = [
+    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
+    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
+    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
+  ];
+
   @ViewChild('content')
   content: TemplateRef<any>;
 
@@ -105,5 +115,9 @@ export class ModalTestComponent implements OnInit {
 
   close() {
     this.modalService.close();
+  }
+
+  trackHero(index, hero: { id: number }) {
+    return hero.id;
   }
 }

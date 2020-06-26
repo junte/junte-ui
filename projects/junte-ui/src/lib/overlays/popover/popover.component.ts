@@ -9,6 +9,7 @@ export class PopoverOptions {
   trigger: PopoverTriggers = PopoverTriggers.hover;
   placement: PopoverPlacements = PopoverPlacements.bottom;
   maxWidth: string;
+  minWidth: string;
   maxHeight: string;
   smarty = true;
   features: Feature[] = [];
@@ -52,6 +53,8 @@ export class PopoverComponent {
   get dropdown() {
     return this.options.features.includes(Feature.dropdown);
   }
+
+  @HostBinding('style.min-width') minWidth: string;
 
   @ViewChild('arrow') arrow: ElementRef;
 
@@ -136,6 +139,8 @@ export class PopoverComponent {
        options: PopoverOptions): void {
     this.target = target;
     this.options = new PopoverOptions(options);
+    this.minWidth = this.options.minWidth || this.options.features.includes(Feature.dropdown)
+      ? this.target.clientWidth + 'px' : null;
     this.observer.observe(this.hostRef.nativeElement, {
       childList: true,
       subtree: true
@@ -150,17 +155,15 @@ export class PopoverComponent {
 
   update(): void {
     const {nativeElement: host} = this.hostRef;
-    this.renderer.removeStyle(host, 'min-width');
     const position = this.getPosition();
     const left = this.options.features.includes(Feature.dropdown)
       ? this.target.getBoundingClientRect().left
       : position.left - position.shiftX;
+
     this.renderer.setStyle(host, 'top', `${position.top - position.shiftY}px`);
     this.renderer.setStyle(host, 'left', `${left}px`);
 
-    if (this.options.features.includes(Feature.dropdown)) {
-      this.renderer.setStyle(host, 'min-width', `${this.target.clientWidth}px`);
-    } else {
+    if (!this.options.features.includes(Feature.dropdown)) {
       switch (this.placement) {
         case PopoverPlacements.top:
         case PopoverPlacements.bottom: {

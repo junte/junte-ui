@@ -10,10 +10,11 @@ import {
   GridModule,
   IconModule,
   LinkModule,
+  ModalModule,
+  SelectModule,
   StackModule,
   SwitcherModule,
-  TabsModule,
-  ModalModule
+  TabsModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -31,6 +32,7 @@ import { ModalTestFactoryComponent } from './test.component';
     GridModule.forRoot(JUNTE_UI_CONFIG),
     TabsModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
     FormModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
