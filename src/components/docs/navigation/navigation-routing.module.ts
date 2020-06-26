@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccordionTestComponent } from 'src/components/docs/navigation/accordion/accordion-test.component';
 import { AnchorTestComponent } from 'src/components/docs/navigation/anchor/anchor-test.component';
 import { LinkTestComponent } from 'src/components/docs/navigation/link/link-test.component';
 import { MenuTestComponent } from 'src/components/docs/navigation/menu/menu-test.component';
@@ -37,7 +38,12 @@ export const routes: Routes = [
     data: {breadcrumb: {label: 'Breadcrumbs'}},
     loadChildren: () => import('../navigation/breadcrumbs/breadcrumbs-test.module')
       .then(m => m.BreadcrumbsTestModule)
-  }
+  },
+  {
+    path: 'accordion',
+    component: AccordionTestComponent,
+    data: {breadcrumb: 'Accordion', animation: 'Accordion'}
+  },
 ];
 
 @NgModule({
