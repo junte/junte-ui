@@ -7,25 +7,31 @@ import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.compo
 
 export const routes: Routes = [
   {
-    path: 'progress-bar',
-    component: ProgressBarTestComponent,
-    data: {breadcrumb: 'Progress bar', animation: 'Progress bar'}
-  },
-  {
-    path: 'circle-bar',
-    component: CircleBarTestComponent,
-    data: {breadcrumb: 'Circle bar', animation: 'Circle bar'}
-  },
-  {
-    path: 'chart',
-    component: ChartTestComponent,
-    data: {breadcrumb: 'Chart', animation: 'Chart'}
-  },
-  {
-    path: 'date-period',
-    component: DatePeriodTestComponent,
-    data: {breadcrumb: 'Date period', animation: 'Date period'}
-  },
+    path: '',
+    data: {breadcrumb: 'Dynamic'},
+    children: [
+      {
+        path: 'progress-bar',
+        component: ProgressBarTestComponent,
+        data: {breadcrumb: 'Progress bar', animation: 'Progress bar'}
+      },
+      {
+        path: 'circle-bar',
+        component: CircleBarTestComponent,
+        data: {breadcrumb: 'Circle bar', animation: 'Circle bar'}
+      },
+      {
+        path: 'chart',
+        component: ChartTestComponent,
+        data: {breadcrumb: 'Chart', animation: 'Chart'}
+      },
+      {
+        path: 'date-period',
+        component: DatePeriodTestComponent,
+        data: {breadcrumb: 'Date period', animation: 'Date period'}
+      },
+    ]
+  }
 ];
 
 @NgModule({
