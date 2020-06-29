@@ -7,8 +7,3 @@ export enum ValidationTypeError {
   email = 'email',
   pattern = 'pattern'
 }
-
-export enum FormState {
-  loading = 'loading',
-  error = 'error'
-}

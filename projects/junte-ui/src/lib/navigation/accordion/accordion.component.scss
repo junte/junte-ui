@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "elements/icon/icon";
 
 @mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
 
@@ -33,8 +34,12 @@
       span {
         margin: 0 $jnt-gutter-tiny;
       }
-      [data-chevron] {
-        margin-left: auto;
+    }
+    [data-state] {
+      margin-left: auto;
+      line-height: 1;
+      [data-warning] {
+        @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
       }
     }
     [data-content] {
