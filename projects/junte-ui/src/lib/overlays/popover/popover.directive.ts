@@ -35,7 +35,7 @@ export class PopoverDirective implements OnDestroy {
   }
 
   @HostListener('document:mousemove', ['$event.path'])
-  documentMouseMove(path: HTMLElement[]) {
+  moveOutside(path: HTMLElement[]) {
     if (this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
       this.hide(path);
     }
@@ -49,7 +49,7 @@ export class PopoverDirective implements OnDestroy {
   }
 
   @HostListener('document:click', ['$event.path'])
-  documentClick(path: HTMLElement[]) {
+  clickOutside(path: HTMLElement[]) {
     if (this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
       this.hide(path);
     }

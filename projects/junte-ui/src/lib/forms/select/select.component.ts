@@ -21,8 +21,7 @@ import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
-import { PopoverTriggers } from '../../overlays/popover/enums';
-import { PopoverOptions } from '../../overlays/popover/popover.component';
+import { PopoverComponent, PopoverOptions } from '../../overlays/popover/popover.component';
 import { PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
@@ -61,6 +60,8 @@ const SEARCH_DELAY = 100;
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
+
+  private reference: { popover: PopoverComponent } = {popover: null};
 
   ui = UI;
   selectMode = SelectMode;
@@ -160,11 +161,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   emptyOptionsTemplate: TemplateRef<any>;
 
   @PropertyApi({
-    description: 'Template for header options',
+    description: 'Template for options header',
     type: 'TemplateRef<any>'
   })
   @Input()
-  headerOptionsTemplate: TemplateRef<any>;
+  optionsHeaderTemplate: TemplateRef<any>;
 
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
@@ -189,11 +190,15 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       }
     };
     setTimeout(() => checking(), 100);
-    opened ? this.popover.show(this.hostRef, new PopoverOptions({
-      trigger: PopoverTriggers.click,
-      contentTemplate: this.optionsTemplate,
-      features: [Feature.dropdown]
-    })) : this.popover.hide();
+    if (opened) {
+      this.reference.popover = this.popover.show(this.hostRef, new PopoverOptions({
+        contentTemplate: this.optionsTemplate,
+        features: [Feature.dropdown]
+      }));
+    } else {
+      this.popover.hide();
+      this.reference.popover = null;
+    }
   }
 
   get opened() {
@@ -253,9 +258,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input() loader = null;
 
   @HostListener('document:click', ['$event.path'])
-  outside(path: HTMLElement[]) {
-    if (this.opened && path.indexOf(this.hostRef.nativeElement) === -1) {
-      this.close();
+  clickOutside(path: HTMLElement[]) {
+    if (this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
+      this.opened = false;
     }
   }
 
@@ -273,8 +278,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   @HostListener('blur')
-  close() {
+  blurred() {
     this.onTouched();
+  }
+
+  close() {
+    console.log('12');
     this.opened = false;
   }
 
@@ -355,8 +364,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       .subscribe(options => convert(options.toArray()));
   }
 
+  private picked(elements: HTMLElement[]) {
+    return elements.indexOf(this.hostRef.nativeElement) !== -1;
+  }
+
   trackOption(index: number, option: IOption) {
     return option.key || index;
+  }
+
+  toggle(option: IOption) {
+    this.selected.indexOf(option.key) === -1
+      ? this.select(option) : this.remove(option.key);
   }
 
   select(option: IOption) {
@@ -365,10 +383,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.changes.options++;
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
+      this.reference.popover.update();
     } else {
       this.selected = [option.key];
+      this.opened = false;
     }
-    this.close();
+
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
   }
 

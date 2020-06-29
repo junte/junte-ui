@@ -33,7 +33,7 @@ class PopoverPosition {
 })
 export class PopoverComponent {
 
-  observer = new MutationObserver(() => this.update());
+  private observers = {target: this.createObserver(), host: this.createObserver()};
 
   options = new PopoverOptions();
   target: HTMLElement;
@@ -60,6 +60,10 @@ export class PopoverComponent {
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef) {
+  }
+
+  private createObserver() {
+    return new MutationObserver(() => this.update());
   }
 
   private getPosition(): PopoverPosition {
@@ -141,10 +145,13 @@ export class PopoverComponent {
     this.options = new PopoverOptions(options);
     this.minWidth = this.options.minWidth || this.options.features.includes(Feature.dropdown)
       ? this.target.clientWidth + 'px' : null;
-    this.observer.observe(this.hostRef.nativeElement, {
-      childList: true,
-      subtree: true
-    });
+
+    // TODO: think to be better
+    this.observers.target.observe(target,
+      {childList: true, subtree: true});
+
+    this.observers.host.observe(this.hostRef.nativeElement,
+      {childList: true, subtree: true});
 
     this.visible = true;
   }
@@ -182,7 +189,8 @@ export class PopoverComponent {
   }
 
   hide(): void {
-    this.observer.disconnect();
+    this.observers.target.disconnect();
+    this.observers.host.disconnect();
     this.options = new PopoverOptions();
     this.visible = false;
   }
