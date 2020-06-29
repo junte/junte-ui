@@ -29,6 +29,16 @@
     padding: map-get($vars, spacing);
     display: block;
 
+    @include for-mobile() {
+      position: fixed;
+      left: 0 !important;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100vh;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
     [data-arrow] {
       width: 0;
       height: 0;
@@ -39,6 +49,10 @@
 
     &[data-dropdown='true'] {
       padding: $jnt-gutter-tiny 0 0;
+
+      @include for-mobile() {
+        padding: $jnt-gutter-tiny map-get($vars, spacing) map-get($vars, spacing);
+      }
 
       [data-arrow] {
         display: none;
