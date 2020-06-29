@@ -143,8 +143,8 @@ export class PopoverComponent {
        options: PopoverOptions): void {
     this.target = target;
     this.options = new PopoverOptions(options);
-    this.minWidth = this.options.minWidth || this.options.features.includes(Feature.dropdown)
-      ? this.target.clientWidth + 'px' : null;
+    this.minWidth = this.options.minWidth || (this.options.features.includes(Feature.dropdown)
+      ? this.target.clientWidth + 'px' : null);
 
     // TODO: think to be better
     this.observers.target.observe(target,

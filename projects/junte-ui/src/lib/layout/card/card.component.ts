@@ -1,11 +1,11 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { State } from '../../core/enums/state';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
-import { CardState } from './enums';
 
 interface Picture {
   url: string;
@@ -23,7 +23,7 @@ export class CardComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
-  cardState = CardState;
+  cardState = State;
   feature = Feature;
   picture: Picture;
   popover: PopoverComponent;
@@ -100,12 +100,12 @@ export class CardComponent {
 
   @PropertyApi({
     description: 'State of card',
-    path: 'ui.card.state',
-    options: [CardState.error,
-      CardState.loading]
+    path: 'ui.state',
+    options: [State.error,
+      State.loading]
   })
   @Input()
-  state: CardState;
+  state: State;
 
   @PropertyApi({
     description: 'Padding for card',

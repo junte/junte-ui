@@ -2,11 +2,11 @@ FROM node:10.13 as build
 
 WORKDIR /src
 
-COPY package.json .
+COPY package.json package-lock.json ./
 
 RUN npm i
 
-COPY projects/junte-ui/package.json projects/junte-ui/package.json
+COPY projects/junte-ui/package.json projects/junte-ui/package-lock.json projects/junte-ui/
 
 RUN cd projects/junte-ui && npm i
 

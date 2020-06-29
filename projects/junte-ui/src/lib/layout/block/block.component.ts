@@ -1,11 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { State } from '../../core/enums/state';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
-import { BlockState } from './enums';
 
 @Component({
   selector: 'jnt-block',
@@ -36,7 +36,7 @@ import { BlockState } from './enums';
 })
 export class BlockComponent {
 
-  blockState = BlockState;
+  blockState = State;
   ui = UI;
 
   _state = {success: false};
@@ -80,12 +80,12 @@ export class BlockComponent {
 
   @PropertyApi({
     description: 'State of block',
-    path: 'ui.block.state',
-    options: [BlockState.error,
-      BlockState.loading]
+    path: 'ui.state',
+    options: [State.error,
+      State.loading]
   })
   @Input()
-  state: BlockState;
+  state: State;
 
   @PropertyApi({
     description: 'Adapted block on mobile view',

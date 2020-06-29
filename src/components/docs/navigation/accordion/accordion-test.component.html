@@ -23,6 +23,7 @@
               <ng-template #document>
                 <jnt-accordion>
                   <jnt-accordion-section title="Spiderman"
+                                         [state]="stateControl.value"
                                          [icon]="iconControl.value ? localUi.icons.spiderman : null">
                     <ng-template #accordionContentTemplate>
                       <p>Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve
@@ -63,6 +64,21 @@
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.flex.align.stretch">
                 <jnt-form-item>
+                  <jnt-form-label for="state"
+                                  i18n="@@label.states">States
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="state">
+                    <jnt-switcher-option label="Loading"
+                                         i18n-label="@@label.loading"
+                                         [icon]="ui.icons.animated.spinner"
+                                         [value]="ui.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Warning"
+                                         i18n-label="@@label.warning"
+                                         [icon]="ui.icons.warning"
+                                         [value]="ui.state.warning"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+                <jnt-form-item>
                   <jnt-form-label for="type"
                                   i18n="@@label.features">Features
                   </jnt-form-label>
@@ -101,6 +117,10 @@
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
       [icon]="ui.icons.gitlab"]]>
+    </ng-container>
+    <ng-container *ngIf="stateControl.value">
+      <![CDATA[
+      [state]="]]>{{stateControl.value}}<![CDATA["]]>
     </ng-container>
     <![CDATA[>]]>
     <![CDATA[

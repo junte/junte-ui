@@ -1,25 +1,23 @@
-import { CardState } from '../../layout/card/enums';
-import { PagerMode } from '../../navigation/pager/enums';
 import { GanttTypes } from '../../collections/gantt/enums';
-import { Height } from './height';
-import { Feature } from './feature';
-import { DatePickerFeatures } from '../../forms/date-picker/enums';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
-import { FormState, ValidationTypeError } from '../../forms/form/enums';
-import { InputScheme, InputState, InputType } from '../../forms/input/enums';
+import { DatePickerFeatures } from '../../forms/date-picker/enums';
+import { ValidationTypeError } from '../../forms/form/enums';
+import { InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
 import { AppLayoutPosition } from '../../layout/app/enums';
-import { BlockState } from '../../layout/block/enums';
 import { RowAlign, RowJustify } from '../../layout/grid/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { StackType } from '../../layout/stack/enums';
 import { LinkTarget } from '../../navigation/link/enums';
+import { PagerMode } from '../../navigation/pager/enums';
 import { PopoverPlacements, PopoverTriggers } from '../../overlays/popover/enums';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
+import { Feature } from './feature';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
+import { Height } from './height';
 import { icons } from './icons';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
@@ -27,6 +25,7 @@ import { Position } from './position';
 import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
+import { State } from './state';
 import { TextAlign } from './text';
 import { Theme } from './theme';
 import { UrlMatching } from './url';
@@ -49,6 +48,7 @@ export class UI {
   static icons = icons;
   static url = {matching: UrlMatching};
   static feature = Feature;
+  static state = State;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,
@@ -60,8 +60,6 @@ export class UI {
   static layout = {
     grid: {row: {align: RowAlign, justify: RowJustify}},
     stack: {type: StackType},
-    block: {state: BlockState},
-    card: {state: CardState},
     skeleton: {type: SkeletonType},
     app: {position: AppLayoutPosition}
   };
@@ -74,13 +72,12 @@ export class UI {
     }
   };
   static forms = {
-    input: {type: InputType, scheme: InputScheme, state: InputState},
+    input: {type: InputType, scheme: InputScheme},
     select: {mode: SelectMode},
     button: {type: ButtonType},
     validators: {
       typeError: ValidationTypeError
     },
-    form: {state: FormState},
     datePicker: {features: DatePickerFeatures}
   };
   static overlays = {

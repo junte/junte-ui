@@ -21,7 +21,6 @@ export class AnalyticsDirective {
 
   @Input('analytics')
   set config(config: AnalitycsConfig) {
-    console.log('analytics');
     this._config = config;
   }
 
