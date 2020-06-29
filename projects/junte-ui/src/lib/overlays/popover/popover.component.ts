@@ -139,8 +139,8 @@ export class PopoverComponent {
        options: PopoverOptions): void {
     this.target = target;
     this.options = new PopoverOptions(options);
-    this.minWidth = this.options.minWidth || this.options.features.includes(Feature.dropdown)
-      ? this.target.clientWidth + 'px' : null;
+    this.minWidth = this.options.minWidth || (this.options.features.includes(Feature.dropdown)
+      ? this.target.clientWidth + 'px' : null);
     this.observer.observe(this.hostRef.nativeElement, {
       childList: true,
       subtree: true
