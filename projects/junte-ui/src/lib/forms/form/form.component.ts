@@ -13,10 +13,10 @@ import {
 } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { filter } from 'rxjs/operators';
+import { State } from '../../core/enums/state';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
-import { FormState } from './enums';
 
 @Component({
   selector: 'jnt-form',
@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
 
   ui = UI;
 
-  formState = FormState;
+  formState = State;
 
   @PropertyApi({
     description: 'Name form group',
@@ -46,12 +46,12 @@ export class FormComponent implements OnInit {
 
   @PropertyApi({
     description: 'State of form',
-    path: 'ui.forms.state',
-    options: [FormState.error,
-      FormState.loading]
+    path: 'ui.state',
+    options: [State.error,
+      State.loading]
   })
   @Input()
-  state: FormState;
+  state: State;
 
   @ContentChild('formTitleTemplate')
   titleTemplate: TemplateRef<any>;

@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
+import { State } from '../../../core/enums/state';
 import { UI } from '../../../core/enums/ui';
 
 @Component({
@@ -21,6 +22,15 @@ export class AccordionSectionComponent {
     type: 'string'
   })
   @Input() icon: string;
+
+  @PropertyApi({
+    description: 'State of accordion',
+    path: 'ui.state',
+    options: [State.warning,
+      State.loading]
+  })
+  @Input()
+  state: State;
 
   @ContentChild('accordionContentTemplate')
   accordionContentTemplate: TemplateRef<any>;

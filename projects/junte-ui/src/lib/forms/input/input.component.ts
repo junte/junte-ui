@@ -3,9 +3,10 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
+import { State } from '../../core/enums/state';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
-import { InputScheme, InputState, InputType } from './enums';
+import { InputScheme, InputType } from './enums';
 
 const BACKSPACE = 8;
 const LEFT_ARROW = 37;
@@ -30,7 +31,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   inputType = InputType;
-  inputState = InputState;
+  inputState = State;
   view = {password: {display: false}};
 
   private _mask: string;
@@ -143,11 +144,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input state',
-    path: 'ui.forms.input.state',
-    options: [InputState.loading, InputState.warning, InputState.checked]
+    path: 'ui.state',
+    options: [State.loading, State.warning, State.checked]
   })
   @HostBinding('attr.data-state')
-  @Input() state: InputState;
+  @Input() state: State;
 
   @PropertyApi({
     description: 'Allow multiple lines in input',
@@ -245,7 +246,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   keydown(event: KeyboardEvent) {
-    if (this.type === InputType.number && (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
+    if (this.type === InputType.number &&
+      (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
       this.inputControl.patchValue(null);
     }
     if (event.keyCode === ENTER) {

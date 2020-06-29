@@ -1,4 +1,5 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { AccordionSectionComponent } from './section/accordion-section.component';
 
@@ -9,6 +10,7 @@ import { AccordionSectionComponent } from './section/accordion-section.component
 export class AccordionComponent {
 
   ui = UI;
+  accordionState = State;
 
   @HostBinding('attr.host') readonly host = 'jnt-accordion-host';
 

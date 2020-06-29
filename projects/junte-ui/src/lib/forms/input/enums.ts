@@ -9,8 +9,3 @@ export enum InputScheme {
   failed = 'failed',
   success = 'success'
 }
-export enum InputState {
-  loading = 'loading',
-  warning = 'warning',
-  checked = 'checked'
-}
