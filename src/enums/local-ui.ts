@@ -104,6 +104,10 @@ export class LocalUI {
       // textAlign
         left: 'text-align-left:font:junte-ui-test-layout',
         right: 'text-align-right:font:junte-ui-test-layout',
+      // textSize
+        capitalize: 'capitalize:font:junte-ui-test-layout',
+        uppercase: 'uppercase:font:junte-ui-test-layout',
+        lowercase: 'lowercase:font:junte-ui-test-layout',
 
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
