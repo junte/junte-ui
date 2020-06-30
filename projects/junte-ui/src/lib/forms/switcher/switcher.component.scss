@@ -59,6 +59,12 @@
             background-color: $jnt-highlight-background;
           }
 
+          &[data-disabled='true'] {
+            color: $jnt-control-disabled-label-color;
+            background-color: $jnt-control-disabled-background;
+            pointer-events: none;
+          }
+
           &:focus {
             box-shadow: $jnt-shadow-primary;
             outline: 0;
@@ -115,9 +121,11 @@
       cursor: default;
       pointer-events: none;
 
-      #{$wrapper} [data-option] {
-        color: $jnt-control-disabled-label-color;
-        background-color: $jnt-control-disabled-background;
+      #{$wrapper} [data-options] {
+        [data-option] {
+          color: $jnt-control-disabled-label-color;
+          background-color: $jnt-control-disabled-background;
+        }
       }
     }
   }
