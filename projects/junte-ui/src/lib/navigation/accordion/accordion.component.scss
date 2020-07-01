@@ -16,20 +16,25 @@
       padding: $jnt-gutter-small $jnt-gutter-normal;
       background-color: $jnt-secondary-dark-color;
       border-radius: $jnt-corner-normal;
-      color: $jnt-primary-light-color;
+      color: $jnt-primary-text-color;
       display: flex;
       align-items: center;
       cursor: pointer;
       line-height: 1.6;
       &[active='true'] {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
         background-color: $jnt-primary-light-color;
         color: $jnt-white-color;
       }
+      &:hover {
+        &[active='false'] {
+          color: $jnt-primary-light-color;
+        }
+        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
+      }
+
       &:focus {
         outline: 0;
-        box-shadow: $jnt-shadow-primary;
+        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
       }
       span {
         margin: 0 $jnt-gutter-tiny;

@@ -17,9 +17,13 @@
           margin-right: $jnt-gutter-small,
           size: 18px
         ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+        ),
         padding: (
-          inner: 0,
-          outer: $jnt-gutter-small $jnt-gutter-normal,
+          inner: $jnt-gutter-small $jnt-gutter-normal !important,
+          outer: 0,
         ),
         toggle: (
           toggle: true,
@@ -53,7 +57,7 @@
         border-bottom: 1px solid $jnt-muted-color,
       ),
       item: (
-        padding: $jnt-gutter-small $jnt-gutter-normal,
+        padding: $jnt-gutter-small $jnt-gutter-normal !important,
         height: null,
         color: null,
         icon: (
@@ -68,6 +72,10 @@
           underline: true,
           background-color: null,
           color: null
+        ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
         ),
       ),
     ),
@@ -128,16 +136,20 @@
           display: none;
           align-items: stretch;
           flex-direction: column;
+
           &[data-opened='true'] {
             display: flex;
           }
+
           > [data-section] {
             user-select: none;
+
             span {
               display: block;
               padding: $jnt-gutter-normal 0;
             }
           }
+
           [data-link] {
             user-select: none;
             @include jnt-link((
@@ -161,6 +173,7 @@
         }
       }
     }
+
     &[data-collapsed='true'] {
       #{$wrapper} [data-sub] {
         @if map-has-key($vars, sub) {
@@ -209,7 +222,7 @@
           ), '&');
         }
 
-          @if map-has-key($title, icon) {
+        @if map-has-key($title, icon) {
           $icon: map-get($title, icon);
           @include jnt-link((
             icon: (
@@ -222,9 +235,11 @@
         @if map-has-key($title, padding) {
           $padding: map-get($title, padding);
           padding: map-get($padding, outer);
-          @include jnt-link((
-            padding: map-get($padding, inner),
-          ), '&');
+          [data-link] {
+            @include jnt-link((
+              padding: map-get($padding, inner),
+            ), '&');
+          }
         }
 
         @if map-has-key($title, toggle) {
@@ -245,6 +260,22 @@
             background-color: map-get($hover, background-color);
           }
         }
+
+        @if map-has-key($title, focus) {
+          $focus: map-get($title, focus);
+          [data-link] {
+            @include jnt-link((
+              schemes: (
+                primary: (
+                  focus: (
+                    outline: map-get($focus, outline),
+                    shadow: map-get($focus, shadow),
+                  ),
+                ),
+              ),
+            ), '&');
+          }
+        }
       }
     }
 
@@ -256,6 +287,7 @@
           $title: map-get($sub, title);
           > [data-section] {
             padding: map-get($title, padding);
+
             span {
               border-bottom: map-get($title, border-bottom);
             }
@@ -286,6 +318,21 @@
                 border-left-color: map-get($hover, border-left-color);
               }
             }
+
+            @if map-has-key($item, focus) {
+              $focus: map-get($item, focus);
+              @include jnt-link((
+                schemes: (
+                  primary: (
+                    focus: (
+                      outline: map-get($focus, outline),
+                      shadow: map-get($focus, shadow),
+                    ),
+                  ),
+                ),
+              ), '&');
+            }
+
             @if map-has-key($item, active) {
               $active: map-get($item, active);
               @include jnt-link((
