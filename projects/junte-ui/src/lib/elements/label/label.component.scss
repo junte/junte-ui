@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "elements/dot/dot";
 
 @mixin label-size($size) {
   padding: #{map-get($size, padding)};
@@ -19,6 +20,9 @@
     border: none,
     icon: (
       margin-right: $jnt-gutter-small
+    ),
+    dot: (
+      size: 10px,
     ),
     sizes: (
       small: (
@@ -71,6 +75,13 @@
       [data-icon] {
         margin-right: map-get($icon, margin-right);
         line-height: 1;
+      }
+    }
+
+    @if map-has-key($vars, dot) {
+      $dot: map-get($vars, dot);
+      [data-dot] {
+        @include jnt-dot((size: map-get($dot, size)), '&');
       }
     }
   }
