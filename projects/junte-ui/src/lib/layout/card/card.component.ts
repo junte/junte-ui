@@ -148,7 +148,6 @@ export class CardComponent {
     default: 'purple'
   })
   @Input()
-  @HostBinding('style.border-left-color')
   color: string;
 
   @PropertyApi({

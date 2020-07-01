@@ -2,29 +2,33 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<jnt-stack [align]="ui.flex.align.stretch">
-  <div *ngIf="!!headerTemplate" data-header>
-    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-  </div>
+<jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.flex.align.stretch">
+  <div data-line *ngIf="color" [style.background-color]="color"></div>
 
-  <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
-    <div data-picture *ngIf="!!picture">
-      <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+  <jnt-stack data-main [align]="ui.flex.align.stretch">
+    <div *ngIf="!!headerTemplate" data-header>
+      <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
-    <div data-content>
-      <div *ngIf="!!title || !!titleTemplate" data-title>
-        <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
-        <ng-container *ngIf="!!titleTemplate">
-          <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
-        </ng-container>
+    <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+      <div data-picture *ngIf="!!picture">
+        <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
       </div>
-      <ng-content></ng-content>
+      <div data-content>
+        <div *ngIf="!!title || !!titleTemplate" data-title>
+          <div data-text *ngIf="!!title && !titleTemplate">{{title}}</div>
+          <ng-container *ngIf="!!titleTemplate">
+            <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+          </ng-container>
+        </div>
+        <ng-content></ng-content>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="!!footerTemplate" data-footer>
-    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
-  </div>
+    <div *ngIf="!!footerTemplate" data-footer>
+      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    </div>
+  </jnt-stack>
+
 </jnt-stack>
 
 <jnt-button *ngIf="!!cardActionsTemplate"
@@ -45,3 +49,4 @@
 <div *ngIf="state === cardState.error" data-error>
   <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
 </div>
+
