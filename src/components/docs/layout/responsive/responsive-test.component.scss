@@ -1,6 +1,17 @@
 @import "../../component";
 @import "elements/icon/icon";
+@import "layout/responsive/responsive";
 
 [data-icon] {
   @include jnt-icon((size: 400px), '&', true);
+}
+
+[video] {
+  height: 315px;
+  width: 560px;
+
+  @include for-mobile() {
+    height: 200px;
+    width: 100%;
+  }
 }
