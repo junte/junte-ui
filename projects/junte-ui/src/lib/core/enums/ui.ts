@@ -26,7 +26,7 @@ import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
-import { TextAlign } from './text';
+import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { UrlMatching } from './url';
 import { Width } from './width';
@@ -44,7 +44,7 @@ export class UI {
   static width = Width;
   static height = Height;
   static color = Color;
-  static text = {align: TextAlign};
+  static text = {align: TextAlign, transform: TextTransform};
   static icons = icons;
   static url = {matching: UrlMatching};
   static feature = Feature;

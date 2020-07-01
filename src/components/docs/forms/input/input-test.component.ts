@@ -32,6 +32,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   statesControl = this.fb.control(null);
   minControl = this.fb.control(null);
   maxControl = this.fb.control(null);
+  transformControl = this.fb.control(null);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -47,7 +48,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     rows: this.rowsControl,
     states: this.statesControl,
     min: this.minControl,
-    max: this.maxControl
+    max: this.maxControl,
+    transform: this.transformControl
   });
 
   inputControl = this.fb.control(null);
