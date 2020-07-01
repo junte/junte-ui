@@ -28,6 +28,12 @@ export class SwitcherOptionComponent {
   })
   @Input() icon: string;
 
+  @PropertyApi({
+    description: 'Disable switcher option',
+    type: 'boolean',
+  })
+  @Input() disabled: boolean;
+
   active = false;
 
   @ContentChild(DotComponent)

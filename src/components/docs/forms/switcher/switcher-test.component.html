@@ -40,7 +40,9 @@
                                         [allowEmpty]="allowEmptyControl.value"
                                         [marks]="marksControl.value"
                                         [orientation]="orientationControl.value">
-                            <jnt-switcher-option label="Spiderman" [value]="hero.spiderman"
+                            <jnt-switcher-option label="Spiderman"
+                                                 [value]="hero.spiderman"
+                                                 [disabled]="disabledOptionControl.value"
                                                  [icon]="iconControl.value ? localUi.icons.spiderman : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.red"></jnt-dot>
@@ -248,6 +250,9 @@
                   <jnt-checkbox formControlName="disabled"
                                 label="Disabled"
                                 i18n-label="@@label.disabled"></jnt-checkbox>
+
+                  <jnt-checkbox formControlName="disabledOption"
+                                label="Disabled option"></jnt-checkbox>
                 </jnt-form-item>
 
               </jnt-stack>

@@ -30,6 +30,7 @@
     <jnt-stack data-option *ngFor="let option of options"
                [attr.data-with-template]="option.optionTemplate"
                [attr.data-selected]="option.value | check:selected:keyField:version"
+               [attr.data-disabled]="option.disabled"
                (click)="select(option.value)"
                [orientation]="ui.orientation.horizontal"
                [align]="ui.flex.align.center"
