@@ -14,7 +14,7 @@
         color: $jnt-primary-text-light-color,
         active: (
           background-color: null
-        )
+        ),
       ),
       sub: (
         background-color: $jnt-primary-background,
@@ -43,6 +43,9 @@
     left: 0;
     bottom: 0;
     z-index: 2;
+  }
+
+  [data-menu] {
     @include jnt-menu((
       top: (
         item: (
@@ -64,6 +67,10 @@
           toggle: (
             toggle: false
           ),
+          focus: (
+            outline: null,
+            shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+          ),
         ),
       ),
       sub: (
@@ -76,16 +83,20 @@
         ),
         item: (
           color: $jnt-primary-text-light-color,
-          padding: 0 0 0 50px,
+          padding: 0 0 0 50px !important,
           active: (
             underline: false,
             background-color: $jnt-secondary-background,
             color: $jnt-primary-color
           ),
+          focus: (
+            outline: null,
+            shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+          ),
           height: 50px,
         ),
       ),
-    ));
+    ), '&');
   }
 
   @if map-has-key($vars, menu) {
@@ -99,7 +110,7 @@
               color: map-get($item, color),
             )
           )
-        ), '&', true);
+        ), '&');
       }
 
       @if map-has-key($item, active) {
@@ -113,7 +124,7 @@
                 ),
               )
             )
-          ), '&', true);
+          ), '&');
         }
       }
     }

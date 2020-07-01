@@ -62,7 +62,7 @@
         ),
         focus: (
           border-color: $jnt-primary-color,
-          shadow: $jnt-shadow-primary
+          shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color,
         ),
         disabled: (
           border-color: $jnt-control-disabled-border-color
@@ -75,7 +75,7 @@
         ),
         focus: (
           border-color: $jnt-success-color,
-          shadow: null
+          shadow: $jnt-outline-shadow-normal rgba($jnt-success-color, .5)
         ),
       ),
       failed: (
@@ -85,7 +85,7 @@
         ),
         focus: (
           border-color: $jnt-fail-color,
-          shadow: null
+          shadow: $jnt-outline-shadow-normal rgba($jnt-fail-color, .5)
         ),
       ),
     ),

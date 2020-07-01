@@ -8,7 +8,7 @@
     </button>
     <jnt-stack [align]="ui.flex.align.stretch">
       <ng-container *ngTemplateOutlet="asideContentTemplate; context: {collapsed: collapsed, toggle: toggle.bind(this)}"></ng-container>
-      <jnt-menu *ngIf="!!menu" [orientation]="ui.orientation.vertical"
+      <jnt-menu data-menu *ngIf="!!menu" [orientation]="ui.orientation.vertical"
                 [collapsed]="collapsed"
                 [spacer]="ui.size.small"
                 (selected)="toggle()">

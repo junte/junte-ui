@@ -116,7 +116,7 @@
           $switch: map-get($vars, switch);
           @if map-has-key($switch, active) {
             $active: map-get($switch, active);
-            box-shadow: 0 1px 5px map-get($active, color);
+            box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
           }
         }
       }

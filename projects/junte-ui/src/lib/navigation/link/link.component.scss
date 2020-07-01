@@ -7,12 +7,15 @@
   #{$wrapper} [data-link] {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
+
     &:hover {
       background-color: map-get($scheme, hover-color);
     }
+
     &:focus {
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
+
     [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
@@ -28,9 +31,11 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
+
     &:hover {
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
+
       [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
@@ -38,9 +43,11 @@
         ), '&');
       }
     }
+
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
+
     [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
@@ -52,6 +59,7 @@
     [data-link] {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
+
       &:hover {
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
@@ -63,6 +71,7 @@
           ), '&');
         }
       }
+
       [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
@@ -81,23 +90,34 @@
     border-color: transparent;
     padding: 0;
     border-radius: 0;
-    &:hover {
-      color: map-get($scheme, hover-color);
-    }
+
     &:focus {
-      outline-offset: -1px;
-      outline: map-get($scheme, color) solid 1px;
+      @if map-has-key($scheme, focus) {
+        $focus: map-get($scheme, focus);
+        @if map-get($focus, outline) != null {
+          outline: map-get($focus, outline);
+          outline-offset: map-get($focus, outline-offset);
+        }
+        @if map-get($focus, shadow) != null {
+          outline: 0;
+          box-shadow: map-get($focus, shadow);
+        }
+      }
     }
+
     [data-badge] {
       @include jnt-badge((
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
     }
+
     &[data-active="true"] {
       [data-title] {
         span {
-          border-bottom: 1px solid map-get($scheme, color);
+          @if map-get($scheme, color) {
+            border-bottom: 1px solid map-get($scheme, color);
+          }
         }
       }
 
@@ -106,15 +126,18 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     [data-link] {
       color: map-get($scheme, inverse-color);
+
       &:hover {
         color: map-get($scheme, inverse-color);
       }
+
       [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
           color: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         ), '&');
       }
+
       &[data-active="true"] {
         [data-title] {
           span {
@@ -157,21 +180,41 @@
         color: $jnt-primary-color,
         inverse-color: $jnt-white-color,
         hover-color: $jnt-primary-dark-color,
+        focus: (
+          outline: 1px solid $jnt-primary-light-color,
+          outline-offset: 3px,
+          shadow: null,
+        ),
       ),
       secondary: (
         color: $jnt-secondary-color,
         inverse-color: $jnt-gray-900-color,
-        hover-color: $jnt-blue-100-color
+        hover-color: $jnt-secondary-dark-color,
+        focus: (
+          outline: 1px solid $jnt-gray-900-color,
+          outline-offset: 3px,
+          shadow: null,
+        ),
       ),
       success: (
         color: $jnt-success-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-success-dark-color
+        hover-color: $jnt-success-dark-color,
+        focus: (
+          outline: 1px solid $jnt-success-color,
+          outline-offset: 3px,
+          shadow: null,
+        ),
       ),
       fail: (
         color: $jnt-fail-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-fail-dark-color
+        hover-color: $jnt-fail-dark-color,
+        focus: (
+          outline: 1px solid $jnt-fail-color,
+          outline-offset: 3px,
+          shadow: null,
+        ),
       ),
     ),
   );
@@ -211,9 +254,11 @@
         box-sizing: border-box;
         cursor: pointer;
         width: 100%;
+
         &:focus {
           outline: none;
         }
+
         [data-title] {
           [data-icon], span {
             transition: color .3s;
@@ -226,6 +271,7 @@
       #{$wrapper} [data-link] {
         pointer-events: none;
         color: if(map-get($vars, orphan-color), map-get($vars, orphan-color) !important, null);
+
         &:hover {
           color: if(map-get($vars, orphan-hover-color), map-get($vars, orphan-hover-color) !important, null);
         }
@@ -238,9 +284,11 @@
           &[data-outline='#{$jnt-outline-fill-name}'] {
             @include link-fill($map, $wrapper);
           }
+
           &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include link-ghost($map, $wrapper);
           }
+
           &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include link-transparent($map, $wrapper);
           }
@@ -266,14 +314,14 @@
       &[data-active='true'] {
         background-color: map-get($active, background-color);
         color: if(map-get($active, color), map-get($active, color) !important, null);
-        [data-title] span {
-          border-bottom-color: if(map-get($active, color), map-get($active, color) !important, null);
-        }
-      }
-      @if map-get($active, underline) == false {
-        &[data-active='true'] {
+        @if map-get($active, underline) == true {
           [data-title] span {
-            border-bottom: 0;
+            border-bottom-color: if(map-get($active, color), map-get($active, color) !important, null);
+          }
+        }
+        @if map-get($active, underline) == false {
+          [data-title] span {
+            border-bottom-color: transparent;
           }
         }
       }
@@ -287,6 +335,7 @@
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
     }
+
     [data-title] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
@@ -311,6 +360,7 @@
         white-space: nowrap;
       }
     }
+
     @if map-has-key($vars, badge) {
       $badge: map-get($vars, badge);
       [data-badge] {

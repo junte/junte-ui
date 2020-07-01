@@ -29,14 +29,14 @@
                                  [link]="['/documentation','navigation','link']"
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [text]="'text'"></jnt-badge>
-                    <jnt-menu>
-                      <jnt-menu-item title="Document" [icon]="ui.icons.save"
-                                     i18n-title="@@label.document"></jnt-menu-item>
-                      <jnt-menu-item title="Message"
-                                     i18n-title="@@label.message"></jnt-menu-item>
-                      <jnt-menu-item title="Home"
-                                     i18n-title="@@label.home"></jnt-menu-item>
-                    </jnt-menu>
+                    <jnt-sub-menu>
+                      <jnt-sub-menu-item title="Document" [icon]="ui.icons.save"
+                                     i18n-title="@@label.document"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Message"
+                                     i18n-title="@@label.message"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Home"
+                                     i18n-title="@@label.home"></jnt-sub-menu-item>
+                    </jnt-sub-menu>
                   </jnt-menu-item>
 
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
@@ -45,11 +45,11 @@
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5></jnt-badge>
 
-                    <jnt-menu>
-                      <jnt-menu-item title="Test" [icon]="ui.icons.calendar"></jnt-menu-item>
-                      <jnt-menu-item title="Test"></jnt-menu-item>
-                      <jnt-menu-item title="Test"></jnt-menu-item>
-                    </jnt-menu>
+                    <jnt-sub-menu>
+                      <jnt-sub-menu-item title="Test" [icon]="ui.icons.calendar"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
+                    </jnt-sub-menu>
 
                   </jnt-menu-item>
 
