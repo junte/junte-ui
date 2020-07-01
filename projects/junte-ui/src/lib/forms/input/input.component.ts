@@ -7,6 +7,7 @@ import { State } from '../../core/enums/state';
 import { TextAlign } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputType } from './enums';
+import { TextTransform } from '../../core/enums/text';
 
 const BACKSPACE = 8;
 const LEFT_ARROW = 37;
@@ -67,6 +68,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'string',
   })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Label for input',
+    type: 'TextTransform',
+    options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
+  })
+  @Input() transform: TextTransform;
 
   @PropertyApi({
     description: 'Auto complete for input',
@@ -252,6 +260,25 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
     if (event.keyCode === ENTER) {
       event.preventDefault();
+    }
+  }
+
+  keyup() {
+    let value = this.inputControl.value;
+
+    if (this.type === InputType.text && !!this.transform && !!value) {
+      switch (this.transform) {
+        case TextTransform.capitalize:
+          value = value.charAt(0).toUpperCase() + value.slice(1);
+          break;
+        case TextTransform.lowercase:
+          value = value.toLowerCase();
+          break;
+        case TextTransform.uppercase:
+          value = value.toUpperCase();
+          break;
+      }
+      this.inputControl.setValue(value);
     }
   }
 

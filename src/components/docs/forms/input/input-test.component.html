@@ -41,6 +41,7 @@
                                [readonly]="readonlyControl.value"
                                [min]="minControl.value"
                                [max]="maxControl.value"
+                               [transform]="transformControl.value"
                                autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -147,6 +148,26 @@
                                          i18n-label="@@label.right"
                                          [icon]="localUi.icons.right"
                                          [value]="ui.text.align.right"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="transform"
+                                  i18n="@@label.text_align">Text transform
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="transform">
+                    <jnt-switcher-option label="Capitalize"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.capitalize"
+                                         [value]="ui.text.transform.capitalize"></jnt-switcher-option>
+                    <jnt-switcher-option label="Uppercase"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.uppercase"
+                                         [value]="ui.text.transform.uppercase"></jnt-switcher-option>
+                    <jnt-switcher-option label="Lowercase"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.lowercase"
+                                         [value]="ui.text.transform.lowercase"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -292,6 +313,9 @@
   </ng-container>
   <ng-container *ngIf="alignControl.value">
     <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="transformControl.value">
+    <![CDATA[[textAlign]="ui.text.transform.]]>{{transformControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="rowsControl.value">
     <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
