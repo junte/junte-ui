@@ -26,7 +26,7 @@
                            i18n-title="@@label.your_hero">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [gutter]="ui.gutter.big"
-                               [align]="ui.flex.align.center"
+                               [align]="ui.flex.align.stretch"
                                [justify]="ui.flex.justify.center">
                       <jnt-form-item>
                         <jnt-form-label for="hero"
@@ -34,6 +34,7 @@
                         </jnt-form-label>
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
+                                        [loading]="loadingControl.value"
                                         [features]="indicatorControl.value ? [ui.feature.badge] : null"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
@@ -123,16 +124,16 @@
                       </jnt-form-item>
 
                       <ng-container [ngSwitch]="heroControl.value">
-                        <jnt-avatar *ngSwitchCase="hero.spiderman"
+                        <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
                                     image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                        <jnt-avatar *ngSwitchCase="hero.ironman"
+                        <jnt-avatar data-avatar *ngSwitchCase="hero.ironman"
                                     [size]="ui.size.large"
                                     image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                        <jnt-avatar *ngSwitchCase="hero.captainAmerica"
+                        <jnt-avatar data-avatar *ngSwitchCase="hero.captainAmerica"
                                     [size]="ui.size.large"
                                     image="assets/images/heroes/captain.svg"></jnt-avatar>
-                        <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
+                        <jnt-avatar data-avatar *ngSwitchDefault [size]="ui.size.large"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </ng-container>
                     </jnt-stack>
@@ -253,6 +254,9 @@
 
                   <jnt-checkbox formControlName="disabledOption"
                                 label="Disabled option"></jnt-checkbox>
+
+                  <jnt-checkbox formControlName="loading"
+                                label="Loading"></jnt-checkbox>
                 </jnt-form-item>
 
               </jnt-stack>

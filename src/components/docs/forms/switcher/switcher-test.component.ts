@@ -34,6 +34,7 @@ export class SwitcherTestComponent implements OnInit {
   disabledOptionControl = this.fb.control(false);
   heightControl = this.fb.control(false);
   indicatorControl = this.fb.control(false);
+  loadingControl = this.fb.control(false);
 
   builder = this.fb.group({
     mode: this.modeControl,
@@ -47,7 +48,8 @@ export class SwitcherTestComponent implements OnInit {
     disabled: this.disabledControl,
     disabledOption: this.disabledOptionControl,
     height: this.heightControl,
-    indicator: this.indicatorControl
+    indicator: this.indicatorControl,
+    loading: this.loadingControl
   });
 
   heroControl = this.fb.control(null, Validators.required);
