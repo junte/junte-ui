@@ -38,9 +38,7 @@
   :host, #{$context} {
     @if $declare {
       display: block;
-      border: 1px solid $jnt-gray-700-color;
       position: relative;
-      overflow: hidden;
       #{$wrapper} [data-options] {
 
         [data-option] {
@@ -82,7 +80,6 @@
         }
       }
     }
-    border-radius: map-get($vars, corner);
 
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
@@ -125,69 +122,75 @@
     }
   }
 
-  #{$context} #{$wrapper} [data-options] {
-    [data-option] {
-      &[data-selected="true"] {
-        @if map-has-key($vars, option) {
-          $option: map-get($vars, option);
-          @if map-has-key($option, active) {
-            $active: map-get($option, active);
-            color: map-get($active, color);
-            background-color: map-get($active, background);
+  #{$context} #{$wrapper} [data-switcher] {
+    border: 1px solid $jnt-gray-700-color;
+    border-radius: map-get($vars, corner);
+    overflow: hidden;
+
+    [data-options] {
+      [data-option] {
+        &[data-selected="true"] {
+          @if map-has-key($vars, option) {
+            $option: map-get($vars, option);
+            @if map-has-key($option, active) {
+              $active: map-get($option, active);
+              color: map-get($active, color);
+              background-color: map-get($active, background);
+            }
+          }
+        }
+
+        [data-icon] {
+          @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
+        }
+
+        [data-switch] {
+          position: relative;
+          background-color: $jnt-control-background;
+          border: 1px solid $jnt-primary-light-color;
+          box-sizing: border-box;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all .3s;
+          min-width: 18px;
+          width: 18px;
+          min-height: 18px;
+          height: 18px;
+
+          &[data-single='true'] {
+            border-radius: 50%;
+
+            [data-indicator] {
+              border-radius: 50%;
+            }
+          }
+
+          &[data-single='false'] {
+            border-radius: $jnt-corner-base;
+
+            [data-indicator] {
+              border-radius: 2px;
+            }
+          }
+
+          [data-indicator] {
+            background-color: $jnt-primary-light-color;
+            min-width: 10px;
+            width: 10px;
+            min-height: 10px;
+            height: 10px;
+          }
+        }
+
+        [data-title] {
+          @if map-has-key($vars, horizontal) {
+            $horizontal: map-get($vars, horizontal);
+            line-height: map-get($horizontal, height);
           }
         }
       }
-    }
-  }
-
-  #{$context} #{$wrapper} [data-icon] {
-    @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
-  }
-
-  #{$context} #{$wrapper} [data-switch] {
-    position: relative;
-    background-color: $jnt-control-background;
-    border: 1px solid $jnt-primary-light-color;
-    box-sizing: border-box;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all .3s;
-    min-width: 18px;
-    width: 18px;
-    min-height: 18px;
-    height: 18px;
-
-    &[data-single='true'] {
-      border-radius: 50%;
-
-      [data-indicator] {
-        border-radius: 50%;
-      }
-    }
-
-    &[data-single='false'] {
-      border-radius: $jnt-corner-base;
-
-      [data-indicator] {
-        border-radius: 2px;
-      }
-    }
-
-    [data-indicator] {
-      background-color: $jnt-primary-light-color;
-      min-width: 10px;
-      width: 10px;
-      min-height: 10px;
-      height: 10px;
-    }
-  }
-
-  #{$context} #{$wrapper} [data-title] {
-    @if map-has-key($vars, horizontal) {
-      $horizontal: map-get($vars, horizontal);
-      line-height: map-get($horizontal, height);
     }
   }
 
@@ -200,12 +203,15 @@
 
   #{$context} #{$wrapper} [data-placeholder] {
     width: 100%;
+
     &:nth-child(odd) {
       background-color: $jnt-highlight-background;
     }
+
     &:nth-child(even) {
       background-color: darken($jnt-highlight-background, 5%);
     }
+
     @if map-has-key($vars, horizontal) {
       $horizontal: map-get($vars, horizontal);
       height: map-get($horizontal, height);
