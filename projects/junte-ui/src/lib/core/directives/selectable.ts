@@ -38,6 +38,10 @@ class Config {
 
 const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
 
+export function eventEmitterFactory() {
+  return new EventEmitter();
+}
+
 @Directive({
   selector: '[jntSelectable]',
   providers: [
@@ -48,7 +52,7 @@ const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
     },
     {
       provide: SELECTABLE_SIGNALS,
-      useValue: new EventEmitter()
+      useFactory: eventEmitterFactory
     }]
 })
 export class SelectableDirective implements OnInit {
