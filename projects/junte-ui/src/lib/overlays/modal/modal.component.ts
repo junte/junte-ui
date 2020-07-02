@@ -193,15 +193,18 @@ export class ModalComponent {
 
   @MethodApi({description: 'close modal'})
   close() {
-    this.renderer.setStyle(document.body, 'overflow', 'auto');
+    this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
       if (!this.mobile) {
-        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION +  'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
     this.opened = false;
     this.hostRef.nativeElement.scrollTop = 0;
-    setTimeout(() => this.content = null, ANIMATION_CLOSE_DURATION);
+    setTimeout(() => {
+      this.content = null;
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+    }, ANIMATION_CLOSE_DURATION);
   }
 }
