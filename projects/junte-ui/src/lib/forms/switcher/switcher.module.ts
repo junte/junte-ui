@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { DotModule } from '../../elements/dot/dot.module';
@@ -15,7 +17,9 @@ import { SwitcherComponent } from './switcher.component';
     BadgeModule,
     DotModule,
     StackModule,
-    IconModule
+    IconModule,
+    SkeletonModule,
+    ArrayPipesModule
   ],
   declarations: [
     SwitcherComponent,

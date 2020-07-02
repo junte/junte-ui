@@ -104,6 +104,21 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostBinding('attr.data-allow-empty')
   @Input() marks = false;
 
+  @PropertyApi({
+    description: 'Display skeleton',
+    type: 'count: number',
+  })
+  @Input()
+  capacity = 3;
+
+  @PropertyApi({
+    description: 'Loading',
+    type: 'boolean',
+    default: 'false',
+  })
+  @Input()
+  loading = false;
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 

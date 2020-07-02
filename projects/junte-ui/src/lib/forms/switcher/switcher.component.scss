@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "layout/skeleton/skeleton";
 
 @mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -41,7 +42,6 @@
       position: relative;
       overflow: hidden;
       #{$wrapper} [data-options] {
-        display: flex;
 
         [data-option] {
           background-color: $jnt-primary-background;
@@ -94,15 +94,10 @@
           }
         }
       }
-
-      #{$wrapper} [data-options] {
-        flex-direction: column;
-      }
     }
 
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
-        flex-direction: row;
 
         [data-option] {
           flex: auto;
@@ -201,6 +196,20 @@
     right: 0;
     top: 0;
     transform: translate(-50%, 50%);
+  }
+
+  #{$context} #{$wrapper} [data-placeholder] {
+    width: 100%;
+    &:nth-child(odd) {
+      background-color: $jnt-highlight-background;
+    }
+    &:nth-child(even) {
+      background-color: darken($jnt-highlight-background, 5%);
+    }
+    @if map-has-key($vars, horizontal) {
+      $horizontal: map-get($vars, horizontal);
+      height: map-get($horizontal, height);
+    }
   }
 }
 
