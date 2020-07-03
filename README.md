@@ -18,3 +18,10 @@ npm start
 ```
 
 Open in browser http://localhost:4200/
+
+
+node-sass ./projects/junte-ui/src/lib/assets/styles/forms/button/_button.scss --include-path=./projects/junte-ui/src/lib/assets/styles
+node-sass ./src/assets/themes/light.scss --include-path=./projects/junte-ui/src/lib/assets/styles
+
+node-sass ./projects/junte-ui/src/lib/forms/button/button.test.scss --include-path=./projects/junte-ui/src/lib/assets/styles/ > test.css
+
