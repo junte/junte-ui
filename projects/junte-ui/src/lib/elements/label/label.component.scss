@@ -3,20 +3,21 @@
 @import "elements/icon/icon";
 @import "elements/dot/dot";
 
-@mixin label-size($size) {
-  padding: #{map-get($size, padding)};
-  font-size: #{map-get($size, font-size)};
+@mixin label-size($size, $wrapper) {
+  padding: map-get($size, padding);
+  font-size: map-get($size, font-size);
 
-  [data-icon] {
+  #{$wrapper} [data-icon] {
     @include jnt-icon((size: map-get($size, icon-size)), '&');
   }
 }
 
-@mixin jnt-label($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-label($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
     background: $jnt-primary-color,
     font-size: inherit,
+    color: null,
     border: none,
     icon: (
       margin-right: $jnt-gutter-small
@@ -41,6 +42,11 @@
   $vars: $passed;
   $declare: false;
 
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
@@ -62,17 +68,21 @@
     font-size: map-get($vars, font-size);
     background: map-get($vars, background);
 
+    #{$wrapper} [data-text] {
+      color: if(map-get($vars, color), map-get($vars, color) !important, null);
+    }
+
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
         &[data-size='#{$size}'] {
-          @include label-size($map);
+          @include label-size($map, $wrapper);
         }
       }
     }
 
     @if map-has-key($vars, icon) {
       $icon: map-get($vars, icon);
-      [data-icon] {
+      #{$wrapper} [data-icon] {
         margin-right: map-get($icon, margin-right);
         line-height: 1;
       }
@@ -80,7 +90,7 @@
 
     @if map-has-key($vars, dot) {
       $dot: map-get($vars, dot);
-      [data-dot] {
+      #{$wrapper} [data-dot] {
         @include jnt-dot((size: map-get($dot, size)), '&');
       }
     }
