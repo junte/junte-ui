@@ -1,6 +1,8 @@
 <jnt-stack *ngIf="breadcrumbs?.length"
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.small"
+           [spacing]="ui.gutter.small"
+           [wrap]="ui.flex.wrap.wrap"
            [align]="ui.flex.align.center">
   <ng-container *ngFor="let crumb of breadcrumbs">
     <a (click)="router.navigate([crumb.url], {relativeTo: crumb.route})" href="javascript:;">
