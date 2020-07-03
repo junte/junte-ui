@@ -111,6 +111,11 @@
               min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
               height: map-get($map, height);
               transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
+              [data-on], [data-off] {
+                width: calc(#{map-get($map, width)} - #{map-get($vars, padding)} -
+                (#{map-get($map, height)} - #{map-get($vars, padding)} * 2) -
+                #{map-get($vars, padding)} * 2);
+              }
               [data-slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
@@ -199,6 +204,14 @@
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background-color: map-get($background, off);
+      [data-on] {
+        box-sizing: border-box;
+        padding-left: calc(#{map-get($vars, padding)} * 2);
+      }
+      [data-off] {
+        box-sizing: border-box;
+        padding-right: calc(#{map-get($vars, padding)} * 2);
+      }
       [data-slider] {
         @if map-has-key($background, slider) {
           $slider: map-get($background, slider);
