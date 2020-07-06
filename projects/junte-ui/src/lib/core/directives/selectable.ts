@@ -38,8 +38,12 @@ class Config {
 
 const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
 
+const hub = new EventEmitter();
+
+console.log('xx7');
+
 export function eventEmitterFactory() {
-  return new EventEmitter();
+  return hub;
 }
 
 @Directive({
@@ -68,7 +72,7 @@ export class SelectableDirective implements OnInit {
 
   @HostBinding('attr.data-selected')
   get selected() {
-    let {value} = this.config;
+    const {value} = this.config;
     return this.state.findIndex(e => isEqual(e, value)) !== -1;
   }
 
@@ -124,7 +128,7 @@ export class SelectableDirective implements OnInit {
 
   @HostListener('click')
   select() {
-    let {mode, value, enabled, allowEmpty} = this.config;
+    const {mode, value, enabled, allowEmpty} = this.config;
     if (!enabled) {
       return;
     }
