@@ -22,10 +22,10 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule,
     IconModule,
     StackModule,
     ButtonModule,
-    TranslateModule,
     MenuModule,
     ResponsiveModule,
     PopoverModule

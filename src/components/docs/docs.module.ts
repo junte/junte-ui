@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   AppLayoutModule,
   BreadcrumbsModule,
@@ -46,6 +47,7 @@ export function getHighlightLanguages() {
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ModalModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
+    TranslateModule,
     SelectLangModule,
     AppFooterModule,
     DocsRoutingModule,

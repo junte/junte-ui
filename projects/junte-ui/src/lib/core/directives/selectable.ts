@@ -39,9 +39,6 @@ class Config {
 const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
 
 const hub = new EventEmitter();
-
-console.log('xx7');
-
 export function eventEmitterFactory() {
   return hub;
 }

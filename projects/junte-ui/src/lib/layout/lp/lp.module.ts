@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { GridModule } from '../grid/grid.module';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -19,7 +18,6 @@ import { LpSlideComponent } from './slide/lp-slide.component';
     CommonModule,
     StackModule,
     ButtonModule,
-    TranslateModule,
     MenuModule,
     ResponsiveModule,
     IconModule,
