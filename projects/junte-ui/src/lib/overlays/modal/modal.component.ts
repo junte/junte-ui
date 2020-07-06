@@ -18,6 +18,7 @@ import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 
 const ANIMATION_CLOSE_DURATION = 300;
+const BACKDROP_FILTER = 'blur(5px)';
 
 export enum ModalClosingOption {
   enable = 'enable',
@@ -181,7 +182,7 @@ export class ModalComponent {
     this.options = options;
     this.content = content;
     if (!!this.backdrop) {
-      this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
+      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
       if (!this.mobile) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
