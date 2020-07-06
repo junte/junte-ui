@@ -49,11 +49,6 @@ export class ModalOptions {
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;
 
-enum BackdropFilter {
-  none = 'none',
-  blur = 'blur(5px)'
-}
-
 enum Display {
   block = 'block',
   none = 'none'
@@ -131,13 +126,17 @@ export class ModalComponent {
   options: ModalOptions = new ModalOptions();
   mobile: boolean = this.breakpoint.current === Breakpoint.mobile;
 
-  @Input() backdrop: ElementRef;
+  @Input()
+  backdrop: ElementRef;
 
-  @Output() opened$ = new EventEmitter<boolean>();
+  @Output()
+  opened$ = new EventEmitter<boolean>();
 
-  @ViewChild('container', {read: ViewContainerRef}) container;
+  @ViewChild('container', {read: ViewContainerRef})
+  container;
 
-  @HostBinding('style.display') display = Display.none;
+  @HostBinding('style.display')
+  display = Display.none;
 
   @Input()
   set opened(opened: boolean) {
@@ -182,7 +181,7 @@ export class ModalComponent {
     this.options = options;
     this.content = content;
     if (!!this.backdrop) {
-      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
       if (!this.mobile) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
@@ -195,7 +194,7 @@ export class ModalComponent {
   close() {
     this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
-      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
       if (!this.mobile) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
