@@ -42,6 +42,7 @@
                                [min]="minControl.value"
                                [max]="maxControl.value"
                                [transform]="transformControl.value"
+                               [step]="stepControl.value"
                                autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -263,6 +264,17 @@
                   </jnt-col>
                 </jnt-row>
 
+                <jnt-row [align]="ui.layout.grid.row.align.center">
+                  <jnt-col [span]="12">
+                    <jnt-form-item>
+                      <jnt-form-label for="steps">Step</jnt-form-label>
+                      <jnt-form-control>
+                        <jnt-input formControlName="steps" [type]="ui.forms.input.type.number"></jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -325,6 +337,9 @@
   </ng-container>
   <ng-container *ngIf="maxControl.value">
     <![CDATA[[max]="]]>{{maxControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="stepControl.value">
+    <![CDATA[[step]="]]>{{stepControl.value}}<![CDATA["]]>
   </ng-container>
     <![CDATA[>
 </jnt-input>
