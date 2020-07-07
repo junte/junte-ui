@@ -27,5 +27,7 @@
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right"
               [@visibility]="loading  ? 'hide' : 'show'"
               [icon]="icon?.icon"></jnt-icon>
+
+    <div data-empty *ngIf="!icon && !badges.length && !text" [@visibility]="loading  ? 'hide' : 'show'"></div>
   </jnt-stack>
 </button>
