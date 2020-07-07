@@ -88,9 +88,9 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Input() allowEmpty = true;
 
   @PropertyApi({
-    description: 'Add badge with the number of selected items',
+    description: 'Add badge with the number of selected items; Select all item in switcher',
     path: 'ui.feature',
-    options: [Feature.badge]
+    options: [Feature.badge, Feature.selectAll]
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -177,5 +177,11 @@ export class SwitcherComponent implements ControlValueAccessor {
         this.onChange(this.selected);
         break;
     }
+  }
+
+  selectAll() {
+    this.options.forEach(o => this.selected.push(o.value));
+    this.version++;
+    this.onChange(this.selected);
   }
 }

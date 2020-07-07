@@ -47,10 +47,16 @@
   </div>
 </div>
 
-
 <jnt-badge data-count *ngIf="!!features && features.includes(feature.badge) && mode === selectMode.multiple && selected.length > 0"
            [color]="ui.color.green"
            [value]="selected.length"></jnt-badge>
+
+<jnt-button data-button *ngIf="!!features && features.includes(feature.selectAll) && mode === selectMode.multiple"
+            [text]="'action.select_all' | translate"
+            [outline]="ui.outline.transparent"
+            [size]="ui.size.tiny"
+            [scheme]="ui.scheme.secondary"
+            (click)="selectAll()"></jnt-button>
 
 <ng-template #loadingTemplate>
   <div data-placeholder *ngFor="let line of capacity | mockArray"></div>

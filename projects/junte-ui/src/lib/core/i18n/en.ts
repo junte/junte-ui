@@ -9,7 +9,8 @@ export const en = {
     reload: 'Reload',
     hide_sidebar: 'Hide sidebar',
     ok: 'Ok',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    select_all: 'Select all'
   }
 
 };
