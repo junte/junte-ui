@@ -42,6 +42,7 @@ export class ModalOptions {
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
+  animation = true;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -183,7 +184,7 @@ export class ModalComponent {
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
-      if (!this.mobile) {
+      if (!this.mobile && options.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -196,7 +197,7 @@ export class ModalComponent {
     this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
       this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
-      if (!this.mobile) {
+      if (!this.mobile && this.options.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
