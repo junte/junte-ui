@@ -2,6 +2,7 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/skeleton/skeleton";
+@import "forms/button/button";
 
 @mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -215,6 +216,11 @@
       $horizontal: map-get($vars, horizontal);
       height: map-get($horizontal, height);
     }
+  }
+
+  [data-button] {
+    margin-top: $jnt-gutter-tiny;
+    @include jnt-button((padding: 0 2px), '&');
   }
 }
 
