@@ -35,7 +35,9 @@
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
                                         [loading]="loadingControl.value"
-                                        [features]="indicatorControl.value ? [ui.feature.badge] : null"
+                                        [features]="indicatorControl.value ? [ui.feature.badge] :
+                                                    selectAllControl.value ? [ui.feature.selectAll] :
+                                                    indicatorControl.value && selectAllControl.value ? [ui.feature.badge, ui.feature.selectAll] : null"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
                                         [allowEmpty]="allowEmptyControl.value"
@@ -238,9 +240,13 @@
                                     label="Display marks"
                                     i18n-label="@@label.display_marks"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="8">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="height"
                                     label="Height limit"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="selectAll"
+                                    label="Select all"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>

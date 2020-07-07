@@ -110,6 +110,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() max: number = null;
 
   @PropertyApi({
+    description: 'Step for entered value. For input with typeControl = number',
+    type: 'number',
+  })
+  @Input() step = 1;
+
+  @PropertyApi({
     description: 'Used to specify that the input field is read-only',
     type: 'boolean',
     default: 'false'
@@ -317,7 +323,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
       this.inputControl.patchValue(number);
     } else if (this.max === null || number < this.max) {
-      this.inputControl.patchValue(++number);
+      this.step ? this.inputControl.patchValue(number + +this.step) : this.inputControl.patchValue(++number);
     }
   }
 
@@ -326,7 +332,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
       this.inputControl.patchValue(number);
     } else if (this.max === null || number < this.max) {
-      this.inputControl.patchValue(--number);
+      this.step ? this.inputControl.patchValue(number - +this.step) : this.inputControl.patchValue(--number);
     }
   }
 }

@@ -28,6 +28,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   disabledControl = this.fb.control(false);
   readonlyControl = this.fb.control(false);
   multilineControl = this.fb.control(false);
+  stepControl = this.fb.control(null);
   rowsControl = this.fb.control(5);
   statesControl = this.fb.control(null);
   minControl = this.fb.control(null);
@@ -46,6 +47,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     readonly: this.readonlyControl,
     multiline: this.multilineControl,
     rows: this.rowsControl,
+    steps: this.stepControl,
     states: this.statesControl,
     min: this.minControl,
     max: this.maxControl,

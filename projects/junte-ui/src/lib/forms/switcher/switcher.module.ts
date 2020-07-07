@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { ButtonModule } from '../button/button.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
@@ -19,7 +21,9 @@ import { SwitcherComponent } from './switcher.component';
     StackModule,
     IconModule,
     SkeletonModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    ButtonModule,
+    TranslateModule
   ],
   declarations: [
     SwitcherComponent,
