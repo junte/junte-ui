@@ -1,7 +1,7 @@
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { i18nLoaderFactory, JunteUIModuleConfig } from '../../config';
 
-export const I18_PROVIDERS = TranslateModule.forRoot({
+export const I18N_PROVIDERS = TranslateModule.forRoot({
   isolate: true,
   loader: {
     provide: TranslateLoader,

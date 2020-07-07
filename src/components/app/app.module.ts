@@ -45,15 +45,6 @@ function getLocaleData(locale: any) {
   return {...locale, ...changes};
 }
 
-export class I18nLoader1 implements TranslateLoader {
-
-  private keys = {test_label: 'Test key!'};
-
-  getTranslation(lang: string): Observable<any> {
-    return of(this.keys);
-  }
-}
-
 const providers: any[] = [...JunteUiModule.forRoot(JUNTE_UI_CONFIG).providers];
 
 let data;

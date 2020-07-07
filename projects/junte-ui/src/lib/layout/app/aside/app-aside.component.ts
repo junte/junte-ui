@@ -1,6 +1,6 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { UI } from '../../../core/enums/ui';
-import { I18_PROVIDERS } from '../../../core/i18n/providers';
+import { I18N_PROVIDERS } from '../../../core/i18n/providers';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
 
 const ASIDE_STATE = 'aside_collapsed';
@@ -8,7 +8,7 @@ const ASIDE_STATE = 'aside_collapsed';
 @Component({
   selector: 'jnt-app-aside',
   templateUrl: './app-aside.encapsulated.html',
-  providers: [...I18_PROVIDERS]
+  providers: [...I18N_PROVIDERS]
 })
 export class AppAsideComponent implements OnInit {
 

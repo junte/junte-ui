@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { I18_PROVIDERS } from '../../core/i18n/providers';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { isEqual } from '../../core/utils/equal';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { TableColumnComponent } from './column/table-column.component';
@@ -35,7 +35,7 @@ const FILTER_DELAY = 500;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TableComponent),
       multi: true
-    }, ...I18_PROVIDERS
+    }, ...I18N_PROVIDERS
   ]
 })
 export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {

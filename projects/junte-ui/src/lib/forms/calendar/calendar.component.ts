@@ -34,7 +34,7 @@ import { filter } from 'rxjs/operators';
 import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { I18_PROVIDERS } from '../../core/i18n/providers';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { Period } from './enums';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';
@@ -58,7 +58,7 @@ enum ViewType {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CalendarComponent),
       multi: true
-    }, ...I18_PROVIDERS
+    }, ...I18N_PROVIDERS
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {
