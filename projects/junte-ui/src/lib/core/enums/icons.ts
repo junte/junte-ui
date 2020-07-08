@@ -391,7 +391,7 @@ export const icons = {
     success: 'success:animated:default',
     download: 'download:animated:default',
     upload: 'upload:animated:default',
-    settings: 'settings:animated:default',
+    settings: 'settings:animated:default:colored',
     time: 'time:animated:default',
     bell: 'bell:animated:default',
     reload: 'reload:animated:default',
