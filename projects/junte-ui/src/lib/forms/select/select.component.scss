@@ -129,12 +129,18 @@
       }
     }
 
-    &[data-opened='true'] [data-select] {
-      box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
-      border-color: $jnt-primary-color;
+    &[data-opened='true'] {
       @include for-mobile() {
-        box-shadow: none;
-        border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+      }
+      [data-select] {
+        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+        border-color: $jnt-primary-color;
+        @include for-mobile() {
+          box-shadow: none;
+          border-color: transparent;
+          border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+        }
       }
     }
 
@@ -248,7 +254,7 @@
     box-sizing: border-box;
     position: relative;
     @include for-mobile() {
-      border: 0;
+      border-color: transparent;
       border-radius: calc(#{$jnt-corner-small} - 1px);
     }
 
@@ -371,14 +377,9 @@
   }
 
   #{$context} #{$wrapper} [data-options] {
-    width: 100%;
-    background-color: $jnt-control-background;
-    overflow: hidden;
     @include for-mobile() {
-      position: static;
-      margin-top: 0;
+      background-color: $jnt-control-background;
       border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
-      box-shadow: none;
     }
 
     &[data-loading='true'] {
