@@ -17,6 +17,8 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
@@ -65,6 +67,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   ui = UI;
   selectMode = SelectMode;
+  mobile = this.breakpoint.current === Breakpoint.mobile;
 
   private _opened = false;
   private fetcher: Subscription;
@@ -190,14 +193,16 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       }
     };
     setTimeout(() => checking(), 100);
-    if (opened) {
-      this.reference.popover = this.popover.show(this.hostRef, new PopoverOptions({
-        contentTemplate: this.optionsTemplate,
-        features: [Feature.dropdown]
-      }));
-    } else {
-      this.popover.hide();
-      this.reference.popover = null;
+    if (!this.mobile) {
+      if (opened) {
+        this.reference.popover = this.popover.show(this.hostRef, new PopoverOptions({
+          contentTemplate: this.optionsTemplate,
+          features: [Feature.dropdown]
+        }));
+      } else {
+        this.popover.hide();
+        this.reference.popover = null;
+      }
     }
   }
 
@@ -259,8 +264,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostListener('document:click', ['$event.path'])
   clickOutside(path: HTMLElement[]) {
-    if (this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
-      this.opened = false;
+    if (!this.mobile) {
+      if (this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
+        this.opened = false;
+      }
     }
   }
 
@@ -296,7 +303,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
               private renderer: Renderer2,
               private fb: FormBuilder,
               private popover: PopoverService,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
@@ -383,7 +391,9 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.changes.options++;
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
-      this.reference.popover.update();
+      if (!this.mobile) {
+        this.reference.popover.update();
+      }
     } else {
       this.selected = [option.key];
       this.opened = false;
