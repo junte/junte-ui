@@ -211,7 +211,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.inputControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(value => this.onChange(value));
+      .subscribe(value => this.onChange(this.type === InputType.number ? +value : value));
 
     this.formattedControl.valueChanges
       .subscribe(formatted => {
@@ -297,16 +297,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       }
 
       let number = +this.inputControl.value;
-
       if (this.max !== null && number > this.max) {
         number = this.max;
       }
-
       if (this.min !== null && number < this.min) {
         number = this.min;
       }
-
-      this.inputControl.patchValue(number.toString());
+      this.inputControl.patchValue(number);
     }
   }
 
