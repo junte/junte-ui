@@ -81,6 +81,7 @@ export class LocalUI {
       switcher: 'switcher:font:junte-ui-test-layout',
       pipes: 'pipes:font:junte-ui-test-layout',
       message: 'message:font:junte-ui-test-layout',
+      timeline: 'timeline:font:junte-ui-test-layout',
     // layout
      padding: {
        tiny: 'padding-tiny:font:junte-ui-test-layout',
