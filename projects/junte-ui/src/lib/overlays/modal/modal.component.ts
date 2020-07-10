@@ -20,11 +20,6 @@ import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 const ANIMATION_CLOSE_DURATION = 300;
 const BACKDROP_FILTER = 'blur(5px)';
 
-export enum ModalClosingOption {
-  enable = 'enable',
-  disable = 'disable'
-}
-
 enum ModalState {
   hidden = 'hidden',
   visible = 'visible'
@@ -38,7 +33,7 @@ interface ModalTitle {
 export class ModalOptions {
   maxWidth = '800';
   maxHeight = '600';
-  closing: ModalClosingOption = ModalClosingOption.enable;
+  hold = false;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
@@ -123,7 +118,6 @@ export class ModalComponent {
   @HostBinding('attr.host') readonly host = 'jnt-modal-host';
 
   ui = UI;
-  closing = ModalClosingOption;
   contentTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
   mobile: boolean = this.breakpoint.current === Breakpoint.mobile;
