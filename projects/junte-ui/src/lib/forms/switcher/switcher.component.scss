@@ -7,9 +7,9 @@
 @mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    corner: $jnt-corner-normal,
+    corner: $jnt-corner-small,
     horizontal: (
-      height: 32px,
+      height: 36px,
     ),
     vertical: (
       max-height: null,
@@ -95,7 +95,6 @@
 
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
-
         [data-option] {
           flex: auto;
           justify-content: center;
@@ -119,6 +118,13 @@
           background-color: $jnt-control-disabled-background;
         }
       }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-options] {
+    @if map-has-key($vars, horizontal) {
+      $horizontal: map-get($vars, horizontal);
+      line-height: map-get($horizontal, height);
     }
   }
 
@@ -181,13 +187,6 @@
             width: 10px;
             min-height: 10px;
             height: 10px;
-          }
-        }
-
-        [data-title] {
-          @if map-has-key($vars, horizontal) {
-            $horizontal: map-get($vars, horizontal);
-            line-height: map-get($horizontal, height);
           }
         }
       }
