@@ -3,5 +3,6 @@ export enum Feature {
   clickable = 'clickable',
   badge = 'badge',
   dropdown = 'dropdown',
-  selectAll = 'selectAll'
+  selectAll = 'selectAll',
+  clear = 'clear',
 }

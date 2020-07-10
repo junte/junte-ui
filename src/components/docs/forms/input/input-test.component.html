@@ -43,6 +43,7 @@
                                [max]="maxControl.value"
                                [transform]="transformControl.value"
                                [step]="stepControl.value"
+                               [features]="clearControl.value ? [ui.feature.clear] : null"
                                autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -226,6 +227,10 @@
                                     label="Mask"
                                     i18n-label="@@label.mask"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="clear"
+                                    label="Clear"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -329,7 +334,7 @@
   <ng-container *ngIf="transformControl.value">
     <![CDATA[[textAlign]="ui.text.transform.]]>{{transformControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="rowsControl.value">
+  <ng-container *ngIf="multilineControl.value && rowsControl.value">
     <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="minControl.value">
@@ -340,6 +345,9 @@
   </ng-container>
   <ng-container *ngIf="stepControl.value">
     <![CDATA[[step]="]]>{{stepControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="clearControl.value">
+    <![CDATA[[features]="[ui.feature.clear]"]]>
   </ng-container>
     <![CDATA[>
 </jnt-input>
