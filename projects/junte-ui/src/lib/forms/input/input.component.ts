@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
@@ -30,14 +31,15 @@ const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
 
+  @HostBinding('attr.host') readonly host = 'jnt-input-host';
+
   ui = UI;
   inputType = InputType;
   inputState = State;
+  feature = Feature;
   view = {password: {display: false}};
 
   private _mask: string;
-
-  @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   inputControl = this.fb.control(null);
   formattedControl = this.fb.control(null);
@@ -48,6 +50,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', {read: ElementRef, static: false})
   input: ElementRef<any>;
+
+  @HostBinding('attr.data-focused')
+  focused = false;
+
+  @HostBinding('attr.data-disabled')
+  disabled = false;
 
   @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
@@ -169,6 +177,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'boolean',
     default: 'false',
   })
+  @HostBinding('attr.data-multiline')
   @Input() multiline = false;
 
   @PropertyApi({
@@ -196,10 +205,21 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
+    description: 'Button for reset input',
+    path: 'ui.feature',
+    options: [Feature.clear],
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
+  @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
   @Output() click = new EventEmitter<any>();
+
+  @HostBinding('attr.tabindex') tabindex = 1;
 
   onChange: (value: any) => {};
   onTouched: () => {};
@@ -312,6 +332,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
     disabled ? this.inputControl.disable() : this.inputControl.enable();
   }
 
