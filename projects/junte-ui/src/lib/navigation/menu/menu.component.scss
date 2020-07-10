@@ -7,6 +7,7 @@
   $defs: (
     top: (
       item: (
+        corner: $jnt-corner-small,
         height: null,
         orphan-color: $jnt-primary-text-color,
         orphan-hover-color: $jnt-primary-text-dark-color,
@@ -28,6 +29,7 @@
         toggle: (
           toggle: true,
           margin-left: $jnt-gutter-small,
+          margin-right: $jnt-gutter-normal,
         ),
         hover: (
           background-color: $jnt-highlight-background,
@@ -202,6 +204,7 @@
     [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
+        border-radius: map-get($title, corner);
         @include jnt-link((
           height: map-get($title, height),
           orphan-color: map-get($title, orphan-color),
@@ -251,6 +254,7 @@
           }
           [data-toggle] {
             margin-left: map-get($toggle, margin-left);
+            margin-right: map-get($toggle, margin-right);
           }
         }
 
