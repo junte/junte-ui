@@ -189,6 +189,9 @@
     text-transform: null,
     padding: null,
     font-weight: $jnt-font-weight-base,
+    disabled: (
+      opacity: .65,
+    ),
     icon: (
       margin: $jnt-gutter-small,
       size: 18px
@@ -331,16 +334,20 @@
           cursor: default;
         }
       }
-      &[data-disabled='true'] {
-        opacity: .65;
-        pointer-events: none;
-
-        #{$wrapper} button {
-          cursor: default;
-        }
-      }
       &[data-width='fluid'] {
         width: 100%;
+      }
+    }
+
+    &[data-disabled='true'] {
+      @if map-has-key($vars, disabled) {
+        $disabled: map-get($vars, disabled);
+        opacity: map-get($disabled, opacity);
+      }
+      pointer-events: none;
+
+      #{$wrapper} button {
+        cursor: default;
       }
     }
 
