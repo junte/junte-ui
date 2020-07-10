@@ -1,19 +1,38 @@
 @import "jnt-variables";
+@import "jnt-functions";
+@import "jnt-reset";
 @import "elements/icon/icon";
 
-@mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-pager($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
   }
 
-  a {
+  #{$context} #{$wrapper} a {
+    @if $declare {
+      @include jnt-reset();
+    }
     padding: 1px $jnt-gutter-small;
     border-radius: $jnt-corner-small;
     transition: background-color .3s;
     user-select: none;
     cursor: pointer;
-    text-decoration: none;
 
     &:hover {
       background-color: $jnt-highlight-background;
@@ -23,6 +42,7 @@
       outline: 0;
       box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
     }
+
     &[active="true"] {
       pointer-events: none;
       background-color: $jnt-primary-color;
