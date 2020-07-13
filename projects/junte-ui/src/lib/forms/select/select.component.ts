@@ -6,7 +6,7 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit,
   QueryList,
   Renderer2,
@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
@@ -59,15 +59,19 @@ const SEARCH_DELAY = 100;
     }
   ]
 })
-export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
   private reference: { popover: PopoverComponent } = {popover: null};
+  private destroyed = false;
 
   ui = UI;
   selectMode = SelectMode;
-  mobile = this.breakpoint.current === Breakpoint.mobile;
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
 
   private _opened = false;
   private fetcher: Subscription;
@@ -199,8 +203,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
           contentTemplate: this.optionsTemplate,
           features: [Feature.dropdown]
         }));
+        this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+          .subscribe(() => this.opened = false);
       } else {
-        this.popover.hide();
+        this.popover.hide(this.hostRef);
         this.reference.popover = null;
       }
     }
@@ -264,10 +270,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @HostListener('document:click', ['$event.path'])
   clickOutside(path: HTMLElement[]) {
-    if (!this.mobile) {
-      if (this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
-        this.opened = false;
-      }
+    if (!!this.reference.popover && this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
+      this.opened = false;
     }
   }
 
@@ -290,7 +294,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   close() {
-    console.log('12');
     this.opened = false;
   }
 
@@ -372,6 +375,14 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       .subscribe(options => convert(options.toArray()));
   }
 
+  ngOnDestroy() {
+    this.destroyed = true;
+    if (!!this.reference.popover) {
+      this.popover.hide(this.hostRef);
+      this.reference.popover = null;
+    }
+  }
+
   private picked(elements: HTMLElement[]) {
     return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
@@ -391,7 +402,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.changes.options++;
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
-      if (!this.mobile) {
+      if (!!this.reference.popover) {
         this.reference.popover.update();
       }
     } else {

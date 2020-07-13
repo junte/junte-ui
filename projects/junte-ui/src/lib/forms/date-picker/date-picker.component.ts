@@ -85,7 +85,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
     this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
-        let parsed = parse(date, this.format, new Date());
+        const parsed = parse(date, this.format, new Date());
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.calendarControl.patchValue(parsed);
         }

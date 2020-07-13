@@ -1,11 +1,12 @@
 import { ElementRef, EventEmitter, Injectable } from '@angular/core';
-import { PopoverComponent, PopoverOptions } from './popover.component';
+import { PopoverComponent } from './popover.component';
 
 @Injectable({providedIn: 'root'})
 export class PopoverService {
 
   private popover: PopoverComponent;
-  hided = new EventEmitter<any>();
+  private target: ElementRef;
+  updated = new EventEmitter<ElementRef>();
 
   register(popover: PopoverComponent): void {
     this.popover = popover;
@@ -17,16 +18,20 @@ export class PopoverService {
     }
   }
 
-  show(target: ElementRef, options: PopoverOptions): PopoverComponent {
+  show(target: ElementRef, options: Object): PopoverComponent {
     this.checkRegistration();
+    this.target = target;
     this.popover.show(target, options);
+    this.updated.emit(target);
     return this.popover;
   }
 
-  hide(): void {
+  hide(target: ElementRef = null): void {
     this.checkRegistration();
-    this.popover.hide();
-    this.hided.emit();
+    if (!this.target || this.target === target) {
+      this.popover.hide();
+      this.updated.emit(null);
+    }
   }
 
 }

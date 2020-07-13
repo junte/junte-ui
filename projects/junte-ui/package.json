@@ -1,6 +1,6 @@
 {
   "name": "@junte/ui",
-  "version": "1.0.122",
+  "version": "1.0.129",
   "description": "Quality Angular UI components kit",
   "keywords": [
     "angular",
@@ -44,7 +44,7 @@
     "styles:watch": "wait-on ../../dist/junte-ui/template && gulp build --gulpfile ./src/scripts/styles.ts --cwd ./ --watch",
     "build:watch": "ng build junte-ui --watch",
     "pack": "cd ../../dist/junte-ui && npm pack",
-    "publish:npm": "npm run pack && npm publish --tag ${tag:-latest} --access public ../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
+    "publish:npm": "npm run pack && npm publish --tag ${tag} --access public ../../dist/junte-ui/junte-ui-$npm_package_version.tgz",
     "publish": "tag=unstable npm run publish:npm",
     "publish:rc": "tag=next npm run publish:npm",
     "publish:prod": "tag=latest npm run publish:npm",

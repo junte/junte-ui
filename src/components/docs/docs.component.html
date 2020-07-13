@@ -5,25 +5,21 @@
                 [position]="ui.layout.app.position.fixed">
   <jnt-app-header>
     <ng-template #headerLogoTemplate>
-      <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">
+      <a routerLink="['/']">
+        <img [src]="'assets/images/logo' + (themeControl.value === theme.light ? '-light' : '-dark') + '.svg'">
+      </a>
     </ng-template>
 
     <jnt-menu [spacer]="ui.gutter.normal">
       <jnt-menu-item title="Home"
                      i18n-title="@@label.home"
                      [icon]="localUi.icons.top.home"
-                     [link]="['/']">
+                     [link]="['/general/home']">
       </jnt-menu-item>
       <jnt-menu-item title="Components"
                      i18n-title="@@label.components"
                      [icon]="localUi.icons.top.components"
                      [link]="['/components']"
-                     [matching]="ui.url.matching.wildcard">
-      </jnt-menu-item>
-      <jnt-menu-item title="Documentation"
-                     i18n-title="@@label.documentation"
-                     [icon]="localUi.icons.top.documentation"
-                     [link]="['/general/home']"
                      [matching]="ui.url.matching.wildcard">
       </jnt-menu-item>
       <jnt-menu-item title="Team"

@@ -12,7 +12,6 @@ import {
   TemplateRef
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { filter } from 'rxjs/operators';
 import { State } from '../../core/enums/state';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -70,31 +69,43 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     if (!!this.form) {
-      this.form.statusChanges.pipe(filter(() => !!this.controls)).subscribe(() => {
-        const errors = [];
-        this.controls.filter(component => !!component.name && !!component.messages.length)
-          .forEach(component => {
-            const control = component.getControl();
-            if (!!control) {
-              const error = !!control.errors && control.dirty;
-              if (error) {
-                errors.push(control);
+      this.form.statusChanges.subscribe(() => {
+        if (!!this.controls) {
+          this.controls.filter(component => !!component.name && !!component.messages.length)
+            .forEach(component => {
+              const control = component.getControl();
+              if (!!control) {
+                const messages = component.messages;
+                messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
               }
-              const messages = component.messages;
-              messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
-            }
-          });
-        console.log(errors);
+            });
+        }
 
-        this.checked.emit(errors);
+        this.checked.emit(this.check(this.form));
       });
     }
+  }
+
+  private check(form: FormGroup | FormArray): AbstractControl[] {
+    let errors = [];
+    Object.keys(form.controls).forEach((key: string) => {
+      const control = form.controls[key];
+
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        errors = errors.concat(this.check(control));
+      } else {
+        if (!!control.errors && control.dirty) {
+          errors.push(control);
+        }
+      }
+    });
+    return errors;
   }
 
   @HostListener('submit')
   onSubmit() {
     if (!!this.form) {
-      this.check(this.form);
+      this.validate(this.form);
 
       if (this.form.valid) {
         this.submitted.emit();
@@ -103,12 +114,12 @@ export class FormComponent implements OnInit {
     }
   }
 
-  private check(form: FormGroup | FormArray) {
+  private validate(form: FormGroup | FormArray) {
     Object.keys(form.controls).forEach((key: string) => {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
-        this.check(control);
+        this.validate(control);
       } else {
         control.markAsDirty();
         control.updateValueAndValidity();
@@ -123,7 +134,6 @@ export class FormComponent implements OnInit {
       if (control instanceof FormGroup || control instanceof FormArray) {
         this.refresh(control);
       } else {
-        control.markAsPristine();
         control.markAsPristine();
       }
     });

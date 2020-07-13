@@ -172,13 +172,14 @@ export class ModalComponent {
     }
   }
 
+  // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
-  open(content: ModalContent, options: ModalOptions = new ModalOptions()) {
-    this.options = options;
+  open(content: ModalContent, options: Object = {}) {
+    this.options = new ModalOptions(options);
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
-      if (!this.mobile && options.animation) {
+      if (!this.mobile && this.options.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }

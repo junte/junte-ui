@@ -37,7 +37,7 @@
             [size]="ui.size.small"
             [icon]="ui.icons.actions"
             (jntPopoverDisplayed)="popover = $event"
-            [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}"></jnt-button>
+            [jntPopover]="{contentTemplate: dropdownTemplate, placement: ui.overlays.popover.position.right, trigger: ui.overlays.popover.trigger.click}"></jnt-button>
 
 <ng-template #dropdownTemplate>
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>
