@@ -48,9 +48,15 @@
               <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
                 <jnt-form [formGroup]="form"
                           [title]="titleControl.value ? 'Registration' : null"
-                          [state]="stateControl.value" (submitted)="submit()">
+                          [state]="stateControl.value"
+                          (checked)="errors = $event"
+                          (submitted)="submit()">
 
                   <jnt-stack [align]="ui.flex.align.stretch">
+
+                    <jnt-message *ngIf="errors | includes:form.get('personals').get('deep').get('firstName')"
+                                 [scheme]="ui.scheme.fail">First Name error
+                    </jnt-message>
 
                     <ng-container formGroupName="personals">
                       <jnt-row formGroupName="deep">

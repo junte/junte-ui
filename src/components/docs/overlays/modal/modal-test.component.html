@@ -29,7 +29,7 @@
                                 i18n-text="@@action.open_modal"></jnt-button>
                   </jnt-col>
                   <jnt-col [mobile]="12" [tablet]="4">
-                    <jnt-button [jntModal]="{title: {text: titleControl.value ? 'Title' : null, icon: iconControl.value ? ui.icons.settings : null},
+                    <jnt-button [jntModal]="{title: titleControl.value ? {text: 'Title', icon: iconControl.value ? ui.icons.settings : null} : null,
                                         content: contentDirective, footer: footerControl.value ? footer : null,
                                         hold: closingControl.value,
                                         maxWidth: widthControl.value, maxHeight: heightControl.value}"

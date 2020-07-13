@@ -19,9 +19,10 @@ export class ModalService {
     this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
   }
 
-  open(content?: ModalContent, options?: ModalOptions) {
+  open(content?: ModalContent, options?: Object) {
     this.checkRegistration();
-    this.modal.open(content, options);
+    // TODO: use merge options
+    this.modal.open(content, new ModalOptions(options));
   }
 
   close() {

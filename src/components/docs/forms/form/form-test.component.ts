@@ -41,6 +41,8 @@ export class FormTestComponent implements OnInit {
     state: this.stateControl,
   });
 
+  errors = [];
+
   form = this.fb.group({
     personals: this.fb.group({
       deep: this.fb.group({

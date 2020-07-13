@@ -11,7 +11,7 @@ import {
   QueryList,
   TemplateRef
 } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { State } from '../../core/enums/state';
 import { PropertyApi } from '../../core/decorators/api';
@@ -65,18 +65,28 @@ export class FormComponent implements OnInit {
   @ContentChildren(FormControlComponent, {descendants: true})
   controls: QueryList<FormControlComponent>;
 
+  @Output()
+  checked = new EventEmitter<AbstractControl[]>();
+
   ngOnInit() {
     if (!!this.form) {
       this.form.statusChanges.pipe(filter(() => !!this.controls)).subscribe(() => {
+        const errors = [];
         this.controls.filter(component => !!component.name && !!component.messages.length)
           .forEach(component => {
             const control = component.getControl();
             if (!!control) {
+              const error = !!control.errors && control.dirty;
+              if (error) {
+                errors.push(control);
+              }
               const messages = component.messages;
-              messages.forEach(message => message.active = !!(control.hasError(message.type)
-                && control.errors && control.dirty));
+              messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
             }
           });
+        console.log(errors);
+
+        this.checked.emit(errors);
       });
     }
   }

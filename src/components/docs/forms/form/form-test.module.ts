@@ -17,7 +17,9 @@ import {
   StackModule,
   SwitcherModule,
   SwitchModule,
-  TabsModule
+  TabsModule,
+  MessageModule,
+  ArrayPipesModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -45,7 +47,9 @@ import { FormTestComponent } from './form-test.component';
     DatePickerModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     SwitchModule.forRoot(JUNTE_UI_CONFIG),
-    SwitcherModule.forRoot(JUNTE_UI_CONFIG)
+    SwitcherModule.forRoot(JUNTE_UI_CONFIG),
+    MessageModule.forRoot(JUNTE_UI_CONFIG),
+    ArrayPipesModule
   ],
   exports: [
     FormTestComponent

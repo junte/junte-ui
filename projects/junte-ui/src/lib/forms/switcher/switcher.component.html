@@ -30,7 +30,7 @@
     <jnt-stack [orientation]="orientation" [gutter]="ui.gutter.none" [align]="ui.flex.align.stretch" data-options>
       <ng-container *ngIf="!loading; else loadingTemplate">
         <jnt-stack data-option *ngFor="let option of options"
-                   [attr.data-with-template]="option.optionTemplate"
+                   [attr.data-with-template]="!!option.optionTemplate"
                    [attr.data-selected]="option.value | check:selected:keyField:version"
                    [attr.data-disabled]="option.disabled"
                    (click)="select(option.value)"

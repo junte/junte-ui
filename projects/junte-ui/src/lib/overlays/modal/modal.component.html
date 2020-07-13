@@ -3,16 +3,16 @@
            [@move]="opened ? 'visible' : 'hidden'"
            (@move.start)='start($event)'
            (@move.done)='done($event)'>
-  <jnt-stack data-title
+  <jnt-stack data-title *ngIf="!!options.title"
              [orientation]="ui.orientation.horizontal"
              [justify]="ui.flex.justify.between"
              [align]="ui.flex.align.center">
     <jnt-stack [orientation]="ui.orientation.horizontal"
                [align]="ui.flex.align.center"
                [gutter]="ui.gutter.small">
-      <jnt-icon *ngIf="!!options.title?.icon"
+      <jnt-icon *ngIf="!!options.title.icon"
                 [icon]="options.title.icon"></jnt-icon>
-      <span data-text *ngIf="!!options.title?.text">{{options.title?.text}}</span>
+      <span data-text>{{options.title.text}}</span>
     </jnt-stack>
 
     <button *ngIf="!options.hold"

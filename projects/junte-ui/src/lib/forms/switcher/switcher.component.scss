@@ -8,13 +8,11 @@
 
   $defs: (
     corner: $jnt-corner-small,
-    horizontal: (
-      height: 36px,
-    ),
     vertical: (
       max-height: null,
     ),
     option: (
+      height: 36px,
       active: (
         background: $jnt-primary-light-color,
         color: $jnt-white-color,
@@ -49,7 +47,7 @@
           cursor: pointer;
           padding: 0 $jnt-gutter-small;
 
-          &[data-with-template] {
+          &[data-with-template=true] {
             padding: $jnt-gutter-small;
           }
 
@@ -75,6 +73,7 @@
               flex: 0 1 auto;
               overflow: hidden;
               white-space: nowrap;
+              line-height: 1;
             }
           }
         }
@@ -121,33 +120,30 @@
     }
   }
 
-  #{$context} #{$wrapper} [data-options] {
-    @if map-has-key($vars, horizontal) {
-      $horizontal: map-get($vars, horizontal);
-      line-height: map-get($horizontal, height);
-    }
-  }
-
   #{$context} #{$wrapper} [data-switcher] {
     border: 1px solid $jnt-gray-700-color;
     border-radius: map-get($vars, corner);
     overflow: hidden;
 
     [data-options] {
-      [data-option] {
-        &[data-selected="true"] {
-          @if map-has-key($vars, option) {
-            $option: map-get($vars, option);
+      @if map-has-key($vars, option) {
+        $option: map-get($vars, option);
+        [data-option] {
+          padding: map-get($option, padding);
+          &[data-selected="true"] {
             @if map-has-key($option, active) {
               $active: map-get($option, active);
               color: map-get($active, color);
               background-color: map-get($active, background);
             }
           }
-        }
+          &[data-with-template=false] {
+            height: map-get($option, height);
+          }
 
-        [data-icon] {
-          @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
+          [data-icon] {
+            @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
+          }
         }
 
         [data-switch] {
