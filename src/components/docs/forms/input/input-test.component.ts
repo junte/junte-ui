@@ -65,6 +65,9 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    this.form.valueChanges.subscribe(v => console.log(v));
+
     this.disabledControl.valueChanges.subscribe(disabled => {
       disabled ? this.inputControl.disable() : this.inputControl.enable();
     });

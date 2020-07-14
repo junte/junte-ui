@@ -1,14 +1,13 @@
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
-import { TextAlign } from '../../core/enums/text';
+import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { InputScheme, InputType } from './enums';
-import { TextTransform } from '../../core/enums/text';
 
 const BACKSPACE = 8;
 const LEFT_ARROW = 37;
@@ -231,7 +230,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.inputControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(value => this.onChange(this.type === InputType.number ? +value : value));
+      .subscribe(value => this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
     this.formattedControl.valueChanges
       .subscribe(formatted => {
@@ -333,7 +332,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
-    disabled ? this.inputControl.disable() : this.inputControl.enable();
   }
 
   up() {
