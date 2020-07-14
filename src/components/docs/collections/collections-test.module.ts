@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CollectionsRoutingModule } from './collections-routing.module';
 import { TableTestModule } from './table/table-test.module';
 import { GanttTestModule } from './gantt/gantt-test.module';
+import { TimelineTestModule } from './timeline/timeline-test.module';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { GanttTestModule } from './gantt/gantt-test.module';
   ],
   exports: [
     GanttTestModule,
-    TableTestModule
+    TableTestModule,
+    TimelineTestModule
   ]
 })
 export class CollectionsTestModule {
