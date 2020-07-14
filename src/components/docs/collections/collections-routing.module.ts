@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GanttTestComponent } from './gantt/gantt-test.component';
 import { TableTestComponent } from './table/table-test.component';
+import { TimelineTestComponent } from './timeline/timeline-test.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
         component: TableTestComponent,
         data: {breadcrumb: 'Table', animation: 'Table'}
       },
+      {
+        path: 'timeline',
+        component: TimelineTestComponent,
+        data: {breadcrumb: 'Timeline', animation: 'Timeline'}
+      }
     ]
   }
 ];

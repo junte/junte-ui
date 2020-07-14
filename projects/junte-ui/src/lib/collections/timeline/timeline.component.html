@@ -1,0 +1,32 @@
+<jnt-stack *ngIf="!!items?.length"
+             [align]="ui.flex.align.stretch"
+             [gutter]="ui.gutter.tiny">
+      <jnt-stack  data-lines *ngFor="let item of items; let i = index"
+        [align]="ui.flex.align.stretch"
+        [gutter]="ui.gutter.small">
+        <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                   [align]="ui.flex.align.center"
+                   [gutter]="ui.gutter.small">
+          <div data-mark>
+            <jnt-icon *ngIf="!!item?.icon; else defaultTemplate" [icon]="item.icon" [style.color]="item.color"></jnt-icon>
+            <ng-template #defaultTemplate>
+              <div data-circle [style.background-color]="item.color"
+                               [style.color]="item.color | textBrightness">{{i + 1}}</div>
+            </ng-template>
+          </div>
+          <div data-title>{{item.title}}</div>
+        </jnt-stack>
+        <jnt-stack [type]="ui.layout.stack.type.horizontal"
+                   [align]="ui.flex.align.stretch"
+                   [gutter]="ui.gutter.small">
+          <div data-line>
+            <div></div>
+          </div>
+          <div data-content>
+            <ng-container [ngTemplateOutlet]="item.contentTemplate"></ng-container>
+          </div>
+        </jnt-stack>
+      </jnt-stack>
+  </jnt-stack>
+
+
