@@ -327,7 +327,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
             objects.forEach((o, index) => {
               const key = o[this.keyField];
               if (!!key) {
-                this.options.found[key.toString()] = {
+                this.options.found[`${key}`] = {
                   index,
                   key,
                   label: o[this.labelField],
@@ -369,7 +369,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     const convert = (options: SelectOptionComponent[]) => {
       this.options.persisted = {};
       options.forEach(({key, label, icon, value}, index) =>
-        this.options.persisted[key.toString()] = {index, key, label, icon, value});
+        this.options.persisted[`${key}`] = {index, key, label, icon, value});
       this.changes.options++;
     };
 
@@ -401,7 +401,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   select(option: IOption) {
     this.logger.debug('option is selected');
-    this.options.persisted[option.key.toString()] = option;
+    this.options.persisted[`${option.key}`] = option;
     this.changes.options++;
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
@@ -428,7 +428,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   writeValue(value: Key | Key[]) {
-    this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
+    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {

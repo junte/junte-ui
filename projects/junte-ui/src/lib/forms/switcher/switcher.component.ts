@@ -1,12 +1,12 @@
 import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Breakpoint } from '../../core/enums/breakpoint';
-import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { SelectMode } from '../select/enums';
 import { SwitcherOptionComponent } from './switcher-option.component';
 
@@ -136,7 +136,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any | any[]) {
-    this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
+    this.selected = (this.mode === SelectMode.single ? [value] : value) as any[];
   }
 
   setDisabledState(disabled: boolean) {
