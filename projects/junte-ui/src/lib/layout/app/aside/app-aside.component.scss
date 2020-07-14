@@ -35,7 +35,7 @@
     $declare: true;
   }
 
-  #{$wrapper} :host, #{$context} {
+  :host, #{$context} {
     display: block;
     box-sizing: border-box;
     position: map-get($vars, position);
@@ -45,7 +45,7 @@
     z-index: 2;
   }
 
-  #{$wrapper} [data-menu] {
+  #{$context} #{$wrapper} [data-menu] {
     @include jnt-menu((
       top: (
         item: (
