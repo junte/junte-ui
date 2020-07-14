@@ -2,12 +2,12 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  ElementRef,
+  ElementRef, EventEmitter,
   forwardRef,
   HostBinding,
   HostListener,
   Input, OnDestroy,
-  OnInit,
+  OnInit, Output,
   QueryList,
   Renderer2,
   TemplateRef,
@@ -178,6 +178,9 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
   @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
+
+  @Output('selected')
+  updated = new EventEmitter<any>();
 
   @HostBinding('attr.data-opened')
   set opened(opened: boolean) {
@@ -411,6 +414,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     }
 
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
+    this.updated.emit(option.value);
   }
 
   remove(key: Key) {

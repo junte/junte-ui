@@ -37,7 +37,13 @@
                                 [icon]="iconControl.value ? ui.icons.user : null"
                                 [emptyOptionsTemplate]="emptyOptionsTemplate"
                                 [optionsHeaderTemplate]="optionsHeaderTemplate"
-                                [optionTemplate]="templateControl.value ? heroOptionTemplate : null">
+                                [optionTemplate]="templateControl.value ? heroOptionTemplate : null"
+                                (selected)="selected.heroes.push($event)">
+                      <jnt-select-option *ngFor="let h of selected.heroes;trackBy:trackHero"
+                                         [label]="h.name"
+                                         [key]="h.id"
+                                         [value]="h">
+                      </jnt-select-option>
                       <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
                                          [key]="h.id"

@@ -20,6 +20,8 @@ export class SelectTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
+  selected = {heroes: []};
+
   modeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);
   disabledControl = this.fb.control(false);
