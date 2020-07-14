@@ -32,49 +32,56 @@
 
   <img src="https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg">
 
-  <h3>1. Installation Angular CLI</h3>
-  <!-- @formatter:off-->
-  <app-code-highlight [language]="languages.bash">
-    <pre>
+  <h3>How to install</h3>
+
+  <jnt-timeline>
+    <jnt-timeline-item title="Installation Angular CLI">
+      <ng-template #timelineItemContentTemplate>
+        <app-code-highlight [language]="languages.bash">
+          <!-- @formatter:off-->
 <![CDATA[
 sudo npm install -g @angular/cli
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
 
-  <h3>2. Create a new Project</h3>
-
-  <p>A new project can be created using Angular CLI tools.</p>
-
-  <app-code-highlight [language]="languages.bash">
-    <pre>
+    <jnt-timeline-item title="Create a new Project">
+      <ng-template #timelineItemContentTemplate>
+        <p>A new project can be created using Angular CLI tools.</p>
+        <app-code-highlight [language]="languages.bash">
+          <!-- @formatter:off-->
 <![CDATA[
 ng new junte-ui-test --style=scss --routing=false
 cd junte-ui-test
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
 
-  <h3 i18n="@@label.installation">3. Installation Junte UI</h3>
-
-  <p>Install <b>Junte UI</b> package
-    <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
-  </p>
-
-  <app-code-highlight [language]="languages.bash">
-    <pre>
+    <jnt-timeline-item title="Installation Junte UI">
+      <ng-template #timelineItemContentTemplate>
+        <p>Install <b>Junte UI</b> package
+          <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
+        </p>
+        <app-code-highlight [language]="languages.bash">
+          <!-- @formatter:off-->
 <![CDATA[
 npm install @junte/ui  --save-dev
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
 
-  <h3>4. Import Junte UI module</h3>
-
-  <p>Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
-    <code>src/app/app.module.ts</code></p>
-  <app-code-highlight [language]="languages.typescript">
-    <pre>
+    <jnt-timeline-item title="Import Junte UI module">
+      <ng-template #timelineItemContentTemplate>
+        <p>Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
+          <code>src/app/app.module.ts</code></p>
+        <app-code-highlight [language]="languages.typescript">
+          <!-- @formatter:off-->
 <![CDATA[
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -96,14 +103,18 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
 
-  <h3>5. Import styles & assets</h3>
+    <jnt-timeline-item title="Import styles & assets">
+      <ng-template #timelineItemContentTemplate>
+        <p>Import styles and assets in <code>angular.json</code></p>
+        <app-code-highlight [language]="languages.json">
+          <pre>
 
-  <p>Import styles and assets in <code>angular.json</code></p>
-  <app-code-highlight [language]="languages.json">
-    <pre>
+          <!-- @formatter:off-->
 <![CDATA[
 {
   "options": {
@@ -132,23 +143,24 @@ export class AppModule { }
   }
 }
 ]]>
-    </pre>
-  </app-code-highlight>
+            <!-- @formatter:on-->
+          </pre>
+        </app-code-highlight>
 
-  <p>Import the styles into the global app styles <code>src/styles.scss</code></p>
+        <p>Import the styles into the global app styles <code>src/styles.scss</code></p>
 
-  <app-code-highlight [language]="languages.css">
-    <pre>
+        <app-code-highlight [language]="languages.css">
+          <pre>
 <![CDATA[
 /* You can add global styles to this file, and also import other style files */
 @import "~@junte/ui/lib/assets/styles/jnt-all";
 @import "~@junte/ui/lib/assets/styles/jnt-common";
 body {
-      font-family: $jnt-font-family-base;
-      font-weight: $jnt-font-weight-light;
-      font-size: $jnt-font-size-normal;
-      color: $jnt-primary-text-color;
-      margin: 20px;
+  font-family: $jnt-font-family-base;
+  font-weight: $jnt-font-weight-light;
+  font-size: $jnt-font-size-normal;
+  color: $jnt-primary-text-color;
+  margin: 20px;
 }
 ]]>
     </pre>
@@ -156,21 +168,24 @@ body {
 
   <p>Bingo 👏 Start your project.</p>
   <app-code-highlight [language]="languages.bash">
-    <pre>
+    <!-- @formatter:off-->
 <![CDATA[
 ng serve
 ]]>
-    </pre>
+    <!-- @formatter:on-->
   </app-code-highlight>
 
   <p>It is a very fast but rude installation with importing all components & assets.</p>
+      </ng-template>
+    </jnt-timeline-item>
 
-  <h3>How to try</h3>
-  <p>You can go to research all components specifications.</p>
+    <jnt-timeline-item title="How to try">
+      <ng-template #timelineItemContentTemplate>
+        <p>You can go to research all components specifications.</p>
 
-  <p>For fast test add link to <code>UI</code> enum in <code>src/app/app.component.ts</code></p>
-  <app-code-highlight [language]="languages.typescript">
-    <pre>
+        <p>For fast test add link to <code>UI</code> enum in <code>src/app/app.component.ts</code></p>
+        <app-code-highlight [language]="languages.typescript">
+          <!-- @formatter:off-->
 <![CDATA[
 import { Component } from '@angular/core';
 import { UI } from '@junte/ui';
@@ -183,29 +198,30 @@ export class AppComponent {
     ui = UI; // link to junte UI enum
 }
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
 
-  <p>Add <code>jnt-button</code> in to your <code>src/app/app.component.html</code></p>
+        <p>Add <code>jnt-button</code> in to your <code>src/app/app.component.html</code></p>
 
-  <app-code-highlight [language]="languages.html">
-    <pre>
+        <app-code-highlight [language]="languages.html">
+          <!-- @formatter:off-->
 <![CDATA[
 <jnt-button text="Click on me"
     [icon]="ui.icons.user">
     <jnt-badge [value]="5"></jnt-badge>
 </jnt-button>
 ]]>
-    </pre>
-  </app-code-highlight>
+          <!-- @formatter:on-->
+        </app-code-highlight>
 
-  <p>You should see the button 😎</p>
+        <p>You should see the button 😎</p>
+      </ng-template>
+    </jnt-timeline-item>
+  </jnt-timeline>
 
   <p>Problems 🙀? Please, add an issue here 👉 <jnt-link
     title="Issues tracker"
     [outline]="ui.outline.ghost"
     source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link></p>
-
-  <!-- @formatter:on-->
 
 </jnt-container>

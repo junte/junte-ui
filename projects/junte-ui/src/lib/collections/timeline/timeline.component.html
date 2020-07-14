@@ -5,8 +5,7 @@
         [align]="ui.flex.align.stretch"
         [gutter]="ui.gutter.small">
         <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                   [align]="ui.flex.align.center"
-                   [gutter]="ui.gutter.small">
+                   [align]="ui.flex.align.center">
           <div data-mark>
             <jnt-icon *ngIf="!!item?.icon; else defaultTemplate" [icon]="item.icon" [style.color]="item.color"></jnt-icon>
             <ng-template #defaultTemplate>
@@ -17,8 +16,7 @@
           <div data-title>{{item.title}}</div>
         </jnt-stack>
         <jnt-stack [type]="ui.layout.stack.type.horizontal"
-                   [align]="ui.flex.align.stretch"
-                   [gutter]="ui.gutter.small">
+                   [align]="ui.flex.align.stretch">
           <div data-line>
             <div></div>
           </div>
