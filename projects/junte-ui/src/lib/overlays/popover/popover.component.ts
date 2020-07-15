@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostBinding, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { Feature } from '../../core/enums/feature';
-import { PopoverPlacements, PopoverTriggers } from './enums';
+import { PopoverPlacements, PopoverPosition, PopoverTriggers } from './enums';
+
+const PADDING_SIZE = 14;
 
 export class PopoverOptions {
   title: string;
@@ -8,6 +10,7 @@ export class PopoverOptions {
   contentTemplate: TemplateRef<void>;
   trigger: PopoverTriggers = PopoverTriggers.hover;
   placement: PopoverPlacements = PopoverPlacements.bottom;
+  position: PopoverPosition = PopoverPosition.absolute;
   maxWidth: string;
   minWidth: string;
   maxHeight: string;
@@ -19,7 +22,7 @@ export class PopoverOptions {
   }
 }
 
-class PopoverPosition {
+class Position {
   constructor(public top: number,
               public left: number,
               public shiftX: number = 0,
@@ -46,6 +49,11 @@ export class PopoverComponent {
     return this.visible ? 'block' : 'none';
   }
 
+  @HostBinding('style.position')
+  get position() {
+    return this.options.position;
+  }
+
   @HostBinding('attr.data-placement')
   placement: PopoverPlacements;
 
@@ -66,38 +74,46 @@ export class PopoverComponent {
     return new MutationObserver(() => this.update());
   }
 
-  private getPosition(): PopoverPosition {
+  private getPosition(): Position {
     const rect = this.target.getBoundingClientRect(),
-      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    const position = new PopoverPosition(rect.top + scrollTop, rect.left + scrollLeft);
-
-    const {nativeElement: host} = this.hostRef;
+      scrollLeft = this.options.position === PopoverPosition.absolute
+        ? window.pageXOffset || document.documentElement.scrollLeft : 0,
+      scrollTop = this.options.position === PopoverPosition.absolute
+        ? window.pageYOffset || document.documentElement.scrollTop : 0,
+      position = new Position(rect.top + scrollTop, rect.left + scrollLeft),
+      {nativeElement: host} = this.hostRef;
 
     this.placement = this.options.placement;
     if (this.options.smarty) {
-      switch (this.options.placement) {
-        case PopoverPlacements.top:
-          if (position.top - host.clientHeight < 0) {
+      switch (this.placement) {
+        case PopoverPlacements.top: {
+          const shift = scrollTop - PADDING_SIZE + host.clientHeight;
+          if (position.top - shift < 0) {
             this.placement = PopoverPlacements.bottom;
           }
           break;
-        case PopoverPlacements.right:
-          if (position.left + this.target.clientWidth + host.clientWidth > window.innerWidth) {
+        }
+        case PopoverPlacements.right: {
+          const shift = scrollLeft - PADDING_SIZE - this.target.clientWidth - host.clientWidth;
+          if (position.left - shift > window.innerWidth) {
             this.placement = PopoverPlacements.left;
           }
           break;
-        case PopoverPlacements.bottom:
-          if (position.top - this.target.clientHeight + host.clientHeight > window.innerHeight) {
+        }
+        case PopoverPlacements.bottom: {
+          const shift = scrollTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
+          if (position.top - shift > window.innerHeight) {
             this.placement = PopoverPlacements.top;
           }
           break;
-        case PopoverPlacements.left:
-          if (position.left - host.clientWidth < 0) {
+        }
+        case PopoverPlacements.left: {
+          const shift = scrollLeft - PADDING_SIZE + host.clientWidth;
+          if (position.left - shift < 0) {
             this.placement = PopoverPlacements.right;
           }
           break;
+        }
       }
     }
 
@@ -174,14 +190,14 @@ export class PopoverComponent {
       switch (this.placement) {
         case PopoverPlacements.top:
         case PopoverPlacements.bottom: {
-          this.renderer.setStyle(this.arrow.nativeElement, 'left',
-            `calc(50% + ${position.shiftX}px)`);
+          this.renderer.setStyle(this.arrow.nativeElement, 'left', `calc(50% + ${position.shiftX}px)`);
+          this.renderer.removeStyle(this.arrow.nativeElement, 'top');
           break;
         }
         case PopoverPlacements.right:
         case PopoverPlacements.left: {
-          this.renderer.setStyle(this.arrow.nativeElement, 'top',
-            `calc(50% + ${position.shiftY}px)`);
+          this.renderer.removeStyle(this.arrow.nativeElement, 'left');
+          this.renderer.setStyle(this.arrow.nativeElement, 'top', `calc(50% + ${position.shiftY}px`);
           break;
         }
       }

@@ -76,13 +76,13 @@
                                   i18n="@@label.layout">Layout</jnt-form-label>
                   <jnt-select formControlName="layout">
                     <jnt-select-option label="Top"
-                                       [key]="ui.overlays.popover.position.top"></jnt-select-option>
+                                       [key]="ui.overlays.popover.placement.top"></jnt-select-option>
                     <jnt-select-option label="Right"
-                                       [key]="ui.overlays.popover.position.right"></jnt-select-option>
+                                       [key]="ui.overlays.popover.placement.right"></jnt-select-option>
                     <jnt-select-option label="Left"
-                                       [key]="ui.overlays.popover.position.left"></jnt-select-option>
+                                       [key]="ui.overlays.popover.placement.left"></jnt-select-option>
                     <jnt-select-option label="Bottom"
-                                       [key]="ui.overlays.popover.position.bottom"></jnt-select-option>
+                                       [key]="ui.overlays.popover.placement.bottom"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-item>
 
@@ -133,7 +133,7 @@
       <![CDATA[contentTemplate: contentTemplate,]]>
     </ng-container>
     <![CDATA[
-    placement: ui.overlays.popover.position.]]>{{layoutControl.value}}<![CDATA[}"
+    placement: ui.overlays.popover.placement.]]>{{layoutControl.value}}<![CDATA[}"
     text="Click me">
   </jnt-button>
 ]]>

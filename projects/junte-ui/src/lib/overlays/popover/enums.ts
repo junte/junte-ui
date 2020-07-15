@@ -10,3 +10,7 @@ export enum PopoverTriggers {
   click = 'click'
 }
 
+export enum PopoverPosition {
+  absolute = 'absolute',
+  fixed = 'fixed'
+}
