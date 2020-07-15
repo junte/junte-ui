@@ -3,7 +3,9 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse, setHours, setMinutes } from 'date-fns';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverService } from '../../overlays/popover/popover.service';
 import { DatePickerFeatures } from './enums';
 
@@ -31,7 +33,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   datePickerFeatures = DatePickerFeatures;
-  opened: boolean;
   timeMeridian = 'AM';
   clockType = CLOCK_TYPE;
   currentView: CLOCK_TYPE = CLOCK_TYPE.hours;
@@ -47,6 +48,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl,
     calendar: this.calendarControl
   });
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
+
+  @HostBinding('attr.opened')
+  opened = false;
 
   @PropertyApi({
     description: 'Placeholder for date picker',
@@ -71,7 +79,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
-              private popover: PopoverService) {
+              private popover: PopoverService,
+              private breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
@@ -80,7 +89,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
         this.onChange(date);
         this.opened = false;
-        this.popover.hide();
+        if (!this.mobile) {
+          this.popover.hide();
+        }
       });
 
     this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
@@ -89,7 +100,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.calendarControl.patchValue(parsed);
         }
-        this.popover.hide();
+        if (!this.mobile) {
+          this.popover.hide();
+        }
       });
   }
 

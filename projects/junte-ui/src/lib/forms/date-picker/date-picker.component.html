@@ -1,5 +1,6 @@
 <jnt-form [formGroup]="form">
-    <jnt-input [placeholder]="placeholder || ''" formControlName="input"
+    <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
+               [placeholder]="placeholder || ''" formControlName="input"
                [jntPopover]="{
                  contentTemplate: calendarTemplate,
                  trigger: ui.overlays.popover.trigger.click,
@@ -9,8 +10,14 @@
                [icon]="ui.icons.calendar">
     </jnt-input>
 
+  <jnt-input *jntFor="ui.breakpoint.mobile" data-input
+             [placeholder]="placeholder || ''" formControlName="input"
+             [icon]="ui.icons.calendar"
+             (click)="opened = !opened">
+  </jnt-input>
+
     <ng-template #calendarTemplate>
-      <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.none">
+      <jnt-stack data-dropdown [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.none">
         <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
         <div *ngIf="features | includes : datePickerFeatures.clock" time-picker class="timePicker">
           <div time-panel>
@@ -52,4 +59,8 @@
         </div>
       </jnt-stack>
     </ng-template>
+
+  <ng-container *ngIf="mobile">
+    <ng-container *ngTemplateOutlet="calendarTemplate"></ng-container>
+  </ng-container>
 </jnt-form>
