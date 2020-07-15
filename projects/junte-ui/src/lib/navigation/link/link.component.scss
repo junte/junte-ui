@@ -166,6 +166,7 @@
       underline: true,
       background-color: null,
       color: null,
+      border-color: $jnt-primary-color,
     ),
     icon: (
       margin-right: $jnt-gutter-tiny,
@@ -316,12 +317,12 @@
         color: if(map-get($active, color), map-get($active, color) !important, null);
         @if map-get($active, underline) == true {
           [data-title] span {
-            border-bottom-color: if(map-get($active, color), map-get($active, color) !important, null);
+            border-bottom-color: if(map-get($active, border-color), map-get($active, border-color) !important, null);
           }
         }
         @if map-get($active, underline) == false {
           [data-title] span {
-            border-bottom-color: transparent;
+            border-bottom-color: transparent !important;
           }
         }
       }

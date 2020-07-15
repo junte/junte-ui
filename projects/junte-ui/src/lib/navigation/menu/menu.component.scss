@@ -37,7 +37,8 @@
         active: (
           underline: true,
           background-color: null,
-          color: null
+          color: null,
+          border-color: $jnt-primary-color,
         ),
       ),
     ),
@@ -73,7 +74,8 @@
         active: (
           underline: true,
           background-color: null,
-          color: null
+          color: null,
+          border-color: $jnt-primary-color,
         ),
         focus: (
           outline: null,
@@ -221,6 +223,7 @@
               underline: map-get($active, underline),
               background-color: map-get($active, background-color),
               color: map-get($active, color),
+              border-color: map-get($active, border-color),
             ),
           ), '&');
         }
@@ -344,6 +347,7 @@
                   underline: map-get($active, underline),
                   background-color: map-get($active, background-color),
                   color: map-get($active, color),
+                  border-color: map-get($active, border-color)
                 ),
               ), '&');
             }
