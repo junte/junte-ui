@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccordionTestComponent } from 'src/components/docs/navigation/accordion/accordion-test.component';
-import { AnchorTestComponent } from 'src/components/docs/navigation/anchor/anchor-test.component';
 import { LinkTestComponent } from 'src/components/docs/navigation/link/link-test.component';
 import { MenuTestComponent } from 'src/components/docs/navigation/menu/menu-test.component';
 import { PagerTestComponent } from 'src/components/docs/navigation/pager/pager-test.component';
@@ -31,11 +30,6 @@ export const routes: Routes = [
         path: 'pager',
         component: PagerTestComponent,
         data: {breadcrumb: 'Pager', animation: 'Pager'}
-      },
-      {
-        path: 'anchor',
-        component: AnchorTestComponent,
-        data: {breadcrumb: 'Anchor', animation: 'Anchor'}
       },
       {
         path: 'breadcrumbs',
