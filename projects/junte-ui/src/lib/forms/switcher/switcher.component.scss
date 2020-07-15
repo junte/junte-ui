@@ -94,7 +94,7 @@
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
         [data-option] {
-          flex: auto;
+          flex: 1;
           justify-content: center;
           @if map-has-key($vars, option) {
             $option: map-get($vars, option);
@@ -123,6 +123,10 @@
     border: 1px solid $jnt-gray-700-color;
     border-radius: map-get($vars, corner);
     overflow: hidden;
+
+    [data-scroll] {
+      margin-right: -1px;
+    }
 
     [data-options] {
       @if map-has-key($vars, option) {
@@ -196,7 +200,7 @@
   }
 
   #{$context} #{$wrapper} [data-placeholder] {
-    flex: auto;
+    flex: 1;
 
     @if map-has-key($vars, option) {
       $option: map-get($vars, option);
