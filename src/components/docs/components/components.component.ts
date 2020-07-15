@@ -106,12 +106,6 @@ const CATEGORIES = [
         link: 'breadcrumbs',
         teaser: 'Super stack...',
       },
-      {
-        name: 'Anchor',
-        icon: LocalUI.icons.anchor,
-        link: 'anchor',
-        teaser: 'Super stack...',
-      }
     ]
   },
   {
