@@ -196,7 +196,12 @@
   }
 
   #{$context} #{$wrapper} [data-placeholder] {
-    width: 100%;
+    flex: auto;
+
+    @if map-has-key($vars, option) {
+      $option: map-get($vars, option);
+      height: map-get($option, height);
+    }
 
     &:nth-child(odd) {
       background-color: $jnt-highlight-background;
