@@ -18,9 +18,11 @@ export class DatePickerTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   clockControl = this.fb.control(false);
+  disableControl = this.fb.control(false);
 
   builder = this.fb.group({
     clock: this.clockControl,
+    disable: this.disableControl
   });
 
   flightDateControl = this.fb.control(null);
@@ -32,6 +34,9 @@ export class DatePickerTestComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.disableControl.valueChanges.subscribe(disabled =>
+      disabled ? this.flightDateControl.disable() : this.flightDateControl.enable());
+
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
   }

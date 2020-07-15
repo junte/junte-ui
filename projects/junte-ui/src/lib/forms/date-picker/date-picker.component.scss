@@ -3,13 +3,38 @@
 @import "overlays/popover/popover";
 @import "forms/input/input";
 
-@mixin jnt-date-picker($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-date-picker($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
     @include for-mobile() {
       border: 1px solid $jnt-control-border-color;
       border-radius: $jnt-corner-small;
+      &[opened='true'] {
+        #{$wrapper} [data-dropdown] {
+          display: block;
+        }
+      }
+    }
+  }
+
+  @include for-mobile() {
+    #{$context} #{$wrapper} [data-input] {
       @include jnt-input((
         scheme: (
           normal: (
@@ -27,88 +52,98 @@
     }
   }
 
-  [data-calendar] {
-    flex: 1;
-  }
+  #{$context} #{$wrapper} [data-dropdown] {
 
-  [time-picker] {
-    width: 250px;
-    padding: $jnt-gutter-normal;
-  }
-  [time-panel] {
-    width: 100%;
-    background-color: $jnt-primary-color;
-
-    [selected-time] {
-      font-size: 36px;
-      float: left;
-
-      span {
-        &[active='true'] {
-          color: white;
-          background-color: $jnt-primary-color;
-          opacity: 1;
-        }
-
-        &[active='false'] {
-          opacity: 0.5;
-        }
-      }
+    @include for-mobile() {
+      display: none;
     }
 
-    [ampm] {
-      width: 25px;
-      font-size: $jnt-font-size-base;
-      line-height: 16px;
-      display: flex;
-      flex-flow: column wrap;
-      padding-top: $jnt-gutter-small;
-
-      span {
-        &[active='true'] {
-          color: white;
-          background-color: $jnt-primary-color;
-          opacity: 1;
-        }
-
-        &[active='false'] {
-          opacity: 0.5;
-        }
-      }
+    [data-calendar] {
+      flex: 1;
     }
-  }
-  [time] {
-    width: 130px;
-    margin: 0 auto;
-    color: white;
-  }
-  [clock] {
-    margin: $jnt-gutter-small auto;
-    width: 215px;
-    height: 215px;
-    border-radius: 215px;
-    position: relative;
-    background-color: $jnt-gray-700-color;
-  }
 
-  [hours], [minutes] {
-    position: absolute;
-    height: 35px;
-    line-height: 35px;
-    width: 35px;
-    border-radius: 35px;
-    color: black;
-    text-align: center;
+    [time-picker] {
+      width: 250px;
+      padding: $jnt-gutter-normal;
+    }
 
-    &:hover {
-      color: white;
+    [time-panel] {
+      width: 100%;
       background-color: $jnt-primary-color;
 
-      &::after {
-        content: '';
+      [selected-time] {
+        font-size: 36px;
+        float: left;
+
+        span {
+          &[active='true'] {
+            color: white;
+            background-color: $jnt-primary-color;
+            opacity: 1;
+          }
+
+          &[active='false'] {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      [ampm] {
+        width: 25px;
+        font-size: $jnt-font-size-base;
+        line-height: 16px;
+        display: flex;
+        flex-flow: column wrap;
+        padding-top: $jnt-gutter-small;
+
+        span {
+          &[active='true'] {
+            color: white;
+            background-color: $jnt-primary-color;
+            opacity: 1;
+          }
+
+          &[active='false'] {
+            opacity: 0.5;
+          }
+        }
       }
     }
 
+    [time] {
+      width: 130px;
+      margin: 0 auto;
+      color: white;
+    }
+
+    [clock] {
+      margin: $jnt-gutter-small auto;
+      width: 215px;
+      height: 215px;
+      border-radius: 215px;
+      position: relative;
+      background-color: $jnt-gray-700-color;
+    }
+
+    [hours], [minutes] {
+      position: absolute;
+      height: 35px;
+      line-height: 35px;
+      width: 35px;
+      border-radius: 35px;
+      color: black;
+      text-align: center;
+
+      &:hover {
+        color: white;
+        background-color: $jnt-primary-color;
+
+        &::after {
+          content: '';
+        }
+      }
+
+    }
   }
 }
 
