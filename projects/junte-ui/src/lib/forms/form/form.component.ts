@@ -70,19 +70,22 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     if (!!this.form) {
       this.form.statusChanges.subscribe(() => {
-        if (!!this.controls) {
-          this.controls.filter(component => !!component.name && !!component.messages.length)
-            .forEach(component => {
-              const control = component.getControl();
-              if (!!control) {
-                const messages = component.messages;
-                messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
-              }
-            });
-        }
-
+        this.render();
         this.checked.emit(this.check(this.form));
       });
+    }
+  }
+
+  render() {
+    if (!!this.controls) {
+      this.controls.filter(component => !!component.name && !!component.messages.length)
+        .forEach(component => {
+          const control = component.getControl();
+          if (!!control) {
+            const messages = component.messages;
+            messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
+          }
+        });
     }
   }
 

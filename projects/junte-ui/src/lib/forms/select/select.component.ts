@@ -2,12 +2,15 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   forwardRef,
   HostBinding,
   HostListener,
-  Input, OnDestroy,
-  OnInit, Output,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
   QueryList,
   Renderer2,
   TemplateRef,
@@ -17,19 +20,20 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { Breakpoint } from '../../core/enums/breakpoint';
-import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
-import { PopoverComponent, PopoverOptions } from '../../overlays/popover/popover.component';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
 const MIN_WIDTH = 20;
 const CHAR_WIDTH = 8;
+const CHECKING_INTERVAL = 100;
 
 @Component({
   selector: 'jnt-select-option',
@@ -73,7 +77,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     return this.breakpoint.current === Breakpoint.mobile;
   }
 
-  private _opened = false;
   private fetcher: Subscription;
 
   options: Options = {persisted: {}, found: {}};
@@ -183,41 +186,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   updated = new EventEmitter<any>();
 
   @HostBinding('attr.data-opened')
-  set opened(opened: boolean) {
-    this._opened = opened;
-    if (!opened) {
-      this.queryControl.setValue(null);
-    }
-    const input = this.queryInput.nativeElement;
-    const checking = () => {
-      const style = getComputedStyle(input);
-      if (style.display !== 'none') {
-        if (opened) {
-          input.focus();
-        }
-      } else {
-        setTimeout(() => checking(), 100);
-      }
-    };
-    setTimeout(() => checking(), 100);
-    if (!this.mobile) {
-      if (opened) {
-        this.reference.popover = this.popover.show(this.hostRef, new PopoverOptions({
-          contentTemplate: this.optionsTemplate,
-          features: [Feature.dropdown]
-        }));
-        this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
-          .subscribe(() => this.opened = false);
-      } else {
-        this.popover.hide(this.hostRef);
-        this.reference.popover = null;
-      }
-    }
-  }
-
-  get opened() {
-    return this._opened;
-  }
+  opened = false;
 
   @PropertyApi({
     description: 'Select mode',
@@ -271,10 +240,16 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   })
   @Input() loader = null;
 
+  @PropertyApi({
+    description: 'Multiplex mode',
+    type: 'boolean'
+  })
+  @Input() multiplex = false;
+
   @HostListener('document:click', ['$event.path'])
   clickOutside(path: HTMLElement[]) {
     if (!!this.reference.popover && this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
-      this.opened = false;
+      this.close();
     }
   }
 
@@ -285,7 +260,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         break;
       case SelectMode.multiple:
         if (target === this.selectedList.nativeElement) {
-          this.opened = true;
+          this.open();
         }
         break;
     }
@@ -294,10 +269,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @HostListener('blur')
   blurred() {
     this.onTouched();
-  }
-
-  close() {
-    this.opened = false;
   }
 
   onChange: (value: Key | Key[]) => {};
@@ -410,9 +381,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       }
     } else {
       this.selected = [option.key];
-      this.opened = false;
     }
 
+    if (this.mode !== SelectMode.multiple || !this.multiplex) {
+      this.close();
+    }
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
     this.updated.emit(option.value);
   }
@@ -424,6 +397,37 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       this.selected.splice(index, 1);
       this.changes.selected++;
       this.onChange(this.mode === SelectMode.multiple ? this.selected : null);
+    }
+  }
+
+  open() {
+    this.opened = true;
+    const input = this.queryInput.nativeElement;
+    const checking = () => {
+      const style = getComputedStyle(input);
+      if (style.display !== 'none') {
+        input.focus();
+      } else {
+        setTimeout(() => checking(), CHECKING_INTERVAL);
+      }
+    };
+    setTimeout(() => checking(), CHECKING_INTERVAL);
+    if (!this.mobile) {
+      this.reference.popover = this.popover.show(this.hostRef, {
+        contentTemplate: this.optionsTemplate,
+        features: [Feature.dropdown]
+      });
+      this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+        .subscribe(() => this.close());
+    }
+  }
+
+  close() {
+    this.opened = false;
+    this.queryControl.setValue(null);
+    if (!!this.reference.popover) {
+      this.popover.hide(this.hostRef);
+      this.reference.popover = null;
     }
   }
 

@@ -16,7 +16,7 @@
   <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">
-      <li *ngFor="let key of selected" (click)="mode == selectMode.single ? opened = true : null">
+      <li *ngFor="let key of selected" (click)="mode == selectMode.single ? open() : null">
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
@@ -31,12 +31,12 @@
       </li>
     </ng-container>
 
-    <li [formGroup]="form" (click)="opened = true" data-query>
+    <li [formGroup]="form" (click)="open()" data-query>
       <input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
              formControlName="query">
     </li>
   </ul>
-  <button data-toggle type="button" (click)="opened = !opened">
+  <button data-toggle type="button" (click)="opened ? close() : open()">
     <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
   </button>
 </div>

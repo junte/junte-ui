@@ -1,6 +1,6 @@
 <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.small">
   <div *ngFor="let section of sections; let i = index;" data-section>
-    <div data-title tabindex="0" (click)="active == i ? active = null : active = i"
+    <div data-title tabindex="0" (click)="active == i ? active = null : active = i;changed.emit(active)"
          [attr.active]="active == i">
       <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
       <span>{{section.title}}</span>

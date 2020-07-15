@@ -15,9 +15,6 @@ export class IconComponent {
 
   iconType = IconType;
 
-  @HostBinding('attr.tag')
-  tag: string;
-
   @HostBinding('attr.data-size')
   _size: Size = Size.auto;
 
@@ -26,7 +23,11 @@ export class IconComponent {
 
   @HostBinding('attr.data-type')
   type: IconType = IconType.font;
+
   iconset: string = DEFAULT_ICONSET;
+
+  @HostBinding('attr.tag')
+  tag: string;
 
   @PropertyApi({
     description: 'Icon query in special format',
