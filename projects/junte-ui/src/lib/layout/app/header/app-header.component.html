@@ -41,7 +41,11 @@
     <jnt-button data-burger
                 [icon]="opened ? ui.icons.cancel : ui.icons.menu"
                 [outline]="ui.outline.transparent"
-                [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+                [jntPopover]="{
+                  contentTemplate: dropdownTemplate,
+                  trigger: ui.overlays.popover.trigger.click,
+                  position: ui.overlays.popover.position.fixed
+                }">
     </jnt-button>
     <ng-template #dropdownTemplate>
       <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>

@@ -75,7 +75,6 @@ export class PopoverDirective implements OnDestroy {
   }
 
   private show() {
-    console.log('show');
     this.reference = this.popover.show(this.hostRef, this.options);
     this.displayed.emit(this.reference);
   }

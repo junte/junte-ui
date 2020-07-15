@@ -11,7 +11,7 @@ import { SkeletonType } from '../../layout/skeleton/enums';
 import { StackType } from '../../layout/stack/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
-import { PopoverPlacements, PopoverTriggers } from '../../overlays/popover/enums';
+import { PopoverPlacements, PopoverPosition, PopoverTriggers } from '../../overlays/popover/enums';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
 import { Feature } from './feature';
@@ -82,8 +82,9 @@ export class UI {
   };
   static overlays = {
     popover: {
-      position: PopoverPlacements,
-      trigger: PopoverTriggers
+      placement: PopoverPlacements,
+      trigger: PopoverTriggers,
+      position: PopoverPosition
     }
 
   };
