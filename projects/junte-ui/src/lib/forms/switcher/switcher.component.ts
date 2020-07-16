@@ -1,5 +1,6 @@
 import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -126,13 +127,14 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   version = 0;
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private breakpoint: BreakpointService) {
+  constructor(private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
   }
 
   writeValue(value: any | any[]) {

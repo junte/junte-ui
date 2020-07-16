@@ -14,6 +14,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
@@ -110,13 +111,14 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     return Math.ceil(this.count / this.pageSize.value);
   }
 
-  onChange: (filter: DefaultSearchFilter) => {};
-  onTouched: () => {};
+  onChange: (filter: DefaultSearchFilter) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {

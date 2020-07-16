@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
@@ -220,12 +221,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.tabindex') tabindex = 1;
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {

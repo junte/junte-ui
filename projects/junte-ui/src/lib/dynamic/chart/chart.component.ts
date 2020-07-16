@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
@@ -49,8 +50,8 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
   @Input() widthPoligon = 50;
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
@@ -82,6 +83,9 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
 
   get heightSvg() {
     return this.heightIndicator + (this.heightIndicator * this.indicators.length);
+  }
+
+  constructor(private logger: NGXLogger) {
   }
 
   ngAfterContentInit() {

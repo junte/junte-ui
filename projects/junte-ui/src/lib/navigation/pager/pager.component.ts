@@ -1,5 +1,6 @@
 import { Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PagerMode } from './enums';
@@ -47,8 +48,8 @@ export class PagerComponent implements ControlValueAccessor {
   @Input()
   mode: PagerMode = PagerMode.page;
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
@@ -64,6 +65,9 @@ export class PagerComponent implements ControlValueAccessor {
 
   get selectedPage() {
     return this._selectedPage;
+  }
+
+  constructor(private logger: NGXLogger) {
   }
 
   writeValue(value: number): void {
