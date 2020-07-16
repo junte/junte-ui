@@ -396,6 +396,7 @@ export const icons = {
     bell: 'bell:animated:default',
     reload: 'reload:animated:default',
     spinner: 'spinner:animated:default',
-    recording: 'recording:animated:default'
+    recording: 'recording:animated:default',
+    warning: 'warning:animated:default:colored'
   }
 };
