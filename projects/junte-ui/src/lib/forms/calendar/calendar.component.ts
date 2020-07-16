@@ -29,6 +29,7 @@ import {
   subMonths,
   subYears
 } from 'date-fns';
+import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { JunteUIModuleConfig } from '../../config';
@@ -134,13 +135,14 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   isEqual = isEqual;
   getYear = getYear;
 
-  onChange: (date: Date) => {};
-  onTouched: () => {};
+  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(public config: JunteUIModuleConfig) {
+  constructor(private logger: NGXLogger,
+              public config: JunteUIModuleConfig) {
   }
 
   ngOnInit() {

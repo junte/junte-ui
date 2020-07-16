@@ -300,8 +300,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     this.opened = false;
   }
 
-  onChange: (value: Key | Key[]) => {};
-  onTouched: () => {};
+  onChange: (value: Key | Key[]) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
 

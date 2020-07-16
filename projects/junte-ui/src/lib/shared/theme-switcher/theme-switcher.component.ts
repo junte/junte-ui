@@ -1,5 +1,6 @@
 import { Component, forwardRef, HostBinding, HostListener, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { Theme } from '../../core/enums/theme';
 import { UI } from '../../core/enums/ui';
 
@@ -26,13 +27,14 @@ export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {
     theme: this.themeControl
   });
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
