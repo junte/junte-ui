@@ -41,6 +41,9 @@
                                [readonly]="readonlyControl.value"
                                [min]="minControl.value"
                                [max]="maxControl.value"
+                               [transform]="transformControl.value"
+                               [step]="stepControl.value"
+                               [features]="clearControl.value ? [ui.feature.clear] : null"
                                autocomplete="off"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -89,7 +92,7 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="scheme"
-                                  i18n="@@label.state">Scheme
+                                  i18n="@@label.scheme">Scheme
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="scheme"
@@ -151,6 +154,26 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="transform"
+                                  i18n="@@label.text_align">Text transform
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="transform">
+                    <jnt-switcher-option label="Capitalize"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.capitalize"
+                                         [value]="ui.text.transform.capitalize"></jnt-switcher-option>
+                    <jnt-switcher-option label="Uppercase"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.uppercase"
+                                         [value]="ui.text.transform.uppercase"></jnt-switcher-option>
+                    <jnt-switcher-option label="Lowercase"
+                                         i18n-label="@@label.capitalize"
+                                         [icon]="localUi.icons.lowercase"
+                                         [value]="ui.text.transform.lowercase"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="type"
                                   i18n="@@label.state">State
                   </jnt-form-label>
@@ -174,13 +197,13 @@
                   <jnt-switcher formControlName="states">
                     <jnt-switcher-option label="Loading"
                                          [icon]="ui.icons.animated.spinner"
-                                         [value]="ui.forms.input.state.loading"></jnt-switcher-option>
+                                         [value]="ui.state.loading"></jnt-switcher-option>
                     <jnt-switcher-option label="Warning"
                                          [icon]="ui.icons.warning"
-                                         [value]="ui.forms.input.state.warning"></jnt-switcher-option>
+                                         [value]="ui.state.warning"></jnt-switcher-option>
                     <jnt-switcher-option label="Checked"
                                          [icon]="ui.icons.checked"
-                                         [value]="ui.forms.input.state.checked"></jnt-switcher-option>
+                                         [value]="ui.state.checked"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -203,6 +226,10 @@
                       <jnt-checkbox formControlName="mask"
                                     label="Mask"
                                     i18n-label="@@label.mask"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="clear"
+                                    label="Clear"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
@@ -237,6 +264,17 @@
                       <jnt-form-label>Max</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="max" [type]="ui.forms.input.type.number"></jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
+                <jnt-row [align]="ui.layout.grid.row.align.center">
+                  <jnt-col [span]="12">
+                    <jnt-form-item>
+                      <jnt-form-label for="steps">Step</jnt-form-label>
+                      <jnt-form-control>
+                        <jnt-input formControlName="steps" [type]="ui.forms.input.type.number"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
                   </jnt-col>
@@ -293,7 +331,10 @@
   <ng-container *ngIf="alignControl.value">
     <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="rowsControl.value">
+  <ng-container *ngIf="transformControl.value">
+    <![CDATA[[textAlign]="ui.text.transform.]]>{{transformControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="multilineControl.value && rowsControl.value">
     <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="minControl.value">
@@ -301,6 +342,12 @@
   </ng-container>
   <ng-container *ngIf="maxControl.value">
     <![CDATA[[max]="]]>{{maxControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="stepControl.value">
+    <![CDATA[[step]="]]>{{stepControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="clearControl.value">
+    <![CDATA[[features]="[ui.feature.clear]"]]>
   </ng-container>
     <![CDATA[>
 </jnt-input>

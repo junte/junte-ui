@@ -1,14 +1,18 @@
-@import "jnt-variables";
-@import "../../component";
+@import 'jnt-variables';
+@import '../../component';
+@import 'layout/responsive';
 
 [preview] ::ng-deep > [wrapper] {
   padding: 0 !important;
 }
 
-[actions] ::ng-deep [host=jnt-animated-icon-host] svg {
-  fill: $jnt-white-color;
-}
-
 [aside] {
   padding-top: $jnt-gutter-normal;
+}
+
+[data-name] {
+  color: $jnt-white-color;
+  @include max-for-tablet() {
+    color: $jnt-primary-color;
+  }
 }

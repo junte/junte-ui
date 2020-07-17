@@ -68,6 +68,12 @@ export const routes: Routes = [
         data: {breadcrumb: 'Team'},
         loadChildren: () => loadChildren(import('../team/team.module')
           .then(m => m.TeamModule))
+      },
+      {
+        path: 'components',
+        data: {breadcrumb: 'Components'},
+        loadChildren: () => loadChildren(import('./components/components.module')
+          .then(m => m.ComponentsModule))
       }
     ]
   }

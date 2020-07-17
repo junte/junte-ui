@@ -74,44 +74,60 @@
           <jnt-accordion-section title="Routing"
                                  i18n-title="@@label.routing">
             <ng-template #accordionContentTemplate>
-              <app-code-highlight  [language]="language.typescript">
+              <p>Create file breadcrumbs-routing.module.ts</p>
+              <app-code-highlight [language]="language.typescript">
                 <!-- @formatter:off-->
-<![CDATA[
-  const routes: Routes = [
-    {
-      path: '',
-      component: BreadcrumbsTestComponent,
-      data: {breadcrumb: 'Home'},
-      children: [
-        {
-          path: 'page',
-          component: BreadCrumbTest1Component,
-          data: {breadcrumb: getLabel},
+  <![CDATA[
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { BreadcrumbsTestComponent } from './breadcrumbs-test.component';
+import { BreadcrumbResolver } from './resolver';
+import { BreadCrumbTest1Component } from './tests/test.component';
+import { BreadCrumbTest2Component } from './tests/test2.component';
+import { BreadCrumbTest3Component } from './tests/test3.component';
+
+export function getLabel(data: any) {
+  return data.obj.label;
+              }
+
+
+   const routes: Routes = [
+     {
+                  path: '',
+                  component: BreadcrumbsTestComponent,
+                  data: {breadcrumb: 'Home'},
+                children: [
+                {
+                path: 'page',
+                component: BreadCrumbTest1Component,
+                data: {breadcrumb: getLabel},
           resolve: {obj: BreadcrumbResolver},
           children: [
             {
               path: 'page-2',
-              component: BreadCrumbTest2Component,
-              data: {breadcrumb: 'Second page'},
-              children: [
+                component: BreadCrumbTest2Component,
+                data: {breadcrumb: 'Second page'},
+                children: [
                 {
-                  path: 'page-3',
-                  component: BreadCrumbTest3Component,
-                  data: {breadcrumb: 'Third page'}
+                path: 'page-3',
+                component: BreadCrumbTest3Component,
+                data: {breadcrumb: 'Third page'}
                 }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ];
+                ]
+                }
+                ]
+                }
+                ]
+                }
+                ];
 
-    @NgModule({
-      imports: [RouterModule.forChild(routes)],
-      exports: [RouterModule]
-    })
-]]>
+                @NgModule({
+                imports: [RouterModule.forChild(routes)],
+                exports: [RouterModule]
+                })
+                export class BreadcrumbsRoutingModule {
+                }
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
@@ -119,22 +135,59 @@
           <jnt-accordion-section title="Resolver"
                                  i18n-title="@@label.resolver">
             <ng-template #accordionContentTemplate>
+              <p>Create file resolver.ts</p>
               <app-code-highlight [language]="language.typescript">
                 <!-- @formatter:off-->
 <![CDATA[
-  class Breadcrumb {
-    public label = 'First page';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+class Breadcrumb {
+  public label = 'First page';
+}
+
+@Injectable()
+  export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
+  constructor() {
   }
 
-  @Injectable()
-    export class BreadcrumbResolver implements Resolve<Observable<Breadcrumb>> {
-    constructor() {
-    }
-
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Breadcrumb> {
     return of(new Breadcrumb());
-    }
   }
+}
+]]>
+                  <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Tests"
+                                 i18n-title="@@label.tests">
+            <ng-template #accordionContentTemplate>
+              <p>Create directory "tests" in it create files test.component.ts test2.component.ts test3.component.ts</p>
+              <app-code-highlight [language]="language.typescript">
+                <!-- @formatter:off-->
+
+<![CDATA[
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+
+@Component({
+selector: 'app-breadcrumbs-test1',
+template: `
+  <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+    <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+    <div block>1</div>
+    <router-outlet></router-outlet>
+  </jnt-stack>
+`,
+styleUrls: ['../../../_component.scss'],
+  styles: ['div[block] {font-size: 20px}']
+  })
+
+export class BreadCrumbTest1Component {
+  ui = UI;
+}
 ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>

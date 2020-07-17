@@ -39,7 +39,7 @@
     ),
     card: (
       height: 70px,
-      corner: null,
+      corner: $jnt-corner-normal,
     ),
   );
 
@@ -105,4 +105,8 @@
     background-size: 400% 100%;
     animation: jnt-loading 1.5s ease infinite;
   }
+}
+
+@if $jnt-debug {
+  @debug 'skeleton compiled';
 }

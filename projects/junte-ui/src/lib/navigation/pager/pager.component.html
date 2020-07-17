@@ -1,36 +1,30 @@
 <jnt-stack [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.small"
            [justify]="ui.flex.justify.center">
-  <div [attr.disabled]="selectedPage === 1"
-       (click)="setPage(1)" tabindex="0">
-    <a [attr.data-href]="'?page=' + 1"
-       title="First">
-      <jnt-icon [icon]="ui.icons.first"></jnt-icon>
-    </a>
-  </div>
-  <div [attr.disabled]="selectedPage === 1"
-       (click)="setPage(selectedPage - 1)" tabindex="0">
-    <a title="Previous"
-       data-page="1">
-      <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-    </a>
-  </div>
-  <div page *ngFor="let page of pages"
-       (click)="setPage(page)"
-       [attr.active]="page === selectedPage" tabindex="0">
-    <a>{{page}}</a>
-  </div>
-
-  <div [attr.disabled]="selectedPage >= pagesCount"
-       (click)="setPage(selectedPage + 1)" tabindex="0">
-    <a title="Next">
-      <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-    </a>
-  </div>
-  <div (click)="setPage(pagesCount)"
-       [attr.disabled]="selectedPage >= pagesCount" tabindex="0">
-    <a title="Last">
-      <jnt-icon [icon]="ui.icons.last"></jnt-icon>
-    </a>
-  </div>
+  <a [attr.data-href]="'?page=' + 1"
+     [attr.disabled]="selectedPage === 1"
+     (click)="setPage(1)"
+     title="First">
+    <jnt-icon [icon]="ui.icons.first"></jnt-icon>
+  </a>
+  <a title="Previous"
+     [attr.disabled]="selectedPage === 1"
+     (click)="setPage(selectedPage - 1)"
+     data-page="1">
+    <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+  </a>
+  <a *ngFor="let page of pages"
+     (click)="setPage(page)"
+     [attr.active]="page === selectedPage"
+     tabindex="0">{{page}}</a>
+  <a title="Next"
+     [attr.disabled]="selectedPage >= pagesCount"
+     (click)="setPage(selectedPage + 1)">
+    <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+  </a>
+  <a title="Last"
+     (click)="setPage(pagesCount)"
+     [attr.disabled]="selectedPage >= pagesCount">
+    <jnt-icon [icon]="ui.icons.last"></jnt-icon>
+  </a>
 </jnt-stack>

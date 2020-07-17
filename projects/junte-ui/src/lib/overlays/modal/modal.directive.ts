@@ -1,5 +1,4 @@
 import { Directive, HostListener, Input } from '@angular/core';
-import { ModalOptions } from './modal.component';
 import { ModalService } from './modal.service';
 
 @Directive({
@@ -8,7 +7,7 @@ import { ModalService } from './modal.service';
 })
 export class ModalDirective {
 
-  @Input('jntModal') options: ModalOptions;
+  @Input('jntModal') options: Object;
 
   @HostListener('click')
   click() {

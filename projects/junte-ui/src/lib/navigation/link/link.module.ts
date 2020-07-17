@@ -11,6 +11,7 @@ import { LinkComponent } from './link.component';
 @NgModule({
   imports: [
     CommonModule,
+
     RouterModule,
     IconModule,
     BadgeModule,

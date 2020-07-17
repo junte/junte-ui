@@ -26,6 +26,7 @@ export class LocalUI {
       home: 'home:svg:local',
       documentation: 'documentation:svg:local',
       team: 'team:svg:local',
+      components: 'components:svg:local'
     },
       contacts: 'contacts:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
@@ -80,6 +81,8 @@ export class LocalUI {
       switcher: 'switcher:font:junte-ui-test-layout',
       pipes: 'pipes:font:junte-ui-test-layout',
       message: 'message:font:junte-ui-test-layout',
+      timeline: 'timeline:font:junte-ui-test-layout',
+      timer: 'timer:font:junte-ui-test-layout',
     // layout
      padding: {
        tiny: 'padding-tiny:font:junte-ui-test-layout',
@@ -103,6 +106,10 @@ export class LocalUI {
       // textAlign
         left: 'text-align-left:font:junte-ui-test-layout',
         right: 'text-align-right:font:junte-ui-test-layout',
+      // textSize
+        capitalize: 'capitalize:font:junte-ui-test-layout',
+        uppercase: 'uppercase:font:junte-ui-test-layout',
+        lowercase: 'lowercase:font:junte-ui-test-layout',
 
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',

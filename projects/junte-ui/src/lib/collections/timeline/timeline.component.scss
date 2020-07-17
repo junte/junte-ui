@@ -1,0 +1,101 @@
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/icon";
+
+@mixin jnt-timeline($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    sizes: (
+      mark: 48px,
+      icon: 24px
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: block;
+  }
+
+  #{$wrapper} #{$context} [data-lines] {
+    @if map-has-key($vars, sizes) {
+      $sizes: map-get($vars, sizes);
+      [data-mark] {
+        width: map-get($sizes, mark);
+        [data-icon] {
+          @include jnt-icon((size: map-get($sizes, icon)), '&');
+        }
+      }
+      [data-circle] {
+        width: map-get($sizes, mark);
+        height: map-get($sizes, mark);
+      }
+      [data-line] {
+        width: map-get($sizes, mark);
+        min-width: map-get($sizes, mark);
+        max-width: map-get($sizes, mark);
+      }
+
+    }
+    [data-mark] {
+      display: flex;
+      justify-content: center;
+      [data-circle] {
+        border-radius: 50%;
+        color: $jnt-white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $jnt-font-size-big;
+      }
+      [data-icon] {
+        line-height: 1;
+      }
+    }
+
+    [data-line] {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      div {
+        width: 1px;
+        border-left: 1px dashed $jnt-primary-light-color;
+      }
+    }
+    &:last-child {
+       [data-line] {
+         div {
+           display: none;
+         }
+       }
+     }
+
+    [data-title] {
+      font-size: $jnt-font-size-big;
+      display: flex;
+      align-items: center;
+    }
+
+    [data-content] {
+      padding: $jnt-gutter-tiny 0;
+      flex: 1;
+    }
+
+  }
+
+}
+
+@if $jnt-debug {
+  @debug 'timeline compiled';
+}

@@ -1,16 +1,20 @@
 import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
-import { TextAlign } from '../../core/enums/text';
+import { State } from '../../core/enums/state';
+import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
-import { InputScheme, InputState, InputType } from './enums';
+import { InputScheme, InputType } from './enums';
 
 const BACKSPACE = 8;
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
 const TAB = 9;
+const ENTER = 13;
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -27,14 +31,15 @@ const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
 
+  @HostBinding('attr.host') readonly host = 'jnt-input-host';
+
   ui = UI;
   inputType = InputType;
-  inputState = InputState;
+  inputState = State;
+  feature = Feature;
   view = {password: {display: false}};
 
   private _mask: string;
-
-  @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   inputControl = this.fb.control(null);
   formattedControl = this.fb.control(null);
@@ -45,6 +50,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', {read: ElementRef, static: false})
   input: ElementRef<any>;
+
+  @HostBinding('attr.data-focused')
+  focused = false;
+
+  @HostBinding('attr.data-disabled')
+  disabled = false;
 
   @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
@@ -65,6 +76,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'string',
   })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Label for input',
+    type: 'TextTransform',
+    options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
+  })
+  @Input() transform: TextTransform;
 
   @PropertyApi({
     description: 'Auto complete for input',
@@ -98,6 +116,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'number',
   })
   @Input() max: number = null;
+
+  @PropertyApi({
+    description: 'Step for entered value. For input with typeControl = number',
+    type: 'number',
+  })
+  @Input() step = 1;
 
   @PropertyApi({
     description: 'Used to specify that the input field is read-only',
@@ -142,17 +166,18 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input state',
-    path: 'ui.forms.input.state',
-    options: [InputState.loading, InputState.warning, InputState.checked]
+    path: 'ui.state',
+    options: [State.loading, State.warning, State.checked]
   })
   @HostBinding('attr.data-state')
-  @Input() state: InputState;
+  @Input() state: State;
 
   @PropertyApi({
     description: 'Allow multiple lines in input',
     type: 'boolean',
     default: 'false',
   })
+  @HostBinding('attr.data-multiline')
   @Input() multiline = false;
 
   @PropertyApi({
@@ -180,17 +205,34 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
+    description: 'Button for reset input',
+    path: 'ui.feature',
+    options: [Feature.clear],
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
+  @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
   @Output() click = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) {
+  @HostBinding('attr.tabindex') tabindex = 1;
+
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.inputControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(value => this.onChange(value));
+      .subscribe(value => this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
     this.formattedControl.valueChanges
       .subscribe(formatted => {
@@ -239,12 +281,36 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   keydown(event: KeyboardEvent) {
-    if (this.type === InputType.number && (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
+    if (this.type === InputType.number &&
+      (this.inputControl.value && this.inputControl.value.length === 1 && event.keyCode === BACKSPACE)) {
       this.inputControl.patchValue(null);
+    }
+    if (event.keyCode === ENTER) {
+      event.preventDefault();
+    }
+  }
+
+  keyup() {
+    let value = this.inputControl.value;
+
+    if (this.type === InputType.text && !!this.transform && !!value) {
+      switch (this.transform) {
+        case TextTransform.capitalize:
+          value = value.charAt(0).toUpperCase() + value.slice(1);
+          break;
+        case TextTransform.lowercase:
+          value = value.toLowerCase();
+          break;
+        case TextTransform.uppercase:
+          value = value.toUpperCase();
+          break;
+      }
+      this.inputControl.setValue(value);
     }
   }
 
   blur() {
+    this.onTouched();
     if (this.type === InputType.number) {
       if (this.inputControl.value === '' || this.inputControl.value === null) {
         this.inputControl.patchValue(null);
@@ -252,40 +318,22 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       }
 
       let number = +this.inputControl.value;
-
       if (this.max !== null && number > this.max) {
         number = this.max;
       }
-
       if (this.min !== null && number < this.min) {
         number = this.min;
       }
-
-      this.inputControl.patchValue(number.toString());
+      this.inputControl.patchValue(number);
     }
   }
 
   writeValue(value) {
-    this.form.patchValue(!!this.mask
-      ? this.masking(value) : {input: value});
-  }
-
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
+    this.form.patchValue(!!this.mask ? this.masking(value) : {input: value}, {emitEvent: false});
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.inputControl.disable() : this.inputControl.enable();
+    this.disabled = disabled;
   }
 
   up() {
@@ -293,7 +341,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
       this.inputControl.patchValue(number);
     } else if (this.max === null || number < this.max) {
-      this.inputControl.patchValue(++number);
+      this.step ? this.inputControl.patchValue(number + +this.step) : this.inputControl.patchValue(++number);
     }
   }
 
@@ -302,7 +350,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
       this.inputControl.patchValue(number);
     } else if (this.max === null || number < this.max) {
-      this.inputControl.patchValue(--number);
+      this.step ? this.inputControl.patchValue(number - +this.step) : this.inputControl.patchValue(--number);
     }
   }
 }

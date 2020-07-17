@@ -3,18 +3,18 @@
                [gutter]="ui.gutter.small"
                [align]="ui.flex.align.center">
         <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
-        <div data-title>{{title}}</div>
+        <span>{{title}}</span>
     </jnt-stack>
 </ng-template>
 
-<jnt-stack [orientation]="ui.orientation.horizontal"
+<jnt-stack data-title tabindex="0"
+           [attr.active]="opened"
+           [orientation]="ui.orientation.horizontal"
            [align]="ui.flex.align.center"
-           [justify]="ui.flex.justify.between">
+           [justify]="ui.flex.justify.between"
+           (click)="opened = !opened">
     <ng-container *ngTemplateOutlet="!!titleTemplate ? titleTemplate : defaultTitleTemplate"></ng-container>
-    <jnt-button [icon]="ui.icons.chevronDown"
-                [outline]="ui.outline.ghost"
-                [size]="ui.size.small"
-                (click)="opened = !opened"></jnt-button>
+    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
 </jnt-stack>
 
 <div data-content *ngIf="opened">

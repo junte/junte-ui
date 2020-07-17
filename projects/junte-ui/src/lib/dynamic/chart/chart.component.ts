@@ -1,5 +1,6 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
@@ -29,17 +30,17 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   indicators: ChartIndicatorComponent[] = [];
 
   @Input() keyField: string;
+
   @PropertyApi({
     description: 'Title of the charts group',
     type: 'string'
   })
-
   @Input() title: string;
+
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
-
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
@@ -48,6 +49,12 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   @Input() heightIndicator = 55;
 
   @Input() widthPoligon = 50;
+
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
   @Input()
   set widthMark(width: number) {
@@ -59,7 +66,7 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   set selected(value: any) {
-    let isSame = false;
+    let isSame: boolean;
     if (!!this.keyField && !!this._selected && !!value) {
       isSame = this._selected[this.keyField] === value[this.keyField];
     } else {
@@ -78,32 +85,20 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
     return this.heightIndicator + (this.heightIndicator * this.indicators.length);
   }
 
+  constructor(private logger: NGXLogger) {
+  }
+
   ngAfterContentInit() {
     this.indicators = this.indicatorsComponents.toArray();
     this.indicatorsComponents.changes
       .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
-  onChange(value: any): void {
-  }
-
-  onTouched(): void {
-  }
-
   writeValue(value: any): void {
     this._selected = value;
   }
 
-  registerOnChange(fn): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
-    this.onTouched = fn;
-  }
-
   trackByFn(index, indicator) {
-    return index;
+    return indicator.data.id || index;
   }
-
 }

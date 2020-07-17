@@ -11,7 +11,8 @@ import {
   NgModule,
   OnInit
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../decorators/api';
 
 enum SelectMode {
@@ -38,6 +39,12 @@ class Config {
 
 const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
 
+const hub = new EventEmitter();
+
+export function eventEmitterFactory() {
+  return hub;
+}
+
 @Directive({
   selector: '[jntSelectable]',
   providers: [
@@ -48,10 +55,10 @@ const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
     },
     {
       provide: SELECTABLE_SIGNALS,
-      useValue: new EventEmitter()
+      useFactory: eventEmitterFactory
     }]
 })
-export class SelectableDirective implements OnInit {
+export class SelectableDirective implements OnInit, ControlValueAccessor {
 
   config: Config = new Config({
     mode: SelectMode.single,
@@ -64,7 +71,7 @@ export class SelectableDirective implements OnInit {
 
   @HostBinding('attr.data-selected')
   get selected() {
-    let {value} = this.config;
+    const {value} = this.config;
     return this.state.findIndex(e => isEqual(e, value)) !== -1;
   }
 
@@ -88,19 +95,18 @@ export class SelectableDirective implements OnInit {
 
   state: any[];
 
-  constructor(@Inject(SELECTABLE_SIGNALS) private signals: EventEmitter<any>) {
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
 
+  constructor(@Inject(SELECTABLE_SIGNALS) private signals: EventEmitter<any>,
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {
     this.signals.subscribe(state => this.state = state);
   }
-
-  onChange: Function = () => {
-  };
-
-  onTouched: Function = () => {
-  };
 
   writeValue(value: any | any[]) {
     this.state = !!value ? Array.isArray(value) ? value : [value] : [];
@@ -110,17 +116,9 @@ export class SelectableDirective implements OnInit {
     this.disabled = disabled;
   }
 
-  registerOnChange(fn: Function): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: Function): void {
-    this.onTouched = fn;
-  }
-
   @HostListener('click')
   select() {
-    let {mode, value, enabled, allowEmpty} = this.config;
+    const {mode, value, enabled, allowEmpty} = this.config;
     if (!enabled) {
       return;
     }

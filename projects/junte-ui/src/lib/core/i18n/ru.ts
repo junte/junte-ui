@@ -9,7 +9,8 @@ export const ru = {
     reload: 'Обновить',
     hide_sidebar: 'Скрыть панель',
     ok: 'Ок',
-    cancel: 'Отмена'
+    cancel: 'Отмена',
+    select_all: 'Выбрать все'
   }
 
 };

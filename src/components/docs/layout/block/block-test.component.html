@@ -30,7 +30,6 @@
                 <ng-template #document let-height="height">
                   <jnt-block #block data-block [title]="titleControl.value ? 'Block title' : null"
                              [padding]="paddingControl.value"
-                             [scheme]="schemeControl.value"
                              [width]="widthControl.value"
                              [state]="stateControl.value"
                              [features]="adaptedControl.value ? [ui.feature.adapted] : null">
@@ -52,30 +51,6 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.flex.align.stretch">
-
-                  <jnt-form-item>
-                    <jnt-form-label for="scheme"
-                                    i18n="@@label.scheme">Scheme
-                    </jnt-form-label>
-                    <jnt-form-control>
-                      <jnt-select formControlName="scheme"
-                                  placeholder="Primary"
-                                  i18n-placeholder="@@label.primary">
-                        <jnt-select-option label="Primary"
-                                           i18n-label="@@label.primary"
-                                           [key]="ui.scheme.primary"></jnt-select-option>
-                        <jnt-select-option label="Secondary"
-                                           i18n-label="@@label.secondary"
-                                           [key]="ui.scheme.secondary"></jnt-select-option>
-                        <jnt-select-option label="Success"
-                                           i18n-label="@@label.success"
-                                           [key]="ui.scheme.success"></jnt-select-option>
-                        <jnt-select-option label="Fail"
-                                           i18n-label="@@label.fail"
-                                           [key]="ui.scheme.fail"></jnt-select-option>
-                      </jnt-select>
-                    </jnt-form-control>
-                  </jnt-form-item>
 
                   <jnt-form-item>
                     <jnt-form-label for="padding"
@@ -139,11 +114,11 @@
                       <jnt-switcher-option label="Loading"
                                            i18n-label="@@label.loading"
                                            [icon]="ui.icons.animated.spinner"
-                                           [value]="ui.layout.block.state.loading"></jnt-switcher-option>
+                                           [value]="ui.state.loading"></jnt-switcher-option>
                       <jnt-switcher-option label="Error"
                                            i18n-label="@@label.error"
                                            [icon]="ui.icons.warning"
-                                           [value]="ui.layout.block.state.error"></jnt-switcher-option>
+                                           [value]="ui.state.error"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-item>
 
@@ -209,10 +184,6 @@
     <ng-container *ngIf="paddingControl.value">
       <![CDATA[
       [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
-    </ng-container>
-    <ng-container *ngIf="schemeControl.value">
-      <![CDATA[
-      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
     </ng-container>
     <ng-container *ngIf="widthControl.value">
        <![CDATA[

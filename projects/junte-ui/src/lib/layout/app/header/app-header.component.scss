@@ -3,6 +3,7 @@
 @import "layout/app/variables";
 @import "navigation/menu/menu";
 @import "elements/icon/icon";
+@import "forms/button/button";
 
 @mixin jnt-app-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -30,7 +31,6 @@
     display: flex;
     justify-content: space-between;
     flex: 0 0 auto;
-    flex-wrap: wrap;
     box-sizing: border-box;
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
@@ -49,17 +49,19 @@
           item: (
             color: $jnt-white-color,
             active: (
-              color: $jnt-white-color
+              color: $jnt-white-color,
+              underline: true,
+              border-color: $jnt-white-color,
             ),
             icon: (
               size: $jnt-font-size-normal
             ),
             padding: (
-              outer: $jnt-gutter-small $jnt-gutter-normal,
+              outer: 0,
               inner: $jnt-gutter-small,
             ),
             hover: (
-              background-color: transparent,
+              background-color: rgba($jnt-primary-light-color, .5),
             ),
           ),
         ),
@@ -76,11 +78,8 @@
     }
   }
 
-  #{$context} #{$wrapper} button {
-    cursor: pointer;
-    [data-menu-icon] {
-      @include jnt-icon((size: 24px), '&');
-    }
+  #{$context} #{$wrapper} [data-burger] {
+    @include jnt-button((schemes: (primary: (color: $jnt-white-color, hover-color: $jnt-white-color)), icon: (size: 24px)), '&');
   }
 
   #{$context} #{$wrapper} [data-actions] {
@@ -91,43 +90,8 @@
     display: flex;
     align-items: center;
   }
-
-  #{$context} #{$wrapper} [data-action] {
-    position: relative;
-    [data-dropdown] {
-      display: flex;
-      align-items: center;
-      button {
-        color: $jnt-white-color;
-        background-color: transparent;
-        border: 0;
-        &:focus {
-          outline: 0;
-        }
-      }
-      > [data-menu] {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        margin-top: $jnt-gutter-tiny;
-        background-color: $jnt-primary-background;
-        min-width: 200px;
-        box-shadow: $jnt-shadow-normal;
-        display: none;
-        &[data-opened='true'] {
-          display: block;
-        }
-        [data-stack] {
-          background-color: $jnt-primary-dark-color;
-          padding: $jnt-gutter-normal;
-          [data-content] {
-            flex: 1;
-          }
-        }
-      }
-    }
-  }
 }
 
-
-
+@if $jnt-debug {
+  @debug 'app-header compiled';
+}

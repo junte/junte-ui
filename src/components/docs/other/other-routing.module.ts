@@ -6,19 +6,25 @@ import { PipesTestComponent } from './pipes/pipes-test.component';
 
 export const routes: Routes = [
   {
-    path: 'pipes',
-    component: PipesTestComponent,
-    data: {breadcrumb: 'Pipes', animation: 'Pipes'}
-  },
-  {
-    path: 'confirm',
-    component: ConfirmTestComponent,
-    data: {breadcrumb: 'Confirm', animation: 'Confirm'}
-  },
-  {
-    path: 'message',
-    component: MessageTestComponent,
-    data: {breadcrumb: 'Message', animation: 'Message'}
+    path: '',
+    data: {breadcrumb: 'Other'},
+    children: [
+      {
+        path: 'pipes',
+        component: PipesTestComponent,
+        data: {breadcrumb: 'Pipes', animation: 'Pipes'}
+      },
+      {
+        path: 'confirm',
+        component: ConfirmTestComponent,
+        data: {breadcrumb: 'Confirm', animation: 'Confirm'}
+      },
+      {
+        path: 'message',
+        component: MessageTestComponent,
+        data: {breadcrumb: 'Message', animation: 'Message'}
+      }
+    ]
   }
 ];
 

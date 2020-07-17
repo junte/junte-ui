@@ -1,5 +1,8 @@
 export enum Feature {
   adapted = 'adapted',
   clickable = 'clickable',
-  badge = 'badge'
+  badge = 'badge',
+  dropdown = 'dropdown',
+  selectAll = 'selectAll',
+  clear = 'clear',
 }

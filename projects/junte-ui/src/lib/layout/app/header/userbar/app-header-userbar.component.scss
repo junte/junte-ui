@@ -1,31 +1,35 @@
 @import "jnt-variables";
+@import "layout/responsive/responsive";
 
 @mixin jnt-app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context}  {
+  :host, #{$context} {
     position: relative;
     cursor: pointer;
-    display: flex;
+    display: block;
     align-items: stretch;
-    padding: 0 $jnt-gutter-normal;
-    &:hover {
-      background-color: $jnt-primary-color;
-      [data-menu] {
-        display: block;
+    @include max-for-tablet() {
+      padding: 0;
+      border-bottom: 1px solid $jnt-muted-color;
+      [data-user] {
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+      }
+    }
+    @include min-for-desktop() {
+      padding: 0 $jnt-gutter-normal;
+      display: flex;
+      &:hover {
+        background-color: $jnt-primary-color;
       }
     }
   }
 
   [data-menu] {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    right: 0;
     background: $jnt-primary-background;
-    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
-    min-width: 200px;
-    box-shadow: $jnt-shadow-normal;
     overflow-y: auto;
   }
+}
+
+@if $jnt-debug {
+  @debug 'app-header-userbar compiled';
 }

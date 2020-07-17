@@ -1,47 +1,21 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin popover-scheme($scheme) {
-  [data-wrapper] {
-    background-color: map-get($scheme, background-color);
-    [data-title] {
-      color: map-get($scheme, color);
-    }
-  }
-  [data-arrow] {
-    border-top-color: map-get($scheme, background-color);
-  }
-  [data-title] {
-    color: map-get($scheme, color);
-  }
-}
-
-@mixin jnt-popover($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-popover($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     spacing: 14px,
-    schemes: (
-      primary: (
-        background-color: $jnt-primary-light-color,
-        color: $jnt-white-color
-      ),
-      secondary: (
-        background-color: $jnt-secondary-background,
-        color: $jnt-primary-text-color
-      ),
-      success: (
-        background-color: $jnt-success-color,
-        color: $jnt-white-color
-      ),
-      fail: (
-        background-color: $jnt-fail-color,
-        color: $jnt-white-color
-      )
-    )
+    padding: $jnt-gutter-small,
+    background: $jnt-primary-background,
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -55,24 +29,41 @@
     padding: map-get($vars, spacing);
     display: block;
 
-    @if map-has-key($vars, schemes) {
-      @each $scheme, $map in map-get($vars, schemes) {
-        &[data-scheme='#{$scheme}'] {
-          @include popover-scheme($map);
-        }
-      }
+    @include for-mobile() {
+      left: 0 !important;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100vh;
+      overflow-y: auto;
+      box-sizing: border-box;
     }
 
     [data-arrow] {
       width: 0;
       height: 0;
       border: 10px solid transparent;
+      border-top-color: map-get($vars, background);
       position: absolute;
+    }
+
+    &[data-dropdown='true'] {
+      padding: $jnt-gutter-tiny 0 0;
+
+      @include for-mobile() {
+        padding: $jnt-gutter-tiny map-get($vars, spacing) map-get($vars, spacing);
+      }
+
+      [data-arrow] {
+        display: none;
+      }
+
+      [data-wrapper] {
+        padding: $jnt-gutter-tiny 0;
+      }
     }
 
     &[data-placement='top'] {
       [data-arrow] {
-        left: 50%;
         transform: translateX(-50%);
         top: calc(100% - #{map-get($vars, spacing)});
       }
@@ -80,7 +71,6 @@
 
     &[data-placement='right'] {
       [data-arrow] {
-        top: 50%;
         transform: translateY(-50%) rotate(90deg);
         right: calc(100% - #{map-get($vars, spacing)});
       }
@@ -88,7 +78,6 @@
 
     &[data-placement='bottom'] {
       [data-arrow] {
-        left: 50%;
         transform: translateX(-50%) rotate(180deg);
         bottom: calc(100% - #{map-get($vars, spacing)});
       }
@@ -96,17 +85,17 @@
 
     &[data-placement='left'] {
       [data-arrow] {
-        top: 50%;
         transform: translateY(-50%) rotate(-90deg);
         left: calc(100% - #{map-get($vars, spacing)});
       }
     }
   }
 
-  #{$context} [data-wrapper] {
+  #{$context} #{$wrapper} [data-wrapper] {
     border-radius: $jnt-corner-small;
     box-shadow: $jnt-shadow-normal;
-    padding: $jnt-gutter-normal;
+    padding: map-get($vars, padding);
+    background-color: map-get($vars, background);
 
     [data-title] {
       font-weight: $jnt-font-weight-bold;
@@ -116,4 +105,8 @@
       max-width: 300px;
     }
   }
+}
+
+@if $jnt-debug {
+  @debug 'popover compiled';
 }

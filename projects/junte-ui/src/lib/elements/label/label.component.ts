@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input } from '@angular/core';
+import { DotComponent } from '../dot/dot.component';
 import { PropertyApi } from '../../core/decorators/api';
 import { Color } from '../../core/enums/color';
 import { Size } from '../../core/enums/size';
@@ -55,4 +56,6 @@ export class LabelComponent {
     this._size = size || Size.normal;
   }
 
+  @ContentChild(DotComponent)
+  dot: DotComponent;
 }

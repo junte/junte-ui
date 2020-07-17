@@ -7,7 +7,7 @@ import * as path from 'path';
 import 'reflect-metadata';
 
 const argument = require('minimist')(process.argv.slice(2));
-const styleFiles = './src/lib/**/*.encapsulated.scss';
+const styleFiles = './src/lib/assets/styles/**/*.scss';
 const buildFiles = './src/lib/**/build.json';
 
 class Component {
@@ -35,24 +35,25 @@ export class Gulpfile {
   private clearImports(content: string, section: string, to: string) {
     let imports = content.match(/@import.*$/gm);
     imports = imports.filter(file => !file.includes('jnt-variables')
-      && !file.includes(`${section}/${to.replace('.scss', '')}`));
-    imports = [...(new Set(imports))];
-    console.log(imports);
+      && !file.includes(`${section}/${to.replace('.scss', '').replace('_', '')}`));
+
+    const clean = file => file.replace('";', '').replace(/@import ["|']/, "@import '../").split('/');
+    imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + "';")))];
+
     let cleared = content
       .replace(/@import.*$/gm, '')
       .replace(/(\n){2,}/gm, '\n');
-    const clean = file => file.replace('";', '').replace('@import "', '@import "../').split('/');
-    imports.forEach(file => cleared = `${Array.from(new Set(clean(file))).join('/')}";\n${cleared}`);
-    return `@import "../jnt-variables";\n${cleared}`;
+    imports.forEach(file => cleared = `${file}\n${cleared}`);
+    return `@import '../jnt-variables';\n${cleared}`;
   }
 
   @Task()
   componentsStyle() {
-    return gulp.src(['./src/lib/assets/styles/jnt-mixins.scss'])
+    return gulp.src(['./src/lib/assets/styles/_jnt-mixins.scss'])
       .pipe(map((file, cb) => {
         const contents = [];
         this.components.forEach(component => contents.push(`@import './${component.section}/${component.name}';`));
-        fs.writeFileSync('./../../dist/junte-ui/lib/assets/styles/jnt-mixins.scss', contents.join('\r\n'));
+        fs.writeFileSync('./../../dist/junte-ui/lib/assets/styles/_jnt-mixins.scss', contents.join('\r\n'));
         return cb(null, file);
       }));
   }

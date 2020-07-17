@@ -4,11 +4,12 @@
     "pathFrom": "../../assets/styles",
     "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
     "from": [
-      "lp/layout/lp-layout.scss",
-      "lp/rewind/lp-rewind.scss",
-      "lp/slide/lp-slide.scss"
+      "lp/slide/_lp-slide.scss",
+      "lp/layout/_lp-layout.scss",
+      "lp/rewind/_lp-rewind.scss",
+      "lp/header/_lp-header.scss"
     ],
-    "to": "lp.scss"
+    "to": "_lp.scss"
   },
   "encapsuler": [
     {
@@ -19,7 +20,7 @@
       },
       "scss": {
         "from": "layout/lp-layout.component.scss",
-        "to": "../../assets/styles/layout/lp/layout/lp-layout.scss"
+        "to": "../../assets/styles/layout/lp/layout/_lp-layout.scss"
       }
     },
     {
@@ -30,7 +31,7 @@
       },
       "scss": {
         "from": "rewind/lp-rewind.component.scss",
-        "to": "../../assets/styles/layout/lp/rewind/lp-rewind.scss"
+        "to": "../../assets/styles/layout/lp/rewind/_lp-rewind.scss"
       }
     },
     {
@@ -41,7 +42,18 @@
       },
       "scss": {
         "from": "slide/lp-slide.component.scss",
-        "to": "../../assets/styles/layout/lp/slide/lp-slide.scss"
+        "to": "../../assets/styles/layout/lp/slide/_lp-slide.scss"
+      }
+    },
+    {
+      "host": "jnt-lp-header-host",
+      "html": {
+        "from": "header/lp-header.component.html",
+        "to": "header/lp-header.encapsulated.html"
+      },
+      "scss": {
+        "from": "header/lp-header.component.scss",
+        "to": "../../assets/styles/layout/lp/header/_lp-header.scss"
       }
     }
   ]

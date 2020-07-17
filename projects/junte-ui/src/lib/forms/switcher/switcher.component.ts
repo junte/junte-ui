@@ -1,10 +1,13 @@
-import { Component, ContentChildren, forwardRef, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Feature } from '../../core/enums/feature';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { SelectMode } from '../select/enums';
 import { SwitcherOptionComponent } from './switcher-option.component';
 
@@ -27,7 +30,6 @@ export class SwitcherComponent implements ControlValueAccessor {
   selectMode = SelectMode;
   feature = Feature;
 
-  @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
   @PropertyApi({
@@ -36,8 +38,13 @@ export class SwitcherComponent implements ControlValueAccessor {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
+  @HostBinding('attr.data-orientation')
   @Input() set orientation(type: Orientation) {
     this._orientation = type || Orientation.horizontal;
+  }
+
+  get orientation() {
+    return this.breakpoint.current === Breakpoint.mobile ? Orientation.vertical : this._orientation;
   }
 
   @PropertyApi({
@@ -82,9 +89,9 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Input() allowEmpty = true;
 
   @PropertyApi({
-    description: 'Add badge with the number of selected items',
+    description: 'Add badge with the number of selected items; Select all item in switcher',
     path: 'ui.feature',
-    options: [Feature.badge]
+    options: [Feature.badge, Feature.selectAll]
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -98,6 +105,21 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostBinding('attr.data-allow-empty')
   @Input() marks = false;
 
+  @PropertyApi({
+    description: 'Display skeleton',
+    type: 'count: number',
+  })
+  @Input()
+  capacity = 3;
+
+  @PropertyApi({
+    description: 'Loading',
+    type: 'boolean',
+    default: 'false',
+  })
+  @Input()
+  loading = false;
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 
@@ -105,22 +127,18 @@ export class SwitcherComponent implements ControlValueAccessor {
 
   version = 0;
 
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
+  }
+
   writeValue(value: any | any[]) {
-    this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
-  }
-
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
+    this.selected = (this.mode === SelectMode.single ? [value] : value) as any[];
   }
 
   setDisabledState(disabled: boolean) {
@@ -163,4 +181,9 @@ export class SwitcherComponent implements ControlValueAccessor {
     }
   }
 
+  selectAll() {
+    this.options.forEach(o => this.selected.push(o.value));
+    this.version++;
+    this.onChange(this.selected);
+  }
 }

@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon/icon";
 
 @mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
 
@@ -24,35 +25,14 @@
     align-items: center;
     padding: 0 $jnt-gutter-normal;
 
-    > jnt-icon {
-      font-size: 20px;
-      color: $jnt-white-color;
-    }
+    @include jnt-icon((size: 20px, color: $jnt-white-color));
 
     &:hover {
       background-color: $jnt-primary-color;
-
-      [data-content] {
-        display: block;
-      }
     }
-  }
-
-  #{$context} [data-content] {
-    background: $jnt-primary-background;
-    border-radius: 0 0 $jnt-corner-small $jnt-corner-small;
-    padding: $jnt-gutter-normal $jnt-gutter-big;
-    color: $jnt-primary-text-color;
-    max-width: map-get($vars, width);
-    width: map-get($vars, width);
-    max-height: map-get($vars, height);
-    box-shadow: $jnt-shadow-light;
-    overflow-y: auto;
-    display: none;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    right: 0;
   }
 }
 
+@if $jnt-debug {
+  @debug 'app-header-action compiled';
+}

@@ -1,5 +1,4 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { SelectableModule } from './core/directives/selectable';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
@@ -37,9 +36,6 @@ export class JunteUiModule {
     return {
       ngModule: JunteUiModule,
       providers: [
-        ...LoggerModule.forRoot({
-          level: NgxLoggerLevel.DEBUG
-        }).providers,
         {
           provide: JunteUIModuleConfig,
           useValue: config

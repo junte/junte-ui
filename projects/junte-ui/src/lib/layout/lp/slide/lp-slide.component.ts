@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, HostListener, Input, TemplateRef } from '@angular/core';
+import { Component, HostBinding, HostListener, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Height } from '../../../core/enums/height';
 
@@ -29,9 +29,6 @@ export class LpSlideComponent {
   get height() {
     return this._height;
   }
-
-  @ContentChild('slideContentTemplate')
-  slideContentTemplate: TemplateRef<any>;
 
   @HostListener('window:resize')
   sizeChange() {

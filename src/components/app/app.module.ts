@@ -5,8 +5,11 @@ import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { CURRENT_LANGUAGE } from 'src/consts';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
+import { CURRENT_LANGUAGE, JUNTE_UI_CONFIG } from 'src/consts';
 import { Language } from 'src/enums/language';
+import { JunteUiModule } from '../../../projects/junte-ui/src/lib/junte-ui.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -42,7 +45,7 @@ function getLocaleData(locale: any) {
   return {...locale, ...changes};
 }
 
-const providers: any[] = [];
+const providers: any[] = [...JunteUiModule.forRoot(JUNTE_UI_CONFIG).providers];
 
 let data;
 switch (CURRENT_LANGUAGE) {
@@ -69,6 +72,19 @@ providers.push({
   useValue: data[LocaleData.CurrencyCode]
 });
 
+export class I18nLoader implements TranslateLoader {
+
+  private keys = {test_label: 'Test key!'};
+
+  getTranslation(lang: string): Observable<any> {
+    return of(this.keys);
+  }
+}
+
+export function i18nLoaderFactory() {
+  return new I18nLoader();
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -77,7 +93,15 @@ providers.push({
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      isolate: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: i18nLoaderFactory
+      },
+      defaultLanguage: 'en'
+    })
   ],
   providers: providers,
   bootstrap: [

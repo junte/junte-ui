@@ -24,14 +24,17 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   iconControl = this.fb.control(false);
   labelControl = this.fb.control(false);
   maskControl = this.fb.control(false);
-  alignControl = this.fb.control(UI.text.align.left);
+  alignControl = this.fb.control(null);
   disabledControl = this.fb.control(false);
   readonlyControl = this.fb.control(false);
   multilineControl = this.fb.control(false);
+  stepControl = this.fb.control(null);
   rowsControl = this.fb.control(5);
   statesControl = this.fb.control(null);
   minControl = this.fb.control(null);
   maxControl = this.fb.control(null);
+  transformControl = this.fb.control(null);
+  clearControl = this.fb.control(false);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -45,9 +48,12 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     readonly: this.readonlyControl,
     multiline: this.multilineControl,
     rows: this.rowsControl,
+    steps: this.stepControl,
     states: this.statesControl,
     min: this.minControl,
-    max: this.maxControl
+    max: this.maxControl,
+    transform: this.transformControl,
+    clear: this.clearControl,
   });
 
   inputControl = this.fb.control(null);
@@ -59,6 +65,9 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+    this.form.valueChanges.subscribe(v => console.log(v));
+
     this.disabledControl.valueChanges.subscribe(disabled => {
       disabled ? this.inputControl.disable() : this.inputControl.enable();
     });

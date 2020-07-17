@@ -15,6 +15,9 @@ export class IconComponent {
 
   iconType = IconType;
 
+  @HostBinding('attr.tag')
+  tag: string;
+
   @HostBinding('attr.data-size')
   _size: Size = Size.auto;
 
@@ -35,9 +38,8 @@ export class IconComponent {
       throw new Error('Icon query was not passed');
     }
 
-    const [icon, type, iconset] = query.split(':');
-    [this._icon, this.type, this.iconset] =
-      [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET];
+    const [icon, type, iconset, tag] = query.split(':');
+    [this._icon, this.type, this.iconset, this.tag] =
+      [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET, tag];
   }
-
 }

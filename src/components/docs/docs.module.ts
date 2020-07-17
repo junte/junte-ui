@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   AppLayoutModule,
   BreadcrumbsModule,
@@ -12,6 +13,7 @@ import {
   ThemeSwitcherModule
 } from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
+import { ComponentsModule } from 'src/components/docs/components/components.module';
 import { AppFooterModule } from '../footer/app-footer.module';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -45,11 +47,13 @@ export function getHighlightLanguages() {
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ModalModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
+    TranslateModule,
     SelectLangModule,
     AppFooterModule,
     DocsRoutingModule,
     ModalTestModule,
     ResponsiveModule,
+    ComponentsModule,
     AnalyticsDirectivesModule
   ],
   declarations: [

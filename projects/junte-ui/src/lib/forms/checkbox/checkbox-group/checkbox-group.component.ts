@@ -1,5 +1,16 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { CheckboxComponent } from '../checkbox.component';
@@ -43,6 +54,15 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
     return this._size;
   }
 
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger) {
+  }
+
   ngAfterViewInit() {
     this.updateChecked();
     this.updateDisabled();
@@ -77,20 +97,6 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
       this.selectedItems = [];
     }
     this.updateChecked();
-  }
-
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean) {

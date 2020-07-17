@@ -7,9 +7,15 @@
   #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
+
+    [data-icon][tag='colored'] {
+      @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
+    }
+
     &:hover {
       background-color: map-get($scheme, hover-color);
     }
+
     &:focus {
       box-shadow: 0 1px 5px map-get($scheme, color);
     }
@@ -29,9 +35,18 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
+
+    [data-icon][tag='colored'] {
+      @include jnt-icon((color: map-get($scheme, color)), '&');
+    }
+
     &:hover {
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
+
+      [data-icon][tag='colored'] {
+        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
+      }
 
       [data-badge] {
         @include jnt-badge((
@@ -40,6 +55,7 @@
         ), '&');
       }
     }
+
     &:focus {
       box-shadow: 0 1px 5px #{map-get($scheme, color)};
     }
@@ -55,9 +71,18 @@
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
+
+      [data-icon][tag='colored'] {
+        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
+      }
+
       &:hover {
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
+
+        [data-icon][tag='colored'] {
+          @include jnt-icon((color: map-get($scheme, color)), '&');
+        }
 
         [data-badge] {
           @include jnt-badge((
@@ -66,6 +91,7 @@
           ), '&');
         }
       }
+
       [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
@@ -82,6 +108,11 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
+
+    [data-icon][tag='colored'] {
+      @include jnt-icon((color: map-get($scheme, color)), '&');
+    }
+
     &:hover {
       color: map-get($scheme, hover-color);
     }
@@ -101,9 +132,15 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
+
+      [data-icon][tag='colored'] {
+        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
+      }
+
       &:hover {
         color: map-get($scheme, inverse-color);
       }
+
       [data-badge] {
         @include jnt-badge((
           background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
@@ -152,6 +189,9 @@
     text-transform: null,
     padding: null,
     font-weight: $jnt-font-weight-base,
+    disabled: (
+      opacity: .65,
+    ),
     icon: (
       margin: $jnt-gutter-small,
       size: 18px
@@ -258,6 +298,7 @@
   :host, #{$context} {
     @if $declare {
       display: inline-flex;
+      align-items: center;
       position: relative;
       max-width: 100%;
       #{$wrapper} button {
@@ -278,10 +319,12 @@
         font-family: inherit;
         line-height: $jnt-line-height-base;
         overflow: hidden;
+
         [data-text] {
           line-height: 1em;
           white-space: nowrap;
         }
+
         [data-loading] {
           position: absolute;
         }
@@ -291,15 +334,20 @@
           cursor: default;
         }
       }
-      &[data-disabled='true'] {
-        opacity: .65;
-        pointer-events: none;
-        #{$wrapper} button {
-          cursor: default;
-        }
-      }
       &[data-width='fluid'] {
         width: 100%;
+      }
+    }
+
+    &[data-disabled='true'] {
+      @if map-has-key($vars, disabled) {
+        $disabled: map-get($vars, disabled);
+        opacity: map-get($disabled, opacity);
+      }
+      pointer-events: none;
+
+      #{$wrapper} button {
+        cursor: default;
       }
     }
 
@@ -309,9 +357,11 @@
           &[data-outline='#{$jnt-outline-fill-name}'] {
             @include button-fill($map, $wrapper);
           }
+
           &[data-outline='#{$jnt-outline-ghost-name}'] {
             @include button-ghost($map, $wrapper);
           }
+
           &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include button-transparent($map, $wrapper);
           }
@@ -411,5 +461,15 @@
       border-top: if(map-get($borders, top), map-get($borders, top) !important, null);
       border-bottom: if(map-get($borders, bottom), map-get($borders, bottom) !important, null);
     }
+
+    [data-empty] {
+      width: 50px;
+      height: 10px;
+      background-color: $jnt-primary-text-light-color;
+    }
   }
+}
+
+@if $jnt-debug {
+  @debug 'button compiled';
 }

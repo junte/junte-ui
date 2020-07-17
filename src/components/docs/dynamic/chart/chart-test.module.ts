@@ -13,7 +13,9 @@ import {
   LabelModule,
   LinkModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  CheckboxModule,
+  AvatarModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -36,6 +38,8 @@ import { ChartTestComponent } from './chart-test.component';
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     InputModule.forRoot(JUNTE_UI_CONFIG),
+    CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    AvatarModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
   ],
   exports: [

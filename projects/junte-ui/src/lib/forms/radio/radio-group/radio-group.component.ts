@@ -1,5 +1,16 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, Input, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { RadioComponent } from '../radio.component';
@@ -45,6 +56,15 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   @ContentChildren(RadioComponent, {descendants: true})
   radios: QueryList<RadioComponent>;
 
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger) {
+  }
+
   ngAfterViewInit() {
     this.transformationRadio();
     this.updateDisabled();
@@ -81,20 +101,6 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   writeValue(value: any) {
     this.selected = value || null;
     this.updateChecked();
-  }
-
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean) {

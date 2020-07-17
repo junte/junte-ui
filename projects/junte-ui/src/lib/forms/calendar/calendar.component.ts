@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -16,6 +17,7 @@ import {
   addDays,
   addMonths,
   addWeeks,
+  addYears,
   format,
   getYear,
   isEqual,
@@ -25,14 +27,15 @@ import {
   startOfMonth,
   startOfWeek,
   subMonths,
-  addYears,
   subYears
 } from 'date-fns';
+import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { Period } from './enums';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';
@@ -56,7 +59,7 @@ enum ViewType {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CalendarComponent),
       multi: true
-    }
+    }, ...I18N_PROVIDERS
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {
@@ -132,16 +135,22 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   isEqual = isEqual;
   getYear = getYear;
 
-  onChange: (date: Date) => void;
+  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(public config: JunteUIModuleConfig) {
+  constructor(private logger: NGXLogger,
+              public config: JunteUIModuleConfig) {
   }
 
   ngOnInit() {
     this.period = startOfMonth(this.current);
 
-    combineLatest(this.year$, this.month$)
-      .pipe(filter(([year, month]) => year !== null && year !== undefined && month !== null && month !== undefined))
+    combineLatest([this.year$, this.month$])
+      .pipe(filter(([year, month]) =>
+        year !== null && year !== undefined && month !== null && month !== undefined))
       .subscribe(([year, month]) =>
         this.period = setDate(setMonth(setYear(new Date(), year), month), 1));
   }
@@ -150,13 +159,6 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     if (!!date) {
       this.current = this.period = date;
     }
-  }
-
-  registerOnChange(fn: (date: Date) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
   }
 
   setDisabledState(isDisabled: boolean) {
@@ -197,5 +199,4 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
       }
     }
   }
-
 }

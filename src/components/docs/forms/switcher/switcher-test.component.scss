@@ -1,5 +1,6 @@
-@import "../../component";
-@import "forms/switcher/switcher";
+@import '../../component';
+@import 'forms/switcher';
+@import 'layout/responsive';
 
 [max-height='true'] {
   @include jnt-switcher((
@@ -7,4 +8,16 @@
       max-height: 50px
     )
   ), '&', true)
+}
+
+[data-block] {
+  max-width: 100%;
+  min-width: 455px;
+  @include for-mobile() {
+    min-width: 0;
+  }
+}
+
+[data-avatar] {
+  align-self: center;
 }

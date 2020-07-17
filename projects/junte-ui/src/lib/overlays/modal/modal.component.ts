@@ -18,11 +18,7 @@ import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 
 const ANIMATION_CLOSE_DURATION = 300;
-
-export enum ModalClosingOption {
-  enable = 'enable',
-  disable = 'disable'
-}
+const BACKDROP_FILTER = 'blur(5px)';
 
 enum ModalState {
   hidden = 'hidden',
@@ -37,10 +33,11 @@ interface ModalTitle {
 export class ModalOptions {
   maxWidth = '800';
   maxHeight = '600';
-  closing: ModalClosingOption = ModalClosingOption.enable;
+  hold = false;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
+  animation = true;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -48,11 +45,6 @@ export class ModalOptions {
 }
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;
-
-enum BackdropFilter {
-  none = 'none',
-  blur = 'blur(5px)'
-}
 
 enum Display {
   block = 'block',
@@ -126,18 +118,21 @@ export class ModalComponent {
   @HostBinding('attr.host') readonly host = 'jnt-modal-host';
 
   ui = UI;
-  closing = ModalClosingOption;
   contentTemplate: TemplateRef<any>;
   options: ModalOptions = new ModalOptions();
   mobile: boolean = this.breakpoint.current === Breakpoint.mobile;
 
-  @Input() backdrop: ElementRef;
+  @Input()
+  backdrop: ElementRef;
 
-  @Output() opened$ = new EventEmitter<boolean>();
+  @Output()
+  opened$ = new EventEmitter<boolean>();
 
-  @ViewChild('container', {read: ViewContainerRef}) container;
+  @ViewChild('container', {read: ViewContainerRef})
+  container;
 
-  @HostBinding('style.display') display = Display.none;
+  @HostBinding('style.display')
+  display = Display.none;
 
   @Input()
   set opened(opened: boolean) {
@@ -177,13 +172,14 @@ export class ModalComponent {
     }
   }
 
+  // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
-  open(content: ModalContent, options: ModalOptions = new ModalOptions()) {
-    this.options = options;
+  open(content: ModalContent, options: Object = {}) {
+    this.options = new ModalOptions(options);
     this.content = content;
     if (!!this.backdrop) {
-      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.blur);
-      if (!this.mobile) {
+      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
+      if (!this.mobile && this.options.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -193,15 +189,18 @@ export class ModalComponent {
 
   @MethodApi({description: 'close modal'})
   close() {
-    this.renderer.setStyle(document.body, 'overflow', 'auto');
+    this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
-      this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BackdropFilter.none);
-      if (!this.mobile) {
-        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION +  'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
+      if (!this.mobile && this.options.animation) {
+        this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
     this.opened = false;
     this.hostRef.nativeElement.scrollTop = 0;
-    setTimeout(() => this.content = null, ANIMATION_CLOSE_DURATION);
+    setTimeout(() => {
+      this.content = null;
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+    }, ANIMATION_CLOSE_DURATION);
   }
 }

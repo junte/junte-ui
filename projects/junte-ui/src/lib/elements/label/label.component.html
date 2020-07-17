@@ -1,6 +1,7 @@
 <jnt-stack [orientation]="ui.orientation.horizontal"
-           [gutter]="ui.gutter.tiny"
+           [gutter]="ui.gutter.small"
            [align]="ui.flex.align.center">
+  <jnt-dot data-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon"
             [icon]="icon"
             [style.color]="color | textBrightness"></jnt-icon>

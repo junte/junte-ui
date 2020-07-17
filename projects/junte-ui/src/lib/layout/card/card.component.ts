@@ -1,12 +1,11 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
+import { State } from '../../core/enums/state';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
-import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
-import { CardState } from './enums';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 
 interface Picture {
   url: string;
@@ -24,7 +23,7 @@ export class CardComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
-  cardState = CardState;
+  cardState = State;
   feature = Feature;
   picture: Picture;
   popover: PopoverComponent;
@@ -39,18 +38,10 @@ export class CardComponent {
     return !!this.icon || !!this.cardActionsTemplate;
   }
 
-  @HostBinding('attr.data-has-header')
-  get hasHeader() {
-    return !!this.title || !!this.headerTemplate;
-  }
-
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
     return !!this.picture;
   }
-
-  @HostBinding('attr.data-scheme')
-  _scheme = Scheme.primary;
 
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
@@ -80,6 +71,13 @@ export class CardComponent {
   headerTemplate: TemplateRef<any>;
 
   @ContentApi({
+    selector: '#cardTitleTemplate',
+    description: 'Card title template'
+  })
+  @ContentChild('cardTitleTemplate')
+  titleTemplate: TemplateRef<any>;
+
+  @ContentApi({
     selector: '#cardFooterTemplate',
     description: 'Card footer template'
   })
@@ -102,25 +100,12 @@ export class CardComponent {
 
   @PropertyApi({
     description: 'State of card',
-    path: 'ui.card.state',
-    options: [CardState.error,
-      CardState.loading]
+    path: 'ui.state',
+    options: [State.error,
+      State.loading]
   })
   @Input()
-  state: CardState;
-
-  @PropertyApi({
-    description: 'Card color scheme',
-    path: 'ui.schemes',
-    default: Scheme.primary,
-    options: [Scheme.primary,
-      Scheme.secondary,
-      Scheme.success,
-      Scheme.fail]
-  })
-  @Input() set scheme(scheme: Scheme) {
-    this._scheme = scheme || Scheme.primary;
-  }
+  state: State;
 
   @PropertyApi({
     description: 'Padding for card',
@@ -163,7 +148,6 @@ export class CardComponent {
     default: 'purple'
   })
   @Input()
-  @HostBinding('style.border-color')
   color: string;
 
   @PropertyApi({

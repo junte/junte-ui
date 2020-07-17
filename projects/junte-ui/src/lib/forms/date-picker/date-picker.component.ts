@@ -1,17 +1,20 @@
-import { Component, forwardRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, forwardRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { format as formatDate, parse, setHours, setMinutes } from 'date-fns';
+import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverService } from '../../overlays/popover/popover.service';
 import { DatePickerFeatures } from './enums';
 
 const INPUT_DELAY = 500;
 
 export enum CLOCK_TYPE {
-  HOURS = 1,
-  MINUTES = 2
+  hours = 1,
+  minutes = 2
 }
 
 @Component({
@@ -31,11 +34,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   datePickerFeatures = DatePickerFeatures;
-  opened: boolean;
-  timeMeridien = 'AM';
-  VIEW_HOURS = CLOCK_TYPE.HOURS;
-  VIEW_MINUTES = CLOCK_TYPE.MINUTES;
-  currentView: CLOCK_TYPE = this.VIEW_HOURS;
+  timeMeridian = 'AM';
+  clockType = CLOCK_TYPE;
+  currentView: CLOCK_TYPE = CLOCK_TYPE.hours;
   hours = 0;
   minutes = 0;
 
@@ -48,6 +49,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl,
     calendar: this.calendarControl
   });
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
+
+  @HostBinding('attr.opened')
+  opened = false;
 
   @PropertyApi({
     description: 'Placeholder for date picker',
@@ -65,8 +73,16 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 
-  constructor(private fb: FormBuilder,
-              private popover: PopoverService) {
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder,
+              private popover: PopoverService,
+              private breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
@@ -75,53 +91,42 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
         this.onChange(date);
         this.opened = false;
-        this.popover.hide();
+        if (!this.mobile) {
+          this.popover.hide();
+        }
       });
 
     this.inputControl.valueChanges.pipe(debounceTime(INPUT_DELAY), distinctUntilChanged())
       .subscribe(date => {
-        this.updateCalendar(parse(date, this.format, new Date()));
-        this.popover.hide();
+        const parsed = parse(date, this.format, new Date());
+        if (parsed instanceof Date && !isNaN(parsed.getTime())) {
+          this.calendarControl.patchValue(parsed);
+        }
+        if (!this.mobile) {
+          this.popover.hide();
+        }
       });
   }
 
-  updateCalendar(date: Date) {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      this.calendarControl.patchValue(date);
-    } else {
-      this.inputControl.patchValue(null);
-    }
-  }
-
-  onChange(value: any) {
-  }
-
-  onTouched() {
-  }
-
   writeHour(hour: any): void {
-    this.hours = (this.timeMeridien === 'AM' ? hour : hour + 12);
-    this.currentView = this.VIEW_MINUTES;
+    this.hours = (this.timeMeridian === 'AM' ? hour : hour + 12);
+    this.currentView = CLOCK_TYPE.minutes;
   }
 
   writeMinutes(minute: any): void {
     this.minutes = minute;
-    this.currentView = this.VIEW_HOURS;
+    this.currentView = CLOCK_TYPE.hours;
     this.calendarControl.patchValue(setMinutes(this.calendarControl.value, minute * 5));
     this.calendarControl.patchValue(setHours(this.calendarControl.value, this.hours));
   }
 
-  writeValue(value: Date) {
-    this.calendarControl.patchValue(value);
-    this.updateCalendar(value);
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
+  writeValue(date: Date) {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      this.calendarControl.patchValue(date, {emitEvent: false});
+      this.inputControl.patchValue(formatDate(date, this.format), {emitEvent: false});
+    } else {
+      this.inputControl.patchValue(null, {emitEvent: false});
+    }
   }
 
   setDisabledState(disabled: boolean) {
@@ -132,10 +137,10 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     this.currentView = type;
   }
 
-  public setMeridien(m: 'PM' | 'AM') {
-    this.timeMeridien = m;
+  public setMeridian(m: 'PM' | 'AM') {
+    this.timeMeridian = m;
     this.calendarControl.patchValue(setMinutes(this.calendarControl.value, this.minutes * 5));
-    this.calendarControl.patchValue(setHours(this.calendarControl.value, this.timeMeridien === 'AM' ? this.hours : this.hours + 12));
+    this.calendarControl.patchValue(setHours(this.calendarControl.value,
+      this.timeMeridian === 'AM' ? this.hours : this.hours + 12));
   }
-
 }

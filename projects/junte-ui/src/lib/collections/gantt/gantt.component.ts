@@ -1,6 +1,17 @@
-import { Component, ContentChild, ContentChildren, forwardRef, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
+import { NGXLogger } from 'ngx-logger';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
@@ -21,7 +32,6 @@ import { GanttLineComponent } from './gantt-line/gantt-line.component';
 export class GanttComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
-
 
   ui = UI;
   addMonths = addMonths;
@@ -76,6 +86,12 @@ export class GanttComponent implements ControlValueAccessor {
   today = today();
   error: Error;
 
+  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   get current() {
     return this._current;
   }
@@ -85,17 +101,10 @@ export class GanttComponent implements ControlValueAccessor {
     this.onChange(current);
   }
 
+  constructor(private logger: NGXLogger) {
+  }
+
   writeValue(date: Date): void {
     this._current = date;
-  }
-
-  onChange(date: Date) {
-  }
-
-  registerOnChange(fn): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn): void {
   }
 }

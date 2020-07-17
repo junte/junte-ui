@@ -1,5 +1,5 @@
 import { Component, ContentChildren, Host, HostBinding, Input, Optional, QueryList, SkipSelf } from '@angular/core';
-import { ControlContainer, FormArrayName, FormGroupDirective, FormGroupName } from '@angular/forms';
+import { AbstractControl, ControlContainer, FormArrayName, FormGroupDirective, FormGroupName } from '@angular/forms';
 import { PropertyApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
 import { FormMessageComponent } from '../message/form-message.component';
@@ -27,7 +27,7 @@ export class FormControlComponent {
   constructor(@Optional() @Host() @SkipSelf() private parent: ControlContainer) {
   }
 
-  getControl() {
+  getControl(): AbstractControl {
     return this.parent instanceof FormGroupName
     || this.parent instanceof FormGroupDirective
     || this.parent instanceof FormArrayName

@@ -27,12 +27,16 @@
                              [icon]="iconControl.value ? ui.icons.home : null"
                              [size]="sizeControl.value"
                              [color]="colorControl.value">
+                    <jnt-dot *ngIf="dotControl.value"
+                             [color]="ui.color.red"></jnt-dot>
                   </jnt-label>
                   <jnt-label label="Doing"
                              i18n-label="@@label.doing"
                              [icon]="iconControl.value ? ui.icons.figma : null"
                              [size]="sizeControl.value"
                              [color]="colorControl.value">
+                    <jnt-dot *ngIf="dotControl.value"
+                             [color]="ui.color.red"></jnt-dot>
                   </jnt-label>
                 </jnt-stack>
               </ng-template>
@@ -77,6 +81,11 @@
                                     label="Icon"
                                     i18n-label="@@label.icon"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="dot"
+                                    label="Dot"
+                                    i18n-label="@@label.dot"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -119,7 +128,13 @@
     <![CDATA[
     color="]]>{{colorControl.value}}<![CDATA["]]>
   </ng-container>
-  <![CDATA[>
+  <![CDATA[>]]>
+  <ng-container *ngIf="dotControl.value">
+    <![CDATA[
+    <jnt-dot></jnt-dot>
+    ]]>
+  </ng-container>
+  <![CDATA[
 </jnt-label>
 ]]>
                 <!-- @formatter:on-->

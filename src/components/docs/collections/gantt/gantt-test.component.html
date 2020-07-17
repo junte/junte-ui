@@ -25,11 +25,9 @@
                               i18n="@@label.gender">Gantt type</jnt-form-label>
               <jnt-switcher formControlName="ganttType">
                 <jnt-switcher-option label="Month"
-                                     [value]="ganttType.month"
-                                     [click]="switchRequestsArray()"></jnt-switcher-option>
+                                     [value]="ganttType.month"></jnt-switcher-option>
                 <jnt-switcher-option label="Year"
-                                     [value]="ganttType.year"
-                                     [click]="switchRequestsArray()"></jnt-switcher-option>
+                                     [value]="ganttType.year"></jnt-switcher-option>
               </jnt-switcher>
             </jnt-form-item>
           </form>
@@ -37,7 +35,10 @@
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
 
-                  <jnt-gantt formControlName="gantt" [type]="ganttTypeControl.value === 'month' ? ui.collections.gantt.type.month : ui.collections.gantt.type.year" title="Super" [loading]="loading">
+                  <jnt-gantt formControlName="gantt"
+                             title="Super"
+                             [loading]="loading"
+                             [type]="ganttTypeControl.value === 'month' ? ui.collections.gantt.type.month : ui.collections.gantt.type.year">
                     <ng-template #toolsTemplate>
                       <jnt-button-group [scheme]="ui.scheme.secondary">
                         <jnt-button [icon]="ui.icons.reload"></jnt-button>

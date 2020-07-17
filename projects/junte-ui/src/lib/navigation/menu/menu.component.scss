@@ -7,6 +7,7 @@
   $defs: (
     top: (
       item: (
+        corner: $jnt-corner-small,
         height: null,
         orphan-color: $jnt-primary-text-color,
         orphan-hover-color: $jnt-primary-text-dark-color,
@@ -14,16 +15,21 @@
         text-transform: null,
         font-weight: $jnt-font-weight-base,
         icon: (
-          margin-right: $jnt-gutter-tiny,
+          margin-right: $jnt-gutter-small,
           size: 18px
         ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+        ),
         padding: (
-          inner: 0,
-          outer: $jnt-gutter-small $jnt-gutter-normal,
+          inner: $jnt-gutter-small $jnt-gutter-normal !important,
+          outer: 0,
         ),
         toggle: (
           toggle: true,
           margin-left: $jnt-gutter-small,
+          margin-right: $jnt-gutter-normal,
         ),
         hover: (
           background-color: $jnt-highlight-background,
@@ -31,7 +37,8 @@
         active: (
           underline: true,
           background-color: null,
-          color: null
+          color: null,
+          border-color: $jnt-primary-color,
         ),
       ),
     ),
@@ -53,7 +60,7 @@
         border-bottom: 1px solid $jnt-muted-color,
       ),
       item: (
-        padding: $jnt-gutter-small $jnt-gutter-normal,
+        padding: $jnt-gutter-small $jnt-gutter-normal !important,
         height: null,
         color: null,
         icon: (
@@ -67,7 +74,12 @@
         active: (
           underline: true,
           background-color: null,
-          color: null
+          color: null,
+          border-color: $jnt-primary-color,
+        ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
         ),
       ),
     ),
@@ -128,16 +140,20 @@
           display: none;
           align-items: stretch;
           flex-direction: column;
+
           &[data-opened='true'] {
             display: flex;
           }
+
           > [data-section] {
             user-select: none;
+
             span {
               display: block;
               padding: $jnt-gutter-normal 0;
             }
           }
+
           [data-link] {
             user-select: none;
             @include jnt-link((
@@ -161,6 +177,7 @@
         }
       }
     }
+
     &[data-collapsed='true'] {
       #{$wrapper} [data-sub] {
         @if map-has-key($vars, sub) {
@@ -189,6 +206,7 @@
     [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
+        border-radius: map-get($title, corner);
         @include jnt-link((
           height: map-get($title, height),
           orphan-color: map-get($title, orphan-color),
@@ -205,11 +223,12 @@
               underline: map-get($active, underline),
               background-color: map-get($active, background-color),
               color: map-get($active, color),
+              border-color: map-get($active, border-color),
             ),
           ), '&');
         }
 
-          @if map-has-key($title, icon) {
+        @if map-has-key($title, icon) {
           $icon: map-get($title, icon);
           @include jnt-link((
             icon: (
@@ -222,9 +241,11 @@
         @if map-has-key($title, padding) {
           $padding: map-get($title, padding);
           padding: map-get($padding, outer);
-          @include jnt-link((
-            padding: map-get($padding, inner),
-          ), '&');
+          [data-link] {
+            @include jnt-link((
+              padding: map-get($padding, inner),
+            ), '&');
+          }
         }
 
         @if map-has-key($title, toggle) {
@@ -236,6 +257,7 @@
           }
           [data-toggle] {
             margin-left: map-get($toggle, margin-left);
+            margin-right: map-get($toggle, margin-right);
           }
         }
 
@@ -243,6 +265,22 @@
           $hover: map-get($title, hover);
           &:hover {
             background-color: map-get($hover, background-color);
+          }
+        }
+
+        @if map-has-key($title, focus) {
+          $focus: map-get($title, focus);
+          [data-link] {
+            @include jnt-link((
+              schemes: (
+                primary: (
+                  focus: (
+                    outline: map-get($focus, outline),
+                    shadow: map-get($focus, shadow),
+                  ),
+                ),
+              ),
+            ), '&');
           }
         }
       }
@@ -256,6 +294,7 @@
           $title: map-get($sub, title);
           > [data-section] {
             padding: map-get($title, padding);
+
             span {
               border-bottom: map-get($title, border-bottom);
             }
@@ -286,6 +325,21 @@
                 border-left-color: map-get($hover, border-left-color);
               }
             }
+
+            @if map-has-key($item, focus) {
+              $focus: map-get($item, focus);
+              @include jnt-link((
+                schemes: (
+                  primary: (
+                    focus: (
+                      outline: map-get($focus, outline),
+                      shadow: map-get($focus, shadow),
+                    ),
+                  ),
+                ),
+              ), '&');
+            }
+
             @if map-has-key($item, active) {
               $active: map-get($item, active);
               @include jnt-link((
@@ -293,6 +347,7 @@
                   underline: map-get($active, underline),
                   background-color: map-get($active, background-color),
                   color: map-get($active, color),
+                  border-color: map-get($active, border-color)
                 ),
               ), '&');
             }
@@ -303,4 +358,6 @@
   }
 }
 
-
+@if $jnt-debug {
+  @debug 'menu compiled';
+}

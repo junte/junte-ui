@@ -1,14 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
-import { AccordionModule } from './accordion/accordion.module';
 import { GanttModule } from './gantt/gantt.module';
 import { TableModule } from './table/table.module';
+import { TimelineModule } from './timeline/timeline.module';
 
 @NgModule({
   exports: [
     GanttModule,
     TableModule,
-    AccordionModule,
+    TimelineModule
   ]
 })
 export class CollectionsModule {

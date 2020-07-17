@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -21,12 +22,13 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule,
     IconModule,
     StackModule,
     ButtonModule,
-    TranslateModule,
     MenuModule,
-    ResponsiveModule
+    ResponsiveModule,
+    PopoverModule
   ],
   declarations: [
     AppLayoutComponent,

@@ -4,18 +4,27 @@
     @each $key, $value in $map2 {
       @if (type-of(map-get($result, $key)) == map and type-of($value) == map) {
         $result: map-merge($result, ($key: recursive-map-merge(map-get($result, $key), $value)));
-      }
-      @else if (map-get($config, "merge-lists") and type-of(map-get($result, $key)) == list and type-of($value) == list) {
+      } @else if (map-get($config, "merge-lists") and type-of(map-get($result, $key)) == list and type-of($value) == list) {
         $result: map-merge($result, ($key: join(map-get($result, $key), $value)));
-      }
-      @else {
+      } @else {
         $result: map-merge($result, ($key: $value));
       }
     }
     @return $result;
-  }
-  @else {
+  } @else {
     @warn "recursive-map-merge() expects it\'s parameters to be map types!";
     @return null;
   }
+}
+
+// thanks for https://gist.github.com/morewry/9522776
+@function debug-map($map, $result: '') {
+  @each $k, $v in $map {
+    @if (type-of($v) == map) {
+      $result: '#{$result}#{$k}: (#{debug-map($v)}), ';
+    } @else {
+      $result: '#{$result}#{$k}: #{$v}, ';
+    }
+  }
+  @return $result;
 }

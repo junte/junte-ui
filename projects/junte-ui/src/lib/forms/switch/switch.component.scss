@@ -2,7 +2,7 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin jnt-switch($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-switch($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     corner: 35px,
@@ -23,28 +23,37 @@
       tiny: (
         width: 38px,
         height: 20px,
-        label: (
+        tag: (
           font-size: 8px
         ),
+        label: (
+          font-size: 10px
+        ),
         icon: (
-          size: 10px
+          size: 11px
         ),
       ),
       small: (
         width: 45px,
         height: 24px,
-        label: (
+        tag: (
           font-size: 10px
+        ),
+        label: (
+          font-size: 12px
         ),
         icon: (
           size: 12px
         ),
       ),
       normal: (
-        width: 55px,
+        width: 57px,
         height: 28px,
-        label: (
+        tag: (
           font-size: 12px
+        ),
+        label: (
+          font-size: 14px
         ),
         icon: (
           size: 16px
@@ -53,8 +62,11 @@
       large: (
         width: 70px,
         height: 36px,
-        label: (
+        tag: (
           font-size: 14px
+        ),
+        label: (
+          font-size: 16px
         ),
         icon: (
           size: 18px
@@ -65,6 +77,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -87,13 +104,18 @@
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
-          form {
+          #{$wrapper} form {
             min-width: map-get($map, width);
             width: map-get($map, width);
             [data-switch] {
               min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
               height: map-get($map, height);
               transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
+              [data-on], [data-off] {
+                width: calc(#{map-get($map, width)} - #{map-get($vars, padding)} -
+                (#{map-get($map, height)} - #{map-get($vars, padding)} * 2) -
+                #{map-get($vars, padding)} * 2);
+              }
               [data-slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
@@ -106,8 +128,8 @@
                   }
                 }
               }
-              @if map-has-key($map, label) {
-                $label: map-get($map, label);
+              @if map-has-key($map, tag) {
+                $label: map-get($map, tag);
                 span {
                   font-size: map-get($label, font-size);
                 }
@@ -117,12 +139,18 @@
               transform: translateX(0);
             }
           }
+          @if map-has-key($map, label) {
+            $label: map-get($map, label);
+            #{$wrapper} label {
+              font-size: map-get($label, font-size);
+            }
+          }
         }
       }
     }
   }
 
-  #{$context} input {
+  #{$context} #{$wrapper} input {
     position: absolute;
     top: 0;
     z-index: 1;
@@ -171,11 +199,19 @@
     }
   }
 
-  #{$context} [data-switch] {
+  #{$context} #{$wrapper} [data-switch] {
     display: flex;
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background-color: map-get($background, off);
+      [data-on] {
+        box-sizing: border-box;
+        padding-left: calc(#{map-get($vars, padding)} * 2);
+      }
+      [data-off] {
+        box-sizing: border-box;
+        padding-right: calc(#{map-get($vars, padding)} * 2);
+      }
       [data-slider] {
         @if map-has-key($background, slider) {
           $slider: map-get($background, slider);
@@ -206,17 +242,11 @@
     }
   }
 
-  #{$context} label {
+  #{$context} #{$wrapper} label {
     margin-left: $jnt-gutter-small;
   }
-
 }
 
-
-
-
-
-
-
-
-
+@if $jnt-debug {
+  @debug 'switch compiled';
+}

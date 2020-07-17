@@ -14,7 +14,7 @@ export class BreakpointService {
   current: Breakpoint = null;
   changed = new EventEmitter<Breakpoint>(null);
 
-  constructor(private zone: NgZone) {
+  constructor(zone: NgZone) {
     for (const i of Object.keys(this.queries)) {
       const breakpoint = i as Breakpoint;
       const query = this.queries[i];

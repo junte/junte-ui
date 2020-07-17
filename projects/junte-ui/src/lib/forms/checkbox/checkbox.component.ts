@@ -1,5 +1,6 @@
-import { Component, ElementRef, forwardRef, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -16,6 +17,7 @@ import { UI } from '../../core/enums/ui';
 export class CheckboxComponent implements ControlValueAccessor {
 
   ui = UI;
+  checked = false;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
@@ -30,8 +32,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   })
   @Input()
   disabled = false;
-
-  checked = false;
 
   @PropertyApi({
     description: 'Label name for checkbox button',
@@ -59,13 +59,14 @@ export class CheckboxComponent implements ControlValueAccessor {
   })
   @Input() value: any;
 
-  constructor(public element: ElementRef) {
-  }
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
-  onChange(value: any) {
-  }
-
-  onTouched() {
+  constructor(private logger: NGXLogger,
+              public element: ElementRef) {
   }
 
   writeValue(value: any) {
@@ -74,15 +75,12 @@ export class CheckboxComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn) {
-    this.onChange = fn;
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 
-  registerOnTouched(fn) {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+  change() {
+    this.checked = !this.checked;
+    this.onChange(this.checked);
   }
 }

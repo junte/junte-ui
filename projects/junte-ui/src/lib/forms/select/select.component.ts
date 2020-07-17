@@ -2,12 +2,12 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
-  ElementRef,
+  ElementRef, EventEmitter,
   forwardRef,
   HostBinding,
   HostListener,
-  Input,
-  OnInit,
+  Input, OnDestroy,
+  OnInit, Output,
   QueryList,
   Renderer2,
   TemplateRef,
@@ -16,10 +16,15 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
+import { PopoverComponent, PopoverOptions } from '../../overlays/popover/popover.component';
+import { PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
@@ -54,12 +59,19 @@ const SEARCH_DELAY = 100;
     }
   ]
 })
-export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
+  private reference: { popover: PopoverComponent } = {popover: null};
+  private destroyed = false;
+
   ui = UI;
   selectMode = SelectMode;
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
 
   private _opened = false;
   private fetcher: Subscription;
@@ -114,7 +126,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     description: 'Select label',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Select allow empty',
@@ -122,7 +135,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     default: 'true'
   })
   @HostBinding('attr.data-allow-empty')
-  @Input() allowEmpty = true;
+  @Input()
+  allowEmpty = true;
 
   @PropertyApi({
     description: 'Icon for select',
@@ -153,8 +167,20 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Input()
   emptyOptionsTemplate: TemplateRef<any>;
 
+  @PropertyApi({
+    description: 'Template for options header',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  optionsHeaderTemplate: TemplateRef<any>;
+
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
+
+  @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
+
+  @Output('selected')
+  updated = new EventEmitter<any>();
 
   @HostBinding('attr.data-opened')
   set opened(opened: boolean) {
@@ -174,6 +200,19 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       }
     };
     setTimeout(() => checking(), 100);
+    if (!this.mobile) {
+      if (opened) {
+        this.reference.popover = this.popover.show(this.hostRef, new PopoverOptions({
+          contentTemplate: this.optionsTemplate,
+          features: [Feature.dropdown]
+        }));
+        this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+          .subscribe(() => this.opened = false);
+      } else {
+        this.popover.hide(this.hostRef);
+        this.reference.popover = null;
+      }
+    }
   }
 
   get opened() {
@@ -232,10 +271,46 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   })
   @Input() loader = null;
 
+  @HostListener('document:click', ['$event.path'])
+  clickOutside(path: HTMLElement[]) {
+    if (!!this.reference.popover && this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
+      this.opened = false;
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
+    switch (this.mode) {
+      case SelectMode.single:
+        break;
+      case SelectMode.multiple:
+        if (target === this.selectedList.nativeElement) {
+          this.opened = true;
+        }
+        break;
+    }
+  }
+
+  @HostListener('blur')
+  blurred() {
+    this.onTouched();
+  }
+
+  close() {
+    this.opened = false;
+  }
+
+  onChange: (value: Key | Key[]) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+
   constructor(private hostRef: ElementRef,
               private renderer: Renderer2,
               private fb: FormBuilder,
-              private logger: NGXLogger) {
+              private popover: PopoverService,
+              private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
@@ -252,7 +327,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
             objects.forEach((o, index) => {
               const key = o[this.keyField];
               if (!!key) {
-                this.options.found[key.toString()] = {
+                this.options.found[`${key}`] = {
                   index,
                   key,
                   label: o[this.labelField],
@@ -294,7 +369,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     const convert = (options: SelectOptionComponent[]) => {
       this.options.persisted = {};
       options.forEach(({key, label, icon, value}, index) =>
-        this.options.persisted[key.toString()] = {index, key, label, icon, value});
+        this.options.persisted[`${key}`] = {index, key, label, icon, value});
       this.changes.options++;
     };
 
@@ -303,21 +378,43 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       .subscribe(options => convert(options.toArray()));
   }
 
+  ngOnDestroy() {
+    this.destroyed = true;
+    if (!!this.reference.popover) {
+      this.popover.hide(this.hostRef);
+      this.reference.popover = null;
+    }
+  }
+
+  private picked(elements: HTMLElement[]) {
+    return elements.indexOf(this.hostRef.nativeElement) !== -1;
+  }
+
   trackOption(index: number, option: IOption) {
-    return option.key;
+    return option.key || index;
+  }
+
+  toggle(option: IOption) {
+    this.selected.indexOf(option.key) === -1
+      ? this.select(option) : this.remove(option.key);
   }
 
   select(option: IOption) {
     this.logger.debug('option is selected');
-    this.options.persisted[option.key.toString()] = option;
+    this.options.persisted[`${option.key}`] = option;
     this.changes.options++;
     if (this.mode === SelectMode.multiple) {
       this.selected.push(option.key);
+      if (!!this.reference.popover) {
+        this.reference.popover.update();
+      }
     } else {
       this.selected = [option.key];
+      this.opened = false;
     }
-    this.opened = false;
+
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
+    this.updated.emit(option.value);
   }
 
   remove(key: Key) {
@@ -330,50 +427,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  outside(e: { path: HTMLElement[] }) {
-    if (this.opened && e.path.indexOf(this.hostRef.nativeElement) === -1) {
-      this.close();
-    }
-  }
-
-  @HostListener('click', ['$event'])
-  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
-    switch (this.mode) {
-      case SelectMode.single:
-        break;
-      case SelectMode.multiple:
-        if (target === this.selectedList.nativeElement) {
-          this.opened = true;
-        }
-        break;
-
-    }
-  }
-
-  @HostListener('blur')
-  close() {
-    this.opened = false;
-  }
-
   writeValue(value: Key | Key[]) {
-    this.selected = !!value ? Array.isArray(value) ? value : [value] : [];
-  }
-
-  onChange(value: Key | Key[]) {
-    // will be overridden
-  }
-
-  onTouched() {
-    // will be overridden
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
+    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {

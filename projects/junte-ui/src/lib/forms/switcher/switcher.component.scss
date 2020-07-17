@@ -1,18 +1,18 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "elements/icon/icon";
+@import "layout/skeleton/skeleton";
+@import "forms/button/button";
 
 @mixin jnt-switcher($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    corner: $jnt-corner-normal,
-    horizontal: (
-      height: 32px,
-    ),
+    corner: $jnt-corner-small,
     vertical: (
       max-height: null,
     ),
     option: (
+      height: 36px,
       active: (
         background: $jnt-primary-light-color,
         color: $jnt-white-color,
@@ -37,21 +37,17 @@
   :host, #{$context} {
     @if $declare {
       display: block;
-      border: 1px solid $jnt-gray-700-color;
       position: relative;
       #{$wrapper} [data-options] {
-        display: flex;
 
         [data-option] {
           background-color: $jnt-primary-background;
           color: $jnt-primary-text-color;
           user-select: none;
-          overflow: hidden;
           cursor: pointer;
-          border: 1px solid transparent;
           padding: 0 $jnt-gutter-small;
 
-          &[data-with-template] {
+          &[data-with-template=true] {
             padding: $jnt-gutter-small;
           }
 
@@ -59,16 +55,15 @@
             background-color: $jnt-highlight-background;
           }
 
+          &[data-disabled='true'] {
+            color: $jnt-control-disabled-label-color;
+            background-color: $jnt-control-disabled-background;
+            pointer-events: none;
+          }
+
           &:focus {
+            background-color: rgba($jnt-primary-light-color, .3);
             outline: 0;
-            box-shadow: $jnt-shadow-primary;
-            @if map-has-key($vars, option) {
-              $option: map-get($vars, option);
-              @if map-has-key($option, active) {
-                $active: map-get($option, active);
-                border-color: map-get($active, background);
-              }
-            }
           }
 
           [data-title] {
@@ -83,31 +78,14 @@
         }
       }
     }
-    border-radius: map-get($vars, corner);
 
     &[data-orientation='vertical'] {
       @if map-has-key($vars, vertical) {
         $vertical: map-get($vars, vertical);
-        @if map-has-key($vertical, max-height) {
+        @if map-get($vertical, max-height) != null {
           #{$wrapper} [data-scroll] {
             max-height: map-get($vertical, max-height);
             overflow-y: auto;
-          }
-        }
-      }
-
-      #{$wrapper} [data-options] {
-        flex-direction: column;
-
-        [data-option] {
-          &:first-child {
-            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
-          }
-
-          &:last-child {
-            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
           }
         }
       }
@@ -115,26 +93,14 @@
 
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
-        flex-direction: row;
-
         [data-option] {
-          flex: auto;
+          flex: 1;
           justify-content: center;
           @if map-has-key($vars, option) {
             $option: map-get($vars, option);
             [data-title] {
               justify-content: map-get($option, align);
             }
-          }
-
-          &:first-child {
-            border-top-left-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-bottom-left-radius: calc(#{map-get($vars, corner)} - 1px);
-          }
-
-          &:last-child {
-            border-top-right-radius: calc(#{map-get($vars, corner)} - 1px);
-            border-bottom-right-radius: calc(#{map-get($vars, corner)} - 1px);
           }
         }
       }
@@ -144,48 +110,85 @@
       cursor: default;
       pointer-events: none;
 
-      #{$wrapper} [data-option] {
-        color: $jnt-control-disabled-label-color;
-        background-color: $jnt-control-disabled-background;
+      #{$wrapper} [data-options] {
+        [data-option] {
+          color: $jnt-control-disabled-label-color;
+          background-color: $jnt-control-disabled-background;
+        }
       }
     }
   }
 
-  #{$context} #{$wrapper} [data-scroll] {
+  #{$context} #{$wrapper} [data-switcher] {
+    border: 1px solid $jnt-gray-700-color;
     border-radius: map-get($vars, corner);
-  }
+    overflow: hidden;
 
-  #{$context} #{$wrapper} [data-options] {
-    [data-option] {
-      &[data-selected="true"] {
-        @if map-has-key($vars, option) {
-          $option: map-get($vars, option);
-          @if map-has-key($option, active) {
-            $active: map-get($option, active);
-            color: map-get($active, color);
-            background-color: map-get($active, background);
+    [data-scroll] {
+      margin-right: -1px;
+    }
+
+    [data-options] {
+      @if map-has-key($vars, option) {
+        $option: map-get($vars, option);
+        [data-option] {
+          padding: map-get($option, padding);
+          &[data-selected="true"] {
+            @if map-has-key($option, active) {
+              $active: map-get($option, active);
+              color: map-get($active, color);
+              background-color: map-get($active, background);
+            }
+          }
+          &[data-with-template=false] {
+            height: map-get($option, height);
+          }
+
+          [data-icon] {
+            @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
           }
         }
 
-        [data-mark] {
-          @include jnt-icon((color: $jnt-white-color), '&');
+        [data-switch] {
+          position: relative;
+          background-color: $jnt-control-background;
+          border: 1px solid $jnt-primary-light-color;
+          box-sizing: border-box;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all .3s;
+          min-width: 18px;
+          width: 18px;
+          min-height: 18px;
+          height: 18px;
+
+          &[data-single='true'] {
+            border-radius: 50%;
+
+            [data-indicator] {
+              border-radius: 50%;
+            }
+          }
+
+          &[data-single='false'] {
+            border-radius: $jnt-corner-base;
+
+            [data-indicator] {
+              border-radius: 2px;
+            }
+          }
+
+          [data-indicator] {
+            background-color: $jnt-primary-light-color;
+            min-width: 10px;
+            width: 10px;
+            min-height: 10px;
+            height: 10px;
+          }
         }
       }
-    }
-  }
-
-  #{$context} #{$wrapper} [data-icon] {
-    @include jnt-icon((color: $jnt-primary-color, size: 16px), '&');
-  }
-
-  #{$context} #{$wrapper} [data-mark] {
-    @include jnt-icon((color: $jnt-primary-color), '&');
-  }
-
-  #{$context} #{$wrapper} [data-title] {
-    @if map-has-key($vars, horizontal) {
-      $horizontal: map-get($vars, horizontal);
-      line-height: map-get($horizontal, height);
     }
   }
 
@@ -195,5 +198,35 @@
     top: 0;
     transform: translate(-50%, 50%);
   }
+
+  #{$context} #{$wrapper} [data-placeholder] {
+    flex: 1;
+
+    @if map-has-key($vars, option) {
+      $option: map-get($vars, option);
+      height: map-get($option, height);
+    }
+
+    &:nth-child(odd) {
+      background-color: $jnt-highlight-background;
+    }
+
+    &:nth-child(even) {
+      background-color: darken($jnt-highlight-background, 5%);
+    }
+
+    @if map-has-key($vars, horizontal) {
+      $horizontal: map-get($vars, horizontal);
+      height: map-get($horizontal, height);
+    }
+  }
+
+  [data-button] {
+    margin-top: $jnt-gutter-tiny;
+    @include jnt-button((padding: 0 2px), '&');
+  }
 }
 
+@if $jnt-debug {
+  @debug 'switcher compiled';
+}

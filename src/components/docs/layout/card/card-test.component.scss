@@ -1,6 +1,6 @@
-@import "../../component";
-@import "layout/responsive/responsive";
-@import "elements/icon/icon";
+@import '../../component';
+@import 'layout/responsive';
+@import 'elements/icon';
 
 [data-card] {
   min-width: 500px;
@@ -9,13 +9,13 @@
     max-width: 100%;
   }
 
-  [data-title] {
+  [data-header] {
     color: $jnt-primary-color;
     font-size: $jnt-font-size-normal;
-    @include jnt-icon((size: 18px), '&', true);
+    @include jnt-icon((size: 20px), '&', true);
   }
 
-  [data-content] {
-    flex: 1;
+  [data-title] {
+    font-size: $jnt-font-size-normal;
   }
 }

@@ -1,5 +1,6 @@
-import { Component, forwardRef, HostBinding, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PagerMode } from './enums';
@@ -13,7 +14,7 @@ import { PagerMode } from './enums';
     multi: true
   }]
 })
-export class PagerComponent {
+export class PagerComponent implements ControlValueAccessor {
 
   ui = UI;
 
@@ -47,6 +48,12 @@ export class PagerComponent {
   @Input()
   mode: PagerMode = PagerMode.page;
 
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
   get pagesCount() {
     return this._pagesCount;
   }
@@ -60,14 +67,7 @@ export class PagerComponent {
     return this._selectedPage;
   }
 
-  onModelChange(value: number) {
-  }
-
-  registerOnChange(fn: any): void {
-    this.onModelChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
+  constructor(private logger: NGXLogger) {
   }
 
   writeValue(value: number): void {
@@ -78,10 +78,10 @@ export class PagerComponent {
     if (page >= 1 && page <= this.pagesCount) {
       switch (this.mode) {
         case PagerMode.page:
-          this.onModelChange(page);
+          this.onChange(page);
           break;
         case PagerMode.offset:
-          this.onModelChange((page - 1) * this.pageSize);
+          this.onChange((page - 1) * this.pageSize);
           break;
       }
       this.selectedPage = page;
@@ -102,5 +102,4 @@ export class PagerComponent {
     }
     this.pages = pages;
   }
-
 }

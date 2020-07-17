@@ -1,5 +1,5 @@
-@import "jnt-variables";
-@import "../../component";
+@import 'jnt-variables';
+@import '../../component';
 
 :host {
   display: block;
@@ -17,21 +17,26 @@
 
 table {
   border-spacing: 0;
+
   thead {
     background-color: $jnt-primary-color;
     color: $jnt-white-color;
     text-align: center;
+
     th {
       padding: $jnt-gutter-small $jnt-gutter-normal;
     }
   }
+
   tbody {
     td {
       padding: $jnt-gutter-tiny;
+
       [host=jnt-label-host] {
         width: 100%;
         border: 1px solid $jnt-white-color;
       }
+
       [block] {
         padding: $jnt-gutter-small;
         min-height: 30px;
@@ -60,17 +65,20 @@ table {
   border-radius: $jnt-corner-normal;
   box-sizing: border-box;
   min-height: 30px;
+
   &[primary] {
     box-shadow: $jnt-shadow-primary;
   }
+
   &[light] {
     box-shadow: $jnt-shadow-light;
   }
+
   &[normal] {
     box-shadow: $jnt-shadow-normal;
   }
 }
 
-pre[class*="language-"] {
+pre[class*='language-'] {
   background-color: transparent;
 }

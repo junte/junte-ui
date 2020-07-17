@@ -29,9 +29,9 @@
                                 i18n-text="@@action.open_modal"></jnt-button>
                   </jnt-col>
                   <jnt-col [mobile]="12" [tablet]="4">
-                    <jnt-button [jntModal]="{title: {text: titleControl.value ? 'Title' : null, icon: iconControl.value ? ui.icons.settings : null},
+                    <jnt-button [jntModal]="{title: titleControl.value ? {text: 'Title', icon: iconControl.value ? ui.icons.settings : null} : null,
                                         content: contentDirective, footer: footerControl.value ? footer : null,
-                                        closing: closingControl.value ? closingOptions.enable : closingOptions.disable,
+                                        hold: closingControl.value,
                                         maxWidth: widthControl.value, maxHeight: heightControl.value}"
                                 [width]="ui.width.fluid"
                                 text="Open in directive">
@@ -43,18 +43,47 @@
                   <iframe giphy src="https://giphy.com/embed/3og0ICmyySyzbmnxqE"
                           width="480"
                           height="270"
-                          frameBorder="0"></iframe>
-                  <jnt-button *ngIf="!closingControl.value && !footerControl.value"
+                          frameBorder="0">
+                  </iframe>
+                  <form [formGroup]="selectForm">
+                    <jnt-form-item>
+                      <jnt-select formControlName="select"
+                                  [keyField]="'id'"
+                                  [labelField]="'name'"
+                                  placeholder="Select your hero"
+                                  i18n-placeholder="@@label.select_your_hero"
+                                  [search]="true"
+                                  [icon]="iconControl.value ? ui.icons.user : null">
+                        <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
+                                           [label]="h.name"
+                                           [key]="h.id"
+                                           [value]="h">
+                        </jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-item>
+                  </form>
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </div>
+                  <jnt-button *ngIf="closingControl.value && !footerControl.value"
                               text="Cancel"
                               i18n-text="@@action.cancel"
                               (click)="close()"
-                              cancel></jnt-button>
+                              cancel>
+                  </jnt-button>
                 </ng-template>
 
                 <ng-template #contentDirective>
                   <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Aperiam culpa, cumque debitis dicta ducimus et excepturi illum iste nulla tempora.</div>
-                  <jnt-button *ngIf="!closingControl.value && !footerControl.value"
+                    Aperiam culpa, cumque debitis dicta ducimus et excepturi illum iste nulla tempora.
+                  </div>
+                  <jnt-button *ngIf="closingControl.value && !footerControl.value"
                               text="Cancel"
                               i18n-text="@@action.cancel"
                               (click)="close()"
@@ -110,12 +139,12 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label i18n="@@label.closing">Closing
+                  <jnt-form-label i18n="@@label.closing">Hold
                   </jnt-form-label>
                   <jnt-row>
                     <jnt-col [span]="5">
                       <jnt-checkbox formControlName="closing"
-                                    label="Enable closing"
+                                    label="Hold"
                                     i18n-label="@@label.enable_closing"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
@@ -164,7 +193,7 @@
                   <!-- @formatter:off-->
 <![CDATA[
 import { FormBuilder } from '@angular/forms';
-import { ModalOptions, ModalService, UI, ModalClosingOption } from 'junte-ui';
+import { ModalOptions, ModalService, UI } from 'junte-ui';
 
 @Component({
   selector: 'app-modal-test',
@@ -198,10 +227,10 @@ export class ModalTestComponent{
         <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
       </ng-container>
       <ng-container *ngIf="closingControl.value">
-        <![CDATA[closing: ModalClosingOption.enable,]]>
+        <![CDATA[hold: true,]]>
       </ng-container>
       <ng-container *ngIf="!closingControl.value">
-        <![CDATA[closing: ModalClosingOption.disable,]]>
+        <![CDATA[hold: false,]]>
       </ng-container>
 
       <ng-container *ngIf="titleControl.value || iconControl.value">
@@ -237,10 +266,10 @@ export class ModalTestComponent{
         <![CDATA[maxHeight:]]> {{this.heightControl.value}}<![CDATA[,]]>
       </ng-container>
       <ng-container *ngIf="closingControl.value">
-        <![CDATA[closing: ModalClosingOption.enable,]]>
+        <![CDATA[hold: true,]]>
       </ng-container>
       <ng-container *ngIf="!closingControl.value">
-        <![CDATA[closing: ModalClosingOption.disable,]]>
+        <![CDATA[hold: false,]]>
       </ng-container>
 
     <ng-container *ngIf="titleControl.value || iconControl.value">
@@ -286,7 +315,7 @@ export class ModalTestComponent{
     <iframe src="https://giphy.com/embed/3og0ICmyySyzbmnxqE"
             width="480" height="270" frameBorder="0"></iframe>
     ]]>
-    <ng-container *ngIf="!closingControl.value && !footerControl.value">
+    <ng-container *ngIf="closingControl.value && !footerControl.value">
       <![CDATA[ <jnt-button text="Cancel" (click)="close()"></jnt-button> ]]>
     </ng-container>
     <![CDATA[
@@ -318,7 +347,7 @@ export class ModalTestComponent{
   </ng-container>
   <ng-container *ngIf="closingControl.value">
     <![CDATA[
-    closing: ]]>{{closingControl.value ? 'closingOptions.enable' : 'closingOptions.disable'}}<![CDATA[,]]>
+    hold: ]]>{{closingControl.value ? 'true' : 'false'}}<![CDATA[,]]>
   </ng-container>
   <ng-container *ngIf="titleControl.value">
     <![CDATA[

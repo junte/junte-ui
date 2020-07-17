@@ -73,11 +73,16 @@ export class GanttTestComponent implements OnInit {
       this.requests = this.ganttTypeControl.value === GanttTypes.month ? this.monthArray : this.yearArray;
       this.loading = false;
     }, 3000);
+    this.ganttTypeControl.valueChanges.subscribe(value => {
+      if (value === GanttTypes.month) {
+        this.requests = this.monthArray;
+      } else {
+        this.requests = this.yearArray;
+      }
+    });
     this.gantt.valueChanges.subscribe(date => console.log('Date changed: ', date));
   }
-  switchRequestsArray() {
-    this.requests = this.ganttTypeControl.value === GanttTypes.month ? this.monthArray : this.yearArray;
-  }
+
   add() {
     this.requests.push({
       date: faker.name.findName(),

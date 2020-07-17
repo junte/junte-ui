@@ -1,0 +1,163 @@
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/icon";
+@import "navigation/menu/menu";
+@import "layout/responsive/responsive";
+@import "layout/grid/container/container";
+@import "forms/button/button";
+
+@mixin jnt-lp-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    position: fixed,
+    background: transparent,
+    padding: $jnt-gutter-large 0 $jnt-gutter-huge 0,
+    mobile-padding: $jnt-gutter-big 0,
+    height: $lp-header-height,
+    mobile-height: $lp-header-height-mobile,
+    z-index: 1,
+    container-width: null,
+    menu: (
+      desktop: (
+        top: (
+          item: (
+            color: $jnt-primary-color,
+            text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
+            active: (
+              color: $jnt-white-color
+            ),
+            icon: (
+              size: $jnt-font-size-normal
+            ),
+            padding: (
+              inner: $jnt-gutter-small,
+            ),
+            hover: (
+              background-color: rgba($jnt-secondary-dark-color, .5),
+            ),
+          ),
+        ),
+      ),
+      tablet: (
+        top: (
+          item: (
+            color: $jnt-primary-color,
+            text-transform: uppercase,
+            font-weight: $jnt-font-weight-semi-bold,
+            active: (
+              color: $jnt-white-color
+            ),
+            icon: (
+              size: $jnt-font-size-normal
+            ),
+            padding: (
+              outer: $jnt-gutter-small $jnt-gutter-normal,
+              inner: $jnt-gutter-small,
+            ),
+          ),
+        ),
+      ),
+      burger: (
+        icon: (
+          size: 24px,
+        ),
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    min-height: map-get($vars, height);
+    height: map-get($vars, height);
+    position: map-get($vars, position);
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+    @include max-for-tablet() {
+      min-height: map-get($vars, mobile-height);
+      height: map-get($vars, mobile-height);
+      padding: map-get($vars, mobile-padding);
+    }
+  }
+
+  #{$context} #{$wrapper} [data-container] {
+    @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
+      display: flex;
+      justify-content: space-between;
+    };
+    &[data-desktop] {
+      [data-menu] {
+        display: flex;
+        align-items: center;
+        @if map-has-key($vars, menu) {
+          $menu: map-get($vars, menu);
+          @include jnt-menu((
+            map-get($menu, desktop)
+          ), '&');
+        }
+      }
+    }
+    &[data-tablet] {
+      [data-menu] {
+        display: flex;
+        align-items: center;
+        @if map-has-key($vars, menu) {
+          $menu: map-get($vars, menu);
+          @include jnt-menu((
+            map-get($menu, tablet)
+          ), '&');
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-logo] {
+    display: flex;
+    align-items: center;
+    margin-right: $jnt-gutter-huge;
+    & > * {
+      display: block;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-burger] {
+    @if map-has-key($vars, menu) {
+      $menu: map-get($vars, menu);
+      @if map-has-key($menu, burger) {
+        $burger: map-get($menu, burger);
+        @include jnt-button(($burger), '&');
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-actions] {
+    margin-left: auto;
+  }
+
+  #{$context} #{$wrapper} [data-content] {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@if $jnt-debug {
+  @debug 'lp-header compiled';
+}

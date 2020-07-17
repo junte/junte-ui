@@ -1,5 +1,5 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'elements/icon';
 
 :host {
   display: block;
@@ -42,5 +42,11 @@ h5 {
     @include jnt-icon((
       size: 20px,
     ), '&', true);
+  }
+}
+
+app-code-highlight::ng-deep {
+  pre {
+    background-color: $jnt-white-color;
   }
 }

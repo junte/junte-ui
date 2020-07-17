@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -13,12 +14,14 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { isEqual } from '../../core/utils/equal';
+import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { TableColumnComponent } from './column/table-column.component';
 import { TableFeatures } from './enums';
 import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
@@ -33,7 +36,7 @@ const FILTER_DELAY = 500;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TableComponent),
       multi: true
-    }
+    }, ...I18N_PROVIDERS
   ]
 })
 export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
@@ -108,7 +111,14 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     return Math.ceil(this.count / this.pageSize.value);
   }
 
-  constructor(private fb: FormBuilder) {
+  onChange: (filter: DefaultSearchFilter) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -156,20 +166,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
       pageSize: first,
       page: Math.floor(offset / first) + 1
     });
-  }
-
-  onChange(filter: DefaultSearchFilter) {
-  }
-
-  onTouched() {
-  }
-
-  registerOnChange(fn) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn) {
-    this.onTouched = fn;
   }
 
   hideActions() {

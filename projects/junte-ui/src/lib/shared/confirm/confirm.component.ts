@@ -1,10 +1,12 @@
 import { Component, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 
 @Component({
   selector: 'jnt-confirm',
-  templateUrl: './confirm.encapsulated.html'
+  templateUrl: './confirm.encapsulated.html',
+  providers: [...I18N_PROVIDERS]
 })
 export class ConfirmComponent {
 
@@ -27,5 +29,4 @@ export class ConfirmComponent {
   @Output() ok = new EventEmitter();
 
   @Output() cancel = new EventEmitter();
-
 }

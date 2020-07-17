@@ -1,9 +1,8 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ModalOptions, ModalService, TabComponent, UI, ModalClosingOption } from 'junte-ui';
-import { ModalComponent } from 'junte-ui';
-import { ModalTestFactoryComponent } from 'src/components/docs/overlays/modal/test.component';
-import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { ModalComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
+import { ModalTestFactoryComponent } from './test.component';
+import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Size {
@@ -31,14 +30,13 @@ export class ModalTestComponent implements OnInit {
   language = Language;
   size = Size;
   contentType = ContentType;
-  closingOptions = ModalClosingOption;
   types = {modal: ModalComponent, options: ModalOptions};
 
   @ViewChild('code') code: TabComponent;
 
   widthControl = this.fb.control(Size.large);
   heightControl = this.fb.control(Size.normal);
-  closingControl = this.fb.control(true);
+  closingControl = this.fb.control(false);
   titleControl = this.fb.control(true);
   iconControl = this.fb.control(false);
   footerControl = this.fb.control(false);
@@ -53,6 +51,17 @@ export class ModalTestComponent implements OnInit {
     footer: this.footerControl,
     type: this.typeControl,
   });
+
+  selectControl = this.fb.control(null);
+  selectForm = this.fb.group({
+    select: this.selectControl
+  });
+
+  heroes = [
+    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
+    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
+    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
+  ];
 
   @ViewChild('content')
   content: TemplateRef<any>;
@@ -75,9 +84,7 @@ export class ModalTestComponent implements OnInit {
     const options = new ModalOptions({
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
-      closing: this.closingControl.value
-        ? ModalClosingOption.enable
-        : ModalClosingOption.disable,
+      hold: this.closingControl.value,
       title: {
         text: this.titleControl.value ? 'Modal' : null,
         icon: this.iconControl.value ? UI.icons.settings : null
@@ -87,23 +94,28 @@ export class ModalTestComponent implements OnInit {
     this.modalService.open(this.content, options);
   }
 
-
   openCalendar() {
     const component = this.cfr.resolveComponentFactory(ModalTestFactoryComponent).create(this.injector);
     const options = new ModalOptions({
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
-      closing: this.closingControl.value ? ModalClosingOption.enable : ModalClosingOption.disable,
+      hold: this.closingControl.value,
       title: {
         text: this.titleControl.value ? 'Calendar' : null,
         icon: this.iconControl.value ? UI.icons.calendar : null
       },
       footer: this.footerControl.value ? this.footer : null
     });
+    component.instance.footer = this.footerControl.value;
+    component.instance.closed.subscribe(() => this.close());
     this.modalService.open(component, options);
   }
 
   close() {
     this.modalService.close();
+  }
+
+  trackHero(index, hero: { id: number }) {
+    return hero.id;
   }
 }

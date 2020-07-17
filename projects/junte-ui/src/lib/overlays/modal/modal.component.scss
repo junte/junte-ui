@@ -54,6 +54,7 @@
     z-index: 2;
     min-width: max-content;
     max-width: 100%;
+    max-height: 100%;
     top: 100%;
 
     @include for-mobile() {
@@ -106,4 +107,8 @@
     }
 
   }
+}
+
+@if $jnt-debug {
+  @debug 'modal compiled';
 }

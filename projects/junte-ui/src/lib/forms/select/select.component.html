@@ -40,33 +40,48 @@
     <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
   </button>
 </div>
-<div data-options *ngIf="opened" [attr.data-loading]="loading">
-  <ng-template #noOptionsTemplate>
-    <div data-skeleton>
-      <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
-                    [type]="ui.layout.skeleton.type.text" [lines]="5"></jnt-skeleton>
-    </div>
-    <ng-template #optionsNotFoundTemplate>
-      <div data-empty-options>
-        <ng-container *ngTemplateOutlet="!!emptyOptionsTemplate ? emptyOptionsTemplate
+
+<ng-template #optionsTemplate>
+  <div data-options *ngIf="opened" [attr.data-loading]="loading">
+    <ng-template #noOptionsTemplate>
+      <div data-skeleton>
+        <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
+                      [type]="ui.layout.skeleton.type.text" [lines]="5"></jnt-skeleton>
+      </div>
+      <ng-template #optionsNotFoundTemplate>
+        <div data-empty-options>
+          <ng-container *ngTemplateOutlet="!!emptyOptionsTemplate ? emptyOptionsTemplate
               : emptyOptionsDefaultTemplate;context: {query: queryControl.value, close: close.bind(this)}">
-        </ng-container>
-      </div>
-    </ng-template>
-  </ng-template>
-  <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
-    | getOptions:selected:changes.selected:changes.options) as options">
-    <ul *ngIf="options.length;else noOptionsTemplate">
-      <div data-loading *ngIf="loading">
-        <jnt-spinner></jnt-spinner>
-      </div>
-      <ng-container *ngFor="let o of options;trackBy:trackOption">
-        <li (click)="select(o)">
-          <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-              : optionDefaultTemplate;context: o">
           </ng-container>
-        </li>
+        </div>
+      </ng-template>
+    </ng-template>
+    <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
+    | getOptions:changes.selected:changes.options) as options">
+      <ng-container *ngIf="options.length;else noOptionsTemplate">
+        <div data-loading *ngIf="loading">
+          <jnt-spinner></jnt-spinner>
+        </div>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <div data-options-header *ngIf="!!optionsHeaderTemplate">
+            <ng-container *ngTemplateOutlet="optionsHeaderTemplate;context: {close: close.bind(this)}"></ng-container>
+          </div>
+          <ul>
+            <li *ngFor="let o of options;trackBy:trackOption"
+                [attr.data-selected]="selected | includes:o.key"
+                (click)="toggle(o)">
+              <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+              : optionDefaultTemplate;context: o">
+              </ng-container>
+            </li>
+          </ul>
+        </jnt-stack>
       </ng-container>
-    </ul>
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="mobile">
+  <ng-container *ngTemplateOutlet="optionsTemplate"></ng-container>
+</ng-container>
+

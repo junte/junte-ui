@@ -6,8 +6,9 @@
 
   :host, #{$context} {
     display: block;
-    margin: $jnt-gutter-normal;
+    padding: $jnt-gutter-normal;
     box-sizing: border-box;
+    background-color: $jnt-primary-background;
 
     &[data-disabled='true'] {
       cursor: default;
@@ -115,8 +116,8 @@
             color: $jnt-primary-text-dark-color;
           }
           &:focus {
-            box-shadow: $jnt-shadow-primary;
-            outline: 1px solid $jnt-primary-light-color;
+            box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
+            outline: 0;
           }
           &[data-current-day='true'] {
             [data-default] {
@@ -151,5 +152,8 @@
     text-align: center;
     position: relative;
   }
+}
 
+@if $jnt-debug {
+  @debug 'calendar compiled';
 }
