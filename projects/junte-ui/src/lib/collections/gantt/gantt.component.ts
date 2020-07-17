@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
+import { NGXLogger } from 'ngx-logger';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
@@ -85,8 +86,8 @@ export class GanttComponent implements ControlValueAccessor {
   today = today();
   error: Error;
 
-  onChange: (date: Date) => {};
-  onTouched: () => {};
+  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
@@ -98,6 +99,9 @@ export class GanttComponent implements ControlValueAccessor {
   set current(current: Date) {
     this._current = current;
     this.onChange(current);
+  }
+
+  constructor(private logger: NGXLogger) {
   }
 
   writeValue(date: Date): void {

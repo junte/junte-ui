@@ -1,5 +1,6 @@
 import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -58,13 +59,14 @@ export class CheckboxComponent implements ControlValueAccessor {
   })
   @Input() value: any;
 
-  onChange: (value: any) => {};
-  onTouched: () => {};
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(public element: ElementRef) {
+  constructor(private logger: NGXLogger,
+              public element: ElementRef) {
   }
 
   writeValue(value: any) {
@@ -75,5 +77,10 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+  }
+
+  change() {
+    this.checked = !this.checked;
+    this.onChange(this.checked);
   }
 }
