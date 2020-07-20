@@ -6,7 +6,13 @@
       <jnt-menu-item *ngFor="let i of menu.items"
                      [title]="i.title"
                      [link]="i.link"
-                     [icon]="i.icon"></jnt-menu-item>
+                     [icon]="i.icon">
+        <jnt-badge *ngFor="let badge of i.badges"
+                   [value]="badge.value"
+                   [text]="badge.text"
+                   [position]="ui.position.inline"
+                   [color]="badge.color"></jnt-badge>
+      </jnt-menu-item>
     </jnt-menu>
   </div>
 </ng-template>

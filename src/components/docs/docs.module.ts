@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   AppLayoutModule,
+  BadgeModule,
   BreadcrumbsModule,
   MenuModule,
   ModalModule,
@@ -47,6 +48,7 @@ export function getHighlightLanguages() {
     PopoverModule.forRoot(JUNTE_UI_CONFIG),
     ModalModule.forRoot(JUNTE_UI_CONFIG),
     StackModule.forRoot(JUNTE_UI_CONFIG),
+    BadgeModule.forRoot(JUNTE_UI_CONFIG),
     TranslateModule,
     SelectLangModule,
     AppFooterModule,
