@@ -1,13 +1,16 @@
-<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacer="spacer">
+<ng-template #menuTemplate let-menu="menu">
   <div data-menu *ngIf="!!menu">
-    <jnt-menu [orientation]="orientation"
-              [spacer]="spacer"
+    <jnt-menu [orientation]="ui.orientation.horizontal"
+              [spacer]="ui.gutter.normal"
               (selected)="opened = false">
-      <jnt-menu-item *ngFor="let i of menu.items"
-                     [title]="i.title"
-                     [link]="i.link"
-                     [icon]="i.icon">
-        <jnt-badge *ngFor="let badge of i.badges"
+      <jnt-menu-item *ngFor="let item of menu.items"
+                     [title]="item.title"
+                     [icon]="item.icon"
+                     [matching]="item.matching"
+                     [scheme]="item.scheme"
+                     [target]="item.target"
+                     [link]="item.link">
+        <jnt-badge *ngFor="let badge of item.badges"
                    [value]="badge.value"
                    [text]="badge.text"
                    [position]="ui.position.inline"
@@ -23,7 +26,7 @@
   </div>
 
   <ng-container
-    *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
+    *ngTemplateOutlet="menuTemplate;context:{menu: menu}"></ng-container>
 
   <jnt-stack data-actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
