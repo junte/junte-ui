@@ -21,8 +21,9 @@
 
 <ng-template #linkTemplate>
   <span data-title>
-    <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
+    <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
     <span>{{title}}</span>
+    <jnt-icon *ngIf="!!icon && icon.position === ui.position.right" [icon]="icon?.icon"></jnt-icon>
   </span>
   <ng-container *ngIf="badges.length">
     <jnt-badge data-badge *ngFor="let badge of badges"

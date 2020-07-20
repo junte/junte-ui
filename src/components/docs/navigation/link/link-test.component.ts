@@ -27,6 +27,7 @@ export class LinkTestComponent implements OnInit {
   iconControl = this.fb.control(true);
   badgeControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
+  positionControl = this.fb.control(null);
   builder = this.fb.group({
     scheme: this.schemeControl,
     outline: this.outlineControl,
@@ -34,7 +35,8 @@ export class LinkTestComponent implements OnInit {
     source: this.sourceControl,
     disabled: this.disabledControl,
     target: this.targetControl,
-    badge: this.badgeControl
+    badge: this.badgeControl,
+    position: this.positionControl
   });
 
   @ViewChild('code') code: TabComponent;

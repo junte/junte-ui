@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
+import { Position } from '../../core/enums/position';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
 import { Scheme } from '../../core/enums/scheme';
@@ -8,6 +9,10 @@ import { UrlMatching } from '../../core/enums/url';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { LinkTarget } from './enums';
 
+interface Icon {
+  icon: string;
+  position: Position;
+}
 
 @Component({
   selector: 'jnt-link',
@@ -19,6 +24,7 @@ export class LinkComponent {
 
   ui = UI;
   urlMatching = UrlMatching;
+  icon: Icon;
 
   private _source: string | string[];
   private _target: LinkTarget = LinkTarget.self;
@@ -78,7 +84,15 @@ export class LinkComponent {
     description: 'Icon for link',
     type: 'string'
   })
-  @Input() icon: string;
+  @Input('icon')
+  set __icon__(icon: string | Icon) {
+    this.icon = (typeof (icon) === 'string'
+      ? {icon: icon, position: Position.left} : icon) as Icon;
+  }
+
+  @HostBinding('attr.data-position') get position() {
+    return !!this.icon ? this.icon.position : null;
+  }
 
   @PropertyApi({
     description: 'Link title',

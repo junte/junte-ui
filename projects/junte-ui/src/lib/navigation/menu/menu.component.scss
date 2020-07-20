@@ -15,7 +15,7 @@
         text-transform: null,
         font-weight: $jnt-font-weight-base,
         icon: (
-          margin-right: $jnt-gutter-small,
+          spacing: $jnt-gutter-small,
           size: 18px
         ),
         focus: (
@@ -232,7 +232,7 @@
           $icon: map-get($title, icon);
           @include jnt-link((
             icon: (
-              margin-right: map-get($icon, margin-right),
+              spacing: map-get($icon, spacing),
               size: map-get($icon, size)
             ),
           ), '&');
