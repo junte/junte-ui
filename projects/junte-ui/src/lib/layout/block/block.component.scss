@@ -4,7 +4,7 @@
 @import "layout/responsive/responsive";
 
 @mixin block-padding($padding, $wrapper) {
-  #{$wrapper} [data-body], #{$wrapper}[data-footer] {
+  & {
     padding: $padding;
   }
 }
@@ -73,24 +73,23 @@
         #{$wrapper} [data-title] {
           color: $jnt-primary-color;
         }
-        #{$wrapper} [data-body],
-        #{$wrapper} [data-footer] {
-          padding-left: 0;
-          padding-right: 0;
-        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-title] {
-    padding: 0 $jnt-gutter-normal;
     text-align: center;
     font-weight: $jnt-font-weight-bold;
     color: map-get($vars, title-color);
-    > div {
-      padding: $jnt-gutter-normal 0;
-      border-bottom: 1px solid $jnt-muted-color;
-    }
+  }
+
+  #{$context} #{$wrapper} hr {
+    background-color: $jnt-secondary-color;
+    color: $jnt-secondary-color;
+    width: 100%;
+    border: 0;
+    height: 1px;
+    margin-top: 0;
   }
 
   #{$context} #{$wrapper} [data-loading],
