@@ -72,6 +72,11 @@ export const routes: Routes = [
         path: 'selectable',
         component: SelectableTestComponent,
         data: {breadcrumb: 'Selectable', animation: 'Selectable'}
+      },
+      {
+        path: 'code',
+        component: CodeTestComponent,
+        data: {breadcrumb: 'Code', animation: 'Code'}
       }
     ]
   }

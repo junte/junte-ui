@@ -20,6 +20,10 @@ export class CodeTestComponent implements OnInit {
     count: this.countControl,
   });
 
+  form = this.fb.group({
+    code: [],
+  });
+
   constructor(private fb: FormBuilder) {
   }
 

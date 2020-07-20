@@ -1,33 +1,15 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  QueryList,
-  SimpleChanges,
-  ViewChildren
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-
-enum InputState {
-  ready = 0,
-  reset = 1
-}
 
 @Component({
   selector: 'jnt-code',
   templateUrl: './code.encapsulated.html'
 })
-export class CodeComponent {
+export class CodeComponent implements AfterViewInit {
 
   ui = UI;
-  inputs: HTMLInputElement[] = [];
-  private _codeLength: number;
+  private _length: number;
   inputsSlots: number[];
 
   @PropertyApi({
@@ -36,55 +18,45 @@ export class CodeComponent {
     default: 4,
   })
   @Input()
-  set codeLength(codeLength: number) {
-    this._codeLength = +codeLength;
+  set length(length: number) {
+    this._length = length;
     this.updateInputs();
   }
 
-
-  get codeLength() {
-    return this._codeLength;
+  get length() {
+    return this._length;
   }
 
-  updateInputs() {
-    const inputsSlots: number[] = [];
-
-    for (let i = 0; i < this._codeLength; i++) {
-      inputsSlots.push(i);
-    }
-    this.inputsSlots = inputsSlots;
-  }
   @Input() readonly code?: string | number;
-  @ViewChildren('input') inputsList: QueryList<ElementRef>;
+  @ViewChildren('input') inputs: QueryList<ElementRef>;
   @Output() codeChanged = new EventEmitter<string>();
   @Output() codeCompleted = new EventEmitter<string>();
 
   ngAfterViewInit(): void {
-    this.inputsList.forEach((item) => {
-      this.inputs.push(item.nativeElement);
-    });
-
-    // the @Input code might have value. Checking
     this.onInputCodeChanges();
   }
+
+  updateInputs() {
+    this.inputsSlots = [];
+
+    for (let i = 0; i < this.length; i++) {
+      this.inputsSlots.push(i);
+    }
+  }
+
   private onInputCodeChanges(): void {
     if (!this.inputs.length) {
       return;
     }
 
     if (this.isEmpty(this.code)) {
-      this.inputs.forEach((input: HTMLInputElement) => {
-        this.setInputValue(input, null);
-      });
+      // this.inputs.forEach(input => this.setInputValue(input, null));
       return;
     }
 
-    const chars = this.code.toString().trim().split('');
+    // const chars = this.code.toString().split('');
 
-
-    this.inputs.forEach((input: HTMLInputElement, index: number) => {
-      this.setInputValue(input, chars[index]);
-    });
+    // this.inputs.forEach((input, index) => this.setInputValue(input, chars[index]));
   }
 
   onInput(e: any, i: number): void {
@@ -97,93 +69,93 @@ export class CodeComponent {
     }
 
 
-    this.setInputValue(target, value.toString().charAt(0));
-    this.emitChanges();
+    // this.setInputValue(target, value.toString().charAt(0));
+    // this.emitChanges();
 
-    if (next > this._codeLength - 1) {
+    console.log(this._length);
+    if (next > this._length - 1) {
       target.blur();
       return;
     }
 
-    this.inputs[next].focus();
+    this.inputs.toArray()[next].nativeElement.focus();
   }
 
-  async keydown(e: any, i: number): Promise<void> {
-    const target = e.target;
-    const isTargetEmpty = this.isEmpty(target.value);
-    const prev = i - 1;
+  // async keydown(e: any, i: number): Promise<void> {
+  //   const target = e.target;
+  //   const isTargetEmpty = this.isEmpty(target.value);
+  //   const prev = i - 1;
+  //
+  //   // processing only backspace events
+  //   const isBackspaceKey = await this.isBackspaceKey(e);
+  //   if (!isBackspaceKey) {
+  //     return;
+  //   }
+  //
+  //   e.preventDefault();
+  //
+  //   this.setInputValue(target, null);
+  //   if (!isTargetEmpty) {
+  //     this.emitChanges();
+  //   }
+  //
+  //   if (prev < 0) {
+  //     return;
+  //   }
+  //
+  //   if (isTargetEmpty) {
+  //     this.inputs[prev].focus();
+  //   }
+  // }
+  //
+  // isInputElementEmptyAt(index: number): boolean {
+  //   const input = this.inputs[index];
+  //   if (!input) {
+  //     return true;
+  //   }
+  //
+  //   return this.isEmpty(input.value);
+  // }
+  //
+  // private emitChanges(): void {
+  //   setTimeout(() => this.emitCode(), 50);
+  // }
+  //
+  // private emitCode(): void {
+  //   let code = '';
+  //
+  //   for (const input of this.inputs) {
+  //     if (!this.isEmpty(input.nativeElement.value)) {
+  //       code += input.nativeElement.value;
+  //     }
+  //   }
+  //
+  //   this.codeChanged.emit(code);
+  //
+  //   if (code.length >= this.length) {
+  //     this.codeCompleted.emit(code);
+  //   }
+  // }
+  //
+  // private setInputValue(input: ElementRef, value: any): void {
+  //   const isEmpty = this.isEmpty(value);
+  //   input.nativeElement.value = isEmpty ? null : value;
+  //   input.nativeElement.className = isEmpty ? '' : 'has-value';
+  // }
 
-    // processing only backspace events
-    const isBackspaceKey = await this.isBackspaceKey(e);
-    if (!isBackspaceKey) {
-      return;
-    }
-
-    e.preventDefault();
-
-    this.setInputValue(target, null);
-    if (!isTargetEmpty) {
-      this.emitChanges();
-    }
-
-    if (prev < 0) {
-      return;
-    }
-
-    if (isTargetEmpty) {
-      this.inputs[prev].focus();
-    }
-  }
-
-
-  isInputElementEmptyAt(index: number): boolean {
-    const input = this.inputs[index];
-    if (!input) {
-      return true;
-    }
-
-    return this.isEmpty(input.value);
-  }
-
-  private emitChanges(): void {
-    setTimeout(() => this.emitCode(), 50);
-  }
-
-  private emitCode(): void {
-    let code = '';
-
-    for (const input of this.inputs) {
-      if (!this.isEmpty(input.value)) {
-        code += input.value;
-      }
-    }
-
-    this.codeChanged.emit(code);
-
-    if (code.length >= this.codeLength) {
-      this.codeCompleted.emit(code);
-    }
-  }
-
-  private setInputValue(input: HTMLInputElement, value: any): void {
-    const isEmpty = this.isEmpty(value);
-    input.value = isEmpty ? null : value;
-    input.className = isEmpty ? '' : 'has-value';
-  }
-
-  private isBackspaceKey(e: any): Promise<boolean> {
-    const isBackspace = (e.key && e.key.toLowerCase() === 'backspace') || (e.keyCode && e.keyCode === 8);
-    if (isBackspace) {
-      return Promise.resolve(true);
-    }
-
-    return new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        const input = e.target;
-        resolve(input.selectionStart === 0);
-      });
-    });
-  }
+  // private isBackspaceKey(e: any): Promise<boolean> {
+  //   const isBackspace = (e.key && e.key.toLowerCase() === 'backspace') || (e.keyCode && e.keyCode === 8);
+  //   if (isBackspace) {
+  //     return Promise.resolve(true);
+  //   }
+  //
+  //   return new Promise<boolean>((resolve) => {
+  //     setTimeout(() => {
+  //       const input = e.target;
+  //       resolve(input.selectionStart === 0);
+  //     });
+  //   });
+  // }
 
   private isEmpty(value: any): boolean {
     return value === null || value === undefined || !value.toString().length;
