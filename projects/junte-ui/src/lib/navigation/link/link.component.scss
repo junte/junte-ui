@@ -169,7 +169,7 @@
       border-color: $jnt-primary-color,
     ),
     icon: (
-      margin-right: $jnt-gutter-tiny,
+      spacing: $jnt-gutter-tiny,
       size: null,
       sizes: 18px
     ),
@@ -279,6 +279,20 @@
       }
     }
 
+    @if map-has-key($vars, icon) {
+      $icon: map-get($vars, icon);
+      &[data-position='left'] {
+        [data-icon] {
+          margin-right: map-get($icon, spacing);
+        }
+      }
+      &[data-position='right'] {
+        [data-icon] {
+          margin-left: map-get($icon, spacing);
+        }
+      }
+    }
+
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {
         &[data-scheme='#{$scheme}'] {
@@ -341,7 +355,6 @@
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         [data-icon] {
-          margin-right: map-get($icon, margin-right);
           @include jnt-icon((
             size: map-get($icon, size),
             sizes: (
