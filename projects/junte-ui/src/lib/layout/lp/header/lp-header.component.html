@@ -1,12 +1,16 @@
-<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacer="spacer">
+<ng-template #menuTemplate let-menu="menu">
   <div data-menu *ngIf="!!menu">
-    <jnt-menu [orientation]="orientation"
-              [spacer]="spacer"
+    <jnt-menu [orientation]="ui.orientation.horizontal"
+              [spacer]="ui.gutter.large"
               (selected)="opened = false">
-      <jnt-menu-item *ngFor="let i of menu.items"
-                     [title]="i.title"
-                     [link]="i.link"
-                     [icon]="i.icon"></jnt-menu-item>
+      <jnt-menu-item *ngFor="let item of menu.items"
+                     [title]="item.title"
+                     [icon]="item.icon"
+                     [matching]="item.matching"
+                     [scheme]="item.scheme"
+                     [target]="item.target"
+                     [link]="item.link">
+      </jnt-menu-item>
     </jnt-menu>
   </div>
 </ng-template>
@@ -17,8 +21,7 @@
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
 
-    <ng-container
-      *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.large}"></ng-container>
+    <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu}"></ng-container>
 
     <jnt-stack *ngIf="!!contentTemplate || !!headerActionsTemplate || !!headerUserbarTemplate"
                data-actions
@@ -36,29 +39,29 @@
 
 <ng-container *jntMaxFor="ui.breakpoint.tablet">
   <jnt-container data-container data-tablet>
-      <div data-logo data-tablet *ngIf="headerLogoTemplate">
-        <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
-      </div>
-      <jnt-stack data-actions [type]="ui.orientation.horizontal"
-                 [gutter]="ui.gutter.small"
-                 [align]="ui.flex.align.stretch">
-        <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
-        <jnt-button data-burger
-                    [icon]="opened ? ui.icons.cancel : ui.icons.menu"
-                    [outline]="ui.outline.transparent"
-                    [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
-        </jnt-button>
-        <ng-template #dropdownTemplate>
-          <jnt-stack [align]="ui.flex.align.stretch">
-            <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
-            <ng-container
-              *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
-            <div *ngIf="!!contentTemplate" data-content>
-              <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-            </div>
-          </jnt-stack>
-        </ng-template>
-      </jnt-stack>
+    <div data-logo data-tablet *ngIf="headerLogoTemplate">
+      <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
+    </div>
+    <jnt-stack data-actions [type]="ui.orientation.horizontal"
+               [gutter]="ui.gutter.small"
+               [align]="ui.flex.align.stretch">
+      <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+      <jnt-button data-burger
+                  [icon]="opened ? ui.icons.cancel : ui.icons.menu"
+                  [outline]="ui.outline.transparent"
+                  [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+      </jnt-button>
+      <ng-template #dropdownTemplate>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
+          <div *ngIf="!!contentTemplate" data-content>
+            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+          </div>
+        </jnt-stack>
+      </ng-template>
+    </jnt-stack>
   </jnt-container>
 </ng-container>
 

@@ -12,6 +12,7 @@ export abstract class AbstractMenuItemComponent {
   ui = UI;
 
   _scheme: Scheme = Scheme.primary;
+  _matching: UrlMatching = UrlMatching.fullMatch;
 
   @HostBinding('attr.opened')
   opened = false;
