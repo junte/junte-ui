@@ -24,6 +24,7 @@ export class BlockTestComponent implements OnInit {
   widthControl = this.fb.control(null);
   titleControl = this.fb.control(true);
   footerControl = this.fb.control(true);
+  headerControl = this.fb.control(false);
   stateControl = this.fb.control(null);
   adaptedControl = this.fb.control(false);
 
@@ -31,6 +32,7 @@ export class BlockTestComponent implements OnInit {
     padding: this.paddingControl,
     title: this.titleControl,
     footer: this.footerControl,
+    header: this.headerControl,
     state: this.stateControl,
     width: this.widthControl,
     adapted: this.adaptedControl

@@ -96,6 +96,9 @@ export class BlockComponent {
   @Input()
   features: Feature[] = [];
 
+  @ContentChild('blockHeaderTemplate')
+  blockHeaderTemplate: TemplateRef<any>;
+
   @ContentChild('blockFooterTemplate')
   blockFooterTemplate: TemplateRef<any>;
 

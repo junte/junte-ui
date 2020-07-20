@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { StackModule } from '../stack/stack.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../spinner/spinner.module';
@@ -12,7 +13,8 @@ import { BlockComponent } from './block.component';
   imports: [
     CommonModule,
     IconModule,
-    SpinnerModule
+    SpinnerModule,
+    StackModule
   ],
   entryComponents: [
     BlockComponent
