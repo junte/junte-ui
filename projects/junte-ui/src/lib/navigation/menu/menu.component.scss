@@ -23,7 +23,7 @@
           shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
         ),
         padding: (
-          inner: $jnt-gutter-small $jnt-gutter-normal !important,
+          inner: $jnt-gutter-small !important,
           outer: 0,
         ),
         toggle: (
@@ -125,6 +125,11 @@
           display: flex;
           align-items: center;
           user-select: none;
+
+          &[data-loading='true'] {
+            opacity: .7;
+            pointer-events: none;
+          }
 
           [data-link] {
             width: 100%;
