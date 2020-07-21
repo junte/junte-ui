@@ -31,6 +31,7 @@ export class MenuTestComponent implements OnInit {
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
   collapsedControl = this.fb.control(false);
+  loadingControl = this.fb.control(false);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -41,6 +42,7 @@ export class MenuTestComponent implements OnInit {
     icons: this.iconsControl,
     badges: this.badgesControl,
     collapsed: this.collapsedControl,
+    loading: this.loadingControl,
   });
 
   constructor(private fb: FormBuilder) {

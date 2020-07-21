@@ -9,11 +9,6 @@ export const routes: Routes = [
     component: ComponentsComponent
   },
   {
-    path: 'general',
-    loadChildren: () => loadChildren(import('../general/general.module')
-      .then(m => m.GeneralModule))
-  },
-  {
     path: 'layout',
     loadChildren: () => loadChildren(import('../layout/layout-test.module')
       .then(m => m.LayoutTestModule))

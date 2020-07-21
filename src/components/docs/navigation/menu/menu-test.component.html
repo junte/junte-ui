@@ -53,7 +53,7 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [link]="['/navigation/menu']" title="Home">
+                  <jnt-menu-item [link]="['/navigation/menu']" [loading]="loadingControl.value" title="Home">
                     <jnt-badge [value]=5></jnt-badge>
                   </jnt-menu-item>
 
@@ -115,10 +115,15 @@
                   <jnt-form-label i18n="@@label.state">State
                   </jnt-form-label>
                   <jnt-row>
-                    <jnt-col [span]="4">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="collapsed"
                                     label="Collapsed"
                                     i18n-label="@@label.collapsed"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="loading"
+                                    label="Loading"
+                                    i18n-label="@@label.loading"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
@@ -247,6 +252,11 @@
             <![CDATA[
             link="https://google.com"]]>
           </ng-container>
+
+            <ng-container *ngIf="loadingControl.value">
+              <![CDATA[
+              [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+            </ng-container>
 
           <ng-container *ngIf="linkControl.value == sourceType.local">
             <![CDATA[

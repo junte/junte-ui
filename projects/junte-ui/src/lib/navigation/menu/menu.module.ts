@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
@@ -17,7 +18,8 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     LinkModule,
     IconModule,
     StackModule,
-    BadgeModule
+    BadgeModule,
+    SpinnerModule
   ],
   exports: [
     MenuComponent,

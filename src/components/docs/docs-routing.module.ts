@@ -25,6 +25,11 @@ export const routes: Routes = [
           .then(m => m.TeamModule))
       },
       {
+        path: 'general',
+        loadChildren: () => loadChildren(import('./general/general.module')
+          .then(m => m.GeneralModule))
+      },
+      {
         path: 'components',
         data: {breadcrumb: 'Components'},
         loadChildren: () => loadChildren(import('./components/components.module')

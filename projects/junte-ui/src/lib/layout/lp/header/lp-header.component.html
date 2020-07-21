@@ -1,7 +1,7 @@
-<ng-template #menuTemplate let-menu="menu">
+<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacer="spacer">
   <div data-menu *ngIf="!!menu">
-    <jnt-menu [orientation]="ui.orientation.horizontal"
-              [spacer]="ui.gutter.large"
+    <jnt-menu [orientation]="orientation"
+              [spacer]="spacer"
               (selected)="opened = false">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
@@ -21,7 +21,7 @@
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
 
-    <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu}"></ng-container>
+    <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
 
     <jnt-stack *ngIf="!!contentTemplate || !!headerActionsTemplate || !!headerUserbarTemplate"
                data-actions

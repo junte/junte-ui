@@ -1,11 +1,12 @@
-<ng-template #menuTemplate let-menu="menu">
+<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacer="spacer">
   <div data-menu *ngIf="!!menu">
-    <jnt-menu [orientation]="ui.orientation.horizontal"
-              [spacer]="ui.gutter.normal"
+    <jnt-menu [orientation]="orientation"
+              [spacer]="spacer"
               (selected)="opened = false">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
                      [icon]="item.icon"
+                     [loading]="item.loading"
                      [matching]="item.matching"
                      [scheme]="item.scheme"
                      [target]="item.target"
@@ -26,7 +27,7 @@
   </div>
 
   <ng-container
-    *ngTemplateOutlet="menuTemplate;context:{menu: menu}"></ng-container>
+    *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
 
   <jnt-stack data-actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
@@ -59,7 +60,7 @@
     <ng-template #dropdownTemplate>
       <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
       <ng-container
-        *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical}"></ng-container>
+        *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
       <div *ngIf="!!contentTemplate" data-content>
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>

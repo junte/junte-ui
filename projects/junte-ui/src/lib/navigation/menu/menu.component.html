@@ -4,7 +4,8 @@
   [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
     <div data-top [jntSubMenu]="item" [collapsed]="collapsed">
-      <div data-item (click)="open(item)">
+      <div data-item [attr.data-loading]="item.loading" (click)="open(item)">
+        <jnt-spinner *ngIf="item.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
