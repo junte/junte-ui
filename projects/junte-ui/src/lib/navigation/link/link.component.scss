@@ -155,6 +155,7 @@
     font-size: null,
     font-weight: null,
     text-transform: null,
+    text-decoration: null,
     padding: $jnt-gutter-tiny $jnt-gutter-small,
     display: inline,
     overflow: false,
@@ -347,6 +348,7 @@
     font-size: map-get($vars, font-size);
     font-weight: map-get($vars, font-weight);
     text-transform: map-get($vars, text-transform);
+    text-decoration: map-get($vars, text-decoration);
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
     }
