@@ -13,7 +13,7 @@ export class PopoverOptions {
   position: PopoverPosition = PopoverPosition.absolute;
   maxWidth: string;
   minWidth: string;
-  maxHeight: string;
+  maxHeight = '400px';
   smarty = true;
   features: Feature[] = [];
 
