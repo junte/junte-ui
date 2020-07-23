@@ -1,8 +1,9 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
+import { DotComponent } from '../dot/dot.component';
 
 @Component({
   selector: 'jnt-avatar',
@@ -62,4 +63,6 @@ export class AvatarComponent {
   })
   @Input() image: string;
 
+  @ContentChild(DotComponent)
+  dot: DotComponent;
 }

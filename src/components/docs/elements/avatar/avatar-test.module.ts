@@ -7,6 +7,7 @@ import {
   AvatarModule,
   BlockModule,
   CheckboxModule,
+  DotModule,
   FormModule,
   GridModule,
   IconModule,
@@ -34,6 +35,7 @@ import { AvatarTestComponent } from './avatar-test.component';
     AccordionModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
+    DotModule.forRoot(JUNTE_UI_CONFIG),
     ArrayPipesModule,
     SharedModule
   ],

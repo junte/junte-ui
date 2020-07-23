@@ -1,3 +1,6 @@
-<jnt-icon *ngIf="icon && !text && !image" [icon]="icon"></jnt-icon>
-<span data-text *ngIf="text && !image">{{text[0]}}</span>
-<img data-image *ngIf="image" [src]="image">
+<div data-wrapper>
+  <jnt-icon *ngIf="icon && !text && !image" [icon]="icon"></jnt-icon>
+  <span data-text *ngIf="text && !image">{{text[0]}}</span>
+  <img data-image *ngIf="image" [src]="image">
+</div>
+<jnt-dot data-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
