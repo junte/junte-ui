@@ -29,7 +29,7 @@ export class CheckboxTestComponent implements OnInit {
     disable: this.disableControl
   });
 
-  heroesControl = this.fb.control([], Validators.required);
+  heroesControl = this.fb.control([Hero.spiderman], Validators.required);
 
   form = this.fb.group({
     heroes: this.heroesControl
@@ -47,5 +47,4 @@ export class CheckboxTestComponent implements OnInit {
     this.block.success();
     setTimeout(() => this.form.reset(), 3000);
   }
-
 }

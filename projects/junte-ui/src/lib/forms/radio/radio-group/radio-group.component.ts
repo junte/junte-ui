@@ -9,7 +9,7 @@ import {
   QueryList,
   ViewChildren
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
@@ -29,12 +29,15 @@ import { RadioComponent } from '../radio.component';
 
 export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor {
 
-  private disabled = false;
-  private selected: any;
-
-  _size = Size.normal;
+  private _size = Size.normal;
 
   ui = UI;
+  selected: any;
+
+  radiosControl = this.fb.array([]);
+  form = this.fb.group({
+    radios: this.radiosControl
+  });
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
 
@@ -62,12 +65,12 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger) {
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
   ngAfterViewInit() {
     this.transformationRadio();
-    this.updateDisabled();
   }
 
   private transformationRadio() {
@@ -77,34 +80,34 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
         item.value = item.value[this.valueField];
       }
     });
-    this.updateChecked();
+    this.update();
   }
 
-  private updateChecked() {
-    if (!!this.items) {
-      this.items.forEach(item => item.checked = item.value === this.selected);
+  update() {
+    if (!!this.radios) {
+      this.radiosControl.reset();
+      this.radios.forEach((radio, i) => {
+        if (this.radiosControl.length < i + 1) {
+          this.radiosControl.push(new FormControl(this.selected === radio.value));
+        } else {
+          this.radiosControl.get(i.toString()).setValue(this.selected === radio.value, {emitEvent: false});
+        }
+      });
     }
-  }
-
-  private updateDisabled() {
-    if (!!this.items) {
-      this.items.forEach(item => item.disabled = this.disabled);
-    }
-  }
-
-  select(value) {
-    this.selected = value || null;
-    this.updateChecked();
-    this.onChange(value);
   }
 
   writeValue(value: any) {
     this.selected = value || null;
-    this.updateChecked();
+    this.update();
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-    this.updateDisabled();
+    isDisabled ? this.radiosControl.disable() : this.radiosControl.enable();
+  }
+
+  select(value) {
+    this.selected = value || null;
+    this.radiosControl.setValue(this.items.map(item => item.value === this.selected), {emitEvent: false});
+    this.onChange(this.selected);
   }
 }
