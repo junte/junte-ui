@@ -24,59 +24,66 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-row>
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Elon Musk" [padding]="ui.gutter.large" [width]="ui.width.fluid">
-                      <jnt-avatar [size]="sizeControl.value"
-                                  [shape]="shapeControl.value"
-                                  [icon]="iconControl.value ? ui.icons.user : null"
-                                  [text]="textControl.value ? 'User' : null"
-                                  [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
-                      </jnt-avatar>
+                    <jnt-block title="Elon Musk" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                      <jnt-stack [align]="ui.flex.align.center">
+                        <jnt-avatar [size]="sizeControl.value"
+                                    [shape]="shapeControl.value"
+                                    [icon]="iconControl.value ? ui.icons.user : null"
+                                    [text]="textControl.value ? 'User' : null"
+                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                          <jnt-dot [color]="ui.color.green" *ngIf="dotControl.value"></jnt-dot>
+                        </jnt-avatar>
+                      </jnt-stack>
                     </jnt-block>
                   </jnt-col>
 
                   <jnt-col [desktop]="6" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Inventors" [padding]="ui.gutter.large" [width]="ui.width.fluid">
-                      <jnt-avatars-list [size]="sizeControl.value">
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Mark' : null"
-                                    [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Bill' : null"
-                                    [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Steve' : null"
-                                    [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Elon' : null"
-                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
-                        </jnt-avatar>
-                      </jnt-avatars-list>
+                    <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                      <jnt-stack [align]="ui.flex.align.center">
+                        <jnt-avatars-list [size]="sizeControl.value">
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Mark' : null"
+                                      [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Bill' : null"
+                                      [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Steve' : null"
+                                      [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Elon' : null"
+                                      [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                          </jnt-avatar>
+                        </jnt-avatars-list>
+                      </jnt-stack>
                     </jnt-block>
                   </jnt-col>
 
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Inventors" [padding]="ui.gutter.large" [width]="ui.width.fluid">
-                      <jnt-avatars-group [size]="sizeControl.value" [total]="10">
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Mark' : null"
-                                    [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Bill' : null"
-                                    [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Steve' : null"
-                                    [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
-                        </jnt-avatar>
-                        <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'Elon' : null"
-                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
-                        </jnt-avatar>
-                      </jnt-avatars-group>
+                    <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                      <jnt-stack [align]="ui.flex.align.center">
+                        <jnt-avatars-group [size]="sizeControl.value" [total]="10">
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Mark' : null"
+                                      [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Bill' : null"
+                                      [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Steve' : null"
+                                      [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                          </jnt-avatar>
+                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
+                                      [text]="textControl.value ? 'Elon' : null"
+                                      [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                          </jnt-avatar>
+                        </jnt-avatars-group>
+                      </jnt-stack>
                     </jnt-block>
                   </jnt-col>
 
@@ -147,6 +154,11 @@
                                     label="Image"
                                     i18n-label="@@label.image"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="dot"
+                                    label="Dot"
+                                    i18n-label="@@label.dot"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -198,7 +210,13 @@
                     <![CDATA[
                     image="assets/images/bob.jpeg"]]>
                   </ng-container>
-                  <![CDATA[>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="dotControl.value">
+                    <![CDATA[
+                    <jnt-dot [color]="ui.color.green"></jnt-dot>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
                 </jnt-avatar>
                 ]]>
                 <!-- @formatter:on-->

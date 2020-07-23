@@ -25,13 +25,15 @@ export class AvatarTestComponent implements OnInit {
   iconControl = this.fb.control(true);
   textControl = this.fb.control(false);
   imageControl = this.fb.control(true);
+  dotControl = this.fb.control(false);
 
   builder = this.fb.group({
     size: this.sizeControl,
     shape: this.shapeControl,
     icon: this.iconControl,
     text: this.textControl,
-    image: this.imageControl
+    image: this.imageControl,
+    dot: this.dotControl,
   });
 
   constructor(private fb: FormBuilder) {

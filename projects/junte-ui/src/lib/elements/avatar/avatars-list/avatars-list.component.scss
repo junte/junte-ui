@@ -20,12 +20,12 @@
     display: flex;
     position: relative;
     box-sizing: border-box;
-    @each $size, $map in $avatar-sizes {
+    @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
-        min-height: map-get($map, size);
+        min-height: map-get($map, avatar-size);
         @for $i from 1 through 5 {
           &[data-capacity='#{$i}'] {
-            min-width: calc(#{map-get($map, size)} / 2 * #{$i} + #{map-get($map, size)} / 2 + #{map-get($vars, border-width)});
+            min-width: calc(#{map-get($map, avatar-size)} / 2 * #{$i} + #{map-get($map, avatar-size)} / 2 + 2px);
           }
         }
       }
@@ -42,9 +42,9 @@
         border-color: $jnt-purple-light-color;
         z-index: 1;
       }
-      @each $size, $map in $avatar-sizes {
+      @each $size, $map in $sizes {
         &[data-size='#{$size}'] {
-          left: calc(#{$i} * (#{map-get($map, size)} / 2));
+          left: calc(#{$i} * (#{map-get($map, avatar-size)} / 2));
         }
       }
     }
