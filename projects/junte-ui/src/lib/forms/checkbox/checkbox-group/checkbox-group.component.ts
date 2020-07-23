@@ -9,10 +9,12 @@ import {
   QueryList,
   ViewChildren
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
+import { isEqual } from '../../../core/utils/equal';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -27,14 +29,17 @@ import { CheckboxComponent } from '../checkbox.component';
   ]
 })
 
-export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccessor {
+export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewInit {
 
-  private disabled = false;
-  private selectedItems: any[] = [];
-
-  _size: Size = Size.normal;
+  private _size: Size = Size.normal;
+  private selectedItems = [];
 
   ui = UI;
+
+  checkboxesControl = this.fb.array([]);
+  form = this.fb.group({
+    checkboxes: this.checkboxesControl
+  });
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-group-host';
@@ -42,7 +47,7 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   @ViewChildren(CheckboxComponent)
   items: QueryList<CheckboxComponent>;
 
-  @ContentChildren(CheckboxComponent, {descendants: true})
+  @ContentChildren(CheckboxComponent)
   checkboxes: QueryList<CheckboxComponent>;
 
   @Input()
@@ -60,47 +65,45 @@ export class CheckboxGroupComponent implements AfterViewInit, ControlValueAccess
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger) {
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
   ngAfterViewInit() {
-    this.updateChecked();
-    this.updateDisabled();
+    this.update();
+
+    this.checkboxesControl.valueChanges.pipe(
+      map(checkboxes => this.items.filter((_c, i) => checkboxes[i]).map(checkbox => checkbox.value)),
+      distinctUntilChanged((a, b) => isEqual(a, b))
+    ).subscribe(selectedItems => {
+      this.selectedItems = selectedItems;
+      this.onChange(selectedItems);
+    });
   }
 
-  private updateChecked() {
-    if (!!this.items) {
-      this.items.forEach(item => item.checked = this.selectedItems.includes(item.value));
+  update() {
+    if (!!this.checkboxes) {
+      this.checkboxesControl.reset();
+      this.checkboxes.forEach((checkbox, i) => {
+        if (this.checkboxesControl.length < i + 1) {
+          this.checkboxesControl.push(new FormControl(this.selectedItems.includes(checkbox.value)));
+        } else {
+          this.checkboxesControl.get(i.toString()).setValue(this.selectedItems.includes(checkbox.value));
+        }
+      });
     }
-  }
-
-  private updateDisabled() {
-    if (!!this.items) {
-      this.items.forEach(item => item.disabled = this.disabled);
-    }
-  }
-
-  select(value) {
-    const index = this.selectedItems.findIndex(item => item === value);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1);
-    } else {
-      this.selectedItems.push(value);
-    }
-    this.onChange(this.selectedItems);
   }
 
   writeValue(value: any) {
+    let selectedItems = [];
     if (!!value) {
-      this.selectedItems = Array.isArray(value) ? value : [value];
-    } else {
-      this.selectedItems = [];
+      selectedItems = Array.isArray(value) ? value : [value];
     }
-    this.updateChecked();
+    this.selectedItems = selectedItems;
+    this.update();
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-    this.updateDisabled();
+    isDisabled ? this.checkboxesControl.disable() : this.checkboxesControl.enable();
   }
 }

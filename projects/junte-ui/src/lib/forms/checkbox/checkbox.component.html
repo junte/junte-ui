@@ -1,8 +1,7 @@
-<input type="checkbox"
-       [disabled]="disabled"
-       [checked]="checked"
-       (click)="change()">
-<div data-switch>
-  <div *ngIf="checked" data-icon></div>
-</div>
-<label *ngIf="label">{{label}}</label>
+<form [formGroup]="form">
+  <input formControlName="checkbox" type="checkbox">
+  <div data-switch>
+    <div *ngIf="checkboxControl.value" data-icon></div>
+  </div>
+  <label *ngIf="label">{{label}}</label>
+</form>

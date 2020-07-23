@@ -29,7 +29,7 @@ export class RadioTestComponent implements OnInit {
     disable: this.disableControl
   });
 
-  heroControl = this.fb.control(null, Validators.required);
+  heroControl = this.fb.control(Hero.spiderman, Validators.required);
 
   form = this.fb.group({
     hero: this.heroControl

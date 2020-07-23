@@ -1,5 +1,5 @@
-import { Component, ElementRef, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -14,24 +14,20 @@ import { UI } from '../../core/enums/ui';
     multi: true
   }]
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
-  checked = false;
+
+  checkboxControl = this.fb.control(false);
+  form = this.fb.group({
+    checkbox: this.checkboxControl
+  });
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-host';
-
-  @PropertyApi({
-    description: 'Set disabled state',
-    type: 'boolean',
-    default: 'false',
-  })
-  @Input()
-  disabled = false;
 
   @PropertyApi({
     description: 'Label name for checkbox button',
@@ -65,22 +61,19 @@ export class CheckboxComponent implements ControlValueAccessor {
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger,
-              public element: ElementRef) {
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
-  writeValue(value: any) {
-    if (!!value) {
-      this.checked = value;
-    }
+  ngOnInit() {
+    this.checkboxControl.valueChanges.subscribe(value => this.onChange(value));
+  }
+
+  writeValue(value: boolean) {
+    this.checkboxControl.setValue(!!value, {emitEvent: false});
   }
 
   setDisabledState(disabled: boolean) {
-    this.disabled = disabled;
-  }
-
-  change() {
-    this.checked = !this.checked;
-    this.onChange(this.checked);
+    disabled ? this.checkboxControl.disable() : this.checkboxControl.enable();
   }
 }

@@ -1,10 +1,15 @@
-<jnt-stack [gutter]="ui.gutter.small">
-  <jnt-radio *ngFor="let item of radios"
-             #radio
-             [size]="size"
-             [label]="item.label"
-             [value]="item.value"
-             [disabled]="item.disabled"
-             (click)="!radio.disabled ? select(item.value) : null">
-  </jnt-radio>
-</jnt-stack>
+<form [formGroup]="form">
+  <jnt-stack [gutter]="ui.gutter.small">
+    <ng-container formArrayName="radios">
+      <ng-container *ngIf="!!radiosControl.length">
+        <jnt-radio *ngFor="let item of radios; let i = index"
+                   [formControlName]="i"
+                   [size]="size"
+                   [label]="item.label"
+                   [value]="item.value"
+                   (click)="radiosControl.enabled ? select(item.value) : null">
+        </jnt-radio>
+      </ng-container>
+    </ng-container>
+  </jnt-stack>
+</form>

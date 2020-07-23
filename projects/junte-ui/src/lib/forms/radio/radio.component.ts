@@ -1,37 +1,32 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 
 @Component({
   selector: 'jnt-radio',
-  templateUrl: './radio.encapsulated.html'
+  templateUrl: './radio.encapsulated.html',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => RadioComponent),
+    multi: true
+  }]
 })
-export class RadioComponent {
+export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+
+  radioControl = this.fb.control(false);
+  form = this.fb.group({
+    radio: this.radioControl
+  });
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-host';
 
   @HostBinding('attr.data-size')
   _size = Size.normal;
-
-  @PropertyApi({
-    description: 'Set disabled state',
-    type: 'boolean',
-    default: 'false',
-  })
-  @Input()
-  disabled = false;
-
-  // TODO: incorrect works
-  // @PropertyApi({
-  //   description: '',
-  //   type: 'boolean',
-  //   default: 'false'
-  // })
-  @Input()
-  checked = false;
 
   @PropertyApi({
     description: 'Size for radio button',
@@ -59,4 +54,26 @@ export class RadioComponent {
     type: 'string'
   })
   @Input() value: string;
+
+  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
+  }
+
+  ngOnInit() {
+    this.radioControl.valueChanges.subscribe(value => this.onChange(value));
+  }
+
+  writeValue(value: boolean) {
+    this.radioControl.setValue(!!value, {emitEvent: false});
+  }
+
+  setDisabledState(disabled: boolean) {
+    disabled ? this.radioControl.disable() : this.radioControl.enable();
+  }
 }
