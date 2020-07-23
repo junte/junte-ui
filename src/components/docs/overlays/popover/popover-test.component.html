@@ -57,8 +57,12 @@
                   <jnt-form-label for="trigger"
                                   i18n="@@label.trigger_type">Trigger type</jnt-form-label>
                   <jnt-switcher formControlName="trigger">
-                    <jnt-switcher-option label="Hover" [value]="triggerType.hover"></jnt-switcher-option>
-                    <jnt-switcher-option label="Click" [value]="triggerType.click"></jnt-switcher-option>
+                    <jnt-switcher-option label="Hover"
+                                         [icon]="localUi.icons.hover"
+                                         [value]="triggerType.hover"></jnt-switcher-option>
+                    <jnt-switcher-option label="Click"
+                                         [icon]="localUi.icons.click"
+                                         [value]="triggerType.click"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -66,8 +70,12 @@
                   <jnt-form-label for="type"
                                   i18n="@@label.content_type">Content type</jnt-form-label>
                   <jnt-switcher formControlName="type">
-                    <jnt-switcher-option label="Default" [value]="contentType.default"></jnt-switcher-option>
-                    <jnt-switcher-option label="Custom" [value]="contentType.custom"></jnt-switcher-option>
+                    <jnt-switcher-option label="Default"
+                                         [icon]="localUi.icons.left"
+                                         [value]="contentType.default"></jnt-switcher-option>
+                    <jnt-switcher-option label="Custom"
+                                         [icon]="ui.icons.code"
+                                         [value]="contentType.custom"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -76,12 +84,16 @@
                                   i18n="@@label.layout">Layout</jnt-form-label>
                   <jnt-select formControlName="layout">
                     <jnt-select-option label="Top"
+                                       [icon]="localUi.icons.position.top"
                                        [key]="ui.overlays.popover.placement.top"></jnt-select-option>
                     <jnt-select-option label="Right"
+                                       [icon]="localUi.icons.end"
                                        [key]="ui.overlays.popover.placement.right"></jnt-select-option>
                     <jnt-select-option label="Left"
+                                       [icon]="localUi.icons.start"
                                        [key]="ui.overlays.popover.placement.left"></jnt-select-option>
                     <jnt-select-option label="Bottom"
+                                       [icon]="localUi.icons.position.bottom"
                                        [key]="ui.overlays.popover.placement.bottom"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-item>

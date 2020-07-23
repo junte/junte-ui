@@ -60,9 +60,15 @@
                                   i18n="@@label.position">Position</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="position" placeholder="Inline">
-                      <jnt-select-option label="Inline" [key]="ui.position.inline"></jnt-select-option>
-                      <jnt-select-option label="Right top" [key]="ui.position.rightTop"></jnt-select-option>
-                      <jnt-select-option label="Left top" [key]="ui.position.leftTop"></jnt-select-option>
+                      <jnt-select-option label="Inline"
+                                         [icon]="localUi.icons.baseline"
+                                         [key]="ui.position.inline"></jnt-select-option>
+                      <jnt-select-option label="Right top"
+                                         [icon]="localUi.icons.position.rightTop"
+                                         [key]="ui.position.rightTop"></jnt-select-option>
+                      <jnt-select-option label="Left top"
+                                         [icon]="localUi.icons.position.leftTop"
+                                         [key]="ui.position.leftTop"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>

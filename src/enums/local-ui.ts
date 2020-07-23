@@ -43,6 +43,7 @@ export class LocalUI {
       collapsible: 'collapsible:font:junte-ui-test-layout',
       navigation: 'navigation:font:junte-ui-test-default',
       link: 'link:font:junte-ui-test-layout',
+      internalLink: 'link-internal:font:junte-ui-test-layout',
       menu: 'menu:font:junte-ui-test-layout',
       tabs: 'tabs:font:junte-ui-test-layout',
       pager: 'pager:font:junte-ui-test-layout',
@@ -110,7 +111,34 @@ export class LocalUI {
         capitalize: 'capitalize:font:junte-ui-test-layout',
         uppercase: 'uppercase:font:junte-ui-test-layout',
         lowercase: 'lowercase:font:junte-ui-test-layout',
+    position: {
+          leftTop: 'left-top:font:junte-ui-test-layout',
+          rightTop: 'right-top:font:junte-ui-test-layout',
+          top: 'top:font:junte-ui-test-layout',
+          bottom: 'bottom:font:junte-ui-test-layout',
+    },
+    // scheme
+      primary: 'primary:font:junte-ui-test-layout',
+      secondary: 'secondary:font:junte-ui-test-layout',
+      success: 'success:font:junte-ui-test-layout',
+      fail: 'fail:font:junte-ui-test-layout',
 
+    // outline
+      fill: 'fill:font:junte-ui-test-layout',
+      ghost: 'ghost:font:junte-ui-test-layout',
+      transparent: 'transparent:font:junte-ui-test-layout',
+    // type
+      number: 'number:font:junte-ui-test-layout',
+      password: 'password:font:junte-ui-test-layout',
+
+      hover: 'hover:font:junte-ui-test-layout',
+      click: 'click:font:junte-ui-test-layout',
+      submit: 'submit:font:junte-ui-test-layout',
+      single: 'single:font:junte-ui-test-layout',
+      multiple: 'multiple:font:junte-ui-test-layout',
+      circle: 'circle:font:junte-ui-test-layout',
+      square: 'square:font:junte-ui-test-layout',
+      component: 'component:font:junte-ui-test-layout',
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
       start: 'start:font:junte-ui-test-layout',
