@@ -1,8 +1,32 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 @import "forms/button/button";
 
-@mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-calendar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    day: (
+      padding: null,
+      selected: (
+        background-color: $jnt-primary-light-color,
+        color: $jnt-white-color,
+      ),
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
@@ -13,7 +37,8 @@
     &[data-disabled='true'] {
       cursor: default;
       pointer-events: none;
-      table {
+
+      #{$wrapper} table {
         tbody tr td, th {
           color: $jnt-control-disabled-label-color;
           background-color: $jnt-control-disabled-background;
@@ -22,135 +47,157 @@
     }
   }
 
-  table {
+  #{$wrapper} #{$context} table {
     table-layout: auto;
     border-spacing: 0;
     width: 100%;
-  }
 
-  thead {
-    [data-arrow] {
-      @include jnt-button((
-        sizes: (
-          small: (
-            height: 28px,
-            padding-without-text: 0 $jnt-gutter-tiny,
-            icon: (
-              size: 16px,
-            ),
+    thead {
+      [data-arrow] {
+        @include jnt-button((
+          sizes: (
+            small: (
+              height: 28px,
+              padding-without-text: 0 $jnt-gutter-tiny,
+              icon: (
+                size: 16px,
+              ),
+            )
           )
-        )
-      ), '&');
-    }
+        ), '&');
+      }
 
-    [data-date] {
-      @include jnt-button((
-        sizes: (
-          small: (
-            height: 28px,
-            font-size: 14px,
+      [data-date] {
+        @include jnt-button((
+          sizes: (
+            small: (
+              height: 28px,
+              font-size: 14px,
+            )
           )
-        )
-      ), '&');
-    }
-    [data-year] {
-      color: $jnt-control-disabled-label-color;
-    }
+        ), '&');
+      }
 
-    [data-days] {
-      > th {
-        padding: $jnt-gutter-normal $jnt-gutter-tiny;
-        color: $jnt-primary-text-light-color;
-        font-size: $jnt-font-size-small;
-        font-weight: $jnt-font-weight-bold;
+      [data-year] {
+        color: $jnt-control-disabled-label-color;
+      }
+
+      [data-days] {
+        > th {
+          padding: $jnt-gutter-normal $jnt-gutter-tiny;
+          color: $jnt-primary-text-light-color;
+          font-size: $jnt-font-size-small;
+          font-weight: $jnt-font-weight-bold;
+        }
+      }
+
+      .sortable {
+        cursor: pointer;
       }
     }
-    .sortable {
-      cursor: pointer;
-    }
-  }
 
-  tbody {
-    tr {
-      &[data-current-week='true'] {
-        [data-day], [data-metric] {
-          border-top-color: $jnt-primary-light-color;
-          border-bottom-color: $jnt-primary-light-color;
+    tbody {
+      tr {
+        &[data-current-week='true'] {
+          [data-day], [data-metric] {
+            border-top-color: $jnt-primary-light-color;
+            border-bottom-color: $jnt-primary-light-color;
+
+            &:first-child {
+              border-top-left-radius: $jnt-corner-small;
+              border-bottom-left-radius: $jnt-corner-small;
+              border-left-color: $jnt-primary-light-color;
+            }
+
+            &:last-child {
+              border-top-right-radius: $jnt-corner-small;
+              border-bottom-right-radius: $jnt-corner-small;
+              border-right-color: $jnt-primary-light-color;
+            }
+          }
+        }
+
+        td {
+          min-width: 38px;
+          font-size: $jnt-font-size-small;
+          box-sizing: border-box;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent;
+          user-select: none;
+          padding: 0;
+
+          [data-default] {
+            padding: $jnt-gutter-small $jnt-gutter-tiny;
+          }
+
           &:first-child {
-            border-top-left-radius: $jnt-corner-small;
-            border-bottom-left-radius: $jnt-corner-small;
-            border-left-color: $jnt-primary-light-color;
+            border-left: 1px solid transparent;
           }
+
           &:last-child {
-            border-top-right-radius: $jnt-corner-small;
-            border-bottom-right-radius: $jnt-corner-small;
-            border-right-color: $jnt-primary-light-color;
+            border-right: 1px solid transparent;
           }
-        }
-      }
-      td {
-        min-width: 38px;
-        font-size: $jnt-font-size-small;
-        box-sizing: border-box;
-        border-top: 1px solid transparent;
-        border-bottom: 1px solid transparent;
-        user-select: none;
-        padding: 0;
-        [data-default] {
-          padding: $jnt-gutter-small $jnt-gutter-tiny;
-        }
-        &:first-child {
-          border-left: 1px solid transparent;
-        }
-        &:last-child {
-          border-right: 1px solid transparent;
-        }
-        &[data-day] {
-          cursor: pointer;
-          &:nth-child(6),
-          &:nth-child(7) {
-            background-color: $jnt-secondary-background;
+
+          &[data-day] {
+            cursor: pointer;
+
+            &:nth-child(6),
+            &:nth-child(7) {
+              background-color: $jnt-secondary-background;
+            }
+
+            &:hover {
+              background-color: $jnt-highlight-background;
+              color: $jnt-primary-text-dark-color;
+            }
+
+            &:focus {
+              box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
+              outline: 0;
+            }
+
+            @if map-has-key($vars, day) {
+              $day: map-get($vars, day);
+              padding: map-get($day, pdding);
+              &[data-selected-day='true'] {
+                @if map-has_key($day, selected) {
+                  $selected: map-get($day, selected);
+                  background-color: map-get($selected, background-color);
+                  color: map-get($selected, color);
+                }
+              }
+            }
           }
-          &:hover {
-            background-color: $jnt-highlight-background;
-            color: $jnt-primary-text-dark-color;
-          }
-          &:focus {
-            box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
-            outline: 0;
-          }
-          &[data-current-day='true'] {
-            [data-default] {
+
+          &[data-day-extend] {
+            cursor: pointer;
+            padding: $jnt-gutter-small $jnt-gutter-tiny;
+            height: 68px;
+
+            &:hover {
+              background-color: $jnt-highlight-background;
+              color: $jnt-primary-text-dark-color;
+            }
+
+            &:focus {
+              box-shadow: $jnt-shadow-primary;
+              outline: 1px solid $jnt-primary-light-color;
+            }
+
+            &[data-selected-year='true'], &[data-selected-month='true'] {
               background-color: $jnt-primary-light-color;
               color: $jnt-white-color;
             }
           }
         }
-        &[data-day-extend] {
-          cursor: pointer;
-          padding: $jnt-gutter-small $jnt-gutter-tiny;
-          height: 68px;
-          &:hover {
-            background-color: $jnt-highlight-background;
-            color: $jnt-primary-text-dark-color;
-          }
-          &:focus {
-            box-shadow: $jnt-shadow-primary;
-            outline: 1px solid $jnt-primary-light-color;
-          }
-          &[data-current-year='true'], &[data-current-month='true'] {
-            background-color: $jnt-primary-light-color;
-            color: $jnt-white-color;
-          }
-        }
       }
     }
-  }
 
-  td, th {
-    vertical-align: middle;
-    text-align: center;
-    position: relative;
+    td, th {
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+    }
   }
 }
 
