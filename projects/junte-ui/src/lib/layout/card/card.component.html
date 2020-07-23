@@ -10,8 +10,13 @@
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
     <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
-      <div data-picture *ngIf="!!picture">
-        <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+      <div data-picture *ngIf="!!picture || !!cardPictureTemplate">
+        <ng-container *ngIf="!!cardPictureTemplate; else cardImageTemplate">
+          <ng-container *ngTemplateOutlet="cardPictureTemplate"></ng-container>
+        </ng-container>
+        <ng-template #cardImageTemplate>
+          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+        </ng-template>
       </div>
       <div data-content>
         <div *ngIf="!!title || !!titleTemplate" data-title>

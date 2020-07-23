@@ -40,7 +40,7 @@ export class CardComponent {
 
   @HostBinding('attr.data-has-picture')
   get hasPicture() {
-    return !!this.picture;
+    return !!this.picture || !!this.cardPictureTemplate;
   }
 
   @HostBinding('attr.data-padding')
@@ -90,6 +90,13 @@ export class CardComponent {
   })
   @ContentChild('cardActionsTemplate')
   cardActionsTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#cardPictureTemplate',
+    description: 'card picture template'
+  })
+  @ContentChild('cardPictureTemplate')
+  cardPictureTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Icon indicator',
