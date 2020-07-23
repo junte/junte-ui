@@ -72,10 +72,18 @@
                                     i18n="@@label.scheme">Scheme</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="scheme" placeholder="Primary">
-                        <jnt-select-option label="Primary" [key]="ui.scheme.primary"></jnt-select-option>
-                        <jnt-select-option label="Secondary" [key]="ui.scheme.secondary"></jnt-select-option>
-                        <jnt-select-option label="Success" [key]="ui.scheme.success"></jnt-select-option>
-                        <jnt-select-option label="Fail" [key]="ui.scheme.fail"></jnt-select-option>
+                        <jnt-select-option label="Primary"
+                                           [icon]="localUi.icons.primary"
+                                           [key]="ui.scheme.primary"></jnt-select-option>
+                        <jnt-select-option label="Secondary"
+                                           [icon]="localUi.icons.secondary"
+                                           [key]="ui.scheme.secondary"></jnt-select-option>
+                        <jnt-select-option label="Success"
+                                           [icon]="localUi.icons.success"
+                                           [key]="ui.scheme.success"></jnt-select-option>
+                        <jnt-select-option label="Fail"
+                                           [icon]="localUi.icons.fail"
+                                           [key]="ui.scheme.fail"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -85,9 +93,15 @@
                                     i18n="@@label.outline">Outline</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="outline" placeholder="Transparent">
-                        <jnt-select-option label="Fill" [key]="ui.outline.fill"></jnt-select-option>
-                        <jnt-select-option label="Ghost" [key]="ui.outline.ghost"></jnt-select-option>
-                        <jnt-select-option label="Transparent" [key]="ui.outline.transparent"></jnt-select-option>
+                        <jnt-select-option label="Fill"
+                                           [icon]="localUi.icons.fill"
+                                           [key]="ui.outline.fill"></jnt-select-option>
+                        <jnt-select-option label="Ghost"
+                                           [icon]="localUi.icons.ghost"
+                                           [key]="ui.outline.ghost"></jnt-select-option>
+                        <jnt-select-option label="Transparent"
+                                           [icon]="localUi.icons.transparent"
+                                           [key]="ui.outline.transparent"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -98,8 +112,10 @@
                     <jnt-switcher formControlName="position"
                                   placeholder="Left">
                       <jnt-switcher-option label="Left"
+                                           [icon]="localUi.icons.start"
                                            [value]="ui.position.left"></jnt-switcher-option>
                       <jnt-switcher-option label="Right"
+                                           [icon]="localUi.icons.end"
                                            [value]="ui.position.right"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-item>
@@ -109,8 +125,13 @@
                                     i18n="@@label.source">Source</jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="source" [allowEmpty]="false">
-                        <jnt-select-option label="External link" [key]="sourceType.external"></jnt-select-option>
-                        <jnt-select-option label="Local link" [key]="sourceType.local"></jnt-select-option>
+                        <jnt-select-option label="External link"
+                                           [icon]="localUi.icons.link"
+                                           [key]="sourceType.external"></jnt-select-option>
+                        <jnt-select-option label="Internal link"
+                                           [icon]="localUi.icons.internalLink"
+                                           [key]="sourceType.local">
+                        </jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
