@@ -105,13 +105,6 @@
       }
     }
 
-    [data-badge] {
-      @include jnt-badge((
-        background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
-        color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
-      ), '&');
-    }
-
     &[data-active="true"] {
       [data-title] {
         span {
@@ -129,13 +122,6 @@
 
       &:hover {
         color: map-get($scheme, inverse-color);
-      }
-
-      [data-badge] {
-        @include jnt-badge((
-          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
-          color: if(map-get($scheme, color), map-get($scheme, color) !important, null),
-        ), '&');
       }
 
       &[data-active="true"] {
@@ -332,12 +318,12 @@
         color: if(map-get($active, color), map-get($active, color) !important, null);
         @if map-get($active, underline) == true {
           [data-title] span {
-            border-bottom-color: if(map-get($active, border-color), map-get($active, border-color) !important, null);
+            border-bottom-color: if(map-get($active, border-color), map-get($active, border-color), null);
           }
         }
         @if map-get($active, underline) == false {
           [data-title] span {
-            border-bottom-color: transparent !important;
+            border-bottom-color: transparent;
           }
         }
       }
