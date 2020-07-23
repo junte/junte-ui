@@ -53,6 +53,9 @@
                         <span>Edit card</span>
                       </jnt-stack>
                     </ng-template>
+                    <ng-template *ngIf="pictureTemplateControl.value" #cardPictureTemplate>
+                      <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
+                    </ng-template>
                     <ng-template *ngIf="footerControl.value" #cardFooterTemplate>
                       Card footer
                     </ng-template>
@@ -158,6 +161,10 @@
                       <jnt-checkbox formControlName="title"
                                     label="Title template"
                                     i18n-label="@@label.title"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="12">
+                      <jnt-checkbox formControlName="pictureTemplate"
+                                    label="Picture template"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="header"
@@ -274,6 +281,13 @@
                         <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
                         <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
                       </jnt-menu>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureTemplateControl.value">
+                    <![CDATA[
+                    <ng-template #cardPictureTemplate>
+                      <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
                     </ng-template>
                     ]]>
                   </ng-container>
