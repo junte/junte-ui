@@ -1,5 +1,6 @@
 <jnt-stack [type]="ui.layout.stack.type.horizontal">
-  <input type="text" #input *ngFor="let input of inputsSlots; index as i"
+  <input type="text" #input *ngFor="let input of length | mockArray; index as i"
          size="1"
-         (input)="onInput($event, i)"/>
+         (input)="onInput($event, i)"
+         (keydown)="onKeydown($event, i)"/>
 </jnt-stack>

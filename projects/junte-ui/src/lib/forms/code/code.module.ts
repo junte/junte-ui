@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { InputModule } from '../../forms/input/input.module';
@@ -14,6 +15,7 @@ import { CodeComponent } from './code.component';
     ReactiveFormsModule,
     InputModule,
     StackModule,
+    ArrayPipesModule,
     TranslateModule
   ],
   declarations: [

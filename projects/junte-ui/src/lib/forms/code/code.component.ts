@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
@@ -6,11 +6,9 @@ import { UI } from '../../core/enums/ui';
   selector: 'jnt-code',
   templateUrl: './code.encapsulated.html'
 })
-export class CodeComponent implements AfterViewInit {
+export class CodeComponent {
 
   ui = UI;
-  private _length: number;
-  inputsSlots: number[];
 
   @PropertyApi({
     description: 'Count of inputs',
@@ -18,46 +16,32 @@ export class CodeComponent implements AfterViewInit {
     default: 4,
   })
   @Input()
-  set length(length: number) {
-    this._length = length;
-    this.updateInputs();
-  }
-
-  get length() {
-    return this._length;
-  }
+  length: number;
 
   @Input() readonly code?: string | number;
   @ViewChildren('input') inputs: QueryList<ElementRef>;
   @Output() codeChanged = new EventEmitter<string>();
   @Output() codeCompleted = new EventEmitter<string>();
 
-  ngAfterViewInit(): void {
-    this.onInputCodeChanges();
-  }
-
-  updateInputs() {
-    this.inputsSlots = [];
-
-    for (let i = 0; i < this.length; i++) {
-      this.inputsSlots.push(i);
-    }
-  }
-
-  private onInputCodeChanges(): void {
-    if (!this.inputs.length) {
-      return;
-    }
-
-    if (this.isEmpty(this.code)) {
-      // this.inputs.forEach(input => this.setInputValue(input, null));
-      return;
-    }
-
-    // const chars = this.code.toString().split('');
-
-    // this.inputs.forEach((input, index) => this.setInputValue(input, chars[index]));
-  }
+  // ngAfterViewInit(): void {
+  //   this.onInputCodeChanges();
+  // }
+  //
+  //
+  // private onInputCodeChanges(): void {
+  //   if (!this.inputs.length) {
+  //     return;
+  //   }
+  //
+  //   if (this.isEmpty(this.code)) {
+  //     // this.inputs.forEach(input => this.setInputValue(input, null));
+  //     return;
+  //   }
+  //
+  //   // const chars = this.code.toString().split('');
+  //
+  //   // this.inputs.forEach((input, index) => this.setInputValue(input, chars[index]));
+  // }
 
   onInput(e: any, i: number): void {
     const next = i + 1;
@@ -72,15 +56,31 @@ export class CodeComponent implements AfterViewInit {
     // this.setInputValue(target, value.toString().charAt(0));
     // this.emitChanges();
 
-    console.log(this._length);
-    if (next > this._length - 1) {
+    console.log(this.length);
+    if (next > this.length - 1) {
       target.blur();
       return;
     }
 
     this.inputs.toArray()[next].nativeElement.focus();
+
   }
 
+  onKeydown(e: any, i: number) {
+    // const prev = i - 1;
+    // const target = e.target;
+    const isBackspaceKey = (e.key && e.key.toLowerCase() === 'backspace') || (e.keyCode && e.keyCode === 8);
+
+    // if (prev < 0) {
+    //   target.blur();
+    //   return;
+    // }
+
+    if(isBackspaceKey) {
+      i > 0 ? this.inputs.toArray()[i-1].nativeElement.focus() : this.inputs.toArray()[0].nativeElement.focus();
+      //this.inputs.toArray()[i-1].nativeElement.focus();
+    }
+  }
   // async keydown(e: any, i: number): Promise<void> {
   //   const target = e.target;
   //   const isTargetEmpty = this.isEmpty(target.value);
