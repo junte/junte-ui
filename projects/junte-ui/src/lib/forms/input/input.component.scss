@@ -200,7 +200,9 @@
     }
 
     &[data-state='loading'] {
-      &, #{$wrapper} input, #{$wrapper} textarea {
+      &,
+      #{$wrapper} form [data-content] input,
+      #{$wrapper} form [data-content] textarea {
         background-color: $jnt-control-disabled-background;
         color: $jnt-control-disabled-label-color;
         pointer-events: none;
@@ -221,6 +223,7 @@
     display: flex;
     flex: 1;
     position: relative;
+    max-width: 100%;
 
     &:focus {
       outline: 0;
@@ -228,6 +231,8 @@
 
     [data-content] {
       flex: 1;
+      max-width: 100%;
+      box-sizing: border-box;
       padding: $jnt-gutter-small $jnt-gutter-small $jnt-gutter-small $jnt-gutter-normal;
 
       input, textarea {
@@ -235,9 +240,12 @@
         background-color: $jnt-control-background;
         border: 0;
         padding: 0;
-        flex: 1;
         font-family: inherit;
         resize: none;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        min-width: 0;
 
         &:focus {
           outline: 0;
