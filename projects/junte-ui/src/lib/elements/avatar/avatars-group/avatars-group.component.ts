@@ -18,7 +18,7 @@ export class AvatarsGroupComponent {
   shape = Shape;
 
   @HostBinding('attr.data-size')
-  _size: Size;
+  _size: Size = Size.normal;
 
   _total = 0;
 
