@@ -2,7 +2,7 @@
 @import "jnt-functions";
 @import "forms/button/button";
 
-@mixin jnt-button-group($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-button-group($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large
@@ -10,6 +10,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -20,13 +25,13 @@
     display: flex;
     &[data-width='fluid'] {
       width: 100%;
-      [data-button] {
+      #{$wrapper} [data-button] {
         flex: 1;
       }
     }
   }
 
-  #{$context} [data-button] {
+  #{$context} #{$wrapper} [data-button] {
 
     @include jnt-button ((
       padding: 0 $jnt-gutter-normal,

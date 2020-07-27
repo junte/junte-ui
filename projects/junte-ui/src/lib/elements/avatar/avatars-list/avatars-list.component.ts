@@ -15,7 +15,7 @@ export class AvatarsListComponent {
   @HostBinding('attr.host') readonly host = 'jnt-avatars-list-host';
 
   @HostBinding('attr.data-size')
-  _size: Size;
+  _size: Size = Size.normal;
 
   ui = UI;
   max = MAX_CAPACITY;
