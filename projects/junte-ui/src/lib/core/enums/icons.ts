@@ -389,14 +389,16 @@ export const icons = {
   animated: {
     runningMan: 'running-man:animated:default',
     success: 'success:animated:default',
-    download: 'download:animated:default',
-    upload: 'upload:animated:default',
     settings: 'settings:animated:default:colored',
-    time: 'time:animated:default',
     bell: 'bell:animated:default',
     reload: 'reload:animated:default',
     spinner: 'spinner:animated:default',
     recording: 'recording:animated:default',
-    warning: 'warning:animated:default:colored'
+    warning: 'warning:animated:default:colored',
+    bin: 'bin:animated:default:colored',
+    arrowDown: 'arrow-down:animated:default:colored',
+    arrowLeft: 'arrow-left:animated:default:colored',
+    arrowRight: 'arrow-right:animated:default:colored',
+    arrowUp: 'arrow-up:animated:default:colored',
   }
 };
