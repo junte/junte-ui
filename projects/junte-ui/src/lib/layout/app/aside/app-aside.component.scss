@@ -100,6 +100,32 @@
     ), '&');
   }
 
+  @include jnt-menu((
+    sub: (
+      collapsed: (
+        position: fixed,
+        left: $app-aside-collapsed-width,
+        item: (
+          padding: 0 $jnt-gutter-normal,
+        ),
+      ),
+      item: (
+        color: $jnt-primary-text-light-color,
+        padding: 0 0 0 50px !important,
+        active: (
+          underline: false,
+          background-color: $jnt-secondary-background,
+          color: $jnt-primary-color
+        ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+        ),
+        height: 50px,
+      ),
+    ),
+  ));
+
   @if map-has-key($vars, menu) {
     $menu: map-get($vars, menu);
     @if map-has-key($menu, item) {

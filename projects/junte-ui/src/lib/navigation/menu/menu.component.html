@@ -1,10 +1,20 @@
 <jnt-stack [orientation]="orientation"
-  [gutter]="spacer"
-  [align]="ui.flex.align.stretch"
-  [wrap]="ui.flex.wrap.wrap">
+           [gutter]="spacer"
+           [align]="ui.flex.align.stretch"
+           [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
-    <div data-top [jntSubMenu]="item" [collapsed]="collapsed">
-      <div data-item [attr.data-loading]="item.loading" (click)="open(item)">
+    <div data-top>
+      <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
+           [jntPopover]="{
+              contentTemplate: collapsed || orientation === orientationEnum.horizontal ? submenuTemplate : null,
+              placement: orientation === orientationEnum.vertical
+                ? ui.overlays.popover.placement.right
+                : ui.overlays.popover.placement.bottom,
+              trigger: orientation === orientationEnum.horizontal || !collapsed
+                ? ui.overlays.popover.trigger.click
+                : ui.overlays.popover.trigger.hover,
+              features: [ui.feature.dropdown]
+            }">
         <jnt-spinner *ngIf="item.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
@@ -24,53 +34,59 @@
             </jnt-badge>
           </ng-container>
         </jnt-link>
-        <jnt-icon *ngIf="!!item.submenu"
-                  [icon]="item.opened ? ui.icons.chevronUp : ui.icons.chevronDown"
-                  data-toggle>
-        </jnt-icon>
+        <jnt-icon *ngIf="!!item.submenu" [icon]="ui.icons.chevronDown" data-toggle></jnt-icon>
       </div>
 
-      <div data-sub [attr.data-opened]="item.opened" jntSubMenuItems>
-        <ng-container *ngIf="!!item.submenu; else only">
-          <div data-section *ngIf="collapsed">
-            <span>
-              {{item.title}}
-            </span>
-          </div>
-          <jnt-link data-link *ngFor="let subItem of item.submenu.items"
-                    [title]="subItem.title"
-                    [icon]="subItem.icon"
-                    [matching]="subItem.matching"
-                    [source]="subItem.link"
-                    [scheme]="subItem.scheme"
-                    [target]="subItem.target"
-                    (click)="selected.emit(item);item.click.emit()">
-            <jnt-badge *ngFor="let badge of subItem.badges"
-                       [value]="badge.value"
-                       [text]="badge.text"
-                       [position]="ui.position.inline"
-                       [color]="badge.color">
-            </jnt-badge>
-          </jnt-link>
-        </ng-container>
+      <ng-container *ngIf="!collapsed && orientation === orientationEnum.vertical && item.opened">
+        <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
+      </ng-container>
 
-        <ng-template #only>
-          <jnt-link data-link
-                    [title]="item.title"
-                    [icon]="item.icon"
-                    [matching]="item.matching"
-                    [source]="item.link"
-                    [scheme]="item.scheme"
-                    [target]="item.target">
-            <jnt-badge *ngFor="let badge of item.badges"
-                       [value]="badge.value"
-                       [text]="badge.text"
-                       [position]="ui.position.inline"
-                       [color]="badge.color">
-            </jnt-badge>
-          </jnt-link>
-        </ng-template>
-      </div>
+      <ng-template #submenuTemplate let-headless=headless>
+        <div data-sub
+             [attr.data-opened]="item.opened"
+             [attr.data-orientation]="orientation"
+             [attr.data-collapsed]="collapsed">
+          <ng-container *ngIf="!!item.submenu; else only">
+            <div data-section *ngIf="!headless">
+              <span>
+                {{item.title}}
+              </span>
+            </div>
+            <jnt-link data-link *ngFor="let subItem of item.submenu.items"
+                      [title]="subItem.title"
+                      [icon]="subItem.icon"
+                      [matching]="subItem.matching"
+                      [source]="subItem.link"
+                      [scheme]="subItem.scheme"
+                      [target]="subItem.target"
+                      (click)="selected.emit(item);item.click.emit()">
+              <jnt-badge *ngFor="let badge of subItem.badges"
+                         [value]="badge.value"
+                         [text]="badge.text"
+                         [position]="ui.position.inline"
+                         [color]="badge.color">
+              </jnt-badge>
+            </jnt-link>
+          </ng-container>
+
+          <ng-template #only>
+            <jnt-link data-link
+                      [title]="item.title"
+                      [icon]="item.icon"
+                      [matching]="item.matching"
+                      [source]="item.link"
+                      [scheme]="item.scheme"
+                      [target]="item.target">
+              <jnt-badge *ngFor="let badge of item.badges"
+                         [value]="badge.value"
+                         [text]="badge.text"
+                         [position]="ui.position.inline"
+                         [color]="badge.color">
+              </jnt-badge>
+            </jnt-link>
+          </ng-template>
+        </div>
+      </ng-template>
     </div>
   </ng-container>
 </jnt-stack>

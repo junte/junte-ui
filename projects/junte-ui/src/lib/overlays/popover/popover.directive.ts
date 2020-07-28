@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, Output, Renderer2 } from '@angular/core';
 import { filter, takeWhile } from 'rxjs/operators';
 import { PopoverTriggers } from './enums';
 import { PopoverComponent, PopoverOptions } from './popover.component';
@@ -13,6 +13,7 @@ export class PopoverDirective implements OnDestroy {
   private options: PopoverOptions;
   private reference: PopoverComponent;
   private destroyed = false;
+  private listeners: Function[] = [];
 
   @Input('jntPopover')
   set __options__(options: PopoverOptions) {
@@ -22,34 +23,10 @@ export class PopoverDirective implements OnDestroy {
   @Output('jntPopoverDisplayed')
   displayed = new EventEmitter<PopoverComponent>();
 
-  constructor(private popover: PopoverService,
-              private hostRef: ElementRef) {
-    popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
-      .subscribe(() => this.reference = null);
-  }
-
-  ngOnDestroy() {
-    this.destroyed = true;
-    if (!!this.reference) {
-      this.reference.hide();
-      this.reference = null;
-    }
-  }
-
   @HostListener('mouseenter')
   mouseEnter() {
     if (this.options.trigger === PopoverTriggers.hover) {
       this.show();
-    }
-  }
-
-  @HostListener('document:mousemove', ['$event.path'])
-  moveOutside(path: HTMLElement[]) {
-    if (!this.reference) {
-      return;
-    }
-    if (this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
-      this.hide(path);
     }
   }
 
@@ -60,14 +37,42 @@ export class PopoverDirective implements OnDestroy {
     }
   }
 
-  @HostListener('document:click', ['$event.path'])
-  clickOutside(path: HTMLElement[]) {
-    if (!this.reference) {
-      return;
+  constructor(private popover: PopoverService,
+              private hostRef: ElementRef,
+              private renderer: Renderer2,
+              private zone: NgZone) {
+    popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+      .subscribe(() => this.reference = null);
+  }
+
+  ngOnInit() {
+    this.zone.runOutsideAngular(() => {
+      this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
+        if (!this.reference) {
+          return;
+        }
+        if (this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
+          this.hide(path);
+        }
+      }));
+      this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
+        if (!this.reference) {
+          return;
+        }
+        if (this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
+          this.hide(path);
+        }
+      }));
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
+    if (!!this.reference) {
+      this.reference.hide();
+      this.reference = null;
     }
-    if (this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
-      this.hide(path);
-    }
+    this.listeners.forEach(listener => listener());
   }
 
   private picked(elements: HTMLElement[]) {
@@ -75,8 +80,10 @@ export class PopoverDirective implements OnDestroy {
   }
 
   private show() {
-    this.reference = this.popover.show(this.hostRef, this.options);
-    this.displayed.emit(this.reference);
+    if (this.options.content || this.options.contentTemplate) {
+      this.reference = this.popover.show(this.hostRef, this.options);
+      this.displayed.emit(this.reference);
+    }
   }
 
   private hide(path: HTMLElement[] = []) {

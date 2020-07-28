@@ -27,7 +27,7 @@
     z-index: 100;
     user-select: text;
     padding: map-get($vars, spacing);
-    display: block;
+    display: none;
 
     @include for-mobile() {
       left: 0 !important;
@@ -47,7 +47,14 @@
     }
 
     &[data-dropdown='true'] {
-      padding: $jnt-gutter-tiny 0 0;
+
+      &[data-placement='top'], &[data-placement='bottom'] {
+        padding: $jnt-gutter-tiny 0 0;
+      }
+
+      &[data-placement='left'], &[data-placement='right'] {
+        padding: 0 0 0 $jnt-gutter-tiny;
+      }
 
       @include for-mobile() {
         padding: $jnt-gutter-tiny map-get($vars, spacing) map-get($vars, spacing);

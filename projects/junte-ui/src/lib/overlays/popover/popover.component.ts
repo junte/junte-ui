@@ -1,4 +1,13 @@
-import { Component, ElementRef, HostBinding, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostBinding,
+  Renderer2,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { Feature } from '../../core/enums/feature';
 import { PopoverPlacements, PopoverPosition, PopoverTriggers } from './enums';
 
@@ -32,7 +41,8 @@ class Position {
 
 @Component({
   selector: 'jnt-popover',
-  templateUrl: './popover.encapsulated.html'
+  templateUrl: './popover.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverComponent {
 
@@ -40,14 +50,8 @@ export class PopoverComponent {
 
   options = new PopoverOptions();
   target: HTMLElement;
-  visible = false;
 
   @HostBinding('attr.host') readonly host = 'jnt-popover-host';
-
-  @HostBinding('style.display')
-  get display() {
-    return this.visible ? 'block' : 'none';
-  }
 
   @HostBinding('style.position')
   get position() {
@@ -57,17 +61,13 @@ export class PopoverComponent {
   @HostBinding('attr.data-placement')
   placement: PopoverPlacements;
 
-  @HostBinding('attr.data-dropdown')
-  get dropdown() {
-    return this.options.features.includes(Feature.dropdown);
-  }
-
   @HostBinding('style.min-width') minWidth: string;
 
   @ViewChild('arrow') arrow: ElementRef;
 
   constructor(private renderer: Renderer2,
-              private hostRef: ElementRef) {
+              private hostRef: ElementRef,
+              private cd: ChangeDetectorRef) {
   }
 
   private createObserver() {
@@ -169,7 +169,10 @@ export class PopoverComponent {
     this.observers.host.observe(this.hostRef.nativeElement,
       {childList: true, subtree: true});
 
-    this.visible = true;
+    this.renderer.setAttribute(this.hostRef.nativeElement, 'data-dropdown',
+      this.options.features.includes(Feature.dropdown).toString());
+    this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'block');
+    this.cd.detectChanges();
   }
 
   picked(elements: HTMLElement[]): boolean {
@@ -180,10 +183,15 @@ export class PopoverComponent {
     const {nativeElement: host} = this.hostRef;
     const position = this.getPosition();
     const left = this.options.features.includes(Feature.dropdown)
+    && (this.placement === PopoverPlacements.top || this.placement === PopoverPlacements.bottom)
       ? this.target.getBoundingClientRect().left
       : position.left - position.shiftX;
+    const top = this.options.features.includes(Feature.dropdown)
+    && (this.placement === PopoverPlacements.right || this.placement === PopoverPlacements.left)
+      ? this.target.getBoundingClientRect().top
+      : position.top - position.shiftY;
 
-    this.renderer.setStyle(host, 'top', `${position.top - position.shiftY}px`);
+    this.renderer.setStyle(host, 'top', `${top}px`);
     this.renderer.setStyle(host, 'left', `${left}px`);
 
     if (!this.options.features.includes(Feature.dropdown)) {
@@ -202,12 +210,14 @@ export class PopoverComponent {
         }
       }
     }
+    this.cd.detectChanges();
   }
 
   hide(): void {
     this.observers.target.disconnect();
     this.observers.host.disconnect();
     this.options = new PopoverOptions();
-    this.visible = false;
+    this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'none');
+    this.cd.detectChanges();
   }
 }

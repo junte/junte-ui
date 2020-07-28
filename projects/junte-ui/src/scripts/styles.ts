@@ -37,7 +37,7 @@ export class Gulpfile {
     imports = imports.filter(file => !file.includes('jnt-variables')
       && !file.includes(`${section}/${to.replace('.scss', '').replace('_', '')}`));
 
-    const clean = file => file.replace('";', '').replace(/@import ["|']/, "@import '../").split('/');
+    const clean = file => file.replace(/";|';/, '').replace(/@import ["|']/, "@import '../").split('/');
     imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + "';")))];
 
     let cleared = content

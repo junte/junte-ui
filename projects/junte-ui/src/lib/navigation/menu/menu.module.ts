@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
@@ -9,7 +10,6 @@ import { StackModule } from '../../layout/stack/stack.module';
 import { LinkModule } from '../link/link.module';
 import { MenuItemComponent } from './menu-item.component';
 import { MenuComponent } from './menu.component';
-import { SubMenuDirective, SubMenuItemsDirective } from './menu.directives';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 @NgModule({
@@ -19,15 +19,14 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     IconModule,
     StackModule,
     BadgeModule,
-    SpinnerModule
+    SpinnerModule,
+    PopoverModule
   ],
   exports: [
     MenuComponent,
     MenuItemComponent,
     SubMenuComponent,
-    SubMenuItemComponent,
-    SubMenuDirective,
-    SubMenuItemsDirective
+    SubMenuItemComponent
   ],
   entryComponents: [
     MenuComponent,
@@ -37,9 +36,7 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     MenuComponent,
     MenuItemComponent,
     SubMenuComponent,
-    SubMenuItemComponent,
-    SubMenuDirective,
-    SubMenuItemsDirective
+    SubMenuItemComponent
   ],
 })
 export class MenuModule {

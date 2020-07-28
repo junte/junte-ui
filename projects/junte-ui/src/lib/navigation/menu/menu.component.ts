@@ -14,6 +14,7 @@ export class MenuComponent {
   @HostBinding('attr.host') readonly host = 'jnt-menu-host';
 
   ui = UI;
+  orientationEnum = Orientation;
 
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
@@ -58,8 +59,8 @@ export class MenuComponent {
   @ContentChildren(MenuItemComponent)
   items: QueryList<MenuItemComponent>;
 
-  open(item: MenuItemComponent) {
-    if (item.submenu) {
+  toggle(item: MenuItemComponent) {
+    if (!!item.submenu) {
       this.items.forEach(i => i.opened = i === item ? !item.opened : false);
     }
   }
