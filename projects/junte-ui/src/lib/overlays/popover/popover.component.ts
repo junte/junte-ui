@@ -123,15 +123,15 @@ export class PopoverComponent {
         position.left += (this.target.clientWidth - host.clientWidth) / 2;
         position.shiftX = position.left < 0 ? position.left
           : (position.left > (window.innerWidth + scrollLeft) - host.clientWidth
-            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left + PADDING_SIZE) : 0);
+            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left) : 0);
         break;
       }
       case PopoverPlacements.right: {
         position.top += (this.target.clientHeight - host.clientHeight) / 2;
         position.left += this.target.clientWidth;
-        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop + PADDING_SIZE
+        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop
           : (position.top > (window.innerHeight + scrollTop) - host.clientHeight
-            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top + PADDING_SIZE) : 0);
+            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top) : 0);
         break;
       }
       case PopoverPlacements.bottom: {
@@ -139,15 +139,15 @@ export class PopoverComponent {
         position.left += (this.target.clientWidth - host.clientWidth) / 2;
         position.shiftX = position.left < 0 ? position.left
           : (position.left > (window.innerWidth + scrollLeft) - host.clientWidth
-            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left + PADDING_SIZE) : 0);
+            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left) : 0);
         break;
       }
       case PopoverPlacements.left: {
         position.top += (this.target.clientHeight - host.clientHeight) / 2;
         position.left -= host.clientWidth;
-        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop + PADDING_SIZE
+        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop
           : (position.top > (window.innerHeight + scrollTop) - host.clientHeight
-            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top + PADDING_SIZE) : 0);
+            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top) : 0);
         break;
       }
     }
