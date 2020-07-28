@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
+import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { Position } from '../../core/enums/position';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
+import { Position } from '../../core/enums/position';
 import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { UrlMatching } from '../../core/enums/url';
@@ -46,7 +46,6 @@ export class LinkComponent {
   // TODO: we must find better solution
   @HostBinding('attr.data-active')
   get linkActive(): boolean {
-    this.cdr.detectChanges();
     return !!this.linkRef ? this.linkRef.isActive : false;
   }
 
@@ -159,7 +158,4 @@ export class LinkComponent {
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
-
-  constructor(private cdr: ChangeDetectorRef) {
-  }
 }
