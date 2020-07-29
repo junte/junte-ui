@@ -22,10 +22,12 @@ export class CheckboxTestComponent implements OnInit {
   @ViewChild('block') block: BlockComponent;
 
   sizeControl = this.fb.control(null);
-  disableControl = this.fb.control(false);
+  disableControl = this.fb.control(null);
+  colsControl = this.fb.control(null);
 
   builder = this.fb.group({
     size: this.sizeControl,
+    cols: this.colsControl,
     disable: this.disableControl
   });
 

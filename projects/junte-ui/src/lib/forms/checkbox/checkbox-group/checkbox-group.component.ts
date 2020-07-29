@@ -33,6 +33,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   private _size: Size = Size.normal;
   private selectedItems = [];
+  math = Math;
 
   ui = UI;
 
@@ -43,6 +44,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-group-host';
+
+  @Input() cols = 1;
 
   @ViewChildren(CheckboxComponent)
   items: QueryList<CheckboxComponent>;
@@ -71,9 +74,12 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   ngAfterViewInit() {
     this.update();
+    this.checkboxes.changes.subscribe(() => this.update());
 
     this.checkboxesControl.valueChanges.pipe(
-      map(checkboxes => this.items.filter((_c, i) => checkboxes[i]).map(checkbox => checkbox.value)),
+      map(checkboxes => this.items
+        .filter((_, i) => checkboxes[i])
+        .map(checkbox => checkbox.value)),
       distinctUntilChanged((a, b) => isEqual(a, b))
     ).subscribe(selectedItems => {
       this.selectedItems = selectedItems;
