@@ -26,7 +26,9 @@
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [orientation]="ui.orientation.horizontal">
                       <jnt-form-control name="heroes">
-                        <jnt-checkbox-group formControlName="heroes" [size]="sizeControl.value">
+                        <jnt-checkbox-group formControlName="heroes"
+                                            [cols]="colsControl.value"
+                                            [size]="sizeControl.value">
                           <jnt-checkbox label="Spiderman"
                                         [value]="hero.spiderman">
                           </jnt-checkbox>
@@ -36,13 +38,32 @@
                           <jnt-checkbox label="Captain America"
                                         [value]="hero.captainAmerica">
                           </jnt-checkbox>
+
+                          <ng-container *ngIf="colsControl.value > 1">
+                            <jnt-checkbox label="Thanos"
+                                          [value]="hero.thanos">
+                            </jnt-checkbox>
+                            <jnt-checkbox label="Deadpool"
+                                          [value]="hero.deadpool">
+                            </jnt-checkbox>
+                            <jnt-checkbox label="Blackwidow"
+                                          [value]="hero.blackwidow">
+                            </jnt-checkbox>
+                            <jnt-checkbox label="Hulk"
+                                          [value]="hero.hulk">
+                            </jnt-checkbox>
+                            <jnt-checkbox label="Thor"
+                                          [value]="hero.thor">
+                            </jnt-checkbox>
+                          </ng-container>
                         </jnt-checkbox-group>
+
                         <jnt-form-message [type]="ui.forms.validators.typeError.required"
                                           i18n="@@label.please_select_any_hero">
                           Please select any hero
                         </jnt-form-message>
                       </jnt-form-control>
-                      <jnt-avatars-list [size]="ui.size.large">
+                      <jnt-avatars-list *ngIf="colsControl.value <= 1" [size]="ui.size.large">
                         <jnt-avatar *ngIf="heroesControl.value | includes:hero.spiderman"
                                     image="assets/images/heroes/spiderman.svg"></jnt-avatar>
                         <jnt-avatar *ngIf="heroesControl.value | includes:hero.ironman"
@@ -78,7 +99,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="size"
-                                  i18n="@@label.size">Size</jnt-form-label>
+                                  i18n="@@label.size">Size
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size" placeholder="Normal">
                       <jnt-select-option label="Tiny"
@@ -93,6 +115,19 @@
                       <jnt-select-option label="Large"
                                          [icon]="localUi.icons.padding.large"
                                          [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="cols"
+                                  i18n="@@label.cols">Columns
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="cols" placeholder="1">
+                      <jnt-select-option *ngFor="let col of [1,2,3,4]"
+                                         [label]="col"
+                                         [key]="col"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -131,71 +166,75 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="checkbox-test.component.html">
                 <!-- @formatter:off-->
-<ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
-<![CDATA[
-  <jnt-form [formGroup]="form">
-    <jnt-checkbox-group formControlName="userGroup">
-      <jnt-stack>
-        <jnt-checkbox label="Spiderman" value="spiderman" ]]>
-          <ng-container *ngIf="sizeControl.value">
-            <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-          </ng-container>
-          <ng-container *ngIf="disableControl.value">
-            <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-          </ng-container>
-            <![CDATA[>
-          </jnt-checkbox>
-            ]]>
+                <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
+                <![CDATA[
+                <jnt-form [formGroup]="form">
+                  <jnt-checkbox-group formControlName="userGroup"]]>
+                  <ng-container *ngIf="colsControl.value">
+                    <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
+                  </ng-container>
+                    <![CDATA[>
+                    <jnt-stack>
+                      <jnt-checkbox label="Spiderman" value="spiderman" ]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[>
+                      </jnt-checkbox>
+                      ]]>
 
-          <![CDATA[
-          <jnt-checkbox label="Ironman" value="ironman" ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-            </ng-container>
-            <ng-container *ngIf="disableControl.value">
-              <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>
-          </jnt-checkbox>
-          ]]>
+                      <![CDATA[
+                      <jnt-checkbox label="Ironman" value="ironman" ]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[>
+                      </jnt-checkbox>
+                      ]]>
 
-          <![CDATA[
-          <jnt-checkbox label="Captain America" value="captain_america" ]]>
-            <ng-container *ngIf="sizeControl.value">
-              <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-            </ng-container>
-            <ng-container *ngIf="disableControl.value">
-              <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-            </ng-container>
-              <![CDATA[>
-            </jnt-checkbox>
-            ]]>
+                      <![CDATA[
+                      <jnt-checkbox label="Captain America" value="captain_america" ]]>
+                        <ng-container *ngIf="sizeControl.value">
+                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="disableControl.value">
+                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                        </ng-container>
+                        <![CDATA[>
+                      </jnt-checkbox>
+                      ]]>
 
-        <![CDATA[
-      </jnt-stack>
-    </jnt-checkbox-group>
-  </jnt-form>
-]]>
-</app-code-highlight>
-<app-code-highlight file="checkbox-test.component.ts"
-                    [language]="language.typescript">
+                      <![CDATA[
+                    </jnt-stack>
+                  </jnt-checkbox-group>
+                </jnt-form>
+                ]]>
+              </app-code-highlight>
+              <app-code-highlight file="checkbox-test.component.ts"
+                                  [language]="language.typescript">
     <pre><![CDATA[
       import { Component } from '@angular/core';
       import { FormBuilder, FormControl } from '@angular/forms';
       import { UI } from 'junte-ui';
 
       @Component({
-        selector: 'app-checkbox-test',
-        templateUrl: './checkbox-test.component.html',
-        styleUrls: ['./checkbox-test.component.scss']
+      selector: 'app-checkbox-test',
+      templateUrl: './checkbox-test.component.html',
+      styleUrls: ['./checkbox-test.component.scss']
       })
 
       export class CheckboxTestComponent {
 
-        ui = UI;
-        heroesControl = new FormControl([]);
+      ui = UI;
+      heroesControl = new FormControl([]);
 
-      form = this.fb.group({
+    form = this.fb.group({
           hero: this.heroControl
       });
 

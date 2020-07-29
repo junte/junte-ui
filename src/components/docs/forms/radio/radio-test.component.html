@@ -29,17 +29,36 @@
                     <jnt-stack [orientation]="ui.orientation.horizontal"
                                [gutter]="ui.gutter.big">
                       <jnt-form-control name="hero">
-                        <jnt-radio-group formControlName="hero" [size]="sizeControl.value">
+                        <jnt-radio-group formControlName="hero"
+                                         [cols]="colsControl.value"
+                                         [size]="sizeControl.value">
                           <jnt-radio label="Spiderman" [value]="hero.spiderman"></jnt-radio>
                           <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
                           <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
+                          <ng-container *ngIf="colsControl.value > 1">
+                            <jnt-checkbox label="Thanos"
+                                          [value]="hero.thanos">
+                            </jnt-checkbox>
+                            <jnt-radio label="Deadpool"
+                                          [value]="hero.deadpool">
+                            </jnt-radio>
+                            <jnt-radio label="Blackwidow"
+                                          [value]="hero.blackwidow">
+                            </jnt-radio>
+                            <jnt-radio label="Hulk"
+                                          [value]="hero.hulk">
+                            </jnt-radio>
+                            <jnt-radio label="Thor"
+                                          [value]="hero.thor">
+                            </jnt-radio>
+                          </ng-container>
                         </jnt-radio-group>
                         <jnt-form-message [type]="ui.forms.validators.typeError.required">
                           Please select the hero
                         </jnt-form-message>
                       </jnt-form-control>
 
-                      <ng-container [ngSwitch]="heroControl.value">
+                      <ng-container *ngIf="colsControl.value <= 1" [ngSwitch]="heroControl.value">
                         <jnt-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
                                     image="assets/images/heroes/spiderman.svg"></jnt-avatar>
@@ -102,6 +121,19 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="cols"
+                                  i18n="@@label.cols">Columns
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="cols" placeholder="1">
+                      <jnt-select-option *ngFor="let col of [1,2,3,4]"
+                                         [label]="col"
+                                         [key]="col"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label i18n="@@label.state">State
                   </jnt-form-label>
                   <jnt-form-control>
@@ -139,8 +171,11 @@
 </ng-template>
   <![CDATA[
   <jnt-form [formGroup]="builder">
-    <jnt-radio-group formControlName="radioGroup"> ]]>
-      <![CDATA[
+    <jnt-radio-group formControlName="radioGroup"]]>
+      <ng-container *ngIf="colsControl.value">
+        <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
+      </ng-container>
+      <![CDATA[>
       <jnt-radio value="Option 1" ]]>
         <ng-container *ngIf="disableControl.value">
           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>

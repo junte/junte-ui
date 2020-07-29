@@ -33,6 +33,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   ui = UI;
   selected: any;
+  math = Math;
 
   radiosControl = this.fb.array([]);
   form = this.fb.group({
@@ -40,6 +41,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   });
 
   @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+
+  @Input() cols = 1;
 
   @Input() labelField: string;
   @Input() valueField: string;
@@ -70,6 +73,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   ngAfterViewInit() {
+    this.radios.changes.subscribe(() => this.update());
     this.transformationRadio();
   }
 

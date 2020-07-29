@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GridModule } from '../../layout/grid/grid.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -12,7 +13,8 @@ import { RadioComponent } from './radio.component';
     CommonModule,
     ReactiveFormsModule,
     StackModule,
-    IconModule
+    IconModule,
+    GridModule
   ],
   exports: [
     RadioComponent,
