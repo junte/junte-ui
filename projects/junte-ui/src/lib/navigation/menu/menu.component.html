@@ -6,7 +6,8 @@
     <div data-top>
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
-              contentTemplate: collapsed || orientation === orientationEnum.horizontal ? submenuTemplate : null,
+              contentTemplate: collapsed || (orientation === orientationEnum.horizontal && !!item.submenu)
+                ? submenuTemplate : null,
               placement: orientation === orientationEnum.vertical
                 ? ui.overlays.popover.placement.right
                 : ui.overlays.popover.placement.bottom,
