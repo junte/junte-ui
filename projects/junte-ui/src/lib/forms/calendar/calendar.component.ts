@@ -20,14 +20,13 @@ import {
   addYears,
   format,
   getYear,
-  isEqual,
   setDate,
   setMonth,
   setYear,
-  startOfMonth,
-  startOfWeek,
   subMonths,
-  subYears
+  subYears,
+  getMonth,
+  startOfWeek
 } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';
@@ -40,7 +39,7 @@ import { Period } from './enums';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';
 
-const WEEKS_DISPLAYED = 5;
+const WEEKS_DISPLAYED = 6;
 const DAYS_IN_WEEK = 7;
 const DATE_ROWS = 3;
 const DATE_COLS = 4;
@@ -132,7 +131,6 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   subMonths = subMonths;
   addYears = addYears;
   subYears = subYears;
-  isEqual = isEqual;
   getYear = getYear;
 
   onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
@@ -146,7 +144,8 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    this.period = startOfMonth(this.current);
+    this.period = startOfWeek(new Date(getYear(this.current), getMonth(this.current), 1),
+      {locale: this.config.locale.dfns});
 
     combineLatest([this.year$, this.month$])
       .pipe(filter(([year, month]) =>
@@ -171,9 +170,8 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   private update() {
-    const start = startOfWeek(this.period, {
-      weekStartsOn: this.config.locale ? this.config.locale.dfns.options.weekStartsOn : 1
-    });
+    const start = startOfWeek(new Date(getYear(this.period), getMonth(this.period), 1),
+      {locale: this.config.locale.dfns});
     let date = start;
     this.weeks = [];
     for (let i = 0; i < WEEKS_DISPLAYED; i++) {

@@ -73,6 +73,7 @@
             small: (
               height: 28px,
               font-size: 14px,
+              padding: 0 $jnt-gutter-tiny,
             )
           )
         ), '&');
@@ -154,6 +155,12 @@
             &:focus {
               box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
               outline: 0;
+            }
+
+            &[data-current-month='false'] {
+              [data-default] {
+                color: $jnt-muted-color;
+              }
             }
 
             @if map-has-key($vars, day) {

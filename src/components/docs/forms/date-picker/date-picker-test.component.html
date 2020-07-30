@@ -42,23 +42,24 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
 
-              <jnt-form-item>
-                <jnt-form-label for="time"
-                                i18n="@@label.time_picker">Time picker
-                </jnt-form-label>
+              <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="clock"
+                                  label="Time Picker"
+                                  [value]="false"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
 
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="clock" label="Time Picker"></jnt-checkbox>
-                </jnt-form-control>
-              </jnt-form-item>
-
-              <jnt-form-item>
-                <jnt-form-label i18n="@@label.state">State
-                </jnt-form-label>
-                <jnt-form-control>
-                  <jnt-checkbox formControlName="disable" label="Disabled"></jnt-checkbox>
-                </jnt-form-control>
-              </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.state">State
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="disable" label="Disabled"
+                                  [value]="false"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+              </jnt-stack>
 
             </jnt-form>
             <!--builder-->
