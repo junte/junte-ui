@@ -290,7 +290,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  keyup() {
+  onInput() {
     let value = this.inputControl.value;
 
     if (this.type === InputType.text && !!this.transform && !!value) {
