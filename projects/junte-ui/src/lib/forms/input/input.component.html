@@ -6,7 +6,7 @@
 
     <input #input *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
-           type="string"
+           type="text"
            (focusin)="focused = true"
            (focusout)="focused = false"
            [placeholder]="placeholder"
@@ -26,7 +26,7 @@
              (focusout)="focused = false"
              (blur)="blur()"
              (keydown)="keydown($event)"
-             (input)="onInput()">
+             (keyup)="keyup()">
     </ng-template>
 
     <ng-template #textareaTemplate>
