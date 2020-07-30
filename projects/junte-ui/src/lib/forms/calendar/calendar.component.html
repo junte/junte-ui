@@ -12,7 +12,6 @@
     <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
       <jnt-button data-date [outline]="ui.outline.transparent"
                   [size]="ui.size.small"
-                  [width]="ui.width.fluid"
                   text="{{period | dfnsFormat: 'LLLL'}}, {{period | dfnsFormat: 'yyyy'}}"></jnt-button>
     </td>
     <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
@@ -60,6 +59,7 @@
     <tr *ngFor="let w of weeks"
         [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
       <td data-day *ngFor="let d of w.days"
+          [attr.data-current-month]="(d | dfnsStartOfMonth) | dfnsIsEqual: (period | dfnsStartOfMonth)"
           [attr.data-selected-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
           (click)="select(d)" tabindex="0">
         <ng-container
