@@ -23,11 +23,12 @@
 
   $defs: (
     background: (
-      from: $jnt-highlight-background,
-      to: darken($jnt-highlight-background, 5%),
+      from: $jnt-secondary-background,
+      to: $jnt-purple-lighten-color,
     ),
     line: (
       height: 24px,
+      corner: $jnt-corner-normal
     ),
     avatar: (
       sizes: (
@@ -80,6 +81,7 @@
     @if map-has-key($vars, line) {
       $line: map-get($vars, line);
       min-height: map-get($line, height);
+      border-radius: map-get($line, corner);
     }
     width: 100%;
   }

@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { UI } from '../../core/enums/ui';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { SkeletonType } from './enums';
@@ -8,6 +9,8 @@ import { SkeletonType } from './enums';
   templateUrl: './skeleton.encapsulated.html'
 })
 export class SkeletonComponent {
+
+  ui = UI;
 
   private _type = SkeletonType.text;
 
