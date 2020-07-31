@@ -1,11 +1,24 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
+@mixin popover-padding($padding) {
+  & {
+    padding: $padding;
+  }
+}
+
 @mixin jnt-popover($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     spacing: 14px,
-    padding: $jnt-gutter-small,
+    padding: (
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge,
+    ),
     background: $jnt-primary-background,
   );
 
@@ -101,9 +114,17 @@
   #{$context} #{$wrapper} [data-wrapper] {
     border-radius: $jnt-corner-small;
     box-shadow: $jnt-shadow-normal;
-    padding: map-get($vars, padding);
     background-color: map-get($vars, background);
     overflow: auto;
+
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      @each $padding, $map in $padding {
+        &[data-padding = '#{$padding}'] {
+          @include popover-padding($map);
+        }
+      }
+    }
 
     [data-title] {
       font-weight: $jnt-font-weight-bold;

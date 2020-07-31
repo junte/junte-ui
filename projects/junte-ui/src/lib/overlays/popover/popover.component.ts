@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { Gutter } from '../../core/enums/gutter';
 import { Feature } from '../../core/enums/feature';
 import { PopoverPlacements, PopoverPosition, PopoverTriggers } from './enums';
 
@@ -23,6 +24,7 @@ export class PopoverOptions {
   maxWidth: string;
   minWidth: string;
   maxHeight = '400px';
+  padding: Gutter = Gutter.normal;
   smarty = true;
   features: Feature[] = [];
 
