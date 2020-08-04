@@ -13,7 +13,8 @@ import {
   SwitcherModule,
   ButtonModule,
   TabsModule,
-  IconModule, CodeModule
+  IconModule,
+  CodeModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';

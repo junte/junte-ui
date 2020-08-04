@@ -55,6 +55,6 @@ export class GanttLineComponent {
     selector: '#titleTemplate',
     description: 'title template'
   })
-  @ContentChild('title')
+  @ContentChild('gantttitle')
   titleTemplate: TemplateRef<any>;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CodeComponent, TabComponent, UI } from 'junte-ui';
+import { TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
