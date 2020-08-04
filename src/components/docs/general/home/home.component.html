@@ -110,6 +110,15 @@ export class AppModule { }
 
     <jnt-timeline-item title="Import styles & assets">
       <ng-template #timelineItemContentTemplate>
+        <p>Install the font using the command</p>
+          <app-code-highlight [language]="languages.bash">
+
+            <!-- @formatter:off-->
+<![CDATA[
+npm i @openfonts/open-sans_cyrillic
+]]>
+            <!-- @formatter:on-->
+          </app-code-highlight>
         <p>Import styles and assets in <code>angular.json</code></p>
         <app-code-highlight [language]="languages.json">
           <pre>
@@ -138,7 +147,7 @@ export class AppModule { }
     "styles": [
       "src/styles.scss",
       "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
-      "node_modules/@junte/ui/lib/assets/fonts/open-sans/regular-400.scss"
+      "node_modules/@openfonts/open-sans_cyrillic/index.css"
     ]
   }
 }
