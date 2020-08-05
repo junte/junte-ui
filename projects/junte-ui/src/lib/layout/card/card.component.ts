@@ -1,16 +1,22 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
-import { State } from '../../core/enums/state';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
+import { Position } from '../../core/enums/position';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
 
-interface Picture {
+class Picture {
   url: string;
-  width: number;
-  height: number;
+  position: Position = Position.left;
+  width = 70;
+  height = 70;
+
+  constructor(defs: any = null) {
+    Object.assign(this, defs);
+  }
 }
 
 @Component({
@@ -38,11 +44,6 @@ export class CardComponent {
     return !!this.icon || !!this.cardActionsTemplate;
   }
 
-  @HostBinding('attr.data-has-picture')
-  get hasPicture() {
-    return !!this.picture || !!this.cardPictureTemplate;
-  }
-
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
 
@@ -59,8 +60,10 @@ export class CardComponent {
   })
   @Input('picture')
   set __picture__(picture: string | Picture) {
-    this.picture = (typeof (picture) === 'string'
-      ? {url: picture, width: 70, height: 70} : picture) as Picture;
+    if (!!picture) {
+      this.picture = typeof (picture) === 'string'
+        ? new Picture({url: picture, position: Position.left, width: 70, height: 70}) : new Picture(picture);
+    }
   }
 
   @ContentApi({

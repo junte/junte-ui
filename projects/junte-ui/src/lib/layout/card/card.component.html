@@ -9,8 +9,10 @@
     <div *ngIf="!!headerTemplate" data-header>
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
-    <div data-body (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
-      <div data-picture *ngIf="!!picture || !!cardPictureTemplate">
+    <jnt-stack data-body
+               [orientation]="ui.orientation.horizontal"
+               (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+      <div data-picture *ngIf="(!!picture || !!cardPictureTemplate) && picture.position === ui.position.left">
         <ng-container *ngIf="!!cardPictureTemplate; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="cardPictureTemplate"></ng-container>
         </ng-container>
@@ -27,7 +29,15 @@
         </div>
         <ng-content></ng-content>
       </div>
-    </div>
+      <div data-picture *ngIf="(!!picture || !!cardPictureTemplate) && picture.position === ui.position.right">
+        <ng-container *ngIf="!!cardPictureTemplate; else cardImageTemplate">
+          <ng-container *ngTemplateOutlet="cardPictureTemplate"></ng-container>
+        </ng-container>
+        <ng-template #cardImageTemplate>
+          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
+        </ng-template>
+      </div>
+    </jnt-stack>
 
     <div *ngIf="!!footerTemplate" data-footer>
       <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>

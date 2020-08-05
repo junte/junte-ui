@@ -36,7 +36,8 @@
                             [padding]="paddingControl.value"
                             [state]="stateControl.value"
                             [icon]="iconControl.value ? ui.icons.menu : null"
-                            [picture]="pictureControl.value ? 'assets/images/steve.jpeg' : null"
+                            [picture]="pictureControl.value ? {url: 'assets/images/steve.jpeg',
+                            position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                             [features]="clickableControl.value ? [ui.feature.clickable] : null">
                     <jnt-stack data-content [type]="ui.layout.stack.type.horizontal">
                       <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
@@ -195,6 +196,23 @@
                       <jnt-checkbox formControlName="picture"
                                     label="Picture"></jnt-checkbox>
                     </jnt-col>
+
+                    <jnt-col [span]="12">
+                      <jnt-form-item>
+                        <jnt-form-label for="position">Picture position
+                        </jnt-form-label>
+                        <jnt-switcher formControlName="position"
+                                      placeholder="Left">
+                          <jnt-switcher-option label="Left"
+                                               [icon]="localUi.icons.start"
+                                               [value]="ui.position.left"></jnt-switcher-option>
+                          <jnt-switcher-option label="Right"
+                                               [icon]="localUi.icons.end"
+                                               [value]="ui.position.right"></jnt-switcher-option>
+                        </jnt-switcher>
+                      </jnt-form-item>
+                    </jnt-col>
+
                   </jnt-row>
                 </jnt-form-item>
               </jnt-stack>
@@ -252,9 +270,13 @@
                     <![CDATA[
                     color="]]>{{colorControl.value}}<![CDATA["]]>
                   </ng-container>
-                  <ng-container *ngIf="pictureControl.value">
+                  <ng-container *ngIf="pictureControl.value && !positionControl.value">
                     <![CDATA[
                     [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value && !!positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[, width: 70, height: 70}]]><![CDATA["]]>
                   </ng-container>
                   <![CDATA[>]]>
                   <ng-container *ngIf="titleControl.value">
