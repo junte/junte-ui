@@ -45,7 +45,6 @@
     ),
     picture: (
       padding: 0,
-      margin: 0 $jnt-gutter-normal 0 0,
       corner: null,
       border: null,
     ),
@@ -130,16 +129,6 @@
       }
     }
 
-    &[data-has-picture='true'] {
-      #{$wrapper} [data-body] {
-        display: flex;
-
-        [data-content] {
-          flex: 1;
-        }
-      }
-    }
-
     @content;
   }
 
@@ -208,11 +197,14 @@
         }
       }
 
+     [data-content] {
+        flex: 1;
+      }
+
       [data-picture] {
         @if map-has-key($vars, picture) {
           $picture: map-get($vars, picture);
           padding: map-get($picture, padding);
-          margin: map-get($picture, margin);
           img {
             border-radius: map-get($picture, corner);
             border: map-get($picture, border);
