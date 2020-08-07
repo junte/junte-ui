@@ -9,6 +9,7 @@ import {
   Input,
   TemplateRef
 } from '@angular/core';
+import { UI } from 'junte-ui';
 import { Gutter } from 'projects/junte-ui/src/lib/core/enums/gutter';
 
 @Component({
@@ -17,6 +18,8 @@ import { Gutter } from 'projects/junte-ui/src/lib/core/enums/gutter';
   styleUrls: ['./browser-preview.component.scss']
 })
 export class BrowserPreviewComponent implements AfterViewInit {
+
+  ui = UI;
 
   width: number;
   height: number;
