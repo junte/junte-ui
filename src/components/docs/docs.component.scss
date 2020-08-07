@@ -1,11 +1,64 @@
 @import 'jnt-variables';
+@import 'elements/icon';
 
 :host-context([theme='dark']) {
   & {
     color: $jnt-muted-color;
   }
+
+  [block] {
+    background-color: $jnt-gray-dark-color;
+  }
+
+  [data-thumbnail] {
+    background-color: $jnt-gray-dark-color;
+  }
 }
 
 :host {
   display: block;
+}
+
+::ng-deep {
+  h1 {
+    display: flex;
+    align-items: center;
+  }
+
+  [data-thumbnail] {
+    display: inline-flex;
+    background: $jnt-white-color;
+    border-radius: $jnt-corner-normal;
+    padding: $jnt-gutter-small $jnt-gutter-normal;
+    margin-right: $jnt-gutter-normal;
+
+    [data-icon] {
+      @include jnt-icon((
+        size: 30px
+      ), '&', true);
+    }
+  }
+
+  [giphy] {
+    border-radius: $jnt-corner-normal;
+    pointer-events: none;
+    border: 2px solid $jnt-secondary-color;
+    max-width: 100%;
+  }
+
+  [block] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $jnt-primary-color;
+    font-weight: bold;
+    background-color: $jnt-primary-background;
+    box-sizing: border-box;
+    border: 2px solid $jnt-primary-color;
+    border-radius: $jnt-corner-normal;
+  }
+
+  [preview] {
+    width: 100%;
+  }
 }

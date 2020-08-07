@@ -10,7 +10,6 @@ import { UI } from 'junte-ui';
     <router-outlet></router-outlet>
     </jnt-stack>
   `,
-  styleUrls: ['../../../_component.scss'],
   styles: ['div[block] {font-size: 20px}']
 })
 

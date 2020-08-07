@@ -1,45 +1,15 @@
 @import "jnt-variables";
-@import "jnt-functions";
 
-@mixin jnt-animated-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+:host {
+  display: inline-flex;
 
-  $defs: (
-    width: null,
-    height: null,
-    fill: null
-  );
-
-  $vars: $passed;
-  $declare: false;
-
-  $wrapper: null;
-  @if $deep {
-    $wrapper: '::ng-deep';
+  [data-mock] {
+    opacity: .5;
   }
 
-  @if $passed == () or $strategy == 'merge' {
-    $vars: recursive-map-merge($defs, $passed);
-    $declare: true;
+  > * {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
   }
-
-  :host, #{$context} {
-    @if $declare {
-      display: inline-flex;
-      [data-mock] {
-        opacity: .5;
-      }
-      > * {
-        width: 100%;
-        height: auto;
-        max-height: 100%;
-      }
-    }
-    fill: map-get($vars, fill);
-    width: map-get($vars, width);
-    height: map-get($vars, height);
-  }
-}
-
-@if $jnt-debug {
-  @debug 'animated-icon compiled';
 }
