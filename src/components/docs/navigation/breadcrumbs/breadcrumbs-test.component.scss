@@ -5,9 +5,17 @@
 
 [data-home] {
   @include jnt-icon((
-    size: 70px
+    size: 30px,
+    color: $jnt-white-color
   ), '&', true);
 
+  background-color: $jnt-primary-light-color;
+  border-radius: 50%;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  display: flex;
   @include for-mobile() {
     @include jnt-icon((
       size: 30px
