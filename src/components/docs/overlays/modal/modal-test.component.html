@@ -342,7 +342,7 @@ export class ModalTestComponent{
 </ng-container>
   <ng-container *ngIf="heightControl.value">
     <![CDATA[
-    maxHeight: ]]>{{heightControl.value}}
+    maxHeight: ]]>{{heightControl.value}}<![CDATA[,]]>
   </ng-container>
   <ng-container *ngIf="closingControl.value">
     <![CDATA[,]]>
@@ -353,7 +353,7 @@ export class ModalTestComponent{
   </ng-container>
   <ng-container *ngIf="titleControl.value">
     <![CDATA[
-    title: {text: ]]>{{titleControl.value ? "'Title'" : null}}
+    title: {text: ]]>{{titleControl.value ? "'Title'" : null}}<![CDATA[}}]]>
   </ng-container>
   <ng-container *ngIf="iconControl.value">
     <![CDATA[,]]>
