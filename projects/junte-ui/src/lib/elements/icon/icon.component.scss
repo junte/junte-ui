@@ -49,16 +49,11 @@
       font-size: if(map-get($vars, size), map-get($vars, size) !important, null);
     }
 
-    &[data-type='svg'] {
+    &[data-type='svg'], &[data-type='animated'] {
       #{$wrapper} [data-icon] {
-        @include jnt-svg-icon((
-          fill: map-get($vars, color),
-        ), '&');
         @if map-has-key($vars, size) {
-          @include jnt-svg-icon((
-            width: if(map-get($vars, size), map-get($vars, size) !important, null),
-            height: if(map-get($vars, size), map-get($vars, size) !important, null)
-          ), '&');
+          width: if(map-get($vars, size), map-get($vars, size) !important, null);
+          height: if(map-get($vars, size), map-get($vars, size) !important, null);
         }
       }
     }
@@ -74,19 +69,8 @@
 
           &[data-type='svg'], &[data-type='animated'] {
             #{$wrapper} [data-icon] {
-              @include jnt-animated-icon((
-                width: map-get($size, size),
-                height: map-get($size, size),
-              ), '&');
-            }
-          }
-
-          &[data-type='svg'] {
-            #{$wrapper} [data-icon] {
-              @include jnt-svg-icon((
-                width: map-get($size, size),
-                height: map-get($size, size),
-              ), '&');
+              width: map-get($size, size);
+              height: map-get($size, size);
             }
           }
         }
