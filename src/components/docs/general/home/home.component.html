@@ -105,6 +105,54 @@ export class AppModule { }
 ]]>
           <!-- @formatter:on-->
         </app-code-highlight>
+        <p>Import <code>Popover</code> & <code>Modal</code> into your app component in
+          <code>src/app/app.component.ts</code></p>
+        <app-code-highlight [language]="languages.typescript">
+          <!-- @formatter:off-->
+<![CDATA[
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI} from "@junte/ui";
+import {FormBuilder} from "@angular/forms";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+          styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements AfterViewInit {
+
+    ui = UI;
+
+    title = 'junte-ui-test';
+
+  @ViewChild('popover', {static: true}) popover: PopoverComponent;
+  @ViewChild('modal', {static: true}) modal: ModalComponent;
+  @ViewChild('layout', {read: ElementRef, static: true}) backdrop: ElementRef<HTMLElement>;
+
+  constructor(private modalService: ModalService,
+              private popoverService: PopoverService,
+              private builder: FormBuilder) {
+          }
+
+          ngAfterViewInit() {
+          this.modalService.register(this.modal);
+          this.popoverService.register(this.popover);
+          }
+}
+          ]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+        <p>Add <code>Popover</code> & <code>Modal</code> into your app component in
+          <code>src/app/app.component.html</code></p>
+        <app-code-highlight [language]="languages.bash">
+          <!-- @formatter:off-->
+          <![CDATA[
+          <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
+
+          <jnt-popover #popover></jnt-popover>
+          ]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
       </ng-template>
     </jnt-timeline-item>
 
