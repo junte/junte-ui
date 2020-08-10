@@ -35,8 +35,7 @@
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
 
-                  <jnt-gantt formControlName="gantt"
-                             title="Super"
+                  <jnt-gantt title="Super"
                              [loading]="loading"
                              [type]="ganttTypeControl.value === 'month' ? ui.collections.gantt.type.month : ui.collections.gantt.type.year">
                     <ng-template #toolsTemplate>

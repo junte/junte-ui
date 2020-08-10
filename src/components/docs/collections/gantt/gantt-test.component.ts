@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { GanttComponent, GanttLineComponent, TabComponent, UI, GanttTypes } from 'junte-ui';
+import { FormBuilder } from '@angular/forms';
+import * as faker from 'faker';
+import { GanttComponent, GanttLineComponent, GanttTypes, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
-import * as faker from 'faker';
 
 export enum GanttRequestStatuses {
   accepting = 'accepting',
@@ -29,10 +29,8 @@ export class GanttTestComponent implements OnInit {
   statuses = GanttRequestStatuses;
   loading = true;
   ganttType = GanttTypes;
-  gantt = new FormControl(this.now);
   ganttTypeControl = this.fb.control(GanttTypes.month);
   form = this.fb.group({
-    gantt: this.gantt,
     ganttType: this.ganttTypeControl
   });
 
@@ -80,7 +78,6 @@ export class GanttTestComponent implements OnInit {
         this.requests = this.yearArray;
       }
     });
-    this.gantt.valueChanges.subscribe(date => console.log('Date changed: ', date));
   }
 
   add() {
