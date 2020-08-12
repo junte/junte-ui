@@ -1,0 +1,50 @@
+@import "jnt-variables";
+@import "jnt-functions";
+
+@mixin jnt-filters($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: block;
+  }
+
+  #{$wrapper} [data-filter] {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    color: $jnt-primary-text-light-color;
+    padding: $jnt-gutter-small $jnt-gutter-normal;
+    border: 1px dashed $jnt-secondary-dark-color;
+    border-radius: $jnt-corner-normal;
+    line-height: 1em;
+
+    &[data-active='true'] {
+      border-color: transparent;
+      background: $jnt-primary-light-color;
+      color: $jnt-white-color;
+      padding-right: $jnt-gutter-huge;
+      box-shadow: $jnt-shadow-normal;
+    }
+
+    [data-reset] {
+      position: absolute;
+      top: $jnt-gutter-small;
+      right: $jnt-gutter-small;
+    }
+  }
+}
