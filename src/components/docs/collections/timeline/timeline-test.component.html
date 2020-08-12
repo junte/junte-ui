@@ -110,17 +110,23 @@
                 <!-- @formatter:off-->
 <![CDATA[
 <jnt-timeline>
-  <jnt-timeline-item title="Title 1" ]]>
+  <jnt-timeline-item title="Prototype" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
       [icon]="localUi.icons.radio"]]>
     </ng-container>
       <![CDATA[
       [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+    <ng-template #timelineItemContentTemplate>
+      <p>Make a prototype of preliminary version of the final app.</p>
+    </ng-template>
   </jnt-timeline-item>
-  <jnt-timeline-item title="Title 1"
+  <jnt-timeline-item title="Develop"
       [icon]="localUi.icons.radio"
       [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+    <ng-template #timelineItemContentTemplate>
+      <p>Develop the app software.</p>
+    </ng-template>
   </jnt-timeline-item>
 </jnt-timeline>
 ]]>
