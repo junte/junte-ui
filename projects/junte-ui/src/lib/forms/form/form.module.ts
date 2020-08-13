@@ -49,6 +49,7 @@ import { FieldTouchedHasErrorPipe } from './pipes';
     FormControlComponent,
     FormLabelComponent,
     FormMessageComponent,
+    FormItemComponent
   ],
   exports: [
     FormComponent,
