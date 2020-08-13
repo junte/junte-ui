@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
-import { FormComponent } from 'junte-ui';
-import { FormControlComponent } from 'junte-ui';
-import { FormLabelComponent } from 'junte-ui';
-import { FormMessageComponent } from 'junte-ui';
+import { UI, FormControlComponent, FormItemComponent, FormComponent, TabComponent, FormLabelComponent, FormMessageComponent } from 'junte-ui';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -24,7 +19,10 @@ export class FormTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  types = {form: FormComponent, control: FormControlComponent, label: FormLabelComponent, message: FormMessageComponent};
+  types = {
+    form: FormComponent, control: FormControlComponent, label: FormLabelComponent, message: FormMessageComponent,
+    item: FormItemComponent
+  };
   language = Language;
   gender = Gender;
   countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco', 'Ukraine'];
