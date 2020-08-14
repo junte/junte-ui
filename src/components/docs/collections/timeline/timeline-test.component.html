@@ -100,7 +100,7 @@
                                  i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use
-                [test]="{selector:'timelinee-test', type: 'TimelineTestComponent'}"
+                [test]="{selector:'timeline-test', type: 'TimelineTestComponent'}"
                 scss="collections/timeline"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
@@ -113,17 +113,17 @@
   <jnt-timeline-item title="Prototype" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
-      [icon]="localUi.icons.radio"]]>
+      [icon]="ui.icons.radioChecked"]]>
     </ng-container>
       <![CDATA[
-      [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+      color="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
     <ng-template #timelineItemContentTemplate>
       <p>Make a prototype of preliminary version of the final app.</p>
     </ng-template>
   </jnt-timeline-item>
   <jnt-timeline-item title="Develop"
-      [icon]="localUi.icons.radio"
-      [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+      [icon]="ui.icons.radioChecked"
+      color="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
     <ng-template #timelineItemContentTemplate>
       <p>Develop the app software.</p>
     </ng-template>
