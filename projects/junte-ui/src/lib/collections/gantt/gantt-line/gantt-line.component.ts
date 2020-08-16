@@ -1,6 +1,11 @@
 import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
 
+class Period {
+  from: Date;
+  to: Date;
+}
+
 @Component({
   selector: 'jnt-gantt-line',
   template: ''
@@ -31,6 +36,12 @@ export class GanttLineComponent {
     type: 'string',
   })
   @Input() period: any;
+
+  @PropertyApi({
+    description: 'Period',
+    type: 'string',
+  })
+  @Input() periods: Period[];
 
   @PropertyApi({
     description: 'Output event of click'

@@ -44,6 +44,11 @@ export class GanttTestComponent implements OnInit {
       id: faker.random.number(100),
       login: faker.name.findName()
     },
+    periods: [
+      {from: faker.date.recent(-7), to: faker.date.recent(-1), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])},
+      {from: faker.date.recent(1), to: faker.date.recent(4), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])},
+     // {from: faker.date.recent(3), to: faker.date.recent(7), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])}
+    ],
     from: faker.date.recent(15),
     to: faker.date.recent(-15),
     selfExpense: true,
@@ -58,6 +63,11 @@ export class GanttTestComponent implements OnInit {
       id: faker.random.number(100),
       login: faker.name.findName()
     },
+    periods: [
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])},
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])},
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])}
+      ],
     from: faker.date.recent(90),
     to: faker.date.recent(-80),
     selfExpense: true,

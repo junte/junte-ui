@@ -170,15 +170,31 @@
             *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
         </td>
 
-        <ng-container *ngIf="(line.from | dfnsIsSameMonth: current) || (line.to | dfnsIsSameMonth: current)
-          || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
-          <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
-          <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
-            <ng-container *ngTemplateOutlet="line.indicatorTemplate;
-              context: {period: line.period, current: current, today: today}">
+          <ng-container *ngFor="let period of line.periods">
+            <ng-container *ngIf="(period.from | dfnsIsSameMonth: current) || (period.to | dfnsIsSameMonth: current)
+            || ((current | dfnsDifferenceInMonths:period.from) > 0 && (period.to | dfnsDifferenceInMonths:current) > 0)">
+              <td *ngFor="let day of (period.from | before: current) - 1 | mockArray"></td>
+              <td [attr.colspan]="(period.to | after: current) - (period.from | before: current) + 1">
+                <ng-container *ngTemplateOutlet="period.indicatorTemplate;
+                context: {period: line.period, current: current, today: today}">
+                </ng-container>
+              </td>
+              <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (period.to | after: current)) | mockArray"></td>
+
             </ng-container>
-          </td>
-          <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | mockArray"></td>
+
+
+          <ng-container *ngIf="(line.from | dfnsIsSameMonth: current) || (line.to | dfnsIsSameMonth: current)
+            || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
+            <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
+            <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
+              <ng-container *ngTemplateOutlet="line.indicatorTemplate;
+                context: {period: line.period, current: current, today: today}">
+              </ng-container>
+            </td>
+            <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | mockArray"></td>
+          </ng-container>
+
         </ng-container>
       </tr>
     </ng-container>

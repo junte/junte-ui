@@ -51,6 +51,7 @@
                     </ng-template>
                     <jnt-gantt-line *ngFor="let request of requests"
                                     [period]="request"
+                                    [periods]="request.periods"
                                     [from]="request.from"
                                     [to]="request.to"
                                     [title]="request.createdBy.login">
