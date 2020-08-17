@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=6587%3A0">
   </app-resources>
 
-  <jnt-tabs playground>
+  <jnt-tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
@@ -110,17 +110,23 @@
                 <!-- @formatter:off-->
 <![CDATA[
 <jnt-timeline>
-  <jnt-timeline-item title="Title 1" ]]>
+  <jnt-timeline-item title="Prototype" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
       [icon]="localUi.icons.radio"]]>
     </ng-container>
       <![CDATA[
       [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+    <ng-template #timelineItemContentTemplate>
+      <p>Make a prototype of preliminary version of the final app.</p>
+    </ng-template>
   </jnt-timeline-item>
-  <jnt-timeline-item title="Title 1"
+  <jnt-timeline-item title="Develop"
       [icon]="localUi.icons.radio"
       [color]="]]>{{colorControl.value ? colorControl.value : 'ui.color.primary'}}<![CDATA[">
+    <ng-template #timelineItemContentTemplate>
+      <p>Develop the app software.</p>
+    </ng-template>
   </jnt-timeline-item>
 </jnt-timeline>
 ]]>

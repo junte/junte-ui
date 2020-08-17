@@ -12,14 +12,14 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1291%3A2727">
   </app-resources>
 
-  <jnt-tabs playground>
+  <jnt-tabs [features]="[ui.feature.adapted]">
 
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack [align]="ui.flex.align.stretch">
 
           <jnt-form [formGroup]="builder">
-            <jnt-stack [orientation]="ui.orientation.horizontal">
+            <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center">
 
               <jnt-form-item>
                 <jnt-form-control>
@@ -27,7 +27,9 @@
                 </jnt-form-control>
               </jnt-form-item>
 
-              <jnt-form-item>
+              <jnt-form-item [orientation]="ui.orientation.horizontal"
+                             [gutter]="ui.gutter.small"
+                             [align]="ui.flex.align.center">
                 <jnt-form-label for="state">States
                 </jnt-form-label>
                 <jnt-switcher formControlName="state">
@@ -404,6 +406,7 @@
           <app-component-api selector="jnt-form-control" [target]="types.control"></app-component-api>
           <app-component-api selector="jnt-form-label" [target]="types.label"></app-component-api>
           <app-component-api selector="jnt-form-message" [target]="types.message"></app-component-api>
+          <app-component-api selector="jnt-form-item" [target]="types.item"></app-component-api>
         </jnt-stack>
       </ng-template>
     </jnt-tab>

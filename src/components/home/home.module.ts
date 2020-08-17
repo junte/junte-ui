@@ -1,23 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   ArrayPipesModule,
+  ButtonModule,
   GridModule,
+  IconModule,
   LabelModule,
   LinkModule,
   LpModule,
   MenuModule,
-  StackModule,
+  PopoverModule,
   ResponsiveModule,
-  ButtonModule,
-  IconModule,
-  PopoverModule
+  StackModule,
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
     HomeRoutingModule,
     ResponsiveModule,
     ArrayPipesModule,
-    AnalyticsDirectivesModule
+    AnalyticsDirectivesModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class HomeModule {

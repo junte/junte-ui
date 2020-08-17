@@ -10,7 +10,7 @@ import { UI } from 'junte-ui';
     <router-outlet></router-outlet>
     </jnt-stack>
   `,
-  styles: ['div[block] {font-size: 20px}']
+  styleUrls: ['./test.component.scss']
 })
 
 export class BreadCrumbTest2Component {

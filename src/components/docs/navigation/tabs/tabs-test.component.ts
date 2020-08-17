@@ -17,11 +17,13 @@ export class TabsTestComponent implements OnInit {
   outlineControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
+  adaptedControl = this.fb.control(true);
 
   builder = this.fb.group({
     outline: this.outlineControl,
     icons: this.iconsControl,
-    badges: this.badgesControl
+    badges: this.badgesControl,
+    adapted: this.adaptedControl
   });
 
   @ViewChild('code') code: TabComponent;

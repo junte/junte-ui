@@ -10,6 +10,50 @@
 @import 'layout/lp';
 
 $angular-color: #E23237;
+$jnt-secondary-background-dark: #0F1422;
+$jnt-primary-background-dark: #241741;
+
+:host-context([theme='dark']) {
+
+  @include for-mobile() {
+    @include jnt-lp-header((
+      background: $jnt-secondary-background-dark,
+    ), null, true);
+  }
+
+  [about] {
+    background-color: $jnt-secondary-background-dark;
+
+    [content] {
+      h1, p {
+        color: $jnt-white-color;
+      }
+    }
+
+    [tags] {
+      [tag] {
+        [icon] {
+          background-color: $jnt-teal-color;
+          border: 2px solid $jnt-white-color;
+        }
+
+        span {
+          color: $jnt-white-color;
+        }
+      }
+    }
+  }
+
+  [top] {
+    [wave] {
+      fill: $jnt-primary-background-dark;
+    }
+  }
+}
+
+:host {
+  display: block;
+}
 
 @include jnt-grid-container((), null, true) {
   display: flex;
@@ -25,6 +69,7 @@ $angular-color: #E23237;
   [wave] {
     top: 0;
     right: 0;
+    fill: $jnt-primary-background;
     @include for-mobile() {
       width: 100%;
       height: auto;
@@ -61,8 +106,30 @@ $angular-color: #E23237;
 }
 
 [data-logo] {
+  position: relative;
+  cursor: pointer;
+  height: 70px;
+
   @include max-for-tablet() {
     height: 40px;
+  }
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
   }
 }
 
@@ -71,7 +138,6 @@ $angular-color: #E23237;
     background: $jnt-secondary-background,
   ), null, true);
 }
-
 
 [about] {
   background-color: $jnt-secondary-background;
@@ -142,12 +208,14 @@ $angular-color: #E23237;
     margin-left: -$jnt-gutter-large;
 
     [tag] {
+      cursor: pointer;
       [icon] {
         min-width: 74px;
         width: 74px;
         height: 74px;
         border-radius: 50%;
         background-color: $jnt-primary-background;
+        border: 2px solid transparent;
         display: flex;
         justify-content: center;
         align-items: center;

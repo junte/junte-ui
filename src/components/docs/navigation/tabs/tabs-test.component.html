@@ -18,7 +18,7 @@
       <p>Tabs organize content to internal separate pages.</p>
     </div>
 
-    <jnt-tabs playground>
+    <jnt-tabs [features]="[ui.feature.adapted]">
 
       <jnt-tab title="Preview"
                i18n-title="@@label.preview"
@@ -28,7 +28,7 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document>
-                  <jnt-tabs [outline]="outlineControl.value">
+                  <jnt-tabs [outline]="outlineControl.value" [features]="adaptedControl.value ? [ui.feature.adapted] : null">
                     <jnt-tab title="Personal"
                              i18n-title="@@label.personal"
                              [icon]="iconsControl.value ? ui.icons.calendar : null">
@@ -42,7 +42,7 @@
                     </jnt-tab>
                     <jnt-tab title="Security"
                              i18n-title="@@label.security"
-                             [icon]="iconsControl.value ? ui.icons.accessLock : null">
+                             [icon]="iconsControl.value ? ui.icons.lock : null">
                       <jnt-badge *ngIf="badgesControl.value"
                                  [text]="'5h'"></jnt-badge>
                       <ng-template #tabContentTemplate>
@@ -111,6 +111,10 @@
                                       label="Badges"
                                       i18n-label="@@label.badges"></jnt-checkbox>
                       </jnt-col>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="adapted"
+                                      label="Adapted"></jnt-checkbox>
+                      </jnt-col>
                     </jnt-row>
                   </jnt-form-item>
 
@@ -146,6 +150,10 @@
   <ng-container *ngIf="outlineControl.value">
     <![CDATA[
     [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="adaptedControl.value">
+    <![CDATA[
+    [features]="[ui.feature.adapted]" ]]>
   </ng-container>
   <![CDATA[>
   <jnt-tab title="Personal"

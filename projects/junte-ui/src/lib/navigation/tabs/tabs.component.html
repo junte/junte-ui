@@ -1,28 +1,43 @@
+<ng-template #tabTemplate let-tab="tab">
+  <jnt-stack data-label
+             [orientation]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.tiny"
+             [align]="ui.flex.align.center">
+    <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [align]="ui.flex.align.center">
+      <span>{{tab.title}}</span>
+      <jnt-stack *ngIf="tab.badges.length"
+                 [orientation]="ui.orientation.horizontal"
+                 [gutter]="ui.gutter.tiny"
+                 [align]="ui.flex.align.center">
+        <jnt-badge data-badge *ngFor="let badge of tab.badges"
+                   [color]="badge.color"
+                   [text]="badge.text"
+                   [value]="badge.value"
+                   [position]="ui.position.inline">
+        </jnt-badge>
+      </jnt-stack>
+    </jnt-stack>
+  </jnt-stack>
+</ng-template>
+
 <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
   <div data-tab *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
        (click)="active = i"
        tabindex="0">
-    <jnt-stack data-label [orientation]="ui.orientation.horizontal"
-               [gutter]="ui.gutter.tiny"
-               [align]="ui.flex.align.center">
-      <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
-      <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.flex.align.center">
-        <span>{{tab.title}}</span>
-        <jnt-stack *ngIf="tab.badges.length"
-                   [orientation]="ui.orientation.horizontal"
-                   [gutter]="ui.gutter.tiny"
-                   [align]="ui.flex.align.center">
-          <jnt-badge data-badge *ngFor="let badge of tab.badges"
-                     [color]="badge.color"
-                     [text]="badge.text"
-                     [value]="badge.value"
-                     [position]="ui.position.inline">
-          </jnt-badge>
-        </jnt-stack>
-      </jnt-stack>
-    </jnt-stack>
+    <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
+      <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
+    </ng-container>
+    <ng-template #adaptedTemplate>
+      <ng-container *jntMinFor="ui.breakpoint.tablet">
+        <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
+      </ng-container>
+      <ng-container *jntFor="ui.breakpoint.mobile">
+        <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
+      </ng-container>
+    </ng-template>
     <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
   </div>
 </jnt-stack>

@@ -1,5 +1,6 @@
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
 import { UI } from '../../core/enums/ui';
@@ -46,6 +47,7 @@ export class TabsComponent {
 
   ui = UI;
   active = 0;
+  feature = Feature;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-tabs-host';
@@ -62,6 +64,15 @@ export class TabsComponent {
   @Input() set outline(outline: Outline) {
     this._outline = outline || Outline.fill;
   }
+
+  @PropertyApi({
+    description: 'Adapted tabs on mobile view',
+    path: 'ui.feature',
+    options: [Feature.adapted]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @ContentChildren(TabComponent)
   tabs: QueryList<TabComponent>;

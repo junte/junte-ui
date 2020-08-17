@@ -9,7 +9,7 @@ import { UI } from 'junte-ui';
       <div block>3</div>
     </jnt-stack>
   `,
-  styles: ['div[block] {font-size: 20px}']
+  styleUrls: ['./test.component.scss']
 })
 
 export class BreadCrumbTest3Component {

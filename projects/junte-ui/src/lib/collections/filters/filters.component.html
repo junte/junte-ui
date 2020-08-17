@@ -1,0 +1,30 @@
+<jnt-stack [orientation]="ui.orientation.horizontal">
+  <div data-filter *ngFor="let filter of filters" [attr.data-active]="!!filter.label">
+    <jnt-stack *ngIf="!filter.label; else activeFilter"
+               [orientation]="ui.orientation.horizontal"
+               [align]="ui.flex.align.center"
+               [gutter]="ui.gutter.small">
+        <jnt-icon *ngIf="filter.icon" [icon]="filter.icon"></jnt-icon>
+        <span>{{filter.placeholder}}</span>
+    </jnt-stack>
+
+    <ng-template #activeFilter>
+
+      <ng-container *ngIf="!!filter.filterContentTemplate; else defaultTemplate">
+        <ng-container *ngTemplateOutlet="filter.filterContentTemplate"></ng-container>
+      </ng-container>
+
+      <ng-template #defaultTemplate>
+        <span>{{filter.label}}</span>
+      </ng-template>
+
+      <jnt-button data-reset
+                  [scheme]="ui.scheme.secondary"
+                  [size]="ui.size.tiny"
+                  [icon]="ui.icons.close"
+                  (click)="filter.clear.emit()"></jnt-button>
+
+    </ng-template>
+  </div>
+</jnt-stack>
+

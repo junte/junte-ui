@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1709%3A3466">
   </app-resources>
 
-  <jnt-tabs playground>
+  <jnt-tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
@@ -342,7 +342,7 @@ export class ModalTestComponent{
 </ng-container>
   <ng-container *ngIf="heightControl.value">
     <![CDATA[
-    maxHeight: ]]>{{heightControl.value}}
+    maxHeight: ]]>{{heightControl.value}}<![CDATA[,]]>
   </ng-container>
   <ng-container *ngIf="closingControl.value">
     <![CDATA[,]]>
@@ -353,7 +353,7 @@ export class ModalTestComponent{
   </ng-container>
   <ng-container *ngIf="titleControl.value">
     <![CDATA[
-    title: {text: ]]>{{titleControl.value ? "'Title'" : null}}
+    title: {text: ]]>{{titleControl.value ? "'Title'" : null}}<![CDATA[}}]]>
   </ng-container>
   <ng-container *ngIf="iconControl.value">
     <![CDATA[,]]>
