@@ -231,7 +231,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @HostBinding('attr.data-empty')
   get empty() {
-    return this.selected.length === 0;
+    return !this.selected || this.selected.length === 0;
   }
 
   @PropertyApi({
@@ -332,8 +332,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         }
       }),
       debounceTime(SEARCH_DELAY),
-      filter(query => !!query))
-      .subscribe(query => loadOptions(query));
+      filter(query => !!query)
+    ).subscribe(query => loadOptions(query));
   }
 
   ngAfterContentInit() {
