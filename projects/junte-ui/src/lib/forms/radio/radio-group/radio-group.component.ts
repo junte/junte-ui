@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { RadioComponent } from '../radio.component';
@@ -29,9 +30,11 @@ import { RadioComponent } from '../radio.component';
 
 export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor {
 
-  private _size = Size.normal;
-
   ui = UI;
+
+  @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+
+  private _size = Size.normal;
   selected: any;
   math = Math;
 
@@ -40,13 +43,22 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
     radios: this.radiosControl
   });
 
-  @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
-
-  @Input() cols = 1;
-
   @Input() labelField: string;
   @Input() valueField: string;
 
+  @PropertyApi({
+    description: 'Count of cols in radio group',
+    type: 'number',
+    default: 1
+  })
+  @Input() cols = 1;
+
+  @PropertyApi({
+    description: 'Size for radio in radio group',
+    path: 'ui.size',
+    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    default: Size.normal
+  })
   @Input()
   set size(size: Size) {
     this._size = size || Size.normal;

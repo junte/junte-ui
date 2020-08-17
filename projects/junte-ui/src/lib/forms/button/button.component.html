@@ -1,6 +1,6 @@
 <button [type]="type" [disabled]="disabled || loading">
   <jnt-spinner data-loading *ngIf="loading" [@appear]="loading"></jnt-spinner>
-  <jnt-stack [type]="ui.layout.stack.type.horizontal"
+  <jnt-stack [orientation]="ui.orientation.horizontal"
              [align]="ui.flex.align.center"
              [gutter]="ui.gutter.small">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left"
@@ -14,7 +14,7 @@
 
     <jnt-stack data-badges *ngIf="badges.length > 0"
                [@visibility]="loading  ? 'hide' : 'show'"
-               [type]="ui.layout.stack.type.horizontal"
+               [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.tiny">
       <jnt-badge data-badge *ngFor="let badge of badges"
                  [color]="badge.color"

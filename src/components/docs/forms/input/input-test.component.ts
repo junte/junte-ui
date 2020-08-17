@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InputComponent, TabComponent, UI } from 'junte-ui';
+import { InputType } from 'projects/junte-ui/src/lib/forms/input/enums';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
 
@@ -15,6 +16,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   localUi = LocalUI;
   input = InputComponent;
   language = Language;
+  inputType = InputType;
 
   @ViewChild('code') code: TabComponent;
 
@@ -66,18 +68,34 @@ export class InputTestComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.form.valueChanges.subscribe(v => console.log(v));
-
     this.disabledControl.valueChanges.subscribe(disabled => {
       disabled ? this.inputControl.disable() : this.inputControl.enable();
     });
+    this.reset(this.typeControl.value);
+    this.typeControl.valueChanges.subscribe(type => this.reset(type));
+  }
+
+  ngAfterViewInit() {
+    this.builder.valueChanges.subscribe(() => this.code.flash());
   }
 
   test() {
     this.form.patchValue({input: '90515513360'});
   }
 
-  ngAfterViewInit() {
-    this.builder.valueChanges.subscribe(() => this.code.flash());
+  reset(type: InputType) {
+    if (type !== this.inputType.number) {
+      this.stepControl.disable();
+      this.minControl.disable();
+      this.maxControl.disable();
+      this.multilineControl.enable();
+      this.rowsControl.enable();
+    } else {
+      this.stepControl.enable();
+      this.minControl.enable();
+      this.maxControl.enable();
+      this.multilineControl.disable();
+      this.rowsControl.disable();
+    }
   }
 }

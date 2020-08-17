@@ -20,8 +20,8 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
+import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -43,9 +43,28 @@ export class SelectOptionComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'Icon for select option',
+    type: 'string'
+  })
   @Input() icon: string;
+
+  @PropertyApi({
+    description: 'Key for select option',
+    type: 'number | string'
+  })
   @Input() key: Key;
+
+  @PropertyApi({
+    description: 'Label name for select option',
+    type: 'string'
+  })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Value for select option',
+    type: 'any'
+  })
   @Input() value: any;
 
 }
@@ -107,8 +126,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select placeholder',
-    type: 'string',
-    default: 'key'
+    type: 'string'
   })
   @Input() placeholder = '';
 
@@ -190,7 +208,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select mode',
-    path: 'ui.select',
+    path: 'ui.forms.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
@@ -221,7 +239,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select size',
-    path: 'ui.sizes',
+    path: 'ui.size',
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })

@@ -36,9 +36,9 @@
                           <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
                           <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
-                            <jnt-checkbox label="Thanos"
+                            <jnt-radio label="Thanos"
                                           [value]="hero.thanos">
-                            </jnt-checkbox>
+                            </jnt-radio>
                             <jnt-radio label="Deadpool"
                                           [value]="hero.deadpool">
                             </jnt-radio>
@@ -166,39 +166,36 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="radio-test.component.html">
                 <!-- @formatter:off-->
-<ng-template #sizeTemplate>
-  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-</ng-template>
   <![CDATA[
-  <jnt-form [formGroup]="builder">
+  <jnt-form [formGroup]="form">
     <jnt-radio-group formControlName="radioGroup"]]>
       <ng-container *ngIf="colsControl.value">
         <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
       </ng-container>
+      <ng-container *ngIf="sizeControl.value">
+        <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+      </ng-container>
       <![CDATA[>
-      <jnt-radio value="Option 1" ]]>
+      <jnt-radio label="Spiderman" value="spiderman"]]>
         <ng-container *ngIf="disableControl.value">
           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-        </ng-container>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
         </ng-container>
           <![CDATA[ >
       </jnt-radio>
       ]]>
       <![CDATA[
-      <jnt-radio value="Option 2" label="Label 2" ]]>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+      <jnt-radio label="Ironman" value="ironman" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
         </ng-container>
         <![CDATA[>
       </jnt-radio>
       ]]>
 
       <![CDATA[
-      <jnt-radio value="Option 3" label="Label 3" ]]>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+      <jnt-radio label="Captain America" value="captain_america" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
         </ng-container>
           <![CDATA[>
       </jnt-radio>
@@ -213,9 +210,9 @@
                                   [language]="language.typescript">
   <pre>
                   <![CDATA[
-                  import { Component, OnInit, ViewChild } from '@angular/core';
+                  import { Component } from '@angular/core';
                   import { FormBuilder, FormControl } from '@angular/forms';
-                  import { RadioComponent, TabComponent, UI } from 'junte-ui';
+                  import { UI } from 'junte-ui';
 
                   @Component({
                     selector: 'app-radio-test',
@@ -223,7 +220,7 @@
                     styleUrls: ['./radio-test.component.scss']
                   })
 
-                  export class RadioTestComponent implements OnInit {
+                  export class RadioTestComponent {
 
                     ui = UI;
 
@@ -248,7 +245,10 @@
     </jnt-tab>
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
+          <app-component-api selector="jnt-radio-group" [target]="types.group"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

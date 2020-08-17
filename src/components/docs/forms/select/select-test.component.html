@@ -50,7 +50,6 @@
                                          [value]="h">
                       </jnt-select-option>
                     </jnt-select>
-                    <p>test</p>
                     <ng-template #optionsHeaderTemplate let-query="query" let-close="close">
                       <jnt-button text="Close"
                                   [icon]="ui.icons.add"
@@ -196,18 +195,21 @@
               <app-code-highlight file="select-test.component.html">
                 <!-- @formatter:off-->
 <![CDATA[
-<jnt-select [labelField]="'label'"
+<form [formGroup]="selectForm">
+<jnt-select formControlName="select"
+            placeholder="Select your hero"
+            [labelField]="'label'"
             [keyField]="'key'" ]]>
 <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
 <ng-container *ngIf="modeControl.value">
-  <![CDATA[[mode]="selectMode.]]>{{modeControl.value}}<![CDATA["]]>
+  <![CDATA[[mode]="ui.forms.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
 </ng-container>
 <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
 <ng-container *ngIf="sizeControl.value">
   <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
 </ng-container>
 <ng-container *ngIf="iconControl.value">
-  <![CDATA[[icon]="ui.icon.user"]]>
+  <![CDATA[[icon]="ui.icons.user"]]>
 </ng-container>
   <![CDATA[>]]>
   <![CDATA[
@@ -220,18 +222,20 @@
   <ng-container *ngIf="templateControl.value">
     <![CDATA[
     <ng-template #heroOptionTemplate let-option="value">
-      <jnt-stack option [orientation]="ui.orientation.horizontal"
+      <jnt-stack [orientation]="ui.orientation.horizontal"
                  [gutter]="ui.gutter.small"
                  [align]="ui.flex.align.center">
         <jnt-avatar [size]="ui.size.small"></jnt-avatar>
-        <div>]]>{{<![CDATA[option.label]] >}}<![CDATA[ with likes</div>
-        <jnt-label [label]="option.likes"></jnt-label>
+        <div>]]>{{<![CDATA[ hero.name ]]>}}<![CDATA[</div>
       </jnt-stack>
+      <jnt-label [label]="hero.likes + ' likes'"
+                 [color]="ui.color.green"></jnt-label>
     </ng-template>
   ]]>
   </ng-container>
   <![CDATA[
 </jnt-select>
+</form>
                 ]]>
               </app-code-highlight>
 
@@ -259,6 +263,11 @@
 
                     constructor(private fb: FormBuilder) {
                     }
+
+                    ngOnInit() {
+    this.disabledControl.valueChanges.subscribe(disabled =>
+      disabled ? this.selectControl.disable() : this.selectControl.enable());
+  }
                   }
                   ]]>
                 </pre>
@@ -272,7 +281,10 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-select" [target]="select"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-select" [target]="types.select"></app-component-api>
+          <app-component-api selector="jnt-select-option" [target]="types.option"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

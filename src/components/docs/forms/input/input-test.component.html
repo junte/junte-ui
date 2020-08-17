@@ -180,23 +180,6 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="type"
-                                  i18n="@@label.state">State
-                  </jnt-form-label>
-                  <jnt-row>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="disabled"
-                                    label="Disabled"
-                                    i18n-label="@@label.disabled"></jnt-checkbox>
-                    </jnt-col>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="readonly"
-                                    label="Readonly"></jnt-checkbox>
-                    </jnt-col>
-                  </jnt-row>
-                </jnt-form-item>
-
-                <jnt-form-item>
                   <jnt-form-label for="states"
                                   i18n="@@label.state">States
                   </jnt-form-label>
@@ -214,10 +197,24 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="disabled"
+                                    label="Disabled"
+                                    i18n-label="@@label.disabled"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="readonly"
+                                    label="Readonly"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="type"
                                   i18n="@@label.features">Features
                   </jnt-form-label>
-                  <jnt-row>
+                  <jnt-row [align]="ui.flex.align.center">
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="icon"
                                     label="Icon"
@@ -237,27 +234,24 @@
                       <jnt-checkbox formControlName="clear"
                                     label="Clear"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-form-item>
+                        <jnt-checkbox formControlName="multiline"
+                                      label="Multiline"></jnt-checkbox>
+                      </jnt-form-item>
+                    </jnt-col>
+                    <jnt-col [span]="4">
+                      <jnt-form-item>
+                        <jnt-form-control>
+                          <jnt-input formControlName="rows" [type]="ui.forms.input.type.number" [size]="ui.size.small"></jnt-input>
+                        </jnt-form-control>
+                      </jnt-form-item>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
                 <jnt-row [align]="ui.layout.grid.row.align.center">
                   <jnt-col [span]="4">
-                    <jnt-form-item>
-                      <jnt-checkbox formControlName="multiline"
-                                    label="Multiline"></jnt-checkbox>
-                    </jnt-form-item>
-                  </jnt-col>
-                  <jnt-col [span]="6">
-                    <jnt-form-item>
-                      <jnt-form-control>
-                        <jnt-input formControlName="rows" [type]="ui.forms.input.type.number"></jnt-input>
-                      </jnt-form-control>
-                    </jnt-form-item>
-                  </jnt-col>
-                </jnt-row>
-
-                <jnt-row [align]="ui.layout.grid.row.align.center">
-                  <jnt-col [span]="6">
                     <jnt-form-item>
                       <jnt-form-label>Min</jnt-form-label>
                       <jnt-form-control>
@@ -265,7 +259,7 @@
                       </jnt-form-control>
                     </jnt-form-item>
                   </jnt-col>
-                  <jnt-col [span]="6">
+                  <jnt-col [span]="4">
                     <jnt-form-item>
                       <jnt-form-label>Max</jnt-form-label>
                       <jnt-form-control>
@@ -273,10 +267,7 @@
                       </jnt-form-control>
                     </jnt-form-item>
                   </jnt-col>
-                </jnt-row>
-
-                <jnt-row [align]="ui.layout.grid.row.align.center">
-                  <jnt-col [span]="12">
+                  <jnt-col [span]="4">
                     <jnt-form-item>
                       <jnt-form-label for="steps">Step</jnt-form-label>
                       <jnt-form-control>
@@ -285,7 +276,6 @@
                     </jnt-form-item>
                   </jnt-col>
                 </jnt-row>
-
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -314,22 +304,28 @@
               <app-code-highlight file="input-test.component.html">
                 <!-- @formatter:off-->
 <![CDATA[
-<jnt-input
+<jnt-input placeholder="Yes or no?"
 ]]>
   <ng-container *ngIf="typeControl.value">
-    <![CDATA[[type]="ui.forms.input.]]>{{typeControl.value}}<![CDATA["]]>
+    <![CDATA[[type]="ui.forms.input.type.]]>{{typeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="schemeControl.value">
-    <![CDATA[[state]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
+    <![CDATA[[scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="sizeControl.value">
     <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="statesControl.value">
+    <![CDATA[[state]="ui.state.]]>{{statesControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="iconControl.value">
     <![CDATA[[icon]="ui.icons.search"]]>
   </ng-container>
   <ng-container *ngIf="multilineControl.value">
     <![CDATA[[multiline]="true"]]>
+  </ng-container>
+  <ng-container *ngIf="readonlyControl.value">
+    <![CDATA[[readonly]="true"]]>
   </ng-container>
   <ng-container *ngIf="labelControl.value">
     <![CDATA[label="Name"]]>
@@ -338,7 +334,7 @@
     <![CDATA[[textAlign]="ui.text.align.]]>{{alignControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="transformControl.value">
-    <![CDATA[[textAlign]="ui.text.transform.]]>{{transformControl.value}}<![CDATA["]]>
+    <![CDATA[[transform]="ui.text.transform.]]>{{transformControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="multilineControl.value && rowsControl.value">
     <![CDATA[[rows]="]]>{{rowsControl.value}}<![CDATA["]]>
@@ -354,6 +350,9 @@
   </ng-container>
   <ng-container *ngIf="clearControl.value">
     <![CDATA[[features]="[ui.feature.clear]"]]>
+  </ng-container>
+  <ng-container *ngIf="maskControl.value">
+    <![CDATA[[mask]="+7(___) ___-__-__"]]>
   </ng-container>
     <![CDATA[>
 </jnt-input>
@@ -377,13 +376,21 @@
 
       ui = UI;
 
-      inputForm = this.fb.group({
-      input: []
-    });
+    inputControl = this.fb.control(null);
+    form = this.fb.group({
+    input: this.inputControl
+  });
 
     constructor(private fb: FormBuilder) {
       }
+
+    ngOnInit() {
+    this.disabledControl.valueChanges.subscribe(disabled => {
+    disabled ? this.inputControl.disable() : this.inputControl.enable();
+    });
+  }
     }
+
 ]]>
 </pre>
                 <!-- @formatter:on-->

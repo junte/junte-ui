@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -29,9 +30,14 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     ButtonModule,
     ArrayPipesModule,
     StackModule,
-    LoggerModule
+    LoggerModule,
+    ResponsiveModule
   ],
-  entryComponents: [SelectComponent],
+  entryComponents:
+    [
+      SelectComponent,
+      SelectOptionComponent
+    ],
   exports: [
     SelectComponent,
     SelectOptionComponent
