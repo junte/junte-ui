@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DatesInPeriodPipe } from './gantt-pipes/select-from-array.pipe';
+import { DatesInPeriodPipe } from './gantt-pipes/dates-in-period.pipe';
+import { DatesInYearPeriodPipe } from './gantt-pipes/dates-in-year-period.pipe';
 import { MonthNamePipe } from './gantt-pipes/month-name.pipe';
 import { AfterPipe } from './gantt-pipes/after.pipe';
 import { BeforePipe } from './gantt-pipes/before.pipe';
@@ -21,6 +22,7 @@ import { YearBeforePipe } from './gantt-pipes/year-before.pipe';
     MonthNamePipe,
     DatesInMonthPipe,
     DatesInPeriodPipe,
+    DatesInYearPeriodPipe,
     YearAfterPipe,
     YearBeforePipe
   ],
@@ -31,6 +33,7 @@ import { YearBeforePipe } from './gantt-pipes/year-before.pipe';
     MonthNamePipe,
     DatesInMonthPipe,
     DatesInPeriodPipe,
+    DatesInYearPeriodPipe,
     YearAfterPipe,
     YearBeforePipe
   ]
