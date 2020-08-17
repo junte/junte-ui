@@ -98,13 +98,13 @@ export class ButtonComponent {
   })
   @Input('icon')
   set __icon__(icon: string | Icon) {
-    this.icon = (typeof(icon) === 'string'
+    this.icon = (typeof (icon) === 'string'
       ? {icon: icon, position: Position.left} : icon) as Icon;
   }
 
   @PropertyApi({
     description: 'Button color scheme',
-    path: 'ui.schemes',
+    path: 'ui.scheme',
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
     default: Scheme.primary
   })
@@ -191,10 +191,6 @@ export class ButtonComponent {
   })
   @Output() click = new EventEmitter<any>();
 
-  @PropertyApi({
-    description: 'Badge on button',
-    type: 'number',
-  })
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 }

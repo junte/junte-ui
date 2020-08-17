@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BlockComponent, RadioComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, RadioComponent, RadioGroupComponent, TabComponent, UI } from 'junte-ui';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -16,7 +16,7 @@ export class RadioTestComponent implements OnInit {
   language = Language;
   hero = Hero;
   localUi = LocalUI;
-  types = {radio: RadioComponent};
+  types = {radio: RadioComponent, group: RadioGroupComponent};
 
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;

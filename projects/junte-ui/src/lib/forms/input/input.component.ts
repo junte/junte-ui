@@ -79,7 +79,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() label: string;
 
   @PropertyApi({
-    description: 'Label for input',
+    description: 'Text transform for input',
     type: 'TextTransform',
     options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
   })
@@ -93,7 +93,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input text align',
-    path: 'ui.text.align.',
+    path: 'ui.text.align',
     default: TextAlign.left,
     options: [TextAlign.left, TextAlign.right]
   })
@@ -133,7 +133,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input scheme',
-    path: 'ui.state',
+    path: 'ui.forms.input.scheme',
     default: InputScheme.normal,
     options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
   })
@@ -143,7 +143,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input typeControl',
-    path: 'ui.forms.input',
+    path: 'ui.forms.input.type',
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
@@ -182,14 +182,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() multiline = false;
 
   @PropertyApi({
-    description: 'Max rows for multi line mode',
+    description: 'Max rows for multiline mode',
     type: 'int',
     default: 5,
   })
   @Input() rows = 5;
 
   @PropertyApi({
-    description: 'Mask patter where _ - is digit',
+    description: 'Mask pattern where _ - is digit',
     type: 'string',
     default: null
   })

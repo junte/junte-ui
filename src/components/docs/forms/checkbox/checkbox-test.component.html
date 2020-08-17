@@ -166,19 +166,17 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="checkbox-test.component.html">
                 <!-- @formatter:off-->
-                <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
                 <![CDATA[
                 <jnt-form [formGroup]="form">
-                  <jnt-checkbox-group formControlName="userGroup"]]>
+                  <jnt-checkbox-group formControlName="heroes"]]>
                   <ng-container *ngIf="colsControl.value">
                     <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
                   </ng-container>
+                    <ng-container *ngIf="sizeControl.value">
+                      <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                    </ng-container>
                     <![CDATA[>
-                    <jnt-stack>
                       <jnt-checkbox label="Spiderman" value="spiderman" ]]>
-                        <ng-container *ngIf="sizeControl.value">
-                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                        </ng-container>
                         <ng-container *ngIf="disableControl.value">
                           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
                         </ng-container>
@@ -188,9 +186,6 @@
 
                       <![CDATA[
                       <jnt-checkbox label="Ironman" value="ironman" ]]>
-                        <ng-container *ngIf="sizeControl.value">
-                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                        </ng-container>
                         <ng-container *ngIf="disableControl.value">
                           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
                         </ng-container>
@@ -200,9 +195,6 @@
 
                       <![CDATA[
                       <jnt-checkbox label="Captain America" value="captain_america" ]]>
-                        <ng-container *ngIf="sizeControl.value">
-                          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-                        </ng-container>
                         <ng-container *ngIf="disableControl.value">
                           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
                         </ng-container>
@@ -211,7 +203,6 @@
                       ]]>
 
                       <![CDATA[
-                    </jnt-stack>
                   </jnt-checkbox-group>
                 </jnt-form>
                 ]]>
@@ -220,7 +211,7 @@
                                   [language]="language.typescript">
     <pre><![CDATA[
       import { Component } from '@angular/core';
-      import { FormBuilder, FormControl } from '@angular/forms';
+      import { FormBuilder } from '@angular/forms';
       import { UI } from 'junte-ui';
 
       @Component({
@@ -250,7 +241,10 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-checkbox" [target]="types.checkbox"></app-component-api>
+        <jnt-stack [align]="ui.flex.align.stretch">
+          <app-component-api selector="jnt-checkbox" [target]="types.checkbox"></app-component-api>
+          <app-component-api selector="jnt-checkbox-group" [target]="types.group"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

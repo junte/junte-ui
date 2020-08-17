@@ -30,7 +30,7 @@ export class ButtonGroupComponent {
 
   @PropertyApi({
     description: 'Button group color scheme',
-    path: 'ui.schemes',
+    path: 'ui.scheme',
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
     default: Scheme.primary
   })

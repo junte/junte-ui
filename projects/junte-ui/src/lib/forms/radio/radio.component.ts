@@ -17,13 +17,12 @@ import { UI } from '../../core/enums/ui';
 export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+  @HostBinding('attr.host') readonly host = 'jnt-radio-host';
 
   radioControl = this.fb.control(false);
   form = this.fb.group({
     radio: this.radioControl
   });
-
-  @HostBinding('attr.host') readonly host = 'jnt-radio-host';
 
   @HostBinding('attr.data-size')
   _size = Size.normal;
@@ -31,7 +30,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   @PropertyApi({
     description: 'Size for radio button',
     type: 'string',
-    path: 'ui.sizes',
+    path: 'ui.size',
     options: [Size.tiny,
       Size.small,
       Size.normal,
@@ -45,15 +44,15 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
 
   @PropertyApi({
     description: 'Label name for radio button',
-    type: 'any'
+    type: 'string'
   })
-  @Input() label: any;
+  @Input() label: string;
 
   @PropertyApi({
     description: 'Value for radio button',
-    type: 'string'
+    type: 'any'
   })
-  @Input() value: string;
+  @Input() value: any;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

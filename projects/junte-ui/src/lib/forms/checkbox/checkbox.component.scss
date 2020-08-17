@@ -13,6 +13,9 @@
       height: map-get($size, icon);
     }
   }
+  #{$wrapper} label {
+    font-size: map-get($size, font-size);
+  }
 }
 
 @mixin jnt-checkbox($passed: (), $context: null, $deep: false, $strategy: 'changes') {
@@ -21,19 +24,23 @@
     sizes: (
       tiny: (
         indicator: 12px,
-        icon: 6px
+        icon: 6px,
+        font-size: 10px
       ),
       small: (
         indicator: 14px,
-        icon: 8px
+        icon: 8px,
+        font-size: 11px
       ),
       normal: (
         indicator: 18px,
-        icon: 10px
+        icon: 10px,
+        font-size: 14px,
       ),
       large: (
         indicator: 24px,
-        icon: 14px
+        icon: 14px,
+        font-size: 16px
       ),
     ),
     label: (

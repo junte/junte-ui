@@ -1,6 +1,22 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
-@mixin jnt-checkbox-group($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-checkbox-group($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;

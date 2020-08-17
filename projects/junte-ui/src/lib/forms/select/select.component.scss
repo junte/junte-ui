@@ -108,27 +108,6 @@
       }
     }
 
-    &[data-disabled='true'] {
-      [data-select] {
-        background-color: $jnt-control-disabled-background;
-        border-color: $jnt-control-disabled-border-color;
-        pointer-events: none;
-
-        ul li {
-          background-color: $jnt-control-disabled-background;
-          color: $jnt-control-disabled-border-color;
-
-          &[data-query] {
-            background-color: transparent;
-          }
-        }
-
-        [data-close], [data-toggle] {
-          color: $jnt-control-disabled-border-color;
-        }
-      }
-    }
-
     &[data-opened='true'] {
       @include for-mobile() {
         box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
@@ -209,6 +188,34 @@
       }
     }
 
+    &[data-disabled='true'] {
+      [data-select] {
+        background-color: $jnt-control-disabled-background;
+        border-color: $jnt-control-disabled-border-color;
+        pointer-events: none;
+
+        ul li {
+          background-color: $jnt-control-disabled-background;
+          color: $jnt-control-disabled-border-color;
+          opacity: .8;
+
+          &[data-query] {
+            background-color: transparent;
+          }
+        }
+
+        [data-close], [data-toggle] {
+          color: $jnt-control-disabled-border-color;
+        }
+      }
+
+      &[data-mode='multiple'] {
+        [data-select] ul li {
+          background-color: $jnt-muted-color;
+        }
+      }
+    }
+
     &[data-empty='false'] {
       &[data-opened='false'] {
         [data-query] {
@@ -229,18 +236,6 @@
 
         input {
           width: 100%;
-        }
-      }
-    }
-
-    [data-disabled='true'] {
-      [data-select] {
-        ul li {
-          background-color: $jnt-muted-color;
-
-          &[data-query] {
-            background-color: transparent;
-          }
         }
       }
     }

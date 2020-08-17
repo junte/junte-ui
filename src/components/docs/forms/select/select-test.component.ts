@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SelectComponent, TabComponent, UI } from 'junte-ui';
+import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
@@ -16,7 +16,7 @@ export class SelectTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  select = SelectComponent;
+  types = {select: SelectComponent , option: SelectOptionComponent};
 
   @ViewChild('code') code: TabComponent;
 

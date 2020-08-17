@@ -25,7 +25,8 @@ import { RadioComponent } from './radio.component';
     RadioGroupComponent
   ],
   entryComponents: [
-    RadioComponent
+    RadioComponent,
+    RadioGroupComponent
   ]
 })
 export class RadioModule {
