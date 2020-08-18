@@ -231,7 +231,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @HostBinding('attr.data-empty')
   get empty() {
-    return !this.selected || this.selected.length === 0;
+    return this.selected.length === 0;
   }
 
   @PropertyApi({
