@@ -42,7 +42,7 @@ export class SelectTestComponent implements OnInit {
     icon: this.iconControl
   });
 
-  selectControl = this.fb.control(this.modeControl.value === UI.forms.select.mode.multiple ? [] : null);
+  selectControl = this.fb.control(null);
   selectForm = this.fb.group({
     select: this.selectControl
   });
@@ -60,7 +60,8 @@ export class SelectTestComponent implements OnInit {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable() : this.selectControl.enable());
-    this.modeControl.valueChanges.subscribe(() => this.selectControl.setValue(null));
+    this.modeControl.valueChanges.subscribe(mode => this.selectControl
+      .setValue(mode === UI.forms.select.mode.single ? [] : null));
   }
 
   trackHero(index, hero: { id: number }) {
@@ -74,5 +75,4 @@ export class SelectTestComponent implements OnInit {
       observable.complete();
     }).pipe(delay(1000));
   }
-
 }
