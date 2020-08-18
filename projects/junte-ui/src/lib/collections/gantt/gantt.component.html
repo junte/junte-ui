@@ -189,15 +189,12 @@
           <td *ngFor="let day of (line.periods[0].from | before: current) - 1 | mockArray"></td>
           <ng-container *ngFor="let period of line.periods | datesInPeriod: current; index as i">
             <td [attr.colspan]="(period.to | after: current) - (period.from | before: current) + 1">
-              <ng-container *ngTemplateOutlet="period.indicatorTemplate;
-                  context: {period: period, current: current, today: today}">
-              </ng-container>
             </td>
             <ng-container *ngIf="i < (line.periods | datesInPeriod: current).length - 1">
               <td *ngFor="let day of (((line.periods | datesInPeriod: current)[i + 1]['from'] | dfnsGetDate) - (period.to | dfnsGetDate)) - 1 | mockArray"></td>
             </ng-container>
           </ng-container>
-          <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.periods[line.periods.length - 1].to | after: current)) | mockArray"></td>
+          <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - ((line.periods | datesInPeriod: current)[line.periods.length - 1].to | after: current)) | mockArray"></td>
         </ng-container>
 <!--          <ng-container *ngFor="let period of line.periods | datesInPeriod: current">-->
 <!--              <td [attr.colspan]="(period.to | after: current) - (period.from | before: current) + 1">-->
