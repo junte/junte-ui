@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger, state } from '@angular/animations';
 import {
   Component,
   ContentChild,
@@ -13,13 +14,36 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { State } from '../../core/enums/state';
-import { PropertyApi } from '../../core/decorators/api';
+import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
 
 @Component({
   selector: 'jnt-form',
-  templateUrl: './form.encapsulated.html'
+  templateUrl: './form.encapsulated.html',
+  animations: [
+    trigger('success', [
+        state(
+          'void',
+          style({
+            opacity: 0
+          })
+        ),
+        state(
+          '*',
+          style({
+            opacity: 1
+          })
+        ),
+        transition(
+          'void <=> *',
+          [
+            animate('.3s ease-in-out')
+          ]
+        ),
+      ]
+    ),
+  ]
 })
 export class FormComponent implements OnInit {
 
@@ -27,6 +51,7 @@ export class FormComponent implements OnInit {
 
   ui = UI;
 
+  _state = {success: false};
   formState = State;
 
   @PropertyApi({
@@ -66,6 +91,12 @@ export class FormComponent implements OnInit {
 
   @Output()
   checked = new EventEmitter<AbstractControl[]>();
+
+  @MethodApi({description: 'show success animation'})
+  success() {
+    this._state.success = true;
+    setTimeout(() => this._state.success = false, 2100);
+  }
 
   ngOnInit() {
     if (!!this.form) {
