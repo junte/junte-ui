@@ -30,6 +30,8 @@ export class FormTestComponent implements OnInit {
   status: string[] = ['married', 'not married', 'is actively looking'];
 
   @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('formTest')
+  formTest: FormComponent;
 
   titleControl = this.fb.control(true);
   stateControl = this.fb.control(null);

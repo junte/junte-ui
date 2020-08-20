@@ -42,13 +42,18 @@
                 </jnt-switcher>
               </jnt-form-item>
 
+              <jnt-button [scheme]="ui.scheme.success"
+                          text="Success"
+                          i18n-text="@@action.success"
+                          (click)="formTest.success()"></jnt-button>
+
             </jnt-stack>
           </jnt-form>
 
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-                <jnt-form [formGroup]="form"
+                <jnt-form #formTest [formGroup]="form"
                           [title]="titleControl.value ? 'Registration' : null"
                           [state]="stateControl.value"
                           (checked)="errors = $event"
