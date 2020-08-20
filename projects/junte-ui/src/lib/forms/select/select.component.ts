@@ -433,7 +433,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   writeValue(value: Key | Key[]) {
     if (this.mode === SelectMode.multiple && !value) {
-      throw new Error('please, provide array for multiple select');
+      throw new Error('Wrong value form multiple select mode');
     }
 
     this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
