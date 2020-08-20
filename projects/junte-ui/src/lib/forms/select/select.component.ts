@@ -350,8 +350,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         }
       }),
       debounceTime(SEARCH_DELAY),
-      filter(query => !!query))
-      .subscribe(query => loadOptions(query));
+      filter(query => !!query)
+    ).subscribe(query => loadOptions(query));
   }
 
   ngAfterContentInit() {
@@ -450,6 +450,10 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   writeValue(value: Key | Key[]) {
+    if (this.mode === SelectMode.multiple && !value) {
+      throw new Error('Wrong value form multiple select mode');
+    }
+
     this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 
