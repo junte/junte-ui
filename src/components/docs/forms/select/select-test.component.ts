@@ -60,6 +60,8 @@ export class SelectTestComponent implements OnInit {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable() : this.selectControl.enable());
+    this.modeControl.valueChanges.subscribe(mode => this.selectControl
+      .setValue(mode === UI.forms.select.mode.single ? [] : null));
   }
 
   trackHero(index, hero: { id: number }) {
@@ -73,5 +75,4 @@ export class SelectTestComponent implements OnInit {
       observable.complete();
     }).pipe(delay(1000));
   }
-
 }
