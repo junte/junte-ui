@@ -1,6 +1,7 @@
 import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { Key } from '../select/model';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -138,7 +139,11 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any | any[]) {
-    this.selected = (this.mode === SelectMode.single ? [value] : value) as any[];
+    if (this.mode === SelectMode.multiple && !value) {
+      throw new Error('Wrong value form multiple select mode');
+    }
+
+    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {

@@ -83,6 +83,9 @@ export class SwitcherTestComponent implements OnInit {
     this.disabledControl.valueChanges.subscribe((disabled) => {
       disabled ? this.heroControl.disable() : this.heroControl.enable();
     });
+
+    this.modeControl.valueChanges.subscribe(mode => this.heroControl
+      .setValue(mode === UI.forms.select.mode.single ? [] : null));
   }
 
   submit() {
