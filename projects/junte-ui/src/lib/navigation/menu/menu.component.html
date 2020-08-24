@@ -3,7 +3,7 @@
            [align]="ui.flex.align.stretch"
            [wrap]="ui.flex.wrap.wrap">
   <ng-container *ngFor="let item of items">
-    <div data-top>
+    <div data-top [attr.data-disabled]="item.disabled">
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
               contentTemplate: collapsed || (orientation === orientationEnum.horizontal && !!item.submenu)

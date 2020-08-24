@@ -18,6 +18,13 @@ export class MenuItemComponent extends AbstractMenuItemComponent {
   @Input()
   loading = false;
 
+  @PropertyApi({
+    description: 'Disable menu item',
+    type: 'boolean',
+    default: 'false'
+  })
+  @Input() disabled = false;
+
   @ContentChild(SubMenuComponent)
   submenu: SubMenuComponent;
 
