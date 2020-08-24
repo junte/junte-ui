@@ -1,4 +1,14 @@
-import { AfterContentInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input, Output,
+  QueryList
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
@@ -56,6 +66,9 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
+  @Output('selected')
+  updated = new EventEmitter<any>();
+
   @Input()
   set widthMark(width: number) {
     this._widthMark = Math.min(width, 60);
@@ -74,7 +87,10 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
     }
 
     this._selected = !isSame ? value : null;
-    this.onChange(this._selected);
+    this.onChange(!!this._selected
+      ? (!!this.keyField ? this._selected[this.keyField] : this._selected)
+      : null);
+    this.updated.emit(this._selected);
   }
 
   get selected() {
