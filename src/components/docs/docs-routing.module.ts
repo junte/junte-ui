@@ -16,7 +16,7 @@ export const routes: Routes = [
       {
         path: 'docs',
         pathMatch: 'full',
-        redirectTo: 'components'
+        redirectTo: 'general'
       },
       {
         path: 'team',
