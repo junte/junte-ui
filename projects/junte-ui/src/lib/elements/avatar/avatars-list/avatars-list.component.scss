@@ -6,7 +6,7 @@
 
   $defs: (
     border-width: 2px,
-    avatar-count: 4
+    avatar-count: 6
   );
   $vars: $passed;
   $declare: false;
@@ -23,7 +23,7 @@
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
         min-height: map-get($map, avatar-size);
-        @for $i from 1 through 5 {
+        @for $i from 1 through map-get($vars, avatar-count) {
           &[data-capacity='#{$i}'] {
             min-width: calc(#{map-get($map, avatar-size)} / 2 * #{$i} + #{map-get($map, avatar-size)} / 2 + 2px);
           }

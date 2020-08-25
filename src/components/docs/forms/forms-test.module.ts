@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { SelectableTestModule } from 'src/components/docs/forms/selectable/selectable-test.module';
+import { FilterTestModule } from './filter/filter-test.module';
+import { SelectableTestModule } from './selectable/selectable-test.module';
 import { FormsRoutingModule } from './forms-routing.module';
 import { SwitcherTestModule } from './switcher/switcher-test.module';
 import { SwitchTestModule } from './switch/switch-test.module';
@@ -27,7 +28,8 @@ import { ButtonTestModule } from './button/button-test.module';
     SelectTestModule,
     SwitchTestModule,
     SwitcherTestModule,
-    SelectableTestModule
+    SelectableTestModule,
+    FilterTestModule
   ]
 })
 export class FormsTestModule {

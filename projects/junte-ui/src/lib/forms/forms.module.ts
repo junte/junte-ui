@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FilterModule } from './filter/filter.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { ButtonModule } from './button/button.module';
 import { CalendarModule } from './calendar/calendar.module';
@@ -22,7 +23,8 @@ import { SwitcherModule } from './switcher/switcher.module';
     RadioModule,
     SelectModule,
     SwitchModule,
-    SwitcherModule
+    SwitcherModule,
+    FilterModule
   ]
 })
 export class UiFormsModule {

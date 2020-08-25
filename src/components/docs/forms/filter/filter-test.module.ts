@@ -6,7 +6,7 @@ import {
   ArrayPipesModule,
   AvatarModule,
   CheckboxModule,
-  FiltersModule,
+  FilterModule,
   FormModule,
   GridModule,
   IconModule,
@@ -17,9 +17,9 @@ import {
   SwitcherModule,
   TabsModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
+import { FilterTestComponent } from './filter-test.component';
 import { SharedModule } from '../../shared/shared.module';
-import { FiltersTestComponent } from './filters-test.component';
+import { JUNTE_UI_CONFIG } from 'src/consts';
 
 @NgModule({
   imports: [
@@ -35,18 +35,18 @@ import { FiltersTestComponent } from './filters-test.component';
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     SwitcherModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    FiltersModule.forRoot(JUNTE_UI_CONFIG),
+    FilterModule.forRoot(JUNTE_UI_CONFIG),
     AvatarModule.forRoot(JUNTE_UI_CONFIG),
     ResponsiveModule,
     SharedModule,
     ArrayPipesModule
   ],
   exports: [
-    FiltersTestComponent
+    FilterTestComponent
   ],
   declarations: [
-    FiltersTestComponent
+    FilterTestComponent
   ],
 })
-export class FiltersTestModule {
+export class FilterTestModule {
 }
