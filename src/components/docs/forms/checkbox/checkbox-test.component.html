@@ -158,7 +158,34 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'checkbox-test', type: 'CheckboxTestComponent'}"
-                scss="forms/checkbox"></app-how-to-use>
+                scss="forms/checkbox">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-checkbox-test',
+  templateUrl: './checkbox-test.component.html',
+  styleUrls: ['./checkbox-test.component.scss']
+})
+
+export class CheckboxTestComponent implements OnInit {
+
+  ui = UI;
+  heroesControl = new FormControl([]);
+
+  form = this.fb.group({
+    hero: this.heroesControl
+  });
+
+  constructor(private fb: FormBuilder) {}
+}]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -166,6 +193,7 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="checkbox-test.component.html">
                 <!-- @formatter:off-->
+                <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
                 <![CDATA[
                 <jnt-form [formGroup]="form">
                   <jnt-checkbox-group formControlName="heroes"]]>
@@ -207,32 +235,6 @@
                 </jnt-form>
                 ]]>
               </app-code-highlight>
-              <app-code-highlight file="checkbox-test.component.ts"
-                                  [language]="language.typescript">
-    <pre><![CDATA[
-      import { Component } from '@angular/core';
-      import { FormBuilder } from '@angular/forms';
-      import { UI } from 'junte-ui';
-
-      @Component({
-      selector: 'app-checkbox-test',
-      templateUrl: './checkbox-test.component.html',
-      styleUrls: ['./checkbox-test.component.scss']
-      })
-
-      export class CheckboxTestComponent {
-
-      ui = UI;
-      heroesControl = new FormControl([]);
-
-    form = this.fb.group({
-          hero: this.heroControl
-      });
-
-        constructor(private fb: FormBuilder) {}
-    }]]></pre>
-                <!-- @formatter:on-->
-              </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>
@@ -241,10 +243,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
-          <app-component-api selector="jnt-checkbox" [target]="types.checkbox"></app-component-api>
-          <app-component-api selector="jnt-checkbox-group" [target]="types.group"></app-component-api>
-        </jnt-stack>
+        <app-component-api selector="jnt-checkbox" [target]="types.checkbox"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

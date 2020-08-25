@@ -158,7 +158,38 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'radio-test', type: 'RadioTestComponent'}"
-                scss="forms/radio"></app-how-to-use>
+                scss="forms/radio">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { RadioComponent, TabComponent, UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-radio-test',
+  templateUrl: './radio-test.component.html',
+  styleUrls: ['./radio-test.component.scss']
+})
+
+export class RadioTestComponent implements OnInit {
+
+  ui = UI;
+
+  radioGroupControl = new FormControl();
+
+  form = this.fb.group({
+    radioGroup: this.radioGroupControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -166,36 +197,39 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="radio-test.component.html">
                 <!-- @formatter:off-->
+<ng-template #sizeTemplate>
+  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+</ng-template>
   <![CDATA[
-  <jnt-form [formGroup]="form">
+  <jnt-form [formGroup]="builder">
     <jnt-radio-group formControlName="radioGroup"]]>
       <ng-container *ngIf="colsControl.value">
         <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
       </ng-container>
-      <ng-container *ngIf="sizeControl.value">
-        <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-      </ng-container>
       <![CDATA[>
-      <jnt-radio label="Spiderman" value="spiderman"]]>
+      <jnt-radio value="Option 1" ]]>
         <ng-container *ngIf="disableControl.value">
           <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+        </ng-container>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
         </ng-container>
           <![CDATA[ >
       </jnt-radio>
       ]]>
       <![CDATA[
-      <jnt-radio label="Ironman" value="ironman" ]]>
-        <ng-container *ngIf="disableControl.value">
-          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+      <jnt-radio value="Option 2" label="Label 2" ]]>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
         </ng-container>
         <![CDATA[>
       </jnt-radio>
       ]]>
 
       <![CDATA[
-      <jnt-radio label="Captain America" value="captain_america" ]]>
-        <ng-container *ngIf="disableControl.value">
-          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+      <jnt-radio value="Option 3" label="Label 3" ]]>
+        <ng-container *ngIf="sizeControl.value">
+          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
         </ng-container>
           <![CDATA[>
       </jnt-radio>
@@ -206,38 +240,6 @@
 </jnt-form>
 ]]>
               </app-code-highlight>
-              <app-code-highlight file="radio-test.component.ts"
-                                  [language]="language.typescript">
-  <pre>
-                  <![CDATA[
-                  import { Component } from '@angular/core';
-                  import { FormBuilder, FormControl } from '@angular/forms';
-                  import { UI } from 'junte-ui';
-
-                  @Component({
-                    selector: 'app-radio-test',
-                    templateUrl: './radio-test.component.html',
-                    styleUrls: ['./radio-test.component.scss']
-                  })
-
-                  export class RadioTestComponent {
-
-                    ui = UI;
-
-                    radioGroupControl = new FormControl();
-
-                    form = this.fb.group({
-                      radioGroup: this.radioGroupControl
-                    });
-
-                    constructor(private fb: FormBuilder) {
-                    }
-
-                  }
-                  ]]>
-               </pre>
-                <!-- @formatter:on-->
-              </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>
@@ -245,10 +247,7 @@
     </jnt-tab>
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
-          <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
-          <app-component-api selector="jnt-radio-group" [target]="types.group"></app-component-api>
-        </jnt-stack>
+        <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
