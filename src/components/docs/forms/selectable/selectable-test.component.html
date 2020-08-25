@@ -137,6 +137,35 @@
                                  i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
               <app-how-to-use [test]="{selector:'selectable-test', type: 'SelectableTestComponent'}">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-selectable-test',
+  templateUrl: './selectable-test.component.html',
+  styleUrls: ['./selectable-test.component.scss']
+})
+
+export class SelectableTestComponent implements OnInit {
+
+  ui = UI;
+
+  selectableControl = this.fb.control(null);
+
+  selectableForm = this.fb.group({
+    selectable: this.selectableControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
               </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
@@ -159,36 +188,6 @@
   <![CDATA[
 </jnt-block>
 ]]>
-              </app-code-highlight>
-
-              <app-code-highlight file="selectable-test.component.ts"
-                                  [language]="language.typescript">
-                <pre>
-                  <![CDATA[
-                  import { Component, OnInit, FormBuilder } from '@angular/core';
-                  import { UI } from 'junte-ui';
-
-                  @Component({
-                  selector: 'app-selectable-test',
-                  templateUrl: './selectable-test.component.html',
-                  styleUrls: ['./selectable-test.component.scss']
-                  })
-
-                  export class SelectableTestComponent implements OnInit {
-
-                  ui = UI;
-                  selectableControl = this.fb.control(null);
-
-                  selectableForm = this.fb.group({
-                      selectable: this.selectableControl
-                    });
-
-                    constructor(private fb: FormBuilder) {
-                    }
-                  }
-                  ]]>
-                </pre>
-                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

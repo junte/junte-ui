@@ -295,6 +295,40 @@
               <app-how-to-use
                 [test]="{selector:'input-test', type: 'InputTestComponent'}"
                 scss="forms/input">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+                  <![CDATA[
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-input-test',
+  templateUrl: './input-test.component.html',
+  styleUrls: ['./input-test.component.scss']
+})
+
+export class InputTestComponent implements OnInit {
+
+    ui = UI;
+
+    inputControl = this.fb.control(null);
+    form = this.fb.group({
+    input: this.inputControl
+  });
+
+    constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+      this.disabledControl.valueChanges.subscribe(disabled => {
+      disabled ? this.inputControl.disable() : this.inputControl.enable();
+    });
+  }
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
               </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
@@ -358,43 +392,6 @@
 </jnt-input>
 ]]>
 </app-code-highlight>
-
-<app-code-highlight file="input-test.component.ts"
-                                  [language]="language.typescript">
-  <pre>
-    <![CDATA[
-    import { Component, OnInit, FormBuilder } from '@angular/core';
-    import { UI } from 'junte-ui';
-
-    @Component({
-      selector: 'app-input-test',
-      templateUrl: './input-test.component.html',
-      styleUrls: ['./input-test.component.scss']
-    })
-
-    export class InputTestComponent implements OnInit {
-
-      ui = UI;
-
-    inputControl = this.fb.control(null);
-    form = this.fb.group({
-    input: this.inputControl
-  });
-
-    constructor(private fb: FormBuilder) {
-      }
-
-    ngOnInit() {
-    this.disabledControl.valueChanges.subscribe(disabled => {
-    disabled ? this.inputControl.disable() : this.inputControl.enable();
-    });
-  }
-    }
-
-]]>
-</pre>
-                <!-- @formatter:on-->
-              </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>

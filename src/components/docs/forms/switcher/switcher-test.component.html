@@ -326,7 +326,44 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
-                scss="forms/switcher"></app-how-to-use>
+                scss="forms/switcher">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from 'junte-ui';
+
+export enum Cars {
+  lamborghini = 'lamborghini',
+  astonMartin = 'Aston Martin',
+  bugatti = 'Bugatti',
+  ferrari = 'Ferrari'
+}
+
+@Component({
+  selector: 'app-switcher-test',
+  templateUrl: './switcher-test.component.html',
+  styleUrls: ['./switcher-test.component.scss']
+})
+]]>
+<![CDATA[
+export class SwitcherTestComponent {
+
+  ui = UI;
+  cars = Cars;
+
+  switcherForm = this.fb.group({
+    switcher: this.fb.control(null)
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -427,44 +464,6 @@
   </jnt-switcher-option>
 </jnt-switcher>
 ]]>
-              </app-code-highlight>
-
-              <app-code-highlight file="switcher-test.component.ts"
-                                  [language]="language.typescript">
-                <!-- @formatter:off -->
-<![CDATA[
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
-
-export enum Cars {
-  lamborghini = 'lamborghini',
-  astonMartin = 'Aston Martin',
-  bugatti = 'Bugatti',
-  ferrari = 'Ferrari'
-}
-
-@Component({
-  selector: 'app-switcher-test',
-  templateUrl: './switcher-test.component.html',
-  styleUrls: ['./switcher-test.component.scss']
-})
-                ]]>
-                <![CDATA[
-export class SwitcherTestComponent {
-
-  ui = UI;
-  hero = Hero;
-
-  switcherForm = this.fb.group({
-    switcher: this.fb.control(null)
-  });
-
-  constructor(private fb: FormBuilder) {
-  }
-}
-]]>
-              <!-- @formatter:on -->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

@@ -186,6 +186,46 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use [test]="{selector:'select-test', type: 'SelectTestComponent'}"
                               scss="forms/select">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-select-test',
+  templateUrl: './select-test.component.html',
+  styleUrls: ['./select-test.component.scss']
+})
+
+export class SelectTestComponent implements OnInit {
+
+  ui = UI;
+
+  heroes = [
+    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
+    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
+    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
+  ];
+
+  selectControl = this.fb.control(null);
+
+  selectForm = this.fb.group({
+  select: this.selectControl
+  });
+
+
+
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+  }
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
               </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
@@ -237,41 +277,6 @@
 </jnt-select>
 </form>
                 ]]>
-              </app-code-highlight>
-
-              <app-code-highlight file="select-test.component.ts"
-                                  [language]="language.typescript">
-                <pre>
-                  <![CDATA[
-                  import { Component, OnInit, FormBuilder } from '@angular/core';
-                  import { UI } from 'junte-ui';
-
-                  @Component({
-                              selector: 'app-select-test',
-                              templateUrl: './select-test.component.html',
-                              styleUrls: ['./select-test.component.scss']
-                  })
-
-                  export class SelectTestComponent implements OnInit {
-
-                              ui = UI;
-                              selectControl = this.fb.control(null);
-
-                              selectForm = this.fb.group({
-                      select: this.selectControl
-                    });
-
-                    constructor(private fb: FormBuilder) {
-                    }
-
-                    ngOnInit() {
-    this.disabledControl.valueChanges.subscribe(disabled =>
-      disabled ? this.selectControl.disable() : this.selectControl.enable());
-  }
-                  }
-                  ]]>
-                </pre>
-                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>
