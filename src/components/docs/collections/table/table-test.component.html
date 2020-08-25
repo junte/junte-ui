@@ -70,7 +70,46 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'table-test', type: 'TableTestComponent'}"
-                scss="collections/table"></app-how-to-use>
+                scss="collections/table">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+  import { Component, OnInit } from '@angular/core';
+  import {UI} from "@junte/ui";
+
+  @Component({
+    selector: 'app-table-test',
+    templateUrl: './table-test.component.html',
+    styleUrls: ['./table-test.component.scss']
+  })
+
+
+  export class TableTestComponent implements OnInit {
+
+    ui = UI;
+
+    jobs = [
+      {
+        id: 0,
+        person: 'Ilon Mask',
+        job: 'director'
+      },
+      {
+        id: 1,
+        person: 'Tony Smith',
+        job: 'developer'
+      }
+    ];
+
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+  } ]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template">
@@ -79,7 +118,7 @@
                 <!-- @formatter:off-->
 <![CDATA[
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
-  <jnt-form [formGroup]="form">
+  <jnt-form>
     <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table formControlName="table" ]]>
         <ng-container *ngIf="searchControl.value">
