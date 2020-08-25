@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SelectableTestComponent } from 'src/components/docs/forms/selectable/selectable-test.component';
+import { FilterTestComponent } from './filter/filter-test.component';
+import { SelectableTestComponent } from './selectable/selectable-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
@@ -71,6 +72,11 @@ export const routes: Routes = [
         path: 'selectable',
         component: SelectableTestComponent,
         data: {breadcrumb: 'Selectable', animation: 'Selectable'}
+      },
+      {
+        path: 'filter',
+        component: FilterTestComponent,
+        data: {breadcrumb: 'Filter', animation: 'Filter'}
       }
     ]
   }

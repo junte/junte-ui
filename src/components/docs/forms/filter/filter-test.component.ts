@@ -33,11 +33,11 @@ class FilterHero {
 }
 
 @Component({
-  selector: 'app-filters-test',
-  templateUrl: './filters-test.component.html',
-  styleUrls: ['./filters-test.component.scss']
+  selector: 'app-filter-test',
+  templateUrl: './filter-test.component.html',
+  styleUrls: ['./filter-test.component.scss']
 })
-export class FiltersTestComponent implements OnInit {
+export class FilterTestComponent implements OnInit {
 
   localUi = LocalUI;
   ui = UI;
@@ -72,7 +72,7 @@ export class FiltersTestComponent implements OnInit {
     filtered: this.filteredControl,
     skills: this.skillsControl,
     sources: this.sourcesControl,
-    worlds: this.worldsControl,
+    worlds: this.worldsControl
   });
 
   @ViewChild('code') code: TabComponent;

@@ -1,5 +1,4 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FiltersModule } from './filters/filters.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { GanttModule } from './gantt/gantt.module';
 import { TableModule } from './table/table.module';
@@ -10,7 +9,6 @@ import { TimelineModule } from './timeline/timeline.module';
     GanttModule,
     TableModule,
     TimelineModule,
-    FiltersModule
   ]
 })
 export class CollectionsModule {
