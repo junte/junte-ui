@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ElementsRoutingModule } from './elements-routing.module';
-import { LabelTestModule } from './label/label-test.module';
-import { IconTestModule } from './icon/icon-test.module';
-import { BadgeTestModule } from './badge/badge-test.module';
+import { PictureTestModule } from './picture/picture-test.module';
 import { AvatarTestModule } from './avatar/avatar-test.module';
+import { BadgeTestModule } from './badge/badge-test.module';
 import { DotTestModule } from './dot/dot-test.module';
+import { ElementsRoutingModule } from './elements-routing.module';
+import { IconTestModule } from './icon/icon-test.module';
+import { LabelTestModule } from './label/label-test.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DotTestModule } from './dot/dot-test.module';
     BadgeTestModule,
     IconTestModule,
     LabelTestModule,
-    DotTestModule
+    DotTestModule,
+    PictureTestModule
   ]
 })
 export class ElementsTestModule {
