@@ -1,3 +1,4 @@
+import { Fit } from './fit';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
@@ -49,6 +50,7 @@ export class UI {
   static url = {matching: UrlMatching};
   static feature = Feature;
   static state = State;
+  static fit = Fit;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,

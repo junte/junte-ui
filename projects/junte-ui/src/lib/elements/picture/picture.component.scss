@@ -1,0 +1,79 @@
+@import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/icon";
+
+@mixin jnt-picture($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    background-color: $jnt-secondary-background,
+    corner: null,
+    border: null,
+    cursor: default,
+    placeholder: (
+      color: rgba($jnt-primary-color, .4),
+      size: 30px
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-color: map-get($vars, background-color);
+    border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
+    cursor: map-get($vars, cursor);
+
+    &[data-fit='width'] {
+      background-size: 100% auto;
+    }
+
+    &[data-fit='height'] {
+      background-size: auto 100%;
+    }
+
+    &[data-position='center'] {
+      background-position: center;
+    }
+
+    &[data-position='left'] {
+      background-position: left;
+    }
+
+    &[data-position='right'] {
+      background-position: right;
+    }
+
+    &[data-position='bottom'] {
+      background-position: bottom;
+    }
+
+    &[data-position='top'] {
+      background-position: top;
+    }
+  }
+
+  #{$wrapper} #{$context} [data-icon] {
+    line-height: 1;
+    @if map-has-key($vars, placeholder) {
+      $placeholder: map-get($vars, placeholder);
+      @include jnt-icon((color: map-get($placeholder, color), size: map-get($placeholder, size)), '&');
+    }
+  }
+}
+
+

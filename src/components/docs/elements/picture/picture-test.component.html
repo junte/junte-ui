@@ -1,0 +1,176 @@
+<jnt-container>
+
+  <h1>
+    <span data-thumbnail>
+      <jnt-icon [icon]="ui.icons.image"></jnt-icon>
+    </span>
+    <span i18n="@@label.picture">Picture</span>
+  </h1>
+
+  <app-resources
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/picture">
+  </app-resources>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-picture [src]="imageControl.value ? 'assets/images/elon.jpeg' : null"
+                             [icon]="iconControl.value ? ui.icons.user : null"
+                             [width]="widthControl.value + 'px'"
+                             [height]="heightControl.value + 'px'"
+                             [fit]="fitControl.value"
+                             [position]="positionControl.value"></jnt-picture>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-checkbox formControlName="image"
+                              label="Image"
+                              i18n-label="@@label.image"></jnt-checkbox>
+                <jnt-checkbox formControlName="icon"
+                              label="Custom icon"
+                              i18n-label="@@label.icon"></jnt-checkbox>
+
+                <jnt-form-item>
+                  <jnt-row>
+                    <jnt-col [tablet]="6" [mobile]="12">
+                      <jnt-form-label for="width"
+                                      i18n="@@label.width">Width
+                      </jnt-form-label>
+                      <jnt-input formControlName="width"
+                                 [min]="1"
+                                 [type]="ui.forms.input.type.number"></jnt-input>
+                    </jnt-col>
+                    <jnt-col [tablet]="6" [mobile]="12">
+                      <jnt-form-label for="height"
+                                      i18n="@@label.height">Height
+                      </jnt-form-label>
+                      <jnt-input formControlName="height"
+                                 [min]="1"
+                                 [type]="ui.forms.input.type.number"></jnt-input>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="fit"
+                                  i18n="@@label.fit">Fit
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="fit"
+                                placeholder="Width"
+                                i18n-placeholder="@@label.width">
+                    <jnt-switcher-option label="Width"
+                                         i18n-label="@@label.width"
+                                         [value]="ui.fit.width"></jnt-switcher-option>
+                    <jnt-switcher-option label="Height"
+                                         i18n-label="@@label.height"
+                                         [value]="ui.fit.height"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="position"
+                                  i18n="@@label.position">Picture position
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="position"
+                                placeholder="Center"
+                                i18n-placeholder="@@label.center">
+                    <jnt-switcher-option label="Center"
+                                         i18n-label="@@label.center"
+                                         [value]="ui.position.center"></jnt-switcher-option>
+                    <jnt-switcher-option label="Left"
+                                         i18n-label="@@label.left"
+                                         [disabled]="!fitControl.value || fitControl.value === fit.width"
+                                         [value]="ui.position.left"></jnt-switcher-option>
+                    <jnt-switcher-option label="Right"
+                                         i18n-label="@@label.right"
+                                         [disabled]="!fitControl.value || fitControl.value === fit.width"
+                                         [value]="ui.position.right"></jnt-switcher-option>
+                    <jnt-switcher-option label="Top"
+                                         i18n-label="@@label.top"
+                                         [disabled]="fitControl.value === fit.height"
+                                         [value]="ui.position.top"></jnt-switcher-option>
+                    <jnt-switcher-option label="Bottom"
+                                         i18n-label="@@label.bottom"
+                                         [disabled]="fitControl.value === fit.height"
+                                         [value]="ui.position.bottom"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'picture-test', type: 'PictureTestComponent'}"
+                scss="elements/picture"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="picture-test.template.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-picture ]]>
+                  <ng-container *ngIf="imageControl.value">
+                    <![CDATA[
+                    src="assets/images/elon.jpeg"]]>
+                  </ng-container>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.user"]]>
+                  </ng-container>
+                  <ng-container *ngIf="fitControl.value">
+                    <![CDATA[
+                    [fit]="ui.fit.]]>{{fitControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="positionControl.value">
+                    <![CDATA[
+                    [position]="ui.position.]]>{{positionControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="widthControl.value">
+                    <![CDATA[
+                    width="]]>{{widthControl.value}}<![CDATA[px"]]>
+                  </ng-container>
+                  <ng-container *ngIf="heightControl.value">
+                    <![CDATA[
+                    height="]]>{{heightControl.value}}<![CDATA[px"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-picture>
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-picture" [target]="types.picture"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>
+
