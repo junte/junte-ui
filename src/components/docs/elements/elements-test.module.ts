@@ -5,6 +5,7 @@ import { BadgeTestModule } from './badge/badge-test.module';
 import { DotTestModule } from './dot/dot-test.module';
 import { ElementsRoutingModule } from './elements-routing.module';
 import { IconTestModule } from './icon/icon-test.module';
+import { ImageCropperTestModule } from './image-cropper/image-cropper-test.module';
 import { LabelTestModule } from './label/label-test.module';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LabelTestModule } from './label/label-test.module';
     IconTestModule,
     LabelTestModule,
     DotTestModule,
-    PictureTestModule
+    PictureTestModule,
+    ImageCropperTestModule
   ]
 })
 export class ElementsTestModule {
