@@ -2,7 +2,7 @@
   <div data-menu *ngIf="!!menu">
     <jnt-menu [orientation]="orientation"
               [spacer]="spacer"
-              (selected)="opened = false">
+              (selected)="hide()">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
                      [icon]="item.icon"
@@ -48,7 +48,7 @@
   <jnt-stack data-actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.flex.align.stretch">
-    <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="headerActionsTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
     <jnt-button data-burger
                 [icon]="opened ? ui.icons.cancel : ui.icons.menu"
                 [outline]="ui.outline.transparent"
@@ -56,16 +56,21 @@
                   contentTemplate: dropdownTemplate,
                   trigger: ui.overlays.popover.trigger.click,
                   position: ui.overlays.popover.position.fixed
-                }">
+                }"
+                (attached)="reference.popover = $event">
     </jnt-button>
     <ng-template #dropdownTemplate>
-      <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
-      <ng-container
-        *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
-      <div *ngIf="!!contentTemplate" data-content>
-        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-      </div>
+      <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.small">
+        <ng-container *ngIf="!!headerUserbarTemplate">
+          <ng-container *ngTemplateOutlet="headerUserbarTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
+          <hr>
+        </ng-container>
+        <ng-container
+          *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
+        <div data-content *ngIf="!!contentTemplate">
+          <ng-container *ngTemplateOutlet="contentTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
+        </div>
+      </jnt-stack>
     </ng-template>
   </jnt-stack>
 </ng-container>
-

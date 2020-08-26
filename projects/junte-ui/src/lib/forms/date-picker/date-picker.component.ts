@@ -7,7 +7,7 @@ import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
-import { PopoverService } from '../../overlays/popover/popover.service';
+import { PopoverInstance } from '../../overlays/popover/popover.service';
 import { DatePickerFeatures } from './enums';
 
 const INPUT_DELAY = 500;
@@ -37,6 +37,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   timeMeridian = 'AM';
   clockType = CLOCK_TYPE;
   currentView: CLOCK_TYPE = CLOCK_TYPE.hours;
+
+  reference: { popover: PopoverInstance } = {popover: null};
   hours = 0;
   minutes = 0;
 
@@ -81,7 +83,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   constructor(private logger: NGXLogger,
               private fb: FormBuilder,
-              private popover: PopoverService,
               private breakpoint: BreakpointService) {
   }
 
@@ -92,7 +93,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         this.onChange(date);
         this.opened = false;
         if (!this.mobile) {
-          this.popover.hide();
+          this.reference.popover.hide();
         }
       });
 
@@ -103,7 +104,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
           this.calendarControl.patchValue(parsed);
         }
         if (!this.mobile) {
-          this.popover.hide();
+          this.reference.popover.hide();
         }
       });
   }

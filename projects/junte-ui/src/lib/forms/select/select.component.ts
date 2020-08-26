@@ -20,14 +20,13 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { Breakpoint } from '../../core/enums/breakpoint';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
-import { PopoverService } from '../../overlays/popover/popover.service';
+import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
@@ -86,7 +85,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
-  private reference: { popover: PopoverComponent } = {popover: null};
+  private reference: { popover: PopoverInstance } = {popover: null};
   private destroyed = false;
 
   ui = UI;
@@ -370,7 +369,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   ngOnDestroy() {
     this.destroyed = true;
     if (!!this.reference.popover) {
-      this.popover.hide(this.hostRef);
+      this.reference.popover.hide();
       this.reference.popover = null;
     }
   }
@@ -435,7 +434,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         contentTemplate: this.optionsTemplate,
         features: [Feature.dropdown]
       });
-      this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+      this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
         .subscribe(() => this.close());
     }
   }
@@ -444,7 +443,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     this.opened = false;
     this.queryControl.setValue(null);
     if (!!this.reference.popover) {
-      this.popover.hide(this.hostRef);
+      this.reference.popover.hide();
       this.reference.popover = null;
     }
   }

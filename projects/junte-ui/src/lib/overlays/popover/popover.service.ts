@@ -1,12 +1,18 @@
 import { ElementRef, EventEmitter, Injectable } from '@angular/core';
 import { PopoverComponent } from './popover.component';
 
+export interface PopoverInstance {
+  hide: () => void;
+  picked: (path: HTMLElement[]) => boolean;
+  update: () => void;
+}
+
 @Injectable({providedIn: 'root'})
 export class PopoverService {
 
   private popover: PopoverComponent;
   private target: ElementRef;
-  updated = new EventEmitter<ElementRef>();
+  attached = new EventEmitter<ElementRef>();
 
   register(popover: PopoverComponent): void {
     this.popover = popover;
@@ -18,19 +24,23 @@ export class PopoverService {
     }
   }
 
-  show(target: ElementRef, options: Object): PopoverComponent {
+  show(target: ElementRef, options: Object): PopoverInstance {
     this.checkRegistration();
     this.target = target;
     this.popover.show(target, options);
-    this.updated.emit(target);
-    return this.popover;
+    this.attached.emit(target);
+
+    return {
+      hide: () => this.hide(target),
+      picked: (path: HTMLElement[]) => this.popover.picked(path),
+      update: () => this.popover.update()
+    };
   }
 
-  hide(target: ElementRef = null): void {
-    this.checkRegistration();
+  private hide(target: ElementRef = null) {
     if (!this.target || this.target === target) {
       this.popover.hide();
-      this.updated.emit(null);
+      this.attached.emit(null);
     }
   }
 
