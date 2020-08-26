@@ -1,0 +1,112 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'elements/icon/icon';
+
+@mixin jnt-image-cropper($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: $jnt-gutter-base;
+    text-align: start;
+
+    &[data-shape='circle'] {
+      [data-cropper] {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} label,
+  #{$wrapper} #{$context} [data-loading] {
+    position: absolute;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    input {
+      display: none;
+    }
+
+    [data-icon] {
+      @include jnt-icon((size: $jnt-font-size-huge), '&');
+    }
+  }
+
+  #{$wrapper} #{$context} [data-wrapper] {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      transform-origin: left;
+      position: relative;
+      cursor: move;
+    }
+
+    [data-cropper] {
+      position: absolute;
+      display: flex;
+      color: #53535C;
+      background: transparent;
+      pointer-events: none;
+      box-shadow: 0 0 0 100vw rgba(62, 64, 66, 0.5);
+
+      @media (orientation: portrait) {
+        box-shadow: 0 0 0 100vh rgba(62, 64, 66, 0.5);
+      }
+
+      &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: .75;
+        color: inherit;
+        z-index: 1;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} [data-zoom] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      width: 100%;
+    }
+  }
+}
