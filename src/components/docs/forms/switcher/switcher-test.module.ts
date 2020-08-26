@@ -17,7 +17,8 @@ import {
   TabsModule,
   LabelModule,
   ButtonModule,
-  IconModule
+  IconModule,
+  ArrayPipesModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -45,6 +46,7 @@ import { SwitcherTestComponent } from './switcher-test.component';
     ButtonModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule,
+    ArrayPipesModule
   ],
   exports: [
     SwitcherTestComponent

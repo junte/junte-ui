@@ -133,25 +133,25 @@
                       <ng-template #multipleTemplate>
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [align]="ui.flex.align.center"
-                                   [justify]="ui.flex.justify.between">
+                                   [justify]="ui.flex.justify.center">
                           <ng-template #emptyTemplate>
                             <jnt-avatar [size]="ui.size.large" [icon]="ui.icons.question"></jnt-avatar>
                           </ng-template>
-                          <jnt-avatars-list *ngIf="!!heroControl.value?.length; else emptyTemplate"
-                                            [size]="ui.size.large">
-                            <ng-container [ngSwitch]="h" *ngFor="let h of heroControl.value">
-                              <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"
-                                          image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                              <jnt-avatar data-avatar *ngSwitchCase="hero.ironman"
-                                          image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                              <jnt-avatar data-avatar *ngSwitchCase="hero.captainAmerica"
-                                          image="assets/images/heroes/captain.svg"></jnt-avatar>
-                              <jnt-avatar data-avatar *ngSwitchDefault [icon]="ui.icons.question"></jnt-avatar>
-                            </ng-container>
+                          <jnt-avatars-list [max]="6" [size]="ui.size.large">
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.spiderman"
+                                        image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.ironman"
+                                        image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.captainAmerica"
+                                        image="assets/images/heroes/captain.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.superman"
+                                        image="assets/images/heroes/superman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="!heroControl.value"
+                                        [icon]="ui.icons.question"></jnt-avatar>
                           </jnt-avatars-list>
                         </jnt-stack>
                       </ng-template>
-                      <ng-container *ngIf="modeControl.value === ui.forms.select.mode.single else multipleTemplate"
+                      <ng-container *ngIf="!modeControl.value || modeControl.value === ui.forms.select.mode.single else multipleTemplate"
                                     [ngSwitch]="heroControl.value">
                         <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
