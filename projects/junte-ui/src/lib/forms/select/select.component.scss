@@ -2,14 +2,17 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
+@import "layout/spinner/spinner";
 
 @mixin select-size($size, $wrapper) {
   #{$wrapper} [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
 
-    &[data-has-icon = 'true'] {
-      padding-left: calc(#{map-get($size, font-size)} + #{$jnt-gutter-small} + #{$jnt-gutter-small});
+    [data-spinner] {
+      @include jnt-spinner((
+        size: map-get($size, state-icon),
+      ), '&');
     }
   }
 }
@@ -33,6 +36,7 @@
         input: (
           padding: 2px 0 2px $jnt-gutter-small
         ),
+        state-icon: 16px,
       ),
       normal: (
         font-size: 14px,
@@ -43,6 +47,7 @@
         input: (
           padding: 3px 0 3px $jnt-gutter-small
         ),
+        state-icon: 18px,
       ),
       large: (
         font-size: 16px,
@@ -53,6 +58,7 @@
         input: (
           padding: $jnt-gutter-small 0 $jnt-gutter-small $jnt-gutter-small
         ),
+        state-icon: 20px,
       ),
     ),
   );
@@ -112,6 +118,7 @@
       @include for-mobile() {
         box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
       }
+
       [data-select] {
         box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
         border-color: $jnt-primary-color;
@@ -188,7 +195,7 @@
       }
     }
 
-    &[data-disabled='true'] {
+    &[data-disabled='true'], &[data-state='loading'] {
       [data-select] {
         background-color: $jnt-control-disabled-background;
         border-color: $jnt-control-disabled-border-color;
@@ -209,7 +216,7 @@
         }
       }
 
-      &[data-mode='multiple'] {
+      &[data-mode='multiple'][data-empty='false'] {
         [data-select] ul li {
           background-color: $jnt-muted-color;
         }
@@ -245,7 +252,7 @@
     border: 1px solid $jnt-control-border-color;
     border-radius: $jnt-corner-small;
     background-color: $jnt-control-background;
-    padding: $jnt-gutter-tiny $jnt-gutter-big $jnt-gutter-tiny $jnt-gutter-small;
+    padding: $jnt-gutter-tiny $jnt-gutter-small;
     box-sizing: border-box;
     position: relative;
     @include for-mobile() {
@@ -254,10 +261,6 @@
     }
 
     > [data-icon] {
-      position: absolute;
-      top: 50%;
-      left: $jnt-gutter-small;
-      transform: translateY(-50%);
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         @include jnt-icon((
@@ -271,6 +274,7 @@
     }
 
     ul {
+      flex: 1;
       list-style: none;
       display: flex;
       flex-wrap: wrap;
@@ -351,15 +355,16 @@
       }
     }
 
+    >[data-loading] {
+      line-height: .8;
+    }
+
     [data-toggle] {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
       border: 0;
       background-color: transparent;
-      padding: 0 $jnt-gutter-small;
+      padding: 0 $jnt-gutter-tiny;
       color: $jnt-primary-text-light-color;
+      align-self: stretch;
       display: flex;
       align-items: center;
 

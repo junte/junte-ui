@@ -38,6 +38,7 @@
                                 [emptyOptionsTemplate]="emptyOptionsTemplate"
                                 [optionsHeaderTemplate]="optionsHeaderTemplate"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null"
+                                [state]="loadingControl.value ? ui.state.loading : null"
                                 (selected)="selected.heroes.push($event)">
                       <jnt-select-option *ngFor="let h of selected.heroes;trackBy:trackHero"
                                          [label]="h.name"
@@ -160,12 +161,18 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="type"
-                                  i18n="@@label.state">State
-                  </jnt-form-label>
-                  <jnt-checkbox formControlName="disabled"
-                                label="Disabled"
-                                i18n-label="@@label.disabled"></jnt-checkbox>
+                  <jnt-form-label>State</jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="disabled"
+                                    label="Disabled"
+                                    i18n-label="@@label.disabled"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="loading"
+                                    label="Loading"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
                 </jnt-form-item>
 
               </jnt-stack>
@@ -188,42 +195,41 @@
                               scss="forms/select">
                 <ng-template #behaviourTemplate>
                   <!-- @formatter:off-->
-<![CDATA[
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UI } from '@junte/ui';
+                  <![CDATA[
+                  import { Component, OnInit } from '@angular/core';
+                  import { FormBuilder } from '@angular/forms';
+                  import { UI } from '@junte/ui';
 
-@Component({
-  selector: 'app-select-test',
-  templateUrl: './select-test.component.html',
-  styleUrls: ['./select-test.component.scss']
-})
+                  @Component({
+                  selector: 'app-select-test',
+                  templateUrl: './select-test.component.html',
+                  styleUrls: ['./select-test.component.scss']
+                  })
 
-export class SelectTestComponent implements OnInit {
+                  export class SelectTestComponent implements OnInit {
 
-  ui = UI;
+                  ui = UI;
 
-  heroes = [
-    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
-    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
-    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
-  ];
+                    heroes = [
+                      {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
+                  {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
+                  {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
+                  ];
 
-  selectControl = this.fb.control(null);
+                  selectControl = this.fb.control(null);
 
-  selectForm = this.fb.group({
-  select: this.selectControl
-  });
+                  selectForm = this.fb.group({
+                  select: this.selectControl
+                  });
 
 
+                  constructor(private fb: FormBuilder) {
+                  }
 
-  constructor(private fb: FormBuilder) {
-  }
-
-  ngOnInit() {
-  }
-}
-]]>
+                  ngOnInit() {
+                    }
+                  }
+                  ]]>
                   <!-- @formatter:on-->
                 </ng-template>
               </app-how-to-use>
@@ -234,48 +240,51 @@ export class SelectTestComponent implements OnInit {
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="select-test.component.html">
                 <!-- @formatter:off-->
-<![CDATA[
-<form [formGroup]="selectForm">
-<jnt-select formControlName="select"
-            placeholder="Select your hero"
-            [labelField]="'label'"
-            [keyField]="'key'" ]]>
-<![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
-<ng-container *ngIf="modeControl.value">
-  <![CDATA[[mode]="ui.forms.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
-</ng-container>
-<![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
-<ng-container *ngIf="sizeControl.value">
-  <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-</ng-container>
-<ng-container *ngIf="iconControl.value">
-  <![CDATA[[icon]="ui.icons.user"]]>
-</ng-container>
-  <![CDATA[>]]>
-  <![CDATA[
-  <jnt-select-option *ngFor="let option of heroes"
-                     [label]="option.label"
-                     [key]="option.key"
-                     [value]="option">
-  </jnt-select-option>
-  ]]>
-  <ng-container *ngIf="templateControl.value">
-    <![CDATA[
-    <ng-template #heroOptionTemplate let-option="value">
-      <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [gutter]="ui.gutter.small"
-                 [align]="ui.flex.align.center">
-        <jnt-avatar [size]="ui.size.small"></jnt-avatar>
-        <div>]]>{{<![CDATA[ hero.name ]]>}}<![CDATA[</div>
-      </jnt-stack>
-      <jnt-label [label]="hero.likes + ' likes'"
-                 [color]="ui.color.green"></jnt-label>
-    </ng-template>
-  ]]>
-  </ng-container>
-  <![CDATA[
-</jnt-select>
-</form>
+                <![CDATA[
+                <form [formGroup]="selectForm">
+                  <jnt-select formControlName="select"
+                              placeholder="Select your hero"
+                              [labelField]="'label'"
+                              [keyField]="'key'" ]]>
+                    <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
+                    <ng-container *ngIf="modeControl.value">
+                      <![CDATA[[mode]="ui.forms.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
+                    <ng-container *ngIf="sizeControl.value">
+                      <![CDATA[[size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="loadingControl.value">
+                      <![CDATA[[loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[[icon]="ui.icons.user"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <![CDATA[
+                    <jnt-select-option *ngFor="let option of heroes"
+                                       [label]="option.label"
+                                       [key]="option.key"
+                                       [value]="option">
+                    </jnt-select-option>
+                    ]]>
+                    <ng-container *ngIf="templateControl.value">
+                      <![CDATA[
+                      <ng-template #heroOptionTemplate let-option="value">
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.flex.align.center">
+                          <jnt-avatar [size]="ui.size.small"></jnt-avatar>
+                          <div>]]>{{<![CDATA[hero.name]] >}}<![CDATA[</div>
+                        </jnt-stack>
+                        <jnt-label [label]="hero.likes + ' likes'"
+                                   [color]="ui.color.green"></jnt-label>
+                      </ng-template>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-select>
+                </form>
                 ]]>
               </app-code-highlight>
             </ng-template>
