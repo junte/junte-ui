@@ -20,8 +20,9 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { PropertyApi } from '../../core/decorators/api';
+import { State } from '../../core/enums/state';
 import { Breakpoint } from '../../core/enums/breakpoint';
+import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -90,6 +91,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   ui = UI;
   selectMode = SelectMode;
+  selectState = State;
 
   get mobile() {
     return this.breakpoint.current === Breakpoint.mobile;
@@ -172,6 +174,14 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @ViewChild('query')
   query: ElementRef<HTMLInputElement>;
+
+  @PropertyApi({
+    description: 'Select state',
+    path: 'ui.state',
+    options: [State.loading]
+  })
+  @HostBinding('attr.data-state')
+  @Input() state: State;
 
   @PropertyApi({
     description: 'Template for option',
