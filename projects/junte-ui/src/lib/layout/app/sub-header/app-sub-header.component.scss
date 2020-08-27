@@ -8,6 +8,7 @@
   $defs: (
     background: $jnt-page-background,
     padding: $jnt-gutter-normal,
+    display-burger: true
   );
 
   $vars: $passed;
@@ -29,20 +30,19 @@
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
     box-sizing: border-box;
-
-    @include for-mobile() {
-      #{$wrapper} [data-burger] {
-        display: inline-block;
-      }
-    }
   }
 
   #{$context} #{$wrapper} [data-burger] {
     display: none;
   }
 
-  #{$context} #{$wrapper} [data-content] {
-    margin-left: $jnt-gutter-normal;
+  @include for-mobile() {
+    #{$context} #{$wrapper} [data-burger] {
+      @if map-get($vars, display-burger) == true {
+        display: inline-block;
+        margin-right: $jnt-gutter-normal;
+      }
+    }
   }
 }
 

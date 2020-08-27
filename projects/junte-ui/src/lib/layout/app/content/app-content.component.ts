@@ -16,7 +16,7 @@ export class AppContentComponent {
     if (!!this.aside) {
       return this.aside.collapsed ? 'collapsed' : 'full';
     }
-    return null;
+    return false;
   }
 
   @HostBinding('attr.data-with-sub-header') get withSubHeader() {

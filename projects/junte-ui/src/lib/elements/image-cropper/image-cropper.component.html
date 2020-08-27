@@ -1,0 +1,31 @@
+<div data-loading *ngIf="loading">
+  <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+</div>
+
+<label *ngIf="!image.width && !image.height && !loading" for="file-upload">
+  <input type="file" (change)="load($event)" id="file-upload"/>
+  <jnt-icon [icon]="ui.icons.download"></jnt-icon>
+</label>
+
+<div #wrapper data-wrapper>
+  <img #sourceImage
+       *ngIf="url"
+       [src]="url"
+       (load)="inView()"
+       [style.top.px]="image.y1"
+       [style.left.px]="image.x1"
+       [style.transform]="transformStyle"
+       (mousedown)="startMove($event, moveTypes.Move)"
+       (touchstart)="startMove($event, moveTypes.Move)"/>
+  <div data-cropper *ngIf="!!image.width && !!image.height"
+       [style.top]="'calc(50% - ' + cropper.height / 2 + 'px)'"
+       [style.left]="'calc(50% - ' + cropper.width / 2 + 'px)'"
+       [style.width.px]="cropper.width"
+       [style.height.px]="cropper.height"
+       tabindex="0">
+  </div>
+</div>
+
+<div data-zoom *ngIf="!!image.width && !!image.height">
+  <input type="range" min="0" max="5" step=".1" [value]="scale" (input)="zoom($event.target.value)">
+</div>

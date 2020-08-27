@@ -2,6 +2,7 @@
 @import "layout/app/variables";
 @import "layout/responsive/responsive";
 @import "layout/app/body/app-body";
+@import "layout/app/sub-header/app-sub-header";
 
 @mixin jnt-app-content($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -40,6 +41,10 @@
 
     &[data-with-aside='collapsed'] {
       padding-left: $app-aside-collapsed-width;
+    }
+
+    &[data-with-aside='false'] {
+      @include jnt-app-sub-header((display-burger: false));
     }
 
     @include for-mobile() {
