@@ -5,12 +5,14 @@ import { BadgeModule } from './badge/badge.module';
 import { DotModule } from './dot/dot.module';
 import { IconModule } from './icon/icon.module';
 import { LabelModule } from './label/label.module';
+import { TitanicIconModule } from './titanic-icon/titanic-icon.module';
 
 @NgModule({
   exports: [
     AvatarModule,
     BadgeModule,
     IconModule,
+    TitanicIconModule,
     LabelModule,
     DotModule
   ]

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TitanicIconTestModule } from './titanic-icon/titanic-icon-test.module';
 import { ElementsRoutingModule } from './elements-routing.module';
 import { LabelTestModule } from './label/label-test.module';
 import { IconTestModule } from './icon/icon-test.module';
@@ -14,6 +15,7 @@ import { DotTestModule } from './dot/dot-test.module';
     AvatarTestModule,
     BadgeTestModule,
     IconTestModule,
+    TitanicIconTestModule,
     LabelTestModule,
     DotTestModule
   ]

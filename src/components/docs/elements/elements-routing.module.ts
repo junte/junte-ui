@@ -4,6 +4,7 @@ import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import { DotTestComponent } from './dot/dot-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
+import { TitanicIconTestComponent } from './titanic-icon/titanic-icon-test.component';
 import { LabelTestComponent } from './label/label-test.component';
 
 export const routes: Routes = [
@@ -15,6 +16,11 @@ export const routes: Routes = [
         path: 'icon',
         component: IconTestComponent,
         data: {breadcrumb: 'Icon', animation: 'Icon'}
+      },
+      {
+        path: 'titanic-icon',
+        component: TitanicIconTestComponent,
+        data: {breadcrumb: 'TitanicIcon', animation: 'TitanicIcon'}
       },
       {
         path: 'avatar',
