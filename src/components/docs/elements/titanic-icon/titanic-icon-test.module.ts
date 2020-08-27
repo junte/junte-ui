@@ -17,8 +17,6 @@ import {
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { TitanicIconTestComponent } from './titanic-icon-test.component';
-import { GetGroupsPipe, GetIconsPipe, GetPathPipe, IconsListComponent } from './select-icon/icons-list/icons-list.component';
-import { SelectIconComponent } from './select-icon/select-icon.component';
 
 @NgModule({
   imports: [
@@ -41,16 +39,8 @@ import { SelectIconComponent } from './select-icon/select-icon.component';
   exports: [
     TitanicIconTestComponent
   ],
-  entryComponents: [
-    SelectIconComponent
-  ],
   declarations: [
-    TitanicIconTestComponent,
-    SelectIconComponent,
-    IconsListComponent,
-    GetIconsPipe,
-    GetGroupsPipe,
-    GetPathPipe
+    TitanicIconTestComponent
   ],
 })
 export class TitanicIconTestModule {
