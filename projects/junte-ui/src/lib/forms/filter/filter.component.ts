@@ -1,6 +1,5 @@
-import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, TemplateRef } from '@angular/core';
 import { AbstractControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NGXLogger } from 'ngx-logger';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
@@ -23,15 +22,15 @@ export class FilterComponent {
 
   @HostBinding('attr.data-active')
   get active() {
-    return !!this.control.value || !!this.value;
+    return this.selected || !!this.control?.value || !!this.value;
   }
 
   @PropertyApi({
-    description: 'Empty state for filter',
-    type: 'any'
+    description: 'Condition for selected filter',
+    type: 'boolean'
   })
   @Input()
-  empty: any = null;
+  selected: boolean;
 
   @PropertyApi({
     description: 'Associated form control for filter',
@@ -44,7 +43,8 @@ export class FilterComponent {
     description: 'Placeholder for filter',
     type: 'string'
   })
-  @Input() placeholder = '';
+  @Input()
+  placeholder = '';
 
   @PropertyApi({
     description: 'Icon for filter',
@@ -65,21 +65,27 @@ export class FilterComponent {
   @ContentChild('filterContentTemplate')
   filterContentTemplate: TemplateRef<any>;
 
-  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
-  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  @Output()
+  clear = new EventEmitter();
+
+  onChange: (value: any) => void;
+  onTouched: () => void;
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
-
-  constructor(private logger: NGXLogger) {
-  }
 
   writeValue(value: any) {
     this.value = value;
   }
 
   reset() {
-    this.value = this.empty;
-    !!this.control ? this.control.setValue(this.value) : this.onChange(this.value);
+    if (!!this.control) {
+      this.control.setValue(null);
+    } else if (!!this.onChange) {
+      this.value = null;
+      this.onChange(this.value);
+    } else {
+      this.clear.emit();
+    }
   }
 }
