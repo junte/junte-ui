@@ -36,8 +36,10 @@
                             [padding]="paddingControl.value"
                             [state]="stateControl.value"
                             [icon]="iconControl.value ? ui.icons.menu : null"
-                            [picture]="pictureControl.value ? {url: 'assets/images/steve.jpeg',
-                            position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
+                            [picture]="pictureControl.value === type.template ? {url: null, template: cardPictureTemplate,
+                            position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} :
+                                        pictureControl.value === type.url ? {url: 'assets/images/steve.jpeg',
+                                        position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                             [features]="clickableControl.value ? [ui.feature.clickable] : null">
                     <jnt-stack data-content [type]="ui.layout.stack.type.horizontal">
                       <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
@@ -54,7 +56,7 @@
                         <span>Edit card</span>
                       </jnt-stack>
                     </ng-template>
-                    <ng-template *ngIf="pictureTemplateControl.value" #cardPictureTemplate>
+                    <ng-template #cardPictureTemplate>
                       <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
                     </ng-template>
                     <ng-template *ngIf="footerControl.value" #cardFooterTemplate>
@@ -163,10 +165,10 @@
                                     label="Title template"
                                     i18n-label="@@label.title"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="12">
-                      <jnt-checkbox formControlName="pictureTemplate"
-                                    label="Picture template"></jnt-checkbox>
-                    </jnt-col>
+<!--                    <jnt-col [span]="12">-->
+<!--                      <jnt-checkbox formControlName="pictureTemplate"-->
+<!--                                    label="Picture template"></jnt-checkbox>-->
+<!--                    </jnt-col>-->
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="header"
                                     label="Header"
@@ -192,9 +194,23 @@
                                     label="Actions"></jnt-checkbox>
                     </jnt-col>
 
-                    <jnt-col [span]="6">
-                      <jnt-checkbox formControlName="picture"
-                                    label="Picture"></jnt-checkbox>
+<!--                    <jnt-col [span]="6">-->
+<!--                      <jnt-checkbox formControlName="picture"-->
+<!--                                    label="Picture"></jnt-checkbox>-->
+<!--                    </jnt-col>-->
+
+                    <jnt-col [span]="12">
+                      <jnt-form-item>
+                        <jnt-form-label for="picture">Picture
+                        </jnt-form-label>
+                        <jnt-switcher formControlName="picture"
+                                      placeholder="url">
+                          <jnt-switcher-option label="Url"
+                                               value="url"></jnt-switcher-option>
+                          <jnt-switcher-option label="Template"
+                                               value="template"></jnt-switcher-option>
+                        </jnt-switcher>
+                      </jnt-form-item>
                     </jnt-col>
 
                     <jnt-col [span]="12">
@@ -270,13 +286,21 @@
                     <![CDATA[
                     color="]]>{{colorControl.value}}<![CDATA["]]>
                   </ng-container>
-                  <ng-container *ngIf="pictureControl.value && !positionControl.value">
+                  <ng-container *ngIf="pictureControl.value === type.url && !positionControl.value">
                     <![CDATA[
                     [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', width: 70, height: 70}]]><![CDATA["]]>
                   </ng-container>
-                  <ng-container *ngIf="pictureControl.value && !!positionControl.value">
+                  <ng-container *ngIf="pictureControl.value === type.template && !positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{template: cardPictureTemplate, width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.url && !!positionControl.value">
                     <![CDATA[
                     [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[, width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.template && !!positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{template: cardPictureTemplate, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[, width: 70, height: 70}]]><![CDATA["]]>
                   </ng-container>
                   <![CDATA[>]]>
                   <ng-container *ngIf="titleControl.value">
@@ -306,7 +330,7 @@
                     </ng-template>
                     ]]>
                   </ng-container>
-                  <ng-container *ngIf="pictureTemplateControl.value">
+                  <ng-container *ngIf="pictureControl.value === type.template">
                     <![CDATA[
                     <ng-template #cardPictureTemplate>
                       <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
