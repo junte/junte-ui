@@ -3,6 +3,11 @@ import { FormBuilder } from '@angular/forms';
 import { CardComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
+enum Types {
+  url = 'url',
+  template = 'template'
+}
+
 @Component({
   selector: 'app-card-test',
   templateUrl: './card-test.component.html',
@@ -12,6 +17,7 @@ export class CardTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  type = Types;
 
   @ViewChild('code')
   code: TabComponent;
@@ -27,9 +33,8 @@ export class CardTestComponent implements OnInit {
   clickableControl = this.fb.control(false);
   iconControl = this.fb.control(false);
   actionsControl = this.fb.control(false);
-  pictureControl = this.fb.control(false);
+  pictureControl = this.fb.control(null);
   colorControl = this.fb.control(null);
-  pictureTemplateControl = this.fb.control(false);
   positionControl = this.fb.control(null);
 
   builder = this.fb.group({
@@ -44,7 +49,6 @@ export class CardTestComponent implements OnInit {
     actions: this.actionsControl,
     color: this.colorControl,
     picture: this.pictureControl,
-    pictureTemplate: this.pictureTemplateControl,
     position: this.positionControl
   });
 
