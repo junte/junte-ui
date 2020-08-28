@@ -84,8 +84,9 @@
                     </jnt-row>
 
                     <jnt-stack [orientation]="ui.orientation.horizontal">
-                      <jnt-filter [control]="skillsControl"
-                                  [icon]="iconControl.value ? ui.icons.information: null"
+                      <jnt-filter [icon]="iconControl.value ? ui.icons.information: null"
+                                  [selected]="!!skillsControl?.value"
+                                  (clear)="skillsControl.setValue(null)"
                                   placeholder="Pick a skills"
                                   [label]="skillsControl.value"></jnt-filter>
                       <jnt-filter [control]="sourcesControl"
