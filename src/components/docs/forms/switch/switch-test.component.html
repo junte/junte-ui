@@ -147,7 +147,7 @@
 
   <ng-container *ngIf="labelControl.value">
     <![CDATA[
-    label="Turn notifications on"]]>
+    label="Are you happy?"]]>
   </ng-container>
 
   <ng-container *ngIf="iconsControl.value">
@@ -157,14 +157,45 @@
 
   <ng-container *ngIf="tagsControl.value">
     <![CDATA[
-    [tags]="{on: 'On', off: 'Off'}"]]>
+    [tags]="{on: 'Yes', off: 'No'}"]]>
   </ng-container>
 
   <![CDATA[>
   </jnt-switch>
   ]]>
-                <!-- @formatter:on-->
               </app-code-highlight>
+              <app-code-highlight file="switch-test.component.ts"
+                                  [language]="language.typescript">
+                <pre>
+                  <![CDATA[
+                  import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+
+                  @Component({
+                  selector: 'app-switch-test',
+                  templateUrl: './switch-test.component.html',
+                  styleUrls: ['./switch-test.component.scss']
+})
+export class SwitchTestComponent implements OnInit {
+                    switchControl = this.fb.control(false);
+
+  form = this.fb.group({
+    switch: this.switchControl,
+    });
+
+    constructor(private fb: FormBuilder) {
+    }
+
+                   ngOnInit() {
+                  this.disabledControl.valueChanges.subscribe((disabled) => {
+      disabled ? this.switchControl.disable() : this.switchControl.enable();
+    });
+    }
+                  }
+                  ]]>
+                </pre>
+              </app-code-highlight>
+              <!-- @formatter:on-->
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>
