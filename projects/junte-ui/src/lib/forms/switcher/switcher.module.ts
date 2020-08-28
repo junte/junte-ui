@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { ButtonModule } from '../button/button.module';
-import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
-import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { DotModule } from '../../elements/dot/dot.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { ButtonModule } from '../button/button.module';
 import { CheckSelectedPipe } from './pipes';
 import { SwitcherOptionComponent } from './switcher-option.component';
 import { SwitcherComponent } from './switcher.component';

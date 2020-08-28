@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { BadgeModule } from '../../elements/badge/badge.module';
-import { PopoverModule } from '../../overlays/popover/popover.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { MenuModule } from '../../navigation/menu/menu.module';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { ResponsiveModule } from '../responsive/responsive.module';
 import { StackModule } from '../stack/stack.module';
 import { AppLayoutComponent } from './app-layout.component';

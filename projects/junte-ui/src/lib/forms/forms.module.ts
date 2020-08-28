@@ -1,10 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FilterModule } from './filter/filter.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { ButtonModule } from './button/button.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { DatePickerModule } from './date-picker/date-picker.module';
+import { FilterModule } from './filter/filter.module';
 import { FormModule } from './form/form.module';
 import { InputModule } from './input/input.module';
 import { RadioModule } from './radio/radio.module';

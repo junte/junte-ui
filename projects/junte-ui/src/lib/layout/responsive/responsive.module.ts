@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { BreakpointService } from './breakpoint.service';
 import { ForAndroidPlatformDirective, ForDesktopDirective, ForIOSPlatformDirective, ForMobileDirective } from './device.directives';
 import { DeviceService } from './device.service';
-import { BreakpointService } from './breakpoint.service';
 import { ForDirective, ForMaxDirective, ForMinDirective } from './responsive.directives';
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { Gutter } from '../../../core/enums/gutter';
 import { PropertyApi } from '../../../core/decorators/api';
 import { FlexAlign } from '../../../core/enums/flex';
+import { Gutter } from '../../../core/enums/gutter';
 import { Orientation } from '../../../core/enums/orientation';
 import { UI } from '../../../core/enums/ui';
 

@@ -1,4 +1,4 @@
-import { animate, style, transition, trigger, state } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ContentChild,
@@ -13,8 +13,8 @@ import {
   TemplateRef
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { State } from '../../core/enums/state';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
 

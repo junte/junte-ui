@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ComponentRef,
@@ -12,8 +12,8 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { Breakpoint } from '../../core/enums/breakpoint';
 import { MethodApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 

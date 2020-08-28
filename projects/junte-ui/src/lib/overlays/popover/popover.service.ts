@@ -1,7 +1,8 @@
 import { ElementRef, EventEmitter, Injectable } from '@angular/core';
 import { PopoverComponent } from './popover.component';
 
-export interface PopoverInstance {
+// TODO: move to interface and check ngc warnings
+export class PopoverInstance {
   hide: () => void;
   picked: (path: HTMLElement[]) => boolean;
   update: () => void;

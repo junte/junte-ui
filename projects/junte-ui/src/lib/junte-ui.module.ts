@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SelectableModule } from './core/directives/selectable';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
+import { SelectableModule } from './core/directives/selectable';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';

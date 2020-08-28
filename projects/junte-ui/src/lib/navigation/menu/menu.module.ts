@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { PopoverModule } from '../../overlays/popover/popover.module';
-import { SpinnerModule } from '../../layout/spinner/spinner.module';
-import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { LinkModule } from '../link/link.module';
 import { MenuItemComponent } from './menu-item.component';
 import { MenuComponent } from './menu.component';
+import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 @NgModule({

@@ -1,4 +1,3 @@
-import { Fit } from './fit';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { TableFeatures } from '../../collections/table/enums';
 import { ButtonType } from '../../forms/button/enums';
@@ -16,6 +15,7 @@ import { PopoverPlacements, PopoverPosition, PopoverTriggers } from '../../overl
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
 import { Feature } from './feature';
+import { Fit } from './fit';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
 import { Height } from './height';

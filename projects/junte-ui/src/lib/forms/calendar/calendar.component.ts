@@ -19,14 +19,14 @@ import {
   addWeeks,
   addYears,
   format,
+  getMonth,
   getYear,
   setDate,
   setMonth,
   setYear,
+  startOfWeek,
   subMonths,
-  subYears,
-  getMonth,
-  startOfWeek
+  subYears
 } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';

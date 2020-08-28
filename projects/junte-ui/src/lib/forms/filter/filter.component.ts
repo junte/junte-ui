@@ -88,4 +88,5 @@ export class FilterComponent {
       this.clear.emit();
     }
   }
+  
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { LightenDarkenPipe } from './color/lighten-darken.pipe';
 import { TextBrightnessPipe } from './color/text-brightness.pipe';
-import { LightenDarkenPipe} from './color/lighten-darken.pipe';
 
 @NgModule({
   imports: [CommonModule],

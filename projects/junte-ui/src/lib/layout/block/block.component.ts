@@ -1,9 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { State } from '../../core/enums/state';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 

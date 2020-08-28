@@ -1,7 +1,6 @@
 import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { Key } from '../select/model';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -10,6 +9,7 @@ import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { SelectMode } from '../select/enums';
+import { Key } from '../select/model';
 import { SwitcherOptionComponent } from './switcher-option.component';
 
 @Component({

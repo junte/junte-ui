@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { PictureComponent } from './picture.component';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { StackModule } from '../../layout/stack/stack.module';
 import { IconModule } from '../icon/icon.module';
+import { PictureComponent } from './picture.component';
 
 @NgModule({
   imports: [

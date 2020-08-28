@@ -1,2 +1,2 @@
-export * from './filter.component';
-export * from './filter.module';
+export { FilterComponent } from './filter.component';
+export { FilterModule } from './filter.module';

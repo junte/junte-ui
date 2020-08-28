@@ -1,9 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CardModule } from './card/card.module';
-import { CollapsibleModule } from './collapsible/collapsible.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
+import { CardModule } from './card/card.module';
+import { CollapsibleModule } from './collapsible/collapsible.module';
 import { GridModule } from './grid/grid.module';
 import { InformerModule } from './informer/informer.module';
 import { LpModule } from './lp/lp.module';

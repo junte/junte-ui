@@ -20,11 +20,11 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { State } from '../../core/enums/state';
-import { Breakpoint } from '../../core/enums/breakpoint';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
