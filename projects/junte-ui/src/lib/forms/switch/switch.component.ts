@@ -55,7 +55,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   tags: { on?: string, off?: string };
 
   @PropertyApi({
-    description: 'Input size',
+    description: 'Switch size',
     path: 'ui.size',
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]

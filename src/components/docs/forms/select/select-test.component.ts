@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -45,7 +45,7 @@ export class SelectTestComponent implements OnInit {
   });
 
   selectControl = this.fb.control(null);
-  selectForm = this.fb.group({
+  form = this.fb.group({
     select: this.selectControl
   });
 

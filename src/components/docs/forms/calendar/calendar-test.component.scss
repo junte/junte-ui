@@ -1,7 +1,13 @@
 @import 'jnt-variables';
 @import '../../component';
+@import 'layout/responsive';
+@import 'layout/block';
 
 [day] {
   font-style: italic;
   padding: $jnt-gutter-small;
+}
+
+@include for-mobile() {
+  @include jnt-block((shadow: none), null, true);
 }

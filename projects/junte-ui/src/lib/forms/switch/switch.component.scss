@@ -91,15 +91,6 @@
   :host, #{$context} {
     display: inline-flex;
     align-items: center;
-    form {
-      display: inline-flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      border-radius: map-get($vars, corner);
-      //for Safari
-      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-    }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -150,95 +141,104 @@
     }
   }
 
-  #{$context} #{$wrapper} input {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    cursor: pointer;
-    opacity: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+  #{$context} #{$wrapper} form {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: map-get($vars, corner);
+    //for Safari
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 
-    &:checked {
-      & + [data-switch] {
-        @if map-has-key($vars, background) {
-          $background: map-get($vars, background);
-          background-color: map-get($background, on);
-          [data-slider] {
-            @if map-has-key($background, slider) {
-              $slider: map-get($background, slider);
-              background-color: map-get($slider, on);
-            }
-            [data-icon] {
-              @if map-has-key($background, icon) {
-                $icon-bg: map-get($background, icon);
-                @include jnt-icon((
-                  color: map-get($icon-bg, on)
-                ), '&');
+    input {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      opacity: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+
+      &:checked {
+        & + [data-switch] {
+          @if map-has-key($vars, background) {
+            $background: map-get($vars, background);
+            background-color: map-get($background, on);
+            [data-slider] {
+              @if map-has-key($background, slider) {
+                $slider: map-get($background, slider);
+                background-color: map-get($slider, on);
+              }
+              [data-icon] {
+                @if map-has-key($background, icon) {
+                  $icon-bg: map-get($background, icon);
+                  @include jnt-icon((
+                    color: map-get($icon-bg, on)
+                  ), '&');
+                }
               }
             }
           }
         }
       }
-    }
 
-    &:disabled {
-      cursor: default;
-      & + [data-switch] {
-        opacity: .5;
-      }
-      &:checked {
+      &:disabled {
+        cursor: default;
         & + [data-switch] {
           opacity: .5;
         }
-      }
-    }
-  }
-
-  #{$context} #{$wrapper} [data-switch] {
-    display: flex;
-    @if map-has-key($vars, background) {
-      $background: map-get($vars, background);
-      background-color: map-get($background, off);
-      [data-on] {
-        box-sizing: border-box;
-        padding-left: calc(#{map-get($vars, padding)} * 2);
-      }
-      [data-off] {
-        box-sizing: border-box;
-        padding-right: calc(#{map-get($vars, padding)} * 2);
-      }
-      [data-slider] {
-        @if map-has-key($background, slider) {
-          $slider: map-get($background, slider);
-          background-color: map-get($slider, off);
-        }
-        [data-icon] {
-          @if map-has-key($background, icon) {
-            $icon-bg: map-get($background, icon);
-            @include jnt-icon((
-              color: map-get($icon-bg, off)
-            ), '&');
+        &:checked {
+          & + [data-switch] {
+            opacity: .5;
           }
         }
       }
     }
-    transition: transform .4s ease-out, background-color .4s;
 
-    [data-slider] {
-      border-radius: 50%;
+    [data-switch] {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all ease .4s;
-    }
+      @if map-has-key($vars, background) {
+        $background: map-get($vars, background);
+        background-color: map-get($background, off);
+        [data-on] {
+          box-sizing: border-box;
+          padding-left: calc(#{map-get($vars, padding)} * 2);
+        }
+        [data-off] {
+          box-sizing: border-box;
+          padding-right: calc(#{map-get($vars, padding)} * 2);
+        }
+        [data-slider] {
+          @if map-has-key($background, slider) {
+            $slider: map-get($background, slider);
+            background-color: map-get($slider, off);
+          }
+          [data-icon] {
+            @if map-has-key($background, icon) {
+              $icon-bg: map-get($background, icon);
+              @include jnt-icon((
+                color: map-get($icon-bg, off)
+              ), '&');
+            }
+          }
+        }
+      }
+      transition: transform .4s ease-out, background-color .4s;
 
-    span {
-      color: $jnt-white-color;
+      [data-slider] {
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      span {
+        color: $jnt-white-color;
+      }
     }
   }
 
