@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { TitanicIconModule }
 
 @Component({
   selector: 'jnt-titanic-icons',
