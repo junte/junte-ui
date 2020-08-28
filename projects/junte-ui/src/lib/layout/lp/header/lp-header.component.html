@@ -2,7 +2,7 @@
   <div data-menu *ngIf="!!menu">
     <jnt-menu [orientation]="orientation"
               [spacer]="spacer"
-              (selected)="opened = false">
+              (selected)="hide()">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
                      [icon]="item.icon"
@@ -22,7 +22,8 @@
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
 
-    <ng-container *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
+    <ng-container
+      *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
 
     <jnt-stack *ngIf="!!contentTemplate || !!headerActionsTemplate || !!headerUserbarTemplate"
                data-actions
@@ -40,7 +41,7 @@
 
 <ng-container *jntMaxFor="ui.breakpoint.tablet">
   <jnt-container data-container data-tablet>
-    <div data-logo data-tablet *ngIf="headerLogoTemplate">
+    <div data-logo *ngIf="headerLogoTemplate">
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
     <jnt-stack data-actions [type]="ui.orientation.horizontal"
@@ -48,17 +49,19 @@
                [align]="ui.flex.align.stretch">
       <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
       <jnt-button data-burger
-                  [icon]="opened ? ui.icons.cancel : ui.icons.menu"
+                  [icon]="!!reference.popover ? ui.icons.cancel : ui.icons.menu"
                   [outline]="ui.outline.transparent"
-                  [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+                  [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}"
+                  (attached)="reference.popover = $event"
+                  (removed)="reference.popover = null">
       </jnt-button>
       <ng-template #dropdownTemplate>
         <jnt-stack [align]="ui.flex.align.stretch">
-          <ng-container *ngTemplateOutlet="headerUserbarTemplate"></ng-container>
+          <ng-container *ngTemplateOutlet="headerUserbarTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
           <ng-container
             *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
-          <div *ngIf="!!contentTemplate" data-content>
-            <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+          <div data-content *ngIf="!!contentTemplate">
+            <ng-container *ngTemplateOutlet="contentTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
           </div>
         </jnt-stack>
       </ng-template>

@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ModalModule, PopoverModule } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { CURRENT_LANGUAGE, JUNTE_UI_CONFIG } from 'src/consts';
 import { Language } from 'src/enums/language';
@@ -101,7 +102,9 @@ export function i18nLoaderFactory() {
         useFactory: i18nLoaderFactory
       },
       defaultLanguage: 'en'
-    })
+    }),
+    PopoverModule.forRoot(JUNTE_UI_CONFIG),
+    ModalModule.forRoot(JUNTE_UI_CONFIG),
   ],
   providers: providers,
   bootstrap: [

@@ -1,15 +1,13 @@
-<jnt-popover #popover></jnt-popover>
-
 <jnt-lp-layout>
 
   <jnt-lp-header>
     <ng-template #headerLogoTemplate>
-      <form [formGroup]="themeForm" data-logo>
+      <form data-logo [formGroup]="themeForm">
         <img [src]="'assets/images/logo-lp' + (themeControl.value ? '-light' : '-dark') + '.svg'" alt="logo">
         <input type="checkbox" formControlName="theme">
       </form>
     </ng-template>
-    <jnt-menu [spacer]="ui.gutter.large" data-menu>
+    <jnt-menu data-menu [spacer]="ui.gutter.large">
       <jnt-menu-item
         title="Tutorial"
         [icon]="localUi.icons.top.documentation"

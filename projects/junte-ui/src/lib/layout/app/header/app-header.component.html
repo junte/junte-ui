@@ -48,16 +48,17 @@
   <jnt-stack data-actions [type]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.flex.align.stretch">
-    <ng-container *ngTemplateOutlet="headerActionsTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
+    <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
     <jnt-button data-burger
-                [icon]="opened ? ui.icons.cancel : ui.icons.menu"
+                [icon]="!!reference.popover ? ui.icons.cancel : ui.icons.menu"
                 [outline]="ui.outline.transparent"
                 [jntPopover]="{
                   contentTemplate: dropdownTemplate,
                   trigger: ui.overlays.popover.trigger.click,
                   position: ui.overlays.popover.position.fixed
                 }"
-                (attached)="reference.popover = $event">
+                (attached)="reference.popover = $event"
+                (removed)="reference.popover = null">
     </jnt-button>
     <ng-template #dropdownTemplate>
       <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.small">

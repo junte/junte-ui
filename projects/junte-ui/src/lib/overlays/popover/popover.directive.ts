@@ -11,9 +11,20 @@ import { PopoverInstance, PopoverService } from './popover.service';
 export class PopoverDirective implements OnInit, OnDestroy {
 
   private options: PopoverOptions;
-  private instance: PopoverInstance;
+  private _instance: PopoverInstance;
   private destroyed = false;
   private listeners: Function[] = [];
+
+  set instance(instance: PopoverInstance) {
+    this._instance = instance;
+    if (!instance) {
+      this.removed.emit();
+    }
+  }
+
+  get instance() {
+    return this._instance;
+  }
 
   @Input('jntPopover')
   set __options__(options: PopoverOptions) {
@@ -22,6 +33,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   @Output()
   attached = new EventEmitter<PopoverInstance>();
+
+  @Output()
+  removed = new EventEmitter();
 
   @HostListener('mouseenter')
   mouseEnter() {

@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Breakpoint, BreakpointService, PopoverComponent, PopoverService, UI } from 'junte-ui';
+import { Breakpoint, BreakpointService, PopoverComponent, UI } from 'junte-ui';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
 import { Theme } from '../docs/docs.component';
@@ -10,16 +10,18 @@ import { Theme } from '../docs/docs.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent implements OnInit {
 
   analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
-  opened = false;
   point = Breakpoint;
   themes = Theme;
+
+  opened = false;
   theme: Theme = localStorage.theme || Theme.light;
-  @ViewChild('popover', {static: true}) popover: PopoverComponent;
+  @ViewChild('popover', {static: true})
+  popover: PopoverComponent;
 
   themeControl = new FormControl(this.theme !== Theme.dark);
   themeForm = this.builder.group({
@@ -27,7 +29,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
   });
 
   constructor(public breakpoint: BreakpointService,
-              private popoverService: PopoverService,
               private builder: FormBuilder) {
   }
 
@@ -40,9 +41,5 @@ export class HomeComponent implements AfterViewInit, OnInit {
         localStorage.removeItem('theme');
       }
     });
-  }
-
-  ngAfterViewInit() {
-    this.popoverService.register(this.popover);
   }
 }

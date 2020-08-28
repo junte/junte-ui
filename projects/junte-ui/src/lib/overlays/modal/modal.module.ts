@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ModalDirective } from './modal.directive';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
@@ -18,7 +19,8 @@ import { ModalComponent } from './modal.component';
     BlockModule,
     ButtonModule,
     StackModule,
-    IconModule
+    IconModule,
+    ResponsiveModule
   ],
   entryComponents: [
     ModalComponent

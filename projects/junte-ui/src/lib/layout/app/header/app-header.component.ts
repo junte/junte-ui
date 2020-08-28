@@ -15,7 +15,6 @@ export class AppHeaderComponent {
 
   ui = UI;
 
-  opened = false;
   reference: { popover: PopoverInstance } = {popover: null};
 
   @ContentApi({
