@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TitanicIconComponent implements OnInit {
 
+  titanic = new Titanic();
+
   constructor() { }
 
   ngOnInit(): void {
