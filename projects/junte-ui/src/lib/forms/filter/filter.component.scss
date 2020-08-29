@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin jnt-filters($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-filter($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: ();
 
@@ -19,12 +19,8 @@
   }
 
   :host, #{$context} {
-    display: block;
-  }
-
-  #{$wrapper} [data-filter] {
-    position: relative;
     display: flex;
+    position: relative;
     align-items: center;
     min-height: 40px;
     color: $jnt-primary-text-light-color;
@@ -40,11 +36,12 @@
       padding-right: $jnt-gutter-huge;
       box-shadow: $jnt-shadow-normal;
     }
-
-    [data-reset] {
-      position: absolute;
-      top: $jnt-gutter-small;
-      right: $jnt-gutter-small;
-    }
   }
+
+  #{$context} #{$wrapper} [data-reset] {
+    position: absolute;
+    top: $jnt-gutter-small;
+    right: $jnt-gutter-small;
+  }
+
 }

@@ -1,30 +1,28 @@
 <ng-template #content>
-  <ng-container *ngTemplateOutlet="userbarAvatarTemplate"></ng-container>
-  <ng-content></ng-content>
+  <jnt-stack [orientation]="ui.orientation.horizontal"
+             [align]="ui.flex.align.center">
+    <ng-container *ngTemplateOutlet="userbarAvatarTemplate"></ng-container>
+    <ng-content></ng-content>
+  </jnt-stack>
 </ng-template>
 
 <ng-container *jntMinFor="ui.breakpoint.desktop">
-  <jnt-stack data-user
-             [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.hover}"
+  <jnt-stack data-user [jntPopover]="{contentTemplate: userMenuDropdownTemplate, trigger: ui.overlays.popover.trigger.hover}"
+             (attached)="reference.popover = $event"
              [orientation]="ui.orientation.horizontal"
              [align]="ui.flex.align.center">
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </jnt-stack>
 
-  <ng-template #dropdownTemplate>
-    <ng-container *ngTemplateOutlet="userbarMenuTemplate"></ng-container>
+  <ng-template #userMenuDropdownTemplate>
+    <ng-container *ngTemplateOutlet="userbarMenuTemplate;context: {hide: hide.bind(this)}"></ng-container>
   </ng-template>
 </ng-container>
 
 <ng-container *jntMaxFor="ui.breakpoint.tablet">
-  <jnt-stack data-user
-             [orientation]="ui.orientation.horizontal"
-             [align]="ui.flex.align.center">
+  <jnt-stack [align]="ui.flex.align.stretch">
     <ng-container *ngTemplateOutlet="content"></ng-container>
+    <ng-container *ngTemplateOutlet="userbarMenuTemplate;context: {hide: context?.header.hide}"></ng-container>
   </jnt-stack>
-
-  <div data-menu>
-    <ng-container *ngTemplateOutlet="userbarMenuTemplate"></ng-container>
-  </div>
 </ng-container>
 

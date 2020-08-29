@@ -9,6 +9,7 @@ import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { SelectMode } from '../select/enums';
+import { Key } from '../select/model';
 import { SwitcherOptionComponent } from './switcher-option.component';
 
 @Component({
@@ -138,7 +139,11 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any | any[]) {
-    this.selected = (this.mode === SelectMode.single ? [value] : value) as any[];
+    if (this.mode === SelectMode.multiple && !value) {
+      throw new Error('Wrong value form multiple select mode');
+    }
+
+    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {

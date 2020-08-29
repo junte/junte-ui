@@ -59,7 +59,7 @@
                 <jnt-button data-trigger
                             [outline]="ui.outline.transparent"
                             [icon]="ui.icons.actions"
-                            (jntPopoverDisplayed)="popover = $event"
+                            (attached)="popover = $event"
                             [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
                 </jnt-button>
                 <ng-template #dropdownTemplate>

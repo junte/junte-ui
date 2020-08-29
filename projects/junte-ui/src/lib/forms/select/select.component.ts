@@ -24,10 +24,10 @@ import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
-import { PopoverComponent } from '../../overlays/popover/popover.component';
-import { PopoverService } from '../../overlays/popover/popover.service';
+import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
 
@@ -43,9 +43,28 @@ export class SelectOptionComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'Icon for select option',
+    type: 'string'
+  })
   @Input() icon: string;
+
+  @PropertyApi({
+    description: 'Key for select option',
+    type: 'number | string'
+  })
   @Input() key: Key;
+
+  @PropertyApi({
+    description: 'Label name for select option',
+    type: 'string'
+  })
   @Input() label: string;
+
+  @PropertyApi({
+    description: 'Value for select option',
+    type: 'any'
+  })
   @Input() value: any;
 
 }
@@ -67,11 +86,12 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @HostBinding('attr.host') readonly host = 'jnt-select-host';
 
-  private reference: { popover: PopoverComponent } = {popover: null};
+  private reference: { popover: PopoverInstance } = {popover: null};
   private destroyed = false;
 
   ui = UI;
   selectMode = SelectMode;
+  selectState = State;
 
   get mobile() {
     return this.breakpoint.current === Breakpoint.mobile;
@@ -107,8 +127,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select placeholder',
-    type: 'string',
-    default: 'key'
+    type: 'string'
   })
   @Input() placeholder = '';
 
@@ -157,6 +176,14 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   query: ElementRef<HTMLInputElement>;
 
   @PropertyApi({
+    description: 'Select state',
+    path: 'ui.state',
+    options: [State.loading]
+  })
+  @HostBinding('attr.data-state')
+  @Input() state: State;
+
+  @PropertyApi({
     description: 'Template for option',
     type: 'TemplateRef<any>'
   })
@@ -182,6 +209,10 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
 
+  @PropertyApi({
+    description: 'Output event of select',
+    type: 'Event Emitter'
+  })
   @Output('selected')
   updated = new EventEmitter<any>();
 
@@ -190,7 +221,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select mode',
-    path: 'ui.select',
+    path: 'ui.forms.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
@@ -221,7 +252,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select size',
-    path: 'ui.sizes',
+    path: 'ui.size',
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
@@ -332,8 +363,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         }
       }),
       debounceTime(SEARCH_DELAY),
-      filter(query => !!query))
-      .subscribe(query => loadOptions(query));
+      filter(query => !!query)
+    ).subscribe(query => loadOptions(query));
   }
 
   ngAfterContentInit() {
@@ -352,7 +383,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   ngOnDestroy() {
     this.destroyed = true;
     if (!!this.reference.popover) {
-      this.popover.hide(this.hostRef);
+      this.reference.popover.hide();
       this.reference.popover = null;
     }
   }
@@ -417,7 +448,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         contentTemplate: this.optionsTemplate,
         features: [Feature.dropdown]
       });
-      this.popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
+      this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
         .subscribe(() => this.close());
     }
   }
@@ -426,12 +457,16 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     this.opened = false;
     this.queryControl.setValue(null);
     if (!!this.reference.popover) {
-      this.popover.hide(this.hostRef);
+      this.reference.popover.hide();
       this.reference.popover = null;
     }
   }
 
   writeValue(value: Key | Key[]) {
+    if (this.mode === SelectMode.multiple && !value) {
+      throw new Error('Wrong value form multiple select mode');
+    }
+
     this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
   }
 

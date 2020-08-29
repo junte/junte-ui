@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GridModule } from '../../layout/grid/grid.module';
-import { IconModule } from '../../elements/icon/icon.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { IconModule } from '../../elements/icon/icon.module';
+import { GridModule } from '../../layout/grid/grid.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
 import { RadioComponent } from './radio.component';
@@ -25,7 +25,8 @@ import { RadioComponent } from './radio.component';
     RadioGroupComponent
   ],
   entryComponents: [
-    RadioComponent
+    RadioComponent,
+    RadioGroupComponent
   ]
 })
 export class RadioModule {

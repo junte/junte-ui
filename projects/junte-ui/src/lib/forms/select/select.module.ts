@@ -5,6 +5,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -29,9 +30,14 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     ButtonModule,
     ArrayPipesModule,
     StackModule,
-    LoggerModule
+    LoggerModule,
+    ResponsiveModule
   ],
-  entryComponents: [SelectComponent],
+  entryComponents:
+    [
+      SelectComponent,
+      SelectOptionComponent
+    ],
   exports: [
     SelectComponent,
     SelectOptionComponent

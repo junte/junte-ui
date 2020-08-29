@@ -90,7 +90,7 @@
                                                [align]="ui.flex.align.center">
                                       <jnt-avatar image="assets/images/heroes/ironman.svg"
                                                   [size]="ui.size.small"></jnt-avatar>
-                                      <div>Iconman</div>
+                                      <div>Ironman</div>
                                     </jnt-stack>
                                     <jnt-label label="20"
                                                [color]="ui.color.yellow"></jnt-label>
@@ -130,7 +130,29 @@
                         </jnt-form-control>
                       </jnt-form-item>
 
-                      <ng-container [ngSwitch]="heroControl.value">
+                      <ng-template #multipleTemplate>
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [align]="ui.flex.align.center"
+                                   [justify]="ui.flex.justify.center">
+                          <ng-template #emptyTemplate>
+                            <jnt-avatar [size]="ui.size.large" [icon]="ui.icons.question"></jnt-avatar>
+                          </ng-template>
+                          <jnt-avatars-list [max]="6" [size]="ui.size.large">
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.spiderman"
+                                        image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.ironman"
+                                        image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.captainAmerica"
+                                        image="assets/images/heroes/captain.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="heroControl.value | includes:hero.superman"
+                                        image="assets/images/heroes/superman.svg"></jnt-avatar>
+                            <jnt-avatar *ngIf="!heroControl.value"
+                                        [icon]="ui.icons.question"></jnt-avatar>
+                          </jnt-avatars-list>
+                        </jnt-stack>
+                      </ng-template>
+                      <ng-container *ngIf="!modeControl.value || modeControl.value === ui.forms.select.mode.single else multipleTemplate"
+                                    [ngSwitch]="heroControl.value">
                         <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"
                                     [size]="ui.size.large"
                                     image="assets/images/heroes/spiderman.svg"></jnt-avatar>
@@ -143,6 +165,20 @@
                         <jnt-avatar data-avatar *ngSwitchDefault [size]="ui.size.large"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </ng-container>
+
+<!--                      <ng-container [ngSwitch]="heroControl.value">-->
+<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"-->
+<!--                                    [size]="ui.size.large"-->
+<!--                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>-->
+<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.ironman"-->
+<!--                                    [size]="ui.size.large"-->
+<!--                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>-->
+<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.captainAmerica"-->
+<!--                                    [size]="ui.size.large"-->
+<!--                                    image="assets/images/heroes/captain.svg"></jnt-avatar>-->
+<!--                        <jnt-avatar data-avatar *ngSwitchDefault [size]="ui.size.large"-->
+<!--                                    [icon]="ui.icons.question"></jnt-avatar>-->
+<!--                      </ng-container>-->
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
                       <jnt-row [justify]="ui.flex.justify.between">
@@ -290,7 +326,43 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'switcher-test', type: 'SwitcherTestComponent'}"
-                scss="forms/switcher"></app-how-to-use>
+                scss="forms/switcher">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { UI } from 'junte-ui';
+
+                  enum Hero {
+                  spiderman = 'spiderman',
+                  ironman = 'ironman',
+                  captainAmerica = 'captain_america'
+                  }
+
+@Component({
+  selector: 'app-switcher-test',
+  templateUrl: './switcher-test.component.html',
+  styleUrls: ['./switcher-test.component.scss']
+})
+]]>
+<![CDATA[
+export class SwitcherTestComponent {
+
+  ui = UI;
+  hero = Hero;
+
+  form = this.fb.group({
+    hero: this.fb.control(null)
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -299,67 +371,85 @@
               <app-code-highlight file="switcher-test.component.html">
                 <!-- @formatter:off-->
 <![CDATA[
-<jnt-switcher
+<jnt-switcher formControlName="hero"
 ]]>
   <ng-container *ngIf="orientationControl.value">
     <![CDATA[
     [type]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
   </ng-container>
+  <ng-container *ngIf="marksControl.value">
+    <![CDATA[
+    [marks]="]]>{{marksControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="modeControl.value">
+    <![CDATA[
+    [mode]="ui.forms.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="!allowEmptyControl.value">
+    <![CDATA[
+    [allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
+  </ng-container>
   <ng-container *ngIf="indicatorControl.value">
     <![CDATA[
     [features]="[ui.feature.badge]"]]>
   </ng-container>
-  <![CDATA[>
-  <jnt-switcher-option label="Lamborghini" [value]="cars.lamborghini" ]]>
+  <![CDATA[>]]>
+  <![CDATA[
+  <jnt-switcher-option label="No one"
+                       [value]="null"]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
-      [icon]="ui.icons.dashboard"]]>
+      [icon]="ui.icons.sad"]]>
+    </ng-container>
+    <![CDATA[ >
+  </jnt-switcher-option>
+  <jnt-switcher-option label="Spiderman" [value]="hero.spiderman" ]]>
+    <ng-container *ngIf="iconControl.value">
+      <![CDATA[
+      [icon]="localUi.icons.spiderman"]]>
     </ng-container>
     <![CDATA[>]]>
     <ng-container *ngIf="dotControl.value">
       <![CDATA[
-      <jnt-dot></jnt-dot>
+      <jnt-dot [color]="ui.color.red"></jnt-dot>
       ]]>
     </ng-container>
     <ng-container *ngIf="badgeControl.value">
       <![CDATA[
       <jnt-badge [value]="5"></jnt-badge>
+      ]]>
+    </ng-container>
+    <ng-container *ngIf="templateControl.value">
+      <![CDATA[
+      <ng-template #optionTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.flex.align.center">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.small"
+                     [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/images/heroes/spiderman.svg"
+                        [size]="ui.size.small"></jnt-avatar>
+            <div>Spiderman</div>
+          </jnt-stack>
+          <jnt-label label="15"
+                     [color]="ui.color.red"></jnt-label>
+        </jnt-stack>
+      </ng-template>
       ]]>
     </ng-container>
     <![CDATA[
   </jnt-switcher-option>
   ]]>
   <![CDATA[
-  <jnt-switcher-option label="Aston Martin" [value]="cars.astonMartin" ]]>
+  <jnt-switcher-option label="Ironman" [value]="hero.ironman" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
-      [icon]="ui.icons.dashboard"]]>
-    </ng-container>
-      <![CDATA[>
-      ]]>
-    <ng-container *ngIf="dotControl.value">
-      <![CDATA[
-      <jnt-dot></jnt-dot>
-      ]]>
-    </ng-container>
-    <ng-container *ngIf="badgeControl.value">
-      <![CDATA[
-      <jnt-badge [value]="5"></jnt-badge>
-      ]]>
-    </ng-container>
-      <![CDATA[
-  </jnt-switcher-option>
-  ]]>
-  <![CDATA[
-  <jnt-switcher-option label="Bugatti" [value]="cars.bugatti" ]]>
-    <ng-container *ngIf="iconControl.value">
-      <![CDATA[
-      [icon]="ui.icons.dashboard"]]>
+      [icon]="localUi.icons.ironman"]]>
     </ng-container>
       <![CDATA[>]]>
     <ng-container *ngIf="dotControl.value">
       <![CDATA[
-      <jnt-dot></jnt-dot>
+      <jnt-dot [color]="ui.color.yellow"></jnt-dot>
       ]]>
     </ng-container>
       <ng-container *ngIf="badgeControl.value">
@@ -367,19 +457,36 @@
         <jnt-badge [value]="5"></jnt-badge>
         ]]>
       </ng-container>
+    <ng-container *ngIf="templateControl.value">
+      <![CDATA[
+      <ng-template #optionTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.flex.align.center">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.small"
+                     [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/images/heroes/ironman.svg"
+                        [size]="ui.size.small"></jnt-avatar>
+            <div>Ironman</div>
+          </jnt-stack>
+          <jnt-label label="20"
+                     [color]="ui.color.yellow"></jnt-label>
+        </jnt-stack>
+      </ng-template>]]>
+    </ng-container>
     <![CDATA[
   </jnt-switcher-option>
   ]]>
   <![CDATA[
-  <jnt-switcher-option label="Ferrari" [value]="cars.ferrari" ]]>
+  <jnt-switcher-option label="Captain America" [value]="hero.captainAmerica" ]]>
     <ng-container *ngIf="iconControl.value">
       <![CDATA[
-      [icon]="ui.icons.dashboard"]]>
+      [icon]="localUi.icons.capitan"]]>
     </ng-container>
       <![CDATA[>]]>
     <ng-container *ngIf="dotControl.value">
       <![CDATA[
-      <jnt-dot></jnt-dot>
+      <jnt-dot [color]="ui.color.blue100"></jnt-dot>
       ]]>
     </ng-container>
     <ng-container *ngIf="badgeControl.value">
@@ -387,48 +494,27 @@
       <jnt-badge [value]="5"></jnt-badge>
       ]]>
     </ng-container>
+    <ng-container *ngIf="templateControl.value">
+      <![CDATA[
+      <ng-template #optionTemplate>
+        <jnt-stack [orientation]="ui.orientation.horizontal"
+                   [align]="ui.flex.align.center">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [gutter]="ui.gutter.small"
+                     [align]="ui.flex.align.center">
+            <jnt-avatar image="assets/images/heroes/captain.svg"
+                        [size]="ui.size.small"></jnt-avatar>
+            <div>Captain America</div>
+          </jnt-stack>
+          <jnt-label label="25"
+                     [color]="ui.color.blue100"></jnt-label>
+        </jnt-stack>
+      </ng-template>]]>
+    </ng-container>
     <![CDATA[
   </jnt-switcher-option>
 </jnt-switcher>
 ]]>
-              </app-code-highlight>
-
-              <app-code-highlight file="switcher-test.component.ts"
-                                  [language]="language.typescript">
-                <!-- @formatter:off -->
-<![CDATA[
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
-
-export enum Cars {
-  lamborghini = 'lamborghini',
-  astonMartin = 'Aston Martin',
-  bugatti = 'Bugatti',
-  ferrari = 'Ferrari'
-}
-
-@Component({
-  selector: 'app-switcher-test',
-  templateUrl: './switcher-test.component.html',
-  styleUrls: ['./switcher-test.component.scss']
-})
-                ]]>
-                <![CDATA[
-export class SwitcherTestComponent {
-
-  ui = UI;
-  hero = Hero;
-
-  switcherForm = this.fb.group({
-    switcher: this.fb.control(null)
-  });
-
-  constructor(private fb: FormBuilder) {
-  }
-}
-]]>
-              <!-- @formatter:on -->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

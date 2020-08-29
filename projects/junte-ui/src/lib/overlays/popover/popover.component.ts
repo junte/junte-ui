@@ -8,8 +8,8 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { Gutter } from '../../core/enums/gutter';
 import { Feature } from '../../core/enums/feature';
+import { Gutter } from '../../core/enums/gutter';
 import { PopoverPlacements, PopoverPosition, PopoverTriggers } from './enums';
 
 const PADDING_SIZE = 14;

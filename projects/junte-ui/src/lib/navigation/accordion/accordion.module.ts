@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SpinnerModule } from '../../layout/spinner/spinner.module';
-import { StackModule } from '../../layout/stack/stack.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
+import { StackModule } from '../../layout/stack/stack.module';
 import { AccordionComponent } from './accordion.component';
 import { AccordionSectionComponent } from './section/accordion-section.component';
 

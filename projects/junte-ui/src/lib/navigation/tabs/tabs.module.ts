@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { TabComponent } from './tab.component';
 import { TabsComponent } from './tabs.component';

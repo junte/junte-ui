@@ -54,7 +54,7 @@ export class SwitcherTestComponent implements OnInit {
     selectAll: this.selectAllControl,
   });
 
-  heroControl = this.fb.control(null, Validators.required);
+  heroControl = this.fb.control(null, !this.allowEmptyControl.value ? Validators.required : null);
 
   form = this.fb.group({
     hero: this.heroControl
@@ -83,6 +83,12 @@ export class SwitcherTestComponent implements OnInit {
     this.disabledControl.valueChanges.subscribe((disabled) => {
       disabled ? this.heroControl.disable() : this.heroControl.enable();
     });
+
+    this.modeControl.valueChanges.subscribe(mode => this.heroControl
+      .setValue(mode === UI.forms.select.mode.single ? [] : null));
+
+    // this.modeControl.valueChanges.subscribe(mode => mode === SelectMode.single ?
+    //   this.selectAllControl.disable() : this.selectAllControl.enable());
   }
 
   submit() {

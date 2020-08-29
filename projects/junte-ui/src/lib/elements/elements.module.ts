@@ -5,6 +5,7 @@ import { BadgeModule } from './badge/badge.module';
 import { DotModule } from './dot/dot.module';
 import { IconModule } from './icon/icon.module';
 import { LabelModule } from './label/label.module';
+import { PictureModule } from './picture/picture.module';
 
 @NgModule({
   exports: [
@@ -12,7 +13,8 @@ import { LabelModule } from './label/label.module';
     BadgeModule,
     IconModule,
     LabelModule,
-    DotModule
+    DotModule,
+    PictureModule
   ]
 })
 export class ElementsModule {

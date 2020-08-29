@@ -10,7 +10,7 @@
     "clean": "rimraf ./dist/junte-ui-app",
     "iconfont": "gulp build --gulpfile ./projects/junte-ui/src/scripts/iconfont/iconfont.ts --cwd ./",
     "serve:lib": "cd ./projects/junte-ui && npm run serve",
-    "serve": "wait-on ./dist/junte-ui/lib/assets/styles/shared && ng serve --hmr --poll 2000",
+    "serve": "wait-on ./dist/junte-ui/lib/assets/styles/shared && ng serve --poll 5000",
     "start": "run-p --continue-on-error=false -l -n serve:lib serve",
     "extract-i18n": "ng xi18n --outputPath=locale && xliffmerge --profile xliffmerge.json",
     "build:lib": "cd ./projects/junte-ui && npm run build",
@@ -81,7 +81,7 @@
     "rimraf": "3.0.2",
     "ts-node": "8.6.2",
     "tslint": "6.0.0",
-    "typescript": "3.6.4",
+    "typescript": "3.7.2",
     "wait-on": "4.0.1"
   }
 }

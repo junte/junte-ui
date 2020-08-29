@@ -36,9 +36,9 @@
                           <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
                           <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
-                            <jnt-checkbox label="Thanos"
+                            <jnt-radio label="Thanos"
                                           [value]="hero.thanos">
-                            </jnt-checkbox>
+                            </jnt-radio>
                             <jnt-radio label="Deadpool"
                                           [value]="hero.deadpool">
                             </jnt-radio>
@@ -158,7 +158,38 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'radio-test', type: 'RadioTestComponent'}"
-                scss="forms/radio"></app-how-to-use>
+                scss="forms/radio">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { RadioComponent, TabComponent, UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-radio-test',
+  templateUrl: './radio-test.component.html',
+  styleUrls: ['./radio-test.component.scss']
+})
+
+export class RadioTestComponent implements OnInit {
+
+  ui = UI;
+
+  radioGroupControl = new FormControl();
+
+  form = this.fb.group({
+    radioGroup: this.radioGroupControl
+  });
+
+  constructor(private fb: FormBuilder) {
+  }
+
+}
+]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -208,38 +239,6 @@
     </jnt-radio-group>
 </jnt-form>
 ]]>
-              </app-code-highlight>
-              <app-code-highlight file="radio-test.component.ts"
-                                  [language]="language.typescript">
-  <pre>
-                  <![CDATA[
-                  import { Component, OnInit, ViewChild } from '@angular/core';
-                  import { FormBuilder, FormControl } from '@angular/forms';
-                  import { RadioComponent, TabComponent, UI } from 'junte-ui';
-
-                  @Component({
-                    selector: 'app-radio-test',
-                    templateUrl: './radio-test.component.html',
-                    styleUrls: ['./radio-test.component.scss']
-                  })
-
-                  export class RadioTestComponent implements OnInit {
-
-                    ui = UI;
-
-                    radioGroupControl = new FormControl();
-
-                    form = this.fb.group({
-                      radioGroup: this.radioGroupControl
-                    });
-
-                    constructor(private fb: FormBuilder) {
-                    }
-
-                  }
-                  ]]>
-               </pre>
-                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

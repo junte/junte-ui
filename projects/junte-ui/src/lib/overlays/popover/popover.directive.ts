@@ -1,27 +1,41 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, Output, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
 import { filter, takeWhile } from 'rxjs/operators';
 import { PopoverTriggers } from './enums';
-import { PopoverComponent, PopoverOptions } from './popover.component';
-import { PopoverService } from './popover.service';
+import { PopoverOptions } from './popover.component';
+import { PopoverInstance, PopoverService } from './popover.service';
 
 @Directive({
   selector: '[jntPopover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective implements OnDestroy {
+export class PopoverDirective implements OnInit, OnDestroy {
 
   private options: PopoverOptions;
-  private reference: PopoverComponent;
+  private _instance: PopoverInstance;
   private destroyed = false;
   private listeners: Function[] = [];
+
+  set instance(instance: PopoverInstance) {
+    this._instance = instance;
+    if (!instance) {
+      this.removed.emit();
+    }
+  }
+
+  get instance() {
+    return this._instance;
+  }
 
   @Input('jntPopover')
   set __options__(options: PopoverOptions) {
     this.options = new PopoverOptions(options);
   }
 
-  @Output('jntPopoverDisplayed')
-  displayed = new EventEmitter<PopoverComponent>();
+  @Output()
+  attached = new EventEmitter<PopoverInstance>();
+
+  @Output()
+  removed = new EventEmitter();
 
   @HostListener('mouseenter')
   mouseEnter() {
@@ -33,7 +47,7 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('click')
   click() {
     if (this.options.trigger === PopoverTriggers.click) {
-      !this.reference ? this.show() : this.hide();
+      !this.instance ? this.show() : this.hide();
     }
   }
 
@@ -41,25 +55,21 @@ export class PopoverDirective implements OnDestroy {
               private hostRef: ElementRef,
               private renderer: Renderer2,
               private zone: NgZone) {
-    popover.updated.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
-      .subscribe(() => this.reference = null);
   }
 
   ngOnInit() {
+    this.popover.attached.pipe(takeWhile((() => !this.destroyed)),
+      filter(t => t !== this.hostRef))
+      .subscribe(() => this.instance = null);
+
     this.zone.runOutsideAngular(() => {
       this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
-        if (!this.reference) {
-          return;
-        }
-        if (this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
+        if (!!this.instance && this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
           this.hide(path);
         }
       }));
       this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
-        if (!this.reference) {
-          return;
-        }
-        if (this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
+        if (!!this.instance && this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
           this.hide(path);
         }
       }));
@@ -68,9 +78,9 @@ export class PopoverDirective implements OnDestroy {
 
   ngOnDestroy() {
     this.destroyed = true;
-    if (!!this.reference) {
-      this.reference.hide();
-      this.reference = null;
+    if (!!this.instance) {
+      this.instance.hide();
+      this.instance = null;
     }
     this.listeners.forEach(listener => listener());
   }
@@ -81,15 +91,15 @@ export class PopoverDirective implements OnDestroy {
 
   private show() {
     if (this.options.content || this.options.contentTemplate) {
-      this.reference = this.popover.show(this.hostRef, this.options);
-      this.displayed.emit(this.reference);
+      this.instance = this.popover.show(this.hostRef, this.options);
+      this.attached.emit(this.instance);
     }
   }
 
   private hide(path: HTMLElement[] = []) {
-    if (!!this.reference && !this.reference.picked(path)) {
-      this.reference.hide();
-      this.reference = null;
+    if (!!this.instance && !this.instance.picked(path)) {
+      this.instance.hide();
+      this.instance = null;
     }
   }
 }

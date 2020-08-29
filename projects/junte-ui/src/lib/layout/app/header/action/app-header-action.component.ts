@@ -1,6 +1,6 @@
 import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
-import { UI } from '../../../../core/enums/ui';
 import { PropertyApi } from '../../../../core/decorators/api';
+import { UI } from '../../../../core/enums/ui';
 
 @Component({
   selector: 'jnt-app-header-action',

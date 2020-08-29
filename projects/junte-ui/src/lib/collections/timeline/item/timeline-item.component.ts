@@ -1,6 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { Color } from '../../../core/enums/color';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
+import { Color } from '../../../core/enums/color';
 import { UI } from '../../../core/enums/ui';
 
 @Component({

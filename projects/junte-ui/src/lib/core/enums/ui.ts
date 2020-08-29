@@ -15,6 +15,7 @@ import { PopoverPlacements, PopoverPosition, PopoverTriggers } from '../../overl
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
 import { Feature } from './feature';
+import { Fit } from './fit';
 import { FlexAlign, FlexAlignContent, FlexAlignSelf, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
 import { Height } from './height';
@@ -49,6 +50,7 @@ export class UI {
   static url = {matching: UrlMatching};
   static feature = Feature;
   static state = State;
+  static fit = Fit;
   static flex = {
     align: FlexAlign,
     justify: FlexJustify,

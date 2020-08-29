@@ -1,0 +1,24 @@
+<ng-container *ngIf="selected || !!control?.value || !!value; else placeholderFilter">
+  <ng-container *ngIf="!!filterContentTemplate; else defaultTemplate">
+    <ng-container *ngTemplateOutlet="filterContentTemplate"></ng-container>
+  </ng-container>
+
+  <ng-template #defaultTemplate>
+    <span>{{label}}</span>
+  </ng-template>
+
+  <jnt-button data-reset
+              [scheme]="ui.scheme.secondary"
+              [size]="ui.size.tiny"
+              [icon]="ui.icons.close"
+              (click)="reset()"></jnt-button>
+</ng-container>
+
+<ng-template #placeholderFilter>
+  <jnt-stack [orientation]="ui.orientation.horizontal"
+             [align]="ui.flex.align.center"
+             [gutter]="ui.gutter.small">
+    <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
+    <span>{{placeholder}}</span>
+  </jnt-stack>
+</ng-template>

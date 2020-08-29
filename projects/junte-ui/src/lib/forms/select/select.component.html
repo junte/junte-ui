@@ -11,7 +11,9 @@
   </jnt-stack>
 </ng-template>
 
-<div data-select tabindex="0" [attr.data-has-icon]="!!icon">
+<jnt-stack data-select [orientation]="ui.orientation.horizontal"
+           [gutter]="ui.gutter.tiny" [align]="ui.flex.align.center"
+           tabindex="0">
   <div *ngIf="label" data-label>{{label}}</div>
   <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
@@ -36,10 +38,13 @@
              formControlName="query">
     </li>
   </ul>
+  <div data-loading *ngIf="state === selectState.loading">
+    <jnt-spinner data-spinner></jnt-spinner>
+  </div>
   <button data-toggle type="button" (click)="opened ? close() : open()">
     <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
   </button>
-</div>
+</jnt-stack>
 
 <ng-template #optionsTemplate>
   <div data-options *ngIf="opened" [attr.data-loading]="loading">
@@ -81,7 +86,7 @@
   </div>
 </ng-template>
 
-<ng-container *ngIf="mobile">
+<ng-container *jntFor="ui.breakpoint.mobile">
   <ng-container *ngTemplateOutlet="optionsTemplate"></ng-container>
 </ng-container>
 

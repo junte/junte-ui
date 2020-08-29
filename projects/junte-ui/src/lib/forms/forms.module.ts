@@ -4,6 +4,7 @@ import { ButtonModule } from './button/button.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { DatePickerModule } from './date-picker/date-picker.module';
+import { FilterModule } from './filter/filter.module';
 import { FormModule } from './form/form.module';
 import { InputModule } from './input/input.module';
 import { RadioModule } from './radio/radio.module';
@@ -22,7 +23,8 @@ import { SwitcherModule } from './switcher/switcher.module';
     RadioModule,
     SelectModule,
     SwitchModule,
-    SwitcherModule
+    SwitcherModule,
+    FilterModule
   ]
 })
 export class UiFormsModule {

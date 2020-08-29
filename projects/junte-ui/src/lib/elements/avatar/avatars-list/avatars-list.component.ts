@@ -4,8 +4,6 @@ import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { AvatarComponent } from '../avatar.component';
 
-const MAX_CAPACITY = 5;
-
 @Component({
   selector: 'jnt-avatars-list',
   templateUrl: './avatars-list.encapsulated.html'
@@ -18,14 +16,16 @@ export class AvatarsListComponent {
   _size: Size = Size.normal;
 
   ui = UI;
-  max = MAX_CAPACITY;
+
+  @Input()
+  max = 5;
 
   @ContentChildren(AvatarComponent)
   avatars: QueryList<AvatarComponent>;
 
   @HostBinding('attr.data-capacity')
   get capacity() {
-    return Math.min(this.avatars.length, MAX_CAPACITY);
+    return Math.min(this.avatars.length, this.max);
   }
 
   @PropertyApi({

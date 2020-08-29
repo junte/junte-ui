@@ -18,19 +18,14 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
 
-  checkboxControl = this.fb.control(false);
-  form = this.fb.group({
-    checkbox: this.checkboxControl
-  });
+  @HostBinding('attr.host')
+  readonly host = 'jnt-checkbox-host';
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
-  @HostBinding('attr.host')
-  readonly host = 'jnt-checkbox-host';
-
   @PropertyApi({
-    description: 'Label name for checkbox button',
+    description: 'Label name for checkbox',
     type: 'string'
   })
   @HostBinding('attr.label')
@@ -38,9 +33,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   label: string;
 
   @PropertyApi({
-    description: 'Size for checkbox button',
-    type: 'string',
-    path: 'ui.sizes',
+    description: 'Size for checkbox',
+    path: 'ui.size',
     options: [Size.tiny, Size.small, Size.normal, Size.large],
     default: Size.normal
   })
@@ -50,10 +44,15 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   @PropertyApi({
-    description: 'Value for checkbox button',
-    type: 'string'
+    description: 'Value for checkbox',
+    type: 'any'
   })
   @Input() value: any;
+
+  checkboxControl = this.fb.control(false);
+  form = this.fb.group({
+    checkbox: this.checkboxControl
+  });
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

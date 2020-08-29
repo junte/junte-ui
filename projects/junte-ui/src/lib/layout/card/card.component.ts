@@ -10,6 +10,7 @@ import { PopoverComponent } from '../../overlays/popover/popover.component';
 
 class Picture {
   url: string;
+  template: TemplateRef<any>;
   position: Position = Position.left;
   width = 70;
   height = 70;
@@ -62,7 +63,9 @@ export class CardComponent {
   set __picture__(picture: string | Picture) {
     if (!!picture) {
       this.picture = typeof (picture) === 'string'
-        ? new Picture({url: picture, position: Position.left, width: 70, height: 70}) : new Picture(picture);
+        ? new Picture({url: picture, template: null, position: Position.left, width: 70, height: 70}) : new Picture(picture);
+    } else {
+      this.picture = null;
     }
   }
 
@@ -93,13 +96,6 @@ export class CardComponent {
   })
   @ContentChild('cardActionsTemplate')
   cardActionsTemplate: TemplateRef<any>;
-
-  @ContentApi({
-    selector: '#cardPictureTemplate',
-    description: 'card picture template'
-  })
-  @ContentChild('cardPictureTemplate')
-  cardPictureTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Icon indicator',
@@ -174,5 +170,4 @@ export class CardComponent {
   hideActions() {
     this.popover.hide();
   }
-
 }

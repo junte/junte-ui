@@ -3,5 +3,8 @@ export enum Position {
   right = 'right',
   rightTop = 'rightTop',
   leftTop = 'leftTop',
-  inline = 'inline'
+  inline = 'inline',
+  top = 'top',
+  bottom = 'bottom',
+  center = 'center'
 }

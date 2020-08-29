@@ -21,5 +21,8 @@
   <div *ngIf="state === formState.error" data-error>
     <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
   </div>
+  <div *ngIf="_state.success" [@success]="_state.success" data-success>
+    <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
+  </div>
 
 </form>

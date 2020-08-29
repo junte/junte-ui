@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DotModule } from '../dot/dot.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { DotModule } from '../dot/dot.module';
 import { IconModule } from '../icon/icon.module';
 import { AvatarComponent } from './avatar.component';
 import { AvatarsGroupComponent } from './avatars-group/avatars-group.component';

@@ -1,15 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ButtonModule } from '../../forms/button/button.module';
-import { FilterComponent } from './filter.component';
-import { FiltersComponent } from './filters.component';
-import { StackModule } from '../../layout/stack/stack.module';
 import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
+import { StackModule } from '../../layout/stack/stack.module';
+import { ButtonModule } from '../button/button.module';
+import { FilterComponent } from './filter.component';
 
 @NgModule({
   declarations: [
-    FiltersComponent,
     FilterComponent
   ],
   imports: [
@@ -19,19 +17,17 @@ import { IconModule } from '../../elements/icon/icon.module';
     ButtonModule
   ],
   entryComponents: [
-    FiltersComponent,
     FilterComponent
   ],
   exports: [
-    FiltersComponent,
     FilterComponent
   ]
 })
-export class FiltersModule {
+export class FilterModule {
 
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<FiltersModule> {
+  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<FilterModule> {
     return {
-      ngModule: FiltersModule,
+      ngModule: FilterModule,
       providers: [
         {
           provide: JunteUIModuleConfig,

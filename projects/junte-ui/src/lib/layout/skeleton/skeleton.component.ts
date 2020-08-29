@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { UI } from '../../core/enums/ui';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
+import { UI } from '../../core/enums/ui';
 import { SkeletonType } from './enums';
 
 @Component({

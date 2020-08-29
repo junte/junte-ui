@@ -1,8 +1,4 @@
-<jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
-<jnt-popover #popover></jnt-popover>
-
-<jnt-app-layout #layout
-                [position]="ui.layout.app.position.fixed">
+<jnt-app-layout [position]="ui.layout.app.position.fixed">
   <jnt-app-header>
     <ng-template #headerLogoTemplate>
       <a routerLink="['/']">
@@ -11,9 +7,9 @@
     </ng-template>
 
     <jnt-menu [spacer]="ui.gutter.normal">
-      <jnt-menu-item title="Home"
-                     i18n-title="@@label.home"
-                     [icon]="localUi.icons.top.home"
+      <jnt-menu-item title="Tutorial"
+                     i18n-title="@@label.tutorial"
+                     [icon]="localUi.icons.top.documentation"
                      [link]="['/general/home']">
       </jnt-menu-item>
       <jnt-menu-item title="Components"
@@ -165,6 +161,10 @@
                          i18n-title="@@label.avatar"
                          [link]="['/components/ui-elements/avatar']"
                          [icon]="localUi.icons.avatar"></jnt-sub-menu-item>
+          <jnt-sub-menu-item title="Picture"
+                             i18n-title="@@label.picture"
+                             [link]="['/components/ui-elements/picture']"
+                             [icon]="ui.icons.image"></jnt-sub-menu-item>
           <jnt-sub-menu-item title="Badge"
                          i18n-title="@@label.badge"
                          [link]="['/components/ui-elements/badge']"
@@ -177,6 +177,9 @@
                          i18n-title="@@label.dot"
                          [link]="['/components/ui-elements/dot']"
                          [icon]="localUi.icons.dot"></jnt-sub-menu-item>
+          <jnt-sub-menu-item title="Image Cropper"
+                         i18n-title="@@label.image-cropper"
+                         [link]="['/components/ui-elements/image-cropper']"></jnt-sub-menu-item>
         </jnt-sub-menu>
       </jnt-menu-item>
 
@@ -228,6 +231,10 @@
                          i18n-title="@@label.selectable"
                          [link]="['/components/forms/selectable']"
                          [icon]="localUi.icons.selectable"></jnt-sub-menu-item>
+          <jnt-sub-menu-item title="Filter"
+                             i18n-title="@@label.filter"
+                             [icon]="localUi.icons.filter"
+                             [link]="['/components/forms/filter']"></jnt-sub-menu-item>
         </jnt-sub-menu>
       </jnt-menu-item>
 
@@ -248,9 +255,6 @@
                              i18n-title="@@label.timeline"
                              [link]="['/components/collections/timeline']"
                              [icon]="localUi.icons.timeline"></jnt-sub-menu-item>
-          <jnt-sub-menu-item title="Filters"
-                             i18n-title="@@label.filters"
-                             [link]="['/components/collections/filters']"></jnt-sub-menu-item>
         </jnt-sub-menu>
       </jnt-menu-item>
 

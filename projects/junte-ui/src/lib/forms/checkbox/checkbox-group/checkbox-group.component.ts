@@ -12,6 +12,7 @@ import {
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { isEqual } from '../../../core/utils/equal';
@@ -31,28 +32,33 @@ import { CheckboxComponent } from '../checkbox.component';
 
 export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewInit {
 
+  ui = UI;
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-checkbox-group-host';
+
   private _size: Size = Size.normal;
   private selectedItems = [];
   math = Math;
-
-  ui = UI;
 
   checkboxesControl = this.fb.array([]);
   form = this.fb.group({
     checkboxes: this.checkboxesControl
   });
 
-  @HostBinding('attr.host')
-  readonly host = 'jnt-checkbox-group-host';
-
+  @PropertyApi({
+    description: 'Count of cols in checkbox group',
+    type: 'number',
+    default: 1
+  })
   @Input() cols = 1;
 
-  @ViewChildren(CheckboxComponent)
-  items: QueryList<CheckboxComponent>;
-
-  @ContentChildren(CheckboxComponent)
-  checkboxes: QueryList<CheckboxComponent>;
-
+  @PropertyApi({
+    description: 'Size for checkbox in checkbox group',
+    path: 'ui.size',
+    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    default: Size.normal
+  })
   @Input()
   set size(size: Size) {
     this._size = size || Size.normal;
@@ -61,6 +67,12 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   get size() {
     return this._size;
   }
+
+  @ViewChildren(CheckboxComponent)
+  items: QueryList<CheckboxComponent>;
+
+  @ContentChildren(CheckboxComponent)
+  checkboxes: QueryList<CheckboxComponent>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

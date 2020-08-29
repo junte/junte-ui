@@ -83,20 +83,20 @@
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
                     </ng-template>
 
-                      <jnt-menu *ngIf="menuControl.value">
-                        <jnt-menu-item title="Home"
-                                       i18n-title="@@label.home"
-                                       [icon]="ui.icons.home"></jnt-menu-item>
-                        <jnt-menu-item title="My network"
-                                       i18n-title="@@label.my_network"
-                                       [icon]="localUi.icons.network"></jnt-menu-item>
-                        <jnt-menu-item title="Jobs"
-                                       i18n-title="@@label.jobs"
-                                       [icon]="localUi.icons.jobs"></jnt-menu-item>
-                        <jnt-menu-item title="Messages"
-                                       i18n-title="@@label.messages"
-                                       [icon]="ui.icons.messages"></jnt-menu-item>
-                      </jnt-menu>
+                    <jnt-menu *ngIf="menuControl.value">
+                      <jnt-menu-item title="Home"
+                                     i18n-title="@@label.home"
+                                     [icon]="ui.icons.home"></jnt-menu-item>
+                      <jnt-menu-item title="My network"
+                                     i18n-title="@@label.my_network"
+                                     [icon]="localUi.icons.network"></jnt-menu-item>
+                      <jnt-menu-item title="Jobs"
+                                     i18n-title="@@label.jobs"
+                                     [icon]="localUi.icons.jobs"></jnt-menu-item>
+                      <jnt-menu-item title="Messages"
+                                     i18n-title="@@label.messages"
+                                     [icon]="ui.icons.messages"></jnt-menu-item>
+                    </jnt-menu>
 
                     <ng-template #headerActionsTemplate *ngIf="actionControl.value">
                       <jnt-app-header-actions actions>
@@ -125,27 +125,26 @@
                       </jnt-app-header-actions>
                     </ng-template>
 
-                    <ng-template #headerUserbarTemplate *ngIf="userMenuControl.value">
-                      <jnt-app-header-userbar>
+                    <ng-template #headerUserbarTemplate *ngIf="userMenuControl.value" let-hide="hide">
+                      <jnt-app-header-userbar [context]="{header: {hide: hide}}">
                         <span data-name>Elon Musk</span>
                         <ng-template #userbarAvatarTemplate>
-                          <jnt-avatar [size]="ui.size.small" image="assets/images/elon.jpeg"></jnt-avatar>
+                          <jnt-avatar [size]="ui.size.small"
+                                      image="assets/images/elon.jpeg"></jnt-avatar>
                         </ng-template>
-                        <ng-template #userbarMenuTemplate>
+                        <ng-template #userbarMenuTemplate let-hide="hide">
                           <jnt-menu [orientation]="ui.orientation.vertical"
-                                    [spacer]="ui.size.small">
+                                    [spacer]="ui.size.small"
+                                    (selected)="hide()">
                             <jnt-menu-item title="Profile"
                                            i18n-title="@@label.profile"
-                                           [icon]="ui.icons.profile"
-                                           [link]="['/profile']"></jnt-menu-item>
+                                           [icon]="ui.icons.profile"></jnt-menu-item>
                             <jnt-menu-item title="Settings"
                                            i18n-title="@@label.settings"
-                                           [icon]="ui.icons.animated.settings"
-                                           [link]="['/settings']"></jnt-menu-item>
+                                           [icon]="ui.icons.animated.settings"></jnt-menu-item>
                             <jnt-menu-item title="Logout"
                                            i18n-title="@@label.logout"
-                                           [icon]="ui.icons.home"
-                                           [link]="['/logout']"></jnt-menu-item>
+                                           [icon]="ui.icons.home"></jnt-menu-item>
                           </jnt-menu>
                         </ng-template>
                       </jnt-app-header-userbar>
@@ -250,22 +249,22 @@
                         <ng-container *ngIf="logoControl.value">
                           <![CDATA[
                           <ng-template #headerLogoTemplate>
-                            <img >
+                            <img>
                           </ng-template>
                           ]]>
                         </ng-container>
                         <ng-container *ngIf="menuControl.value">
                           <![CDATA[
-                            <jnt-menu>
-                              <jnt-menu-item [icon]="ui.icons.home"
-                                             title="Home"></jnt-menu-item>
-                              <jnt-menu-item
-                                             title="My network"></jnt-menu-item>
-                              <jnt-menu-item
-                                             title="Jobs"></jnt-menu-item>
-                              <jnt-menu-item
-                                             title="Messages"></jnt-menu-item>
-                            </jnt-menu>
+                          <jnt-menu>
+                            <jnt-menu-item [icon]="ui.icons.home"
+                                           title="Home"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="My network"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="Jobs"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="Messages"></jnt-menu-item>
+                          </jnt-menu>
                           ]]>
                         </ng-container>
                         <ng-container *ngIf="actionControl.value">
@@ -332,7 +331,7 @@
                             <jnt-stack aside [align]="ui.flex.align.stretch">
                               <jnt-stack [align]="ui.flex.align.center">
                                 <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
-                                            ></jnt-avatar>
+                                ></jnt-avatar>
                                 <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
                                            [align]="ui.flex.align.center">
                                   <div>Elon Musk</div>

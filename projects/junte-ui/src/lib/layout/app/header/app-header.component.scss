@@ -69,6 +69,13 @@
     }
   }
 
+  hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background: $jnt-secondary-color;
+  }
+
   #{$context} #{$wrapper} [data-logo] {
     display: flex;
     align-items: center;
@@ -79,7 +86,8 @@
   }
 
   #{$context} #{$wrapper} [data-burger] {
-    @include jnt-button((schemes: (primary: (color: $jnt-white-color, hover-color: $jnt-white-color)), icon: (size: 24px)), '&');
+    @include jnt-button((schemes: (primary: (color: $jnt-white-color,
+      hover-color: $jnt-white-color)), icon: (size: 24px)), '&');
   }
 
   #{$context} #{$wrapper} [data-actions] {

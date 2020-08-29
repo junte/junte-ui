@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { LoggerModule } from 'ngx-logger';
+import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { IconModule } from '../../elements/icon/icon.module';
+import { ButtonModule } from '../../forms/button/button.module';
+import { MenuModule } from '../../navigation/menu/menu.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { GridModule } from '../grid/grid.module';
-import { IconModule } from '../../elements/icon/icon.module';
 import { ResponsiveModule } from '../responsive/responsive.module';
-import { MenuModule } from '../../navigation/menu/menu.module';
-import { LpHeaderComponent } from './header/lp-header.component';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
-import { ButtonModule } from '../../forms/button/button.module';
 import { StackModule } from '../stack/stack.module';
+import { LpHeaderComponent } from './header/lp-header.component';
 import { LpLayoutComponent } from './layout/lp-layout.component';
 import { LpRewindComponent } from './rewind/lp-rewind.component';
 import { LpSlideComponent } from './slide/lp-slide.component';
@@ -16,6 +17,7 @@ import { LpSlideComponent } from './slide/lp-slide.component';
 @NgModule({
   imports: [
     CommonModule,
+    LoggerModule,
     StackModule,
     ButtonModule,
     MenuModule,
