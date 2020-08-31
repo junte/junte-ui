@@ -32,24 +32,36 @@
                         <jnt-radio-group formControlName="hero"
                                          [cols]="colsControl.value"
                                          [size]="sizeControl.value">
-                          <jnt-radio label="Spiderman" [value]="hero.spiderman"></jnt-radio>
-                          <jnt-radio label="Ironman" [value]="hero.ironman"></jnt-radio>
-                          <jnt-radio label="Captain America" [value]="hero.captainAmerica"></jnt-radio>
+                          <jnt-radio label="Spiderman" [value]="hero.spiderman">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <strong>Test custom template</strong>
+                            </ng-template>
+                          </jnt-radio>
+                          <jnt-radio label="Ironman" [value]="hero.ironman">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <jnt-input placeholder="Custom template too"></jnt-input>
+                            </ng-template>
+                          </jnt-radio>
+                          <jnt-radio label="Captain America" [value]="hero.captainAmerica">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <jnt-checkbox label="Custom template too"></jnt-checkbox>
+                            </ng-template>
+                          </jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
                             <jnt-radio label="Thanos"
-                                          [value]="hero.thanos">
+                                       [value]="hero.thanos">
                             </jnt-radio>
                             <jnt-radio label="Deadpool"
-                                          [value]="hero.deadpool">
+                                       [value]="hero.deadpool">
                             </jnt-radio>
                             <jnt-radio label="Blackwidow"
-                                          [value]="hero.blackwidow">
+                                       [value]="hero.blackwidow">
                             </jnt-radio>
                             <jnt-radio label="Hulk"
-                                          [value]="hero.hulk">
+                                       [value]="hero.hulk">
                             </jnt-radio>
                             <jnt-radio label="Thor"
-                                          [value]="hero.thor">
+                                       [value]="hero.thor">
                             </jnt-radio>
                           </ng-container>
                         </jnt-radio-group>
@@ -141,6 +153,14 @@
                   </jnt-form-control>
                 </jnt-form-item>
 
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.state">Custom template
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="custom" label="Custom template"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -161,32 +181,32 @@
                 scss="forms/radio">
                 <ng-template #behaviourTemplate>
                   <!-- @formatter:off-->
-<![CDATA[
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { RadioComponent, TabComponent, UI } from '@junte/ui';
+                  <![CDATA[
+                  import { Component, OnInit, ViewChild } from '@angular/core';
+                  import { FormBuilder, FormControl } from '@angular/forms';
+                  import { RadioComponent, TabComponent, UI } from '@junte/ui';
 
-@Component({
-  selector: 'app-radio-test',
-  templateUrl: './radio-test.component.html',
-  styleUrls: ['./radio-test.component.scss']
-})
+                  @Component({
+                  selector: 'app-radio-test',
+                  templateUrl: './radio-test.component.html',
+                  styleUrls: ['./radio-test.component.scss']
+                  })
 
-export class RadioTestComponent implements OnInit {
+                  export class RadioTestComponent implements OnInit {
 
-  ui = UI;
+                  ui = UI;
 
-  radioGroupControl = new FormControl();
+                  radioGroupControl = new FormControl();
 
-  form = this.fb.group({
-    radioGroup: this.radioGroupControl
-  });
+                  form = this.fb.group({
+                  radioGroup: this.radioGroupControl
+                  });
 
   constructor(private fb: FormBuilder) {
-  }
+                  }
 
-}
-]]>
+                  }
+                  ]]>
                   <!-- @formatter:on-->
                 </ng-template>
               </app-how-to-use>
@@ -197,48 +217,48 @@ export class RadioTestComponent implements OnInit {
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="radio-test.component.html">
                 <!-- @formatter:off-->
-<ng-template #sizeTemplate>
-  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-</ng-template>
-  <![CDATA[
-  <jnt-form [formGroup]="builder">
-    <jnt-radio-group formControlName="radioGroup"]]>
-      <ng-container *ngIf="colsControl.value">
-        <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
-      </ng-container>
-      <![CDATA[>
-      <jnt-radio value="Option 1" ]]>
-        <ng-container *ngIf="disableControl.value">
-          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-        </ng-container>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-        </ng-container>
-          <![CDATA[ >
-      </jnt-radio>
-      ]]>
-      <![CDATA[
-      <jnt-radio value="Option 2" label="Label 2" ]]>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-        </ng-container>
-        <![CDATA[>
-      </jnt-radio>
-      ]]>
+                <ng-template #sizeTemplate>
+                  <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                </ng-template>
+                <![CDATA[
+                <jnt-form [formGroup]="builder">
+                  <jnt-radio-group formControlName="radioGroup" ]]>
+                    <ng-container *ngIf="colsControl.value">
+                      <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>
+                    <jnt-radio value="Option 1" ]]>
+                      <ng-container *ngIf="disableControl.value">
+                        <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+                      </ng-container>
+                      <ng-container *ngIf="sizeControl.value">
+                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                      </ng-container>
+                      <![CDATA[ >
+                    </jnt-radio>
+                    ]]>
+                    <![CDATA[
+                    <jnt-radio value="Option 2" label="Label 2" ]]>
+                      <ng-container *ngIf="sizeControl.value">
+                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-radio>
+                    ]]>
 
-      <![CDATA[
-      <jnt-radio value="Option 3" label="Label 3" ]]>
-        <ng-container *ngIf="sizeControl.value">
-          <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
-        </ng-container>
-          <![CDATA[>
-      </jnt-radio>
-      ]]>
+                    <![CDATA[
+                    <jnt-radio value="Option 3" label="Label 3" ]]>
+                      <ng-container *ngIf="sizeControl.value">
+                        <ng-template [ngTemplateOutlet]="sizeTemplate"></ng-template>
+                      </ng-container>
+                      <![CDATA[>
+                    </jnt-radio>
+                    ]]>
 
-      <![CDATA[
-    </jnt-radio-group>
-</jnt-form>
-]]>
+                    <![CDATA[
+                  </jnt-radio-group>
+                </jnt-form>
+                ]]>
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

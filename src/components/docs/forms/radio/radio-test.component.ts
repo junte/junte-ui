@@ -24,11 +24,13 @@ export class RadioTestComponent implements OnInit {
   sizeControl = this.fb.control(null);
   disableControl = this.fb.control(false);
   colsControl = this.fb.control(null);
+  customControl = this.fb.control(false);
 
   builder = this.fb.group({
     size: this.sizeControl,
     disable: this.disableControl,
-    cols: this.colsControl
+    cols: this.colsControl,
+    custom: this.customControl
   });
 
   heroControl = this.fb.control(Hero.spiderman, Validators.required);
