@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
@@ -53,6 +53,9 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
     type: 'any'
   })
   @Input() value: any;
+
+  @ContentChild('labelTemplate')
+  labelTemplate: TemplateRef<any>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

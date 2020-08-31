@@ -1,5 +1,10 @@
 <form [formGroup]="form">
-  <input formControlName="radio" type="radio">
+  <input formControlName="radio" type="radio" [attr.custom]="!!labelTemplate">
   <div data-switch><span *ngIf="radioControl.value" data-indicator></span></div>
-  <label *ngIf="label">{{label}}</label>
+  <ng-template #labelDefaultTemplate>
+    <label *ngIf="label">{{label}}</label>
+  </ng-template>
+  <div label>
+    <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
+  </div>
 </form>

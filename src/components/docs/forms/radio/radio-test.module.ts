@@ -9,7 +9,7 @@ import {
   CheckboxModule,
   FormModule,
   GridModule,
-  IconModule,
+  IconModule, InputModule,
   LinkModule,
   RadioModule,
   SelectModule,
@@ -39,7 +39,8 @@ import { RadioTestComponent } from './radio-test.component';
     AvatarModule.forRoot(JUNTE_UI_CONFIG),
     SelectModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
-    BlockModule.forRoot(JUNTE_UI_CONFIG)
+    BlockModule.forRoot(JUNTE_UI_CONFIG),
+    InputModule.forRoot(JUNTE_UI_CONFIG)
   ],
   exports: [
     RadioTestComponent
