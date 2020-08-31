@@ -322,7 +322,7 @@ export class InputTestComponent implements OnInit {
 
   ngOnInit() {
       this.disabledControl.valueChanges.subscribe(disabled => {
-      disabled ? this.inputControl.disable() : this.inputControl.enable();
+      disabled ? this.inputControl.disable({emitEvent: false}) : this.inputControl.enable({emitEvent: false});
     });
   }
 }

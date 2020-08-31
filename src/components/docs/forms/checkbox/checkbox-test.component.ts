@@ -42,7 +42,7 @@ export class CheckboxTestComponent implements OnInit {
 
   ngOnInit() {
     this.disableControl.valueChanges.subscribe(disabled =>
-      disabled ? this.heroesControl.disable() : this.heroesControl.enable());
+      disabled ? this.heroesControl.disable({emitEvent: false}) : this.heroesControl.enable({emitEvent: false}));
 
     this.builder.valueChanges.subscribe(() => this.code.flash());
   }

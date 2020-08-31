@@ -92,8 +92,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         this.inputControl.patchValue(!!date ? formatDate(date, this.format) : null);
         this.onChange(date);
         this.opened = false;
-        if (!this.mobile && !this.reference.popover) {
+        if (!!this.reference.popover) {
           this.reference.popover.hide();
+          this.reference.popover = null;
         }
       });
 
@@ -103,8 +104,9 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.calendarControl.patchValue(parsed);
         }
-        if (!this.mobile && !this.reference.popover) {
+        if (!!this.reference.popover) {
           this.reference.popover.hide();
+          this.reference.popover = null;
         }
       });
   }
@@ -131,7 +133,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.inputControl.disable() : this.inputControl.enable();
+    disabled ? this.inputControl.disable({emitEvent: false}) : this.inputControl.enable({emitEvent: false});
   }
 
   setCurrentView(type: CLOCK_TYPE) {

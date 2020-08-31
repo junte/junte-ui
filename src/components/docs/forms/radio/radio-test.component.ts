@@ -44,7 +44,7 @@ export class RadioTestComponent implements OnInit {
 
   ngOnInit() {
     this.disableControl.valueChanges.subscribe(disabled =>
-      disabled ? this.heroControl.disable() : this.heroControl.enable());
+      disabled ? this.heroControl.disable({emitEvent: false}) : this.heroControl.enable({emitEvent: false}));
   }
 
   submit() {

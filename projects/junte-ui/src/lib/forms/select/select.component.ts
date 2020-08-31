@@ -239,7 +239,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   })
   @HostBinding('attr.data-search')
   @Input() set search(search: boolean) {
-    search ? this.queryControl.enable() : this.queryControl.disable();
+    search ? this.queryControl.enable({emitEvent: false}) : this.queryControl.disable({emitEvent: false});
   }
 
   get search() {

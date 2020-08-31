@@ -34,7 +34,7 @@ export class CollapsibleTestComponent implements OnInit {
       .subscribe(() => this.code.flash());
 
     this.titleControl.valueChanges.subscribe(value =>
-      value ? this.iconControl.disable() : this.iconControl.enable());
+      value ? this.iconControl.disable({emitEvent: false}) : this.iconControl.enable({emitEvent: false}));
   }
 
 }

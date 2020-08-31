@@ -118,7 +118,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.radiosControl.disable() : this.radiosControl.enable();
+    isDisabled ? this.radiosControl.disable({emitEvent: false}) : this.radiosControl.enable({emitEvent: false});
   }
 
   select(value) {

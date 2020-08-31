@@ -122,6 +122,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.checkboxesControl.disable() : this.checkboxesControl.enable();
+    isDisabled ? this.checkboxesControl.disable({emitEvent: false}) : this.checkboxesControl.enable({emitEvent: false});
   }
 }

@@ -70,25 +70,25 @@ export class SwitcherTestComponent implements OnInit {
     this.templateControl.valueChanges
       .subscribe(value => {
         if (value) {
-          this.iconControl.disable();
-          this.dotControl.disable();
-          this.badgeControl.disable();
+          this.iconControl.disable({emitEvent: false});
+          this.dotControl.disable({emitEvent: false});
+          this.badgeControl.disable({emitEvent: false});
         } else {
-          this.iconControl.enable();
-          this.dotControl.enable();
-          this.badgeControl.enable();
+          this.iconControl.enable({emitEvent: false});
+          this.dotControl.enable({emitEvent: false});
+          this.badgeControl.enable({emitEvent: false});
         }
       });
 
     this.disabledControl.valueChanges.subscribe((disabled) => {
-      disabled ? this.heroControl.disable() : this.heroControl.enable();
+      disabled ? this.heroControl.disable({emitEvent: false}) : this.heroControl.enable({emitEvent: false});
     });
 
     this.modeControl.valueChanges.subscribe(mode => this.heroControl
       .setValue(mode === UI.forms.select.mode.single ? [] : null));
 
     // this.modeControl.valueChanges.subscribe(mode => mode === SelectMode.single ?
-    //   this.selectAllControl.disable() : this.selectAllControl.enable());
+    //   this.selectAllControl.disable({emitEvent: false}) : this.selectAllControl.enable({emitEvent: false}));
   }
 
   submit() {

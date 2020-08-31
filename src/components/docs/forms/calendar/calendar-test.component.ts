@@ -54,7 +54,7 @@ export class CalendarTestComponent implements OnInit {
       .subscribe(() => this.code.flash());
 
     this.disabledControl.valueChanges.subscribe((disabled) => {
-      disabled ? this.flightDateControl.disable() : this.flightDateControl.enable();
+      disabled ? this.flightDateControl.disable({emitEvent: false}) : this.flightDateControl.enable({emitEvent: false});
     });
   }
 

@@ -69,7 +69,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.disabledControl.valueChanges.subscribe(disabled => {
-      disabled ? this.inputControl.disable() : this.inputControl.enable();
+      disabled ? this.inputControl.disable({emitEvent: false}) : this.inputControl.enable({emitEvent: false});
     });
     this.reset(this.typeControl.value);
     this.typeControl.valueChanges.subscribe(type => this.reset(type));
@@ -85,17 +85,17 @@ export class InputTestComponent implements OnInit, AfterViewInit {
 
   reset(type: InputType) {
     if (type !== this.inputType.number) {
-      this.stepControl.disable();
-      this.minControl.disable();
-      this.maxControl.disable();
-      this.multilineControl.enable();
-      this.rowsControl.enable();
+      this.stepControl.disable({emitEvent: false});
+      this.minControl.disable({emitEvent: false});
+      this.maxControl.disable({emitEvent: false});
+      this.multilineControl.enable({emitEvent: false});
+      this.rowsControl.enable({emitEvent: false});
     } else {
-      this.stepControl.enable();
-      this.minControl.enable();
-      this.maxControl.enable();
-      this.multilineControl.disable();
-      this.rowsControl.disable();
+      this.stepControl.enable({emitEvent: false});
+      this.minControl.enable({emitEvent: false});
+      this.maxControl.enable({emitEvent: false});
+      this.multilineControl.disable({emitEvent: false});
+      this.rowsControl.disable({emitEvent: false});
     }
   }
 }

@@ -61,7 +61,7 @@ export class SelectTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
-      disabled ? this.selectControl.disable() : this.selectControl.enable());
+      disabled ? this.selectControl.disable({emitEvent: false}) : this.selectControl.enable({emitEvent: false}));
     this.modeControl.valueChanges.subscribe(mode => this.selectControl
       .setValue(mode === UI.forms.select.mode.single ? [] : null));
   }

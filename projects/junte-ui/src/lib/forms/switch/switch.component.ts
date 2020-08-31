@@ -84,7 +84,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.switchControl.disable() : this.switchControl.enable();
+    disabled ? this.switchControl.disable({emitEvent: false}) : this.switchControl.enable({emitEvent: false});
   }
 
 }

@@ -43,7 +43,7 @@ export class SwitchTestComponent implements OnInit {
 
   ngOnInit() {
     this.disabledControl.valueChanges.subscribe((disabled) => {
-      disabled ? this.switchControl.disable() : this.switchControl.enable();
+      disabled ? this.switchControl.disable({emitEvent: false}) : this.switchControl.enable({emitEvent: false});
     });
 
     this.builder.valueChanges
