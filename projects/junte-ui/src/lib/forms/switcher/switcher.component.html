@@ -7,7 +7,8 @@
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
 
-  <div *ngIf="marks" data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected" data-indicator></span></div>
+  <div *ngIf="marks" data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected"
+                                                                                       data-indicator></span></div>
 
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [justify]="ui.flex.justify.between"
@@ -27,7 +28,9 @@
 
 <div data-switcher>
   <div data-scroll>
-    <jnt-stack [orientation]="orientation" [gutter]="ui.gutter.none" [align]="ui.flex.align.stretch" data-options>
+    <jnt-stack data-options [orientation]="orientation"
+               [gutter]="ui.gutter.none"
+               [align]="ui.flex.align.stretch">
       <ng-container *ngIf="!loading; else loadingTemplate">
         <jnt-stack data-option *ngFor="let option of options"
                    [attr.data-with-template]="!!option.optionTemplate"
@@ -47,7 +50,8 @@
   </div>
 </div>
 
-<jnt-badge data-count *ngIf="!!features && features.includes(feature.badge) && mode === selectMode.multiple && selected.length > 0"
+<jnt-badge data-count
+           *ngIf="!!features && features.includes(feature.badge) && mode === selectMode.multiple && selected.length > 0"
            [color]="ui.color.green"
            [value]="selected.length"></jnt-badge>
 

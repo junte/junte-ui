@@ -154,7 +154,7 @@ export class SwitcherComponent implements ControlValueAccessor {
     switch (this.mode) {
       case SelectMode.single:
         const current = this.selected.length > 0 ? this.selected[0] : null;
-        if (!!current) {
+        if (current !== null) {
           const same = !!this.keyField
             ? current[this.keyField] === value[this.keyField]
             : isEqual(current, value);
@@ -162,10 +162,10 @@ export class SwitcherComponent implements ControlValueAccessor {
             return;
           }
 
-          this.selected = same ? [] : [value];
+          this.selected = same || value === null ? [] : [value];
           this.onChange(same ? null : value);
         } else {
-          this.selected = [value];
+          this.selected = value === null ? [] : [value];
           this.onChange(value);
         }
 

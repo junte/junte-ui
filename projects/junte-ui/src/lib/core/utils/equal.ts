@@ -1,3 +1,3 @@
-export function isEqual(obj: any, obj2: any) {
-  return JSON.stringify(obj) === JSON.stringify(obj2);
+export function isEqual(a: any, b: any) {
+  return JSON.stringify(a) === JSON.stringify(b);
 }
