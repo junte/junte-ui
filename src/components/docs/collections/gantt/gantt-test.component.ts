@@ -30,11 +30,18 @@ export class GanttTestComponent implements OnInit {
   loading = true;
   ganttType = GanttTypes;
   ganttTypeControl = this.fb.control(GanttTypes.month);
-  form = this.fb.group({
+
+  builder = this.fb.group({
     ganttType: this.ganttTypeControl
   });
 
-  monthArray = Array.from({length: 5}, () => ({
+  ganttDateControl = this.fb.control(new Date());
+
+  form = this.fb.group({
+    ganttDate: this.ganttDateControl
+  });
+
+  monthArray = Array.from({length: 3}, () => ({
     date: faker.name.findName(),
     id: faker.random.number(100),
     createdAt: faker.date.recent(15),
@@ -42,13 +49,14 @@ export class GanttTestComponent implements OnInit {
       id: faker.random.number(100),
       login: faker.name.findName()
     },
-    from: faker.date.recent(15),
-    to: faker.date.recent(-15),
-    selfExpense: true,
-    status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])
+    periods: [
+      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true}
+    ]
   }));
 
-  yearArray = Array.from({length: 5}, () => ({
+  yearArray = Array.from({length: 3}, () => ({
     date: faker.name.findName(),
     id: faker.random.number(100),
     createdAt: faker.date.recent(15),
@@ -56,10 +64,11 @@ export class GanttTestComponent implements OnInit {
       id: faker.random.number(100),
       login: faker.name.findName()
     },
-    from: faker.date.recent(90),
-    to: faker.date.recent(-80),
-    selfExpense: true,
-    status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])
+    periods: [
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true}
+    ]
   }));
   @ViewChild('code') code: TabComponent;
 
@@ -89,10 +98,14 @@ export class GanttTestComponent implements OnInit {
         id: faker.random.number(100),
         login: faker.name.findName()
       },
-      from: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? 15 : 75),
-      to: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? -15 : -65),
-      selfExpense: true,
-      status: faker.helpers.randomize(['accepting', 'accepted', 'declined'])
+      periods: [
+        {
+          from: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? 15 : 75),
+          to: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? -15 : -65),
+          status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+          selfExpense: true
+        }
+      ]
     });
   }
 

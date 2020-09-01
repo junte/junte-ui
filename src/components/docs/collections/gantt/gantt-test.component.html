@@ -19,7 +19,7 @@
              [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
         <jnt-stack>
-          <form [formGroup]="form">
+          <form [formGroup]="builder">
             <jnt-form-item>
               <jnt-form-label for="ganttType"
                               i18n="@@label.gender">Gantt type</jnt-form-label>
@@ -34,8 +34,9 @@
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
-
+                <jnt-form [formGroup]="form" data-form>
                   <jnt-gantt title="Super"
+                             formControlName="ganttDate"
                              [loading]="loading"
                              [type]="ganttTypeControl.value === 'month' ? ui.collections.gantt.type.month : ui.collections.gantt.type.year">
                     <ng-template #toolsTemplate>
@@ -49,41 +50,43 @@
                       <strong>Test custom title</strong>
                     </ng-template>
                     <jnt-gantt-line *ngFor="let request of requests"
-                                    [period]="request"
-                                    [from]="request.from"
-                                    [to]="request.to"
                                     [title]="request.createdBy.login">
-                      <ng-template #indicator let-period="period" let-current="current" let-today="today">
-                        <div [attr.accepting]="period['status'] === statuses.accepting"
-                             [attr.accepted]="period['status'] === statuses.accepted"
-                             [attr.declined]="period['status'] === statuses.declined"
-                             [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
-                             [attr.self-expense]="period['selfExpense']"
-                             [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
-                             [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
-                             [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
-                        <span label>
-                        {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
-                      </span>
-                        </div>
-                      </ng-template>
-
-                      <ng-template #indicatorYear let-period="period" let-current="current" let-today="today">
-                        <div [attr.accepting]="period['status'] === statuses.accepting"
-                             [attr.accepted]="period['status'] === statuses.accepted"
-                             [attr.declined]="period['status'] === statuses.declined"
-                             [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
-                             [attr.self-expense]="period['selfExpense']"
-                             [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
-                             [attr.over-from]="(period['from'] | dfnsGetYear) < (current | dfnsGetYear)"
-                             [attr.over-to]="(period['to'] | dfnsGetYear) > (current | dfnsGetYear)" period>
+                      <jnt-gantt-line-period *ngFor="let period of request.periods"
+                                             [from]="period.from"
+                                             [to]="period.to">
+                        <ng-template #indicatorMonth let-current="current" let-today="today">
+                          <div [attr.accepting]="period['status'] === statuses.accepting"
+                               [attr.accepted]="period['status'] === statuses.accepted"
+                               [attr.declined]="period['status'] === statuses.declined"
+                               [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
+                               [attr.self-expense]="period['selfExpense']"
+                               [attr.short]="period['to'] | dfnsDifferenceInDays:period['from'] < 3"
+                               [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
+                               [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
                           <span label>
-                            {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
-                          </span>
-                        </div>
-                      </ng-template>
+                          {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
+                        </span>
+                          </div>
+                        </ng-template>
+
+                        <ng-template #indicatorYear let-current="current" let-today="today">
+                          <div [attr.accepting]="period['status'] === statuses.accepting"
+                               [attr.accepted]="period['status'] === statuses.accepted"
+                               [attr.declined]="period['status'] === statuses.declined"
+                               [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
+                               [attr.self-expense]="period['selfExpense']"
+                               [attr.short]="period['to'] | dfnsDifferenceInDays:period['from'] < 2"
+                               [attr.over-from]="(period['from'] | dfnsGetYear) < (current | dfnsGetYear)"
+                               [attr.over-to]="(period['to'] | dfnsGetYear) > (current | dfnsGetYear)" period>
+                            <span label>
+                              {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
+                            </span>
+                          </div>
+                        </ng-template>
+                      </jnt-gantt-line-period>
                     </jnt-gantt-line>
                   </jnt-gantt>
+                </jnt-form>
               </jnt-block>
             </ng-template>
           </app-browser-preview>
