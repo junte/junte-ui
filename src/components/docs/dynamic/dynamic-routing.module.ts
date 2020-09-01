@@ -4,6 +4,7 @@ import { ChartTestComponent } from './chart/chart-test.component';
 import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
 import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
+import { TimerTestComponent } from './timer/timer-test.component';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,11 @@ export const routes: Routes = [
         path: 'date-period',
         component: DatePeriodTestComponent,
         data: {breadcrumb: 'Date period', animation: 'Date period'}
+      },
+      {
+        path: 'timer',
+        component: TimerTestComponent,
+        data: {breadcrumb: 'Timer', animation: 'Timer'}
       },
     ]
   }
