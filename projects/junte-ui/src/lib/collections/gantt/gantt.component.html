@@ -36,9 +36,9 @@
         <ng-container
           *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
       </td>
-      <td data-day *ngFor="let month of 12 | mockArray: 1"
+      <td data-day *ngFor="let month of (current | dfnsStartOfYear | betweenMonths:(current | dfnsEndOfYear))"
           [attr.current]="month">
-        {{month}}
+        {{month | monthName}}
       </td>
     </tr>
     </thead>
@@ -61,28 +61,40 @@
     </ng-template>
 
     <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
-      <tr *ngFor="let line of lines" (click)="line.click.emit($event)">
-        <ng-template #noRequest>
-          <td *ngFor="let day of 12 | mockArray: 1"></td>
-        </ng-template>
+      <ng-container *ngFor="let line of lines">
 
-        <td data-gutter></td>
-        <td data-title>
-          <ng-container
-            *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
-        </td>
+        <tr *ngFor="let period of line.periods; let i = index">
 
-        <ng-container *ngIf="(line.from | dfnsIsSameYear: current) || (line.to | dfnsIsSameYear: current)
-          || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
-          <td *ngFor="let day of ((line.from | dfnsIsSameYear: current) ? (line.from | dfnsGetMonth) : 0) | mockArray"></td>
-          <td [attr.colspan]="(line.to | yearAfter: current) - (line.from | yearBefore: current) + 1">
-            <ng-container *ngTemplateOutlet="line.indicatorYearTemplate;
-              context: {period: line.period, current: current, today: today}">
-            </ng-container>
-          </td>
-          <td *ngFor="let day of (11 - (line.to | dfnsGetMonth)) | mockArray"></td>
-        </ng-container>
-      </tr>
+          <ng-container *ngIf="i === 0">
+            <td data-gutter [attr.rowspan]="line.periods.length"></td>
+            <td data-title [attr.rowspan]="line.periods.length">
+              <ng-container
+                *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
+            </td>
+          </ng-container>
+
+          <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
+            <td *ngFor="let d of start | betweenMonths:from | pop"></td>
+            <td [attr.colspan]="(from | betweenMonths:to).length">
+              <ng-container *ngIf="!((period.to | dfnsIsBefore:start) || (period.from | dfnsIsAfter:end))">
+                <ng-container  *ngTemplateOutlet="period.indicatorYearTemplate;
+                  context: {period: period, current: current, today: today}">
+                </ng-container>
+              </ng-container>
+            </td>
+            <td *ngFor="let d of to | betweenMonths:end | pop"></td>
+          </ng-template>
+
+          <ng-container *ngTemplateOutlet="periodTemplate;context:
+            {start: current | dfnsStartOfYear ,
+              end: current | dfnsEndOfYear,
+              period: period,
+              current: current,
+              from: [[period.from, current | dfnsStartOfYear] | dfnsMax, current | dfnsEndOfYear] | dfnsMin,
+              to: [[period.to, current | dfnsEndOfYear] | dfnsMin, current | dfnsStartOfYear] | dfnsMax}"></ng-container>
+
+        </tr>
+      </ng-container>
     </ng-container>
 
     </tbody>
@@ -146,28 +158,41 @@
     </ng-template>
 
     <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
-      <tr *ngFor="let line of lines" (click)="line.click.emit($event)">
-        <ng-template #noRequest>
-          <td *ngFor="let day of (current | dfnsGetDaysInMonth) | mockArray: 1"></td>
-        </ng-template>
+      <ng-container *ngFor="let line of lines">
 
-        <td data-gutter></td>
-        <td data-title>
-          <ng-container
-            *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
-        </td>
+        <tr *ngFor="let period of line.periods; let i = index">
 
-        <ng-container *ngIf="(line.from | dfnsIsSameMonth: current) || (line.to | dfnsIsSameMonth: current)
-          || ((current | dfnsDifferenceInMonths:line.from) > 0 && (line.to | dfnsDifferenceInMonths:current) > 0); else noRequest">
-          <td *ngFor="let day of (line.from | before: current) - 1 | mockArray"></td>
-          <td [attr.colspan]="(line.to | after: current) - (line.from | before: current) + 1">
-            <ng-container *ngTemplateOutlet="line.indicatorTemplate;
-              context: {period: line.period, current: current, today: today}">
-            </ng-container>
-          </td>
-          <td *ngFor="let day of ((current | dfnsGetDaysInMonth) - (line.to | after: current)) | mockArray"></td>
-        </ng-container>
-      </tr>
+          <ng-container *ngIf="i === 0">
+            <td data-gutter [attr.rowspan]="line.periods.length"></td>
+            <td data-title [attr.rowspan]="line.periods.length">
+              <ng-container
+                *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
+            </td>
+          </ng-container>
+
+          <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
+            <td *ngFor="let d of start | betweenDays:from | pop"></td>
+              <td [attr.colspan]="(from | betweenDays:to).length">
+                <ng-container *ngIf="!((period.to | dfnsIsBefore:start) || (period.from | dfnsIsAfter:end))">
+                  <ng-container  *ngTemplateOutlet="period.indicatorMonthTemplate;
+                  context: {period: period, current: current, today: today}">
+                  </ng-container>
+                </ng-container>
+              </td>
+            <td *ngFor="let d of to | betweenDays:end | pop"></td>
+          </ng-template>
+
+          <ng-container *ngTemplateOutlet="periodTemplate;context:
+            {start: current | dfnsStartOfMonth,
+              end: current | dfnsEndOfMonth,
+              period: period,
+              current: current,
+              from: [[period.from, current | dfnsStartOfMonth] | dfnsMax, current | dfnsEndOfMonth] | dfnsMin,
+              to: [[period.to, current | dfnsEndOfMonth] | dfnsMin, current | dfnsStartOfMonth] | dfnsMax}"></ng-container>
+
+        </tr>
+      </ng-container>
+
     </ng-container>
     </tbody>
   </table>

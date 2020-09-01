@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AfterPipe } from './gantt-pipes/after.pipe';
-import { BeforePipe } from './gantt-pipes/before.pipe';
+import { BetweenMonthsPipe } from './gantt-pipes/between-months.pipe';
+import { BetweenDaysPipe } from './gantt-pipes/between-days.pipe';
 import { DatesInMonthPipe } from './gantt-pipes/dates-in-month.pipe';
 import { FullMonthPipe } from './gantt-pipes/full-month.pipe';
-import { YearAfterPipe } from './gantt-pipes/year-after.pipe';
-import { YearBeforePipe } from './gantt-pipes/year-before.pipe';
+import { MonthNamePipe } from './gantt-pipes/month-name.pipe';
 
 
 @NgModule({
@@ -13,20 +12,18 @@ import { YearBeforePipe } from './gantt-pipes/year-before.pipe';
     CommonModule
   ],
   declarations: [
-    AfterPipe,
-    BeforePipe,
+    MonthNamePipe,
     FullMonthPipe,
     DatesInMonthPipe,
-    YearAfterPipe,
-    YearBeforePipe
+    BetweenDaysPipe,
+    BetweenMonthsPipe
   ],
   exports: [
-    AfterPipe,
-    BeforePipe,
+    MonthNamePipe,
     FullMonthPipe,
     DatesInMonthPipe,
-    YearAfterPipe,
-    YearBeforePipe
+    BetweenDaysPipe,
+    BetweenMonthsPipe
   ]
 })
 export class GanttPipesModule {

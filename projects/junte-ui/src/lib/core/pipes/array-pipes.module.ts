@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IncludesPipe } from './array/includes.pipe';
-import { JoinPipe } from './array/join.pipe';
 import { MockArrayPipe } from './array/mock-array.pipe';
+import { JoinPipe } from './array/join.pipe';
+import { PopPipe } from './array/pop.pipe';
+import { IncludesPipe } from './array/includes.pipe';
 
 @NgModule({
   declarations: [
     MockArrayPipe,
     JoinPipe,
-    IncludesPipe
+    IncludesPipe,
+    PopPipe
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { MockArrayPipe } from './array/mock-array.pipe';
   exports: [
     MockArrayPipe,
     JoinPipe,
-    IncludesPipe
+    IncludesPipe,
+    PopPipe
   ]
 })
 export class ArrayPipesModule {

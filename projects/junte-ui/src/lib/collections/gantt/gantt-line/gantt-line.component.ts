@@ -1,5 +1,6 @@
-import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
+import { GanttLinePeriodComponent } from '../gantt-line-period/gantt-line-period.component';
 
 @Component({
   selector: 'jnt-gantt-line',
@@ -14,47 +15,13 @@ export class GanttLineComponent {
   })
   @Input() title: string;
 
-  @PropertyApi({
-    description: 'From date',
-    type: 'date',
-  })
-  @Input() from: Date;
-
-  @PropertyApi({
-    description: 'To date',
-    type: 'date',
-  })
-  @Input() to: Date;
-
-  @PropertyApi({
-    description: 'Period',
-    type: 'string',
-  })
-  @Input() period: any;
-
-  @PropertyApi({
-    description: 'Output event of click'
-  })
-  @Output() click = new EventEmitter<any>();
-
-  @ContentApi({
-    selector: '#indicatorTemplate',
-    description: 'indicator template'
-  })
-  @ContentChild('indicator')
-  indicatorTemplate: TemplateRef<any>;
-
-  @ContentApi({
-    selector: '#indicatorYearTemplate',
-    description: 'indicator year template'
-  })
-  @ContentChild('indicatorYear')
-  indicatorYearTemplate: TemplateRef<any>;
-
   @ContentApi({
     selector: '#titleTemplate',
     description: 'title template'
   })
   @ContentChild('title')
   titleTemplate: TemplateRef<any>;
+
+  @ContentChildren(GanttLinePeriodComponent, {descendants: true})
+  periods: QueryList<GanttLinePeriodComponent>;
 }

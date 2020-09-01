@@ -22,7 +22,7 @@ export class FilterComponent {
 
   @HostBinding('attr.data-active')
   get active() {
-    return this.selected || !!this.control?.value || !!this.value;
+    return this.selected || (!!this.control && !!this.control.value) || !!this.value;
   }
 
   @PropertyApi({
@@ -88,5 +88,5 @@ export class FilterComponent {
       this.clear.emit();
     }
   }
-  
+
 }

@@ -6,14 +6,16 @@ import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
-import { GanttLineComponent } from './gantt-line/gantt-line.component';
 import { GanttPipesModule } from './gantt-pipes.module';
+import { GanttLineComponent } from './gantt-line/gantt-line.component';
+import { GanttLinePeriodComponent } from './gantt-line-period/gantt-line-period.component';
 import { GanttComponent } from './gantt.component';
 
 @NgModule({
   declarations: [
     GanttComponent,
-    GanttLineComponent
+    GanttLineComponent,
+    GanttLinePeriodComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { GanttComponent } from './gantt.component';
   ],
   exports: [
     GanttComponent,
-    GanttLineComponent
+    GanttLineComponent,
+    GanttLinePeriodComponent
   ]
 })
 export class GanttModule {
