@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
 import * as consolidate from 'gulp-consolidate';
-import * as debug from 'gulp-debug';
 import * as iconfont from 'gulp-iconfont';
 import * as rename from 'gulp-rename';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
@@ -44,7 +43,6 @@ export class Gulpfile {
     const fonts: FontConfig[] = this.read();
     fonts.forEach(font => {
       gulp.src([`${font.svgPath}/*.svg`])
-        .pipe(debug())
         .pipe(iconfont({
           fontName: font.fontName,
           prependUnicode: true,
