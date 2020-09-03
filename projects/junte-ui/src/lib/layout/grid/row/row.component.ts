@@ -22,7 +22,7 @@ export class RowComponent {
 
   @PropertyApi({
     description: 'Vertical align columns',
-    path: 'ui.layout.row.align',
+    path: 'ui.row.align',
     default: RowAlign.start,
     options: [RowAlign.start,
       RowAlign.center,
@@ -35,7 +35,7 @@ export class RowComponent {
 
   @PropertyApi({
     description: 'Horizontal align of elements',
-    path: 'ui.flex.justify',
+    path: 'ui.justify',
     default: RowJustify.start,
     options: [RowJustify.start,
       RowJustify.center,

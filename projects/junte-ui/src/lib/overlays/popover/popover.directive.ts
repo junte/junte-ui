@@ -1,6 +1,6 @@
 import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
 import { filter, takeWhile } from 'rxjs/operators';
-import { PopoverTriggers } from './enums';
+import { Triggers } from '../../core/enums/triggers';
 import { PopoverOptions } from './popover.component';
 import { PopoverInstance, PopoverService } from './popover.service';
 
@@ -39,14 +39,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   @HostListener('mouseenter')
   mouseEnter() {
-    if (this.options.trigger === PopoverTriggers.hover) {
+    if (this.options.trigger === Triggers.hover) {
       this.show();
     }
   }
 
   @HostListener('click')
   click() {
-    if (this.options.trigger === PopoverTriggers.click) {
+    if (this.options.trigger === Triggers.click) {
       !this.instance ? this.show() : this.hide();
     }
   }
@@ -64,12 +64,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     this.zone.runOutsideAngular(() => {
       this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
-        if (!!this.instance && this.options.trigger === PopoverTriggers.hover && !this.picked(path)) {
+        if (!!this.instance && this.options.trigger === Triggers.hover && !this.picked(path)) {
           this.hide(path);
         }
       }));
       this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
-        if (!!this.instance && this.options.trigger === PopoverTriggers.click && !this.picked(path)) {
+        if (!!this.instance && this.options.trigger === Triggers.click && !this.picked(path)) {
           this.hide(path);
         }
       }));

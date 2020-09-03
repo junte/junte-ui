@@ -18,7 +18,7 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
 
-  colorControl = this.fb.control(this.ui.color.orange);
+  colorControl = this.fb.control(UI.color.orange);
 
   form = this.fb.group({
     color: this.colorControl

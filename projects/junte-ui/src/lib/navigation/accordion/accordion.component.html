@@ -1,11 +1,11 @@
-<jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.small">
+<jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
   <div *ngFor="let section of sections; let i = index;" data-section>
     <div data-title tabindex="0" (click)="active == i ? active = null : active = i;changed.emit(active)"
          [attr.active]="active == i">
       <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
       <span>{{section.title}}</span>
 
-      <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center">
+      <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-spinner *ngIf="section.state === accordionState.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-icon data-warning *ngIf="section.state === accordionState.warning" [icon]="ui.icons.warning"></jnt-icon>
         <jnt-icon [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>

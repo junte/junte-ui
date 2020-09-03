@@ -38,7 +38,7 @@
                   <jnt-gantt title="Super"
                              formControlName="ganttDate"
                              [loading]="loading"
-                             [type]="ganttTypeControl.value === 'month' ? ui.collections.gantt.type.month : ui.collections.gantt.type.year">
+                             [type]="ganttTypeControl.value === 'month' ? ui.gantt.type.month : ui.gantt.type.year">
                     <ng-template #toolsTemplate>
                       <jnt-button-group [scheme]="ui.scheme.secondary">
                         <jnt-button [icon]="ui.icons.reload"></jnt-button>
@@ -113,7 +113,7 @@
 <!-- @formatter:off-->
 <![CDATA[
   <form [formGroup]="form">
-    <jnt-gantt formControlName="gantt" [type]="ui.collections.gantt.type.]]>{{ganttTypeControl.value}}<![CDATA[" title="Super" [loading]="loading">
+    <jnt-gantt formControlName="gantt" [type]="ui.gantt.type.]]>{{ganttTypeControl.value}}<![CDATA[" title="Super" [loading]="loading">
     <ng-template #toolsTemplate>
       <jnt-button-group>
         <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
@@ -155,7 +155,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-gantt" [target]="types.gantt"></app-component-api>
           <app-component-api selector="jnt-gantt-line" [target]="types.line"></app-component-api>
         </jnt-stack>

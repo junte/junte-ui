@@ -22,7 +22,7 @@
             <ng-template #document>
               <jnt-stack>
                 <jnt-breadcrumb></jnt-breadcrumb>
-                <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center" page>
+                <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center" page>
                   <jnt-icon data-home [icon]="ui.icons.home"></jnt-icon>
                   <router-outlet></router-outlet>
                 </jnt-stack>
@@ -175,7 +175,7 @@ import { UI } from '@junte/ui';
 @Component({
 selector: 'app-breadcrumbs-test1',
 template: `
-  <jnt-stack [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center">
+  <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
     <div block>1</div>
     <router-outlet></router-outlet>

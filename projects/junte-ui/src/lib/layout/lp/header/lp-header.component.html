@@ -27,9 +27,9 @@
 
     <jnt-stack *ngIf="!!contentTemplate || !!headerActionsTemplate || !!headerUserbarTemplate"
                data-actions
-               [type]="ui.orientation.horizontal"
+               [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.small"
-               [align]="ui.flex.align.stretch">
+               [align]="ui.align.stretch">
       <div data-content *ngIf="contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>
@@ -44,19 +44,23 @@
     <div data-logo *ngIf="headerLogoTemplate">
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
-    <jnt-stack data-actions [type]="ui.orientation.horizontal"
+    <jnt-stack data-actions
+               [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.small"
-               [align]="ui.flex.align.stretch">
+               [align]="ui.align.stretch">
       <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
       <jnt-button data-burger
                   [icon]="!!reference.popover ? ui.icons.cancel : ui.icons.menu"
                   [outline]="ui.outline.transparent"
-                  [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}"
+                  [jntPopover]="{
+                    contentTemplate: dropdownTemplate,
+                    trigger: ui.trigger.click
+                  }"
                   (attached)="reference.popover = $event"
                   (removed)="reference.popover = null">
       </jnt-button>
       <ng-template #dropdownTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <ng-container *ngTemplateOutlet="headerUserbarTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
           <ng-container
             *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>

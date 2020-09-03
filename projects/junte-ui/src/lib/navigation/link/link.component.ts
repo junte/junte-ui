@@ -122,7 +122,7 @@ export class LinkComponent {
 
   @PropertyApi({
     description: 'Link target',
-    path: 'ui.navigation.link.target',
+    path: 'ui.target',
     default: LinkTarget.self,
     options: [LinkTarget.blank,
       LinkTarget.self,
@@ -140,7 +140,7 @@ export class LinkComponent {
 
   @PropertyApi({
     description: 'Matching to activate link',
-    path: 'ui.url.matching',
+    path: 'ui.matching',
     default: UrlMatching.fullMatch,
     options: [UrlMatching.fullMatch, UrlMatching.wildcard]
   })

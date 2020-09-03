@@ -24,8 +24,8 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-progress-bar [value]="valueControl.value">
                   <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
-                    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center"
-                               [justify]="ui.flex.justify.between">
+                    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
+                               [justify]="ui.justify.between">
                       <span>{{math.round(valueControl.value * 10)/10}}%</span>
                       <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
                     </jnt-stack>
@@ -36,11 +36,11 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder" builder>
-             <jnt-stack [align]="ui.flex.align.stretch">
+             <jnt-stack [align]="ui.align.stretch">
               <jnt-form-item>
                 <jnt-form-label for="value">Value</jnt-form-label>
                 <jnt-form-control>
-                  <jnt-input formControlName="value" [type]="ui.forms.input.type.number"></jnt-input>
+                  <jnt-input formControlName="value" [type]="ui.input.type.number"></jnt-input>
                 </jnt-form-control>
               </jnt-form-item>
 
@@ -91,8 +91,8 @@
   <ng-container *ngIf="legendControl.value">
     <![CDATA[
     <ng-template #progressBarLegendTemplate>
-      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center"
-                 [justify]="ui.flex.justify.between">
+      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
+                 [justify]="ui.justify.between">
         <span>{{math.round(valueControl.value * 10)/10}}%</span>
         <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
       </jnt-stack>

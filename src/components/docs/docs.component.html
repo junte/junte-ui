@@ -1,4 +1,4 @@
-<jnt-app-layout [position]="ui.layout.app.position.fixed">
+<jnt-app-layout [position]="ui.placement.fixed">
   <jnt-app-header>
     <ng-template #headerLogoTemplate>
       <a routerLink="['/']">
@@ -16,13 +16,13 @@
                      i18n-title="@@label.components"
                      [icon]="localUi.icons.top.components"
                      [link]="['/components']"
-                     [matching]="ui.url.matching.wildcard">
+                     [matching]="ui.matching.wildcard">
       </jnt-menu-item>
       <jnt-menu-item title="Team"
                      i18n-title="@@label.team"
                      [icon]="localUi.icons.top.team"
                      [link]="['/team']"
-                     [matching]="ui.url.matching.wildcard"></jnt-menu-item>
+                     [matching]="ui.matching.wildcard"></jnt-menu-item>
       <!-- TODO: add [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"-->
       <jnt-menu-item title="GitLab"
                      i18n-title="@@label.gitlab"
@@ -39,7 +39,7 @@
 
     <ng-template #contentTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.flex.align.center">
+                 [align]="ui.align.center">
         <form [formGroup]="themeForm">
           <jnt-theme-switcher [analytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
                               formControlName="theme"></jnt-theme-switcher>

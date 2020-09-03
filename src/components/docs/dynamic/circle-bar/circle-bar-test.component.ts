@@ -22,9 +22,9 @@ export class CircleBarTestComponent implements OnInit {
   likesControl = this.fb.control(50);
   powerControl = this.fb.control(60);
   healthControl = this.fb.control(80);
-  likesColorControl = this.fb.control(this.ui.color.purple);
-  powerColorControl = this.fb.control(this.ui.color.red);
-  healthColorControl = this.fb.control(this.ui.color.green);
+  likesColorControl = this.fb.control(UI.color.purple);
+  powerColorControl = this.fb.control(UI.color.red);
+  healthColorControl = this.fb.control(UI.color.green);
 
   builder = this.fb.group({
     likes: this.likesControl,

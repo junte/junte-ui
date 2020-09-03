@@ -19,7 +19,7 @@ export class StackTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  typeControl = this.fb.control(UI.layout.stack.type.horizontal);
+  typeControl = this.fb.control(UI.orientation.horizontal);
   gutterControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
   alignControl = this.fb.control(null);

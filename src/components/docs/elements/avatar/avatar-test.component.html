@@ -25,7 +25,7 @@
                 <jnt-row>
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
                     <jnt-block title="Elon Musk" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-                      <jnt-stack [align]="ui.flex.align.center">
+                      <jnt-stack [align]="ui.align.center">
                         <jnt-avatar [size]="sizeControl.value"
                                     [shape]="shapeControl.value"
                                     [icon]="iconControl.value ? ui.icons.user : null"
@@ -39,7 +39,7 @@
 
                   <jnt-col [desktop]="6" [tablet]="12" [mobile]="12">
                     <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-                      <jnt-stack [align]="ui.flex.align.center">
+                      <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-list [size]="sizeControl.value">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
                                       [text]="textControl.value ? 'Mark' : null"
@@ -64,7 +64,7 @@
 
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
                     <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
-                      <jnt-stack [align]="ui.flex.align.center">
+                      <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-group [size]="sizeControl.value" [total]="10">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
                                       [text]="textControl.value ? 'Mark' : null"
@@ -93,7 +93,7 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="size"
@@ -313,7 +313,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-avatar" [target]="types.avatar"></app-component-api>
           <app-component-api selector="jnt-avatars-list" [target]="types.list"></app-component-api>
           <app-component-api selector="jnt-avatars-group" [target]="types.group"></app-component-api>

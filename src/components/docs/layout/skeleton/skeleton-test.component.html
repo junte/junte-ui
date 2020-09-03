@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1270%3A539">
   </app-resources>
 
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
       <p>Skeleton provides a placeholder for future content which will be loaded soon.</p>
@@ -31,8 +31,8 @@
                   <jnt-block [width]="ui.width.fluid" [ngSwitch]="sketchControl.value">
 
                     <ng-container *ngSwitchCase="sketch.User">
-                      <jnt-stack [align]="ui.flex.align.center">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.avatar"
+                      <jnt-stack [align]="ui.align.center">
+                        <jnt-skeleton [type]="ui.skeleton.type.avatar"
                                       [animated]="animationControl.value"></jnt-skeleton>
                         <jnt-skeleton [lines]="2"
                                       [animated]="animationControl.value"></jnt-skeleton>
@@ -40,8 +40,8 @@
                     </ng-container>
 
                     <ng-container *ngSwitchCase="sketch.VerticalPost">
-                      <jnt-stack [align]="ui.flex.align.center">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                      <jnt-stack [align]="ui.align.center">
+                        <jnt-skeleton [type]="ui.skeleton.type.image"
                                       [size]="ui.size.large"
                                       [animated]="animationControl.value"></jnt-skeleton>
                         <jnt-skeleton [lines]="3"
@@ -51,7 +51,7 @@
 
                     <ng-container *ngSwitchCase="sketch.HorizontalPost">
                       <jnt-stack [orientation]="ui.orientation.horizontal">
-                        <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+                        <jnt-skeleton [type]="ui.skeleton.type.image"
                                       [size]="ui.size.normal"
                                       [animated]="animationControl.value"></jnt-skeleton>
                         <jnt-skeleton [lines]="5"
@@ -62,7 +62,7 @@
                     <ng-container *ngSwitchCase="sketch.Cards">
                       <jnt-row>
                         <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
-                          <jnt-skeleton data-card [type]="ui.layout.skeleton.type.card"
+                          <jnt-skeleton data-card [type]="ui.skeleton.type.card"
                                         [animated]="animationControl.value"></jnt-skeleton>
                         </jnt-col>
                       </jnt-row>
@@ -75,7 +75,7 @@
             </jnt-col>
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
-                <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-stack [align]="ui.align.stretch">
 
                   <jnt-form-item>
                     <jnt-form-label for="type"
@@ -138,9 +138,9 @@
 
   <ng-container *ngSwitchCase="sketch.User">
     <![CDATA[
-    <jnt-stack [align]="ui.flex.align.center"
-               [type]="ui.orientation.vertical">
-      <jnt-skeleton [type]="ui.layout.skeleton.type.avatar" ]]>
+    <jnt-stack [align]="ui.align.center"
+               [orientation]="ui.orientation.vertical">
+      <jnt-skeleton [type]="ui.skeleton.type.avatar" ]]>
         <ng-container *ngIf="!animationControl.value">
           <![CDATA[[animated]="false"]]>
         </ng-container>
@@ -158,8 +158,8 @@
 
   <ng-container *ngSwitchCase="sketch.VerticalPost">
     <![CDATA[
-    <jnt-stack [align]="ui.flex.align.center">
-      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+    <jnt-stack [align]="ui.align.center">
+      <jnt-skeleton [type]="ui.skeleton.type.image"
                     [size]="ui.size.large" ]]>
         <ng-container *ngIf="!animationControl.value">
           <![CDATA[[animated]="false"]]>
@@ -179,7 +179,7 @@
   <ng-container *ngSwitchCase="sketch.HorizontalPost">
     <![CDATA[
     <jnt-stack [orientation]="ui.orientation.horizontal">
-      <jnt-skeleton [type]="ui.layout.skeleton.type.image"
+      <jnt-skeleton [type]="ui.skeleton.type.image"
                     [size]="ui.size.large" ]]>
         <ng-container *ngIf="!animationControl.value">
           <![CDATA[[animated]="false"]]>
@@ -200,7 +200,7 @@
     <![CDATA[
     <jnt-row>
       <jnt-col *ngFor="let col of 6 | mockArray" [span]="6">
-        <jnt-skeleton [type]="ui.layout.skeleton.type.card"]]>
+        <jnt-skeleton [type]="ui.skeleton.type.card"]]>
           <ng-container *ngIf="!animationControl.value">
             <![CDATA[[animated]="false"]]>
           </ng-container>

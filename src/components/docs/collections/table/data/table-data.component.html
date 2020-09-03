@@ -1,7 +1,7 @@
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form">
-    <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
-      <jnt-table #table [features]="search ? [ui.collections.table.features.search] : null"
+    <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
+      <jnt-table #table [features]="search ? [ui.feature.search] : null"
                  formControlName="table">
         <jnt-table-column title="#" sort="id">
           <ng-template #tableCellTemplate let-id="id">

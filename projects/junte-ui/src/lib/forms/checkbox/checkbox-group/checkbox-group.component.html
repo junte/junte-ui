@@ -2,7 +2,7 @@
   <ng-container formArrayName="checkboxes">
     <ng-container *ngIf="!!checkboxesControl.length">
       <ng-container *ngIf="cols <= 1; else colTemplate">
-        <jnt-stack [gutter]="ui.gutter.small" [align]="ui.flex.align.stretch">
+        <jnt-stack [gutter]="ui.gutter.small" [align]="ui.align.stretch">
           <jnt-checkbox *ngFor="let item of checkboxes; let i = index"
                         [formControlName]="i"
                         [size]="size"

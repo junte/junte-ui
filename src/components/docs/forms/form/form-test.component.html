@@ -16,10 +16,10 @@
 
     <jnt-tab title="Preview" [icon]="localUi.icons.preview">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
 
           <jnt-form [formGroup]="builder">
-            <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.flex.align.center">
+            <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
 
               <jnt-form-item>
                 <jnt-form-control>
@@ -29,7 +29,7 @@
 
               <jnt-form-item [orientation]="ui.orientation.horizontal"
                              [gutter]="ui.gutter.small"
-                             [align]="ui.flex.align.center">
+                             [align]="ui.align.center">
                 <jnt-form-label for="state">States
                 </jnt-form-label>
                 <jnt-switcher formControlName="state">
@@ -59,7 +59,7 @@
                           (checked)="errors = $event"
                           (submitted)="submit()">
 
-                  <jnt-stack [align]="ui.flex.align.stretch">
+                  <jnt-stack [align]="ui.align.stretch">
 
                     <jnt-message *ngIf="errors | includes:form.get('personals').get('deep').get('firstName')"
                                  [scheme]="ui.scheme.fail">First Name error
@@ -73,8 +73,8 @@
                                             i18n="@@label.your_name">Your Name
                             </jnt-form-label>
                             <jnt-form-control name="firstName">
-                              <jnt-input formControlName="firstName" [type]="ui.forms.input.type.text"></jnt-input>
-                              <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                              <jnt-input formControlName="firstName" [type]="ui.input.type.text"></jnt-input>
+                              <jnt-form-message [type]="ui.validators.typeError.required">
                                 This field is required
                               </jnt-form-message>
                             </jnt-form-control>
@@ -87,7 +87,7 @@
                                             i18n="@@label.your_last_name">Your Last name
                             </jnt-form-label>
                             <jnt-form-control>
-                              <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
+                              <jnt-input formControlName="lastName" [type]="ui.input.type.text"></jnt-input>
                             </jnt-form-control>
                           </jnt-form-item>
                         </jnt-col>
@@ -99,8 +99,8 @@
                         <jnt-form-item>
                           <jnt-form-label>Children</jnt-form-label>
                           <jnt-form-control name="name">
-                            <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
-                            <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                            <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
+                            <jnt-form-message [type]="ui.validators.typeError.required">
                               This field is required
                             </jnt-form-message>
                           </jnt-form-control>
@@ -110,8 +110,8 @@
                         <jnt-form-item>
                           <jnt-form-label>Children</jnt-form-label>
                           <jnt-form-control name="name">
-                            <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
-                            <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                            <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
+                            <jnt-form-message [type]="ui.validators.typeError.required">
                               This field is required
                             </jnt-form-message>
                           </jnt-form-control>
@@ -124,7 +124,7 @@
                                       i18n="@@label.password">Password
                       </jnt-form-label>
                       <jnt-form-control>
-                        <jnt-input formControlName="password" [type]="ui.forms.input.type.password"></jnt-input>
+                        <jnt-input formControlName="password" [type]="ui.input.type.password"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>
 
@@ -197,7 +197,7 @@
                     </jnt-form-item>
 
                     <ng-template #formFooterTemplate>
-                      <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.forms.button.type.submit"
+                      <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.button.type.submit"
                                   save></jnt-button>
                     </ng-template>
 
@@ -294,14 +294,14 @@
     [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
   </ng-container>
     <![CDATA[>
-    <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [align]="ui.align.stretch">
 
       <jnt-row>
         <jnt-col [tablet]="6" [mobile]="12">
           <jnt-form-item>
             <jnt-form-label for="name">Your Name</jnt-form-label>
             <jnt-form-control>
-              <jnt-input formControlName="name" [type]="ui.forms.input.type.text"></jnt-input>
+              <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
             </jnt-form-control>
           </jnt-form-item>
         </jnt-col>
@@ -310,7 +310,7 @@
           <jnt-form-item>
             <jnt-form-label for="lastName">Your Last name</jnt-form-label>
             <jnt-form-control>
-              <jnt-input formControlName="lastName" [type]="ui.forms.input.type.text"></jnt-input>
+              <jnt-input formControlName="lastName" [type]="ui.input.type.text"></jnt-input>
             </jnt-form-control>
           </jnt-form-item>
         </jnt-col>
@@ -320,14 +320,14 @@
       <jnt-form-item>
         <jnt-form-label for="email">Your E-mail</jnt-form-label>
         <jnt-form-control>
-          <jnt-input formControlName="email" [type]="ui.forms.input.type.text"></jnt-input>
+          <jnt-input formControlName="email" [type]="ui.input.type.text"></jnt-input>
         </jnt-form-control>
       </jnt-form-item>
 
       <jnt-form-item>
         <jnt-form-label for="password">Password</jnt-form-label>
         <jnt-form-control>
-          <jnt-input formControlName="password" [type]="ui.forms.input.type.password"></jnt-input>
+          <jnt-input formControlName="password" [type]="ui.input.type.password"></jnt-input>
         </jnt-form-control>
       </jnt-form-item>
 
@@ -389,7 +389,7 @@
       </jnt-form-item>
 
       <ng-template #formFooterTemplate>
-        <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.forms.button.type.submit"
+        <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.button.type.submit"
                     save></jnt-button>
       </ng-template>
 
@@ -405,7 +405,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-form" [target]="types.form"></app-component-api>
           <app-component-api selector="jnt-form-control" [target]="types.control"></app-component-api>
           <app-component-api selector="jnt-form-label" [target]="types.label"></app-component-api>

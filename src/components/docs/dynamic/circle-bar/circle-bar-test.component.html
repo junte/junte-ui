@@ -45,14 +45,14 @@
 
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.likes">Likes</jnt-form-label>
                   <jnt-row>
                     <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
                       <jnt-input formControlName="likes"
-                                 [type]="ui.forms.input.type.number"
+                                 [type]="ui.input.type.number"
                                  [max]="100"
                                  [min]="0"></jnt-input>
                     </jnt-col>
@@ -67,7 +67,7 @@
                   <jnt-row>
                     <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
                       <jnt-input formControlName="power"
-                                 [type]="ui.forms.input.type.number"
+                                 [type]="ui.input.type.number"
                                  [max]="100"
                                  [min]="0"></jnt-input>
                     </jnt-col>
@@ -82,7 +82,7 @@
                   <jnt-row>
                     <jnt-col [mobile]="6" [tablet]="12" [desktop]="6">
                       <jnt-input formControlName="health"
-                                 [type]="ui.forms.input.type.number"
+                                 [type]="ui.input.type.number"
                                  [max]="100"
                                  [min]="0"></jnt-input>
                     </jnt-col>
@@ -173,7 +173,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-bar-indicator" [target]="types.indicator"></app-component-api>
           <app-component-api selector="jnt-circle-bar" [target]="types.bar"></app-component-api>
         </jnt-stack>

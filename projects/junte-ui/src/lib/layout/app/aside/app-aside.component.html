@@ -6,7 +6,7 @@
         <span *ngIf="!collapsed">{{'action.hide_sidebar' | translate}}</span>
       </jnt-stack>
     </button>
-    <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [align]="ui.align.stretch">
       <ng-container *ngTemplateOutlet="asideContentTemplate;
         context: {collapsed: collapsed, toggle: toggle.bind(this)}">
       </ng-container>

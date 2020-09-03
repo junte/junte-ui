@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PopoverComponent, TabComponent, UI } from 'junte-ui';
-import { PopoverPlacements, PopoverTriggers } from 'projects/junte-ui/src/lib/overlays/popover/enums';
+import { PopoverComponent, Position, TabComponent, Triggers, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum ContentType {
@@ -20,13 +19,13 @@ export class PopoverTestComponent {
   localUi = LocalUI;
   types = {popover: PopoverComponent};
   keys = Object.keys;
-  triggerType = PopoverTriggers;
+  triggerType = Triggers;
   contentType = ContentType;
 
   titleControl = this.fb.control(true);
-  triggerControl = this.fb.control(PopoverTriggers.hover);
+  triggerControl = this.fb.control(Triggers.hover);
   contentTypeControl = this.fb.control(ContentType.default);
-  layoutControl = this.fb.control(PopoverPlacements.top);
+  layoutControl = this.fb.control(Position.top);
 
   builder = this.fb.group({
     trigger: this.triggerControl,

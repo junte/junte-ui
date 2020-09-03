@@ -57,7 +57,7 @@
                                   (click)="close()"></jnt-button>
                     </ng-template>
                     <ng-template #emptyOptionsTemplate let-query="query" let-close="close">
-                      <jnt-stack [align]="ui.flex.align.center">
+                      <jnt-stack [align]="ui.align.center">
                         <p>Hero <b>{{query}}</b> not found</p>
                         <jnt-button text="Create"
                                     [icon]="ui.icons.add"
@@ -66,11 +66,11 @@
                     </ng-template>
                     <ng-template #heroOptionTemplate let-hero="value">
                       <jnt-stack [orientation]="ui.orientation.horizontal"
-                                 [align]="ui.flex.align.center"
-                                 [justify]="ui.flex.justify.between">
+                                 [align]="ui.align.center"
+                                 [justify]="ui.justify.between">
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [gutter]="ui.gutter.small"
-                                   [align]="ui.flex.align.center">
+                                   [align]="ui.align.center">
                           <jnt-avatar [image]="hero.avatar"
                                       [size]="ui.size.small"></jnt-avatar>
                           <div>{{hero.name}}</div>
@@ -87,7 +87,7 @@
 
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="mode"
@@ -100,11 +100,11 @@
                       <jnt-select-option label="Single"
                                          i18n-label="@@label.single"
                                          [icon]="localUi.icons.single"
-                                         [key]="ui.forms.select.mode.single"></jnt-select-option>
+                                         [key]="ui.select.mode.single"></jnt-select-option>
                       <jnt-select-option label="Multiple"
                                          i18n-label="@@label.multiple"
                                          [icon]="localUi.icons.multiple"
-                                         [key]="ui.forms.select.mode.multiple"></jnt-select-option>
+                                         [key]="ui.select.mode.multiple"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -248,7 +248,7 @@
                               [keyField]="'key'" ]]>
                     <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
                     <ng-container *ngIf="modeControl.value">
-                      <![CDATA[[mode]="ui.forms.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
+                      <![CDATA[[mode]="ui.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
                     </ng-container>
                     <![CDATA[[search]="]]>{{searchControl.value}}<![CDATA["]]>
                     <ng-container *ngIf="sizeControl.value">
@@ -276,7 +276,7 @@
                       <ng-template #heroOptionTemplate let-option="value">
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [gutter]="ui.gutter.small"
-                                   [align]="ui.flex.align.center">
+                                   [align]="ui.align.center">
                           <jnt-avatar [size]="ui.size.small"></jnt-avatar>
                           <div>]]>{{<![CDATA[hero.name]]>}}<![CDATA[</div>
                         </jnt-stack>
@@ -298,7 +298,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-select" [target]="types.select"></app-component-api>
           <app-component-api selector="jnt-select-option" [target]="types.option"></app-component-api>
         </jnt-stack>

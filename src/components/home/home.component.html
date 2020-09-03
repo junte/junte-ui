@@ -17,7 +17,7 @@
                      i18n-title="@@label.components"
                      [icon]="localUi.icons.top.components"
                      [link]="['/components']"
-                     [matching]="ui.url.matching.wildcard">
+                     [matching]="ui.matching.wildcard">
       </jnt-menu-item>
       <jnt-menu-item
         [title]="'Team'"
@@ -559,8 +559,8 @@
     </ng-container>
     <jnt-container>
       <jnt-stack content [gutter]="ui.gutter.large"
-                 [align]="ui.flex.align.end"
-                 [justify]="ui.flex.justify.between">
+                 [align]="ui.align.end"
+                 [justify]="ui.justify.between">
 
         <jnt-stack [gutter]="ui.gutter.huge">
 
@@ -582,8 +582,11 @@
 
             <jnt-col [tablet]="4" [mobile]="12" [padding]="ui.gutter.large">
               <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small"
-                         [align]="ui.flex.align.center"
-                         [jntPopover]="{contentTemplate: openedTemplate, trigger: ui.overlays.popover.trigger.click}" tag>
+                         [align]="ui.align.center"
+                         [jntPopover]="{
+                           contentTemplate: openedTemplate,
+                           trigger: ui.trigger.click
+                         }" tag>
                 <div icon>
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -597,8 +600,11 @@
 
             <jnt-col [tablet]="4" [mobile]="12" [padding]="ui.gutter.large">
               <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small"
-                         [align]="ui.flex.align.center"
-                         [jntPopover]="{contentTemplate: nativeTemplate, trigger: ui.overlays.popover.trigger.click}" tag>
+                         [align]="ui.align.center"
+                         [jntPopover]="{
+                           contentTemplate: nativeTemplate,
+                           trigger: ui.trigger.click
+                         }" tag>
                 <div icon>
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -619,8 +625,11 @@
 
             <jnt-col [tablet]="4" [mobile]="12" [padding]="ui.gutter.large">
               <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small"
-                         [align]="ui.flex.align.center"
-                         [jntPopover]="{contentTemplate: multilingualTemplate, trigger: ui.overlays.popover.trigger.click}" tag>
+                         [align]="ui.align.center"
+                         [jntPopover]="{
+                           contentTemplate: multilingualTemplate,
+                           trigger: ui.trigger.click
+                         }" tag>
                 <div icon>
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">

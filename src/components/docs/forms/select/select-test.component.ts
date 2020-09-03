@@ -63,7 +63,7 @@ export class SelectTestComponent implements OnInit {
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable({emitEvent: false}) : this.selectControl.enable({emitEvent: false}));
     this.modeControl.valueChanges.subscribe(mode => this.selectControl
-      .setValue(mode === UI.forms.select.mode.single ? [] : null));
+      .setValue(mode === UI.select.mode.single ? [] : null));
   }
 
   trackHero(index, hero: { id: number }) {

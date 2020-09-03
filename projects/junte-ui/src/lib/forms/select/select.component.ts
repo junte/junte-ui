@@ -221,7 +221,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Select mode',
-    path: 'ui.forms.select.mode',
+    path: 'ui.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })

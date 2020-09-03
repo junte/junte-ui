@@ -19,7 +19,7 @@ export class BadgeTestComponent implements OnInit {
   positionControl = this.fb.control(null);
   overflowControl = this.fb.control(null);
   valueControl = this.fb.control(5);
-  colorControl = this.fb.control(this.ui.color.purple);
+  colorControl = this.fb.control(UI.color.purple);
   textControl = this.fb.control(true);
 
   builder = this.fb.group({

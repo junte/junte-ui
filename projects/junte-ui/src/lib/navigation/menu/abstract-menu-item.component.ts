@@ -45,7 +45,7 @@ export abstract class AbstractMenuItemComponent {
 
   @PropertyApi({
     description: 'Methods of matching',
-    path: 'ui.url.matching',
+    path: 'ui.matching',
     default: UrlMatching.fullMatch,
     options: [UrlMatching.fullMatch,
       UrlMatching.wildcard]

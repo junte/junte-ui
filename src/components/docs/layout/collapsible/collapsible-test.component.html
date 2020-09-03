@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9211%3A0">
   </app-resources>
 
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
     <jnt-tabs [features]="[ui.feature.adapted]">
       <jnt-tab title="Preview"
                i18n-title="@@label.preview"
@@ -27,7 +27,7 @@
                     <ng-template *ngIf="titleControl.value" #collapsibleTitleTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [gutter]="ui.gutter.small"
-                                 [align]="ui.flex.align.center">
+                                 [align]="ui.align.center">
                         <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
                         <p>We’re determined to examine filters from your profile’s <b> data </b>,
                           You see <b> personalized </b> job offers.</p>
@@ -42,7 +42,7 @@
             </jnt-col>
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
-                <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-stack [align]="ui.align.stretch">
                   <jnt-form-item>
                     <jnt-form-label>Features</jnt-form-label>
                     <jnt-checkbox formControlName="title"
@@ -93,7 +93,7 @@
     <ng-template #collapsibleTitleTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal"
         [gutter]="ui.gutter.small"
-        [align]="ui.flex.align.center">
+        [align]="ui.align.center">
         <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
           <p>We’re determined to examine filters from your profile’s <b> data </b>,
             You see <b> personalized </b> job offers.</p>

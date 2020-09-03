@@ -85,7 +85,7 @@ export class SwitcherTestComponent implements OnInit {
     });
 
     this.modeControl.valueChanges.subscribe(mode => this.heroControl
-      .setValue(mode === UI.forms.select.mode.single ? [] : null));
+      .setValue(mode === UI.select.mode.single ? [] : null));
 
     // this.modeControl.valueChanges.subscribe(mode => mode === SelectMode.single ?
     //   this.selectAllControl.disable({emitEvent: false}) : this.selectAllControl.enable({emitEvent: false}));
