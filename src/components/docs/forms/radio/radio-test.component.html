@@ -65,7 +65,7 @@
                             </jnt-radio>
                           </ng-container>
                         </jnt-radio-group>
-                        <jnt-form-message [type]="ui.forms.validators.typeError.required">
+                        <jnt-form-message [type]="ui.typeError.required">
                           Please select the hero
                         </jnt-form-message>
                       </jnt-form-control>
@@ -86,10 +86,10 @@
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
-                                 [justify]="ui.flex.justify.between">
+                                 [justify]="ui.justify.between">
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"
-                                    [type]="ui.forms.button.type.submit"></jnt-button>
+                                    [type]="ui.button.type.submit"></jnt-button>
                         <jnt-button text="Reset"
                                     i18n-text="@@action.reset"
                                     [scheme]="ui.scheme.secondary"
@@ -104,7 +104,7 @@
 
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="size">Size</jnt-form-label>

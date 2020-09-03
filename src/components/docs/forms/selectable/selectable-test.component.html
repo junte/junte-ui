@@ -22,7 +22,7 @@
             <app-browser-preview preview>
               <ng-template #document>
                 <form [formGroup]="selectableForm">
-                  <jnt-stack [align]="ui.flex.align.center">
+                  <jnt-stack [align]="ui.align.center">
                     <jnt-stack [orientation]="ui.orientation.horizontal">
                       <jnt-card data-hero *ngFor="let hero of heroes"
                                  formControlName="selectable"
@@ -37,8 +37,8 @@
                     </jnt-stack>
                     <ng-template #multipleTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
-                                 [align]="ui.flex.align.center"
-                                 [justify]="ui.flex.justify.between">
+                                 [align]="ui.align.center"
+                                 [justify]="ui.justify.between">
                         <ng-template #emptyTemplate>
                           <jnt-avatar [size]="ui.size.large" [icon]="ui.icons.question"></jnt-avatar>
                         </ng-template>
@@ -56,7 +56,7 @@
                         </jnt-avatars-list>
                       </jnt-stack>
                     </ng-template>
-                    <ng-container *ngIf="modeControl.value === ui.forms.select.mode.single else multipleTemplate"
+                    <ng-container *ngIf="modeControl.value === ui.select.mode.single else multipleTemplate"
                                   [ngSwitch]="selectableControl.value">
                       <jnt-avatar *ngSwitchCase="hero.spiderman"
                                   [size]="ui.size.large"
@@ -78,7 +78,7 @@
 
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="mode"
@@ -91,11 +91,11 @@
                       <jnt-select-option label="Single"
                                          i18n-label="@@label.single"
                                          [icon]="localUi.icons.single"
-                                         [key]="ui.forms.select.mode.single"></jnt-select-option>
+                                         [key]="ui.select.mode.single"></jnt-select-option>
                       <jnt-select-option label="Multiple"
                                          i18n-label="@@label.multiple"
                                          [icon]="localUi.icons.multiple"
-                                         [key]="ui.forms.select.mode.multiple"></jnt-select-option>
+                                         [key]="ui.select.mode.multiple"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>

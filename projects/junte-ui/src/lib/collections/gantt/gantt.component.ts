@@ -44,7 +44,7 @@ export class GanttComponent implements ControlValueAccessor {
 
   @PropertyApi({
     description: 'Type of gantt',
-    type: 'ui.collections.gantt.type.month | ui.collections.gantt.type.year',
+    type: 'ui.gantt.type.month | ui.gantt.type.year',
     default: GanttTypes.month,
   })
   @Input()

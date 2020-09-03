@@ -1,6 +1,6 @@
 import { Component, ContentChild, HostBinding, Input } from '@angular/core';
 import { ContentApi } from '../../core/decorators/api';
-import { AppLayoutPosition } from './enums';
+import { Placement } from '../../core/enums/placement';
 import { AppHeaderComponent } from './header/app-header.component';
 
 @Component({
@@ -24,5 +24,5 @@ export class AppLayoutComponent {
   }
 
   @HostBinding('attr.data-position')
-  @Input() position: AppLayoutPosition = AppLayoutPosition.default;
+  @Input() position: Placement = Placement.default;
 }

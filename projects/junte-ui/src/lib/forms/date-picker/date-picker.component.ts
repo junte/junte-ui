@@ -3,12 +3,12 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse, setHours, setMinutes } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
-import { DatePickerFeatures } from './enums';
 
 const INPUT_DELAY = 500;
 
@@ -33,7 +33,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.host') readonly host = 'jnt-date-picker-host';
 
   ui = UI;
-  datePickerFeatures = DatePickerFeatures;
   timeMeridian = 'AM';
   clockType = CLOCK_TYPE;
   currentView: CLOCK_TYPE = CLOCK_TYPE.hours;
@@ -67,11 +66,11 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Date picker features',
-    path: 'ui.form.datePicker.features',
-    options: [DatePickerFeatures.clock]
+    path: 'ui.feature',
+    options: [Feature.clock]
   })
   @HostBinding('attr.features')
-  @Input() features: DatePickerFeatures[] = [];
+  @Input() features: Feature[] = [];
 
   @ViewChild('calendarTemplate', {static: true}) calendarTemplate;
 

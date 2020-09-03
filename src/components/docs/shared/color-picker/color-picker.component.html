@@ -1,5 +1,5 @@
 <jnt-form [formGroup]="form">
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
     <jnt-form-item>
       <jnt-form-control>
         <jnt-select formControlName="color">
@@ -8,7 +8,7 @@
             </jnt-select-option>
             <ng-template #selectOptionTemplate let-color="value">
               <jnt-stack [orientation]="ui.orientation.horizontal"
-                         [align]="ui.flex.align.center">
+                         [align]="ui.align.center">
                 <jnt-dot class="dot" [color]="color.value"></jnt-dot>
                 {{color.key | titlecase}}
               </jnt-stack>

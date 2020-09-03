@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611">
   </app-resources>
 
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
       <p>Each WEB application requires base components for working:
@@ -116,7 +116,7 @@
                             <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
                           </ng-template>
                           <ng-template #actionContentTemplate>
-                            <jnt-stack [align]="ui.flex.align.stretch">
+                            <jnt-stack [align]="ui.align.stretch">
                               <p>Your personal events calendar</p>
                               <jnt-calendar></jnt-calendar>
                             </jnt-stack>
@@ -176,11 +176,11 @@
                     <jnt-app-aside #aside>
                       <ng-template let-collapsed="collapsed" #asideContentTemplate>
                         <div aside>
-                          <jnt-stack [align]="ui.flex.align.center">
+                          <jnt-stack [align]="ui.align.center">
                             <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
                                         [image]="'assets/images/elon.jpeg'"></jnt-avatar>
                             <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
-                                       [align]="ui.flex.align.center">
+                                       [align]="ui.align.center">
                               <div>Elon Musk</div>
                               <jnt-label label="CEO of SpaceX"
                                          [color]="ui.color.paleNavy"></jnt-label>
@@ -241,7 +241,7 @@
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="app-layout-test.template.html">
                   <![CDATA[
-                  <jnt-app-layout [position]="ui.layout.app.position.fixed">
+                  <jnt-app-layout [position]="ui.placement.fixed">
                     ]]>
                     <ng-container *ngIf="headerControl.value">
                       <![CDATA[
@@ -328,12 +328,12 @@
                         <![CDATA[
                         <jnt-app-aside #aside>
                           <ng-template let-collapsed="collapsed" #asideContentTemplate>
-                            <jnt-stack aside [align]="ui.flex.align.stretch">
-                              <jnt-stack [align]="ui.flex.align.center">
+                            <jnt-stack aside [align]="ui.align.stretch">
+                              <jnt-stack [align]="ui.align.center">
                                 <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
                                 ></jnt-avatar>
                                 <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
-                                           [align]="ui.flex.align.center">
+                                           [align]="ui.align.center">
                                   <div>Elon Musk</div>
                                   <jnt-label label="CEO of SpaceX"
                                              [color]="ui.color.paleNavy"></jnt-label>
@@ -400,7 +400,7 @@
 
       <jnt-tab title="API" [icon]="localUi.icons.api">
         <ng-template #tabContentTemplate>
-          <jnt-stack [align]="ui.flex.align.stretch">
+          <jnt-stack [align]="ui.align.stretch">
             <app-component-api selector="jnt-app-layout" [target]="types.app"></app-component-api>
             <app-component-api selector="jnt-app-header" [target]="types.header"></app-component-api>
             <app-component-api selector="jnt-app-header-actions" [target]="types.actions"></app-component-api>

@@ -133,7 +133,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input scheme',
-    path: 'ui.forms.input.scheme',
+    path: 'ui.input.scheme',
     default: InputScheme.normal,
     options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
   })
@@ -143,7 +143,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input typeControl',
-    path: 'ui.forms.input.type',
+    path: 'ui.input.type',
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })

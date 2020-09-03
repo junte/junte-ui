@@ -81,7 +81,7 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="scheme"
@@ -205,11 +205,11 @@
                     <jnt-switcher-option label="Button"
                                          i18n-label="@@label.button"
                                          [icon]="localUi.icons.button"
-                                         [value]="ui.forms.button.type.button"></jnt-switcher-option>
+                                         [value]="ui.button.type.button"></jnt-switcher-option>
                     <jnt-switcher-option label="Submit"
                                          i18n-label="@@label.submit"
                                          [icon]="localUi.icons.submit"
-                                         [value]="ui.forms.button.type.submit"></jnt-switcher-option>
+                                         [value]="ui.button.type.submit"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
 
@@ -304,7 +304,7 @@
   </ng-container>
   <ng-container *ngIf="typeControl.value">
     <![CDATA[
-    [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+    [type]="ui.button.type.]]>{{typeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="loadingControl.value">
     <![CDATA[
@@ -371,7 +371,7 @@
       </ng-container>
       <ng-container *ngIf="typeControl.value">
         <![CDATA[
-        [type]="ui.forms.button.type.]]>{{typeControl.value}}<![CDATA["]]>
+        [type]="ui.button.type.]]>{{typeControl.value}}<![CDATA["]]>
       </ng-container>
       <ng-container *ngIf="loadingControl.value">
         <![CDATA[
@@ -412,7 +412,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-button" [target]="types.button"></app-component-api>
           <app-component-api selector="jnt-button-group" [target]="types.group"></app-component-api>
         </jnt-stack>

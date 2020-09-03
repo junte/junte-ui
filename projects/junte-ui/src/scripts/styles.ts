@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
-import * as debug from 'gulp-debug';
+// import * as debug from 'gulp-debug';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as map from 'map-stream';
 import * as path from 'path';
@@ -61,7 +61,7 @@ export class Gulpfile {
   @Task()
   styles() {
     return gulp.src([buildFiles])
-      .pipe(debug())
+      // .pipe(debug())
       .pipe(map((file, cb) => {
         const composition = (JSON.parse(file.contents.toString()) as Builder).composition;
         if (!!composition) {

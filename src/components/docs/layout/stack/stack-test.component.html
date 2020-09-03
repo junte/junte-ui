@@ -28,7 +28,7 @@
               <ng-template #document let-width="width" let-height="height">
                 <div axis1 [attr.type]="typeControl.value"></div>
                 <div axis2 [attr.type]="typeControl.value"></div>
-                <jnt-stack stack [type]="typeControl.value"
+                <jnt-stack stack [orientation]="typeControl.value"
                            [spacing]="spacingControl.value"
                            [gutter]="gutterControl.value"
                            [align]="alignControl.value"
@@ -38,18 +38,18 @@
                   <ng-container [ngSwitch]="typeControl.value">
                     <ng-container *ngSwitchCase="ui.orientation.vertical">
                       <div block
-                           *ngFor="let block of (wrapControl.value === ui.flex.wrap.wrap ? 8 : 4) | mockArray"
+                           *ngFor="let block of (wrapControl.value === ui.wrap.wrap ? 8 : 4) | mockArray"
                            [style.height.px]="height / 8"
-                           [style.width.px]="alignControl.value !== ui.flex.align.stretch ? 40 + 20 * (block % 4) : null">
+                           [style.width.px]="alignControl.value !== ui.align.stretch ? 40 + 20 * (block % 4) : null">
                         {{block + 1}}
                       </div>
                     </ng-container>
 
                     <ng-container *ngSwitchDefault>
                       <div block
-                           *ngFor="let block of (wrapControl.value === ui.flex.wrap.wrap ? 8 : 4) | mockArray"
+                           *ngFor="let block of (wrapControl.value === ui.wrap.wrap ? 8 : 4) | mockArray"
                            [style.width.px]="width / 6"
-                           [style.height.px]="alignControl.value !== ui.flex.align.stretch ? 40 + 20 * (block % 4) : null">
+                           [style.height.px]="alignControl.value !== ui.align.stretch ? 40 + 20 * (block % 4) : null">
                         {{block + 1}}
                       </div>
                     </ng-container>
@@ -60,7 +60,7 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="typeControl"
@@ -166,23 +166,23 @@
                       <jnt-select-option label="Start"
                                          i18n-label="@@label.start"
                                          [icon]="localUi.icons.start"
-                                         [key]="ui.flex.align.start"></jnt-select-option>
+                                         [key]="ui.align.start"></jnt-select-option>
                       <jnt-select-option label="Center"
                                          i18n-label="@@label.center"
                                          [icon]="localUi.icons.center"
-                                         [key]="ui.flex.align.center"></jnt-select-option>
+                                         [key]="ui.align.center"></jnt-select-option>
                       <jnt-select-option label="End"
                                          i18n-label="@@label.end"
                                          [icon]="localUi.icons.end"
-                                         [key]="ui.flex.align.end"></jnt-select-option>
+                                         [key]="ui.align.end"></jnt-select-option>
                       <jnt-select-option label="Baseline"
                                          i18n-label="@@label.baseline"
                                          [icon]="localUi.icons.baseline"
-                                         [key]="ui.flex.align.baseline"></jnt-select-option>
+                                         [key]="ui.align.baseline"></jnt-select-option>
                       <jnt-select-option label="Stretch"
                                          i18n-label="@@label.scretch"
                                          [icon]="localUi.icons.stretch"
-                                         [key]="ui.flex.align.stretch"></jnt-select-option>
+                                         [key]="ui.align.stretch"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -197,27 +197,27 @@
                       <jnt-select-option label="Start"
                                          i18n-label="@@label.start"
                                          [icon]="localUi.icons.start"
-                                         [key]="ui.flex.justify.start"></jnt-select-option>
+                                         [key]="ui.justify.start"></jnt-select-option>
                       <jnt-select-option label="Center"
                                          i18n-label="@@label.center"
                                          [icon]="localUi.icons.center"
-                                         [key]="ui.flex.justify.center"></jnt-select-option>
+                                         [key]="ui.justify.center"></jnt-select-option>
                       <jnt-select-option label="End"
                                          i18n-label="@@label.end"
                                          [icon]="localUi.icons.end"
-                                         [key]="ui.flex.justify.end"></jnt-select-option>
+                                         [key]="ui.justify.end"></jnt-select-option>
                       <jnt-select-option label="Between"
                                          i18n-label="@@label.between"
                                          [icon]="localUi.icons.between"
-                                         [key]="ui.flex.justify.between"></jnt-select-option>
+                                         [key]="ui.justify.between"></jnt-select-option>
                       <jnt-select-option label="Around"
                                          i18n-label="@@label.around"
                                          [icon]="localUi.icons.around"
-                                         [key]="ui.flex.justify.around"></jnt-select-option>
+                                         [key]="ui.justify.around"></jnt-select-option>
                       <jnt-select-option label="Evenly"
                                          i18n-label="@@label.evenly"
                                          [icon]="localUi.icons.evenly"
-                                         [key]="ui.flex.justify.evenly"></jnt-select-option>
+                                         [key]="ui.justify.evenly"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -232,15 +232,15 @@
                       <jnt-select-option label="No wrap"
                                          i18n-label="@@label.no_wrap"
                                          [icon]="localUi.icons.nowrap"
-                                         [key]="ui.flex.wrap.noWrap"></jnt-select-option>
+                                         [key]="ui.wrap.noWrap"></jnt-select-option>
                       <jnt-select-option label="Wrap"
                                          i18n-label="@@label.wrap"
                                          [icon]="localUi.icons.wrap"
-                                         [key]="ui.flex.wrap.wrap"></jnt-select-option>
+                                         [key]="ui.wrap.wrap"></jnt-select-option>
                       <jnt-select-option label="Reverse"
                                          i18n-label="@@label.reverse"
                                          [icon]="localUi.icons.reverse"
-                                         [key]="ui.flex.wrap.reverse"></jnt-select-option>
+                                         [key]="ui.wrap.reverse"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -274,7 +274,7 @@
 ]]>
   <ng-container *ngIf="typeControl.value">
     <![CDATA[
-    [type]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
+    [orientation]="ui.orientation.]]>{{typeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="gutterControl.value">
     <![CDATA[
@@ -286,15 +286,15 @@
   </ng-container>
   <ng-container *ngIf="alignControl.value">
     <![CDATA[
-    [align]="ui.flex.align.]]>{{alignControl.value}}<![CDATA["]]>
+    [align]="ui.align.]]>{{alignControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="justifyControl.value">
     <![CDATA[
-    [justify]="ui.flex.justify.]]>{{justifyControl.value}}<![CDATA["]]>
+    [justify]="ui.justify.]]>{{justifyControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="wrapControl.value">
     <![CDATA[
-    [wrap]="ui.flex.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
+    [wrap]="ui.wrap.]]>{{wrapControl.value}}<![CDATA["]]>
   </ng-container>
   <![CDATA[>
   <div>1</div>

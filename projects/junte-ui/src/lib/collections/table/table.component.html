@@ -1,12 +1,12 @@
 <form [formGroup]="form">
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
     <jnt-stack [orientation]="ui.orientation.horizontal"
-               [justify]="ui.flex.justify.between"
-               [align]="ui.flex.align.center"
-               [wrap]="ui.flex.wrap.wrap">
+               [justify]="ui.justify.between"
+               [align]="ui.align.center"
+               [wrap]="ui.wrap.wrap">
       <jnt-stack [orientation]="ui.orientation.horizontal"
-                 [align]="ui.flex.align.center"
-                 [wrap]="ui.flex.wrap.wrap">
+                 [align]="ui.align.center"
+                 [wrap]="ui.wrap.wrap">
         <jnt-button data-button [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
                     [outline]="ui.outline.transparent"
@@ -21,7 +21,7 @@
       </jnt-stack>
 
       <div>
-        <jnt-input *ngIf="features | includes : tableFeatures.search"
+        <jnt-input *ngIf="features | includes : ui.feature.search"
                    formControlName="q"
                    [icon]="ui.icons.search"
                    [placeholder]="'label.search' | translate">
@@ -30,7 +30,7 @@
 
     </jnt-stack>
 
-    <jnt-stack [align]="ui.flex.align.stretch">
+    <jnt-stack [align]="ui.align.stretch">
       <div data-table>
         <table>
           <div data-spinner *ngIf="source.length && progress.loading">
@@ -60,7 +60,10 @@
                             [outline]="ui.outline.transparent"
                             [icon]="ui.icons.actions"
                             (attached)="popover = $event"
-                            [jntPopover]="{contentTemplate: dropdownTemplate, trigger: ui.overlays.popover.trigger.click}">
+                            [jntPopover]="{
+                              contentTemplate: dropdownTemplate,
+                              trigger: ui.trigger.click
+                            }">
                 </jnt-button>
                 <ng-template #dropdownTemplate>
                   <ng-container *ngTemplateOutlet="tableRowActionsTemplate;context: {row: row, hide: hideActions.bind(this)}"></ng-container>

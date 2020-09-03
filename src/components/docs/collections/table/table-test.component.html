@@ -49,7 +49,7 @@
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
               <app-table-data [(state)]="state"
-                              [search]="searchControl.value ? [ui.collections.table.features.search] : null"
+                              [search]="searchControl.value ? [ui.feature.search] : null"
                               [filter]="filterControl.value"
                               [actions]="actionsControl.value">
               </app-table-data>
@@ -119,10 +119,10 @@
 <![CDATA[
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form>
-    <jnt-stack [align]="ui.flex.align.stretch" [gutter]="ui.gutter.normal">
+    <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table formControlName="table" ]]>
         <ng-container *ngIf="searchControl.value">
-          <![CDATA[[features]="[ui.collections.table.features.search]"]]>
+          <![CDATA[[features]="[ui.feature.search]"]]>
         </ng-container>
         <![CDATA[>
         <jnt-table-column title="#" sort="id">
@@ -189,7 +189,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jnt-table" [target]="types.table"></app-component-api>
           <app-component-api selector="jnt-table-column" [target]="types.column"></app-component-api>
         </jnt-stack>

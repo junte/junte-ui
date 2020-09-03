@@ -1,19 +1,19 @@
 <jnt-stack [orientation]="orientation"
            [gutter]="spacer"
-           [align]="ui.flex.align.stretch"
-           [wrap]="ui.flex.wrap.wrap">
+           [align]="ui.align.stretch"
+           [wrap]="ui.wrap.wrap">
   <ng-container *ngFor="let item of items">
     <div data-top [attr.data-disabled]="item.disabled">
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
               contentTemplate: collapsed || (orientation === orientationEnum.horizontal && !!item.submenu)
                 ? submenuTemplate : null,
-              placement: orientation === orientationEnum.vertical
-                ? ui.overlays.popover.placement.right
-                : ui.overlays.popover.placement.bottom,
+              position: orientation === orientationEnum.vertical
+                ? ui.position.right
+                : ui.position.bottom,
               trigger: orientation === orientationEnum.horizontal || !collapsed
-                ? ui.overlays.popover.trigger.click
-                : ui.overlays.popover.trigger.hover,
+                ? ui.trigger.click
+                : ui.trigger.hover,
               features: [ui.feature.dropdown]
             }">
         <jnt-spinner *ngIf="item.loading" [size]="ui.size.small"></jnt-spinner>

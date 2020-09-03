@@ -22,7 +22,10 @@
               <jnt-link [outline]="ui.outline.ghost"
                         title="developers tools"
                         [icon]="ui.icons.chevronDown"
-                        [jntPopover]="{contentTemplate: youtubeTemplate, trigger: ui.overlays.popover.trigger.click}">
+                        [jntPopover]="{
+                          contentTemplate: youtubeTemplate,
+                          trigger: ui.trigger.click
+                        }">
               </jnt-link>
             </p>
             <ng-template #youtubeTemplate>
@@ -94,7 +97,7 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <app-component-api selector="jntFor"
                              [type]="selectorType.StructuralDirective"
                              [target]="types.for"></app-component-api>

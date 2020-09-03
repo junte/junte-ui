@@ -21,7 +21,7 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-form [formGroup]="form">
-                  <jnt-stack [align]="ui.flex.align.stretch">
+                  <jnt-stack [align]="ui.align.stretch">
                     <jnt-form-item>
                       <jnt-chart formControlName="hero"
                                  title="Hero"
@@ -54,11 +54,11 @@
                 </jnt-form>
                 <ng-template #heroOptionTemplate let-hero="data">
                   <jnt-stack [orientation]="ui.orientation.horizontal"
-                             [align]="ui.flex.align.center"
-                             [justify]="ui.flex.justify.between">
+                             [align]="ui.align.center"
+                             [justify]="ui.justify.between">
                     <jnt-stack [orientation]="ui.orientation.horizontal"
                                [gutter]="ui.gutter.small"
-                               [align]="ui.flex.align.center">
+                               [align]="ui.align.center">
                       <jnt-avatar [image]="hero.avatar"
                                   [size]="ui.size.small"></jnt-avatar>
                       <div>{{hero.title}}</div>
@@ -73,7 +73,7 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
                 <jnt-form-item>
                   <jnt-checkbox formControlName="template"
                                 label="Custom option"
@@ -129,11 +129,11 @@
   <![CDATA[
   <ng-template #heroOptionTemplate let-hero="data">
     <jnt-stack [orientation]="ui.orientation.horizontal"
-               [align]="ui.flex.align.center"
-               [justify]="ui.flex.justify.between">
+               [align]="ui.align.center"
+               [justify]="ui.justify.between">
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [gutter]="ui.gutter.small"
-                 [align]="ui.flex.align.center">
+                 [align]="ui.align.center">
         <jnt-avatar [image]="hero.avatar"
                     [size]="ui.size.small"></jnt-avatar>
         <div>]]>{{<![CDATA[hero.title]]>}}<![CDATA[</div>

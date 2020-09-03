@@ -3,7 +3,6 @@ import { PropertyApi } from '../../core/decorators/api';
 import { FlexAlign, FlexJustify, FlexWrap } from '../../core/enums/flex';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
-import { StackType } from './enums';
 
 @Component({
   selector: 'jnt-stack',
@@ -31,16 +30,11 @@ export class StackComponent {
   @HostBinding('attr.data-wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
 
-  @Input() set type(type: StackType) {
-    this._orientation = !!type ? (type === StackType.vertical
-      ? Orientation.vertical : Orientation.horizontal) : Orientation.vertical;
-  }
-
   @PropertyApi({
     description: 'Defined main axis of elements align',
     path: 'ui.orientation',
-    default: StackType.vertical,
-    options: [StackType.vertical, StackType.horizontal]
+    default: Orientation.vertical,
+    options: [Orientation.vertical, Orientation.horizontal]
   })
   @Input() set orientation(orientation: Orientation) {
     this._orientation = orientation || Orientation.vertical;
@@ -79,7 +73,7 @@ export class StackComponent {
 
   @PropertyApi({
     description: 'Align of elements in main axis',
-    path: 'ui.flex.align',
+    path: 'ui.align',
     default: FlexAlign.start,
     options: [FlexAlign.start,
       FlexAlign.center,
@@ -93,7 +87,7 @@ export class StackComponent {
 
   @PropertyApi({
     description: 'Align of elements in secondary axis',
-    path: 'ui.flex.justify',
+    path: 'ui.justify',
     default: FlexJustify.start,
     options: [FlexJustify.start,
       FlexJustify.center,
@@ -108,7 +102,7 @@ export class StackComponent {
 
   @PropertyApi({
     description: 'Wrapping of elements in main axis',
-    path: 'ui.flex.wrap',
+    path: 'ui.wrap',
     default: FlexWrap.noWrap,
     options: [FlexWrap.noWrap,
       FlexWrap.wrap,

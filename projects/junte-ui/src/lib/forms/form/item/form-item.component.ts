@@ -36,7 +36,7 @@ export class FormItemComponent {
 
   @PropertyApi({
     description: 'Align of elements in form item',
-    path: 'ui.flex.align',
+    path: 'ui.align',
     default: FlexAlign.stretch,
     options: [FlexAlign.start,
       FlexAlign.center,

@@ -20,7 +20,7 @@ export class SelectableTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  modeControl = this.fb.control(UI.forms.select.mode.single);
+  modeControl = this.fb.control(UI.select.mode.single);
   disabledControl = this.fb.control(false);
   allowEmptyControl = this.fb.control(true);
 

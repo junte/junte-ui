@@ -18,12 +18,12 @@ import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { isEqual } from '../../core/utils/equal';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
 import { TableColumnComponent } from './column/table-column.component';
-import { TableFeatures } from './enums';
 import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
 
 const FILTER_DELAY = 500;
@@ -47,7 +47,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   private subscriptions = {fetcher: new Subscription()};
   popover: PopoverComponent;
 
-  tableFeatures = TableFeatures;
   progress = {loading: false};
   source: any[] = [];
 
@@ -67,10 +66,10 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Table features',
-    path: 'ui.collections.table.features',
-    options: [TableFeatures.search]
+    path: 'ui.feature',
+    options: [Feature.search]
   })
-  @Input() features: TableFeatures[] = [];
+  @Input() features: Feature[] = [];
 
   @PropertyApi({
     description: 'Table fetch function',

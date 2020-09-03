@@ -5,14 +5,14 @@
 <ng-template #optionDefaultTemplate let-query="query" let-icon="icon" let-label="label">
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
-             [align]="ui.flex.align.center">
+             [align]="ui.align.center">
     <jnt-icon *ngIf="icon" [icon]="icon"></jnt-icon>
     <div>{{label}}</div>
   </jnt-stack>
 </ng-template>
 
 <jnt-stack data-select [orientation]="ui.orientation.horizontal"
-           [gutter]="ui.gutter.tiny" [align]="ui.flex.align.center"
+           [gutter]="ui.gutter.tiny" [align]="ui.align.center"
            tabindex="0">
   <div *ngIf="label" data-label>{{label}}</div>
   <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
@@ -51,7 +51,7 @@
     <ng-template #noOptionsTemplate>
       <div data-skeleton>
         <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
-                      [type]="ui.layout.skeleton.type.text" [lines]="5"></jnt-skeleton>
+                      [type]="ui.skeleton.type.text" [lines]="5"></jnt-skeleton>
       </div>
       <ng-template #optionsNotFoundTemplate>
         <div data-empty-options>
@@ -67,7 +67,7 @@
         <div data-loading *ngIf="loading">
           <jnt-spinner></jnt-spinner>
         </div>
-        <jnt-stack [align]="ui.flex.align.stretch">
+        <jnt-stack [align]="ui.align.stretch">
           <div data-options-header *ngIf="!!optionsHeaderTemplate">
             <ng-container *ngTemplateOutlet="optionsHeaderTemplate;context: {close: close.bind(this)}"></ng-container>
           </div>

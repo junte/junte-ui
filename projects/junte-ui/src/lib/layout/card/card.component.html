@@ -2,10 +2,10 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.flex.align.stretch">
+<jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.align.stretch">
   <div data-line *ngIf="color" [style.background-color]="color"></div>
 
-  <jnt-stack data-main [align]="ui.flex.align.stretch">
+  <jnt-stack data-main [align]="ui.align.stretch">
     <div *ngIf="!!headerTemplate" data-header>
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
@@ -52,7 +52,12 @@
             [size]="ui.size.small"
             [icon]="ui.icons.actions"
             (attached)="popover = $event"
-            [jntPopover]="{contentTemplate: dropdownTemplate, placement: ui.overlays.popover.placement.right, trigger: ui.overlays.popover.trigger.click}"></jnt-button>
+            [jntPopover]="{
+              contentTemplate: dropdownTemplate,
+              position: ui.position.right,
+              trigger: ui.trigger.click
+            }">
+</jnt-button>
 
 <ng-template #dropdownTemplate>
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>

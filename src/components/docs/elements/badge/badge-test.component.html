@@ -25,7 +25,7 @@
                 <ng-container
                   *ngIf="positionControl.value === ui.position.inline || !positionControl.value; else positionTemplate">
                   <jnt-stack [orientation]="ui.orientation.horizontal"
-                             [align]="ui.flex.align.center">
+                             [align]="ui.align.center">
                     <div block>
                       <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
                     </div>
@@ -53,7 +53,7 @@
           </jnt-col>
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
                   <jnt-form-label for="position"

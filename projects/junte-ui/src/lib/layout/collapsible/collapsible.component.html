@@ -1,7 +1,7 @@
 <ng-template #defaultTitleTemplate>
     <jnt-stack [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.small"
-               [align]="ui.flex.align.center">
+               [align]="ui.align.center">
         <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
         <span>{{title}}</span>
     </jnt-stack>
@@ -10,8 +10,8 @@
 <jnt-stack data-title tabindex="0"
            [attr.active]="opened"
            [orientation]="ui.orientation.horizontal"
-           [align]="ui.flex.align.center"
-           [justify]="ui.flex.justify.between"
+           [align]="ui.align.center"
+           [justify]="ui.justify.between"
            (click)="opened = !opened">
     <ng-container *ngTemplateOutlet="!!titleTemplate ? titleTemplate : defaultTitleTemplate"></ng-container>
     <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>

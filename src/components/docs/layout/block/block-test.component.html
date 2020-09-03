@@ -12,7 +12,7 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2389%3A4155">
   </app-resources>
 
-  <jnt-stack [align]="ui.flex.align.stretch">
+  <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
       <p>Block is a grouping of elements related to one piece of functionality on the page.</p>
@@ -36,7 +36,7 @@
                     <jnt-skeleton skeleton [lines]="3" [animated]="false"></jnt-skeleton>
                     <ng-template *ngIf="footerControl.value" #blockFooterTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
-                                 [justify]="ui.flex.justify.between">
+                                 [justify]="ui.justify.between">
                         <jnt-button text="Ok"
                                     i18n-text="@@action.ok"></jnt-button>
                         <jnt-button [scheme]="ui.scheme.secondary"
@@ -56,7 +56,7 @@
             </jnt-col>
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
-                <jnt-stack [align]="ui.flex.align.stretch">
+                <jnt-stack [align]="ui.align.stretch">
 
                   <jnt-form-item>
                     <jnt-form-label for="padding"
@@ -202,7 +202,7 @@
                     </ng-container>
                     <ng-container *ngIf="stateControl.value">
                       <![CDATA[
-                      [state]="ui.layout.block.state.]]>{{stateControl.value}}<![CDATA["]]>
+                      [state]="ui.block.state.]]>{{stateControl.value}}<![CDATA["]]>
                     </ng-container>
                     <ng-container *ngIf="adaptedControl.value">
                       <![CDATA[
@@ -215,7 +215,7 @@
                       <![CDATA[
                       <ng-template #blockFooterTemplate>
                         <jnt-stack [orientation]="ui.orientation.horizontal"
-                                   [justify]="ui.flex.justify.between">
+                                   [justify]="ui.justify.between">
                           <jnt-button text="Ok">
                           </jnt-button>
                           <jnt-button [scheme]="ui.scheme.secondary"

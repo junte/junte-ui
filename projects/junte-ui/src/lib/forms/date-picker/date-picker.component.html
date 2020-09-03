@@ -3,7 +3,7 @@
                [placeholder]="placeholder || ''" formControlName="input"
                [jntPopover]="{
                  contentTemplate: calendarTemplate,
-                 trigger: ui.overlays.popover.trigger.click,
+                 trigger: ui.trigger.click,
                  features: [ui.feature.dropdown],
                  minWidth: '300px'
                }"
@@ -18,11 +18,11 @@
   </jnt-input>
 
     <ng-template #calendarTemplate>
-      <jnt-stack data-dropdown [type]="ui.layout.stack.type.horizontal" [align]="ui.flex.align.center" [gutter]="ui.gutter.none">
+      <jnt-stack data-dropdown [orientation]="ui.orientation.horizontal" [align]="ui.align.center" [gutter]="ui.gutter.none">
         <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
-        <div *ngIf="features | includes : datePickerFeatures.clock" time-picker class="timePicker">
+        <div *ngIf="features | includes : ui.feature.clock" time-picker class="timePicker">
           <div time-panel>
-            <jnt-stack [type]="ui.layout.stack.type.horizontal" time>
+            <jnt-stack [orientation]="ui.orientation.horizontal" time>
               <div selected-time>
                 <span
                   [attr.active]="currentView === clockType.hours"

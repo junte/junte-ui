@@ -24,12 +24,12 @@
                 <jnt-form [formGroup]="form" data-form>
                   <jnt-date-picker formControlName="flightDate"
                                    placeholder="Please enter the date"
-                                   [features]="clockControl.value ? ui.forms.datePicker.features.clock : null">
+                                   [features]="clockControl.value ? ui.feature.clock : null">
                   </jnt-date-picker>
                 </jnt-form>
                 <jnt-stack *ngIf="!!flightDateControl.value"
-                           [type]="ui.layout.stack.type.horizontal"
-                           [align]="ui.flex.align.center"
+                           [orientation]="ui.orientation.horizontal"
+                           [align]="ui.align.center"
                            [gutter]="ui.gutter.small">
                   <div>You choose:</div>
                   <jnt-label
@@ -42,7 +42,7 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
 
-              <jnt-stack [align]="ui.flex.align.stretch">
+              <jnt-stack [align]="ui.align.stretch">
                 <jnt-form-item>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="clock"
@@ -90,7 +90,7 @@
                 <![CDATA[
                 <jnt-date-picker ]]>
                   <ng-container *ngIf="clockControl.value">
-                    <![CDATA[[features]="ui.forms.datePicker.features.clock"]]>
+                    <![CDATA[[features]="ui.feature.clock"]]>
                   </ng-container>
                   <![CDATA[>
                 </jnt-date-picker>
