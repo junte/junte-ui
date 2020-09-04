@@ -25,6 +25,7 @@ import { DocsComponent } from './docs.component';
 import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import {MenuModule} from '../../../projects/junte-ui/src/lib/navigation/menu/menu.module';
 
 export function getHighlightLanguages() {
   return {
@@ -35,29 +36,30 @@ export function getHighlightLanguages() {
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HighlightModule,
-    OutletModule,
-    AppLayoutModule.forRoot(JUNTE_UI_CONFIG),
-    MenuModule.forRoot(JUNTE_UI_CONFIG),
-    BreadcrumbsModule.forRoot(JUNTE_UI_CONFIG),
-    ThemeSwitcherModule.forRoot(JUNTE_UI_CONFIG),
-    PopoverModule.forRoot(JUNTE_UI_CONFIG),
-    ModalModule.forRoot(JUNTE_UI_CONFIG),
-    StackModule.forRoot(JUNTE_UI_CONFIG),
-    BadgeModule.forRoot(JUNTE_UI_CONFIG),
-    TranslateModule,
-    SelectLangModule,
-    AppFooterModule,
-    DocsRoutingModule,
-    ModalTestModule,
-    ResponsiveModule,
-    ComponentsModule,
-    AnalyticsDirectivesModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HighlightModule,
+        OutletModule,
+        AppLayoutModule.forRoot(JUNTE_UI_CONFIG),
+        MenuModule.forRoot(JUNTE_UI_CONFIG),
+        BreadcrumbsModule.forRoot(JUNTE_UI_CONFIG),
+        ThemeSwitcherModule.forRoot(JUNTE_UI_CONFIG),
+        PopoverModule.forRoot(JUNTE_UI_CONFIG),
+        ModalModule.forRoot(JUNTE_UI_CONFIG),
+        StackModule.forRoot(JUNTE_UI_CONFIG),
+        BadgeModule.forRoot(JUNTE_UI_CONFIG),
+        TranslateModule,
+        SelectLangModule,
+        AppFooterModule,
+        DocsRoutingModule,
+        ModalTestModule,
+        ResponsiveModule,
+        ComponentsModule,
+        AnalyticsDirectivesModule,
+        MenuModule
+    ],
   declarations: [
     DocsComponent,
   ],

@@ -59,6 +59,7 @@ export class LocalUI {
       badge: 'badge:font:junte-ui-test-layout',
       label: 'label:font:junte-ui-test-layout',
       dot: 'dot:font:junte-ui-test-layout',
+      cropper: 'cropper:font:junte-ui-test-layout',
       forms: 'forms:font:junte-ui-test-default',
       overlays: 'overlays:font:junte-ui-test-default',
       modal: 'modal:font:junte-ui-test-layout',
