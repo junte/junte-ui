@@ -50,7 +50,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   });
 
   @ViewChild('input', {read: ElementRef, static: false})
-  input: ElementRef<any>;
+  input: ElementRef;
 
   @HostBinding('attr.data-focused')
   focused = false;
@@ -233,7 +233,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.inputControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(value => this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
+      .subscribe(value =>
+        this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
     this.formattedControl.valueChanges
       .subscribe(formatted => {
@@ -249,24 +250,25 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     formatted: string
   } {
     let i, j = 0;
-    const chars = value || '';
+    const chars = !!value ? value.replace(/\D/gi, '') : (value || '');
     let formatted = '';
     for (i = 0; i < this.mask.length; i++) {
       const char = this.mask.charAt(i);
-      formatted += char === DIGIT_MASK_CHAR
-        ? chars.charAt(j++) : char;
+      formatted += char === DIGIT_MASK_CHAR ? (chars.charAt(j++) || DIGIT_MASK_CHAR) : char;
       if (j >= chars.length) {
         break;
       }
     }
     formatted += this.mask.substr(i + 1);
-    return {input: chars.substr(0, j) || null, formatted};
+    return {
+      input: chars.substr(0, j) || null, formatted
+    };
   }
 
   keydownMask(event: KeyboardEvent) {
     let value = this.inputControl.value || '';
-
     let data;
+
     if (DIGIT_KEYS.includes(event.key)) {
       data = this.masking(value + event.key);
     } else if (event.key === BACKSPACE || event.key === UNIDENTIFIED) {
@@ -283,9 +285,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   keydown(event: KeyboardEvent) {
-    if (this.type === InputType.number &&
-      (this.inputControl.value && this.inputControl.value.length === 1 && event.key === BACKSPACE)) {
-      this.inputControl.patchValue(null);
+    if (this.type === InputType.number) {
+      if (this.inputControl.value && this.inputControl.value.length === 1 && event.key === BACKSPACE) {
+        this.inputControl.setValue(null);
+      }
     }
     if (event.key === ENTER) {
       event.preventDefault();
@@ -315,18 +318,17 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.onTouched();
     if (this.type === InputType.number) {
       if (this.inputControl.value === '' || this.inputControl.value === null) {
-        this.inputControl.patchValue(null);
+        this.inputControl.setValue(null);
         return;
       }
 
-      let number = +this.inputControl.value;
-      if (this.max !== null && number > this.max) {
-        number = this.max;
+      if (this.min !== null && +this.inputControl.value < this.min) {
+        this.inputControl.setValue(this.min);
       }
-      if (this.min !== null && number < this.min) {
-        number = this.min;
+
+      if (this.max != null && +this.inputControl.value > this.max) {
+        this.inputControl.setValue(this.max);
       }
-      this.inputControl.patchValue(number);
     }
   }
 
@@ -341,18 +343,18 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   up() {
     let number = +this.inputControl.value;
     if (this.inputControl.value === '' || this.inputControl.value === null) {
-      this.inputControl.patchValue(number);
+      this.inputControl.setValue(number);
     } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.patchValue(number + +this.step) : this.inputControl.patchValue(++number);
+      this.step ? this.inputControl.setValue(number + +this.step) : this.inputControl.setValue(++number);
     }
   }
 
   down() {
     let number = +this.inputControl.value;
     if (this.inputControl.value === '' || this.inputControl.value === null) {
-      this.inputControl.patchValue(number);
+      this.inputControl.setValue(number);
     } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.patchValue(number - +this.step) : this.inputControl.patchValue(--number);
+      this.step ? this.inputControl.setValue(number - +this.step) : this.inputControl.setValue(--number);
     }
   }
 }

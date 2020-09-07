@@ -1,5 +1,6 @@
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
+import { DatePickerType } from '../../forms/date-picker/enums';
 import { ValidationTypeError } from '../../forms/form/enums';
 import { InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
@@ -57,6 +58,7 @@ export class UI {
   static trigger = Triggers;
   static text = {align: TextAlign, transform: TextTransform};
   static grid = {row: {align: RowAlign, justify: RowJustify}};
+  static datePicker = {type: DatePickerType};
   static skeleton = {type: SkeletonType};
   static pager = {mode: PagerMode};
   static input = {type: InputType, scheme: InputScheme};

@@ -7,12 +7,12 @@ import { en } from './core/i18n/en';
 import { I18nLoader } from './core/i18n/loader';
 
 export function i18nLoaderFactory(config?: JunteUIModuleConfig) {
-  const conf = config || {};
+  const conf = config || <JunteUIModuleConfig>{};
   return new I18nLoader(conf.i18n || en);
 }
 
 export function dfnsFactory(config: JunteUIModuleConfig) {
-  const conf = config || {};
+  const conf = config || <JunteUIModuleConfig>{};
   const service = new DateFnsConfigurationService();
   const locale = conf.locale || {};
   service.setLocale(locale.dfns || dfnsEnUS);
@@ -22,6 +22,16 @@ export function dfnsFactory(config: JunteUIModuleConfig) {
 @Injectable()
 export class JunteUIModuleConfig {
   i18n?: any;
+  masks?: {
+    date?: string,
+    time?: string,
+    datetime?: string
+  };
+  formats?: {
+    date?: string,
+    time?: string,
+    datetime?: string
+  };
   locale?: {
     dfns?: Locale
   };

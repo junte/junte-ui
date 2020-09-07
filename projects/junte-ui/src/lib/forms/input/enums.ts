@@ -4,6 +4,7 @@ export enum InputType {
   number = 'number',
   email = 'email'
 }
+
 export enum InputScheme {
   normal = 'normal',
   failed = 'failed',

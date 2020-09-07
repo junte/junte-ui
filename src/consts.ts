@@ -17,6 +17,16 @@ export const CURRENT_LANGUAGE = (() => {
 })();
 export let JUNTE_UI_CONFIG = {
   i18n: jntEn,
+  masks: {
+    date: '__.__.____',
+    time: '__:__',
+    datetime: '__.__.____ __:__'
+  },
+  formats: {
+    date: 'dd.MM.yyyy',
+    time: 'HH:mm',
+    datetime: 'dd.MM.yyyy HH:mm'
+  },
   locale: {
     dfns: dfnsEnUS
   }
@@ -25,6 +35,16 @@ switch (CURRENT_LANGUAGE) {
   case Language.ru:
     JUNTE_UI_CONFIG = {
       i18n: jntRu,
+      masks: {
+        date: '__.__.____',
+        time: '__:__',
+        datetime: '__.__.____ __:__'
+      },
+      formats: {
+        date: 'dd.MM.yyyy',
+        time: 'HH:mm',
+        datetime: 'dd.MM.yyyy HH:mm'
+      },
       locale: {
         dfns: dfnsRu
       }
