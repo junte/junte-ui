@@ -19,7 +19,7 @@ export class FormMessageComponent {
 
   @PropertyApi({
     description: 'Validation type error',
-    path: 'ui.validators.typeError',
+    path: 'ui.typeError',
     options: [ValidationTypeError.required, ValidationTypeError.minLength]
   })
   @Input()
