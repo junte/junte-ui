@@ -48,6 +48,17 @@
     </tr>
     <tr>
       <td>
+        <code>$jnt-black-color</code>
+      </td>
+      <td>
+        <code>#000000</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.black"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <code>$jnt-teal-color</code>
       </td>
       <td>
@@ -352,7 +363,7 @@
     </tr>
     <tr>
       <td>
-        <code>$secondary-dark-color</code>
+        <code>$jnt-secondary-dark-color</code>
       </td>
       <td>
         <code>$jnt-blue-100-color</code>
@@ -611,7 +622,7 @@
         <code>$jnt-corner-normal</code>
       </td>
       <td>
-        <code>$jnt-corner-base * 20</code>
+        <code>$jnt-corner-base * 2</code>
       </td>
       <td>
         <div block corner-normal></div>
@@ -637,7 +648,7 @@
     <tbody>
     <tr>
       <td>
-        <code>$shadow-light</code>
+        <code>$jnt-shadow-light</code>
       </td>
       <td>
         <code>0px 4px 10px rgba($jnt-black-color, .15)</code>
@@ -666,6 +677,29 @@
       </td>
       <td>
         <div shadow primary></div>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Outline shadows</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-outline-shadow-small</code>
+      </td>
+      <td>
+        <code>0px 0px 0px 2px</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-outline-shadow-normal</code>
+      </td>
+      <td>
+        <code>0px 0px 0px 4px</code>
       </td>
     </tr>
     </tbody>
@@ -762,6 +796,17 @@
         <jnt-label [color]="ui.color.gray800"></jnt-label>
       </td>
     </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-text-inverse-color</code>
+      </td>
+      <td>
+        <code>$jnt-white-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.white"></jnt-label>
+      </td>
+    </tr>
     </tbody>
     <thead>
     <tr>
@@ -769,6 +814,15 @@
     </tr>
     </thead>
     <tbody>
+    <tr>
+      <td>
+        <code>$jnt-font-size-tiny</code>
+      </td>
+      <td>
+        <code>11px</code>
+      </td>
+      <td style="font-size: 11px">Lorem ipsum dolor</td>
+    </tr>
     <tr>
       <td>
         <code>$jnt-font-size-small</code>
@@ -789,12 +843,39 @@
     </tr>
     <tr>
       <td>
-        <code>$jnt-font-size-large</code>
+        <code>$jnt-font-size-normal</code>
       </td>
       <td>
         <code>16px</code>
       </td>
       <td style="font-size: 16px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-big</code>
+      </td>
+      <td>
+        <code>24px</code>
+      </td>
+      <td style="font-size: 24px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-large</code>
+      </td>
+      <td>
+        <code>32px</code>
+      </td>
+      <td style="font-size: 32px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-huge</code>
+      </td>
+      <td>
+        <code>48px</code>
+      </td>
+      <td style="font-size: 48px">Lorem ipsum</td>
     </tr>
     <tr>
       <td>
@@ -816,12 +897,30 @@
     </tr>
     <tr>
       <td>
-        <code>$jnt-font-weight-bold</code>
+        <code>$jnt-font-weight-semi-bold</code>
       </td>
       <td>
         <code>600</code>
       </td>
       <td style="font-weight: 600">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-bold</code>
+      </td>
+      <td>
+        <code>700</code>
+      </td>
+      <td style="font-weight: 700">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-extra-bold</code>
+      </td>
+      <td>
+        <code>800</code>
+      </td>
+      <td style="font-weight: 800">Lorem ipsum dolor</td>
     </tr>
     <tr>
       <td>
@@ -917,6 +1016,20 @@
       </td>
       <td style="font-size: 14px">H6</td>
     </tr>
+    <tr>
+      <td>
+        <code>$jnt-headings-margin-bottom</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-normal</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.normal">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
     </tbody>
     <thead>
     <tr>
@@ -924,6 +1037,19 @@
     </tr>
     </thead>
     <tbody>
+    <tr>
+      <td>
+        <code>$jnt-control-gutter</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-small</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
     <tr>
       <td>
         <code>$jnt-control-border-color</code>
@@ -940,7 +1066,7 @@
         <code>$jnt-control-switch-label-color</code>
       </td>
       <td>
-        <code>$jnt-gray-900-color</code>
+        <code>$jnt-primary-text-color</code>
       </td>
       <td>
         <jnt-label [color]="ui.color.gray900"></jnt-label>
@@ -951,7 +1077,7 @@
         <code>$jnt-control-background</code>
       </td>
       <td>
-        <code>$jnt-white-color</code>
+        <code>$jnt-primary-background</code>
       </td>
       <td>
         <jnt-label [color]="ui.color.white"></jnt-label>
@@ -1035,6 +1161,71 @@
       </td>
     </tr>
     </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Layout</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-body-color</code>
+      </td>
+      <td>
+        <code>$jnt-primary-text-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-app-layout-font-family</code>
+      </td>
+      <td>
+        <code>$jnt-font-family-base</code>
+      </td>
+      <td>
+        Open Sans
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-lp-layout-font-family</code>
+      </td>
+      <td>
+        'Montserrat', sans-serif
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-font-weight</code>
+      </td>
+      <td>
+        <code>$jnt-font-weight-base</code>
+      </td>
+      <td style="font-weight: 400">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-line-height</code>
+      </td>
+      <td>
+        <code>$jnt-line-height-base</code>
+      </td>
+      <td style="line-height: 1.5">
+        Lorem ipsum dolor <br> Lorem ipsum dolor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base</code>
+      </td>
+      <td style="font-size: 14px">Lorem ipsum dolor</td>
+    </tr>
   </table>
 
 </jnt-container>
