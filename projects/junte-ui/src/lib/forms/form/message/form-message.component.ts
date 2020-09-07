@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { Validator } from '../../../core/enums/validator';
 import { PropertyApi } from '../../../core/decorators/api';
-import { ValidationTypeError } from '../enums';
 
 @Component({
   selector: 'jnt-form-message',
@@ -19,10 +19,10 @@ export class FormMessageComponent {
 
   @PropertyApi({
     description: 'Validation type error',
-    path: 'ui.typeError',
-    options: [ValidationTypeError.required, ValidationTypeError.minLength]
+    path: 'ui.validator',
+    options: [Validator.required, Validator.minLength]
   })
   @Input()
-  type: ValidationTypeError = null;
+  validator: Validator = null;
 
 }
