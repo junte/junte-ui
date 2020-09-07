@@ -25,7 +25,6 @@ import { DocsComponent } from './docs.component';
 import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import {MenuModule} from '../../../projects/junte-ui/src/lib/navigation/menu/menu.module';
 
 export function getHighlightLanguages() {
   return {
@@ -57,8 +56,7 @@ export function getHighlightLanguages() {
         ModalTestModule,
         ResponsiveModule,
         ComponentsModule,
-        AnalyticsDirectivesModule,
-        MenuModule
+        AnalyticsDirectivesModule
     ],
   declarations: [
     DocsComponent,
