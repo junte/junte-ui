@@ -11,6 +11,7 @@ import {
   IconModule,
   LabelModule,
   LinkModule,
+  SelectModule,
   StackModule,
   SwitcherModule,
   TabsModule
@@ -38,6 +39,7 @@ import { DatePickerTestComponent } from './date-picker-test.component';
     DatePickerModule.forRoot(JUNTE_UI_CONFIG),
     CheckboxModule.forRoot(JUNTE_UI_CONFIG),
     LabelModule.forRoot(JUNTE_UI_CONFIG),
+    SelectModule.forRoot(JUNTE_UI_CONFIG),
     SharedModule
   ],
   exports: [

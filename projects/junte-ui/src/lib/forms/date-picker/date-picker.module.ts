@@ -8,6 +8,7 @@ import { BlockModule } from '../../layout/block/block.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
+import { ButtonModule } from '../button/button.module';
 import { CalendarModule } from '../calendar/calendar.module';
 import { FormModule } from '../form/form.module';
 import { InputModule } from '../input/input.module';
@@ -34,7 +35,8 @@ import { StyleLeftPipe, StyleTopPipe, TimeFormatPipe } from './date-picker.pipes
     ResponsiveModule,
     StackModule,
     PopoverModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    ButtonModule
   ],
   entryComponents: [
     DatePickerComponent
