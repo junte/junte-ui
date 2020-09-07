@@ -114,7 +114,7 @@ export class FormComponent implements OnInit {
           const control = component.getControl();
           if (!!control) {
             const messages = component.messages;
-            messages.forEach(message => message.active = !!(control.hasError(message.type) && control.dirty));
+            messages.forEach(message => message.active = !!(control.hasError(message.validator) && control.dirty));
           }
         });
     }

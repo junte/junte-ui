@@ -1,7 +1,6 @@
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
-import { ValidationTypeError } from '../../forms/form/enums';
 import { InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
 import { RowAlign, RowJustify } from '../../layout/grid/enums';
@@ -28,6 +27,7 @@ import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { Triggers } from './triggers';
 import { UrlMatching } from './url';
+import { Validator } from './validator';
 import { Width } from './width';
 
 export class UI {
@@ -53,7 +53,7 @@ export class UI {
   static justify = FlexJustify;
   static direction = FlexDirection;
   static wrap = FlexWrap;
-  static typeError = ValidationTypeError;
+  static validator = Validator;
   static placement = Placement;
   static trigger = Triggers;
   static text = {align: TextAlign, transform: TextTransform};

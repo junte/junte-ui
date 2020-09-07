@@ -1,4 +1,4 @@
-export enum ValidationTypeError {
+export enum Validator {
   required = 'required',
   minLength = 'minlength',
   maxLength = 'maxlength',
