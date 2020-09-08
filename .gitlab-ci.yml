@@ -120,7 +120,7 @@ publish_npm_rc:
     - rc
 
 publish_npm_prod:
-  extends: .publish_npm
+  extends: .base_publish_npm
   script:
     - npm run publish:prod
   only:
