@@ -4,12 +4,11 @@ variables:
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}
   DOCKER_TEST_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_test
   DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_build
-  GIT_STRATEGY: none
 
 stages:
   - build
-  - deploy
   - publish
+  - deploy
   - publish_npm
 
 build:
