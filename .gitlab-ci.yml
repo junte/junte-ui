@@ -1,9 +1,9 @@
 image: docker:18
 variables:
-  DOCKER_DRIVER: overlay
-  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
-  DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE:build-$CI_PIPELINE_IID
-  DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE:cache
+  DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE/cache
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}
+  DOCKER_TEST_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_test
+  DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_build
   GIT_STRATEGY: none
 
 stages:
@@ -13,64 +13,90 @@ stages:
 
 build:
   stage: build
-  variables:
-    GIT_DEPTH: 5
-    GIT_STRATEGY: fetch
   services:
     - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
     - docker build
-          --cache-from $DOCKER_CACHE_IMAGE
-          --target build
-          -t $DOCKER_CACHE_IMAGE
-          -t $DOCKER_BUILD_IMAGE
-          -f deploy/Dockerfile .
-    - docker build 
-             --cache-from $DOCKER_CACHE_IMAGE 
-             -t $DOCKER_IMAGE 
-             -f deploy/Dockerfile .
+      --cache-from $DOCKER_CACHE_IMAGE
+      --target build
+      -t $DOCKER_CACHE_IMAGE
+      -t $DOCKER_BUILD_IMAGE
+      -f deploy/Dockerfile .
+    - docker build
+      --cache-from $DOCKER_CACHE_IMAGE
+      -t $DOCKER_IMAGE
+      -f deploy/Dockerfile .
     - docker push $DOCKER_IMAGE
     - docker push $DOCKER_CACHE_IMAGE
     - docker push $DOCKER_BUILD_IMAGE
 
-.deploy:
-  image: junte/helm-deploy:1.3-helm2.16.1
+.base_publish:
+  stage: publish
+  services:
+    - docker:dind
+  dependencies: []
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker pull $DOCKER_IMAGE
+  script:
+    - docker tag $DOCKER_IMAGE $TARGET_IMAGE
+    - docker push $TARGET_IMAGE
+
+publish_unstable:
+  extends: .base_publish
+  only:
+    - master
+  variables:
+    TARGET_IMAGE: $CI_REGISTRY_IMAGE/unstable:${CI_PIPELINE_ID}
+
+publish_rc:
+  extends: .base_publish
+  only:
+    - rc
+  variables:
+    TARGET_IMAGE: $CI_REGISTRY_IMAGE/rc:${CI_PIPELINE_ID}
+
+publish_stable:
+  extends: .base_publish
+  only:
+    - prod
+  variables:
+    TARGET_IMAGE: $CI_REGISTRY_IMAGE/stable:${CI_PIPELINE_ID}
+
+.base_deploy:
+  image: curlimages/curl:7.72.0
   stage: deploy
   dependencies: []
-  variables:
-    GIT_DEPTH: 5
-    GIT_STRATEGY: fetch
-    HELM_IMAGE_TAG: $CI_COMMIT_REF_NAME-$CI_PIPELINE_IID
   script:
-    - helm_deploy
+    - curl -k -X POST -d "component=${DEPLOYER_COMPONENT}&key=${DEPLOYER_KEY}&tag=${CI_PIPELINE_ID}" ${DEPLOYER_HOST}
 
-deploy_master:
-  extends: .deploy
+deploy_development:
+  extends: .base_deploy
+  only:
+    - master
   environment:
     name: development
     url: $SITE_ADDRESS
-  only:
-    - master
 
-deploy_rc:
-  extends: .deploy
+deploy_staging:
+  extends: .base_deploy
+  only:
+    - rc
   environment:
     name: staging
     url: $SITE_ADDRESS
-  only:
-    - rc
 
-deploy_prod:
-  extends: .deploy
+deploy_production:
+  extends: .base_deploy
+  only:
+    - prod
   environment:
     name: production
     url: $SITE_ADDRESS
-  only:
-    - prod
 
-.publish_npm:
+.base_publish_npm:
   image: $DOCKER_BUILD_IMAGE
   stage: publish_npm
   dependencies: []
@@ -80,14 +106,14 @@ deploy_prod:
     - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_npm_master:
-  extends: .publish_npm
+  extends: .base_publish_npm
   script:
     - npm run publish
   only:
     - master
 
 publish_npm_rc:
-  extends: .publish_npm
+  extends: .base_publish_npm
   script:
     - npm run publish:rc
   only:
