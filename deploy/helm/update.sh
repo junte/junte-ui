@@ -11,4 +11,4 @@ source ${RELEASE_PATH}/env
 
 _HELM_OPTS="${@:2} -f ${RELEASE_PATH}/config.yaml --namespace ${K8S_NAMESPACE} ."
 
-helm upgrade --cleanup-on-fail ${HELM_RELEASE} ${_HELM_OPTS}; 
+helm upgrade --reuse-values --cleanup-on-fail ${HELM_RELEASE} ${_HELM_OPTS} 
