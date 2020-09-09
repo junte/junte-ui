@@ -6,11 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ModalModule, PopoverModule } from 'junte-ui';
+import { JunteUiModule, ModalModule, PopoverModule } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { CURRENT_LANGUAGE, JUNTE_UI_CONFIG } from 'src/consts';
 import { Language } from 'src/enums/language';
-import { JunteUiModule } from '../../../projects/junte-ui/src/lib/junte-ui.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -103,8 +102,8 @@ export function i18nLoaderFactory() {
       },
       defaultLanguage: 'en'
     }),
-    PopoverModule.forRoot(JUNTE_UI_CONFIG),
-    ModalModule.forRoot(JUNTE_UI_CONFIG),
+    PopoverModule,
+    ModalModule,
   ],
   providers: providers,
   bootstrap: [

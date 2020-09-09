@@ -1,5 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
+import { NgModule } from '@angular/core';
 import { AppLayoutModule } from './app/app-layout.module';
 import { BlockModule } from './block/block.module';
 import { CardModule } from './card/card.module';
@@ -28,17 +27,4 @@ import { StackModule } from './stack/stack.module';
   ]
 })
 export class LayoutModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<LayoutModule> {
-    return {
-      ngModule: LayoutModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

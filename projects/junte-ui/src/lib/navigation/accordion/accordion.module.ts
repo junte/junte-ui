@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -27,17 +26,4 @@ import { AccordionSectionComponent } from './section/accordion-section.component
   ]
 })
 export class AccordionModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<AccordionModule> {
-    return {
-      ngModule: AccordionModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

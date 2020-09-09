@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
@@ -28,17 +27,4 @@ import { CardComponent } from './card.component';
   ]
 })
 export class CardModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<CardModule> {
-    return {
-      ngModule: CardModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

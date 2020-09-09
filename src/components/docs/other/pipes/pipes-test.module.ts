@@ -7,7 +7,7 @@ import { PipesTestComponent } from './pipes-test.component';
 @NgModule({
   imports: [
     CommonModule,
-    GridModule.forRoot(JUNTE_UI_CONFIG),
+    GridModule,
     TextPipesModule
   ],
   exports: [

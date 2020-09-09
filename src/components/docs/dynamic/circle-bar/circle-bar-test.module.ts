@@ -22,18 +22,18 @@ import { CircleBarTestComponent } from './circle-bar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    IconModule.forRoot(JUNTE_UI_CONFIG),
-    AvatarModule.forRoot(JUNTE_UI_CONFIG),
-    LinkModule.forRoot(JUNTE_UI_CONFIG),
-    StackModule.forRoot(JUNTE_UI_CONFIG),
-    TabsModule.forRoot(JUNTE_UI_CONFIG),
-    GridModule.forRoot(JUNTE_UI_CONFIG),
-    AccordionModule.forRoot(JUNTE_UI_CONFIG),
-    FormModule.forRoot(JUNTE_UI_CONFIG),
-    CircleBarModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule,
+    AvatarModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    AccordionModule,
+    FormModule,
+    CircleBarModule,
     FormsModule,
     SharedModule,
-    InputModule.forRoot(JUNTE_UI_CONFIG)
+    InputModule
   ],
   exports: [
     CircleBarTestComponent

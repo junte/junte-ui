@@ -35,7 +35,7 @@ import { HomeComponent } from './home.component';
     IconModule,
     MenuModule,
     LabelModule,
-    PopoverModule.forRoot(JUNTE_UI_CONFIG),
+    PopoverModule,
     HomeRoutingModule,
     ResponsiveModule,
     ArrayPipesModule,

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { StackModule } from '../../layout/stack/stack.module';
 import { IconModule } from '../icon/icon.module';
 import { PictureComponent } from './picture.component';
@@ -22,17 +21,4 @@ import { PictureComponent } from './picture.component';
   ]
 })
 export class PictureModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<PictureModule> {
-    return {
-      ngModule: PictureModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

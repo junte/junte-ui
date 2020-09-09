@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { ProgressBarComponent } from './progress-bar.component';
 
 @NgModule({
@@ -18,17 +17,4 @@ import { ProgressBarComponent } from './progress-bar.component';
   ]
 })
 export class ProgressBarModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<ProgressBarModule> {
-    return {
-      ngModule: ProgressBarModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

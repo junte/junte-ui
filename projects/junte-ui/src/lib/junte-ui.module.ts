@@ -1,10 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CollectionsModule } from './collections/collections.module';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
+import { JUNTE_DEFAULT_CONFIG, JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
 import { SelectableModule } from './core/directives/selectable';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';
+import { deepMerge } from './core/utils/deep-merge';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { ElementsModule } from './elements/elements.module';
 import { UiFormsModule } from './forms/forms.module';
@@ -38,7 +39,8 @@ export class JunteUiModule {
       providers: [
         {
           provide: JunteUIModuleConfig,
-          useValue: config
+          useFactory: deepMerge,
+          deps: [JUNTE_DEFAULT_CONFIG, config]
         },
         ...JUNTE_MODULE_PROVIDES
       ]

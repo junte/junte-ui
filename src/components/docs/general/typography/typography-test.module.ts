@@ -8,10 +8,10 @@ import { ResourcesModule } from 'src/components/docs/shared/resources/resources.
 @NgModule({
   imports: [
     CommonModule,
-    IconModule.forRoot(JUNTE_UI_CONFIG),
-    LinkModule.forRoot(JUNTE_UI_CONFIG),
-    StackModule.forRoot(JUNTE_UI_CONFIG),
-    GridModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule,
+    LinkModule,
+    StackModule,
+    GridModule,
     ResourcesModule
   ],
   exports: [

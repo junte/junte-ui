@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { SwitchComponent } from './switch.component';
@@ -24,17 +23,4 @@ import { SwitchComponent } from './switch.component';
   ]
 })
 export class SwitchModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<SwitchModule> {
-    return {
-      ngModule: SwitchModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }
