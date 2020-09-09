@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { LoggerModule } from 'ngx-logger';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { MenuModule } from '../../navigation/menu/menu.module';
@@ -40,17 +39,4 @@ import { LpSlideComponent } from './slide/lp-slide.component';
   ]
 })
 export class LpModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<LpModule> {
-    return {
-      ngModule: LpModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

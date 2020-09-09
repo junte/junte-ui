@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -30,17 +29,4 @@ import { ButtonGroupComponent } from './group/button-group.component';
   ]
 })
 export class ButtonModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<ButtonModule> {
-    return {
-      ngModule: ButtonModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

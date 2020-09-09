@@ -8,10 +8,10 @@ import { HomeComponent } from './home.component';
 @NgModule({
     imports: [
         CommonModule,
-        LinkModule.forRoot(JUNTE_UI_CONFIG),
-        IconModule.forRoot(JUNTE_UI_CONFIG),
-        GridModule.forRoot(JUNTE_UI_CONFIG),
-        TimelineModule.forRoot(JUNTE_UI_CONFIG),
+        LinkModule,
+        IconModule,
+        GridModule,
+        TimelineModule,
         CodeHighlightModule
     ],
   exports: [

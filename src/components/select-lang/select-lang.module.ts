@@ -15,7 +15,7 @@ import { SelectLangComponent } from './select-lang.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SelectModule.forRoot(JUNTE_UI_CONFIG)
+    SelectModule
   ]
 })
 export class SelectLangModule {

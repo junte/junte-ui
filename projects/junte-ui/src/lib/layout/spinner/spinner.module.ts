@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { SpinnerComponent } from './spinner.component';
 
 @NgModule({
@@ -18,17 +17,4 @@ import { SpinnerComponent } from './spinner.component';
   ]
 })
 export class SpinnerModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<SpinnerModule> {
-    return {
-      ngModule: SpinnerModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

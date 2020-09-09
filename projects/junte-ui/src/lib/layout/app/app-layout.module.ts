@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -66,17 +65,4 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
   ]
 })
 export class AppLayoutModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<AppLayoutModule> {
-    return {
-      ngModule: AppLayoutModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

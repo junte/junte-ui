@@ -10,18 +10,18 @@ import { ProgressBarTestComponent } from './progress-bar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    IconModule.forRoot(JUNTE_UI_CONFIG),
-    LinkModule.forRoot(JUNTE_UI_CONFIG),
-    StackModule.forRoot(JUNTE_UI_CONFIG),
-    TabsModule.forRoot(JUNTE_UI_CONFIG),
-    GridModule.forRoot(JUNTE_UI_CONFIG),
-    AccordionModule.forRoot(JUNTE_UI_CONFIG),
+    IconModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    AccordionModule,
     SharedModule,
     FormsModule,
-    ProgressBarModule.forRoot(JUNTE_UI_CONFIG),
-    InputModule.forRoot(JUNTE_UI_CONFIG),
-    FormModule.forRoot(JUNTE_UI_CONFIG),
-    CheckboxModule.forRoot(JUNTE_UI_CONFIG)
+    ProgressBarModule,
+    InputModule,
+    FormModule,
+    CheckboxModule
   ],
   exports: [
     ProgressBarTestComponent

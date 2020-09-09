@@ -10,7 +10,7 @@ import { CodeHighlightComponent } from './code-highlight.component';
 @NgModule({
   imports: [
     CommonModule,
-    LinkModule.forRoot(JUNTE_UI_CONFIG),
+    LinkModule,
     ClipboardModule,
     ObserversModule,
     HighlightModule

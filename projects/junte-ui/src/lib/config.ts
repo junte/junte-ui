@@ -47,3 +47,20 @@ export const JUNTE_MODULE_PROVIDES = [
     level: NgxLoggerLevel.DEBUG
   }).providers
 ];
+
+export const JUNTE_DEFAULT_CONFIG = {
+  i18n: en,
+  masks: {
+    date: '____.__.__',
+    time: '__:__',
+    datetime: '____.__.__ __:__'
+  },
+  formats: {
+    date: 'yyyy.MM.dd',
+    time: 'HH:mm',
+    datetime: 'yyyy.MM.dd HH:mm'
+  },
+  locale: {
+    dfns: dfnsEnUS
+  }
+};

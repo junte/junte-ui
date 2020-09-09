@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { GridModule } from '../../layout/grid/grid.module';
@@ -32,17 +31,4 @@ import { CheckboxComponent } from './checkbox.component';
   ]
 })
 export class CheckboxModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<CheckboxModule> {
-    return {
-      ngModule: CheckboxModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

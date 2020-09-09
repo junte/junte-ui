@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { ColComponent } from './col/col.component';
 import { ContainerComponent } from './container/container.component';
 import { RowComponent } from './row/row.component';
@@ -26,17 +25,4 @@ import { RowComponent } from './row/row.component';
   ]
 })
 export class GridModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<GridModule> {
-    return {
-      ngModule: GridModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }
