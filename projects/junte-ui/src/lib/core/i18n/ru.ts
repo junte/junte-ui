@@ -1,4 +1,4 @@
-export const ru = {
+export const i18nRu = {
   label: {
     metrics: 'Метрики',
     search: 'Поиск',

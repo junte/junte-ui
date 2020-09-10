@@ -31,6 +31,7 @@ import {
 import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { DFNS_PROVIDES } from '../../core/locale/providers';
 import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -58,7 +59,9 @@ enum ViewType {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CalendarComponent),
       multi: true
-    }, ...I18N_PROVIDERS
+    },
+    ...I18N_PROVIDERS,
+    ...DFNS_PROVIDES
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {

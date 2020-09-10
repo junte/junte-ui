@@ -1,6 +1,7 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CollectionsModule } from './collections/collections.module';
-import { JUNTE_DEFAULT_CONFIG, JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
+import { JUNTE_DEFAULT_CONFIG, JunteUIModuleConfig } from './config';
 import { SelectableModule } from './core/directives/selectable';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
@@ -13,6 +14,12 @@ import { LayoutModule } from './layout/layout.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { OverlaysModule } from './overlays/overlays.module';
 import { SharedModule } from './shared/shared.module';
+
+export let CONFIG_TOKEN = new InjectionToken('JunteUIModuleConfig');
+
+export function configFactory(config: JunteUIModuleConfig) {
+  return deepMerge(JUNTE_DEFAULT_CONFIG, config);
+}
 
 @NgModule({
   exports: [
@@ -38,11 +45,17 @@ export class JunteUiModule {
       ngModule: JunteUiModule,
       providers: [
         {
-          provide: JunteUIModuleConfig,
-          useFactory: deepMerge,
-          deps: [JUNTE_DEFAULT_CONFIG, config]
+          provide: CONFIG_TOKEN,
+          useValue: config
         },
-        ...JUNTE_MODULE_PROVIDES
+        {
+          provide: JunteUIModuleConfig,
+          useFactory: configFactory,
+          deps: [CONFIG_TOKEN]
+        },
+        LoggerModule.forRoot({
+          level: NgxLoggerLevel.DEBUG
+        }).providers
       ]
     };
   }

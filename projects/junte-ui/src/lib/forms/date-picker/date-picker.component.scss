@@ -32,7 +32,7 @@
       }
       &[time-opened='true'] {
         #{$wrapper} [data-time-dropdown] {
-          display: block;
+          display: flex;
         }
       }
     }
@@ -67,8 +67,11 @@
   }
 
   #{$context} #{$wrapper} [data-time-dropdown] {
-    width: 150px;
     padding: $jnt-gutter-normal;
+
+    [data-time-col] {
+      width: 70px;
+    }
 
     @include for-mobile() {
       display: none;

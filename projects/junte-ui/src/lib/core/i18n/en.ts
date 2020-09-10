@@ -1,4 +1,4 @@
-export const en = {
+export const i18nEn = {
   label: {
     metrics: 'Metrics',
     search: 'Search',
@@ -12,5 +12,4 @@ export const en = {
     cancel: 'Cancel',
     select_all: 'Select all'
   }
-
 };

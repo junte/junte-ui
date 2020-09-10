@@ -7,6 +7,7 @@ import { JunteUIModuleConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
+import { DFNS_PROVIDES } from '../../core/locale/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
@@ -17,6 +18,11 @@ const DIGIT_MASK_CHAR = '_';
 const HOURS_MAX = 23;
 const MINUTES_MAX = 59;
 
+enum Meridian {
+  am = ' AM',
+  pm = ' PM'
+}
+
 @Component({
   selector: 'jnt-date-picker',
   templateUrl: './date-picker.encapsulated.html',
@@ -25,7 +31,8 @@ const MINUTES_MAX = 59;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatePickerComponent),
       multi: true
-    }
+    },
+    ...DFNS_PROVIDES
   ]
 })
 export class DatePickerComponent implements OnInit, ControlValueAccessor {
@@ -34,11 +41,11 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   datePickerType = DatePickerType;
+  meridians = Meridian;
   private _type: DatePickerType = DatePickerType.date;
 
   reference: { popover: PopoverInstance } = {popover: null};
-  hours = 0;
-  minutes = 0;
+  meridian: Meridian;
 
   dateControl = this.fb.control(null);
   timeControl = this.fb.control(null);
@@ -99,7 +106,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     this.calendarControl.valueChanges.pipe(distinctUntilChanged())
       .subscribe(date => {
-        this.dateControl.setValue(!!date ? formatDate(date, this.config.formats.date).replace(/\D/gi, '') : null);
+        this.dateControl.setValue(!!date ? formatDate(date, 'P',
+          {locale: this.config.locale.dfns}).replace(/\D/gi, '') : null);
         this.calendarOpened = false;
         if (!!this.reference.popover) {
           this.reference.popover.hide();
@@ -137,15 +145,16 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   update(value: string, close = false) {
-    if (!!value) {
+    if (!!value || this.type === DatePickerType.dateTime) {
       if (this.type !== DatePickerType.dateTime) {
         let output = this.type === DatePickerType.date
-          ? this.config.masks.date : this.config.masks.time;
+          ? this.config.locale.ui.masks.date
+          : this.config.locale.ui.masks.time + (this.meridian || '');
         for (let char of value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        let parsed = parse(output, this.type === DatePickerType.date
-          ? this.config.formats.date : this.config.formats.time, new Date(0));
+        let parsed = parse(output, this.type === DatePickerType.date ? 'P' : 'p', new Date(0),
+          {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           if (this.type === DatePickerType.date) {
             this.calendarControl.setValue(parsed);
@@ -158,15 +167,16 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
             this.close();
           }
         }
-      } else if (!!this.dateControl.value && this.timeControl.value) {
-        let output = this.config.masks.datetime;
+      } else if (!!this.dateControl.value && !!this.timeControl.value) {
+        let output = this.config.locale.ui.masks.datetime + (this.meridian || '');
         for (let char of this.dateControl.value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
         for (let char of this.timeControl.value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        let parsed = parse(output, this.config.formats.datetime, new Date());
+        let parsed = parse(output, 'Pp', new Date(),
+          {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.onChange(parsed);
           if (close) {
@@ -176,12 +186,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
       }
     } else {
       this.onChange(null);
-      if (close) {
-        this.calendarControl.setValue(null);
+      if (!this.dateControl.value) {
+        this.calendarControl.setValue(null, {emitEvent: false});
         this.close();
       } else {
         this.hoursControl.setValue(null, {emitEvent: false});
         this.minutesControl.setValue(null, {emitEvent: false});
+        this.close();
       }
     }
   }
@@ -212,7 +223,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   writeValue(date: Date) {
     if (date instanceof Date && !isNaN(date.getTime())) {
       this.calendarControl.setValue(date, {emitEvent: false});
-      this.dateControl.setValue(formatDate(date, this.config.formats.date), {emitEvent: false});
+      this.dateControl.setValue(formatDate(date, 'P',
+        {locale: this.config.locale.dfns}), {emitEvent: false});
     } else {
       this.clear();
     }

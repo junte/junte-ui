@@ -1,4 +1,5 @@
 export * from './lib/core/i18n/public_api';
+export * from './lib/core/locale/public_api';
 export * from './lib/core/enums/public_api';
 export * from './lib/core/decorators/public_api';
 export * from './lib/core/directives/public_api';
