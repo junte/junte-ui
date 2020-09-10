@@ -12,7 +12,7 @@
                  }"
                  (attached)="reference.popover = $event"
                  [icon]="ui.icons.calendar"
-                 [mask]="config.masks.date">
+                 [mask]="config.locale.ui.masks.date">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
@@ -20,7 +20,7 @@
                  [placeholder]="placeholder || ''"
                  [icon]="ui.icons.calendar"
                  (click)="calendarOpened = !calendarOpened"
-                 [mask]="config.masks.date">
+                 [mask]="config.locale.ui.masks.date">
       </jnt-input>
     </ng-container>
 
@@ -35,13 +35,14 @@
                    minWidth: '150px'
                  }"
                  (attached)="reference.popover = $event"
-                 [mask]="config.masks.time">
+                 [mask]="config.locale.ui.masks.time + (meridian || '')">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
                  formControlName="time"
                  [icon]="ui.icons.time"
-                 (click)="timeOpened = !timeOpened">
+                 (click)="timeOpened = !timeOpened"
+                 [mask]="config.locale.ui.masks.time + (meridian || '')">
       </jnt-input>
     </ng-container>
   </jnt-stack>
@@ -56,7 +57,7 @@
     <jnt-stack data-time-dropdown [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center">
 
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small" data-time-col>
         <jnt-button [icon]="ui.icons.chevronUp"
                     [size]="ui.size.small"
                     (click)="hoursControl.setValue(+hoursControl.value + 1)">
@@ -71,7 +72,7 @@
         </jnt-button>
       </jnt-stack>
 
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small" data-time-col>
         <jnt-button [icon]="ui.icons.chevronUp"
                     [size]="ui.size.small"
                     (click)="minutesControl.setValue(+minutesControl.value + 1)">
@@ -84,6 +85,13 @@
                     [size]="ui.size.small"
                     (click)="minutesControl.setValue(+minutesControl.value - 1)">
         </jnt-button>
+      </jnt-stack>
+
+      <jnt-stack *ngIf="config.locale.dfns.code !== 'ru'"
+                 [align]="ui.align.stretch"
+                 [gutter]="ui.gutter.small" data-time-col>
+        <jnt-button [text]="meridians.am" (click)="meridian = meridians.am"></jnt-button>
+        <jnt-button [text]="meridians.pm" (click)="meridian = meridians.pm"></jnt-button>
       </jnt-stack>
     </jnt-stack>
   </ng-template>

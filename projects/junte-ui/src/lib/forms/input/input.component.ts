@@ -197,7 +197,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   set mask(mask: string) {
     this._mask = mask;
     if (!!mask) {
-      this.formattedControl.setValue(mask);
+      this.form.setValue(this.masking(this.inputControl.value || ''));
     }
   }
 
