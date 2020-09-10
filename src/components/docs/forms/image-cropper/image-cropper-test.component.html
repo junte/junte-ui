@@ -5,7 +5,7 @@
   </h1>
 
   <app-resources
-    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/image-cropper">
+    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-cropper">
   </app-resources>
 
   <jnt-tabs [features]="[ui.feature.adapted]">
@@ -27,10 +27,8 @@
 
                   <ng-container *ngIf="!!cropped">
                     <jnt-stack [gutter]="ui.gutter.small">
-                      <div>x: {{cropped.x}}</div>
-                      <div>y: {{cropped.y}}</div>
-                      <div>width: {{cropped.width}}</div>
-                      <div>height: {{cropped.height}}</div>
+                      <div>left: {{cropped.left}}</div>
+                      <div>top: {{cropped.top}}</div>
                       <div>scale: {{cropped.scale}}</div>
                     </jnt-stack>
                   </ng-container>
@@ -76,7 +74,7 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'image-cropper-test', type: 'ImageCropperTestComponent'}"
-                scss="elements/image-cropper"></app-how-to-use>
+                scss="forms/image-cropper"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"

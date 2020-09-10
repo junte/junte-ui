@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ImageCropperTestComponent } from './image-cropper/image-cropper-test.component';
-import { PictureTestComponent } from './picture/picture-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import { DotTestComponent } from './dot/dot-test.component';
 import { IconTestComponent } from './icon/icon-test.component';
 import { LabelTestComponent } from './label/label-test.component';
+import { PictureTestComponent } from './picture/picture-test.component';
 
 export const routes: Routes = [
   {
@@ -42,11 +41,6 @@ export const routes: Routes = [
         path: 'dot',
         component: DotTestComponent,
         data: {breadcrumb: 'Dot', animation: 'Dot'}
-      },
-      {
-        path: 'image-cropper',
-        component: ImageCropperTestComponent,
-        data: {breadcrumb: 'Image Cropper', animation: 'Image Cropper'}
       }
     ]
   }

@@ -5,6 +5,7 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { DatePickerModule } from './date-picker/date-picker.module';
 import { FilterModule } from './filter/filter.module';
 import { FormModule } from './form/form.module';
+import { ImageCropperModule } from './image-cropper/image-cropper.module';
 import { InputModule } from './input/input.module';
 import { RadioModule } from './radio/radio.module';
 import { SelectModule } from './select/select.module';
@@ -23,7 +24,8 @@ import { SwitcherModule } from './switcher/switcher.module';
     SelectModule,
     SwitchModule,
     SwitcherModule,
-    FilterModule
+    FilterModule,
+    ImageCropperModule
   ]
 })
 export class UiFormsModule {

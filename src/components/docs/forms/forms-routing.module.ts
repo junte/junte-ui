@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ImageCropperTestComponent } from 'src/components/docs/forms/image-cropper/image-cropper-test.component';
 import { FilterTestComponent } from './filter/filter-test.component';
 import { SelectableTestComponent } from './selectable/selectable-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
@@ -77,6 +78,11 @@ export const routes: Routes = [
         path: 'filter',
         component: FilterTestComponent,
         data: {breadcrumb: 'Filter', animation: 'Filter'}
+      },
+      {
+        path: 'image-cropper',
+        component: ImageCropperTestComponent,
+        data: {breadcrumb: 'Image Cropper', animation: 'Image Cropper'}
       }
     ]
   }

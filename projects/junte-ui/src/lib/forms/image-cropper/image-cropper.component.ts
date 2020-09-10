@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  forwardRef,
   HostBinding,
   HostListener,
   Input,
@@ -12,10 +13,13 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
 import { UI } from '../../core/enums/ui';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 
 const CROPPER_SIZE = 200;
 const DEFAULT_SCALE = 1;
@@ -38,19 +42,16 @@ export enum MoveTypes {
 export class MoveStart {
   active: boolean = false;
   type: MoveTypes | null = null;
-  x1: number = 0;
-  y1: number = 0;
-  x2: number = 0;
-  y2: number = 0;
+  left: number = 0;
+  top: number = 0;
   clientX: number = 0;
   clientY: number = 0;
 }
 
 export class ImagePosition {
-  x1: number = 0;
-  y1: number = 0;
-  x2: number = 0;
-  y2: number = 0;
+  left: number = 0;
+  top: number = 0;
+  scale: number = DEFAULT_SCALE;
   width: number = 0;
   height: number = 0;
 }
@@ -60,22 +61,24 @@ export class CropperPosition {
   height: number = CROPPER_SIZE;
 }
 
-export class ImageCroppedEvent {
-  constructor(public x = 0, public y = 0, public width = 0, public height = 0, public scale = DEFAULT_SCALE) {
+export class ImageCroppedData {
+  constructor(public left = 0, public top = 0, public scale = DEFAULT_SCALE) {
   }
-}
-
-export class Dimensions {
-  width: number = 0;
-  height: number = 0;
 }
 
 @Component({
   selector: 'jnt-image-cropper',
   templateUrl: './image-cropper.encapsulated.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ImageCropperComponent),
+      multi: true
+    }, ...I18N_PROVIDERS
+  ]
 })
-export class ImageCropperComponent implements OnInit {
+export class ImageCropperComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
   @HostBinding('attr.host') readonly host = 'jnt-image-cropper-host';
@@ -89,19 +92,18 @@ export class ImageCropperComponent implements OnInit {
   transformStyle: SafeStyle | string;
   marginLeft: SafeStyle | string = '0px';
   moveTypes = MoveTypes;
-  scale = DEFAULT_SCALE;
-  loading = null;
-  image = new ImagePosition();
+  imagePosition = new ImagePosition();
 
   @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
-  @ViewChild('sourceImage') sourceImage: ElementRef;
+  @ViewChild('image') image: ElementRef;
+  @ViewChild('cropper') cropper: ElementRef;
 
   @PropertyApi({
     description: 'Size of crop area',
     type: 'CropperPosition',
     default: '{width: 200, height: 200}'
   })
-  @Input() cropper = new CropperPosition();
+  @Input() area = new CropperPosition();
 
   @PropertyApi({
     description: 'Url of image',
@@ -111,16 +113,17 @@ export class ImageCropperComponent implements OnInit {
   @Input() set url(url: SafeUrl | string) {
     this._url = url;
     if (!!url) {
-      this.zoom(DEFAULT_SCALE);
       this.moveStart = new MoveStart();
-      this.image = new ImagePosition();
-      this.cropper = {width: this.cropper.width, height: this.cropper.height};
+      this.imagePosition = new ImagePosition();
     }
   }
 
   get url() {
     return this._url;
   }
+
+  @HostBinding('attr.data-disabled')
+  disabled = false;
 
   @HostBinding('attr.data-shape')
   _shape: Shape = Shape.circle;
@@ -135,12 +138,19 @@ export class ImageCropperComponent implements OnInit {
     this._shape = shape || Shape.circle;
   }
 
-  @Output() cropped = new EventEmitter<ImageCroppedEvent>();
+  @Output() cropped = new EventEmitter<ImageCroppedData>();
   @Output() loaded = new EventEmitter<void>();
   @Output() failed = new EventEmitter<void>();
 
-  constructor(public sanitizer: DomSanitizer,
-              private cd: ChangeDetectorRef) {
+  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  registerOnChange = fn => this.onChange = fn;
+  registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
+
+  constructor(private logger: NGXLogger,
+              private cd: ChangeDetectorRef,
+              public sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -155,25 +165,10 @@ export class ImageCropperComponent implements OnInit {
     }
   }
 
-  load(event: any) {
-    if (!!event && !!event.target && !!event.target.files && !!event.target.files.length) {
-      this.loading = true;
-      const fileReader = new FileReader();
-      let file = event.target.files[0];
-      fileReader.onload = (event: any) => {
-        if (/image\/(png|jpg|jpeg|bmp|gif|tiff|webp)/.test(file.type)) {
-          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(event.target.result);
-        } else {
-          this.url = '';
-          this.failed.emit();
-        }
-        this.loading = false;
-      };
-      fileReader.readAsDataURL(file);
-    }
-  }
-
   inView(): void {
+    if (this.image.nativeElement.currentSrc.includes('image/svg')) {
+      this.disabled = true;
+    }
     this.loaded.emit();
     this.sizeRetries = 0;
     setTimeout(() => this.checkImageMaxSizeRecursively());
@@ -182,13 +177,11 @@ export class ImageCropperComponent implements OnInit {
   private checkImageMaxSizeRecursively(): void {
     if (this.sizeRetries > 40) {
       this.failed.emit();
-    } else if (this.sourceImage && this.sourceImage.nativeElement && this.sourceImage.nativeElement.offsetWidth > 0) {
-      const image = this.sourceImage.nativeElement;
-      this.image.width = image.width;
-      this.image.height = image.height;
-      this.image.x2 = image.width;
-      this.image.y2 = image.height;
-      this.cd.markForCheck();
+    } else if (!!this.image && !!this.image.nativeElement && this.image.nativeElement.offsetWidth > 0) {
+      const image = this.image.nativeElement;
+      this.imagePosition.width = image.width;
+      this.imagePosition.height = image.height;
+      this.cd.detectChanges();
     } else {
       this.sizeRetries++;
       setTimeout(() => this.checkImageMaxSizeRecursively(), 50);
@@ -196,10 +189,10 @@ export class ImageCropperComponent implements OnInit {
   }
 
   startMove(event: any, moveType: MoveTypes): void {
-    if (this.moveStart && this.moveStart.active && this.moveStart.type === MoveTypes.Pinch) {
+    if (!!this.moveStart && this.moveStart.active && this.moveStart.type === MoveTypes.Pinch) {
       return;
     }
-    if (event.preventDefault) {
+    if (!!event.preventDefault) {
       event.preventDefault();
     }
     this.moveStart = {
@@ -207,7 +200,7 @@ export class ImageCropperComponent implements OnInit {
       type: moveType,
       clientX: this.getClientX(event),
       clientY: this.getClientY(event),
-      ...this.image
+      ...this.imagePosition
     };
   }
 
@@ -215,15 +208,15 @@ export class ImageCropperComponent implements OnInit {
     if (!this.url) {
       return;
     }
-    if (event.preventDefault) {
+    if (!!event.preventDefault) {
       event.preventDefault();
     }
     this.moveStart = {
       active: true,
       type: MoveTypes.Pinch,
-      clientX: this.image.x1 + (this.image.x2 - this.image.x1) / 2,
-      clientY: this.image.y1 + (this.image.y2 - this.image.y1) / 2,
-      ...this.image
+      clientX: this.imagePosition.left + (this.imagePosition.width - this.imagePosition.left) / 2,
+      clientY: this.imagePosition.top + (this.imagePosition.height - this.imagePosition.top) / 2,
+      ...this.imagePosition
     };
   }
 
@@ -264,19 +257,18 @@ export class ImageCropperComponent implements OnInit {
     const diffX = this.getClientX(event) - this.moveStart.clientX;
     const diffY = this.getClientY(event) - this.moveStart.clientY;
 
-    this.image.x1 = this.moveStart.x1 + diffX;
-    this.image.y1 = this.moveStart.y1 + diffY;
-    this.image.x2 = this.moveStart.x2 + diffX;
-    this.image.y2 = this.moveStart.y2 + diffY;
+    this.imagePosition.left = this.moveStart.left + diffX;
+    this.imagePosition.top = this.moveStart.top + diffY;
   };
 
   crop() {
-    this.cropped.emit(new ImageCroppedEvent(
-      this.image.x1,
-      this.image.y1,
-      this.cropper.width,
-      this.cropper.height,
-      this.scale
+    const image = this.image.nativeElement;
+    const cropper = this.cropper.nativeElement;
+    const scale = this.imagePosition.scale;
+    this.cropped.emit(new ImageCroppedData(
+      cropper.offsetLeft - (image.offsetLeft - ((image.width * scale - image.width) / 2)),
+      cropper.offsetTop - (image.offsetTop - ((image.height * scale - image.width) / 2)),
+      scale
     ));
   }
 
@@ -288,10 +280,24 @@ export class ImageCropperComponent implements OnInit {
     return (event.touches && event.touches[0] ? event.touches[0].clientY : event.clientY) || 0;
   }
 
-  zoom(scale: number) {
-    this.scale = scale;
+  zoom(scale = DEFAULT_SCALE) {
+    this.imagePosition.scale = scale;
+    // this.imagePosition.top = (this.imagePosition.height - this.imagePosition.height * scale) / 2;
+    this.imagePosition.width = this.imagePosition.width * scale;
+    this.imagePosition.height = this.imagePosition.height * scale;
     this.transformStyle = this.sanitizer
-      .bypassSecurityTrustStyle(`scaleX(${this.scale || DEFAULT_SCALE})scaleY(${this.scale || DEFAULT_SCALE})`);
+      .bypassSecurityTrustStyle(`scaleX(${scale || DEFAULT_SCALE})scaleY(${scale || DEFAULT_SCALE})`);
     this.crop();
+    this.cd.detectChanges();
+  }
+
+  writeValue(data: ImageCroppedData): void {
+    if (!!data) {
+      this.imagePosition = {...this.imagePosition, ...data};
+    }
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
   }
 }
