@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ImageCroppedEvent, ImageCropperComponent, TabComponent, UI } from 'junte-ui';
+import { ImageCroppedData, ImageCropperComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,12 +14,12 @@ export class ImageCropperTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {imageCropper: ImageCropperComponent};
-  cropped: ImageCroppedEvent;
+  cropped: ImageCroppedData;
 
   @ViewChild('code') code: TabComponent;
 
   shapeControl = this.fb.control(UI.shape.circle);
-  urlControl = this.fb.control(null);
+  urlControl = this.fb.control('assets/images/elon.jpeg');
 
   builder = this.fb.group({
     shape: this.shapeControl,
@@ -35,7 +35,7 @@ export class ImageCropperTestComponent {
       .subscribe(() => this.code.flash());
   }
 
-  imageCropped(event: ImageCroppedEvent) {
+  imageCropped(event: ImageCroppedData) {
     this.cropped = event;
   }
 
@@ -48,7 +48,7 @@ export class ImageCropperTestComponent {
       const fileReader = new FileReader();
       let file = event.target.files[0];
       fileReader.onload = (event: any) => {
-        if (/image\/(png|jpg|jpeg|bmp|gif|tiff|webp)/.test(file.type)) {
+        if (/image\/(png|jpg|jpeg|bmp|gif|tiff|webp|svg)/.test(file.type)) {
           this.urlControl.setValue(this.sanitizer.bypassSecurityTrustResourceUrl(event.target.result));
         } else {
           this.urlControl.setValue('');

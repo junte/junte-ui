@@ -5,5 +5,6 @@ export enum Validator {
   min = 'min',
   max = 'max',
   email = 'email',
-  pattern = 'pattern'
+  pattern = 'pattern',
+  phone = 'phone'
 }

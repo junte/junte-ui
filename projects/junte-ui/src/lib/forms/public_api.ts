@@ -10,3 +10,4 @@ export * from './select/public_api';
 export * from './switch/public_api';
 export * from './switcher/public_api';
 export * from './filter/public_api';
+export * from './image-cropper/public_api';
