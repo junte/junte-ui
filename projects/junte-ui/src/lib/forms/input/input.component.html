@@ -13,6 +13,7 @@
            (blur)="blur()"
            [placeholder]="placeholder"
            [readonly]="readonly ? readonly : null"
+           (paste)="paste($event)"
            (keydown)="keydownMask($event)">
 
     <ng-template #inputTemplate>

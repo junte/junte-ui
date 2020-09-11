@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -15,6 +25,7 @@ const LEFT_ARROW = 'ArrowLeft';
 const RIGHT_ARROW = 'ArrowRight';
 const TAB = 'Tab';
 const ENTER = 'Enter';
+const KEYV = 'v';
 const UNIDENTIFIED = 'Unidentified';
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -265,8 +276,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     };
   }
 
+  paste(event: ClipboardEvent) {
+    event.preventDefault();
+    const text = event.clipboardData.getData('text');
+    const data = this.masking(text);
+    this.form.setValue(data);
+  }
+
   keydownMask(event: KeyboardEvent) {
-    let value = this.inputControl.value || '';
+    const value = this.inputControl.value || '';
     let data;
 
     if (DIGIT_KEYS.includes(event.key)) {
@@ -275,7 +293,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       data = this.masking(value.substr(0, value.length - 1));
     } else if (event.key === TAB
       || event.key === LEFT_ARROW
-      || event.key === RIGHT_ARROW) {
+      || event.key === RIGHT_ARROW
+      || (event.ctrlKey || event.metaKey) && event.key === KEYV) {
       return;
     }
     event.preventDefault();
