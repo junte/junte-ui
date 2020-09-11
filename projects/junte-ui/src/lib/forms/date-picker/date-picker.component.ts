@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { JunteUIModuleConfig } from '../../config';
+import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
@@ -100,7 +100,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   constructor(private logger: NGXLogger,
               private fb: FormBuilder,
               private breakpoint: BreakpointService,
-              public config: JunteUIModuleConfig) {
+              public config: JunteUIConfig) {
   }
 
   ngOnInit() {

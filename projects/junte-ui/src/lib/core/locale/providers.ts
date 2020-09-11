@@ -1,10 +1,9 @@
-import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { DateFnsConfigurationService } from 'ngx-date-fns';
-import { JunteUIModuleConfig } from '../../config';
+import { JunteUIConfig } from '../../config';
 
-export function dfnsFactory(config: JunteUIModuleConfig) {
+export function dfnsFactory(config: JunteUIConfig) {
   const service = new DateFnsConfigurationService();
-  service.setLocale(config.locale.dfns || dfnsEnUS);
+  service.setLocale(config.locale.dfns);
   return service;
 }
 
@@ -12,6 +11,6 @@ export const DFNS_PROVIDES = [
   {
     provide: DateFnsConfigurationService,
     useFactory: dfnsFactory,
-    deps: [JunteUIModuleConfig]
+    deps: [JunteUIConfig]
   }
 ];

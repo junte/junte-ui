@@ -16,7 +16,6 @@ import {
   StackModule,
   TabsModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { AvatarTestComponent } from './avatar-test.component';
 
@@ -24,6 +23,7 @@ import { AvatarTestComponent } from './avatar-test.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+
     IconModule,
     LinkModule,
     StackModule,

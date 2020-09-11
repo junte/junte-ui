@@ -7,8 +7,8 @@ import * as path from 'path';
 import 'reflect-metadata';
 
 const argument = require('minimist')(process.argv.slice(2));
-const styleFiles = './src/lib/assets/styles/**/*.scss';
-const buildFiles = './src/lib/**/build.json';
+const STYLE_FILES = './src/lib/assets/styles/**/*.scss';
+const BUILD_FILES = './src/lib/**/build.json';
 
 class Component {
   constructor(public section: string, public name: string) {
@@ -60,7 +60,7 @@ export class Gulpfile {
 
   @Task()
   styles() {
-    return gulp.src([buildFiles])
+    return gulp.src([BUILD_FILES])
       // .pipe(debug())
       .pipe(map((file, cb) => {
         const composition = (JSON.parse(file.contents.toString()) as Builder).composition;
@@ -100,7 +100,7 @@ export class Gulpfile {
 
   @Task()
   watch() {
-    return gulp.watch([styleFiles, buildFiles],
+    return gulp.watch([STYLE_FILES, BUILD_FILES],
       {ignoreInitial: true}, gulp.series('styles'));
   }
 }

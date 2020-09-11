@@ -4,7 +4,7 @@ import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { i18nEn } from './core/i18n/en';
 import { localeEnUs as jntEn } from './core/locale/en';
 
-export class LocaleUI {
+export interface LocaleUI {
   masks: {
     date: string,
     time: string,
@@ -13,7 +13,7 @@ export class LocaleUI {
 }
 
 @Injectable()
-export class JunteUIModuleConfig {
+export class JunteUIConfig {
   i18n?: any;
   locale?: {
     ui?: LocaleUI,

@@ -1,10 +1,9 @@
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { i18nEn } from './en';
+import { JunteUIConfig } from '../../config';
 import { I18nLoader } from './loader';
-import { JunteUIModuleConfig } from '../../config';
 
-export function i18nLoaderFactory(config: JunteUIModuleConfig) {
-  return new I18nLoader(config.i18n || i18nEn);
+export function i18nLoaderFactory(config: JunteUIConfig) {
+  return new I18nLoader(config.i18n);
 }
 
 export const I18N_PROVIDERS = TranslateModule.forRoot({
@@ -12,7 +11,7 @@ export const I18N_PROVIDERS = TranslateModule.forRoot({
   loader: {
     provide: TranslateLoader,
     useFactory: i18nLoaderFactory,
-    deps: [JunteUIModuleConfig]
+    deps: [JunteUIConfig]
   },
   defaultLanguage: 'en'
 }).providers;

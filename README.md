@@ -1,3 +1,5 @@
+version="$(cat VERSION)" npm run publish
+
 # Junte UI test application
 
 The project contains sources for `Junte UI` & test app.

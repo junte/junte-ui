@@ -32,7 +32,7 @@ import { NGXLogger } from 'ngx-logger';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { DFNS_PROVIDES } from '../../core/locale/providers';
-import { JunteUIModuleConfig } from '../../config';
+import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
@@ -143,7 +143,7 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private logger: NGXLogger,
-              public config: JunteUIModuleConfig) {
+              public config: JunteUIConfig) {
   }
 
   ngOnInit() {
