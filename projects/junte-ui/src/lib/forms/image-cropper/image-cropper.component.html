@@ -24,5 +24,5 @@
 </div>
 
 <div data-zoom *ngIf="!!imagePosition.width && !!imagePosition.height && !disabled">
-  <input type="range" min="0" max="5" step=".1" [value]="imagePosition.scale" (input)="zoom($event.target.value)">
+  <input type="range" min=".05" max="5" step=".05" [value]="imagePosition.scale" (input)="zoom($event.target.value)">
 </div>
