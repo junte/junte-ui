@@ -12,13 +12,13 @@ type TUnionToIntersection<U> = (
 
 // istanbul ignore next
 const isObject = (obj: any) => {
-  if (typeof obj === "object" && obj !== null) {
-    if (typeof Object.getPrototypeOf === "function") {
+  if (typeof obj === 'object' && obj !== null) {
+    if (typeof Object.getPrototypeOf === 'function') {
       const prototype = Object.getPrototypeOf(obj);
       return prototype === Object.prototype || prototype === null;
     }
 
-    return Object.prototype.toString.call(obj) === "[object Object]";
+    return Object.prototype.toString.call(obj) === '[object Object]';
   }
 
   return false;
