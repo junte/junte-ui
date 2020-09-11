@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ImageCroppedData, ImageCropperComponent, TabComponent, UI } from 'junte-ui';
+import { ImageCropperComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,16 +14,19 @@ export class ImageCropperTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {imageCropper: ImageCropperComponent};
-  cropped: ImageCroppedData;
 
   @ViewChild('code') code: TabComponent;
 
   shapeControl = this.fb.control(UI.shape.circle);
   urlControl = this.fb.control('assets/images/elon.jpeg');
-
   builder = this.fb.group({
     shape: this.shapeControl,
     url: this.urlControl
+  });
+
+  cropperControl = this.fb.control(null);
+  form = this.fb.group({
+    cropper: this.cropperControl
   });
 
   constructor(private fb: FormBuilder,
@@ -33,10 +36,6 @@ export class ImageCropperTestComponent {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
-  }
-
-  imageCropped(event: ImageCroppedData) {
-    this.cropped = event;
   }
 
   imageLoaded() {

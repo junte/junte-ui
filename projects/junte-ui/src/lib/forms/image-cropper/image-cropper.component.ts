@@ -61,9 +61,10 @@ export class CropperPosition {
   height: number = CROPPER_SIZE;
 }
 
-export class ImageCroppedData {
-  constructor(public left = 0, public top = 0, public scale = DEFAULT_SCALE) {
-  }
+export type ImageCroppedData = {
+  left: number,
+  top: number,
+  scale: number
 }
 
 @Component({
@@ -138,11 +139,10 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     this._shape = shape || Shape.circle;
   }
 
-  @Output() cropped = new EventEmitter<ImageCroppedData>();
   @Output() loaded = new EventEmitter<void>();
   @Output() failed = new EventEmitter<void>();
 
-  onChange: (date: Date) => void = () => this.logger.error('value accessor is not registered');
+  onChange: (date: ImageCroppedData) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
@@ -182,6 +182,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
       this.imagePosition.width = image.width;
       this.imagePosition.height = image.height;
       this.cd.detectChanges();
+      this.crop();
     } else {
       this.sizeRetries++;
       setTimeout(() => this.checkImageMaxSizeRecursively(), 50);
@@ -253,6 +254,17 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     }
   }
 
+  private crop() {
+    const image = this.image.nativeElement;
+    const cropper = this.cropper.nativeElement;
+    const scale = this.imagePosition.scale;
+    this.onChange({
+      left: cropper.offsetLeft - (image.offsetLeft - ((image.width * scale - image.width) / 2)),
+      top: cropper.offsetTop - (image.offsetTop - ((image.height * scale - image.width) / 2)),
+      scale
+    });
+  }
+
   private move(event: MouseEvent) {
     const diffX = this.getClientX(event) - this.moveStart.clientX;
     const diffY = this.getClientY(event) - this.moveStart.clientY;
@@ -260,17 +272,6 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     this.imagePosition.left = this.moveStart.left + diffX;
     this.imagePosition.top = this.moveStart.top + diffY;
   };
-
-  crop() {
-    const image = this.image.nativeElement;
-    const cropper = this.cropper.nativeElement;
-    const scale = this.imagePosition.scale;
-    this.cropped.emit(new ImageCroppedData(
-      cropper.offsetLeft - (image.offsetLeft - ((image.width * scale - image.width) / 2)),
-      cropper.offsetTop - (image.offsetTop - ((image.height * scale - image.width) / 2)),
-      scale
-    ));
-  }
 
   private getClientX(event: any): number {
     return (event.touches && event.touches[0] ? event.touches[0].clientX : event.clientX) || 0;
@@ -282,13 +283,12 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
 
   zoom(scale = DEFAULT_SCALE) {
     this.imagePosition.scale = scale;
-    // this.imagePosition.top = (this.imagePosition.height - this.imagePosition.height * scale) / 2;
     this.imagePosition.width = this.imagePosition.width * scale;
     this.imagePosition.height = this.imagePosition.height * scale;
     this.transformStyle = this.sanitizer
       .bypassSecurityTrustStyle(`scaleX(${scale || DEFAULT_SCALE})scaleY(${scale || DEFAULT_SCALE})`);
-    this.crop();
     this.cd.detectChanges();
+    this.crop();
   }
 
   writeValue(data: ImageCroppedData): void {

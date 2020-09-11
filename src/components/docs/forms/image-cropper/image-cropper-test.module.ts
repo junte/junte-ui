@@ -14,7 +14,6 @@ import {
   TabsModule
 } from 'junte-ui';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { ImageCropperTestComponent } from './image-cropper-test.component';
 
 
