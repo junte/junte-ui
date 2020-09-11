@@ -23,6 +23,7 @@ import { I18N_PROVIDERS } from '../../core/i18n/providers';
 
 const CROPPER_SIZE = 200;
 const DEFAULT_SCALE = 1;
+const MAX_SCALE = 5;
 
 export type HammerStatic = new(element: HTMLElement | SVGElement, options?: any) => HammerManager;
 
@@ -179,10 +180,13 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
       this.failed.emit();
     } else if (!!this.image && !!this.image.nativeElement && this.image.nativeElement.offsetWidth > 0) {
       const image = this.image.nativeElement;
+      const wrapper = this.wrapper.nativeElement;
       this.imagePosition.width = image.width;
       this.imagePosition.height = image.height;
+      let scale = Math.trunc(wrapper.offsetWidth / image.offsetWidth * 100) / 100;
+      scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, MAX_SCALE)
+      this.zoom(scale);
       this.cd.detectChanges();
-      this.crop();
     } else {
       this.sizeRetries++;
       setTimeout(() => this.checkImageMaxSizeRecursively(), 50);
@@ -259,8 +263,8 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     const cropper = this.cropper.nativeElement;
     const scale = this.imagePosition.scale;
     this.onChange({
-      left: cropper.offsetLeft - (image.offsetLeft - ((image.width * scale - image.width) / 2)),
-      top: cropper.offsetTop - (image.offsetTop - ((image.height * scale - image.width) / 2)),
+      left: Math.round(cropper.offsetLeft - (image.offsetLeft - ((image.width * scale - image.width) / 2))),
+      top: Math.round(cropper.offsetTop - (image.offsetTop - ((image.height * scale - image.height) / 2))),
       scale
     });
   }
