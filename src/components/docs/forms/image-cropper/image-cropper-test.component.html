@@ -19,11 +19,13 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-form [formGroup]="form">
                   <jnt-stack [orientation]="ui.orientation.horizontal">
-                    <jnt-image-cropper formControlName="cropper"
-                                       [shape]="shapeControl.value"
-                                       [url]="urlControl.value"
-                                       (loaded)="imageLoaded()">
-                    </jnt-image-cropper>
+                    <div image-cropper>
+                      <jnt-image-cropper formControlName="cropper"
+                                         [shape]="shapeControl.value"
+                                         [url]="urlControl.value"
+                                         (loaded)="imageLoaded()">
+                      </jnt-image-cropper>
+                    </div>
 
                     <ng-container *ngIf="!!cropperControl.value">
                       <jnt-stack [gutter]="ui.gutter.small">
