@@ -181,8 +181,10 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     } else if (!!this.image && !!this.image.nativeElement && this.image.nativeElement.offsetWidth > 0) {
       const image = this.image.nativeElement;
       const wrapper = this.wrapper.nativeElement;
-      this.imagePosition.width = image.width;
-      this.imagePosition.height = image.height;
+      this.imagePosition.width = image.offsetWidth;
+      this.imagePosition.height = image.offsetHeight;
+      this.imagePosition.top = (wrapper.offsetHeight - image.offsetHeight) / 2;
+      this.imagePosition.left = (wrapper.offsetWidth - image.offsetWidth) / 2;
       let scale = Math.trunc(wrapper.offsetWidth / image.offsetWidth * 100) / 100;
       scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, MAX_SCALE)
       this.zoom(scale);
