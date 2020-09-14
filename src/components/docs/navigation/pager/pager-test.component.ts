@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TabComponent, UI } from 'junte-ui';
+import { DEFAULT_OFFSET, DEFAULT_PAGE, TabComponent, UI } from 'junte-ui';
 import { PagerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -24,8 +24,10 @@ export class PagerTestComponent implements OnInit {
     mode: this.modeControl
   });
 
-  pageControl = this.fb.control(null);
+  offsetControl = this.fb.control(null);
+  pageControl = this.fb.control(DEFAULT_PAGE);
   form = this.fb.group({
+    offset: this.offsetControl,
     page: this.pageControl
   });
 
@@ -35,9 +37,10 @@ export class PagerTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countControl.valueChanges.subscribe(() => {
+    this.builder.valueChanges.subscribe(() => {
       this.code.flash();
-      this.pageControl.patchValue(1);
+      this.offsetControl.patchValue(DEFAULT_OFFSET);
+      this.pageControl.patchValue(DEFAULT_PAGE);
     });
   }
 }
