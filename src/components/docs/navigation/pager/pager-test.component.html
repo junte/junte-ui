@@ -26,7 +26,9 @@
                   <jnt-stack [align]="ui.align.center">
                     <jnt-block [width]="ui.width.fluid">
                       <jnt-row>
-                        <jnt-col *ngFor="let number of (pageSizeControl.value | mockArray:pageControl.value)"
+                        <jnt-col *ngFor="let number of (pageSizeControl.value | mockArray:
+                          (modeControl.value === ui.pager.mode.offset ? offsetControl.value
+                            : ((pageControl.value - 1) * pageSizeControl.value)))"
                                  [desktop]="3">
                           <div block>
                             {{number + 1}}
@@ -37,7 +39,7 @@
                     <jnt-pager [count]="countControl.value"
                                [mode]="modeControl.value"
                                [pageSize]="pageSizeControl.value"
-                               formControlName="page">
+                               [formControl]="form.get(modeControl.value === ui.pager.mode.offset ? 'offset' : 'page')">
                     </jnt-pager>
                   </jnt-stack>
                 </form>
@@ -53,7 +55,7 @@
                 <jnt-form-control>
                   <jnt-switcher formControlName="count">
                     <jnt-switcher-option *ngFor="let count of [20,50,100]"
-                                         [label]="count"
+                                         [label]="count.toString()"
                                          [value]="count">
                     </jnt-switcher-option>
                   </jnt-switcher>
@@ -83,7 +85,7 @@
                 <jnt-form-control>
                   <jnt-switcher formControlName="pageSize">
                     <jnt-switcher-option *ngFor="let size of [10,15,20]"
-                                         [label]="size"
+                                         [label]="size.toString()"
                                          [value]="size">
                     </jnt-switcher-option>
                   </jnt-switcher>
@@ -115,24 +117,24 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
                 <!-- @formatter:off-->
-                <![CDATA[
-                <jnt-pager
-                  ]]>
-                  <ng-container *ngIf="countControl.value">
-                    <![CDATA[
-                    [count]="]]>{{countControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="pageSizeControl.value">
-                    <![CDATA[
-                    [pageSize]="]]>{{pageSizeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <ng-container *ngIf="modeControl.value">
-                    <![CDATA[
-                    [mode]="]]>{{modeControl.value}}<![CDATA["]]>
-                  </ng-container>
-                  <![CDATA[>
-                </jnt-pager>
-                ]]>
+<![CDATA[
+<jnt-pager
+  ]]>
+  <ng-container *ngIf="countControl.value">
+    <![CDATA[
+    [count]="]]>{{countControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="pageSizeControl.value">
+    <![CDATA[
+    [pageSize]="]]>{{pageSizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="modeControl.value">
+    <![CDATA[
+    [mode]="]]>{{modeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <![CDATA[>
+</jnt-pager>
+]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
