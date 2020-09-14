@@ -17,6 +17,11 @@ export class PictureComponent {
   _src: string;
   _icon = UI.icons.image;
 
+  @HostBinding('attr.data-has-src')
+  get hasSrc() {
+    return !!this._src;
+  }
+
   @HostBinding('attr.data-fit')
   _fit: Fit = Fit.width;
 

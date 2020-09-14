@@ -33,10 +33,13 @@
     align-items: center;
     justify-content: center;
     background-repeat: no-repeat;
-    background-color: map-get($vars, background-color);
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
     cursor: map-get($vars, cursor);
+
+    &[data-has-src='false'] {
+      background-color: map-get($vars, background-color);
+    }
 
     &[data-fit='width'] {
       background-size: 100% auto;
