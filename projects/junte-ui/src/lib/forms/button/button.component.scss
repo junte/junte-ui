@@ -8,7 +8,7 @@
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
 
-    [data-icon][tag='colored'] {
+    [data-icon][tags*='colored'] {
       @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
     }
 

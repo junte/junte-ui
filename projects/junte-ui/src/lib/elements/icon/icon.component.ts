@@ -26,8 +26,8 @@ export class IconComponent {
 
   iconset: string = DEFAULT_ICONSET;
 
-  @HostBinding('attr.tag')
-  tag: string;
+  @HostBinding('attr.tags')
+  tags: string[];
 
   @PropertyApi({
     description: 'Icon query in special format',
@@ -39,8 +39,8 @@ export class IconComponent {
       throw new Error('Icon query was not passed');
     }
 
-    const [icon, type, iconset, tag] = query.split(':');
-    [this._icon, this.type, this.iconset, this.tag] =
-      [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET, tag];
+    const [icon, type, iconset, tags] = query.split(':');
+    [this._icon, this.type, this.iconset, this.tags] =
+      [icon, type as IconType || IconType.font, iconset || DEFAULT_ICONSET, !!tags ? tags.split('|') : []];
   }
 }

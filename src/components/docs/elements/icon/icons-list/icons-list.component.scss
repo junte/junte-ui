@@ -1,0 +1,23 @@
+@import 'dist/junte-ui/lib/assets/styles/jnt-variables';
+
+:host {
+  display: block;
+
+  &[with-name='true'] {
+    margin: $jnt-gutter-normal;
+    padding-top: $jnt-gutter-normal;
+  }
+}
+
+[data-icon] {
+  float: left;
+  padding: $jnt-gutter-base;
+  margin: $jnt-gutter-base;
+  &[data-selected='true'] {
+    outline: 1px solid $jnt-primary-color;
+}
+
+}
+[icons] {
+  padding: $jnt-gutter-tiny;
+}

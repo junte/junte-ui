@@ -12,47 +12,40 @@ import {
   LinkModule,
   SelectModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  SelectableModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { IconTestComponent } from './icon-test.component';
-import { GetGroupsPipe, GetIconsPipe, GetPathPipe, IconsListComponent } from './select-icon/icons-list/icons-list.component';
-import { SelectIconComponent } from './select-icon/select-icon.component';
+import { GetIconsPipe, IconsListComponent } from './icons-list/icons-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     LinkModule,
+    AccordionModule,
     StackModule,
     TabsModule,
     GridModule,
     FormModule,
-    AccordionModule,
     GridModule,
     IconModule,
     SelectModule,
     LabelModule,
     ButtonModule,
     ArrayPipesModule,
-    SharedModule
+    SharedModule,
+    SelectableModule
   ],
   exports: [
     IconTestComponent
   ],
-  entryComponents: [
-    SelectIconComponent
-  ],
   declarations: [
     IconTestComponent,
-    SelectIconComponent,
     IconsListComponent,
-    GetIconsPipe,
-    GetGroupsPipe,
-    GetPathPipe
+    GetIconsPipe
   ],
 })
 export class IconTestModule {
 }
-
