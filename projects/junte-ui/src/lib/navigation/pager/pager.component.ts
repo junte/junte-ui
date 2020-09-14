@@ -5,6 +5,9 @@ import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PagerMode } from './enums';
 
+export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE = 1;
+
 @Component({
   selector: 'jnt-pager',
   templateUrl: './pager.encapsulated.html',
@@ -18,8 +21,9 @@ export class PagerComponent implements ControlValueAccessor {
 
   ui = UI;
 
-  private _pagesCount: number;
-  private _selectedPage = 1;
+  private _count: number;
+  private _pageSize = DEFAULT_PAGE_SIZE;
+  private _selectedPage = DEFAULT_PAGE;
   private size = 3;
 
   pages: number[];
@@ -33,30 +37,48 @@ export class PagerComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Pages count for pager',
+    description: 'Items count for pager',
     type: 'number',
   })
   @Input()
-  set pagesCount(pagesCount: number) {
-    this._pagesCount = pagesCount;
+  set count(count: number) {
+    this._count = count;
     this.updatePages();
   }
 
-  @Input()
-  pageSize = 10;
+  get pagesCount() {
+    return Math.ceil(this._count / this.pageSize);
+  }
 
+  @PropertyApi({
+    description: 'Page size for pager',
+    type: 'number',
+    default: '10'
+  })
   @Input()
-  mode: PagerMode = PagerMode.page;
+  set pageSize(pageSize: number) {
+    this._pageSize = pageSize;
+    this.updatePages();
+  }
+
+  get pageSize() {
+    return this._pageSize;
+  }
+
+  @PropertyApi({
+    description: 'Mode for pager',
+    path: 'ui.pager.mode',
+    options: [PagerMode.offset, PagerMode.page],
+    default: PagerMode.offset
+  })
+  @Input()
+  mode: PagerMode = PagerMode.offset;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
-
-  get pagesCount() {
-    return this._pagesCount;
-  }
 
   set selectedPage(page: number) {
     this._selectedPage = page;
@@ -71,11 +93,22 @@ export class PagerComponent implements ControlValueAccessor {
   }
 
   writeValue(value: number): void {
-    this.selectedPage = value;
+    if (!!value) {
+      switch (this.mode) {
+        case PagerMode.page:
+          this.selectedPage = value;
+          break;
+        case PagerMode.offset:
+          this.selectedPage = Math.ceil(value / this.pageSize);
+          break;
+      }
+    } else {
+      this.selectedPage = DEFAULT_PAGE;
+    }
   }
 
   setPage(page: number) {
-    if (page >= 1 && page <= this.pagesCount) {
+    if (page >= DEFAULT_PAGE && page <= this.pagesCount) {
       switch (this.mode) {
         case PagerMode.page:
           this.onChange(page);

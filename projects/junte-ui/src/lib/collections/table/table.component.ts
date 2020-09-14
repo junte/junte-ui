@@ -43,7 +43,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   ui = UI;
 
-  private count: number;
   private subscriptions = {fetcher: new Subscription()};
   popover: PopoverComponent;
 
@@ -54,6 +53,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   orderBy = this.fb.control(null);
   pageSize = this.fb.control(DEFAULT_FIRST);
   page = this.fb.control((DEFAULT_OFFSET / DEFAULT_FIRST) + 1);
+  count: number;
 
   form = this.fb.group({
     q: this.q,
@@ -105,10 +105,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   })
   @ContentChild('tableFiltersTemplate')
   tableFiltersTemplate: TemplateRef<any>;
-
-  get pagesCount() {
-    return Math.ceil(this.count / this.pageSize.value);
-  }
 
   onChange: (filter: DefaultSearchFilter) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

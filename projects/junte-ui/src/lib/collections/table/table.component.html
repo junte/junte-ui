@@ -94,9 +94,12 @@
         </table>
       </div>
 
-      <ng-container *ngIf="pagesCount > 1">
+      <ng-container *ngIf="!!count">
         <div data-pagination>
-          <jnt-pager [pagesCount]="pagesCount" formControlName="page" data-pages></jnt-pager>
+          <jnt-pager formControlName="page" data-pages
+                     [count]="count" [pageSize]="pageSize.value"
+                     [mode]="ui.pager.mode.page">
+          </jnt-pager>
           <jnt-select formControlName="pageSize" [size]="ui.size.small" [allowEmpty]="false">
             <jnt-select-option label="10" key="10"></jnt-select-option>
             <jnt-select-option label="20" key="20"></jnt-select-option>
