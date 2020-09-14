@@ -23,6 +23,6 @@
   </div>
 </div>
 
-<div data-zoom [attr.data-disabled]="!!imagePosition.width && !!imagePosition.height && !disabled">
+<div data-zoom [attr.data-disabled]="!imagePosition.width || !imagePosition.height || disabled">
   <input type="range" min=".05" max="5" step=".05" [value]="imagePosition.scale" (input)="zoom($event.target.value)">
 </div>
