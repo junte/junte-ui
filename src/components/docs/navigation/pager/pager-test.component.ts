@@ -15,14 +15,18 @@ export class PagerTestComponent implements OnInit {
   localUi = LocalUI;
   types = {pager: PagerComponent};
 
-  countControl = this.fb.control(5);
-  pageControl = this.fb.control(1);
+  countControl = this.fb.control(50);
+  pageSizeControl = this.fb.control(15);
+  modeControl = this.fb.control(UI.pager.mode.offset);
   builder = this.fb.group({
     count: this.countControl,
+    pageSize: this.pageSizeControl,
+    mode: this.modeControl
   });
 
+  pageControl = this.fb.control(null);
   form = this.fb.group({
-    page: this.pageControl,
+    page: this.pageControl
   });
 
   @ViewChild('code') code: TabComponent;

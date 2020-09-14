@@ -26,7 +26,7 @@
                   <jnt-stack [align]="ui.align.center">
                     <jnt-block [width]="ui.width.fluid">
                       <jnt-row>
-                        <jnt-col *ngFor="let number of (16 | mockArray:((pageControl.value - 1) * 5))"
+                        <jnt-col *ngFor="let number of (pageSizeControl.value | mockArray:pageControl.value)"
                                  [desktop]="3">
                           <div block>
                             {{number + 1}}
@@ -34,8 +34,10 @@
                         </jnt-col>
                       </jnt-row>
                     </jnt-block>
-                    <jnt-pager [pagesCount]="countControl.value"
-                                    formControlName="page">
+                    <jnt-pager [count]="countControl.value"
+                               [mode]="modeControl.value"
+                               [pageSize]="pageSizeControl.value"
+                               formControlName="page">
                     </jnt-pager>
                   </jnt-stack>
                 </form>
@@ -45,16 +47,49 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder" form>
               <jnt-form-item>
-                <jnt-form-label for="count"
-                                i18n="@@label.pages_count">Pages count</jnt-form-label>
+                <jnt-form-label for="count" i18n="@@label.pages_count">
+                  Items count
+                </jnt-form-label>
                 <jnt-form-control>
                   <jnt-switcher formControlName="count">
-                    <jnt-switcher-option *ngFor="let page of [2,5,10]" [label]="page"
-                                         [value]="page">
+                    <jnt-switcher-option *ngFor="let count of [20,50,100]"
+                                         [label]="count"
+                                         [value]="count">
                     </jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-control>
               </jnt-form-item>
+
+              <jnt-form-item>
+                <jnt-form-label for="mode" i18n="@@label.mode">
+                  Pager mode
+                </jnt-form-label>
+                <jnt-form-control>
+                  <jnt-switcher formControlName="mode">
+                    <jnt-switcher-option [label]="ui.pager.mode.offset"
+                                         [value]="ui.pager.mode.offset">
+                    </jnt-switcher-option>
+                    <jnt-switcher-option [label]="ui.pager.mode.page"
+                                         [value]="ui.pager.mode.page">
+                    </jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-control>
+              </jnt-form-item>
+
+              <jnt-form-item>
+                <jnt-form-label for="pageSize" i18n="@@label.page_size">
+                  Page size
+                </jnt-form-label>
+                <jnt-form-control>
+                  <jnt-switcher formControlName="pageSize">
+                    <jnt-switcher-option *ngFor="let size of [10,15,20]"
+                                         [label]="size"
+                                         [value]="size">
+                    </jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-control>
+              </jnt-form-item>
+
             </jnt-form>
           </jnt-col>
         </jnt-row>
@@ -80,16 +115,24 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight>
                 <!-- @formatter:off-->
-<![CDATA[
-<jnt-pager
-]]>
-  <ng-container *ngIf="countControl.value">
-    <![CDATA[
-    [pagesCount]="]]>{{countControl.value}}<![CDATA["]]>
-  </ng-container>
-  <![CDATA[>
-</jnt-pager>
-]]>
+                <![CDATA[
+                <jnt-pager
+                  ]]>
+                  <ng-container *ngIf="countControl.value">
+                    <![CDATA[
+                    [count]="]]>{{countControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pageSizeControl.value">
+                    <![CDATA[
+                    [pageSize]="]]>{{pageSizeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="modeControl.value">
+                    <![CDATA[
+                    [mode]="]]>{{modeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-pager>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

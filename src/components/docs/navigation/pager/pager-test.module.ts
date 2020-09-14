@@ -19,22 +19,23 @@ import { SharedModule } from '../../shared/shared.module';
 import { PagerTestComponent } from './pager-test.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    IconModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    AccordionModule,
-    SwitcherModule,
-    PagerModule,
-    BlockModule,
-    ArrayPipesModule,
-    SharedModule
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        IconModule,
+        LinkModule,
+        StackModule,
+        TabsModule,
+        GridModule,
+        FormModule,
+        AccordionModule,
+        SwitcherModule,
+        PagerModule,
+        BlockModule,
+        ArrayPipesModule,
+        SharedModule,
+        ArrayPipesModule
+    ],
   exports: [
     PagerTestComponent
   ],
