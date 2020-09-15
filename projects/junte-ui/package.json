@@ -39,7 +39,7 @@
     "copy:iconfont": "cd ./src/scripts/iconfont && tsc && cp -r iconfont.js template ../../../../../dist/junte-ui",
     "copy:version": "cp ./VERSION ../../dist/junte-ui",
     "copy:files": "npm run copy:assets && npm run copy:iconfont && npm run copy:version",
-    "build": "npm run clean && npm run encapsulation && npm run iconfont && ng build --prod && npm run copy:files && npm run styles",
+    "build": "npm run clean && npm run encapsulation && npm run iconfont && ng build --prod && npm run copy:files && npm run styles && npm run version:inject",
     "copy": "wait-on -i 3000 ../../dist/junte-ui/bundles/junte-ui.umd.js && npm run copy:files && npm run styles:watch",
     "serve": "npm run clean && run-p --continue-on-error=false -l -n *:watch copy",
     "styles:watch": "wait-on ../../dist/junte-ui/template && gulp build --gulpfile ./src/scripts/styles.ts --cwd ./ --watch",
@@ -51,7 +51,7 @@
     "publish:prod": "tag=latest npm run publish:npm",
     "clean:npm": "npm cache clean --force && rm -rf -- node_modules package-lock.json",
     "refresh": "npm run clean:npm && npm install",
-    "version:inject": "gulp build --gulpfile ./src/scripts/version.ts --cwd ../../dist/junte-ui/"
+    "version:inject": "gulp inject --gulpfile ./src/scripts/version.ts --cwd ../../dist/junte-ui/"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.12",

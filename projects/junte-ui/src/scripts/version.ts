@@ -27,7 +27,7 @@ export class Gulpfile {
   }
 
   @SequenceTask()
-  build() {
+  inject() {
     return ['version'];
   }
 }
