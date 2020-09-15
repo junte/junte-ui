@@ -22,18 +22,19 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-form [formGroup]="form" data-form>
-                  <jnt-stack [orientation]="ui.orientation.horizontal"
-                             [align]="ui.align.stretch"
-                             [justify]="ui.justify.between"
-                             [gutter]="ui.gutter.small">
-                    <jnt-date-picker formControlName="flightDate"
-                                     placeholder="Please enter the date"
-                                     [type]="typeControl.value">
-                    </jnt-date-picker>
-                    <jnt-button text="Clear"
-                                (click)="flightDateControl.patchValue(null)">
-                    </jnt-button>
-                  </jnt-stack>
+                  <jnt-row>
+                    <jnt-col [tablet]="6" [mobile]="12">
+                      <jnt-date-picker formControlName="flightDate"
+                                       placeholder="Please enter the date"
+                                       [type]="typeControl.value">
+                      </jnt-date-picker>
+                    </jnt-col>
+                    <jnt-col [tablet]="6" [mobile]="12">
+                      <jnt-button text="Clear"
+                                  (click)="flightDateControl.patchValue(null)">
+                      </jnt-button>
+                    </jnt-col>
+                  </jnt-row>
                 </jnt-form>
                 <jnt-stack *ngIf="!!flightDateControl.value"
                            [orientation]="ui.orientation.horizontal"
