@@ -8,8 +8,6 @@ import {
   HostBinding,
   HostListener,
   Input,
-  isDevMode,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
@@ -24,16 +22,6 @@ import { I18N_PROVIDERS } from '../../core/i18n/providers';
 const CROPPER_SIZE = 200;
 const DEFAULT_SCALE = 1;
 const MAX_SCALE = 5;
-
-export type HammerStatic = new(element: HTMLElement | SVGElement, options?: any) => HammerManager;
-
-export interface HammerManager {
-  get(eventName: string): HammerManager;
-
-  set(options: any): HammerManager;
-
-  on(eventName: string, handler: (ev: any) => any);
-}
 
 export enum MoveTypes {
   Move = 'move',
@@ -80,13 +68,11 @@ export type ImageCroppedData = {
     }, ...I18N_PROVIDERS
   ]
 })
-export class ImageCropperComponent implements ControlValueAccessor, OnInit {
+export class ImageCropperComponent implements ControlValueAccessor {
 
   ui = UI;
   @HostBinding('attr.host') readonly host = 'jnt-image-cropper-host';
 
-  private Hammer: HammerStatic = typeof window !== 'undefined'
-    ? (window as any).Hammer as HammerStatic : null;
   private moveStart = new MoveStart();
   private sizeRetries = 0;
   private _url: SafeUrl | string;
@@ -154,18 +140,6 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
               public sanitizer: DomSanitizer) {
   }
 
-  ngOnInit(): void {
-    if (this.Hammer) {
-      const hammer = new this.Hammer(this.wrapper.nativeElement);
-      hammer.get('pinch').set({enable: true});
-      hammer.on('pinchmove', this.moveImg.bind(this));
-      hammer.on('pinchend', this.pinchStop.bind(this));
-      hammer.on('pinchstart', this.startPinch.bind(this));
-    } else if (isDevMode()) {
-      console.warn('Could not find HammerJS - Pinch Gesture won\'t work');
-    }
-  }
-
   inView(): void {
     if (this.image.nativeElement.currentSrc.includes('image/svg')) {
       this.disabled = true;
@@ -186,7 +160,7 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
       this.imagePosition.top = (wrapper.offsetHeight - image.offsetHeight) / 2;
       this.imagePosition.left = (wrapper.offsetWidth - image.offsetWidth) / 2;
       let scale = Math.trunc(wrapper.offsetWidth / image.offsetWidth * 100) / 100;
-      scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, MAX_SCALE)
+      scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, MAX_SCALE);
       this.zoom(scale);
       this.cd.detectChanges();
     } else {
@@ -211,22 +185,6 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
     };
   }
 
-  startPinch(event: any) {
-    if (!this.url) {
-      return;
-    }
-    if (!!event.preventDefault) {
-      event.preventDefault();
-    }
-    this.moveStart = {
-      active: true,
-      type: MoveTypes.Pinch,
-      clientX: this.imagePosition.left + (this.imagePosition.width - this.imagePosition.left) / 2,
-      clientY: this.imagePosition.top + (this.imagePosition.height - this.imagePosition.top) / 2,
-      ...this.imagePosition
-    };
-  }
-
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
   moveImg(event: any): void {
@@ -247,13 +205,6 @@ export class ImageCropperComponent implements ControlValueAccessor, OnInit {
   @HostListener('document:mouseup')
   @HostListener('document:touchend')
   moveStop(): void {
-    if (this.moveStart.active) {
-      this.moveStart.active = false;
-      this.crop();
-    }
-  }
-
-  pinchStop(): void {
     if (this.moveStart.active) {
       this.moveStart.active = false;
       this.crop();
