@@ -4,6 +4,7 @@ import {
   EventEmitter,
   forwardRef,
   HostBinding,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -237,6 +238,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private logger: NGXLogger,
               private fb: FormBuilder) {
@@ -330,24 +332,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
           break;
       }
       this.inputControl.setValue(value);
-    }
-  }
-
-  blur() {
-    this.onTouched();
-    if (this.type === InputType.number) {
-      if (this.inputControl.value === '' || this.inputControl.value === null) {
-        this.inputControl.setValue(null);
-        return;
-      }
-
-      if (this.min !== null && +this.inputControl.value < this.min) {
-        this.inputControl.setValue(this.min);
-      }
-
-      if (this.max != null && +this.inputControl.value > this.max) {
-        this.inputControl.setValue(this.max);
-      }
     }
   }
 
