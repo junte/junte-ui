@@ -386,6 +386,7 @@ export const icons = {
   dribbble: 'dribbble:svg:apps:apps',
   github: 'github:svg:apps:apps',
   figma: 'figma:svg:apps:apps',
+  stackblitz: 'stackblitz:svg:apps:apps',
   animated: {
     runningMan: 'running-man:animated:default:animated',
     success: 'success:animated:default:animated',
