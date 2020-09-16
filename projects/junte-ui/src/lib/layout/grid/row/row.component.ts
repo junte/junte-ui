@@ -15,7 +15,10 @@ export class RowComponent {
   _align: RowAlign = RowAlign.start;
 
   @HostBinding('attr.data-gutter')
-  _gutter: Gutter = Gutter.normal;
+  _gutter: Gutter = Gutter.small;
+
+  @HostBinding('attr.data-spacing')
+  _spacing: Gutter = Gutter.normal;
 
   @HostBinding('attr.data-justify')
   _justify: RowJustify = RowJustify.start;
@@ -59,8 +62,23 @@ export class RowComponent {
       Gutter.large,
       Gutter.huge]
   })
-  @Input() set gutter(gutter: Gutter) {
-    this._gutter = gutter || Gutter.normal;
+  @Input() set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.normal;
   }
 
+  @PropertyApi({
+    description: 'Padding in column',
+    path: 'ui.gutter',
+    default: Gutter.small,
+    options: [Gutter.none,
+      Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.big,
+      Gutter.large,
+      Gutter.huge]
+  })
+  @Input() set gutter(gutter: Gutter) {
+    this._gutter = gutter || Gutter.small;
+  }
 }

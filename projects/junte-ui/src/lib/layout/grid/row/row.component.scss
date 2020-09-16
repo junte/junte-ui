@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin col-gutter($gutter) {
+@mixin col-spacing($gutter) {
   & {
     margin-top: -$gutter;
     > :not(router-outlet) {
@@ -35,13 +35,20 @@
     display: flex;
     text-align: left;
     flex-wrap: wrap;
-    margin: 0 (-$jnt-gutter-small);
 
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
+        &[data-spacing = '#{$gutter}'] {
+          @include col-spacing($map);
+        }
         &[data-gutter = '#{$gutter}'] {
-          @include col-gutter($map);
+          margin-left: -$map;
+          margin-right: -$map;
+          > * {
+            padding-left: $map;
+            padding-right: $map;
+          }
         }
       }
     }
