@@ -16,20 +16,20 @@ export class GridTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  gutterControl = this.fb.control(null);
+  spacingControl = this.fb.control(null);
   alignControl = this.fb.control(null);
   justifyControl = this.fb.control(null);
   spanControl = this.fb.control(2);
   countControl = this.fb.control(4);
-  paddingControl = this.fb.control(null);
+  gutterControl = this.fb.control(null);
 
   builder = this.fb.group({
-    gutter: this.gutterControl,
+    spacing: this.spacingControl,
     align: this.alignControl,
     justify: this.justifyControl,
     span: this.spanControl,
     count: this.countControl,
-    padding: this.paddingControl
+    gutter: this.gutterControl
   });
 
   constructor(private fb: FormBuilder) {

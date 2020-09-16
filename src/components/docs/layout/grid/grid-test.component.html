@@ -30,10 +30,10 @@
                   <jnt-container>
                     <jnt-row [align]="alignControl.value"
                              [justify]="justifyControl.value"
-                             [gutter]="gutterControl.value">
+                             [gutter]="gutterControl.value"
+                             [spacing]="spacingControl.value">
                       <jnt-col *ngFor="let block of countControl.value | mockArray"
-                               [span]="spanControl.value"
-                               [padding]="paddingControl.value">
+                               [span]="spanControl.value">
                         <div block
                              [style.height.px]="alignControl.value !== ui.grid.row.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
                           {{block + 1}}
@@ -72,10 +72,10 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="gutter"
-                                    i18n="@@label.gutter">Gutter</jnt-form-label>
+                    <jnt-form-label for="spacing"
+                                    i18n="@@label.spacing">Spacing</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="gutter"
+                      <jnt-select formControlName="spacing"
                                   placeholder="Normal"
                                   i18n-placeholder="@@label.normal">
                         <jnt-select-option label="None"
@@ -172,12 +172,12 @@
                   </jnt-form-item>
 
                   <jnt-form-item>
-                    <jnt-form-label for="span"
-                                    i18n="@@label.column_padding">Column padding</jnt-form-label>
+                    <jnt-form-label for="gutter"
+                                    i18n="@@label.column_padding">Gutter</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="padding"
-                                  placeholder="Normal"
-                                  i18n-placeholder="@@label.normal">
+                      <jnt-select formControlName="gutter"
+                                  placeholder="Small"
+                                  i18n-placeholder="@@label.small">
                         <jnt-select-option label="None"
                                            i18n-label="@@label.none"
                                            [key]="ui.gutter.none"></jnt-select-option>
@@ -239,10 +239,14 @@
 <jnt-container>
   <jnt-row
   ]]>
-  <ng-container *ngIf="gutterControl.value">
+  <ng-container *ngIf="spacingControl.value">
     <![CDATA[
-    [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
   </ng-container>
+    <ng-container *ngIf="gutterControl.value">
+      <![CDATA[
+      [gutter]="ui.gutter.]]>{{gutterControl.value}}<![CDATA["]]>
+    </ng-container>
   <ng-container *ngIf="alignControl.value">
     <![CDATA[
     [align]="ui.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
@@ -259,10 +263,6 @@
       <ng-container *ngIf="spanControl.value">
         <![CDATA[
         [span]="]]>{{spanControl.value}}<![CDATA["]]>
-      </ng-container>
-      <ng-container *ngIf="paddingControl.value">
-        <![CDATA[
-        [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
       </ng-container>
       <![CDATA[>
       <div>]]>{{i + 1}}<![CDATA[</div>
