@@ -10,7 +10,6 @@
            type="tel"
            (focusin)="focused = true"
            (focusout)="focused = false"
-           (blur)="blur()"
            [placeholder]="placeholder"
            [readonly]="readonly ? readonly : null"
            (paste)="paste($event)"
@@ -27,7 +26,6 @@
              [max]="max"
              (focusin)="focused = true"
              (focusout)="focused = false"
-             (blur)="blur()"
              (keydown)="keydown($event)"
              (keyup)="keyup()">
     </ng-template>
