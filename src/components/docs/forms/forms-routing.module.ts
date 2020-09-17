@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ImageCropperTestComponent } from 'src/components/docs/forms/image-cropper/image-cropper-test.component';
-import { FilterTestComponent } from './filter/filter-test.component';
-import { SelectableTestComponent } from './selectable/selectable-test.component';
+import { ImageCropperTestComponent } from './image-cropper/image-cropper-test.component';
+import { ImageUploaderTestComponent } from './image-uploader/image-uploader-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
+import { FilterTestComponent } from './filter/filter-test.component';
 import { FormTestComponent } from './form/form-test.component';
 import { InputTestComponent } from './input/input-test.component';
 import { RadioTestComponent } from './radio/radio-test.component';
 import { SelectTestComponent } from './select/select-test.component';
+import { SelectableTestComponent } from './selectable/selectable-test.component';
 import { SwitchTestComponent } from './switch/switch-test.component';
 import { SwitcherTestComponent } from './switcher/switcher-test.component';
 
@@ -83,6 +84,11 @@ export const routes: Routes = [
         path: 'image-cropper',
         component: ImageCropperTestComponent,
         data: {breadcrumb: 'Image Cropper', animation: 'Image Cropper'}
+      },
+      {
+        path: 'image-uploader',
+        component: ImageUploaderTestComponent,
+        data: {breadcrumb: 'Image Uploader', animation: 'Image Uploader'}
       }
     ]
   }
