@@ -70,7 +70,7 @@
         <svg wave width="703" height="647" viewBox="0 0 703 647" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M206.625 -488.936L400.502 -675.715C620.925 -824.13 508.355 -1172.42 837.122 -1212.66C1172.88 -1253.77 1690.56 -926.937 1843.82 -641.106C1920.14 -498.779 2003.01 -262.331 1904.77 -108.672C1836.42 -1.74601 1697.33 7.05666 1579.2 4.67415C1433.56 1.72662 1307.26 -53.2096 1170.05 11.073C1081.58 52.543 1032.61 119.224 959.935 182.197C560.021 528.291 -51.2694 -86.4506 206.625 -488.936Z"
-            />
+          />
         </svg>
       </ng-container>
 
@@ -571,7 +571,15 @@
               <jnt-label data-label label="Alpha version"></jnt-label>
             </h1>
 
-            <p>Made with love for making beautiful WEB apps!</p>
+            <p data-web-apps>Made with love for making beautiful WEB apps!</p>
+            <jnt-stack data-versions [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" [align]="ui.align.center">
+              <div>Versions:</div>
+              <jnt-menu data-menu>
+                <jnt-menu-item *ngFor="let version of versions"
+                               [title]="version.title" [link]="version.link">
+                </jnt-menu-item>
+              </jnt-menu>
+            </jnt-stack>
           </jnt-stack>
 
           <jnt-row tags>
