@@ -393,7 +393,7 @@ export const icons = {
     settings: 'settings:animated:default:animated|colored',
     bell: 'bell:animated:default:animated',
     reload: 'reload:animated:default:animated',
-    spinner: 'spinner:animated:default:animated',
+    spinner: 'spinner:animated:default:animated|colored',
     recording: 'recording:animated:default:animated',
     warning: 'warning:animated:default:animated|colored',
     bin: 'bin:animated:default:animated|colored',
