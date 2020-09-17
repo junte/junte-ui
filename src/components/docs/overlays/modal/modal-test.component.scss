@@ -2,14 +2,17 @@
 @import '../../component';
 
 :host-context([theme='dark']) {
-  [footer] {
+  [data-footer] {
     background-color: #121212;
   }
 }
 
-[footer] {
+:host {
+  display: block;
+}
+
+[data-footer] {
   padding: $jnt-gutter-normal;
-  background-color: $jnt-page-background;
   border-bottom-left-radius: $jnt-corner-normal;
   border-bottom-right-radius: $jnt-corner-normal;
 }
