@@ -1,0 +1,68 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'layout/app/variables';
+@import 'layout/spinner';
+
+@mixin jnt-app-busyness($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    position: fixed
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    position: map-get($vars, position);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    margin: 0;
+
+    @include for-mobile() {
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(62, 64, 66, 0.5);
+    }
+
+    @include jnt-spinner((color: $jnt-secondary-color));
+  }
+
+  [data-loader] {
+    animation-name: loader-loading;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    height: $jnt-gutter-tiny;
+    width: 100%;
+    background-color: $jnt-secondary-color;
+  }
+}
+
+@keyframes loader-loading {
+  0% {
+    width: 0;
+  }
+  10% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@if $jnt-debug {
+  @debug 'app-busyness compiled';
+}

@@ -33,6 +33,11 @@
                 </jnt-form-label>
                 <jnt-row>
                   <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="busyness"
+                                  label="Busyness"
+                                  i18n-label="@@label.busyness"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
                     <jnt-checkbox formControlName="header"
                                   label="Header"
                                   i18n-label="@@label.header"></jnt-checkbox>
@@ -78,6 +83,7 @@
             <app-browser-preview preview>
               <ng-template #document let-height="height">
                 <jnt-app-layout>
+                  <jnt-app-busyness *ngIf="busynessControl.value" data-busyness></jnt-app-busyness>
                   <jnt-app-header *ngIf="headerControl.value">
                     <ng-template #headerLogoTemplate *ngIf="logoControl.value">
                       <img height="30" [src]="'assets/images/linkedin-logo.svg'">
