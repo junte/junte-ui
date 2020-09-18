@@ -31,12 +31,21 @@
                                             [size]="sizeControl.value">
                           <jnt-checkbox label="Spiderman"
                                         [value]="hero.spiderman">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <strong>Spiderman custom template</strong>
+                            </ng-template>
                           </jnt-checkbox>
                           <jnt-checkbox label="Ironman"
                                         [value]="hero.ironman">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <jnt-input placeholder="Ironman custom template"></jnt-input>
+                            </ng-template>
                           </jnt-checkbox>
                           <jnt-checkbox label="Captain America"
                                         [value]="hero.captainAmerica">
+                            <ng-template *ngIf="customControl.value" #labelTemplate>
+                              <jnt-checkbox label="Captain America custom template"></jnt-checkbox>
+                            </ng-template>
                           </jnt-checkbox>
 
                           <ng-container *ngIf="colsControl.value > 1">
@@ -140,6 +149,13 @@
                   </jnt-form-control>
                 </jnt-form-item>
 
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.custom">Custom template
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="custom" label="Custom template"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
               </jnt-stack>
             </jnt-form>
             <!--builder-->

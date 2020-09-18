@@ -4,9 +4,7 @@
       <jnt-radio [formControlName]="i"
                  [size]="size"
                  [label]="item.label"
-                 [value]="item.value"
-                 (click)="radiosControl.enabled ? select(item.value) : null">
-        {{item.labelTemplate}}
+                 [value]="item.value">
         <ng-template *ngIf="!!item.labelTemplate" #labelTemplate>
           <ng-container *ngTemplateOutlet="item.labelTemplate"></ng-container>
         </ng-template>

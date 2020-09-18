@@ -1,4 +1,4 @@
-import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
@@ -32,10 +32,18 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input()
   label: string;
 
+  @ContentChild('labelTemplate')
+  labelTemplate: TemplateRef<any>;
+
   @PropertyApi({
     description: 'Size for checkbox',
     path: 'ui.size',
-    options: [Size.tiny, Size.small, Size.normal, Size.large],
+    options: [
+      Size.tiny,
+      Size.small,
+      Size.normal,
+      Size.large
+    ],
     default: Size.normal
   })
   @Input()
@@ -47,7 +55,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
     description: 'Value for checkbox',
     type: 'any'
   })
-  @Input() value: any;
+  @Input()
+  value: any;
 
   checkboxControl = this.fb.control(false);
   form = this.fb.group({
@@ -73,6 +82,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.checkboxControl.disable({emitEvent: false}) : this.checkboxControl.enable({emitEvent: false});
+    disabled ? this.checkboxControl.disable({emitEvent: false})
+      : this.checkboxControl.enable({emitEvent: false});
   }
 }

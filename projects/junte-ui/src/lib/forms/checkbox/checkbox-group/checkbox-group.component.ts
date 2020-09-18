@@ -51,7 +51,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
     type: 'number',
     default: 1
   })
-  @Input() cols = 1;
+  @Input()
+  cols = 1;
 
   @PropertyApi({
     description: 'Size for checkbox in checkbox group',
@@ -122,6 +123,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.checkboxesControl.disable({emitEvent: false}) : this.checkboxesControl.enable({emitEvent: false});
+    isDisabled ? this.checkboxesControl.disable({emitEvent: false})
+      : this.checkboxesControl.enable({emitEvent: false});
   }
 }

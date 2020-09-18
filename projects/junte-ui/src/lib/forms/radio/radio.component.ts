@@ -17,7 +17,8 @@ import { UI } from '../../core/enums/ui';
 export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
-  @HostBinding('attr.host') readonly host = 'jnt-radio-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-radio-host';
 
   radioControl = this.fb.control(false);
   form = this.fb.group({
@@ -31,10 +32,12 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
     description: 'Size for radio button',
     type: 'string',
     path: 'ui.size',
-    options: [Size.tiny,
+    options: [
+      Size.tiny,
       Size.small,
       Size.normal,
-      Size.large],
+      Size.large
+    ],
     default: Size.normal
   })
   @Input()
@@ -46,13 +49,15 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
     description: 'Label name for radio button',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Value for radio button',
     type: 'any'
   })
-  @Input() value: any;
+  @Input()
+  value: any;
 
   @ContentChild('labelTemplate')
   labelTemplate: TemplateRef<any>;
@@ -68,7 +73,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    this.radioControl.valueChanges.subscribe(value => this.onChange(value));
+    this.radioControl.valueChanges.subscribe(() => this.onChange(true));
   }
 
   writeValue(value: boolean) {
@@ -76,6 +81,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.radioControl.disable({emitEvent: false}) : this.radioControl.enable({emitEvent: false});
+    disabled ? this.radioControl.disable({emitEvent: false})
+      : this.radioControl.enable({emitEvent: false});
   }
 }
