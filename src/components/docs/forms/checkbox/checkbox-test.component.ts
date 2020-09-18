@@ -24,11 +24,13 @@ export class CheckboxTestComponent implements OnInit {
   sizeControl = this.fb.control(null);
   disableControl = this.fb.control(null);
   colsControl = this.fb.control(null);
+  customControl = this.fb.control(false);
 
   builder = this.fb.group({
     size: this.sizeControl,
     cols: this.colsControl,
-    disable: this.disableControl
+    disable: this.disableControl,
+    custom: this.customControl
   });
 
   heroesControl = this.fb.control([Hero.spiderman], Validators.required);

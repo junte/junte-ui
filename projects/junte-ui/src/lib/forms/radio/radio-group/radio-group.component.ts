@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { map } from 'rxjs/operators';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
@@ -32,7 +33,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   ui = UI;
 
-  @HostBinding('attr.host') readonly host = 'jnt-radio-group-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-radio-group-host';
 
   private _size = Size.normal;
   selected: any;
@@ -43,15 +45,19 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
     radios: this.radiosControl
   });
 
-  @Input() labelField: string;
-  @Input() valueField: string;
+  @Input()
+  labelField: string;
+
+  @Input()
+  valueField: string;
 
   @PropertyApi({
     description: 'Count of cols in radio group',
     type: 'number',
     default: 1
   })
-  @Input() cols = 1;
+  @Input()
+  cols = 1;
 
   @PropertyApi({
     description: 'Size for radio in radio group',
@@ -87,6 +93,20 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   ngAfterViewInit() {
     this.radios.changes.subscribe(() => this.update());
     this.transformationRadio();
+    this.radiosControl.valueChanges.pipe(
+      map(radios => this.items
+        .filter((_, i) => radios[i])
+        .map(radio => radio.value))
+    ).subscribe(radios => {
+      for (let radio of radios) {
+        if (radio !== this.selected) {
+          this.selected = radio;
+          break;
+        }
+      }
+      this.radiosControl.setValue(this.items.map(item => item.value === this.selected), {emitEvent: false});
+      this.onChange(this.selected);
+    });
   }
 
   private transformationRadio() {
@@ -106,7 +126,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
         if (this.radiosControl.length < i + 1) {
           this.radiosControl.push(new FormControl(this.selected === radio.value));
         } else {
-          this.radiosControl.get(i.toString()).setValue(this.selected === radio.value, {emitEvent: false});
+          this.radiosControl.get(i.toString())
+            .setValue(this.selected === radio.value, {emitEvent: false});
         }
       });
     }
@@ -118,12 +139,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.radiosControl.disable({emitEvent: false}) : this.radiosControl.enable({emitEvent: false});
-  }
-
-  select(value) {
-    this.selected = value || null;
-    this.radiosControl.setValue(this.items.map(item => item.value === this.selected), {emitEvent: false});
-    this.onChange(this.selected);
+    isDisabled ? this.radiosControl.disable({emitEvent: false})
+      : this.radiosControl.enable({emitEvent: false});
   }
 }

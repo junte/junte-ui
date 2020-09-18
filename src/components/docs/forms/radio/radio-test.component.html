@@ -34,17 +34,17 @@
                                          [size]="sizeControl.value">
                           <jnt-radio label="Spiderman" [value]="hero.spiderman">
                             <ng-template *ngIf="customControl.value" #labelTemplate>
-                              <strong>Test custom template</strong>
+                              <strong>Spiderman custom template</strong>
                             </ng-template>
                           </jnt-radio>
                           <jnt-radio label="Ironman" [value]="hero.ironman">
                             <ng-template *ngIf="customControl.value" #labelTemplate>
-                              <jnt-input placeholder="Custom template too"></jnt-input>
+                              <jnt-input placeholder="Ironman custom template"></jnt-input>
                             </ng-template>
                           </jnt-radio>
                           <jnt-radio label="Captain America" [value]="hero.captainAmerica">
                             <ng-template *ngIf="customControl.value" #labelTemplate>
-                              <jnt-checkbox label="Custom template too"></jnt-checkbox>
+                              <jnt-checkbox label="Captain America custom template"></jnt-checkbox>
                             </ng-template>
                           </jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
@@ -154,7 +154,7 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label i18n="@@label.state">Custom template
+                  <jnt-form-label i18n="@@label.custom">Custom template
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="custom" label="Custom template"></jnt-checkbox>

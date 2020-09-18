@@ -11,13 +11,13 @@ import {
   FormModule,
   GridModule,
   IconModule,
+  InputModule,
   LabelModule,
   LinkModule,
   SelectModule,
   StackModule,
   TabsModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { CheckboxTestComponent } from './checkbox-test.component';
 
@@ -40,7 +40,8 @@ import { CheckboxTestComponent } from './checkbox-test.component';
     BlockModule,
     SelectModule,
     ArrayPipesModule,
-    ButtonModule
+    ButtonModule,
+    InputModule
   ],
   exports: [
     CheckboxTestComponent
