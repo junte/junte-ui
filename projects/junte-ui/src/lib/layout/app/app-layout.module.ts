@@ -7,10 +7,12 @@ import { ButtonModule } from '../../forms/button/button.module';
 import { MenuModule } from '../../navigation/menu/menu.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { ResponsiveModule } from '../responsive/responsive.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 import { StackModule } from '../stack/stack.module';
 import { AppLayoutComponent } from './app-layout.component';
 import { AppAsideComponent } from './aside/app-aside.component';
 import { AppBodyComponent } from './body/app-body.component';
+import { AppBusynessComponent } from './busyness/app-busyness.component';
 import { AppContentComponent } from './content/app-content.component';
 import { AppFooterComponent } from './footer/app-footer.component';
 import { AppHeaderActionComponent } from './header/action/app-header-action.component';
@@ -29,7 +31,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     MenuModule,
     ResponsiveModule,
     PopoverModule,
-    BadgeModule
+    BadgeModule,
+    SpinnerModule
   ],
   declarations: [
     AppLayoutComponent,
@@ -41,7 +44,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    AppBusynessComponent
   ],
   entryComponents: [
     AppLayoutComponent,
@@ -49,7 +53,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     AppHeaderActionsComponent,
     AppHeaderActionComponent,
     AppSubHeaderComponent,
-    AppContentComponent
+    AppContentComponent,
+    AppBusynessComponent
   ],
   exports: [
     AppLayoutComponent,
@@ -61,7 +66,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    AppBusynessComponent
   ]
 })
 export class AppLayoutModule {

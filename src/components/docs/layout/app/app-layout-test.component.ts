@@ -31,6 +31,7 @@ export class AppLayoutTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
+  busynessControl = this.fb.control(true);
   headerControl = this.fb.control(true);
   logoControl = this.fb.control(true);
   menuControl = this.fb.control(true);
@@ -41,6 +42,7 @@ export class AppLayoutTestComponent implements OnInit {
   footerControl = this.fb.control(true);
 
   builder = this.fb.group({
+    busyness: this.busynessControl,
     header: this.headerControl,
     logo: this.logoControl,
     menu: this.menuControl,
