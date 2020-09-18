@@ -75,7 +75,7 @@
                                [attr.declined]="period['status'] === statuses.declined"
                                [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
                                [attr.self-expense]="period['selfExpense']"
-                               [attr.short]="period['to'] | dfnsDifferenceInDays:period['from'] < 2"
+                               [attr.short]="period['to'] | dfnsDifferenceInMonths:period['from'] < 2"
                                [attr.over-from]="(period['from'] | dfnsGetYear) < (current | dfnsGetYear)"
                                [attr.over-to]="(period['to'] | dfnsGetYear) > (current | dfnsGetYear)" period>
                             <span label>

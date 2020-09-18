@@ -16,6 +16,8 @@ import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
 import { GanttTypes } from './enums';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
 
 @Component({
@@ -41,6 +43,11 @@ export class GanttComponent implements ControlValueAccessor {
   types = GanttTypes;
 
   private _current: Date = new Date();
+
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
 
   @PropertyApi({
     description: 'Type of gantt',
@@ -83,6 +90,7 @@ export class GanttComponent implements ControlValueAccessor {
   @ContentChildren(GanttLineComponent, {descendants: true})
   lines: QueryList<GanttLineComponent>;
 
+  sections = this.lines;
   today = today();
   error: Error;
 
@@ -101,7 +109,8 @@ export class GanttComponent implements ControlValueAccessor {
     this.onChange(current);
   }
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
   }
 
   writeValue(date: Date): void {
