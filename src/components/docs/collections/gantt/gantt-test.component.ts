@@ -52,6 +52,8 @@ export class GanttTestComponent implements OnInit {
     periods: [
       {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
       {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
+      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
       {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true}
     ]
   }));

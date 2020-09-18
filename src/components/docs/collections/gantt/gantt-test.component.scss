@@ -1,5 +1,6 @@
 @import '../../component';
 @import 'jnt-variables';
+@import 'layout/responsive';
 
 [resources] {
   position: absolute;
@@ -20,6 +21,9 @@
   pointer-events: none;
   overflow: hidden;
   text-overflow: ellipsis;
+  @include for-mobile() {
+    height: 100%;
+  }
 
   &[accepting='true'] {
     cursor: pointer;
@@ -46,12 +50,22 @@
 
   &[over-from='true'] {
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    @include min-for-tablet() {
+      border-bottom-left-radius: 0;
+    }
+    @include for-mobile() {
+      border-top-right-radius: 0;
+    }
   }
 
   &[over-to='true'] {
-    border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    @include min-for-tablet() {
+      border-top-right-radius: 0;
+    }
+    @include for-mobile() {
+      border-bottom-left-radius: 0;
+    }
   }
 
   &[self-expense='true'] {
