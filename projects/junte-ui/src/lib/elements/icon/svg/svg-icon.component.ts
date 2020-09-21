@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { JunteUIConfig } from '../../../config';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
 const DEFAULT_ICONSET = 'default';
@@ -59,7 +60,8 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient,
               private cache: InMemoryCacheService,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              private config: JunteUIConfig) {
   }
 
   ngOnInit() {
@@ -91,7 +93,7 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
   }
 
   private load() {
-    const path = `assets/icons/svg/${this.iconset}.xml`;
+    const path = `${this.config.assets}/icons/svg/${this.iconset}.xml`;
     const key = `${path}|${this.icon}`;
 
     const source = this.cache.get(key);

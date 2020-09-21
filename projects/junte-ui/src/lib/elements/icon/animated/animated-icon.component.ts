@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { JunteUIConfig } from '../../../config';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
 const DEFAULT_ICONSET = 'default';
@@ -57,7 +58,8 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient,
               private renderer: Renderer2,
               private cache: InMemoryCacheService,
-              private hostRef: ElementRef) {
+              private hostRef: ElementRef,
+              private config: JunteUIConfig) {
   }
 
   ngOnInit() {
@@ -79,7 +81,7 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
   }
 
   private load() {
-    const path = `assets/icons/animated/${this.iconset}/${this.icon}.svg`;
+    const path = `${this.config.assets}/icons/animated/${this.iconset}/${this.icon}.svg`;
 
     const source = this.cache.get(path);
     if (source === undefined) {
