@@ -13,6 +13,11 @@
       height: map-get($size, icon);
     }
   }
+  #{$wrapper} form input {
+    &[custom='true'] {
+      width: map-get($size, indicator);
+    }
+  }
   #{$wrapper} label {
     font-size: map-get($size, font-size);
   }
@@ -143,7 +148,7 @@
     }
   }
 
-  #{$context} #{$wrapper} label {
+  #{$context} #{$wrapper} [label] {
     padding-left: $jnt-control-gutter;
     @if map-has-key($vars, label) {
       $label: map-get($vars, label);

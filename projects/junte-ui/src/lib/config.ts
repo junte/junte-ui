@@ -14,6 +14,7 @@ export interface LocaleUI {
 
 @Injectable()
 export class JunteUIConfig {
+  assets?: string;
   i18n?: any;
   locale?: {
     ui?: LocaleUI,
@@ -22,6 +23,7 @@ export class JunteUIConfig {
 }
 
 export const JUNTE_DEFAULT_CONFIG = {
+  assets: 'assets',
   i18n: i18nEn,
   locale: {
     ui: jntEn,

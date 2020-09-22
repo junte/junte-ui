@@ -190,10 +190,35 @@ $jnt-primary-background-dark: #241741;
 
     }
 
-    p {
+    [data-web-apps] {
       font-size: .875em;
       color: $jnt-primary-text-dark-color;
     }
+
+    [data-versions]{
+      font-size: 12px;
+      color: $jnt-primary-text-light-color;
+
+      [data-menu] {
+        @include jnt-menu((
+          top:(
+            item: (
+              link-corner: $jnt-corner-large,
+              corner: $jnt-corner-large,
+              color: $jnt-primary-light-color,
+              orphan: (
+                border: 1px solid $jnt-primary-light-color,
+              ),
+              padding: (
+                inner: $jnt-gutter-tiny $jnt-gutter-normal !important,
+              )
+            ),
+          ),
+        ), '&', true);
+      }
+
+    }
+
 
     [label] ::ng-deep {
       @include jnt-label((

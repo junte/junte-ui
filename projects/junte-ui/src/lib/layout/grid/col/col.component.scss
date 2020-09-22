@@ -1,25 +1,10 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin col-padding($padding) {
-  & {
-    padding-left: $padding;
-    padding-right: $padding;
-  }
-}
-
 @mixin jnt-grid-col($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     grid-columns: 12,
-    padding: (
-      tiny: $jnt-gutter-tiny,
-      small: $jnt-gutter-small,
-      normal: $jnt-gutter-normal,
-      big: $jnt-gutter-big,
-      large: $jnt-gutter-large,
-      huge: $jnt-gutter-huge,
-    ),
   );
 
   $vars: $passed;
@@ -34,15 +19,6 @@
     display: block;
     box-sizing: border-box;
     position: relative;
-
-    @if map-has-key($vars, padding) {
-      $padding: map-get($vars, padding);
-      @each $padding, $map in $padding {
-        &[data-padding = '#{$padding}'] {
-          @include col-padding($map);
-        }
-      }
-    }
 
     @each $breakpoints, $value in $jnt-grid-breakpoints {
       @media screen and (min-width: $value) {

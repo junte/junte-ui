@@ -14,7 +14,7 @@ import { Placement } from '../../core/enums/placement';
 import { Position } from '../../core/enums/position';
 import { Triggers } from '../../core/enums/triggers';
 
-const PADDING_SIZE = 14;
+const PADDING_SIZE = 12;
 
 export class PopoverOptions {
   title: string;

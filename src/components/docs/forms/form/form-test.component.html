@@ -86,7 +86,7 @@
                             <jnt-form-label for="lastName"
                                             i18n="@@label.your_last_name">Your Last name
                             </jnt-form-label>
-                            <jnt-form-control>
+                            <jnt-form-control name="lastName">
                               <jnt-input formControlName="lastName" [type]="ui.input.type.text"></jnt-input>
                             </jnt-form-control>
                           </jnt-form-item>
@@ -97,7 +97,7 @@
                     <ng-container formGroupName="children">
                       <ng-container formGroupName="0">
                         <jnt-form-item>
-                          <jnt-form-label>Children</jnt-form-label>
+                          <jnt-form-label for="name">Children</jnt-form-label>
                           <jnt-form-control name="name">
                             <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
                             <jnt-form-message [validator]="ui.validator.required">
@@ -108,7 +108,7 @@
                       </ng-container>
                       <ng-container formGroupName="1">
                         <jnt-form-item>
-                          <jnt-form-label>Children</jnt-form-label>
+                          <jnt-form-label for="name">Children</jnt-form-label>
                           <jnt-form-control name="name">
                             <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
                             <jnt-form-message [validator]="ui.validator.required">
@@ -123,7 +123,7 @@
                       <jnt-form-label for="password"
                                       i18n="@@label.password">Password
                       </jnt-form-label>
-                      <jnt-form-control>
+                      <jnt-form-control name="password">
                         <jnt-input formControlName="password" [type]="ui.input.type.password"></jnt-input>
                       </jnt-form-control>
                     </jnt-form-item>

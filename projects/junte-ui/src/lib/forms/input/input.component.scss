@@ -177,7 +177,8 @@
             ), '&');
           }
 
-          #{$wrapper} [data-arrows] [data-icon] {
+          #{$wrapper} [data-arrows] [data-icon],
+          #{$wrapper} [data-reset] [data-icon] {
             @include jnt-icon((
               size: map-get($map, chevron)
             ), '&');
@@ -299,6 +300,14 @@
 
         &:focus {
           outline: 0;
+        }
+
+        &:first-child {
+          padding-top: $jnt-gutter-tiny;
+        }
+
+        &:last-child {
+          padding-bottom: $jnt-gutter-tiny;
         }
       }
     }

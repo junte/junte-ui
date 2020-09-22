@@ -34,9 +34,12 @@
         max-height: 100%;
       }
     }
-    fill: map-get($vars, fill);
     width: map-get($vars, width);
     height: map-get($vars, height);
+
+    & > * {
+      fill: map-get($vars, fill);
+    }
   }
 }
 

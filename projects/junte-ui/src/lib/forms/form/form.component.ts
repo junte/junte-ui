@@ -110,13 +110,7 @@ export class FormComponent implements OnInit {
   render() {
     if (!!this.controls) {
       this.controls.filter(component => !!component.name && !!component.messages.length)
-        .forEach(component => {
-          const control = component.getControl();
-          if (!!control) {
-            const messages = component.messages;
-            messages.forEach(message => message.active = !!(control.hasError(message.validator) && control.dirty));
-          }
-        });
+        .forEach(component => component.check());
     }
   }
 

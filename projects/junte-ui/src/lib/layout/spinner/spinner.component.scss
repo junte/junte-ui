@@ -1,5 +1,5 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
 
 @mixin spinner-size($size) {
   width: $size;
@@ -14,9 +14,10 @@
   }
 }
 
-@mixin jnt-spinner($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-spinner($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
+    color: null,
     size: null,
     sizes: (
       small: 1rem,
@@ -27,6 +28,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -36,7 +42,7 @@
   :host, #{$context} {
     display: inline-block;
     border-radius: 50%;
-    border: 1px solid;
+    border: 1px solid map-get($vars, color);
     border-right-color: transparent !important;
     animation: jnt-spin .5s infinite linear;
     @if map-get($vars, size) != null {

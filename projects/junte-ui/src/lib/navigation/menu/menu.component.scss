@@ -8,9 +8,13 @@
     top: (
       item: (
         corner: $jnt-corner-small,
+        link-corner: null,
         height: null,
-        orphan-color: $jnt-primary-text-color,
-        orphan-hover-color: $jnt-primary-text-dark-color,
+        orphan: (
+          color: $jnt-primary-text-color,
+          hover-color: $jnt-primary-text-dark-color,
+          border: null,
+        ),
         color: null,
         text-transform: null,
         font-weight: $jnt-font-weight-base,
@@ -176,9 +180,8 @@
         border-radius: map-get($title, corner);
         @include jnt-link((
           height: map-get($title, height),
-          orphan-color: map-get($title, orphan-color),
-          orphan-hover-color: map-get($title, orphan-hover-color),
           color: map-get($title, color),
+          corner: map-get($title, link-corner),
           text-transform: map-get($title, text-transform),
           font-weight: map-get($title, font-weight),
         ), '&');
@@ -191,6 +194,17 @@
               background-color: map-get($active, background-color),
               color: map-get($active, color),
               border-color: map-get($active, border-color),
+            ),
+          ), '&');
+        }
+
+        @if map-has-key($title, orphan) {
+          $orphan: map-get($title, orphan);
+          @include jnt-link((
+            orphan: (
+              color: map-get($orphan, color),
+              hover-color: map-get($orphan, hover-color),
+              border: map-get($orphan, border)
             ),
           ), '&');
         }

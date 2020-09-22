@@ -99,6 +99,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(@Inject(SELECTABLE_SIGNALS) private signals: EventEmitter<any>,
               private logger: NGXLogger) {
