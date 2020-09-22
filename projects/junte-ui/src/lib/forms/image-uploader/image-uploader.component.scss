@@ -1,28 +1,46 @@
 @import 'jnt-variables';
+@import 'jnt-functions';
 
-:host {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  border: 1px solid $jnt-control-border-color;
-  box-sizing: border-box;
-  padding: $jnt-gutter-normal;
-  border-radius: $jnt-corner-small;
-  background: $jnt-control-background;
-}
+@mixin jnt-image-uploader($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+  $defs: ();
 
-[data-select-file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0;
-  z-index: 1;
-}
+  $vars: $passed;
+  $declare: false;
 
-[data-cropper] {
-  flex: 1;
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border: 1px solid $jnt-control-border-color;
+    box-sizing: border-box;
+    padding: $jnt-gutter-normal;
+    border-radius: $jnt-corner-small;
+    background: $jnt-control-background;
+  }
+
+  [data-select-file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  [data-cropper] {
+    flex: 1;
+  }
 }

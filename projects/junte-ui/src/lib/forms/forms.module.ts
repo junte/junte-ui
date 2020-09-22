@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ImageUploaderModule } from './image-uploader/image-uploader.module';
 import { ButtonModule } from './button/button.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
@@ -25,7 +26,8 @@ import { SwitcherModule } from './switcher/switcher.module';
     SwitchModule,
     SwitcherModule,
     FilterModule,
-    ImageCropperModule
+    ImageCropperModule,
+    ImageUploaderModule
   ]
 })
 export class UiFormsModule {
