@@ -138,7 +138,7 @@
 @mixin jnt-link($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
-    font-size: null,
+    font-size: $jnt-font-size-base,
     font-weight: null,
     text-transform: null,
     text-decoration: null,
@@ -146,8 +146,11 @@
     display: inline,
     overflow: false,
     height: null,
-    orphan-color: $jnt-primary-text-color,
-    orphan-hover-color: $jnt-primary-text-dark-color,
+    orphan: (
+      color: $jnt-primary-text-color,
+      hover-color: $jnt-primary-text-dark-color,
+      border: null,
+    ),
     color: null,
     active: (
       underline: true,
@@ -258,10 +261,13 @@
     &[data-orphan='true'] {
       #{$wrapper} [data-link] {
         pointer-events: none;
-        color: if(map-get($vars, orphan-color), map-get($vars, orphan-color) !important, null);
-
-        &:hover {
-          color: if(map-get($vars, orphan-hover-color), map-get($vars, orphan-hover-color) !important, null);
+        @if map-has-key($vars, orphan) {
+          $orphan: map-get($vars, orphan);
+          color: if(map-get($orphan, color), map-get($orphan, color) !important, null);
+          border: if(map-get($orphan, border), map-get($orphan, border) !important, null);
+          &:hover {
+            color: if(map-get($orphan, hover-color), map-get($orphan, hover-color) !important, null);
+          }
         }
       }
     }
