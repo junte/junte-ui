@@ -1,8 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UI, FormControlComponent, FormItemComponent, FormComponent, TabComponent, FormLabelComponent, FormMessageComponent } from 'junte-ui';
-import { Language } from '../../shared/code-highlight/enum';
+import {
+  FormComponent,
+  FormControlComponent,
+  FormItemComponent,
+  FormLabelComponent,
+  FormMessageComponent,
+  TabComponent,
+  UI
+} from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 enum Gender {
   man = 'man',
