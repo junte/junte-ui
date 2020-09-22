@@ -26,9 +26,8 @@
                   <jnt-stack [align]="ui.align.stretch">
                     <jnt-form [formGroup]="form">
                       <jnt-calendar formControlName="flightDate"
-                                    (updated)="period = $event"
-                                    [year]="yearControl.value"
-                                    [month]="monthControl.value">
+                                    [month]="month"
+                                    (updated)="period = $event">
                         <ng-container *ngIf="metricsControl.value">
                           <ng-template #calendarMetricTemplate
                                        let-metric="metric"
@@ -84,13 +83,15 @@
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-switcher formControlName="month">
-                      <jnt-switcher-option label="March" [value]="month.march"></jnt-switcher-option>
-                      <jnt-switcher-option label="May" [value]="month.may"></jnt-switcher-option>
-                      <jnt-switcher-option label="July" [value]="month.july"></jnt-switcher-option>
-                      <jnt-switcher-option label="April" [value]="month.april"></jnt-switcher-option>
+                      <jnt-switcher-option label="March" [value]="months.march"></jnt-switcher-option>
+                      <jnt-switcher-option label="May" [value]="months.may"></jnt-switcher-option>
+                      <jnt-switcher-option label="July" [value]="months.july"></jnt-switcher-option>
+                      <jnt-switcher-option label="April" [value]="months.april"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-control>
                 </jnt-form-item>
+
+                <jnt-button text="Today" (click)="flightDateControl.setValue(now)"></jnt-button>
 
                 <jnt-form-item>
                   <jnt-form-label for="type"

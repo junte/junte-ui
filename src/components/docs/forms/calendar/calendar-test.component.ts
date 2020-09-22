@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { setDate, setMonth, setYear } from 'date-fns';
 import { CalendarComponent, Period, TabComponent, UI } from 'junte-ui';
+import { combineLatest } from 'rxjs';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Months {
@@ -19,12 +21,14 @@ export class CalendarTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  month = Months;
+  months = Months;
   types = {calendar: CalendarComponent};
+  now = new Date();
 
   @ViewChild('code') code: TabComponent;
 
   period: Period;
+  month: Date;
 
   yearControl = this.fb.control(null);
   monthControl = this.fb.control(null);
@@ -40,8 +44,7 @@ export class CalendarTestComponent implements OnInit {
     disabled: this.disabledControl
   });
 
-  flightDateControl = this.fb.control(new Date());
-
+  flightDateControl = this.fb.control(null);
   form = this.fb.group({
     flightDate: this.flightDateControl
   });
@@ -52,6 +55,9 @@ export class CalendarTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    combineLatest([this.yearControl.valueChanges, this.monthControl.valueChanges])
+      .subscribe(([year, month]) => this.month = setDate(setMonth(setYear(new Date(), year), month), 1));
 
     this.disabledControl.valueChanges.subscribe((disabled) => {
       disabled ? this.flightDateControl.disable({emitEvent: false}) : this.flightDateControl.enable({emitEvent: false});

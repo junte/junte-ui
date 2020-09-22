@@ -45,15 +45,15 @@
 </div>
 
 <svg *ngIf="indicators.length"
-     [style.min-width]="widthMark + widthPoligon"
-     [attr.width]="widthMark + widthPoligon"
+     [style.min-width]="widthMark + widthPolygon"
+     [attr.width]="widthMark + widthPolygon"
      [attr.height]="heightSvg" xmlns="http://www.w3.org/2000/svg">
 
   <ng-container *ngFor="let indicator of indicators; trackBy: trackByFn; let i = index; let first = first">
     <polygon
-      [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPoligon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPoligon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
+      [attr.points]="'0 ' + (first ? heightIndicator : heightIndicator * (i + 1)) + ' ' + widthPolygon + ' ' + (first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg) + ' ' + widthPolygon + ' ' + ((i | sumIndicators: indicators) | percentToNumber: heightSvg) + ' 0 ' + heightIndicator * (i + 2)"
       [attr.fill]="indicator.color | lightenDarken: 10"></polygon>
-    <rect [attr.x]="widthPoligon"
+    <rect [attr.x]="widthPolygon"
           [attr.y]="first ? 0 : (i - 1 | sumIndicators: indicators) | percentToNumber: heightSvg"
           [attr.width]="widthMark"
           [attr.height]="indicator.value | percentToNumber : heightSvg"

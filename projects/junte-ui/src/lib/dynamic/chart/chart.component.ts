@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ContentChildren,
   EventEmitter,
@@ -28,7 +27,7 @@ import { ChartIndicatorComponent } from './chart-indicator.component';
     }
   ]
 })
-export class ChartComponent implements ControlValueAccessor, AfterContentInit {
+export class ChartComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-chart-host';
 
@@ -38,7 +37,6 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   private _widthMark = 100;
 
   progress = {loading: false};
-  indicators: ChartIndicatorComponent[] = [];
 
   @Input() keyField: string;
 
@@ -55,14 +53,14 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   @Input() metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
-  indicatorsComponents: QueryList<ChartIndicatorComponent>;
+  indicators: QueryList<ChartIndicatorComponent>;
 
   @Input() heightIndicator = 55;
 
-  @Input() widthPoligon = 50;
+  @Input() widthPolygon = 50;
 
-  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
-  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  onChange: (value: any) => void = () => this.logger.debug('value accessor is not registered');
+  onTouched: () => void = () => this.logger.debug('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
@@ -103,12 +101,6 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   constructor(private logger: NGXLogger) {
-  }
-
-  ngAfterContentInit() {
-    this.indicators = this.indicatorsComponents.toArray();
-    this.indicatorsComponents.changes
-      .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
   writeValue(value: any): void {

@@ -63,12 +63,12 @@
           [attr.data-selected-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
           (click)="select(d)" tabindex="0">
         <ng-container
-          *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
+          *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
         </ng-container>
       </td>
 
       <td data-metric *ngFor="let m of metrics;let i = index;">
-        <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
+        <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
         </ng-container>
       </td>
     </tr>

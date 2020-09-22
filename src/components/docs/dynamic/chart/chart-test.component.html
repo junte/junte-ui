@@ -22,7 +22,8 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-form [formGroup]="form">
                   <jnt-stack [align]="ui.align.stretch">
-                    <jnt-form-item>
+
+                    <jnt-block [padding]="ui.gutter.none">
                       <jnt-chart formControlName="hero"
                                  title="Hero"
                                  metric="Likes">
@@ -35,7 +36,8 @@
                                              [color]="hero.color">
                         </jnt-chart-indicator>
                       </jnt-chart>
-                    </jnt-form-item>
+                    </jnt-block>
+
                     <ng-container [ngSwitch]="heroControl.value?.name">
                       <iframe giphy *ngSwitchCase="hero.spiderman"
                               src="https://giphy.com/embed/yFqLQzipdekuI"
