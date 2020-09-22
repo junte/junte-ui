@@ -12,19 +12,26 @@ export class CollapsibleComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'opened of collapsible',
+    type: 'boolean'
+  })
+  @Input()
   opened = false;
 
   @PropertyApi({
     description: 'icon of collapsible',
     type: 'string'
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Title of collapsible',
     type: 'string'
   })
-  @Input() title: string;
+  @Input()
+  title: string;
 
   @ContentApi({
     selector: '#collapsibleTitleTemplate',
