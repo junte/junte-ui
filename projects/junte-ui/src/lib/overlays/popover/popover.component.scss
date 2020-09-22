@@ -10,7 +10,7 @@
 @mixin jnt-popover($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    spacing: 14px,
+    spacing: 12px,
     padding: (
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
@@ -54,6 +54,9 @@
     [data-arrow] {
       position: absolute;
       fill: map-get($vars, background);
+      [data-inner] {
+        filter: if($jnt-theme-type == 'light', url(#popover_marker_shadow-light), url(#popover_marker_shadow-dark));
+      }
     }
 
     &[data-dropdown='true'] {
@@ -82,28 +85,28 @@
     &[data-placement='top'] {
       [data-arrow] {
         transform: translateX(-50%);
-        top: calc(100% - #{map-get($vars, spacing)});
+        bottom: 0;
       }
     }
 
     &[data-placement='right'] {
       [data-arrow] {
         transform: translateY(-50%) rotate(90deg);
-        right: calc(100% - #{map-get($vars, spacing)});
+        left: 0;
       }
     }
 
     &[data-placement='bottom'] {
       [data-arrow] {
         transform: translateX(-50%) rotate(180deg);
-        bottom: calc(100% - #{map-get($vars, spacing)});
+        top: 0;
       }
     }
 
     &[data-placement='left'] {
       [data-arrow] {
         transform: translateY(-50%) rotate(-90deg);
-        left: calc(100% - #{map-get($vars, spacing)});
+        right: 0;
       }
     }
   }
@@ -126,9 +129,11 @@
     [data-title] {
       font-weight: $jnt-font-weight-bold;
       margin-bottom: $jnt-gutter-normal;
+      color: $jnt-primary-text-color;
     }
     [data-content] {
       max-width: 300px;
+      color: $jnt-primary-text-color;
     }
   }
 }
