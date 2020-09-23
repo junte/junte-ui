@@ -19,10 +19,12 @@ export class DatePickerTestComponent implements OnInit {
 
   typeControl = this.fb.control(false);
   disableControl = this.fb.control(false);
+  clearControl = this.fb.control(false);
 
   builder = this.fb.group({
     type: this.typeControl,
-    disable: this.disableControl
+    disable: this.disableControl,
+    clear: this.clearControl
   });
 
   flightDateControl = this.fb.control(null);

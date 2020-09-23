@@ -55,7 +55,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     min: this.minControl,
     max: this.maxControl,
     transform: this.transformControl,
-    clear: this.clearControl,
+    clear: this.clearControl
   });
 
   inputControl = this.fb.control(null);
