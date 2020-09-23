@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Feature } from '../../core/enums/feature';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
@@ -42,6 +43,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   ui = UI;
   datePickerType = DatePickerType;
   meridians = Meridian;
+  feature = Feature;
   private _type: DatePickerType = DatePickerType.date;
 
   reference: { popover: PopoverInstance } = {popover: null};
@@ -75,14 +77,25 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     description: 'Placeholder for date picker',
     type: 'string'
   })
-  @Input() placeholder = '';
+  @Input()
+  placeholder = '';
+
+  @PropertyApi({
+    description: 'Button for reset input',
+    path: 'ui.feature',
+    options: [Feature.clear],
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @PropertyApi({
     description: 'Date picker type',
     path: 'ui.type',
     options: [DatePickerType.date, DatePickerType.time, DatePickerType.dateTime]
   })
-  @Input() set type(type: DatePickerType) {
+  @Input()
+  set type(type: DatePickerType) {
     this.clear();
     this._type = type || DatePickerType.date;
   }
@@ -138,10 +151,10 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   clear() {
-    this.dateControl.setValue(null, {emitEvent: false});
-    this.timeControl.setValue(null, {emitEvent: false});
     this.hoursControl.setValue(null, {emitEvent: false});
     this.minutesControl.setValue(null, {emitEvent: false});
+    this.dateControl.setValue(null, {emitEvent: false});
+    this.timeControl.setValue(null, {emitEvent: false});
   }
 
   update(value: string, close = false) {

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
@@ -82,26 +82,30 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Icon for input',
     type: 'string',
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Label for input',
     type: 'string',
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Text transform for input',
     type: 'TextTransform',
     options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
   })
-  @Input() transform: TextTransform;
+  @Input()
+  transform: TextTransform;
 
   @PropertyApi({
     description: 'Auto complete for input',
     type: 'string',
   })
-  @Input() autocomplete: string;
+  @Input()
+  autocomplete: string;
 
   @PropertyApi({
     description: 'Input text align',
@@ -110,38 +114,44 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     options: [TextAlign.left, TextAlign.right]
   })
   @HostBinding('attr.data-textAlign')
-  @Input() textAlign: TextAlign = TextAlign.left;
+  @Input()
+  textAlign: TextAlign = TextAlign.left;
 
   @PropertyApi({
     description: 'Input placeholder',
     type: 'string',
   })
-  @Input() placeholder = '';
+  @Input()
+  placeholder = '';
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() min: number = null;
+  @Input()
+  min: number = null;
 
   @PropertyApi({
     description: 'Maximum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() max: number = null;
+  @Input()
+  max: number = null;
 
   @PropertyApi({
     description: 'Step for entered value. For input with typeControl = number',
     type: 'number',
   })
-  @Input() step = 1;
+  @Input()
+  step = 1;
 
   @PropertyApi({
     description: 'Used to specify that the input field is read-only',
     type: 'boolean',
     default: 'false'
   })
-  @Input() readonly = false;
+  @Input()
+  readonly = false;
 
   @PropertyApi({
     description: 'Input scheme',
@@ -149,7 +159,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: InputScheme.normal,
     options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
   })
-  @Input() set scheme(scheme: InputScheme) {
+  @Input()
+  set scheme(scheme: InputScheme) {
     this._scheme = scheme || InputScheme.normal;
   }
 
@@ -159,7 +170,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
-  @Input() set type(type: InputType) {
+  @Input()
+  set type(type: InputType) {
     this._type = type || InputType.text;
   }
 
@@ -173,7 +185,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: Size.normal,
     options: [Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
   }
 
@@ -183,7 +196,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     options: [State.loading, State.warning, State.checked]
   })
   @HostBinding('attr.data-state')
-  @Input() state: State;
+  @Input()
+  state: State;
 
   @PropertyApi({
     description: 'Allow multiple lines in input',
@@ -191,14 +205,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: 'false',
   })
   @HostBinding('attr.data-multiline')
-  @Input() multiline = false;
+  @Input()
+  multiline = false;
 
   @PropertyApi({
     description: 'Max rows for multiline mode',
     type: 'int',
     default: 5,
   })
-  @Input() rows = 5;
+  @Input()
+  rows = 5;
 
   @PropertyApi({
     description: 'Mask pattern where _ - is digit',
@@ -230,9 +246,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Click event',
     path: 'EventEmitter'
   })
-  @Output() click = new EventEmitter<any>();
+  @Output()
+  click = new EventEmitter<any>();
 
-  @HostBinding('attr.tabindex') tabindex = 1;
+  @HostBinding('attr.tabindex')
+  tabindex = 1;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -249,12 +267,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       .subscribe(value =>
         this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
-    this.formattedControl.valueChanges
-      .subscribe(formatted => {
-        if (!!this.input) {
-          const position = formatted.indexOf(DIGIT_MASK_CHAR);
-          this.input.nativeElement.setSelectionRange(position, position);
-        }
+    this.formattedControl.valueChanges.pipe(
+      filter(() => !!this.input),
+      map(formatted => !!formatted ? formatted : this.mask)
+    ).subscribe(formatted => {
+        const position = formatted.indexOf(DIGIT_MASK_CHAR);
+        this.input.nativeElement.setSelectionRange(position, position);
       });
   }
 
@@ -359,5 +377,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     } else if (this.max === null || number < this.max) {
       this.step ? this.inputControl.setValue(number - +this.step) : this.inputControl.setValue(--number);
     }
+  }
+
+  clear(event: MouseEvent) {
+    this.inputControl.setValue(null);
+    this.formattedControl.setValue(this.mask);
+    event.stopPropagation();
   }
 }

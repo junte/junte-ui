@@ -22,19 +22,11 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-form [formGroup]="form" data-form>
-                  <jnt-row>
-                    <jnt-col [tablet]="6" [mobile]="12">
-                      <jnt-date-picker formControlName="flightDate"
-                                       placeholder="Please enter the date"
-                                       [type]="typeControl.value">
-                      </jnt-date-picker>
-                    </jnt-col>
-                    <jnt-col [tablet]="6" [mobile]="12">
-                      <jnt-button text="Clear"
-                                  (click)="flightDateControl.patchValue(null)">
-                      </jnt-button>
-                    </jnt-col>
-                  </jnt-row>
+                  <jnt-date-picker formControlName="flightDate"
+                                   placeholder="Please enter the date"
+                                   [type]="typeControl.value"
+                                   [features]="clearControl.value ? [ui.feature.clear] : null">
+                  </jnt-date-picker>
                 </jnt-form>
                 <jnt-stack *ngIf="!!flightDateControl.value"
                            [orientation]="ui.orientation.horizontal"
@@ -71,11 +63,17 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label i18n="@@label.state">State
-                  </jnt-form-label>
+                  <jnt-form-label i18n="@@label.state">State</jnt-form-label>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="disable" label="Disabled"
                                   [value]="false"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.features">Features</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="clear" label="Clear"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>
