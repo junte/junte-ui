@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Fit } from '../../core/enums/fit';
 import { Position } from '../../core/enums/position';
@@ -55,6 +55,20 @@ export class PictureComponent {
   }
 
   @PropertyApi({
+    description: 'Picture title',
+    type: 'string',
+  })
+  @HostBinding('attr.title')
+  @Input() title: string;
+
+  @PropertyApi({
+    description: 'Picture alt',
+    type: 'string',
+  })
+  @HostBinding('attr.alt')
+  @Input() alt: string;
+
+  @PropertyApi({
     description: 'Picture width',
     type: 'string',
     default: '200px'
@@ -89,5 +103,8 @@ export class PictureComponent {
   @Input() set position(position: Position) {
     this._position = position || Position.center;
   }
+
+  @ContentChild('pictureCopyrightTemplate')
+  pictureCopyrightTemplate: TemplateRef<any>;
 
 }
