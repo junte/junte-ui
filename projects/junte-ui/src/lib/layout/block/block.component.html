@@ -7,7 +7,7 @@
     <ng-container *ngTemplateOutlet="blockHeaderTemplate"></ng-container>
   </ng-container>
 
-  <hr *ngIf="!!title || !!blockHeaderTemplate">
+  <hr *ngIf="!!title && !blockHeaderTemplate">
 
   <div data-body>
     <ng-content></ng-content>
@@ -22,8 +22,6 @@
   <div *ngIf="_state.success" [@success]="_state.success" data-success>
     <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
   </div>
-
-  <hr *ngIf="!!blockFooterTemplate">
 
   <div *ngIf="!!blockFooterTemplate" data-footer>
     <ng-container *ngTemplateOutlet="blockFooterTemplate"></ng-container>
