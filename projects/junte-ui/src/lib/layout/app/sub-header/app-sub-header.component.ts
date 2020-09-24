@@ -16,6 +16,6 @@ export class AppSubHeaderComponent {
     description: 'Output event for calling method for aside to open/close',
     type: 'EventEmitter'
   })
-  @Output() burgerToggle = new EventEmitter();
+  @Output() menu = new EventEmitter();
 
 }
