@@ -123,6 +123,15 @@
       }
     }
 
+    &[data-features*='adapted'] {
+      @include for-mobile() {
+        #{$wrapper} [data-image] {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
     &[data-has-icon='true'] {
       #{$wrapper} [data-main] {
         padding-top: $jnt-gutter-big;

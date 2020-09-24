@@ -31,6 +31,7 @@ export class CardTestComponent implements OnInit {
   widthControl = this.fb.control(null);
   stateControl = this.fb.control(null);
   clickableControl = this.fb.control(false);
+  adaptedControl = this.fb.control(false);
   iconControl = this.fb.control(false);
   actionsControl = this.fb.control(false);
   pictureControl = this.fb.control(null);
@@ -45,6 +46,7 @@ export class CardTestComponent implements OnInit {
     footer: this.footerControl,
     header: this.headerControl,
     clickable: this.clickableControl,
+    adapted: this.adaptedControl,
     icon: this.iconControl,
     actions: this.actionsControl,
     color: this.colorControl,
