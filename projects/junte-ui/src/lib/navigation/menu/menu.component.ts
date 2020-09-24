@@ -19,7 +19,7 @@ export class MenuComponent {
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
-  _spacer: Gutter = Gutter.none;
+  _spacing: Gutter = Gutter.none;
 
   @HostBinding('attr.data-collapsed')
   @Input() collapsed = false;
@@ -45,12 +45,12 @@ export class MenuComponent {
     options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
   })
   @Input()
-  set spacer(spacer: Gutter) {
-    this._spacer = spacer || Gutter.none;
+  set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.none;
   }
 
-  get spacer() {
-    return this._spacer;
+  get spacing() {
+    return this._spacing;
   }
 
   @Output()
