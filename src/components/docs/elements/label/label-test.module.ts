@@ -14,7 +14,6 @@ import {
   TabsModule,
   DotModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { LabelTestComponent } from './label-test.component';
 
