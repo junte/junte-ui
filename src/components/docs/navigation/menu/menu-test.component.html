@@ -22,7 +22,7 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-menu [orientation]="orientationControl.value" [spacer]="spacingControl.value"
+                <jnt-menu [orientation]="orientationControl.value" [spacing]="spacingControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
                                  [target]="targetControl.value"
@@ -180,7 +180,7 @@
   </ng-container>
   <ng-container *ngIf="spacingControl.value">
     <![CDATA[
-    [spacer]="ui.size.]]>{{spacingControl.value}}<![CDATA["]]>
+    [spacing]="ui.size.]]>{{spacingControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="collapsedControl.value">
     <![CDATA[

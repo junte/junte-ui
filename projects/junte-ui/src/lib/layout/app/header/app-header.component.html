@@ -1,7 +1,7 @@
-<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacer="spacer">
+<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacing="spacing">
   <div data-menu *ngIf="!!menu">
     <jnt-menu [orientation]="orientation"
-              [spacer]="spacer"
+              [spacing]="spacing"
               (selected)="hide()">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
@@ -28,7 +28,7 @@
   </div>
 
   <ng-container
-    *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacer: ui.gutter.normal}"></ng-container>
+    *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.horizontal, spacing: ui.gutter.normal}"></ng-container>
 
   <jnt-stack data-actions
              [orientation]="ui.orientation.horizontal"
@@ -69,7 +69,7 @@
           <hr>
         </ng-container>
         <ng-container
-          *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacer: ui.gutter.small}"></ng-container>
+          *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacing: ui.gutter.small}"></ng-container>
         <div data-content *ngIf="!!contentTemplate">
           <ng-container *ngTemplateOutlet="contentTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
         </div>
