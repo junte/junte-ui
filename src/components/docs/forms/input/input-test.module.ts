@@ -3,19 +3,18 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
+  ButtonModule,
   CheckboxModule,
   FormModule,
   GridModule,
+  IconModule,
   InputModule,
   LinkModule,
   SelectModule,
   StackModule,
   SwitcherModule,
-  ButtonModule,
-  TabsModule,
-  IconModule
+  TabsModule
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
 import { InputTestComponent } from './input-test.component';
 

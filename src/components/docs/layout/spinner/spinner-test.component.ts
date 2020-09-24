@@ -18,7 +18,6 @@ export class SpinnerTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-
   sizeControl = this.fb.control(null);
 
   builder = this.fb.group({
