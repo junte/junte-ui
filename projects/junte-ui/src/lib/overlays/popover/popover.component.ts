@@ -55,19 +55,22 @@ export class PopoverComponent {
   options = new PopoverOptions();
   target: HTMLElement;
 
-  @HostBinding('attr.host') readonly host = 'jnt-popover-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-popover-host';
 
   @HostBinding('style.position')
-  get position() {
-    return this.options.position;
+  get placement() {
+    return this.options.placement;
   }
 
   @HostBinding('attr.data-placement')
-  placement: Position;
+  position;
 
-  @HostBinding('style.min-width') minWidth: string;
+  @HostBinding('style.min-width')
+  minWidth: string;
 
-  @ViewChild('arrow') arrow: ElementRef;
+  @ViewChild('arrow')
+  arrow: ElementRef;
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef,
@@ -79,79 +82,79 @@ export class PopoverComponent {
   }
 
   private getPosition(): PopoverPosition {
-    const rect = this.target.getBoundingClientRect(),
-      scrollLeft = this.options.placement === Placement.absolute
-        ? window.pageXOffset || document.documentElement.scrollLeft : 0,
-      scrollTop = this.options.placement === Placement.absolute
-        ? window.pageYOffset || document.documentElement.scrollTop : 0,
-      position = new PopoverPosition(rect.top + scrollTop, rect.left + scrollLeft),
-      {nativeElement: host} = this.hostRef;
+    const rect = this.target.getBoundingClientRect();
+    const offsetLeft = this.options.placement === Placement.absolute
+      ? window.pageXOffset || document.documentElement.offsetLeft : 0;
+    const offsetTop = this.options.placement === Placement.absolute
+      ? window.pageYOffset || document.documentElement.offsetTop : 0;
+    const position = new PopoverPosition(rect.top + offsetTop, rect.left + offsetLeft);
+    const {nativeElement: host} = this.hostRef;
 
-    this.placement = this.options.position;
+    this.position = this.options.position;
     if (this.options.smarty) {
-      switch (this.placement) {
+      switch (this.position) {
         case Position.top: {
-          const shift = scrollTop - PADDING_SIZE + host.clientHeight;
+          const shift = offsetTop - PADDING_SIZE + host.clientHeight;
           if (position.top - shift < 0) {
-            this.placement = Position.bottom;
+            this.position = Position.bottom;
           }
           break;
         }
         case Position.right: {
-          const shift = scrollLeft - PADDING_SIZE - this.target.clientWidth - host.clientWidth;
+          const shift = offsetLeft - PADDING_SIZE - this.target.clientWidth - host.clientWidth;
           if (position.left - shift > window.innerWidth) {
-            this.placement = Position.left;
+            this.position = Position.left;
           }
           break;
         }
         case Position.bottom: {
-          const shift = scrollTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
+          const shift = offsetTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
           if (position.top - shift > window.innerHeight) {
-            this.placement = Position.top;
+            this.position = Position.top;
           }
           break;
         }
         case Position.left: {
-          const shift = scrollLeft - PADDING_SIZE + host.clientWidth;
+          const shift = offsetLeft - PADDING_SIZE + host.clientWidth;
           if (position.left - shift < 0) {
-            this.placement = Position.right;
+            this.position = Position.right;
           }
           break;
         }
       }
     }
 
-    switch (this.placement) {
+    switch (this.position) {
       case Position.top: {
         position.top -= host.clientHeight;
         position.left += (this.target.clientWidth - host.clientWidth) / 2;
         position.shiftX = position.left < 0 ? position.left
-          : (position.left > (window.innerWidth + scrollLeft) - host.clientWidth
-            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left) : 0);
+          : (position.left > (window.innerWidth + offsetLeft) - host.clientWidth
+            ? host.clientWidth - ((window.innerWidth + offsetLeft) - position.left) : 0);
         break;
       }
       case Position.right: {
         position.top += (this.target.clientHeight - host.clientHeight) / 2;
         position.left += this.target.clientWidth;
-        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop
-          : (position.top > (window.innerHeight + scrollTop) - host.clientHeight
-            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top) : 0);
+        position.shiftY = (position.top - offsetTop) < 0 ? position.top - offsetTop
+          : (position.top > (window.innerHeight + offsetTop) - host.clientHeight
+            ? host.clientHeight - ((window.innerHeight + offsetTop) - position.top) : 0);
         break;
       }
       case Position.bottom: {
         position.top += this.target.clientHeight;
         position.left += (this.target.clientWidth - host.clientWidth) / 2;
         position.shiftX = position.left < 0 ? position.left
-          : (position.left > (window.innerWidth + scrollLeft) - host.clientWidth
-            ? host.clientWidth - ((window.innerWidth + scrollLeft) - position.left) : 0);
+          : (position.left > (window.innerWidth + offsetLeft) - host.clientWidth
+            ? host.clientWidth - ((window.innerWidth + offsetLeft) - position.left) : 0);
         break;
       }
       case Position.left: {
         position.top += (this.target.clientHeight - host.clientHeight) / 2;
         position.left -= host.clientWidth;
-        position.shiftY = (position.top - scrollTop) < 0 ? position.top - scrollTop
-          : (position.top > (window.innerHeight + scrollTop) - host.clientHeight
-            ? host.clientHeight - ((window.innerHeight + scrollTop) - position.top) : 0);
+        position.shiftY = (position.top - offsetTop) < 0 ? position.top - offsetTop
+          : (position.top > (window.innerHeight + offsetTop) - host.clientHeight
+            ? host.clientHeight - ((window.innerHeight + offsetTop) - position.top) : 0);
         break;
       }
     }
@@ -186,20 +189,23 @@ export class PopoverComponent {
   update(): void {
     const {nativeElement: host} = this.hostRef;
     const position = this.getPosition();
-    const left = this.options.features.includes(Feature.dropdown)
-    && (this.placement === Position.top || this.placement === Position.bottom)
-      ? this.target.getBoundingClientRect().left
-      : position.left - position.shiftX;
-    const top = this.options.features.includes(Feature.dropdown)
-    && (this.placement === Position.right || this.placement === Position.left)
-      ? this.target.getBoundingClientRect().top
-      : position.top - position.shiftY;
+    const rect = this.target.getBoundingClientRect();
+    let left = position.left - position.shiftX;
+    let top = position.top - position.shiftY;
+
+    if (this.options.features.includes(Feature.dropdown)) {
+      if (this.position === Position.top || this.position === Position.bottom) {
+        left = rect.left + window.pageXOffset;
+      } else {
+        top = rect.top + window.pageYOffset;
+      }
+    }
 
     this.renderer.setStyle(host, 'top', `${top}px`);
     this.renderer.setStyle(host, 'left', `${left}px`);
 
     if (!this.options.features.includes(Feature.dropdown)) {
-      switch (this.placement) {
+      switch (this.position) {
         case Position.top:
         case Position.bottom: {
           this.renderer.setStyle(this.arrow.nativeElement, 'left', `calc(50% + ${position.shiftX}px)`);
