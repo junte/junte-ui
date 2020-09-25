@@ -1,4 +1,4 @@
-<jnt-stack [align]="ui.align.stretch">
+<jnt-stack [align]="ui.align.stretch" [gutter]="spacing">
   <div *ngIf="!!title && !blockHeaderTemplate" data-title>
     {{title}}
   </div>
@@ -6,8 +6,6 @@
   <ng-container *ngIf="!!blockHeaderTemplate">
     <ng-container *ngTemplateOutlet="blockHeaderTemplate"></ng-container>
   </ng-container>
-
-  <hr *ngIf="!!title && !blockHeaderTemplate">
 
   <div data-body>
     <ng-content></ng-content>

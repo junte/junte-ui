@@ -46,6 +46,8 @@ export class BlockComponent {
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
 
+  _spacing = Gutter.normal;
+
   @PropertyApi({
     description: 'Title of block',
     type: 'string'
@@ -54,17 +56,37 @@ export class BlockComponent {
   title: string;
 
   @PropertyApi({
-    description: 'Padding for content & footer',
+    description: 'Padding for block',
     path: 'ui.gutter',
     options: [Gutter.tiny,
       Gutter.small,
       Gutter.normal,
       Gutter.large,
       Gutter.big,
-      Gutter.huge]
+      Gutter.huge],
+    default: Gutter.normal
   })
   @Input() set padding(padding: Gutter) {
     this._padding = padding || Gutter.normal;
+  }
+
+  @PropertyApi({
+    description: 'Spacing between header, body and footer',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.large,
+      Gutter.big,
+      Gutter.huge],
+    default: Gutter.normal
+  })
+  @Input() set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.normal;
+  }
+
+  get spacing() {
+    return this._spacing;
   }
 
   @PropertyApi({
