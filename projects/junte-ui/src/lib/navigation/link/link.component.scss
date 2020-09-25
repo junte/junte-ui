@@ -59,7 +59,7 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     [data-link] {
       color: map-get($scheme, inverse-color);
-      border-color: map-get($scheme, inverse-color);
+      border-color: if(map-get($scheme, inverse-color), rgba(map-get($scheme, inverse-color), .5), null);
 
       &:hover {
         background-color: map-get($scheme, inverse-color);
