@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 @import "forms/button/button";
+@import "forms/input/input";
 
 @mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
@@ -38,6 +39,14 @@
     [data-table] {
       margin-left: -$jnt-gutter-normal;
       margin-right: -$jnt-gutter-normal;
+    }
+
+    [data-filters] {
+      flex: 1;
+    }
+
+    [data-search] {
+      @include jnt-input((width: 180px), '&');
     }
 
     table {

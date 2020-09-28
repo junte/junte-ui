@@ -26,6 +26,7 @@ import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
@@ -144,6 +145,9 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
+
   @PropertyApi({
     description: 'Select label',
     type: 'string'
@@ -258,6 +262,16 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   })
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  @PropertyApi({
+    description: 'Button width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
   }
 
   @HostBinding('attr.data-empty')

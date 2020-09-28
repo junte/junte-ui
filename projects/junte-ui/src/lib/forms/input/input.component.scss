@@ -30,6 +30,7 @@
 @mixin jnt-input($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
+    width: null,
     sizes: (
       small: (
         font-size: 11px,
@@ -85,9 +86,9 @@
         focus: (
           border-color: $jnt-fail-color,
           shadow: $jnt-outline-shadow-normal rgba($jnt-fail-color, .5)
-        ),
-      ),
-    ),
+        )
+      )
+    )
   );
 
   $vars: $passed;
@@ -104,19 +105,25 @@
   }
 
   :host, #{$context} {
-    display: flex;
-    width: 100%;
-    background-color: $jnt-control-background;
-    color: $jnt-primary-text-color;
-    border-radius: $jnt-corner-small;
-    border: 1px solid;
-    line-height: 1;
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: border-color .3s;
+    @if $declare {
+      display: flex;
+      background-color: $jnt-control-background;
+      color: $jnt-primary-text-color;
+      border-radius: $jnt-corner-small;
+      width: map-get($vars, width);
+      border: 1px solid;
+      line-height: 1;
+      box-sizing: border-box;
+      overflow: hidden;
+      transition: border-color .3s;
 
-    &:focus {
-      outline: 0;
+      &[data-width='fluid'] {
+        width: 100%;
+      }
+
+      &:focus {
+        outline: 0;
+      }
     }
 
     @if map-has-key($vars, scheme) {

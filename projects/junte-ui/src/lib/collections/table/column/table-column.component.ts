@@ -26,6 +26,6 @@ export class TableColumnComponent {
     type: 'string',
   })
   @Input()
-  sort: string;
+  orderBy: string;
 
 }

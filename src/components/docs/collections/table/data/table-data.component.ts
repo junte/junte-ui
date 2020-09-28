@@ -1,17 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { fake } from 'faker';
-import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter, TableComponent, UI, isEqual } from 'junte-ui';
+import { DefaultSearchFilter, TableComponent, UI } from 'junte-ui';
 import { of } from 'rxjs';
-import { delay, distinctUntilChanged } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 
 export class TableState {
+
   q: string;
   first: number;
   offset: number;
   job: string;
 
-  constructor(defs: TableState = null) {
+  constructor(defs: Partial<TableState> = null) {
     if (!!defs) {
       Object.assign(this, defs);
     }
@@ -23,6 +24,19 @@ class Filter extends DefaultSearchFilter {
 }
 
 const DEFAULT_DELAY = 1000;
+export const DEFAULT_FIRST = 10;
+export const DEFAULT_OFFSET = 0;
+
+const MOCK_DATA = [];
+for (let i = 0; i < Math.random() * (300 - 50) + 50; i++) {
+  MOCK_DATA.push({
+    id: i + 1,
+    person: fake('{{name.firstName}} {{name.lastName}}'),
+    job: fake('{{name.jobArea}}')
+  });
+}
+
+const MOCK_JOBS = [...new Set(MOCK_DATA.map(d => d.job))];
 
 @Component({
   selector: 'app-table-data',
@@ -33,23 +47,26 @@ export class TableDataComponent implements OnInit {
 
   ui = UI;
 
-  tableControl = this.fb.control({
-    q: null,
-    sort: null,
-    first: DEFAULT_FIRST,
-    offset: DEFAULT_OFFSET
-  });
-
   form = this.fb.group({
-    table: this.tableControl,
+    table: this.fb.control({
+      q: null,
+      sort: null,
+      first: DEFAULT_FIRST,
+      offset: DEFAULT_OFFSET
+    }),
     job: null
   });
 
-  jobs: string[] = [];
+  jobs = MOCK_JOBS;
 
-  @Input() search: boolean;
-  @Input() filter: boolean;
-  @Input() actions: boolean;
+  @Input()
+  search: boolean;
+
+  @Input()
+  filter: boolean;
+
+  @Input()
+  actions: boolean;
 
   @Input() set state({first, offset, q, job}: TableState) {
     this.form.patchValue({
@@ -59,28 +76,14 @@ export class TableDataComponent implements OnInit {
         offset: offset || DEFAULT_OFFSET
       },
       job: job || null
-    });
-    this.table.load();
+    }, {emitEvent: false});
   }
 
-  @Output() stateChange = new EventEmitter<TableState>();
+  @Output()
+  filtered = new EventEmitter<TableState>();
 
   @ViewChild('table', {static: true})
   table: TableComponent;
-
-  mocks = (() => {
-    const data = [];
-    for (let i = 0; i < Math.random() * (300 - 50) + 50; i++) {
-      data.push({
-        id: i + 1,
-        person: fake('{{name.firstName}} {{name.lastName}}'),
-        job: fake('{{name.jobArea}}')
-      });
-    }
-
-    this.jobs = [...new Set(data.map(d => d.job))];
-    return data;
-  })();
 
   constructor(private fb: FormBuilder) {
 
@@ -88,46 +91,38 @@ export class TableDataComponent implements OnInit {
 
   ngOnInit() {
     this.table.fetcher = () => {
-      const {table, job} = this.form.getRawValue();
-      const filter: Filter = {...table, job};
-
-      let results = this.mocks;
-      if (!!filter.q) {
-        results = results.filter(({person}) => person.toLowerCase()
-          .indexOf(filter.q.toLowerCase()) !== -1);
-      }
-
-      if (!!filter.job) {
-        results = results.filter(result => filter.job === result.job);
-      }
-
-      return of({
-        results: results.slice(filter.offset, filter.offset + filter.first),
-        count: results.length
-      }).pipe(delay(DEFAULT_DELAY));
+      const {table: {q, first, offset}, job} = this.form.getRawValue();
+      return this.loadData({q, first, offset, job});
     };
 
-    this.form.valueChanges.pipe(distinctUntilChanged((val1, val2) => isEqual(val1, val2)))
-      .subscribe(({table: {offset, first, q}, job}) => {
-        const state = new TableState();
+    this.form.valueChanges.subscribe(({table: {offset, first, q}, job}) => {
+      this.filtered.emit(new TableState({
+        first: !!+first && +first !== DEFAULT_FIRST ? +first : undefined,
+        offset: !!+offset && +offset !== DEFAULT_OFFSET ? +offset : undefined,
+        q: q || undefined,
+        job: job || undefined
+      }));
+      this.table.load();
+    });
 
-        if (!!+first && +first !== DEFAULT_FIRST) {
-          state.first = +first;
-        }
+    this.table.load();
+  }
 
-        if (!!+offset && +offset !== DEFAULT_OFFSET) {
-          state.offset = +offset;
-        }
+  private loadData(filter: Filter) {
+    let results = MOCK_DATA;
+    if (!!filter.q) {
+      results = results.filter(({person}) => person.toLowerCase()
+        .indexOf(filter.q.toLowerCase()) !== -1);
+    }
 
-        if (!!q) {
-          state.q = q;
-        }
+    if (!!filter.job) {
+      results = results.filter(result => filter.job === result.job);
+    }
 
-        if (!!job) {
-          state.job = job;
-        }
-        this.stateChange.emit(state);
-      });
+    return of({
+      results: results.slice(filter.offset, filter.offset + filter.first),
+      count: results.length
+    }).pipe(delay(DEFAULT_DELAY));
   }
 }
 

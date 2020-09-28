@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DEFAULT_FIRST, DEFAULT_OFFSET, TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
+import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { TableState } from './data/table-data.component';
+
+const DEFAULT_FIRST = 10;
+const DEFAULT_OFFSET = 0;
 
 @Component({
   selector: 'app-table-test',
@@ -64,7 +67,6 @@ export class TableTestComponent implements OnInit {
       if (!!job) {
         state.job = job;
       }
-
 
       this.state = state;
     });

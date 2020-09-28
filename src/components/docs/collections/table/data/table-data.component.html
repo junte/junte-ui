@@ -39,6 +39,7 @@
         <ng-template *ngIf="filter" #tableFiltersTemplate>
           <jnt-select formControlName="job"
                       placeholder="Select job"
+                      [width]="ui.width.fluid"
                       i18n-placeholder="@@label.select_job">
             <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
           </jnt-select>
