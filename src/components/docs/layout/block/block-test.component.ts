@@ -21,6 +21,7 @@ export class BlockTestComponent implements OnInit {
   code: TabComponent;
 
   paddingControl = this.fb.control(null);
+  spacingControl = this.fb.control(null);
   widthControl = this.fb.control(null);
   titleControl = this.fb.control(true);
   footerControl = this.fb.control(true);
@@ -30,6 +31,7 @@ export class BlockTestComponent implements OnInit {
 
   builder = this.fb.group({
     padding: this.paddingControl,
+    spacing: this.spacingControl,
     title: this.titleControl,
     footer: this.footerControl,
     header: this.headerControl,

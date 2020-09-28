@@ -22,7 +22,7 @@
       huge: $jnt-gutter-huge,
     ),
     header: (
-      padding: null
+      padding: 0 0 $jnt-gutter-normal 0,
     ),
     body: (
       padding: null
@@ -93,6 +93,7 @@
     text-align: center;
     font-weight: $jnt-font-weight-bold;
     color: map-get($vars, title-color);
+    border-bottom: 1px solid $jnt-secondary-color;
     @if map-has-key($vars, header) {
       $header: map-get($vars, header);
       padding: map-get($header, padding);
@@ -111,15 +112,6 @@
       $footer: map-get($vars, footer);
       padding: map-get($footer, padding);
     }
-  }
-
-  #{$context} #{$wrapper} hr {
-    background-color: $jnt-secondary-color;
-    color: $jnt-secondary-color;
-    width: 100%;
-    border: 0;
-    height: 1px;
-    margin-top: 0;
   }
 
   #{$context} #{$wrapper} [data-loading],

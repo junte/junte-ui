@@ -30,6 +30,7 @@
                 <ng-template #document let-height="height">
                   <jnt-block #block data-block [title]="titleControl.value ? 'Block title' : null"
                              [padding]="paddingControl.value"
+                             [spacing]="spacingControl.value"
                              [width]="widthControl.value"
                              [state]="stateControl.value"
                              [features]="adaptedControl.value ? [ui.feature.adapted] : null">
@@ -66,6 +67,48 @@
                       <jnt-select formControlName="padding"
                                   placeholder="Normal"
                                   i18n-placeholder="@@label.normal">
+                        <jnt-select-option label="None"
+                                           i18n-label="@@label.none"
+                                           [key]="ui.gutter.none"></jnt-select-option>
+                        <jnt-select-option label="Tiny"
+                                           i18n-label="@@label.tiny"
+                                           [icon]="localUi.icons.padding.tiny"
+                                           [key]="ui.gutter.tiny"></jnt-select-option>
+                        <jnt-select-option label="Small"
+                                           i18n-label="@@label.small"
+                                           [icon]="localUi.icons.padding.small"
+                                           [key]="ui.gutter.small"></jnt-select-option>
+                        <jnt-select-option label="Normal"
+                                           i18n-label="@@label.normal"
+                                           [icon]="localUi.icons.padding.normal"
+                                           [key]="ui.gutter.normal"></jnt-select-option>
+                        <jnt-select-option label="Big"
+                                           i18n-label="@@label.big"
+                                           [icon]="localUi.icons.padding.big"
+                                           [key]="ui.gutter.big"></jnt-select-option>
+                        <jnt-select-option label="Large"
+                                           i18n-label="@@label.large"
+                                           [icon]="localUi.icons.padding.large"
+                                           [key]="ui.gutter.large"></jnt-select-option>
+                        <jnt-select-option label="Huge"
+                                           i18n-label="@@label.huge"
+                                           [icon]="localUi.icons.padding.huge"
+                                           [key]="ui.gutter.huge"></jnt-select-option>
+                      </jnt-select>
+                    </jnt-form-control>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-form-label for="spacing"
+                                    i18n="@@label.spacing">Spacing
+                    </jnt-form-label>
+                    <jnt-form-control>
+                      <jnt-select formControlName="spacing"
+                                  placeholder="Normal"
+                                  i18n-placeholder="@@label.normal">
+                        <jnt-select-option label="None"
+                                           i18n-label="@@label.none"
+                                           [key]="ui.gutter.none"></jnt-select-option>
                         <jnt-select-option label="Tiny"
                                            i18n-label="@@label.tiny"
                                            [icon]="localUi.icons.padding.tiny"
@@ -195,6 +238,10 @@
                     <ng-container *ngIf="paddingControl.value">
                       <![CDATA[
                       [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="spacingControl.value">
+                      <![CDATA[
+                      [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
                     </ng-container>
                     <ng-container *ngIf="widthControl.value">
                       <![CDATA[

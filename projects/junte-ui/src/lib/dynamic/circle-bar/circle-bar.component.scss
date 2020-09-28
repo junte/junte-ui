@@ -1,17 +1,36 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-functions';
 
-@mixin jnt-circle-bar($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-circle-bar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    height: 200px,
+    width: 200px
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
+    width: map-get($vars, width);
+    height: map-get($vars, height);
   }
 
-  #{$context} [data-content] {
+  #{$context} #{$wrapper} [data-content] {
     display: flex;
     align-items: center;
     justify-content: center;

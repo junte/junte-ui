@@ -1,6 +1,24 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-functions';
 
-@mixin jnt-circle-bar-indicator($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-circle-bar-indicator($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    fill: transparent
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     height: 100%;
@@ -13,8 +31,8 @@
     position: absolute;
   }
 
-  #{$context} svg {
-    fill: transparent;
+  #{$context} #{$wrapper} svg {
+    fill: map-get($vars, fill);
     transform: rotate(-90deg);
     border-radius: 50%;
   }
