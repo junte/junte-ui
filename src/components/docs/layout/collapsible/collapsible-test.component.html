@@ -23,7 +23,8 @@
               <app-browser-preview>
                 <ng-template #document let-height="height">
                   <jnt-collapsible [title]="!titleControl.value ? 'Filters' : null"
-                                   [icon]="iconControl.value ? ui.icons.settings : null">
+                                   [icon]="iconControl.value ? ui.icons.settings : null"
+                                   [opened]="openedControl.value">
                     <ng-template *ngIf="titleControl.value" #collapsibleTitleTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [gutter]="ui.gutter.small"
@@ -53,6 +54,12 @@
                     <jnt-checkbox formControlName="icon"
                                   label="Icon"
                                   i18n-label="@@label.icon"></jnt-checkbox>
+                  </jnt-form-item>
+
+                  <jnt-form-item>
+                    <jnt-checkbox formControlName="opened"
+                                  label="Opened"
+                                  i18n-label="@@label.opened"></jnt-checkbox>
                   </jnt-form-item>
                 </jnt-stack>
               </jnt-form>

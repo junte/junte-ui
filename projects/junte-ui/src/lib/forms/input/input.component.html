@@ -57,7 +57,7 @@
     </button>
 
     <button data-reset *ngIf="!!features && features.includes(feature.clear)" tabindex="-1"
-            (click)="inputControl.reset()">
+            (click)="clear($event)">
       <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
     </button>
 

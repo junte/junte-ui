@@ -123,6 +123,15 @@
       }
     }
 
+    &[data-features*='adapted'] {
+      @include for-mobile() {
+        #{$wrapper} [data-image] {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
     &[data-has-icon='true'] {
       #{$wrapper} [data-main] {
         padding-top: $jnt-gutter-big;
@@ -206,6 +215,7 @@
           $picture: map-get($vars, picture);
           padding: map-get($picture, padding);
           img {
+            display: block;
             border-radius: map-get($picture, corner);
             border: map-get($picture, border);
           }

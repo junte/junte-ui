@@ -2,6 +2,10 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
+<ng-template #cardImageTemplate>
+  <img data-image [src]="picture.url" [width]="picture.width" [height]="picture.height">
+</ng-template>
+
 <jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.align.stretch">
   <div data-line *ngIf="color" [style.background-color]="color"></div>
 
@@ -10,15 +14,13 @@
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
     <jnt-stack data-body
-               [orientation]="ui.orientation.horizontal"
+               [align]="ui.align.stretch"
+               [orientation]="!!features && features.includes(feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
                (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
       <div data-picture *ngIf="!!picture && picture.position === ui.position.left">
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="picture.template"></ng-container>
         </ng-container>
-        <ng-template #cardImageTemplate>
-          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
-        </ng-template>
       </div>
       <div data-content>
         <div *ngIf="!!title || !!titleTemplate" data-title>
@@ -33,9 +35,6 @@
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="picture.template"></ng-container>
         </ng-container>
-        <ng-template #cardImageTemplate>
-          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
-        </ng-template>
       </div>
     </jnt-stack>
 

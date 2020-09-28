@@ -100,6 +100,13 @@ export class LinkComponent {
   @Input() title: string;
 
   @PropertyApi({
+    description: 'Link query params',
+    type: '{[k: string]: any}'
+  })
+  @Input()
+  queryParams: {[k: string]: any};
+
+  @PropertyApi({
     description: 'Link source',
     type: 'string | string[]'
   })

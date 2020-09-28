@@ -12,7 +12,8 @@
                  }"
                  (attached)="reference.popover = $event"
                  [icon]="ui.icons.calendar"
-                 [mask]="config.locale.ui.masks.date">
+                 [mask]="config.locale.ui.masks.date"
+                 [features]="features">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
@@ -20,7 +21,8 @@
                  [placeholder]="placeholder || ''"
                  [icon]="ui.icons.calendar"
                  (click)="calendarOpened = !calendarOpened"
-                 [mask]="config.locale.ui.masks.date">
+                 [mask]="config.locale.ui.masks.date"
+                 [features]="features">
       </jnt-input>
     </ng-container>
 
@@ -35,14 +37,16 @@
                    minWidth: '150px'
                  }"
                  (attached)="reference.popover = $event"
-                 [mask]="config.locale.ui.masks.time + (meridian || '')">
+                 [mask]="config.locale.ui.masks.time + (meridian || '')"
+                 [features]="features">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
                  formControlName="time"
                  [icon]="ui.icons.time"
                  (click)="timeOpened = !timeOpened"
-                 [mask]="config.locale.ui.masks.time + (meridian || '')">
+                 [mask]="config.locale.ui.masks.time + (meridian || '')"
+                 [features]="features">
       </jnt-input>
     </ng-container>
   </jnt-stack>

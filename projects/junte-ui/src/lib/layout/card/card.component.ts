@@ -1,4 +1,6 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../responsive/breakpoint.service';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -140,9 +142,9 @@ export class CardComponent {
   width: Width = Width.default;
 
   @PropertyApi({
-    description: 'Сlickable card',
+    description: 'Сlickable card; Adapted card on mobile view',
     path: 'ui.feature',
-    options: [Feature.clickable]
+    options: [Feature.clickable, Feature.adapted]
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -170,4 +172,12 @@ export class CardComponent {
   hideActions() {
     this.popover.hide();
   }
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
+
+  constructor(private breakpoint: BreakpointService) {
+  }
+
 }

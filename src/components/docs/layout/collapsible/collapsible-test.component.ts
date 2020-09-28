@@ -20,10 +20,12 @@ export class CollapsibleTestComponent implements OnInit {
 
   titleControl = this.fb.control(false);
   iconControl = this.fb.control(true);
+  openedControl = this.fb.control(false);
 
   builder = this.fb.group({
     title: this.titleControl,
     icon: this.iconControl,
+    opened: this.openedControl
   });
 
   constructor(private fb: FormBuilder) {

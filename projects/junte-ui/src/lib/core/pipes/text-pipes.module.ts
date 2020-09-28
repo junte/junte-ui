@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SanitizeHtmlPipe } from './text/sanitizeHtml.pipe';
 import { EmptyPipe } from './text/empty.pipe';
 
 @NgModule({
@@ -7,10 +8,12 @@ import { EmptyPipe } from './text/empty.pipe';
     CommonModule
   ],
   declarations: [
-    EmptyPipe
+    EmptyPipe,
+    SanitizeHtmlPipe
   ],
   exports: [
-    EmptyPipe
+    EmptyPipe,
+    SanitizeHtmlPipe
   ]
 })
 export class TextPipesModule {
