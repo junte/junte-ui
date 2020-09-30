@@ -13,7 +13,7 @@
       <jnt-menu data-menu *ngIf="!!menu" [orientation]="ui.orientation.vertical"
                 [collapsed]="collapsed"
                 [placement]="ui.placement.fixed"
-                [smarty]="false"
+                [features]="[ui.feature.dropdown, ui.feature.smarty]"
                 [spacing]="ui.size.small"
                 (selected)="toggle()">
         <jnt-menu-item *ngFor="let i of menu.items"
