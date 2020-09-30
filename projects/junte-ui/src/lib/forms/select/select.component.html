@@ -2,7 +2,7 @@
   <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
 </ng-template>
 
-<ng-template #optionDefaultTemplate let-query="query" let-icon="icon" let-label="label">
+<ng-template #optionDefaultTemplate let-icon="icon" let-label="label">
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.align.center">
@@ -22,9 +22,9 @@
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
-        <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
+        <div *ngIf="(key | getOption:options:changes.selected:changes.options) as o;else noOptionTemplate">
           <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-            : optionDefaultTemplate;context: option">
+            : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value, selected: true}">
           </ng-container>
         </div>
         <button data-close type="button" (click)="remove(key)">
@@ -76,7 +76,7 @@
                 [attr.data-selected]="selected | includes:o.key"
                 (click)="toggle(o)">
               <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-              : optionDefaultTemplate;context: o">
+              : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value}">
               </ng-container>
             </li>
           </ul>

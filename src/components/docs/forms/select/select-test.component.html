@@ -64,15 +64,15 @@
                                     (click)="close()"></jnt-button>
                       </jnt-stack>
                     </ng-template>
-                    <ng-template #heroOptionTemplate let-hero="value">
+                    <ng-template #heroOptionTemplate let-hero="value" let-selected="selected">
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [align]="ui.align.center"
-                                 [justify]="ui.justify.between">
+                                 [justify]="selected ? null : ui.justify.between">
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [gutter]="ui.gutter.small"
                                    [align]="ui.align.center">
                           <jnt-avatar [image]="hero.avatar"
-                                      [size]="ui.size.small"></jnt-avatar>
+                                      [size]="selected ? ui.size.tiny : ui.size.small"></jnt-avatar>
                           <div>{{hero.name}}</div>
                         </jnt-stack>
                         <jnt-label [label]="hero.likes + ' likes'"

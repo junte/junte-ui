@@ -29,6 +29,12 @@
     font-size: map-get($vars, font-size);
     color: map-get($vars, color);
   }
+
+  #{$context} #{$wrapper} [data-required] {
+    margin-left: $jnt-gutter-tiny;
+    color: $jnt-red-color;
+  }
+
 }
 
 @if $jnt-debug {
