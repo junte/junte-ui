@@ -28,7 +28,8 @@
                                 trigger: triggerControl.value,
                                 content: contentTypeControl.value === 'default' ? 'Any text' : null,
                                 contentTemplate: contentTypeControl.value === 'custom' ? contentTemplate : null,
-                                position: layoutControl.value
+                                position: layoutControl.value,
+                                features: dropdownControl.value ? [ui.feature.dropdown] : []
                               }"
                               [text]="triggerControl.value == ui.trigger.click ? 'Click me' : 'Hover on me'"
                               i18n-text="@@action.click_me">
@@ -105,6 +106,14 @@
                     <jnt-checkbox formControlName="title"
                                   label="Title"
                                   i18n-label="@@label.title"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="dropdown"
+                                  label="Dropdown"
+                                  i18n-label="@@label.dropdown"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>

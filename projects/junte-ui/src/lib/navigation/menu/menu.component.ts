@@ -1,4 +1,5 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Placement } from '../../core/enums/placement';
 import { PropertyApi } from '../../core/decorators/api';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
@@ -16,13 +17,16 @@ export class MenuComponent {
   ui = UI;
   orientationEnum = Orientation;
 
+  private _spacing: Gutter = Gutter.none;
+  private _placement: Placement = Placement.absolute;
+  private _smarty: boolean = true;
+
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
-  _spacing: Gutter = Gutter.none;
-
   @HostBinding('attr.data-collapsed')
-  @Input() collapsed = false;
+  @Input()
+  collapsed = false;
 
   @PropertyApi({
     description: 'Menu orientation',
@@ -30,12 +34,42 @@ export class MenuComponent {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-  @Input() set orientation(orientation: Orientation) {
+  @Input()
+  set orientation(orientation: Orientation) {
     this._orientation = orientation || Orientation.horizontal;
   }
 
   get orientation() {
     return this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Menu popover placement',
+    path: 'ui.placement',
+    default: Placement.absolute,
+    options: [Placement.absolute, Placement.fixed]
+  })
+  @Input()
+  set placement(placement: Placement) {
+    this._placement = placement || Placement.absolute;
+  }
+
+  get placement() {
+    return this._placement;
+  }
+
+  @PropertyApi({
+    description: 'Menu popover smarty',
+    type: 'boolean',
+    default: 'true'
+  })
+  @Input()
+  set smarty(smarty: boolean) {
+    this._smarty = smarty !== undefined && smarty !== null ? smarty : true;
+  }
+
+  get smarty() {
+    return this._smarty;
   }
 
   @PropertyApi({

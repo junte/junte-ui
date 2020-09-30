@@ -1,5 +1,5 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
 
 @mixin popover-padding($padding) {
   & {
@@ -43,7 +43,6 @@
     display: none;
 
     @include for-mobile() {
-      left: 0 !important;
       width: 100%;
       max-width: 100%;
       max-height: 100vh;
@@ -54,6 +53,7 @@
     [data-arrow] {
       position: absolute;
       fill: map-get($vars, background);
+
       [data-inner] {
         filter: if($jnt-theme-type == 'light', url(#popover_marker_shadow-light), url(#popover_marker_shadow-dark));
       }
@@ -131,6 +131,7 @@
       margin-bottom: $jnt-gutter-normal;
       color: $jnt-primary-text-color;
     }
+
     [data-content] {
       max-width: 300px;
       color: $jnt-primary-text-color;
