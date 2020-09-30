@@ -572,14 +572,14 @@
             </h1>
 
             <p data-web-apps>Made with love for making beautiful WEB apps!</p>
-            <jnt-stack data-versions [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" [align]="ui.align.center">
-              <div>Versions:</div>
-              <jnt-menu data-menu>
-                <jnt-menu-item *ngFor="let version of versions"
-                               [title]="version.title" [link]="version.link">
-                </jnt-menu-item>
-              </jnt-menu>
-            </jnt-stack>
+            <jnt-menu data-versions [spacing]="ui.gutter.normal">
+              <jnt-menu-item title="Stable"
+                             [link]="version == versions.stable ? null : 'https://www.junte-ui.com'"></jnt-menu-item>
+              <jnt-menu-item title="Next"
+                             [link]="version == versions.next ? null : 'https://rc.junte-ui.com'"></jnt-menu-item>
+              <jnt-menu-item title="Unstable"
+                             [link]="version == versions.unstable ? null : 'https://unstable.junte-ui.com'"></jnt-menu-item>
+            </jnt-menu>
           </jnt-stack>
 
           <jnt-row tags [gutter]="ui.gutter.large">

@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { Placement } from '../../core/enums/placement';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -99,6 +100,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   private fetcher: Subscription;
+  private _placement: Placement = Placement.absolute;
 
   options: Options = {persisted: {}, found: {}};
   changes = {selected: 0, options: 0};
@@ -117,27 +119,31 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     type: 'string',
     default: 'label'
   })
-  @Input() labelField = 'label';
+  @Input()
+  labelField = 'label';
 
   @PropertyApi({
     description: 'Select key field',
     type: 'string',
     default: 'key'
   })
-  @Input() keyField = 'key';
+  @Input()
+  keyField = 'key';
 
   @PropertyApi({
     description: 'Select placeholder',
     type: 'string'
   })
-  @Input() placeholder = '';
+  @Input()
+  placeholder = '';
 
   @PropertyApi({
     description: 'Select required',
     type: 'boolean',
     default: 'false'
   })
-  @Input() required = false;
+  @Input()
+  required = false;
 
   @HostBinding('attr.data-mode')
   _mode: SelectMode = SelectMode.single;
@@ -168,7 +174,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     description: 'Icon for select',
     type: 'string',
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @ViewChild('queryInput', {static: true})
   queryInput: ElementRef<HTMLInputElement>;
@@ -185,7 +192,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     options: [State.loading]
   })
   @HostBinding('attr.data-state')
-  @Input() state: State;
+  @Input()
+  state: State;
 
   @PropertyApi({
     description: 'Template for option',
@@ -224,12 +232,28 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   opened = false;
 
   @PropertyApi({
+    description: 'Menu popover placement',
+    path: 'ui.placement',
+    default: Placement.absolute,
+    options: [Placement.absolute, Placement.fixed]
+  })
+  @Input()
+  set placement(placement: Placement) {
+    this._placement = placement || Placement.absolute;
+  }
+
+  get placement() {
+    return this._placement;
+  }
+
+  @PropertyApi({
     description: 'Select mode',
     path: 'ui.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
-  @Input() set mode(mode: SelectMode) {
+  @Input()
+  set mode(mode: SelectMode) {
     this._mode = mode || SelectMode.single;
   }
 
@@ -242,7 +266,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     type: 'boolean'
   })
   @HostBinding('attr.data-search')
-  @Input() set search(search: boolean) {
+  @Input()
+  set search(search: boolean) {
     search ? this.queryControl.enable({emitEvent: false}) : this.queryControl.disable({emitEvent: false});
   }
 
@@ -260,7 +285,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
   }
 
@@ -283,13 +309,15 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     description: 'Select loader',
     type: 'function'
   })
-  @Input() loader = null;
+  @Input()
+  loader = null;
 
   @PropertyApi({
     description: 'Multiplex mode',
     type: 'boolean'
   })
-  @Input() multiplex = false;
+  @Input()
+  multiplex = false;
 
   @HostListener('document:click', ['$event.path'])
   clickOutside(path: HTMLElement[]) {
@@ -460,7 +488,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     if (!this.mobile) {
       this.reference.popover = this.popover.show(this.hostRef, {
         contentTemplate: this.optionsTemplate,
-        features: [Feature.dropdown]
+        features: [Feature.dropdown],
+        placement: this.placement
       });
       this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
         .subscribe(() => this.close());

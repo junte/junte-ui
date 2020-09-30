@@ -49,6 +49,7 @@
     "publish": "tag=unstable npm run publish:npm",
     "publish:rc": "tag=next npm run publish:npm",
     "publish:prod": "tag=latest npm run publish:npm",
+    "publish:version": "npm run build && npm run version:inject && npm run publish",
     "clean:npm": "npm cache clean --force && rm -rf -- node_modules package-lock.json",
     "refresh": "npm run clean:npm && npm install",
     "version:inject": "gulp inject --gulpfile ./src/scripts/version.ts --cwd ../../dist/junte-ui/"

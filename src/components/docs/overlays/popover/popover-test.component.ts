@@ -26,12 +26,14 @@ export class PopoverTestComponent {
   triggerControl = this.fb.control(Triggers.hover);
   contentTypeControl = this.fb.control(ContentType.default);
   layoutControl = this.fb.control(Position.top);
+  dropdownControl = this.fb.control(false);
 
   builder = this.fb.group({
     trigger: this.triggerControl,
     title: this.titleControl,
     type: this.contentTypeControl,
     layout: this.layoutControl,
+    dropdown: this.dropdownControl
   });
 
   @ViewChild('code') code: TabComponent;

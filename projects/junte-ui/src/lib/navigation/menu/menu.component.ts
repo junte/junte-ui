@@ -1,7 +1,9 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
+import { Placement } from '../../core/enums/placement';
 import { UI } from '../../core/enums/ui';
 import { MenuItemComponent } from './menu-item.component';
 
@@ -16,13 +18,16 @@ export class MenuComponent {
   ui = UI;
   orientationEnum = Orientation;
 
+  private _spacing: Gutter = Gutter.none;
+  private _placement: Placement = Placement.absolute;
+  private _features: Feature[] = [Feature.dropdown];
+
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
-  _spacing: Gutter = Gutter.none;
-
   @HostBinding('attr.data-collapsed')
-  @Input() collapsed = false;
+  @Input()
+  collapsed = false;
 
   @PropertyApi({
     description: 'Menu orientation',
@@ -30,12 +35,42 @@ export class MenuComponent {
     default: Orientation.horizontal,
     options: [Orientation.horizontal, Orientation.vertical]
   })
-  @Input() set orientation(orientation: Orientation) {
+  @Input()
+  set orientation(orientation: Orientation) {
     this._orientation = orientation || Orientation.horizontal;
   }
 
   get orientation() {
     return this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Menu popover placement',
+    path: 'ui.placement',
+    default: Placement.absolute,
+    options: [Placement.absolute, Placement.fixed]
+  })
+  @Input()
+  set placement(placement: Placement) {
+    this._placement = placement || Placement.absolute;
+  }
+
+  get placement() {
+    return this._placement;
+  }
+
+  @PropertyApi({
+    description: 'Menu popover features',
+    type: 'Feature[]',
+    default: '[ui.feature.dropdown]'
+  })
+  @Input()
+  set features(features: Feature[]) {
+    this._features = !!features && !!features.length ? features : [Feature.dropdown];
+  }
+
+  get features() {
+    return this._features;
   }
 
   @PropertyApi({

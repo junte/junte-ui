@@ -146,6 +146,13 @@ export class LinkComponent {
   }
 
   @PropertyApi({
+    description: 'Fragment for link #anchor',
+    default: 'null',
+  })
+  @Input()
+  fragment: string;
+
+  @PropertyApi({
     description: 'Matching to activate link',
     path: 'ui.matching',
     default: UrlMatching.fullMatch,

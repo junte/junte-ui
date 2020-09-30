@@ -12,9 +12,11 @@
 </ng-container>
 
 <ng-template #internalLinkTemplate>
-  <a data-link [routerLink]="source" #link="routerLinkActive" routerLinkActive
+  <a data-link #link="routerLinkActive" routerLinkActive [attr.data-active]="link.isActive"
+     [routerLink]="source"
      [routerLinkActiveOptions]="{exact: matching === urlMatching.fullMatch}"
-     [attr.data-active]="link.isActive" [queryParams]="queryParams">
+     [queryParams]="queryParams"
+     [fragment]="fragment">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>
