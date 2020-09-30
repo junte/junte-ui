@@ -1,5 +1,5 @@
-@import "jnt-variables";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -9,13 +9,18 @@
     display: block;
     align-items: stretch;
     @include max-for-tablet() {
-      padding: 0;
+      [data-user] {
+        padding: 0;
+      }
     }
     @include min-for-desktop() {
-      padding: 0 $jnt-gutter-normal;
       display: flex;
       &:hover {
         background-color: $jnt-primary-color;
+      }
+
+      [data-user] {
+        padding: 0 $jnt-gutter-normal;
       }
     }
   }

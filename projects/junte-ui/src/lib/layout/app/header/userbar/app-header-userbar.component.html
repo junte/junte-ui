@@ -10,7 +10,8 @@
   <jnt-stack data-user
              [jntPopover]="{
                contentTemplate: userMenuDropdownTemplate,
-               trigger: ui.trigger.hover
+               trigger: ui.trigger.hover,
+               placement: ui.placement.fixed
              }"
              (attached)="reference.popover = $event"
              [orientation]="ui.orientation.horizontal"
