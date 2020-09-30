@@ -1,8 +1,9 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
-import { Placement } from '../../core/enums/placement';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
+import { Placement } from '../../core/enums/placement';
 import { UI } from '../../core/enums/ui';
 import { MenuItemComponent } from './menu-item.component';
 
@@ -19,7 +20,7 @@ export class MenuComponent {
 
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
-  private _smarty: boolean = true;
+  private _features: Feature[] = [Feature.dropdown];
 
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
@@ -59,17 +60,17 @@ export class MenuComponent {
   }
 
   @PropertyApi({
-    description: 'Menu popover smarty',
-    type: 'boolean',
-    default: 'true'
+    description: 'Menu popover features',
+    type: 'Feature[]',
+    default: '[ui.feature.dropdown]'
   })
   @Input()
-  set smarty(smarty: boolean) {
-    this._smarty = smarty !== undefined && smarty !== null ? smarty : true;
+  set features(features: Feature[]) {
+    this._features = !!features && !!features.length ? features : [Feature.dropdown];
   }
 
-  get smarty() {
-    return this._smarty;
+  get features() {
+    return this._features;
   }
 
   @PropertyApi({

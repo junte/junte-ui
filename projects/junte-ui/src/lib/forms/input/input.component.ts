@@ -210,7 +210,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Max rows for multiline mode',
-    type: 'int',
+    type: 'number',
     default: 5,
   })
   @Input()

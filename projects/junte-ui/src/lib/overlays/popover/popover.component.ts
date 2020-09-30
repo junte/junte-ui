@@ -27,7 +27,6 @@ export class PopoverOptions {
   minWidth: string;
   maxHeight = '400px';
   padding: Gutter = Gutter.normal;
-  smarty = true;
   features: Feature[] = [];
 
   constructor(defs: any = null) {
@@ -91,7 +90,7 @@ export class PopoverComponent {
     const {nativeElement: host} = this.hostRef;
 
     this.position = this.options.position;
-    if (this.options.smarty) {
+    if (this.options.features.includes(Feature.smarty)) {
       switch (this.position) {
         case Position.top: {
           const shift = offsetTop - PADDING_SIZE + host.clientHeight;
