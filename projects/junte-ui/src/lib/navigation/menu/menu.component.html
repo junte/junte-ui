@@ -14,7 +14,9 @@
               trigger: orientation === orientationEnum.horizontal || !collapsed
                 ? ui.trigger.click
                 : ui.trigger.hover,
-              features: [ui.feature.dropdown]
+              features: [ui.feature.dropdown],
+              placement: placement,
+              smarty: smarty
             }">
         <jnt-spinner *ngIf="item.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-link data-link
