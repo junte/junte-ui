@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
 
@@ -7,15 +7,8 @@ import { Language } from 'src/components/docs/shared/code-highlight/enum';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   ui = UI;
   languages = Language;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
 }

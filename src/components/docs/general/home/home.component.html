@@ -279,6 +279,18 @@ export class AppComponent {
   <p>Problems 🙀? Please, add an issue here 👉 <jnt-link
     title="Issues tracker"
     [outline]="ui.outline.ghost"
-    source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link></p>
+    source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link>
+  </p>
 
+  <jnt-stack [align]="ui.align.start">
+    <h2>Polyfills</h2>
+    <p>Include this polyfills to <code>polyfills.ts</code> for correct library working:</p>
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <h3>Event.path</h3>
+      <jnt-label label="Safary"></jnt-label>
+    </jnt-stack>
+    <app-code-highlight [language]="languages.html">
+      <code>import '@junte/ui/polyfills/event-path'</code>
+    </app-code-highlight>
+  </jnt-stack>
 </jnt-container>
