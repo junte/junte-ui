@@ -1,3 +1,3 @@
-export * from './button.component';
-export * from './group/button-group.component';
-export * from './button.module';
+export { ButtonComponent } from './button.component';
+export { ButtonGroupComponent } from './group/button-group.component';
+export { ButtonModule } from './button.module';

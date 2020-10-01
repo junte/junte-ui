@@ -1,2 +1,2 @@
-export * from './stack.component';
-export * from './stack.module';
+export { StackComponent } from './stack.component';
+export { StackModule } from './stack.module';

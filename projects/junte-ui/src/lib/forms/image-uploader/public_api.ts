@@ -1,2 +1,2 @@
-export * from './image-uploader.component';
-export * from './image-uploader.module';
+export { ImageUploaderComponent, UploadImageData } from './image-uploader.component';
+export { ImageUploaderModule } from './image-uploader.module';

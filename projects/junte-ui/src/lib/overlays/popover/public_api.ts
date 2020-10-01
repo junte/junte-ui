@@ -1,4 +1,4 @@
-export * from './popover.component';
-export * from './popover.service';
-export * from './popover.directive';
-export * from './popover.module';
+export { PopoverComponent } from './popover.component';
+export { PopoverService, PopoverInstance } from './popover.service';
+export { PopoverDirective } from './popover.directive';
+export { PopoverModule } from './popover.module';

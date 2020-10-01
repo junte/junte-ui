@@ -1,2 +1,8 @@
-export * from './image-cropper.component';
-export * from './image-cropper.module';
+export {
+  ImageCropperComponent,
+  CropperPosition,
+  ImageCroppedData,
+  ImagePosition,
+  MoveStart,
+  MoveTypes } from './image-cropper.component';
+export { ImageCropperModule } from './image-cropper.module';

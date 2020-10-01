@@ -1,4 +1,4 @@
-export * from './breakpoint.service';
-export * from './device.service';
-export * from './responsive.directives';
-export * from './responsive.module';
+export { BreakpointService } from './breakpoint.service';
+export { DeviceService } from './device.service';
+export { BreakpointDirective, ForDirective, ForMaxDirective, ForMinDirective} from './responsive.directives';
+export { ResponsiveModule } from './responsive.module';

@@ -1,2 +1,2 @@
-export * from './card.component';
-export * from './card.module';
+export { CardComponent } from './card.component';
+export { CardModule } from './card.module';

@@ -1,2 +1,2 @@
-export * from './confirm.component';
-export * from './confirm.module';
+export { ConfirmComponent } from './confirm.component';
+export { ConfirmModule } from './confirm.module';

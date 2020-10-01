@@ -1,2 +1,2 @@
-export * from './date-period.component';
-export * from './date-period.module';
+export { DatePeriodComponent, DatePeriodBases } from './date-period.component';
+export { DatePeriodModule } from './date-period.module';

@@ -1,3 +1,3 @@
-export * from './accordion.component';
-export * from './section/accordion-section.component';
-export * from './accordion.module';
+export { AccordionComponent } from './accordion.component';
+export { AccordionSectionComponent } from './section/accordion-section.component';
+export { AccordionModule } from './accordion.module';

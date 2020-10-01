@@ -1,2 +1,2 @@
-export * from './input.component';
-export * from './input.module';
+export { InputComponent } from './input.component';
+export { InputModule } from './input.module';

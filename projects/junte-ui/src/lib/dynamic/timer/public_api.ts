@@ -1,2 +1,2 @@
-export * from './timer.component';
-export * from './timer.module';
+export { TimerComponent } from './timer.component';
+export { TimerModule } from './timer.module';

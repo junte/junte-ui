@@ -1,3 +1,3 @@
-export * from './switcher-option.component';
-export * from './switcher.component';
-export * from './switcher.module';
+export { SwitcherOptionComponent } from './switcher-option.component';
+export { SwitcherComponent } from './switcher.component';
+export { SwitcherModule } from './switcher.module';
