@@ -1,2 +1,2 @@
-export * from './dot.component';
-export * from './dot.module';
+export { DotComponent } from './dot.component';
+export { DotModule } from './dot.module';

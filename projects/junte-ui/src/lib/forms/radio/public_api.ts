@@ -1,3 +1,3 @@
-export * from './radio-group/radio-group.component';
-export * from './radio.component';
-export * from './radio.module';
+export { RadioGroupComponent } from './radio-group/radio-group.component';
+export { RadioComponent } from './radio.component';
+export { RadioModule } from './radio.module';

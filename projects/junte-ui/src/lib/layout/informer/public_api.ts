@@ -1,2 +1,2 @@
-export * from './informer.component';
-export * from './informer.module';
+export { InformerComponent, InformerMessageComponent } from './informer.component';
+export { InformerModule } from './informer.module';

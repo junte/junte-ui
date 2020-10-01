@@ -1,7 +1,7 @@
-export * from './control/form-control.component';
-export * from './item/form-item.component';
-export * from './label/form-label.component';
-export * from './message/form-message.component';
-export * from './form.component';
-export * from './form.module';
-export * from './pipes';
+export { FormControlComponent } from './control/form-control.component';
+export { FormItemComponent } from './item/form-item.component';
+export { FormLabelComponent } from './label/form-label.component';
+export { FormMessageComponent } from './message/form-message.component';
+export { FormComponent } from './form.component';
+export { FormModule } from './form.module';
+export { FieldTouchedHasErrorPipe } from './pipes';

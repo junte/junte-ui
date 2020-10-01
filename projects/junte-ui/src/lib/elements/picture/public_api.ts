@@ -1,2 +1,2 @@
-export * from './picture.component';
-export * from './picture.module';
+export { PictureComponent } from './picture.component';
+export { PictureModule } from './picture.module';

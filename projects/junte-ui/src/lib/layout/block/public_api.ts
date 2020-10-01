@@ -1,2 +1,2 @@
-export * from './block.component';
-export * from './block.module';
+export { BlockComponent } from './block.component';
+export { BlockModule } from './block.module';
