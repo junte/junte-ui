@@ -166,14 +166,6 @@ export class PopoverComponent {
           break;
         }
       }
-
-      if (this.options.features.includes(Feature.dropdown)) {
-        if (this.position === Position.top || this.position === Position.bottom) {
-          this.options.maxWidth = `${window.innerWidth - width - PADDING_SIZE - rect.width}px`;
-        } else {
-          this.options.maxHeight = `${window.innerHeight - height - PADDING_SIZE}px`;
-        }
-      }
     }
     this.cd.detectChanges();
 
