@@ -291,7 +291,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   @PropertyApi({
-    description: 'Button width',
+    description: 'Select width',
     path: 'ui.width',
     default: Width.default,
     options: [Width.default, Width.fluid]

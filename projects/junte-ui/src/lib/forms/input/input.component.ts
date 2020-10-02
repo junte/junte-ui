@@ -19,6 +19,7 @@ import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
 import { InputScheme, InputType } from './enums';
 
 const BACKSPACE = 'Backspace';
@@ -77,6 +78,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
 
   @PropertyApi({
     description: 'Icon for input',
@@ -188,6 +192,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input()
   set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  @PropertyApi({
+    description: 'Input width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
   }
 
   @PropertyApi({

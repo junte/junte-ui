@@ -23,11 +23,9 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-block #block data-block title="Your hero"
-                           i18n-title="@@label.your_hero">
+                           i18n-title="@@label.your_hero" [width]="ui.width.fluid">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
-                    <jnt-stack [gutter]="ui.gutter.big"
-                               [align]="ui.align.stretch"
-                               [justify]="ui.justify.center">
+                    <jnt-stack [align]="ui.align.stretch">
                       <jnt-form-item>
                         <jnt-form-label for="hero"
                                         i18n="@@label.select_hero">Select hero

@@ -6,6 +6,7 @@ import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { SelectMode } from '../select/enums';
@@ -32,6 +33,9 @@ export class SwitcherComponent implements ControlValueAccessor {
   feature = Feature;
 
   _orientation: Orientation = Orientation.horizontal;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
 
   @PropertyApi({
     description: 'Switcher orientation ',
@@ -120,6 +124,16 @@ export class SwitcherComponent implements ControlValueAccessor {
   })
   @Input()
   loading = false;
+
+  @PropertyApi({
+    description: 'Input width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
+  }
 
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;

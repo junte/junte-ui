@@ -36,8 +36,11 @@
 
   :host, #{$context} {
     @if $declare {
-      display: block;
+      display: inline-block;
       position: relative;
+      &[data-width='fluid'] {
+        width: 100%;
+      }
       #{$wrapper} [data-options] {
 
         [data-option] {

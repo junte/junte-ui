@@ -6,7 +6,11 @@
 @mixin jnt-app-busyness($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
-    position: fixed
+    position: fixed,
+    background: (
+      from: $jnt-secondary-background,
+      to: $jnt-purple-lighten-color,
+    )
   );
 
   $vars: $passed;
@@ -35,23 +39,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(62, 64, 66, 0.5);
+      background-color: rgba($jnt-secondary-color, 0.5);
     }
 
     @include jnt-spinner((color: $jnt-secondary-color));
   }
 
   [data-loader] {
-    animation-name: loader-loading;
+    animation-name: jnt-app-business-loading;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     height: $jnt-gutter-tiny;
     width: 100%;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
     background-color: $jnt-secondary-color;
+    @if map-has-key($vars, background) {
+      $background: map-get($vars, background);
+      background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
+    }
   }
 }
 
-@keyframes loader-loading {
+@keyframes jnt-app-business-loading {
   0% {
     width: 0;
   }
