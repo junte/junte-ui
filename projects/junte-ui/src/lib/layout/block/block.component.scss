@@ -76,6 +76,12 @@
       }
     }
 
+    &[data-padding='none'] {
+      #{$context} #{$wrapper} [data-title] {
+        padding-top: $jnt-gutter-normal;
+      }
+    }
+
     &[data-features*='adapted'] {
       @include for-mobile() {
         box-shadow: none;
