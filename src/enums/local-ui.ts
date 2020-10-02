@@ -86,6 +86,7 @@ export class LocalUI {
       timeline: 'timeline:font:junte-ui-test-layout',
       timer: 'timer:font:junte-ui-test-layout',
       filter: 'filter:font:junte-ui-test-layout',
+      imageUploader: 'image-uploader:font:junte-ui-test-layout',
     // layout
      padding: {
        tiny: 'padding-tiny:font:junte-ui-test-layout',
