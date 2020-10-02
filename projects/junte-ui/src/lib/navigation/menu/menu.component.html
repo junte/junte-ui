@@ -3,7 +3,7 @@
            [align]="ui.align.stretch"
            [wrap]="ui.wrap.wrap">
   <ng-container *ngFor="let item of items">
-    <div data-top [attr.data-disabled]="item.disabled">
+    <div data-top>
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
               contentTemplate: collapsed || (orientation === orientationEnum.horizontal && !!item.submenu)
@@ -27,6 +27,7 @@
                   [scheme]="item.scheme"
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
+                  [disabled]="item.disabled"
                   (click)="!item.submenu ? selected.emit(item) : null;item.click.emit()">
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
@@ -61,6 +62,7 @@
                       [matching]="subItem.matching"
                       [source]="subItem.link?.source"
                       [fragment]="subItem.link?.fragment"
+                      [disabled]="subItem.disabled"
                       [scheme]="subItem.scheme"
                       [target]="subItem.target"
                       (click)="selected.emit(item);item.click.emit()">
