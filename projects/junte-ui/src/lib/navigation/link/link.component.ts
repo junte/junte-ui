@@ -26,7 +26,7 @@ export class LinkComponent {
   urlMatching = UrlMatching;
   icon: Icon;
 
-  private _source: string | string[];
+  private _source: string | any[];
   private _target: LinkTarget = LinkTarget.self;
   private _matching: UrlMatching = UrlMatching.fullMatch;
 

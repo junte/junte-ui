@@ -7,9 +7,16 @@ import { BadgeComponent } from '../../elements/badge/badge.component';
 
 const DEFAULT_TARGET = '_self';
 
-export abstract class AbstractMenuItemComponent {
+interface Link {
+  source: string | any[];
+  fragment: string;
+}
+
+export abstract class AbstractMenuItem {
 
   ui = UI;
+
+  link: Link;
 
   _scheme: Scheme = Scheme.primary;
   _matching: UrlMatching = UrlMatching.fullMatch;
@@ -32,11 +39,15 @@ export abstract class AbstractMenuItemComponent {
   title: string;
 
   @PropertyApi({
+    name: 'link',
     description: 'Menu item source',
     type: 'string | string[]'
   })
-  @Input()
-  link: string | string[];
+  @Input('link')
+  set __link__(link: string | Link) {
+    this.link = (typeof (link) === 'string' || link instanceof Array
+      ? {source: link, position: null} : link) as Link;
+  }
 
   @PropertyApi({
     description: 'Menu item target',
@@ -78,13 +89,6 @@ export abstract class AbstractMenuItemComponent {
   }
 
   @PropertyApi({
-    description: 'Fragment for link #anchor',
-    default: 'null',
-  })
-  @Input()
-  fragment: string;
-
-  @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
@@ -93,4 +97,5 @@ export abstract class AbstractMenuItemComponent {
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
+
 }
