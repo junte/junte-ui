@@ -32,6 +32,13 @@ export abstract class AbstractMenuItem {
   icon: string;
 
   @PropertyApi({
+    description: 'Disable menu item',
+    type: 'boolean',
+    default: 'false'
+  })
+  @Input() disabled = false;
+
+  @PropertyApi({
     description: 'Menu item title',
     type: 'string'
   })

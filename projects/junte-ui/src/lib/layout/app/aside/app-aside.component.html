@@ -18,6 +18,7 @@
                 (selected)="toggle()">
         <jnt-menu-item *ngFor="let i of menu.items"
                        [title]="i.title"
+                       [disabled]="i.disabled"
                        [link]="i.link"
                        [icon]="i.icon">
             <jnt-badge *ngFor="let badge of i.badges"
@@ -29,6 +30,7 @@
           <jnt-sub-menu *ngIf="!!i.submenu">
             <jnt-sub-menu-item *ngFor="let j of i?.submenu.items"
                            [title]="j.title"
+                           [disabled]="j.disabled"
                            [link]="j.link"
                            [icon]="j.icon">
               <jnt-badge *ngFor="let badge of j.badges"
