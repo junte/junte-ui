@@ -23,6 +23,7 @@
                   [icon]="item.icon"
                   [matching]="item.matching"
                   [source]="!item.submenu ? item.link : null"
+                  [fragment]="item.fragment"
                   [scheme]="item.scheme"
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
@@ -59,6 +60,7 @@
                       [icon]="subItem.icon"
                       [matching]="subItem.matching"
                       [source]="subItem.link"
+                      [fragment]="subItem.fragment"
                       [scheme]="subItem.scheme"
                       [target]="subItem.target"
                       (click)="selected.emit(item);item.click.emit()">

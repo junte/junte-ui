@@ -21,19 +21,22 @@ export abstract class AbstractMenuItemComponent {
     description: 'Icon for menu item',
     type: 'string'
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Menu item title',
     type: 'string'
   })
-  @Input() title: string;
+  @Input()
+  title: string;
 
   @PropertyApi({
     description: 'Menu item source',
     type: 'string | string[]'
   })
-  @Input() link: string | string[];
+  @Input()
+  link: string | string[];
 
   @PropertyApi({
     description: 'Menu item target',
@@ -41,7 +44,8 @@ export abstract class AbstractMenuItemComponent {
     default: '_self',
     options: ['_blank', '_self', '_parent', '_top']
   })
-  @Input() target: string = DEFAULT_TARGET;
+  @Input()
+  target: string = DEFAULT_TARGET;
 
   @PropertyApi({
     description: 'Methods of matching',
@@ -50,7 +54,8 @@ export abstract class AbstractMenuItemComponent {
     options: [UrlMatching.fullMatch,
       UrlMatching.wildcard]
   })
-  @Input() matching: UrlMatching = UrlMatching.fullMatch;
+  @Input()
+  matching: UrlMatching = UrlMatching.fullMatch;
 
   @PropertyApi({
     description: 'Menu item color scheme',
@@ -63,7 +68,8 @@ export abstract class AbstractMenuItemComponent {
       Scheme.fail
     ]
   })
-  @Input() set scheme(scheme: Scheme) {
+  @Input()
+  set scheme(scheme: Scheme) {
     this._scheme = scheme || Scheme.primary;
   }
 
@@ -72,10 +78,18 @@ export abstract class AbstractMenuItemComponent {
   }
 
   @PropertyApi({
+    description: 'Fragment for link #anchor',
+    default: 'null',
+  })
+  @Input()
+  fragment: string;
+
+  @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
-  @Output() click = new EventEmitter<any>();
+  @Output()
+  click = new EventEmitter<any>();
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
