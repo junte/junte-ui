@@ -23,7 +23,8 @@ export class MenuItemComponent extends AbstractMenuItemComponent {
     type: 'boolean',
     default: 'false'
   })
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @ContentChild(SubMenuComponent)
   submenu: SubMenuComponent;
