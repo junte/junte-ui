@@ -15,7 +15,7 @@ export class AppBusynessComponent {
 
   @HostBinding('style.display')
   get style() {
-    return !!this.loading ? 'none' : 'flex';
+    return this.loading ? 'flex' : 'none';
   }
 
   constructor(router: Router) {
@@ -31,4 +31,5 @@ export class AppBusynessComponent {
       }
     });
   }
+
 }
