@@ -8,16 +8,19 @@
     <input #input *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
            type="tel"
+           [name]="name || null"
            (focusin)="focused = true"
            (focusout)="focused = false"
            [placeholder]="placeholder"
            [readonly]="readonly ? readonly : null"
+           [autocomplete]="autocomplete"
            (paste)="paste($event)"
            (keydown)="keydownMask($event)">
 
     <ng-template #inputTemplate>
       <input *ngIf="!multiline; else textareaTemplate"
              formControlName="input"
+             [name]="name || null"
              [type]="type === inputType.password && view.password.display ? inputType.text : type"
              [placeholder]="placeholder"
              [readonly]="readonly ? readonly : null"
