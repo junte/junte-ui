@@ -1,10 +1,10 @@
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form">
     <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
-      <jnt-table #table [features]="search ? [ui.feature.search] : null"
+      <jnt-table #table [features]="(sections |includes: tableSections.search) ? [ui.feature.search] : null"
                  formControlName="table">
 
-        <ng-template *ngIf="filter" #tableFiltersTemplate>
+        <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
           <jnt-select formControlName="job"
                       placeholder="Select job"
                       [width]="ui.width.fluid"
@@ -37,7 +37,8 @@
           </ng-template>
         </jnt-table-column>
 
-        <ng-template *ngIf="actions" #tableRowActionsTemplate let-row="row" let-hide="hide">
+        <ng-template *ngIf="(sections |includes: tableSections.actions)"
+                     #tableRowActionsTemplate let-row="row" let-hide="hide">
           <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.size.small">
             <jnt-menu-item title="Edit"
                            i18n-title="@@action.edit"

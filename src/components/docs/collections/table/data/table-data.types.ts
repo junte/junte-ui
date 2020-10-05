@@ -1,5 +1,11 @@
 import { Field, Model } from '@junte/serialize-ts';
 
+export enum TableSections {
+  search,
+  actions,
+  filter
+}
+
 export interface TableState {
 
   q: string;

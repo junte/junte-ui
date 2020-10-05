@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { serialize } from '@junte/serialize-ts';
 import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { TableState, TableStateUpdate } from './data/table-data.types';
+import { TableSections, TableState, TableStateUpdate } from './data/table-data.types';
 
 const DEFAULT_FIRST = 10;
 
@@ -17,6 +17,7 @@ export class TableTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  sections = TableSections;
   types = {table: TableComponent, column: TableColumnComponent};
 
   @ViewChild('code') code: TabComponent;

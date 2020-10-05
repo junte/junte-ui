@@ -13,7 +13,7 @@ import {
   SelectModule,
   StackModule,
   TableModule,
-  TabsModule
+  TabsModule, ArrayPipesModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -37,6 +37,7 @@ import { TableTestComponent } from './table-test.component';
     CheckboxModule,
     MenuModule,
     SharedModule,
+    ArrayPipesModule
   ],
   exports: [
     TableTestComponent

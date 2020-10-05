@@ -4,7 +4,7 @@ import { fake } from 'faker';
 import { TableComponent, UI } from 'junte-ui';
 import { of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { DataFilter, TableState, TableStateUpdate } from './table-data.types';
+import { DataFilter, TableSections, TableState, TableStateUpdate } from './table-data.types';
 
 const DEFAULT_DELAY = 1000;
 export const DEFAULT_FIRST = 10;
@@ -28,6 +28,7 @@ const MOCK_JOBS = [...new Set(MOCK_DATA.map(d => d.job))];
 export class TableDataComponent implements OnInit {
 
   ui = UI;
+  tableSections = TableSections;
   jobs = MOCK_JOBS;
 
   tableControl = this.fb.control({
@@ -42,13 +43,10 @@ export class TableDataComponent implements OnInit {
   });
 
   @Input()
-  search: boolean;
-
-  @Input()
   filter: DataFilter;
 
   @Input()
-  sections: string[];
+  sections: TableSections[] = [];
 
   previous = JSON.stringify([DEFAULT_FIRST, null, null]);
 
