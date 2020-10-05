@@ -1,7 +1,7 @@
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
-import { InputScheme, InputType } from '../../forms/input/enums';
+import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
 import { RowAlign, RowJustify } from '../../layout/grid/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
@@ -61,7 +61,7 @@ export class UI {
   static datePicker = {type: DatePickerType};
   static skeleton = {type: SkeletonType};
   static pager = {mode: PagerMode};
-  static input = {type: InputType, scheme: InputScheme};
+  static input = {type: InputType, scheme: InputScheme, autocomplete: InputAutocomplete};
   static select = {mode: SelectMode};
   static button = {type: ButtonType};
   static gantt = {type: GanttTypes};

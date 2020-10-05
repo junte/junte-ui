@@ -20,7 +20,7 @@ import { State } from '../../core/enums/state';
 import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
-import { InputScheme, InputType } from './enums';
+import { InputAutocomplete, InputScheme, InputType } from './enums';
 
 const BACKSPACE = 'Backspace';
 const LEFT_ARROW = 'ArrowLeft';
@@ -97,8 +97,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   label: string;
 
   @PropertyApi({
+    description: 'Name for input',
+    type: 'string'
+  })
+  @Input()
+  name: string;
+
+  @PropertyApi({
     description: 'Text transform for input',
-    type: 'TextTransform',
+    path: 'ui.text.transform',
     options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
   })
   @Input()
@@ -106,10 +113,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Auto complete for input',
-    type: 'string',
+    path: 'ui.input.autocomplete',
+    options: [InputAutocomplete.on, InputAutocomplete.off]
   })
   @Input()
-  autocomplete: string;
+  autocomplete: InputAutocomplete = InputAutocomplete.off;
 
   @PropertyApi({
     description: 'Input text align',
