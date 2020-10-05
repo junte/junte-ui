@@ -10,3 +10,8 @@ export enum InputScheme {
   failed = 'failed',
   success = 'success'
 }
+
+export enum InputAutocomplete {
+  on = 'on',
+  off = 'off'
+}

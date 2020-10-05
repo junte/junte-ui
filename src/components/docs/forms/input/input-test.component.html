@@ -24,9 +24,9 @@
             <app-browser-preview preview>
               <ng-template #document>
                 <jnt-form [formGroup]="form">
-                  <jnt-stack>
-                    <p>Write <b>yes</b> here if you are happy</p>
-                    <p>{{inputControl.value}}</p>
+                  <jnt-stack [gutter]="ui.gutter.small">
+                    <div>Write <b>yes</b> here if you are happy</div>
+                    <div>Value: {{inputControl.value || 'null'}}</div>
                     <jnt-button text="Test" (click)="test()"></jnt-button>
                     <jnt-input formControlName="input"
                                [type]="typeControl.value"
