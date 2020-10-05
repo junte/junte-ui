@@ -3,6 +3,18 @@
     <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table [features]="search ? [ui.feature.search] : null"
                  formControlName="table">
+
+        <ng-template *ngIf="filter" #tableFiltersTemplate>
+          <jnt-select formControlName="job"
+                      placeholder="Select job"
+                      [width]="ui.width.fluid"
+                      i18n-placeholder="@@label.select_job">
+            <jnt-select-option *ngFor="let job of jobs"
+                               [label]="job"
+                               [key]="job"></jnt-select-option>
+          </jnt-select>
+        </ng-template>
+
         <jnt-table-column title="#" sort="id">
           <ng-template #tableCellTemplate let-id="id">
             {{id}}
@@ -36,14 +48,6 @@
           </jnt-menu>
         </ng-template>
 
-        <ng-template *ngIf="filter" #tableFiltersTemplate>
-          <jnt-select formControlName="job"
-                      placeholder="Select job"
-                      [width]="ui.width.fluid"
-                      i18n-placeholder="@@label.select_job">
-            <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
-          </jnt-select>
-        </ng-template>
       </jnt-table>
     </jnt-stack>
   </jnt-form>

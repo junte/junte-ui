@@ -222,8 +222,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
 
   @PropertyApi({
-    description: 'Output event of select',
-    type: 'Event Emitter'
+    description: 'Selected value',
+    type: '(selected)='
   })
   @Output('selected')
   updated = new EventEmitter<any>();

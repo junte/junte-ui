@@ -1,4 +1,4 @@
-import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
@@ -135,11 +135,17 @@ export class SwitcherComponent implements ControlValueAccessor {
     this._width = width || Width.default;
   }
 
+  @PropertyApi({
+    description: 'Selected value',
+    type: '(selected)='
+  })
+  @Output('selected')
+  updated = new EventEmitter<any>();
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 
   selected: any[] = [];
-
   version = 0;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
@@ -178,9 +184,11 @@ export class SwitcherComponent implements ControlValueAccessor {
 
           this.selected = same || value === null ? [] : [value];
           this.onChange(same ? null : value);
+          this.updated.emit(same ? null : value);
         } else {
           this.selected = value === null ? [] : [value];
           this.onChange(value);
+          this.updated.emit(value);
         }
 
         this.version++;
@@ -196,6 +204,7 @@ export class SwitcherComponent implements ControlValueAccessor {
         }
         this.version++;
         this.onChange(this.selected);
+        this.updated.emit(this.selected);
         break;
     }
   }
@@ -204,5 +213,6 @@ export class SwitcherComponent implements ControlValueAccessor {
     this.options.forEach(o => this.selected.push(o.value));
     this.version++;
     this.onChange(this.selected);
+    this.updated.emit(this.selected);
   }
 }

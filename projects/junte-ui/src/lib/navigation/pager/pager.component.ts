@@ -43,7 +43,7 @@ export class PagerComponent implements ControlValueAccessor {
   @Input()
   set count(count: number) {
     this._count = count;
-    this.updatePages();
+    this.render();
   }
 
   get pagesCount() {
@@ -58,7 +58,7 @@ export class PagerComponent implements ControlValueAccessor {
   @Input()
   set pageSize(pageSize: number) {
     this._pageSize = pageSize;
-    this.updatePages();
+    this.render();
   }
 
   get pageSize() {
@@ -82,7 +82,7 @@ export class PagerComponent implements ControlValueAccessor {
 
   set selectedPage(page: number) {
     this._selectedPage = page;
-    this.updatePages();
+    this.render();
   }
 
   get selectedPage() {
@@ -93,17 +93,16 @@ export class PagerComponent implements ControlValueAccessor {
   }
 
   writeValue(value: number): void {
-    if (!!value) {
-      switch (this.mode) {
-        case PagerMode.page:
-          this.selectedPage = value;
-          break;
-        case PagerMode.offset:
-          this.selectedPage = Math.ceil(value / this.pageSize);
-          break;
-      }
-    } else {
-      this.selectedPage = DEFAULT_PAGE;
+    switch (this.mode) {
+      case PagerMode.page:
+        this.logger.debug('set page ', value);
+        this.selectedPage = value;
+        break;
+      case PagerMode.offset:
+        const page = Math.ceil(value / this.pageSize) + 1;
+        this.logger.debug('set page ', page);
+        this.selectedPage = page;
+        break;
     }
   }
 
@@ -121,7 +120,7 @@ export class PagerComponent implements ControlValueAccessor {
     }
   }
 
-  updatePages() {
+  render() {
     const pages: number[] = [];
 
     let shift = Math.max(this.size - this.selectedPage + 1, 0);

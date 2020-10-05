@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { serialize } from '@junte/serialize-ts';
 import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { TableState } from './data/table-data.component';
+import { TableState, TableStateUpdate } from './data/table-data.types';
 
 const DEFAULT_FIRST = 10;
-const DEFAULT_OFFSET = 0;
 
 @Component({
   selector: 'app-table-test',
@@ -18,8 +18,6 @@ export class TableTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {table: TableComponent, column: TableColumnComponent};
-
-  private _state = new TableState();
 
   @ViewChild('code') code: TabComponent;
 
@@ -33,15 +31,7 @@ export class TableTestComponent implements OnInit {
     actions: this.actionsControl,
   });
 
-  set state(state: TableState) {
-    this._state = state;
-    this.router.navigate([state], {relativeTo: this.route})
-      .then(() => null);
-  }
-
-  get state() {
-    return this._state;
-  }
+  state: TableState;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -49,29 +39,21 @@ export class TableTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(({job, q, first, offset}) => {
-      const state = new TableState();
-
-      if (!!+first && +first !== DEFAULT_FIRST) {
-        state.first = +first;
-      }
-
-      if (!!+offset && +offset !== DEFAULT_OFFSET) {
-        state.offset = +offset;
-      }
-
-      if (!!q) {
-        state.q = q;
-      }
-
-      if (!!job) {
-        state.job = job;
-      }
-
-      this.state = state;
+    this.route.params.subscribe(({first, offset, job, q}) => {
+      this.state = {
+        first: !!+first && +first !== DEFAULT_FIRST ? +first : undefined,
+        offset: +offset > 0 ? +offset : 0,
+        q: q || null,
+        job: job || null
+      };
     });
 
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+  }
+
+  save(state: TableStateUpdate) {
+    this.router.navigate([serialize(state)], {relativeTo: this.route})
+      .then(() => null);
   }
 }

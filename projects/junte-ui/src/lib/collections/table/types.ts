@@ -9,10 +9,10 @@ export interface SearchFilter {
 
 export class DefaultSearchFilter implements SearchFilter {
 
-  q?: string;
-  orderBy?: string;
-  offset?: number;
-  first?: number;
+  q: string;
+  orderBy: string;
+  offset: number;
+  first: number;
 
   constructor(defs: Partial<DefaultSearchFilter> = null) {
     if (!!defs) {

@@ -48,10 +48,11 @@
 
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
-              <app-table-data [(state)]="state"
+              <app-table-data [state]="state"
+                              (filtered)="save($event)"
                               [search]="searchControl.value ? [ui.feature.search] : null"
                               [filter]="filterControl.value"
-                              [actions]="actionsControl.value">
+                              [sections]="[actionsControl.value ? 'actions' : null]">
               </app-table-data>
             </ng-template>
           </app-browser-preview>
