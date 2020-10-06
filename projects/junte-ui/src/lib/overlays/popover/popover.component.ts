@@ -118,7 +118,8 @@ export class PopoverComponent {
           }
           break;
         }
-        case Position.bottom: {
+        case Position.bottom:
+        case Position.rightBottom: {
           const shift = offsetTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
           if (position.top - shift > window.innerHeight) {
             if (rect.top + PADDING_SIZE + host.clientHeight > 0) {
@@ -157,7 +158,8 @@ export class PopoverComponent {
           this.options.maxWidth = `${window.innerWidth - width - PADDING_SIZE - rect.width}px`;
           break;
         }
-        case Position.bottom: {
+        case Position.bottom:
+        case Position.rightBottom: {
           this.options.maxHeight = `${window.innerHeight - height - PADDING_SIZE - rect.height}px`;
           break;
         }
@@ -186,7 +188,8 @@ export class PopoverComponent {
             ? host.clientHeight - ((window.innerHeight + offsetTop) - position.top) : 0);
         break;
       }
-      case Position.bottom: {
+      case Position.bottom:
+      case Position.rightBottom: {
         position.top += this.target.clientHeight;
         position.left += (this.target.clientWidth - host.clientWidth) / 2;
         position.shiftX = position.left < 0 ? position.left
@@ -245,6 +248,8 @@ export class PopoverComponent {
     if (this.options.features.includes(Feature.dropdown)) {
       if (this.position === Position.top || this.position === Position.bottom) {
         left = rect.left + (this.placement === Placement.absolute ? window.pageXOffset : 0);
+      } else if (this.position === Position.rightTop || this.position === Position.rightBottom) {
+        left = rect.left - host.clientWidth + rect.width + (this.placement === Placement.absolute ? window.pageXOffset : 0);
       } else {
         top = rect.top + (this.placement === Placement.absolute ? window.pageYOffset : 0);
       }
@@ -255,7 +260,8 @@ export class PopoverComponent {
     if (!this.options.features.includes(Feature.dropdown)) {
       switch (this.position) {
         case Position.top:
-        case Position.bottom: {
+        case Position.bottom:
+        case Position.rightBottom: {
           this.renderer.setStyle(this.arrow.nativeElement, 'left', `calc(50% + ${position.shiftX}px)`);
           break;
         }
