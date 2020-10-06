@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
-// import * as debug from 'gulp-debug';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as map from 'map-stream';
 import * as path from 'path';
@@ -37,8 +36,8 @@ export class Gulpfile {
     imports = imports.filter(file => !file.includes('jnt-variables')
       && !file.includes(`${section}/${to.replace('.scss', '').replace('_', '')}`));
 
-    const clean = file => file.replace(/";|';/, '').replace(/@import ["|']/, "@import '../").split('/');
-    imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + "';")))];
+    const clean = file => file.replace(/";|';/, '').replace(/@import ["|']/, '@import \'../').split('/');
+    imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + '\';')))];
 
     let cleared = content
       .replace(/@import.*$/gm, '')
@@ -90,16 +89,18 @@ export class Gulpfile {
   }
 
   @SequenceTask()
-  build() {
+  build(done) {
     const tasks = ['styles', 'componentsStyle'];
     if (argument.watch) {
       tasks.push('watch');
     }
+    done();
     return tasks;
   }
 
   @Task()
-  watch() {
+  watch(done) {
+    done();
     return gulp.watch([STYLE_FILES, BUILD_FILES],
       {ignoreInitial: true}, gulp.series('styles'));
   }

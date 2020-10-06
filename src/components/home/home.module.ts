@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   ArrayPipesModule,
+  BadgeModule,
   ButtonModule,
   GridModule,
   IconModule,
@@ -15,7 +16,6 @@ import {
   ResponsiveModule,
   StackModule,
 } from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -41,7 +41,8 @@ import { HomeComponent } from './home.component';
     ArrayPipesModule,
     AnalyticsDirectivesModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BadgeModule
   ]
 })
 export class HomeModule {

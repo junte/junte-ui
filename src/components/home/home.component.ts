@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Breakpoint, BreakpointService, PopoverComponent, UI } from 'junte-ui';
@@ -9,6 +10,12 @@ enum Version {
   stable,
   unstable,
   next
+}
+
+type VersionsList = {
+  latest: string,
+  next: string,
+  unstable: string
 }
 
 @Component({
@@ -24,6 +31,7 @@ export class HomeComponent implements OnInit {
   point = Breakpoint;
   themes = Theme;
   versions = Version;
+  versionsList: VersionsList;
 
   opened = false;
   theme = localStorage.theme || Theme.light;
@@ -38,7 +46,8 @@ export class HomeComponent implements OnInit {
   });
 
   constructor(public breakpoint: BreakpointService,
-              private builder: FormBuilder) {
+              private builder: FormBuilder,
+              private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -61,5 +70,8 @@ export class HomeComponent implements OnInit {
         localStorage.removeItem('theme');
       }
     });
+
+    this.http.get('https://cors-anywhere.herokuapp.com/registry.npmjs.org/-/package/@junte/ui/dist-tags')
+      .subscribe((versions: VersionsList) => this.versionsList = versions);
   }
 }
