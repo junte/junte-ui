@@ -1,0 +1,43 @@
+@import "jnt-variables";
+
+@mixin jnt-app-page-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    font-size: $jnt-page-header-font-size,
+    icon: (
+      color: $jnt-primary-text-color,
+      size: 30px
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+   display: block;
+  }
+
+  #{$context} #{$wrapper} [data-icon] {
+    @if map-has-key($vars, icon) {
+      $icon: map-get($vars, icon);
+      @include jnt-icon((
+        color: map-get($icon, color),
+        size: map-get($icon, size)
+      ), '&');
+    }
+  }
+
+  #{$context} #{$wrapper} [data-title] {
+    font-size: map-get($vars, font-size)
+  }
+}
