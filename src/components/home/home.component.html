@@ -572,13 +572,19 @@
             </h1>
 
             <p data-web-apps>Made with love for making beautiful WEB apps!</p>
-            <jnt-menu data-versions [spacing]="ui.gutter.normal">
+            <jnt-menu *ngIf="!!versionsList" data-versions [spacing]="ui.gutter.normal">
               <jnt-menu-item title="Stable"
-                             [link]="version == versions.stable ? null : 'https://www.junte-ui.com'"></jnt-menu-item>
+                             [link]="version == versions.stable ? null : 'https://www.junte-ui.com'">
+                <jnt-badge [text]="versionsList.latest"></jnt-badge>
+              </jnt-menu-item>
               <jnt-menu-item title="Next"
-                             [link]="version == versions.next ? null : 'https://rc.junte-ui.com'"></jnt-menu-item>
+                             [link]="version == versions.next ? null : 'https://rc.junte-ui.com'">
+                <jnt-badge [text]="versionsList.next"></jnt-badge>
+              </jnt-menu-item>
               <jnt-menu-item title="Unstable"
-                             [link]="version == versions.unstable ? null : 'https://unstable.junte-ui.com'"></jnt-menu-item>
+                             [link]="version == versions.unstable ? null : 'https://unstable.junte-ui.com'">
+                <jnt-badge [text]="versionsList.unstable"></jnt-badge>
+              </jnt-menu-item>
             </jnt-menu>
           </jnt-stack>
 

@@ -48,10 +48,10 @@ export abstract class AbstractMenuItem {
   @PropertyApi({
     name: 'link',
     description: 'Menu item source',
-    type: 'string | string[]'
+    type: 'string | string[] | Link'
   })
   @Input('link')
-  set __link__(link: string | Link) {
+  set __link__(link: string | string[] | Link) {
     this.link = (typeof (link) === 'string' || link instanceof Array
       ? {source: link, position: null} : link) as Link;
   }
