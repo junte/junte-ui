@@ -61,7 +61,7 @@
 
     &[data-dropdown='true'] {
 
-      &[data-placement='top'], &[data-placement='bottom'] {
+      &[data-placement='top'], &[data-placement='bottom'], &[data-placement='rightBottom'] {
         padding: $jnt-gutter-tiny 0 0;
       }
 
@@ -97,6 +97,13 @@
     }
 
     &[data-placement='bottom'] {
+      [data-arrow] {
+        transform: translateX(-50%) rotate(180deg);
+        top: 0;
+      }
+    }
+
+    &[data-placement='rightBottom'] {
       [data-arrow] {
         transform: translateX(-50%) rotate(180deg);
         top: 0;
