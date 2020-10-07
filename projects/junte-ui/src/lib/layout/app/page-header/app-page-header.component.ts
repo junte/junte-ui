@@ -1,10 +1,9 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { UI } from 'src/lib/core/enums/ui';
+import { UI } from '../../../core/enums/ui';
 
 @Component({
   selector: 'jnt-app-page-header',
-  templateUrl: './page-header.component.html',
-  styleUrls: ['./page-header.component.scss']
+  templateUrl: './app-page-header.encapsulated.html'
 })
 export class AppPageHeaderComponent {
 

@@ -20,7 +20,7 @@ import { AppHeaderActionsComponent } from './header/actions/app-header-actions.c
 import { AppHeaderComponent } from './header/app-header.component';
 import { AppHeaderUserbarComponent } from './header/userbar/app-header-userbar.component';
 import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
-import { AppPageHeaderComponent } from './page-header/page-header.component';
+import { AppPageHeaderComponent } from './page-header/app-page-header.component';
 
 @NgModule({
   imports: [
