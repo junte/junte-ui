@@ -9,4 +9,4 @@ export { AppHeaderUserbarComponent } from './header/userbar/app-header-userbar.c
 export { AppHeaderComponent } from './header/app-header.component';
 export { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
 export { AppLayoutModule } from './app-layout.module';
-export { AppPageHeaderComponent } from './page-header/page-header.component';
+export { AppPageHeaderComponent } from './page-header/app-page-header.component';

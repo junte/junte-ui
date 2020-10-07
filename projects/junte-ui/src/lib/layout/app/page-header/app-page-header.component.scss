@@ -1,4 +1,6 @@
 @import "jnt-variables";
+@import "jnt-functions";
+@import "elements/icon/icon";
 
 @mixin jnt-app-page-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -6,7 +8,7 @@
     font-size: $jnt-page-header-font-size,
     icon: (
       color: $jnt-primary-text-color,
-      size: 30px
+      size: 30px,
     ),
   );
 
@@ -32,12 +34,12 @@
       $icon: map-get($vars, icon);
       @include jnt-icon((
         color: map-get($icon, color),
-        size: map-get($icon, size)
+        size: map-get($icon, size),
       ), '&');
     }
   }
 
   #{$context} #{$wrapper} [data-title] {
-    font-size: map-get($vars, font-size)
+    font-size: map-get($vars, font-size);
   }
 }

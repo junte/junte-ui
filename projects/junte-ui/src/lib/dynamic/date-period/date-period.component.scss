@@ -1,21 +1,58 @@
 @import "jnt-variables";
+@import 'jnt-functions';
 
-@mixin jnt-date-period($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-date-period($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    color: $jnt-primary-text-color,
+    bar: (
+      background: $jnt-muted-color,
+    ),
+    line: (
+      background: $jnt-primary-color,
+    ),
+    progress: (
+      background: $jnt-primary-color,
+    ),
+    date: (
+      color: $jnt-primary-text-color,
+    ),
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: flex;
     flex-direction: column;
   }
 
-  [data-dates] {
+  #{$context} #{$wrapper} [data-dates] {
     margin-bottom: $jnt-gutter-tiny;
-    #{$context} [data-date] {
+
+    [data-date] {
       font-size: 12px;
       display: flex;
       flex-direction: column;
+      @if map-has-key($vars, date) {
+        $date: map-get($vars, date);
+        color: map-get($date, color);
+      }
+
       &[data-left] {
         align-items: flex-start;
       }
+
       &[data-right] {
         align-items: flex-end;
         margin-left: auto;
@@ -23,29 +60,42 @@
     }
   }
 
-  #{$context} [data-bar] {
-    background-color: $jnt-muted-color;
+  #{$context} #{$wrapper} [data-bar] {
+    @if map-has-key($vars, bar) {
+      $bar: map-get($vars, bar);
+      background-color: map-get($bar, background);
+    }
     min-height: 3px;
     height: 3px;
     border-radius: 1px;
     box-sizing: border-box;
     position: relative;
+
     [data-line] {
       position: absolute;
       bottom: 0;
       height: 6px;
       width: 3px;
       border-radius: 2px 2px 0 0;
-      background-color: $jnt-primary-color;
+      @if map-has-key($vars, line) {
+        $line: map-get($vars, line);
+        background-color: map-get($line, background);
+      }
+
       &[data-left] {
         left: 0;
       }
+
       &[data-right] {
         right: 0;
       }
     }
+
     [data-progress] {
-      background-color: $jnt-primary-color;
+      @if map-has-key($vars, progress) {
+        $progress: map-get($vars, progress);
+        background-color: map-get($progress, background);
+      }
       height: 100%;
       border-radius: 0 0 1px 1px;
       width: 0;
@@ -57,10 +107,11 @@
     }
   }
 
-  #{$context} [data-days] {
+  #{$context} #{$wrapper} [data-days] {
     text-align: center;
     margin-top: $jnt-gutter-small;
     font-size: 12px;
+    color: map-get($vars, color);
   }
 }
 
