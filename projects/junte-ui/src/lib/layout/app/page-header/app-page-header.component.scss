@@ -27,6 +27,7 @@
 
   :host, #{$context} {
    display: block;
+    margin-bottom: $jnt-gutter-huge;
   }
 
   #{$context} #{$wrapper} [data-icon] {
@@ -39,7 +40,15 @@
     }
   }
 
+  #{$context} #{$wrapper} [data-thumbnail] {
+    line-height: 1;
+    border-radius: $jnt-corner-normal;
+    background: $jnt-primary-background;
+    padding: $jnt-gutter-normal;
+  }
+
   #{$context} #{$wrapper} [data-title] {
     font-size: map-get($vars, font-size);
+    font-weight: $jnt-font-weight-bold;
   }
 }

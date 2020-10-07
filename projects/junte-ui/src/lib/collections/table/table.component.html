@@ -2,8 +2,7 @@
   <jnt-stack [align]="ui.align.stretch">
     <jnt-stack [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center"
-               [justify]="ui.justify.between"
-               [wrap]="ui.wrap.wrap">
+               [justify]="ui.justify.between">
       <div>
         <jnt-button data-button [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
@@ -14,10 +13,6 @@
         </jnt-button>
         <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
       </div>
-      <div *ngIf="!!filtersTemplate" data-filters>
-        <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
-      </div>
-
       <jnt-input data-search *ngIf="features | includes : ui.feature.search"
                  formControlName="q"
                  [icon]="ui.icons.search"
@@ -25,6 +20,10 @@
                  [placeholder]="'label.search' | translate">
       </jnt-input>
     </jnt-stack>
+
+    <div *ngIf="!!filtersTemplate">
+      <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+    </div>
 
     <jnt-stack [align]="ui.align.stretch">
       <div data-table>

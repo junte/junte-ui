@@ -1,12 +1,8 @@
 <jnt-container>
 
-  <h1>
-    <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.between"></jnt-icon>
-    </span>
-    <span i18n="@@label.stack">Stack</span>
-  </h1>
-
+  <jnt-app-page-header [icon]="localUi.icons.between"
+                       title="Stack"
+                       i18n-title="@@label.stack"></jnt-app-page-header>
   <app-resources
     gitlab="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack">
   </app-resources>
@@ -64,7 +60,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="typeControl"
-                                  i18n="@@label.type">Type</jnt-form-label>
+                                  i18n="@@label.type">Type
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Vertical"
@@ -83,7 +80,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="gutter"
-                                  i18n="@@label.gutter">Gutter</jnt-form-label>
+                                  i18n="@@label.gutter">Gutter
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="gutter"
                                 placeholder="Normal"
@@ -158,7 +156,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="align"
-                                  i18n="@@label.align_in_the_main_axis">Align in the main axis</jnt-form-label>
+                                  i18n="@@label.align_in_the_main_axis">Align in the main axis
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select align formControlName="align"
                                 placeholder="Start"
@@ -189,7 +188,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="justify"
-                                  i18n="@@label.justify_on_the_secondary_axis">Justify on the secondary axis</jnt-form-label>
+                                  i18n="@@label.justify_on_the_secondary_axis">Justify on the secondary axis
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select justify formControlName="justify"
                                 placeholder="Start"
@@ -224,7 +224,8 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="wrap"
-                                  i18n="@@label.wrap">Wrap</jnt-form-label>
+                                  i18n="@@label.wrap">Wrap
+                  </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="wrap"
                                 placeholder="No wrap"
@@ -268,7 +269,7 @@
                                  i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="stack-test.template.html">
-<!-- @formatter:off-->
+                <!-- @formatter:off-->
 <![CDATA[
 <jnt-stack
 ]]>
