@@ -23,6 +23,9 @@
   :host, #{$context} {
     display: inline-block;
     min-width: 200px;
+    &[data-width='fluid'] {
+      width: 100%;
+    }
     @include for-mobile() {
       border: 1px solid $jnt-control-border-color;
       border-radius: $jnt-corner-small;

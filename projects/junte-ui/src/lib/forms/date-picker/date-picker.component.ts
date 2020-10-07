@@ -8,6 +8,7 @@ import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
 import { DFNS_PROVIDES } from '../../core/locale/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
@@ -49,12 +50,14 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   reference: { popover: PopoverInstance } = {popover: null};
   meridian: Meridian;
 
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
+
   dateControl = this.fb.control(null);
   timeControl = this.fb.control(null);
   hoursControl = this.fb.control(null);
   minutesControl = this.fb.control(null);
   calendarControl = this.fb.control(new Date());
-
   form = this.fb.group({
     date: this.dateControl,
     time: this.timeControl,
@@ -104,6 +107,16 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     return this._type;
   }
 
+  @PropertyApi({
+    description: 'Input width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
+  }
+
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
@@ -151,10 +164,10 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   clear() {
-    this.hoursControl.setValue(null, {emitEvent: false});
-    this.minutesControl.setValue(null, {emitEvent: false});
     this.dateControl.setValue(null, {emitEvent: false});
     this.timeControl.setValue(null, {emitEvent: false});
+    this.hoursControl.setValue(null, {emitEvent: false});
+    this.minutesControl.setValue(null, {emitEvent: false});
   }
 
   update(value: string, close = false) {
@@ -163,10 +176,11 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         let output = this.type === DatePickerType.date
           ? this.config.locale.ui.masks.date
           : this.config.locale.ui.masks.time + (this.meridian || '');
-        for (let char of value) {
+        for (const char of value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        let parsed = parse(output, this.type === DatePickerType.date ? 'P' : 'p', new Date(0),
+        const parsed = parse(output, this.type === DatePickerType.date
+          ? 'P' : 'p', new Date(0),
           {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           if (this.type === DatePickerType.date) {
@@ -182,13 +196,13 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         }
       } else if (!!this.dateControl.value && !!this.timeControl.value) {
         let output = this.config.locale.ui.masks.datetime + (this.meridian || '');
-        for (let char of this.dateControl.value) {
+        for (const char of this.dateControl.value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        for (let char of this.timeControl.value) {
+        for (const char of this.timeControl.value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        let parsed = parse(output, 'Pp', new Date(),
+        const parsed = parse(output, 'Pp', new Date(),
           {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.onChange(parsed);
@@ -244,6 +258,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(disabled: boolean) {
-    disabled ? this.dateControl.disable({emitEvent: false}) : this.dateControl.enable({emitEvent: false});
+    disabled ? this.dateControl.disable({emitEvent: false})
+      : this.dateControl.enable({emitEvent: false});
   }
 }
