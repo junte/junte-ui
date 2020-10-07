@@ -386,12 +386,11 @@
              i18n-title="@@label.examples"
              [icon]="ui.icons.stackblitz">
       <ng-template #tabContentTemplate>
-        <jnt-accordion [active]="1">
+        <jnt-accordion [active]="1" (changed)="show()">
           <jnt-accordion-section title="News feed"
                                  i18n-title="@@label.how_to_start">
             <ng-template #accordionContentTemplate>
-              <iframe width="100%" height="500" frameborder="0"
-                      src="https://stackblitz.com/edit/junte-ui-test/#/news?embed=1&hideExplorer=1&hideNavigation=1&view=preview"></iframe>
+              <div #example></div>
             </ng-template>
           </jnt-accordion-section>
         </jnt-accordion>
