@@ -1,6 +1,5 @@
 @import "jnt-variables";
 @import "jnt-functions";
-@import "jnt-reset";
 @import "elements/icon/icon";
 
 @mixin jnt-pager($passed: (), $context: null, $deep: false, $strategy: 'changes') {
@@ -26,7 +25,7 @@
 
   #{$context} #{$wrapper} a {
     @if $declare {
-      @include jnt-reset();
+      text-decoration: none;
     }
     padding: 1px $jnt-gutter-small;
     border-radius: $jnt-corner-small;
