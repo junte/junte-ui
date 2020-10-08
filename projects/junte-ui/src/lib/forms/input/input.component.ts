@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
@@ -285,7 +285,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges.pipe(distinctUntilChanged())
+    this.inputControl.valueChanges
       .subscribe(value =>
         this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
@@ -293,9 +293,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       filter(() => !!this.input),
       map(formatted => !!formatted ? formatted : this.mask)
     ).subscribe(formatted => {
-        const position = formatted.indexOf(DIGIT_MASK_CHAR);
-        this.input.nativeElement.setSelectionRange(position, position);
-      });
+      const position = formatted.indexOf(DIGIT_MASK_CHAR);
+      this.input.nativeElement.setSelectionRange(position, position);
+    });
   }
 
   private masking(value: string = null): {
