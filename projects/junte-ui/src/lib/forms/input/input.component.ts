@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, distinctUntilChanged } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
@@ -54,6 +54,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   view = {password: {display: false}};
 
   private _mask: string;
+  private _placeholder: string = '';
 
   inputControl = this.fb.control(null);
   formattedControl = this.fb.control(null);
@@ -101,7 +102,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     type: 'string'
   })
   @Input()
-  name: string;
+  name: string = null;
 
   @PropertyApi({
     description: 'Text transform for input',
@@ -128,13 +129,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.data-textAlign')
   @Input()
   textAlign: TextAlign = TextAlign.left;
-
-  @PropertyApi({
-    description: 'Input placeholder',
-    type: 'string',
-  })
-  @Input()
-  placeholder = '';
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
@@ -174,6 +168,19 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input()
   set scheme(scheme: InputScheme) {
     this._scheme = scheme || InputScheme.normal;
+  }
+
+  @PropertyApi({
+    description: 'Input placeholder',
+    type: 'string',
+  })
+  @Input()
+  set placeholder(placeholder: string) {
+    this._placeholder = placeholder || '';
+  }
+
+  get placeholder() {
+    return this._placeholder;
   }
 
   @PropertyApi({
@@ -290,11 +297,23 @@ export class InputComponent implements OnInit, ControlValueAccessor {
         this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
     this.formattedControl.valueChanges.pipe(
+      distinctUntilChanged(),
       filter(() => !!this.input),
       map(formatted => !!formatted ? formatted : this.mask)
     ).subscribe(formatted => {
       const position = formatted.indexOf(DIGIT_MASK_CHAR);
       this.input.nativeElement.setSelectionRange(position, position);
+
+      let cleared = {input: null, formatted: null};
+      for (let i = 0; i < this.mask.length; i++) {
+        if (this.mask.charAt(i) !== formatted.charAt(i)) {
+          cleared = this.masking(formatted.substr(i));
+          break;
+        }
+      }
+      if (cleared.input !== this.inputControl.value) {
+        this.form.setValue(cleared);
+      }
     });
   }
 
@@ -314,7 +333,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
     formatted += this.mask.substr(i + 1);
     return {
-      input: chars.substr(0, j) || null, formatted
+      input: chars.substr(0, j) || null,
+      formatted: formatted !== this.mask ? formatted : null
     };
   }
 
