@@ -23,22 +23,23 @@
 </ng-template>
 
 <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
-  <div data-tab *ngFor="let tab of tabs;let i = index"
+  <div data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
-       (click)="active = i"
-       tabindex="0">
-    <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
-      <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
-    </ng-container>
-    <ng-template #adaptedTemplate>
-      <ng-container *jntMinFor="ui.breakpoint.tablet">
+       (click)="active = i" tabindex="0">
+    <div data-tab>
+      <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
         <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
       </ng-container>
-      <ng-container *jntFor="ui.breakpoint.mobile">
-        <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
-      </ng-container>
-    </ng-template>
-    <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
+      <ng-template #adaptedTemplate>
+        <ng-container *jntMinFor="ui.breakpoint.tablet">
+          <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
+        </ng-container>
+        <ng-container *jntFor="ui.breakpoint.mobile">
+          <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
+        </ng-container>
+      </ng-template>
+      <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
+    </div>
   </div>
 </jnt-stack>
 <ng-container *ngFor="let tab of tabs;let i = index">

@@ -3,12 +3,17 @@
 @import "elements/icon/icon";
 @import "elements/badge/badge";
 
-@mixin jnt-tabs($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-tabs($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: ();
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -18,7 +23,7 @@
   :host, #{$context} {
     display: block;
     max-width: 100%;
-    padding: $jnt-gutter-normal;
+    padding: $jnt-gutter-small $jnt-gutter-normal $jnt-gutter-normal $jnt-gutter-normal;
     background-color: $jnt-primary-background;
     border-top-left-radius: $jnt-corner-normal;
     border-top-right-radius: $jnt-corner-normal;
@@ -43,55 +48,81 @@
   #{$context} [data-tabs] {
     border-top-left-radius: $jnt-corner-normal;
     border-top-right-radius: $jnt-corner-normal;
-    margin-bottom: 1px;
+    border-bottom: 2px solid $jnt-secondary-color;
 
-    [data-tab] {
-      padding: $jnt-gutter-small $jnt-gutter-normal;
-      cursor: pointer;
-      color: $jnt-primary-text-color;
-      font-size: $jnt-font-size-base;
-      border-radius: $jnt-corner-normal;
-      line-height: 1.6;
+    [data-wrapper] {
       position: relative;
-      user-select: none;
-      max-width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        border-radius: 5px;
+        display: none;
+      }
 
       &:hover {
-        color: $jnt-primary-light-color;
-        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
+        [data-tab] {
+          color: $jnt-primary-light-color;
+        }
+
+        &:after {
+          display: block;
+          background-color: $jnt-secondary-dark-color;
+        }
       }
 
       &:focus {
         outline: 0;
-        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+        box-shadow: inset $jnt-outline-shadow-small rgba($jnt-primary-light-color, .5);
       }
 
       &[data-active='true'] {
-        color: $jnt-primary-light-color;
-        background-color: $jnt-secondary-dark-color;
+        [data-tab] {
+          color: $jnt-primary-light-color;
+        }
+
+        &:after {
+          display: block;
+          background-color: $jnt-primary-light-color;
+        }
       }
 
-      [data-label] {
+      [data-tab] {
+        padding: $jnt-gutter-small $jnt-gutter-normal $jnt-gutter-normal $jnt-gutter-normal;
+        cursor: pointer;
+        color: $jnt-primary-text-color;
+        font-size: $jnt-font-size-base;
+        line-height: 1.6;
         position: relative;
-        z-index: 1;
-      }
+        user-select: none;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-weight: $jnt-font-weight-semi-bold;
 
-      [data-ripple] {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background-color: $jnt-secondary-background;
-        height: 50px;
-        width: 50px;
-      }
+        [data-label] {
+          position: relative;
+          z-index: 1;
+        }
 
-      [data-badge] {
-        @include jnt-badge((size: 21px), '&');
+        [data-ripple] {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background-color: $jnt-secondary-background;
+          height: 50px;
+          width: 50px;
+        }
+
+        [data-badge] {
+          @include jnt-badge((size: 21px), '&');
+        }
       }
     }
   }

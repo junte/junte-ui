@@ -1,7 +1,23 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-accordion($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: block;
@@ -13,9 +29,8 @@
 
   #{$context} [data-section] {
     [data-title] {
-      padding: $jnt-gutter-small $jnt-gutter-normal;
-      background-color: $jnt-secondary-dark-color;
-      border-radius: $jnt-corner-normal;
+      border-bottom: 2px solid $jnt-secondary-color;
+      padding: $jnt-gutter-small 0;
       color: $jnt-primary-text-color;
       display: flex;
       align-items: center;
@@ -23,19 +38,18 @@
       line-height: 1.6;
       user-select: none;
       &[active='true'] {
-        background-color: $jnt-primary-light-color;
-        color: $jnt-white-color;
+        color: $jnt-primary-light-color;
+        border-color: $jnt-primary-light-color;
       }
       &:hover {
         &[active='false'] {
           color: $jnt-primary-light-color;
         }
-        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
       }
 
       &:focus {
         outline: 0;
-        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+        box-shadow: inset $jnt-outline-shadow-small rgba($jnt-primary-light-color, .5);
       }
       span {
         margin: 0 $jnt-gutter-tiny;
@@ -46,6 +60,9 @@
       line-height: 1;
       [data-warning] {
         @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
+      }
+      [data-chevron] {
+        @include jnt-icon((size: $jnt-font-size-tiny), '&');
       }
     }
     [data-content] {
