@@ -37,6 +37,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   maxControl = this.fb.control(null);
   transformControl = this.fb.control(null);
   clearControl = this.fb.control(false);
+  autocompleteControl = this.fb.control(false);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -55,7 +56,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     min: this.minControl,
     max: this.maxControl,
     transform: this.transformControl,
-    clear: this.clearControl
+    clear: this.clearControl,
+    autocomplete: this.autocompleteControl
   });
 
   inputControl = this.fb.control(null);

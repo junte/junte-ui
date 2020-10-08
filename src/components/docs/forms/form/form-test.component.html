@@ -91,6 +91,20 @@
                           </jnt-form-item>
                         </jnt-col>
                       </jnt-row>
+                      <jnt-form-item>
+                        <jnt-form-control name="phone">
+                          <jnt-input formControlName="phone"
+                                     name="phone"
+                                     [autocomplete]="ui.input.autocomplete.on"
+                                     mask="+7(___) ___-__-__"></jnt-input>
+                          <jnt-form-message [validator]="ui.validator.required">
+                            This field is required
+                          </jnt-form-message>
+                          <jnt-form-message validator="phone">
+                            Bad phone number
+                          </jnt-form-message>
+                        </jnt-form-control>
+                      </jnt-form-item>
                     </ng-container>
 
                     <ng-container formGroupName="children">

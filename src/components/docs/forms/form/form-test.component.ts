@@ -56,7 +56,8 @@ export class FormTestComponent implements OnInit {
       deep: this.fb.group({
         firstName: this.fb.control(null, [Validators.required, Validators.minLength(3)]),
         lastName: this.fb.control(null)
-      })
+      }),
+      phone: []
     }),
     children: this.fb.array([
       this.fb.group({
