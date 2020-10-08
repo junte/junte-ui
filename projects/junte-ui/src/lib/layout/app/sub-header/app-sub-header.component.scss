@@ -7,7 +7,7 @@
 
   $defs: (
     background: $jnt-page-background,
-    padding: $jnt-gutter-normal,
+    padding: $jnt-gutter-small $jnt-gutter-normal,
     display-burger: true
   );
 
@@ -26,6 +26,7 @@
 
   :host, #{$context} {
     display: flex;
+    align-items: center;
     min-height: $app-sub-header-height;
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
