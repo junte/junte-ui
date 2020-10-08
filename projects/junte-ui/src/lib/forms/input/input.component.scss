@@ -255,6 +255,16 @@
         width: 100%;
         min-width: 0;
 
+        &[type="number"]::-webkit-outer-spin-button,
+        &[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &[type="number"] {
+          -moz-appearance: textfield;
+        }
+
         &:focus {
           outline: 0;
         }
