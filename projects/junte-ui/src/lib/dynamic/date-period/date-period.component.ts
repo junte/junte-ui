@@ -15,6 +15,11 @@ export class DatePeriodComponent {
   @HostBinding('attr.host') readonly host = 'jnt-date-period-host';
   ui = UI;
 
+  daysMapping = {
+    '=1': 'day',
+    'other': 'days'
+  };
+
   @Input() base: DatePeriodBases = DatePeriodBases.days;
 
   @PropertyApi({

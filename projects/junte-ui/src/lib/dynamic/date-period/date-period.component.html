@@ -11,7 +11,8 @@
 <ng-container *ngIf="!!current; else noCurrent">
   <div data-bar>
     <div *ngIf="!!start && !!end && start < end && start <= current && current < end" data-progress
-         [style.width.%]="(current | dfnsDifferenceInDays:start) / (end || current | dfnsDifferenceInDays:start) * 100">
+         [style.width.%]="((current | dfnsDifferenceInCalendarDays:start) + 1) /
+          ((end || current | dfnsDifferenceInCalendarDays:start) + 1) * 100">
     </div>
 
     <div *ngIf="(current >= end) || (!!start && !end && current > start)" data-progress data-full></div>
@@ -21,18 +22,21 @@
   </div>
 
   <div *ngIf="!!start && !!end" data-days>
-    {{current < end ? (end | dfnsDifferenceInDays:start) - (current | dfnsDifferenceInDays:start) :
-    (end | dfnsDifferenceInDays:start) - (start | dfnsDifferenceInDays:start)}} days
+    {{(current < end
+      ? (end | dfnsDifferenceInCalendarDays:start) - (current | dfnsDifferenceInCalendarDays:start)
+      : current > end ? (end | dfnsDifferenceInCalendarDays:start) : 0
+    ) + 1}} days
   </div>
 </ng-container>
 
 <ng-template #noCurrent>
   <div data-bar>
-    <div *ngIf="!!start && !!end && start < end" data-progress data-full></div>
+    <div *ngIf="!!start && !!end && start <= end" data-progress data-full></div>
     <div *ngIf="!!start" data-line data-left></div>
     <div *ngIf="!!end" data-line data-right></div>
   </div>
   <div *ngIf="!!start && !!end" data-days>
-    {{start < end ? (end | dfnsDifferenceInDays:start) : '0' }} days
+    {{start <= end ? (end | dfnsDifferenceInCalendarDays:start) + 1 : 0}}
+    {{(start <= end ? (end | dfnsDifferenceInCalendarDays:start) + 1 : 0) | i18nPlural: daysMapping}}
   </div>
 </ng-template>
