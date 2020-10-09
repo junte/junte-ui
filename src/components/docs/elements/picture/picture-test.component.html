@@ -85,23 +85,28 @@
                                 i18n-placeholder="@@label.center">
                     <jnt-switcher-option label="Center"
                                          i18n-label="@@label.center"
-                                         [value]="ui.position.center"></jnt-switcher-option>
+                                         [value]="ui.position.center"
+                                         [icon]="localUi.icons.center"></jnt-switcher-option>
                     <jnt-switcher-option label="Left"
                                          i18n-label="@@label.left"
                                          [disabled]="!fitControl.value || fitControl.value === fit.width"
-                                         [value]="ui.position.left"></jnt-switcher-option>
+                                         [value]="ui.position.left"
+                                         [icon]="localUi.icons.left"></jnt-switcher-option>
                     <jnt-switcher-option label="Right"
                                          i18n-label="@@label.right"
                                          [disabled]="!fitControl.value || fitControl.value === fit.width"
-                                         [value]="ui.position.right"></jnt-switcher-option>
+                                         [value]="ui.position.right"
+                                         [icon]="localUi.icons.right"></jnt-switcher-option>
                     <jnt-switcher-option label="Top"
                                          i18n-label="@@label.top"
                                          [disabled]="fitControl.value === fit.height"
-                                         [value]="ui.position.top"></jnt-switcher-option>
+                                         [value]="ui.position.top"
+                                         [icon]="localUi.icons.position.top"></jnt-switcher-option>
                     <jnt-switcher-option label="Bottom"
                                          i18n-label="@@label.bottom"
                                          [disabled]="fitControl.value === fit.height"
-                                         [value]="ui.position.bottom"></jnt-switcher-option>
+                                         [value]="ui.position.bottom"
+                                         [icon]="localUi.icons.position.bottom"></jnt-switcher-option>
                   </jnt-switcher>
                 </jnt-form-item>
               </jnt-stack>

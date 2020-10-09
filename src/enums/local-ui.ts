@@ -1,6 +1,5 @@
 export class LocalUI {
   static icons = {
-    npm: 'npm:svg:local',
     builder: 'builder:svg:local',
     preview: 'preview:svg:local',
     code: 'code:svg:local',
@@ -26,7 +25,8 @@ export class LocalUI {
       home: 'home:svg:local',
       documentation: 'documentation:svg:local',
       team: 'team:svg:local',
-      components: 'components:svg:local'
+      components: 'components:svg:local',
+      npm: 'npm:svg:local',
     },
       contacts: 'contacts:font:junte-ui-test-default',
       home: 'home:font:junte-ui-test-layout',
@@ -87,6 +87,8 @@ export class LocalUI {
       timer: 'timer:font:junte-ui-test-layout',
       filter: 'filter:font:junte-ui-test-layout',
       imageUploader: 'image-uploader:font:junte-ui-test-layout',
+      stack: 'stack:font:junte-ui-test-layout',
+      picture: 'picture:font:junte-ui-test-layout',
     // layout
      padding: {
        tiny: 'padding-tiny:font:junte-ui-test-layout',
@@ -142,6 +144,7 @@ export class LocalUI {
       circle: 'circle:font:junte-ui-test-layout',
       square: 'square:font:junte-ui-test-layout',
       component: 'component:font:junte-ui-test-layout',
+      template: 'template:font:junte-ui-test-layout',
       horizontal: 'horizontal:font:junte-ui-test-layout',
       vertical: 'vertical:font:junte-ui-test-layout',
       start: 'start:font:junte-ui-test-layout',
