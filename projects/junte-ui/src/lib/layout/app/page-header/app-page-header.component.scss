@@ -26,18 +26,8 @@
   }
 
   :host, #{$context} {
-   display: block;
-    margin-bottom: $jnt-gutter-huge;
-  }
-
-  #{$context} #{$wrapper} [data-icon] {
-    @if map-has-key($vars, icon) {
-      $icon: map-get($vars, icon);
-      @include jnt-icon((
-        color: map-get($icon, color),
-        size: map-get($icon, size),
-      ), '&');
-    }
+    display: block;
+    margin-bottom: $jnt-gutter-normal;
   }
 
   #{$context} #{$wrapper} [data-thumbnail] {
@@ -45,10 +35,27 @@
     border-radius: $jnt-corner-normal;
     background: $jnt-primary-background;
     padding: $jnt-gutter-normal;
+
+    [data-icon] {
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        @include jnt-icon((
+          color: map-get($icon, color),
+          size: map-get($icon, size),
+        ), '&');
+      }
+    }
   }
 
   #{$context} #{$wrapper} [data-title] {
     font-size: map-get($vars, font-size);
     font-weight: $jnt-font-weight-bold;
+    line-height: 1.2em;
   }
+
+  #{$context} #{$wrapper} [data-teaser] {
+    font-size: .85em;
+    color: $jnt-primary-text-light-color;
+  }
+
 }

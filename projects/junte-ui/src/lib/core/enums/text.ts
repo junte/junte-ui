@@ -1,6 +1,7 @@
 export enum TextAlign {
   left = 'left',
-  right = 'right'
+  right = 'right',
+  center = 'center'
 }
 export enum TextTransform {
   capitalize = 'capitalize',

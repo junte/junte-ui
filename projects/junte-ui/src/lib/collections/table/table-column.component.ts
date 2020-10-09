@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { ContentApi, PropertyApi } from '../../../core/decorators/api';
+import { ContentApi, PropertyApi } from '../../core/decorators/api';
+import { TextAlign } from '../../core/enums/text';
 
 @Component({
   selector: 'jnt-table-column',
@@ -20,6 +21,14 @@ export class TableColumnComponent {
   })
   @Input()
   title: string;
+
+  @PropertyApi({
+    description: 'Column title align',
+    type: 'string',
+    path: 'ui.text.align'
+  })
+  @Input()
+  align: TextAlign = TextAlign.left;
 
   @PropertyApi({
     description: 'Column sort field',

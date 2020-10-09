@@ -1,7 +1,10 @@
 <jnt-stack [orientation]="ui.orientation.horizontal"
            [align]="ui.align.center">
-  <div *ngIf="!!icon" data-thumbnail>
-    <jnt-icon [icon]="icon"></jnt-icon>
+  <div data-thumbnail *ngIf="!!icon">
+    <jnt-icon data-icon [icon]="icon"></jnt-icon>
   </div>
-  <div data-title>{{title}}</div>
+  <jnt-stack [gutter]="ui.gutter.none">
+    <div data-title>{{title}}</div>
+    <div data-teaser *ngIf="!!teaser">{{teaser}}</div>
+  </jnt-stack>
 </jnt-stack>

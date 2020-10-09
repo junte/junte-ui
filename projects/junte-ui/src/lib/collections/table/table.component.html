@@ -37,6 +37,7 @@
             <th *ngIf="!!rowActionsTemplate"></th>
             <th *ngFor="let column of columns"
                 [class.sortable]="!!column.orderBy"
+                [style.text-align]="column.align"
                 (click)="column.orderBy ? sorting(column.orderBy) : null">
         <span>
           {{column.title}}
@@ -54,10 +55,11 @@
               <td *ngIf="!!rowActionsTemplate" data-action>
                 <jnt-button data-trigger
                             [outline]="ui.outline.transparent"
-                            [icon]="ui.icons.actions"
+                            [icon]="ui.icons.menu"
                             (attached)="popover = $event"
                             [jntPopover]="{
                               contentTemplate: dropdownTemplate,
+                              features: [ui.feature.dropdown],
                               trigger: ui.trigger.click
                             }">
                 </jnt-button>

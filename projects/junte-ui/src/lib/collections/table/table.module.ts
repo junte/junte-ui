@@ -12,7 +12,7 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PagerModule } from '../../navigation/pager/pager.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
-import { TableColumnComponent } from './column/table-column.component';
+import { TableColumnComponent } from './table-column.component';
 import { TableComponent } from './table.component';
 
 @NgModule({

@@ -17,4 +17,7 @@ export class AppPageHeaderComponent {
   @Input()
   title: string;
 
+  @Input()
+  teaser: string;
+
 }

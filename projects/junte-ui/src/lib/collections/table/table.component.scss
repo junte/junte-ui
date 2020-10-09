@@ -28,12 +28,12 @@
         schemes: (
           secondary: (
             inverse-color: $jnt-gray-800-color
-          ),
+          )
         ),
         normal: (
           padding: 0 $jnt-gutter-small,
-        ),
-      ),
+        )
+      )
     ), '&');
 
     [data-table] {
@@ -125,8 +125,13 @@
         }
       }
 
-      td, th {
+      th {
         padding: $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
+
+      td {
+        padding: $jnt-gutter-small $jnt-gutter-normal;
         box-sizing: border-box;
       }
     }
