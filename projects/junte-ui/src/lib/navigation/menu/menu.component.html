@@ -17,7 +17,7 @@
               features: features,
               placement: placement
             }">
-        <jnt-spinner *ngIf="item.loading" [size]="ui.size.small"></jnt-spinner>
+        <jnt-spinner *ngIf="item.loading" data-spinner [size]="ui.size.small"></jnt-spinner>
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
@@ -28,7 +28,7 @@
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
                   [disabled]="item.disabled"
-                  (click)="!item.submenu ? selected.emit(item) : null;item.click.emit()">
+                  (click)="item.click.emit(); !item.submenu ? selected.emit(item) : null">
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"

@@ -25,7 +25,7 @@ export class PopoverOptions {
   placement: Placement = Placement.absolute;
   maxWidth: string;
   minWidth: string;
-  maxHeight = '400px';
+  maxHeight = '500px';
   padding: Gutter = Gutter.normal;
   features: Feature[] = [Feature.smarty];
 

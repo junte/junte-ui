@@ -141,6 +141,7 @@
     font-weight: null,
     text-transform: null,
     text-decoration: null,
+    text-align: null,
     padding: $jnt-gutter-tiny $jnt-gutter-small,
     display: inline,
     overflow: false,
@@ -156,6 +157,9 @@
       background-color: null,
       color: null,
       border-color: $jnt-primary-color,
+    ),
+    hover: (
+      color: null,
     ),
     icon: (
       spacing: $jnt-gutter-tiny,
@@ -333,6 +337,12 @@
         }
       }
     }
+    @if map-has-key($vars, hover) {
+      $hover: map-get($vars, hover);
+      &:hover {
+        color: if(map-get($hover, color), map-get($hover, color)!important, null);
+      }
+    }
     border-radius: map-get($vars, corner);
     padding: map-get($vars, padding);
     height: map-get($vars, height);
@@ -340,6 +350,7 @@
     font-weight: map-get($vars, font-weight);
     text-transform: map-get($vars, text-transform);
     text-decoration: map-get($vars, text-decoration);
+    text-align: map-get($vars, text-align);
     @if map-has-key($vars, color) {
       color: if(map-get($vars, color), map-get($vars, color) !important, null);
     }
