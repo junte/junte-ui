@@ -52,7 +52,7 @@
                                   [labelField]="'name'"
                                   placeholder="Select your hero"
                                   i18n-placeholder="@@label.select_your_hero"
-                                  [search]="true"
+                                  [features]="[ui.feature.search]"
                                   [icon]="iconControl.value ? ui.icons.user : null">
                         <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                            [label]="h.name"

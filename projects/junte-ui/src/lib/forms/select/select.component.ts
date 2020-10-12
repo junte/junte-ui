@@ -20,10 +20,10 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { Placement } from '../../core/enums/placement';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
+import { Placement } from '../../core/enums/placement';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
@@ -90,6 +90,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   private reference: { popover: PopoverInstance } = {popover: null};
   private destroyed = false;
+  private _features: Feature[] = [];
 
   ui = UI;
   selectMode = SelectMode;
@@ -262,17 +263,21 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   @PropertyApi({
-    description: 'Select search',
-    type: 'boolean'
+    description: 'Select features',
+    path: 'ui.feature',
+    options: [Feature.search, Feature.multiplex]
   })
   @HostBinding('attr.data-search')
   @Input()
-  set search(search: boolean) {
-    search ? this.queryControl.enable({emitEvent: false}) : this.queryControl.disable({emitEvent: false});
+  set features(features: Feature[]) {
+    this._features = features || [];
+    this.features.includes(Feature.search)
+      ? this.queryControl.enable({emitEvent: false})
+      : this.queryControl.disable({emitEvent: false});
   }
 
-  get search() {
-    return !this.queryControl.disabled;
+  get features() {
+    return this._features;
   }
 
   @HostBinding('attr.data-disabled')
@@ -311,13 +316,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   })
   @Input()
   loader = null;
-
-  @PropertyApi({
-    description: 'Multiplex mode',
-    type: 'boolean'
-  })
-  @Input()
-  multiplex = false;
 
   @HostListener('document:click', ['$event.path'])
   clickOutside(path: HTMLElement[]) {
@@ -456,7 +454,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       this.selected = [option.key];
     }
 
-    if (this.mode !== SelectMode.multiple || !this.multiplex) {
+    if (this.mode !== SelectMode.multiple || !this.features.includes(Feature.multiplex)) {
       this.close();
     }
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
