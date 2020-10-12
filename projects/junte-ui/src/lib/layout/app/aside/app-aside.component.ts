@@ -27,8 +27,8 @@ export class AppAsideComponent implements OnInit {
     return this._collapsed;
   }
 
-  @ContentChild(TemplateRef, {static: false})
-  asideContentTemplate: TemplateRef<any>;
+  @ContentChild('asideContentTemplate', {static: false})
+  contentTemplate: TemplateRef<any>;
 
   @ContentChild(MenuComponent, {static: false})
   menu: MenuComponent;

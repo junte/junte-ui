@@ -7,8 +7,10 @@
       </jnt-stack>
     </button>
     <jnt-stack [align]="ui.align.stretch">
-      <ng-container *ngTemplateOutlet="asideContentTemplate;
+      <ng-container *ngIf="!!contentTemplate">
+        <ng-container *ngTemplateOutlet="contentTemplate;
         context: {collapsed: collapsed, toggle: toggle.bind(this)}">
+        </ng-container>
       </ng-container>
       <jnt-menu data-menu *ngIf="!!menu"
                 [orientation]="ui.orientation.vertical"
@@ -22,18 +24,18 @@
                        [disabled]="i.disabled"
                        [link]="i.link"
                        [icon]="i.icon">
-            <jnt-badge *ngFor="let badge of i.badges"
-                       [value]="badge.value"
-                       [text]="badge.text"
-                       [position]="ui.position.inline"
-                       [color]="badge.color">
-            </jnt-badge>
+          <jnt-badge *ngFor="let badge of i.badges"
+                     [value]="badge.value"
+                     [text]="badge.text"
+                     [position]="ui.position.inline"
+                     [color]="badge.color">
+          </jnt-badge>
           <jnt-sub-menu *ngIf="!!i.submenu">
             <jnt-sub-menu-item *ngFor="let j of i?.submenu.items"
-                           [title]="j.title"
-                           [disabled]="j.disabled"
-                           [link]="j.link"
-                           [icon]="j.icon">
+                               [title]="j.title"
+                               [disabled]="j.disabled"
+                               [link]="j.link"
+                               [icon]="j.icon">
               <jnt-badge *ngFor="let badge of j.badges"
                          [value]="badge.value"
                          [text]="badge.text"
