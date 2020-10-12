@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  AccordionModule,
-  IconModule,
-  BlockModule,
-  ButtonModule,
-  FormModule,
-  GanttModule,
-  GridModule,
-  GanttPipesModule,
-  LinkModule,
-  StackModule,
-  TabsModule,
-  SwitcherModule
+    AccordionModule,
+    IconModule,
+    BlockModule,
+    ButtonModule,
+    FormModule,
+    GanttModule,
+    GridModule,
+    GanttPipesModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    SwitcherModule,
+    AppLayoutModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -38,7 +39,8 @@ import { GanttTestComponent } from './gantt-test.component';
         GanttPipesModule,
         SharedModule,
         DateFnsModule,
-        StackModule
+        StackModule,
+        AppLayoutModule
     ],
   exports: [
     GanttTestComponent
