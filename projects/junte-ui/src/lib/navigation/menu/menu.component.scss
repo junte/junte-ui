@@ -10,6 +10,10 @@
         corner: $jnt-corner-small,
         link-corner: null,
         height: null,
+        border-top: null,
+        border-right: null,
+        border-bottom: null,
+        border-left: null,
         orphan: (
           color: $jnt-primary-text-color,
           hover-color: $jnt-primary-text-dark-color,
@@ -36,6 +40,7 @@
           margin-right: $jnt-gutter-normal,
         ),
         hover: (
+          color: null,
           background-color: $jnt-highlight-background,
         ),
         active: (
@@ -171,6 +176,10 @@
     [data-item] {
       @if map-has-key($vars, top) {
         $title: map-get(map-get($vars, top), item);
+        border-left: map-get($title, border-left);
+        border-right: map-get($title, border-right);
+        border-bottom: map-get($title, border-bottom);
+        border-top: map-get($title, border-top);
         border-radius: map-get($title, corner);
         @include jnt-link((
           height: map-get($title, height),
@@ -240,6 +249,9 @@
           $hover: map-get($title, hover);
           &:hover {
             background-color: map-get($hover, background-color);
+            [data-link] {
+              @include jnt-link((color: map-get($hover, color)), '&');
+            }
           }
         }
 
@@ -257,6 +269,10 @@
               ),
             ), '&');
           }
+        }
+
+        [data-spinner] {
+          margin-right: $jnt-gutter-tiny;
         }
       }
     }

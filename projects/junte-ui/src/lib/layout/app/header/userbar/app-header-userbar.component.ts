@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { UI } from '../../../../core/enums/ui';
 import { PopoverInstance } from '../../../../overlays/popover/popover.service';
@@ -26,7 +26,8 @@ export class AppHeaderUserbarComponent {
   context: { header: { hide: Function } };
 
   constructor(public breakpoint: BreakpointService,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              public cd: ChangeDetectorRef) {
   }
 
   hide() {
