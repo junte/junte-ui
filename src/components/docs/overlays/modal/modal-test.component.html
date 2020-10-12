@@ -1,11 +1,8 @@
 <jnt-container>
 
-  <h1>
-    <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.modal"></jnt-icon>
-    </span>
-    <span i18n="@@label.modal">Modal</span>
-  </h1>
+  <jnt-app-page-header [icon]="localUi.icons.modal"
+                       title="Modal"
+                       i18n-title="@@label.modal"></jnt-app-page-header>
 
   <app-resources
     gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/modal"
@@ -52,7 +49,7 @@
                                   [labelField]="'name'"
                                   placeholder="Select your hero"
                                   i18n-placeholder="@@label.select_your_hero"
-                                  [search]="true"
+                                  [features]="[ui.feature.search]"
                                   [icon]="iconControl.value ? ui.icons.user : null">
                         <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                            [label]="h.name"

@@ -42,6 +42,7 @@
       color: $jnt-primary-color,
       font-weight: $jnt-font-weight-bold,
     ),
+    sizes: $sizes,
   );
 
   $vars: $passed;
@@ -62,6 +63,7 @@
     position: relative;
     box-sizing: border-box;
     border: map-get($vars, border);
+    $sizes: map-get($vars, sizes);
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
         @include avatar-size($map, $wrapper);

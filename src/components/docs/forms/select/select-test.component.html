@@ -1,11 +1,8 @@
 <jnt-container>
 
-  <h1>
-    <span data-thumbnail>
-      <jnt-icon [icon]="localUi.icons.select"></jnt-icon>
-    </span>
-    <span i18n="@@label.select">Select</span>
-  </h1>
+  <jnt-app-page-header [icon]="localUi.icons.select"
+                       title="Select"
+                       i18n-title="@@label.selecr"></jnt-app-page-header>
 
   <app-resources
     gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select"
@@ -31,7 +28,7 @@
                                 i18n-placeholder="@@label.select_your_hero"
                                 [allowEmpty]="allowEmptyControl.value"
                                 [mode]="modeControl.value"
-                                [search]="searchControl.value"
+                                [features]="searchControl.value ? [ui.feature.search] : []"
                                 [size]="sizeControl.value"
                                 [loader]="search()"
                                 [icon]="iconControl.value ? ui.icons.user : null"

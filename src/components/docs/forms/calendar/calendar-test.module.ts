@@ -13,7 +13,9 @@ import {
     BlockModule,
     DatePeriodModule,
     TabsModule,
-    IconModule, ButtonModule
+    IconModule,
+    ButtonModule,
+    AppLayoutModule
 } from 'junte-ui';
 import { DateFnsModule } from 'ngx-date-fns';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
@@ -38,7 +40,8 @@ import { CalendarTestComponent } from './calendar-test.component';
         CalendarModule,
         BlockModule,
         DatePeriodModule,
-        ButtonModule
+        ButtonModule,
+        AppLayoutModule
     ],
   declarations: [
     CalendarTestComponent

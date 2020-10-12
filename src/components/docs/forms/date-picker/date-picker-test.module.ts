@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
+  AppLayoutModule,
   ButtonModule,
   CheckboxModule,
   DatePickerModule,
@@ -40,7 +41,8 @@ import { DatePickerTestComponent } from './date-picker-test.component';
     CheckboxModule,
     LabelModule,
     SelectModule,
-    SharedModule
+    SharedModule,
+    AppLayoutModule
   ],
   exports: [
     DatePickerTestComponent

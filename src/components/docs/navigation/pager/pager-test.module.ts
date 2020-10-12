@@ -2,17 +2,18 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  AccordionModule,
-  ArrayPipesModule,
-  BlockModule,
-  FormModule,
-  GridModule,
-  LinkModule,
-  StackModule,
-  SwitcherModule,
-  TabsModule,
-  PagerModule,
-  IconModule
+    AccordionModule,
+    ArrayPipesModule,
+    BlockModule,
+    FormModule,
+    GridModule,
+    LinkModule,
+    StackModule,
+    SwitcherModule,
+    TabsModule,
+    PagerModule,
+    IconModule,
+    AppLayoutModule
 } from 'junte-ui';
 import { JUNTE_UI_CONFIG } from 'src/consts';
 import { SharedModule } from '../../shared/shared.module';
@@ -34,7 +35,8 @@ import { PagerTestComponent } from './pager-test.component';
         BlockModule,
         ArrayPipesModule,
         SharedModule,
-        ArrayPipesModule
+        ArrayPipesModule,
+        AppLayoutModule
     ],
   exports: [
     PagerTestComponent

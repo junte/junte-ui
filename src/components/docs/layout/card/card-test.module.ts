@@ -17,7 +17,9 @@ import {
     CardModule,
     SkeletonModule,
     MenuModule,
-    AvatarModule, ButtonModule
+    AvatarModule,
+    ButtonModule,
+    AppLayoutModule
 } from 'junte-ui';
 import { CardTestComponent } from './card-test.component';
 import { JUNTE_UI_CONFIG } from 'src/consts';
@@ -44,7 +46,8 @@ import { SharedModule } from '../../shared/shared.module';
         ResponsiveModule,
         ArrayPipesModule,
         SharedModule,
-        ButtonModule
+        ButtonModule,
+        AppLayoutModule
     ],
   exports: [
     CardTestComponent
