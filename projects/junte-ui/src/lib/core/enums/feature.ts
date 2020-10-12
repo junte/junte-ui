@@ -6,5 +6,6 @@ export enum Feature {
   selectAll = 'selectAll',
   clear = 'clear',
   search = 'search',
-  smarty = 'smarty'
+  smarty = 'smarty',
+  multiplex = 'multiplex'
 }

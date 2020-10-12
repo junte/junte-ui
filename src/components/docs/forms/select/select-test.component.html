@@ -31,7 +31,7 @@
                                 i18n-placeholder="@@label.select_your_hero"
                                 [allowEmpty]="allowEmptyControl.value"
                                 [mode]="modeControl.value"
-                                [search]="searchControl.value"
+                                [features]="searchControl.value ? [ui.feature.search] : []"
                                 [size]="sizeControl.value"
                                 [loader]="search()"
                                 [icon]="iconControl.value ? ui.icons.user : null"
