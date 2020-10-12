@@ -2,16 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  AccordionModule,
-  FormModule,
-  GridModule,
-  IconModule,
-  ImageCropperModule,
-  LinkModule,
-  SelectModule,
-  StackModule,
-  SwitchModule,
-  TabsModule
+    AccordionModule,
+    AppLayoutModule,
+    FormModule,
+    GridModule,
+    IconModule,
+    ImageCropperModule,
+    LinkModule,
+    SelectModule,
+    StackModule,
+    SwitchModule,
+    TabsModule
 } from 'junte-ui';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
 import { ImageCropperTestComponent } from './image-cropper-test.component';
@@ -24,23 +25,24 @@ import { ImageCropperTestComponent } from './image-cropper-test.component';
   exports: [
     ImageCropperTestComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IconModule,
-    LinkModule,
-    StackModule,
-    TabsModule,
-    GridModule,
-    FormModule,
-    SelectModule,
-    AccordionModule,
-    ImageCropperModule,
-    SwitchModule,
-    SharedModule,
-    SwitchModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        IconModule,
+        LinkModule,
+        StackModule,
+        TabsModule,
+        GridModule,
+        FormModule,
+        SelectModule,
+        AccordionModule,
+        ImageCropperModule,
+        SwitchModule,
+        SharedModule,
+        SwitchModule,
+        AppLayoutModule
+    ]
 })
 export class ImageCropperTestModule {
 }

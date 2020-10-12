@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-    AccordionModule, AppLayoutModule,
+    AccordionModule,
+    AppLayoutModule,
     ArrayPipesModule,
     FormModule,
     GridModule,

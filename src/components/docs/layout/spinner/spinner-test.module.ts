@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
+  AppLayoutModule,
   FormModule,
   GridModule,
   IconModule,
@@ -30,7 +31,8 @@ import { SpinnerTestComponent } from './spinner-test.component';
     SelectModule,
     GridModule,
     SpinnerModule,
-    SharedModule
+    SharedModule,
+    AppLayoutModule
   ],
   exports: [
     SpinnerTestComponent
