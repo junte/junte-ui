@@ -7,5 +7,6 @@ export enum Feature {
   clear = 'clear',
   search = 'search',
   smarty = 'smarty',
+  reload = 'reload',
   multiplex = 'multiplex'
 }

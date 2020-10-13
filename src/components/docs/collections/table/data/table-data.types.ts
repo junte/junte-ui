@@ -2,6 +2,7 @@ import { Field, Model } from '@junte/serialize-ts';
 
 export enum TableSections {
   search,
+  reload,
   actions,
   filter
 }
