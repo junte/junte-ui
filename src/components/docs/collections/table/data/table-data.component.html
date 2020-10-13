@@ -1,8 +1,10 @@
 <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
   <jnt-form [formGroup]="form">
     <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
-      <jnt-table #table [features]="(sections |includes: tableSections.search) ? [ui.feature.search] : null"
-                 formControlName="table">
+      <jnt-table #table [features]="[
+        (sections |includes: tableSections.search) ? ui.feature.search : null,
+        (sections |includes: tableSections.reload) ? ui.feature.reload : null
+      ]" formControlName="table">
 
         <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
           <jnt-select formControlName="job"

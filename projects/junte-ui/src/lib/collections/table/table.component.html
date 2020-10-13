@@ -4,7 +4,8 @@
                [align]="ui.align.center"
                [justify]="ui.justify.between">
       <div>
-        <jnt-button data-button [text]="'action.reload' | translate"
+        <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
+                    [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
                     [outline]="ui.outline.transparent"
                     [scheme]="ui.scheme.secondary"
@@ -39,12 +40,12 @@
                 [class.sortable]="!!column.orderBy"
                 [style.text-align]="column.align"
                 (click)="column.orderBy ? sorting(column.orderBy) : null">
-        <span>
-          {{column.title}}
-          <i
-            *ngIf="!!orderByControl.value && (orderByControl.value === '-' + column.orderBy || orderByControl.value === column.orderBy)"
-            [innerHTML]="(orderByControl.value === column.orderBy) ? '&#8593;' : '&#8595;'"></i>
-        </span>
+              <span>
+                {{column.title}}
+                <i *ngIf="!!orderByControl.value && (orderByControl.value === '-' + column.orderBy
+                    || orderByControl.value === column.orderBy)"
+                  [innerHTML]="(orderByControl.value === column.orderBy) ? '&#8593;' : '&#8595;'"></i>
+              </span>
             </th>
           </tr>
           </thead>
@@ -64,12 +65,13 @@
                             }">
                 </jnt-button>
                 <ng-template #dropdownTemplate>
-                  <ng-container
-                    *ngTemplateOutlet="rowActionsTemplate;context: {row: row, hide: hideActions.bind(this)}"></ng-container>
+                  <ng-container *ngTemplateOutlet="rowActionsTemplate;
+                    context: {row: row, hide: hideActions.bind(this)}">
+                  </ng-container>
                 </ng-template>
               </td>
               <td *ngFor="let column of columns">
-                <ng-container *ngTemplateOutlet="column.tableCellTemplate;context:row"></ng-container>
+                <ng-container *ngTemplateOutlet="column.tableCellTemplate; context: row"></ng-container>
               </td>
             </tr>
           </ng-container>

@@ -23,11 +23,13 @@ export class TableTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   searchControl = this.fb.control(true);
+  reloadControl = this.fb.control(true);
   filterControl = this.fb.control(true);
   actionsControl = this.fb.control(true);
 
   builder = this.fb.group({
     search: this.searchControl,
+    reload: this.reloadControl,
     filter: this.filterControl,
     actions: this.actionsControl,
   });

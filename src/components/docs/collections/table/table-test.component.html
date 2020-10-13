@@ -23,17 +23,22 @@
                 <jnt-form-label i18n="@@label.features">Features
                 </jnt-form-label>
                 <jnt-row>
-                  <jnt-col [span]="4">
+                  <jnt-col [span]="3">
                     <jnt-checkbox formControlName="search"
                                   label="Search"
                                   i18n-label="@@label.search"></jnt-checkbox>
                   </jnt-col>
-                  <jnt-col [span]="4">
+                  <jnt-col [span]="3">
+                    <jnt-checkbox formControlName="reload"
+                                  label="Reload"
+                                  i18n-label="@@label.reload"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="3">
                     <jnt-checkbox formControlName="filter"
                                   label="Filter"
                                   i18n-label="@@label.filter"></jnt-checkbox>
                   </jnt-col>
-                  <jnt-col [span]="4">
+                  <jnt-col [span]="3">
                     <jnt-checkbox formControlName="actions"
                                   label="Actions"
                                   i18n-label="@@label.actions"></jnt-checkbox>
@@ -47,7 +52,12 @@
             <ng-template #document let-width="width" let-height="height">
               <app-table-data [state]="state"
                               (filtered)="save($event)"
-                              [sections]="[actionsControl.value ? sections.actions : null, searchControl.value ? sections.search : null, filterControl.value ? sections.filter : null]">
+                              [sections]="[
+                                actionsControl.value ? sections.actions : null,
+                                reloadControl.value ? sections.reload : null,
+                                searchControl.value ? sections.search : null,
+                                filterControl.value ? sections.filter : null
+                              ]">
               </app-table-data>
             </ng-template>
           </app-browser-preview>
@@ -117,9 +127,11 @@
   <jnt-form>
     <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
       <jnt-table #table formControlName="table" ]]>
-        <ng-container *ngIf="searchControl.value">
-          <![CDATA[[features]="[ui.feature.search]"]]>
-        </ng-container>
+        <![CDATA[[features]="[]]>
+          <ng-container *ngIf="searchControl.value">ui.feature.search</ng-container>
+          <ng-container *ngIf="searchControl.value && reloadControl.value">, </ng-container>
+          <ng-container *ngIf="reloadControl.value">ui.feature.reload</ng-container>
+        <![CDATA[]"]]>
         <![CDATA[>
         <jnt-table-column title="#" sort="id">
           <ng-template #tableCellTemplate let-id="id">
