@@ -1,4 +1,5 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { PopoverInstance } from '../../overlays/popover/popover.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -21,6 +22,8 @@ export class MenuComponent {
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
   private _features: Feature[] = [Feature.dropdown];
+
+  reference: { popover: PopoverInstance } = {popover: null};
 
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
