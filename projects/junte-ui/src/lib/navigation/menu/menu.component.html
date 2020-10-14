@@ -16,7 +16,9 @@
                 : ui.trigger.hover,
               features: features,
               placement: placement
-            }">
+            }"
+           (attached)="reference.popover = $event"
+           (removed)="reference.popover = null">
         <jnt-spinner *ngIf="item.loading" data-spinner [size]="ui.size.small"></jnt-spinner>
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
@@ -65,7 +67,7 @@
                       [disabled]="subItem.disabled"
                       [scheme]="subItem.scheme"
                       [target]="subItem.target"
-                      (click)="selected.emit(item);item.click.emit()">
+                      (click)="selected.emit(item); item.click.emit(); reference.popover.hide();">
               <jnt-badge *ngFor="let badge of subItem.badges"
                          [value]="badge.value"
                          [text]="badge.text"

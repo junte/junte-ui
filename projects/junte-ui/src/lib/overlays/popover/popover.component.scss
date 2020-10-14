@@ -43,11 +43,10 @@
     display: none;
 
     @include for-mobile() {
-      width: 100%;
-      max-width: 100%;
-      max-height: 100vh;
       overflow-y: auto;
       box-sizing: border-box;
+      max-width: 100%;
+      max-height: 100vh;
     }
 
     [data-arrow] {
@@ -62,6 +61,7 @@
     &[data-dropdown='false'] {
       padding: map-get($vars, spacing);
     }
+
     &[data-dropdown='true'] {
 
       &[data-placement='top'], &[data-placement='bottom'], &[data-placement='rightBottom'] {

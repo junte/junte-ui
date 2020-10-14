@@ -8,11 +8,13 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { Placement } from '../../core/enums/placement';
 import { Position } from '../../core/enums/position';
 import { Triggers } from '../../core/enums/triggers';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 
 const PADDING_SIZE = 12;
 
@@ -73,11 +75,129 @@ export class PopoverComponent {
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private breakpoint: BreakpointService) {
   }
 
   private createObserver() {
     return new MutationObserver(() => this.update());
+  }
+
+  private getMaxSizes() {
+    const rect = this.target.getBoundingClientRect();
+    const maxWidth = +this.options.maxWidth?.replace('px', '');
+    const maxHeight = +this.options.maxHeight?.replace('px', '');
+    let fullMaxWidth = null;
+    let fullMaxHeight = null;
+    switch (this.position) {
+      case Position.top: {
+        fullMaxHeight = rect.top - PADDING_SIZE;
+        if (this.options.features?.includes(Feature.dropdown)) {
+          fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE;
+        }
+        break;
+      }
+      case Position.right: {
+        fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE - rect.width;
+        if (this.options.features?.includes(Feature.dropdown)) {
+          fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
+        }
+        break;
+      }
+      case Position.bottom: {
+        fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
+        if (this.options.features?.includes(Feature.dropdown)) {
+          fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE;
+        }
+        break;
+      }
+      case Position.rightBottom: {
+        fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
+        if (this.options.features?.includes(Feature.dropdown)) {
+          fullMaxWidth = rect.right - PADDING_SIZE;
+        }
+        break;
+      }
+      case Position.left: {
+        fullMaxWidth = rect.left - PADDING_SIZE;
+        if (this.options.features?.includes(Feature.dropdown)) {
+          fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
+        }
+        break;
+      }
+    }
+
+    if (!!fullMaxWidth) {
+      this.options.maxWidth = `${!!maxWidth ? Math.min(maxWidth, fullMaxWidth) : fullMaxWidth}px`;
+    }
+    if (!!fullMaxHeight) {
+      this.options.maxHeight = `${!!maxHeight ? Math.min(maxHeight, fullMaxHeight) : fullMaxHeight}px`;
+    }
+  }
+
+  private checkPosition(position: PopoverPosition) {
+    const rect = this.target.getBoundingClientRect();
+    const {nativeElement: host} = this.hostRef;
+    const offsetLeft = this.options.placement === Placement.absolute
+      ? window.pageXOffset || document.documentElement.offsetLeft : 0;
+    const offsetTop = this.options.placement === Placement.absolute
+      ? window.pageYOffset || document.documentElement.offsetTop : 0;
+
+    switch (this.position) {
+      case Position.top: {
+        const shift = offsetTop - PADDING_SIZE + host.clientHeight;
+        if (position.top - shift < 0) {
+          if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
+            this.position = Position.bottom;
+          } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
+            this.position = Position.right;
+          } else {
+            this.position = Position.left;
+          }
+        }
+        break;
+      }
+      case Position.right: {
+        const shift = offsetLeft - PADDING_SIZE - this.target.clientWidth - host.clientWidth;
+        if (position.left - shift > window.innerWidth) {
+          if (rect.left - PADDING_SIZE - host.clientWidth > 0) {
+            this.position = Position.left;
+          } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
+            this.position = Position.bottom;
+          } else {
+            this.position = Position.top;
+          }
+        }
+        break;
+      }
+      case Position.bottom:
+      case Position.rightBottom: {
+        const shift = offsetTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
+        if (position.top - shift > window.innerHeight) {
+          if (rect.top + PADDING_SIZE + host.clientHeight > 0) {
+            this.position = Position.top;
+          } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
+            this.position = Position.right;
+          } else {
+            this.position = Position.left;
+          }
+        }
+        break;
+      }
+      case Position.left: {
+        const shift = offsetLeft - PADDING_SIZE + host.clientWidth;
+        if (position.left - shift < 0) {
+          if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
+            this.position = Position.right;
+          } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
+            this.position = Position.bottom;
+          } else {
+            this.position = Position.top;
+          }
+        }
+        break;
+      }
+    }
   }
 
   private getPosition(): PopoverPosition {
@@ -91,110 +211,9 @@ export class PopoverComponent {
 
     this.position = this.options.position;
     if (this.options.features?.includes(Feature.smarty)) {
-      switch (this.position) {
-        case Position.top: {
-          const shift = offsetTop - PADDING_SIZE + host.clientHeight;
-          if (position.top - shift < 0) {
-            if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
-              this.position = Position.bottom;
-            } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
-              this.position = Position.right;
-            } else {
-              this.position = Position.left;
-            }
-          }
-          break;
-        }
-        case Position.right: {
-          const shift = offsetLeft - PADDING_SIZE - this.target.clientWidth - host.clientWidth;
-          if (position.left - shift > window.innerWidth) {
-            if (rect.left - PADDING_SIZE - host.clientWidth > 0) {
-              this.position = Position.left;
-            } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
-              this.position = Position.bottom;
-            } else {
-              this.position = Position.top;
-            }
-          }
-          break;
-        }
-        case Position.bottom:
-        case Position.rightBottom: {
-          const shift = offsetTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
-          if (position.top - shift > window.innerHeight) {
-            if (rect.top + PADDING_SIZE + host.clientHeight > 0) {
-              this.position = Position.top;
-            } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
-              this.position = Position.right;
-            } else {
-              this.position = Position.left;
-            }
-          }
-          break;
-        }
-        case Position.left: {
-          const shift = offsetLeft - PADDING_SIZE + host.clientWidth;
-          if (position.left - shift < 0) {
-            if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
-              this.position = Position.right;
-            } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
-              this.position = Position.bottom;
-            } else {
-              this.position = Position.top;
-            }
-          }
-          break;
-        }
-      }
+      this.checkPosition(position);
     } else {
-      const maxWidth = +this.options.maxWidth?.replace('px', '');
-      const maxHeight = +this.options.maxHeight?.replace('px', '');
-      let fullMaxWidth = null;
-      let fullMaxHeight = null;
-      switch (this.position) {
-        case Position.top: {
-          fullMaxHeight = rect.top - PADDING_SIZE;
-          if (this.options.features?.includes(Feature.dropdown)) {
-            fullMaxWidth = window.innerWidth - rect.left - rect.width;
-          }
-          break;
-        }
-        case Position.right: {
-          fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE - rect.width;
-          if (this.options.features?.includes(Feature.dropdown)) {
-            fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
-          }
-          break;
-        }
-        case Position.bottom: {
-          fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
-          if (this.options.features?.includes(Feature.dropdown)) {
-            fullMaxWidth = window.innerWidth - rect.left;
-          }
-          break;
-        }
-        case Position.rightBottom: {
-          fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
-          if (this.options.features?.includes(Feature.dropdown)) {
-            fullMaxWidth = rect.left + rect.width;
-          }
-          break;
-        }
-        case Position.left: {
-          fullMaxWidth = rect.left - PADDING_SIZE;
-          if (this.options.features?.includes(Feature.dropdown)) {
-            fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
-          }
-          break;
-        }
-      }
-
-      if (!!fullMaxWidth) {
-        this.options.maxWidth = `${!!maxWidth ? Math.min(maxWidth, fullMaxWidth) : fullMaxWidth}px`;
-      }
-      if (!!fullMaxHeight) {
-        this.options.maxHeight = `${!!maxHeight ? Math.min(maxHeight, fullMaxHeight) : fullMaxHeight}px`;
-      }
+      this.getMaxSizes();
     }
     this.cd.detectChanges();
 
@@ -267,15 +286,20 @@ export class PopoverComponent {
     this.renderer.removeStyle(this.arrow.nativeElement, 'left');
     this.renderer.removeStyle(host, 'top');
     this.renderer.removeStyle(host, 'left');
+    this.renderer.setStyle(host, 'width', this.breakpoint.current === Breakpoint.mobile ? '100%' : 'auto');
     const position = this.getPosition();
     const rect = this.target.getBoundingClientRect();
     let left = position.left - position.shiftX;
     let top = position.top - position.shiftY;
 
     if (this.options.features?.includes(Feature.dropdown)) {
+      this.getMaxSizes();
+
       if (this.position === Position.top || this.position === Position.bottom) {
         left = rect.left + (this.placement === Placement.absolute ? window.pageXOffset : 0);
       } else if (this.position === Position.rightTop || this.position === Position.rightBottom) {
+        this.renderer.setStyle(host, 'width', this.breakpoint.current === Breakpoint.mobile
+          ? this.options.maxWidth : 'auto');
         left = rect.left - host.clientWidth + rect.width + (this.placement === Placement.absolute ? window.pageXOffset : 0);
       } else {
         top = rect.top + (this.placement === Placement.absolute ? window.pageYOffset : 0);
