@@ -1,4 +1,4 @@
-<jnt-stack [orientation]="orientation"
+<jnt-stack [orientation]="style === styleEnum.tabs ? ui.orientation.horizontal : orientation"
            [gutter]="spacing"
            [align]="ui.align.stretch"
            [wrap]="ui.wrap.wrap">
@@ -30,6 +30,7 @@
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
                   [disabled]="item.disabled"
+                  [features]="!!item.submenu ? [feature.dropdown] : null"
                   (click)="item.click.emit(); !item.submenu ? selected.emit(item) : null">
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
@@ -40,7 +41,6 @@
             </jnt-badge>
           </ng-container>
         </jnt-link>
-        <jnt-icon *ngIf="!!item.submenu" [icon]="ui.icons.chevronDown" data-toggle></jnt-icon>
       </div>
 
       <ng-container *ngIf="!collapsed && orientation === orientationEnum.vertical && item.opened">
@@ -67,7 +67,7 @@
                       [disabled]="subItem.disabled"
                       [scheme]="subItem.scheme"
                       [target]="subItem.target"
-                      (click)="selected.emit(item); item.click.emit(); reference.popover.hide();">
+                      (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
               <jnt-badge *ngFor="let badge of subItem.badges"
                          [value]="badge.value"
                          [text]="badge.text"

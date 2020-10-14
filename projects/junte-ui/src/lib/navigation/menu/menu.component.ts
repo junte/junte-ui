@@ -5,6 +5,7 @@ import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
 import { Placement } from '../../core/enums/placement';
+import { MenuStyle } from '../../core/enums/style';
 import { UI } from '../../core/enums/ui';
 import { MenuItemComponent } from './menu-item.component';
 
@@ -18,6 +19,8 @@ export class MenuComponent {
 
   ui = UI;
   orientationEnum = Orientation;
+  styleEnum = MenuStyle;
+  feature = Feature;
 
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
@@ -25,12 +28,26 @@ export class MenuComponent {
 
   reference: { popover: PopoverInstance } = {popover: null};
 
+  @HostBinding('attr.data-style')
+  _style: MenuStyle = MenuStyle.default;
+
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
   @HostBinding('attr.data-collapsed')
   @Input()
   collapsed = false;
+
+  @PropertyApi({
+    description: 'Menu style',
+    path: 'ui.menu.style',
+    default: MenuStyle.default,
+    options: [MenuStyle.tabs, MenuStyle.tags, MenuStyle.default]
+  })
+  @Input()
+  set style(style: MenuStyle) {
+    this._style = style || MenuStyle.default;
+  }
 
   @PropertyApi({
     description: 'Menu orientation',

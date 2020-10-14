@@ -23,26 +23,22 @@ export class MenuTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  schemeControl = this.fb.control(null);
-  linkControl = this.fb.control(null);
-  targetControl = this.fb.control(null);
   orientationControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
   collapsedControl = this.fb.control(false);
   loadingControl = this.fb.control(false);
+  styleControl = this.fb.control(null);
 
   builder = this.fb.group({
-    scheme: this.schemeControl,
-    link: this.linkControl,
-    target: this.targetControl,
     orientation: this.orientationControl,
     spacing: this.spacingControl,
     icons: this.iconsControl,
     badges: this.badgesControl,
     collapsed: this.collapsedControl,
     loading: this.loadingControl,
+    style: this.styleControl
   });
 
   constructor(private fb: FormBuilder) {
@@ -51,5 +47,13 @@ export class MenuTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    this.styleControl.valueChanges.subscribe(value => {
+      if (value === UI.menu.style.tabs) {
+        this.orientationControl.disable();
+      } else {
+        this.orientationControl.enable();
+      }
+    });
   }
 }

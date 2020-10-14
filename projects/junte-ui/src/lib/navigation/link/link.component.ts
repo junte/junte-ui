@@ -1,5 +1,6 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
 import { Position } from '../../core/enums/position';
@@ -25,6 +26,7 @@ export class LinkComponent {
   ui = UI;
   urlMatching = UrlMatching;
   icon: Icon;
+  feature = Feature;
 
   private _source: string | any[];
   private _target: LinkTarget = LinkTarget.self;
@@ -166,6 +168,15 @@ export class LinkComponent {
   get matching() {
     return this._matching;
   }
+
+  @PropertyApi({
+    description: 'Show chevron near link',
+    path: 'ui.feature',
+    options: [Feature.dropdown],
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @ViewChild(RouterLinkActive)
   linkRef: RouterLinkActive;
