@@ -12,10 +12,10 @@ enum Version {
   next
 }
 
-type VersionsList = {
-  latest: string,
-  next: string,
-  unstable: string
+interface Versions {
+  latest: string;
+  next: string;
+  unstable: string;
 }
 
 @Component({
@@ -30,12 +30,12 @@ export class HomeComponent implements OnInit {
   localUi = LocalUI;
   point = Breakpoint;
   themes = Theme;
-  versions = Version;
-  versionsList: VersionsList;
+  version = Version;
+  versions: Versions;
 
   opened = false;
   theme = localStorage.theme || Theme.light;
-  version: Version = null;
+  current: Version = null;
 
   @ViewChild('popover', {static: true})
   popover: PopoverComponent;
@@ -53,13 +53,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     switch (document.location.hostname) {
       case 'www.junte-ui.com':
-        this.version = Version.stable;
+        this.current = Version.stable;
         break;
       case 'rc.junte-ui.com':
-        this.version = Version.next;
+        this.current = Version.next;
         break;
       default:
-        this.version = Version.unstable;
+        this.current = Version.unstable;
     }
 
     this.themeControl.valueChanges.subscribe(checked => {
@@ -72,6 +72,6 @@ export class HomeComponent implements OnInit {
     });
 
     this.http.get('https://cors-anywhere.herokuapp.com/registry.npmjs.org/-/package/@junte/ui/dist-tags')
-      .subscribe((versions: VersionsList) => this.versionsList = versions);
+      .subscribe((versions: Versions) => this.versions = versions);
   }
 }

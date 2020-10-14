@@ -28,11 +28,11 @@
 
                     <jnt-sub-menu *ngIf="!styleControl.value">
                       <jnt-sub-menu-item title="Document" [icon]="ui.icons.save"
-                                     i18n-title="@@label.document"></jnt-sub-menu-item>
+                                         i18n-title="@@label.document"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Message"
-                                     i18n-title="@@label.message"></jnt-sub-menu-item>
+                                         i18n-title="@@label.message"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Home"
-                                     i18n-title="@@label.home"></jnt-sub-menu-item>
+                                         i18n-title="@@label.home"></jnt-sub-menu-item>
                     </jnt-sub-menu>
 
                   </jnt-menu-item>
@@ -64,13 +64,17 @@
 
                 <jnt-form-item>
                   <jnt-form-label for="style"
-                                  i18n="@@label.style">Style</jnt-form-label>
-                  <jnt-switcher formControlName="style">
-                    <jnt-switcher-option label="Tabs"
-                                         [value]="ui.menu.style.tabs"></jnt-switcher-option>
-                    <jnt-switcher-option label="Tags"
-                                         [value]="ui.menu.style.tags"></jnt-switcher-option>
-                  </jnt-switcher>
+                                  i18n="@@label.style">Style
+                  </jnt-form-label>
+                  <jnt-select formControlName="style" placeholder="Default"
+                              [features]="[ui.feature.clear]">
+                    <jnt-select-option label="Default"
+                                       [key]="ui.menu.style.default"></jnt-select-option>
+                    <jnt-select-option label="Tabs"
+                                       [key]="ui.menu.style.tabs"></jnt-select-option>
+                    <jnt-select-option label="Tags"
+                                       [key]="ui.menu.style.tags"></jnt-select-option>
+                  </jnt-select>
                 </jnt-form-item>
 
                 <jnt-form-item>

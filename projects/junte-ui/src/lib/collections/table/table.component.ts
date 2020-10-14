@@ -47,7 +47,7 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   popover: PopoverComponent;
 
   progress = {loading: false};
-  source: any[] = [];
+  source: Object[] = [];
   count: number;
 
   orderByControl = this.fb.control(null);
@@ -65,20 +65,23 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @PropertyApi({
     description: 'Table features',
     path: 'ui.feature',
-    options: [Feature.search]
+    options: [Feature.search, Feature.reload]
   })
-  @Input() features: Feature[] = [];
+  @Input()
+  features: Feature[] = [];
 
   @PropertyApi({
     description: 'Table fetch function',
     type: 'Function'
   })
-  @Input() fetcher: Function;
+  @Input()
+  fetcher: Function;
 
   @PropertyApi({
     description: 'Output event of reload table'
   })
-  @Output() reloaded = new EventEmitter<any>();
+  @Output()
+  reloaded = new EventEmitter<any>();
 
   @ContentChildren(TableColumnComponent)
   columns: QueryList<TableColumnComponent>;

@@ -572,18 +572,22 @@
             </h1>
 
             <p data-web-apps>Made with love for making beautiful WEB apps!</p>
-            <jnt-menu *ngIf="!!versionsList" [style]="ui.menu.style.tags" [spacing]="ui.gutter.normal">
+            <jnt-menu [style]="ui.menu.style.tags"
+                      [spacing]="ui.gutter.normal">
               <jnt-menu-item title="Stable"
-                             [link]="version == versions.stable ? null : 'https://www.junte-ui.com'">
-                <jnt-badge [text]="versionsList.latest" [color]="ui.color.blue100"></jnt-badge>
+                             [link]="current == version.stable ? null : 'https://www.junte-ui.com'">
+                <jnt-badge *ngIf="!!versions?.latest" [text]="versions.latest"
+                           [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>
               <jnt-menu-item title="Next"
-                             [link]="version == versions.next ? null : 'https://rc.junte-ui.com'">
-                <jnt-badge [text]="versionsList.next" [color]="ui.color.blue100"></jnt-badge>
+                             [link]="current == version.next ? null : 'https://rc.junte-ui.com'">
+                <jnt-badge *ngIf="!!versions?.next" [text]="versions.next"
+                           [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>
               <jnt-menu-item title="Unstable"
-                             [link]="version == versions.unstable ? null : 'https://unstable.junte-ui.com'">
-                <jnt-badge [text]="versionsList.unstable" [color]="ui.color.blue100"></jnt-badge>
+                             [link]="current == version.unstable ? null : 'https://unstable.junte-ui.com'">
+                <jnt-badge *ngIf="!!versions?.unstable" [text]="versions.unstable"
+                           [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>
             </jnt-menu>
           </jnt-stack>
