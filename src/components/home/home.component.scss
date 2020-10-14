@@ -195,25 +195,6 @@ $jnt-primary-background-dark: #241741;
       color: $jnt-primary-text-dark-color;
     }
 
-    [data-versions] {
-      @include jnt-menu((
-        top:(
-          item: (
-            link-corner: $jnt-corner-large,
-            corner: $jnt-corner-large,
-            color: $jnt-primary-light-color,
-            orphan: (
-              border: 1px solid $jnt-primary-light-color
-            ),
-            padding: (
-              inner: 0 $jnt-gutter-normal !important,
-            )
-          ),
-        ),
-      ), '&', true);
-    }
-
-
     [label] ::ng-deep {
       @include jnt-label((
         padding: $jnt-gutter-small $jnt-gutter-normal,

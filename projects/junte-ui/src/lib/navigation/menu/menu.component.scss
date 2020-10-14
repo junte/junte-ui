@@ -8,12 +8,7 @@
     top: (
       item: (
         corner: $jnt-corner-small,
-        link-corner: null,
         height: null,
-        border-top: null,
-        border-right: null,
-        border-bottom: null,
-        border-left: null,
         orphan: (
           color: $jnt-primary-text-color,
           hover-color: $jnt-primary-text-dark-color,
@@ -30,14 +25,10 @@
           outline: null,
           shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
         ),
-        padding: (
-          inner: $jnt-gutter-small !important,
-          outer: 0,
-        ),
+        padding: $jnt-gutter-small !important,
         toggle: (
           toggle: true,
           margin-left: $jnt-gutter-small,
-          margin-right: $jnt-gutter-normal,
         ),
         hover: (
           color: null,
@@ -48,6 +39,25 @@
           background-color: null,
           color: null,
           border-color: $jnt-primary-color,
+        ),
+        styles: (
+          tags: (
+            padding: $jnt-gutter-tiny $jnt-gutter-normal,
+            color: $jnt-primary-light-color,
+            corner: 19px,
+            border: 1px solid $jnt-white-color,
+            active: (
+              underline: false,
+              color: $jnt-white-color,
+              background-color: $jnt-primary-light-color,
+              border-color: $jnt-primary-light-color,
+            ),
+            hover: (
+              color: null,
+              background-color: $jnt-secondary-dark-color,
+              border-color: null,
+            ),
+          ),
         ),
       ),
     ),
@@ -113,7 +123,6 @@
           width: 100%;
         }
       }
-
       #{$wrapper} [data-top] {
         position: relative;
         white-space: nowrap;
@@ -136,6 +145,186 @@
               overflow: true,
               display: block,
             ), '&');
+          }
+        }
+      }
+    }
+
+    &[data-style='default'] {
+      #{$wrapper} [data-top] {
+        [data-item] {
+          @if map-has-key($vars, top) {
+            $title: map-get(map-get($vars, top), item);
+            @include jnt-link((
+              height: map-get($title, height),
+              color: map-get($title, color),
+              corner: map-get($title, link-corner),
+              text-transform: map-get($title, text-transform),
+              font-weight: map-get($title, font-weight),
+              padding: map-get($title, padding),
+            ), '&');
+
+            @if map-has-key($title, active) {
+              $active: map-get($title, active);
+              @include jnt-link((
+                active: (
+                  underline: map-get($active, underline),
+                  background-color: map-get($active, background-color),
+                  color: map-get($active, color),
+                  border-color: map-get($active, border-color),
+                ),
+              ), '&');
+            }
+
+            @if map-has-key($title, orphan) {
+              $orphan: map-get($title, orphan);
+              @include jnt-link((
+                orphan: (
+                  color: map-get($orphan, color),
+                  hover-color: map-get($orphan, hover-color),
+                  border: map-get($orphan, border)
+                ),
+              ), '&');
+            }
+
+            @if map-has-key($title, icon) {
+              $icon: map-get($title, icon);
+              @include jnt-link((
+                icon: (
+                  spacing: map-get($icon, spacing),
+                  size: map-get($icon, size)
+                ),
+              ), '&');
+            }
+
+            @if map-has-key($title, toggle) {
+              $toggle: map-get($title, toggle);
+              @include jnt-link((
+                toggle: (
+                  toggle: map-get($toggle, toggle),
+                  margin-left: map-get($toggle, margin-left),
+                )
+              ), '&');
+            }
+
+            @if map-has-key($title, hover) {
+              $hover: map-get($title, hover);
+              [data-link] {
+                @include jnt-link((hover: (color: map-get($hover, color), background-color: map-get($hover, background-color))), '&');
+              }
+            }
+
+            @if map-has-key($title, focus) {
+              $focus: map-get($title, focus);
+              [data-link] {
+                @include jnt-link((
+                  schemes: (
+                    primary: (
+                      focus: (
+                        outline: map-get($focus, outline),
+                        shadow: map-get($focus, shadow),
+                      ),
+                    ),
+                  ),
+                ), '&');
+              }
+            }
+
+            [data-spinner] {
+              margin-right: $jnt-gutter-tiny;
+            }
+          }
+        }
+      }
+    }
+
+    &[data-style='tabs'] {
+      border-bottom: 2px solid $jnt-secondary-color;
+
+      #{$wrapper} [data-link] {
+        @include jnt-link((
+          padding: $jnt-gutter-small $jnt-gutter-normal,
+          color: $jnt-primary-text-color
+        ), '&');
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 4px;
+          border-radius: 5px;
+          display: none;
+        }
+
+        &:hover {
+          @include jnt-link((
+            color: $jnt-primary-light-color
+          ), '&');
+
+          &:after {
+            display: block;
+            background-color: $jnt-secondary-dark-color;
+          }
+        }
+
+        &[data-active='true'] {
+          @include jnt-link((
+            active: (
+              underline: false,
+              color: $jnt-primary-light-color
+            ),
+          ), '&');
+
+          &:after {
+            display: block;
+            background-color: $jnt-primary-light-color;
+          }
+        }
+      }
+    }
+
+    &[data-style='tags'] {
+      #{$wrapper} [data-link] {
+        @if map-has-key($vars, top) {
+          $title: map-get(map-get($vars, top), item);
+          @if map-has-key($title, styles) {
+            $styles: map-get($title, styles);
+            @if map-has-key($styles, tags) {
+              $tags: map-get($styles, tags);
+              @include jnt-link((
+                padding: map-get($tags, padding),
+                color: map-get($tags, color),
+                border: map-get($tags, border),
+                corner: map-get($tags, corner),
+              ), '&');
+              &[data-active='true'] {
+                @if map-has-key($tags, active) {
+                  $active: map-get($tags, active);
+                  @include jnt-link((
+                    active: (
+                      underline: map-get($active, underline),
+                      color: map-get($active, color),
+                      background-color: map-get($active, background-color),
+                      border-color: map-get($active, border-color),
+                    ),
+                  ), '&');
+                }
+              }
+              &[data-active='false']:hover {
+                @if map-has-key($tags, hover) {
+                  $hover: map-get($tags, hover);
+                  @include jnt-link((
+                    hover: (
+                      color: map-get($hover, color),
+                      background-color: map-get($hover, background-color),
+                      border-color: map-get($hover, border-color),
+                    ),
+                  ), '&');
+                }
+              }
+            }
           }
         }
       }
@@ -172,113 +361,7 @@
     }
   }
 
-  #{$context} #{$wrapper} [data-top] {
-    [data-item] {
-      @if map-has-key($vars, top) {
-        $title: map-get(map-get($vars, top), item);
-        border-left: map-get($title, border-left);
-        border-right: map-get($title, border-right);
-        border-bottom: map-get($title, border-bottom);
-        border-top: map-get($title, border-top);
-        border-radius: map-get($title, corner);
-        @include jnt-link((
-          height: map-get($title, height),
-          color: map-get($title, color),
-          corner: map-get($title, link-corner),
-          text-transform: map-get($title, text-transform),
-          font-weight: map-get($title, font-weight),
-        ), '&');
-
-        @if map-has-key($title, active) {
-          $active: map-get($title, active);
-          @include jnt-link((
-            active: (
-              underline: map-get($active, underline),
-              background-color: map-get($active, background-color),
-              color: map-get($active, color),
-              border-color: map-get($active, border-color),
-            ),
-          ), '&');
-        }
-
-        @if map-has-key($title, orphan) {
-          $orphan: map-get($title, orphan);
-          @include jnt-link((
-            orphan: (
-              color: map-get($orphan, color),
-              hover-color: map-get($orphan, hover-color),
-              border: map-get($orphan, border)
-            ),
-          ), '&');
-        }
-
-        @if map-has-key($title, icon) {
-          $icon: map-get($title, icon);
-          @include jnt-link((
-            icon: (
-              spacing: map-get($icon, spacing),
-              size: map-get($icon, size)
-            ),
-          ), '&');
-        }
-
-        @if map-has-key($title, padding) {
-          $padding: map-get($title, padding);
-          padding: map-get($padding, outer);
-          [data-link] {
-            @include jnt-link((
-              padding: map-get($padding, inner),
-            ), '&');
-          }
-        }
-
-        @if map-has-key($title, toggle) {
-          $toggle: map-get($title, toggle);
-          @if map-get($toggle, toggle) == false {
-            [data-toggle] {
-              display: none;
-            }
-          }
-          [data-toggle] {
-            margin-left: map-get($toggle, margin-left);
-            margin-right: map-get($toggle, margin-right);
-          }
-        }
-
-        @if map-has-key($title, hover) {
-          $hover: map-get($title, hover);
-          &:hover {
-            background-color: map-get($hover, background-color);
-            [data-link] {
-              @include jnt-link((color: map-get($hover, color)), '&');
-            }
-          }
-        }
-
-        @if map-has-key($title, focus) {
-          $focus: map-get($title, focus);
-          [data-link] {
-            @include jnt-link((
-              schemes: (
-                primary: (
-                  focus: (
-                    outline: map-get($focus, outline),
-                    shadow: map-get($focus, shadow),
-                  ),
-                ),
-              ),
-            ), '&');
-          }
-        }
-
-        [data-spinner] {
-          margin-right: $jnt-gutter-tiny;
-        }
-      }
-    }
-  }
-
-  #{$context} #{$wrapper} [data-sub] {
+  #{$wrapper} [data-sub] {
     @if map-has-key($vars, sub) {
       $sub: map-get($vars, sub);
       &[data-collapsed='true'] {

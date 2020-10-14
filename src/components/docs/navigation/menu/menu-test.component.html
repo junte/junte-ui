@@ -20,13 +20,13 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [orientation]="orientationControl.value" [spacing]="spacingControl.value"
+                          [style]="styleControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
-                                 [target]="targetControl.value"
-                                 [link]="['/components','navigation','link']"
                                  [title]="'Text'">
-                    <jnt-badge *ngIf="badgesControl.value" [text]="'text'"></jnt-badge>
-                    <jnt-sub-menu>
+                    <jnt-badge *ngIf="badgesControl.value" [text]="'text'" [color]="ui.color.blue100"></jnt-badge>
+
+                    <jnt-sub-menu *ngIf="!styleControl.value">
                       <jnt-sub-menu-item title="Document" [icon]="ui.icons.save"
                                      i18n-title="@@label.document"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Message"
@@ -34,15 +34,14 @@
                       <jnt-sub-menu-item title="Home"
                                      i18n-title="@@label.home"></jnt-sub-menu-item>
                     </jnt-sub-menu>
+
                   </jnt-menu-item>
 
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
-                                 [target]="targetControl.value"
-                                 [link]="['/components','navigation','link']"
                                  [title]="'Text'">
-                    <jnt-badge *ngIf="badgesControl.value" [value]=5></jnt-badge>
+                    <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
 
-                    <jnt-sub-menu>
+                    <jnt-sub-menu *ngIf="!styleControl.value">
                       <jnt-sub-menu-item title="Test" [icon]="ui.icons.calendar"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
@@ -50,8 +49,9 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [link]="['/components/navigation/menu']" [loading]="loadingControl.value" title="Home">
-                    <jnt-badge [value]=5></jnt-badge>
+                  <jnt-menu-item [link]="['/components/navigation/menu']" [loading]="loadingControl.value"
+                                 [icon]="iconsControl.value ? ui.icons.home : null" title="Home">
+                    <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
                   </jnt-menu-item>
 
                 </jnt-menu>
@@ -61,6 +61,17 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="style"
+                                  i18n="@@label.style">Style</jnt-form-label>
+                  <jnt-switcher formControlName="style">
+                    <jnt-switcher-option label="Tabs"
+                                         [value]="ui.menu.style.tabs"></jnt-switcher-option>
+                    <jnt-switcher-option label="Tags"
+                                         [value]="ui.menu.style.tags"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-label for="orientation"
@@ -86,24 +97,32 @@
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="spacing"
-                                placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                placeholder="None"
+                                i18n-placeholder="@@label.none">
                       <jnt-select-option label="Tiny"
                                          i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.padding.tiny"
-                                         [key]="ui.size.tiny"></jnt-select-option>
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
                       <jnt-select-option label="Small"
                                          i18n-label="@@label.small"
                                          [icon]="localUi.icons.padding.tiny"
-                                         [key]="ui.size.small"></jnt-select-option>
+                                         [key]="ui.gutter.small"></jnt-select-option>
                       <jnt-select-option label="Normal"
                                          i18n-label="@@label.normal"
                                          [icon]="localUi.icons.padding.normal"
-                                         [key]="ui.size.normal"></jnt-select-option>
+                                         [key]="ui.gutter.normal"></jnt-select-option>
                       <jnt-select-option label="Large"
                                          i18n-label="@@label.large"
                                          [icon]="localUi.icons.padding.large"
-                                         [key]="ui.size.large"></jnt-select-option>
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.padding.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.padding.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -171,9 +190,13 @@
 <![CDATA[
 <jnt-menu
 ]]>
-  <ng-container *ngIf="orientationControl.value">
+  <ng-container *ngIf="orientationControl.value && styleControl.value !== ui.menu.style.tabs">
     <![CDATA[
     [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="styleControl.value">
+    <![CDATA[
+    [style]="ui.menu.style.]]>{{styleControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="spacingControl.value">
     <![CDATA[
@@ -181,35 +204,19 @@
   </ng-container>
   <ng-container *ngIf="collapsedControl.value">
     <![CDATA[
-    collapse="]]>{{collapsedControl.value}}<![CDATA["]]>
+    [collapsed]="]]>{{collapsedControl.value}}<![CDATA["]]>
   </ng-container>
   <![CDATA[>
   <jnt-menu-item
     title="Text"
   ]]>
-    <ng-container *ngIf="schemeControl.value">
-      <![CDATA[
-      [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-    </ng-container>
-
     <ng-container *ngIf="iconsControl.value">
       <![CDATA[
       [icon]="ui.icons.calendar"]]>
     </ng-container>
-
-    <ng-container *ngIf="linkControl.value == sourceType.external">
+    <ng-container *ngIf="loadingControl.value">
       <![CDATA[
-      link="https://google.com"]]>
-    </ng-container>
-
-    <ng-container *ngIf="linkControl.value == sourceType.local">
-      <![CDATA[
-      [link]="['/documentation', 'block']"]]>
-    </ng-container>
-
-    <ng-container *ngIf="targetControl.value">
-      <![CDATA[
-      target="]]>{{targetControl.value}}<![CDATA["]]>
+      [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
     </ng-container>
     <![CDATA[>]]>
     <ng-container *ngIf="badgesControl.value">
@@ -217,56 +224,34 @@
       <jnt-badge [text]="'text'"></jnt-badge>
       ]]>
     </ng-container>
-    <![CDATA[
-      <jnt-sub-menu
-      ]]>
-        <ng-container *ngIf="iconsControl.value">
-          <![CDATA[ ]]>
-        </ng-container>
-          <![CDATA[>]]>
-
+    <ng-container *ngIf="styleControl.value === ui.menu.style.default">
+      <![CDATA[
+      <jnt-sub-menu>
+        ]]>
         <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
           <![CDATA[
           <jnt-sub-menu-item title="Document"
-          ]]>
+                             ]]>
 
-          <ng-container *ngIf="schemeControl.value">
-            <![CDATA[
-            [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-          </ng-container>
-
-          <ng-container *ngIf="iconsControl.value">
-            <![CDATA[
-            [icon]="ui.icons.save"]]>
-          </ng-container>
-
-          <ng-container *ngIf="targetControl.value">
-            <![CDATA[
-            target="]]>{{targetControl.value}}<![CDATA["]]>
-          </ng-container>
-
-          <ng-container *ngIf="linkControl.value == sourceType.external">
-            <![CDATA[
-            link="https://google.com"]]>
-          </ng-container>
+            <ng-container *ngIf="iconsControl.value">
+              <![CDATA[
+              [icon]="ui.icons.save"]]>
+            </ng-container>
 
             <ng-container *ngIf="loadingControl.value">
               <![CDATA[
               [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
             </ng-container>
+            <![CDATA[>]]>
 
-          <ng-container *ngIf="linkControl.value == sourceType.local">
             <![CDATA[
-            [link]="['/documentation', 'block']"]]>
-          </ng-container>
-          <![CDATA[>]]>
-
-          <![CDATA[
-        </jnt-sub-menu-item>
-        ]]>
-      </ng-container>
-      <![CDATA[
-    </jnt-sub-menu>
+          </jnt-sub-menu-item>
+          ]]>
+        </ng-container>
+        <![CDATA[
+      </jnt-sub-menu>]]>
+    </ng-container>
+    <![CDATA[
   </jnt-menu-item>
 </jnt-menu>]]>
                 <!-- @formatter:on-->

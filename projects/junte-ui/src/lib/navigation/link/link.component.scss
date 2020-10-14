@@ -146,12 +146,17 @@
     display: inline,
     overflow: false,
     height: null,
+    color: null,
+    border: null,
+    toggle: (
+      toggle: true,
+      margin-left: $jnt-gutter-small,
+    ),
     orphan: (
       color: $jnt-primary-text-color,
       hover-color: $jnt-primary-text-dark-color,
       border: null,
     ),
-    color: null,
     active: (
       underline: true,
       background-color: null,
@@ -160,6 +165,8 @@
     ),
     hover: (
       color: null,
+      background-color: null,
+      border-color: null,
     ),
     icon: (
       spacing: $jnt-gutter-tiny,
@@ -325,6 +332,7 @@
       &[data-active='true'] {
         background-color: map-get($active, background-color);
         color: if(map-get($active, color), map-get($active, color) !important, null);
+        border-color: if(map-get($active, border-color), map-get($active, border-color) !important, null);
         @if map-get($active, underline) == true {
           [data-title] span {
             border-bottom-color: if(map-get($active, border-color), map-get($active, border-color), null);
@@ -340,7 +348,21 @@
     @if map-has-key($vars, hover) {
       $hover: map-get($vars, hover);
       &:hover {
-        color: if(map-get($hover, color), map-get($hover, color)!important, null);
+        color: if(map-get($hover, color), map-get($hover, color) !important, null);
+        background-color: if(map-get($hover, background-color), map-get($hover, background-color) !important, null);
+        border-color: if(map-get($hover, border-color), map-get($hover, border-color) !important, null);
+      }
+    }
+
+    @if map-has-key($vars, toggle) {
+      $toggle: map-get($vars, toggle);
+      @if map-get($toggle, toggle) == false {
+        [data-toggle] {
+          display: none;
+        }
+      }
+      [data-toggle] {
+        margin-left: map-get($toggle, margin-left);
       }
     }
     border-radius: map-get($vars, corner);
@@ -351,10 +373,8 @@
     text-transform: map-get($vars, text-transform);
     text-decoration: map-get($vars, text-decoration);
     text-align: map-get($vars, text-align);
-    @if map-has-key($vars, color) {
-      color: if(map-get($vars, color), map-get($vars, color) !important, null);
-    }
-
+    color: if(map-get($vars, color), map-get($vars, color) !important, null);
+    border: if(map-get($vars, border), map-get($vars, border) !important, null);
     [data-title] {
       margin-right: auto;
       @if map-has-key($vars, icon) {

@@ -1,3 +1,4 @@
+import { MenuStyle } from './style';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -65,4 +66,5 @@ export class UI {
   static select = {mode: SelectMode};
   static button = {type: ButtonType};
   static gantt = {type: GanttTypes};
+  static menu = {style: MenuStyle};
 }
