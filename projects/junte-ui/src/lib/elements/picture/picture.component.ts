@@ -45,9 +45,8 @@ export class PictureComponent {
     description: 'Path to image on picture',
     type: 'string'
   })
-  @HostBinding('style.background-image')
   @Input() set src(src: string) {
-    this._src = !!src ? 'url(' + src + ')' : null;
+    this._src = src || null;
   }
 
   get src() {
@@ -70,19 +69,17 @@ export class PictureComponent {
 
   @PropertyApi({
     description: 'Picture width',
-    type: 'string',
-    default: '200px'
+    type: 'string'
   })
   @HostBinding('style.width')
-  @Input() width = '200px';
+  @Input() width;
 
   @PropertyApi({
     description: 'Picture height',
-    type: 'string',
-    default: '100px'
+    type: 'string'
   })
   @HostBinding('style.height')
-  @Input() height = '100px';
+  @Input() height;
 
   @PropertyApi({
     description: 'Image size in relation to width or height',

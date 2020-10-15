@@ -1,2 +1,5 @@
-<jnt-icon *ngIf="!src" [icon]="icon"></jnt-icon>
+<ng-template #iconTemplate>
+  <jnt-icon [icon]="icon"></jnt-icon>
+</ng-template>
 <ng-template *ngTemplateOutlet="pictureCopyrightTemplate"></ng-template>
+<img *ngIf="!!src else iconTemplate" [src]="src" [alt]="alt" [title]="title"/>
