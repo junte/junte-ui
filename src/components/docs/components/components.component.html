@@ -1,21 +1,21 @@
 <jnt-container>
   <jnt-stack [align]="ui.align.stretch">
-    <div *ngFor="let category of categories">
+    <div *ngFor="let category of categories | keyvalue">
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
         <h1>
           <span data-thumbnail>
-            <jnt-icon [icon]="category.icon"></jnt-icon>
+            <jnt-icon [icon]="category.value.icon"></jnt-icon>
           </span>
-          <span>{{category.name}}</span>
+          <span>{{category.value.name}}</span>
         </h1>
-        <jnt-label [label]="category.components.length + '  components'"></jnt-label>
+        <jnt-label [label]="category.value.components.length + '  components'"></jnt-label>
       </jnt-stack>
       <jnt-row [align]="ui.align.stretch">
-        <jnt-col *ngFor="let component of category.components"
+        <jnt-col *ngFor="let component of category.value.components"
                  [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
           <jnt-card data-card [features]="[ui.feature.clickable]"
-                    (selected)="router.navigate([category.link, component.link], {relativeTo: route})">
+                    (selected)="router.navigate([category.value.link, component.link], {relativeTo: route})">
             <ng-template #cardTitleTemplate>
               <jnt-stack [orientation]="ui.orientation.horizontal"
                          [align]="ui.align.center">
