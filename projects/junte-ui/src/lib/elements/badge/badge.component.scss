@@ -1,8 +1,8 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin badge-position($position) {
-  [data-text] {
+@mixin badge-position($position, $wrapper) {
+  #{$wrapper} [data-text] {
     position: map-get($position, position);
     left: map-get($position, left);
     right: map-get($position, right);
@@ -10,7 +10,7 @@
   }
 }
 
-@mixin jnt-badge($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-badge($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     size: 24px,
     color: $jnt-white-color,
@@ -38,6 +38,11 @@
   $vars: $passed;
   $declare: false;
 
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
@@ -56,13 +61,13 @@
     @if map-has-key($vars, positions) {
       @each $position, $map in map-get($vars, positions) {
         &[data-position='#{$position}'] {
-          @include badge-position($map);
+          @include badge-position($map, $wrapper);
         }
       }
     }
   }
 
-  #{$context} [data-text] {
+  #{$wrapper} #{$context} [data-text] {
     @if $declare {
       top: 0;
       display: inline-block;
@@ -71,7 +76,6 @@
       box-sizing: border-box;
       white-space: nowrap;
     }
-
     color: map-get($vars, color);
     background: map-get($vars, background);
     font-size: map-get($vars, font-size);
