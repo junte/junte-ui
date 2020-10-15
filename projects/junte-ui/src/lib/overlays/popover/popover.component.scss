@@ -41,6 +41,7 @@
     user-select: text;
     padding: 0;
     display: none;
+    box-sizing: border-box;
 
     @include for-mobile() {
       overflow-y: auto;
@@ -64,12 +65,20 @@
 
     &[data-dropdown='true'] {
 
-      &[data-placement='top'], &[data-placement='bottom'], &[data-placement='rightBottom'] {
+      &[data-placement='bottom'], &[data-placement='rightBottom'] {
         padding: $jnt-gutter-tiny 0 0;
       }
 
-      &[data-placement='left'], &[data-placement='right'] {
+      &[data-placement='top'] {
+        padding: 0 0 $jnt-gutter-tiny;
+      }
+
+      &[data-placement='right'] {
         padding: 0 0 0 $jnt-gutter-tiny;
+      }
+
+      &[data-placement='left'] {
+        padding: 0 $jnt-gutter-tiny 0 0;
       }
 
       @include for-mobile() {
