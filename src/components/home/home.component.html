@@ -575,17 +575,20 @@
             <jnt-menu [style]="ui.menu.style.tags"
                       [spacing]="ui.gutter.normal">
               <jnt-menu-item title="Stable"
-                             [link]="current == version.stable ? null : 'https://www.junte-ui.com'">
+                             [active]="current == version.stable"
+                             [link]="'https://www.junte-ui.com'">
                 <jnt-badge *ngIf="!!versions?.latest" [text]="versions.latest"
                            [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>
               <jnt-menu-item title="Next"
-                             [link]="current == version.next ? null : 'https://rc.junte-ui.com'">
+                             [active]="current == version.next"
+                             link="https://rc.junte-ui.com">
                 <jnt-badge *ngIf="!!versions?.next" [text]="versions.next"
                            [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>
               <jnt-menu-item title="Unstable"
-                             [link]="current == version.unstable ? null : 'https://unstable.junte-ui.com'">
+                             [active]="current == version.next"
+                             link="https://unstable.junte-ui.com">
                 <jnt-badge *ngIf="!!versions?.unstable" [text]="versions.unstable"
                            [color]="ui.color.blue100"></jnt-badge>
               </jnt-menu-item>

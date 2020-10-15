@@ -95,6 +95,9 @@ export abstract class AbstractMenuItem {
     return this._scheme;
   }
 
+  @Input()
+  active: boolean;
+
   @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'

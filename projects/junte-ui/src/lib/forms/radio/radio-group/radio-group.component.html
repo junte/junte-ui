@@ -12,7 +12,7 @@
     </ng-template>
     <ng-container *ngIf="!!radiosControl.length">
       <ng-container *ngIf="cols <= 1; else colTemplate">
-        <jnt-stack [gutter]="ui.gutter.small">
+        <jnt-stack [orientation]="orientation" [gutter]="ui.gutter.small">
           <ng-container *ngFor="let item of radios; let i = index">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </ng-container>

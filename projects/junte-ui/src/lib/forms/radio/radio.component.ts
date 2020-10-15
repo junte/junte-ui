@@ -59,7 +59,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   @Input()
   value: any;
 
-  @ContentChild('labelTemplate')
+  @ContentChild('radioLabelTemplate')
   labelTemplate: TemplateRef<any>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
@@ -73,7 +73,8 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    this.radioControl.valueChanges.subscribe(() => this.onChange(true));
+    this.radioControl.valueChanges
+      .subscribe(() => this.onChange(true));
   }
 
   writeValue(value: boolean) {
