@@ -486,7 +486,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     if (!this.mobile) {
       this.reference.popover = this.popover.show(this.hostRef, {
         contentTemplate: this.optionsTemplate,
-        features: [Feature.dropdown],
+        features: [Feature.dropdown, Feature.smarty],
         placement: this.placement
       });
       this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
