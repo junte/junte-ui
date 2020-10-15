@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -16,6 +17,7 @@ export enum Theme {
 })
 export class DocsComponent implements OnInit {
 
+  categories = CATEGORIES;
   analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;

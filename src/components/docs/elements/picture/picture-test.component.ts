@@ -22,8 +22,8 @@ export class PictureTestComponent implements OnInit {
   iconControl = this.fb.control(false);
   fitControl = this.fb.control(null);
   positionControl = this.fb.control(null);
-  widthControl = this.fb.control(200);
-  heightControl = this.fb.control(100);
+  widthControl = this.fb.control(300);
+  heightControl = this.fb.control(200);
 
   builder = this.fb.group({
     image: this.imageControl,

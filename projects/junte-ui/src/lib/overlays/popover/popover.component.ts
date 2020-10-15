@@ -215,6 +215,7 @@ export class PopoverComponent {
     } else {
       this.getMaxSizes();
     }
+    this.renderer.setAttribute(host, 'data-placement', this.position);
     this.cd.detectChanges();
 
     switch (this.position) {
