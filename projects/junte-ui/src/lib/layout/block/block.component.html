@@ -1,4 +1,13 @@
-<jnt-stack [align]="ui.align.stretch" [gutter]="spacing">
+<div data-help *ngIf="!!blockHelpTemplate"
+     [jntPopover]="{
+                   contentTemplate: blockHelpTemplate,
+                   trigger: ui.trigger.hover,
+                   position: ui.position.right
+                }">
+  <jnt-icon [icon]="ui.icons.question"></jnt-icon>
+</div>
+
+<jnt-stack data-block [align]="ui.align.stretch" [gutter]="spacing">
   <div *ngIf="!!title && !blockHeaderTemplate" data-title>
     {{title}}
   </div>

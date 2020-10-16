@@ -32,6 +32,14 @@
                              [state]="stateControl.value"
                              [features]="adaptedControl.value ? [ui.feature.adapted] : null">
                     <jnt-skeleton skeleton [lines]="3" [animated]="false"></jnt-skeleton>
+                    <ng-template *ngIf="helpControl.value" #blockHelpTemplate>
+                      <div>Turn around! Its gonna eat you!</div>
+                      <iframe giphy src="https://giphy.com/embed/3o7TKxauhvDnhfUHFm"
+                              width="360"
+                              height="360"
+                              frameBorder="0"></iframe>
+                    </ng-template>
+
                     <ng-template *ngIf="footerControl.value" #blockFooterTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [justify]="ui.justify.between">
@@ -191,6 +199,10 @@
                         <jnt-checkbox formControlName="adapted"
                                       label="Adapted"></jnt-checkbox>
                       </jnt-col>
+                      <jnt-col [span]="6">
+                        <jnt-checkbox formControlName="help"
+                                      label="Help"></jnt-checkbox>
+                      </jnt-col>
                     </jnt-row>
                   </jnt-form-item>
 
@@ -275,6 +287,13 @@
                           <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
                           <span>Schedule</span>
                         </jnt-stack>
+                      </ng-template>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="helpControl.value" >
+                      <![CDATA[
+                      <ng-template #blockHelpTemplate>
+                        <div>Popover message here</div>
                       </ng-template>
                       ]]>
                     </ng-container>

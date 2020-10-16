@@ -62,7 +62,6 @@
     border-radius: map-get($vars, corner);
     background-color: map-get($vars, background);
     box-sizing: border-box;
-    overflow: hidden;
     &[data-width="fluid"] {
       width: 100%;
     }
@@ -73,6 +72,12 @@
         &[data-padding = '#{$padding}'] {
           @include block-padding($map, $wrapper);
         }
+      }
+    }
+
+    &[data-has-help='true'][data-has-header='false'] {
+      #{$wrapper} [data-block] {
+        padding-top: $jnt-gutter-normal;
       }
     }
 
@@ -95,53 +100,76 @@
     }
   }
 
-  #{$context} #{$wrapper} [data-title] {
-    text-align: center;
-    font-weight: $jnt-font-weight-bold;
-    color: map-get($vars, title-color);
-    border-bottom: 1px solid $jnt-secondary-color;
-    @if map-has-key($vars, header) {
-      $header: map-get($vars, header);
-      padding: map-get($header, padding);
-    }
-  }
-
-  #{$context} #{$wrapper} [data-body] {
-    @if map-has-key($vars, body) {
-      $body: map-get($vars, body);
-      padding: map-get($body, padding);
-    }
-  }
-
-  #{$context} #{$wrapper} [data-footer] {
-    @if map-has-key($vars, footer) {
-      $footer: map-get($vars, footer);
-      padding: map-get($footer, padding);
-    }
-  }
-
-  #{$context} #{$wrapper} [data-loading],
-  #{$context} #{$wrapper} [data-error],
-  #{$context} #{$wrapper} [data-success] {
+  #{$context} #{$wrapper} [data-help] {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -12px;
     right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    border-color: map-get($vars, background-color);
+    background-color: $jnt-secondary-background;
     border-radius: $jnt-corner-normal;
-    z-index: 1;
-    @if map-has-key($vars, overlay) {
-      $overlay: map-get($vars, overlay);
-      background-color: map-get($overlay, background-color);
-      @if map-has-key($overlay, icon) {
-        $icon: map-get($overlay, icon);
-        [data-icon] {
-          @include jnt-icon((
-            size: map-get($icon, size)
-          ), '&');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid map-get($vars, background);
+    @include jnt-icon((
+      size: 16px,
+      color: $jnt-primary-light-color,
+    ), '&');
+  }
+
+  #{$context} #{$wrapper} [data-block] {
+    border-radius: map-get($vars, corner);
+    overflow: hidden;
+
+    [data-title] {
+      text-align: center;
+      font-weight: $jnt-font-weight-bold;
+      color: map-get($vars, title-color);
+      border-bottom: 1px solid $jnt-secondary-color;
+      @if map-has-key($vars, header) {
+        $header: map-get($vars, header);
+        padding: map-get($header, padding);
+      }
+    }
+
+    [data-body] {
+      @if map-has-key($vars, body) {
+        $body: map-get($vars, body);
+        padding: map-get($body, padding);
+      }
+    }
+
+    [data-footer] {
+      @if map-has-key($vars, footer) {
+        $footer: map-get($vars, footer);
+        padding: map-get($footer, padding);
+      }
+    }
+
+    [data-loading], [data-error], [data-success] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $jnt-corner-normal;
+      z-index: 1;
+      @if map-has-key($vars, overlay) {
+        $overlay: map-get($vars, overlay);
+        background-color: map-get($overlay, background-color);
+        @if map-has-key($overlay, icon) {
+          $icon: map-get($overlay, icon);
+          [data-icon] {
+            @include jnt-icon((
+              size: map-get($icon, size)
+            ), '&');
+          }
         }
       }
     }
