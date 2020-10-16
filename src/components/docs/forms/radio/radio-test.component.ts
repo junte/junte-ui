@@ -25,12 +25,18 @@ export class RadioTestComponent implements OnInit {
   disableControl = this.fb.control(false);
   colsControl = this.fb.control(null);
   customControl = this.fb.control(false);
+  orientationControl = this.fb.control(false);
+  spacingControl = this.fb.control(false);
+  adaptedControl = this.fb.control(false);
 
   builder = this.fb.group({
     size: this.sizeControl,
     disable: this.disableControl,
     cols: this.colsControl,
-    custom: this.customControl
+    custom: this.customControl,
+    orientation: this.orientationControl,
+    spacing: this.spacingControl,
+    adapted: this.adaptedControl
   });
 
   heroControl = this.fb.control(Hero.spiderman, Validators.required);
@@ -45,6 +51,9 @@ export class RadioTestComponent implements OnInit {
   ngOnInit() {
     this.disableControl.valueChanges.subscribe(disabled =>
       disabled ? this.heroControl.disable({emitEvent: false}) : this.heroControl.enable({emitEvent: false}));
+
+    this.colsControl.valueChanges.subscribe(value =>
+      value > 1 ? this.orientationControl.disable() : this.orientationControl.enable());
   }
 
   submit() {

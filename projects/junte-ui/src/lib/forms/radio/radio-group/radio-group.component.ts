@@ -12,7 +12,11 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { map } from 'rxjs/operators';
+import { Breakpoint } from '../../../core/enums/breakpoint';
+import { Feature } from '../../../core/enums/feature';
+import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../../core/decorators/api';
+import { Gutter } from '../../../core/enums/gutter';
 import { Orientation } from '../../../core/enums/orientation';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
@@ -37,8 +41,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   @HostBinding('attr.host')
   readonly host = 'jnt-radio-group-host';
 
-  @HostBinding('attr.data-orientation')
-  _orientation = Orientation.vertical;
+  _orientation: Orientation = Orientation.vertical;
+  _spacing: Gutter = Gutter.small;
 
   private _size = Size.normal;
   selected: any;
@@ -61,7 +65,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   get orientation() {
-    return this._orientation;
+    return this.breakpoint.current === Breakpoint.mobile && this.features?.includes(Feature.adapted) ?
+      Orientation.vertical : this._orientation;
   }
 
   @PropertyApi({
@@ -87,6 +92,34 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
     return this._size;
   }
 
+  @PropertyApi({
+    description: 'Spacing between radio item',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.large,
+      Gutter.big,
+      Gutter.huge],
+    default: Gutter.normal
+  })
+  @Input() set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.small;
+  }
+
+  get spacing() {
+    return this._spacing;
+  }
+
+  @PropertyApi({
+    description: 'Adapted radio group on mobile view',
+    path: 'ui.feature',
+    options: [Feature.adapted]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
   @ViewChildren(RadioComponent)
   items: QueryList<RadioComponent>;
 
@@ -100,7 +133,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              private breakpoint: BreakpointService) {
   }
 
   ngAfterViewInit() {

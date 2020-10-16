@@ -24,24 +24,29 @@
                            i18n-title="@@label.your_hero">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [orientation]="ui.orientation.horizontal"
+                               [wrap]="ui.wrap.wrap"
+                               [spacing]="ui.gutter.normal"
                                [gutter]="ui.gutter.big">
                       <jnt-form-control name="hero">
                         <jnt-radio-group formControlName="hero"
+                                         [features]="adaptedControl.value ? [ui.feature.adapted] : null"
+                                         [orientation]="orientationControl.value"
+                                         [spacing]="spacingControl.value"
                                          [cols]="colsControl.value"
                                          [size]="sizeControl.value">
                           <jnt-radio label="Spiderman" [value]="hero.spiderman">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <strong>Spiderman custom template</strong>
+                              <strong>Spiderman</strong>
                             </ng-template>
                           </jnt-radio>
                           <jnt-radio label="Ironman" [value]="hero.ironman">
-                            <ng-template *ngIf="customControl.value" #labelTemplate>
-                              <jnt-input placeholder="Ironman custom template"></jnt-input>
+                            <ng-template *ngIf="customControl.value" #radioLabelTemplate>
+                              <jnt-input placeholder="Test"></jnt-input>
                             </ng-template>
                           </jnt-radio>
                           <jnt-radio label="Captain America" [value]="hero.captainAmerica">
-                            <ng-template *ngIf="customControl.value" #labelTemplate>
-                              <jnt-checkbox label="Captain America custom template"></jnt-checkbox>
+                            <ng-template *ngIf="customControl.value" #radioLabelTemplate>
+                              <jnt-checkbox label="Captain America"></jnt-checkbox>
                             </ng-template>
                           </jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
@@ -130,6 +135,63 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="orientation"
+                                  i18n="@@label.orientation">Orientation
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="orientation" placeholder="Vertical">
+                      <jnt-select-option label="Horizontal"
+                                         i18n-label="@@label.horizontal"
+                                         [icon]="localUi.icons.horizontal"
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
+                      <jnt-select-option label="Vertical"
+                                         i18n-label="@@label.vertical"
+                                         [icon]="localUi.icons.vertical"
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="spacing"
+                                  i18n="@@label.spacing">Spacing
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="spacing"
+                                placeholder="Small"
+                                i18n-placeholder="@@label.small">
+                      <jnt-select-option label="None"
+                                         i18n-label="@@label.none"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.padding.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.padding.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.padding.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.padding.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.padding.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.padding.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="cols"
                                   i18n="@@label.cols">Columns
                   </jnt-form-label>
@@ -139,6 +201,13 @@
                                          [label]="col"
                                          [key]="col"></jnt-select-option>
                     </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="adapted"
+                                  label="Adapted"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
@@ -223,6 +292,12 @@
                     <ng-container *ngIf="colsControl.value">
                       <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
                     </ng-container>
+                    <ng-container *ngIf="spacingControl.value">
+                      <![CDATA[ [spacing]="]]>{{spacingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="orientationControl.value">
+                      <![CDATA[ [orientation]="]]>{{orientationControl.value}}<![CDATA["]]>
+                    </ng-container>
                     <![CDATA[>
                     <jnt-radio value="Option 1" ]]>
                       <ng-container *ngIf="disableControl.value">
@@ -265,6 +340,7 @@
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
         <app-component-api selector="jnt-radio" [target]="types.radio"></app-component-api>
+        <app-component-api selector="jnt-radio-group" [target]="types.group"></app-component-api>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>
