@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -30,6 +31,7 @@ export class PopoverOptions {
   maxHeight = '500px';
   padding: Gutter = Gutter.normal;
   features: Feature[] = [Feature.smarty];
+  behaviour: Behaviour;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -92,35 +94,35 @@ export class PopoverComponent {
     switch (this.position) {
       case Position.top: {
         fullMaxHeight = rect.top - PADDING_SIZE;
-        if (this.options.features?.includes(Feature.dropdown)) {
+        if (this.options.behaviour === Behaviour.dropdown) {
           fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE;
         }
         break;
       }
       case Position.right: {
         fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE - rect.width;
-        if (this.options.features?.includes(Feature.dropdown)) {
+        if (this.options.behaviour === Behaviour.dropdown) {
           fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
         }
         break;
       }
       case Position.bottom: {
         fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
-        if (this.options.features?.includes(Feature.dropdown)) {
+        if (this.options.behaviour === Behaviour.dropdown) {
           fullMaxWidth = window.innerWidth - rect.left - PADDING_SIZE;
         }
         break;
       }
       case Position.rightBottom: {
         fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE - rect.height;
-        if (this.options.features?.includes(Feature.dropdown)) {
+        if (this.options.behaviour === Behaviour.dropdown) {
           fullMaxWidth = rect.right - PADDING_SIZE;
         }
         break;
       }
       case Position.left: {
         fullMaxWidth = rect.left - PADDING_SIZE;
-        if (this.options.features?.includes(Feature.dropdown)) {
+        if (this.options.behaviour === Behaviour.dropdown) {
           fullMaxHeight = window.innerHeight - rect.top - PADDING_SIZE;
         }
         break;
@@ -151,8 +153,10 @@ export class PopoverComponent {
             this.position = Position.bottom;
           } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
             this.position = Position.right;
-          } else {
+          } else if (rect.left - PADDING_SIZE - host.clientWidth > 0) {
             this.position = Position.left;
+          } else {
+            this.getMaxSizes();
           }
         }
         break;
@@ -164,8 +168,10 @@ export class PopoverComponent {
             this.position = Position.left;
           } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
             this.position = Position.bottom;
-          } else {
+          } else if (rect.top - PADDING_SIZE - host.clientHeight > 0) {
             this.position = Position.top;
+          } else {
+            this.getMaxSizes();
           }
         }
         break;
@@ -174,13 +180,16 @@ export class PopoverComponent {
       case Position.rightBottom: {
         const shift = offsetTop + PADDING_SIZE - this.target.clientHeight - host.clientHeight;
         if (position.top - shift > window.innerHeight) {
-          if (rect.top + PADDING_SIZE + host.clientHeight > 0) {
+          if (rect.top - PADDING_SIZE - host.clientHeight > 0) {
             this.position = Position.top;
           } else if (rect.right + PADDING_SIZE + host.clientWidth < window.innerWidth) {
             this.position = Position.right;
-          } else {
+          } else if (rect.left - PADDING_SIZE - host.clientWidth > 0) {
             this.position = Position.left;
+          } else {
+            this.getMaxSizes();
           }
+          console.log(this.position);
         }
         break;
       }
@@ -191,8 +200,10 @@ export class PopoverComponent {
             this.position = Position.right;
           } else if (rect.top + PADDING_SIZE + host.clientHeight < window.innerHeight) {
             this.position = Position.bottom;
-          } else {
+          } else if (rect.top - PADDING_SIZE - host.clientHeight > 0) {
             this.position = Position.top;
+          } else {
+            this.getMaxSizes();
           }
         }
         break;
@@ -261,7 +272,7 @@ export class PopoverComponent {
   show({nativeElement: target}: { nativeElement: HTMLElement }, options: Object = {}): void {
     this.target = target;
     this.options = new PopoverOptions(options);
-    this.minWidth = this.options.minWidth || (this.options.features?.includes(Feature.dropdown)
+    this.minWidth = this.options.minWidth || (this.options.behaviour === Behaviour.dropdown
       ? this.target.clientWidth + 'px' : null);
 
     // TODO: think to be better
@@ -272,7 +283,7 @@ export class PopoverComponent {
       {childList: true, subtree: true});
 
     this.renderer.setAttribute(this.hostRef.nativeElement, 'data-dropdown',
-      this.options.features?.includes(Feature.dropdown) ? 'true' : 'false');
+      this.options.behaviour === Behaviour.dropdown ? 'true' : 'false');
     this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'block');
     this.cd.detectChanges();
   }
@@ -293,7 +304,7 @@ export class PopoverComponent {
     let left = position.left - position.shiftX;
     let top = position.top - position.shiftY;
 
-    if (this.options.features?.includes(Feature.dropdown)) {
+    if (this.options.behaviour === Behaviour.dropdown) {
       this.getMaxSizes();
 
       if (this.position === Position.top || this.position === Position.bottom) {
@@ -309,7 +320,7 @@ export class PopoverComponent {
 
     this.renderer.setStyle(host, 'top', `${top}px`);
     this.renderer.setStyle(host, 'left', `${left}px`);
-    if (!this.options.features?.includes(Feature.dropdown)) {
+    if (this.options.behaviour !== Behaviour.dropdown) {
       switch (this.position) {
         case Position.top:
         case Position.bottom:

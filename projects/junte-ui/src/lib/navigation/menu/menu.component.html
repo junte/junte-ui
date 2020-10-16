@@ -14,7 +14,7 @@
               trigger: orientation === orientationEnum.horizontal || !collapsed
                 ? ui.trigger.click
                 : ui.trigger.hover,
-              features: features,
+              behaviour: ui.behaviour.dropdown,
               placement: placement
             }"
            (attached)="reference.popover = $event"
@@ -30,7 +30,7 @@
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
                   [disabled]="item.disabled"
-                  [features]="!!item.submenu ? [feature.dropdown] : null"
+                  [features]="!!item.submenu ? [ui.feature.dropdown] : null"
                   (click)="item.click.emit(); !item.submenu ? selected.emit(item) : null">
           <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
