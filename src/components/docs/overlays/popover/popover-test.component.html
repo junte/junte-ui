@@ -26,7 +26,8 @@
                                 content: contentTypeControl.value === 'default' ? 'Any text' : null,
                                 contentTemplate: contentTypeControl.value === 'custom' ? contentTemplate : null,
                                 position: layoutControl.value,
-                                features: dropdownControl.value ? [ui.feature.dropdown, ui.feature.smarty] : [ui.feature.smarty]
+                                behaviour: dropdownControl.value ? ui.behaviour.dropdown : null,
+                                features: [ui.feature.smarty]
                               }"
                               [text]="triggerControl.value == ui.trigger.click ? 'Click me' : 'Hover on me'"
                               i18n-text="@@action.click_me">

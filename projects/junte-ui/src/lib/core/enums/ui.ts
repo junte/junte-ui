@@ -1,3 +1,4 @@
+import { Behaviour } from './behaviour';
 import { MenuStyle } from './style';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
@@ -39,6 +40,7 @@ export class UI {
   static outline = Outline;
   static position = Position;
   static breakpoint = Breakpoint;
+  static behaviour = Behaviour;
   static shape = Shape;
   static orientation = Orientation;
   static width = Width;

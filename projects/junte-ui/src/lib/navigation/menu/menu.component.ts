@@ -1,12 +1,11 @@
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
-import { PopoverInstance } from '../../overlays/popover/popover.service';
 import { PropertyApi } from '../../core/decorators/api';
-import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
 import { Placement } from '../../core/enums/placement';
 import { MenuStyle } from '../../core/enums/style';
 import { UI } from '../../core/enums/ui';
+import { PopoverInstance } from '../../overlays/popover/popover.service';
 import { MenuItemComponent } from './menu-item.component';
 
 @Component({
@@ -20,11 +19,9 @@ export class MenuComponent {
   ui = UI;
   orientationEnum = Orientation;
   styleEnum = MenuStyle;
-  feature = Feature;
 
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
-  private _features: Feature[] = [Feature.dropdown];
 
   reference: { popover: PopoverInstance } = {popover: null};
 
@@ -77,20 +74,6 @@ export class MenuComponent {
 
   get placement() {
     return this._placement;
-  }
-
-  @PropertyApi({
-    description: 'Menu popover features',
-    type: 'Feature[]',
-    default: '[ui.feature.dropdown]'
-  })
-  @Input()
-  set features(features: Feature[]) {
-    this._features = !!features && !!features.length ? features : [Feature.dropdown];
-  }
-
-  get features() {
-    return this._features;
   }
 
   @PropertyApi({

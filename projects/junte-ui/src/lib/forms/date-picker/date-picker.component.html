@@ -7,7 +7,7 @@
                  [jntPopover]="{
                    contentTemplate: calendarTemplate,
                    trigger: ui.trigger.click,
-                   features: [ui.feature.dropdown],
+                   behaviour: ui.behaviour.dropdown,
                    minWidth: '300px'
                  }"
                  (attached)="reference.popover = $event"
@@ -35,7 +35,8 @@
                  [jntPopover]="{
                    contentTemplate: timeTemplate,
                    trigger: ui.trigger.click,
-                   features: [ui.feature.dropdown],
+                   behaviour: ui.behaviour.dropdown,
+                   features: [ui.feature.smarty],
                    minWidth: '150px'
                  }"
                  (attached)="reference.popover = $event"

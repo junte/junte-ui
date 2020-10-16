@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { Behaviour } from '../../core/enums/behaviour';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -486,7 +487,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     if (!this.mobile) {
       this.reference.popover = this.popover.show(this.hostRef, {
         contentTemplate: this.optionsTemplate,
-        features: [Feature.dropdown, Feature.smarty],
+        behaviour: Behaviour.dropdown,
         placement: this.placement
       });
       this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
