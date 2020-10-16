@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { PopoverModule } from '../../overlays/popover/popover.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../spinner/spinner.module';
 import { StackModule } from '../stack/stack.module';
@@ -13,7 +14,8 @@ import { BlockComponent } from './block.component';
     CommonModule,
     IconModule,
     SpinnerModule,
-    StackModule
+    StackModule,
+    PopoverModule
   ],
   entryComponents: [
     BlockComponent

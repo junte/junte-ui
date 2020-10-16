@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
-import { MethodApi, PropertyApi } from '../../core/decorators/api';
+import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
 import { State } from '../../core/enums/state';
@@ -42,6 +42,16 @@ export class BlockComponent {
   _state = {success: false};
 
   @HostBinding('attr.host') readonly host = 'jnt-block-host';
+
+  @HostBinding('attr.data-has-help')
+  get hasHelp() {
+    return !!this.blockHelpTemplate;
+  }
+
+  @HostBinding('attr.data-has-header')
+  get hasHader() {
+    return !!this.blockHeaderTemplate || !!this.title;
+  }
 
   @HostBinding('attr.data-padding')
   _padding = Gutter.normal;
@@ -117,6 +127,13 @@ export class BlockComponent {
   @HostBinding('attr.data-features')
   @Input()
   features: Feature[] = [];
+
+  @ContentApi({
+    selector: '#blockHelpTemplate',
+    description: 'block help template'
+  })
+  @ContentChild('blockHelpTemplate')
+  blockHelpTemplate: TemplateRef<any>;
 
   @ContentChild('blockHeaderTemplate')
   blockHeaderTemplate: TemplateRef<any>;

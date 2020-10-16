@@ -28,6 +28,7 @@ export class BlockTestComponent implements OnInit {
   headerControl = this.fb.control(false);
   stateControl = this.fb.control(null);
   adaptedControl = this.fb.control(false);
+  helpControl = this.fb.control(false);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -37,7 +38,8 @@ export class BlockTestComponent implements OnInit {
     header: this.headerControl,
     state: this.stateControl,
     width: this.widthControl,
-    adapted: this.adaptedControl
+    adapted: this.adaptedControl,
+    help: this.helpControl
   });
 
   constructor(private fb: FormBuilder) {
