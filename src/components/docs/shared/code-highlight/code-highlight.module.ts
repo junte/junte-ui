@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { LinkModule } from 'junte-ui';
 import { ClipboardModule } from 'ngx-clipboard';
 import { HighlightModule } from 'ngx-highlightjs';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { CodeHighlightComponent } from './code-highlight.component';
 
 @NgModule({
@@ -16,8 +15,7 @@ import { CodeHighlightComponent } from './code-highlight.component';
     HighlightModule
   ],
   exports: [CodeHighlightComponent],
-  declarations: [CodeHighlightComponent],
-  providers: [],
+  declarations: [CodeHighlightComponent]
 })
 export class CodeHighlightModule {
 }
