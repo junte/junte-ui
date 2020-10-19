@@ -19,7 +19,6 @@ import { AppHeaderActionComponent } from './header/action/app-header-action.comp
 import { AppHeaderActionsComponent } from './header/actions/app-header-actions.component';
 import { AppHeaderComponent } from './header/app-header.component';
 import { AppHeaderUserbarComponent } from './header/userbar/app-header-userbar.component';
-import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
 import { AppPageHeaderComponent } from './page-header/app-page-header.component';
 
 @NgModule({
@@ -41,7 +40,6 @@ import { AppPageHeaderComponent } from './page-header/app-page-header.component'
     AppHeaderActionComponent,
     AppHeaderActionsComponent,
     AppHeaderUserbarComponent,
-    AppSubHeaderComponent,
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,
@@ -54,7 +52,6 @@ import { AppPageHeaderComponent } from './page-header/app-page-header.component'
     AppHeaderComponent,
     AppHeaderActionsComponent,
     AppHeaderActionComponent,
-    AppSubHeaderComponent,
     AppContentComponent,
     AppBusynessComponent
   ],
@@ -64,7 +61,6 @@ import { AppPageHeaderComponent } from './page-header/app-page-header.component'
     AppHeaderActionComponent,
     AppHeaderActionsComponent,
     AppHeaderUserbarComponent,
-    AppSubHeaderComponent,
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,

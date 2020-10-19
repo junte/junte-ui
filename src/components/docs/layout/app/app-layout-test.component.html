@@ -65,10 +65,6 @@
                                   i18n-label="@@label.aside"></jnt-checkbox>
                   </jnt-col>
                   <jnt-col [span]="4">
-                    <jnt-checkbox formControlName="subHeader"
-                                  label="subHeader"></jnt-checkbox>
-                  </jnt-col>
-                  <jnt-col [span]="4">
                     <jnt-checkbox formControlName="footer"
                                   label="Footer"
                                   i18n-label="@@label.footer"></jnt-checkbox>
@@ -156,16 +152,15 @@
 
                   <ng-template #withoutAsideTemplate let-aside="aside">
                     <jnt-app-content [aside]="aside">
-                      <jnt-app-sub-header *ngIf="subHeaderControl.value"
-                                          (menu)="aside.toggle()">
-                        <jnt-breadcrumb></jnt-breadcrumb>
-                      </jnt-app-sub-header>
                       <jnt-app-body>
-                        <jnt-container>
-                          <jnt-block [width]="ui.width.fluid">
-                            <jnt-skeleton [lines]="8" [animated]="false"></jnt-skeleton>
-                          </jnt-block>
-                        </jnt-container>
+                        <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+                          <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
+                          <jnt-container>
+                            <jnt-block [width]="ui.width.fluid">
+                              <jnt-skeleton [lines]="8" [animated]="false"></jnt-skeleton>
+                            </jnt-block>
+                          </jnt-container>
+                        </jnt-stack>
                       </jnt-app-body>
                       <jnt-app-footer *ngIf="footerControl.value">
                         <p>
@@ -375,13 +370,9 @@
                         <![CDATA[ [aside]="aside">]]>
                       </ng-container>
                       <![CDATA[
-                      <jnt-app-sub-header *ngIf="subHeaderControl.value"
-                                          (burger)="sider.toggle()">
+                      <jnt-app-body>
                         <jnt-breadcrumb></jnt-breadcrumb>
-                      </jnt-app-sub-header>
-                      ]]>
-                      <![CDATA[
-                      <jnt-app-body></jnt-app-body>
+                      </jnt-app-body>
                       ]]>
                       <ng-container *ngIf="footerControl.value">
                         <![CDATA[
@@ -409,7 +400,6 @@
             <app-component-api selector="jnt-app-header-actions" [target]="types.actions"></app-component-api>
             <app-component-api selector="jnt-app-header-action" [target]="types.action"></app-component-api>
             <app-component-api selector="jnt-app-content" [target]="types.content"></app-component-api>
-            <app-component-api selector="app-sub-header" [target]="types.subHeader"></app-component-api>
           </jnt-stack>
         </ng-template>
       </jnt-tab>

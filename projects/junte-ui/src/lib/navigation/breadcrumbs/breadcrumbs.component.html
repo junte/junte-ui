@@ -1,7 +1,7 @@
-<jnt-stack *ngIf="breadcrumbs?.length"
+<jnt-stack *ngIf="breadcrumbs.length > 1"
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.small"
-           [spacing]="ui.gutter.small"
+           [spacing]="ui.gutter.tiny"
            [wrap]="ui.wrap.wrap"
            [align]="ui.align.center">
   <ng-container *ngFor="let crumb of breadcrumbs">

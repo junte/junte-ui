@@ -1,8 +1,10 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { PropertyApi } from '../../core/decorators/api';
+import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 import { UI } from '../../core/enums/ui';
 
 class Breadcrumb {
@@ -24,9 +26,27 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   private routerState$ = new BehaviorSubject<RouterState>(this.router.routerState);
   private subscriptions: Subscription[] = [];
 
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: Breadcrumb[] = [];
 
-  @HostBinding('attr.host') readonly host = 'jnt-breadcrumbs-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-breadcrumbs-host';
+
+  @HostBinding('attr.data-with-breadcrumbs')
+  get display() {
+    return this.breadcrumbs.length > 1;
+  }
+
+  @HostBinding('attr.data-with-aside')
+  get withAside() {
+    return !!this.aside;
+  }
+
+  @PropertyApi({
+    description: 'Support burger button for mobile devices',
+    type: 'AppAsideComponent'
+  })
+  @Input()
+  aside: AppAsideComponent;
 
   constructor(public router: Router,
               private titleService: Title,

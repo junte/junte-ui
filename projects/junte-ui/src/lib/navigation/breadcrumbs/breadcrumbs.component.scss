@@ -1,10 +1,22 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'elements/icon/icon';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   :host, #{$context} {
-    display: block;
+    display: flex;
+
+    &[data-with-breadcrumbs='true'] {
+      padding: $jnt-gutter-small $jnt-gutter-normal;
+    }
+
+    @include for-mobile() {
+      &[data-with-aside='true'] {
+        min-height: $app-aside-burger-height;
+        box-sizing: border-box;
+        padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
+      }
+    }
   }
 
   #{$context} a {
