@@ -1,11 +1,13 @@
-@import "jnt-variables";
-@import "layout/app/variables";
-@import "navigation/menu/menu";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'layout/app/variables';
+@import 'navigation/menu/menu';
+@import 'layout/responsive/responsive';
+@import 'forms/button/button';
 
 @mixin jnt-app-aside($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
+    display-burger: true,
     padding: $app-header-height 0 0 0,
     position: absolute,
     background: $jnt-primary-background,
@@ -73,8 +75,6 @@
       ),
       sub: (
         collapsed: (
-          position: fixed,
-          left: $app-aside-collapsed-width,
           item: (
             padding: 0 $jnt-gutter-normal,
           ),
@@ -100,8 +100,6 @@
   @include jnt-menu((
     sub: (
       collapsed: (
-        position: fixed,
-        left: $app-aside-collapsed-width,
         item: (
           padding: 0 $jnt-gutter-normal,
         ),
@@ -197,11 +195,15 @@
       color: $jnt-primary-text-color;
       font-size: 20px;
     }
+
+    @include for-mobile() {
+      display: none;
+    }
   }
 
   @include for-mobile() {
     :host, #{$context} {
-      &[data-opened="true"] {
+      &[data-opened='true'] {
         width: 100%;
 
         #{$wrapper} [data-overlay] {
@@ -215,7 +217,7 @@
         }
       }
 
-      &[data-opened="false"] {
+      &[data-opened='false'] {
         width: 0;
 
         #{$wrapper} [data-overlay] {
@@ -253,6 +255,26 @@
     transform: translate3d(0, 0, 0);
     transition: transform .3s linear, width .3s linear;
 
+    [data-burger] {
+      left: 100%;
+      position: absolute;
+
+      @include jnt-button((
+        without-text-corner: 0 $jnt-corner-small $jnt-corner-small 0,
+        shadow: 4px 2px 4px 0px rgba($jnt-black-color, 0.25),
+        schemes: (
+          secondary: (
+            color: $jnt-primary-background,
+            inverse-color: $jnt-primary-text-color,
+            hover-color: $jnt-primary-background,
+            focus: (
+              shadow: 4px 2px 4px 0px rgba($jnt-black-color, 0.25)
+            )
+          )
+        )
+      ), '&');
+    }
+
     [data-scroll] {
       width: 100%;
       height: 100%;
@@ -260,11 +282,11 @@
       overflow-x: hidden;
     }
 
-    &[data-collapsed="true"] {
+    &[data-collapsed='true'] {
       width: $app-aside-collapsed-width;
     }
 
-    &[data-collapsed="false"] {
+    &[data-collapsed='false'] {
       width: $app-aside-width;
     }
   }

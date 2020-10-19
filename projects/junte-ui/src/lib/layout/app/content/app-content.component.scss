@@ -2,7 +2,6 @@
 @import "layout/app/variables";
 @import "layout/responsive/responsive";
 @import "layout/app/body/app-body";
-@import "layout/app/sub-header/app-sub-header";
 
 @mixin jnt-app-content($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -43,22 +42,16 @@
       padding-left: $app-aside-collapsed-width;
     }
 
-    &[data-with-aside='false'] {
-      @include jnt-app-sub-header((display-burger: false));
-    }
-
     @include for-mobile() {
       padding-left: 0 !important;
     }
 
-    &[data-with-sub-header="false"] {
-      @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
-    }
+    @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
 
     &[data-with-footer="false"] {
-      @include jnt-app-body((height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height})));
+      @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
     }
-    &[data-with-sub-header="false"][data-with-footer="false"] {
+    [data-with-footer="false"] {
       @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
     }
   }

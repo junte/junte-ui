@@ -8,7 +8,6 @@ import { AppHeaderComponent } from 'junte-ui';
 import { AppHeaderActionsComponent } from 'junte-ui';
 import { AppHeaderActionComponent } from 'junte-ui';
 import { AppContentComponent } from 'junte-ui';
-import { AppSubHeaderComponent } from 'junte-ui';
 
 @Component({
   selector: 'app-layout-test',
@@ -25,8 +24,7 @@ export class AppLayoutTestComponent implements OnInit {
     header: AppHeaderComponent,
     actions: AppHeaderActionsComponent,
     action: AppHeaderActionComponent,
-    content: AppContentComponent,
-    subHeader: AppSubHeaderComponent
+    content: AppContentComponent
   };
 
   @ViewChild('code') code: TabComponent;
@@ -38,7 +36,6 @@ export class AppLayoutTestComponent implements OnInit {
   actionControl = this.fb.control(true);
   userMenuControl = this.fb.control(true);
   asideControl = this.fb.control(true);
-  subHeaderControl = this.fb.control(true);
   footerControl = this.fb.control(true);
 
   builder = this.fb.group({
@@ -49,7 +46,6 @@ export class AppLayoutTestComponent implements OnInit {
     action: this.actionControl,
     userMenu: this.userMenuControl,
     aside: this.asideControl,
-    subHeader: this.subHeaderControl,
     footer: this.footerControl
   });
 

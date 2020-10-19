@@ -1,4 +1,6 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { BreakpointService } from '../../responsive/breakpoint.service';
+import { Breakpoint } from '../../../core/enums/breakpoint';
 import { UI } from '../../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../../core/i18n/providers';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
@@ -19,7 +21,7 @@ export class AppAsideComponent implements OnInit {
 
   @Input()
   set collapsed(collapsed: boolean) {
-    this._collapsed = collapsed || false;
+    this._collapsed = this.breakpoint.current === Breakpoint.mobile ? false : (collapsed || false);
     localStorage.setItem(ASIDE_STATE, JSON.stringify(collapsed));
   }
 
@@ -35,6 +37,9 @@ export class AppAsideComponent implements OnInit {
 
   @HostBinding('attr.data-opened')
   @Input() opened = false;
+
+  constructor(private breakpoint: BreakpointService) {
+  }
 
   ngOnInit() {
     this.collapsed = JSON.parse(localStorage.getItem(ASIDE_STATE));

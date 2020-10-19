@@ -1,7 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/badge/badge";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'elements/badge/badge';
+@import 'elements/icon/icon';
 
 @mixin button-fill($scheme, $wrapper) {
   #{$wrapper} button {
@@ -16,8 +16,12 @@
       background-color: map-get($scheme, hover-color);
     }
 
-    &:focus {
-      box-shadow: 0 1px 5px map-get($scheme, color);
+    @if map-has-key($scheme, focus) {
+      $focus: map-get($scheme, focus);
+
+      &:focus {
+        box-shadow: map-get($focus, shadow);
+      }
     }
 
     [data-badge] {
@@ -56,8 +60,12 @@
       }
     }
 
-    &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, color)};
+    @if map-has-key($scheme, focus) {
+      $focus: map-get($scheme, focus);
+
+      &:focus {
+        box-shadow: map-get($focus, shadow);
+      }
     }
 
     [data-badge] {
@@ -157,7 +165,7 @@
     height: map-get($size, height);
     font-size: map-get($size, font-size);
   }
-  &[data-with-text="false"] {
+  &[data-with-text='false'] {
     #{$wrapper} button {
       padding: map-get($size, padding-without-text);
     }
@@ -169,6 +177,7 @@
   $defs: (
     corner: $jnt-corner-large,
     border: null,
+    shadow: null,
     corners: (
       top: (
         left: null,
@@ -201,21 +210,33 @@
         color: $jnt-primary-color,
         inverse-color: $jnt-white-color,
         hover-color: $jnt-primary-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-primary-color
+        )
       ),
       secondary: (
         color: $jnt-secondary-color,
         inverse-color: $jnt-primary-text-color,
-        hover-color: $jnt-secondary-dark-color
+        hover-color: $jnt-secondary-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-secondary-color
+        )
       ),
       success: (
         color: $jnt-success-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-success-dark-color
+        hover-color: $jnt-success-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-success-color
+        )
       ),
       fail: (
         color: $jnt-fail-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-fail-dark-color
+        hover-color: $jnt-fail-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-fail-color
+        )
       ),
     ),
     sizes: (
@@ -402,7 +423,7 @@
       }
     }
 
-    &[data-with-text="false"] {
+    &[data-with-text='false'] {
       #{$wrapper} button {
         border-radius: map-get($vars, without-text-corner);
         @if map-has-key($vars, corners) {
@@ -426,6 +447,7 @@
   #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
+    box-shadow: map-get($vars, shadow);
     text-transform: map-get($vars, text-transform);
     font-weight: map-get($vars, font-weight);
     @if map-has-key($vars, icon) {
