@@ -6,8 +6,7 @@
     <div data-top>
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
-              contentTemplate: collapsed || (orientation === orientationEnum.horizontal && !!item.submenu)
-                ? submenuTemplate : null,
+              contentTemplate: submenuTemplate,
               position: orientation === orientationEnum.vertical
                 ? ui.position.right
                 : ui.position.bottom,
@@ -15,7 +14,8 @@
                 ? ui.trigger.click
                 : ui.trigger.hover,
               behaviour: ui.behaviour.dropdown,
-              placement: placement
+              placement: placement,
+              active: !!item.submenu && (collapsed || orientation === orientationEnum.horizontal)
             }"
            (attached)="reference.popover = $event"
            (removed)="reference.popover = null">
@@ -52,7 +52,7 @@
              [attr.data-opened]="item.opened"
              [attr.data-orientation]="orientation"
              [attr.data-collapsed]="collapsed">
-          <ng-container *ngIf="!!item.submenu; else only">
+          <ng-container *ngIf="!!item.submenu">
             <div data-section *ngIf="!headless">
               <span>
                 {{item.title}}
@@ -76,23 +76,6 @@
               </jnt-badge>
             </jnt-link>
           </ng-container>
-
-          <ng-template #only>
-            <jnt-link data-link
-                      [title]="item.title"
-                      [icon]="item.icon"
-                      [matching]="item.matching"
-                      [source]="item.link?.source"
-                      [scheme]="item.scheme"
-                      [target]="item.target">
-              <jnt-badge *ngFor="let badge of item.badges"
-                         [value]="badge.value"
-                         [text]="badge.text"
-                         [position]="ui.position.inline"
-                         [color]="badge.color">
-              </jnt-badge>
-            </jnt-link>
-          </ng-template>
         </div>
       </ng-template>
     </div>

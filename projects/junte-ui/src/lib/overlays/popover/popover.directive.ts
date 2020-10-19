@@ -90,7 +90,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   private show() {
-    if (this.options.content || this.options.contentTemplate) {
+    if ((this.options.content || this.options.contentTemplate) && this.options.active) {
       this.instance = this.popover.show(this.hostRef, this.options);
       this.attached.emit(this.instance);
     }
