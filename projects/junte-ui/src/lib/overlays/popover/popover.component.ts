@@ -32,6 +32,7 @@ export class PopoverOptions {
   padding: Gutter = Gutter.normal;
   features: Feature[] = [Feature.smarty];
   behaviour: Behaviour;
+  active: boolean = true;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
