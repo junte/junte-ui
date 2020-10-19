@@ -162,6 +162,13 @@
       padding: map-get($size, padding-without-text);
     }
   }
+  &[data-outline='transparent'] {
+    #{$wrapper} button {
+      padding-left: $jnt-gutter-small;
+      padding-right: $jnt-gutter-small;
+      border-radius: 0;
+    }
+  }
 }
 
 @mixin jnt-button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
