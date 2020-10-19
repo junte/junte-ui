@@ -6,10 +6,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JunteUiModule, ModalModule, PopoverModule } from 'junte-ui';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { CURRENT_LANGUAGE, JUNTE_UI_CONFIG } from 'src/consts';
 import { Language } from 'src/enums/language';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+export function getHighlightLanguages() {
+  return {
+    typescript: () => import('highlight.js/lib/languages/typescript'),
+    scss: () => import('highlight.js/lib/languages/scss'),
+    xml: () => import('highlight.js/lib/languages/xml')
+  };
+}
 
 enum Currencies {
   rur = 'rur',
@@ -81,8 +90,18 @@ providers.push({
     AppRoutingModule,
     PopoverModule,
     ModalModule,
+    HighlightModule
   ],
-  providers: providers,
+  providers: [
+    ...providers,
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        lineNumbersLoader: () => import('highlightjs-line-numbers.js'),
+        languages: getHighlightLanguages()
+      }
+    }],
   bootstrap: [
     AppComponent
   ]

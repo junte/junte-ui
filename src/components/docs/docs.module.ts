@@ -15,59 +15,40 @@ import {
 } from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
 import { ComponentsModule } from 'src/components/docs/components/components.module';
+import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 import { AppFooterModule } from '../footer/app-footer.module';
-import { ModalTestModule } from './overlays/modal/modal-test.module';
-import { JUNTE_UI_CONFIG } from 'src/consts';
 import { OutletModule } from '../outlet/outlet.module';
 import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
-import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
-
-import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-
-export function getHighlightLanguages() {
-  return {
-    typescript: () => import('highlight.js/lib/languages/typescript'),
-    scss: () => import('highlight.js/lib/languages/scss'),
-    xml: () => import('highlight.js/lib/languages/xml')
-  };
-}
+import { ModalTestModule } from './overlays/modal/modal-test.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HighlightModule,
-        OutletModule,
-        AppLayoutModule,
-        MenuModule,
-        BreadcrumbsModule,
-        ThemeSwitcherModule,
-        PopoverModule,
-        ModalModule,
-        StackModule,
-        BadgeModule,
-        TranslateModule,
-        SelectLangModule,
-        AppFooterModule,
-        DocsRoutingModule,
-        ModalTestModule,
-        ResponsiveModule,
-        ComponentsModule,
-        AnalyticsDirectivesModule
-    ],
-  declarations: [
-    DocsComponent,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HighlightModule,
+    OutletModule,
+    AppLayoutModule,
+    MenuModule,
+    BreadcrumbsModule,
+    ThemeSwitcherModule,
+    PopoverModule,
+    ModalModule,
+    StackModule,
+    BadgeModule,
+    TranslateModule,
+    SelectLangModule,
+    AppFooterModule,
+    DocsRoutingModule,
+    ModalTestModule,
+    ResponsiveModule,
+    ComponentsModule,
+    AnalyticsDirectivesModule
   ],
-  providers: [
-    {
-      provide: HIGHLIGHT_OPTIONS,
-      useValue: {
-        languages: getHighlightLanguages()
-      }
-    }
+  declarations: [
+    DocsComponent
   ]
 })
 export class DocsModule {
