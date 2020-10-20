@@ -52,6 +52,8 @@
 
     [data-wrapper] {
       position: relative;
+      text-decoration: none;
+      display: block;
       &:after {
         content: '';
         position: absolute;
@@ -72,11 +74,6 @@
           display: block;
           background-color: $jnt-secondary-dark-color;
         }
-      }
-
-      &:focus {
-        outline: 0;
-        box-shadow: inset $jnt-outline-shadow-small rgba($jnt-primary-light-color, .5);
       }
 
       &[data-active='true'] {

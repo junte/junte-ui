@@ -23,9 +23,9 @@
 </ng-template>
 
 <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
-  <div data-wrapper *ngFor="let tab of tabs;let i = index"
+  <a href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
-       (click)="active = i" tabindex="0">
+       (click)="active = i; $event.preventDefault()">
     <div data-tab>
       <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
         <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
@@ -40,7 +40,7 @@
       </ng-template>
       <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
     </div>
-  </div>
+  </a>
 </jnt-stack>
 <ng-container *ngFor="let tab of tabs;let i = index">
   <div data-content *ngIf="i === active && tab.tabContentTemplate"
