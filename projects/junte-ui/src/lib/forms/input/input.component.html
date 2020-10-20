@@ -5,7 +5,7 @@
     <jnt-icon data-label-icon *ngIf="!!icon && !label && !multiline"
               [icon]="icon"></jnt-icon>
 
-    <input #input *ngIf="!!mask; else inputTemplate"
+    <input #maskedInput *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
            type="tel"
            [name]="name"
@@ -19,6 +19,7 @@
 
     <ng-template #inputTemplate>
       <input *ngIf="!multiline; else textareaTemplate"
+             #valueInput
              formControlName="input"
              [name]="name"
              [type]="type === inputType.password && view.password.display ? inputType.text : type"

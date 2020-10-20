@@ -24,9 +24,10 @@
                   <jnt-stack [gutter]="ui.gutter.small">
                     <div>Write <b>yes</b> here if you are happy</div>
                     <div>Value: {{inputControl.value || 'null'}}</div>
-                    <jnt-button text="Test" (click)="test()"></jnt-button>
+                    <jnt-button text="Test" (click)="test(); testInput.focus()"></jnt-button>
                     <jnt-input formControlName="input"
                                name="test-input"
+                               #testInput
                                [type]="typeControl.value"
                                [scheme]="schemeControl.value"
                                [state]="statesControl.value"
