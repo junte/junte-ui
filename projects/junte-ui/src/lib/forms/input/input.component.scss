@@ -110,7 +110,6 @@
       background-color: $jnt-control-background;
       color: $jnt-primary-text-color;
       border-radius: $jnt-corner-small;
-      width: map-get($vars, width);
       border: 1px solid;
       line-height: 1;
       box-sizing: border-box;
@@ -125,6 +124,8 @@
         outline: 0;
       }
     }
+
+    width: map-get($vars, width);
 
     @if map-has-key($vars, scheme) {
       $schemes: map-get($vars, scheme);
