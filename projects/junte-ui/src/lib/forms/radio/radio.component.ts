@@ -78,7 +78,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   }
 
   writeValue(value: boolean) {
-    this.radioControl.setValue(!!value, {emitEvent: false});
+    this.radioControl.setValue(value, {emitEvent: false});
   }
 
   setDisabledState(disabled: boolean) {
