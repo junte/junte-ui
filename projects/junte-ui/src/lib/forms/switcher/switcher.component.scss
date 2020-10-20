@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-utils";
 @import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/skeleton/skeleton";
@@ -36,13 +37,14 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-text();
       display: inline-block;
       position: relative;
+
       &[data-width='fluid'] {
         width: 100%;
       }
       #{$wrapper} [data-options] {
-
         [data-option] {
           background-color: $jnt-primary-background;
           color: $jnt-primary-text-color;
