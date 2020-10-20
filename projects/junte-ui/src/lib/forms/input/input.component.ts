@@ -63,8 +63,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     formatted: this.formattedControl
   });
 
-  @ViewChild('input', {read: ElementRef, static: false})
-  input: ElementRef;
+  @ViewChild('valueInput', {read: ElementRef, static: false})
+  valueInput: ElementRef;
+
+  @ViewChild('maskedInput', {read: ElementRef, static: false})
+  maskedInput: ElementRef;
 
   @HostBinding('attr.data-focused')
   focused = false;
@@ -298,11 +301,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
     this.formattedControl.valueChanges.pipe(
       distinctUntilChanged(),
-      filter(() => !!this.input),
+      filter(() => !!this.maskedInput),
       map(formatted => !!formatted ? formatted : this.mask)
     ).subscribe(formatted => {
       const position = formatted.indexOf(DIGIT_MASK_CHAR);
-      this.input.nativeElement.setSelectionRange(position, position);
+      this.maskedInput.nativeElement.setSelectionRange(position, position);
 
       let cleared = {input: null, formatted: null};
       for (let i = 0; i < this.mask.length; i++) {
@@ -425,5 +428,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.inputControl.setValue(null);
     this.formattedControl.setValue(this.mask);
     event.stopPropagation();
+  }
+
+  focus() {
+    if (!!this.valueInput) {
+      this.valueInput.nativeElement.focus();
+    } else if (!!this.maskedInput) {
+      this.maskedInput.nativeElement.focus();
+    }
   }
 }
