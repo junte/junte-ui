@@ -171,7 +171,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   writeValue(value: any) {
-    this.selected = value || null;
+    this.selected = value;
     this.update();
   }
 
