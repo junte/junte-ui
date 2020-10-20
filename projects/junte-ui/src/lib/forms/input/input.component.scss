@@ -18,7 +18,9 @@
       size: map-get($size, state-icon),
     ), '&');
   }
-  #{$wrapper} [data-warning], #{$wrapper} [data-checked] {
+  #{$wrapper} [data-warning],
+  #{$wrapper} [data-checked],
+  #{$wrapper} [data-view] [data-icon] {
     [data-icon] {
       @include jnt-icon((
         size: map-get($size, state-icon),
@@ -177,8 +179,7 @@
         &[data-size = '#{$size}'] {
           @include input-size($map, $wrapper);
 
-          #{$wrapper} [data-label-icon],
-          #{$wrapper} [data-reset] [data-icon] {
+          #{$wrapper} [data-label-icon] {
             @include jnt-icon((
               size: map-get($map, icon),
               color: $jnt-primary-text-light-color,
@@ -290,7 +291,7 @@
       [data-view], [data-reset] {
         border: 0;
         background-color: transparent;
-        color: $jnt-primary-color;
+        color: $jnt-primary-text-light-color;
         cursor: pointer;
         padding: 0;
         line-height: 1;
