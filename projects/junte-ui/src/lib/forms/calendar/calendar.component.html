@@ -33,7 +33,8 @@
                   period = addYears(period, 1) : period = addYears(period, 12)">
       </jnt-button>
     </td>
-    <td *ngIf="metrics.length"
+    <td data-metrics
+        *ngIf="metrics.length"
         [translate]="'label.metrics'"
         [attr.colspan]="metrics.length">
       Metrics

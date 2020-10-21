@@ -13,6 +13,9 @@
         color: $jnt-white-color,
       ),
     ),
+    metrics: (
+      width: null,
+    ),
   );
 
   $vars: $passed;
@@ -47,7 +50,7 @@
   }
 
   #{$wrapper} #{$context} table {
-    table-layout: auto;
+    table-layout: fixed;
     border-spacing: 0;
     width: 100%;
 
@@ -91,8 +94,11 @@
         }
       }
 
-      .sortable {
-        cursor: pointer;
+      [data-metrics] {
+        @if map-has-key($vars, metrics) {
+          $metrics: map-get($vars, metrics);
+          width: map-get($metrics, width);
+        }
       }
     }
 
