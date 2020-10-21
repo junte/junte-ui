@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 import sdk from '@stackblitz/sdk';
-import { CardComponent, TabComponent, UI } from 'junte-ui';
-import { LocalUI } from 'src/enums/local-ui';
+import {CardComponent, TabComponent, UI} from 'junte-ui';
+import {LocalUI} from 'src/enums/local-ui';
 
 enum Types {
   url = 'url',
@@ -66,18 +66,20 @@ export class CardTestComponent implements OnInit {
       .subscribe(() => this.code.flash());
   }
 
-  show() {
-    setTimeout(() => sdk.embedProjectId(
-      this.example.nativeElement,
-      'junte-ui-test',
-      {
-        openFile: 'src/app/app.component.ts',
-        view: 'preview',
-        hideExplorer: true,
-        hideNavigation: true,
-        forceEmbedLayout: true,
-        height: 500
-      }
-    ));
+  selected(active: number) {
+    if (active === 3) {
+      setTimeout(() =>
+        sdk.embedProjectId(
+          this.example.nativeElement,
+          'junte-ui-test',
+          {
+            openFile: 'card',
+            view: 'preview',
+            hideExplorer: true,
+            hideNavigation: true,
+            forceEmbedLayout: true,
+            height: 500
+          }));
+    }
   }
 }
