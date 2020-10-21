@@ -26,9 +26,11 @@
                                 [labelField]="'name'"
                                 placeholder="Select your hero"
                                 i18n-placeholder="@@label.select_your_hero"
-                                [allowEmpty]="allowEmptyControl.value"
                                 [mode]="modeControl.value"
-                                [features]="searchControl.value ? [ui.feature.search] : []"
+                                [features]="[
+                                  searchControl.value ? ui.feature.search : null,
+                                  allowEmptyControl.value ? ui.feature.allowEmpty : null
+                                ]"
                                 [size]="sizeControl.value"
                                 [loader]="search()"
                                 [icon]="iconControl.value ? ui.icons.user : null"

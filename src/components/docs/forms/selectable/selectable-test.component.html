@@ -27,7 +27,7 @@
                                   value: hero.id,
                                   mode: modeControl.value,
                                   enabled: !disabledControl.value,
-                                  allowEmpty: allowEmptyControl.value
+                                  features: allowEmptyControl.value ? [ui.feature.allowEmpty] : []
                                 }">
                         <div>{{hero.name}}</div>
                       </jnt-card>
@@ -175,7 +175,7 @@ export class SelectableTestComponent implements OnInit {
 <jnt-block [jntSelectable]="{
     mode: modeControl.value,
     enabled: !disabledControl.value,
-    allowEmpty: allowEmptyControl.value
+    features: allowEmptyControl.value ? [ui.feature.allowEmpty] : []
   }" ]]>
 <![CDATA[[allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
 <ng-container *ngIf="modeControl.value">

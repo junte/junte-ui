@@ -86,7 +86,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   @PropertyApi({
     description: 'Button for reset input',
     path: 'ui.feature',
-    options: [Feature.clear],
+    options: [Feature.allowEmpty],
   })
   @HostBinding('attr.data-features')
   @Input()

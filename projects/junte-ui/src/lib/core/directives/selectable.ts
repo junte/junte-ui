@@ -13,6 +13,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { UI } from '../enums/ui';
+import { Feature } from '../enums/feature';
 import { PropertyApi } from '../decorators/api';
 
 enum SelectMode {
@@ -28,7 +30,7 @@ class Config {
   mode: SelectMode;
   value: any;
   enabled: true;
-  allowEmpty: boolean;
+  features: Feature[];
 
   constructor(defs: any = null) {
     if (!!defs) {
@@ -63,7 +65,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   config: Config = new Config({
     mode: SelectMode.single,
     enabled: true,
-    allowEmpty: true
+    features: [UI.feature.allowEmpty]
   });
 
   @HostBinding('attr.data-disabled')
@@ -80,7 +82,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Selectable configuration',
-    type: '{mode?: SelectMode, value: any, enabled?: boolean, allowEmpty?: boolean}',
+    type: '{mode?: SelectMode, value: any, enabled?: boolean, features?: Feature[]}',
     default: '{}'
   })
   @Input('jntSelectable')
@@ -88,7 +90,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
     mode?: SelectMode,
     value: any,
     enabled?: boolean,
-    allowEmpty?: boolean
+    features?: Feature[]
   }) {
     Object.assign(this.config, config);
   }
@@ -119,7 +121,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
 
   @HostListener('click')
   select() {
-    const {mode, value, enabled, allowEmpty} = this.config;
+    const {mode, value, enabled, features} = this.config;
     if (!enabled) {
       return;
     }
@@ -129,7 +131,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
         const current = this.state.length > 0 ? this.state[0] : null;
         if (!!current) {
           const same = isEqual(current, value);
-          if (same && !allowEmpty) {
+          if (same && !features.includes(UI.feature.allowEmpty)) {
             return;
           }
           this.state = same ? [] : [value];

@@ -26,13 +26,15 @@ import { SwitcherOptionComponent } from './switcher-option.component';
 })
 export class SwitcherComponent implements ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-switcher-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-switcher-host';
 
   ui = UI;
   selectMode = SelectMode;
   feature = Feature;
 
-  _orientation: Orientation = Orientation.horizontal;
+  private _features: Feature[] = [];
+  private _orientation: Orientation = Orientation.horizontal;
 
   @HostBinding('attr.data-width')
   _width: Width = Width.default;
@@ -85,22 +87,24 @@ export class SwitcherComponent implements ControlValueAccessor {
     return this._mode;
   }
 
-  @PropertyApi({
-    description: 'Select allow empty',
-    type: 'boolean',
-    default: 'true'
-  })
   @HostBinding('attr.data-allow-empty')
-  @Input() allowEmpty = true;
+  allowEmpty = true;
 
   @PropertyApi({
     description: 'Add badge with the number of selected items; Select all item in switcher',
     path: 'ui.feature',
-    options: [Feature.badge, Feature.selectAll]
+    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty]
   })
   @HostBinding('attr.data-features')
   @Input()
-  features: Feature[] = [];
+  set features(features: Feature[]) {
+    this._features = features || [];
+    this.allowEmpty = this.features.includes(Feature.allowEmpty);
+  }
+
+  get features() {
+    return this._features;
+  }
 
   @PropertyApi({
     description: 'Display marks',

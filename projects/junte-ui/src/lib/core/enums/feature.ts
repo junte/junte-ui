@@ -4,7 +4,7 @@ export enum Feature {
   badge = 'badge',
   dropdown = 'dropdown',
   selectAll = 'selectAll',
-  clear = 'clear',
+  allowEmpty = 'allowEmpty',
   search = 'search',
   smarty = 'smarty',
   reload = 'reload',
