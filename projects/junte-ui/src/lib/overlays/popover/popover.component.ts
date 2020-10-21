@@ -190,7 +190,6 @@ export class PopoverComponent {
           } else {
             this.getMaxSizes();
           }
-          console.log(this.position);
         }
         break;
       }

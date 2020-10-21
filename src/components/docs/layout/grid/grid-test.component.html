@@ -48,7 +48,7 @@
                   <jnt-form-item>
                     <jnt-form-label for="count">Column count</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="count" placeholder="1" [allowEmpty]="false">
+                      <jnt-select formControlName="count" placeholder="1" [features]="ui.feature.allowEmpty">
                         <jnt-select-option *ngFor="let count of 24 | mockArray: 1"
                                            [label]="count"
                                            [key]="count"></jnt-select-option>

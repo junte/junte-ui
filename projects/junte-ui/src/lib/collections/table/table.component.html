@@ -17,7 +17,7 @@
       <jnt-input data-search *ngIf="features | includes : ui.feature.search"
                  formControlName="q"
                  [icon]="ui.icons.search"
-                 [features]="[ui.feature.clear]"
+                 [features]="[ui.feature.allowEmpty]"
                  [placeholder]="'label.search' | translate">
       </jnt-input>
     </jnt-stack>
@@ -100,7 +100,7 @@
           <jnt-pager data-pages formControlName="offset"
                      [count]="count" [pageSize]="firstControl.value">
           </jnt-pager>
-          <jnt-select formControlName="first" [size]="ui.size.small" [allowEmpty]="false">
+          <jnt-select formControlName="first" [size]="ui.size.small" [features]="[ui.feature.allowEmpty]">
             <jnt-select-option label="10" key="10"></jnt-select-option>
             <jnt-select-option label="20" key="20"></jnt-select-option>
             <jnt-select-option label="30" key="30"></jnt-select-option>

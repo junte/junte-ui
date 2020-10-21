@@ -30,12 +30,13 @@
                         <jnt-form-control name="hero">
                           <jnt-switcher formControlName="hero"
                                         [loading]="loadingControl.value"
-                                        [features]="indicatorControl.value ? [ui.feature.badge] :
-                                                    selectAllControl.value ? [ui.feature.selectAll] :
-                                                    indicatorControl.value && selectAllControl.value ? [ui.feature.badge, ui.feature.selectAll] : null"
+                                        [features]="[
+                                          indicatorControl.value ? ui.feature.badge : null,
+                                          selectAllControl.value ? ui.feature.selectAll : null,
+                                          allowEmptyControl.value ? ui.feature.allowEmpty : null
+                                        ]"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
-                                        [allowEmpty]="allowEmptyControl.value"
                                         [marks]="marksControl.value"
                                         [orientation]="orientationControl.value">
                             <jnt-switcher-option label="No one"
@@ -379,10 +380,6 @@ export class SwitcherTestComponent {
   <ng-container *ngIf="modeControl.value">
     <![CDATA[
     [mode]="ui.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="!allowEmptyControl.value">
-    <![CDATA[
-    [allowEmpty]="]]>{{allowEmptyControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="indicatorControl.value">
     <![CDATA[

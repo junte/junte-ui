@@ -20,8 +20,8 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { Behaviour } from '../../core/enums/behaviour';
 import { PropertyApi } from '../../core/decorators/api';
+import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Placement } from '../../core/enums/placement';
@@ -87,7 +87,8 @@ const SEARCH_DELAY = 100;
 })
 export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-select-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-select-host';
 
   private reference: { popover: PopoverInstance } = {popover: null};
   private destroyed = false;
@@ -163,14 +164,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @Input()
   label: string;
 
-  @PropertyApi({
-    description: 'Select allow empty',
-    type: 'boolean',
-    default: 'true'
-  })
   @HostBinding('attr.data-allow-empty')
-  @Input()
   allowEmpty = true;
+
+  @HostBinding('attr.data-search')
+  search = true;
 
   @PropertyApi({
     description: 'Icon for select',
@@ -266,15 +264,16 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @PropertyApi({
     description: 'Select features',
     path: 'ui.feature',
-    options: [Feature.search, Feature.multiplex]
+    options: [Feature.search, Feature.multiplex, Feature.allowEmpty]
   })
-  @HostBinding('attr.data-search')
   @Input()
   set features(features: Feature[]) {
     this._features = features || [];
     this.features.includes(Feature.search)
       ? this.queryControl.enable({emitEvent: false})
       : this.queryControl.disable({emitEvent: false});
+    this.allowEmpty = this.features.includes(Feature.allowEmpty);
+    this.search = this.features.includes(Feature.search);
   }
 
   get features() {

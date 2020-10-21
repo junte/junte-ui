@@ -43,7 +43,7 @@
                                [transform]="transformControl.value"
                                [step]="stepControl.value"
                                [autocomplete]="autocompleteControl.value ? ui.input.autocomplete.on : ui.input.autocomplete.off"
-                               [features]="clearControl.value ? [ui.feature.clear] : null"
+                               [features]="allowEmptyControl.value ? [ui.feature.allowEmpty] : null"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
@@ -234,8 +234,8 @@
                                     i18n-label="@@label.mask"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="clear"
-                                    label="Clear"></jnt-checkbox>
+                      <jnt-checkbox formControlName="allowEmpty"
+                                    label="Allow empty"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-form-item>
@@ -385,8 +385,8 @@ export class InputTestComponent implements OnInit {
   <ng-container *ngIf="stepControl.value">
     <![CDATA[[step]="]]>{{stepControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="clearControl.value">
-    <![CDATA[[features]="[ui.feature.clear]"]]>
+  <ng-container *ngIf="allowEmptyControl.value">
+    <![CDATA[[features]="[ui.feature.allowEmpty]"]]>
   </ng-container>
   <ng-container *ngIf="maskControl.value">
     <![CDATA[[mask]="+7(___) ___-__-__"]]>
