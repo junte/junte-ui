@@ -1,10 +1,10 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
-import { PropertyApi } from '../../core/decorators/api';
-import { Feature } from '../../core/enums/feature';
-import { Outline } from '../../core/enums/outline';
-import { UI } from '../../core/enums/ui';
-import { TabComponent } from './tab.component';
+import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList} from '@angular/core';
+import {PropertyApi} from '../../core/decorators/api';
+import {Feature} from '../../core/enums/feature';
+import {Outline} from '../../core/enums/outline';
+import {UI} from '../../core/enums/ui';
+import {TabComponent} from './tab.component';
 
 @Component({
   selector: 'jnt-tabs',
@@ -46,8 +46,13 @@ import { TabComponent } from './tab.component';
 export class TabsComponent {
 
   ui = UI;
-  active = 0;
   feature = Feature;
+
+  @Input()
+  active = 0;
+
+  @Output()
+  changed = new EventEmitter<number>();
 
   @HostBinding('attr.host')
   readonly host = 'jnt-tabs-host';
