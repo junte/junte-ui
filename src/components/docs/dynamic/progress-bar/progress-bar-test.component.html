@@ -20,6 +20,10 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-progress-bar [value]="valueControl.value">
+
+                  <jnt-progress-line [from]=45 [color]="ui.color.green"></jnt-progress-line>
+                  <jnt-progress-line [from]=30 [color]="ui.color.yellow"></jnt-progress-line>
+                  <jnt-progress-line [from]=60 [color]="ui.color.red"></jnt-progress-line>
                   <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
                     <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
                                [justify]="ui.justify.between">
@@ -27,7 +31,9 @@
                       <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
                     </jnt-stack>
                   </ng-template>
+
                 </jnt-progress-bar>
+
               </ng-template>
             </app-browser-preview>
           </jnt-col>
