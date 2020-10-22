@@ -91,6 +91,9 @@ export class MenuComponent {
     return this._spacing;
   }
 
+  @Input()
+  context: string;
+
   @Output()
   selected = new EventEmitter<MenuItemComponent>();
 
