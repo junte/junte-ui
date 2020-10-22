@@ -3,12 +3,6 @@
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
 
-@mixin block-padding($padding, $wrapper) {
-  & {
-    padding: $padding;
-  }
-}
-
 @mixin jnt-block($passed: (), $context: null, $deep: false, $strategy: 'changes') {
   $defs: (
     shadow: $jnt-shadow-normal,
@@ -67,23 +61,24 @@
     }
 
     @if map-has-key($vars, padding) {
-      $padding: map-get($vars, padding);
-      @each $padding, $map in $padding {
+      @each $padding, $map in map-get($vars, padding) {
         &[data-padding = '#{$padding}'] {
-          @include block-padding($map, $wrapper);
+          #{$wrapper} [data-block] {
+            padding: $map;
+          }
         }
       }
     }
 
     &[data-has-help='true'][data-has-header='false'] {
       #{$wrapper} [data-block] {
-        padding-top: $jnt-gutter-normal;
+        padding-top: $jnt-gutter-large;
       }
     }
 
     &[data-padding='none'] {
       #{$context} #{$wrapper} [data-title] {
-        padding-top: $jnt-gutter-normal;
+        padding-top: $jnt-gutter-big;
       }
     }
 
