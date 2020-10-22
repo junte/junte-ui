@@ -31,11 +31,6 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   @HostBinding('attr.host')
   readonly host = 'jnt-breadcrumbs-host';
 
-  @HostBinding('attr.data-with-breadcrumbs')
-  get display() {
-    return this.breadcrumbs.length > 1;
-  }
-
   @HostBinding('attr.data-with-aside')
   get withAside() {
     return !!this.aside;

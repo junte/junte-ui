@@ -1,5 +1,6 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
+import { BreadcrumbsComponent } from '../../../navigation/breadcrumbs/breadcrumbs.component';
 import { AppAsideComponent } from '../aside/app-aside.component';
 import { AppFooterComponent } from '../footer/app-footer.component';
 
@@ -25,8 +26,16 @@ export class AppContentComponent {
     return !!this.footer;
   }
 
+  @HostBinding('attr.data-with-breadcrumbs')
+  get withBreadcrumbs() {
+    return !!this.breadcrumbs;
+  }
+
   @ContentChild(AppFooterComponent, {read: ElementRef, static: true})
   footer: AppFooterComponent;
+
+  @ContentChild(BreadcrumbsComponent)
+  breadcrumbs: BreadcrumbsComponent;
 
   @PropertyApi({
     description: 'Support padding for aside',

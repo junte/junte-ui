@@ -1,25 +1,43 @@
 @import 'jnt-variables';
+@import "jnt-functions";
 @import 'elements/icon/icon';
 
-@mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-breadcrumbs($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    padding: 0 0 0 $jnt-gutter-normal,
+    margin: $jnt-gutter-small 0 $jnt-gutter-normal 0,
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
     display: flex;
-
-    &[data-with-breadcrumbs='true'] {
-      padding: $jnt-gutter-small $jnt-gutter-normal;
-    }
+    align-items: center;
+    padding: map-get($vars, padding);
+    margin: map-get($vars, margin);
 
     @include for-mobile() {
       &[data-with-aside='true'] {
         min-height: $app-aside-burger-height;
-        box-sizing: border-box;
+        margin-top: 0;
         padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
       }
     }
   }
 
-  #{$context} a {
+  #{$context} #{$wrapper} a {
     color: $jnt-primary-text-light-color;
     font-size: 12px;
     text-decoration: none;
@@ -32,7 +50,7 @@
     }
   }
 
-  #{$context} [data-icon] {
+  #{$context} #{$wrapper} [data-icon] {
     @include jnt-icon((
       size: 8px,
     ), '&');

@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "layout/app/variables";
 @import "layout/responsive/responsive";
 @import "layout/app/body/app-body";
@@ -44,6 +45,9 @@
 
     @include for-mobile() {
       padding-left: 0 !important;
+      &[data-with-breadcrumbs='false'][data-with-aside='full'] {
+        margin-top: $app-aside-burger-height;
+      }
     }
 
     @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
