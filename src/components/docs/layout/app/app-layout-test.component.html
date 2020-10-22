@@ -153,14 +153,12 @@
                   <ng-template #withoutAsideTemplate let-aside="aside">
                     <jnt-app-content [aside]="aside">
                       <jnt-app-body>
-                        <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
-                          <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
-                          <jnt-container>
-                            <jnt-block [width]="ui.width.fluid">
-                              <jnt-skeleton [lines]="8" [animated]="false"></jnt-skeleton>
-                            </jnt-block>
-                          </jnt-container>
-                        </jnt-stack>
+                        <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
+                        <jnt-container>
+                          <jnt-block [width]="ui.width.fluid">
+                            <jnt-skeleton [lines]="8" [animated]="false"></jnt-skeleton>
+                          </jnt-block>
+                        </jnt-container>
                       </jnt-app-body>
                       <jnt-app-footer *ngIf="footerControl.value">
                         <p>

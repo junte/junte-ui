@@ -7,7 +7,8 @@
   $defs: (
     height: calc(100vh - #{$app-footer-height} - #{$app-header-height}),
     padding: 0 0 $jnt-gutter-large 0,
-    background: $jnt-page-background
+    background: $jnt-page-background,
+    margin: $jnt-gutter-normal 0 0 0
   );
 
   $vars: $passed;
@@ -33,6 +34,7 @@
     min-height: map-get($vars, height);
     padding: map-get($vars, padding);
     background-color: map-get($vars, background);
+    margin: map-get($vars, margin);
     @content;
   }
 }

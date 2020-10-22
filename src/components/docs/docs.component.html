@@ -337,11 +337,9 @@
   </jnt-app-aside>
 
   <jnt-app-content [aside]="aside">
+    <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
     <jnt-app-body [outlet]="o">
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
-        <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
-        <router-outlet #o="outlet"></router-outlet>
-      </jnt-stack>
+      <router-outlet #o="outlet"></router-outlet>
     </jnt-app-body>
     <jnt-app-footer>
       <app-footer></app-footer>
