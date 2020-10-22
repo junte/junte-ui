@@ -26,7 +26,8 @@
                         <jnt-avatar [size]="sizeControl.value"
                                     [shape]="shapeControl.value"
                                     [icon]="iconControl.value ? ui.icons.user : null"
-                                    [text]="textControl.value ? 'User' : null"
+                                    [name]="textControl.value ? 'Elon' : null"
+                                    [surname]="textControl.value ? 'Mask' : null"
                                     [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                           <jnt-dot [color]="ui.color.green" *ngIf="dotControl.value"></jnt-dot>
                         </jnt-avatar>
@@ -39,19 +40,23 @@
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-list [size]="sizeControl.value">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Mark' : null"
+                                      [name]="textControl.value ? 'Mark' : null"
+                                      [surname]="textControl.value ? 'Zuckerberg' : null"
                                       [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Bill' : null"
+                                      [name]="textControl.value ? 'Bill' : null"
+                                      [surname]="textControl.value ? 'Gates' : null"
                                       [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Steve' : null"
+                                      [name]="textControl.value ? 'Steve' : null"
+                                      [surname]="textControl.value ? 'Jobs' : null"
                                       [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Elon' : null"
+                                      [name]="textControl.value ? 'Elon' : null"
+                                      [surname]="textControl.value ? 'Mask' : null"
                                       [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                           </jnt-avatar>
                         </jnt-avatars-list>
@@ -64,19 +69,23 @@
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-group [size]="sizeControl.value" [total]="10">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Mark' : null"
+                                      [name]="textControl.value ? 'Mark' : null"
+                                      [surname]="textControl.value ? 'Zuckerberg' : null"
                                       [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Bill' : null"
+                                      [name]="textControl.value ? 'Bill' : null"
+                                      [surname]="textControl.value ? 'Gates' : null"
                                       [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Steve' : null"
+                                      [name]="textControl.value ? 'Steve' : null"
+                                      [surname]="textControl.value ? 'Jobs' : null"
                                       [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
                           </jnt-avatar>
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [text]="textControl.value ? 'Elon' : null"
+                                      [name]="textControl.value ? 'Elon' : null"
+                                      [surname]="textControl.value ? 'Mask' : null"
                                       [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
                           </jnt-avatar>
                         </jnt-avatars-group>
@@ -203,7 +212,9 @@
                   </ng-container>
                   <ng-container *ngIf="textControl.value">
                     <![CDATA[
-                    text="User"]]>
+                    name="Name"
+                    surname="Surname"
+                    ]]>
                   </ng-container>
                   <ng-container *ngIf="imageControl.value">
                     <![CDATA[

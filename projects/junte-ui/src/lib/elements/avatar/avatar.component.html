@@ -1,6 +1,14 @@
 <div data-wrapper>
-  <jnt-icon *ngIf="icon && !text && !image" [icon]="icon"></jnt-icon>
-  <span data-text *ngIf="text && !image">{{text[0]}}</span>
-  <img data-image *ngIf="image" [src]="image">
+  <ng-template #noImage>
+    <ng-template #noInitials>
+      <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
+    </ng-template>
+
+    <span data-text *ngIf="!!name else noInitials">
+      {{(name.charAt(0) + (!!surname ? surname.charAt(0) : '')) | uppercase}}
+    </span>
+  </ng-template>
+
+  <img data-image *ngIf="!!image else noImage" [src]="image">
 </div>
 <jnt-dot data-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
