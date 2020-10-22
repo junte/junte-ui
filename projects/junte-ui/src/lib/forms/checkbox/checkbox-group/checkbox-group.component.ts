@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  QueryList,
-  ViewChildren
-} from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -69,9 +59,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
     return this._size;
   }
 
-  @ViewChildren(CheckboxComponent)
-  items: QueryList<CheckboxComponent>;
-
   @ContentChildren(CheckboxComponent)
   checkboxes: QueryList<CheckboxComponent>;
 
@@ -90,7 +77,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
     this.checkboxes.changes.subscribe(() => this.update());
 
     this.checkboxesControl.valueChanges.pipe(
-      map(checkboxes => this.items
+      map(checkboxes => this.checkboxes
         .filter((_, i) => checkboxes[i])
         .map(checkbox => checkbox.value)),
       distinctUntilChanged((a, b) => isEqual(a, b))

@@ -17,6 +17,7 @@ import { UI } from '../../core/enums/ui';
 export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+
   @HostBinding('attr.host')
   readonly host = 'jnt-radio-host';
 
