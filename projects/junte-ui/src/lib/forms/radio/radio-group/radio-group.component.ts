@@ -1,25 +1,16 @@
-import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  QueryList,
-  ViewChildren
-} from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { map } from 'rxjs/operators';
+import { merge } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Breakpoint } from '../../../core/enums/breakpoint';
 import { Feature } from '../../../core/enums/feature';
-import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
-import { PropertyApi } from '../../../core/decorators/api';
 import { Gutter } from '../../../core/enums/gutter';
 import { Orientation } from '../../../core/enums/orientation';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
+import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
 import { RadioComponent } from '../radio.component';
 
 @Component({
@@ -103,7 +94,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
       Gutter.huge],
     default: Gutter.normal
   })
-  @Input() set spacing(spacing: Gutter) {
+  @Input()
+  set spacing(spacing: Gutter) {
     this._spacing = spacing || Gutter.small;
   }
 
@@ -119,9 +111,6 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   @HostBinding('attr.data-features')
   @Input()
   features: Feature[] = [];
-
-  @ViewChildren(RadioComponent)
-  items: QueryList<RadioComponent>;
 
   @ContentChildren(RadioComponent, {descendants: true})
   radios: QueryList<RadioComponent>;
@@ -140,19 +129,15 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   ngAfterViewInit() {
     this.radios.changes.subscribe(() => this.update());
     this.update();
-    this.radiosControl.valueChanges.pipe(
-      map(radios => this.items
-        .filter((_, i) => radios[i])
-        .map(radio => radio.value))
-    ).subscribe(radios => {
-      for (const radio of radios) {
-        if (radio !== this.selected) {
-          this.selected = radio;
-          break;
-        }
-      }
-      this.radiosControl.setValue(this.items.map(item => item.value === this.selected), {emitEvent: false});
+    merge(...this.radiosControl.controls.map((control, index) =>
+      control.valueChanges.pipe(
+        filter(value => value),
+        map(() => ({control, index}))
+      ))).subscribe(({control, index}) => {
+      this.selected = this.radios.toArray()[index].value;
       this.onChange(this.selected);
+      this.radiosControl.reset([], {emitEvent: false});
+      control.setValue(true, {emitEvent: false});
     });
   }
 
