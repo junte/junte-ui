@@ -6,6 +6,7 @@
     <div data-top>
       <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
            [jntPopover]="{
+              context: this.context,
               contentTemplate: submenuTemplate,
               position: orientation === orientationEnum.vertical
                 ? ui.position.right

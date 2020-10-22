@@ -3,6 +3,54 @@
 @import "elements/badge/badge";
 @import "elements/icon/icon";
 
+@mixin link-outline($scheme, $wrapper) {
+  &[data-orphan='true'] {
+    @if map-has-key($scheme, orphan) {
+      $orphan: map-get($scheme, orphan);
+      #{$wrapper} [data-link] {
+        color: map-get($orphan, color);
+        &:hover {
+          @if map-has-key($orphan, hover) {
+            $hover: map-get($orphan, hover);
+            color: map-get($hover, color);
+            background-color: map-get($hover, background-color);
+          }
+        }
+      }
+    }
+  }
+  #{$wrapper} [data-link] {
+    padding: map-get($scheme, padding);
+    @if map-has-key($scheme, hover) {
+      $hover: map-get($scheme, hover);
+      &[data-active="false"]:hover {
+        color: map-get($hover, color);
+        background-color: map-get($hover, background-color);
+      }
+    }
+
+    &[data-active="true"] {
+      @if map-has-key($scheme, active) {
+        $active: map-get($scheme, active);
+        background-color: map-get($active, background-color);
+        box-shadow: map-get($active, shadow);
+        [data-title] {
+          color: map-get($active, color);
+
+          span {
+            @if map-get($active, underline) == true {
+              border-bottom: 1px solid map-get($active, underline-color);
+            }
+            @if map-get($active, underline) == false {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @mixin link-fill($scheme, $wrapper) {
   #{$wrapper} [data-link] {
     color: map-get($scheme, inverse-color);
@@ -86,9 +134,6 @@
 
   #{$wrapper} [data-link] {
     color: map-get($scheme, color);
-    background-color: transparent;
-    border-color: transparent;
-    padding: 0;
 
     &:focus {
       @if map-has-key($scheme, focus) {
@@ -102,17 +147,6 @@
           box-shadow: map-get($focus, shadow);
         }
       }
-    }
-
-    &[data-active="true"] {
-      [data-title] {
-        span {
-          @if map-get($scheme, color) {
-            border-bottom: 1px solid map-get($scheme, color);
-          }
-        }
-      }
-
     }
   }
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
@@ -142,7 +176,7 @@
     text-transform: null,
     text-decoration: null,
     text-align: null,
-    padding: $jnt-gutter-tiny $jnt-gutter-small,
+    padding: null,
     display: inline,
     overflow: false,
     height: null,
@@ -152,22 +186,6 @@
       toggle: true,
       margin-left: $jnt-gutter-small,
     ),
-    orphan: (
-      color: $jnt-primary-text-color,
-      hover-color: $jnt-primary-text-dark-color,
-      border: null,
-    ),
-    active: (
-      underline: true,
-      background-color: null,
-      color: null,
-      border-color: $jnt-primary-color,
-    ),
-    hover: (
-      color: null,
-      background-color: null,
-      border-color: null,
-    ),
     icon: (
       spacing: $jnt-gutter-tiny,
       size: null,
@@ -175,6 +193,36 @@
     ),
     badge: (
       margin-left: $jnt-gutter-small
+    ),
+    outlines: (
+      transparent: (
+        padding: 0,
+        hover: (
+          color: null,
+          background-color: null,
+          border-color: null,
+        ),
+        active: (
+          underline: true,
+          background-color: null,
+          color: null,
+          underline-color: $jnt-primary-color,
+          shadow: null,
+        ),
+        orphan: (
+          color: $jnt-primary-text-light-color,
+          hover: (
+            color: $jnt-primary-text-dark-color,
+            background-color: null
+          ),
+        ),
+      ),
+      ghost: (
+        padding: $jnt-gutter-tiny $jnt-gutter-small
+      ),
+      fill: (
+        padding: $jnt-gutter-tiny $jnt-gutter-small
+      )
     ),
     schemes: (
       primary: (
@@ -262,21 +310,7 @@
 
         [data-title] {
           [data-icon], span {
-            transition: color .3s;
-          }
-        }
-      }
-    }
-
-    &[data-orphan='true'] {
-      #{$wrapper} [data-link] {
-        pointer-events: none;
-        @if map-has-key($vars, orphan) {
-          $orphan: map-get($vars, orphan);
-          color: if(map-get($orphan, color), map-get($orphan, color) !important, null);
-          border: if(map-get($orphan, border), map-get($orphan, border) !important, null);
-          &:hover {
-            color: if(map-get($orphan, hover-color), map-get($orphan, hover-color) !important, null);
+            transition: color .2s;
           }
         }
       }
@@ -313,6 +347,14 @@
         }
       }
     }
+
+    @if map-has-key($vars, outlines) {
+      @each $outline, $map in map-get($vars, outlines) {
+        &[data-outline='#{$outline}'] {
+          @include link-outline($map, $wrapper);
+        }
+      }
+    }
   }
 
   #{$context} #{$wrapper} [data-link] {
@@ -327,33 +369,6 @@
         vertical-align: middle;
       }
     }
-    @if map-has-key($vars, active) {
-      $active: map-get($vars, active);
-      &[data-active='true'] {
-        background-color: map-get($active, background-color);
-        color: if(map-get($active, color), map-get($active, color) !important, null);
-        border-color: if(map-get($active, border-color), map-get($active, border-color) !important, null);
-        @if map-get($active, underline) == true {
-          [data-title] span {
-            border-bottom-color: if(map-get($active, border-color), map-get($active, border-color), null);
-          }
-        }
-        @if map-get($active, underline) == false {
-          [data-title] span {
-            border-bottom-color: transparent;
-          }
-        }
-      }
-    }
-    @if map-has-key($vars, hover) {
-      $hover: map-get($vars, hover);
-      &:hover {
-        color: if(map-get($hover, color), map-get($hover, color) !important, null);
-        background-color: if(map-get($hover, background-color), map-get($hover, background-color) !important, null);
-        border-color: if(map-get($hover, border-color), map-get($hover, border-color) !important, null);
-      }
-    }
-
     @if map-has-key($vars, toggle) {
       $toggle: map-get($vars, toggle);
       @if map-get($toggle, toggle) == false {
@@ -365,8 +380,9 @@
         margin-left: map-get($toggle, margin-left);
       }
     }
+
     border-radius: map-get($vars, corner);
-    padding: map-get($vars, padding);
+    padding: if(map-get($vars, padding), map-get($vars, padding) !important, null);
     height: map-get($vars, height);
     font-size: map-get($vars, font-size);
     font-weight: map-get($vars, font-weight);
@@ -375,6 +391,7 @@
     text-align: map-get($vars, text-align);
     color: if(map-get($vars, color), map-get($vars, color) !important, null);
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
+
     [data-title] {
       margin-right: auto;
       @if map-has-key($vars, icon) {

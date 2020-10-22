@@ -32,7 +32,8 @@ export class PopoverOptions {
   padding: Gutter = Gutter.normal;
   features: Feature[] = [Feature.smarty];
   behaviour: Behaviour;
-  active: boolean = true;
+  active = true;
+  context: string;
 
   constructor(defs: any = null) {
     Object.assign(this, defs);
@@ -65,6 +66,11 @@ export class PopoverComponent {
   @HostBinding('style.position')
   get placement() {
     return this.options.placement;
+  }
+
+  @HostBinding('attr.context')
+  get context() {
+    return this.options.context;
   }
 
   @HostBinding('attr.data-placement')

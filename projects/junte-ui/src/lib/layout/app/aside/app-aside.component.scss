@@ -15,7 +15,7 @@
       item: (
         color: $jnt-primary-text-light-color,
         active: (
-          background-color: null
+          background-color: $jnt-secondary-color,
         ),
       ),
       sub: (
@@ -53,17 +53,20 @@
         item: (
           corner: 0,
           height: 50px,
-          orphan-color: $jnt-primary-text-light-color,
-          orphan-hover-color: $jnt-primary-text-dark-color,
+          orphan: (
+            color: $jnt-primary-text-light-color,
+            hover-color: $jnt-primary-text-dark-color,
+          ),
           active: (
             underline: false,
             color: $jnt-primary-color,
+            shadow: inset 4px 0px 0px $jnt-primary-color
           ),
           icon: (
             spacing: $jnt-gutter-normal,
             size: 20px
           ),
-          padding: 0 $jnt-gutter-normal !important,
+          padding: 0 $jnt-gutter-normal,
           toggle: (
             toggle: false
           ),
@@ -81,7 +84,7 @@
         ),
         item: (
           color: $jnt-primary-text-light-color,
-          padding: 0 $jnt-gutter-normal 0 50px !important,
+          padding: 0 $jnt-gutter-normal 0 50px,
           active: (
             underline: false,
             background-color: $jnt-secondary-background,
@@ -92,40 +95,14 @@
             shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
           ),
           height: 50px,
-        ),
-      ),
+        )
+      )
     ), '&');
-  }
 
-  @include jnt-menu((
-    sub: (
-      collapsed: (
-        item: (
-          padding: 0 $jnt-gutter-normal,
-        ),
-      ),
-      item: (
-        color: $jnt-primary-text-light-color,
-        padding: 0 0 0 50px !important,
-        active: (
-          underline: false,
-          background-color: $jnt-secondary-background,
-          color: $jnt-primary-color
-        ),
-        focus: (
-          outline: null,
-          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
-        ),
-        height: 50px,
-      ),
-    ),
-  ));
-
-  @if map-has-key($vars, menu) {
-    $menu: map-get($vars, menu);
-    @if map-has-key($menu, item) {
-      $item: map-get($menu, item);
-      #{$context} #{$wrapper} jnt-menu {
+    @if map-has-key($vars, menu) {
+      $menu: map-get($vars, menu);
+      @if map-has-key($menu, item) {
+        $item: map-get($menu, item);
         @include jnt-menu((
           top: (
             item: (
@@ -133,11 +110,10 @@
             )
           )
         ), '&');
-      }
 
-      @if map-has-key($item, active) {
-        $active: map-get($item, active);
-        #{$context} #{$wrapper} jnt-menu {
+
+        @if map-has-key($item, active) {
+          $active: map-get($item, active);
           @include jnt-menu((
             top: (
               item: (
@@ -149,10 +125,8 @@
           ), '&');
         }
       }
-    }
-    @if map-has-key($menu, sub) {
-      $sub: map-get($menu, sub);
-      #{$context} #{$wrapper} jnt-menu {
+      @if map-has-key($menu, sub) {
+        $sub: map-get($menu, sub);
         @include jnt-menu((
           sub: (
             background-color: map-get($sub, background-color)
@@ -161,6 +135,30 @@
       }
     }
   }
+
+  @include jnt-menu((
+    sub: (
+      collapsed: (
+        item: (
+          padding: 0 $jnt-gutter-normal,
+        ),
+      ),
+      item: (
+        color: $jnt-primary-text-light-color,
+        padding: 0 $jnt-gutter-normal 0 50px,
+        active: (
+          underline: false,
+          background-color: $jnt-secondary-background,
+          color: $jnt-primary-color
+        ),
+        focus: (
+          outline: null,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+        ),
+        height: 50px,
+      )
+    )
+  ), '[context=popover-aside-sub-menu]');
 
   #{$context} #{$wrapper} button {
     display: block;
