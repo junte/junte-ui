@@ -17,24 +17,51 @@
       <ng-template #tabContentTemplate>
         <jnt-stack>
           <form [formGroup]="builder">
-            <jnt-form-item>
-              <jnt-form-label for="ganttType"
-                              i18n="@@label.gender">Gantt type</jnt-form-label>
-              <jnt-switcher formControlName="ganttType">
-                <jnt-switcher-option label="Month"
-                                     [value]="ganttType.month"></jnt-switcher-option>
-                <jnt-switcher-option label="Year"
-                                     [value]="ganttType.year"></jnt-switcher-option>
-              </jnt-switcher>
-            </jnt-form-item>
+            <jnt-stack [orientation]="ui.orientation.horizontal">
+              <jnt-form-item [orientation]="ui.orientation.horizontal"
+                             [gutter]="ui.gutter.small"
+                             [align]="ui.align.center">
+                <jnt-form-label for="ganttType"
+                                i18n="@@label.gender">Gantt type</jnt-form-label>
+                <jnt-switcher formControlName="ganttType">
+                  <jnt-switcher-option label="Month"
+                                       [value]="ganttType.month"></jnt-switcher-option>
+                  <jnt-switcher-option label="Year"
+                                       [value]="ganttType.year"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+
+              <jnt-form-item [orientation]="ui.orientation.horizontal"
+                             [gutter]="ui.gutter.small"
+                             [align]="ui.align.center">
+                <jnt-form-label for="width"
+                                i18n="@@label.width">Width
+                </jnt-form-label>
+                <jnt-switcher formControlName="width"
+                              placeholder="Default"
+                              i18n-primary="@@label.default">
+                  <jnt-switcher-option label="Default"
+                                       i18n-label="@@label.default"
+                                       [icon]="localUi.icons.default"
+                                       [value]="ui.width.default"></jnt-switcher-option>
+                  <jnt-switcher-option label="Fluid"
+                                       i18n-label="@@label.fluid"
+                                       [icon]="localUi.icons.fluid"
+                                       [value]="ui.width.fluid"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+            </jnt-stack>
           </form>
+
           <app-browser-preview preview>
             <ng-template #document let-width="width" let-height="height">
-              <jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
+              <jnt-block [padding]="ui.gutter.none">
                 <jnt-form [formGroup]="form" data-form>
+
                   <jnt-gantt title="Super"
                              formControlName="ganttDate"
                              [loading]="loading"
+                             [width]="widthControl.value"
                              [type]="ganttTypeControl.value === 'month' ? ui.gantt.type.month : ui.gantt.type.year">
                     <ng-template #toolsTemplate>
                       <jnt-button-group [scheme]="ui.scheme.secondary">

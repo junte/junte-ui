@@ -29,10 +29,13 @@ export class GanttTestComponent implements OnInit {
   statuses = GanttRequestStatuses;
   loading = true;
   ganttType = GanttTypes;
+
   ganttTypeControl = this.fb.control(GanttTypes.month);
+  widthControl = this.fb.control(null);
 
   builder = this.fb.group({
-    ganttType: this.ganttTypeControl
+    ganttType: this.ganttTypeControl,
+    width: this.widthControl
   });
 
   ganttDateControl = this.fb.control(new Date());

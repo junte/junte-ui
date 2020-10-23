@@ -1,52 +1,66 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "forms/button/button";
+@import "elements/icon/icon";
 
-@mixin jnt-gantt($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-gantt($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
   $defs: (
-    min-height: 200px
+    min-height: 200px,
+    day: (
+      width: null,
+      padding: $jnt-gutter-normal $jnt-gutter-tiny,
+      current: (
+        color: $jnt-white-color,
+        background-color: $jnt-primary-color
+      ),
+      weekend: (
+        background-color: $jnt-secondary-dark-color
+      )
+    ),
+    title: (
+      width: 20%
+    ),
+    period: (
+      width: 80%
+    )
   );
+
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
-  :host {
-    display: block;
+
+  :host, #{$context}  {
+    display: inline-block;
     box-sizing: border-box;
-  }
-  [data-month] {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    [data-arrow] {
-      background-color: transparent;
-      border-width: 0;
-      font-size: 1rem;
-      color: $jnt-primary-text-color;
-      cursor: pointer;
-      padding: 0;
-      vertical-align: middle;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      transition: box-shadow .3s;
-      line-height: 0;
-      &:focus {
-        outline: none;
-        box-shadow: $jnt-shadow-primary;
-        border: 1px solid $jnt-primary-color;
-      }
-      &:hover {
-        color: $jnt-primary-text-light-color;
-        border: 1px solid $jnt-primary-color;
+
+    &[data-width="fluid"] {
+      width: 100%;
+      table {
+        width: 100%;
       }
     }
   }
-  table[data-mobile] {
+
+  #{$context} #{$wrapper} [data-controls] {
+    margin: 10px auto;
+    [data-month] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  #{$context} #{$wrapper} table[data-mobile] {
     tr {
       td {
         text-align: center;
@@ -65,8 +79,8 @@
       }
     }
   }
-  table {
-    width: 100%;
+
+  #{$context} #{$wrapper} table {
     table-layout: fixed;
     thead {
       tr {
@@ -77,18 +91,30 @@
           &[data-controls] {
             border-right: none;
             padding: $jnt-gutter-normal $jnt-gutter-tiny;
-            width: 600px;
+            @if map-has-key($vars, period) {
+              $period: map-get($vars, period);
+              width: map-get($period, width);
+            }
           }
           &[data-day] {
             text-align: center;
             font-size: $jnt-font-size-small;
-            padding: $jnt-gutter-normal $jnt-gutter-tiny;
-            &[data-current='true'] {
-              color: $jnt-white-color;
-              background-color: $jnt-primary-color;
-            }
-            &[data-weekend='true'] {
-              background-color: $jnt-secondary-dark-color;
+            @if map-has-key($vars, day) {
+              $day: map-get($vars, day);
+              padding: map-get($day, padding);
+              &[data-current='true'] {
+                @if map-has-key($day, current) {
+                  $current: map-get($day, current);
+                  color: map-get($current, color);
+                  background-color: map-get($current, background-color);
+                }
+              }
+              &[data-weekend='true'] {
+                @if map-has-key($day, weekend) {
+                  $weekend: map-get($day, weekend);
+                  background-color: map-get($weekend, background-color);
+                }
+              }
             }
           }
           &[data-gutter] {
@@ -147,14 +173,15 @@
         width: auto;
       }
       [data-empty] {
-        width: 350px;
+        @if map-has-key($vars, title) {
+          $title: map-get($vars, title);
+          width: map-get($title, width);
+        }
       }
     }
   }
 }
-[data-controls] {
-  margin: 10px auto;
-}
+
 @if $jnt-debug {
   @debug 'gantt compiled';
 }
