@@ -164,12 +164,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @Input()
   label: string;
 
-  @HostBinding('attr.data-allow-empty')
-  allowEmpty = true;
-
-  @HostBinding('attr.data-search')
-  search = true;
-
   @PropertyApi({
     description: 'Icon for select',
     type: 'string',
@@ -266,14 +260,13 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     path: 'ui.feature',
     options: [Feature.search, Feature.multiplex, Feature.allowEmpty]
   })
+  @HostBinding('attr.data-features')
   @Input()
   set features(features: Feature[]) {
     this._features = features || [];
     this.features.includes(Feature.search)
       ? this.queryControl.enable({emitEvent: false})
       : this.queryControl.disable({emitEvent: false});
-    this.allowEmpty = this.features.includes(Feature.allowEmpty);
-    this.search = this.features.includes(Feature.search);
   }
 
   get features() {

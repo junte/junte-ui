@@ -13,9 +13,9 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { UI } from '../enums/ui';
-import { Feature } from '../enums/feature';
 import { PropertyApi } from '../decorators/api';
+import { Feature } from '../enums/feature';
+import { UI } from '../enums/ui';
 
 enum SelectMode {
   single = 'single',
@@ -65,7 +65,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   config: Config = new Config({
     mode: SelectMode.single,
     enabled: true,
-    features: [UI.feature.allowEmpty]
+    features: []
   });
 
   @HostBinding('attr.data-disabled')
