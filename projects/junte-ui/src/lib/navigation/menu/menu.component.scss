@@ -303,10 +303,14 @@
 
         &[data-active='true'] {
           @include jnt-link((
-            active: (
-              underline: false,
-              color: $jnt-primary-light-color
-            ),
+            outlines: (
+              transparent: (
+                active: (
+                  underline: false,
+                  color: $jnt-primary-light-color
+                )
+              )
+            )
           ), '&');
 
           &:after {
