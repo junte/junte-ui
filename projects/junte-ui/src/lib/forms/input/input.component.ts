@@ -270,7 +270,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     path: 'ui.feature',
     options: [Feature.allowEmpty],
   })
-  @HostBinding('attr.data-features')
   @Input()
   features: Feature[] = [];
 

@@ -87,19 +87,14 @@ export class SwitcherComponent implements ControlValueAccessor {
     return this._mode;
   }
 
-  @HostBinding('attr.data-allow-empty')
-  allowEmpty = true;
-
   @PropertyApi({
-    description: 'Add badge with the number of selected items; Select all item in switcher',
+    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher',
     path: 'ui.feature',
     options: [Feature.badge, Feature.selectAll, Feature.allowEmpty]
   })
-  @HostBinding('attr.data-features')
   @Input()
   set features(features: Feature[]) {
     this._features = features || [];
-    this.allowEmpty = this.features.includes(Feature.allowEmpty);
   }
 
   get features() {
@@ -182,7 +177,7 @@ export class SwitcherComponent implements ControlValueAccessor {
           const same = !!this.keyField
             ? current[this.keyField] === value[this.keyField]
             : isEqual(current, value);
-          if (same && !this.allowEmpty) {
+          if (same && !this.features.includes(Feature.allowEmpty)) {
             return;
           }
 

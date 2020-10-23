@@ -169,21 +169,21 @@
 
       &[data-empty='true'] {
         [data-select] ul li[data-query] {
-          padding-right: 0;
+          padding-right: $jnt-gutter-small;
         }
       }
 
-      &[data-allow-empty='false'] {
+      &[data-features*='allowEmpty'] {
         [data-select] ul li {
-          padding-right: $jnt-gutter-small;
+          padding-right: 0;
 
           button[data-close] {
-            display: none;
+            display: block;
           }
         }
       }
 
-      &[data-search='false'] {
+      &[data-features*='search'] {
         [data-select] ul li {
           margin-right: 0;
         }
@@ -318,6 +318,7 @@
           padding: 0 $jnt-gutter-small;
           color: $jnt-primary-text-light-color;
           right: 0;
+          display: none;
 
           &:focus {
             outline: 0;
