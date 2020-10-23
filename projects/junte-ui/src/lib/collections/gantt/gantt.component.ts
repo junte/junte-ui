@@ -12,6 +12,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
+import { Width } from '../../core/enums/width';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { today } from '../../forms/calendar/utils';
@@ -43,6 +44,7 @@ export class GanttComponent implements ControlValueAccessor {
   types = GanttTypes;
 
   private _current: Date = new Date();
+  private _width: Width = Width.fluid;
 
 
   get mobile() {
@@ -56,6 +58,23 @@ export class GanttComponent implements ControlValueAccessor {
   })
   @Input()
   type: GanttTypes = GanttTypes.month;
+
+  @PropertyApi({
+    description: 'Card width',
+    path: 'ui.width',
+    default: Width.fluid,
+    options: [Width.default,
+      Width.fluid]
+  })
+  @HostBinding('attr.data-width')
+  @Input()
+  set width(width: Width) {
+    this._width = width || Width.fluid;
+  }
+
+  get width() {
+    return this._width;
+  }
 
   @PropertyApi({
     description: 'Title',

@@ -17,15 +17,19 @@
         </td>
         <td data-controls [attr.colspan]="12">
           <div data-month>
-            <button data-arrow (click)="current = subYears(current, 1)">
-              <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-            </button>
+            <jnt-button [icon]="ui.icons.chevronLeft"
+                        [outline]="ui.outline.transparent"
+                        [size]="ui.size.small"
+                        (click)="current = subYears(current, 1)">
+            </jnt-button>
             <div>
               {{current | dfnsFormat: 'yyyy'}}
             </div>
-            <button data-arrow (click)="current = addYears(current, 1)">
-              <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-            </button>
+            <jnt-button [icon]="ui.icons.chevronRight"
+                        [outline]="ui.outline.transparent"
+                        [size]="ui.size.small"
+                        (click)="current = addYears(current, 1)">
+            </jnt-button>
           </div>
         </td>
       </tr>
@@ -113,15 +117,19 @@
           </div>
           <div data-controls>
             <div data-month>
-              <button data-arrow (click)="current = subYears(current, 1)">
-                <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-              </button>
+              <jnt-button [icon]="ui.icons.chevronLeft"
+                          [outline]="ui.outline.transparent"
+                          [size]="ui.size.small"
+                          (click)="current = subYears(current, 1)">
+              </jnt-button>>
               <div>
                 {{current | dfnsFormat: 'yyyy'}}
               </div>
-              <button data-arrow (click)="current = addYears(current, 1)">
-                <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-              </button>
+              <jnt-button [icon]="ui.icons.chevronRight"
+                          [outline]="ui.outline.transparent"
+                          [size]="ui.size.small"
+                          (click)="current = addYears(current, 1)">
+              </jnt-button>
             </div>
           </div>
           <table cellpadding="3" [cellSpacing]="0" data-mobile>
@@ -179,15 +187,19 @@
         </td>
         <td data-controls [attr.colspan]="(current | dfnsGetDaysInMonth)">
           <div data-month>
-            <button data-arrow (click)="current = subMonths(current, 1)">
-              <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-            </button>
+            <jnt-button [icon]="ui.icons.chevronLeft"
+                        [outline]="ui.outline.transparent"
+                        [size]="ui.size.small"
+                        (click)="current = subMonths(current, 1)">
+            </jnt-button>
             <div>
               {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
             </div>
-            <button data-arrow (click)="current = addMonths(current, 1)">
-              <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-            </button>
+            <jnt-button [icon]="ui.icons.chevronRight"
+                        [outline]="ui.outline.transparent"
+                        [size]="ui.size.small"
+                        (click)="current = addMonths(current, 1)">
+            </jnt-button>
           </div>
         </td>
       </tr>
@@ -277,15 +289,19 @@
           </div>
           <div data-controls>
             <div data-month>
-              <button data-arrow (click)="current = subMonths(current, 1)">
-                <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
-              </button>
+              <jnt-button [icon]="ui.icons.chevronLeft"
+                          [outline]="ui.outline.transparent"
+                          [size]="ui.size.small"
+                          (click)="current = subMonths(current, 1)">
+              </jnt-button>
               <div>
                 {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
               </div>
-              <button data-arrow (click)="current = addMonths(current, 1)">
-                <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
-              </button>
+              <jnt-button [icon]="ui.icons.chevronRight"
+                          [outline]="ui.outline.transparent"
+                          [size]="ui.size.small"
+                          (click)="current = addMonths(current, 1)">
+              </jnt-button>
             </div>
           </div>
           <table cellpadding="3" [cellSpacing]="0" data-mobile>
