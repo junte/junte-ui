@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
 
@@ -56,7 +57,7 @@
     }
   }
 
-  #{$context} [data-overlay] {
+  #{$context} #{$wrapper} [data-overlay] {
     position: fixed;
     background-color: rgba(0, 0, 0, .4);
     width: 100%;
@@ -72,7 +73,7 @@
     }
   }
 
-  #{$context} [data-modal] {
+  #{$context} #{$wrapper} [data-modal] {
     transform: scale(1);
     position: fixed;
     min-width: max-content;
@@ -99,23 +100,6 @@
       padding: $jnt-gutter-normal;
       background-color: $jnt-page-background;
       font-size: 18px;
-
-      [data-close] {
-        background-color: transparent;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        &:focus {
-          outline: 0;
-        }
-      }
-
-      [data-icon] {
-        @include jnt-icon ((
-          color: $jnt-primary-text-color,
-          size: 18px,
-        ), '&');
-      }
 
       [data-text] {
         color: $jnt-primary-text-color;

@@ -15,10 +15,14 @@
       <span data-text>{{options.title.text}}</span>
     </jnt-stack>
 
-    <button *ngIf="!options.hold"
-            (click)="close()" data-close>
-      <jnt-icon [icon]="ui.icons.close"></jnt-icon>
-    </button>
+    <jnt-button data-close
+                *ngIf="!options.hold"
+                [scheme]="ui.scheme.secondary"
+                [size]="ui.size.small"
+                [outline]="ui.outline.transparent"
+                [icon]="ui.icons.close"
+                (click)="close()">
+    </jnt-button>
   </jnt-stack>
 
   <div [ngStyle]="{'max-height.px': options.maxHeight, 'max-width.px': options.maxWidth}" data-content>
