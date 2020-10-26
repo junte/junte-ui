@@ -132,17 +132,20 @@
                                       image="assets/images/elon.jpeg"></jnt-avatar>
                         </ng-template>
                         <ng-template #userbarMenuTemplate let-hide="hide">
-                          <jnt-menu [orientation]="ui.orientation.vertical"
-                                    [spacing]="ui.size.small"
+                          <jnt-menu data-usermenu
+                                    [orientation]="ui.orientation.vertical"
                                     (selected)="hide()">
                             <jnt-menu-item title="Profile"
                                            i18n-title="@@label.profile"
+                                           [link]="['/components/layout/stack']"
                                            [icon]="ui.icons.profile"></jnt-menu-item>
                             <jnt-menu-item title="Settings"
                                            i18n-title="@@label.settings"
+                                           [link]="['/components/layout/application']"
                                            [icon]="ui.icons.animated.settings"></jnt-menu-item>
                             <jnt-menu-item title="Logout"
                                            i18n-title="@@label.logout"
+                                           [link]="['/components/layout/grid']"
                                            [icon]="ui.icons.home"></jnt-menu-item>
                           </jnt-menu>
                         </ng-template>

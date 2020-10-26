@@ -12,7 +12,9 @@
                contentTemplate: userMenuDropdownTemplate,
                trigger: ui.trigger.hover,
                placement: ui.placement.fixed,
-               position: ui.position.rightBottom
+               position: ui.position.rightBottom,
+               padding: ui.gutter.none,
+               minWidth: '200px'
              }"
              (attached)="reference.popover = $event; cd.detectChanges()"
              (removed)="reference.popover = null; cd.detectChanges()"

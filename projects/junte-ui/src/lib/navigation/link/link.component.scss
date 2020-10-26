@@ -188,6 +188,7 @@
     ),
     icon: (
       spacing: $jnt-gutter-tiny,
+      color: null,
       size: null,
       sizes: 18px
     ),
@@ -399,6 +400,7 @@
         [data-icon] {
           @include jnt-icon((
             size: map-get($icon, size),
+            color: map-get($icon, color),
             sizes: (
               auto: (
                 size: map-get($icon, sizes)

@@ -22,7 +22,8 @@
         font-weight: $jnt-font-weight-base,
         icon: (
           spacing: $jnt-gutter-small,
-          size: 18px
+          size: 18px,
+          color: null,
         ),
         focus: (
           outline: null,
@@ -217,7 +218,8 @@
               @include jnt-link((
                 icon: (
                   spacing: map-get($icon, spacing),
-                  size: map-get($icon, size)
+                  size: map-get($icon, size),
+                  color: map-get($icon, color)
                 ),
               ), '&');
             }
