@@ -50,9 +50,17 @@
   }
 
   #{$wrapper} #{$context} table {
-    table-layout: fixed;
+    table-layout: auto;
     border-spacing: 0;
     width: 100%;
+
+    @if map-has-key($vars, metrics) and map-get(map-get($vars, metrics), width) {
+      $metrics: map-get($vars, metrics);
+      table-layout: fixed;
+      [data-metrics] {
+        width: map-get($metrics, width);
+      }
+    }
 
     thead {
       [data-arrow] {
@@ -91,13 +99,6 @@
           color: $jnt-primary-text-light-color;
           font-size: $jnt-font-size-small;
           font-weight: $jnt-font-weight-bold;
-        }
-      }
-
-      [data-metrics] {
-        @if map-has-key($vars, metrics) {
-          $metrics: map-get($vars, metrics);
-          width: map-get($metrics, width);
         }
       }
     }
