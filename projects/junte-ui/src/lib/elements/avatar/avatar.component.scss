@@ -2,17 +2,21 @@
 @import "jnt-functions";
 @import "elements/avatar/common";
 @import "elements/icon/icon";
+@import "elements/dot/dot";
 
 @mixin avatar-size($size, $wrapper) {
-  min-width: map-get($size, avatar-size);
-  width: map-get($size, avatar-size);
-  min-height: map-get($size, avatar-size);
-  height: map-get($size, avatar-size);
+  min-width: map-get($size, avatar);
+  width: map-get($size, avatar);
+  min-height: map-get($size, avatar);
+  height: map-get($size, avatar);
   #{$wrapper} [data-icon] {
-    @include jnt-icon((size: map-get($size, icon-size)), '&');
+    @include jnt-icon((size: map-get($size, icon)), '&');
   }
   #{$wrapper} [data-text] {
-    font-size: map-get($size, font-size);
+    font-size: map-get($size, font);
+  }
+  #{$wrapper} [data-dot] {
+    @include jnt-dot((size: map-get($size, dot)), '&');
   }
 }
 
