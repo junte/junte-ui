@@ -30,6 +30,7 @@ export class MenuTestComponent implements OnInit {
   collapsedControl = this.fb.control(false);
   loadingControl = this.fb.control(false);
   styleControl = this.fb.control(null);
+  disabledControl = this.fb.control(null);
 
   builder = this.fb.group({
     orientation: this.orientationControl,
@@ -38,7 +39,8 @@ export class MenuTestComponent implements OnInit {
     badges: this.badgesControl,
     collapsed: this.collapsedControl,
     loading: this.loadingControl,
-    style: this.styleControl
+    style: this.styleControl,
+    disabled: this.disabledControl
   });
 
   constructor(private fb: FormBuilder) {
