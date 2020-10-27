@@ -50,8 +50,11 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [link]="['/components/navigation/menu']" [loading]="loadingControl.value"
-                                 [icon]="iconsControl.value ? ui.icons.home : null" title="Home">
+                  <jnt-menu-item [link]="['/components/navigation/menu']"
+                                 [loading]="loadingControl.value"
+                                 [icon]="iconsControl.value ? ui.icons.home : null"
+                                 [disabled]="disabledControl.value"
+                                 title="Home">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
                   </jnt-menu-item>
 
@@ -146,6 +149,11 @@
                                     label="Loading"
                                     i18n-label="@@label.loading"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="disabled"
+                                    label="Disabled"
+                                    i18n-label="@@label.disabled"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
 
@@ -222,6 +230,10 @@
     <ng-container *ngIf="loadingControl.value">
       <![CDATA[
       [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+    </ng-container>
+    <ng-container *ngIf="disabledControl.value">
+      <![CDATA[
+      [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
     </ng-container>
     <![CDATA[>]]>
     <ng-container *ngIf="badgesControl.value">
