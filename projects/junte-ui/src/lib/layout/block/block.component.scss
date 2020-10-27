@@ -25,7 +25,11 @@
       padding: null
     ),
     background: $jnt-primary-background,
-    title-color: $jnt-primary-color,
+    title: (
+      color: $jnt-primary-color,
+      font-weight: $jnt-font-weight-bold,
+      font-size: 18px
+    ),
     overlay: (
       background-color: rgba($jnt-primary-background, 0.75),
       icon: (
@@ -56,6 +60,7 @@
     border-radius: map-get($vars, corner);
     background-color: map-get($vars, background);
     box-sizing: border-box;
+
     &[data-width="fluid"] {
       display: flex;
       flex: 1;
@@ -122,12 +127,17 @@
 
     [data-title] {
       text-align: center;
-      font-weight: $jnt-font-weight-bold;
-      color: map-get($vars, title-color);
       border-bottom: 1px solid $jnt-secondary-color;
       @if map-has-key($vars, header) {
         $header: map-get($vars, header);
         padding: map-get($header, padding);
+      }
+
+      @if map-has-key($vars, title) {
+        $title: map-get($vars, title);
+        color: map-get($title, color);
+        font-weight: map-get($title, font-weight);
+        font-size: map-get($title, font-size);
       }
     }
 
