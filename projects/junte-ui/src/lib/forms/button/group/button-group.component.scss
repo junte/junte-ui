@@ -22,9 +22,10 @@
   }
 
   :host, #{$context} {
-    display: flex;
+    display: inline-flex;
     &[data-width='fluid'] {
-      width: 100%;
+      display: flex;
+      flex: 1;
       #{$wrapper} [data-button] {
         flex: 1;
       }

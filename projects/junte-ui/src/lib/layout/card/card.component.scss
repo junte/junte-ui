@@ -84,14 +84,15 @@
   }
 
   :host, #{$context} {
-    display: block;
+    display: inline-block;
     position: relative;
     min-height: 40px;
     box-sizing: border-box;
     border-radius: map-get($vars, corner);
 
     &[data-width="fluid"] {
-      width: 100%;
+      display: block;
+      flex: 1;
     }
 
     @if map-has-key($vars, padding) {
