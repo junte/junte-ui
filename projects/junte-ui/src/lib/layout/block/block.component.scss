@@ -57,7 +57,8 @@
     background-color: map-get($vars, background);
     box-sizing: border-box;
     &[data-width="fluid"] {
-      width: 100%;
+      display: flex;
+      flex: 1;
     }
 
     @if map-has-key($vars, padding) {
