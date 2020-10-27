@@ -1,5 +1,6 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { ShortcutsModule } from './core/directives/shortcuts';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_DEFAULT_CONFIG, JunteUIConfig } from './config';
 import { SelectableModule } from './core/directives/selectable';
@@ -35,7 +36,8 @@ export function configFactory(config: JunteUIConfig) {
     ArrayPipesModule,
     ColorPipesModule,
     TextPipesModule,
-    SelectableModule
+    SelectableModule,
+    ShortcutsModule
   ]
 })
 export class JunteUiModule {

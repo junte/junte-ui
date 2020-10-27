@@ -1,5 +1,3 @@
-import { Behaviour } from './behaviour';
-import { MenuStyle } from './style';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -9,6 +7,7 @@ import { RowAlign, RowJustify } from '../../layout/grid/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
+import { Behaviour } from './behaviour';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
 import { Feature } from './feature';
@@ -17,6 +16,7 @@ import { FlexAlign, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
 import { Height } from './height';
 import { icons } from './icons';
+import { Key, Modifier } from './keyboard';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
 import { Placement } from './placement';
@@ -25,6 +25,7 @@ import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
+import { MenuStyle } from './style';
 import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { Triggers } from './triggers';
@@ -69,4 +70,5 @@ export class UI {
   static button = {type: ButtonType};
   static gantt = {type: GanttTypes};
   static menu = {style: MenuStyle};
+  static keyboard = {key: Key, modifier: Modifier};
 }

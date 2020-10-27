@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {GridModule, IconModule, LabelModule, LinkModule, StackModule} from 'junte-ui';
-import { JUNTE_UI_CONFIG } from 'src/consts';
-import { ThemingComponent } from './theming.component';
+import { GridModule, IconModule, LabelModule, LinkModule, StackModule } from 'junte-ui';
 import { ResourcesModule } from 'src/components/docs/shared/resources/resources.module';
+import { ThemingComponent } from './theming.component';
 
 @NgModule({
   imports: [

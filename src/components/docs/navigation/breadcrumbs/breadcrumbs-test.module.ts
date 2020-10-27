@@ -3,18 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
-    AccordionModule,
-    AppLayoutModule,
-    BreadcrumbsModule,
-    FormModule,
-    GridModule,
-    IconModule,
-    LinkModule,
-    StackModule,
-    TabsModule
+  AccordionModule,
+  AppLayoutModule,
+  BreadcrumbsModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  LinkModule,
+  StackModule,
+  TabsModule
 } from 'junte-ui';
-import { ResourcesModule } from 'src/components/docs/shared/resources/resources.module';
-import { JUNTE_UI_CONFIG } from 'src/consts';
+import { ResourcesModule } from '../../shared/resources/resources.module';
 import { BrowserPreviewModule } from '../../shared/browser-preview/browser-preview.module';
 import { CodeHighlightModule } from '../../shared/code-highlight/code-highlight.module';
 import { HowToUseModule } from '../../shared/how-to-use/how-to-use.module';
@@ -32,25 +31,25 @@ import { BreadCrumbTest3Component } from './tests/test3.component';
     BreadCrumbTest2Component,
     BreadCrumbTest3Component,
   ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        LinkModule,
-        StackModule,
-        TabsModule,
-        GridModule,
-        FormModule,
-        AccordionModule,
-        BreadcrumbsModule,
-        IconModule,
-        BreadcrumbsRoutingModule,
-        BrowserPreviewModule,
-        CodeHighlightModule,
-        HowToUseModule,
-        ResourcesModule,
-        AppLayoutModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    LinkModule,
+    StackModule,
+    TabsModule,
+    GridModule,
+    FormModule,
+    AccordionModule,
+    BreadcrumbsModule,
+    IconModule,
+    BreadcrumbsRoutingModule,
+    BrowserPreviewModule,
+    CodeHighlightModule,
+    HowToUseModule,
+    ResourcesModule,
+    AppLayoutModule
+  ],
   exports: [
     BreadcrumbsTestComponent,
     BreadCrumbTest1Component,
