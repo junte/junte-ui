@@ -31,7 +31,8 @@
                                 [loading]="loadingControl.value"
                                 [disabled]="disabledControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.user,
-                                        position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
+                                        position: positionControl.value === ui.position.right
+                                          ? ui.position.right : ui.position.left} : null">
                       <jnt-badge *ngIf="badgeControl.value"
                                  [value]="5"></jnt-badge>
                     </jnt-button>

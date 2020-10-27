@@ -2,9 +2,28 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
+  AccordionModule,
+  AppLayoutModule,
+  DotModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  LinkModule,
+  MessageModule,
+  SelectModule,
+  StackModule,
+  TabsModule
+} from 'junte-ui';
+import { SharedModule } from '../../shared/shared.module';
+import { MessageTestComponent } from './message-test.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    IconModule,
     MessageModule,
-    GridModule,
     LinkModule,
+    GridModule,
     StackModule,
     TabsModule,
     FormModule,
@@ -12,30 +31,10 @@ import {
     AccordionModule,
     IconModule,
     DotModule,
-    AppLayoutModule
-} from 'junte-ui';
-import { SharedModule } from '../../shared/shared.module';
-import { JUNTE_UI_CONFIG } from 'src/consts';
-import { MessageTestComponent } from './message-test.component';
-
-@NgModule({
-    imports: [
-        CommonModule,
-        IconModule,
-        MessageModule,
-        LinkModule,
-        GridModule,
-        StackModule,
-        TabsModule,
-        FormModule,
-        SelectModule,
-        AccordionModule,
-        IconModule,
-        DotModule,
-        SharedModule,
-        ReactiveFormsModule,
-        AppLayoutModule,
-    ],
+    SharedModule,
+    ReactiveFormsModule,
+    AppLayoutModule,
+  ],
   exports: [
     MessageTestComponent
   ],

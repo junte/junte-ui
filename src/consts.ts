@@ -387,6 +387,11 @@ export const CATEGORIES = {
         icon: LocalUI.icons.message,
         link: 'message',
         teaser: 'Super stack...',
+      },
+      {
+        name: 'Shortcuts',
+        link: 'shortcuts',
+        teaser: 'Super stack...',
       }
     ]
   }
