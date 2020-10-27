@@ -22,10 +22,10 @@
     box-sizing: border-box;
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
-        min-height: map-get($map, avatar-size);
+        min-height: map-get($map, avatar);
         @for $i from 1 through map-get($vars, avatar-count) {
           &[data-capacity='#{$i}'] {
-            min-width: calc(#{map-get($map, avatar-size)} / 2 * #{$i} + #{map-get($map, avatar-size)} / 2 + 2px);
+            min-width: calc(#{map-get($map, avatar)} / 2 * #{$i} + #{map-get($map, avatar)} / 2 + 2px);
           }
         }
       }
@@ -44,7 +44,7 @@
       }
       @each $size, $map in $sizes {
         &[data-size='#{$size}'] {
-          left: calc(#{$i} * (#{map-get($map, avatar-size)} / 2));
+          left: calc(#{$i} * (#{map-get($map, avatar)} / 2));
         }
       }
     }
