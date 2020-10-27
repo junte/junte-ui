@@ -23,6 +23,13 @@ export class TableColumnComponent {
   title: string;
 
   @PropertyApi({
+    description: 'Column width',
+    type: 'string',
+  })
+  @Input()
+  width: string;
+
+  @PropertyApi({
     description: 'Column title align',
     type: 'string',
     path: 'ui.text.align'

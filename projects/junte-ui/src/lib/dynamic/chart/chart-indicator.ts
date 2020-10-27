@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 
 @Component({
@@ -42,10 +42,6 @@ export class ChartIndicatorComponent {
   @Input()
   data: any;
 
-  @PropertyApi({
-    description: 'Template for title',
-    type: 'TemplateRef<any>'
-  })
-  @Input()
+  @ContentChild('chartIndicatorTitleTemplate')
   titleTemplate: TemplateRef<any>;
 }

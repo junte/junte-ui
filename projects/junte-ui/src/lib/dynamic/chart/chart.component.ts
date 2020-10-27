@@ -14,7 +14,7 @@ import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
-import { ChartIndicatorComponent } from './chart-indicator.component';
+import { ChartIndicatorComponent } from './chart-indicator';
 
 @Component({
   selector: 'jnt-chart',
@@ -44,20 +44,24 @@ export class ChartComponent implements ControlValueAccessor {
     description: 'Title of the charts group',
     type: 'string'
   })
-  @Input() title: string;
+  @Input()
+  title: string;
 
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
-  @Input() metric: string;
+  @Input()
+  metric: string;
 
   @ContentChildren(ChartIndicatorComponent)
   indicators: QueryList<ChartIndicatorComponent>;
 
-  @Input() heightIndicator = 55;
+  @Input()
+  heightIndicator = 55;
 
-  @Input() widthPolygon = 50;
+  @Input()
+  widthPolygon = 50;
 
   onChange: (value: any) => void = () => this.logger.debug('value accessor is not registered');
   onTouched: () => void = () => this.logger.debug('value accessor is not registered');

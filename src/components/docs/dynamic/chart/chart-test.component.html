@@ -27,10 +27,25 @@
                         <jnt-chart-indicator *ngFor="let hero of heroes"
                                              [data]="hero"
                                              [value]="hero.value"
-                                             [titleTemplate]="templateControl.value ? heroOptionTemplate : null"
                                              [title]="hero.title"
                                              [label]="hero.label"
                                              [color]="hero.color">
+                          <ng-template *ngIf="templateControl.value" #chartIndicatorTitleTemplate
+                                       let-hero="data">
+                            <jnt-stack [orientation]="ui.orientation.horizontal"
+                                       [align]="ui.align.center"
+                                       [justify]="ui.justify.between">
+                              <jnt-stack [orientation]="ui.orientation.horizontal"
+                                         [gutter]="ui.gutter.small"
+                                         [align]="ui.align.center">
+                                <jnt-avatar [image]="hero.avatar"
+                                            [size]="ui.size.small"></jnt-avatar>
+                                <div>{{hero.title}}</div>
+                              </jnt-stack>
+                              <jnt-label [label]="hero.likes + ' likes'"
+                                         [color]="ui.color.green"></jnt-label>
+                            </jnt-stack>
+                          </ng-template>
                         </jnt-chart-indicator>
                       </jnt-chart>
                     </jnt-block>
@@ -51,21 +66,6 @@
                     </ng-container>
                   </jnt-stack>
                 </jnt-form>
-                <ng-template #heroOptionTemplate let-hero="data">
-                  <jnt-stack [orientation]="ui.orientation.horizontal"
-                             [align]="ui.align.center"
-                             [justify]="ui.justify.between">
-                    <jnt-stack [orientation]="ui.orientation.horizontal"
-                               [gutter]="ui.gutter.small"
-                               [align]="ui.align.center">
-                      <jnt-avatar [image]="hero.avatar"
-                                  [size]="ui.size.small"></jnt-avatar>
-                      <div>{{hero.title}}</div>
-                    </jnt-stack>
-                    <jnt-label [label]="hero.likes + ' likes'"
-                               [color]="ui.color.green"></jnt-label>
-                  </jnt-stack>
-                </ng-template>
 
               </ng-template>
             </app-browser-preview>

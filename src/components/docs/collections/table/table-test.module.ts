@@ -5,7 +5,7 @@ import {
   AccordionModule,
   AppLayoutModule,
   ArrayPipesModule,
-  BlockModule,
+  BlockModule, ButtonModule,
   CheckboxModule,
   FormModule,
   GridModule,
@@ -39,7 +39,8 @@ import { TableTestComponent } from './table-test.component';
     MenuModule,
     SharedModule,
     ArrayPipesModule,
-    AppLayoutModule
+    AppLayoutModule,
+    ButtonModule
   ],
   exports: [
     TableTestComponent

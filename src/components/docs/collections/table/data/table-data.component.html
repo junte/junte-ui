@@ -6,6 +6,14 @@
         (sections |includes: tableSections.reload) ? ui.feature.reload : null
       ]" formControlName="table">
 
+        <ng-template #tableActionsTemplate>
+          <jnt-button text="Reset"
+                      [icon]="ui.icons.cancel"
+                      [scheme]="ui.scheme.secondary"
+                      [outline]="ui.outline.transparent"
+                      (click)="form.reset()"></jnt-button>
+        </ng-template>
+
         <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
           <jnt-select formControlName="job"
                       placeholder="Select job"
@@ -16,7 +24,7 @@
           </jnt-select>
         </ng-template>
 
-        <jnt-table-column title="#" sort="id">
+        <jnt-table-column title="#" sort="id" width="30px">
           <ng-template #tableCellTemplate let-id="id">
             {{id}}
           </ng-template>

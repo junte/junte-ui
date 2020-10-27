@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, QueryList } from '@angular/core';
-import { ChartIndicatorComponent } from './chart-indicator.component';
+import { ChartIndicatorComponent } from './chart-indicator';
 
 @Pipe({name: 'percentToNumber'})
 export class PercentToNumberPipe implements PipeTransform {

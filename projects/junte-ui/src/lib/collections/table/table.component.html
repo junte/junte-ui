@@ -3,7 +3,8 @@
     <jnt-stack [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center"
                [justify]="ui.justify.between">
-      <div>
+      <jnt-stack [orientation]="ui.orientation.horizontal"
+                 [align]="ui.align.center">
         <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
                     [text]="'action.reload' | translate"
                     [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
@@ -13,7 +14,7 @@
                     (click)="load(); reloaded.emit()">
         </jnt-button>
         <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
-      </div>
+      </jnt-stack>
       <jnt-input data-search *ngIf="features | includes : ui.feature.search"
                  formControlName="q"
                  [icon]="ui.icons.search"
@@ -39,12 +40,13 @@
             <th *ngFor="let column of columns"
                 [class.sortable]="!!column.orderBy"
                 [style.text-align]="column.align"
+                [style.width]="column.width"
                 (click)="column.orderBy ? sorting(column.orderBy) : null">
               <span>
                 {{column.title}}
                 <i *ngIf="!!orderByControl.value && (orderByControl.value === '-' + column.orderBy
                     || orderByControl.value === column.orderBy)"
-                  [innerHTML]="(orderByControl.value === column.orderBy) ? '&#8593;' : '&#8595;'"></i>
+                   [innerHTML]="(orderByControl.value === column.orderBy) ? '&#8593;' : '&#8595;'"></i>
               </span>
             </th>
           </tr>
