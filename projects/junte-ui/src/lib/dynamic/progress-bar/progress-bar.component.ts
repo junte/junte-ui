@@ -1,5 +1,7 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
@@ -15,7 +17,8 @@ import { ProgressLineComponent } from './line/progress-line.component';
 
 @Component({
   selector: 'jnt-progress-bar',
-  templateUrl: './progress-bar.encapsulated.html'
+  templateUrl: './progress-bar.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressBarComponent implements AfterViewInit {
 
@@ -52,6 +55,9 @@ export class ProgressBarComponent implements AfterViewInit {
   @ContentChildren(ProgressLineComponent)
   lines: QueryList<ProgressLineComponent>;
 
+  constructor(private cd: ChangeDetectorRef) {
+  }
+
   ngAfterViewInit() {
     this.colorize();
   }
@@ -63,6 +69,7 @@ export class ProgressBarComponent implements AfterViewInit {
         .sort((a, b) => a.from < b.from ? 1 : -1);
 
       this.color = lines.find(line => line.from <= this.value)?.color || Color.purple;
+      this.cd.detectChanges();
     }
   }
 }
