@@ -201,6 +201,12 @@
           display: none;
         }
       }
+
+      [data-select] ul li {
+        button[data-close] {
+          display: block;
+        }
+      }
     }
 
     &[data-disabled='true'] {
@@ -324,6 +330,7 @@
           color: $jnt-primary-text-light-color;
           right: 0;
           display: none;
+          cursor: pointer;
 
           &:focus {
             outline: 0;
@@ -376,6 +383,7 @@
       align-self: stretch;
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       &:focus {
         outline: 0;
