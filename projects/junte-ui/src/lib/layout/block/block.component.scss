@@ -143,28 +143,28 @@
         padding: map-get($footer, padding);
       }
     }
+  }
 
-    [data-loading], [data-error], [data-success] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: $jnt-corner-normal;
-      z-index: 1;
-      @if map-has-key($vars, overlay) {
-        $overlay: map-get($vars, overlay);
-        background-color: map-get($overlay, background-color);
-        @if map-has-key($overlay, icon) {
-          $icon: map-get($overlay, icon);
-          [data-icon] {
-            @include jnt-icon((
-              size: map-get($icon, size)
-            ), '&');
-          }
+  #{$context} #{$wrapper} [data-state] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $jnt-corner-normal;
+    z-index: 1;
+    @if map-has-key($vars, overlay) {
+      $overlay: map-get($vars, overlay);
+      background-color: map-get($overlay, background-color);
+      @if map-has-key($overlay, icon) {
+        $icon: map-get($overlay, icon);
+        [data-icon] {
+          @include jnt-icon((
+            size: map-get($icon, size)
+          ), '&');
         }
       }
     }
