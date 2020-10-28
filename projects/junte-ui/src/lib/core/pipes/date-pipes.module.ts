@@ -1,4 +1,16 @@
 import { NgModule } from '@angular/core';
+import { IsSameMonthPipe } from './date/is-same-month.pipe';
+import { IsSameYearPipe } from './date/is-same-year.pipe';
+import { IsTodayPipe } from './date/is-today.pipe';
+import { IsWeekendPipe } from './date/is-weekend.pipe';
+import { MaxPipe } from './date/max.pipe';
+import { MinPipe } from './date/min.pipe';
+import { WeekdayNamePipe } from './date/weekday-name.pipe';
+import { GetDatePipe } from './date/get-date.pipe';
+import { GetDaysInMonthPipe } from './date/get-days-in-month.pipe';
+import { IsAfterPipe } from './date/is-after.pipe';
+import { IsBeforePipe } from './date/is-before.pipe';
+import { IsEqualPipe } from './date/is-equal.pipe';
 import { EndOfDayPipe } from './date/end-of-day.pipe';
 import { EndOfMonthPipe } from './date/end-of-month.pipe';
 import { EndOfWeekPipe } from './date/end-of-week.pipe';
@@ -23,7 +35,18 @@ import { FormatPipe } from './date/format.pipe';
     EndOfMonthPipe,
     EndOfYearPipe,
     EndOfWeekPipe,
-
+    GetDaysInMonthPipe,
+    GetDatePipe,
+    IsAfterPipe,
+    IsBeforePipe,
+    IsEqualPipe,
+    IsSameMonthPipe,
+    IsSameYearPipe,
+    IsTodayPipe,
+    IsWeekendPipe,
+    MaxPipe,
+    MinPipe,
+    WeekdayNamePipe
   ],
   exports: [
     FormatPipe,
@@ -36,7 +59,18 @@ import { FormatPipe } from './date/format.pipe';
     EndOfMonthPipe,
     EndOfYearPipe,
     EndOfWeekPipe,
-
+    GetDaysInMonthPipe,
+    GetDatePipe,
+    IsAfterPipe,
+    IsBeforePipe,
+    IsEqualPipe,
+    IsSameMonthPipe,
+    IsSameYearPipe,
+    IsTodayPipe,
+    IsWeekendPipe,
+    MaxPipe,
+    MinPipe,
+    WeekdayNamePipe
   ]
 })
 export class DatePipesModule {

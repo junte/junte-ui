@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DateFnsModule } from 'ngx-date-fns';
-import { IconModule } from '../../elements/icon/icon.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { IconModule } from '../../elements/icon/icon.module';
 import { BlockModule } from '../../layout/block/block.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { StackModule } from '../../layout/stack/stack.module';
@@ -26,7 +25,6 @@ import { StyleLeftPipe, StyleTopPipe, TimeFormatPipe } from './date-picker.pipes
     CommonModule,
     ReactiveFormsModule,
     FormModule,
-    DateFnsModule,
     InputModule,
     CalendarModule,
     BlockModule,

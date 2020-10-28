@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { DateFnsModule } from 'ngx-date-fns';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { ButtonModule } from '../button/button.module';
 import { CalendarComponent } from './calendar.component';
 import { WeekMetricComponent } from './week/week-metric.component';
@@ -15,8 +15,8 @@ import { WeekMetricComponent } from './week/week-metric.component';
     TranslateModule,
     IconModule,
     StackModule,
-    DateFnsModule,
     ArrayPipesModule,
+    DatePipesModule,
     ButtonModule
   ],
   declarations: [

@@ -12,13 +12,13 @@
     <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
       <jnt-button data-date [outline]="ui.outline.transparent"
                   [size]="ui.size.small"
-                  text="{{period | dfnsFormat: 'LLLL'}}, {{period | dfnsFormat: 'yyyy'}}"></jnt-button>
+                  text="{{period | jntFormat: 'LLLL'}}, {{period | jntFormat: 'yyyy'}}"></jnt-button>
     </td>
     <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
       <jnt-button data-date [outline]="ui.outline.transparent"
                   [size]="ui.size.small"
                   [width]="ui.width.fluid"
-                  text="{{period | dfnsFormat: 'yyyy'}}">
+                  text="{{period | jntFormat: 'yyyy'}}">
       </jnt-button>
 
     </td>
@@ -41,7 +41,7 @@
     </td>
   </tr>
   <tr *ngIf="view === viewType.date; else empty" data-days>
-    <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | dfnsWeekdayName:'x2'}}</th>
+    <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | jntWeekdayName:'x2'}}</th>
 
     <th *ngFor="let m of metrics">
       {{m.title}}
@@ -58,10 +58,10 @@
   <tbody>
   <ng-container *ngIf="view === viewType.date">
     <tr *ngFor="let w of weeks"
-        [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
+        [attr.data-current-week]="(current | jntStartOfWeek) | jntIsEqual: (w.date | jntStartOfWeek)">
       <td data-day *ngFor="let d of w.days"
-          [attr.data-current-month]="(d | dfnsStartOfMonth) | dfnsIsEqual: (period | dfnsStartOfMonth)"
-          [attr.data-selected-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
+          [attr.data-current-month]="(d | jntStartOfMonth) | jntIsEqual: (period | jntStartOfMonth)"
+          [attr.data-selected-day]="(d | jntStartOfDay) | jntIsEqual: (current | jntStartOfDay)"
           (click)="select(d)" tabindex="0">
         <ng-container
           *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
@@ -78,9 +78,9 @@
   <ng-container *ngIf="view === viewType.month">
     <tr *ngFor="let row of months">
       <td data-day-extend *ngFor="let month of row"
-          [attr.data-selected-month]="(month | dfnsStartOfMonth) | dfnsIsEqual: (current | dfnsStartOfMonth)"
+          [attr.data-selected-month]="(month | jntStartOfMonth) | jntIsEqual: (current | jntStartOfMonth)"
           (click)="period = month; view = viewType.date">
-        {{month | dfnsFormat: 'LLL'}}
+        {{month | jntFormat: 'LLL'}}
       </td>
     </tr>
   </ng-container>
@@ -88,9 +88,9 @@
   <ng-container *ngIf="view === viewType.year">
     <tr *ngFor="let row of years">
       <td data-day-extend *ngFor="let year of row"
-          [attr.data-selected-year]="(year | dfnsStartOfYear) | dfnsIsEqual: (current | dfnsStartOfYear)"
+          [attr.data-selected-year]="(year | jntStartOfYear) | jntIsEqual: (current | jntStartOfYear)"
           (click)="period = year; view = viewType.month">
-        {{year | dfnsFormat: 'yyyy'}}
+        {{year | jntFormat: 'yyyy'}}
       </td>
     </tr>
   </ng-container>
@@ -99,6 +99,6 @@
 </table>
 
 <ng-template #defaultDayTemplate let-date="date">
-  <div data-default>{{date | dfnsGetDate}}</div>
+  <div data-default>{{date | jntGetDate}}</div>
 </ng-template>
 
