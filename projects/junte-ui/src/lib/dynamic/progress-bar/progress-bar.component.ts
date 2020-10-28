@@ -1,7 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
@@ -17,8 +15,7 @@ import { ProgressLineComponent } from './line/progress-line.component';
 
 @Component({
   selector: 'jnt-progress-bar',
-  templateUrl: './progress-bar.encapsulated.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './progress-bar.encapsulated.html'
 })
 export class ProgressBarComponent implements AfterViewInit {
 
@@ -26,7 +23,7 @@ export class ProgressBarComponent implements AfterViewInit {
 
   private _value = 0;
 
-  color: string = Color.purple;
+  versions = {lines: 0};
 
   @HostBinding('attr.host')
   readonly host = 'jnt-progress-bar-host';
@@ -43,33 +40,28 @@ export class ProgressBarComponent implements AfterViewInit {
     type: 'number',
     default: '0'
   })
-  @Input() set value(value: number) {
-    this._value = value;
-    this.colorize();
+  @Input()
+  set value(value: number) {
+    this._value = value || 0;
   }
 
   get value() {
     return this._value;
   }
 
+  @PropertyApi({
+    description: 'Default color',
+    type: 'number',
+    default: '0'
+  })
+  @Input()
+  color: string = Color.purple;
+
   @ContentChildren(ProgressLineComponent)
   lines: QueryList<ProgressLineComponent>;
 
-  constructor(private cd: ChangeDetectorRef) {
-  }
-
   ngAfterViewInit() {
-    this.colorize();
+    this.lines.changes.subscribe(() => this.versions.lines++);
   }
 
-  private colorize() {
-    if (!!this.lines) {
-      const lines = this.lines.toArray()
-        .map(line => ({from: line.from, color: line.color}))
-        .sort((a, b) => a.from < b.from ? 1 : -1);
-
-      this.color = lines.find(line => line.from <= this.value)?.color || Color.purple;
-      this.cd.detectChanges();
-    }
-  }
 }

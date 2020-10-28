@@ -7,7 +7,7 @@ import { SelectableModule } from './core/directives/selectable';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';
-import merge from './core/utils/merge';
+import deepMerge from './core/utils/merge';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { ElementsModule } from './elements/elements.module';
 import { UiFormsModule } from './forms/forms.module';
@@ -19,7 +19,7 @@ import { SharedModule } from './shared/shared.module';
 export let CONFIG_TOKEN = new InjectionToken('JunteUIModuleConfig');
 
 export function configFactory(config: JunteUIConfig) {
-  return merge(JUNTE_DEFAULT_CONFIG, config);
+  return deepMerge(JUNTE_DEFAULT_CONFIG, config);
 }
 
 @NgModule({

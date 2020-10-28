@@ -12,16 +12,17 @@
     </ng-template>
     <ng-container *ngIf="!!radiosControl.length">
       <ng-container *ngIf="cols <= 1; else colTemplate">
-        <jnt-stack [gutter]="spacing" [orientation]="orientation"
-                   [spacing]="ui.gutter.normal"
-                   [align]="orientation === ui.orientation.horizontal ? ui.align.center : ui.align.start">
+        <jnt-stack [gutter]="spacing"
+                   [orientation]="orientation"
+                   [spacing]="spacing"
+                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.start">
           <ng-container *ngFor="let item of radios; let i = index">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </ng-container>
         </jnt-stack>
       </ng-container>
       <ng-template #colTemplate>
-        <jnt-row>
+        <jnt-row [align]="align">
           <jnt-col *ngFor="let item of radios; let i = index" [tablet]="math.trunc(12 / cols)">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </jnt-col>

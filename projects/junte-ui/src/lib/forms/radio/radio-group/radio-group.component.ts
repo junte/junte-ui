@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Breakpoint } from '../../../core/enums/breakpoint';
 import { Feature } from '../../../core/enums/feature';
+import { FlexAlign } from '../../../core/enums/flex';
 import { Gutter } from '../../../core/enums/gutter';
 import { Orientation } from '../../../core/enums/orientation';
 import { Size } from '../../../core/enums/size';
@@ -34,6 +35,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   _orientation: Orientation = Orientation.vertical;
   _spacing: Gutter = Gutter.small;
+  _align: FlexAlign = FlexAlign.start;
 
   private _size = Size.normal;
   selected: any;
@@ -58,6 +60,19 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   get orientation() {
     return this.breakpoint.current === Breakpoint.mobile && this.features?.includes(Feature.adapted) ?
       Orientation.vertical : this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Align in radio group',
+    path: 'ui.align'
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align || FlexAlign.start;
+  }
+
+  get align() {
+    return this._align;
   }
 
   @PropertyApi({

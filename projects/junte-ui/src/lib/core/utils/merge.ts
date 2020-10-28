@@ -24,7 +24,7 @@ const isObject = (obj: any) => {
   return false;
 };
 
-const merge = <T extends IObject[]>(
+const deepMerge = <T extends IObject[]>(
   ...objects: T
 ): TUnionToIntersection<T[number]> =>
   objects.reduce((result, current) => {
@@ -32,7 +32,7 @@ const merge = <T extends IObject[]>(
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = Array.from(new Set(result[key].concat(current[key])));
       } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = merge(result[key], current[key]);
+        result[key] = deepMerge(result[key], current[key]);
       } else {
         result[key] = current[key];
       }
@@ -41,4 +41,4 @@ const merge = <T extends IObject[]>(
     return result;
   }, {}) as any;
 
-export default merge;
+export default deepMerge;
