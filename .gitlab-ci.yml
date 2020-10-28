@@ -31,6 +31,9 @@ build:
     - docker push $DOCKER_IMAGE
     - docker push $DOCKER_CACHE_IMAGE
     - docker push $DOCKER_BUILD_IMAGE
+  
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
 
 .base_publish:
   stage: publish
