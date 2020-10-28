@@ -1,4 +1,5 @@
-<div data-drawer [attr.data-collapsed]="collapsed">
+<div data-drawer [attr.data-collapsed]="collapsed
+  && breakpoint.current !== ui.breakpoint.mobile">
   <jnt-button *jntFor="ui.breakpoint.mobile"
               [scheme]="ui.scheme.secondary"
               [icon]="ui.icons.menu"
@@ -15,13 +16,16 @@
     <jnt-stack [align]="ui.align.stretch">
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate;
-        context: {collapsed: collapsed, toggle: toggle.bind(this)}">
+        context: {
+          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile,
+          toggle: toggle.bind(this)
+        }">
         </ng-container>
       </ng-container>
       <jnt-menu data-menu *ngIf="!!menu"
                 context="popover-aside-sub-menu"
                 [orientation]="ui.orientation.vertical"
-                [collapsed]="collapsed"
+                [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile"
                 [placement]="ui.placement.fixed"
                 [spacing]="ui.size.small"
                 (selected)="toggle()">

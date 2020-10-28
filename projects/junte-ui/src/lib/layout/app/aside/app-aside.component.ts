@@ -14,7 +14,8 @@ const ASIDE_STATE = 'aside_collapsed';
 })
 export class AppAsideComponent implements OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-app-aside-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-app-aside-host';
 
   private _collapsed: boolean;
   ui = UI;
@@ -38,7 +39,7 @@ export class AppAsideComponent implements OnInit {
   @HostBinding('attr.data-opened')
   @Input() opened = false;
 
-  constructor(private breakpoint: BreakpointService) {
+  constructor(public breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
