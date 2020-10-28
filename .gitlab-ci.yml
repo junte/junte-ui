@@ -6,8 +6,8 @@ variables:
   DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_build
 
 stages:
-  - test
   - build
+  - test
   - publish
   - deploy
   - publish_npm
