@@ -16,6 +16,7 @@ export interface LocaleUI {
 export class JunteUIConfig {
   assets?: string;
   i18n?: any;
+  weekStartsOn?:  0 | 1 | 2 | 3 | 4 | 5 | 6;
   locale?: {
     ui?: LocaleUI,
     dfns?: Locale
@@ -25,6 +26,7 @@ export class JunteUIConfig {
 export const JUNTE_DEFAULT_CONFIG = {
   assets: 'assets',
   i18n: i18nEn,
+  weekStartsOn: 0,
   locale: {
     ui: jntEn,
     dfns: dfnsEnUS
