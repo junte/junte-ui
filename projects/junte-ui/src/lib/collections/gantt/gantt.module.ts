@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { DateFnsModule } from 'ngx-date-fns';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
@@ -22,6 +23,7 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
     CommonModule,
     GanttPipesModule,
     ArrayPipesModule,
+    DatePipesModule,
     IconModule,
     SkeletonModule,
     ResponsiveModule,

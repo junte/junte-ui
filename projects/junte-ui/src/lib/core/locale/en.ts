@@ -4,4 +4,4 @@ export const localeEnUs = {
     time: '__:__',
     datetime: '__/__/____, __:__'
   }
-}
+};

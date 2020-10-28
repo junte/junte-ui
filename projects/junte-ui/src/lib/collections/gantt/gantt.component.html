@@ -23,7 +23,7 @@
                         (click)="current = subYears(current, 1)">
             </jnt-button>
             <div>
-              {{current | dfnsFormat: 'yyyy'}}
+              {{current | jntFormat: 'yyyy'}}
             </div>
             <jnt-button [icon]="ui.icons.chevronRight"
                         [outline]="ui.outline.transparent"
@@ -39,7 +39,7 @@
           <ng-container
             *ngTemplateOutlet="!!titleTemplate ? titleTemplate : titleDefaultTemplate;context: this"></ng-container>
         </td>
-        <td data-day *ngFor="let month of (current | dfnsStartOfYear | betweenMonths:(current | dfnsEndOfYear))"
+        <td data-day *ngFor="let month of (current | jntStartOfYear | betweenMonths:(current | jntEndOfYear))"
             [attr.current]="month">
           {{month | monthName}}
         </td>
@@ -89,12 +89,12 @@
             </ng-template>
 
             <ng-container *ngTemplateOutlet="periodTemplate;context:
-              {start: current | dfnsStartOfYear,
-                end: current | dfnsEndOfYear,
+              {start: current | jntStartOfYear,
+                end: current | jntEndOfYear,
                 period: period,
                 current: current,
-                from: [[period.from, current | dfnsStartOfYear] | dfnsMax, current | dfnsEndOfYear] | dfnsMin,
-                to: [[period.to, current | dfnsEndOfYear] | dfnsMin, current | dfnsStartOfYear] | dfnsMax}">
+                from: [[period.from, current | jntStartOfYear] | dfnsMax, current | jntEndOfYear] | dfnsMin,
+                to: [[period.to, current | jntEndOfYear] | dfnsMin, current | jntStartOfYear] | dfnsMax}">
             </ng-container>
           </tr>
         </ng-container>
@@ -123,7 +123,7 @@
                           (click)="current = subYears(current, 1)">
               </jnt-button>>
               <div>
-                {{current | dfnsFormat: 'yyyy'}}
+                {{current | jntFormat: 'yyyy'}}
               </div>
               <jnt-button [icon]="ui.icons.chevronRight"
                           [outline]="ui.outline.transparent"
@@ -134,13 +134,13 @@
           </div>
           <table cellpadding="3" [cellSpacing]="0" data-mobile>
             <tbody>
-            <tr *ngFor="let month of (current | dfnsStartOfYear | betweenMonths:(current | dfnsEndOfYear))"
+            <tr *ngFor="let month of (current | jntStartOfYear | betweenMonths:(current | jntEndOfYear))"
                 [attr.current]="month">
               <td data-day>{{month | monthName}}</td>
               <ng-container *ngFor="let period of line.periods; let i = index">
 
                 <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
-                  <ng-container *ngIf="!(month | isWithinInterval:(from | dfnsStartOfMonth):(to | dfnsEndOfMonth))">
+                  <ng-container *ngIf="!(month | isWithinInterval:(from | jntStartOfMonth):(to | jntEndOfMonth))">
                     <td></td>
                   </ng-container>
                   <ng-container *ngIf="from | dfnsIsSameMonth:month">
@@ -155,12 +155,12 @@
                 </ng-template>
 
                 <ng-container *ngTemplateOutlet="periodTemplate;context:
-                    { start: current | dfnsStartOfYear,
-                      end: current | dfnsEndOfYear,
+                    { start: current | jntStartOfYear,
+                      end: current | jntEndOfYear,
                       period: period,
                       current: current,
-                      from: [[period.from, current | dfnsStartOfYear] | dfnsMax, current | dfnsEndOfYear] | dfnsMin,
-                      to: [[period.to, current | dfnsEndOfYear] | dfnsMin, current | dfnsStartOfYear] | dfnsMax}">
+                      from: [[period.from, current | jntStartOfYear] | dfnsMax, current | jntEndOfYear] | dfnsMin,
+                      to: [[period.to, current | jntEndOfYear] | dfnsMin, current | jntStartOfYear] | dfnsMax}">
                 </ng-container>
 
               </ng-container>
@@ -193,7 +193,7 @@
                         (click)="current = subMonths(current, 1)">
             </jnt-button>
             <div>
-              {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
+              {{current | jntFormat: 'MMMM'}}, {{current | jntFormat: 'yyyy'}}
             </div>
             <jnt-button [icon]="ui.icons.chevronRight"
                         [outline]="ui.outline.transparent"
@@ -260,12 +260,12 @@
             </ng-template>
 
             <ng-container *ngTemplateOutlet="periodTemplate;context:
-              {start: current | dfnsStartOfMonth,
-                end: current | dfnsEndOfMonth,
+              {start: current | jntStartOfMonth,
+                end: current | jntEndOfMonth,
                 period: period,
                 current: current,
-                from: [[period.from, current | dfnsStartOfMonth] | dfnsMax, current | dfnsEndOfMonth] | dfnsMin,
-                to: [[period.to, current | dfnsEndOfMonth] | dfnsMin, current | dfnsStartOfMonth] | dfnsMax}">
+                from: [[period.from, current | jntStartOfMonth] | dfnsMax, current | jntEndOfMonth] | dfnsMin,
+                to: [[period.to, current | jntEndOfMonth] | dfnsMin, current | jntStartOfMonth] | dfnsMax}">
             </ng-container>
 
           </tr>
@@ -295,7 +295,7 @@
                           (click)="current = subMonths(current, 1)">
               </jnt-button>
               <div>
-                {{current | dfnsFormat: 'MMMM'}}, {{current | dfnsFormat: 'yyyy'}}
+                {{current | jntFormat: 'MMMM'}}, {{current | jntFormat: 'yyyy'}}
               </div>
               <jnt-button [icon]="ui.icons.chevronRight"
                           [outline]="ui.outline.transparent"
@@ -312,7 +312,7 @@
 
                 <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
 
-                  <ng-container *ngIf="!(day | isWithinInterval:(from | dfnsStartOfDay):(to | dfnsEndOfDay))">
+                  <ng-container *ngIf="!(day | isWithinInterval:(from | jntStartOfDay):(to | jntEndOfDay))">
                     <td></td>
                   </ng-container>
                   <ng-container *ngIf="from | isSameDay:day">
@@ -327,12 +327,12 @@
                 </ng-template>
 
                 <ng-container *ngTemplateOutlet="periodTemplate;context:
-                   {start: current | dfnsStartOfMonth,
-                    end: current | dfnsEndOfMonth,
+                   {start: current | jntStartOfMonth,
+                    end: current | jntEndOfMonth,
                     period: period,
                     current: current,
-                    from: [[period.from, current | dfnsStartOfMonth] | dfnsMax, current | dfnsEndOfMonth] | dfnsMin,
-                    to: [[period.to, current | dfnsEndOfMonth] | dfnsMin, current | dfnsStartOfMonth] | dfnsMax}">
+                    from: [[period.from, current | jntStartOfMonth] | dfnsMax, current | jntEndOfMonth] | dfnsMin,
+                    to: [[period.to, current | jntEndOfMonth] | dfnsMin, current | jntStartOfMonth] | dfnsMax}">
                 </ng-container>
 
               </ng-container>
