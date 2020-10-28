@@ -162,12 +162,16 @@
             $title: map-get(map-get($vars, top), item);
             @include jnt-link((
               height: map-get($title, height),
-              color: map-get($title, color),
               corner: map-get($title, corner),
               font-size: map-get($title, font-size),
               text-transform: map-get($title, text-transform),
               font-weight: map-get($title, font-weight),
-              padding: map-get($title, padding),
+              outlines: (
+                transparent: (
+                  color: map-get($title, color),
+                  padding: map-get($title, padding),
+                )
+              )
             ), '&');
 
             @if map-has-key($title, active) {
@@ -442,12 +446,12 @@
         [data-link] {
           @include jnt-link((
             height: map-get($item, height),
-            color: map-get($item, color),
             corner: map-get($item, corner),
             font-size: map-get($item, font-size),
             outlines: (
               transparent: (
-                padding: map-get($item, padding)
+                padding: map-get($item, padding),
+                color: map-get($item, color),
               )
             ),
           ), '&');

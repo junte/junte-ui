@@ -21,6 +21,7 @@
   }
   #{$wrapper} [data-link] {
     padding: map-get($scheme, padding);
+    color: map-get($scheme, color);
     @if map-has-key($scheme, hover) {
       $hover: map-get($scheme, hover);
       &[data-active="false"]:hover {
@@ -180,7 +181,6 @@
     display: inline,
     overflow: false,
     height: null,
-    color: null,
     border: null,
     toggle: (
       toggle: true,
@@ -198,6 +198,7 @@
     outlines: (
       transparent: (
         padding: 0,
+        color: null,
         hover: (
           color: null,
           background-color: null,
@@ -390,7 +391,6 @@
     text-transform: map-get($vars, text-transform);
     text-decoration: map-get($vars, text-decoration);
     text-align: map-get($vars, text-align);
-    color: if(map-get($vars, color), map-get($vars, color) !important, null);
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
 
     [data-title] {
