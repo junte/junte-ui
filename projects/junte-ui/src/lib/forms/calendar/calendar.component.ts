@@ -19,7 +19,6 @@ import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
-import { DFNS_PROVIDES } from '../../core/locale/providers';
 import { Period } from './types';
 import { today } from './utils';
 import { WeekMetricComponent } from './week/week-metric.component';
@@ -44,8 +43,7 @@ enum ViewType {
       useExisting: forwardRef(() => CalendarComponent),
       multi: true
     },
-    ...I18N_PROVIDERS,
-    ...DFNS_PROVIDES
+    ...I18N_PROVIDERS
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {

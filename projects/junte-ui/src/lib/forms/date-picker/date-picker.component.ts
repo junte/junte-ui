@@ -9,7 +9,6 @@ import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
-import { DFNS_PROVIDES } from '../../core/locale/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
@@ -33,8 +32,7 @@ enum Meridian {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatePickerComponent),
       multi: true
-    },
-    ...DFNS_PROVIDES
+    }
   ]
 })
 export class DatePickerComponent implements OnInit, ControlValueAccessor {

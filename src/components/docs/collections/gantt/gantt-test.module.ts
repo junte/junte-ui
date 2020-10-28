@@ -46,7 +46,7 @@ import { GanttTestComponent } from './gantt-test.component';
   ],
   declarations: [
     GanttTestComponent
-  ],
+  ]
 })
 export class GanttTestModule {
 }

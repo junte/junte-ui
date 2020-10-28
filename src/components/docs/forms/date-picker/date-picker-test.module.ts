@@ -48,7 +48,7 @@ import { DatePickerTestComponent } from './date-picker-test.component';
   ],
   declarations: [
     DatePickerTestComponent
-  ],
+  ]
 })
 export class DatePickerTestModule {
 }
