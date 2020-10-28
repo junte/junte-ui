@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DateFnsModule } from 'ngx-date-fns';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { DatePeriodComponent } from './date-period.component';
 
@@ -11,7 +11,7 @@ import { DatePeriodComponent } from './date-period.component';
   imports: [
     CommonModule,
     StackModule,
-    DateFnsModule
+    DatePipesModule
   ],
   exports: [
     DatePeriodComponent

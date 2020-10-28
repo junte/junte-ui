@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DateFnsModule } from 'ngx-date-fns';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { DatePipesModule } from '../../core/pipes/date-pipes.module';
@@ -28,7 +27,6 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
     SkeletonModule,
     ResponsiveModule,
     ButtonModule,
-    DateFnsModule,
     AccordionModule
   ],
   exports: [
