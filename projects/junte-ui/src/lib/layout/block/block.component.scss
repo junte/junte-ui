@@ -102,19 +102,20 @@
   }
 
   #{$context} #{$wrapper} [data-help] {
-    position: absolute;
-    top: -12px;
-    right: 0;
-    z-index: 2;
-    width: 32px;
-    height: 32px;
-    border-color: map-get($vars, background-color);
-    background-color: $jnt-secondary-background;
-    border-radius: $jnt-corner-normal;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid map-get($vars, background);
+    @if $declare {
+      position: absolute;
+      top: -12px;
+      right: 0;
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      background-color: $jnt-secondary-background;
+      border-radius: $jnt-corner-normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    border: if(map-get($vars, background), 2px solid map-get($vars, background), null);
     @include jnt-icon((
       size: 16px,
       color: $jnt-primary-light-color,
