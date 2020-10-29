@@ -1,4 +1,5 @@
 @import 'jnt-variables';
+@import 'jnt-hosts';
 @import 'jnt-functions';
 @import 'navigation/link/link';
 
@@ -120,7 +121,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-menu-host)} {
     @if $declare {
       display: block;
 

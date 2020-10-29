@@ -1,17 +1,38 @@
 @import "jnt-variables";
+@import 'jnt-hosts';
 @import "jnt-functions";
 @import "forms/button/button";
 @import "forms/input/input";
 
-@mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-table($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: (
     min-height: 200px,
-    min-width: 400px
+    min-width: 400px,
+    menu: (
+      top: (
+        item: (
+          corner: 0,
+          padding: $jnt-gutter-normal,
+          color: $jnt-primary-text-light-color,
+          active: (
+            underline: false,
+            color: $jnt-primary-color,
+            shadow: inset 4px 0px 0px $jnt-primary-color,
+            background-color: $jnt-secondary-color
+          )
+        )
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -131,6 +152,14 @@
       [data-pages] {
         flex: 1;
       }
+    }
+  }
+
+  @if $declare {
+    @if map-has-key($vars, menu) {
+      @include jnt-menu((
+        map-get($vars, menu)
+      ), '[context=table-row-action] ' + $jnt-menu-host);
     }
   }
 }

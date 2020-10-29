@@ -61,15 +61,18 @@
                             [icon]="ui.icons.actions"
                             (attached)="popover = $event"
                             [jntPopover]="{
+                              context: 'table-row-action',
                               contentTemplate: dropdownTemplate,
                               behaviour: ui.behaviour.dropdown,
-                              trigger: ui.trigger.click
+                              trigger: ui.trigger.click,
+                              padding: ui.gutter.none,
+                              minWidth: '150px'
                             }">
                 </jnt-button>
                 <ng-template #dropdownTemplate>
-                  <ng-container *ngTemplateOutlet="rowActionsTemplate;
+                    <ng-container *ngTemplateOutlet="rowActionsTemplate;
                     context: {row: row, hide: hideActions.bind(this)}">
-                  </ng-container>
+                    </ng-container>
                 </ng-template>
               </td>
               <td *ngFor="let column of columns">
