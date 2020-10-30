@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { merge } from 'rxjs';
@@ -138,7 +148,8 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   constructor(private fb: FormBuilder,
               private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              private cd: ChangeDetectorRef) {
   }
 
   ngAfterViewInit() {
@@ -158,7 +169,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   update() {
     if (!!this.radios) {
-      this.radiosControl.reset();
+      this.radiosControl.reset([], {emitEvent: false});
       this.radios.forEach((radio, i) => {
         if (this.radiosControl.length < i + 1) {
           this.radiosControl.push(this.fb.control(this.selected === radio.value));
@@ -167,6 +178,7 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
             .setValue(this.selected === radio.value, {emitEvent: false});
         }
       });
+      this.cd.detectChanges();
     }
   }
 
