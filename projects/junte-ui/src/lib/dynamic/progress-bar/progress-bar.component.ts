@@ -1,5 +1,7 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
@@ -15,15 +17,14 @@ import { ProgressLineComponent } from './line/progress-line.component';
 
 @Component({
   selector: 'jnt-progress-bar',
-  templateUrl: './progress-bar.encapsulated.html'
+  templateUrl: './progress-bar.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressBarComponent implements AfterViewInit {
 
   ui = UI;
 
   private _value = 0;
-
-  versions = {lines: 0};
 
   @HostBinding('attr.host')
   readonly host = 'jnt-progress-bar-host';
@@ -60,8 +61,11 @@ export class ProgressBarComponent implements AfterViewInit {
   @ContentChildren(ProgressLineComponent)
   lines: QueryList<ProgressLineComponent>;
 
+  constructor(private cd: ChangeDetectorRef) {
+  }
+
   ngAfterViewInit() {
-    this.lines.changes.subscribe(() => this.versions.lines++);
+    this.lines.changes.subscribe(() => this.cd.detectChanges());
   }
 
 }

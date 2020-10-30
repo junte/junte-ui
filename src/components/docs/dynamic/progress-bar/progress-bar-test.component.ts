@@ -16,6 +16,7 @@ export class ProgressBarTestComponent implements OnInit {
   localUi = LocalUI;
   math = Math;
   types = {progress: ProgressBarComponent};
+  added = false;
 
   @ViewChild('code') code: TabComponent;
 

@@ -2,6 +2,6 @@
 <div data-bar>
   <div *ngIf="value >= 0" data-progress
        [style.width.%]="value > 100 ? 100 : value"
-       [style.background-color]="value | getColor:lines:color:versions.lines"
+       [style.background-color]="value | getColor:lines:color"
        [attr.data-fail]="value > 100"></div>
 </div>
