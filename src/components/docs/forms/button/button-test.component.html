@@ -30,6 +30,7 @@
                                 [type]="typeControl.value"
                                 [loading]="loadingControl.value"
                                 [disabled]="disabledControl.value"
+                                [shape]="shapeControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.user,
                                         position: positionControl.value === ui.position.right
                                           ? ui.position.right : ui.position.left} : null">
@@ -162,6 +163,24 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="shape"
+                                  i18n="@@label.shape">Shape
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="shape"
+                                placeholder="Square"
+                                i18n-placeholder="@@label.square">
+                    <jnt-switcher-option label="Square"
+                                         i18n-label="@@label.square"
+                                         [icon]="localUi.icons.square"
+                                         [value]="ui.shape.square"></jnt-switcher-option>
+                    <jnt-switcher-option label="Circle"
+                                         i18n-label="@@label.circle"
+                                         [icon]="localUi.icons.circle"
+                                         [value]="ui.shape.circle"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="width"
                                   i18n="@@label.width">Width
                   </jnt-form-label>
@@ -283,6 +302,10 @@
   <ng-container *ngIf="textControl.value">
     <![CDATA[
     text="Button"]]>
+  </ng-container>
+  <ng-container *ngIf="shapeControl.value">
+    <![CDATA[
+    [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="schemeControl.value">
     <![CDATA[
