@@ -453,19 +453,18 @@
       li {
         cursor: pointer;
         padding: $jnt-gutter-small $jnt-gutter-normal;
-        border-left: 2px solid transparent;
+        border-radius: $jnt-corner-small;
 
         [data-icon] {
           line-height: 0;
         }
 
         &[data-selected=true] {
-          opacity: .5;
+          color: $jnt-primary-light-color;
         }
 
         &:hover {
-          background-color: $jnt-secondary-background;
-          border-color: $jnt-primary-color;
+          background-color: $jnt-highlight-background;
         }
       }
     }

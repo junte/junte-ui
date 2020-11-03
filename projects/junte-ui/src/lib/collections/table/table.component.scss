@@ -10,22 +10,7 @@
 
   $defs: (
     min-height: 200px,
-    min-width: 400px,
-    menu: (
-      top: (
-        item: (
-          corner: 0,
-          padding: $jnt-gutter-normal,
-          color: $jnt-primary-text-light-color,
-          active: (
-            underline: false,
-            color: $jnt-primary-color,
-            shadow: inset 4px 0px 0px $jnt-primary-color,
-            background-color: $jnt-secondary-color
-          )
-        )
-      )
-    )
+    min-width: 400px
   );
 
   $vars: $passed;
@@ -188,14 +173,6 @@
       [data-pages] {
         flex: 1;
       }
-    }
-  }
-
-  @if $declare {
-    @if map-has-key($vars, menu) {
-      @include jnt-menu((
-        map-get($vars, menu)
-      ), '[context=table-row-action] ' + $jnt-menu-host);
     }
   }
 }
