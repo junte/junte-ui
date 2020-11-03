@@ -168,7 +168,7 @@
   #{$context} #{$wrapper} [data-action] {
     @include jnt-button((
       without-text-corner: $jnt-corner-normal,
-      border: 2px solid map-get($vars, background),
+      border: if(map-get($vars, background), 2px solid map-get($vars, background), null),
       schemes: (
         secondary: (
           inverse-color: $jnt-primary-color

@@ -3,6 +3,8 @@
 @import "jnt-functions";
 @import "forms/button/button";
 @import "forms/input/input";
+@import "layout/responsive/responsive";
+@import "layout/card/card";
 
 @mixin jnt-table($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
@@ -41,8 +43,11 @@
 
   :host {
     display: block;
-    min-width: map-get($vars, min-width);
     padding: $jnt-gutter-normal;
+
+    @include min-for-desktop() {
+      min-width: map-get($vars, min-width);
+    }
 
     [data-table] {
       margin-left: -$jnt-gutter-normal;
@@ -50,31 +55,62 @@
     }
 
     [data-search] {
-      @include jnt-input((width: 180px), '&');
+      @include min-for-desktop() {
+        @include jnt-input((width: 180px), '&');
+      }
+    }
+
+    [data-nodata] {
+      font-size: 80px;
+      color: $jnt-muted-color;
+    }
+
+    [data-line] {
+      tr {
+        td {
+          vertical-align: top;
+          padding: $jnt-gutter-normal $jnt-gutter-small;
+        }
+        &:not(:last-child) {
+          td {
+            border-bottom: 1px solid $jnt-muted-color;
+          }
+        }
+        &:first-child {
+          td {
+            padding-top: 0;
+          }
+        }
+        &:last-child {
+          td {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+
+    [data-spinner] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($jnt-secondary-background, .6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      z-index: 1;
+
+      [data-icon] {
+        color: $jnt-primary-text-light-color;
+      }
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       position: relative;
-
-      [data-spinner] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba($jnt-secondary-background, .6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all .3s;
-        z-index: 1;
-
-        [data-icon] {
-          color: $jnt-primary-text-light-color;
-        }
-      }
 
       thead {
         background-color: $jnt-secondary-background;
