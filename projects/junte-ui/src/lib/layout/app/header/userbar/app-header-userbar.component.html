@@ -13,8 +13,9 @@
                trigger: ui.trigger.hover,
                placement: ui.placement.fixed,
                position: ui.position.rightBottom,
-               padding: ui.gutter.none,
-               minWidth: '200px'
+               padding: ui.gutter.small,
+               minWidth: '200px',
+               context: 'app-header-userbar-menu'
              }"
              (attached)="reference.popover = $event; cd.detectChanges()"
              (removed)="reference.popover = null; cd.detectChanges()"

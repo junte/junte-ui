@@ -11,15 +11,15 @@
         corner: $jnt-corner-small,
         font-size: $jnt-font-size-base,
         height: null,
-        padding: $jnt-gutter-small,
+        padding: $jnt-gutter-small $jnt-gutter-normal,
         orphan: (
-          color: $jnt-primary-text-light-color,
+          color: $jnt-primary-text-color,
           hover: (
-            color: $jnt-primary-text-dark-color,
+            color: $jnt-primary-text-color,
             background-color: $jnt-highlight-background
           ),
         ),
-        color: null,
+        color: $jnt-primary-text-color,
         text-transform: null,
         font-weight: $jnt-font-weight-base,
         icon: (
@@ -42,8 +42,8 @@
         active: (
           underline: true,
           background-color: null,
-          color: null,
-          underline-color: $jnt-primary-color,
+          color: $jnt-primary-light-color,
+          underline-color: $jnt-primary-light-color,
           shadow: null
         ),
         styles: (
@@ -84,21 +84,21 @@
       item: (
         padding: $jnt-gutter-small $jnt-gutter-normal,
         height: null,
-        color: null,
-        corner: 0,
+        color: $jnt-primary-text-color,
+        corner: $jnt-corner-small,
         font-size: $jnt-font-size-base,
         icon: (
           margin-right: $jnt-gutter-small,
           sizes: null
         ),
         hover: (
+          color: null,
           background-color: $jnt-highlight-background,
-          border-left-color: $jnt-primary-color,
         ),
         active: (
           underline: false,
           background-color: null,
-          color: null,
+          color: $jnt-primary-light-color,
         ),
         focus: (
           outline: null,
@@ -467,10 +467,20 @@
           }
           @if map-has-key($item, hover) {
             $hover: map-get($item, hover);
-            &:hover {
-              background-color: map-get($hover, background-color);
-              border-left-color: map-get($hover, border-left-color);
-            }
+            @include jnt-link((
+              outlines: (
+                transparent: (
+                  hover: (
+                    background-color: map-get($hover, background-color),
+                  ),
+                  orphan: (
+                    hover: (
+                      background-color: map-get($hover, background-color)
+                    ),
+                  ),
+                )
+              ),
+            ), '&');
           }
 
           @if map-has-key($item, focus) {
