@@ -19,9 +19,6 @@
     font-size: inherit,
     color: null,
     border: none,
-    icon: (
-      margin-right: $jnt-gutter-small
-    ),
     dot: (
       size: 10px,
     ),
@@ -66,23 +63,11 @@
     font-size: map-get($vars, font-size);
     background: map-get($vars, background);
 
-    #{$wrapper} [data-text] {
-      color: if(map-get($vars, color), map-get($vars, color) !important, null);
-    }
-
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
         &[data-size='#{$size}'] {
           @include label-size($map, $wrapper);
         }
-      }
-    }
-
-    @if map-has-key($vars, icon) {
-      $icon: map-get($vars, icon);
-      #{$wrapper} [data-icon] {
-        margin-right: map-get($icon, margin-right);
-        line-height: 1;
       }
     }
 
@@ -92,6 +77,14 @@
         @include jnt-dot((size: map-get($dot, size)), '&');
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-icon] {
+    line-height: 1;
+  }
+
+  #{$context} #{$wrapper} [data-text] {
+    color: if(map-get($vars, color), map-get($vars, color) !important, null);
   }
 }
 
