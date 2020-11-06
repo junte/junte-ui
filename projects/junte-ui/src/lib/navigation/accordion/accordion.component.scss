@@ -2,6 +2,8 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
+$accordion-marker-height: 2px;
+
 @mixin jnt-accordion($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
   $defs: ();
@@ -28,8 +30,8 @@
   }
 
   #{$context} #{$wrapper} [data-title] {
-    border-bottom: 2px solid $jnt-secondary-color;
-    padding: $jnt-gutter-small 0;
+    border-bottom: $accordion-marker-height solid $jnt-secondary-color;
+    padding: ($jnt-gutter-small + $accordion-marker-height) 0;
     color: $jnt-primary-text-color;
     display: flex;
     align-items: center;
