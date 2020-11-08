@@ -27,16 +27,20 @@
   }
 
   :host {
-    display: block;
-    padding: $jnt-gutter-normal;
+    @if $declare {
+      display: block;
+      padding: $jnt-gutter-normal;
+    }
 
     @include min-for-desktop() {
       min-width: map-get($vars, min-width);
     }
 
     [data-table] {
-      margin-left: -$jnt-gutter-normal;
-      margin-right: -$jnt-gutter-normal;
+      @if $declare {
+        margin-left: -$jnt-gutter-normal;
+        margin-right: -$jnt-gutter-normal;
+      }
     }
 
     [data-search] {
@@ -75,103 +79,131 @@
     }
 
     [data-spinner] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: rgba($jnt-secondary-background, .6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all .3s;
-      z-index: 1;
-
-      [data-icon] {
-        color: $jnt-primary-text-light-color;
+      @if $declare {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($jnt-secondary-background, .6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .3s;
+        z-index: 1;
       }
-    }
+
+        [data-icon] {
+          @if $declare {
+            color: $jnt-primary-text-light-color;
+          }
+        }
+      }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      position: relative;@if $declare {
+      width: 100%;
+      border-collapse: collapse;
       position: relative;
+    }
 
       thead {
-        background-color: $jnt-secondary-background;
+        @if $declare {
+          background-color: $jnt-secondary-background;
 
-        .sortable {
-          cursor: pointer;
+          .sortable {
+            cursor: pointer;
+          }
         }
       }
 
       tbody tr {
-        border-bottom: 1px solid $jnt-muted-color;
-        background-color: $jnt-primary-background;
-        transition: all .3s;
+        @if $declare {
+          border-bottom: 1px solid $jnt-muted-color;
+          background-color: $jnt-primary-background;
+          transition: all .3s;
+        }
 
         &[data-nodata] {
           height: map-get($vars, min-height);
-          pointer-events: none;
-          border-bottom: 0;
+          @if $declare {
+            pointer-events: none;
+            border-bottom: 0;
+          }
 
           td {
-            vertical-align: middle;
-            text-align: center;
+            @if $declare {
+              vertical-align: middle;
+              text-align: center;
 
-            [data-icon] {
-              font-size: 80px;
-              color: $jnt-muted-color;
+              [data-icon] {
+                font-size: 80px;
+                color: $jnt-muted-color;
+              }
             }
           }
         }
 
         &[data-loading] {
           height: map-get($vars, min-height);
-          pointer-events: none;
-          border-bottom: 0;
+          @if $declare {
+            pointer-events: none;
+            border-bottom: 0;
+          }
         }
 
         &:hover {
-          background-color: $jnt-highlight-background;
+          @if $declare {
+            background-color: $jnt-highlight-background;
+          }
         }
 
         td {
-          &[data-action] {
-            width: 50px;
-            text-align: center;
+          @if $declare {
+            &[data-action] {
+              width: 50px;
+              text-align: center;
 
-            [data-trigger] {
-              @include jnt-button((
-                sizes: (
-                  normal: (
-                    padding: 0 $jnt-gutter-normal,
+              [data-trigger] {
+                @include jnt-button((
+                  sizes: (
+                    normal: (
+                      padding: 0 $jnt-gutter-normal,
+                    ),
                   ),
-                ),
-              ), '&');
+                ), '&');
+              }
             }
           }
         }
       }
 
       th {
-        padding: $jnt-gutter-normal;
-        box-sizing: border-box;
+        @if $declare {
+          padding: $jnt-gutter-normal;
+          box-sizing: border-box;
+        }
       }
 
       td {
-        padding: $jnt-gutter-small $jnt-gutter-normal;
-        box-sizing: border-box;
+        @if $declare {
+          padding: $jnt-gutter-small $jnt-gutter-normal;
+          box-sizing: border-box;
+        }
       }
     }
 
     [data-pagination] {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @if $declare {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      [data-pages] {
-        flex: 1;
+        [data-pages] {
+          flex: 1;
+        }
       }
     }
   }
