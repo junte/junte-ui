@@ -25,12 +25,14 @@
   }
 
   :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    transform-style: preserve-3d;
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      transform-style: preserve-3d;
+    }
     min-height: map-get($vars, height);
     padding: map-get($vars, padding);
     background-color: map-get($vars, background);

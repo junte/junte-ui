@@ -16,9 +16,11 @@
   }
 
   :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
+    }
 
     @each $breakpoints, $value in $jnt-grid-breakpoints {
       @media screen and (min-width: $value) {

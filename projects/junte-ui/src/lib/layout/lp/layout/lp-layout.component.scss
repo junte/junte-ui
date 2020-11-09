@@ -3,23 +3,38 @@
 @import "layout/lp/slide/lp-slide";
 @import "layout/responsive/responsive";
 
-:host {
-  display: block;
-  font-family: $jnt-lp-layout-font-family;
-  overflow-x: hidden;
+@mixin lp-layout($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
-  &[data-with-lp-header="true"] {
-    @include jnt-lp-slide((
-      padding: (
-        top: $lp-header-height
-      ),
-    ));
-    @include max-for-tablet() {
-      @include jnt-lp-slide((
-        padding: (
-          top: $lp-header-height-mobile,
-        ),
-      ));
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host {
+    @if $declare {
+      display: block;
+      font-family: $jnt-lp-layout-font-family;
+      overflow-x: hidden;
+
+      &[data-with-lp-header="true"] {
+        @include jnt-lp-slide((
+          padding: (
+            top: $lp-header-height
+          ),
+        ));
+        @include max-for-tablet() {
+          @include jnt-lp-slide((
+            padding: (
+              top: $lp-header-height-mobile,
+            ),
+          ));
+        }
+      }
     }
   }
 }

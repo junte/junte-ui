@@ -40,11 +40,13 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
-    border-radius: 50%;
+    @if $declare {
+      display: inline-block;
+      border-radius: 50%;
+      border-right-color: transparent !important;
+      animation: jnt-spin .5s infinite linear;
+    }
     border: 1px solid map-get($vars, color);
-    border-right-color: transparent !important;
-    animation: jnt-spin .5s infinite linear;
     @if map-get($vars, size) != null {
       width: if(map-get($vars, size), map-get($vars, size) !important, null);
       min-width: if(map-get($vars, size), map-get($vars, size) !important, null);

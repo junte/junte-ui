@@ -6,27 +6,37 @@
 
 @mixin jnt-app-layout($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $declare: true;
+  }
+
   :host, #{$context} {
-    display: block;
-    overflow-x: hidden;
-    position: relative;
-    font-family: $jnt-app-layout-font-family;
+    @if $declare {
+      display: block;
+      overflow-x: hidden;
+      position: relative;
+      font-family: $jnt-app-layout-font-family;
 
-    &[data-with-header='false'] {
-      @include jnt-app-content((padding: 0));
-      @include jnt-app-aside((padding: 0));
-    }
-
-    &[data-position='default'] {
-      @include jnt-app-body((height: 0 !important));
-    }
-
-    &[data-position='fixed'] {
-      >, > * > jnt-app-header {
-        @include jnt-app-header((position: fixed));
+      &[data-with-header='false'] {
+        @include jnt-app-content((padding: 0));
+        @include jnt-app-aside((padding: 0));
       }
-      >, > * >, > * > * >, > * > * > * > {
-        @include jnt-app-aside((position: fixed));
+
+      &[data-position='default'] {
+        @include jnt-app-body((height: 0 !important));
+      }
+
+      &[data-position='fixed'] {
+        >, > * > jnt-app-header {
+          @include jnt-app-header((position: fixed));
+        }
+
+        >, > * >, > * > * >, > * > * > * > {
+          @include jnt-app-aside((position: fixed));
+        }
       }
     }
   }
