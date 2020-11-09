@@ -110,8 +110,10 @@
     &[data-orientation='horizontal'] {
       #{$wrapper} [data-options] {
         [data-option] {
-          flex: 1;
-          justify-content: center;
+          @if $declare {
+            flex: 1;
+            justify-content: center;
+          }
           @if map-has-key($vars, option) {
             $option: map-get($vars, option);
             [data-title] {
