@@ -8,9 +8,48 @@
   min-height: $size;
 }
 
-@keyframes jnt-spin {
+@keyframes dash1 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 90;
+  }
   100% {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash2 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  11.6%{
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: -61;
+  }
+  87.5%{
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0turn);
+  }
+  11% {
+    transform: rotate(0.2turn);
+  }
+  50% {
+    transform: rotate(1.05turn);
+  }
+  100% {
+    transform: rotate(2turn);
   }
 }
 
@@ -40,13 +79,7 @@
   }
 
   :host, #{$context} {
-    @if $declare {
-      display: inline-block;
-      border-radius: 50%;
-      border-right-color: transparent !important;
-      animation: jnt-spin .5s infinite linear;
-    }
-    border: 1px solid map-get($vars, color);
+    display: block;
     @if map-get($vars, size) != null {
       width: if(map-get($vars, size), map-get($vars, size) !important, null);
       min-width: if(map-get($vars, size), map-get($vars, size) !important, null);
@@ -61,6 +94,27 @@
           @include spinner-size($map);
         }
       }
+    }
+  }
+
+  svg {
+    animation: rotate 1.5s linear infinite;
+    width: 100%;
+    height: 100%;
+    [data-spinner-background] {
+      fill-opacity: 50%;
+    }
+    [data-stroke-spinner1] {
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash1 1.5s ease-in-out infinite;
+    }
+    [data-stroke-spinner2] {
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash2 1.5s ease-in-out infinite;
     }
   }
 }
