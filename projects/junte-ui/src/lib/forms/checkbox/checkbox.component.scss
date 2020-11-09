@@ -75,9 +75,11 @@
 
   :host, #{$context} {
     form {
-      display: flex;
-      align-items: center;
-      position: relative;
+      @if $declare {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
     }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
@@ -90,17 +92,19 @@
   }
 
   #{$context} #{$wrapper} input {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    cursor: pointer;
-    opacity: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+    @if $declare {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      opacity: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
     &:checked + [data-switch] {
       @if map-has-key($vars, switch) {
         $switch: map-get($vars, switch);
@@ -111,16 +115,19 @@
       }
     }
     &:disabled {
-      cursor: default;
-      pointer-events: none;
-      & ~ label {
-        color: $jnt-control-disabled-label-color;
-      }
-      & + [data-switch] {
-        background-color: $jnt-control-disabled-background;
-        border-color: $jnt-control-disabled-border-color;
-        & > [data-icon] {
-          background-color: $jnt-control-disabled-indicator-icon-color;
+      @if $declare {
+        cursor: default;
+        pointer-events: none;
+        & ~ label {
+          color: $jnt-control-disabled-label-color;
+        }
+        & + [data-switch] {
+          background-color: $jnt-control-disabled-background;
+          border-color: $jnt-control-disabled-border-color;
+
+          & > [data-icon] {
+            background-color: $jnt-control-disabled-indicator-icon-color;
+          }
         }
       }
     }
@@ -130,7 +137,9 @@
           $switch: map-get($vars, switch);
           @if map-has-key($switch, active) {
             $active: map-get($switch, active);
-            box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+            @if $declare {
+              box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+            }
           }
         }
       }
@@ -158,13 +167,15 @@
   }
 
   #{$context} #{$wrapper} [data-switch] {
-    position: relative;
-    border-radius: $jnt-corner-base;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all .3s;
-    box-sizing: border-box;
+    @if $declare {
+      position: relative;
+      border-radius: $jnt-corner-base;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      box-sizing: border-box;
+    }
     @if map-has-key($vars, switch) {
       $switch: map-get($vars, switch);
       border: 1px solid map-get($switch, border-color);
@@ -177,7 +188,9 @@
       }
     }
     [data-icon] {
-      border-radius: 2px;
+      @if $declare {
+        border-radius: 2px;
+      }
     }
   }
 }

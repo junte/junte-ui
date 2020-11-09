@@ -400,10 +400,14 @@
         $disabled: map-get($vars, disabled);
         opacity: map-get($disabled, opacity);
       }
-      pointer-events: none;
+      @if $declare {
+        pointer-events: none;
+      }
 
       #{$wrapper} button {
-        cursor: default;
+        @if $declare {
+          cursor: default;
+        }
       }
     }
 
@@ -522,9 +526,11 @@
     }
 
     [data-empty] {
-      width: 50px;
-      height: 10px;
-      background-color: $jnt-primary-text-light-color;
+      @if $declare {
+        width: 50px;
+        height: 10px;
+        background-color: $jnt-primary-text-light-color;
+      }
     }
   }
 }
