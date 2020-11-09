@@ -16,7 +16,7 @@ RUN npm run build
 
 ###
 
-FROM nginx:1.17.4-alpine
+FROM nginx:1.17.4
 
 WORKDIR /var/www
 
