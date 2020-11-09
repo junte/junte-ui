@@ -84,15 +84,19 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
-    position: relative;
-    min-height: 40px;
-    box-sizing: border-box;
+    @if $declare {
+      display: inline-block;
+      position: relative;
+      min-height: 40px;
+      box-sizing: border-box;
+    }
     border-radius: map-get($vars, corner);
 
     &[data-width="fluid"] {
-      display: block;
-      flex: 1;
+      @if $declare {
+        display: block;
+        flex: 1;
+      }
     }
 
     @if map-has-key($vars, padding) {
@@ -106,7 +110,9 @@
 
     &[data-features*='clickable'] {
       #{$wrapper} [data-body] {
-        cursor: pointer;
+        @if $declare {
+          cursor: pointer;
+        }
       }
 
       &:hover {
@@ -119,23 +125,29 @@
       }
 
       &:focus {
-        outline: 0;
-        box-shadow: $jnt-outline-shadow-small $jnt-primary-light-color;
+        @if $declare {
+          outline: 0;
+          box-shadow: $jnt-outline-shadow-small $jnt-primary-light-color;
+        }
       }
     }
 
     &[data-features*='adapted'] {
       @include for-mobile() {
         #{$wrapper} [data-image] {
-          width: 100%;
-          height: auto;
+          @if $declare {
+            width: 100%;
+            height: auto;
+          }
         }
       }
     }
 
     &[data-has-icon='true'] {
       #{$wrapper} [data-main] {
-        padding-top: $jnt-gutter-big;
+        @if $declare {
+          padding-top: $jnt-gutter-big;
+        }
       }
     }
 
@@ -144,25 +156,29 @@
 
   #{$context} #{$wrapper} [data-indicator],
   #{$context} #{$wrapper} [data-action] {
-    position: absolute;
-    top: -12px;
-    right: 0;
-    z-index: 2;
+    @if $declare {
+      position: absolute;
+      top: -12px;
+      right: 0;
+      z-index: 2;
+    }
   }
 
   #{$context} #{$wrapper} [data-indicator] {
-    width: 32px;
-    height: 32px;
-    background-color: $jnt-secondary-background;
-    border-radius: $jnt-corner-normal;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @if $declare {
+      width: 32px;
+      height: 32px;
+      background-color: $jnt-secondary-background;
+      border-radius: $jnt-corner-normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include jnt-icon((
+        size: 16px,
+        color: $jnt-primary-light-color,
+      ), '&');
+    }
     border: 2px solid map-get($vars, background);
-    @include jnt-icon((
-      size: 16px,
-      color: $jnt-primary-light-color,
-    ), '&');
   }
 
   #{$context} #{$wrapper} [data-action] {
@@ -191,14 +207,20 @@
     border: map-get($vars, border);
     background-color: map-get($vars, background);
     box-shadow: map-get($vars, shadow);
-    overflow: hidden;
+    @if $declare {
+      overflow: hidden;
+    }
 
     [data-line] {
-      width: $jnt-gutter-small;
+      @if $declare {
+        width: $jnt-gutter-small;
+      }
     }
 
     [data-main] {
-      flex: 1;
+      @if $declare {
+        flex: 1;
+      }
 
       [data-header] {
         @if map-has-key($vars, header) {
@@ -208,7 +230,9 @@
       }
 
      [data-content] {
-        flex: 1;
+       @if $declare {
+         flex: 1;
+       }
       }
 
       [data-picture] {
@@ -216,7 +240,9 @@
           $picture: map-get($vars, picture);
           padding: map-get($picture, padding);
           img {
-            display: block;
+            @if $declare {
+              display: block;
+            }
             border-radius: map-get($picture, corner);
             border: map-get($picture, border);
           }
@@ -248,16 +274,18 @@
 
   #{$context} #{$wrapper} [data-load],
   #{$context} #{$wrapper} [data-error] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: $jnt-corner-normal;
-    z-index: 1;
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $jnt-corner-normal;
+      z-index: 1;
+    }
     @if map-has-key($vars, overlay) {
       $overlay: map-get($vars, overlay);
       background-color: map-get($overlay, background-color);

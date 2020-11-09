@@ -5,13 +5,6 @@
 
   $defs: ();
 
-  :host, #{$context} {
-    display: block;
-    background-color: $jnt-primary-background;
-    padding: $jnt-gutter-normal;
-    border-radius: $jnt-corner-normal;
-    border: 1px solid $jnt-page-background;
-  }
 
   $vars: $passed;
   $declare: false;
@@ -26,42 +19,58 @@
     $declare: true;
   }
 
-  #{$context} #{$wrapper} [data-title] {
-    padding: $jnt-gutter-small $jnt-gutter-normal;
-    background-color: $jnt-secondary-dark-color;
-    border-radius: $jnt-corner-normal;
-    color: $jnt-primary-text-color;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1.6;
-
-    &[active='true'] {
-      background-color: $jnt-primary-light-color;
-      color: $jnt-white-color;
+  :host, #{$context} {
+    @if $declare {
+      display: block;
+      background-color: $jnt-primary-background;
+      padding: $jnt-gutter-normal;
+      border-radius: $jnt-corner-normal;
+      border: 1px solid $jnt-page-background;
     }
+  }
 
-    &:hover {
-      &[active='false'] {
-        color: $jnt-primary-light-color;
+  #{$context} #{$wrapper} [data-title] {
+    @if $declare {
+      padding: $jnt-gutter-small $jnt-gutter-normal;
+      background-color: $jnt-secondary-dark-color;
+      border-radius: $jnt-corner-normal;
+      color: $jnt-primary-text-color;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      line-height: 1.6;
+
+      &[active='true'] {
+        background-color: $jnt-primary-light-color;
+        color: $jnt-white-color;
       }
 
-      box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
-    }
+      &:hover {
+        &[active='false'] {
+          color: $jnt-primary-light-color;
+        }
 
-    &:focus {
-      outline: 0;
-      box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
+      }
+
+      &:focus {
+        outline: 0;
+        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+      }
     }
 
     span {
-      margin: 0 $jnt-gutter-tiny;
+      @if $declare {
+        margin: 0 $jnt-gutter-tiny;
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    padding: $jnt-gutter-normal 0;
+    @if $declare {
+      padding: $jnt-gutter-normal 0;
+    }
   }
 
 }

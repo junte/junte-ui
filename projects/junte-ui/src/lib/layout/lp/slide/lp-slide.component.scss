@@ -27,9 +27,11 @@
   }
 
   :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
+    }
     @if map-has-key($vars, padding) {
       $space: map-get($vars, padding);
       padding-top: map-get($space, top);
@@ -39,7 +41,9 @@
     }
 
     &[data-height='default'] {
-      height: auto !important;
+      @if $declare {
+        height: auto !important;
+      }
     }
   }
 }
