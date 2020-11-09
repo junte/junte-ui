@@ -77,18 +77,22 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
-    position: relative;
-    min-width: 70px;
-    color: $jnt-primary-text-color;
-    line-height: $jnt-line-height-base;
-    &[data-width='fluid'] {
-      display: block;
-      flex: 1;
+    @if $declare {
+      display: inline-block;
+      position: relative;
+      min-width: 70px;
+      color: $jnt-primary-text-color;
+      line-height: $jnt-line-height-base;
+      &[data-width='fluid'] {
+        display: block;
+        flex: 1;
+      }
     }
     @include for-mobile() {
-      border: 1px solid $jnt-control-border-color;
-      border-radius: $jnt-corner-small;
+      @if $declare {
+        border: 1px solid $jnt-control-border-color;
+        border-radius: $jnt-corner-small;
+      }
     }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
@@ -120,16 +124,20 @@
 
     &[data-opened='true'] {
       @include for-mobile() {
-        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+        @if $declare {
+          box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+        }
       }
 
       [data-select] {
-        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
-        border-color: $jnt-primary-color;
-        @include for-mobile() {
-          box-shadow: none;
-          border-color: transparent;
-          border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+        @if $declare {
+          box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+          border-color: $jnt-primary-color;
+          @include for-mobile() {
+            box-shadow: none;
+            border-color: transparent;
+            border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+          }
         }
       }
     }
@@ -137,18 +145,22 @@
     &[data-mode='single'] {
       [data-select] ul {
         li {
-          background-color: $jnt-primary-background;
-          margin-left: -$jnt-gutter-tiny;
+          @if $declare {
+            background-color: $jnt-primary-background;
+            margin-left: -$jnt-gutter-tiny;
+          }
         }
       }
 
       &[data-opened='true'][data-search='true'] [data-select] {
         ul {
           li {
-            display: none;
+            @if $declare {
+              display: none;
 
-            &[data-query] {
-              display: flex;
+              &[data-query] {
+                display: flex;
+              }
             }
           }
         }
@@ -156,41 +168,53 @@
 
       &[data-empty='false'] {
         [data-select] ul {
-          flex: 1;
+          @if $declare {
+            flex: 1;
 
-          li {
-            width: 100%;
+            li {
+              width: 100%;
+            }
           }
         }
 
         [data-query] {
-          display: none;
+          @if $declare {
+            display: none;
+          }
         }
       }
 
       &[data-empty='true'] {
         [data-select] ul li[data-query] {
-          padding-right: $jnt-gutter-small;
+          @if $declare {
+            padding-right: $jnt-gutter-small;
+          }
         }
       }
 
       &[data-features*='allowEmpty'] {
         [data-select] ul li {
           button[data-close] {
-            display: block;
+            @if $declare {
+              display: block;
+            }
           }
         }
       }
 
       &:not([data-features*='allowEmpty']) {
         [data-select] ul li {
-          padding-right: 0;
+          @if $declare {
+            padding-right: 0;
+          }
         }
       }
 
       &[data-features*='search'] {
         [data-select] ul li {
-          margin-right: 0;
+          @if $declare {
+            margin-right: 0;
+          }
         }
       }
     }
@@ -198,27 +222,35 @@
     &[data-mode='multiple'] {
       &[data-empty='false'][data-search='false'] {
         [data-query] {
-          display: none;
+          @if $declare {
+            display: none;
+          }
         }
       }
 
       [data-select] ul li {
         button[data-close] {
-          display: block;
+          @if $declare {
+            display: block;
+          }
         }
       }
     }
 
     &[data-disabled='true'] {
       [data-select] {
-        background-color: $jnt-control-disabled-background;
-        border-color: $jnt-control-disabled-border-color;
-        pointer-events: none;
+        @if $declare {
+          background-color: $jnt-control-disabled-background;
+          border-color: $jnt-control-disabled-border-color;
+          pointer-events: none;
+        }
 
         ul li {
-          background-color: $jnt-control-disabled-background;
-          color: $jnt-control-disabled-border-color;
-          opacity: .8;
+          @if $declare {
+            background-color: $jnt-control-disabled-background;
+            color: $jnt-control-disabled-border-color;
+            opacity: .8;
+          }
 
           &[data-query] {
             background-color: transparent;
@@ -226,13 +258,17 @@
         }
 
         [data-close], [data-toggle] {
-          color: $jnt-control-disabled-border-color;
+          @if $declare {
+            color: $jnt-control-disabled-border-color;
+          }
         }
       }
 
       &[data-mode='multiple'][data-empty='false'] {
         [data-select] ul li {
-          background-color: $jnt-muted-color;
+          @if $declare {
+            background-color: $jnt-muted-color;
+          }
         }
       }
     }
@@ -240,38 +276,46 @@
     &[data-empty='false'] {
       &[data-opened='false'] {
         [data-query] {
-          display: none;
+          @if $declare {
+            display: none;
+          }
         }
       }
     }
 
     &[data-search='false'] {
       [data-select] ul li {
-        cursor: default;
+        @if $declare {
+          cursor: default;
+        }
       }
     }
 
     &[data-empty='true'], &[data-mode='single'] {
       [data-select] ul li[data-query] {
-        flex: 1;
+        @if $declare {
+          flex: 1;
 
-        input {
-          width: 100%;
+          input {
+            width: 100%;
+          }
         }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-select] {
-    border: 1px solid $jnt-control-border-color;
-    border-radius: $jnt-corner-small;
-    background-color: $jnt-control-background;
-    padding: $jnt-gutter-tiny $jnt-gutter-small;
-    box-sizing: border-box;
-    position: relative;
-    @include for-mobile() {
-      border-color: transparent;
-      border-radius: calc(#{$jnt-corner-small} - 1px);
+    @if $declare {
+      border: 1px solid $jnt-control-border-color;
+      border-radius: $jnt-corner-small;
+      background-color: $jnt-control-background;
+      padding: $jnt-gutter-tiny $jnt-gutter-small;
+      box-sizing: border-box;
+      position: relative;
+      @include for-mobile() {
+        border-color: transparent;
+        border-radius: calc(#{$jnt-corner-small} - 1px);
+      }
     }
 
     > [data-icon] {
@@ -284,89 +328,109 @@
     }
 
     &:focus {
-      outline: 0;
+      @if $declare {
+        outline: 0;
+      }
     }
 
     ul {
-      flex: 1;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0;
-      margin: 0 0 (-$jnt-gutter-tiny);
+      @if $declare {
+        flex: 1;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0 0 (-$jnt-gutter-tiny);
+      }
 
       @if map-has-key($vars, chips) {
         $chips: map-get($vars, chips);
         @if map-get($chips, width) == 'fluid' {
-          flex-direction: column;
+          @if $declare {
+            flex-direction: column;
+          }
         }
       }
 
       li {
-        display: flex;
-        align-items: center;
-        position: relative;
-        background-color: $jnt-secondary-background;
-        border-radius: $jnt-corner-small;
-        margin-bottom: $jnt-gutter-tiny;
+        @if $declare {
+          display: flex;
+          align-items: center;
+          position: relative;
+          background-color: $jnt-secondary-background;
+          border-radius: $jnt-corner-small;
+          margin-bottom: $jnt-gutter-tiny;
+        }
 
         [data-icon] {
-          line-height: 0;
+          @if $declare {
+            line-height: 0;
+          }
         }
 
         [data-empty-options] {
-          width: 50px;
-          height: 10px;
-          background-color: $jnt-primary-text-light-color;
+          @if $declare {
+            width: 50px;
+            height: 10px;
+            background-color: $jnt-primary-text-light-color;
+          }
         }
 
         [data-close] {
-          border: 0;
-          background-color: transparent;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 0 $jnt-gutter-small;
-          color: $jnt-primary-text-light-color;
-          margin: 0;
-          right: 0;
-          display: none;
-          cursor: pointer;
+          @if $declare {
+            border: 0;
+            background-color: transparent;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0 $jnt-gutter-small;
+            color: $jnt-primary-text-light-color;
+            margin: 0;
+            right: 0;
+            display: none;
+            cursor: pointer;
 
-          &:focus {
-            outline: 0;
-          }
+            &:focus {
+              outline: 0;
+            }
 
-          & > [data-icon] {
-            @include jnt-icon((
-              size: 11px
-            ), '&');
+            & > [data-icon] {
+              @include jnt-icon((
+                size: 11px
+              ), '&');
+            }
           }
         }
 
         &:not(:last-child) {
-          margin-right: $jnt-gutter-tiny;
+          @if $declare {
+            margin-right: $jnt-gutter-tiny;
+          }
         }
 
         &[data-query] {
-          background-color: transparent;
+          @if $declare {
+            background-color: transparent;
+          }
 
           input {
-            width: 20px;
-            border: none;
-            background-color: transparent;
-            color: $jnt-primary-text-color;
-            line-height: $jnt-line-height-base;
-            font-family: inherit;
-            padding: 0;
-            margin: 0;
+            @if $declare {
+              width: 20px;
+              border: none;
+              background-color: transparent;
+              color: $jnt-primary-text-color;
+              line-height: $jnt-line-height-base;
+              font-family: inherit;
+              padding: 0;
+              margin: 0;
 
-            &::placeholder {
-              padding-left: 1px;
-            }
+              &::placeholder {
+                padding-left: 1px;
+              }
 
-            &:focus {
-              outline: none;
+              &:focus {
+                outline: none;
+              }
             }
           }
         }
@@ -374,97 +438,115 @@
     }
 
     >[data-loading] {
-      line-height: .8;
+      @if $declare {
+        line-height: .8;
+      }
     }
 
     [data-toggle] {
-      border: 0;
-      background-color: transparent;
-      padding: 0 $jnt-gutter-tiny;
-      color: $jnt-primary-text-light-color;
-      margin: 0;
-      align-self: stretch;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
+      @if $declare {
+        border: 0;
+        background-color: transparent;
+        padding: 0 $jnt-gutter-tiny;
+        color: $jnt-primary-text-light-color;
+        margin: 0;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
 
-      &:focus {
-        outline: 0;
-      }
+        &:focus {
+          outline: 0;
+        }
 
-      & > [data-icon] {
-        @include jnt-icon((
-          size: 11px
-        ), '&');
+        & > [data-icon] {
+          @include jnt-icon((
+            size: 11px
+          ), '&');
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-options] {
     @include for-mobile() {
-      background-color: $jnt-control-background;
-      border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
+      @if $declare {
+        background-color: $jnt-control-background;
+        border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
+      }
     }
 
     &[data-loading='true'] {
-      min-height: 100px;
-      height: auto;
+      @if $declare {
+        min-height: 100px;
+        height: auto;
+      }
     }
 
     [data-skeleton] {
-      padding: $jnt-gutter-small;
+      @if $declare {
+        padding: $jnt-gutter-small;
+      }
     }
 
     [data-empty-options] {
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @if $declare {
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      [data-icon] {
-        font-size: 50px;
-        color: $jnt-primary-text-light-color;
+        [data-icon] {
+          font-size: 50px;
+          color: $jnt-primary-text-light-color;
+        }
       }
     }
 
     [data-options-header] {
-      padding: $jnt-gutter-small $jnt-gutter-small 0 $jnt-gutter-small;
+      @if $declare {
+        padding: $jnt-gutter-small $jnt-gutter-small 0 $jnt-gutter-small;
+      }
     }
 
     [data-loading] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba($jnt-primary-background, .5);
+      @if $declare {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($jnt-primary-background, .5);
+      }
     }
 
     ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      max-height: 200px;
-      overflow-y: scroll;
+      @if $declare {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 200px;
+        overflow-y: scroll;
 
-      li {
-        cursor: pointer;
-        padding: $jnt-gutter-small $jnt-gutter-normal;
-        border-radius: $jnt-corner-small;
+        li {
+          cursor: pointer;
+          padding: $jnt-gutter-small $jnt-gutter-normal;
+          border-radius: $jnt-corner-small;
 
-        [data-icon] {
-          line-height: 0;
-        }
+          [data-icon] {
+            line-height: 0;
+          }
 
-        &[data-selected=true] {
-          color: $jnt-primary-light-color;
-        }
+          &[data-selected=true] {
+            color: $jnt-primary-light-color;
+          }
 
-        &:hover {
-          background-color: $jnt-highlight-background;
+          &:hover {
+            background-color: $jnt-highlight-background;
+          }
         }
       }
     }

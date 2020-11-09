@@ -22,23 +22,27 @@
   }
 
   :host, #{$context} {
-    display: inline-flex;
-    &[data-width='fluid'] {
-      display: flex;
-      flex: 1;
-      #{$wrapper} [data-button] {
+    @if $declare {
+      display: inline-flex;
+      &[data-width='fluid'] {
+        display: flex;
         flex: 1;
+
+        #{$wrapper} [data-button] {
+          flex: 1;
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-button] {
-
-    @include jnt-button ((
-      padding: 0 $jnt-gutter-normal,
-      corner: 0,
-      without-text-corner: 0,
-    ), '&');
+    @if $declare {
+      @include jnt-button((
+        padding: 0 $jnt-gutter-normal,
+        corner: 0,
+        without-text-corner: 0,
+      ), '&');
+    }
 
 
     &:first-child {

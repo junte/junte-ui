@@ -33,18 +33,20 @@
   }
 
   :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    background-color: $jnt-primary-background;
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      background-color: $jnt-primary-background;
 
-    &[data-disabled='true'] {
-      cursor: default;
-      pointer-events: none;
+      &[data-disabled='true'] {
+        cursor: default;
+        pointer-events: none;
 
-      #{$wrapper} table {
-        tbody tr td, th {
-          color: $jnt-control-disabled-label-color;
-          background-color: $jnt-control-disabled-background;
+        #{$wrapper} table {
+          tbody tr td, th {
+            color: $jnt-control-disabled-label-color;
+            background-color: $jnt-control-disabled-background;
+          }
         }
       }
     }
@@ -52,68 +54,86 @@
 
   #{$wrapper} #{$context} table {
     table-layout: map-get($vars, layout);
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
+    @if $declare {
+      table-layout: auto;
+      border-spacing: 0;
+      width: 100%;
+    }
 
     @if map-has-key($vars, metrics) and map-get(map-get($vars, metrics), width) {
       $metrics: map-get($vars, metrics);
-      table-layout: fixed;
+      @if $declare {
+        table-layout: fixed;
+      }
       [data-metrics] {
         width: map-get($metrics, width);
       }
     }
 
     [data-divider] {
-      width: 2px;
+      @if $declare {
+        width: 2px;
+      }
     }
 
     thead {
       [data-arrow] {
-        @include jnt-button((
-          sizes: (
-            small: (
-              height: 28px,
-              padding-without-text: 0 $jnt-gutter-tiny,
-              icon: (
-                size: 16px,
-              ),
+        @if $declare {
+          @include jnt-button((
+            sizes: (
+              small: (
+                height: 28px,
+                padding-without-text: 0 $jnt-gutter-tiny,
+                icon: (
+                  size: 16px,
+                ),
+              )
             )
-          )
-        ), '&');
+          ), '&');
+        }
       }
 
       [data-date] {
-        @include jnt-button((
-          font-weight: $jnt-font-weight-semi-bold,
-          sizes: (
-            small: (
-              height: 28px,
-              font-size: 14px,
-              padding: 0 $jnt-gutter-tiny,
+        @if $declare {
+          @include jnt-button((
+            font-weight: $jnt-font-weight-semi-bold,
+            sizes: (
+              small: (
+                height: 28px,
+                font-size: 14px,
+                padding: 0 $jnt-gutter-tiny,
+              )
             )
-          )
-        ), '&');
+          ), '&');
+        }
       }
 
       [data-year] {
-        color: $jnt-control-disabled-label-color;
+        @if $declare {
+          color: $jnt-control-disabled-label-color;
+        }
       }
 
       [data-days] {
         > th {
-          padding: $jnt-gutter-normal $jnt-gutter-tiny;
-          color: $jnt-primary-text-color;
-          font-weight: $jnt-font-weight-base;
+          @if $declare {
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
+            color: $jnt-primary-text-light-color;
+            font-weight: $jnt-font-weight-bold;
+          }
         }
       }
 
       [data-metrics] {
-        font-weight: $jnt-font-weight-semi-bold;
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
       }
 
       th[data-metric] {
-        font-weight: $jnt-font-weight-semi-bold;
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
       }
     }
 
@@ -180,7 +200,9 @@
           padding: 0;
 
           [data-default] {
-            padding: $jnt-gutter-small $jnt-gutter-tiny;
+            @if $declare {
+              padding: $jnt-gutter-small $jnt-gutter-tiny;
+            }
           }
 
           &[data-day] {
