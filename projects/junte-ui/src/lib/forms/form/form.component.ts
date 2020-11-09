@@ -130,8 +130,15 @@ export class FormComponent implements OnInit {
     return errors;
   }
 
-  @HostListener('submit')
+  /**
+   * @deprecated please use submit() instead
+   */
   onSubmit() {
+    this.submit();
+  }
+
+  @HostListener('submit')
+  submit() {
     if (!!this.form) {
       this.validate(this.form);
 

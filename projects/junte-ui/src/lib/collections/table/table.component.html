@@ -1,6 +1,7 @@
 <form [formGroup]="form">
   <jnt-stack [align]="ui.align.stretch">
-    <jnt-stack [orientation]="ui.orientation.horizontal"
+    <jnt-stack *ngIf="(features | includes : ui.feature.reload) || !!actionsTemplate || (features | includes : ui.feature.search)"
+               [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center"
                [justify]="ui.justify.between">
       <jnt-stack [orientation]="ui.orientation.horizontal"
