@@ -23,41 +23,49 @@
   }
 
   :host, #{$context} {
-    display: flex;
-    align-items: center;
+    @if $declare {
+      display: flex;
+      align-items: center;
+    }
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
 
     @include for-mobile() {
       &[data-with-aside='true'] {
-        min-height: $app-aside-burger-height;
-        margin-top: 0;
-        padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
+        @if $declare {
+          min-height: $app-aside-burger-height;
+          margin-top: 0;
+          padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} a {
-    color: $jnt-primary-text-light-color;
-    font-size: 12px;
-    text-decoration: none;
-    user-select: none;
-    white-space: nowrap;
+    @if $declare {
+      color: $jnt-primary-text-light-color;
+      font-size: 12px;
+      text-decoration: none;
+      user-select: none;
+      white-space: nowrap;
 
-    &:last-of-type {
-      color: $jnt-primary-text-dark-color;
-      pointer-events: none;
+      &:last-of-type {
+        color: $jnt-primary-text-dark-color;
+        pointer-events: none;
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-icon] {
-    @include jnt-icon((
-      size: 8px,
-    ), '&');
-    color: $jnt-primary-text-light-color;
+    @if $declare {
+      @include jnt-icon((
+        size: 8px,
+      ), '&');
+      color: $jnt-primary-text-light-color;
 
-    &:last-child {
-      display: none;
+      &:last-child {
+        display: none;
+      }
     }
   }
 }
