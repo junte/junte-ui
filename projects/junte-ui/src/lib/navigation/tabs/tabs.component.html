@@ -1,7 +1,7 @@
 <ng-template #tabTemplate let-tab="tab">
   <jnt-stack data-label
              [orientation]="ui.orientation.horizontal"
-             [gutter]="ui.gutter.tiny"
+             [gutter]="ui.gutter.small"
              [align]="ui.align.center">
     <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
     <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -22,7 +22,7 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
+<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" data-tabs>
   <a href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
        (click)="active = i; $event.preventDefault()">

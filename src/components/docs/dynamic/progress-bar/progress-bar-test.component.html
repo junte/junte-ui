@@ -19,21 +19,27 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <jnt-progress-bar [value]="valueControl.value">
+                <jnt-stack [align]="ui.align.stretch">
+                  <jnt-progress-bar [value]="valueControl.value">
 
-                  <jnt-progress-line [from]=45 [color]="ui.color.green"></jnt-progress-line>
-                  <jnt-progress-line [from]=30 [color]="ui.color.yellow"></jnt-progress-line>
-                  <jnt-progress-line [from]=60 [color]="ui.color.red"></jnt-progress-line>
-                  <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
-                    <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
-                               [justify]="ui.justify.between">
-                      <span>{{math.round(valueControl.value * 10)/10}}%</span>
-                      <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
-                    </jnt-stack>
-                  </ng-template>
+                    <jnt-progress-line [from]=45 [color]="ui.color.green"></jnt-progress-line>
+                    <jnt-progress-line [from]=30 [color]="ui.color.yellow"></jnt-progress-line>
+                    <jnt-progress-line [from]=60 [color]="ui.color.red"></jnt-progress-line>
+                    <jnt-progress-line [from]=80 [color]="ui.color.black" *ngIf="added"></jnt-progress-line>
+                    <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
+                      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
+                                 [justify]="ui.justify.between">
+                        <span>{{math.round(valueControl.value * 10)/10}}%</span>
+                        <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
+                      </jnt-stack>
+                    </ng-template>
 
-                </jnt-progress-bar>
+                  </jnt-progress-bar>
 
+                  <div>
+                    <jnt-button text="Add 80% color" (click)="added = true"></jnt-button>
+                  </div>
+                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>

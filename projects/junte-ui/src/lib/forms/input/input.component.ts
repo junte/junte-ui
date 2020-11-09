@@ -13,6 +13,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { filter, map, distinctUntilChanged } from 'rxjs/operators';
+import { Key } from '../../core/enums/keyboard';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
@@ -22,13 +23,6 @@ import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { InputAutocomplete, InputScheme, InputType } from './enums';
 
-const BACKSPACE = 'Backspace';
-const LEFT_ARROW = 'ArrowLeft';
-const RIGHT_ARROW = 'ArrowRight';
-const TAB = 'Tab';
-const ENTER = 'Enter';
-const KEYV = 'v';
-const UNIDENTIFIED = 'Unidentified';
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -313,7 +307,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
           break;
         }
       }
-      if (cleared.input !== this.inputControl.value) {
+      if (cleared.input !== this.inputControl.value || cleared.formatted !== this.formattedControl.value) {
         this.form.setValue(cleared);
       }
     });
@@ -353,12 +347,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
     if (DIGIT_KEYS.includes(event.key)) {
       data = this.masking(value + event.key);
-    } else if (event.key === BACKSPACE || event.key === UNIDENTIFIED) {
+    } else if (event.key === Key.backspace) {
       data = this.masking(value.substr(0, value.length - 1));
-    } else if (event.key === TAB
-      || event.key === LEFT_ARROW
-      || event.key === RIGHT_ARROW
-      || (event.ctrlKey || event.metaKey) && event.key === KEYV) {
+    } else if (event.key === Key.tab
+      || event.key === Key.arrowLeft
+      || event.key === Key.arrowRight
+      || (event.ctrlKey || event.metaKey) && event.key === Key.v) {
       return;
     }
     event.preventDefault();
@@ -369,11 +363,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   keydown(event: KeyboardEvent) {
     if (this.type === InputType.number) {
-      if (this.inputControl.value && this.inputControl.value.length === 1 && event.key === BACKSPACE) {
+      if (this.inputControl.value && this.inputControl.value.length === 1 && event.key === Key.backspace) {
         this.inputControl.setValue(null);
       }
     }
-    if (event.key === ENTER) {
+    if (event.key === Key.enter) {
       event.preventDefault();
     }
   }

@@ -28,32 +28,36 @@
 
   :host, #{$context} {
     position: map-get($vars, position);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 4;
-    margin: 0;
+    @if $declare {
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 4;
+      margin: 0;
 
-    @include for-mobile() {
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba($jnt-secondary-color, 0.5);
+      @include for-mobile() {
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($jnt-secondary-color, 0.5);
+      }
+
+      @include jnt-spinner((color: $jnt-secondary-color));
     }
-
-    @include jnt-spinner((color: $jnt-secondary-color));
   }
 
   [data-loader] {
-    animation-name: jnt-app-business-loading;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    height: $jnt-gutter-tiny;
-    width: 100%;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    background-color: $jnt-secondary-color;
+    @if $declare {
+      animation-name: jnt-app-business-loading;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      height: $jnt-gutter-tiny;
+      width: 100%;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      background-color: $jnt-secondary-color;
+    }
     @if map-has-key($vars, background) {
       $background: map-get($vars, background);
       background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);

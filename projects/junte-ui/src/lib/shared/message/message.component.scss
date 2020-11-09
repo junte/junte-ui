@@ -40,10 +40,12 @@
   }
 
   :host, #{$context} {
-    display: block;
-    border-radius: $jnt-corner-small;
-    padding: $jnt-gutter-normal;
-    border: 1px solid;
+    @if $declare {
+      display: block;
+      border-radius: $jnt-corner-small;
+      padding: $jnt-gutter-normal;
+      border: 1px solid;
+    }
 
     @if map-has-key($vars, schemes) {
       @each $scheme, $map in map-get($vars, schemes) {

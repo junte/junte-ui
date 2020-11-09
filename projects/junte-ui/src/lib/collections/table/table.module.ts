@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { MenuModule } from '../../navigation/menu/menu.module';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
+import { CardModule } from '../../layout/card/card.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -30,7 +33,10 @@ import { TableComponent } from './table.component';
     ArrayPipesModule,
     SelectModule,
     TranslateModule,
-    PopoverModule
+    PopoverModule,
+    CardModule,
+    ResponsiveModule,
+    MenuModule
   ],
   declarations: [
     TableComponent,

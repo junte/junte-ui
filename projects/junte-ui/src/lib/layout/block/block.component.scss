@@ -52,18 +52,22 @@
   }
 
   :host, #{$context} {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    min-height: 40px;
+    @if $declare {
+      display: inline-flex;
+      flex-direction: column;
+      position: relative;
+      min-height: 40px;
+      box-sizing: border-box;
+    }
     box-shadow: map-get($vars, shadow);
     border-radius: map-get($vars, corner);
     background-color: map-get($vars, background);
-    box-sizing: border-box;
 
     &[data-width="fluid"] {
-      display: flex;
-      flex: 1;
+      @if $declare {
+        display: flex;
+        flex: 1;
+      }
     }
 
     @if map-has-key($vars, padding) {
@@ -78,43 +82,50 @@
 
     &[data-has-help='true'][data-has-header='false'] {
       #{$wrapper} [data-block] {
-        padding-top: $jnt-gutter-large;
+        @if $declare {
+          padding-top: $jnt-gutter-large;
+        }
       }
     }
 
     &[data-padding='none'] {
       #{$context} #{$wrapper} [data-block] [data-title] {
-        padding-top: $jnt-gutter-normal;
+        @if $declare {
+          padding-top: $jnt-gutter-normal;
+        }
       }
     }
 
     &[data-features*='adapted'] {
       @include for-mobile() {
-        box-shadow: none;
-        background-color: transparent;
-        padding-left: 0;
-        padding-right: 0;
-        #{$wrapper} [data-title] {
-          color: $jnt-primary-color;
+        @if $declare {
+          box-shadow: none;
+          background-color: transparent;
+          padding-left: 0;
+          padding-right: 0;
+          #{$wrapper} [data-title] {
+            color: $jnt-primary-color;
+          }
         }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-help] {
-    position: absolute;
-    top: -12px;
-    right: 0;
-    z-index: 2;
-    width: 32px;
-    height: 32px;
-    border-color: map-get($vars, background-color);
-    background-color: $jnt-secondary-background;
-    border-radius: $jnt-corner-normal;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid map-get($vars, background);
+    @if $declare {
+      position: absolute;
+      top: -12px;
+      right: 0;
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      background-color: $jnt-secondary-background;
+      border-radius: $jnt-corner-normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    border: if(map-get($vars, background), 2px solid map-get($vars, background), null);
     @include jnt-icon((
       size: 16px,
       color: $jnt-primary-light-color,
@@ -123,11 +134,15 @@
 
   #{$context} #{$wrapper} [data-block] {
     border-radius: map-get($vars, corner);
-    overflow: hidden;
+    @if $declare {
+      overflow: hidden;
+    }
 
     [data-title] {
-      text-align: center;
-      border-bottom: 1px solid $jnt-secondary-color;
+      @if $declare {
+        text-align: center;
+        border-bottom: 1px solid $jnt-secondary-color;
+      }
       @if map-has-key($vars, header) {
         $header: map-get($vars, header);
         padding: map-get($header, padding);
@@ -157,16 +172,18 @@
   }
 
   #{$context} #{$wrapper} [data-state] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: $jnt-corner-normal;
-    z-index: 1;
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $jnt-corner-normal;
+      z-index: 1;
+    }
     @if map-has-key($vars, overlay) {
       $overlay: map-get($vars, overlay);
       background-color: map-get($overlay, background-color);

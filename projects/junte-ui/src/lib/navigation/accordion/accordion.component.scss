@@ -20,55 +20,65 @@
   }
 
   :host, #{$context} {
-    display: block;
-    background-color: $jnt-primary-background;
-    padding: $jnt-gutter-normal;
-    border-radius: $jnt-corner-normal;
-    border: 1px solid $jnt-page-background;
+    @if $declare {
+      display: block;
+      background-color: $jnt-primary-background;
+      padding: $jnt-gutter-normal;
+      border-radius: $jnt-corner-normal;
+      border: 1px solid $jnt-page-background;
+    }
   }
 
   #{$context} #{$wrapper} [data-title] {
-    border-bottom: 2px solid $jnt-secondary-color;
-    padding: $jnt-gutter-small 0;
-    color: $jnt-primary-text-color;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    line-height: 1.6;
-    user-select: none;
-    text-decoration: none;
+    @if $declare {
+      border-bottom: 2px solid $jnt-secondary-color;
+      padding: $jnt-gutter-small 0;
+      color: $jnt-primary-text-color;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      line-height: 1.6;
+      user-select: none;
+      text-decoration: none;
 
-    &[active='true'] {
-      color: $jnt-primary-light-color;
-      border-color: $jnt-primary-light-color;
-    }
-
-    &:hover {
-      &[active='false'] {
+      &[active='true'] {
         color: $jnt-primary-light-color;
+        border-color: $jnt-primary-light-color;
+      }
+
+      &:hover {
+        &[active='false'] {
+          color: $jnt-primary-light-color;
+        }
       }
     }
 
     span {
-      margin: 0 $jnt-gutter-tiny;
+      @if $declare {
+        margin: 0 $jnt-gutter-tiny;
+      }
     }
 
     [data-state] {
-      margin-left: auto;
-      line-height: 1;
+      @if $declare {
+        margin-left: auto;
+        line-height: 1;
 
-      [data-warning] {
-        @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
-      }
+        [data-warning] {
+          @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
+        }
 
-      [data-chevron] {
-        @include jnt-icon((size: $jnt-font-size-tiny), '&');
+        [data-chevron] {
+          @include jnt-icon((size: $jnt-font-size-tiny), '&');
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    padding: $jnt-gutter-normal 0;
+    @if $declare {
+      padding: $jnt-gutter-normal 0;
+    }
   }
 }
 

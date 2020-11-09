@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Shape } from '../../core/enums/shape';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
 import { Position } from '../../core/enums/position';
@@ -81,7 +82,21 @@ export class ButtonComponent {
   @HostBinding('attr.data-width')
   _width: Width = Width.default;
 
+  @HostBinding('attr.data-shape')
+  _shape: Shape = Shape.square;
+
   _type: ButtonType = ButtonType.button;
+
+  @PropertyApi({
+    description: 'Button shape',
+    path: 'ui.shape',
+    default: Shape.square,
+    options: [Shape.circle, Shape.square]
+  })
+  @Input()
+  set shape(shape: Shape) {
+    this._shape = shape || Shape.square;
+  }
 
   @PropertyApi({
     description: 'Set the loading status of button',

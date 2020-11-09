@@ -4,7 +4,7 @@ import { Size } from '../../core/enums/size';
 
 @Component({
   selector: 'jnt-spinner',
-  template: ''
+  templateUrl: './spinner.encapsulated.html'
 })
 export class SpinnerComponent {
 

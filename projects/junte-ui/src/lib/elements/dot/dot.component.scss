@@ -21,8 +21,10 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
-    border-radius: 50%;
+    @if $declare {
+      display: inline-block;
+      border-radius: 50%;
+    }
     min-width: map-get($vars, size);
     min-height: map-get($vars, size);
     width: map-get($vars, size);

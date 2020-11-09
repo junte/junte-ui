@@ -48,7 +48,7 @@
 
         <ng-template *ngIf="(sections |includes: tableSections.actions)"
                      #tableRowActionsTemplate let-row="row" let-hide="hide">
-          <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.size.small">
+          <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.gutter.small">
             <jnt-menu-item title="Edit"
                            i18n-title="@@action.edit"
                            (click)="hide()"></jnt-menu-item>

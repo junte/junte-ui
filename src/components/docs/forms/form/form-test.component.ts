@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   FormComponent,
@@ -11,6 +11,7 @@ import {
 } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
+import sdk from '@stackblitz/sdk';
 
 enum Gender {
   man = 'man',
@@ -37,7 +38,12 @@ export class FormTestComponent implements OnInit {
   pets: string[] = ['cat', 'dog', 'fish', 'parrot'];
   status: string[] = ['married', 'not married', 'is actively looking'];
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('code')
+  code: TabComponent;
+
+  @ViewChild('example')
+  example: ElementRef;
+
   @ViewChild('formTest')
   formTest: FormComponent;
 
@@ -83,6 +89,24 @@ export class FormTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+  }
+
+  selected(active: number) {
+    if (active === 3) {
+      console.log();
+      setTimeout(() =>
+        sdk.embedProjectId(
+          this.example.nativeElement,
+          'junte-ui-test',
+          {
+            openFile: 'registration',
+            view: 'preview',
+            hideExplorer: true,
+            hideNavigation: true,
+            forceEmbedLayout: true,
+            height: 500
+          }));
+    }
   }
 
   submit() {

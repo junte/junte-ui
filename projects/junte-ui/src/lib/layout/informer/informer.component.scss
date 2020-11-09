@@ -1,38 +1,59 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
 @mixin jnt-informer($passed: (), $context: null, $deep: false, $strategy: 'changes') {
-  :host {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    background: rgba($jnt-primary-color, .75);
-    padding: $jnt-gutter-normal;
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    @if $declare {
+      &[data-placement='fixed'] {
+        position: fixed;
+      }
+      &[data-placement='absolute'] {
+        position: absolute;
+      }
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      background: rgba($jnt-primary-color, .75);
+      padding: $jnt-gutter-normal;
+    }
   }
 
   ul {
-    color: white;
-    margin: 0;
-    max-width: 350px;
+    @if $declare {
+      color: white;
+      margin: 0;
+      max-width: 350px;
 
-    li:not(:last-child) {
-      margin-bottom: $jnt-gutter-small;
-    }
+      li:not(:last-child) {
+        margin-bottom: $jnt-gutter-small;
+      }
 
-    &[data-single] {
-      padding: 0;
-      list-style: none;
-      font-size: 1.15em;
+      &[data-single] {
+        padding: 0;
+        list-style: none;
+        font-size: 1.15em;
 
-      li {
-        text-align: center;
+        li {
+          text-align: center;
+        }
       }
     }
   }

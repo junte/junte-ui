@@ -82,7 +82,9 @@
       $icon: map-get($vars, icon);
       #{$wrapper} [data-icon] {
         margin-right: map-get($icon, margin-right);
-        line-height: 1;
+        @if $declare {
+          line-height: 1;
+        }
       }
     }
 

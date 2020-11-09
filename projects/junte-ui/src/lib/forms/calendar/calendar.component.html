@@ -11,16 +11,17 @@
     </td>
     <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
       <jnt-button data-date [outline]="ui.outline.transparent"
+                  [scheme]="ui.scheme.secondary"
                   [size]="ui.size.small"
                   text="{{period | jntFormat: 'LLLL'}}, {{period | jntFormat: 'yyyy'}}"></jnt-button>
     </td>
     <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
       <jnt-button data-date [outline]="ui.outline.transparent"
+                  [scheme]="ui.scheme.secondary"
                   [size]="ui.size.small"
                   [width]="ui.width.fluid"
                   text="{{period | jntFormat: 'yyyy'}}">
       </jnt-button>
-
     </td>
     <td *ngIf="view === viewType.year" colspan="2" data-year>
       {{getYear(period) - 4}} - {{getYear(period) + 7}}
@@ -33,6 +34,7 @@
                   period = addYears(period, 1) : period = addYears(period, 12)">
       </jnt-button>
     </td>
+    <td data-divider *ngIf="metrics.length"></td>
     <td data-metrics
         *ngIf="metrics.length"
         [translate]="'label.metrics'"
@@ -43,7 +45,9 @@
   <tr *ngIf="view === viewType.date; else empty" data-days>
     <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | jntWeekdayName:'x2'}}</th>
 
-    <th *ngFor="let m of metrics">
+    <th data-divider *ngIf="!!metrics.length"></th>
+
+    <th data-metric *ngFor="let m of metrics">
       {{m.title}}
     </th>
   </tr>
@@ -68,6 +72,8 @@
         </ng-container>
       </td>
 
+      <td data-divider *ngIf="!!metrics.length"></td>
+
       <td data-metric *ngFor="let m of metrics;let i = index;">
         <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
         </ng-container>
@@ -77,7 +83,7 @@
 
   <ng-container *ngIf="view === viewType.month">
     <tr *ngFor="let row of months">
-      <td data-day-extend *ngFor="let month of row"
+      <td data-day data-day-extend *ngFor="let month of row"
           [attr.data-selected-month]="(month | jntStartOfMonth) | jntIsEqual: (current | jntStartOfMonth)"
           (click)="period = month; view = viewType.date">
         {{month | jntFormat: 'LLL'}}
@@ -87,7 +93,7 @@
 
   <ng-container *ngIf="view === viewType.year">
     <tr *ngFor="let row of years">
-      <td data-day-extend *ngFor="let year of row"
+      <td data-day data-day-extend *ngFor="let year of row"
           [attr.data-selected-year]="(year | jntStartOfYear) | jntIsEqual: (current | jntStartOfYear)"
           (click)="period = year; view = viewType.month">
         {{year | jntFormat: 'yyyy'}}
