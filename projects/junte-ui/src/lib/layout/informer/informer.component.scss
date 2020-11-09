@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "elements/icon/icon";
 
 @mixin jnt-informer($passed: (), $context: null, $deep: false, $strategy: 'changes') {
@@ -13,9 +14,14 @@
     $declare: true;
   }
 
-  :host , #{$context} {
+  :host, #{$context} {
     @if $declare {
-      position: fixed;
+      &[data-placement='fixed'] {
+        position: fixed;
+      }
+      &[data-placement='absolute'] {
+        position: absolute;
+      }
       top: 0;
       right: 0;
       bottom: 0;

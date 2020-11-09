@@ -19,14 +19,60 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document let-height="height">
-                  <jnt-informer *ngIf="!!errors.length" [backdrop]="backdrop" (ok)="errors = []">
-                    <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
-                  </jnt-informer>
+                  <ng-template #errorsTemplate>
+                    <jnt-informer *ngIf="!!errors.length"
+                                  [placement]="placementControl.value"
+                                  [backdrop]="backdrop"
+                                  (ok)="errors = []">
+                      <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
+                    </jnt-informer>
+                  </ng-template>
+                  <ng-container *ngIf="contentControl.value; else errorsTemplate">
+                    <jnt-informer *ngIf="state.ok" [placement]="placementControl.value" [backdrop]="backdrop">
+                      <ng-template #informerContentTemplate>
+                        <jnt-stack data-content [align]="ui.align.center">
+                          <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
+                          <div>Your request is approved</div>
+                          <jnt-button text="Ok"
+                                      [scheme]="ui.scheme.success"
+                                      (click)="state.ok = false"></jnt-button>
+                        </jnt-stack>
+                      </ng-template>
+                    </jnt-informer>
+                  </ng-container>
                   <jnt-container #page>
-                    <jnt-button (click)="add()" text="Add error"></jnt-button>
+                    <ng-template #defaultButton>
+                      <jnt-button (click)="add()" text="Add error"></jnt-button>
+                    </ng-template>
+                    <jnt-button *ngIf="contentControl.value; else defaultButton"
+                                text="Show info"
+                                (click)="state.ok = true"></jnt-button>
                   </jnt-container>
                 </ng-template>
               </app-browser-preview>
+            </jnt-col>
+            <jnt-col [tablet]="4">
+              <jnt-form [formGroup]="builder">
+                <jnt-stack [align]="ui.align.stretch">
+                  <jnt-form-item>
+                    <jnt-form-label for="placement"
+                                    i18n="@@label.placement">Placement
+                    </jnt-form-label>
+                    <jnt-switcher formControlName="placement">
+                      <jnt-switcher-option label="Fixed"
+                                           i18n-label="@@label.fixed"
+                                           [value]="ui.placement.fixed"></jnt-switcher-option>
+                      <jnt-switcher-option label="Absolute"
+                                           i18n-label="@@label.absolute"
+                                           [value]="ui.placement.absolute"></jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-item>
+                  <jnt-form-item>
+                    <jnt-checkbox formControlName="content"
+                                  label="Custom content"></jnt-checkbox>
+                  </jnt-form-item>
+                </jnt-stack>
+              </jnt-form>
             </jnt-col>
           </jnt-row>
         </ng-template>
@@ -49,12 +95,36 @@
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
                 <app-code-highlight file="informer-test.template.html">
-<!-- @formatter:off-->
-<![CDATA[
-<jnt-informer [backdrop]="backdrop" (ok)="errors = []">
-  <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
-</jnt-informer>
-]]>
+                  <!-- @formatter:off-->
+                  <ng-container *ngIf="contentControl.value">
+                    <![CDATA[<jnt-informer *ngIf="state.ok" [backdrop]="backdrop"]]>
+                    <ng-container *ngIf="placementControl.value">
+                      <![CDATA[ [placement]="ui.placement.]]>{{placementControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>
+                      <ng-template #informerContentTemplate>
+                        <jnt-stack data-content [align]="ui.align.center">
+                          <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
+                          <div>Your request is approved</div>
+                          <jnt-button text="Ok"
+                                      [scheme]="ui.scheme.success"
+                                      (click)="state.ok = false"></jnt-button>
+                        </jnt-stack>
+                      </ng-template>
+                    </jnt-informer>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="!contentControl.value">
+                    <![CDATA[
+                    <jnt-informer *ngIf="!!errors.length" [backdrop]="backdrop" (ok)="errors = []" ]]>
+                      <ng-container *ngIf="placementControl.value">
+                        <![CDATA[ [placement]="ui.placement.]]>{{placementControl.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
+                      <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
+                    </jnt-informer>
+                    ]]>
+                  </ng-container>
                   <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>
