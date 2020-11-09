@@ -22,7 +22,9 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
+    @if $declare {
+      display: inline-block;
+    }
   }
 
   #{$context} #{$wrapper} label {
@@ -31,8 +33,10 @@
   }
 
   #{$context} #{$wrapper} [data-required] {
-    margin-left: $jnt-gutter-tiny;
-    color: $jnt-red-color;
+    @if $declare {
+      margin-left: $jnt-gutter-tiny;
+      color: $jnt-red-color;
+    }
   }
 
 }

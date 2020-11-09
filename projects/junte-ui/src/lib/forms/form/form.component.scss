@@ -22,8 +22,10 @@
   }
 
   :host, #{$context} {
-    display: block;
-    position: relative;
+    @if $declare {
+      display: block;
+      position: relative;
+    }
     @if map-get($vars, height) == 'fluid' {
       & {
         display: flex;
@@ -43,26 +45,32 @@
 
   #{$context} #{$wrapper} form {
     footer {
-      margin-top: $jnt-gutter-large;
+      @if $declare {
+        margin-top: $jnt-gutter-large;
+      }
     }
 
     header {
-      margin-bottom: $jnt-gutter-large;
+      @if $declare {
+        margin-bottom: $jnt-gutter-large;
+      }
     }
 
     [data-loading], [data-error], [data-success] {
-      position: absolute;
-      top: -$jnt-gutter-small;
-      left: -$jnt-gutter-small;
-      bottom: -$jnt-gutter-small;
-      right: -$jnt-gutter-small;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba($jnt-primary-background, .5);
-      border-radius: $jnt-corner-normal;
-      z-index: 1;
-      @include jnt-icon((size: 48px), '&');
+      @if $declare {
+        position: absolute;
+        top: -$jnt-gutter-small;
+        left: -$jnt-gutter-small;
+        bottom: -$jnt-gutter-small;
+        right: -$jnt-gutter-small;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($jnt-primary-background, .5);
+        border-radius: $jnt-corner-normal;
+        z-index: 1;
+        @include jnt-icon((size: 48px), '&');
+      }
     }
   }
 }

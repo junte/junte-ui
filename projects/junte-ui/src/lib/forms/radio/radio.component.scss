@@ -139,8 +139,10 @@
       }
 
       &:disabled {
-        cursor: default;
-        pointer-events: none;
+        @if $declare {
+          cursor: default;
+          pointer-events: none;
+        }
 
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
@@ -217,23 +219,27 @@
       }
 
       [data-indicator] {
-        display: inline-block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: all .3s;
-        border-radius: 50%;
-        @if map-has-key($vars, indicator) {
-          $indicator: map-get($vars, indicator);
-          background-color: map-get($indicator, background-color);
+        @if $declare {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all .3s;
+          border-radius: 50%;
+          @if map-has-key($vars, indicator) {
+            $indicator: map-get($vars, indicator);
+            background-color: map-get($indicator, background-color);
+          }
         }
       }
     }
 
     [label] {
-      user-select: none;
-      white-space: nowrap;
+      @if $declare {
+        user-select: none;
+        white-space: nowrap;
+      }
       @if map-has-key($vars, label) {
         $label: map-get($vars, label);
         padding-left: map-get($label, gutter);

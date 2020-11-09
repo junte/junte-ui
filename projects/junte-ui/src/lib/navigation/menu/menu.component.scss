@@ -414,11 +414,13 @@
     }
 
     [data-link] {
-      user-select: none;
-      @include jnt-link((
-        overflow: true,
-        display: block,
-      ), '&');
+      @if $declare {
+        user-select: none;
+        @include jnt-link((
+          overflow: true,
+          display: block,
+        ), '&');
+      }
     }
   }
 

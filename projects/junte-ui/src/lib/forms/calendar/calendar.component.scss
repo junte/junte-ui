@@ -62,9 +62,7 @@
 
     @if map-has-key($vars, metrics) and map-get(map-get($vars, metrics), width) {
       $metrics: map-get($vars, metrics);
-      @if $declare {
-        table-layout: fixed;
-      }
+      table-layout: fixed;
       [data-metrics] {
         width: map-get($metrics, width);
       }
@@ -140,64 +138,72 @@
     tbody {
       tr {
         td {
-          &[data-day] {
-            box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
-            inset 0px -1px 0px $jnt-secondary-dark-color;
-
-            &:last-child {
-              box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
-            }
-          }
-
-          &[data-metric] {
-            box-shadow: inset -1px 0px 0px $jnt-white-color,
-            inset 0px -1px 0px $jnt-white-color;
-          }
-        }
-
-        &:last-child {
-          td {
+          @if $declare {
             &[data-day] {
-              box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color;
+              box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
+              inset 0px -1px 0px $jnt-secondary-dark-color;
 
               &:last-child {
-                box-shadow: none;
+                box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
               }
             }
 
             &[data-metric] {
-              box-shadow: inset -1px 0px 0px $jnt-white-color;
+              box-shadow: inset -1px 0px 0px $jnt-white-color,
+              inset 0px -1px 0px $jnt-white-color;
+            }
+          }
+        }
+
+        &:last-child {
+          @if $declare {
+            td {
+              &[data-day] {
+                box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color;
+
+                &:last-child {
+                  box-shadow: none;
+                }
+              }
+
+              &[data-metric] {
+                box-shadow: inset -1px 0px 0px $jnt-white-color;
+              }
             }
           }
         }
 
         &[data-current-week='true'] {
-          [data-day], [data-metric], [data-divider] {
-            box-shadow: inset 0 2px 0 0 $jnt-primary-light-color,
-            inset 0 -2px 0 0 $jnt-primary-light-color !important;
+          @if $declare {
+            [data-day], [data-metric], [data-divider] {
+              box-shadow: inset 0 2px 0 0 $jnt-primary-light-color,
+              inset 0 -2px 0 0 $jnt-primary-light-color !important;
 
-            &:first-child {
-              border-top-left-radius: $jnt-corner-small;
-              border-bottom-left-radius: $jnt-corner-small;
-              box-shadow: inset 1px 1px 0 1px $jnt-primary-light-color,
-              inset 1px -1px 0 1px $jnt-primary-light-color !important;
-            }
+              &:first-child {
+                border-top-left-radius: $jnt-corner-small;
+                border-bottom-left-radius: $jnt-corner-small;
+                box-shadow: inset 1px 1px 0 1px $jnt-primary-light-color,
+                inset 1px -1px 0 1px $jnt-primary-light-color !important;
+              }
 
-            &:last-child {
-              border-top-right-radius: $jnt-corner-small;
-              border-bottom-right-radius: $jnt-corner-small;
-              box-shadow: inset -2px -2px 0 0 $jnt-primary-light-color,
-              inset 0 2px 0 0 $jnt-primary-light-color !important;
+              &:last-child {
+                border-top-right-radius: $jnt-corner-small;
+                border-bottom-right-radius: $jnt-corner-small;
+                box-shadow: inset -2px -2px 0 0 $jnt-primary-light-color,
+                inset 0 2px 0 0 $jnt-primary-light-color !important;
+              }
             }
           }
         }
 
         td {
-          min-width: 38px;
-          font-size: $jnt-font-size-small;
-          box-sizing: border-box;
-          user-select: none;
-          padding: 0;
+          @if $declare {
+            min-width: 38px;
+            font-size: $jnt-font-size-small;
+            box-sizing: border-box;
+            user-select: none;
+            padding: 0;
+          }
 
           [data-default] {
             @if $declare {
@@ -206,31 +212,33 @@
           }
 
           &[data-day] {
-            cursor: pointer;
+            @if $declare {
+              cursor: pointer;
 
-            &:nth-child(6),
-            &:nth-child(7) {
-              background-color: $jnt-secondary-dark-color;
-            }
-
-            &[data-selected-day='false']:hover {
-              background-color: $jnt-highlight-background;
-              color: $jnt-primary-text-dark-color;
-            }
-
-            &:focus {
-              box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
-              outline: 0;
-            }
-
-            &[data-current-month='false'] {
-              [data-default] {
-                color: $jnt-primary-text-light-color;
+              &:nth-child(6),
+              &:nth-child(7) {
+                background-color: $jnt-secondary-dark-color;
               }
-            }
 
-            &[data-day-extend] {
-              height: 68px;
+              &[data-selected-day='false']:hover {
+                background-color: $jnt-highlight-background;
+                color: $jnt-primary-text-dark-color;
+              }
+
+              &:focus {
+                box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
+                outline: 0;
+              }
+
+              &[data-current-month='false'] {
+                [data-default] {
+                  color: $jnt-primary-text-light-color;
+                }
+              }
+
+              &[data-day-extend] {
+                height: 68px;
+              }
             }
 
             @if map-has-key($vars, day) {
@@ -250,16 +258,20 @@
           }
 
           &[data-metric] {
-            background-color: $jnt-secondary-color;
+            @if $declare {
+              background-color: $jnt-secondary-color;
+            }
           }
         }
       }
     }
 
     td, th {
-      vertical-align: middle;
-      text-align: center;
-      position: relative;
+      @if $declare {
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+      }
     }
   }
 }

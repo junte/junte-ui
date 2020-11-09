@@ -98,10 +98,8 @@
 
   #{$context} #{$wrapper} [data-container] {
     @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
-      @if $declare {
-        display: flex;
-        justify-content: space-between;
-      }
+      display: flex;
+      justify-content: space-between;
     };
     &[data-desktop] {
       [data-menu] {

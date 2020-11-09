@@ -19,7 +19,9 @@
   }
 
   :host, #{$context} {
-    display: block;
+    @if $declare {
+      display: block;
+    }
   }
 }
 
