@@ -401,7 +401,9 @@
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
 
     [data-title] {
-      margin-right: auto;
+      @if $declare {
+        margin-right: auto;
+      }
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         [data-icon] {

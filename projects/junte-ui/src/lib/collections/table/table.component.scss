@@ -50,29 +50,36 @@
     }
 
     [data-nodata] {
-      font-size: 80px;
-      color: $jnt-muted-color;
+      @if $declare {
+        font-size: 80px;
+        color: $jnt-muted-color;
+      }
     }
 
     [data-line] {
-      tr {
-        td {
-          vertical-align: top;
-          padding: $jnt-gutter-normal $jnt-gutter-small;
-        }
-        &:not(:last-child) {
+      @if $declare {
+        tr {
           td {
-            border-bottom: 1px solid $jnt-muted-color;
+            vertical-align: top;
+            padding: $jnt-gutter-normal $jnt-gutter-small;
           }
-        }
-        &:first-child {
-          td {
-            padding-top: 0;
+
+          &:not(:last-child) {
+            td {
+              border-bottom: 1px solid $jnt-muted-color;
+            }
           }
-        }
-        &:last-child {
-          td {
-            padding-bottom: 0;
+
+          &:first-child {
+            td {
+              padding-top: 0;
+            }
+          }
+
+          &:last-child {
+            td {
+              padding-bottom: 0;
+            }
           }
         }
       }
@@ -101,13 +108,11 @@
       }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      position: relative;@if $declare {
-      width: 100%;
-      border-collapse: collapse;
-      position: relative;
-    }
+      @if $declare {
+        width: 100%;
+        border-collapse: collapse;
+        position: relative;
+      }
 
       thead {
         @if $declare {

@@ -18,29 +18,35 @@
   }
 
   :host {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    border: 1px solid $jnt-control-border-color;
-    box-sizing: border-box;
-    padding: $jnt-gutter-normal;
-    border-radius: $jnt-corner-small;
-    background: $jnt-control-background;
+    @if $declare {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      border: 1px solid $jnt-control-border-color;
+      box-sizing: border-box;
+      padding: $jnt-gutter-normal;
+      border-radius: $jnt-corner-small;
+      background: $jnt-control-background;
+    }
   }
 
   [data-select-file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0;
-    z-index: 1;
+    @if $declare {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0;
+      z-index: 1;
+    }
   }
 
   [data-cropper] {
-    flex: 1;
+    @if $declare {
+      flex: 1;
+    }
   }
 }

@@ -158,12 +158,14 @@
   }
 
   #{$context} #{$wrapper} [label] {
-    padding-left: $jnt-control-gutter;
+    @if $declare {
+      padding-left: $jnt-control-gutter;
+      user-select: none;
+    }
     @if map-has-key($vars, label) {
       $label: map-get($vars, label);
       color: map-get($label, color);
     }
-    user-select: none;
   }
 
   #{$context} #{$wrapper} [data-switch] {

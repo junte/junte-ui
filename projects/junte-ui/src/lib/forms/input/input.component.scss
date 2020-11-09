@@ -199,14 +199,18 @@
     }
 
     &[data-textAlign="right"] {
-      #{$wrapper} input, #{$wrapper} textarea {
-        text-align: right;
+      @if $declare {
+        #{$wrapper} input, #{$wrapper} textarea {
+          text-align: right;
+        }
       }
     }
 
     &[data-textAlign="left"] {
-      #{$wrapper} input, #{$wrapper} textarea {
-        text-align: left;
+      @if $declare {
+        #{$wrapper} input, #{$wrapper} textarea {
+          text-align: left;
+        }
       }
     }
 
@@ -214,120 +218,154 @@
       &,
       #{$wrapper} form [data-content] input,
       #{$wrapper} form [data-content] textarea {
-        background-color: $jnt-control-disabled-background;
-        color: $jnt-control-disabled-label-color;
-        pointer-events: none;
+        @if $declare {
+          background-color: $jnt-control-disabled-background;
+          color: $jnt-control-disabled-label-color;
+          pointer-events: none;
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-label] {
-    background-color: $jnt-control-field-label-background;
-    padding: $jnt-control-field-label-padding;
-    display: flex;
-    align-items: center;
-    color: $jnt-control-field-label-color;
-    white-space: nowrap;
+    @if $declare {
+      background-color: $jnt-control-field-label-background;
+      padding: $jnt-control-field-label-padding;
+      display: flex;
+      align-items: center;
+      color: $jnt-control-field-label-color;
+      white-space: nowrap;
+    }
   }
 
   #{$context} #{$wrapper} form {
-    display: flex;
-    flex: 1;
-    position: relative;
-    max-width: 100%;
+    @if $declare {
+      display: flex;
+      flex: 1;
+      position: relative;
+      max-width: 100%;
+    }
 
     &:focus {
-      outline: 0;
+      @if $declare {
+        outline: 0;
+      }
     }
 
     [data-content] {
-      flex: 1;
-      max-width: 100%;
-      box-sizing: border-box;
-      padding: $jnt-gutter-small $jnt-gutter-normal;
+      @if $declare {
+        flex: 1;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+      }
 
       input, textarea {
-        color: $jnt-primary-text-color;
-        background-color: $jnt-control-background;
-        border: 0;
-        padding: 0;
-        font-family: inherit;
-        resize: none;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        min-width: 0;
+        @if $declare {
+          color: $jnt-primary-text-color;
+          background-color: $jnt-control-background;
+          border: 0;
+          padding: 0;
+          font-family: inherit;
+          resize: none;
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          min-width: 0;
+        }
 
         &[type="number"]::-webkit-outer-spin-button,
         &[type="number"]::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
+          @if $declare {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
 
         &[type="number"] {
-          -moz-appearance: textfield;
+          @if $declare {
+            -moz-appearance: textfield;
+          }
         }
 
         &:focus {
-          outline: 0;
+          @if $declare {
+            outline: 0;
+          }
         }
 
         &:read-only {
-          pointer-events: none;
+          @if $declare {
+            pointer-events: none;
+          }
         }
       }
 
       [data-warning] {
-        color: $jnt-fail-color;
+        @if $declare {
+          color: $jnt-fail-color;
+        }
       }
 
       [data-checked] {
-        color: $jnt-success-color;
+        @if $declare {
+          color: $jnt-success-color;
+        }
       }
 
       [data-loading] {
-        line-height: .8;
+        @if $declare {
+          line-height: .8;
+        }
       }
 
       [data-view], [data-reset] {
-        border: 0;
-        background-color: transparent;
-        color: $jnt-primary-text-light-color;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
+        @if $declare {
+          border: 0;
+          background-color: transparent;
+          color: $jnt-primary-text-light-color;
+          cursor: pointer;
+          padding: 0;
+          line-height: 1;
+        }
 
         &:focus {
-          outline: 0;
+          @if $declare {
+            outline: 0;
+          }
         }
       }
     }
 
     [data-arrows] {
-      display: flex;
-      flex-direction: column;
+      @if $declare {
+        display: flex;
+        flex-direction: column;
+      }
 
       button {
-        flex: 1;
-        padding: 0 $jnt-gutter-small;
-        height: 50%;
-        border: 0;
-        border-radius: $jnt-corner-small;
-        cursor: pointer;
-        line-height: 0;
-        background-color: transparent;
-        color: $jnt-primary-text-light-color;
+        @if $declare {
+          flex: 1;
+          padding: 0 $jnt-gutter-small;
+          height: 50%;
+          border: 0;
+          border-radius: $jnt-corner-small;
+          cursor: pointer;
+          line-height: 0;
+          background-color: transparent;
+          color: $jnt-primary-text-light-color;
 
-        &:focus {
-          outline: 0;
-        }
+          &:focus {
+            outline: 0;
+          }
 
-        &:first-child {
-          padding-top: $jnt-gutter-tiny;
-        }
+          &:first-child {
+            padding-top: $jnt-gutter-tiny;
+          }
 
-        &:last-child {
-          padding-bottom: $jnt-gutter-tiny;
+          &:last-child {
+            padding-bottom: $jnt-gutter-tiny;
+          }
         }
       }
     }
