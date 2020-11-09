@@ -1,21 +1,44 @@
 @import "jnt-variables";
 
-@mixin jnt-circle-bar-indicator-group($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-circle-bar-indicator-group($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+
+  $defs: (
+    width: null,
+    height: null,
+    fill: null
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
   :host, #{$context} {
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    position: absolute;
+    @if $declare {
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+    }
 
     @for $i from 1 through 3 {
       @for $j from 0 through 3 - 1 {
         &[data-groups='#{$i}'][data-index='#{$j}'] {
-          $size: percentage(1 - ($j / $i) * .5);
-          width: $size;
-          height: $size;
+          @if $declare {
+            $size: percentage(1 - ($j / $i) * .5);
+            width: $size;
+            height: $size;
+          }
         }
       }
     }

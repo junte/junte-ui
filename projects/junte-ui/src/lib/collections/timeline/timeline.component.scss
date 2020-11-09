@@ -25,7 +25,9 @@
   }
 
   :host, #{$context} {
-    display: block;
+    @if $declare {
+      display: block;
+    }
   }
 
   #{$wrapper} #{$context} [data-lines] {
@@ -49,49 +51,59 @@
 
     }
     [data-mark] {
-      display: flex;
-      justify-content: center;
-      [data-circle] {
-        border-radius: 50%;
-        color: $jnt-white-color;
+      @if $declare {
         display: flex;
         justify-content: center;
-        align-items: center;
-        font-size: $jnt-font-size-big;
-      }
-      [data-icon] {
-        line-height: 1;
+        [data-circle] {
+          border-radius: 50%;
+          color: $jnt-white-color;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: $jnt-font-size-big;
+        }
+        [data-icon] {
+          line-height: 1;
+        }
       }
     }
 
     [data-line] {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      div {
-        width: 10px;
-        background: radial-gradient($jnt-primary-light-color 2px, transparent 1px);
-        background-size: 10px 10px;
-        background-repeat: repeat-y;
+      @if $declare {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        div {
+          width: 10px;
+          background: radial-gradient($jnt-primary-light-color 2px, transparent 1px);
+          background-size: 10px 10px;
+          background-repeat: repeat-y;
+        }
       }
     }
     &:last-child {
-       [data-line] {
-         div {
-           display: none;
-         }
-       }
+      [data-line] {
+        @if $declare {
+          div {
+            display: none;
+          }
+        }
+      }
      }
 
     [data-title] {
-      font-size: $jnt-font-size-big;
-      display: flex;
-      align-items: center;
+      @if $declare {
+        font-size: $jnt-font-size-big;
+        display: flex;
+        align-items: center;
+      }
     }
 
     [data-content] {
-      padding: $jnt-gutter-tiny 0;
-      flex: 1;
+      @if $declare {
+        padding: $jnt-gutter-tiny 0;
+        flex: 1;
+      }
     }
 
   }

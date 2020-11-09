@@ -1,24 +1,47 @@
 @import "jnt-variables";
 
-@mixin jnt-progress-bar($passed: (), $context: null, $strategy: 'changes') {
+@mixin jnt-progress-bar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
 
+  $defs: (
+    width: null,
+    height: null,
+    fill: null
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
   :host, #{$context} {
-    display: flex;
-    flex-direction: column;
+    @if $declare {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   #{$context} [data-bar] {
-    width: 100%;
-    background-color: $jnt-muted-color;
-    min-height: 3px;
-    height: 3px;
-    border-radius: 1px;
-    box-sizing: border-box;
-    [data-progress] {
-      height: 100%;
+    @if $declare {
+      width: 100%;
+      background-color: $jnt-muted-color;
+      min-height: 3px;
+      height: 3px;
       border-radius: 1px;
-      &[data-fail='true'] {
-        background-color: $jnt-fail-color;
+      box-sizing: border-box;
+      [data-progress] {
+        height: 100%;
+        border-radius: 1px;
+
+        &[data-fail='true'] {
+          background-color: $jnt-fail-color;
+        }
       }
     }
   }
