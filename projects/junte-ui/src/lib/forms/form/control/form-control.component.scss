@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin jnt-form-control($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-form-control($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
 
@@ -9,7 +9,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -19,7 +19,9 @@
   }
 
   :host, #{$context} {
-    display: block;
+    @if $declare {
+      display: block;
+    }
   }
 }
 

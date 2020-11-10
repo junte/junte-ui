@@ -9,6 +9,7 @@
       $orphan: map-get($scheme, orphan);
       #{$wrapper} [data-link] {
         color: map-get($orphan, color);
+
         &:hover {
           @if map-has-key($orphan, hover) {
             $hover: map-get($orphan, hover);
@@ -22,29 +23,34 @@
   #{$wrapper} [data-link] {
     padding: map-get($scheme, padding);
     color: map-get($scheme, color);
-    @if map-has-key($scheme, hover) {
-      $hover: map-get($scheme, hover);
-      &[data-active="false"]:hover {
-        color: map-get($hover, color);
-        background-color: map-get($hover, background-color);
+  }
+
+  @if map-has-key($scheme, hover) {
+    $hover: map-get($scheme, hover);
+    &[data-active="false"] {
+      #{$wrapper} [data-link] {
+        &:hover {
+          color: map-get($hover, color);
+          background-color: map-get($hover, background-color);
+        }
       }
     }
+  }
 
-    &[data-active="true"] {
-      @if map-has-key($scheme, active) {
-        $active: map-get($scheme, active);
-        background-color: map-get($active, background-color);
-        box-shadow: map-get($active, shadow);
-        [data-title] {
-          color: map-get($active, color);
+  &[data-active="true"] {
+    @if map-has-key($scheme, active) {
+      $active: map-get($scheme, active);
+      background-color: map-get($active, background-color);
+      box-shadow: map-get($active, shadow);
+      [data-title] {
+        color: map-get($active, color);
 
-          span {
-            @if map-get($active, underline) == true {
-              border-bottom: 1px solid map-get($active, underline-color);
-            }
-            @if map-get($active, underline) == false {
-              border: none;
-            }
+        span {
+          @if map-get($active, underline) == true {
+            border-bottom: 1px solid map-get($active, underline-color);
+          }
+          @if map-get($active, underline) == false {
+            border: none;
           }
         }
       }
@@ -169,7 +175,7 @@
   }
 }
 
-@mixin jnt-link($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-link($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
     font-size: $jnt-font-size-base,
@@ -274,7 +280,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -380,6 +386,7 @@
       }
       [data-toggle] {
         margin-left: map-get($toggle, margin-left);
+        margin-right: 0;
       }
     }
 
@@ -394,7 +401,9 @@
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
 
     [data-title] {
-      margin-right: auto;
+      @if $declare {
+        margin-right: auto;
+      }
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         [data-icon] {

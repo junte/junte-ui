@@ -1,10 +1,16 @@
-<jnt-stack [align]="ui.align.center"
-           [gutter]="ui.gutter.large">
-  <jnt-icon data-icon [icon]="icon"></jnt-icon>
-  <ul [attr.data-single]="messages.length === 1">
-    <li *ngFor="let m of messages">{{m.message}}</li>
-  </ul>
+<ng-template #defaultTemplate>
+  <jnt-stack [align]="ui.align.center"
+             [gutter]="ui.gutter.large">
+    <jnt-icon data-icon [icon]="icon"></jnt-icon>
+    <ul [attr.data-single]="messages.length === 1">
+      <li *ngFor="let m of messages">{{m.message}}</li>
+    </ul>
 
-  <jnt-button [scheme]="ui.scheme.success"
-              (click)="close()" text="Ok"></jnt-button>
-</jnt-stack>
+    <jnt-button [scheme]="ui.scheme.success"
+                (click)="ok.emit()" text="Ok"></jnt-button>
+  </jnt-stack>
+</ng-template>
+
+<ng-container *ngIf="!!contentTemplate; else defaultTemplate">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>

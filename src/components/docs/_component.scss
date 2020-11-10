@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'elements/icon';
+$jnt-ng-deep: true;
 
 :host-context([theme='dark']) {
   [block] {
@@ -30,7 +31,7 @@ h1 {
   [data-icon] {
     @include jnt-icon((
       size: 30px
-    ), '&', true);
+    ), '&');
   }
 }
 

@@ -3,34 +3,21 @@
 @import "jnt-functions";
 @import "forms/button/button";
 @import "forms/input/input";
+@import "layout/responsive/responsive";
+@import "layout/card/card";
 
-@mixin jnt-table($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     min-height: 200px,
-    min-width: 400px,
-    menu: (
-      top: (
-        item: (
-          corner: 0,
-          padding: $jnt-gutter-normal,
-          color: $jnt-primary-text-light-color,
-          active: (
-            underline: false,
-            color: $jnt-primary-color,
-            shadow: inset 4px 0px 0px $jnt-primary-color,
-            background-color: $jnt-secondary-color
-          )
-        )
-      )
-    )
+    min-width: 400px
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -40,25 +27,66 @@
   }
 
   :host {
-    display: block;
-    min-width: map-get($vars, min-width);
-    padding: $jnt-gutter-normal;
+    @if $declare {
+      display: block;
+      padding: $jnt-gutter-normal;
+    }
+
+    @include min-for-desktop() {
+      min-width: map-get($vars, min-width);
+    }
 
     [data-table] {
-      margin-left: -$jnt-gutter-normal;
-      margin-right: -$jnt-gutter-normal;
+      @if $declare {
+        margin-left: -$jnt-gutter-normal;
+        margin-right: -$jnt-gutter-normal;
+      }
     }
 
     [data-search] {
-      @include jnt-input((width: 180px), '&');
+      @include min-for-desktop() {
+        @include jnt-input((width: 180px), '&');
+      }
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      position: relative;
+    [data-nodata] {
+      @if $declare {
+        font-size: 80px;
+        color: $jnt-muted-color;
+      }
+    }
 
-      [data-spinner] {
+    [data-line] {
+      @if $declare {
+        tr {
+          td {
+            vertical-align: top;
+            padding: $jnt-gutter-normal $jnt-gutter-small;
+          }
+
+          &:not(:last-child) {
+            td {
+              border-bottom: 1px solid $jnt-muted-color;
+            }
+          }
+
+          &:first-child {
+            td {
+              padding-top: 0;
+            }
+          }
+
+          &:last-child {
+            td {
+              padding-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    [data-spinner] {
+      @if $declare {
         position: absolute;
         top: 0;
         left: 0;
@@ -70,96 +98,118 @@
         align-items: center;
         transition: all .3s;
         z-index: 1;
+      }
 
         [data-icon] {
-          color: $jnt-primary-text-light-color;
+          @if $declare {
+            color: $jnt-primary-text-light-color;
+          }
         }
       }
 
-      thead {
-        background-color: $jnt-secondary-background;
+    table {
+      @if $declare {
+        width: 100%;
+        border-collapse: collapse;
+        position: relative;
+      }
 
-        .sortable {
-          cursor: pointer;
+      thead {
+        @if $declare {
+          background-color: $jnt-secondary-background;
+
+          .sortable {
+            cursor: pointer;
+          }
         }
       }
 
       tbody tr {
-        border-bottom: 1px solid $jnt-muted-color;
-        background-color: $jnt-primary-background;
-        transition: all .3s;
+        @if $declare {
+          border-bottom: 1px solid $jnt-muted-color;
+          background-color: $jnt-primary-background;
+          transition: all .3s;
+        }
 
         &[data-nodata] {
           height: map-get($vars, min-height);
-          pointer-events: none;
-          border-bottom: 0;
+          @if $declare {
+            pointer-events: none;
+            border-bottom: 0;
+          }
 
           td {
-            vertical-align: middle;
-            text-align: center;
+            @if $declare {
+              vertical-align: middle;
+              text-align: center;
 
-            [data-icon] {
-              font-size: 80px;
-              color: $jnt-muted-color;
+              [data-icon] {
+                font-size: 80px;
+                color: $jnt-muted-color;
+              }
             }
           }
         }
 
         &[data-loading] {
           height: map-get($vars, min-height);
-          pointer-events: none;
-          border-bottom: 0;
+          @if $declare {
+            pointer-events: none;
+            border-bottom: 0;
+          }
         }
 
         &:hover {
-          background-color: $jnt-highlight-background;
+          @if $declare {
+            background-color: $jnt-highlight-background;
+          }
         }
 
         td {
-          &[data-action] {
-            width: 50px;
-            text-align: center;
+          @if $declare {
+            &[data-action] {
+              width: 50px;
+              text-align: center;
 
-            [data-trigger] {
-              @include jnt-button((
-                sizes: (
-                  normal: (
-                    padding: 0 $jnt-gutter-normal,
+              [data-trigger] {
+                @include jnt-button((
+                  sizes: (
+                    normal: (
+                      padding: 0 $jnt-gutter-normal,
+                    ),
                   ),
-                ),
-              ), '&');
+                ), '&');
+              }
             }
           }
         }
       }
 
       th {
-        padding: $jnt-gutter-normal;
-        box-sizing: border-box;
+        @if $declare {
+          padding: $jnt-gutter-normal;
+          box-sizing: border-box;
+        }
       }
 
       td {
-        padding: $jnt-gutter-small $jnt-gutter-normal;
-        box-sizing: border-box;
+        @if $declare {
+          padding: $jnt-gutter-small $jnt-gutter-normal;
+          box-sizing: border-box;
+        }
       }
     }
 
     [data-pagination] {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @if $declare {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      [data-pages] {
-        flex: 1;
+        [data-pages] {
+          flex: 1;
+        }
       }
-    }
-  }
-
-  @if $declare {
-    @if map-has-key($vars, menu) {
-      @include jnt-menu((
-        map-get($vars, menu)
-      ), '[context=table-row-action] ' + $jnt-menu-host);
     }
   }
 }

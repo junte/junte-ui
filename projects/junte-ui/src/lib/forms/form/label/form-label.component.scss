@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin jnt-form-label($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-form-label($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     color: $jnt-primary-text-light-color,
@@ -12,7 +12,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -22,7 +22,9 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
+    @if $declare {
+      display: inline-block;
+    }
   }
 
   #{$context} #{$wrapper} label {
@@ -31,8 +33,10 @@
   }
 
   #{$context} #{$wrapper} [data-required] {
-    margin-left: $jnt-gutter-tiny;
-    color: $jnt-red-color;
+    @if $declare {
+      margin-left: $jnt-gutter-tiny;
+      color: $jnt-red-color;
+    }
   }
 
 }

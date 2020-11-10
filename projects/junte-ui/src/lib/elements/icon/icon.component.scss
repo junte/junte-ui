@@ -4,7 +4,7 @@
 @import "elements/icon/font/font-icon";
 @import "elements/icon/animated/animated-icon";
 
-@mixin jnt-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-icon($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     color: null,
     size: null,
@@ -31,7 +31,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 

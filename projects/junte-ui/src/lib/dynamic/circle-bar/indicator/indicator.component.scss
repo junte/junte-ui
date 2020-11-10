@@ -1,7 +1,7 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
 
-@mixin jnt-circle-bar-indicator($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-circle-bar-indicator($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     fill: transparent
@@ -11,7 +11,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -21,20 +21,24 @@
   }
 
   :host, #{$context} {
-    height: 100%;
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    position: absolute;
+    @if $declare {
+      height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      position: absolute;
+    }
   }
 
   #{$context} #{$wrapper} svg {
     fill: map-get($vars, fill);
-    transform: rotate(-90deg);
-    border-radius: 50%;
+    @if $declare {
+      transform: rotate(-90deg);
+      border-radius: 50%;
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 @import 'jnt-variables';
 @import 'layout/responsive/responsive';
 
-@mixin jnt-app-header-userbar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     padding: 0 $jnt-gutter-normal,
@@ -12,14 +12,14 @@
       max-width: 320px,
       width: null,
       padding: null,
-    ),
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -29,17 +29,21 @@
   }
 
   :host, #{$context} {
-    position: relative;
-    cursor: pointer;
-    display: block;
-    align-items: stretch;
-    @include max-for-tablet() {
-      [data-user] {
-        padding: 0;
+    @if $declare {
+      position: relative;
+      cursor: pointer;
+      display: block;
+      align-items: stretch;
+      @include max-for-tablet() {
+        [data-user] {
+          padding: 0;
+        }
       }
     }
     @include min-for-desktop() {
-      display: flex;
+      @if $declare {
+        display: flex;
+      }
       &:hover {
         @if map-has-key($vars, hover) {
           $hover: map-get($vars, hover);

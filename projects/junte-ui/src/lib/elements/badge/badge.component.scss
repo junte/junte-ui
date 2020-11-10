@@ -10,7 +10,7 @@
   }
 }
 
-@mixin jnt-badge($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-badge($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     size: 24px,
     color: $jnt-white-color,
@@ -39,7 +39,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 

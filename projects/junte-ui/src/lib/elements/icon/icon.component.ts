@@ -36,7 +36,8 @@ export class IconComponent {
   @Input()
   set icon(query: string) {
     if (!query) {
-      throw new Error('Icon query was not passed');
+      console.warn('Icon query was not passed');
+      return;
     }
 
     const [icon, type, iconset, tags] = query.split(':');

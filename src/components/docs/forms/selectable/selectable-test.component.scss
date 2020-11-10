@@ -1,9 +1,10 @@
 @import '../../component';
 @import 'layout/card';
+$jnt-ng-deep: true;
 
 [data-hero] {
   cursor: pointer;
   &[data-selected='true'] {
-    @include jnt-card((border: 1px solid $jnt-primary-color), '&', true);
+    @include jnt-card((border: 1px solid $jnt-primary-color), '&');
   }
 }

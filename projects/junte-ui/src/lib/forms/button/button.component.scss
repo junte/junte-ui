@@ -169,17 +169,37 @@
     #{$wrapper} button {
       padding: map-get($size, padding-without-text);
     }
+
+    &[data-shape='circle'] {
+      #{$wrapper} button {
+        @if map-has-key($size, icon) {
+          $icon: map-get($size, icon);
+          padding: 0 #{calc((#{map-get($size, height)} - #{map-get($icon, size)}) / 2)};
+        }
+      }
+
+      &[data-outline='ghost'] {
+        #{$wrapper} button {
+          @if map-has-key($size, icon) {
+            $icon: map-get($size, icon);
+            padding: 0 #{calc((#{map-get($size, height)} - #{map-get($icon, size)}) / 2 - 1px)};
+          }
+        }
+      }
+    }
   }
   &[data-outline='transparent'] {
-    #{$wrapper} button {
-      padding-left: $jnt-gutter-small;
-      padding-right: $jnt-gutter-small;
-      border-radius: 0;
+    &[data-shape='square'] {
+      #{$wrapper} button {
+        padding-left: $jnt-gutter-small;
+        padding-right: $jnt-gutter-small;
+        border-radius: 0;
+      }
     }
   }
 }
 
-@mixin jnt-button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-button($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large,
@@ -314,7 +334,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -363,8 +383,15 @@
         }
       }
       &[data-width='fluid'] {
-        display: flex;
-        flex: 1;
+        &[data-shape='square'] {
+          display: flex;
+          flex: 1;
+        }
+      }
+      &[data-shape='circle'][data-with-text='false'] {
+        #{$wrapper} button {
+          border-radius: 50%;
+        }
       }
     }
 
@@ -373,10 +400,14 @@
         $disabled: map-get($vars, disabled);
         opacity: map-get($disabled, opacity);
       }
-      pointer-events: none;
+      @if $declare {
+        pointer-events: none;
+      }
 
       #{$wrapper} button {
-        cursor: default;
+        @if $declare {
+          cursor: default;
+        }
       }
     }
 
@@ -448,6 +479,9 @@
             border-bottom-left-radius: map-get($bottom, left);
           }
         }
+        [data-icon] {
+          line-height: 1;
+        }
       }
     }
   }
@@ -492,9 +526,11 @@
     }
 
     [data-empty] {
-      width: 50px;
-      height: 10px;
-      background-color: $jnt-primary-text-light-color;
+      @if $declare {
+        width: 50px;
+        height: 10px;
+        background-color: $jnt-primary-text-light-color;
+      }
     }
   }
 }

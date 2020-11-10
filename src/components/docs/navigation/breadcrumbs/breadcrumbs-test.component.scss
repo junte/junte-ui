@@ -2,12 +2,13 @@
 @import '../../component';
 @import 'elements/icon';
 @import 'layout/responsive';
+$jnt-ng-deep: true;
 
 [data-home] {
   @include jnt-icon((
     size: 30px,
     color: $jnt-white-color
-  ), '&', true);
+  ), '&');
 
   background-color: $jnt-primary-light-color;
   border-radius: 50%;
@@ -19,7 +20,7 @@
   @include for-mobile() {
     @include jnt-icon((
       size: 30px
-    ), '&', true);
+    ), '&');
   }
 }
 

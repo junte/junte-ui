@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'elements/icon';
+$jnt-ng-deep: true;
 
 :host {
   display: block;
@@ -26,14 +27,14 @@ h1 {
 h2 [arnold] {
   @include jnt-icon((
     size: 48px,
-  ), '&', true);
+  ), '&');
 }
 
 p {
   jnt-icon {
     @include jnt-icon((
       size: 16px,
-    ), '&', true);
+    ), '&');
   }
 }
 
@@ -41,7 +42,7 @@ h5 {
   jnt-icon {
     @include jnt-icon((
       size: 20px,
-    ), '&', true);
+    ), '&');
   }
 }
 

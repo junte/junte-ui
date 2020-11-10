@@ -1,12 +1,28 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
-:host {
-  display: block;
-  position: fixed;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
+@mixin jnt-lp-rewind($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  :host {
+    @if $declare {
+      display: block;
+      position: fixed;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+  }
 }
 
 @if $jnt-debug {

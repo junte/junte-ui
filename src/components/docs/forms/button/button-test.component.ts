@@ -27,6 +27,7 @@ export class ButtonTestComponent implements OnInit {
   iconControl = this.fb.control(true);
   badgeControl = this.fb.control(true);
   positionControl = this.fb.control(null);
+  shapeControl = this.fb.control(null);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -39,7 +40,8 @@ export class ButtonTestComponent implements OnInit {
     text: this.textControl,
     icon: this.iconControl,
     badge: this.badgeControl,
-    position: this.positionControl
+    position: this.positionControl,
+    shape: this.shapeControl
   });
 
   constructor(private fb: FormBuilder) {

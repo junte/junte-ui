@@ -1,6 +1,7 @@
 @import '../../component';
 @import 'layout/responsive';
 @import 'elements/icon';
+$jnt-ng-deep: true;
 
 [data-card] {
   min-width: 500px;
@@ -12,7 +13,7 @@
   [data-header] {
     color: $jnt-primary-color;
     font-size: $jnt-font-size-normal;
-    @include jnt-icon((size: 20px), '&', true);
+    @include jnt-icon((size: 20px), '&');
   }
 
   [data-title] {

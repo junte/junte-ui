@@ -3,7 +3,7 @@
 @import "elements/icon/icon";
 @import "forms/button/button";
 
-@mixin jnt-calendar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     layout: fixed,
@@ -23,7 +23,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -33,18 +33,20 @@
   }
 
   :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    background-color: $jnt-primary-background;
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      background-color: $jnt-primary-background;
 
-    &[data-disabled='true'] {
-      cursor: default;
-      pointer-events: none;
+      &[data-disabled='true'] {
+        cursor: default;
+        pointer-events: none;
 
-      #{$wrapper} table {
-        tbody tr td, th {
-          color: $jnt-control-disabled-label-color;
-          background-color: $jnt-control-disabled-background;
+        #{$wrapper} table {
+          tbody tr td, th {
+            color: $jnt-control-disabled-label-color;
+            background-color: $jnt-control-disabled-background;
+          }
         }
       }
     }
@@ -52,9 +54,11 @@
 
   #{$wrapper} #{$context} table {
     table-layout: map-get($vars, layout);
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
+    @if $declare {
+      table-layout: auto;
+      border-spacing: 0;
+      width: 100%;
+    }
 
     @if map-has-key($vars, metrics) and map-get(map-get($vars, metrics), width) {
       $metrics: map-get($vars, metrics);
@@ -65,150 +69,176 @@
     }
 
     [data-divider] {
-      width: 2px;
+      @if $declare {
+        width: 2px;
+      }
     }
 
     thead {
       [data-arrow] {
-        @include jnt-button((
-          sizes: (
-            small: (
-              height: 28px,
-              padding-without-text: 0 $jnt-gutter-tiny,
-              icon: (
-                size: 16px,
-              ),
+        @if $declare {
+          @include jnt-button((
+            sizes: (
+              small: (
+                height: 28px,
+                padding-without-text: 0 $jnt-gutter-tiny,
+                icon: (
+                  size: 16px,
+                ),
+              )
             )
-          )
-        ), '&');
+          ), '&');
+        }
       }
 
       [data-date] {
-        @include jnt-button((
-          font-weight: $jnt-font-weight-semi-bold,
-          sizes: (
-            small: (
-              height: 28px,
-              font-size: 14px,
-              padding: 0 $jnt-gutter-tiny,
+        @if $declare {
+          @include jnt-button((
+            font-weight: $jnt-font-weight-semi-bold,
+            sizes: (
+              small: (
+                height: 28px,
+                font-size: 14px,
+                padding: 0 $jnt-gutter-tiny,
+              )
             )
-          )
-        ), '&');
+          ), '&');
+        }
       }
 
       [data-year] {
-        color: $jnt-control-disabled-label-color;
+        @if $declare {
+          color: $jnt-control-disabled-label-color;
+        }
       }
 
       [data-days] {
         > th {
-          padding: $jnt-gutter-normal $jnt-gutter-tiny;
-          color: $jnt-primary-text-color;
-          font-weight: $jnt-font-weight-base;
+          @if $declare {
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
+            color: $jnt-primary-text-light-color;
+            font-weight: $jnt-font-weight-bold;
+          }
         }
       }
 
       [data-metrics] {
-        font-weight: $jnt-font-weight-semi-bold;
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
       }
 
       th[data-metric] {
-        font-weight: $jnt-font-weight-semi-bold;
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
       }
     }
 
     tbody {
       tr {
         td {
-          &[data-day] {
-            box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
-            inset 0px -1px 0px $jnt-secondary-dark-color;
-
-            &:last-child {
-              box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
-            }
-          }
-
-          &[data-metric] {
-            box-shadow: inset -1px 0px 0px $jnt-white-color,
-            inset 0px -1px 0px $jnt-white-color;
-          }
-        }
-
-        &:last-child {
-          td {
+          @if $declare {
             &[data-day] {
-              box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color;
+              box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
+              inset 0px -1px 0px $jnt-secondary-dark-color;
 
               &:last-child {
-                box-shadow: none;
+                box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
               }
             }
 
             &[data-metric] {
-              box-shadow: inset -1px 0px 0px $jnt-white-color;
+              box-shadow: inset -1px 0px 0px $jnt-white-color,
+              inset 0px -1px 0px $jnt-white-color;
+            }
+          }
+        }
+
+        &:last-child {
+          @if $declare {
+            td {
+              &[data-day] {
+                box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color;
+
+                &:last-child {
+                  box-shadow: none;
+                }
+              }
+
+              &[data-metric] {
+                box-shadow: inset -1px 0px 0px $jnt-white-color;
+              }
             }
           }
         }
 
         &[data-current-week='true'] {
-          [data-day], [data-metric], [data-divider] {
-            box-shadow: inset 0 2px 0 0 $jnt-primary-light-color,
-            inset 0 -2px 0 0 $jnt-primary-light-color !important;
+          @if $declare {
+            [data-day], [data-metric], [data-divider] {
+              box-shadow: inset 0 2px 0 0 $jnt-primary-light-color,
+              inset 0 -2px 0 0 $jnt-primary-light-color !important;
 
-            &:first-child {
-              border-top-left-radius: $jnt-corner-small;
-              border-bottom-left-radius: $jnt-corner-small;
-              box-shadow: inset 1px 1px 0 1px $jnt-primary-light-color,
-              inset 1px -1px 0 1px $jnt-primary-light-color !important;
-            }
+              &:first-child {
+                border-top-left-radius: $jnt-corner-small;
+                border-bottom-left-radius: $jnt-corner-small;
+                box-shadow: inset 1px 1px 0 1px $jnt-primary-light-color,
+                inset 1px -1px 0 1px $jnt-primary-light-color !important;
+              }
 
-            &:last-child {
-              border-top-right-radius: $jnt-corner-small;
-              border-bottom-right-radius: $jnt-corner-small;
-              box-shadow: inset -2px -2px 0 0 $jnt-primary-light-color,
-              inset 0 2px 0 0 $jnt-primary-light-color !important;
+              &:last-child {
+                border-top-right-radius: $jnt-corner-small;
+                border-bottom-right-radius: $jnt-corner-small;
+                box-shadow: inset -2px -2px 0 0 $jnt-primary-light-color,
+                inset 0 2px 0 0 $jnt-primary-light-color !important;
+              }
             }
           }
         }
 
         td {
-          min-width: 38px;
-          font-size: $jnt-font-size-small;
-          box-sizing: border-box;
-          user-select: none;
-          padding: 0;
+          @if $declare {
+            min-width: 38px;
+            font-size: $jnt-font-size-small;
+            box-sizing: border-box;
+            user-select: none;
+            padding: 0;
+          }
 
           [data-default] {
-            padding: $jnt-gutter-small $jnt-gutter-tiny;
+            @if $declare {
+              padding: $jnt-gutter-small $jnt-gutter-tiny;
+            }
           }
 
           &[data-day] {
-            cursor: pointer;
+            @if $declare {
+              cursor: pointer;
 
-            &:nth-child(6),
-            &:nth-child(7) {
-              background-color: $jnt-secondary-dark-color;
-            }
-
-            &[data-selected-day='false']:hover {
-              background-color: $jnt-highlight-background;
-              color: $jnt-primary-text-dark-color;
-            }
-
-            &:focus {
-              box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
-              outline: 0;
-            }
-
-            &[data-current-month='false'] {
-              [data-default] {
-                color: $jnt-primary-text-light-color;
+              &:nth-child(6),
+              &:nth-child(7) {
+                background-color: $jnt-secondary-dark-color;
               }
-            }
 
-            &[data-day-extend] {
-              height: 68px;
+              &[data-selected-day='false']:hover {
+                background-color: $jnt-highlight-background;
+                color: $jnt-primary-text-dark-color;
+              }
+
+              &:focus {
+                box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
+                outline: 0;
+              }
+
+              &[data-current-month='false'] {
+                [data-default] {
+                  color: $jnt-primary-text-light-color;
+                }
+              }
+
+              &[data-day-extend] {
+                height: 68px;
+              }
             }
 
             @if map-has-key($vars, day) {
@@ -228,16 +258,20 @@
           }
 
           &[data-metric] {
-            background-color: $jnt-secondary-color;
+            @if $declare {
+              background-color: $jnt-secondary-color;
+            }
           }
         }
       }
     }
 
     td, th {
-      vertical-align: middle;
-      text-align: center;
-      position: relative;
+      @if $declare {
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+      }
     }
   }
 }

@@ -2,16 +2,25 @@
 @import "layout/app/variables";
 
 @mixin jnt-app-footer($passed: (), $context: null, $strategy: 'changes') {
-  :host, #{$context}  {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 0 0 auto;
-    box-sizing: border-box;
-    background-color: $jnt-primary-dark-color;
-    padding: 0 $jnt-gutter-big;
-    min-height: $app-footer-height;
-    color: $jnt-white-color;
+
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $declare: true;
+  }
+
+  :host, #{$context} {
+    @if $declare {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      background-color: $jnt-primary-dark-color;
+      padding: 0 $jnt-gutter-big;
+      min-height: $app-footer-height;
+      color: $jnt-white-color;
+    }
   }
 }
 

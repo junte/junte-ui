@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin jnt-dot($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-dot($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     size: 12px
@@ -11,7 +11,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -21,8 +21,10 @@
   }
 
   :host, #{$context} {
-    display: inline-block;
-    border-radius: 50%;
+    @if $declare {
+      display: inline-block;
+      border-radius: 50%;
+    }
     min-width: map-get($vars, size);
     min-height: map-get($vars, size);
     width: map-get($vars, size);

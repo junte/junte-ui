@@ -1,7 +1,7 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
-@mixin jnt-animated-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-animated-icon($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     width: null,
@@ -13,7 +13,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 

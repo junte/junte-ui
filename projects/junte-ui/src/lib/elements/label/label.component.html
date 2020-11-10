@@ -6,5 +6,5 @@
   <jnt-icon *ngIf="icon"
             [icon]="icon"
             [style.color]="color | textBrightness"></jnt-icon>
-  <div data-text [style.color]="color | textBrightness">{{label}}</div>
+  <div data-text *ngIf="label" [style.color]="color | textBrightness">{{label}}</div>
 </jnt-stack>

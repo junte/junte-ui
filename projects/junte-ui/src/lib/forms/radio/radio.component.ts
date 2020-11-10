@@ -26,6 +26,11 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
     radio: this.radioControl
   });
 
+  @HostBinding('attr.data-checked')
+  get checked() {
+    return this.radioControl.value;
+  }
+
   @HostBinding('attr.data-size')
   _size = Size.normal;
 

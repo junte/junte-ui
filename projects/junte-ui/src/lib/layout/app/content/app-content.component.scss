@@ -4,7 +4,7 @@
 @import "layout/responsive/responsive";
 @import "layout/app/body/app-body";
 
-@mixin jnt-app-content($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     padding: $app-header-height 0 0 0,
@@ -15,7 +15,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -25,28 +25,36 @@
   }
 
   :host, #{$context} {
-    display: block;
-    flex: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-    background-color: map-get($vars, background);
-    z-index: 1;
+    @if $declare {
+      display: block;
+      flex: auto;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+    }
     padding: map-get($vars, padding);
+    background-color: map-get($vars, background);
 
     &[data-with-aside='full'] {
-      padding-left: $app-aside-width;
+      @if $declare {
+        padding-left: $app-aside-width;
+      }
     }
 
     &[data-with-aside='collapsed'] {
-      padding-left: $app-aside-collapsed-width;
+      @if $declare {
+        padding-left: $app-aside-collapsed-width;
+      }
     }
 
     @include for-mobile() {
-      padding-left: 0 !important;
-      &[data-with-breadcrumbs='false'][data-with-aside='full'] {
-        margin-top: $app-aside-burger-height;
+      @if $declare {
+        padding-left: 0 !important;
+        &[data-with-breadcrumbs='false'][data-with-aside='full'] {
+          margin-top: $app-aside-burger-height;
+        }
       }
     }
 

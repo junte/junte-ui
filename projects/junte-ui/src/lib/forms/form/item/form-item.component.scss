@@ -1,9 +1,32 @@
 @import "jnt-variables";
+@import "jnt-functions";
 
 @mixin jnt-form-item($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
   :host, #{$context} {
-    display: block;
+    @if $declare {
+      display: block;
+    }
   }
 }
 

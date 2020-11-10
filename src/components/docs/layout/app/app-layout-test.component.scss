@@ -3,6 +3,7 @@
 @import 'layout/responsive';
 @import 'layout/app';
 @import 'navigation/menu';
+$jnt-ng-deep: true;
 
 [preview] ::ng-deep > [wrapper] {
   padding: 0 !important;
@@ -21,23 +22,5 @@
 
 [data-busyness] {
   display: flex !important;
-  @include jnt-app-busyness((position: absolute), '&', true);
-}
-
-[data-usermenu] {
-  @include jnt-menu((
-    top: (
-      item: (
-        corner: 0,
-        padding: $jnt-gutter-normal,
-        color: $jnt-primary-text-light-color,
-        active: (
-          underline: false,
-          color: $jnt-primary-color,
-          shadow: inset 4px 0px 0px $jnt-primary-color,
-          background-color: $jnt-secondary-color
-        )
-      )
-    )
-  ), '&', true);
+  @include jnt-app-busyness((position: absolute), '&');
 }

@@ -2,11 +2,19 @@
 
 @mixin jnt-app-header-actions($passed: (), $context: null, $strategy: 'changes') {
 
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $declare: true;
+  }
+
   :host, #{$context} {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: stretch;
+    @if $declare {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: stretch;
+    }
   }
 }
 

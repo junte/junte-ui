@@ -8,6 +8,7 @@
 @import 'layout/grid';
 @import 'layout/app';
 @import 'layout/lp';
+$jnt-ng-deep: true;
 
 $angular-color: #E23237;
 $jnt-secondary-background-dark: #0F1422;
@@ -18,7 +19,7 @@ $jnt-primary-background-dark: #241741;
   @include for-mobile() {
     @include jnt-lp-header((
       background: $jnt-secondary-background-dark,
-    ), null, true);
+    ));
   }
 
   [about] {
@@ -55,7 +56,8 @@ $jnt-primary-background-dark: #241741;
   display: block;
 }
 
-@include jnt-grid-container((), null, true) {
+// TODO: that is this?
+@include jnt-grid-container(()) {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -136,7 +138,7 @@ $jnt-primary-background-dark: #241741;
 @include for-mobile() {
   @include jnt-lp-header((
     background: $jnt-secondary-background,
-  ), null, true);
+  ), null);
 }
 
 [about] {
@@ -146,7 +148,7 @@ $jnt-primary-background-dark: #241741;
       padding: (
         bottom: $jnt-gutter-large,
       ),
-    ), '&', true);
+    ), '&');
     background: $jnt-secondary-background url('../../assets/images/bg-home-mobile.png') no-repeat bottom left;
     background-size: cover;
     min-height: calc(100vh - #{$lp-header-height});
@@ -179,7 +181,7 @@ $jnt-primary-background-dark: #241741;
             (
               background: #FF6262 linear-gradient(134.84deg, #DE3DBF 1.42%, #C337B8 11.68%, #A22FAE 26.83%, #8829A7 42.41%, #7624A2 58.41%, #6B229F 75.07%, #67219E 93.47%),
               font-size: $jnt-font-size-base),
-            '&', true);
+            '&');
         position: absolute;
         top: 0;
         left: 0;
@@ -278,7 +280,7 @@ $jnt-primary-background-dark: #241741;
         margin-right: $jnt-gutter-normal,
         size: 28px,
       ),
-    ), '&', true);
+    ), '&');
   }
 
   [bottom] {

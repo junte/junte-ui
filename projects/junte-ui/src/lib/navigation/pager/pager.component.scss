@@ -2,7 +2,7 @@
 @import "jnt-functions";
 @import "elements/icon/icon";
 
-@mixin jnt-pager($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
 
@@ -10,7 +10,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -20,48 +20,56 @@
   }
 
   :host, #{$context} {
-    display: block;
+    @if $declare {
+      display: block;
+    }
   }
 
   #{$context} #{$wrapper} a {
     @if $declare {
       text-decoration: none;
-    }
-    padding: 1px $jnt-gutter-small;
-    border-radius: $jnt-corner-small;
-    transition: background-color .3s;
-    user-select: none;
-    cursor: pointer;
+      padding: 1px $jnt-gutter-small;
+      border-radius: $jnt-corner-small;
+      transition: background-color .3s;
+      user-select: none;
+      cursor: pointer;
 
-    &:hover {
-      background-color: $jnt-highlight-background;
-    }
+      &:hover {
+        background-color: $jnt-highlight-background;
+      }
 
-    &:focus {
-      outline: 0;
-      box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+      &:focus {
+        outline: 0;
+        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+      }
     }
 
     &[active="true"] {
-      pointer-events: none;
-      background-color: $jnt-primary-color;
-      color: $jnt-white-color;
+      @if $declare {
+        pointer-events: none;
+        background-color: $jnt-primary-color;
+        color: $jnt-white-color;
+      }
     }
 
     &[disabled="true"] {
-      cursor: default;
-      pointer-events: none;
+      @if $declare {
+        cursor: default;
+        pointer-events: none;
 
-      [data-icon] {
-        color: $jnt-muted-color;
+        [data-icon] {
+          color: $jnt-muted-color;
+        }
       }
     }
 
     [data-icon] {
-      @include jnt-icon((
-        size: 10px
-      ), '&');
-      color: $jnt-primary-text-light-color;
+      @if $declare {
+        @include jnt-icon((
+          size: 10px
+        ), '&');
+        color: $jnt-primary-text-light-color;
+      }
     }
   }
 }

@@ -6,7 +6,7 @@
 @import "layout/grid/container/container";
 @import "forms/button/button";
 
-@mixin jnt-lp-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-lp-header($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     position: fixed,
@@ -65,7 +65,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -75,17 +75,19 @@
   }
 
   :host, #{$context} {
-    display: flex;
+    @if $declare {
+      display: flex;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+    }
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
     height: map-get($vars, height);
     position: map-get($vars, position);
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
 
     @include max-for-tablet() {
       min-height: map-get($vars, mobile-height);
@@ -101,20 +103,24 @@
     };
     &[data-desktop] {
       [data-menu] {
-        display: flex;
-        align-items: center;
+        @if $declare {
+          display: flex;
+          align-items: center;
+        }
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
             map-get($menu, desktop)
-          ), '&');
+          ));
         }
       }
     }
     &[data-tablet] {
       [data-menu] {
-        display: flex;
-        align-items: center;
+        @if $declare {
+          display: flex;
+          align-items: center;
+        }
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
@@ -126,11 +132,13 @@
   }
 
   #{$context} #{$wrapper} [data-logo] {
-    display: flex;
-    align-items: center;
-    margin-right: $jnt-gutter-huge;
-    & > * {
-      display: block;
+    @if $declare {
+      display: flex;
+      align-items: center;
+      margin-right: $jnt-gutter-huge;
+      & > * {
+        display: block;
+      }
     }
   }
 
@@ -145,12 +153,16 @@
   }
 
   #{$context} #{$wrapper} [data-actions] {
-    margin-left: auto;
+    @if $declare {
+      margin-left: auto;
+    }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    display: flex;
-    align-items: center;
+    @if $declare {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
