@@ -17,7 +17,7 @@
           hover: (
             color: $jnt-primary-text-color,
             background-color: $jnt-highlight-background
-          ),
+          )
         ),
         color: $jnt-primary-text-color,
         text-transform: null,
@@ -25,19 +25,19 @@
         icon: (
           spacing: $jnt-gutter-small,
           size: 18px,
-          color: null,
+          color: null
         ),
         focus: (
           outline: null,
-          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color
         ),
         toggle: (
           toggle: true,
-          margin-left: $jnt-gutter-small,
+          margin-left: $jnt-gutter-small
         ),
         hover: (
           color: null,
-          background-color: $jnt-highlight-background,
+          background-color: $jnt-highlight-background
         ),
         active: (
           underline: true,
@@ -56,16 +56,16 @@
               underline: false,
               color: $jnt-white-color,
               background-color: $jnt-primary-light-color,
-              border-color: $jnt-primary-light-color,
+              border-color: $jnt-primary-light-color
             ),
             hover: (
               color: null,
               background-color: $jnt-secondary-dark-color,
-              border-color: null,
-            ),
-          ),
-        ),
-      ),
+              border-color: null
+            )
+          )
+        )
+      )
     ),
     sub: (
       width: 200px,
@@ -74,12 +74,12 @@
       corner: $jnt-corner-small,
       collapsed: (
         item: (
-          padding: $jnt-gutter-small $jnt-gutter-normal,
-        ),
+          padding: $jnt-gutter-small $jnt-gutter-normal
+        )
       ),
       title: (
         padding: 0 $jnt-gutter-normal,
-        border-bottom: 1px solid $jnt-muted-color,
+        border-bottom: 1px solid $jnt-muted-color
       ),
       item: (
         padding: $jnt-gutter-small $jnt-gutter-normal,
@@ -93,19 +93,19 @@
         ),
         hover: (
           color: null,
-          background-color: $jnt-highlight-background,
+          background-color: $jnt-highlight-background
         ),
         active: (
           underline: false,
           background-color: null,
-          color: $jnt-primary-light-color,
+          color: $jnt-primary-light-color
         ),
         focus: (
           outline: null,
-          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
-        ),
-      ),
-    ),
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color
+        )
+      )
+    )
   );
 
   $vars: $passed;
@@ -149,7 +149,7 @@
             width: 100%;
             @include jnt-link((
               overflow: true,
-              display: block,
+              display: block
             ), '&');
           }
         }
@@ -170,7 +170,7 @@
               outlines: (
                 transparent: (
                   color: map-get($title, color),
-                  padding: map-get($title, padding),
+                  padding: map-get($title, padding)
                 )
               )
             ), '&');
@@ -185,10 +185,10 @@
                       background-color: map-get($active, background-color),
                       color: map-get($active, color),
                       underline-color: map-get($active, border-color),
-                      shadow: map-get($active, shadow),
-                    ),
-                  ),
-                ),
+                      shadow: map-get($active, shadow)
+                    )
+                  )
+                )
               ), '&');
             }
 
@@ -198,10 +198,10 @@
                 outlines: (
                   transparent: (
                     orphan: (
-                      color: map-get($orphan, color),
-                    ),
-                  ),
-                ),
+                      color: map-get($orphan, color)
+                    )
+                  )
+                )
               ), '&');
               @if map-has-key($orphan, hover) {
                 $hover: map-get($orphan, hover);
@@ -211,11 +211,11 @@
                       orphan: (
                         hover: (
                           color: map-get($hover, color),
-                          background-color: map-get($hover, background-color),
-                        ),
-                      ),
-                    ),
-                  ),
+                          background-color: map-get($hover, background-color)
+                        )
+                      )
+                    )
+                  )
                 ), '&');
               }
             }
@@ -227,7 +227,7 @@
                   spacing: map-get($icon, spacing),
                   size: map-get($icon, size),
                   color: map-get($icon, color)
-                ),
+                )
               ), '&');
             }
 
@@ -236,7 +236,7 @@
               @include jnt-link((
                 toggle: (
                   toggle: map-get($toggle, toggle),
-                  margin-left: map-get($toggle, margin-left),
+                  margin-left: map-get($toggle, margin-left)
                 )
               ), '&');
             }
@@ -250,8 +250,8 @@
                       color: map-get($hover, color),
                       background-color: map-get($hover, background-color)
                     )
-                  ),
-                ),
+                  )
+                )
               ), '&');
             }
 
@@ -263,10 +263,10 @@
                     primary: (
                       focus: (
                         outline: map-get($focus, outline),
-                        shadow: map-get($focus, shadow),
-                      ),
-                    ),
-                  ),
+                        shadow: map-get($focus, shadow)
+                      )
+                    )
+                  )
                 ), '&');
               }
             }
@@ -348,7 +348,7 @@
                 padding: map-get($tags, padding),
                 color: map-get($tags, color),
                 border: map-get($tags, border),
-                corner: map-get($tags, corner),
+                corner: map-get($tags, corner)
               ), '&');
               &[data-active='true'] {
                 @if map-has-key($tags, active) {
@@ -360,10 +360,10 @@
                           underline: map-get($active, underline),
                           color: map-get($active, color),
                           background-color: map-get($active, background-color),
-                          border-color: map-get($active, border-color),
-                        ),
-                      ),
-                    ),
+                          border-color: map-get($active, border-color)
+                        )
+                      )
+                    )
                   ), '&');
                 }
               }
@@ -374,8 +374,8 @@
                     hover: (
                       color: map-get($hover, color),
                       background-color: map-get($hover, background-color),
-                      border-color: map-get($hover, border-color),
-                    ),
+                      border-color: map-get($hover, border-color)
+                    )
                   ), '&');
                 }
               }
@@ -418,7 +418,7 @@
         user-select: none;
         @include jnt-link((
           overflow: true,
-          display: block,
+          display: block
         ), '&');
       }
     }
@@ -438,7 +438,7 @@
                   transparent: (
                     padding: map-get($item, padding)
                   )
-                ),
+                )
               ), '&');
             }
           }
@@ -466,9 +466,9 @@
             outlines: (
               transparent: (
                 padding: map-get($item, padding),
-                color: map-get($item, color),
+                color: map-get($item, color)
               )
-            ),
+            )
           ), '&');
           @if map-has-key($item, icon) {
             $icon: map-get($item, icon);
@@ -476,7 +476,7 @@
               icon: (
                 margin-right: map-get($icon, margin-right),
                 sizes: map-get($icon, sizes)
-              ),
+              )
             ), '&');
           }
           @if map-has-key($item, hover) {
@@ -485,15 +485,15 @@
               outlines: (
                 transparent: (
                   hover: (
-                    background-color: map-get($hover, background-color),
+                    background-color: map-get($hover, background-color)
                   ),
                   orphan: (
                     hover: (
                       background-color: map-get($hover, background-color)
-                    ),
-                  ),
+                    )
+                  )
                 )
-              ),
+              )
             ), '&');
           }
 
@@ -504,10 +504,10 @@
                 primary: (
                   focus: (
                     outline: map-get($focus, outline),
-                    shadow: map-get($focus, shadow),
-                  ),
-                ),
-              ),
+                    shadow: map-get($focus, shadow)
+                  )
+                )
+              )
             ), '&');
           }
 
@@ -521,9 +521,9 @@
                     background-color: map-get($active, background-color),
                     color: map-get($active, color),
                     border-color: map-get($active, border-color)
-                  ),
-                ),
-              ),
+                  )
+                )
+              )
             ), '&');
           }
         }

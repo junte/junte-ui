@@ -10,19 +10,19 @@
     size: null,
     sizes: (
       auto: (
-        size: 22px,
+        size: 22px
       ),
       tiny: (
-        size: 11px,
+        size: 11px
       ),
       small: (
-        size: 13px,
+        size: 13px
       ),
       normal: (
-        size: 16px,
+        size: 16px
       ),
       large: (
-        size: 20px,
+        size: 20px
       )
     )
   );
@@ -50,7 +50,7 @@
       #{$wrapper} [data-icon] {
         @include jnt-font-icon((
           color: map-get($vars, color),
-          font-size: if(map-get($vars, size), map-get($vars, size) !important, null),
+          font-size: if(map-get($vars, size), map-get($vars, size) !important, null)
         ), '&');
       }
     }
@@ -58,7 +58,7 @@
     &[data-type='animated'] {
       #{$wrapper} [data-icon] {
         @include jnt-animated-icon((
-          fill: map-get($vars, color),
+          fill: map-get($vars, color)
         ), '&');
         @if map-has-key($vars, size) {
           @include jnt-animated-icon((
@@ -72,7 +72,7 @@
     &[data-type='svg'] {
       #{$wrapper} [data-icon] {
         @include jnt-svg-icon((
-          fill: map-get($vars, color),
+          fill: map-get($vars, color)
         ), '&');
         @if map-has-key($vars, size) {
           @include jnt-svg-icon((
@@ -100,7 +100,7 @@
             #{$wrapper} [data-icon] {
               @include jnt-animated-icon((
                 width: map-get($size, size),
-                height: map-get($size, size),
+                height: map-get($size, size)
               ), '&');
             }
           }
@@ -109,7 +109,7 @@
             #{$wrapper} [data-icon] {
               @include jnt-svg-icon((
                 width: map-get($size, size),
-                height: map-get($size, size),
+                height: map-get($size, size)
               ), '&');
             }
           }

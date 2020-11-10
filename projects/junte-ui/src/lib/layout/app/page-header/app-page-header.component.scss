@@ -8,8 +8,8 @@
     font-size: $jnt-page-header-font-size,
     icon: (
       color: $jnt-primary-text-color,
-      size: 30px,
-    ),
+      size: 30px
+    )
   );
 
   $vars: $passed;
@@ -45,7 +45,7 @@
         $icon: map-get($vars, icon);
         @include jnt-icon((
           color: map-get($icon, color),
-          size: map-get($icon, size),
+          size: map-get($icon, size)
         ), '&');
       }
     }

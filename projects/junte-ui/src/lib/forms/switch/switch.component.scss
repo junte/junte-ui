@@ -17,7 +17,7 @@
       icon: (
         on: $jnt-primary-color,
         off: $jnt-gray-600-color
-      ),
+      )
     ),
     sizes: (
       tiny: (
@@ -31,7 +31,7 @@
         ),
         icon: (
           size: 11px
-        ),
+        )
       ),
       small: (
         width: 45px,
@@ -44,7 +44,7 @@
         ),
         icon: (
           size: 12px
-        ),
+        )
       ),
       normal: (
         width: 57px,
@@ -57,7 +57,7 @@
         ),
         icon: (
           size: 16px
-        ),
+        )
       ),
       large: (
         width: 70px,
@@ -70,7 +70,7 @@
         ),
         icon: (
           size: 18px
-        ),
+        )
       )
     )
   );
@@ -116,7 +116,7 @@
                   @if map-has-key($map, icon) {
                     $icon: map-get($map, icon);
                     @include jnt-icon((
-                      size: map-get($icon, size),
+                      size: map-get($icon, size)
                     ), '&');
                   }
                 }
