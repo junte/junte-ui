@@ -30,11 +30,28 @@
     @if $declare {
       display: block;
       padding: $jnt-gutter-normal;
+
+      &[data-has-header='false'] {
+        padding-top: 0;
+      }
     }
 
     @include min-for-desktop() {
       min-width: map-get($vars, min-width);
     }
+
+    @include jnt-button((
+      sizes: (
+        schemes: (
+          secondary: (
+            inverse-color: $jnt-gray-800-color
+          )
+        ),
+        normal: (
+          padding: 0 $jnt-gutter-small,
+        )
+      )
+    ), '&');
 
     [data-table] {
       @if $declare {
