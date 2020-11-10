@@ -152,7 +152,7 @@
         }
       }
 
-      &[data-opened='true'][data-search='true'] [data-select] {
+      &[data-opened='true'][data-features*='search'] [data-select] {
         ul {
           li {
             @if $declare {
@@ -166,7 +166,7 @@
         }
       }
 
-      &[data-empty='false'] {
+      &:not([data-features*='allowEmpty']) {
         [data-select] ul {
           @if $declare {
             flex: 1;
@@ -184,7 +184,7 @@
         }
       }
 
-      &[data-empty='true'] {
+      &[data-features*='allowEmpty'] {
         [data-select] ul li[data-query] {
           @if $declare {
             padding-right: $jnt-gutter-small;
@@ -220,7 +220,7 @@
     }
 
     &[data-mode='multiple'] {
-      &[data-empty='false'][data-search='false'] {
+      &:not([data-features*='allowEmpty']):not([data-features*='search']) {
         [data-query] {
           @if $declare {
             display: none;
@@ -266,7 +266,7 @@
         }
       }
 
-      &[data-mode='multiple'][data-empty='false'] {
+      &[data-mode='multiple']:not([data-features*='allowEmpty']) {
         [data-select] ul li {
           @if $declare {
             background-color: $jnt-muted-color;
@@ -275,7 +275,7 @@
       }
     }
 
-    &[data-empty='false'] {
+    &:not([data-features*='allowEmpty']) {
       &[data-opened='false'] {
         [data-query] {
           @if $declare {
@@ -285,7 +285,7 @@
       }
     }
 
-    &[data-search='false'] {
+    &:not([data-features*='search']) {
       [data-select] ul li {
         @if $declare {
           cursor: default;
@@ -293,7 +293,7 @@
       }
     }
 
-    &[data-empty='true'], &[data-mode='single'] {
+    &[data-features*='allowEmpty'], &[data-mode='single'] {
       [data-select] ul li[data-query] {
         @if $declare {
           flex: 1;
