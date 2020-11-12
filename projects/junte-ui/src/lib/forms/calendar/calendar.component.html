@@ -64,6 +64,7 @@
     <tr *ngFor="let w of weeks"
         [attr.data-current-week]="(current | jntStartOfWeek) | jntIsEqual: (w.date | jntStartOfWeek)">
       <td data-day *ngFor="let d of w.days"
+          [attr.data-today]="d | jntIsToday"
           [attr.data-current-month]="(d | jntStartOfMonth) | jntIsEqual: (period | jntStartOfMonth)"
           [attr.data-selected-day]="(d | jntStartOfDay) | jntIsEqual: (current | jntStartOfDay)"
           (click)="select(d)" tabindex="0">
@@ -84,6 +85,7 @@
   <ng-container *ngIf="view === viewType.month">
     <tr *ngFor="let row of months">
       <td data-day data-day-extend *ngFor="let month of row"
+          [attr.data-current-month]="month | jntIsThisMonth"
           [attr.data-selected-month]="(month | jntStartOfMonth) | jntIsEqual: (current | jntStartOfMonth)"
           (click)="period = month; view = viewType.date">
         {{month | jntFormat: 'LLL'}}
@@ -93,7 +95,8 @@
 
   <ng-container *ngIf="view === viewType.year">
     <tr *ngFor="let row of years">
-      <td data-day data-day-extend *ngFor="let year of row"
+      <td data-day data-day-extend data-year *ngFor="let year of row"
+          [attr.data-current-year]="year | jntIsThisYear"
           [attr.data-selected-year]="(year | jntStartOfYear) | jntIsEqual: (current | jntStartOfYear)"
           (click)="period = year; view = viewType.month">
         {{year | jntFormat: 'yyyy'}}

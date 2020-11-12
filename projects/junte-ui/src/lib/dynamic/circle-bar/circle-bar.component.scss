@@ -5,7 +5,10 @@
 
   $defs: (
     height: 200px,
-    width: 200px
+    width: 200px,
+    content: (
+      color: $jnt-primary-text-color
+    )
   );
 
   $vars: $passed;
@@ -40,6 +43,10 @@
       overflow: auto;
       width: 100%;
       height: 100%;
+    }
+    @if map-has-key($vars, content) {
+      $content: map-get($vars, content);
+      color: map-get($content, color);
     }
   }
 }
