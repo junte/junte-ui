@@ -16,7 +16,7 @@ export class BadgeComponent {
 
   _color: string = Color.purple;
 
-  private _overflow = 99;
+  private _overflow = null;
 
   @PropertyApi({
     description: 'Text to show in badge',
@@ -36,7 +36,7 @@ export class BadgeComponent {
     default: '99'
   })
   @Input() set overflow(overflow: number) {
-    this._overflow = overflow || 99;
+    this._overflow = overflow || null;
   }
 
   get overflow() {
