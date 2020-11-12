@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { IsThisYearPipe } from './date/is-this-year.pipe';
+import { IsThisMonthPipe } from './date/is-this-month.pipe';
 import { IsSameMonthPipe } from './date/is-same-month.pipe';
 import { IsSameYearPipe } from './date/is-same-year.pipe';
 import { IsTodayPipe } from './date/is-today.pipe';
@@ -46,7 +48,9 @@ import { FormatPipe } from './date/format.pipe';
     IsWeekendPipe,
     MaxPipe,
     MinPipe,
-    WeekdayNamePipe
+    WeekdayNamePipe,
+    IsThisMonthPipe,
+    IsThisYearPipe
   ],
   exports: [
     FormatPipe,
@@ -70,7 +74,9 @@ import { FormatPipe } from './date/format.pipe';
     IsWeekendPipe,
     MaxPipe,
     MinPipe,
-    WeekdayNamePipe
+    WeekdayNamePipe,
+    IsThisMonthPipe,
+    IsThisYearPipe
   ]
 })
 export class DatePipesModule {
