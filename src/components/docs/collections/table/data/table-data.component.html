@@ -6,7 +6,7 @@
         (sections |includes: tableSections.reload) ? ui.feature.reload : null
       ]" formControlName="table">
 
-        <ng-template #tableActionsTemplate>
+        <ng-template *ngIf="(sections |includes: tableSections.actions)" #tableActionsTemplate>
           <jnt-button text="Reset"
                       [icon]="ui.icons.cancel"
                       [scheme]="ui.scheme.secondary"
@@ -46,7 +46,7 @@
           </ng-template>
         </jnt-table-column>
 
-        <ng-template *ngIf="(sections |includes: tableSections.actions)"
+        <ng-template *ngIf="(sections |includes: tableSections.rowActions)"
                      #tableRowActionsTemplate let-row="row" let-hide="hide">
           <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.gutter.small">
             <jnt-menu-item title="Edit"

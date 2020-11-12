@@ -1,7 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
 
 @keyframes jnt-scale-in {
   0% {
@@ -46,7 +46,7 @@
   :host, #{$context} {
     @if $declare {
       display: block;
-      @include for-mobile() {
+      @include max-for-tablet() {
         position: fixed;
         z-index: 2;
         width: 100%;
@@ -92,7 +92,7 @@
       z-index: map-get($z-index, modal);
     }
 
-    @include for-mobile() {
+    @include max-for-tablet() {
       @if $declare {
         min-width: 100%;
         position: relative;
@@ -123,7 +123,7 @@
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
         overflow: auto;
-        @include for-mobile() {
+        @include max-for-tablet() {
           overflow: visible;
           max-height: none !important;
         }

@@ -4,7 +4,8 @@ export enum TableSections {
   search,
   reload,
   actions,
-  filter
+  filter,
+  rowActions
 }
 
 export interface TableState {

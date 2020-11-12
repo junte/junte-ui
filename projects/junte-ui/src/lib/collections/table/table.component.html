@@ -1,12 +1,12 @@
 <form [formGroup]="form">
   <jnt-stack [align]="ui.align.stretch">
-
     <ng-container *jntMinFor="ui.breakpoint.desktop">
-      <jnt-stack *ngIf="features | includes : [ui.feature.reload, ui.feature.search]"
+      <jnt-stack *ngIf="(features | includes : [ui.feature.reload, ui.feature.search]) || !!actionsTemplate"
                  [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
                  [justify]="ui.justify.between">
-        <jnt-stack [orientation]="ui.orientation.horizontal"
+        <jnt-stack *ngIf="(features | includes : ui.feature.reload) || !!actionsTemplate"
+                   [orientation]="ui.orientation.horizontal"
                    [align]="ui.align.center">
           <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
                       [text]="'action.reload' | translate"

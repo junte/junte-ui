@@ -15,6 +15,7 @@
         <jnt-col *ngFor="let component of category.value.components"
                  [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
           <jnt-card data-card [features]="[ui.feature.clickable]"
+                    [width]="ui.width.fluid"
                     (selected)="router.navigate([category.value.link, component.link], {relativeTo: route})">
             <ng-template #cardTitleTemplate>
               <jnt-stack [orientation]="ui.orientation.horizontal"

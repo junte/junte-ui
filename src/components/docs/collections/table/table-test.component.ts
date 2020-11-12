@@ -26,12 +26,14 @@ export class TableTestComponent implements OnInit {
   reloadControl = this.fb.control(true);
   filterControl = this.fb.control(true);
   actionsControl = this.fb.control(true);
+  rowActionsControl = this.fb.control(true);
 
   builder = this.fb.group({
     search: this.searchControl,
     reload: this.reloadControl,
     filter: this.filterControl,
     actions: this.actionsControl,
+    rowActions: this.rowActionsControl
   });
 
   state: TableState;
