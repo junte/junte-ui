@@ -9,6 +9,7 @@
 
   $defs: (
     corner: $jnt-corner-small,
+    min-width: 150px,
     vertical: (
       max-height: null
     ),
@@ -42,7 +43,9 @@
       position: relative;
     }
 
-      &[data-width='fluid'] {
+    min-width: map-get($vars, min-width);
+
+    &[data-width='fluid'] {
         @if $declare {
           display: block;
           flex: 1;
