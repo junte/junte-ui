@@ -65,15 +65,15 @@
       <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
     </button>
 
-  </jnt-stack>
+    <div data-arrows *ngIf="type === inputType.number">
+      <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
+        <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
+      </button>
+      <button [disabled]="inputControl.disabled" (click)="down()" tabindex="-1">
+        <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
+      </button>
+    </div>
 
-  <div data-arrows *ngIf="type === inputType.number">
-    <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
-      <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
-    </button>
-    <button [disabled]="inputControl.disabled" (click)="down()" tabindex="-1">
-      <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
-    </button>
-  </div>
+  </jnt-stack>
 
 </form>

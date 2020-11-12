@@ -257,7 +257,7 @@
         flex: 1;
         max-width: 100%;
         box-sizing: border-box;
-        padding: $jnt-gutter-small $jnt-gutter-normal;
+        padding: $jnt-gutter-tiny $jnt-gutter-normal;
       }
 
       input, textarea {
@@ -339,32 +339,32 @@
 
     [data-arrows] {
       @if $declare {
-        display: flex;
-        flex-direction: column;
+        height: 100%;
+        margin-left: $jnt-gutter-small;
       }
 
       button {
         @if $declare {
-          flex: 1;
-          padding: 0 $jnt-gutter-small;
-          height: 50%;
+          padding: 0;
+          margin: 0;
+          min-height: 50%;
           border: 0;
           border-radius: $jnt-corner-small;
           cursor: pointer;
-          line-height: 0;
           background-color: transparent;
           color: $jnt-primary-text-light-color;
+          display: flex;
 
           &:focus {
             outline: 0;
           }
 
           &:first-child {
-            padding-top: $jnt-gutter-tiny;
+            align-items: flex-start;
           }
 
           &:last-child {
-            padding-bottom: $jnt-gutter-tiny;
+            align-items: flex-end;
           }
         }
       }

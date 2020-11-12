@@ -2,11 +2,17 @@
 @import 'jnt-functions';
 @import 'elements/badge/badge';
 @import 'elements/icon/icon';
+@import 'layout/spinner/spinner';
 
 @mixin button-fill($scheme, $wrapper) {
   #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
+    [data-loading] {
+      @include jnt-spinner((
+        color: $jnt-white-color
+      ), '&');
+    }
 
     [data-icon][tags*='colored'] {
       @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
@@ -39,6 +45,11 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
+    [data-loading] {
+      @include jnt-spinner((
+        color: map-get($scheme, color)
+      ), '&');
+    }
 
     [data-icon][tag='colored'] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
@@ -79,6 +90,11 @@
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
+      [data-loading] {
+        @include jnt-spinner((
+          color: map-get($scheme, inverse-color)
+        ), '&');
+      }
 
       [data-icon][tag='colored'] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
@@ -116,6 +132,11 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
+    [data-loading] {
+      @include jnt-spinner((
+        color: map-get($scheme, color)
+      ), '&');
+    }
 
     [data-icon][tag='colored'] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
@@ -140,6 +161,11 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
+      [data-loading] {
+        @include jnt-spinner((
+          color: map-get($scheme, inverse-color)
+        ), '&');
+      }
 
       [data-icon][tag='colored'] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
