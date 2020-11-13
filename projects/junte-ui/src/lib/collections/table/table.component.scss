@@ -26,7 +26,7 @@
     $declare: true;
   }
 
-  :host {
+  :host, #{$context} {
     @if $declare {
       display: block;
       padding: $jnt-gutter-normal;
@@ -53,179 +53,190 @@
       )
     ), '&');
 
-    [data-table] {
-      @if $declare {
-        margin-left: -$jnt-gutter-normal;
-        margin-right: -$jnt-gutter-normal;
-      }
-    }
+    @include jnt-card((border: 1px solid $jnt-gray-700-color));
 
-    [data-search] {
-      @include min-for-desktop() {
-        @include jnt-input((width: 180px), '&');
-      }
-    }
+  }
 
-    [data-nodata] {
-      @if $declare {
-        font-size: 80px;
-        color: $jnt-muted-color;
-      }
-    }
+  #{$wrapper} #{$context} [data-fill='true'] {
+    margin-top: -$jnt-gutter-normal;
+    margin-left: -$jnt-gutter-normal;
+    margin-right: -$jnt-gutter-normal;
+    background-color: $jnt-highlight-background;
+    padding: $jnt-gutter-small $jnt-gutter-normal;
+  }
 
-    [data-line] {
-      @if $declare {
-        tr {
+  #{$wrapper} #{$context} [data-table] {
+    @if $declare {
+      margin-left: -$jnt-gutter-normal;
+      margin-right: -$jnt-gutter-normal;
+    }
+  }
+
+  #{$wrapper} #{$context} [data-search] {
+    @include min-for-desktop() {
+      @include jnt-input((width: 400px), '&');
+    }
+  }
+
+  #{$wrapper} #{$context} [data-nodata] {
+    @if $declare {
+      font-size: 80px;
+      color: $jnt-muted-color;
+    }
+  }
+
+  #{$wrapper} #{$context} [data-line] {
+    @if $declare {
+      tr {
+        td {
+          vertical-align: top;
+          padding: $jnt-gutter-normal $jnt-gutter-small;
+        }
+
+        &:not(:last-child) {
           td {
-            vertical-align: top;
-            padding: $jnt-gutter-normal $jnt-gutter-small;
+            border-bottom: 1px solid $jnt-muted-color;
           }
+        }
 
-          &:not(:last-child) {
-            td {
-              border-bottom: 1px solid $jnt-muted-color;
-            }
+        &:first-child {
+          td {
+            padding-top: 0;
           }
+        }
 
-          &:first-child {
-            td {
-              padding-top: 0;
-            }
-          }
-
-          &:last-child {
-            td {
-              padding-bottom: 0;
-            }
+        &:last-child {
+          td {
+            padding-bottom: 0;
           }
         }
       }
     }
+  }
 
-    [data-spinner] {
+  #{$wrapper} #{$context} [data-spinner] {
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($jnt-secondary-background, .6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      z-index: 1;
+    }
+
+    [data-icon] {
       @if $declare {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba($jnt-secondary-background, .6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        color: $jnt-primary-text-light-color;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} table {
+    @if $declare {
+      width: 100%;
+      border-collapse: collapse;
+      position: relative;
+    }
+
+    thead {
+      @if $declare {
+        background-color: $jnt-secondary-background;
+
+        .sortable {
+          cursor: pointer;
+        }
+      }
+    }
+
+    tbody tr {
+      @if $declare {
+        border-bottom: 1px solid $jnt-muted-color;
+        background-color: $jnt-primary-background;
         transition: all .3s;
-        z-index: 1;
       }
 
-        [data-icon] {
-          @if $declare {
-            color: $jnt-primary-text-light-color;
-          }
-        }
-      }
-
-    table {
-      @if $declare {
-        width: 100%;
-        border-collapse: collapse;
-        position: relative;
-      }
-
-      thead {
+      &[data-nodata] {
+        height: map-get($vars, min-height);
         @if $declare {
-          background-color: $jnt-secondary-background;
-
-          .sortable {
-            cursor: pointer;
-          }
-        }
-      }
-
-      tbody tr {
-        @if $declare {
-          border-bottom: 1px solid $jnt-muted-color;
-          background-color: $jnt-primary-background;
-          transition: all .3s;
-        }
-
-        &[data-nodata] {
-          height: map-get($vars, min-height);
-          @if $declare {
-            pointer-events: none;
-            border-bottom: 0;
-          }
-
-          td {
-            @if $declare {
-              vertical-align: middle;
-              text-align: center;
-
-              [data-icon] {
-                font-size: 80px;
-                color: $jnt-muted-color;
-              }
-            }
-          }
-        }
-
-        &[data-loading] {
-          height: map-get($vars, min-height);
-          @if $declare {
-            pointer-events: none;
-            border-bottom: 0;
-          }
-        }
-
-        &:hover {
-          @if $declare {
-            background-color: $jnt-highlight-background;
-          }
+          pointer-events: none;
+          border-bottom: 0;
         }
 
         td {
           @if $declare {
-            &[data-action] {
-              width: 50px;
-              text-align: center;
+            vertical-align: middle;
+            text-align: center;
 
-              [data-trigger] {
-                @include jnt-button((
-                  sizes: (
-                    normal: (
-                      padding: 0 $jnt-gutter-normal
-                    )
-                  )
-                ), '&');
-              }
+            [data-icon] {
+              font-size: 80px;
+              color: $jnt-muted-color;
             }
           }
         }
       }
 
-      th {
+      &[data-loading] {
+        height: map-get($vars, min-height);
         @if $declare {
-          padding: $jnt-gutter-normal;
-          box-sizing: border-box;
+          pointer-events: none;
+          border-bottom: 0;
+        }
+      }
+
+      &:hover {
+        @if $declare {
+          background-color: $jnt-highlight-background;
         }
       }
 
       td {
         @if $declare {
-          padding: $jnt-gutter-small $jnt-gutter-normal;
-          box-sizing: border-box;
+          &[data-action] {
+            width: 50px;
+            text-align: center;
+
+            [data-trigger] {
+              @include jnt-button((
+                sizes: (
+                  normal: (
+                    padding: 0 $jnt-gutter-normal
+                  )
+                )
+              ), '&');
+            }
+          }
         }
       }
     }
 
-    [data-pagination] {
+    th {
       @if $declare {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
+    }
 
-        [data-pages] {
-          flex: 1;
-        }
+    td {
+      @if $declare {
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} [data-pagination] {
+    @if $declare {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      [data-pages] {
+        flex: 1;
       }
     }
   }
