@@ -84,7 +84,8 @@
                 <jnt-form-item>
                   <jnt-form-label for="overflow"
                                   i18n="@@label.overflow">Overflow</jnt-form-label>
-                  <jnt-switcher formControlName="overflow" placeholder="99">
+                  <jnt-switcher formControlName="overflow" placeholder="99"
+                                [features]="ui.feature.allowEmpty">
                     <jnt-switcher-option label="9" [value]="9"></jnt-switcher-option>
                     <jnt-switcher-option label="99" [value]="99"></jnt-switcher-option>
                     <jnt-switcher-option label="999" [value]="999"></jnt-switcher-option>

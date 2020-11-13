@@ -164,7 +164,8 @@
                     <jnt-form-label for="state"
                                     i18n="@@label.states">States
                     </jnt-form-label>
-                    <jnt-switcher formControlName="state">
+                    <jnt-switcher formControlName="state"
+                                  [features]="ui.feature.allowEmpty">
                       <jnt-switcher-option label="Loading"
                                            i18n-label="@@label.loading"
                                            [icon]="ui.icons.animated.spinner"

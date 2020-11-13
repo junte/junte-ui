@@ -29,7 +29,8 @@
                              [align]="ui.align.center">
                 <jnt-form-label for="state">States
                 </jnt-form-label>
-                <jnt-switcher formControlName="state">
+                <jnt-switcher formControlName="state"
+                              [features]="ui.feature.allowEmpty">
                   <jnt-switcher-option label="Loading"
                                        [icon]="ui.icons.animated.spinner"
                                        [value]="ui.state.loading"></jnt-switcher-option>
