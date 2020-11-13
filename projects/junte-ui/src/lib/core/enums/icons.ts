@@ -32,6 +32,7 @@ export const icons = {
   filter: 'filter:font:junte-ui-icons-default:main',
   create: 'create:font:junte-ui-icons-default:main',
   send: 'send:font:junte-ui-icons-default:main',
+  today: 'today:font:junte-ui-icons-default:main',
   // navigation
   search: 'search:font:junte-ui-icons-default:main',
   menu: 'menu:font:junte-ui-icons-default:main',
