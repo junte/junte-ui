@@ -3,6 +3,8 @@
 @import "elements/icon/icon";
 @import "elements/badge/badge";
 
+$tab-marker-height: 4px;
+
 @mixin jnt-tabs($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
@@ -65,7 +67,7 @@
           bottom: -2px;
           left: 0;
           right: 0;
-          height: 4px;
+          height: $tab-marker-height;
           border-radius: 5px;
           display: none;
         }
@@ -99,7 +101,7 @@
 
       [data-tab] {
         @if $declare {
-          padding: $jnt-gutter-small $jnt-gutter-normal $jnt-gutter-normal $jnt-gutter-normal;
+          padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal;
           cursor: pointer;
           color: $jnt-primary-text-color;
           font-size: $jnt-font-size-base;
