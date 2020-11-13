@@ -137,6 +137,12 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
     this.selected.emit(date);
   }
 
+  today() {
+    const now = new Date;
+    this.period = now;
+    this.select(now);
+  }
+
   private update() {
     const start = startOfWeek(new Date(getYear(this.period), getMonth(this.period), 1),
       {locale: this.config.locale.dfns});
