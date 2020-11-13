@@ -162,7 +162,8 @@
                   <jnt-form-label for="transform"
                                   i18n="@@label.text_align">Text transform
                   </jnt-form-label>
-                  <jnt-switcher formControlName="transform">
+                  <jnt-switcher formControlName="transform"
+                                [features]="ui.feature.allowEmpty">
                     <jnt-switcher-option label="Capitalize"
                                          i18n-label="@@label.capitalize"
                                          [icon]="localUi.icons.capitalize"

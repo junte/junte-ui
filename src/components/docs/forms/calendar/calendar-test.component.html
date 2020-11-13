@@ -64,7 +64,8 @@
                                   i18n="@@label.year">Year
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-switcher formControlName="year">
+                    <jnt-switcher formControlName="year"
+                                  [features]="ui.feature.allowEmpty">
                       <jnt-switcher-option label="2020" [value]="2020"></jnt-switcher-option>
                       <jnt-switcher-option label="2010" [value]="2010"></jnt-switcher-option>
                       <jnt-switcher-option label="1980" [value]="1980"></jnt-switcher-option>
@@ -78,7 +79,8 @@
                                   i18n="@@label.month">Month
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-switcher formControlName="month">
+                    <jnt-switcher formControlName="month"
+                                  [features]="ui.feature.allowEmpty">
                       <jnt-switcher-option label="March" [value]="months.march"></jnt-switcher-option>
                       <jnt-switcher-option label="May" [value]="months.may"></jnt-switcher-option>
                       <jnt-switcher-option label="July" [value]="months.july"></jnt-switcher-option>
