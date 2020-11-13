@@ -1,5 +1,5 @@
 <jnt-form [formGroup]="form">
-  <jnt-stack [orientation]="ui.orientation.horizontal">
+  <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="mobile ? ui.gutter.none : ui.gutter.normal">
     <ng-container *ngIf="type === datePickerType.date || type === datePickerType.dateTime">
       <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
                  formControlName="date"

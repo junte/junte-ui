@@ -18,21 +18,23 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-form [formGroup]="form">
-                  <jnt-date-picker formControlName="flightDate"
-                                   placeholder="Please enter the date"
-                                   [type]="typeControl.value"
-                                   [features]="clearControl.value ? [ui.feature.allowEmpty] : null">
-                  </jnt-date-picker>
-                </jnt-form>
-                <jnt-stack *ngIf="!!flightDateControl.value"
-                           [orientation]="ui.orientation.horizontal"
-                           [align]="ui.align.center"
-                           [gutter]="ui.gutter.small">
-                  <div>You choose:</div>
-                  <jnt-label [label]="flightDateControl.value | dfnsFormat:
+                <jnt-stack [align]="ui.align.stretch">
+                  <jnt-form [formGroup]="form">
+                    <jnt-date-picker formControlName="flightDate"
+                                     placeholder="Please enter the date"
+                                     [type]="typeControl.value"
+                                     [features]="clearControl.value ? [ui.feature.allowEmpty] : null">
+                    </jnt-date-picker>
+                  </jnt-form>
+                  <jnt-stack *ngIf="!!flightDateControl.value"
+                             [orientation]="ui.orientation.horizontal"
+                             [align]="ui.align.center"
+                             [gutter]="ui.gutter.small">
+                    <div>You choose:</div>
+                    <jnt-label [label]="flightDateControl.value | dfnsFormat:
                     typeControl.value === ui.datePicker.type.dateTime ? 'dd.MM.yyyy HH:mm'
                       : (typeControl.value === ui.datePicker.type.time ? 'HH:mm' : 'dd.MM.yyyy')"></jnt-label>
+                  </jnt-stack>
                 </jnt-stack>
               </ng-template>
             </app-browser-preview>
