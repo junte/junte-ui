@@ -13,16 +13,6 @@
     $declare: true;
   }
 
-  $defs: ();
-
-  $vars: $passed;
-  $declare: false;
-
-  @if $passed == () or $strategy == 'merge' {
-    $vars: recursive-map-merge($defs, $passed);
-    $declare: true;
-  }
-
   :host, #{$context} {
     @if $declare {
       display: none;
