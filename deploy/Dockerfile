@@ -16,7 +16,7 @@ RUN npm run build
 
 ###
 
-FROM nginx:1.17.4
+FROM nginx:1.19.4
 
 WORKDIR /var/www
 
