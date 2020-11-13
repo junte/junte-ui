@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ModalComponent, ModalContent } from './modal.component';
+import { ModalComponent, ModalContent, ModalOptions } from './modal.component';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
@@ -19,7 +19,7 @@ export class ModalService {
     this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
   }
 
-  open(content?: ModalContent, options: Object = {}) {
+  open(content?: ModalContent, options: Partial<ModalOptions> = {}) {
     this.checkRegistration();
     // TODO: use merge options
     this.modal.open(content, options);
@@ -29,4 +29,5 @@ export class ModalService {
     this.checkRegistration();
     this.modal.close();
   }
+
 }

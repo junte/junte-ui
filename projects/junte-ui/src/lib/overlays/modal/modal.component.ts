@@ -174,7 +174,7 @@ export class ModalComponent {
 
   // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
-  open(content: ModalContent, options: Object = {}) {
+  open(content: ModalContent, options: Partial<ModalOptions> = {}) {
     this.options = new ModalOptions(options);
     this.content = content;
     if (!!this.backdrop) {

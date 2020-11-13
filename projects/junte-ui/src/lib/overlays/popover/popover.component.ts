@@ -275,7 +275,7 @@ export class PopoverComponent {
   }
 
   // TODO: options to type with optionals?.
-  show({nativeElement: target}: { nativeElement: HTMLElement }, options: Object = {}): void {
+  show({nativeElement: target}: { nativeElement: HTMLElement }, options: Partial<PopoverOptions> = {}): void {
     this.target = target;
     this.options = new PopoverOptions(options);
     this.minWidth = this.options.minWidth || (this.options.behaviour === Behaviour.dropdown

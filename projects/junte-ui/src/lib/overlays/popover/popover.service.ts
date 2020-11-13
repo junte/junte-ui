@@ -1,5 +1,5 @@
 import { ElementRef, EventEmitter, Injectable } from '@angular/core';
-import { PopoverComponent } from './popover.component';
+import { PopoverComponent, PopoverOptions } from './popover.component';
 
 // TODO: move to interface and check ngc warnings
 export class PopoverInstance {
@@ -25,7 +25,7 @@ export class PopoverService {
     }
   }
 
-  show(target: ElementRef, options: Object): PopoverInstance {
+  show(target: ElementRef, options: Partial<PopoverOptions>): PopoverInstance {
     this.checkRegistration();
     this.target = target;
     this.popover.show(target, options);
