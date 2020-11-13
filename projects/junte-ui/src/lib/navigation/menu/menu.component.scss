@@ -3,6 +3,8 @@
 @import 'jnt-functions';
 @import 'navigation/link/link';
 
+$tab-marker-height: 4px;
+
 @mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
@@ -289,7 +291,8 @@
       #{$wrapper} [data-link] {
         @if $declare {
           @include jnt-link((
-            padding: $jnt-gutter-small $jnt-gutter-normal,
+            height: 44px,
+            padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal,
             color: $jnt-primary-text-color
           ), '&');
 
@@ -301,7 +304,7 @@
             right: 0;
             height: 4px;
             border-radius: 5px;
-            display: none;
+            background-color: transparent;
           }
 
           &:hover {
@@ -310,7 +313,6 @@
             ), '&');
 
             &:after {
-              display: block;
               background-color: $jnt-secondary-dark-color;
             }
           }
@@ -328,7 +330,6 @@
             ), '&');
 
             &:after {
-              display: block;
               background-color: $jnt-primary-light-color;
             }
           }
