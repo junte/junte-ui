@@ -31,6 +31,7 @@ interface ModalTitle {
 }
 
 export class ModalOptions {
+
   maxWidth = '800';
   maxHeight = '600';
   hold = false;
@@ -39,9 +40,10 @@ export class ModalOptions {
   content?: TemplateRef<any>;
   animation = true;
 
-  constructor(defs: any = null) {
+  constructor(defs: Partial<ModalOptions> = null) {
     Object.assign(this, defs);
   }
+
 }
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;

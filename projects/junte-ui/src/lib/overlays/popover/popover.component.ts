@@ -20,9 +20,10 @@ import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 const PADDING_SIZE = 12;
 
 export class PopoverOptions {
+
   title: string;
   content: string;
-  contentTemplate: TemplateRef<void>;
+  contentTemplate: TemplateRef<any>;
   trigger: Triggers = Triggers.hover;
   position: Position = Position.bottom;
   placement: Placement = Placement.absolute;
@@ -32,12 +33,13 @@ export class PopoverOptions {
   padding: Gutter = Gutter.normal;
   features: Feature[] = [Feature.smarty];
   behaviour: Behaviour;
-  active = true;
+  disabled = false;
   context: string;
 
-  constructor(defs: any = null) {
+  constructor(defs: Partial<PopoverOptions> = null) {
     Object.assign(this, defs);
   }
+
 }
 
 class PopoverPosition {

@@ -8,15 +8,15 @@
            [jntPopover]="{
               context: this.context,
               contentTemplate: submenuTemplate,
-              position: orientation === orientationEnum.vertical
+              position: orientation === ui.orientation.vertical
                 ? ui.position.right
                 : ui.position.bottom,
-              trigger: orientation === orientationEnum.horizontal || !collapsed
+              trigger: orientation === ui.orientation.horizontal || !collapsed
                 ? ui.trigger.click
                 : ui.trigger.hover,
               behaviour: ui.behaviour.dropdown,
               placement: placement,
-              active: !!item.submenu && (collapsed || orientation === orientationEnum.horizontal)
+              disabled: !item.submenu || (!collapsed && orientation !== ui.orientation.horizontal)
             }"
            (attached)="reference.popover = $event"
            (removed)="reference.popover = null">
@@ -44,7 +44,7 @@
         </jnt-link>
       </div>
 
-      <ng-container *ngIf="!collapsed && orientation === orientationEnum.vertical && item.opened">
+      <ng-container *ngIf="!collapsed && orientation === ui.orientation.vertical && item.opened">
         <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
       </ng-container>
 

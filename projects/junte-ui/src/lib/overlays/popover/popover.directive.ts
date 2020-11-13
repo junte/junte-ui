@@ -10,7 +10,7 @@ import { PopoverInstance, PopoverService } from './popover.service';
 })
 export class PopoverDirective implements OnInit, OnDestroy {
 
-  private options: Partial<PopoverOptions>;
+  private options: PopoverOptions;
   private _instance: PopoverInstance;
   private destroyed = false;
   private listeners: Function[] = [];
@@ -28,7 +28,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   @Input('jntPopover')
   set __options__(options: Partial<PopoverOptions>) {
-    this.options = options;
+    this.options = new PopoverOptions(options);
   }
 
   @Output()
@@ -90,7 +90,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   private show() {
-    if ((this.options.content || this.options.contentTemplate) && this.options.active) {
+    if ((this.options.content || this.options.contentTemplate) && !this.options.disabled) {
       this.instance = this.popover.show(this.hostRef, this.options);
       this.attached.emit(this.instance);
     }
