@@ -34,6 +34,7 @@
       @if $declare {
         border: 1px solid $jnt-control-border-color;
         border-radius: $jnt-corner-small;
+        background-color: $jnt-control-background;
         &[calendar-opened='true'] {
           #{$wrapper} [data-calendar-dropdown] {
             display: block;
@@ -51,6 +52,7 @@
   @include for-mobile() {
     #{$context} #{$wrapper} [data-input] {
       @if $declare {
+        flex: 1;
         @include jnt-input((
           scheme: (
             normal: (
