@@ -164,11 +164,6 @@ export class CardComponent {
   })
   @Output() selected = new EventEmitter<any>();
 
-  @HostBinding('attr.tabindex')
-  get tabindex() {
-    return !!this.features && this.features.includes(Feature.clickable) ? 1 : null;
-  }
-
   hideActions() {
     this.popover.hide();
   }

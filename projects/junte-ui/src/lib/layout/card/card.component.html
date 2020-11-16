@@ -6,7 +6,11 @@
   <img data-image [src]="picture.url" [width]="picture.width" [height]="picture.height">
 </ng-template>
 
-<jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.align.stretch">
+<jnt-stack data-card
+           [attr.tabindex]="!!this.features && this.features.includes(feature.clickable) ? 1 : null"
+           [orientation]="ui.orientation.horizontal"
+           [gutter]="ui.gutter.none"
+           [align]="ui.align.stretch">
   <div data-line *ngIf="color" [style.background-color]="color"></div>
 
   <jnt-stack data-main [align]="ui.align.stretch">
