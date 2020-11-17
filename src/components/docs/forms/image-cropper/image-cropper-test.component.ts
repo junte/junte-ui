@@ -17,11 +17,17 @@ export class ImageCropperTestComponent {
 
   @ViewChild('code') code: TabComponent;
 
-  shapeControl = this.fb.control(UI.shape.circle);
   urlControl = this.fb.control('assets/images/elon.jpeg');
+  shapeControl = this.fb.control(UI.shape.circle);
+  minControl = this.fb.control(0.01);
+  maxControl = this.fb.control(5);
+  stepControl = this.fb.control(0.01);
   builder = this.fb.group({
+    url: this.urlControl,
     shape: this.shapeControl,
-    url: this.urlControl
+    min: this.minControl,
+    max: this.maxControl,
+    step: this.stepControl,
   });
 
   cropperControl = this.fb.control(null);
