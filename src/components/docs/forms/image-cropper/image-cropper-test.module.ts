@@ -7,7 +7,7 @@ import {
     FormModule,
     GridModule,
     IconModule,
-    ImageCropperModule,
+    ImageCropperModule, InputModule,
     LinkModule,
     SelectModule,
     StackModule,
@@ -41,7 +41,8 @@ import { ImageCropperTestComponent } from './image-cropper-test.component';
         SwitchModule,
         SharedModule,
         SwitchModule,
-        AppLayoutModule
+        AppLayoutModule,
+        InputModule
     ]
 })
 export class ImageCropperTestModule {

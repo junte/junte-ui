@@ -21,7 +21,9 @@ import { I18N_PROVIDERS } from '../../core/i18n/providers';
 
 const CROPPER_SIZE = 200;
 const DEFAULT_SCALE = 1;
-const MAX_SCALE = 5;
+const DEFAULT_MIN = 0.01;
+const DEFAULT_MAX = 5;
+const DEFAULT_STEP = 0.01;
 
 export enum MoveTypes {
   Move = 'move',
@@ -76,6 +78,9 @@ export class ImageCropperComponent implements ControlValueAccessor {
   private moveStart = new MoveStart();
   private sizeRetries = 0;
   private _url: SafeUrl | string;
+  private _min = DEFAULT_MIN;
+  private _max = DEFAULT_MAX;
+  private _step = DEFAULT_STEP;
 
   transformStyle: SafeStyle | string;
   marginLeft: SafeStyle | string = '0px';
@@ -92,6 +97,45 @@ export class ImageCropperComponent implements ControlValueAccessor {
     default: '{width: 200, height: 200}'
   })
   @Input() area = new CropperPosition();
+
+  @PropertyApi({
+    description: 'Min of cropping',
+    type: 'number',
+    default: '0.01'
+  })
+  @Input() set min(min: number) {
+    this._min = min || DEFAULT_MIN;
+  }
+
+  get min() {
+    return this._min;
+  }
+
+  @PropertyApi({
+    description: 'Max of cropping',
+    type: 'number',
+    default: '5'
+  })
+  @Input() set max(max: number) {
+    this._max = max || DEFAULT_MAX
+  }
+
+  get max() {
+    return this._max;
+  }
+
+  @PropertyApi({
+    description: 'Step of cropping',
+    type: 'number',
+    default: '0.01'
+  })
+  @Input() set step(step: number) {
+    this._step = step || DEFAULT_STEP;
+  }
+
+  get step() {
+    return this._step;
+  }
 
   @PropertyApi({
     description: 'Url of image',
@@ -160,7 +204,7 @@ export class ImageCropperComponent implements ControlValueAccessor {
       this.imagePosition.top = (wrapper.offsetHeight - image.offsetHeight) / 2;
       this.imagePosition.left = (wrapper.offsetWidth - image.offsetWidth) / 2;
       let scale = Math.trunc(wrapper.offsetWidth / image.offsetWidth * 100) / 100;
-      scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, MAX_SCALE);
+      scale = Math.min(scale, Math.trunc(wrapper.offsetHeight / image.offsetHeight * 100) / 100, this.max);
       this.zoom(scale);
       this.cd.detectChanges();
     } else {

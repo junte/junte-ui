@@ -23,6 +23,9 @@
                       <jnt-image-cropper formControlName="cropper"
                                          [shape]="shapeControl.value"
                                          [url]="urlControl.value"
+                                         [min]="minControl.value"
+                                         [max]="maxControl.value"
+                                         [step]="stepControl.value"
                                          (loaded)="imageLoaded()">
                       </jnt-image-cropper>
                     </div>
@@ -47,7 +50,7 @@
                   <jnt-form-label for="shape"
                                   i18n="@@label.shape">Shape
                   </jnt-form-label>
-                  <jnt-form-control>
+                  <jnt-form-control name="shape">
                     <jnt-select formControlName="shape" placeholder="Circle">
                       <jnt-select-option label="Circle"
                                          i18n-label="@@label.circle"
@@ -60,6 +63,57 @@
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
+
+                <jnt-row>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="min"
+                                      i18n="@@label.min">Min
+                      </jnt-form-label>
+                      <jnt-form-control name="min">
+                        <jnt-input formControlName="min" placeholder="Min"
+                                   [type]="ui.input.type.number"
+                                   [min]="0.01"
+                                   [max]="maxControl.value"
+                                   [step]="0.01">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="max"
+                                      i18n="@@label.max">Max
+                      </jnt-form-label>
+                      <jnt-form-control name="max">
+                        <jnt-input formControlName="max" placeholder="Max"
+                                   [type]="ui.input.type.number"
+                                   [min]="minControl.value"
+                                   [step]="0.5">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
+                <jnt-row>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="step"
+                                      i18n="@@label.step">Step
+                      </jnt-form-label>
+                      <jnt-form-control name="step">
+                        <jnt-input formControlName="step" placeholder="Step"
+                                   [type]="ui.input.type.number"
+                                   [min]="0.01"
+                                   [max]="maxControl.value"
+                                   [step]="0.01">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -90,6 +144,18 @@
                   <ng-container *ngIf="shapeControl.value">
                     <![CDATA[
                     shape="]]>{{shapeControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="minControl.value">
+                    <![CDATA[
+                    min="]]>{{minControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="maxControl.value">
+                    <![CDATA[
+                    max="]]>{{maxControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="stepControl.value">
+                    <![CDATA[
+                    step="]]>{{stepControl.value}}<![CDATA["]]>
                   </ng-container>
                   <![CDATA[>
                 </jnt-image-cropper>
