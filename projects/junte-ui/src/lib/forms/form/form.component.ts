@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
+import { Height } from '../../core/enums/height';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { FormControlComponent } from './control/form-control.component';
@@ -54,6 +55,9 @@ export class FormComponent implements OnInit {
   _state = {success: false};
   formState = State;
 
+  @HostBinding('attr.data-height')
+  _height: Height = Height.default;
+
   @PropertyApi({
     description: 'Name form group',
     type: 'FormGroup',
@@ -76,6 +80,16 @@ export class FormComponent implements OnInit {
   })
   @Input()
   state: State;
+
+  @PropertyApi({
+    description: 'Height of form',
+    path: 'ui.height',
+    options: [Height.default, Height.fluid],
+    default: Height.default
+  })
+  @Input() set height(height: Height) {
+    this._height = height || Height.default;
+  }
 
   @ContentChild('formTitleTemplate')
   titleTemplate: TemplateRef<any>;

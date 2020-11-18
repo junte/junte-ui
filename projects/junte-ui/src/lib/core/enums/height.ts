@@ -1,6 +1,7 @@
 export enum Height {
   screen = 'screen',
-  default = 'default'
+  default = 'default',
+  fluid = 'fluid'
 }
 
 

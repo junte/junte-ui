@@ -5,7 +5,6 @@
 @mixin jnt-form($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    height: 'default'
   );
 
   $vars: $passed;
@@ -25,19 +24,20 @@
     @if $declare {
       display: block;
       position: relative;
-    }
-    @if map-get($vars, height) == 'fluid' {
-      & {
+
+      &[data-height='fluid'] {
         display: flex;
         flex-direction: column;
         flex: 1;
-      }
-      #{$wrapper} form {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        [data-content] {
+
+        #{$wrapper} form {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          [data-content] {
+            flex: 1;
+          }
         }
       }
     }
