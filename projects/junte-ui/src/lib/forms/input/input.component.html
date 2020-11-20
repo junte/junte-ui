@@ -22,7 +22,7 @@
              #valueInput
              formControlName="input"
              [name]="name"
-             [type]="type === inputType.password && view.password.display ? inputType.text : type"
+             [type]="type === ui.input.type.password && view.password.display ? ui.input.type.text : type"
              [placeholder]="placeholder"
              [readonly]="readonly ? readonly : null"
              [autocomplete]="autocomplete"
@@ -43,19 +43,19 @@
       </textarea>
     </ng-template>
 
-    <div data-loading *ngIf="state === inputState.loading">
+    <div data-loading *ngIf="state === ui.state.loading">
       <jnt-spinner data-spinner></jnt-spinner>
     </div>
 
-    <div data-warning *ngIf="state === inputState.warning">
+    <div data-warning *ngIf="state === ui.state.warning">
       <jnt-icon [icon]="ui.icons.warning"></jnt-icon>
     </div>
 
-    <div data-checked *ngIf="state === inputState.checked">
+    <div data-checked *ngIf="state === ui.state.checked">
       <jnt-icon [icon]="ui.icons.checked"></jnt-icon>
     </div>
 
-    <button data-view *ngIf="type === inputType.password"
+    <button data-view *ngIf="type === ui.input.type.password"
             (click)="view.password.display = !view.password.display" tabindex="-1">
       <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
     </button>
@@ -65,7 +65,7 @@
       <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
     </button>
 
-    <div data-arrows *ngIf="type === inputType.number">
+    <div data-arrows *ngIf="type === ui.input.type.number">
       <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
         <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
       </button>

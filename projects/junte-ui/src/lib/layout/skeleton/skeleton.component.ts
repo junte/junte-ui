@@ -14,8 +14,6 @@ export class SkeletonComponent {
 
   private _type = SkeletonType.text;
 
-  skeletonType = SkeletonType;
-
   @HostBinding('attr.host') readonly host = 'jnt-skeleton-host';
 
   @HostBinding('attr.data-size')

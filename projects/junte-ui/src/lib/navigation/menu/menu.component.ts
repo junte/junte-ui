@@ -17,7 +17,6 @@ export class MenuComponent {
   @HostBinding('attr.host') readonly host = 'jnt-menu-host';
 
   ui = UI;
-  styleEnum = MenuStyle;
 
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;

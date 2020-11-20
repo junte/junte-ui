@@ -42,7 +42,6 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   ui = UI;
   datePickerType = DatePickerType;
   meridians = Meridian;
-  feature = Feature;
   private _type: DatePickerType = DatePickerType.date;
 
   reference: { popover: PopoverInstance } = {popover: null};

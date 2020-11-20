@@ -27,7 +27,7 @@
        [attr.data-active]="i === active"
        (click)="active = i; $event.preventDefault()">
     <div data-tab>
-      <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
+      <ng-container *ngIf="(!!features && !features.includes(ui.feature.adapted)) || !features; else adaptedTemplate">
         <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
       </ng-container>
       <ng-template #adaptedTemplate>

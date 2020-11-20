@@ -42,8 +42,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.host') readonly host = 'jnt-input-host';
 
   ui = UI;
-  inputType = InputType;
-  inputState = State;
   feature = Feature;
   view = {password: {display: false}};
 

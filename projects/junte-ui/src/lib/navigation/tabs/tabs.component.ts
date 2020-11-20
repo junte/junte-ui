@@ -46,7 +46,6 @@ import { TabComponent } from './tab.component';
 export class TabsComponent {
 
   ui = UI;
-  feature = Feature;
   private _active = 0;
 
   @Input()
