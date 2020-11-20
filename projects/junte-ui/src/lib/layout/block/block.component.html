@@ -10,10 +10,10 @@
 
 <div data-help *ngIf="!!blockHelpTemplate"
      [jntPopover]="{
-                   contentTemplate: blockHelpTemplate,
-                   trigger: ui.trigger.click,
-                   position: ui.position.right
-                }">
+        contentTemplate: blockHelpTemplate,
+        trigger: ui.trigger.click,
+        position: breakpoint.current !== ui.breakpoint.mobile ? ui.position.right : ui.position.bottom
+     }">
   <jnt-icon [icon]="ui.icons.question"></jnt-icon>
 </div>
 

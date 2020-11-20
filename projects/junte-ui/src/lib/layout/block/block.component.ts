@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { BreakpointService } from '../responsive/breakpoint.service';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -146,4 +147,6 @@ export class BlockComponent {
     setTimeout(() => this._state.success = false, 2100);
   }
 
+  constructor(public breakpoint: BreakpointService) {
+  }
 }
