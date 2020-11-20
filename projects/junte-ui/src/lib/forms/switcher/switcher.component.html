@@ -10,12 +10,12 @@
   <div *ngIf="marks" data-switch [attr.data-single]="mode === ui.select.mode.single"><span *ngIf="selected"
                                                                                        data-indicator></span></div>
 
-  <jnt-stack [orientation]="ui.orientation.horizontal"
+  <jnt-stack *ngIf="label || badge" [orientation]="ui.orientation.horizontal"
              [justify]="ui.justify.between"
              [align]="ui.align.center"
              [gutter]="ui.gutter.small"
              data-title>
-    <div data-label>{{label}}</div>
+    <div data-label *ngIf="label">{{label}}</div>
     <jnt-badge *ngIf="badge"
                [position]="ui.position.inline"
                [color]="badge.color"
