@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ImageUploaderTestModule } from 'src/components/docs/forms/image-uploader/image-uploader-test.module';
+import { SliderTestModule } from 'src/components/docs/forms/slider/slider-test.module';
 import { ButtonTestModule } from './button/button-test.module';
 import { CalendarTestModule } from './calendar/calendar-test.module';
 import { CheckboxTestModule } from './checkbox/checkbox-test.module';
@@ -33,7 +34,8 @@ import { SwitcherTestModule } from './switcher/switcher-test.module';
     SelectableTestModule,
     FilterTestModule,
     ImageCropperTestModule,
-    ImageUploaderTestModule
+    ImageUploaderTestModule,
+    SliderTestModule
   ]
 })
 export class FormsTestModule {

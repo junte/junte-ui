@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SliderModule } from './slider/slider.module';
 import { ImageUploaderModule } from './image-uploader/image-uploader.module';
 import { ButtonModule } from './button/button.module';
 import { CalendarModule } from './calendar/calendar.module';
@@ -27,7 +28,8 @@ import { SwitcherModule } from './switcher/switcher.module';
     SwitcherModule,
     FilterModule,
     ImageCropperModule,
-    ImageUploaderModule
+    ImageUploaderModule,
+    SliderModule
   ]
 })
 export class UiFormsModule {
