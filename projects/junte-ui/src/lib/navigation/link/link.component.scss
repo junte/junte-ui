@@ -366,17 +366,6 @@
   }
 
   #{$context} #{$wrapper} [data-link] {
-    @if map-get($vars, display) == inline {
-      display: inline-block;
-    }
-    @if map-get($vars, display) == block {
-      display: inline-flex;
-      align-items: center;
-      width: 100%;
-      [data-title] {
-        vertical-align: middle;
-      }
-    }
     @if map-has-key($vars, toggle) {
       $toggle: map-get($vars, toggle);
       @if map-get($toggle, toggle) == false {
@@ -425,6 +414,22 @@
         max-width: 100%;
         display: inline-block;
         white-space: nowrap;
+      }
+    }
+
+    @if map-get($vars, display) == inline {
+      display: inline-block;
+    }
+    @if map-get($vars, display) == block {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      [data-title] {
+        display: flex;
+        align-items: center;
+        [data-icon] {
+          line-height: 1;
+        }
       }
     }
 

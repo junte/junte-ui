@@ -31,6 +31,7 @@
                                          [link]="['/components/navigation/menu']"
                                          i18n-title="@@label.document"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Message"
+                                         [icon]="ui.icons.animated.success"
                                          i18n-title="@@label.message"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Home"
                                          i18n-title="@@label.home"></jnt-sub-menu-item>
@@ -38,7 +39,7 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.animated.success : null"
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
 
