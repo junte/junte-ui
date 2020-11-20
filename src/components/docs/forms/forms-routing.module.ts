@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ImageCropperTestComponent } from './image-cropper/image-cropper-test.component';
-import { ImageUploaderTestComponent } from './image-uploader/image-uploader-test.component';
+import { SliderTestComponent } from 'src/components/docs/forms/slider/slider-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
 import { CheckboxTestComponent } from './checkbox/checkbox-test.component';
 import { DatePickerTestComponent } from './date-picker/date-picker-test.component';
 import { FilterTestComponent } from './filter/filter-test.component';
 import { FormTestComponent } from './form/form-test.component';
+import { ImageCropperTestComponent } from './image-cropper/image-cropper-test.component';
+import { ImageUploaderTestComponent } from './image-uploader/image-uploader-test.component';
 import { InputTestComponent } from './input/input-test.component';
 import { RadioTestComponent } from './radio/radio-test.component';
 import { SelectTestComponent } from './select/select-test.component';
@@ -49,6 +50,11 @@ export const routes: Routes = [
         path: 'select',
         component: SelectTestComponent,
         data: {breadcrumb: 'Select', animation: 'Select'}
+      },
+      {
+        path: 'slider',
+        component: SliderTestComponent,
+        data: {breadcrumb: 'Slider', animation: 'Slider'}
       },
       {
         path: 'switch',

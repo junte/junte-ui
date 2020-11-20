@@ -73,7 +73,9 @@ export type ImageCroppedData = {
 export class ImageCropperComponent implements ControlValueAccessor {
 
   ui = UI;
-  @HostBinding('attr.host') readonly host = 'jnt-image-cropper-host';
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-image-cropper-host';
 
   private moveStart = new MoveStart();
   private sizeRetries = 0;

@@ -1,0 +1,7 @@
+<div data-slided [style.width]="(+rangeControl.value | getPercent:min:max) + '%'"></div>
+<div data-pointer [style.left]="'calc(' + (+rangeControl.value | getPercent:min:max) + '% - 8px)'"></div>
+
+<form [formGroup]="form">
+  <input type="range" [min]="min" [max]="max" [step]="step"
+         formControlName="range">
+</form>

@@ -7,24 +7,23 @@ import {
   FormModule,
   GridModule,
   IconModule,
-  ImageCropperModule,
   InputModule,
   LinkModule,
   SelectModule,
+  SliderModule,
   StackModule,
-  SwitchModule,
   TabsModule
 } from 'junte-ui';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
-import { ImageCropperTestComponent } from './image-cropper-test.component';
+import { SliderTestComponent } from './slider-test.component';
 
 
 @NgModule({
   declarations: [
-    ImageCropperTestComponent
+    SliderTestComponent
   ],
   exports: [
-    ImageCropperTestComponent
+    SliderTestComponent
   ],
   imports: [
     CommonModule,
@@ -38,13 +37,11 @@ import { ImageCropperTestComponent } from './image-cropper-test.component';
     FormModule,
     SelectModule,
     AccordionModule,
-    ImageCropperModule,
-    SwitchModule,
+    SliderModule,
     SharedModule,
-    SwitchModule,
     AppLayoutModule,
     InputModule
   ]
 })
-export class ImageCropperTestModule {
+export class SliderTestModule {
 }

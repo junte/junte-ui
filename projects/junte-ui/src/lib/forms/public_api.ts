@@ -7,6 +7,7 @@ export * from './form/public_api';
 export * from './input/public_api';
 export * from './radio/public_api';
 export * from './select/public_api';
+export * from './slider/public_api';
 export * from './switch/public_api';
 export * from './switcher/public_api';
 export * from './filter/public_api';
