@@ -7,8 +7,8 @@
       <span>{{section.title}}</span>
 
       <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
-        <jnt-spinner *ngIf="section.state === accordionState.loading" [size]="ui.size.small"></jnt-spinner>
-        <jnt-icon data-warning *ngIf="section.state === accordionState.warning" [icon]="ui.icons.warning"></jnt-icon>
+        <jnt-spinner *ngIf="section.state === ui.state.loading" [size]="ui.size.small"></jnt-spinner>
+        <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
         <jnt-icon data-chevron [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronRight"></jnt-icon>
       </jnt-stack>
 

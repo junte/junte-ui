@@ -15,10 +15,10 @@
     <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
   </footer>
 
-  <div *ngIf="state === formState.loading" data-loading>
+  <div *ngIf="state === ui.state.loading" data-loading>
     <jnt-spinner [size]="ui.size.large"></jnt-spinner>
   </div>
-  <div *ngIf="state === formState.error" data-error>
+  <div *ngIf="state === ui.state.error" data-error>
     <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
   </div>
   <div *ngIf="_state.success" [@success]="_state.success" data-success>

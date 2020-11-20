@@ -14,7 +14,7 @@
 <ng-template #internalLinkTemplate>
   <a data-link #link="routerLinkActive" routerLinkActive [attr.data-active]="link.isActive"
      [routerLink]="source"
-     [routerLinkActiveOptions]="{exact: matching === urlMatching.fullMatch}"
+     [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
      [queryParams]="queryParams"
      [fragment]="fragment">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
@@ -35,5 +35,5 @@
                [position]="ui.position.inline">
     </jnt-badge>
   </ng-container>
-  <jnt-icon *ngIf="!!features && features.includes(feature.dropdown)" [icon]="ui.icons.chevronDown" data-toggle></jnt-icon>
+  <jnt-icon *ngIf="!!features && features.includes(ui.feature.dropdown)" [icon]="ui.icons.chevronDown" data-toggle></jnt-icon>
 </ng-template>

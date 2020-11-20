@@ -24,9 +24,7 @@ export class LinkComponent {
   @HostBinding('attr.host') readonly host = 'jnt-link-host';
 
   ui = UI;
-  urlMatching = UrlMatching;
   icon: Icon;
-  feature = Feature;
 
   private _source: string | any[];
   private _target: LinkTarget = LinkTarget.self;

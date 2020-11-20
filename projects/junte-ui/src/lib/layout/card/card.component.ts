@@ -32,8 +32,6 @@ export class CardComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
-  cardState = State;
-  feature = Feature;
   picture: Picture;
   popover: PopoverComponent;
 

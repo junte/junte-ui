@@ -7,7 +7,7 @@
 </ng-template>
 
 <jnt-stack data-card
-           [attr.tabindex]="!!this.features && this.features.includes(feature.clickable) ? 1 : null"
+           [attr.tabindex]="!!this.features && this.features.includes(ui.feature.clickable) ? 1 : null"
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.none"
            [align]="ui.align.stretch">
@@ -19,8 +19,8 @@
     </div>
     <jnt-stack data-body
                [align]="ui.align.stretch"
-               [orientation]="!!features && features.includes(feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
-               (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+               [orientation]="!!features && features.includes(ui.feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
+               (click)="!!features && features.includes(ui.feature.clickable) ? selected.emit() : null">
       <div data-picture *ngIf="!!picture && picture.position === ui.position.left">
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="picture.template"></ng-container>
@@ -66,10 +66,10 @@
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>
 </ng-template>
 
-<div *ngIf="state === cardState.loading" data-load>
+<div *ngIf="state === ui.state.loading" data-load>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
 </div>
-<div *ngIf="state === cardState.error" data-error>
+<div *ngIf="state === ui.state.error" data-error>
   <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
 </div>
 

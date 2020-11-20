@@ -30,8 +30,6 @@ export class SwitcherComponent implements ControlValueAccessor {
   readonly host = 'jnt-switcher-host';
 
   ui = UI;
-  selectMode = SelectMode;
-  feature = Feature;
 
   private _features: Feature[] = [];
   private _orientation: Orientation = Orientation.horizontal;
@@ -74,8 +72,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   _mode: SelectMode = SelectMode.single;
 
   @PropertyApi({
-    description: 'Select mode',
-    path: 'ui.select',
+    description: 'Switcher mode',
+    path: 'ui.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })

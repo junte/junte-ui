@@ -36,7 +36,6 @@ import { Width } from '../../core/enums/width';
 })
 export class BlockComponent {
 
-  blockState = State;
   ui = UI;
 
   _state = {success: false};

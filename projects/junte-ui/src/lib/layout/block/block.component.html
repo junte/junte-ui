@@ -1,7 +1,7 @@
-<div *ngIf="state === blockState.loading" data-state>
+<div *ngIf="state === ui.state.loading" data-state>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
 </div>
-<div *ngIf="state === blockState.error" data-state>
+<div *ngIf="state === ui.state.error" data-state>
   <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
 </div>
 <div *ngIf="_state.success" [@success]="_state.success" data-state>

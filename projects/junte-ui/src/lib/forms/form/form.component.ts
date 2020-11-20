@@ -53,7 +53,6 @@ export class FormComponent implements OnInit {
   ui = UI;
 
   _state = {success: false};
-  formState = State;
 
   @HostBinding('attr.data-height')
   _height: Height = Height.default;

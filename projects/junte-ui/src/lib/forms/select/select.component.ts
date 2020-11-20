@@ -95,8 +95,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   private _features: Feature[] = [];
 
   ui = UI;
-  selectMode = SelectMode;
-  selectState = State;
 
   get mobile() {
     return this.breakpoint.current === Breakpoint.mobile;
