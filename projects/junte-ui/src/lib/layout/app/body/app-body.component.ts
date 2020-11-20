@@ -19,12 +19,8 @@ export class AppBodyComponent {
 
   @HostBinding('@routeAnimations')
   get getRouteAnimations() {
-    return this.outlet && this.outlet.activatedRouteData && this.outlet.activatedRouteData.animation;
-  }
-
-  @HostBinding('@.disabled')
-  get getDisabled() {
-    return this.breakpoint.current !== Breakpoint.mobile;
+    return this.breakpoint.current === Breakpoint.mobile ?
+      this.outlet && this.outlet.activatedRouteData && this.outlet.activatedRouteData.animation : 'false';
   }
 
   constructor(private breakpoint: BreakpointService) {

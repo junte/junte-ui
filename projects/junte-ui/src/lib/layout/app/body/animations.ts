@@ -1,4 +1,14 @@
-import { animate, AnimationKeyframesSequenceMetadata, group, keyframes, query, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  AnimationKeyframesSequenceMetadata,
+  group,
+  keyframes,
+  query,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 export const sharedStyles = {
   position: 'fixed',
@@ -22,6 +32,7 @@ export const moveToLeftKeyframes: AnimationKeyframesSequenceMetadata =
 export const moveFromRight =
   trigger('routeAnimations', [transition('* => *', [
     query(':enter, :leave', style(sharedStyles), {optional: true}),
+    query(':leave', animateChild()),
     group([
       query(':enter', [
         animate('{{enterTiming}}s {{enterDelay}}s ease', moveFromRightKeyframes)
@@ -29,6 +40,7 @@ export const moveFromRight =
       query(':leave', [
         animate('{{leaveTiming}}s {{leaveDelay}}s ease', moveToLeftKeyframes)
       ], {optional: true}),
-    ])
-  ], {params: {enterTiming: '.8', leaveTiming: '.8', enterDelay: '0', leaveDelay: '0'}})
+    ]),
+    query(':enter', animateChild()),
+  ], {params: {enterTiming: '18', leaveTiming: '18', enterDelay: '0', leaveDelay: '0'}})
   ]);
