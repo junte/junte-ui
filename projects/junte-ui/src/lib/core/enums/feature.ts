@@ -8,5 +8,6 @@ export enum Feature {
   search = 'search',
   smarty = 'smarty',
   reload = 'reload',
-  multiplex = 'multiplex'
+  multiplex = 'multiplex',
+  today = 'today'
 }

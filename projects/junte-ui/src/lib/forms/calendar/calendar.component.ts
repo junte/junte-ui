@@ -15,6 +15,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addDays, addMonths, addWeeks, addYears, format, getMonth, getYear, isSameMonth, startOfWeek, subMonths, subYears } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
+import { Feature } from '../../core/enums/feature';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -67,6 +68,14 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   years = [];
   viewType = ViewType;
   view: ViewType = ViewType.date;
+
+  @PropertyApi({
+    description: 'Calendar features',
+    path: 'ui.feature',
+    options: [Feature.today]
+  })
+  @Input()
+  features: Feature[] = [];
 
   @ContentChildren(WeekMetricComponent)
   metrics: QueryList<WeekMetricComponent>;

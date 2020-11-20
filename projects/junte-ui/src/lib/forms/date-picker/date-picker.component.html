@@ -56,7 +56,7 @@
 
   <ng-template #calendarTemplate>
     <jnt-stack data-calendar-dropdown [align]="ui.align.stretch">
-      <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
+      <jnt-calendar data-calendar [features]="[ui.feature.today]" formControlName="calendar"></jnt-calendar>
     </jnt-stack>
   </ng-template>
 
