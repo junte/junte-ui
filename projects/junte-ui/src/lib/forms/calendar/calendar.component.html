@@ -107,7 +107,7 @@
 
     </tbody>
   </table>
-  <jnt-stack [align]="ui.align.center">
+  <jnt-stack *ngIf="features | includes : ui.feature.today" [align]="ui.align.center">
     <jnt-button [scheme]="ui.scheme.secondary"
                 [size]="ui.size.small"
                 [icon]="ui.icons.today"
