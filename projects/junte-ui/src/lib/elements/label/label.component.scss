@@ -17,8 +17,8 @@
     corner: $jnt-corner-small,
     background: $jnt-primary-color,
     font-size: inherit,
+    border: 1px solid,
     color: null,
-    border: none,
     dot: (
       size: 10px
     ),
@@ -53,11 +53,13 @@
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
+      &[data-outline='ghost'] {
+        background-color: transparent !important;
+      }
       [data-text] {
         white-space: nowrap;
       }
     }
-
     border: map-get($vars, border);
     border-radius: map-get($vars, corner);
     font-size: map-get($vars, font-size);

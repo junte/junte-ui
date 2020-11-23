@@ -17,15 +17,17 @@ export class LabelTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
-  colorControl = this.fb.control(UI.color.blue100);
+  colorControl = this.fb.control(UI.color.purple);
   iconControl = this.fb.control(true);
   dotControl = this.fb.control(false);
+  outlineControl = this.fb.control(null);
 
   builder = this.fb.group({
     icon: this.iconControl,
     size: this.sizeControl,
     color: this.colorControl,
     dot: this.dotControl,
+    outline: this.outlineControl
   });
 
   constructor(private fb: FormBuilder) {
