@@ -11,6 +11,7 @@ import {
   InputModule,
   LinkModule,
   PictureModule,
+  SelectModule,
   StackModule,
   SwitcherModule,
   TabsModule
@@ -34,7 +35,8 @@ import { PictureTestComponent } from './picture-test.component';
     SwitcherModule,
     InputModule,
     SharedModule,
-    AppLayoutModule
+    AppLayoutModule,
+    SelectModule
   ],
   exports: [
     PictureTestComponent

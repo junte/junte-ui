@@ -77,34 +77,34 @@
                   <jnt-form-label for="position"
                                   i18n="@@label.position">Picture position
                   </jnt-form-label>
-                  <jnt-switcher formControlName="position"
-                                placeholder="Center"
-                                i18n-placeholder="@@label.center">
-                    <jnt-switcher-option label="Center"
-                                         i18n-label="@@label.center"
-                                         [value]="ui.position.center"
-                                         [icon]="localUi.icons.center"></jnt-switcher-option>
-                    <jnt-switcher-option label="Left"
-                                         i18n-label="@@label.left"
-                                         [disabled]="!fitControl.value || fitControl.value === fit.width"
-                                         [value]="ui.position.left"
-                                         [icon]="localUi.icons.left"></jnt-switcher-option>
-                    <jnt-switcher-option label="Right"
-                                         i18n-label="@@label.right"
-                                         [disabled]="!fitControl.value || fitControl.value === fit.width"
-                                         [value]="ui.position.right"
-                                         [icon]="localUi.icons.right"></jnt-switcher-option>
-                    <jnt-switcher-option label="Top"
-                                         i18n-label="@@label.top"
-                                         [disabled]="fitControl.value === fit.height"
-                                         [value]="ui.position.top"
-                                         [icon]="localUi.icons.position.top"></jnt-switcher-option>
-                    <jnt-switcher-option label="Bottom"
-                                         i18n-label="@@label.bottom"
-                                         [disabled]="fitControl.value === fit.height"
-                                         [value]="ui.position.bottom"
-                                         [icon]="localUi.icons.position.bottom"></jnt-switcher-option>
-                  </jnt-switcher>
+                  <jnt-select formControlName="position"
+                              placeholder="Center"
+                              i18n-placeholder="@@label.center">
+                    <jnt-select-option label="Center"
+                                       i18n-label="@@label.center"
+                                       [key]="ui.position.center"
+                                       [icon]="localUi.icons.center"></jnt-select-option>
+                    <jnt-select-option *ngIf="fitControl.value === fit.height"
+                                       label="Left"
+                                       i18n-label="@@label.left"
+                                       [key]="ui.position.left"
+                                       [icon]="localUi.icons.left"></jnt-select-option>
+                    <jnt-select-option *ngIf="fitControl.value === fit.height"
+                                       label="Right"
+                                       i18n-label="@@label.right"
+                                       [key]="ui.position.right"
+                                       [icon]="localUi.icons.right"></jnt-select-option>
+                    <jnt-select-option *ngIf="!fitControl.value || fitControl.value === fit.width"
+                                       label="Top"
+                                       i18n-label="@@label.top"
+                                       [key]="ui.position.top"
+                                       [icon]="localUi.icons.position.top"></jnt-select-option>
+                    <jnt-select-option *ngIf="!fitControl.value || fitControl.value === fit.width"
+                                       label="Bottom"
+                                       i18n-label="@@label.bottom"
+                                       [key]="ui.position.bottom"
+                                       [icon]="localUi.icons.position.bottom"></jnt-select-option>
+                  </jnt-select>
                 </jnt-form-item>
               </jnt-stack>
             </jnt-form>
