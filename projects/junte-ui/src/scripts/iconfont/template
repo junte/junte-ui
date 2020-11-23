@@ -8,6 +8,9 @@
 }
 
 <% _.each(glyphs, function(glyph) { %>.<%= fontName %>-<%= glyph.name %>:before {
-  content: "\<%= glyph.unicode[0] %>"
+  content: "\<%= glyph.unicode[0] %>";
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 <% }); %>
