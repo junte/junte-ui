@@ -13,7 +13,8 @@ import {
   LinkModule,
   SelectModule,
   StackModule,
-  TabsModule
+  TabsModule,
+  SwitcherModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { LabelTestComponent } from './label-test.component';
@@ -34,7 +35,8 @@ import { LabelTestComponent } from './label-test.component';
     CheckboxModule,
     SharedModule,
     DotModule,
-    AppLayoutModule
+    AppLayoutModule,
+    SwitcherModule
   ],
   exports: [
     LabelTestComponent

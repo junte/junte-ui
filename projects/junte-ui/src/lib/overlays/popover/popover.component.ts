@@ -307,7 +307,7 @@ export class PopoverComponent {
     this.renderer.removeStyle(host, 'top');
     this.renderer.removeStyle(host, 'left');
     this.renderer.setStyle(host, 'width', this.breakpoint.current === Breakpoint.mobile
-      && this.position === Position.top || this.position === Position.bottom ? '100%' : 'auto');
+      && (this.position === Position.top || this.position === Position.bottom) ? '100%' : 'auto');
     const position = this.getPosition();
     const rect = this.target.getBoundingClientRect();
     let left = position.left - position.shiftX;

@@ -23,6 +23,7 @@
                              i18n-label="@@label.todo"
                              [icon]="iconControl.value ? ui.icons.home : null"
                              [size]="sizeControl.value"
+                             [outline]="outlineControl.value"
                              [color]="colorControl.value">
                     <jnt-dot *ngIf="dotControl.value"
                              [color]="ui.color.red"></jnt-dot>
@@ -31,6 +32,7 @@
                              i18n-label="@@label.doing"
                              [icon]="iconControl.value ? ui.icons.figma : null"
                              [size]="sizeControl.value"
+                             [outline]="outlineControl.value"
                              [color]="colorControl.value">
                     <jnt-dot *ngIf="dotControl.value"
                              [color]="ui.color.red"></jnt-dot>
@@ -67,6 +69,18 @@
                   <jnt-form-control>
                     <jnt-color-picker formControlName="color"></jnt-color-picker>
                   </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="outline">Outline
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="outline"
+                                [features]="ui.feature.allowEmpty">
+                    <jnt-switcher-option label="Fill"
+                                         [value]="ui.outline.fill"></jnt-switcher-option>
+                    <jnt-switcher-option label="Ghost"
+                                         [value]="ui.outline.ghost"></jnt-switcher-option>
+                  </jnt-switcher>
                 </jnt-form-item>
 
                 <jnt-form-item>
@@ -124,6 +138,10 @@
   <ng-container *ngIf="colorControl.value">
     <![CDATA[
     color="]]>{{colorControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="outlineControl.value">
+    <![CDATA[
+    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
   </ng-container>
   <![CDATA[>]]>
   <ng-container *ngIf="dotControl.value">
