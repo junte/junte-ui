@@ -1,15 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, HostBinding,HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { filter, map, distinctUntilChanged } from 'rxjs/operators';
@@ -25,6 +14,7 @@ import { InputAutocomplete, InputScheme, InputType } from './enums';
 
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const DEFAULT_NUMBER = 0;
 
 @Component({
   selector: 'jnt-input',
@@ -47,6 +37,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   view = {password: {display: false}};
 
   private _mask: string;
+  private _type: InputType = InputType.text;
   private _placeholder: string = '';
 
   inputControl = this.fb.control(null);
@@ -70,8 +61,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
-
-  _type: InputType = InputType.text;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
@@ -287,9 +276,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges
-      .subscribe(value =>
-        this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
+    this.inputControl.valueChanges.subscribe(value =>
+      this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
     this.formattedControl.valueChanges.pipe(
       distinctUntilChanged(),
@@ -316,24 +304,20 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: string,
     formatted: string
   } {
-    let i, j = 0;
-    const chars = !!value ? value.replace(/\D/gi, '') : (value || '');
-    let formatted = '';
-    for (i = 0; i < this.mask.length; i++) {
-      const char = this.mask.charAt(i);
-      formatted += char === DIGIT_MASK_CHAR ? (chars.charAt(j++) || DIGIT_MASK_CHAR) : char;
-      if (j >= chars.length) {
-        break;
-      }
+    const chars = !!value ? value.replace(/\D/gi, '') : '';
+    let formatted = this.mask;
+    const length = this.mask.split(DIGIT_MASK_CHAR).length - 1;
+    for (let char of chars) {
+      formatted = formatted.replace(DIGIT_MASK_CHAR, char);
     }
-    formatted += this.mask.substr(i + 1);
+
     return {
-      input: chars.substr(0, j) || null,
+      input: chars.substr(0, length) || null,
       formatted: formatted !== this.mask ? formatted : null
     };
   }
 
-  paste(event: ClipboardEvent) {
+  pasteMask(event: ClipboardEvent) {
     event.preventDefault();
     const text = event.clipboardData.getData('text');
     const data = this.masking(text);
@@ -398,21 +382,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.disabled = disabled;
   }
 
-  up() {
-    let number = +this.inputControl.value;
+  setNumber(step: number) {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
+      this.inputControl.setValue(DEFAULT_NUMBER);
+    } else {
+      let number = +this.inputControl.value + step;
+      number = this.max !== undefined && this.max !== null ? Math.min(number, this.max) : number;
+      number = this.min !== undefined && this.min !== null ? Math.max(number, this.min) : number;
       this.inputControl.setValue(number);
-    } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.setValue(number + +this.step) : this.inputControl.setValue(++number);
-    }
-  }
-
-  down() {
-    let number = +this.inputControl.value;
-    if (this.inputControl.value === '' || this.inputControl.value === null) {
-      this.inputControl.setValue(number);
-    } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.setValue(number - +this.step) : this.inputControl.setValue(--number);
     }
   }
 

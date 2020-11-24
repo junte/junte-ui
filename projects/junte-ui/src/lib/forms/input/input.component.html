@@ -3,7 +3,8 @@
   <jnt-stack data-content [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small" [align]="ui.align.center">
     <jnt-icon data-label-icon *ngIf="!!icon && !label && !multiline"
-              [icon]="icon"></jnt-icon>
+              [icon]="icon">
+    </jnt-icon>
 
     <input #maskedInput *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
@@ -14,7 +15,7 @@
            [placeholder]="mask"
            [readonly]="readonly ? readonly : null"
            [autocomplete]="autocomplete"
-           (paste)="paste($event)"
+           (paste)="pasteMask($event)"
            (keydown)="keydownMask($event)">
 
     <ng-template #inputTemplate>
@@ -66,14 +67,12 @@
     </button>
 
     <div data-arrows *ngIf="type === ui.input.type.number">
-      <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
+      <button [disabled]="inputControl.disabled" (click)="setNumber(step || 1)" tabindex="-1">
         <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
       </button>
-      <button [disabled]="inputControl.disabled" (click)="down()" tabindex="-1">
+      <button [disabled]="inputControl.disabled" (click)="setNumber(-step || -1)" tabindex="-1">
         <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
       </button>
     </div>
-
   </jnt-stack>
-
 </form>
