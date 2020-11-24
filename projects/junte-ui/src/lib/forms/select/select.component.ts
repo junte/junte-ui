@@ -456,7 +456,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   remove(key: Key) {
     const index = this.selected.findIndex(i => i === key);
-    if (index !== -1) {
+    if (index !== -1 && (this.mode === SelectMode.multiple || this.features.includes(Feature.allowEmpty))) {
       this.logger.debug(`option ${index} has been removed`);
       this.selected.splice(index, 1);
       this.changes.selected++;
