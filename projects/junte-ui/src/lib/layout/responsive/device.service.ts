@@ -12,7 +12,8 @@ export class DeviceService {
   platform = {
     isIOS: this.isIPhone || this.isIPad || this.isIPod,
     isAndroid: !!navigator.userAgent.match(/Android/i),
-    isWindowsMobile: !!navigator.userAgent.match(/IEMobile/i)
+    isWindowsMobile: !!navigator.userAgent.match(/IEMobile/i),
+    windows: !!navigator.userAgent.match(/Windows|Win32|Win64/i),
   };
 
   isMobile = this.platform.isIOS

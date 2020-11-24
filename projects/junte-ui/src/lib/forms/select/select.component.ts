@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
@@ -343,7 +344,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
               private fb: FormBuilder,
               private popover: PopoverService,
               private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   ngOnInit() {
