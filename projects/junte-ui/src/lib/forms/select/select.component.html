@@ -71,7 +71,7 @@
           <div data-options-header *ngIf="!!optionsHeaderTemplate">
             <ng-container *ngTemplateOutlet="optionsHeaderTemplate;context: {close: close.bind(this)}"></ng-container>
           </div>
-          <ul>
+          <ul [attr.data-windows]="device.platform.windows">
             <li *ngFor="let o of options;trackBy:trackOption"
                 [attr.data-selected]="selected | includes:o.key"
                 (click)="toggle(o)">
