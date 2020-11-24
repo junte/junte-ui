@@ -5,7 +5,6 @@
 
   $defs: ();
 
-
   $vars: $passed;
   $declare: false;
   $wrapper: null;
@@ -26,6 +25,24 @@
       padding: $jnt-gutter-normal;
       border-radius: $jnt-corner-normal;
       border: 1px solid $jnt-page-background;
+
+      &[data-orientation='vertical'] {
+        display: flex;
+
+        [data-title] {
+          padding: $jnt-gutter-normal $jnt-gutter-small;
+          [data-icon] {
+            transform: rotate(90deg);
+          }
+          span {
+            writing-mode: vertical-rl;
+          }
+        }
+
+        [data-content] {
+          padding: 0 0 0 $jnt-gutter-normal;
+        }
+      }
     }
   }
 
@@ -50,8 +67,6 @@
         &[active='false'] {
           color: $jnt-primary-light-color;
         }
-
-        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
       }
 
       &:focus {
@@ -70,6 +85,7 @@
   #{$context} #{$wrapper} [data-content] {
     @if $declare {
       padding: $jnt-gutter-normal 0;
+      flex: 1;
     }
   }
 
