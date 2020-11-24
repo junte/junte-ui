@@ -10,6 +10,7 @@ import {
   Renderer2,
   TemplateRef
 } from '@angular/core';
+import { Gutter } from '../../core/enums/gutter';
 import { Placement } from '../../core/enums/placement';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
@@ -33,6 +34,9 @@ export class InformerComponent implements OnDestroy {
   ui = UI;
   _backdrop: ElementRef<HTMLElement>;
 
+  @HostBinding('attr.data-outer')
+  _outer: Gutter;
+
   @HostBinding('attr.data-placement')
   _placement: Placement = Placement.fixed;
 
@@ -47,6 +51,20 @@ export class InformerComponent implements OnDestroy {
   @Input()
   set placement(placement: Placement) {
     this._placement = placement || Placement.fixed;
+  }
+
+  @PropertyApi({
+    description: 'Negative margin for informer',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.big,
+      Gutter.large,
+      Gutter.huge]
+  })
+  @Input() set outer(outer: Gutter) {
+    this._outer = outer;
   }
 
   @PropertyApi({
