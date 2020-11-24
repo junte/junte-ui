@@ -4,7 +4,16 @@
 
 @mixin jnt-informer($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: ();
+  $defs: (
+    outer: (
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge
+    )
+  );
 
   $vars: $passed;
   $declare: false;
@@ -19,9 +28,6 @@
       &[data-placement='fixed'] {
         position: fixed;
       }
-      &[data-placement='absolute'] {
-        position: absolute;
-      }
       top: 0;
       right: 0;
       bottom: 0;
@@ -30,9 +36,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0;
       background: rgba($jnt-primary-color, .75);
       padding: $jnt-gutter-normal;
+    }
+
+    &[data-placement='absolute'] {
+      position: absolute;
+
+      @if map-has-key($vars, outer) {
+        $outer: map-get($vars, outer);
+        @each $outer, $map in $outer {
+          &[data-outer = '#{$outer}'] {
+            margin: -($map);
+          }
+        }
+      }
     }
   }
 
