@@ -82,7 +82,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   }
 
   test() {
-    this.form.patchValue({input: '90515513360'});
+    this.form.patchValue({input: '1234567890'});
   }
 
   reset(type: InputType) {
