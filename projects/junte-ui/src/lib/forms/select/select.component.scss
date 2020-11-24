@@ -319,7 +319,8 @@
       box-sizing: border-box;
       position: relative;
       @include for-mobile() {
-        border-color: transparent;
+        border: none;
+        padding: 3px $jnt-gutter-small;
         border-radius: calc(#{$jnt-corner-small} - 1px);
       }
     }
@@ -420,11 +421,17 @@
               background-color: transparent;
               color: $jnt-primary-text-color;
               line-height: $jnt-line-height-base;
+              font-size: $jnt-font-size-base;
               font-family: inherit;
               padding: 0;
               margin: 0;
 
+              @include for-mobile() {
+                font-size: 1rem !important;
+              }
+
               &::placeholder {
+                font-size: $jnt-font-size-base;
                 padding-left: 1px;
               }
 

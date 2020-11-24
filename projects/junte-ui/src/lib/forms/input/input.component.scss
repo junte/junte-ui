@@ -9,6 +9,10 @@
     min-height: map-get($size, height);
     height: map-get($size, height);
 
+    input::placeholder {
+      font-size: map-get($size, font-size);
+    }
+
     &[data-multiline='true'] {
       height: auto;
     }
@@ -264,6 +268,7 @@
         @if $declare {
           color: $jnt-primary-text-color;
           background-color: $jnt-control-background;
+          line-height: $jnt-line-height-base;
           border: 0;
           padding: 0;
           font-family: inherit;
@@ -272,6 +277,10 @@
           display: inline-block;
           width: 100%;
           min-width: 0;
+
+          @include for-mobile() {
+            font-size: 1rem !important;
+          }
         }
 
         &[type="number"]::-webkit-outer-spin-button,
