@@ -74,7 +74,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit() {
-    this.checkboxControl.valueChanges.subscribe(value => this.onChange(value));
+    this.checkboxControl.valueChanges
+      .subscribe(value => this.onChange(value));
   }
 
   writeValue(value: boolean) {

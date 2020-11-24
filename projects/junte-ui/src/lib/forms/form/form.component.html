@@ -1,5 +1,4 @@
 <form>
-
   <header *ngIf="!!title || !!titleTemplate">
     <h3 *ngIf="!!title && !titleTemplate">{{title}}</h3>
     <ng-container *ngIf="!!titleTemplate">
@@ -11,18 +10,17 @@
     <ng-content></ng-content>
   </div>
 
-  <footer *ngIf="footerTemplate">
+  <footer *ngIf="!!footerTemplate">
     <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
   </footer>
 
-  <div *ngIf="state === ui.state.loading" data-loading>
+  <div data-loading *ngIf="state === ui.state.loading">
     <jnt-spinner [size]="ui.size.large"></jnt-spinner>
   </div>
-  <div *ngIf="state === ui.state.error" data-error>
+  <div data-error *ngIf="state === ui.state.error">
     <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
   </div>
-  <div *ngIf="_state.success" [@success]="_state.success" data-success>
+  <div data-success *ngIf="_state.success" [@success]="_state.success">
     <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
   </div>
-
 </form>

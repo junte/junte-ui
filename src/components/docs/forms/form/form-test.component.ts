@@ -29,7 +29,10 @@ export class FormTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {
-    form: FormComponent, control: FormControlComponent, label: FormLabelComponent, message: FormMessageComponent,
+    form: FormComponent,
+    control: FormControlComponent,
+    label: FormLabelComponent,
+    message: FormMessageComponent,
     item: FormItemComponent
   };
   language = Language;

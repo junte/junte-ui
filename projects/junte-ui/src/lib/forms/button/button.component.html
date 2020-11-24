@@ -5,9 +5,10 @@
              [gutter]="ui.gutter.small">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left"
               [@visibility]="loading  ? 'hide' : 'show'"
-              [icon]="icon?.icon"></jnt-icon>
+              [icon]="icon?.icon">
+    </jnt-icon>
 
-    <div *ngIf="!!text" data-text
+    <div data-text *ngIf="!!text"
          [@visibility]="loading  ? 'hide' : 'show'">
       {{text}}
     </div>
@@ -26,7 +27,8 @@
 
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right"
               [@visibility]="loading  ? 'hide' : 'show'"
-              [icon]="icon?.icon"></jnt-icon>
+              [icon]="icon?.icon">
+    </jnt-icon>
 
     <div data-empty *ngIf="!icon && !badges.length && !text" [@visibility]="loading  ? 'hide' : 'show'"></div>
   </jnt-stack>
