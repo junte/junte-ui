@@ -48,7 +48,8 @@ import { FormControlComponent } from './control/form-control.component';
 })
 export class FormComponent implements OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-host';
 
   ui = UI;
 
@@ -74,8 +75,7 @@ export class FormComponent implements OnInit {
   @PropertyApi({
     description: 'State of form',
     path: 'ui.state',
-    options: [State.error,
-      State.loading]
+    options: [State.error, State.loading]
   })
   @Input()
   state: State;
@@ -96,11 +96,11 @@ export class FormComponent implements OnInit {
   @ContentChild('formFooterTemplate')
   footerTemplate: TemplateRef<any>;
 
-  @Output()
-  submitted = new EventEmitter();
-
   @ContentChildren(FormControlComponent, {descendants: true})
   controls: QueryList<FormControlComponent>;
+
+  @Output()
+  submitted = new EventEmitter();
 
   @Output()
   checked = new EventEmitter<AbstractControl[]>();
@@ -129,7 +129,7 @@ export class FormComponent implements OnInit {
 
   private check(form: FormGroup | FormArray): AbstractControl[] {
     let errors = [];
-    Object.keys(form.controls).forEach((key: string) => {
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -139,7 +139,7 @@ export class FormComponent implements OnInit {
           errors.push(control);
         }
       }
-    });
+    }
     return errors;
   }
 
@@ -163,7 +163,7 @@ export class FormComponent implements OnInit {
   }
 
   private validate(form: FormGroup | FormArray) {
-    Object.keys(form.controls).forEach((key: string) => {
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -172,11 +172,11 @@ export class FormComponent implements OnInit {
         control.markAsDirty();
         control.updateValueAndValidity();
       }
-    });
+    }
   }
 
   private refresh(form: FormGroup | FormArray) {
-    Object.keys(form.controls).forEach((key: string) => {
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -184,6 +184,6 @@ export class FormComponent implements OnInit {
       } else {
         control.markAsPristine();
       }
-    });
+    }
   }
 }

@@ -8,8 +8,10 @@ import { PropertyApi } from '../../../core/decorators/api';
 })
 export class FormMessageComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-message-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-message-host';
 
+  @Input()
   active = false;
 
   @HostBinding('style.display')
@@ -29,5 +31,4 @@ export class FormMessageComponent {
   })
   @Input()
   validator: Validator = null;
-
 }

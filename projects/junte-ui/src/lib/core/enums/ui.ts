@@ -1,5 +1,5 @@
 import { GanttTypes } from '../../collections/gantt/enums';
-import { ButtonType } from '../../forms/button/enums';
+import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
 import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';

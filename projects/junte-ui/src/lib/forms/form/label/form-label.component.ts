@@ -8,13 +8,14 @@ import { PropertyApi } from '../../../core/decorators/api';
 })
 export class FormLabelComponent implements OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-label-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-label-host';
 
   required = false;
 
   @PropertyApi({
     description: 'The identifier of the item to associate with',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   for: string;

@@ -207,47 +207,48 @@ export class CheckboxTestComponent implements OnInit {
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="checkbox-test.component.html">
                 <!-- @formatter:off-->
-                <ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
-                <![CDATA[
-                <jnt-form [formGroup]="form">
-                  <jnt-checkbox-group formControlName="heroes"]]>
-                  <ng-container *ngIf="colsControl.value">
-                    <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
-                  </ng-container>
-                    <ng-container *ngIf="sizeControl.value">
-                      <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <![CDATA[>
-                      <jnt-checkbox label="Spiderman" value="spiderman" ]]>
-                        <ng-container *ngIf="disableControl.value">
-                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-                        </ng-container>
-                        <![CDATA[>
-                      </jnt-checkbox>
-                      ]]>
+<ng-template #sizeTemplate><![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]></ng-template>
+<![CDATA[
+<jnt-form [formGroup]="form">
+  <jnt-checkbox-group formControlName="heroes"]]>
+  <ng-container *ngIf="colsControl.value">
+    <![CDATA[ [cols]="]]>{{colsControl.value}}<![CDATA["]]>
+  </ng-container>
+    <ng-container *ngIf="sizeControl.value">
+      <![CDATA[ [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+    </ng-container>
+    <![CDATA[>
+      <jnt-checkbox label="Spiderman" value="spiderman" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+        </ng-container>
+        <![CDATA[>
+      </jnt-checkbox>
+      ]]>
 
-                      <![CDATA[
-                      <jnt-checkbox label="Ironman" value="ironman" ]]>
-                        <ng-container *ngIf="disableControl.value">
-                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-                        </ng-container>
-                        <![CDATA[>
-                      </jnt-checkbox>
-                      ]]>
+      <![CDATA[
+      <jnt-checkbox label="Ironman" value="ironman" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+        </ng-container>
+        <![CDATA[>
+      </jnt-checkbox>
+      ]]>
 
-                      <![CDATA[
-                      <jnt-checkbox label="Captain America" value="captain_america" ]]>
-                        <ng-container *ngIf="disableControl.value">
-                          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
-                        </ng-container>
-                        <![CDATA[>
-                      </jnt-checkbox>
-                      ]]>
+      <![CDATA[
+      <jnt-checkbox label="Captain America" value="captain_america" ]]>
+        <ng-container *ngIf="disableControl.value">
+          <![CDATA[ disabled="]]>{{disableControl.value}}<![CDATA["]]>
+        </ng-container>
+        <![CDATA[>
+      </jnt-checkbox>
+      ]]>
 
-                      <![CDATA[
-                  </jnt-checkbox-group>
-                </jnt-form>
-                ]]>
+      <![CDATA[
+  </jnt-checkbox-group>
+</jnt-form>
+]]>
+                <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
           </jnt-accordion-section>

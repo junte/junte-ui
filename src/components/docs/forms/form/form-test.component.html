@@ -296,13 +296,13 @@
 <![CDATA[
 <jnt-form [formGroup]="form" ]]>
 
-  <ng-container *ngIf="titleControl.value">
+  <ng-container *ngIf="!!titleControl.value">
     <![CDATA[
     title="Registration"]]>
   </ng-container>
-  <ng-container *ngIf="loadingControl.value">
+  <ng-container *ngIf="!!stateControl.value">
     <![CDATA[
-    [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+    [state]="]]>{{stateControl.value}}<![CDATA["]]>
   </ng-container>
     <![CDATA[>
     <jnt-stack [align]="ui.align.stretch">

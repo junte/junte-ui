@@ -6,8 +6,7 @@
         <jnt-button data-arrow [icon]="ui.icons.chevronLeft"
                     [outline]="ui.outline.transparent"
                     [size]="ui.size.small"
-                    (click)="view === viewType.date ? period = subMonths(period, 1) : view === viewType.month ?
-                  period = subYears(period, 1) : period = subYears(period, 12)">
+                    (click)="sub()">
         </jnt-button>
       </td>
       <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
@@ -25,25 +24,23 @@
         </jnt-button>
       </td>
       <td *ngIf="view === viewType.year" colspan="2" data-year>
-        {{getYear(period) - 4}} - {{getYear(period) + 7}}
+        {{(period | jntGetYear) - 4}} - {{(period | jntGetYear) + 7}}
       </td>
       <td>
         <jnt-button data-arrow [icon]="ui.icons.chevronRight"
                     [outline]="ui.outline.transparent"
                     [size]="ui.size.small"
-                    (click)="view === viewType.date ? period = addMonths(period, 1) : view === viewType.month ?
-                  period = addYears(period, 1) : period = addYears(period, 12)">
+                    (click)="add()">
         </jnt-button>
       </td>
       <td data-divider *ngIf="metrics.length"></td>
-      <td data-metrics
-          *ngIf="metrics.length"
+      <td data-metrics *ngIf="metrics.length"
           [translate]="'label.metrics'"
           [attr.colspan]="metrics.length">
         Metrics
       </td>
     </tr>
-    <tr *ngIf="view === viewType.date; else empty" data-days>
+    <tr data-days *ngIf="view === viewType.date; else empty">
       <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | jntWeekdayName:'x2'}}</th>
 
       <th data-divider *ngIf="!!metrics.length"></th>
@@ -69,8 +66,7 @@
             [attr.data-current-month]="(d | jntStartOfMonth) | jntIsEqual: (period | jntStartOfMonth)"
             [attr.data-selected-day]="(d | jntStartOfDay) | jntIsEqual: (current | jntStartOfDay)"
             (click)="select(d)" tabindex="0">
-          <ng-container
-            *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
+          <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
           </ng-container>
         </td>
 

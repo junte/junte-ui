@@ -13,11 +13,21 @@ import {
   TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { addDays, addMonths, addWeeks, addYears, format, getMonth, getYear, isSameMonth, startOfWeek, subMonths, subYears } from 'date-fns';
+import {
+  addDays, addMonths,
+  addWeeks,
+  addYears,
+  getMonth,
+  getYear,
+  isSameMonth,
+  startOfWeek,
+  subMonths,
+  subYears
+} from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
-import { Feature } from '../../core/enums/feature';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { Period } from './types';
@@ -49,19 +59,14 @@ enum ViewType {
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-calendar-host';
-
-  format = format;
-  addMonths = addMonths;
-  subMonths = subMonths;
-  addYears = addYears;
-  subYears = subYears;
-  getYear = getYear;
+  @HostBinding('attr.host')
+  readonly host = 'jnt-calendar-host';
 
   ui = UI;
-  current: Date;
 
   private _period: Date = today();
+
+  current: Date;
 
   weeks = [];
   months = [];
@@ -147,9 +152,29 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   today() {
-    const now = new Date;
+    const now = new Date();
     this.period = now;
     this.select(now);
+  }
+
+  add() {
+    if(this.view === ViewType.date) {
+      this.period = addMonths(this.period, 1);
+    } else if (this.view === ViewType.month) {
+      this.period = addYears(this.period, 1)
+    } else {
+      this.period = addYears(this.period, 12)
+    }
+  }
+
+  sub() {
+    if(this.view === ViewType.date) {
+      this.period = subMonths(this.period, 1);
+    } else if (this.view === ViewType.month) {
+      this.period = subYears(this.period, 1)
+    } else {
+      this.period = subYears(this.period, 12)
+    }
   }
 
   private update() {

@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ContentChildren, Host, HostBinding, Input, Optional, QueryList, SkipSelf } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  Host,
+  HostBinding,
+  Input,
+  Optional,
+  QueryList,
+  SkipSelf
+} from '@angular/core';
 import { AbstractControl, ControlContainer, FormArrayName, FormGroupDirective, FormGroupName } from '@angular/forms';
 import { PropertyApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
@@ -10,7 +20,8 @@ import { FormMessageComponent } from '../message/form-message.component';
 })
 export class FormControlComponent implements AfterViewInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-control-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-control-host';
 
   ui = UI;
 
@@ -19,7 +30,7 @@ export class FormControlComponent implements AfterViewInit {
 
   @PropertyApi({
     description: 'Form control name',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   name: string;

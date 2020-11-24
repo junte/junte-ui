@@ -9,7 +9,7 @@ import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { BadgeComponent } from '../../elements/badge/badge.component';
-import { ButtonType } from './enums';
+import { ButtonType } from './button.enums';
 
 interface Icon {
   icon: string;
@@ -64,10 +64,12 @@ interface Icon {
 
 export class ButtonComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-button-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-button-host';
 
   ui = UI;
 
+  private _type: ButtonType = ButtonType.button;
   icon: Icon;
 
   @HostBinding('attr.data-scheme')
@@ -84,8 +86,6 @@ export class ButtonComponent {
 
   @HostBinding('attr.data-shape')
   _shape: Shape = Shape.square;
-
-  _type: ButtonType = ButtonType.button;
 
   @PropertyApi({
     description: 'Button shape',
@@ -108,13 +108,14 @@ export class ButtonComponent {
   loading = false;
 
   @PropertyApi({
+    name: 'icon',
     description: 'Icon for button',
     type: 'string | {icon: string, position: Position}'
   })
   @Input('icon')
-  set __icon__(icon: string | Icon) {
-    this.icon = (typeof (icon) === 'string'
-      ? {icon: icon, position: Position.left} : icon) as Icon;
+  set _icon(icon: string | Icon) {
+    this.icon =  <Icon>(typeof icon === 'string'
+      ? {icon: icon, position: Position.left} : icon);
   }
 
   @PropertyApi({
@@ -123,7 +124,8 @@ export class ButtonComponent {
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
     default: Scheme.primary
   })
-  @Input() set scheme(scheme: Scheme) {
+  @Input()
+  set scheme(scheme: Scheme) {
     this._scheme = scheme || Scheme.primary;
   }
 
@@ -133,7 +135,8 @@ export class ButtonComponent {
     options: [Size.tiny, Size.small, Size.normal, Size.large],
     default: Size.normal
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
   }
 
@@ -152,7 +155,8 @@ export class ButtonComponent {
     default: Outline.fill,
     options: [Outline.transparent, Outline.ghost, Outline.fill]
   })
-  @Input() set outline(outline: Outline) {
+  @Input()
+  set outline(outline: Outline) {
     this._outline = outline || Outline.fill;
   }
 
@@ -162,7 +166,8 @@ export class ButtonComponent {
     default: Width.default,
     options: [Width.default, Width.fluid]
   })
-  @Input() set width(width: Width) {
+  @Input()
+  set width(width: Width) {
     this._width = width || Width.default;
   }
 
@@ -185,7 +190,8 @@ export class ButtonComponent {
     default: ButtonType.button,
     options: [ButtonType.button, ButtonType.submit]
   })
-  @Input() set type(type: ButtonType) {
+  @Input()
+  set type(type: ButtonType) {
     this._type = type || ButtonType.button;
   }
 
@@ -204,7 +210,8 @@ export class ButtonComponent {
     description: 'Click event',
     path: 'EventEmitter'
   })
-  @Output() click = new EventEmitter<any>();
+  @Output()
+  click = new EventEmitter<any>();
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
