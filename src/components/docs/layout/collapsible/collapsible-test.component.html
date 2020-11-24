@@ -20,13 +20,14 @@
               <app-browser-preview>
                 <ng-template #document let-height="height">
                   <jnt-collapsible [title]="!titleControl.value ? 'Filters' : null"
-                                   [icon]="iconControl.value ? ui.icons.settings : null"
+                                   [icon]="iconControl.value ? ui.icons.home : null"
+                                   [orientation]="orientationControl.value"
                                    [opened]="openedControl.value">
                     <ng-template *ngIf="titleControl.value" #collapsibleTitleTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [gutter]="ui.gutter.small"
                                  [align]="ui.align.center">
-                        <jnt-icon data-filter-icon [icon]="ui.icons.information"></jnt-icon>
+                        <jnt-icon data-filter-icon [icon]="ui.icons.home"></jnt-icon>
                         <p>We’re determined to examine filters from your profile’s <b> data </b>,
                           You see <b> personalized </b> job offers.</p>
                       </jnt-stack>
@@ -41,6 +42,21 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.align.stretch">
+                  <jnt-form-item>
+                    <jnt-form-label for="orientation"
+                                    i18n="@@label.orientation">Orientation
+                    </jnt-form-label>
+                    <jnt-select formControlName="orientation" placeholder="Horizontal">
+                      <jnt-select-option label="Horizontal"
+                                         i18n-label="@@label.horizontal"
+                                         [icon]="localUi.icons.horizontal"
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
+                      <jnt-select-option label="Vertical"
+                                         i18n-label="@@label.vertical"
+                                         [icon]="localUi.icons.vertical"
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-item>
                   <jnt-form-item>
                     <jnt-form-label>Features</jnt-form-label>
                     <jnt-checkbox formControlName="title"
@@ -89,6 +105,9 @@
   <![CDATA[ title="Filters"]]>
   <ng-container *ngIf="iconControl.value">
     <![CDATA[ [icon]="ui.icons.settings"]]>
+  </ng-container>
+  <ng-container *ngIf="orientationControl.value">
+    <![CDATA[ [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
   </ng-container>
 </ng-container>
   <![CDATA[>]]>
