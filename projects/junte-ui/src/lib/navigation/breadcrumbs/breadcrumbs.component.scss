@@ -49,9 +49,16 @@
       user-select: none;
       white-space: nowrap;
 
+      &[data-disabled='true'] {
+        opacity: .5;
+        pointer-events: none;
+        cursor: default;
+      }
+
       &:last-of-type {
         color: $jnt-primary-text-dark-color;
         pointer-events: none;
+        cursor: default;
       }
     }
   }

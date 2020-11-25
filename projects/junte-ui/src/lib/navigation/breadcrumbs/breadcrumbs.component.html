@@ -5,7 +5,9 @@
            [wrap]="ui.wrap.wrap"
            [align]="ui.align.center">
   <ng-container *ngFor="let crumb of breadcrumbs">
-    <a (click)="router.navigate([crumb.url], {relativeTo: crumb.route})" href="javascript:;">
+    <a (click)="router.navigate([crumb.url], {relativeTo: crumb.route})"
+       href="javascript:;"
+       [attr.data-disabled]="crumb.disabled">
       {{crumb.title}}
     </a>
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>

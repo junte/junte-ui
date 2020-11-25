@@ -4,13 +4,18 @@ import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/rou
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
-import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 import { UI } from '../../core/enums/ui';
+import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 
 class Breadcrumb {
-  constructor(public route: ActivatedRoute,
-              public title = null,
-              public url = '.') {
+
+  route: ActivatedRoute;
+  title = null;
+  disabled = false;
+  url = '.';
+
+  constructor(defs = null) {
+    Object.assign(this, defs);
   }
 }
 
@@ -68,20 +73,25 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       if (route.routeConfig && route.routeConfig.data) {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
-          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(b => {
-            if (typeof b === 'string') {
-              if (!!b) {
-                breadcrumbs.push(new Breadcrumb(route, b));
+          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(crumb => {
+            if (typeof crumb === 'string') {
+              if (!!crumb) {
+                breadcrumbs.push(new Breadcrumb({route, title: crumb}));
               }
-            } else if (b !== null && typeof b === 'object') {
-              const title = b.label;
+            } else if (!!crumb && typeof crumb === 'object') {
+              const title = crumb.label;
               if (!!title) {
-                breadcrumbs.push(new Breadcrumb(route, title, b.url));
+                breadcrumbs.push(new Breadcrumb({
+                  route,
+                  title,
+                  url: crumb.url,
+                  disabled: crumb.disabled
+                }));
               }
             } else {
-              const title = b(route.snapshot.data);
+              const title = crumb(route.snapshot.data);
               if (!!title) {
-                breadcrumbs.push(new Breadcrumb(route, title, '.'));
+                breadcrumbs.push(new Breadcrumb({route, title}));
               }
             }
           });
