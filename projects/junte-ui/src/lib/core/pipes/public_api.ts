@@ -8,3 +8,6 @@ export * from './color/lighten-darken.pipe';
 export * from './color/text-brightness.pipe';
 export * from './text-pipes.module';
 export * from './text/empty.pipe';
+export * from './math-pipes.module';
+export * from './math/trunc.pipe';
+export * from './math/round.pipe';

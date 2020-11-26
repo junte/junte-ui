@@ -16,5 +16,5 @@ import { TruncPipe } from './math/trunc.pipe';
     RoundPipe
   ]
 })
-export class TextPipesModule {
+export class MathPipesModule {
 }

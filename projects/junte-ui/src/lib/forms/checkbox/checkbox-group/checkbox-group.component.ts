@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  QueryList
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -29,7 +38,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   private _size: Size = Size.normal;
   private selectedItems = [];
-  math = Math;
 
   checkboxesControl = this.fb.array([]);
   form = this.fb.group({
