@@ -49,7 +49,6 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
 
   private _size = Size.normal;
   selected: any;
-  math = Math;
 
   radiosControl = this.fb.array([]);
   form = this.fb.group({

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MathPipesModule } from '../../core/pipes/math-pipes.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { GridModule } from '../../layout/grid/grid.module';
@@ -15,7 +16,8 @@ import { CheckboxComponent } from './checkbox.component';
     IconModule,
     StackModule,
     GridModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    MathPipesModule
   ],
   exports: [
     CheckboxComponent,

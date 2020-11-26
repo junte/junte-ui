@@ -29,8 +29,9 @@
                     <ng-template *ngIf="legendControl.value" #progressBarLegendTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
                                  [justify]="ui.justify.between">
-                        <span>{{math.round(valueControl.value * 10)/10}}%</span>
-                        <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
+                        <span>{{((valueControl.value * 10) | round)/10}}%</span>
+                        <span>{{valueControl.value > 100 || valueControl.value < 0 ? ''
+                          : (((100 - valueControl.value) * 10) | round)/10 + '%'}}</span>
                       </jnt-stack>
                     </ng-template>
 
@@ -102,8 +103,9 @@
     <ng-template #progressBarLegendTemplate>
       <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center"
                  [justify]="ui.justify.between">
-        <span>{{math.round(valueControl.value * 10)/10}}%</span>
-        <span>{{valueControl.value > 100 || valueControl.value < 0 ? '' : math.round(((100 - valueControl.value) * 10))/10 + '%'}}</span>
+        <span>{{((valueControl.value * 10) | round)/10}}%</span>
+        <span>{{valueControl.value > 100 || valueControl.value < 0 ? ''
+          : (((100 - valueControl.value) * 10) | round)/10 + '%'}}</span>
       </jnt-stack>
     </ng-template>
     ]]>
