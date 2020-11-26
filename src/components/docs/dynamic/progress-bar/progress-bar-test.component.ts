@@ -14,7 +14,6 @@ export class ProgressBarTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  math = Math;
   types = {progress: ProgressBarComponent};
   added = false;
 

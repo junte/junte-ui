@@ -9,7 +9,7 @@ import {
     GridModule,
     IconModule,
     InputModule,
-    LinkModule,
+    LinkModule, MathPipesModule,
     ProgressBarModule,
     StackModule,
     TabsModule
@@ -34,7 +34,8 @@ import { ProgressBarTestComponent } from './progress-bar-test.component';
         FormModule,
         CheckboxModule,
         AppLayoutModule,
-        ButtonModule
+        ButtonModule,
+        MathPipesModule
     ],
   exports: [
     ProgressBarTestComponent
