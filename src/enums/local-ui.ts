@@ -90,6 +90,7 @@ export class LocalUI {
       stack: 'stack:font:junte-ui-test-layout',
       picture: 'picture:font:junte-ui-test-layout',
       shortcut: 'shortcut:font:junte-ui-test-layout',
+      slider: 'slider:font:junte-ui-test-layout',
     // layout
      padding: {
        tiny: 'padding-tiny:font:junte-ui-test-layout',
