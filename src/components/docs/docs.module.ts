@@ -10,6 +10,7 @@ import {
   ModalModule,
   PopoverModule,
   ResponsiveModule,
+  RouterAnimationModule,
   StackModule,
   ThemeSwitcherModule
 } from 'junte-ui';
@@ -45,7 +46,8 @@ import { ModalTestModule } from './overlays/modal/modal-test.module';
     ModalTestModule,
     ResponsiveModule,
     ComponentsModule,
-    AnalyticsDirectivesModule
+    AnalyticsDirectivesModule,
+    RouterAnimationModule
   ],
   declarations: [
     DocsComponent
