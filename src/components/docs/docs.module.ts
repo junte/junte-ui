@@ -22,31 +22,33 @@ import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
+import {MenuModule} from '../../../projects/junte-ui/src/lib/navigation/menu/menu.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HighlightModule,
-    OutletModule,
-    AppLayoutModule,
-    MenuModule,
-    BreadcrumbsModule,
-    ThemeSwitcherModule,
-    PopoverModule,
-    ModalModule,
-    StackModule,
-    BadgeModule,
-    TranslateModule,
-    SelectLangModule,
-    AppFooterModule,
-    DocsRoutingModule,
-    ModalTestModule,
-    ResponsiveModule,
-    ComponentsModule,
-    AnalyticsDirectivesModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HighlightModule,
+        OutletModule,
+        AppLayoutModule,
+        MenuModule,
+        BreadcrumbsModule,
+        ThemeSwitcherModule,
+        PopoverModule,
+        ModalModule,
+        StackModule,
+        BadgeModule,
+        TranslateModule,
+        SelectLangModule,
+        AppFooterModule,
+        DocsRoutingModule,
+        ModalTestModule,
+        ResponsiveModule,
+        ComponentsModule,
+        AnalyticsDirectivesModule,
+        MenuModule
+    ],
   declarations: [
     DocsComponent
   ]
