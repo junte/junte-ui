@@ -22,7 +22,6 @@ import { SelectLangModule } from '../select-lang/select-lang.module';
 import { DocsRoutingModule } from './docs-routing.module';
 import { DocsComponent } from './docs.component';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
-import {MenuModule} from '../../../projects/junte-ui/src/lib/navigation/menu/menu.module';
 
 @NgModule({
     imports: [
