@@ -21,6 +21,9 @@
                           [size]="size"
                           [label]="item.label"
                           [value]="item.value">
+              <ng-template *ngIf="!!item.labelTemplate" #checkboxLabelTemplate>
+                <ng-container *ngTemplateOutlet="item.labelTemplate"></ng-container>
+              </ng-template>
             </jnt-checkbox>
           </jnt-col>
         </jnt-row>
