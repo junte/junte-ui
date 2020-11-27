@@ -32,7 +32,7 @@ build:
     - docker push $DOCKER_IMAGE
     - docker push $DOCKER_CACHE_IMAGE
     - docker push $DOCKER_BUILD_IMAGE
-  
+
 include:
   - template: Dependency-Scanning.gitlab-ci.yml
 
@@ -107,7 +107,8 @@ deploy_production:
   allow_failure: true
   before_script:
     - cd /src/projects/junte-ui
-    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+    - npm config set '//gitlab.example.com/api/v4/projects/<your_project_id>/packages/npm/:_authToken' "${NPM_TOKEN}"
+      npm config set '//gitlab.example.com/api/v4/packages/npm/:_authToken' "${NPM_TOKEN}"
 
 publish_npm_master:
   extends: .base_publish_npm
