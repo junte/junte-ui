@@ -32,7 +32,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input()
   label: string;
 
-  @ContentChild('labelTemplate')
+  @ContentChild('checkboxLabelTemplate')
   labelTemplate: TemplateRef<any>;
 
   @PropertyApi({
