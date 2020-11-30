@@ -1,4 +1,4 @@
-image: docker:18
+image: registry.gitlab.com/junte/docker-hub/docker:19
 variables:
   DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE/cache
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}
@@ -15,7 +15,7 @@ stages:
 build:
   stage: build
   services:
-    - docker:dind
+    - registry.gitlab.com/junte/docker-hub/docker:19-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
@@ -39,7 +39,7 @@ include:
 .base_publish:
   stage: publish
   services:
-    - docker:dind
+    - registry.gitlab.com/junte/docker-hub/docker:19-dind
   dependencies: [ ]
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
