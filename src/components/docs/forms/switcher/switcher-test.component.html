@@ -33,8 +33,9 @@
                                         [features]="[
                                           indicatorControl.value ? ui.feature.badge : null,
                                           selectAllControl.value ? ui.feature.selectAll : null,
-                                          allowEmptyControl.value ? ui.feature.allowEmpty : null
-                                        ]"
+                                          allowEmptyControl.value ? ui.feature.allowEmpty : null,
+                                          adaptedControl.value ? ui.feature.adapted : null
+                                        ] | filterEmpty"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
                                         [marks]="marksControl.value"
@@ -161,20 +162,6 @@
                         <jnt-avatar data-avatar *ngSwitchDefault [size]="ui.size.large"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </ng-container>
-
-<!--                      <ng-container [ngSwitch]="heroControl.value">-->
-<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.spiderman"-->
-<!--                                    [size]="ui.size.large"-->
-<!--                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>-->
-<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.ironman"-->
-<!--                                    [size]="ui.size.large"-->
-<!--                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>-->
-<!--                        <jnt-avatar data-avatar *ngSwitchCase="hero.captainAmerica"-->
-<!--                                    [size]="ui.size.large"-->
-<!--                                    image="assets/images/heroes/captain.svg"></jnt-avatar>-->
-<!--                        <jnt-avatar data-avatar *ngSwitchDefault [size]="ui.size.large"-->
-<!--                                    [icon]="ui.icons.question"></jnt-avatar>-->
-<!--                      </ng-container>-->
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
                       <jnt-row [justify]="ui.justify.between">
@@ -287,6 +274,10 @@
                       <jnt-checkbox formControlName="selectAll"
                                     label="Select all"></jnt-checkbox>
                     </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="adapted"
+                                    label="Adapted"></jnt-checkbox>
+                    </jnt-col>
                   </jnt-row>
                 </jnt-form-item>
                 <jnt-form-item>
@@ -381,12 +372,17 @@ export class SwitcherTestComponent {
     <![CDATA[
     [mode]="ui.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="indicatorControl.value">
+  <ng-container *ngIf="indicatorControl.value || selectAllControl.value || allowEmptyControl.value">
     <![CDATA[
-    [features]="[ui.feature.badge]"]]>
-  </ng-container>
-  <![CDATA[>]]>
-  <![CDATA[
+    [features]="[]]>{{[
+    indicatorControl.value ? ui.feature.badge : null,
+    selectAllControl.value ? ui.feature.selectAll : null,
+    allowEmptyControl.value ? ui.feature.allowEmpty : null,
+    adaptedControl.value ? ui.feature.adapted : null
+    ] | filterEmpty | join}}<![CDATA[]"]]>
+</ng-container>
+<![CDATA[>]]>
+<![CDATA[
   <jnt-switcher-option label="No one"
                        [value]="null"]]>
     <ng-container *ngIf="iconControl.value">

@@ -2,7 +2,6 @@ import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Host
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
-import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
@@ -49,7 +48,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   get orientation() {
-    return this.breakpoint.current === Breakpoint.mobile ? Orientation.vertical : this._orientation;
+    return this._orientation;
   }
 
   @PropertyApi({
@@ -86,9 +85,10 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher',
+    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher; Adapted on mobile',
     path: 'ui.feature',
-    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty]
+    default: '[ui.feature.adapted]',
+    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted]
   })
   @Input()
   set features(features: Feature[]) {
@@ -152,7 +152,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              public breakpoint: BreakpointService) {
   }
 
   writeValue(value: any | any[]) {
