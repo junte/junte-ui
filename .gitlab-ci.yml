@@ -105,9 +105,6 @@ deploy_production:
   stage: deploy
   dependencies: [ ]
   allow_failure: true
-  before_script:
-    - cd /src/projects/junte-ui
-    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_npm_master:
   extends: .base_publish_npm
@@ -123,6 +120,8 @@ publish_npm_master:
 publish_npm_rc:
   extends: .base_publish_npm
   script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish:rc
   only:
     - rc
@@ -130,6 +129,8 @@ publish_npm_rc:
 publish_npm_prod:
   extends: .base_publish_npm
   script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish:prod
   only:
     - prod
