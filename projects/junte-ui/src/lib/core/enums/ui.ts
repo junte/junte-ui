@@ -25,6 +25,7 @@ import { Scheme } from './scheme';
 import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
+import { Stroke } from './stroke';
 import { MenuStyle } from './style';
 import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
@@ -38,6 +39,7 @@ export class UI {
   static theme = Theme;
   static scheme = Scheme;
   static size = Size;
+  static stroke = Stroke;
   static outline = Outline;
   static position = Position;
   static breakpoint = Breakpoint;

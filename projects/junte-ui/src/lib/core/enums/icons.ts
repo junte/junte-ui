@@ -380,6 +380,8 @@ export const icons = {
   yemen: 'yemen:svg:countries:flags',
   zambia: 'zambia:svg:countries:flags',
   zimbabwe: 'zimbabwe:svg:countries:flags',
+
+  rocket: 'rocket:svg:default:stroked',
   // apps
   arnold: 'arnold:svg:apps:apps',
   angular: 'angular:svg:apps:apps',
