@@ -28,7 +28,9 @@
 
 <div data-switcher>
   <div data-scroll>
-    <jnt-stack data-options [orientation]="orientation"
+    <jnt-stack data-options
+               [orientation]="breakpoint.current === ui.breakpoint.mobile && (features | includes : ui.feature.adapted) ?
+                              ui.orientation.vertical : orientation"
                [gutter]="ui.gutter.none"
                [align]="ui.align.stretch">
       <ng-container *ngIf="!loading; else loadingTemplate">
