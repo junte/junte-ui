@@ -8,6 +8,7 @@
   $defs: (
     color: null,
     size: null,
+    stroke: 2px,
     sizes: (
       auto: (
         size: 22px
@@ -72,7 +73,8 @@
     &[data-type='svg'] {
       #{$wrapper} [data-icon] {
         @include jnt-svg-icon((
-          fill: map-get($vars, color)
+          fill: map-get($vars, color),
+          stroke: map-get($vars, stroke),
         ), '&');
         @if map-has-key($vars, size) {
           @include jnt-svg-icon((

@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Rende
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { JunteUIConfig } from '../../../config';
+import { Stroke } from '../../../core/enums/stroke';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
 const DEFAULT_ICONSET = 'default';
@@ -48,6 +49,22 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
 
   get icon() {
     return this.icon$.getValue();
+  }
+
+  @HostBinding('attr.data-stroke')
+  _stroke: Stroke = Stroke.normal;
+
+  @Input()
+  @HostBinding('attr.data-tags')
+  tags: string[];
+
+  @Input()
+  set stroke(stroke: Stroke) {
+    this._stroke = stroke || Stroke.normal;
+  }
+
+  get stroke() {
+    return this._stroke;
   }
 
   private set container(nativeElement: HTMLElement) {
