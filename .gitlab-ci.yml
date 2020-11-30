@@ -107,11 +107,14 @@ deploy_production:
   allow_failure: true
   before_script:
     - cd /src/projects/junte-ui
-    - npm config set @junte:registry '//gitlab.com/api/v4/projects/9560752/packages/npm/:_authToken' "${NPM_TOKEN}"
-    - npm config set '//gitlab.com/api/v4/projects/9560752/packages/npm/:_authToken' "${NPM_TOKEN}"
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_npm_master:
   extends: .base_publish_npm
+  before_script:
+    - cd /src/projects/junte-ui
+    - npm config set @junte:registry '//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
+    - npm config set '//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken' "${CI_JOB_TOKEN}"
   script:
     - npm run publish
   only:
