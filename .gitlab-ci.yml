@@ -113,9 +113,8 @@ publish_npm_master:
   extends: .base_publish_npm
   before_script:
     - cd /src/projects/junte-ui
-    - echo ${CI_JOB_TOKEN}
-    - echo "@junte:registry //gitlab.example.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
-    - echo "//gitlab.example.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - echo "@junte:registry //gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
   script:
     - npm run publish
   only:
