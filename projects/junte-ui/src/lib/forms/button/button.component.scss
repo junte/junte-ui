@@ -8,13 +8,14 @@
   #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
+
     [data-loading] {
       @include jnt-spinner((
         color: $jnt-white-color
       ), '&');
     }
 
-    [data-icon][data-tags*='colored'] {
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
     }
 
@@ -45,13 +46,14 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
+
     [data-loading] {
       @include jnt-spinner((
         color: map-get($scheme, color)
       ), '&');
     }
 
-    [data-icon][tag='colored'] {
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
     }
 
@@ -59,7 +61,7 @@
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
 
-      [data-icon][tag='colored'] {
+      [data-icon] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
       }
 
@@ -90,13 +92,14 @@
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
       border-color: map-get($scheme, inverse-color);
+
       [data-loading] {
         @include jnt-spinner((
           color: map-get($scheme, inverse-color)
         ), '&');
       }
 
-      [data-icon][tag='colored'] {
+      [data-icon] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
       }
 
@@ -104,7 +107,7 @@
         background-color: map-get($scheme, inverse-color);
         color: map-get($scheme, color);
 
-        [data-icon][tag='colored'] {
+        [data-icon] {
           @include jnt-icon((color: map-get($scheme, color)), '&');
         }
 
@@ -132,13 +135,14 @@
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
+
     [data-loading] {
       @include jnt-spinner((
         color: map-get($scheme, color)
       ), '&');
     }
 
-    [data-icon][tag='colored'] {
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
     }
 
@@ -161,13 +165,14 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
+
       [data-loading] {
         @include jnt-spinner((
           color: map-get($scheme, inverse-color)
         ), '&');
       }
 
-      [data-icon][tag='colored'] {
+      [data-icon] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
       }
 
@@ -505,6 +510,7 @@
             border-bottom-left-radius: map-get($bottom, left);
           }
         }
+
         [data-icon] {
           line-height: 1;
         }
