@@ -109,9 +109,6 @@ deploy_production:
 
 publish_npm_master:
   extends: .base_publish_npm
-  environment:
-    name: development
-    url: $SITE_ADDRESS
   before_script:
     - cd /src/projects/junte-ui
     - ls -l
