@@ -35,6 +35,7 @@
 </svg>
 
 <div data-wrapper role="popover"
+     [attr.data-windows]="device.platform.windows"
      [attr.data-padding]="options.padding"
      [ngStyle]="{'max-height': options.maxHeight, 'max-width': options.maxWidth}">
   <div data-title *ngIf="options.title">{{options.title}}</div>

@@ -1,6 +1,7 @@
 import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
@@ -152,7 +153,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private logger: NGXLogger,
-              public breakpoint: BreakpointService) {
+              public breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   writeValue(value: any | any[]) {

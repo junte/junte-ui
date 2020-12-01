@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -87,7 +88,8 @@ export class PopoverComponent {
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef,
               private cd: ChangeDetectorRef,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   private createObserver() {
