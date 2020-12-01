@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "layout/app/variables";
 @import "layout/responsive/responsive";
 @import "layout/app/body/app-body";
@@ -38,6 +39,10 @@
       overflow-y: auto;
       position: relative;
       z-index: 1;
+
+      &[data-windows='true'] {
+        @include jnt-scrollbar();
+      }
     }
     @if map-has-key($vars, padding) {
       $padding: map-get($vars, padding);

@@ -105,6 +105,10 @@
           #{$wrapper} [data-scroll] {
             max-height: map-get($vertical, max-height);
             overflow-y: auto;
+
+            &[data-windows='true'] {
+              @include jnt-scrollbar();
+            }
           }
         }
       }

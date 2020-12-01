@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import "jnt-utils";
 
 @mixin popover-padding($padding) {
   & {
@@ -148,6 +149,10 @@
       box-shadow: $jnt-shadow-normal;
       overflow: auto;
       box-sizing: border-box;
+
+      &[data-windows='true'] {
+        @include jnt-scrollbar();
+      }
     }
     background-color: map-get($vars, background);
 

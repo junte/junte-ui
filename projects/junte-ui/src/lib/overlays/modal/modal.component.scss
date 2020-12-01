@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import "jnt-utils";
 @import 'elements/icon/icon';
 @import 'layout/responsive/responsive';
 
@@ -55,6 +56,10 @@
         overflow-y: auto;
         padding: $jnt-gutter-small;
         box-sizing: border-box;
+
+        &[data-windows='true'] {
+          @include jnt-scrollbar();
+        }
       }
     }
   }
@@ -123,6 +128,10 @@
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
         overflow: auto;
+
+        &[data-windows='true'] {
+          @include jnt-scrollbar();
+        }
         @include max-for-tablet() {
           overflow: visible;
           max-height: none !important;

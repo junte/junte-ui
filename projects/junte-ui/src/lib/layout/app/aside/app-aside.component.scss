@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'layout/app/variables';
+@import "jnt-utils";
 @import 'navigation/menu/menu';
 @import 'layout/responsive/responsive';
 @import 'forms/button/button';
@@ -290,6 +291,10 @@
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+
+        &[data-windows='true'] {
+          @include jnt-scrollbar();
+        }
       }
     }
 

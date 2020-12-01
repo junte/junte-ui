@@ -27,7 +27,7 @@
 </ng-template>
 
 <div data-switcher>
-  <div data-scroll>
+  <div data-scroll [attr.data-windows]="device.platform.windows">
     <jnt-stack data-options
                [orientation]="breakpoint.current === ui.breakpoint.mobile && (features | includes : ui.feature.adapted) ?
                               ui.orientation.vertical : orientation"
