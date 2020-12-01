@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { FlexAlign, FlexJustify } from '../../../core/enums/flex';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Gutter } from '../../../core/enums/gutter';
-import { RowAlign, RowJustify } from '../enums';
 
 @Component({
   selector: 'jnt-row',
@@ -12,7 +12,7 @@ export class RowComponent {
   @HostBinding('attr.host') readonly host = 'jnt-row-host';
 
   @HostBinding('attr.data-align')
-  _align: RowAlign = RowAlign.start;
+  _align: FlexAlign = FlexAlign.start;
 
   @HostBinding('attr.data-gutter')
   _gutter: Gutter = Gutter.small;
@@ -21,38 +21,38 @@ export class RowComponent {
   _spacing: Gutter = Gutter.normal;
 
   @HostBinding('attr.data-justify')
-  _justify: RowJustify = RowJustify.start;
+  _justify: FlexJustify = FlexJustify.start;
 
   @PropertyApi({
     description: 'Vertical align columns',
-    path: 'ui.row.align',
-    default: RowAlign.start,
-    options: [RowAlign.start,
-      RowAlign.center,
-      RowAlign.end,
-      RowAlign.stretch]
+    path: 'ui.align',
+    default: FlexAlign.start,
+    options: [FlexAlign.start,
+      FlexAlign.center,
+      FlexAlign.end,
+      FlexAlign.stretch]
   })
-  @Input() set align(align: RowAlign) {
-    this._align = align || RowAlign.start;
+  @Input() set align(align: FlexAlign) {
+    this._align = align || FlexAlign.start;
   }
 
   @PropertyApi({
     description: 'Horizontal align of elements',
     path: 'ui.justify',
-    default: RowJustify.start,
-    options: [RowJustify.start,
-      RowJustify.center,
-      RowJustify.end,
-      RowJustify.between,
-      RowJustify.around,
-      RowJustify.evenly]
+    default: FlexJustify.start,
+    options: [FlexJustify.start,
+      FlexJustify.center,
+      FlexJustify.end,
+      FlexJustify.between,
+      FlexJustify.around,
+      FlexJustify.evenly]
   })
-  @Input() set justify(justify: RowJustify) {
-    this._justify = justify || RowJustify.start;
+  @Input() set justify(justify: FlexJustify) {
+    this._justify = justify || FlexJustify.start;
   }
 
   @PropertyApi({
-    description: 'Top margin of columns while wrapping',
+    description: 'Spacing between columns while wrapping',
     path: 'ui.gutter',
     default: Gutter.normal,
     options: [Gutter.tiny,

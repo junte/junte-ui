@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { ContentApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
@@ -25,10 +25,10 @@ export class AppHeaderComponent {
   headerLogoTemplate: TemplateRef<any>;
 
   @ContentApi({
-    selector: '#headerMenuTemplate',
-    description: 'Menu template'
+    selector: '#headerContentTemplate',
+    description: 'Header content template'
   })
-  @ContentChild('contentTemplate')
+  @ContentChild('headerContentTemplate')
   contentTemplate: TemplateRef<any>;
 
   @ContentChild(MenuComponent)
@@ -48,7 +48,8 @@ export class AppHeaderComponent {
   @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger,
+              public cd: ChangeDetectorRef) {
   }
 
   hide() {

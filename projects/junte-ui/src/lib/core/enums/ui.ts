@@ -3,7 +3,6 @@ import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
 import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/enums';
 import { SelectMode } from '../../forms/select/enums';
-import { RowAlign, RowJustify } from '../../layout/grid/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
@@ -63,7 +62,6 @@ export class UI {
   static placement = Placement;
   static trigger = Triggers;
   static text = {align: TextAlign, transform: TextTransform};
-  static grid = {row: {align: RowAlign, justify: RowJustify}};
   static datePicker = {type: DatePickerType};
   static skeleton = {type: SkeletonType};
   static pager = {mode: PagerMode};

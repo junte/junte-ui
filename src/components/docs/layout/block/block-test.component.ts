@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BlockComponent, TabComponent, UI } from 'junte-ui';
+import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -12,6 +13,7 @@ export class BlockTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {block: BlockComponent};
 
   @ViewChild('block')

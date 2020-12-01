@@ -5,12 +5,15 @@
 @mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    width: 400px,
-    height: 400px
   );
 
   $vars: $passed;
   $declare: false;
+
+  $wrapper: null;
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);

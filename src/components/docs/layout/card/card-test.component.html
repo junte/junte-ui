@@ -123,7 +123,8 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="width"
                                 placeholder="Default"
-                                i18n-primary="@@label.default">
+                                i18n-primary="@@label.default"
+                                [features]="[ui.feature.allowEmpty]">
                     <jnt-switcher-option label="Default"
                                          i18n-label="@@label.default"
                                          [icon]="localUi.icons.default"
@@ -140,7 +141,7 @@
                                   i18n="@@label.states">States
                   </jnt-form-label>
                   <jnt-switcher formControlName="state"
-                                [features]="ui.feature.allowEmpty">
+                                [features]="[ui.feature.allowEmpty]">
                     <jnt-switcher-option label="Loading"
                                          i18n-label="@@label.loading"
                                          [icon]="ui.icons.animated.spinner"
@@ -207,7 +208,7 @@
                         </jnt-form-label>
                         <jnt-switcher formControlName="picture"
                                       placeholder="url"
-                                      [features]="ui.feature.allowEmpty">
+                                      [features]="[ui.feature.allowEmpty]">
                           <jnt-switcher-option label="Url"
                                                value="url"
                                                [icon]="localUi.icons.component"></jnt-switcher-option>
@@ -223,7 +224,8 @@
                         <jnt-form-label for="position">Picture position
                         </jnt-form-label>
                         <jnt-switcher formControlName="position"
-                                      placeholder="Left">
+                                      placeholder="Left"
+                                      [features]="[ui.feature.allowEmpty]">
                           <jnt-switcher-option label="Left"
                                                [icon]="localUi.icons.start"
                                                [value]="ui.position.left"></jnt-switcher-option>
@@ -277,7 +279,7 @@
                   </ng-container>
                   <ng-container *ngIf="stateControl.value">
                     <![CDATA[
-                    [state]="ui.card.state.]]>{{stateControl.value}}<![CDATA["]]>
+                    [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="adaptedControl.value && clickableControl.value; else only">
                     <![CDATA[

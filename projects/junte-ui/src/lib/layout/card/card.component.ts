@@ -92,7 +92,7 @@ export class CardComponent {
 
   @ContentApi({
     selector: '#cardActionsTemplate',
-    description: 'card actions template'
+    description: 'Card actions template'
   })
   @ContentChild('cardActionsTemplate')
   cardActionsTemplate: TemplateRef<any>;

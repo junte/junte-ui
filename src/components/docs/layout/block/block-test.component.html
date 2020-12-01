@@ -148,7 +148,8 @@
                     </jnt-form-label>
                     <jnt-switcher formControlName="width"
                                   placeholder="Default"
-                                  i18n-primary="@@label.default">
+                                  i18n-primary="@@label.default"
+                                  [features]="[ui.feature.allowEmpty]">
                       <jnt-switcher-option label="Default"
                                            i18n-label="@@label.default"
                                            [icon]="localUi.icons.default"
@@ -165,7 +166,7 @@
                                     i18n="@@label.states">States
                     </jnt-form-label>
                     <jnt-switcher formControlName="state"
-                                  [features]="ui.feature.allowEmpty">
+                                  [features]="[ui.feature.allowEmpty]">
                       <jnt-switcher-option label="Loading"
                                            i18n-label="@@label.loading"
                                            [icon]="ui.icons.animated.spinner"
@@ -236,14 +237,22 @@
             <jnt-accordion-section title="Component template"
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
+                <app-code-highlight file="block-test.component.ts" [language]="language.typescript">
+                  <![CDATA[
+                  import { ViewChild } from '@angular/core';
+
+                  @ViewChild('block')
+                  block: BlockComponent;
+                  ]]>
+                </app-code-highlight>
                 <app-code-highlight file="block-test.template.html">
                   <!-- @formatter:off-->
                   <![CDATA[
-                  <jnt-block
-                    ]]>
+                  <jnt-block #block
+                             ]]>
                     <ng-container *ngIf="titleControl.value">
                       <![CDATA[
-                      [title]="'Block title'"]]>
+                      title="Block title"]]>
                     </ng-container>
                     <ng-container *ngIf="paddingControl.value">
                       <![CDATA[
@@ -259,7 +268,7 @@
                     </ng-container>
                     <ng-container *ngIf="stateControl.value">
                       <![CDATA[
-                      [state]="ui.block.state.]]>{{stateControl.value}}<![CDATA["]]>
+                      [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
                     </ng-container>
                     <ng-container *ngIf="adaptedControl.value">
                       <![CDATA[
@@ -291,13 +300,19 @@
                       </ng-template>
                       ]]>
                     </ng-container>
-                    <ng-container *ngIf="helpControl.value" >
+                    <ng-container *ngIf="helpControl.value">
                       <![CDATA[
                       <ng-template #blockHelpTemplate>
                         <div>Popover message here</div>
                       </ng-template>
                       ]]>
                     </ng-container>
+                    <![CDATA[
+                    <jnt-button [scheme]="ui.scheme.success"
+                                [size]="ui.size.small"
+                                text="Success"
+                                (click)="block.success()"></jnt-button>
+                    ]]>
                     <![CDATA[
                   </jnt-block>
                   ]]>
