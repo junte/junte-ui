@@ -1,7 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "forms/button/button";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'forms/button/button';
+@import 'elements/icon/icon';
 
 @mixin jnt-gantt($passed: (), $context: null, $strategy: 'changes') {
 
@@ -39,12 +39,12 @@
     $declare: true;
   }
 
-  :host, #{$context}  {
+  :host, #{$context} {
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
 
-      &[data-width="fluid"] {
+      &[data-width='fluid'] {
         display: block;
         flex: 1;
       }
@@ -74,6 +74,27 @@
           &[data-day] {
             width: 35px;
             border-right: 0;
+
+            @if $declare {
+              text-align: center;
+              font-size: $jnt-font-size-small;
+            }
+            @if map-has-key($vars, day) {
+              $day: map-get($vars, day);
+              &[data-current='true'] {
+                @if map-has-key($day, current) {
+                  $current: map-get($day, current);
+                  color: map-get($current, color);
+                  background-color: map-get($current, background-color);
+                }
+              }
+              &[data-weekend='true'] {
+                @if map-has-key($day, weekend) {
+                  $weekend: map-get($day, weekend);
+                  background-color: map-get($weekend, background-color);
+                }
+              }
+            }
           }
         }
 
@@ -91,6 +112,7 @@
       table-layout: fixed;
       width: 100%;
     }
+
     thead {
       tr {
         &[data-timeline] {
@@ -98,6 +120,7 @@
             background-color: $jnt-secondary-background;
           }
         }
+
         td {
           &[data-controls] {
             @if $declare {
@@ -109,6 +132,7 @@
               width: map-get($period, width);
             }
           }
+
           &[data-day] {
             @if $declare {
               text-align: center;
@@ -132,6 +156,7 @@
               }
             }
           }
+
           &[data-gutter] {
             @if $declare {
               width: 4px;
@@ -140,7 +165,16 @@
         }
       }
     }
+
     tbody {
+      [data-current-line] {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: $jnt-gutter-tiny;
+        background-color: $jnt-red-color;
+      }
+
       tr {
         &[data-nodata] {
           height: map-get($vars, min-height);
@@ -158,6 +192,7 @@
             }
           }
         }
+
         &[data-loading] {
           @if $declare {
             pointer-events: none;
@@ -167,6 +202,7 @@
             }
           }
         }
+
         &:last-child {
           @if $declare {
             td {
@@ -175,6 +211,7 @@
           }
         }
       }
+
       td {
         @if $declare {
           border-bottom: 1px solid $jnt-gray-400-color;
@@ -194,12 +231,14 @@
         }
       }
     }
+
     &[data-year] {
       @if $declare {
         [data-controls] {
           width: auto;
         }
       }
+
       [data-empty] {
         @if map-has-key($vars, title) {
           $title: map-get($vars, title);
