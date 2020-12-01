@@ -211,12 +211,14 @@
         </td>
         <td data-day *ngFor="let day of (current | datesInMonth)"
             [attr.data-current]="day | jntIsToday"
-            [attr.data-weekend]="day | jntIsWeekend">
+            [attr.data-weekend]="day | jntIsWeekend"
+            #calendarDay>
           {{day | jntGetDate}}
         </td>
       </tr>
       </thead>
       <tbody>
+      <div data-current-line #currentLine></div>
       <ng-template #noDataTemplate>
         <tr data-nodata>
           <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
@@ -307,7 +309,12 @@
           <table cellpadding="3" [cellSpacing]="0" data-mobile>
             <tbody>
             <tr *ngFor="let day of (current | datesInMonth)">
-              <td data-day>{{day | jntGetDate}}</td>
+              <td data-day
+                  [attr.data-current]="day | jntIsToday"
+                  [attr.data-weekend]="day | jntIsWeekend"
+                  #calendarDay>
+                {{day | jntGetDate}}
+              </td>
               <ng-container *ngFor="let period of line.periods; let i = index">
 
                 <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">

@@ -2,23 +2,28 @@ import {
   Component,
   ContentChild,
   ContentChildren,
+  ElementRef,
   forwardRef,
   HostBinding,
   HostListener,
   Input,
   QueryList,
-  TemplateRef
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
-import { Width } from '../../core/enums/width';
+import { delay, filter, map } from 'rxjs/operators';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
-import { UI } from '../../core/enums/ui';
-import { today } from '../../forms/calendar/utils';
-import { GanttTypes } from './enums';
 import { Breakpoint } from '../../core/enums/breakpoint';
+import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
+import { today } from '../../forms/calendar/utils';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { GanttTypes } from './enums';
 import { GanttLineComponent } from './gantt-line/gantt-line.component';
 
 @Component({
@@ -45,7 +50,6 @@ export class GanttComponent implements ControlValueAccessor {
 
   private _current: Date = new Date();
   private _width: Width = Width.fluid;
-
 
   get mobile() {
     return this.breakpoint.current === Breakpoint.mobile;
@@ -109,6 +113,12 @@ export class GanttComponent implements ControlValueAccessor {
   @ContentChildren(GanttLineComponent, {descendants: true})
   lines: QueryList<GanttLineComponent>;
 
+  @ViewChildren('calendarDay')
+  calendarDays: QueryList<ElementRef>;
+
+  @ViewChild('currentLine')
+  currentLine: ElementRef;
+
   sections = this.lines;
   today = today();
   error: Error;
@@ -129,7 +139,23 @@ export class GanttComponent implements ControlValueAccessor {
   }
 
   constructor(private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              private renderer: Renderer2) {
+  }
+
+  ngAfterViewInit() {
+    this.calendarDays.changes.pipe(
+      delay(0),
+      filter(() => !!this.currentLine && this.breakpoint.current !== Breakpoint.mobile),
+      map(days => ({days, line: this.currentLine.nativeElement}))
+    ).subscribe(({days, line}) => {
+      const day = days.find(day => day.nativeElement.attributes['data-current'].value === 'true');
+      if (!!day) {
+        this.renderer.setStyle(line, 'display', 'block');
+        this.renderer.setStyle(line, 'left',
+          `${day.nativeElement.offsetLeft + (day.nativeElement.offsetWidth / 2) - 2}px`);
+      }
+    });
   }
 
   writeValue(date: Date): void {
