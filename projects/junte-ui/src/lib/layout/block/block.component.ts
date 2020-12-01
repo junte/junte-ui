@@ -49,7 +49,7 @@ export class BlockComponent {
   }
 
   @HostBinding('attr.data-has-header')
-  get hasHader() {
+  get hasHeader() {
     return !!this.blockHeaderTemplate || !!this.title;
   }
 
@@ -130,18 +130,26 @@ export class BlockComponent {
 
   @ContentApi({
     selector: '#blockHelpTemplate',
-    description: 'block help template'
+    description: 'Block help template'
   })
   @ContentChild('blockHelpTemplate')
   blockHelpTemplate: TemplateRef<any>;
 
+  @ContentApi({
+    selector: '#blockHeaderTemplate',
+    description: 'Block header template'
+  })
   @ContentChild('blockHeaderTemplate')
   blockHeaderTemplate: TemplateRef<any>;
 
+  @ContentApi({
+    selector: '#blockFooterTemplate',
+    description: 'Block footer template'
+  })
   @ContentChild('blockFooterTemplate')
   blockFooterTemplate: TemplateRef<any>;
 
-  @MethodApi({description: 'show success animation'})
+  @MethodApi({description: 'Show success animation'})
   success() {
     this._state.success = true;
     setTimeout(() => this._state.success = false, 2100);

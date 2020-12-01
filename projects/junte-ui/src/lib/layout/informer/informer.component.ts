@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { Gutter } from '../../core/enums/gutter';
 import { Placement } from '../../core/enums/placement';
-import { PropertyApi } from '../../core/decorators/api';
+import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 @Component({
@@ -92,6 +92,10 @@ export class InformerComponent implements OnDestroy {
   @ContentChildren(InformerMessageComponent, {descendants: true})
   messages: QueryList<InformerMessageComponent>;
 
+  @ContentApi({
+    selector: '#informerContentTemplate',
+    description: 'Informer content template'
+  })
   @ContentChild('informerContentTemplate')
   contentTemplate: TemplateRef<any>;
 

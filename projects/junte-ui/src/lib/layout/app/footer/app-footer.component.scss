@@ -1,11 +1,22 @@
 @import "jnt-variables";
+@import "jnt-functions";
 @import "layout/app/variables";
 
 @mixin jnt-app-footer($passed: (), $context: null, $strategy: 'changes') {
 
+  $defs: (
+  );
+
+  $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 

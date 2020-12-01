@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { InformerComponent, UI } from 'junte-ui';
+import { InformerComponent, TabComponent, UI } from 'junte-ui';
+import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -8,17 +9,20 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './informer-test.component.html',
   styleUrls: ['./informer-test.component.scss']
 })
-export class InformerTestComponent {
+export class InformerTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
   types = {informer: InformerComponent};
   errors: string[] = [];
+  language = Language;
 
   state = {ok: false};
 
   @ViewChild('page', {read: ElementRef, static: false})
   backdrop: ElementRef<HTMLElement>;
+
+  @ViewChild('code') code: TabComponent;
 
   contentControl = this.fb.control(null);
   placementControl = this.fb.control(null);
@@ -29,6 +33,11 @@ export class InformerTestComponent {
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
   add() {

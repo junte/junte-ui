@@ -78,7 +78,7 @@
                     <jnt-form-label for="type"
                                     i18n="@@label.sketch">Sketch</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="sketch" [features]="ui.feature.allowEmpty">
+                      <jnt-select formControlName="sketch">
                         <jnt-select-option label="User"
                                            i18n-label="@@label.user"
                                            [key]="sketch.User"></jnt-select-option>
@@ -135,8 +135,7 @@
 
   <ng-container *ngSwitchCase="sketch.User">
     <![CDATA[
-    <jnt-stack [align]="ui.align.center"
-               [orientation]="ui.orientation.vertical">
+    <jnt-stack [align]="ui.align.center">
       <jnt-skeleton [type]="ui.skeleton.type.avatar" ]]>
         <ng-container *ngIf="!animationControl.value">
           <![CDATA[[animated]="false"]]>

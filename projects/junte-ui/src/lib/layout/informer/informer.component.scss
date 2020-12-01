@@ -17,6 +17,11 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
@@ -54,30 +59,19 @@
     }
   }
 
-  ul {
-    @if $declare {
-      color: white;
-      margin: 0;
-      max-width: 350px;
-
-      li:not(:last-child) {
-        margin-bottom: $jnt-gutter-small;
-      }
-
-      &[data-single] {
-        padding: 0;
-        list-style: none;
-        font-size: 1.15em;
-
-        li {
-          text-align: center;
-        }
-      }
-    }
+  #{$context} #{$wrapper} [data-icon] {
+    @include jnt-icon((color: $jnt-white-color, size: 50px), '&');
   }
 
-  [data-icon] {
-    @include jnt-icon((color: $jnt-white-color, size: 50px), '&');
+  #{$context} #{$wrapper} [data-messages] {
+    @if $declare {
+      color: $jnt-white-color;
+      max-width: 350px;
+
+      &[data-single] {
+        font-size: $jnt-font-size-normal;
+      }
+    }
   }
 }
 

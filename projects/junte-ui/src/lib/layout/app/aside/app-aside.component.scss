@@ -3,6 +3,7 @@
 @import 'navigation/menu/menu';
 @import 'layout/responsive/responsive';
 @import 'forms/button/button';
+@import 'elements/icon/icon';
 
 @mixin jnt-app-aside($passed: (), $context: null, $strategy: 'changes') {
 
@@ -45,6 +46,35 @@
       left: 0;
       bottom: 0;
       z-index: 2;
+
+      @include for-mobile() {
+        &[data-opened='true'] {
+          width: 100%;
+
+          #{$wrapper} [data-overlay] {
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+          }
+
+          #{$wrapper} [data-drawer] {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        &[data-opened='false'] {
+          width: 0;
+
+          #{$wrapper} [data-overlay] {
+            opacity: 0;
+          }
+
+          #{$wrapper} [data-drawer] {
+            transform: translate3d(-100%, 0, 0);
+            transition: none;
+          }
+        }
+      }
     }
     position: map-get($vars, position);
   }
@@ -172,7 +202,7 @@
       border: 0;
       border-bottom: 1px solid $jnt-muted-color;
       color: $jnt-primary-text-light-color;
-      font-size: .875rem;
+      font-size: $jnt-font-size-base;
       height: 50px;
       line-height: 50px;
       padding: 0 $jnt-gutter-normal;
@@ -193,15 +223,11 @@
     span {
       @if $declare {
         text-overflow: clip;
-        opacity: 1;
       }
     }
 
-    jnt-icon {
-      @if $declare {
-        color: $jnt-primary-text-color;
-        font-size: 20px;
-      }
+    [data-icon] {
+      @include jnt-icon((color: $jnt-primary-text-color, size: 20px), '&');
     }
 
     @include for-mobile() {
@@ -211,48 +237,12 @@
     }
   }
 
-  @include for-mobile() {
-    :host, #{$context} {
-      &[data-opened='true'] {
-        @if $declare {
-          width: 100%;
-
-          #{$wrapper} [data-overlay] {
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-          }
-
-          #{$wrapper} [data-drawer] {
-            transform: translate3d(0, 0, 0);
-          }
-        }
-      }
-
-      &[data-opened='false'] {
-        @if $declare {
-          width: 0;
-
-          #{$wrapper} [data-overlay] {
-            opacity: 0;
-          }
-
-          #{$wrapper} [data-drawer] {
-            transform: translate3d(-100%, 0, 0);
-            transition: none;
-          }
-        }
-      }
-    }
-  }
-
   #{$context} #{$wrapper} [data-overlay] {
     @if $declare {
       position: absolute;
       top: 0;
       right: 0;
-      content: '';
-      background-color: rgba(0, 0, 0, .4);
+      background-color: rgba(0, 0, 0, 0.4);
       opacity: 0;
       z-index: 1;
     }
@@ -275,9 +265,8 @@
 
     [data-burger] {
       @if $declare {
-        left: 100%;
         position: absolute;
-
+        left: 100%;
         @include jnt-button((
           without-text-corner: 0 $jnt-corner-small $jnt-corner-small 0,
           shadow: 4px 2px 4px 0px rgba($jnt-black-color, 0.25),

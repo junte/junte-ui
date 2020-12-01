@@ -1,13 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
-import { AppLayoutComponent } from 'junte-ui';
-import { AppHeaderComponent } from 'junte-ui';
-import { AppHeaderActionsComponent } from 'junte-ui';
-import { AppHeaderActionComponent } from 'junte-ui';
-import { AppContentComponent } from 'junte-ui';
+import {
+  TabComponent,
+  AppLayoutComponent,
+  AppHeaderComponent,
+  AppHeaderActionsComponent,
+  AppHeaderActionComponent,
+  AppContentComponent,
+  AppAsideComponent,
+  AppHeaderUserbarComponent,
+  UI, BreakpointService,
+  AppPageHeaderComponent
+} from 'junte-ui';
 
 @Component({
   selector: 'app-layout-test',
@@ -24,7 +29,10 @@ export class AppLayoutTestComponent implements OnInit {
     header: AppHeaderComponent,
     actions: AppHeaderActionsComponent,
     action: AppHeaderActionComponent,
-    content: AppContentComponent
+    content: AppContentComponent,
+    aside: AppAsideComponent,
+    userbar: AppHeaderUserbarComponent,
+    pageHeader: AppPageHeaderComponent
   };
 
   @ViewChild('code') code: TabComponent;
@@ -37,6 +45,8 @@ export class AppLayoutTestComponent implements OnInit {
   userMenuControl = this.fb.control(true);
   asideControl = this.fb.control(true);
   footerControl = this.fb.control(true);
+  pageHeaderControl = this.fb.control(true);
+  breadcrumbsControl = this.fb.control(true);
 
   builder = this.fb.group({
     busyness: this.busynessControl,
@@ -46,10 +56,13 @@ export class AppLayoutTestComponent implements OnInit {
     action: this.actionControl,
     userMenu: this.userMenuControl,
     aside: this.asideControl,
-    footer: this.footerControl
+    footer: this.footerControl,
+    pageHeader: this.pageHeaderControl,
+    breadcrumbs: this.breadcrumbsControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              public breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
