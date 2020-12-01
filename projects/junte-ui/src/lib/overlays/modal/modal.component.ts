@@ -12,6 +12,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { MethodApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
@@ -146,6 +147,11 @@ export class ModalComponent {
     return this._opened;
   }
 
+  @HostBinding('attr.data-windows')
+  get windows() {
+    return this.device.platform.windows;
+  }
+
   set content(content: ModalContent) {
     this.contentTemplate = null;
     this.container.clear();
@@ -159,7 +165,8 @@ export class ModalComponent {
 
   constructor(private renderer: Renderer2,
               private hostRef: ElementRef,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   start(event: AnimationEvent) {

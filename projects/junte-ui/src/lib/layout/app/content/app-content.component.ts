@@ -1,4 +1,5 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
+import { DeviceService } from '../../responsive/device.service';
 import { PropertyApi } from '../../../core/decorators/api';
 import { BreadcrumbsComponent } from '../../../navigation/breadcrumbs/breadcrumbs.component';
 import { AppAsideComponent } from '../aside/app-aside.component';
@@ -31,6 +32,11 @@ export class AppContentComponent {
     return !!this.breadcrumbs;
   }
 
+  @HostBinding('attr.data-windows')
+  get windows() {
+    return this.device.platform.windows;
+  }
+
   @ContentChild(AppFooterComponent, {read: ElementRef, static: true})
   footer: AppFooterComponent;
 
@@ -43,4 +49,7 @@ export class AppContentComponent {
   })
   @Input()
   aside: AppAsideComponent;
+
+  constructor(private device: DeviceService) {
+  }
 }

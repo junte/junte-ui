@@ -1,4 +1,5 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { DeviceService } from '../../responsive/device.service';
 import { ContentApi } from '../../../core/decorators/api';
 import { BreakpointService } from '../../responsive/breakpoint.service';
 import { Breakpoint } from '../../../core/enums/breakpoint';
@@ -44,7 +45,8 @@ export class AppAsideComponent implements OnInit {
   @HostBinding('attr.data-opened')
   @Input() opened = false;
 
-  constructor(public breakpoint: BreakpointService) {
+  constructor(public breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   ngOnInit() {

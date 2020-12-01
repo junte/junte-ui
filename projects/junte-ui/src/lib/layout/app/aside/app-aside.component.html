@@ -6,7 +6,7 @@
               (click)="toggle()" data-burger>
   </jnt-button>
 
-  <div data-scroll>
+  <div data-scroll [attr.data-windows]="device.platform.windows">
     <button (click)="collapsed = !collapsed">
       <jnt-stack [orientation]="ui.orientation.horizontal">
         <jnt-icon data-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>

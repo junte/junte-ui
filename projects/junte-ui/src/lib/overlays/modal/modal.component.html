@@ -24,7 +24,8 @@
     </jnt-button>
   </jnt-stack>
 
-  <div [ngStyle]="{'max-height.px': options.maxHeight, 'max-width.px': options.maxWidth}" data-content>
+  <div data-content [ngStyle]="{'max-height.px': options.maxHeight, 'max-width.px': options.maxWidth}"
+       [attr.data-windows]="device.platform.windows">
     <ng-container #container>
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
