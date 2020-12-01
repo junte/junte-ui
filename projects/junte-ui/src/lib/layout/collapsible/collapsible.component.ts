@@ -32,7 +32,8 @@ export class CollapsibleComponent {
 
   @PropertyApi({
     description: 'opened of collapsible',
-    type: 'boolean'
+    type: 'boolean',
+    default: 'false'
   })
   @Input()
   opened = false;

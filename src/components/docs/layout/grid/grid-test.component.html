@@ -32,7 +32,7 @@
                       <jnt-col *ngFor="let block of countControl.value | mockArray"
                                [span]="spanControl.value">
                         <div block
-                             [style.height.px]="alignControl.value !== ui.grid.row.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
+                             [style.height.px]="alignControl.value !== ui.align.stretch || (block + 1) % (12 / (spanControl.value || 1)) === 0 ? 40 + 20 * (block % (12 / (spanControl.value || 1))) : null">
                           {{block + 1}}
                         </div>
                       </jnt-col>
@@ -48,7 +48,7 @@
                   <jnt-form-item>
                     <jnt-form-label for="count">Column count</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="count" placeholder="1" [features]="ui.feature.allowEmpty">
+                      <jnt-select formControlName="count" placeholder="1" [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option *ngFor="let count of 24 | mockArray: 1"
                                            [label]="count"
                                            [key]="count"></jnt-select-option>
@@ -116,19 +116,19 @@
                         <jnt-select-option label="Start"
                                            i18n-label="@@label.start"
                                            [icon]="localUi.icons.start"
-                                           [key]="ui.grid.row.align.start"></jnt-select-option>
+                                           [key]="ui.align.start"></jnt-select-option>
                         <jnt-select-option label="Center"
                                            i18n-label="@@label.center"
                                            [icon]="localUi.icons.center"
-                                           [key]="ui.grid.row.align.center"></jnt-select-option>
+                                           [key]="ui.align.center"></jnt-select-option>
                         <jnt-select-option label="End"
                                            i18n-label="@@label.end"
                                            [icon]="localUi.icons.end"
-                                           [key]="ui.grid.row.align.end"></jnt-select-option>
+                                           [key]="ui.align.end"></jnt-select-option>
                         <jnt-select-option label="Stretch"
                                            i18n-label="@@label.scretch"
                                            [icon]="localUi.icons.stretch"
-                                           [key]="ui.grid.row.align.stretch"></jnt-select-option>
+                                           [key]="ui.align.stretch"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -143,27 +143,27 @@
                         <jnt-select-option label="Start"
                                            i18n-label="@@label.start"
                                            [icon]="localUi.icons.start"
-                                           [key]="ui.grid.row.justify.start"></jnt-select-option>
+                                           [key]="ui.justify.start"></jnt-select-option>
                         <jnt-select-option label="Center"
                                            i18n-label="@@label.center"
                                            [icon]="localUi.icons.center"
-                                           [key]="ui.grid.row.justify.center"></jnt-select-option>
+                                           [key]="ui.justify.center"></jnt-select-option>
                         <jnt-select-option label="End"
                                            i18n-label="@@label.end"
                                            [icon]="localUi.icons.end"
-                                           [key]="ui.grid.row.justify.end"></jnt-select-option>
+                                           [key]="ui.justify.end"></jnt-select-option>
                         <jnt-select-option label="Between"
                                            i18n-label="@@label.between"
                                            [icon]="localUi.icons.between"
-                                           [key]="ui.grid.row.justify.between"></jnt-select-option>
+                                           [key]="ui.justify.between"></jnt-select-option>
                         <jnt-select-option label="Around"
                                            i18n-label="@@label.around"
                                            [icon]="localUi.icons.around"
-                                           [key]="ui.grid.row.justify.around"></jnt-select-option>
+                                           [key]="ui.justify.around"></jnt-select-option>
                         <jnt-select-option label="Evenly"
                                            i18n-label="@@label.evenly"
                                            [icon]="localUi.icons.evenly"
-                                           [key]="ui.grid.row.justify.evenly"></jnt-select-option>
+                                           [key]="ui.justify.evenly"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>
                   </jnt-form-item>
@@ -246,11 +246,11 @@
     </ng-container>
   <ng-container *ngIf="alignControl.value">
     <![CDATA[
-    [align]="ui.grid.row.align.]]>{{alignControl.value}}<![CDATA["]]>
+    [align]="ui.align.]]>{{alignControl.value}}<![CDATA["]]>
   </ng-container>
     <ng-container *ngIf="justifyControl.value">
       <![CDATA[
-      [justify]="ui.grid.row.justify.]]>{{justifyControl.value}}<![CDATA["]]>
+      [justify]="ui.justify.]]>{{justifyControl.value}}<![CDATA["]]>
     </ng-container>
   <![CDATA[>]]>
   <ng-container *ngFor="let i of countControl.value | mockArray">

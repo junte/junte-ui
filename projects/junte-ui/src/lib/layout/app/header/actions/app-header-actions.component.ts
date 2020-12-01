@@ -27,7 +27,6 @@ export class AppHeaderActionsComponent {
       Gutter.big,
       Gutter.huge]
   })
-
   @Input() set gutter(gutter: Gutter) {
     this._gutter = gutter || Gutter.tiny;
   }

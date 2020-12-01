@@ -52,6 +52,7 @@
              [align]="ui.align.stretch">
     <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
     <jnt-button data-burger
+                *ngIf="!!headerUserbarTemplate || !!contentTemplate || !!menu"
                 [icon]="!!reference.popover ? ui.icons.cancel : ui.icons.menu"
                 [outline]="ui.outline.transparent"
                 [jntPopover]="{
@@ -59,8 +60,8 @@
                   trigger: ui.trigger.click,
                   placement: ui.placement.fixed
                 }"
-                (attached)="reference.popover = $event"
-                (removed)="reference.popover = null">
+                (attached)="reference.popover = $event; cd.detectChanges()"
+                (removed)="reference.popover = null; cd.detectChanges()">
     </jnt-button>
     <ng-template #dropdownTemplate>
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">

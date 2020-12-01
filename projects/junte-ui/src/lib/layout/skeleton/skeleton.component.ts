@@ -28,7 +28,6 @@ export class SkeletonComponent {
       SkeletonType.avatar,
       SkeletonType.image]
   })
-
   @HostBinding('attr.data-type')
   @Input() set type(type: SkeletonType) {
     this._type = type || SkeletonType.text;
@@ -44,7 +43,6 @@ export class SkeletonComponent {
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
@@ -54,7 +52,6 @@ export class SkeletonComponent {
     type: 'number',
     default: '1'
   })
-
   @Input() lines = 1;
 
   @PropertyApi({
@@ -62,7 +59,6 @@ export class SkeletonComponent {
     type: 'boolean',
     default: 'true'
   })
-
   @HostBinding('attr.data-animated')
   @Input() animated = true;
 

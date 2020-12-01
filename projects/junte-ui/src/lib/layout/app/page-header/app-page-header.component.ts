@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { PropertyApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
 
 @Component({
@@ -11,12 +12,24 @@ export class AppPageHeaderComponent {
 
   ui = UI;
 
+  @PropertyApi({
+    description: 'Icon for page header',
+    type: 'string'
+  })
   @Input()
   icon: string;
 
+  @PropertyApi({
+    description: 'Title for page header',
+    type: 'string'
+  })
   @Input()
   title: string;
 
+  @PropertyApi({
+    description: 'Teaser for page header',
+    type: 'string'
+  })
   @Input()
   teaser: string;
 

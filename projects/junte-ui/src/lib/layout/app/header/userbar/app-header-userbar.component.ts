@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { ContentApi, MethodApi } from '../../../../core/decorators/api';
 import { UI } from '../../../../core/enums/ui';
 import { PopoverInstance } from '../../../../overlays/popover/popover.service';
 import { BreakpointService } from '../../../responsive/breakpoint.service';
@@ -16,9 +17,17 @@ export class AppHeaderUserbarComponent {
 
   reference: { popover: PopoverInstance } = {popover: null};
 
+  @ContentApi({
+    selector: '#userbarAvatarTemplate',
+    description: 'Userbar avatar template'
+  })
   @ContentChild('userbarAvatarTemplate')
   userbarAvatarTemplate: TemplateRef<any>;
 
+  @ContentApi({
+    selector: '#userbarMenuTemplate',
+    description: 'Userbar menu template'
+  })
   @ContentChild('userbarMenuTemplate')
   userbarMenuTemplate: TemplateRef<any>;
 
@@ -30,6 +39,7 @@ export class AppHeaderUserbarComponent {
               public cd: ChangeDetectorRef) {
   }
 
+  @MethodApi({description: 'Hide userbar dropdown'})
   hide() {
     this.logger.debug('hide userbar dropdown');
     if (!!this.reference.popover) {

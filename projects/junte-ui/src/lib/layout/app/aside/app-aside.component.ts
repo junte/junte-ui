@@ -1,4 +1,5 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { ContentApi } from '../../../core/decorators/api';
 import { BreakpointService } from '../../responsive/breakpoint.service';
 import { Breakpoint } from '../../../core/enums/breakpoint';
 import { UI } from '../../../core/enums/ui';
@@ -30,6 +31,10 @@ export class AppAsideComponent implements OnInit {
     return this._collapsed;
   }
 
+  @ContentApi({
+    selector: '#asideContentTemplate',
+    description: 'Aside content template'
+  })
   @ContentChild('asideContentTemplate', {static: false})
   contentTemplate: TemplateRef<any>;
 

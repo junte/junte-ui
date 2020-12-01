@@ -7,7 +7,12 @@
 @mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    padding: $app-header-height 0 0 0,
+    padding: (
+      top: $app-header-height,
+      left: 0,
+      bottom: 0,
+      right: 0
+    ),
     background: $jnt-page-background
   );
 
@@ -34,7 +39,13 @@
       position: relative;
       z-index: 1;
     }
-    padding: map-get($vars, padding);
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      padding-top: map-get($padding, top);
+      padding-left: map-get($padding, left);
+      padding-right: map-get($padding, right);
+      padding-bottom: map-get($padding, bottom);
+    }
     background-color: map-get($vars, background);
 
     &[data-with-aside='full'] {
@@ -61,9 +72,6 @@
     @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
 
     &[data-with-footer="false"] {
-      @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
-    }
-    [data-with-footer="false"] {
       @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
     }
   }

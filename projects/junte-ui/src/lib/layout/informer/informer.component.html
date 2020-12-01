@@ -1,10 +1,10 @@
 <ng-template #defaultTemplate>
   <jnt-stack [align]="ui.align.center"
              [gutter]="ui.gutter.large">
-    <jnt-icon data-icon [icon]="icon"></jnt-icon>
-    <ul [attr.data-single]="messages.length === 1">
-      <li *ngFor="let m of messages">{{m.message}}</li>
-    </ul>
+    <jnt-icon [icon]="icon"></jnt-icon>
+    <jnt-stack data-messages [attr.data-single]="messages.length === 1" [gutter]="ui.gutter.small">
+      <div *ngFor="let m of messages">{{m.message}}</div>
+    </jnt-stack>
 
     <jnt-button [scheme]="ui.scheme.success"
                 (click)="ok.emit()" text="Ok"></jnt-button>

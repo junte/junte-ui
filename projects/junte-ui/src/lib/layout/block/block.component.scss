@@ -7,6 +7,7 @@
   $defs: (
     shadow: $jnt-shadow-normal,
     corner: $jnt-corner-normal,
+    min-width: 200px,
     padding: (
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
@@ -60,6 +61,7 @@
       box-sizing: border-box;
     }
     box-shadow: map-get($vars, shadow);
+    min-width: map-get($vars, min-width);
     border-radius: map-get($vars, corner);
     background-color: map-get($vars, background);
 
