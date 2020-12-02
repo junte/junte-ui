@@ -170,7 +170,7 @@ export class FormComponent implements OnInit {
         this.validate(control);
       } else {
         control.markAsDirty();
-        control.updateValueAndValidity();
+        control.updateValueAndValidity({emitEvent: false});
       }
     }
   }
