@@ -173,6 +173,9 @@ export class FormComponent implements OnInit {
         control.updateValueAndValidity({emitEvent: false});
       }
     }
+
+    this.render();
+    this.checked.emit(this.check(this.form));
   }
 
   private refresh(form: FormGroup | FormArray) {
