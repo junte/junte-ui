@@ -22,7 +22,11 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" data-tabs>
+<jnt-stack data-tabs
+           [orientation]="ui.orientation.horizontal"
+           [wrap]="ui.wrap.wrap"
+           [spacing]="ui.gutter.small"
+           [gutter]="ui.gutter.none">
   <a href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
        (click)="active = i; $event.preventDefault()">
