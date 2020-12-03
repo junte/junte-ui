@@ -91,7 +91,7 @@
                            [src]="breakpoint.current === ui.breakpoint.mobile ? 'assets/images/linkedin-logo-small.svg' : 'assets/images/linkedin-logo.svg'">
                     </ng-template>
 
-                    <jnt-menu *ngIf="menuControl.value">
+                    <jnt-menu #topMenu *ngIf="menuControl.value">
                       <jnt-menu-item title="Home"
                                      i18n-title="@@label.home"
                                      [icon]="ui.icons.home"></jnt-menu-item>
@@ -269,7 +269,7 @@
                         </ng-container>
                         <ng-container *ngIf="menuControl.value">
                           <![CDATA[
-                          <jnt-menu>
+                          <jnt-menu #topMenu>
                             <jnt-menu-item [icon]="ui.icons.home"
                                            title="Home"></jnt-menu-item>
                             <jnt-menu-item

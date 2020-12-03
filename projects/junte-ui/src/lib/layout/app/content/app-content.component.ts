@@ -1,7 +1,9 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input } from '@angular/core';
-import { DeviceService } from '../../responsive/device.service';
+import { Breakpoint } from '../../../core/enums/breakpoint';
 import { PropertyApi } from '../../../core/decorators/api';
 import { BreadcrumbsComponent } from '../../../navigation/breadcrumbs/breadcrumbs.component';
+import { BreakpointService } from '../../responsive/breakpoint.service';
+import { DeviceService } from '../../responsive/device.service';
 import { AppAsideComponent } from '../aside/app-aside.component';
 import { AppFooterComponent } from '../footer/app-footer.component';
 
@@ -16,6 +18,9 @@ export class AppContentComponent {
 
   @HostBinding('attr.data-with-aside')
   get withAside() {
+    if (this.breakpoint.current === Breakpoint.mobile) {
+      return !!this.aside;
+    } else
     if (!!this.aside) {
       return this.aside.collapsed ? 'collapsed' : 'full';
     }
@@ -50,6 +55,7 @@ export class AppContentComponent {
   @Input()
   aside: AppAsideComponent;
 
-  constructor(private device: DeviceService) {
+  constructor(private device: DeviceService,
+              private breakpoint: BreakpointService) {
   }
 }
