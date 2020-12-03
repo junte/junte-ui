@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-utils";
 @import "elements/icon/icon";
 
 @mixin jnt-chart($passed: (), $context: null, $strategy: 'changes') {
@@ -19,6 +20,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: flex;
     }
   }

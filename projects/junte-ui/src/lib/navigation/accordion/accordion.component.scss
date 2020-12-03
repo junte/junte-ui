@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "elements/icon/icon";
 
 $accordion-marker-height: 2px;
@@ -23,6 +24,7 @@ $accordion-marker-height: 2px;
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: block;
       background-color: $jnt-primary-background;
       padding: $jnt-gutter-normal;

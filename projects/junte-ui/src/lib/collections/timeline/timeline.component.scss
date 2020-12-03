@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "elements/icon/icon";
 
 @mixin jnt-timeline($passed: (), $context: null, $strategy: 'changes') {
@@ -26,6 +27,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: block;
     }
   }

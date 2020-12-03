@@ -38,7 +38,7 @@
 
   :host, #{$context} {
     @if $declare {
-      @include reset-text();
+      @include reset-default();
       display: inline-block;
       position: relative;
     }
@@ -152,7 +152,7 @@
 
   #{$context} #{$wrapper} [data-switcher] {
     @if $declare {
-      border: 1px solid $jnt-gray-700-color;
+      border: 1px solid $jnt-control-border-color;
       overflow: hidden;
     }
     border-radius: map-get($vars, corner);
