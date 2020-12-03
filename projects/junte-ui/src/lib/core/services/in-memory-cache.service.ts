@@ -9,11 +9,11 @@ export class InMemoryCacheService {
     return this.store[key] !== undefined;
   }
 
-  get(key: string) {
+  get<T>(key: string): T {
     return this.store[key];
   }
 
-  set(key: string, data: any) {
+  set<T>(key: string, data: T) {
     this.store[key] = data;
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Locale } from 'date-fns';
+import { format, Locale } from 'date-fns';
 import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { i18nEn } from './core/i18n/en';
 import { localeEnUs as jntEn } from './core/locale/en';
@@ -15,8 +15,9 @@ export interface LocaleUI {
 @Injectable()
 export class JunteUIConfig {
   assets?: string;
+  hash?: string;
   i18n?: any;
-  weekStartsOn?:  0 | 1 | 2 | 3 | 4 | 5 | 6;
+  weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   locale?: {
     ui?: LocaleUI,
     dfns?: Locale
@@ -25,6 +26,7 @@ export class JunteUIConfig {
 
 export const JUNTE_DEFAULT_CONFIG = {
   assets: 'assets',
+  hash: format(new Date(), 'ddLLyyyy'),
   i18n: i18nEn,
   weekStartsOn: 0,
   locale: {
