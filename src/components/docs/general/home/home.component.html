@@ -289,8 +289,29 @@ export class AppComponent {
       <h3>Event.path</h3>
       <jnt-label label="Safary"></jnt-label>
     </jnt-stack>
-    <app-code-highlight [language]="languages.html">
-      <code>import '@junte/ui/polyfills/event-path'</code>
-    </app-code-highlight>
+
+    <p>Add file <code>src/polyfills/event-path.js</code></p>
+    <app-code-highlight [language]="languages.typescript" file="src/polyfills/event-path">
+<![CDATA[
+if (!('path' in Event.prototype)) {
+  Object.defineProperty(Event.prototype, 'path', {
+    get: function () {
+      var path = [];
+      var current = this.target;
+      while (current) {
+        path.push(current);
+        current = current.parentElement;
+      }
+      if (path.indexOf(window) === -1 && path.indexOf(document) === -1) {
+        path.push(document);
+      }
+      if (path.indexOf(window) === -1) {
+        path.push(window);
+      }
+      return path;
+    }
+  });
+}]]></app-code-highlight>
+    <span>Add <code>import 'import './polyfills/event-path';'</code> to your <code>polyfills.ts</code> in src</span>
   </jnt-stack>
 </jnt-container>
