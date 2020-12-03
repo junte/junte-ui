@@ -67,7 +67,7 @@
       <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
         <ng-container *ngIf="!!headerUserbarTemplate">
           <ng-container *ngTemplateOutlet="headerUserbarTemplate;context: {hide: this.hide.bind(this)}"></ng-container>
-          <hr>
+          <hr *ngIf="!!menu || !!contentTemplate">
         </ng-container>
         <ng-container
           *ngTemplateOutlet="menuTemplate;context:{menu: menu, orientation: ui.orientation.vertical, spacing: ui.gutter.small}"></ng-container>
