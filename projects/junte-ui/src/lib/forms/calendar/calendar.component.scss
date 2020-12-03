@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "elements/icon/icon";
 @import "forms/button/button";
 
@@ -34,6 +35,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: block;
       box-sizing: border-box;
       background-color: $jnt-primary-background;

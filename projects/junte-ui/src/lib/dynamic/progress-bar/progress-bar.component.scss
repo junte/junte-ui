@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-utils";
 
 @mixin jnt-progress-bar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -22,6 +23,7 @@
   }
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: flex;
       flex-direction: column;
     }

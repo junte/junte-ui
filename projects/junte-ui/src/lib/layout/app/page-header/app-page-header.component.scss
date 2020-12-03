@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "elements/icon/icon";
 
 @mixin jnt-app-page-header($passed: (), $context: null, $strategy: 'changes') {
@@ -27,6 +28,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: block;
       margin-bottom: $jnt-gutter-normal;
     }

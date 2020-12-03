@@ -1,4 +1,5 @@
 @import 'jnt-variables';
+@import 'jnt-utils';
 @import 'jnt-functions';
 
 @mixin jnt-circle-bar($passed: (), $context: null, $strategy: 'changes') {
@@ -26,6 +27,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       position: relative;
       display: flex;
       align-items: center;

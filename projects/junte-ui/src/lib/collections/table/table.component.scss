@@ -1,6 +1,7 @@
 @import "jnt-variables";
 @import 'jnt-hosts';
 @import "jnt-functions";
+@import "jnt-utils";
 @import "forms/button/button";
 @import "forms/input/input";
 @import "layout/responsive/responsive";
@@ -28,6 +29,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: block;
       padding: $jnt-gutter-normal;
 

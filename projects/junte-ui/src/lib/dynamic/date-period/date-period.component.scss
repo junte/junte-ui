@@ -1,4 +1,5 @@
 @import "jnt-variables";
+@import "jnt-utils";
 @import 'jnt-functions';
 
 @mixin jnt-date-period($passed: (), $context: null, $strategy: 'changes') {
@@ -34,6 +35,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: flex;
       flex-direction: column;
     }

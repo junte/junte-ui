@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "jnt-utils";
 @import "elements/icon/icon";
 @import "layout/responsive/responsive";
 @import "forms/button/button";
@@ -85,6 +86,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: inline-block;
       position: relative;
       min-height: 40px;

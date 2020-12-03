@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-utils';
 @import 'forms/button/button';
 @import 'elements/icon/icon';
 
@@ -41,6 +42,7 @@
 
   :host, #{$context} {
     @if $declare {
+      @include reset-default();
       display: inline-block;
       box-sizing: border-box;
 
