@@ -7,8 +7,10 @@
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
 
-  <div *ngIf="marks" data-switch [attr.data-single]="mode === ui.select.mode.single"><span *ngIf="selected"
-                                                                                       data-indicator></span></div>
+  <div data-switch *ngIf="marks"
+       [attr.data-single]="mode === ui.select.mode.single">
+    <span data-indicator *ngIf="selected"></span>
+  </div>
 
   <jnt-stack *ngIf="label || badge" [orientation]="ui.orientation.horizontal"
              [justify]="ui.justify.between"
@@ -34,19 +36,30 @@
                [gutter]="ui.gutter.none"
                [align]="ui.align.stretch">
       <ng-container *ngIf="!loading; else loadingTemplate">
-        <jnt-stack data-option *ngFor="let option of options"
-                   [attr.data-with-template]="!!option.optionTemplate"
-                   [attr.data-selected]="option.value | check:selected:keyField:version"
-                   [attr.data-disabled]="option.disabled"
-                   (click)="select(option.value)"
-                   [orientation]="ui.orientation.horizontal"
-                   [align]="ui.align.center"
-                   [gutter]="ui.gutter.small"
-                   tabindex="0">
-          <ng-container
-            *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
+        <ng-container *ngFor="let option of options">
+          <ng-container *ngIf="!!option.optionTemplate;else defaultOptionTemplate">
+            <div data-option data-custom-option tabindex="0"
+                 [attr.data-selected]="option.value | check:selected:keyField:version"
+                 [attr.data-disabled]="option.disabled"
+                 (click)="select(option.value)">
+              <ng-container
+                *ngTemplateOutlet="option.optionTemplate; context: {selected: option.value | check:selected:keyField:version }"></ng-container>
+            </div>
           </ng-container>
-        </jnt-stack>
+          <ng-template #defaultOptionTemplate>
+            <jnt-stack data-option tabindex="0"
+                       [orientation]="ui.orientation.horizontal"
+                       [align]="ui.align.center"
+                       [gutter]="ui.gutter.small"
+                       [attr.data-selected]="option.value | check:selected:keyField:version"
+                       [attr.data-disabled]="option.disabled"
+                       (click)="select(option.value)">
+              <ng-container
+                *ngTemplateOutlet="optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
+              </ng-container>
+            </jnt-stack>
+          </ng-template>
+        </ng-container>
       </ng-container>
     </jnt-stack>
   </div>
@@ -57,7 +70,8 @@
            [color]="ui.color.green"
            [value]="selected.length"></jnt-badge>
 
-<jnt-button data-button *ngIf="!!features && features.includes(ui.feature.selectAll) && mode === ui.select.mode.multiple"
+<jnt-button data-button
+            *ngIf="!!features && features.includes(ui.feature.selectAll) && mode === ui.select.mode.multiple"
             [text]="'action.select_all' | translate"
             [outline]="ui.outline.transparent"
             [size]="ui.size.tiny"
