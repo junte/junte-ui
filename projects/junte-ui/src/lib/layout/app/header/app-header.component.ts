@@ -31,7 +31,7 @@ export class AppHeaderComponent {
   @ContentChild('headerContentTemplate')
   contentTemplate: TemplateRef<any>;
 
-  @ContentChild('topMenu')
+  @ContentChild('headerTopMenu')
   menu: MenuComponent;
 
   @ContentApi({
