@@ -6,7 +6,7 @@
   $defs: (
     width: null,
     height: null,
-    fill: null,
+    color: $jnt-gray-dark-color,
     stroke: 1.5px
   );
 
@@ -43,18 +43,18 @@
 
       &[data-stroke='bold'] {
         svg {
-          stroke-width: 2px;
+          // stroke-width: 2px;
         }
       }
 
       svg {
-        stroke: map-get($vars, fill);
+        stroke: map-get($vars, color);
         stroke-width: map-get($vars, stroke);
       }
     }
 
     &[data-tags*='filled'] svg {
-      fill: map-get($vars, fill);
+      fill: map-get($vars, color);
     }
 
     width: map-get($vars, width);

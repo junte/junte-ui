@@ -8,10 +8,10 @@
   $defs: (
     color: null,
     size: null,
-    stroke: 2px,
+    stroke: 1.5px,
     sizes: (
       auto: (
-        size: 22px
+        size: 24px
       ),
       tiny: (
         size: 11px
@@ -59,7 +59,7 @@
     &[data-type='animated'] {
       #{$wrapper} [data-icon] {
         @include jnt-animated-icon((
-          fill: map-get($vars, color)
+          color: map-get($vars, color)
         ), '&');
         @if map-has-key($vars, size) {
           @include jnt-animated-icon((
@@ -73,7 +73,7 @@
     &[data-type='svg'] {
       #{$wrapper} [data-icon] {
         @include jnt-svg-icon((
-          fill: map-get($vars, color),
+          color: map-get($vars, color),
           stroke: map-get($vars, stroke),
         ), '&');
         @if map-has-key($vars, size) {
