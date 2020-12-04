@@ -19,35 +19,40 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document let-height="height">
-                  <ng-template #errorsTemplate>
-                    <jnt-informer *ngIf="!!errors.length"
-                                  [placement]="placementControl.value"
-                                  [backdrop]="backdrop"
-                                  (ok)="errors = []">
-                      <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
-                    </jnt-informer>
-                  </ng-template>
-                  <ng-container *ngIf="contentControl.value; else errorsTemplate">
-                    <jnt-informer *ngIf="state.ok" [placement]="placementControl.value" [backdrop]="backdrop">
-                      <ng-template #informerContentTemplate>
-                        <jnt-stack data-content [align]="ui.align.center">
-                          <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
-                          <div>Your request is approved</div>
-                          <jnt-button text="Ok"
-                                      [scheme]="ui.scheme.success"
-                                      (click)="state.ok = false"></jnt-button>
-                        </jnt-stack>
-                      </ng-template>
-                    </jnt-informer>
-                  </ng-container>
-                  <jnt-container #page>
-                    <ng-template #defaultButton>
-                      <jnt-button (click)="add()" text="Add error"></jnt-button>
+                  <jnt-block [width]="ui.width.fluid" [style.height.px]="height">
+                    <ng-template #errorsTemplate>
+                      <jnt-informer *ngIf="!!errors.length"
+                                    [context]="ui.context.block"
+                                    [placement]="placementControl.value"
+                                    [backdrop]="backdrop"
+                                    (ok)="errors = []">
+                        <jnt-informer-message *ngFor="let error of errors" [message]="error"></jnt-informer-message>
+                      </jnt-informer>
                     </ng-template>
-                    <jnt-button *ngIf="contentControl.value; else defaultButton"
-                                text="Show info"
-                                (click)="state.ok = true"></jnt-button>
-                  </jnt-container>
+                    <ng-container *ngIf="contentControl.value; else errorsTemplate">
+                      <jnt-informer *ngIf="state.ok" [context]="ui.context.block"
+                                    [placement]="placementControl.value"
+                                    [backdrop]="backdrop">
+                        <ng-template #informerContentTemplate>
+                          <jnt-stack data-content [align]="ui.align.center">
+                            <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
+                            <div>Your request is approved</div>
+                            <jnt-button text="Ok"
+                                        [scheme]="ui.scheme.success"
+                                        (click)="state.ok = false"></jnt-button>
+                          </jnt-stack>
+                        </ng-template>
+                      </jnt-informer>
+                    </ng-container>
+                    <jnt-container #page>
+                      <ng-template #defaultButton>
+                        <jnt-button (click)="add()" text="Add error"></jnt-button>
+                      </ng-template>
+                      <jnt-button *ngIf="contentControl.value; else defaultButton"
+                                  text="Show info"
+                                  (click)="state.ok = true"></jnt-button>
+                    </jnt-container>
+                  </jnt-block>
                 </ng-template>
               </app-browser-preview>
             </jnt-col>
@@ -99,16 +104,18 @@
                   import { ViewChild } from '@angular/core';
 
                   @ViewChild('page', {read: ElementRef, static: false})
-                  backdrop: ElementRef<HTMLElement>;]]>
+                  backdrop: ElementRef
+                  <HTMLElement>;]]>
                 </app-code-highlight>
                 <app-code-highlight file="informer-test.template.html">
                   <!-- @formatter:off-->
                   <ng-container *ngIf="contentControl.value">
-                    <![CDATA[<jnt-informer *ngIf="state.ok" [backdrop]="backdrop"]]>
-                    <ng-container *ngIf="placementControl.value">
-                      <![CDATA[ [placement]="ui.placement.]]>{{placementControl.value}}<![CDATA["]]>
-                    </ng-container>
-                    <![CDATA[>
+                    <![CDATA[
+                    <jnt-informer *ngIf="state.ok" [context]="ui.context.block" [backdrop]="backdrop" ]]>
+                      <ng-container *ngIf="placementControl.value">
+                        <![CDATA[ [placement]="ui.placement.]]>{{placementControl.value}}<![CDATA["]]>
+                      </ng-container>
+                      <![CDATA[>
                       <ng-template #informerContentTemplate>
                         <jnt-stack data-content [align]="ui.align.center">
                           <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
@@ -123,7 +130,7 @@
                   </ng-container>
                   <ng-container *ngIf="!contentControl.value">
                     <![CDATA[
-                    <jnt-informer *ngIf="!!errors.length" [backdrop]="backdrop" (ok)="errors = []" ]]>
+                    <jnt-informer *ngIf="!!errors.length" [context]="ui.context.block" [backdrop]="backdrop" (ok)="errors = []" ]]>
                       <ng-container *ngIf="placementControl.value">
                         <![CDATA[ [placement]="ui.placement.]]>{{placementControl.value}}<![CDATA["]]>
                       </ng-container>

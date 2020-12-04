@@ -10,6 +10,7 @@ import {
   Renderer2,
   TemplateRef
 } from '@angular/core';
+import { Context } from '../../core/enums/context';
 import { Gutter } from '../../core/enums/gutter';
 import { Placement } from '../../core/enums/placement';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
@@ -66,6 +67,14 @@ export class InformerComponent implements OnDestroy {
   @Input() set outer(outer: Gutter) {
     this._outer = outer;
   }
+
+  @PropertyApi({
+    description: 'Informer parent container',
+    path: 'ui.context',
+    options: [Context.block]
+  })
+  @HostBinding('attr.data-context')
+  @Input() context: Context;
 
   @PropertyApi({
     description: 'Icon of informer',
