@@ -60,4 +60,13 @@ export class IconComponent {
   get stroke() {
     return this._stroke;
   }
+
+  @PropertyApi({
+    description: 'Size for icon',
+    type: '[ui.size]'
+  })
+  @Input()
+  set size(size: Size) {
+    this._size = size || Size.normal;
+  }
 }
