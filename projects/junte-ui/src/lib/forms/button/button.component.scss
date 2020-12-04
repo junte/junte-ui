@@ -235,6 +235,9 @@
   $defs: (
     corner: $jnt-corner-large,
     border: null,
+    background: null,
+    hover-background: null,
+    color: null,
     shadow: null,
     corners: (
       top: (
@@ -455,6 +458,27 @@
 
           &[data-outline='#{$jnt-outline-transparent-name}'] {
             @include button-transparent($map, $wrapper);
+          }
+        }
+      }
+    }
+
+    &[data-scheme='#{$jnt-scheme-primary-name}'][data-outline='#{$jnt-outline-fill-name}'] {
+      @if map-get($vars, background) {
+        #{$wrapper} button {
+          background: map-get($vars, background);
+        }
+      }
+      @if map-get($vars, hover-background) {
+        #{$wrapper} button:hover {
+          background: map-get($vars, hover-background);
+        }
+      }
+      @if map-get($vars, color) {
+        #{$wrapper} button {
+          color: map-get($vars, color);
+          [data-icon] {
+            @include jnt-icon((color: map-get($vars, color)), '&');
           }
         }
       }
