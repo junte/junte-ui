@@ -60,10 +60,6 @@
           cursor: pointer;
           padding: 0 $jnt-gutter-small;
 
-          &[data-with-template=true] {
-            padding: $jnt-gutter-small;
-          }
-
           &[data-selected="false"]:hover {
             background-color: $jnt-highlight-background;
           }
@@ -168,6 +164,13 @@
         $option: map-get($vars, option);
         [data-option] {
           padding: map-get($option, padding);
+          min-height: map-get($option, height);
+
+          &[data-custom-option] {
+            padding: $jnt-gutter-small;
+            min-height: 0;
+          }
+
           &[data-selected="true"] {
             @if map-has-key($option, active) {
               $active: map-get($option, active);
@@ -177,9 +180,6 @@
             [data-icon] {
               @include jnt-icon((color: $jnt-white-color), '&');
             }
-          }
-          &[data-with-template=false] {
-            min-height: map-get($option, height);
           }
 
           [data-icon] {
