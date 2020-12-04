@@ -94,7 +94,14 @@ export class SvgIconComponent implements OnInit {
             throw new Error(`icon [${this.icon}] not found`);
           }
 
-          icon.setAttribute('child-of', this.host);
+          const encapsulate = (el: Element) => {
+            el.setAttribute('child-of', this.host);
+            for (let i = 0; i < el.children.length; i++) {
+              encapsulate(el.children[i]);
+            }
+          };
+
+          encapsulate(icon);
           icon.setAttribute('width', '100%');
           icon.setAttribute('height', '100%');
           this.render(icon);

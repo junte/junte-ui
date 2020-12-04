@@ -43,13 +43,17 @@
 
       &[data-stroke='bold'] {
         svg {
-          // stroke-width: 2px;
+          stroke-width: 2px;
         }
       }
 
       svg {
         stroke: map-get($vars, color);
         stroke-width: map-get($vars, stroke);
+
+        path, circle {
+          vector-effect: non-scaling-stroke;
+        }
       }
     }
 

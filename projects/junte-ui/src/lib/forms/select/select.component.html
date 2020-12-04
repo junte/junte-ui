@@ -14,7 +14,7 @@
 <jnt-stack data-select [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.tiny" [align]="ui.align.center"
            tabindex="0">
-  <div *ngIf="label" data-label>{{label}}</div>
+  <div *ngIf="!!label" data-label>{{label}}</div>
   <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">

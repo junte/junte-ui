@@ -329,7 +329,8 @@
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         @include jnt-icon((
-          color: map-get($icon, color)
+          color: map-get($icon, color),
+          size: 18px
         ), '&');
       }
     }
