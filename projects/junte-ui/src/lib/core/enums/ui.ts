@@ -1,3 +1,4 @@
+import { Context } from './context';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -61,6 +62,7 @@ export class UI {
   static validator = Validator;
   static placement = Placement;
   static trigger = Triggers;
+  static context = Context;
   static text = {align: TextAlign, transform: TextTransform};
   static datePicker = {type: DatePickerType};
   static skeleton = {type: SkeletonType};
