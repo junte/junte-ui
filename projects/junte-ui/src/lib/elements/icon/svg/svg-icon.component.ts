@@ -54,11 +54,11 @@ export class SvgIconComponent implements OnInit {
     return this._stroke;
   }
 
-  constructor(private http: HttpClient,
+  constructor(private config: JunteUIConfig,
+              private http: HttpClient,
               private cache: InMemoryCacheService,
               private hostRef: ElementRef,
-              private renderer: Renderer2,
-              private config: JunteUIConfig) {
+              private renderer: Renderer2) {
   }
 
   ngOnInit() {

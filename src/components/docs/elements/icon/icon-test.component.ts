@@ -25,10 +25,12 @@ export class IconTestComponent implements OnInit {
     value: UI.icons.animated.runningMan
   });
 
-  sizeControl = this.fb.control(UI.size.normal);
+  sizeControl = this.fb.control(null);
+  strokeControl = this.fb.control(null);
   builder = this.fb.group({
     icon: this.iconControl,
-    size: this.sizeControl
+    size: this.sizeControl,
+    stroke: this.strokeControl
   });
 
   constructor(private fb: FormBuilder) {
