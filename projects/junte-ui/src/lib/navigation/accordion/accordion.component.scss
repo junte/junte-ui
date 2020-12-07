@@ -48,11 +48,19 @@ $accordion-marker-height: 2px;
       &[active='true'] {
         color: $jnt-primary-light-color;
         border-color: $jnt-primary-light-color;
+
+        [data-chevron] {
+          @include jnt-icon((color: $jnt-primary-light-color), '&');
+        }
       }
 
       &:hover {
         &[active='false'] {
           color: $jnt-primary-light-color;
+
+          [data-chevron] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
+          }
         }
       }
     }

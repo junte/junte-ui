@@ -26,8 +26,8 @@ $tab-marker-height: 4px;
         font-weight: $jnt-font-weight-base,
         icon: (
           spacing: $jnt-gutter-small,
+          color: $jnt-primary-text-color,
           size: 18px,
-          color: null
         ),
         focus: (
           outline: null,
@@ -35,7 +35,8 @@ $tab-marker-height: 4px;
         ),
         toggle: (
           toggle: true,
-          margin-left: $jnt-gutter-small
+          margin-left: $jnt-gutter-small,
+          color: $jnt-primary-text-color
         ),
         hover: (
           color: null,
@@ -91,6 +92,7 @@ $tab-marker-height: 4px;
         font-size: $jnt-font-size-base,
         icon: (
           margin-right: $jnt-gutter-small,
+          color: $jnt-primary-text-color,
           sizes: 18px
         ),
         hover: (
@@ -227,8 +229,8 @@ $tab-marker-height: 4px;
               @include jnt-link((
                 icon: (
                   spacing: map-get($icon, spacing),
+                  color: map-get($icon, color),
                   size: map-get($icon, size),
-                  color: map-get($icon, color)
                 )
               ), '&');
             }
@@ -238,7 +240,8 @@ $tab-marker-height: 4px;
               @include jnt-link((
                 toggle: (
                   toggle: map-get($toggle, toggle),
-                  margin-left: map-get($toggle, margin-left)
+                  margin-left: map-get($toggle, margin-left),
+                  color: map-get($toggle, color)
                 )
               ), '&');
             }
@@ -476,7 +479,8 @@ $tab-marker-height: 4px;
             @include jnt-link((
               icon: (
                 margin-right: map-get($icon, margin-right),
-                sizes: map-get($icon, sizes)
+                sizes: map-get($icon, sizes),
+                color: map-get($icon, color)
               )
             ), '&');
           }

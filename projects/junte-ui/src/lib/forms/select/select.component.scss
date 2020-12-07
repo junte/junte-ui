@@ -265,8 +265,10 @@
         }
 
         [data-close], [data-toggle] {
-          @if $declare {
-            color: $jnt-control-disabled-border-color;
+          [data-icon] {
+            @if $declare {
+              @include jnt-icon((color: $jnt-control-disabled-border-color), '&');
+            }
           }
         }
       }
@@ -398,6 +400,7 @@
 
             & > [data-icon] {
               @include jnt-icon((
+                color: $jnt-primary-text-light-color,
                 size: 10px
               ), '&');
             }
@@ -463,10 +466,15 @@
 
         & > [data-icon] {
           @include jnt-icon((
+            color: $jnt-primary-text-light-color,
             size: 12px
           ), '&');
         }
       }
+    }
+
+    [data-spinner] {
+      @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
     }
   }
 

@@ -183,7 +183,6 @@
           #{$wrapper} [data-label-icon] {
             @include jnt-icon((
               size: map-get($map, icon),
-              color: $jnt-primary-text-light-color
             ), '&');
           }
 
@@ -260,6 +259,10 @@
         padding: 6px $jnt-gutter-normal;
       }
 
+      [data-label-icon] {
+        @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+      }
+
       input, textarea {
         @if $declare {
           color: $jnt-primary-text-color;
@@ -303,19 +306,24 @@
 
       [data-warning] {
         @if $declare {
-          color: $jnt-fail-color;
+          [data-icon] {
+            @include jnt-icon((color: $jnt-fail-color), '&');
+          }
         }
       }
 
       [data-checked] {
         @if $declare {
-          color: $jnt-success-color;
-        }
+          [data-icon] {
+            @include jnt-icon((color: $jnt-success-color), '&');
+          }        }
       }
 
       [data-loading] {
         @if $declare {
-          line-height: .8;
+          [data-spinner] {
+            @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
+          }
         }
       }
 
@@ -334,6 +342,10 @@
           @if $declare {
             outline: 0;
           }
+        }
+
+        [data-icon] {
+          @include jnt-icon((color: $jnt-primary-text-light-color), '&');
         }
       }
     }
@@ -355,6 +367,10 @@
           background-color: transparent;
           color: $jnt-primary-text-light-color;
           display: flex;
+
+          [data-icon] {
+            @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+          }
 
           &:focus {
             outline: 0;

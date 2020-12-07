@@ -18,6 +18,9 @@
         color: $jnt-primary-text-light-color,
         active: (
           background-color: $jnt-secondary-color
+        ),
+        icon: (
+          color: $jnt-primary-text-light-color,
         )
       ),
       sub: (
@@ -146,6 +149,10 @@
           )
         ), '&');
 
+        @if map-has-key($item, icon) {
+          $icon: map-get($item, icon);
+          @include jnt-menu((top: (item: (icon: (color: map-get($icon, color))))), '&');
+        }
 
         @if map-has-key($item, active) {
           $active: map-get($item, active);
@@ -205,7 +212,6 @@
       color: $jnt-primary-text-light-color;
       font-size: $jnt-font-size-base;
       height: 50px;
-      line-height: 50px;
       padding: 0 $jnt-gutter-normal;
       cursor: pointer;
       white-space: nowrap;
@@ -228,7 +234,7 @@
     }
 
     [data-icon] {
-      @include jnt-icon((color: $jnt-primary-text-color, size: 20px), '&');
+      @include jnt-icon((color: $jnt-primary-text-light-color, size: 20px), '&');
     }
 
     @include for-mobile() {
