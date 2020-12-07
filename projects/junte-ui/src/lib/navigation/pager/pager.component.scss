@@ -60,7 +60,7 @@
         pointer-events: none;
 
         [data-icon] {
-          color: $jnt-muted-color;
+          @include jnt-icon((color: $jnt-muted-color), '&');
         }
       }
     }
@@ -68,9 +68,9 @@
     [data-icon] {
       @if $declare {
         @include jnt-icon((
+          color: $jnt-primary-text-light-color,
           size: 10px
         ), '&');
-        color: $jnt-primary-text-light-color;
       }
     }
   }

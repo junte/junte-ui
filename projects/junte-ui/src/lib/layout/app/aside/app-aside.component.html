@@ -8,7 +8,7 @@
 
   <div data-scroll [attr.data-windows]="device.platform.windows">
     <button (click)="collapsed = !collapsed">
-      <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-icon data-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>
         <span *ngIf="!collapsed">{{'action.hide_sidebar' | translate}}</span>
       </jnt-stack>

@@ -75,6 +75,9 @@ $tab-marker-height: 4px;
         &:hover {
           [data-tab] {
             color: $jnt-primary-light-color;
+            [data-label] [data-icon] {
+              @include jnt-icon((color: $jnt-primary-light-color), '&');
+            }
           }
 
           &:after {
@@ -88,6 +91,10 @@ $tab-marker-height: 4px;
         [data-tab] {
           @if $declare {
             color: $jnt-primary-light-color;
+          }
+
+          [data-label] [data-icon] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
           }
         }
 
@@ -119,6 +126,17 @@ $tab-marker-height: 4px;
             position: relative;
             z-index: 1;
           }
+
+          [data-badge] {
+            @include jnt-badge((size: 21px), '&');
+          }
+
+          [data-icon] {
+            position: relative;
+            z-index: 1;
+
+            @include jnt-icon((color: $jnt-primary-text-color), '&');
+          }
         }
 
         [data-ripple] {
@@ -132,15 +150,6 @@ $tab-marker-height: 4px;
             height: 50px;
             width: 50px;
           }
-        }
-
-        [data-badge] {
-          @include jnt-badge((size: 21px), '&');
-        }
-
-        [data-icon] {
-          position: relative;
-          z-index: 1;
         }
       }
     }
