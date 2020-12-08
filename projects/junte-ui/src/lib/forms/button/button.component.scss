@@ -91,7 +91,7 @@
   &[data-scheme=#{$jnt-scheme-secondary-name}] {
     #{$wrapper} button {
       color: map-get($scheme, inverse-color);
-      border-color: map-get($scheme, inverse-color);
+      border-color: map-get($scheme, color);
 
       [data-loading] {
         @include jnt-spinner((
@@ -302,60 +302,64 @@
     ),
     sizes: (
       tiny: (
-        padding: 0 20px,
-        padding-without-text: 0 7px,
-        font-size: 10px,
+        padding: 0 $jnt-gutter-normal,
+        padding-without-text: 0 $jnt-gutter-tiny,
+        font-size: 12px,
         height: 24px,
         badge: (
-          size: 18px
+          size: 20px
         ),
         icon: (
-          size: 12px
+          size: 16px,
+          stroke: 1px
         ),
         spinner: (
           size: 8px
         )
       ),
       small: (
-        padding: 0 50px,
-        padding-without-text: 0 10px,
+        padding: 0 $jnt-gutter-normal,
+        padding-without-text: 0 $jnt-gutter-small,
         font-size: 12px,
-        height: 30px,
+        height: 32px,
         badge: (
           size: 24px
         ),
         icon: (
-          size: 14px
+          size: 16px,
+          stroke: 1px
         ),
         spinner: (
           size: 12px
         )
       ),
       normal: (
-        padding: 0 38px,
-        padding-without-text: 0 13px,
-        font-size: 14px,
-        height: 38px,
+        padding: 0 $jnt-gutter-big,
+        padding-without-text: 0 $jnt-gutter-small,
+        font-size: 12px,
+        height: 40px,
         badge: (
           size: 24px
         ),
         icon: (
-          size: 14px
+          size: 24px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 16px
         )
       ),
       large: (
-        padding: 0 36px,
-        padding-without-text: 0 18px,
-        font-size: 16px,
-        height: 50px,
+        padding: 0 $jnt-gutter-large,
+        padding-without-text: 0 12px,
+        font-size: 14px,
+        height: 48px,
         badge: (
           size: 24px
         ),
         icon: (
-          size: 20px
+          size: 24px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 18px
@@ -509,7 +513,8 @@
             $icon: map-get($map, icon);
             #{$wrapper} [data-icon] {
               @include jnt-icon((
-                size: map-get($icon, size)
+                size: map-get($icon, size),
+                stroke: map-get($icon, stroke)
               ), '&');
             }
           }
