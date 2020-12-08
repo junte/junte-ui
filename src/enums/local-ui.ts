@@ -137,6 +137,10 @@ export class LocalUI {
     // type
       number: 'number:svg:layout:filled',
       password: 'password:svg:layout:filled',
+    // stroke
+      thin: 'thin:svg:layout:filled',
+      normal: 'normal:svg:layout:filled',
+      bold: 'bold:svg:layout:filled',
 
       hover: 'hover:svg:layout:filled',
       click: 'click:svg:layout:filled',
