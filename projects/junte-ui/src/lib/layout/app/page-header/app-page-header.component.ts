@@ -1,5 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { PropertyApi } from '../../../core/decorators/api';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
+import { ContentApi, PropertyApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
 
 @Component({
@@ -32,5 +32,12 @@ export class AppPageHeaderComponent {
   })
   @Input()
   teaser: string;
+
+  @ContentApi({
+    selector: '#headerActionsTemplate',
+    description: 'Actions template'
+  })
+  @ContentChild('headerActionsTemplate')
+  headerActionsTemplate: TemplateRef<any>;
 
 }

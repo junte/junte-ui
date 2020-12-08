@@ -24,6 +24,9 @@ export class GanttTestComponent implements OnInit {
   language = Language;
   types = {gantt: GanttComponent, line: GanttLineComponent};
 
+  gitlab = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262';
+
   requests = [];
   now = new Date();
   statuses = GanttRequestStatuses;
