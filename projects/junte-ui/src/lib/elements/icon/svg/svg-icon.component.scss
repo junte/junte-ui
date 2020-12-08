@@ -32,28 +32,30 @@
           opacity: .5;
         }
       }
-    }
 
-    &[data-tags*='stroked'] {
-      &[data-stroke='thin'] {
-        svg {
-          stroke-width: 1px;
+      &[data-tags*='stroked'] {
+        &[data-stroke='thin'] {
+          svg {
+            stroke-width: 1px;
+          }
         }
-      }
 
-      &[data-stroke='bold'] {
+        &[data-stroke='bold'] {
+          svg {
+            stroke-width: 2px;
+          }
+        }
+
         svg {
-          stroke-width: 2px;
+          path, circle {
+            vector-effect: non-scaling-stroke;
+          }
         }
       }
 
       svg {
         stroke: map-get($vars, color);
         stroke-width: map-get($vars, stroke);
-
-        path, circle {
-          vector-effect: non-scaling-stroke;
-        }
       }
     }
 
