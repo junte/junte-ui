@@ -11,6 +11,11 @@ export class FormMessageComponent {
   @HostBinding('attr.host')
   readonly host = 'jnt-form-message-host';
 
+  @HostBinding('attr.data-hidden')
+  get hidden() {
+    return !this.active;
+  }
+
   @Input()
   active = false;
 

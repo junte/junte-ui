@@ -47,22 +47,26 @@
         }
 
         svg {
-          path, circle {
+          shape-rendering: geometricPrecision;
+          path, line, rect, circle {
             vector-effect: non-scaling-stroke;
           }
         }
       }
     }
 
+    $color: map-get($vars, color);
+    $color: if(($color and $color != $jnt-primary-text-color) or $declare, $color, null);
+
     &[data-tags*='stroked'] {
       svg {
-        stroke: map-get($vars, color);
+        stroke: $color;
         stroke-width: map-get($vars, stroke);
       }
     }
 
     &[data-tags*='filled'] svg {
-      fill: map-get($vars, color);
+      fill: $color;
     }
 
     width: map-get($vars, width);

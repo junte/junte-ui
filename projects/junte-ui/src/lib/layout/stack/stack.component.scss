@@ -5,7 +5,7 @@ $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
 
 @mixin stack-gutters($property, $gutter, $wrapper) {
-  & > #{$wrapper} :not(:last-child):not(router-outlet) {
+  & > #{$wrapper} :not(:last-child):not([data-hidden='true']):not(router-outlet) {
     #{$property}: $gutter;
   }
 }

@@ -13,6 +13,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Height } from '../../core/enums/height';
 import { State } from '../../core/enums/state';
@@ -111,6 +112,9 @@ export class FormComponent implements OnInit {
     setTimeout(() => this._state.success = false, 2100);
   }
 
+  constructor(private logger: NGXLogger) {
+  }
+
   ngOnInit() {
     if (!!this.form) {
       this.form.statusChanges.subscribe(() => {
@@ -121,6 +125,7 @@ export class FormComponent implements OnInit {
   }
 
   render() {
+    this.logger.debug('render form');
     if (!!this.controls) {
       this.controls.filter(component => !!component.name && !!component.messages.length)
         .forEach(component => component.check());
@@ -128,6 +133,7 @@ export class FormComponent implements OnInit {
   }
 
   private check(form: FormGroup | FormArray): AbstractControl[] {
+    this.logger.debug('check form');
     let errors = [];
     for (const key in form.controls) {
       const control = form.controls[key];
@@ -140,6 +146,7 @@ export class FormComponent implements OnInit {
         }
       }
     }
+    this.logger.debug('controls have errors = ', errors.map(e => e.name));
     return errors;
   }
 
@@ -152,6 +159,7 @@ export class FormComponent implements OnInit {
 
   @HostListener('submit')
   submit() {
+    this.logger.debug('submit form');
     if (!!this.form) {
       this.validate(this.form);
 
@@ -163,6 +171,7 @@ export class FormComponent implements OnInit {
   }
 
   private validate(form: FormGroup | FormArray) {
+    this.logger.debug('validate form');
     for (const key in form.controls) {
       const control = form.controls[key];
 
@@ -179,6 +188,7 @@ export class FormComponent implements OnInit {
   }
 
   private refresh(form: FormGroup | FormArray) {
+    this.logger.debug('refresh form');
     for (const key in form.controls) {
       const control = form.controls[key];
 

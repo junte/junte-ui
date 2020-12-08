@@ -1,3 +1,4 @@
 export enum Context {
-  block = 'block'
+  block = 'block',
+  modal = 'modal',
 }
