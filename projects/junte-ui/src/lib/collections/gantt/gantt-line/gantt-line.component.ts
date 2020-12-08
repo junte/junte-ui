@@ -16,10 +16,10 @@ export class GanttLineComponent {
   @Input() title: string;
 
   @ContentApi({
-    selector: '#titleTemplate',
+    selector: '#ganttLineTitleTemplate',
     description: 'title template'
   })
-  @ContentChild('title')
+  @ContentChild('ganttLineTitleTemplate')
   titleTemplate: TemplateRef<any>;
 
   @ContentChildren(GanttLinePeriodComponent, {descendants: true})

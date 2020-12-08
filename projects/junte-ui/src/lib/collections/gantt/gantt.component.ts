@@ -104,10 +104,10 @@ export class GanttComponent implements ControlValueAccessor {
   toolsTemplate: TemplateRef<any>;
 
   @ContentApi({
-    selector: '#titleTemplate',
+    selector: '#ganttTitleTemplate',
     description: 'title template'
   })
-  @ContentChild('titleTemplate')
+  @ContentChild('ganttTitleTemplate')
   titleTemplate: TemplateRef<any>;
 
   @ContentChildren(GanttLineComponent, {descendants: true})
