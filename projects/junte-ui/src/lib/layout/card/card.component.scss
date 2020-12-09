@@ -91,6 +91,20 @@
       position: relative;
       min-height: 40px;
       box-sizing: border-box;
+
+      &[data-height='fluid'] {
+        display: flex;
+
+        #{$wrapper} [data-card],
+        #{$wrapper} [data-body] {
+          flex: 1;
+        }
+
+        #{$wrapper} [data-content] {
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
     border-radius: map-get($vars, corner);
 
@@ -231,10 +245,10 @@
         }
       }
 
-     [data-content] {
-       @if $declare {
-         flex: 1;
-       }
+      [data-content] {
+        @if $declare {
+          flex: 1;
+        }
       }
 
       [data-picture] {

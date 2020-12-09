@@ -1,4 +1,5 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { Height } from '../../core/enums/height';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from '../responsive/breakpoint.service';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
@@ -35,6 +36,9 @@ export class CardComponent {
   picture: Picture;
   popover: PopoverComponent;
 
+  @HostBinding('attr.data-height')
+  _height: Height = Height.default;
+
   @HostBinding('attr.data-has-color')
   get hasColor() {
     return !!this.color;
@@ -54,6 +58,16 @@ export class CardComponent {
   })
   @Input()
   title: string;
+
+  @PropertyApi({
+    description: 'Height of card',
+    path: 'ui.height',
+    options: [Height.default, Height.fluid],
+    default: Height.default
+  })
+  @Input() set height(height: Height) {
+    this._height = height || Height.default;
+  }
 
   @PropertyApi({
     description: 'Picture on card',
