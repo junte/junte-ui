@@ -32,6 +32,8 @@ export const icons = {
   print: 'print:svg:default:main|stroked',
   filter: 'filter:svg:default:main|stroked',
   create: 'create:svg:default:main|stroked',
+  smallUp: 'small-up:svg:default:main|stroked',
+  smallDown: 'small-down:svg:default:main|stroked',
   send: 'send:svg:default:main|stroked',
   today: 'today:svg:default:main|filled',
   // navigation
