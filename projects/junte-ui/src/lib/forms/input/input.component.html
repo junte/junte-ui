@@ -63,15 +63,15 @@
 
     <button data-reset *ngIf="!!features && features | includes: feature.allowEmpty" tabindex="-1"
             (click)="clear($event)">
-      <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
+      <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>
     </button>
 
     <div data-arrows *ngIf="type === ui.input.type.number">
       <button [disabled]="inputControl.disabled" (click)="setNumber(step || 1)" tabindex="-1">
-        <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.smallUp"></jnt-icon>
       </button>
       <button [disabled]="inputControl.disabled" (click)="setNumber(-step || -1)" tabindex="-1">
-        <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
+        <jnt-icon [icon]="ui.icons.smallDown"></jnt-icon>
       </button>
     </div>
   </jnt-stack>

@@ -9,11 +9,16 @@
   #{$wrapper} [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
+    padding: map-get($size, padding);
 
     [data-spinner] {
       @include jnt-spinner((
         size: map-get($size, state-icon)
       ), '&');
+    }
+
+    > [data-icon] {
+      @include jnt-icon((size: map-get($size, state-icon)), '&');
     }
   }
 }
@@ -29,37 +34,40 @@
     ),
     sizes: (
       small: (
-        font-size: 11px,
-        height: 30px,
+        padding: 3px $jnt-gutter-small,
+        font-size: 14px,
+        height: 32px,
         chips: (
-          padding: 2px $jnt-gutter-small
+          padding: 0 0 0 $jnt-gutter-small
         ),
         input: (
-          padding: 2px 0 2px $jnt-gutter-small
+          padding: 0 0 0 $jnt-gutter-small
         ),
-        state-icon: 16px
+        state-icon: 24px
       ),
       normal: (
+        padding: $jnt-gutter-tiny $jnt-gutter-small,
         font-size: 14px,
-        height: 38px,
+        height: 40px,
         chips: (
-          padding: 3.5px $jnt-gutter-small
+          padding: 0 0 0 $jnt-gutter-small
         ),
         input: (
           padding: 3px 0 3px $jnt-gutter-small
         ),
-        state-icon: 18px
+        state-icon: 24px
       ),
       large: (
-        font-size: 16px,
-        height: 50px,
+        padding: $jnt-gutter-tiny $jnt-gutter-small,
+        font-size: 14px,
+        height: 48px,
         chips: (
-          padding: $jnt-gutter-small
+          padding: $jnt-gutter-tiny 0 $jnt-gutter-tiny $jnt-gutter-small
         ),
         input: (
           padding: $jnt-gutter-small 0 $jnt-gutter-small $jnt-gutter-small
         ),
-        state-icon: 20px
+        state-icon: 24px
       )
     )
   );
@@ -148,6 +156,7 @@
       [data-select] ul li {
         margin-right: 0;
       }
+
       [data-select] ul {
         li {
           @if $declare {
@@ -318,7 +327,6 @@
       border: 1px solid $jnt-control-border-color;
       border-radius: $jnt-corner-small;
       background-color: $jnt-control-background;
-      padding: $jnt-gutter-tiny $jnt-gutter-small;
       box-sizing: border-box;
       position: relative;
       @include for-mobile() {
@@ -332,7 +340,6 @@
         $icon: map-get($vars, icon);
         @include jnt-icon((
           color: map-get($icon, color),
-          size: 18px
         ), '&');
       }
     }
@@ -348,6 +355,7 @@
         flex: 1;
         list-style: none;
         display: flex;
+        align-items: center;
         flex-wrap: wrap;
         padding: 0;
         margin: 0 0 (-$jnt-gutter-tiny);
@@ -401,8 +409,16 @@
             & > [data-icon] {
               @include jnt-icon((
                 color: $jnt-primary-text-light-color,
-                size: 10px
+                size: 24px
               ), '&');
+            }
+
+            &:hover {
+              & > [data-icon] {
+                @include jnt-icon((
+                  color: $jnt-primary-text-dark-color,
+                ), '&');
+              }
             }
           }
         }
@@ -452,7 +468,7 @@
       @if $declare {
         border: 0;
         background-color: transparent;
-        padding: 0 $jnt-gutter-small;
+        padding: 0;
         color: $jnt-primary-text-light-color;
         margin: 0;
         align-self: stretch;
@@ -467,8 +483,16 @@
         & > [data-icon] {
           @include jnt-icon((
             color: $jnt-primary-text-light-color,
-            size: 12px
+            size: 24px
           ), '&');
+        }
+
+        &:hover {
+          & > [data-icon] {
+            @include jnt-icon((
+              color: $jnt-primary-text-dark-color
+            ), '&');
+          }
         }
       }
     }
@@ -530,6 +554,10 @@
         align-items: center;
         justify-content: center;
         background-color: rgba($jnt-primary-background, .5);
+
+        [data-spinner] {
+          @include jnt-spinner((color: $jnt-primary-light-color, size: 50px), '&');
+        }
       }
     }
 

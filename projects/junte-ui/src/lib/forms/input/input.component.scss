@@ -20,6 +20,7 @@
   }
   #{$wrapper} [data-warning],
   #{$wrapper} [data-checked],
+  #{$wrapper} [data-reset] [data-icon],
   #{$wrapper} [data-view] [data-icon] {
     [data-icon] {
       @include jnt-icon((
@@ -35,25 +36,25 @@
     width: null,
     sizes: (
       small: (
-        font-size: 11px,
-        height: 30px,
-        icon: 12px,
-        chevron: 8px,
-        state-icon: 16px
+        font-size: 14px,
+        height: 32px,
+        icon: 24px,
+        chevron: 10px,
+        state-icon: 24px
       ),
       normal: (
         font-size: 14px,
-        height: 38px,
-        icon: 14px,
+        height: 40px,
+        icon: 24px,
         chevron: 10px,
-        state-icon: 18px
+        state-icon: 24px
       ),
       large: (
-        font-size: 16px,
-        height: 50px,
-        icon: 16px,
-        chevron: 12px,
-        state-icon: 20px
+        font-size: 14px,
+        height: 48px,
+        icon: 24px,
+        chevron: 10px,
+        state-icon: 24px
       )
     ),
     scheme: (
@@ -112,7 +113,6 @@
       background-color: $jnt-control-background;
       color: $jnt-primary-text-color;
       border-radius: $jnt-corner-small;
-      border: 1px solid;
       line-height: 1;
       box-sizing: border-box;
       overflow: hidden;
@@ -126,6 +126,12 @@
       &:focus {
         outline: 0;
       }
+
+      &[data-with-icon='true'] {
+        #{$wrapper} form [data-content] {
+          padding: $jnt-gutter-small;
+        }
+      }
     }
 
     width: map-get($vars, width);
@@ -134,7 +140,7 @@
       $schemes: map-get($vars, scheme);
       @each $scheme, $map in $schemes {
         &[data-scheme='#{$scheme}'] {
-          border-color: map-get($map, border-color);
+          border: 1px solid map-get($map, border-color);
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
             &:hover {
@@ -186,8 +192,7 @@
             ), '&');
           }
 
-          #{$wrapper} [data-arrows] [data-icon],
-          #{$wrapper} [data-reset] [data-icon] {
+          #{$wrapper} [data-arrows] [data-icon] {
             @include jnt-icon((
               size: map-get($map, chevron)
             ), '&');
@@ -256,7 +261,7 @@
         flex: 1;
         max-width: 100%;
         box-sizing: border-box;
-        padding: 6px $jnt-gutter-normal;
+        padding: $jnt-gutter-small $jnt-gutter-normal;
       }
 
       [data-label-icon] {
@@ -316,7 +321,8 @@
         @if $declare {
           [data-icon] {
             @include jnt-icon((color: $jnt-success-color), '&');
-          }        }
+          }
+        }
       }
 
       [data-loading] {
@@ -347,6 +353,12 @@
         [data-icon] {
           @include jnt-icon((color: $jnt-primary-text-light-color), '&');
         }
+
+        &:hover {
+          [data-icon] {
+            @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
+          }
+        }
       }
     }
 
@@ -374,6 +386,12 @@
 
           &:focus {
             outline: 0;
+          }
+
+          &:hover {
+            [data-icon] {
+              @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
+            }
           }
 
           &:first-child {

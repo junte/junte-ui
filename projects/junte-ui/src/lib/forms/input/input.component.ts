@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, forwardRef, HostBinding,HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { filter, map, distinctUntilChanged } from 'rxjs/operators';
@@ -67,6 +78,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('attr.data-width')
   _width: Width = Width.default;
+
+  @HostBinding('attr.data-with-icon')
+  get withIcon() {
+    return !!this.icon;
+  }
 
   @PropertyApi({
     description: 'Icon for input',
