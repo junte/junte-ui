@@ -1,21 +1,58 @@
-<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g spinner transform="translate(15,15) rotate(0)">
-<!--    <path -->
-<!--      d="M15.1598 30C9.71396 30 4.71479 26.9925 2.11207 22.1505C1.9162 21.786 2.04975 21.3315 2.41033 21.1335C2.77091 20.9355 3.22053 21.0705 3.4164 21.435C5.75795 25.7925 10.2585 28.5 15.1598 28.5C22.5242 28.5 28.5146 22.4445 28.5146 15C28.5146 7.5555 22.5242 1.5 15.1598 1.5C10.2393 1.5 5.73124 4.2225 3.39562 8.6055C3.22053 8.934 2.83175 9.0825 2.48452 8.9535C2.1373 8.8245 1.93846 8.4555 2.0171 8.091C2.09575 7.7265 2.99073 6.2 4.23253 4.8495C7.00589 1.797 10.9471 0 15.1613 0C19.1247 0 22.8507 1.56 25.6537 4.3935C28.4568 7.227 30 10.9935 30 15C30 19.0065 28.4568 22.773 25.6537 25.6065C22.8507 28.44 19.1247 30 15.1613 30H15.1598Z"-->
-<!--    />-->
-    <path transform="translate(-15,-15)" stroke="none" stroke-width="1"
-          d="M14.8402 0C20.286 0 25.2852 3.0075 27.8879 7.8495C28.0838 8.214 27.9503 8.6685 27.5897 8.8665C27.2291 9.0645 26.7795 8.9295 26.5836 8.565C24.242 4.2075 19.7415 1.5 14.8402 1.5C7.47576 1.5 1.48536 7.5555 1.48536 15C1.48536 22.4445 7.47576 28.5 14.8402 28.5C19.7607 28.5 24.2688 25.7775 26.6044 21.3945C26.7795 21.066 27.1682 20.9175 27.5155 21.0465C27.8627 21.1755 28.0615 21.5445 27.9829 21.909C27.9042 22.2735 27.0093 23.8 25.7675 25.1505C22.9941 28.203 19.0529 30 14.8387 30C10.8753 30 7.1493 28.44 4.34627 25.6065C1.54323 22.773 0 19.0065 0 15C0 10.9935 1.54323 7.227 4.34627 4.3935C7.1493 1.56 10.8753 0 14.8387 0L14.8402 0Z"
-         />
-  </g>
+<svg data-spinner-icon viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    [spinner] {
-      animation: spinner 1s linear infinite;
-    }
-    @keyframes spinner {
+    @keyframes spinner-icon-dash1 {
       0% {
-        transform: translate(15px,15px) rotate(0deg)
+        stroke-dashoffset: 0;
       }
-      100% {transform: translate(15px,15px) rotate(360deg)}
+      50% {
+        stroke-dashoffset: 90;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes spinner-icon-dash2 {
+      0% {
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dashoffset: 90;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes spinner-icon-rotate {
+      0% {
+        transform: translate(16px,16px) rotate(0turn);
+      }
+      50% {
+        transform: translate(16px,16px) rotate(1.05turn);
+      }
+      100% {
+        transform: translate(16px,16px) rotate(2turn);
+      }
+    }
+
+    [data-spinner-icon] {
+      animation: spinner-rotate 1.5s linear infinite;
+    }
+    [data-stroke-icon-spinner1] {
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: spinner-dash1 1.5s ease-in-out infinite;
+    }
+
+    [data-stroke-icon-spinner2] {
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: spinner-dash2 1.5s ease-in-out infinite;
     }
   </style>
+  <path data-stroke-icon-spinner1 d="M26.59 19C25.55 23 21.6 27 16.0001 27C10.4 27 6.55 23 5.41003 19" stroke="#3949AB" stroke-width="2" stroke-linecap="round"/>
+  <path data-stroke-icon-spinner2 d="M5.41003 13C6.55 9 10.4046 5 16.0001 5C21.5956 5 25.55 9 26.59 13" stroke="#3949AB" stroke-width="2" stroke-linecap="round"/>
 </svg>
