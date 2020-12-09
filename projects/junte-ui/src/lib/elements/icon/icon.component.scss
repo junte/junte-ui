@@ -51,7 +51,7 @@
       #{$wrapper} [data-icon] {
         @include jnt-font-icon((
           color: map-get($vars, color),
-          font-size: if(map-get($vars, size), map-get($vars, size) !important, null)
+          size: if(map-get($vars, size), map-get($vars, size) !important, null)
         ), '&');
       }
     }
@@ -92,7 +92,7 @@
             &:not([data-size='auto']) {
               #{$wrapper} [data-icon] {
                 @include jnt-font-icon((
-                  font-size: map-get($size, size)
+                  size: map-get($size, size)
                 ), '&');
               }
             }
