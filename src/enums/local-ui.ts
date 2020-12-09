@@ -134,6 +134,11 @@ export class LocalUI {
       fill: 'fill:svg:layout:filled',
       ghost: 'ghost:svg:layout:filled',
       transparent: 'transparent:svg:layout:filled',
+    // sizes
+      tiny: 'tiny:svg:layout:filled',
+      small: 'small:svg:layout:filled',
+      normal: 'normal:svg:layout:filled',
+      large: 'large:svg:layout:filled',
     // type
       number: 'number:svg:layout:filled',
       password: 'password:svg:layout:filled',
