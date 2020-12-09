@@ -71,10 +71,6 @@
 
   :host, #{$context} {
     display: block;
-    width: if(map-get($vars, size), map-get($vars, size) !important, null);
-    min-width: if(map-get($vars, size), map-get($vars, size) !important, null);
-    height: if(map-get($vars, size), map-get($vars, size) !important, null);
-    min-height: if(map-get($vars, size), map-get($vars, size) !important, null);
 
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
@@ -83,6 +79,13 @@
           @include spinner-size($map);
         }
       }
+    }
+
+    &[data-size] {
+      width: map-get($vars, size);
+      min-width: map-get($vars, size);
+      height: map-get($vars, size);
+      min-height: map-get($vars, size);
     }
   }
 
