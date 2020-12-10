@@ -4,7 +4,6 @@ import { UI } from 'junte-ui';
 import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
-
 @Component({
   selector: 'app-components',
   templateUrl: './components.component.html',
@@ -19,5 +18,4 @@ export class ComponentsComponent {
   constructor(public router: Router,
               public route: ActivatedRoute) {
   }
-
 }
