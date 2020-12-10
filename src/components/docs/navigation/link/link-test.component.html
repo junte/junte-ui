@@ -68,7 +68,9 @@
                     <jnt-form-label for="scheme"
                                     i18n="@@label.scheme">Scheme</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="scheme" placeholder="Primary">
+                      <jnt-select formControlName="scheme"
+                                  placeholder="Primary"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="Primary"
                                            [icon]="localUi.icons.primary"
                                            [key]="ui.scheme.primary"></jnt-select-option>
@@ -89,7 +91,9 @@
                     <jnt-form-label for="outline"
                                     i18n="@@label.outline">Outline</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="outline" placeholder="Transparent">
+                      <jnt-select formControlName="outline"
+                                  placeholder="Transparent"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="Fill"
                                            [icon]="localUi.icons.fill"
                                            [key]="ui.outline.fill"></jnt-select-option>
@@ -137,7 +141,9 @@
                     <jnt-form-label for="target"
                                     i18n="@@label.target">Target</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="target" placeholder="Self">
+                      <jnt-select formControlName="target"
+                                  placeholder="Self"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="Self" [key]="ui.target.self"></jnt-select-option>
                         <jnt-select-option label="Blank" [key]="ui.target.blank"></jnt-select-option>
                         <jnt-select-option label="Parent" [key]="ui.target.parent"></jnt-select-option>

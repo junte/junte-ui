@@ -33,7 +33,8 @@
                           <jnt-form-label for="skills">Skills</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="skills"
-                                        placeholder="Select skills">
+                                        placeholder="Select skills"
+                                        [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="Immortality"
                                                  [key]="skills.immortality"></jnt-select-option>
                               <jnt-select-option label="Fly"
@@ -50,7 +51,8 @@
                           <jnt-form-label for="sources">Sources</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="sources"
-                                        placeholder="Select source">
+                                        placeholder="Select source"
+                                        [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="Technologies"
                                                  [key]="sources.technologies"></jnt-select-option>
                               <jnt-select-option label="Acquired"
@@ -67,7 +69,8 @@
                           <jnt-form-label for="worlds">Worlds</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="worlds"
-                                        placeholder="Select world">
+                                        placeholder="Select world"
+                                        [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="DC"
                                                  [key]="worlds.dc"></jnt-select-option>
                               <jnt-select-option label="Marvel"

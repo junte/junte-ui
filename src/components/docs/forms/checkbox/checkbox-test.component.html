@@ -108,7 +108,9 @@
                                   i18n="@@label.size">Size
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Tiny"
                                          [icon]="localUi.icons.padding.tiny"
                                          [key]="ui.size.tiny"></jnt-select-option>
@@ -130,7 +132,9 @@
                                   i18n="@@label.cols">Columns
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="cols" placeholder="1">
+                    <jnt-select formControlName="cols"
+                                placeholder="1"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option *ngFor="let col of [1,2,3,4]"
                                          [label]="col"
                                          [key]="col"></jnt-select-option>

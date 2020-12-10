@@ -46,7 +46,9 @@
                     <jnt-form-label for="orientation"
                                     i18n="@@label.orientation">Orientation
                     </jnt-form-label>
-                    <jnt-select formControlName="orientation" placeholder="Horizontal">
+                    <jnt-select formControlName="orientation"
+                                placeholder="Horizontal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.horizontal"

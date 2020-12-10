@@ -66,7 +66,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="key"
                                 placeholder="Key"
-                                i18n-placeholder="@@label.key">
+                                i18n-placeholder="@@label.key"
+                                [features]="[ui.feature.allowEmpty]">
                       <ng-container *ngFor="let key of keys">
                         <jnt-select-option [label]="ui.keyboard.key[key]"
                                            [key]="ui.keyboard.key[key]">
@@ -83,7 +84,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="modifier"
                                 placeholder="Modifier"
-                                i18n-placeholder="@@label.modifier">
+                                i18n-placeholder="@@label.modifier"
+                                [features]="[ui.feature.allowEmpty]">
                       <ng-container *ngFor="let modifier of modifiers">
                         <jnt-select-option [label]="ui.keyboard.modifier[modifier]"
                                            [key]="ui.keyboard.modifier[modifier]">

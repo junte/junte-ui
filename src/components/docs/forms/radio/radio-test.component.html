@@ -114,7 +114,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Tiny"
                                          i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.padding.tiny"
@@ -140,7 +141,9 @@
                                   i18n="@@label.orientation">Orientation
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="orientation" placeholder="Vertical">
+                    <jnt-select formControlName="orientation"
+                                placeholder="Vertical"
+                                [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.horizontal"
@@ -160,7 +163,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="spacing"
                                 placeholder="Small"
-                                i18n-placeholder="@@label.small">
+                                i18n-placeholder="@@label.small"
+                                [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="None"
                                          i18n-label="@@label.none"
                                          [key]="ui.gutter.none"></jnt-select-option>
@@ -197,7 +201,9 @@
                                   i18n="@@label.cols">Columns
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="cols" placeholder="1">
+                    <jnt-select formControlName="cols"
+                                placeholder="1"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option *ngFor="let col of [1,2,3,4]"
                                          [label]="col"
                                          [key]="col"></jnt-select-option>

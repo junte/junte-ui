@@ -198,7 +198,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="mode"
                                 placeholder="Single"
-                                i18n-placeholder="@@label.single">
+                                i18n-placeholder="@@label.single"
+                                [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Single"
                                          i18n-label="@@label.single"
                                          [icon]="localUi.icons.single"
@@ -215,7 +216,9 @@
                   <jnt-form-label for="orientation"
                                   i18n="@@label.orientation">Orientation
                   </jnt-form-label>
-                  <jnt-select formControlName="orientation" placeholder="Horizontal">
+                  <jnt-select formControlName="orientation"
+                              placeholder="Horizontal"
+                              [features]="[ui.feature.allowEmpty]">
                     <jnt-select-option label="Horizontal"
                                        i18n-label="@@label.horizontal"
                                        [icon]="localUi.icons.horizontal"

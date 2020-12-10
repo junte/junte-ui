@@ -51,7 +51,9 @@
                                   i18n="@@label.shape">Shape
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="shape" placeholder="Circle">
+                    <jnt-select formControlName="shape"
+                                placeholder="Circle"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Circle"
                                          i18n-label="@@label.circle"
                                          [icon]="localUi.icons.circle"

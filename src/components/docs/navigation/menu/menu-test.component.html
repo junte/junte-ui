@@ -75,7 +75,8 @@
                   <jnt-form-label for="style"
                                   i18n="@@label.style">Style
                   </jnt-form-label>
-                  <jnt-select formControlName="style" placeholder="Default"
+                  <jnt-select formControlName="style"
+                              placeholder="Default"
                               [features]="[ui.feature.allowEmpty]">
                     <jnt-select-option label="Default"
                                        [key]="ui.menu.style.default"></jnt-select-option>
@@ -91,7 +92,9 @@
                                   i18n="@@label.orientation">Orientation
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="orientation" placeholder="Horizontal">
+                    <jnt-select formControlName="orientation"
+                                placeholder="Horizontal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
                                          [icon]="localUi.icons.horizontal"
@@ -111,7 +114,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="spacing"
                                 placeholder="None"
-                                i18n-placeholder="@@label.none">
+                                i18n-placeholder="@@label.none"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Tiny"
                                          i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.padding.tiny"

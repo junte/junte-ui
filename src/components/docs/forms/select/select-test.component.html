@@ -95,7 +95,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="mode"
                                 placeholder="Single"
-                                i18n-placeholder="@@label.single">
+                                i18n-placeholder="@@label.single"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Single"
                                          i18n-label="@@label.single"
                                          [icon]="localUi.icons.single"
@@ -115,7 +116,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Small"
                                          i18n-label="@@label.small"
                                          [icon]="localUi.icons.padding.small"
