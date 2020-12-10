@@ -71,7 +71,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="padding"
                                   placeholder="Normal"
-                                  i18n-placeholder="@@label.normal">
+                                  i18n-placeholder="@@label.normal"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="None"
                                            i18n-label="@@label.none"
                                            [key]="ui.gutter.none"></jnt-select-option>
@@ -110,7 +111,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="spacing"
                                   placeholder="Normal"
-                                  i18n-placeholder="@@label.normal">
+                                  i18n-placeholder="@@label.normal"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="None"
                                            i18n-label="@@label.none"
                                            [key]="ui.gutter.none"></jnt-select-option>

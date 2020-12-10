@@ -60,7 +60,9 @@
                     <jnt-form-label for="span"
                                     i18n="@@label.column_span">Column span</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="span" placeholder="1">
+                      <jnt-select formControlName="span"
+                                  placeholder="1"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option *ngFor="let count of 12 | mockArray: 1"
                                            [label]="count"
                                            [key]="count"></jnt-select-option>
@@ -74,7 +76,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="spacing"
                                   placeholder="Normal"
-                                  i18n-placeholder="@@label.normal">
+                                  i18n-placeholder="@@label.normal"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="None"
                                            i18n-label="@@label.none"
                                            [key]="ui.gutter.none"></jnt-select-option>
@@ -112,7 +115,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="align"
                                   placeholder="Start"
-                                  i18n-placeholder="@@label.start">
+                                  i18n-placeholder="@@label.start"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="Start"
                                            i18n-label="@@label.start"
                                            [icon]="localUi.icons.start"
@@ -139,7 +143,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="justify"
                                   placeholder="Start"
-                                  i18n-placeholder="@@label.start">
+                                  i18n-placeholder="@@label.start"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="Start"
                                            i18n-label="@@label.start"
                                            [icon]="localUi.icons.start"
@@ -174,7 +179,8 @@
                     <jnt-form-control>
                       <jnt-select formControlName="gutter"
                                   placeholder="Small"
-                                  i18n-placeholder="@@label.small">
+                                  i18n-placeholder="@@label.small"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="None"
                                            i18n-label="@@label.none"
                                            [key]="ui.gutter.none"></jnt-select-option>

@@ -47,7 +47,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Type"
-                                i18n-placeholder="@@label.text">
+                                i18n-placeholder="@@label.text"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Date"
                                          i18n-label="@@label.date"
                                          [key]="ui.datePicker.type.date"></jnt-select-option>

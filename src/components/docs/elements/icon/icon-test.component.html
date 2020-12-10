@@ -45,7 +45,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Tiny"
                                          i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.padding.tiny"
@@ -73,7 +74,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="stroke"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Thin"
                                          i18n-label="@@label.thin"
                                          [key]="ui.stroke.thin"></jnt-select-option>

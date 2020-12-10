@@ -80,7 +80,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Text"
-                                i18n-placeholder="@@label.text">
+                                i18n-placeholder="@@label.text"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Text"
                                          i18n-label="@@label.text"
                                          [icon]="localUi.icons.left"
@@ -104,7 +105,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="scheme"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Normal"
                                          i18n-label="@@label.normal"
                                          [icon]="localUi.icons.primary"
@@ -128,7 +130,8 @@
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
-                                i18n-placeholder="@@label.normal">
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Small"
                                          i18n-label="@@label.small"
                                          [icon]="localUi.icons.padding.small"
@@ -151,7 +154,8 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="align"
                                 placeholder="Left"
-                                i18n-placeholder="@@label.left">
+                                i18n-placeholder="@@label.left"
+                                [features]="[ui.feature.allowEmpty]">
                     <jnt-switcher-option label="Left"
                                          i18n-label="@@label.left"
                                          [icon]="localUi.icons.left"

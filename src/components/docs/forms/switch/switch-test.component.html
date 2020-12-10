@@ -55,7 +55,9 @@
                                   i18n="@@label.size">Size
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-select formControlName="size" placeholder="Normal">
+                    <jnt-select formControlName="size"
+                                placeholder="Normal"
+                                [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Tiny"
                                          i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.padding.tiny"
