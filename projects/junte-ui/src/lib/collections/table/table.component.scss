@@ -6,6 +6,7 @@
 @import "forms/input/input";
 @import "layout/responsive/responsive";
 @import "layout/card/card";
+@import "elements/icon/icon";
 
 @mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
@@ -82,8 +83,7 @@
 
   #{$wrapper} #{$context} [data-nodata] {
     @if $declare {
-      font-size: 80px;
-      color: $jnt-muted-color;
+      @include jnt-icon((color: $jnt-muted-color, size: 80px), '&');
     }
   }
 
@@ -175,8 +175,7 @@
             text-align: center;
 
             [data-icon] {
-              font-size: 80px;
-              color: $jnt-muted-color;
+              @include jnt-icon((color: $jnt-muted-color, size: 80px), '&');
             }
           }
         }

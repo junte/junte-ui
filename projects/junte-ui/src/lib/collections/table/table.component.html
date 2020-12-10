@@ -130,9 +130,9 @@
           </ng-container>
         </jnt-stack>
         <ng-template #noDataCardTemplate>
-          <ng-container *ngIf="!progress.loading; else skeletonCardTemplate">
+          <jnt-stack *ngIf="!progress.loading; else skeletonCardTemplate" [align]="ui.align.center">
             <jnt-icon data-nodata [icon]="ui.icons.neutral"></jnt-icon>
-          </ng-container>
+          </jnt-stack>
           <ng-template #skeletonCardTemplate>
             <ng-container *ngFor="let card of 5 | mockArray">
               <jnt-skeleton [type]="ui.skeleton.type.card"></jnt-skeleton>
