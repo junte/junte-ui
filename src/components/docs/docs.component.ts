@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { RouterOutlet } from '@angular/router';
+import { Breakpoint, BreakpointService, moveFromRight, UI } from 'junte-ui';
 import { CATEGORIES } from 'src/consts';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
@@ -14,6 +15,7 @@ export enum Theme {
   selector: 'app-documentation',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
+  animations: [moveFromRight]
 })
 export class DocsComponent implements OnInit {
 
@@ -29,17 +31,21 @@ export class DocsComponent implements OnInit {
     theme: this.themeControl
   });
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder,
+              private breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
-    this.themeControl.valueChanges
-      .subscribe(theme => {
-        if (theme !== Theme.light) {
-          localStorage.setItem('theme', theme);
-        } else {
-          localStorage.removeItem('theme');
-        }
-      });
+    this.themeControl.valueChanges.subscribe(theme => {
+      if (theme !== Theme.light) {
+        localStorage.setItem('theme', theme);
+      } else {
+        localStorage.removeItem('theme');
+      }
+    });
+  }
+
+  animate(outlet: RouterOutlet) {
+    return this.breakpoint.current === Breakpoint.mobile && outlet?.activatedRouteData?.animation;
   }
 }

@@ -31,7 +31,7 @@ export const routes: Routes = [
       },
       {
         path: 'components',
-        data: {breadcrumb: 'Components'},
+        data: {breadcrumb: 'Components', animation: 'Components'},
         loadChildren: () => loadChildren(import('./components/components.module')
           .then(m => m.ComponentsModule))
       }

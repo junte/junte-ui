@@ -322,6 +322,10 @@
                      [icon]="localUi.icons.other">
         <jnt-badge [value]="categories.other.components.length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
+          <jnt-sub-menu-item title="Animations"
+                             i18n-title="@@label.animations"
+                             [link]="['/components/other/animations']">
+          </jnt-sub-menu-item>
           <jnt-sub-menu-item title="Pipes"
                              i18n-title="@@label.pipes"
                              [link]="['/components/other/pipes']"
@@ -349,7 +353,7 @@
 
   <jnt-app-content [aside]="aside">
     <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
-    <jnt-app-body [outlet]="o">
+    <jnt-app-body [@moveFromRight]="animate(o)">
       <router-outlet #o="outlet"></router-outlet>
     </jnt-app-body>
     <jnt-app-footer>
