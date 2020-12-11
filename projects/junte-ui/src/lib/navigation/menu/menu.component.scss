@@ -91,7 +91,7 @@ $tab-marker-height: 4px;
         corner: $jnt-corner-small,
         font-size: $jnt-font-size-base,
         icon: (
-          margin-right: $jnt-gutter-small,
+          spacing: $jnt-gutter-small,
           color: $jnt-primary-text-color,
           sizes: 18px
         ),
@@ -478,7 +478,7 @@ $tab-marker-height: 4px;
             $icon: map-get($item, icon);
             @include jnt-link((
               icon: (
-                margin-right: map-get($icon, margin-right),
+                spacing: map-get($icon, spacing),
                 sizes: map-get($icon, sizes),
                 color: map-get($icon, color)
               )
