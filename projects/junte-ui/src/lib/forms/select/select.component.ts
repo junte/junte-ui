@@ -323,7 +323,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         break;
       case SelectMode.multiple:
         if (target === this.selectedList.nativeElement) {
-          this.open();
+          this.opened ? this.close() : this.open();
         }
         break;
     }
