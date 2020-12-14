@@ -287,15 +287,23 @@
                   <jnt-form-label for="type"
                                   i18n="@@label.state">State
                   </jnt-form-label>
-                  <jnt-checkbox formControlName="disabled"
-                                label="Disabled"
-                                i18n-label="@@label.disabled"></jnt-checkbox>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="disabled"
+                                    label="Disabled"
+                                    i18n-label="@@label.disabled"></jnt-checkbox>
+                    </jnt-col>
 
-                  <jnt-checkbox formControlName="disabledOption"
-                                label="Disabled option"></jnt-checkbox>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="disabledOption"
+                                    label="Disabled option"></jnt-checkbox>
+                    </jnt-col>
 
-                  <jnt-checkbox formControlName="loading"
-                                label="Loading"></jnt-checkbox>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="loading"
+                                    label="Loading"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
                 </jnt-form-item>
 
               </jnt-stack>
