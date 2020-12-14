@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LoggerModule } from 'ngx-logger';
+import { LpFooterComponent } from './footer/lp-footer.component';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { MenuModule } from '../../navigation/menu/menu.module';
@@ -29,13 +30,15 @@ import { LpSlideComponent } from './slide/lp-slide.component';
     LpLayoutComponent,
     LpRewindComponent,
     LpSlideComponent,
-    LpHeaderComponent
+    LpHeaderComponent,
+    LpFooterComponent
   ],
   exports: [
     LpLayoutComponent,
     LpRewindComponent,
     LpSlideComponent,
-    LpHeaderComponent
+    LpHeaderComponent,
+    LpFooterComponent
   ]
 })
 export class LpModule {
