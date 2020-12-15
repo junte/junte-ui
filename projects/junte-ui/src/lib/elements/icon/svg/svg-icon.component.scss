@@ -60,11 +60,16 @@
 
     $color: map-get($vars, color);
 
+    &[data-tags*='stroked'] {
+      svg {
+        stroke-width: map-get($vars, stroke);
+      }
+    }
+
     &[data-has-color='false'] {
       &[data-tags*='stroked'] {
         svg {
           stroke: $color;
-          stroke-width: map-get($vars, stroke);
         }
       }
 
