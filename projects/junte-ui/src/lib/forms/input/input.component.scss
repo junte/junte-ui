@@ -34,6 +34,14 @@
 
   $defs: (
     width: null,
+    border-color: $jnt-control-border-color,
+    hover: (
+      border-color: $jnt-primary-color
+    ),
+    focus: (
+      border-color: $jnt-primary-color,
+      shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color
+    ),
     sizes: (
       small: (
         font-size: 14px,
@@ -176,6 +184,24 @@
               }
             }
           }
+        }
+      }
+    }
+
+    &[data-scheme] {
+      border: 1px solid map-get($vars, border-color);
+      @if map-has-key($vars, hover) {
+        $hover: map-get($vars, hover);
+        &:hover {
+          border-color: map-get($hover, border-color);
+        }
+      }
+      @if map-has-key($vars, focus) {
+        $focus: map-get($vars, focus);
+        &[data-focused='true'] {
+          box-shadow: map-get($focus, shadow);
+          border-color: map-get($focus, border-color);
+          outline: 0;
         }
       }
     }
