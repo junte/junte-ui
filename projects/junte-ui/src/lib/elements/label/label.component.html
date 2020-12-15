@@ -5,6 +5,6 @@
   <jnt-dot data-dot *ngIf="!!dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon"
             [icon]="icon"
-            [style.color]="outline === ui.outline.fill ? (color | textBrightness) : color"></jnt-icon>
+            [color]="outline === ui.outline.fill ? (color | textBrightness) : color"></jnt-icon>
   <div data-text *ngIf="label" [style.color]="outline === ui.outline.fill ? (color | textBrightness) : color">{{label}}</div>
 </jnt-stack>

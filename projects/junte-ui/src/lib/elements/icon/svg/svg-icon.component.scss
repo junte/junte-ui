@@ -50,6 +50,7 @@
           shape-rendering: geometricPrecision;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
+
           path, line, rect, circle {
             vector-effect: non-scaling-stroke;
           }
@@ -59,15 +60,17 @@
 
     $color: map-get($vars, color);
 
-    &[data-tags*='stroked'] {
-      svg {
-        stroke: $color;
-        stroke-width: map-get($vars, stroke);
+    &[data-has-color='false'] {
+      &[data-tags*='stroked'] {
+        svg {
+          stroke: $color;
+          stroke-width: map-get($vars, stroke);
+        }
       }
-    }
 
-    &[data-tags*='filled'] svg {
-      fill: $color;
+      &[data-tags*='filled'] svg {
+        fill: $color;
+      }
     }
 
     width: map-get($vars, width);

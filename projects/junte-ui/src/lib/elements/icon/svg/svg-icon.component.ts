@@ -3,8 +3,14 @@ import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@a
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { JunteUIConfig } from '../../../config';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Stroke } from '../../../core/enums/stroke';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
+
+enum IconTag {
+  stroked = 'stroked',
+  filled = 'filled'
+}
 
 const DEFAULT_ICONSET = 'default';
 
@@ -16,6 +22,8 @@ export class SvgIconComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-svg-icon-host';
 
+  private svg: HTMLElement;
+  private _color: string;
   private icon$ = new BehaviorSubject<string>(null);
   private iconset$ = new BehaviorSubject<string>(DEFAULT_ICONSET);
 
@@ -54,6 +62,27 @@ export class SvgIconComponent implements OnInit {
     return this._stroke;
   }
 
+  @PropertyApi({
+    description: 'Color for icon',
+    type: '[ui.color]'
+  })
+  @Input()
+  set color(color: string) {
+    this._color = color;
+    if (!!this.svg) {
+      this.render();
+    }
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  @HostBinding('attr.data-has-color')
+  get hasColor() {
+    return !!this.color;
+  }
+
   constructor(private config: JunteUIConfig,
               private http: HttpClient,
               private cache: InMemoryCacheService,
@@ -68,9 +97,17 @@ export class SvgIconComponent implements OnInit {
       .subscribe(() => this.load());
   }
 
-  render(icon: HTMLElement) {
+  render() {
+    if (!!this.color) {
+      if (this.tags.includes(IconTag.stroked)) {
+        this.svg.setAttribute('stroke', this.color);
+      }
+      if (this.tags.includes(IconTag.filled)) {
+        this.svg.setAttribute('fill', this.color);
+      }
+    }
     const el = this.hostRef.nativeElement;
-    this.renderer.setProperty(el, 'innerHTML', icon.outerHTML);
+    this.renderer.setProperty(el, 'innerHTML', this.svg.outerHTML);
   }
 
   private load() {
@@ -104,12 +141,14 @@ export class SvgIconComponent implements OnInit {
           encapsulate(icon);
           icon.setAttribute('width', '100%');
           icon.setAttribute('height', '100%');
-          this.render(icon);
+          this.svg = icon;
+          this.render();
 
           this.cache.set(key, icon);
         });
     } else {
-      this.render(icon);
+      this.svg = icon;
+      this.render();
     }
   }
 

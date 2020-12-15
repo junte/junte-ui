@@ -69,4 +69,12 @@ export class IconComponent {
   set size(size: Size) {
     this._size = size || Size.normal;
   }
+
+  @PropertyApi({
+    description: 'Color for icon',
+    type: '[ui.color]'
+  })
+  @Input()
+  color = null;
+
 }

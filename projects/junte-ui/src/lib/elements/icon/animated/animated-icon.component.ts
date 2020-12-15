@@ -3,6 +3,7 @@ import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@a
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { JunteUIConfig } from '../../../config';
+import { PropertyApi } from '../../../core/decorators/api';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
 
 const DEFAULT_ICONSET = 'default';
@@ -36,6 +37,13 @@ export class AnimatedIconComponent implements OnInit {
   get icon() {
     return this.icon$.getValue();
   }
+
+  @PropertyApi({
+    description: 'Color for icon',
+    type: '[ui.color]'
+  })
+  @Input()
+  color = null;
 
   constructor(private http: HttpClient,
               private renderer: Renderer2,
