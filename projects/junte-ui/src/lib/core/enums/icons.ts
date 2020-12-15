@@ -16,7 +16,7 @@ export const icons = {
   // states
   checked: 'checked:svg:default:main|stroked',
   // actions
-  actions: 'actions:svg:default:main|stroked',
+  actions: 'actions:svg:default:main|filled',
   add: 'add:svg:default:main|stroked',
   edit: 'edit:svg:default:main|stroked',
   save: 'save:svg:default:main|stroked',
