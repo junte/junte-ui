@@ -223,6 +223,7 @@
   $defs: (
     corner: $jnt-corner-small,
     font-size: $jnt-font-size-base,
+    color: null,
     font-weight: null,
     text-transform: null,
     text-decoration: null,
@@ -240,8 +241,7 @@
     icon: (
       spacing: $jnt-gutter-tiny,
       color: null,
-      size: null,
-      sizes: 18px
+      size: 18px
     ),
     badge: (
       margin-left: $jnt-gutter-small
@@ -408,6 +408,12 @@
         }
       }
     }
+
+    &[data-outline][data-scheme] {
+      #{$wrapper} [data-link] {
+        color: map-get($vars, color);
+      }
+    }
   }
 
   #{$context} #{$wrapper} [data-link] {
@@ -443,11 +449,10 @@
         $icon: map-get($vars, icon);
         [data-icon] {
           @include jnt-icon((
-            size: map-get($icon, size),
             color: map-get($icon, color),
             sizes: (
               auto: (
-                size: map-get($icon, sizes)
+                size: map-get($icon, size)
               )
             )
           ), '&');
