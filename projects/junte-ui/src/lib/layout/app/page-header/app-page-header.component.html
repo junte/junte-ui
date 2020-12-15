@@ -7,4 +7,14 @@
     <div data-title>{{title}}</div>
     <div data-teaser *ngIf="!!teaser">{{teaser}}</div>
   </jnt-stack>
+
+  <jnt-stack data-actions
+             [orientation]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.small"
+             [align]="ui.align.stretch">
+    <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+  </jnt-stack>
+
 </jnt-stack>
+
+
