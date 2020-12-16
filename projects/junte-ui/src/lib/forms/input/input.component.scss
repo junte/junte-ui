@@ -121,6 +121,8 @@
       background-color: $jnt-control-background;
       color: $jnt-primary-text-color;
       border-radius: $jnt-corner-small;
+      border-width: 1px;
+      border-style: solid;
       line-height: 1;
       box-sizing: border-box;
       overflow: hidden;
@@ -148,7 +150,7 @@
       $schemes: map-get($vars, scheme);
       @each $scheme, $map in $schemes {
         &[data-scheme='#{$scheme}'] {
-          border: 1px solid map-get($map, border-color);
+          border-color: map-get($map, border-color);
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
             &:hover {
@@ -189,7 +191,7 @@
     }
 
     &[data-scheme] {
-      border: 1px solid map-get($vars, border-color);
+      border-color: map-get($vars, border-color);
       @if map-has-key($vars, hover) {
         $hover: map-get($vars, hover);
         &:hover {
