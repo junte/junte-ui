@@ -59,5 +59,4 @@ export class AppHeaderComponent {
       this.reference.popover = null;
     }
   }
-
 }

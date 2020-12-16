@@ -1,4 +1,15 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2
+} from '@angular/core';
 import { filter, takeWhile } from 'rxjs/operators';
 import { Triggers } from '../../core/enums/triggers';
 import { PopoverOptions } from './popover.component';
@@ -19,6 +30,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._instance = instance;
     if (!instance) {
       this.removed.emit();
+    } else {
+      this.attached.emit(instance);
     }
   }
 
@@ -58,9 +71,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.popover.attached.pipe(takeWhile((() => !this.destroyed)),
-      filter(t => t !== this.hostRef))
-      .subscribe(() => this.instance = null);
+    this.popover.attached.pipe(
+      takeWhile((() => !this.destroyed)),
+      filter(target => !!this.instance && target !== this.hostRef)
+    ).subscribe(() => this.instance = null);
 
     this.zone.runOutsideAngular(() => {
       this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
@@ -92,7 +106,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private show() {
     if ((this.options.content || this.options.contentTemplate) && !this.options.disabled) {
       this.instance = this.popover.show(this.hostRef, this.options);
-      this.attached.emit(this.instance);
     }
   }
 

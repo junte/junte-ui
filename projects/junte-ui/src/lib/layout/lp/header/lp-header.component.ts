@@ -1,4 +1,4 @@
-import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { UI } from '../../../core/enums/ui';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
@@ -31,7 +31,8 @@ export class LpHeaderComponent {
   @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger,
+              public cd: ChangeDetectorRef) {
   }
 
   hide() {
