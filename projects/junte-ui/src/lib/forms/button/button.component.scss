@@ -131,6 +131,18 @@
 
 @mixin button-transparent($scheme, $wrapper) {
 
+  &[data-shape='circle'] {
+    #{$wrapper} button {
+      &:focus {
+        @if map-has-key($scheme, focus) {
+          $focus: map-get($scheme, focus);
+          outline: 0;
+          box-shadow: map-get($focus, shadow);
+        }
+      }
+    }
+  }
+
   #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
