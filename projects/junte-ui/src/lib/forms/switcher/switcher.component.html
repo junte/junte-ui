@@ -7,7 +7,7 @@
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
 
-  <div data-switch *ngIf="marks"
+  <div data-switch *ngIf="!!features && features.includes(ui.feature.marks)"
        [attr.data-single]="mode === ui.select.mode.single">
     <span data-indicator *ngIf="selected"></span>
   </div>

@@ -34,11 +34,11 @@
                                           indicatorControl.value ? ui.feature.badge : null,
                                           selectAllControl.value ? ui.feature.selectAll : null,
                                           allowEmptyControl.value ? ui.feature.allowEmpty : null,
-                                          adaptedControl.value ? ui.feature.adapted : null
+                                          adaptedControl.value ? ui.feature.adapted : null,
+                                          marksControl.value ? ui.feature.marks : null
                                         ] | filterEmpty"
                                         [attr.max-height]="heightControl.value"
                                         [mode]="modeControl.value"
-                                        [marks]="marksControl.value"
                                         [orientation]="orientationControl.value">
                             <jnt-switcher-option label="No one"
                                                  [value]="null"
@@ -375,10 +375,6 @@ export class SwitcherTestComponent {
     <![CDATA[
     [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="marksControl.value">
-    <![CDATA[
-    [marks]="]]>{{marksControl.value}}<![CDATA["]]>
-  </ng-container>
   <ng-container *ngIf="modeControl.value">
     <![CDATA[
     [mode]="ui.select.mode.]]>{{modeControl.value}}<![CDATA["]]>
@@ -389,7 +385,8 @@ export class SwitcherTestComponent {
     indicatorControl.value ? ui.feature.badge : null,
     selectAllControl.value ? ui.feature.selectAll : null,
     allowEmptyControl.value ? ui.feature.allowEmpty : null,
-    adaptedControl.value ? ui.feature.adapted : null
+    adaptedControl.value ? ui.feature.adapted : null,
+    marksControl.value ? ui.feature.marks : null
     ] | filterEmpty | join}}<![CDATA[]"]]>
 </ng-container>
 <![CDATA[>]]>
