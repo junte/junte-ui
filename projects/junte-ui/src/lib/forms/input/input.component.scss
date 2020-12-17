@@ -9,7 +9,7 @@
     min-height: map-get($size, height);
     height: map-get($size, height);
 
-    &[data-multiline='true'] {
+    &[data-features*='multiline'] {
       height: auto;
     }
   }
@@ -34,13 +34,13 @@
 
   $defs: (
     width: null,
-    border-color: $jnt-control-border-color,
+    border-color: null,
     hover: (
-      border-color: $jnt-primary-color
+      border-color: null
     ),
     focus: (
-      border-color: $jnt-primary-color,
-      shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color
+      border-color: null,
+      shadow: null
     ),
     sizes: (
       small: (

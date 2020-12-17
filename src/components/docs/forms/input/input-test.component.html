@@ -40,7 +40,6 @@
                                [icon]="iconControl.value ? ui.icons.search : null"
                                [label]="labelControl.value ? 'Name' : null"
                                [textAlign]="alignControl.value"
-                               [multiline]="multilineControl.value"
                                [rows]="rowsControl.value"
                                [readonly]="readonlyControl.value"
                                [min]="minControl.value"
@@ -48,7 +47,8 @@
                                [transform]="transformControl.value"
                                [step]="stepControl.value"
                                [autocomplete]="autocompleteControl.value ? ui.input.autocomplete.on : ui.input.autocomplete.off"
-                               [features]="allowEmptyControl.value ? [ui.feature.allowEmpty] : null"
+                               [features]="[allowEmptyControl.value ? ui.feature.allowEmpty : null,
+                                            multilineControl.value ? ui.feature.multiline : null]  | filterEmpty"
                                placeholder="Yes or no?"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
@@ -256,7 +256,8 @@
                     <jnt-col [span]="4">
                       <jnt-form-item>
                         <jnt-form-control>
-                          <jnt-input formControlName="rows" [type]="ui.input.type.number" [size]="ui.size.small"></jnt-input>
+                          <jnt-input formControlName="rows" [type]="ui.input.type.number"
+                                     [size]="ui.size.small"></jnt-input>
                         </jnt-form-control>
                       </jnt-form-item>
                     </jnt-col>
@@ -368,9 +369,6 @@ export class InputTestComponent implements OnInit {
   <ng-container *ngIf="iconControl.value">
     <![CDATA[[icon]="ui.icons.search"]]>
   </ng-container>
-  <ng-container *ngIf="multilineControl.value">
-    <![CDATA[[multiline]="true"]]>
-  </ng-container>
   <ng-container *ngIf="readonlyControl.value">
     <![CDATA[[readonly]="true"]]>
   </ng-container>
@@ -395,13 +393,17 @@ export class InputTestComponent implements OnInit {
   <ng-container *ngIf="stepControl.value">
     <![CDATA[[step]="]]>{{stepControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="allowEmptyControl.value">
-    <![CDATA[[features]="[ui.feature.allowEmpty]"]]>
-  </ng-container>
-  <ng-container *ngIf="maskControl.value">
-    <![CDATA[[mask]="+7(___) ___-__-__"]]>
-  </ng-container>
-    <![CDATA[>
+  <ng-container *ngIf="allowEmptyControl.value || multilineControl.value">
+    <![CDATA[
+    [features]="[]]>{{[
+        allowEmptyControl.value ? ui.feature.allowEmpty : null,
+        multilineControl.value ? ui.feature.multiline : null
+  ] | filterEmpty | join}}<![CDATA[]"]]>
+   </ng-container>
+<ng-container *ngIf="maskControl.value">
+  <![CDATA[[mask]="+7(___) ___-__-__"]]>
+</ng-container>
+  <![CDATA[>
 </jnt-input>
 ]]>
 </app-code-highlight>
