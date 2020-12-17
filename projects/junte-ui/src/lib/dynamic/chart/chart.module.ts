@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ChartIndicatorComponent } from './chart-indicator';
@@ -10,7 +11,8 @@ import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
   imports: [
     CommonModule,
     ColorPipesModule,
-    IconModule
+    IconModule,
+    SkeletonModule
   ],
   exports: [
     ChartComponent,
