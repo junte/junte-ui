@@ -24,6 +24,7 @@
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
+                  [context]="ui.context.box"
                   [matching]="item.matching"
                   [source]="!item.submenu ? item.link?.source : null"
                   [fragment]="item.link?.fragment"
@@ -60,6 +61,7 @@
               </span>
             </div>
             <jnt-link data-link *ngFor="let subItem of item.submenu.items"
+                      [context]="ui.context.box"
                       [title]="subItem.title"
                       [icon]="subItem.icon"
                       [matching]="subItem.matching"

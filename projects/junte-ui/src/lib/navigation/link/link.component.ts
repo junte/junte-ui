@@ -1,7 +1,8 @@
 import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
+import { Context } from '../../core/enums/context';
+import { Feature } from '../../core/enums/feature';
 import { Outline } from '../../core/enums/outline';
 import { Position } from '../../core/enums/position';
 import { Scheme } from '../../core/enums/scheme';
@@ -31,6 +32,9 @@ export class LinkComponent {
   private _matching: UrlMatching = UrlMatching.fullMatch;
 
   externalLink = true;
+
+  @HostBinding('attr.data-context')
+  _context: Context = Context.text;
 
   @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
@@ -175,6 +179,17 @@ export class LinkComponent {
   @HostBinding('attr.data-features')
   @Input()
   features: Feature[] = [];
+
+  @PropertyApi({
+    description: 'Link context',
+    path: 'ui.context',
+    default: Context.text,
+    options: [Context.text, Context.box]
+  })
+  @Input()
+  set context(context: Context) {
+    this._context = context || Context.text;
+  }
 
   @ViewChild(RouterLinkActive)
   linkRef: RouterLinkActive;
