@@ -2,7 +2,7 @@
   <div data-label *ngIf="!!label">{{label}}</div>
   <jnt-stack data-content [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small" [align]="ui.align.center">
-    <jnt-icon data-label-icon *ngIf="!!icon && !label && !multiline"
+    <jnt-icon data-label-icon *ngIf="!!icon && !label && !(features | includes : ui.feature.multiline)"
               [icon]="icon">
     </jnt-icon>
 
@@ -19,29 +19,28 @@
            (keydown)="keydownMask($event)">
 
     <ng-template #inputTemplate>
-      <input *ngIf="!multiline; else textareaTemplate"
-             #valueInput
-             formControlName="input"
-             [name]="name"
-             [type]="type === ui.input.type.password && view.password.display ? ui.input.type.text : type"
-             [placeholder]="placeholder"
-             [readonly]="readonly ? readonly : null"
-             [autocomplete]="autocomplete"
-             [min]="min"
-             [max]="max"
-             (focusin)="focused = true"
-             (focusout)="focused = false"
-             (keydown)="keydown($event)"
-             (keyup)="keyup()">
-    </ng-template>
-
-    <ng-template #textareaTemplate>
-      <textarea formControlName="input"
+      <textarea *ngIf="features | includes: ui.feature.multiline; else singleLineTemplate"
+                formControlName="input"
                 [placeholder]="placeholder"
                 [attr.rows]="rows"
                 (focusin)="focused = true"
                 (focusout)="focused = false">
       </textarea>
+      <ng-template #singleLineTemplate>
+        <input #valueInput
+               formControlName="input"
+               [name]="name"
+               [type]="type === ui.input.type.password && view.password.display ? ui.input.type.text : type"
+               [placeholder]="placeholder"
+               [readonly]="readonly ? readonly : null"
+               [autocomplete]="autocomplete"
+               [min]="min"
+               [max]="max"
+               (focusin)="focused = true"
+               (focusout)="focused = false"
+               (keydown)="keydown($event)"
+               (keyup)="keyup()">
+      </ng-template>
     </ng-template>
 
     <div data-loading *ngIf="state === ui.state.loading">
@@ -61,7 +60,7 @@
       <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
     </button>
 
-    <button data-reset *ngIf="!!features && features | includes: feature.allowEmpty" tabindex="-1"
+    <button data-reset *ngIf="features | includes: ui.feature.allowEmpty" tabindex="-1"
             (click)="clear($event)">
       <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>
     </button>

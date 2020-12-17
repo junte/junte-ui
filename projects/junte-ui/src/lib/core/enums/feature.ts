@@ -10,5 +10,6 @@ export enum Feature {
   reload = 'reload',
   multiplex = 'multiplex',
   today = 'today',
-  marks = 'marks'
+  marks = 'marks',
+  multiline = 'multiline'
 }
