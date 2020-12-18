@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Color } from '../../core/enums/color';
 
@@ -22,6 +23,15 @@ export class DotComponent {
   @Input() set color(color: string) {
     this._color = color || Color.purple;
   }
+
+  @PropertyApi({
+    description: 'Animation pulse for dot',
+    path: 'ui.feature',
+    options: [Feature.pulse]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   get color() {
     return this._color;
