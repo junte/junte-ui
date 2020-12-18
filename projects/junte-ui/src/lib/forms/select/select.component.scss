@@ -364,9 +364,8 @@
       @if map-has-key($vars, chips) {
         $chips: map-get($vars, chips);
         @if map-get($chips, width) == 'fluid' {
-          @if $declare {
-            flex-direction: column;
-          }
+          flex-direction: column;
+          align-items: stretch;
         }
       }
 
