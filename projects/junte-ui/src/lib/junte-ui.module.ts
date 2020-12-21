@@ -10,7 +10,7 @@ import { TextPipesModule } from './core/pipes/text-pipes.module';
 import deepMerge from './core/utils/merge';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { ElementsModule } from './elements/elements.module';
-import { UiFormsModule } from './forms/forms.module';
+import { FormsModule } from './forms/forms.module';
 import { LayoutModule } from './layout/layout.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { OverlaysModule } from './overlays/overlays.module';
@@ -29,7 +29,7 @@ export function configFactory(config: JunteUIConfig) {
     LayoutModule,
     NavigationModule,
     ElementsModule,
-    UiFormsModule,
+    FormsModule,
     CollectionsModule,
     OverlaysModule,
     DynamicModule,
