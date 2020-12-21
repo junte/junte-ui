@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-functions";
+@import "elements/icon";
 
 @mixin jnt-collapsible($passed: (), $context: null, $strategy: 'changes') {
 
@@ -61,11 +62,13 @@
       &[active='true'] {
         background-color: $jnt-primary-light-color;
         color: $jnt-white-color;
+        @include jnt-icon((color: $jnt-white-color));
       }
 
       &:hover {
         &[active='false'] {
           color: $jnt-primary-light-color;
+          @include jnt-icon((color: $jnt-primary-light-color));
         }
       }
 
