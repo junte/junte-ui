@@ -303,6 +303,11 @@ export class PopoverComponent {
   }
 
   update(): void {
+    if (!this.target) {
+      console.error('target is not defined');
+      return;
+    }
+
     const {nativeElement: host} = this.hostRef;
     this.renderer.removeStyle(this.arrow.nativeElement, 'top');
     this.renderer.removeStyle(this.arrow.nativeElement, 'left');
