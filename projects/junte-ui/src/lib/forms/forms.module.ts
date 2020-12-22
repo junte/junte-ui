@@ -32,5 +32,5 @@ import { SwitcherModule } from './switcher/switcher.module';
     SliderModule
   ]
 })
-export class UiFormsModule {
+export class FormsModule {
 }
