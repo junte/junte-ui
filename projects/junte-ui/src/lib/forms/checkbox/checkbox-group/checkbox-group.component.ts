@@ -97,12 +97,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   update() {
     if (!!this.checkboxes) {
-      this.checkboxesControl.reset();
+      this.checkboxesControl.reset([], {emitEvent: false});
       this.checkboxes.forEach((checkbox, i) => {
-        if (this.checkboxesControl.length < i + 1) {
-          this.checkboxesControl.push(new FormControl(this.selectedItems.includes(checkbox.value)));
+        const control = this.checkboxesControl.get(i.toString());
+        if (!!control) {
+          control.setValue(this.selectedItems.includes(checkbox.value), {emitEvent: false});
         } else {
-          this.checkboxesControl.get(i.toString()).setValue(this.selectedItems.includes(checkbox.value));
+          this.checkboxesControl.push(new FormControl(this.selectedItems.includes(checkbox.value)));
         }
       });
     }
