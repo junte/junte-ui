@@ -19,6 +19,7 @@
     "clean:npm": "npm cache clean --force && rm -rf -- node_modules package-lock.json",
     "refresh": "npm run clean:npm && npm install",
     "processes": "lsof -Pnl +M -i -cmd | grep -E 'LISTEN|TCP|UDP'",
+    "styles": "gulp build --gulpfile ./tests/styles.ts",
     "e2e": "ng e2e"
   },
   "private": false,
@@ -66,7 +67,9 @@
     "codelyzer": "5.2.1",
     "fibers": "^5.0.0",
     "gulp": "4.0.0",
+    "gulp-debug": "^4.0.0",
     "gulp-iconfont": "10.0.3",
+    "gulp-sass": "^4.1.0",
     "gulp-todo": "^7.1.1",
     "gulpclass": "0.2.0",
     "jasmine": "^3.6.1",
