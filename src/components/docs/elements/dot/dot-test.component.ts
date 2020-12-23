@@ -17,9 +17,11 @@ export class DotTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   colorControl = this.fb.control(UI.color.purple);
+  pulseControl = this.fb.control(null);
 
   builder = this.fb.group({
-    color: this.colorControl
+    color: this.colorControl,
+    pulse: this.pulseControl
   });
 
   constructor(private fb: FormBuilder) {

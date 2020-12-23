@@ -86,10 +86,10 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher; Adapted on mobile',
+    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher; Adapted on mobile; Display marks',
     path: 'ui.feature',
     default: '[ui.feature.adapted]',
-    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted]
+    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted, Feature.marks]
   })
   @Input()
   set features(features: Feature[]) {
@@ -99,14 +99,6 @@ export class SwitcherComponent implements ControlValueAccessor {
   get features() {
     return this._features;
   }
-
-  @PropertyApi({
-    description: 'Display marks',
-    type: 'boolean',
-    default: 'true'
-  })
-  @HostBinding('attr.data-allow-empty')
-  @Input() marks = false;
 
   @PropertyApi({
     description: 'Display skeleton',

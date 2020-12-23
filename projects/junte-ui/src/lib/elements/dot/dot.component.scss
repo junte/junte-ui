@@ -1,6 +1,18 @@
 @import "jnt-variables";
 @import "jnt-functions";
 
+@keyframes jnt-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($jnt-primary-color, .5);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba($jnt-primary-color, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($jnt-primary-color, 0);
+  }
+}
+
 @mixin jnt-dot($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
@@ -29,6 +41,9 @@
     min-height: map-get($vars, size);
     width: map-get($vars, size);
     height: map-get($vars, size);
+    &[data-features*='pulse'] {
+      animation: jnt-pulse 1.5s infinite;
+    }
   }
 }
 

@@ -9,7 +9,7 @@
     min-height: map-get($size, height);
     height: map-get($size, height);
 
-    &[data-multiline='true'] {
+    &[data-features*='multiline'] {
       height: auto;
     }
   }
@@ -34,6 +34,14 @@
 
   $defs: (
     width: null,
+    border-color: null,
+    hover: (
+      border-color: null
+    ),
+    focus: (
+      border-color: null,
+      shadow: null
+    ),
     sizes: (
       small: (
         font-size: 14px,
@@ -113,6 +121,8 @@
       background-color: $jnt-control-background;
       color: $jnt-primary-text-color;
       border-radius: $jnt-corner-small;
+      border-width: 1px;
+      border-style: solid;
       line-height: 1;
       box-sizing: border-box;
       overflow: hidden;
@@ -140,7 +150,7 @@
       $schemes: map-get($vars, scheme);
       @each $scheme, $map in $schemes {
         &[data-scheme='#{$scheme}'] {
-          border: 1px solid map-get($map, border-color);
+          border-color: map-get($map, border-color);
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
             &:hover {
@@ -176,6 +186,24 @@
               }
             }
           }
+        }
+      }
+    }
+
+    &[data-scheme] {
+      border-color: map-get($vars, border-color);
+      @if map-has-key($vars, hover) {
+        $hover: map-get($vars, hover);
+        &:hover {
+          border-color: map-get($hover, border-color);
+        }
+      }
+      @if map-has-key($vars, focus) {
+        $focus: map-get($vars, focus);
+        &[data-focused='true'] {
+          box-shadow: map-get($focus, shadow);
+          border-color: map-get($focus, border-color);
+          outline: 0;
         }
       }
     }

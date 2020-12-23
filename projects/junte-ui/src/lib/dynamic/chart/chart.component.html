@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <ng-container *ngIf="indicators.length; else noDataTemplate">
+    <ng-container *ngIf="indicators.length; else loadingTemplate">
       <tr *ngFor="let indicator of indicators; trackBy: trackByFn"
           (click)="selected = indicator.data"
           [attr.selected]="(!!keyField && !!selected
@@ -63,12 +63,13 @@
 
 </svg>
 
-<ng-template #noDataTemplate>
-  <ng-container *ngIf="!progress.loading;">
-    <tr data-nodata>
-      <td [attr.colspan]="3">
+<ng-template #loadingTemplate>
+  <tr data-nodata>
+    <td [attr.colspan]="3">
+      <jnt-skeleton *ngIf="state === ui.state.loading; else noDataTemplate" [lines]="5"></jnt-skeleton>
+      <ng-template #noDataTemplate>
         <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
-      </td>
-    </tr>
-  </ng-container>
+      </ng-template>
+    </td>
+  </tr>
 </ng-template>

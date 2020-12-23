@@ -84,6 +84,10 @@
                     <ng-template #formFooterTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [justify]="ui.justify.between">
+                        <jnt-button text="Set captain"
+                                    i18n-text="@@action.set_captain"
+                                    (click)="set()">
+                        </jnt-button>
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"
                                     [type]="ui.button.type.submit"></jnt-button>

@@ -93,7 +93,7 @@ $tab-marker-height: 4px;
         icon: (
           spacing: $jnt-gutter-small,
           color: $jnt-primary-text-color,
-          sizes: 24px
+          size: 24px
         ),
         hover: (
           color: null,
@@ -130,7 +130,7 @@ $tab-marker-height: 4px;
       display: block;
 
       &[data-orientation='vertical'] {
-        #{$wrapper} [top] {
+        #{$wrapper} [data-top] {
           width: 100%;
         }
       }
@@ -152,8 +152,7 @@ $tab-marker-height: 4px;
           [data-link] {
             width: 100%;
             @include jnt-link((
-              overflow: true,
-              display: block
+              overflow: true
             ), '&');
           }
         }
@@ -479,7 +478,7 @@ $tab-marker-height: 4px;
             @include jnt-link((
               icon: (
                 spacing: map-get($icon, spacing),
-                sizes: map-get($icon, sizes),
+                size: map-get($icon, size),
                 color: map-get($icon, color)
               )
             ), '&');
@@ -490,11 +489,13 @@ $tab-marker-height: 4px;
               outlines: (
                 transparent: (
                   hover: (
-                    background-color: map-get($hover, background-color)
+                    background-color: map-get($hover, background-color),
+                    color: map-get($hover, color)
                   ),
                   orphan: (
                     hover: (
-                      background-color: map-get($hover, background-color)
+                      background-color: map-get($hover, background-color),
+                      color: map-get($hover, color)
                     )
                   )
                 )

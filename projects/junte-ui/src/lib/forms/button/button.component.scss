@@ -131,6 +131,18 @@
 
 @mixin button-transparent($scheme, $wrapper) {
 
+  &[data-shape='circle'] {
+    #{$wrapper} button {
+      &:focus {
+        @if map-has-key($scheme, focus) {
+          $focus: map-get($scheme, focus);
+          outline: 0;
+          box-shadow: map-get($focus, shadow);
+        }
+      }
+    }
+  }
+
   #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
@@ -238,6 +250,7 @@
     background: null,
     hover-background: null,
     color: null,
+    hover-color: null,
     shadow: null,
     corners: (
       top: (
@@ -467,7 +480,7 @@
       }
     }
 
-    &[data-scheme='#{$jnt-scheme-primary-name}'][data-outline='#{$jnt-outline-fill-name}'] {
+    &[data-scheme][data-outline] {
       @if map-get($vars, background) {
         #{$wrapper} button {
           background: map-get($vars, background);
@@ -483,6 +496,30 @@
           color: map-get($vars, color);
           [data-icon] {
             @include jnt-icon((color: map-get($vars, color)), '&');
+          }
+        }
+      }
+
+      @if map-get($vars, hover-color) {
+        #{$wrapper} button:hover {
+          color: map-get($vars, hover-color);
+
+          [data-icon] {
+            @include jnt-icon((color: map-get($vars, hover-color)), '&');
+          }
+        }
+      }
+    }
+
+    &[data-scheme][data-outline=#{$jnt-outline-transparent-name}] {
+      @if map-get($vars, color) {
+        #{$wrapper} button:focus {
+          outline: map-get($vars, color) auto 1px;
+        }
+
+        &[data-shape='circle'] {
+          #{$wrapper} button:focus {
+            box-shadow: 0 1px 5px map-get($vars, color);
           }
         }
       }

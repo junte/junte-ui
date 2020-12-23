@@ -223,12 +223,12 @@
   $defs: (
     corner: $jnt-corner-small,
     font-size: $jnt-font-size-base,
+    color: null,
     font-weight: null,
     text-transform: null,
     text-decoration: null,
     text-align: null,
     padding: null,
-    display: inline,
     overflow: false,
     height: null,
     border: null,
@@ -240,8 +240,7 @@
     icon: (
       spacing: $jnt-gutter-tiny,
       color: null,
-      size: null,
-      sizes: 18px
+      size: 18px
     ),
     badge: (
       margin-left: $jnt-gutter-small
@@ -357,6 +356,10 @@
         cursor: pointer;
         width: 100%;
 
+        &[data-active="true"] {
+          cursor: default;
+        }
+
         &:focus {
           outline: none;
         }
@@ -364,6 +367,27 @@
         [data-title] {
           [data-icon], span {
             transition: color .2s;
+          }
+        }
+      }
+
+      &[data-context='text'] {
+        #{$wrapper} [data-link] {
+          display: inline-block;
+        }
+      }
+
+      &[data-context='box'] {
+        #{$wrapper} [data-link] {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          [data-title] {
+            display: flex;
+            align-items: center;
+            [data-icon] {
+              line-height: 1;
+            }
           }
         }
       }
@@ -408,6 +432,12 @@
         }
       }
     }
+
+    &[data-outline][data-scheme] {
+      #{$wrapper} [data-link] {
+        color: map-get($vars, color);
+      }
+    }
   }
 
   #{$context} #{$wrapper} [data-link] {
@@ -443,11 +473,10 @@
         $icon: map-get($vars, icon);
         [data-icon] {
           @include jnt-icon((
-            size: map-get($icon, size),
             color: map-get($icon, color),
             sizes: (
               auto: (
-                size: map-get($icon, sizes)
+                size: map-get($icon, size)
               )
             )
           ), '&');
@@ -460,22 +489,6 @@
         max-width: 100%;
         display: inline-block;
         white-space: nowrap;
-      }
-    }
-
-    @if map-get($vars, display) == inline {
-      display: inline-block;
-    }
-    @if map-get($vars, display) == block {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      [data-title] {
-        display: flex;
-        align-items: center;
-        [data-icon] {
-          line-height: 1;
-        }
       }
     }
 

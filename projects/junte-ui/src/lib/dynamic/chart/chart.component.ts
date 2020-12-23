@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { State } from '../../core/enums/state';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { isEqual } from '../../core/utils/equal';
@@ -36,8 +37,6 @@ export class ChartComponent implements ControlValueAccessor {
   private _selected: number;
   private _widthMark = 100;
 
-  progress = {loading: false};
-
   @Input() keyField: string;
 
   @PropertyApi({
@@ -53,6 +52,14 @@ export class ChartComponent implements ControlValueAccessor {
   })
   @Input()
   metric: string;
+
+  @PropertyApi({
+    description: 'Chart state',
+    path: 'ui.state',
+    options: [State.loading]
+  })
+  @Input()
+  state: State;
 
   @ContentChildren(ChartIndicatorComponent)
   indicators: QueryList<ChartIndicatorComponent>;

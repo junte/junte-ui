@@ -25,4 +25,5 @@ import { SvgIconComponent } from './svg/svg-icon.component';
   ]
 })
 export class IconModule {
+
 }

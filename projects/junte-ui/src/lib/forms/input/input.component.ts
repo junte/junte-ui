@@ -44,7 +44,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   readonly host = 'jnt-input-host';
 
   ui = UI;
-  feature = Feature;
   view = {password: {display: false}};
 
   private _mask: string;
@@ -230,15 +229,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   state: State;
 
   @PropertyApi({
-    description: 'Allow multiple lines in input',
-    type: 'boolean',
-    default: 'false',
-  })
-  @HostBinding('attr.data-multiline')
-  @Input()
-  multiline = false;
-
-  @PropertyApi({
     description: 'Max rows for multiline mode',
     type: 'number',
     default: 5,
@@ -264,10 +254,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Button for reset input',
+    description: 'Button for reset input; Allow multiple lines in input',
     path: 'ui.feature',
-    options: [Feature.allowEmpty],
+    options: [Feature.allowEmpty, Feature.multiline],
   })
+  @HostBinding('attr.data-features')
   @Input()
   features: Feature[] = [];
 

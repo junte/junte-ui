@@ -9,5 +9,8 @@ export enum Feature {
   smarty = 'smarty',
   reload = 'reload',
   multiplex = 'multiplex',
-  today = 'today'
+  today = 'today',
+  marks = 'marks',
+  multiline = 'multiline',
+  pulse = 'pulse'
 }

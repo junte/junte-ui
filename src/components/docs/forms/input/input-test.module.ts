@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
   AppLayoutModule,
+  ArrayPipesModule,
   ButtonModule,
   CheckboxModule,
   FormModule,
@@ -37,7 +38,8 @@ import { InputTestComponent } from './input-test.component';
     CheckboxModule,
     SwitcherModule,
     SharedModule,
-    AppLayoutModule
+    AppLayoutModule,
+    ArrayPipesModule
   ],
   exports: [
     InputTestComponent

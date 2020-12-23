@@ -41,7 +41,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-icon-host)} {
     @if $declare {
       display: inline-flex;
       vertical-align: middle;
