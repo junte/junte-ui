@@ -53,4 +53,8 @@ export class CheckboxTestComponent implements OnInit {
     this.block.success();
     setTimeout(() => this.form.reset(), 3000);
   }
+
+  set() {
+    this.heroesControl.setValue([Hero.captainAmerica]);
+  }
 }
