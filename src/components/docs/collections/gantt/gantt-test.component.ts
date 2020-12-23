@@ -30,8 +30,8 @@ export class GanttTestComponent implements OnInit {
   requests = [];
   now = new Date();
   statuses = GanttRequestStatuses;
-  loading = true;
   ganttType = GanttTypes;
+  progress = {loading: true, add: false, remove: false, reload: false};
 
   ganttTypeControl = this.fb.control(GanttTypes.month);
   widthControl = this.fb.control(null);
@@ -86,7 +86,7 @@ export class GanttTestComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.requests = this.ganttTypeControl.value === GanttTypes.month ? this.monthArray : this.yearArray;
-      this.loading = false;
+      this.progress.loading = false;
     }, 3000);
     this.ganttTypeControl.valueChanges.subscribe(value => {
       if (value === GanttTypes.month) {
@@ -98,26 +98,39 @@ export class GanttTestComponent implements OnInit {
   }
 
   add() {
-    this.requests.push({
-      date: faker.name.findName(),
-      id: faker.random.number(100),
-      createdAt: faker.date.recent(25),
-      createdBy: {
+    this.progress.add = true;
+    setTimeout(() => {
+      this.requests.push({
+        date: faker.name.findName(),
         id: faker.random.number(100),
-        login: faker.name.findName()
-      },
-      periods: [
-        {
-          from: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? 15 : 75),
-          to: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? -15 : -65),
-          status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
-          selfExpense: true
-        }
-      ]
-    });
+        createdAt: faker.date.recent(25),
+        createdBy: {
+          id: faker.random.number(100),
+          login: faker.name.findName()
+        },
+        periods: [
+          {
+            from: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? 15 : 75),
+            to: faker.date.recent(this.ganttTypeControl.value === GanttTypes.month ? -15 : -65),
+            status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+            selfExpense: true
+          }
+        ]
+      });
+      this.progress.add = false;
+    }, 1000);
   }
 
   remove() {
-    this.requests.splice(Math.floor(Math.random() * this.requests.length), 1);
+    this.progress.remove = true;
+    setTimeout(() => {
+      this.requests.splice(Math.floor(Math.random() * this.requests.length), 1);
+      this.progress.remove = false;
+    }, 1000);
+  }
+
+  reload() {
+    this.progress.reload = true;
+    setTimeout(() => this.progress.reload = false, 1000);
   }
 }
