@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
@@ -30,8 +31,11 @@ export class SwitcherComponent implements ControlValueAccessor {
   readonly host = 'jnt-switcher-host';
 
   ui = UI;
+  selectMode = SelectMode;
+  feature = Feature;
 
-  private _features: Feature[] = [];
+  private _features: Feature[] = [Feature.adapted];
+
   private _orientation: Orientation = Orientation.horizontal;
 
   @HostBinding('attr.data-width')
@@ -49,7 +53,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   get orientation() {
-    return this._orientation;
+    return this.breakpoint.current === Breakpoint.mobile && this.features.includes(Feature.adapted) ? Orientation.vertical : this._orientation;
   }
 
   @PropertyApi({
@@ -72,8 +76,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   _mode: SelectMode = SelectMode.single;
 
   @PropertyApi({
-    description: 'Switcher mode',
-    path: 'ui.select.mode',
+    description: 'Select mode',
+    path: 'ui.select',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
@@ -86,19 +90,30 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher; Adapted on mobile; Display marks',
+    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher',
     path: 'ui.feature',
-    default: '[ui.feature.adapted]',
-    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted, Feature.marks]
+    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted],
+    default: '[Feature.adapted]'
+
   })
   @Input()
   set features(features: Feature[]) {
-    this._features = features || [];
+    this._features = features || [Feature.adapted];
   }
 
   get features() {
     return this._features;
   }
+
+
+  @PropertyApi({
+    description: 'Display marks',
+    type: 'boolean',
+    default: 'true'
+  })
+  @HostBinding('attr.data-allow-empty')
+  @Input() marks = false;
+
 
   @PropertyApi({
     description: 'Display skeleton',
