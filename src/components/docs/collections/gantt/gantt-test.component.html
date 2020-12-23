@@ -72,12 +72,12 @@
 
                   <jnt-gantt title="Super"
                              formControlName="ganttDate"
-                             [loading]="loading"
+                             [loading]="progress.loading || progress.add || progress.remove || progress.reload"
                              [width]="widthControl.value"
                              [type]="ganttTypeControl.value === 'month' ? ui.gantt.type.month : ui.gantt.type.year">
                     <ng-template #toolsTemplate>
                       <jnt-button-group [scheme]="ui.scheme.secondary">
-                        <jnt-button [icon]="ui.icons.reload"></jnt-button>
+                        <jnt-button [icon]="ui.icons.reload" (click)="reload()"></jnt-button>
                         <jnt-button (click)="add()" [icon]="ui.icons.add"></jnt-button>
                         <jnt-button (click)="remove()" [icon]="ui.icons.delete"></jnt-button>
                       </jnt-button-group>
