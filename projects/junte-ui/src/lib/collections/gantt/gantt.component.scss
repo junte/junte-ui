@@ -53,6 +53,28 @@
     }
   }
 
+  #{$wrapper} #{$context} [data-spinner] {
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($jnt-secondary-background, .6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      z-index: 1;
+    }
+
+    [data-icon] {
+      @if $declare {
+        color: $jnt-primary-text-light-color;
+      }
+    }
+  }
+
   #{$context} #{$wrapper} [data-controls] {
     @if $declare {
       margin: 10px auto;

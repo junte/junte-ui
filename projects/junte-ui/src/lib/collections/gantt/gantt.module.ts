@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { DatePipesModule } from '../../core/pipes/date-pipes.module';
@@ -27,7 +28,8 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
     SkeletonModule,
     ResponsiveModule,
     ButtonModule,
-    AccordionModule
+    AccordionModule,
+    SpinnerModule
   ],
   exports: [
     GanttComponent,

@@ -1,9 +1,31 @@
+<ng-template #skeletonTemplate>
+  <ng-container *ngIf="loading; else noDataTemplate">
+    <tr data-loading>
+      <td [attr.colspan]="(current | jntGetDaysInMonth) + 2">
+        <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="8"></jnt-skeleton>
+      </td>
+    </tr>
+  </ng-container>
+  <ng-template #noDataTemplate>
+    <tr data-nodata>
+      <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
+        <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
+      </td>
+    </tr>
+  </ng-template>
+</ng-template>
+
 <ng-template #titleDefaultTemplate let-title="title">
   {{title}}
 </ng-template>
 <ng-template #lineTitleDefaultTemplate let-title="title">
   {{title}}
 </ng-template>
+
+<div data-spinner *ngIf="!!lines.length && loading">
+  <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+</div>
+
 <ng-template #ganttYearTemplate>
   <ng-container *jntMinFor="ui.breakpoint.tablet">
     <table data-year border="0" cellpadding="5" [cellSpacing]="0">
@@ -48,24 +70,6 @@
       </tr>
       </thead>
       <tbody>
-
-      <ng-template #noDataTemplate>
-        <tr data-nodata>
-          <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
-            <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
-          </td>
-        </tr>
-      </ng-template>
-
-      <ng-template #skeletonTemplate>
-        <ng-container *ngIf="loading; else noDataTemplate">
-          <tr data-loading>
-            <td [attr.colspan]="(current | jntGetDaysInMonth) + 2">
-              <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="8"></jnt-skeleton>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-template>
 
       <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
         <ng-container *ngFor="let line of lines">
@@ -124,7 +128,7 @@
                           [scheme]="ui.scheme.secondary"
                           [size]="ui.size.small"
                           (click)="current = subYears(current, 1)">
-              </jnt-button>>
+              </jnt-button>
               <div>
                 {{current | jntFormat: 'yyyy'}}
               </div>
@@ -225,22 +229,6 @@
       </thead>
       <tbody>
       <div data-current-line #currentLine></div>
-      <ng-template #noDataTemplate>
-        <tr data-nodata>
-          <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
-            <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template #skeletonTemplate>
-        <ng-container *ngIf="loading; else noDataTemplate">
-          <tr data-loading>
-            <td [attr.colspan]="(current | jntGetDaysInMonth) + 2">
-              <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="8"></jnt-skeleton>
-            </td>
-          </tr>
-        </ng-container>
-      </ng-template>
 
       <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
         <ng-container *ngFor="let line of lines">
