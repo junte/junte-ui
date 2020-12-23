@@ -250,6 +250,7 @@
     background: null,
     hover-background: null,
     color: null,
+    hover-color: null,
     shadow: null,
     corners: (
       top: (
@@ -495,6 +496,30 @@
           color: map-get($vars, color);
           [data-icon] {
             @include jnt-icon((color: map-get($vars, color)), '&');
+          }
+        }
+      }
+
+      @if map-get($vars, hover-color) {
+        #{$wrapper} button:hover {
+          color: map-get($vars, hover-color);
+
+          [data-icon] {
+            @include jnt-icon((color: map-get($vars, hover-color)), '&');
+          }
+        }
+      }
+    }
+
+    &[data-scheme][data-outline=#{$jnt-outline-transparent-name}] {
+      @if map-get($vars, color) {
+        #{$wrapper} button:focus {
+          outline: map-get($vars, color) auto 1px;
+        }
+
+        &[data-shape='circle'] {
+          #{$wrapper} button:focus {
+            box-shadow: 0 1px 5px map-get($vars, color);
           }
         }
       }
