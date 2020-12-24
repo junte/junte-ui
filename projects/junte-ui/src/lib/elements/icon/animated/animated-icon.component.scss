@@ -6,7 +6,8 @@
   $defs: (
     width: null,
     height: null,
-    color: null
+    color: $jnt-primary-text-color,
+    stroke: 1.5px
   );
 
   $vars: $passed;
@@ -25,24 +26,46 @@
   :host, #{$context} {
     @if $declare {
       display: inline-flex;
-      [data-mock] {
-        opacity: .5;
-      }
-      > * {
-        width: 100%;
-        height: auto;
-        max-height: 100%;
+      line-height: 0;
+
+      &[data-tags*='stroked'] {
+        svg {
+          shape-rendering: geometricPrecision;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+
+          path, line, rect, circle {
+            vector-effect: non-scaling-stroke;
+          }
+        }
       }
     }
+
+    $color: map-get($vars, color);
+
+    &[data-tags*='stroked'] {
+      svg {
+        stroke-width: map-get($vars, stroke);
+      }
+    }
+
+    &[data-has-color='false'] {
+      &[data-tags*='stroked'] {
+        svg {
+          stroke: $color;
+        }
+      }
+
+      &[data-tags*='filled'] svg {
+        fill: $color;
+      }
+    }
+
     width: map-get($vars, width);
     height: map-get($vars, height);
-
-    & > * {
-      fill: map-get($vars, color);
-    }
   }
 }
 
 @if $jnt-debug {
-  @debug 'animated-icon compiled';
+  @debug 'animated icon compiled';
 }

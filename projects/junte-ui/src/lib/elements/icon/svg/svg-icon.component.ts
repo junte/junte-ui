@@ -6,11 +6,7 @@ import { JunteUIConfig } from '../../../config';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Stroke } from '../../../core/enums/stroke';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
-
-enum IconTag {
-  stroked = 'stroked',
-  filled = 'filled'
-}
+import { IconTag } from '../enums';
 
 const DEFAULT_ICONSET = 'default';
 
