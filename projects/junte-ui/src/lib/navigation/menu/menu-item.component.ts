@@ -1,5 +1,4 @@
-import { Component, ContentChild, ContentChildren, Input, QueryList } from '@angular/core';
-import { PropertyApi } from '../../core/decorators/api';
+import { Component, ContentChild, ContentChildren, QueryList } from '@angular/core';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { AbstractMenuItem } from './abstract-menu-item';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
@@ -9,22 +8,6 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
   template: ''
 })
 export class MenuItemComponent extends AbstractMenuItem {
-
-  @PropertyApi({
-    description: 'Loading for menu item',
-    default: 'false',
-    type: 'boolean'
-  })
-  @Input()
-  loading = false;
-
-  @PropertyApi({
-    description: 'Disable menu item',
-    type: 'boolean',
-    default: 'false'
-  })
-  @Input()
-  disabled = false;
 
   @ContentChild(SubMenuComponent)
   submenu: SubMenuComponent;

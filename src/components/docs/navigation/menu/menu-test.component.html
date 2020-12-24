@@ -28,6 +28,7 @@
 
                     <jnt-sub-menu *ngIf="!styleControl.value">
                       <jnt-sub-menu-item title="Document" [icon]="ui.icons.save"
+                                         [loading]="loadingControl.value"
                                          [link]="['/components/navigation/menu']"
                                          i18n-title="@@label.document"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Message"

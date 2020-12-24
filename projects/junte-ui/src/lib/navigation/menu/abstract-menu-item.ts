@@ -25,6 +25,14 @@ export abstract class AbstractMenuItem {
   opened = false;
 
   @PropertyApi({
+    description: 'Loading for menu item',
+    default: 'false',
+    type: 'boolean'
+  })
+  @Input()
+  loading = false;
+
+  @PropertyApi({
     description: 'Icon for menu item',
     type: 'string'
   })
