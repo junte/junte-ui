@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Breakpoint } from '../../../core/enums/breakpoint';
@@ -152,9 +152,18 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   ngAfterViewInit() {
-    this.radios.changes.subscribe(() => this.update());
+    let subscription = new Subscription();
+    this.radios.changes.subscribe(() => {
+      subscription.unsubscribe();
+      this.update();
+      subscription = this.subscribe();
+    });
     this.update();
-    merge(...this.radiosControl.controls.map((control, index) =>
+    subscription = this.subscribe();
+  }
+
+  subscribe() {
+    return merge(...this.radiosControl.controls.map((control, index) =>
       control.valueChanges.pipe(
         filter(value => value),
         map(() => ({control, index}))

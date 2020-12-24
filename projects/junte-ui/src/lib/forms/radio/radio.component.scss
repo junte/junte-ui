@@ -94,6 +94,7 @@
   }
 
   :host, #{$context} {
+    display: block;
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
