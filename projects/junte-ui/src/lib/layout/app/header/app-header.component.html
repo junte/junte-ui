@@ -1,7 +1,8 @@
 <ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacing="spacing">
   <div data-menu *ngIf="!!menu">
     <jnt-menu [orientation]="orientation"
-              [spacing]="spacing">
+              [spacing]="spacing"
+              (selected)="hide()">
       <jnt-menu-item *ngFor="let item of menu.items"
                      [title]="item.title"
                      [icon]="item.icon"
