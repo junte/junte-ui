@@ -1,7 +1,8 @@
 <jnt-form [formGroup]="form">
   <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="mobile ? ui.gutter.none : ui.gutter.normal">
     <ng-container *ngIf="type === datePickerType.date || type === datePickerType.dateTime">
-      <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
+      <jnt-input *jntMinFor="ui.breakpoint.tablet"
+                 data-input data-date
                  formControlName="date"
                  [placeholder]="placeholder || ''"
                  [jntPopover]="{
@@ -29,7 +30,8 @@
     </ng-container>
 
     <ng-container *ngIf="type === datePickerType.time || type === datePickerType.dateTime">
-      <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
+      <jnt-input *jntMinFor="ui.breakpoint.tablet"
+                 data-input data-time
                  formControlName="time"
                  [icon]="ui.icons.time"
                  [jntPopover]="{

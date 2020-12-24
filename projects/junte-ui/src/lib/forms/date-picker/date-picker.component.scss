@@ -71,6 +71,21 @@
     }
   }
 
+  #{$context} #{$wrapper} [data-input] {
+    @if $declare {
+      @include min-for-tablet() {
+        &[data-date] {
+          flex: 1 1 auto;
+        }
+
+        &[data-time] {
+          flex: 0 4 auto;
+          min-width: 100px;
+        }
+      }
+    }
+  }
+
   #{$context} #{$wrapper} [data-calendar-dropdown] {
     @if $declare {
       flex: 1;
