@@ -134,29 +134,6 @@ $tab-marker-height: 4px;
           width: 100%;
         }
       }
-      #{$wrapper} [data-top] {
-        position: relative;
-        white-space: nowrap;
-        box-sizing: border-box;
-
-        [data-item] {
-          display: flex;
-          align-items: center;
-          user-select: none;
-
-          &[data-loading='true'] {
-            opacity: .7;
-            pointer-events: none;
-          }
-
-          [data-link] {
-            width: 100%;
-            @include jnt-link((
-              overflow: true
-            ), '&');
-          }
-        }
-      }
     }
 
     &[data-style='default'] {
@@ -389,6 +366,39 @@ $tab-marker-height: 4px;
     }
   }
 
+  [data-spinner] {
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: grid;
+      place-items: center;
+      background-color: rgba($jnt-white-color, .85);
+      z-index: 1;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-top] {
+    position: relative;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    [data-item] {
+      display: flex;
+      align-items: center;
+      user-select: none;
+
+      [data-link] {
+        width: 100%;
+        @include jnt-link((
+          overflow: true
+        ), '&');
+      }
+    }
+  }
+
   #{$context} #{$wrapper} [data-sub] {
     @if $declare {
       width: 100%;
@@ -416,6 +426,10 @@ $tab-marker-height: 4px;
       }
     }
 
+    [data-item] {
+      position: relative;
+    }
+
     [data-link] {
       @if $declare {
         user-select: none;
@@ -435,7 +449,7 @@ $tab-marker-height: 4px;
           $collapsed: map-get($sub, collapsed);
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
-            [data-link] {
+            [data-item] [data-link] {
               @include jnt-link((
                 outlines: (
                   transparent: (
@@ -461,7 +475,7 @@ $tab-marker-height: 4px;
 
       @if map-has-key($sub, item) {
         $item: map-get($sub, item);
-        [data-link] {
+        [data-item] [data-link] {
           @include jnt-link((
             height: map-get($item, height),
             corner: map-get($item, corner),

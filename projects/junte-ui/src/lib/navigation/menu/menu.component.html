@@ -4,7 +4,7 @@
            [wrap]="ui.wrap.wrap">
   <ng-container *ngFor="let item of items">
     <div data-top>
-      <div data-item [attr.data-loading]="item.loading" (click)="toggle(item)"
+      <div data-item (click)="toggle(item)"
            [jntPopover]="{
               context: this.context,
               contentTemplate: submenuTemplate,
@@ -20,7 +20,9 @@
             }"
            (attached)="reference.popover = $event"
            (removed)="reference.popover = null">
-        <jnt-spinner *ngIf="item.loading" data-spinner [size]="ui.size.small"></jnt-spinner>
+        <div *ngIf="item.loading" data-spinner>
+          <jnt-spinner></jnt-spinner>
+        </div>
         <jnt-link data-link
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
@@ -60,24 +62,29 @@
                 {{item.title}}
               </span>
             </div>
-            <jnt-link data-link *ngFor="let subItem of item.submenu.items"
-                      [context]="ui.context.box"
-                      [title]="subItem.title"
-                      [icon]="subItem.icon"
-                      [matching]="subItem.matching"
-                      [source]="subItem.link?.source"
-                      [fragment]="subItem.link?.fragment"
-                      [disabled]="subItem.disabled"
-                      [scheme]="subItem.scheme"
-                      [target]="subItem.target"
-                      (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
-              <jnt-badge *ngFor="let badge of subItem.badges"
-                         [value]="badge.value"
-                         [text]="badge.text"
-                         [position]="ui.position.inline"
-                         [color]="badge.color">
-              </jnt-badge>
-            </jnt-link>
+            <div data-item *ngFor="let subItem of item.submenu.items">
+              <div *ngIf="subItem.loading" data-spinner>
+                <jnt-spinner></jnt-spinner>
+              </div>
+              <jnt-link data-link
+                        [context]="ui.context.box"
+                        [title]="subItem.title"
+                        [icon]="subItem.icon"
+                        [matching]="subItem.matching"
+                        [source]="subItem.link?.source"
+                        [fragment]="subItem.link?.fragment"
+                        [disabled]="subItem.disabled"
+                        [scheme]="subItem.scheme"
+                        [target]="subItem.target"
+                        (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
+                <jnt-badge *ngFor="let badge of subItem.badges"
+                           [value]="badge.value"
+                           [text]="badge.text"
+                           [position]="ui.position.inline"
+                           [color]="badge.color">
+                </jnt-badge>
+              </jnt-link>
+            </div>
           </ng-container>
         </div>
       </ng-template>
