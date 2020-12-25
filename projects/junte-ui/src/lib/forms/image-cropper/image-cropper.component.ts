@@ -7,11 +7,11 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
-  Input,
+  Input, OnInit,
   Output,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
@@ -70,7 +70,7 @@ export type ImageCroppedData = {
     }, ...I18N_PROVIDERS
   ]
 })
-export class ImageCropperComponent implements ControlValueAccessor {
+export class ImageCropperComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
 
@@ -88,6 +88,10 @@ export class ImageCropperComponent implements ControlValueAccessor {
   marginLeft: SafeStyle | string = '0px';
   moveTypes = MoveTypes;
   imagePosition = new ImagePosition();
+
+  form = this.fb.group({
+    zoom: [this.imagePosition.scale]
+  });
 
   @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
   @ViewChild('image') image: ElementRef;
@@ -183,7 +187,12 @@ export class ImageCropperComponent implements ControlValueAccessor {
 
   constructor(private logger: NGXLogger,
               private cd: ChangeDetectorRef,
+              private fb: FormBuilder,
               public sanitizer: DomSanitizer) {
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe(({zoom}) => this.zoom(zoom))
   }
 
   inView(): void {

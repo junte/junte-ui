@@ -23,6 +23,10 @@
   </div>
 </div>
 
-<div data-zoom [attr.data-disabled]="!imagePosition.width || !imagePosition.height || disabled">
-  <input type="range" [min]="min" [max]="max" [step]="step" [value]="imagePosition.scale" (input)="zoom(+$event.target.value)">
-</div>
+<form [formGroup]="form" data-zoom [attr.data-disabled]="!imagePosition.width || !imagePosition.height || disabled">
+  <jnt-slider formControlName="zoom"
+              [min]="min"
+              [max]="max"
+              [step]="step">
+  </jnt-slider>
+</form>
