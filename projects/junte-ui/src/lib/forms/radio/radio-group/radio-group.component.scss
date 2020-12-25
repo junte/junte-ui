@@ -1,4 +1,5 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
 
 @mixin jnt-radio-group($passed: (), $context: null, $strategy: 'changes') {
 
@@ -12,7 +13,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-radio-group-host)} {
     @if $declare {
       display: block;
     }

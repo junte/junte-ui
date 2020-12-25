@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin badge-position($position, $wrapper) {
   #{$wrapper} [data-text] {
@@ -48,7 +49,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-badge-host)} {
     @if $declare {
       display: inline-flex;
       position: relative;

@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/svg/svg-icon";
-@import "elements/icon/font/font-icon";
-@import "elements/icon/animated/animated-icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/svg/svg-icon';
+@import 'elements/icon/font/font-icon';
+@import 'elements/icon/animated/animated-icon';
 
 @mixin jnt-icon($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
@@ -45,6 +46,10 @@
     @if $declare {
       display: inline-flex;
       vertical-align: middle;
+
+      @include jnt-svg-icon();
+      @include jnt-font-icon();
+      @include jnt-animated-icon();
     }
 
     &[data-type='font'] {

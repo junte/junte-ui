@@ -1,6 +1,7 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
-@import "jnt-utils";
+@import 'jnt-utils';
+@import 'jnt-hosts';
 @import 'elements/icon/icon';
 @import 'layout/responsive/responsive';
 
@@ -44,7 +45,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-modal-host)} {
     @if $declare {
       @include reset-default();
       display: block;

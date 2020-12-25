@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "elements/dot/dot";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'elements/dot/dot';
 
 @mixin label-size($size, $wrapper) {
   padding: map-get($size, padding);
@@ -49,7 +50,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-label-host)} {
     @if $declare {
       display: inline-block;
       box-sizing: border-box;

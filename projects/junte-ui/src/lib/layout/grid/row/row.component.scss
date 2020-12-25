@@ -1,9 +1,11 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin col-spacing($gutter) {
   & {
     margin-top: -$gutter;
+
     > :not(router-outlet) {
       margin-top: $gutter;
     }
@@ -31,7 +33,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-row-host)} {
     @if $declare {
       display: flex;
       text-align: left;
@@ -79,6 +81,7 @@
         &[data-gutter = '#{$gutter}'] {
           margin-left: -$map;
           margin-right: -$map;
+
           > * {
             padding-left: $map;
             padding-right: $map;

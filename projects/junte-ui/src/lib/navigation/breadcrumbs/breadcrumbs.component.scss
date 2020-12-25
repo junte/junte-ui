@@ -1,5 +1,6 @@
 @import 'jnt-variables';
-@import "jnt-functions";
+@import 'jnt-functions';
+@import 'jnt-hosts';
 @import 'elements/icon/icon';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
@@ -22,7 +23,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-breadcrumbs-host)} {
     @if $declare {
       display: flex;
       align-items: center;

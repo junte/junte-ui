@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @keyframes jnt-skeleton-loading {
   0% {
@@ -57,7 +58,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-skeleton-host)} {
     @if $declare {
       display: block;
     }
@@ -69,11 +70,13 @@
         }
       }
     }
+
     &[data-type='text'] {
       @if $declare {
         width: 100%;
       }
     }
+
     &[data-animated='true'] {
       [data-line], [data-avatar], [data-card] {
         @if $declare {

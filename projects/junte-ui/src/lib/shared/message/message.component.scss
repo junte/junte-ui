@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin message-scheme($scheme) {
   & {
@@ -39,7 +40,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-message-host)} {
     @if $declare {
       display: block;
       border-radius: $jnt-corner-small;

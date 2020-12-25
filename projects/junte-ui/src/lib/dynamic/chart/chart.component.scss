@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-utils";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-chart($passed: (), $context: null, $strategy: 'changes') {
 
@@ -18,7 +19,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-chart-host)} {
     @if $declare {
       @include reset-default();
       display: flex;
@@ -35,6 +36,7 @@
         border-spacing: 0;
         width: 100%;
       }
+
       td, th {
         @if $declare {
           text-align: left;
@@ -45,11 +47,13 @@
           }
         }
       }
+
       thead {
         @if $declare {
           background-color: $jnt-secondary-background;
         }
       }
+
       tbody {
         tr {
           @if $declare {
@@ -97,6 +101,7 @@
             }
           }
         }
+
         td {
           @if $declare {
             background-color: $jnt-primary-background;

@@ -1,9 +1,10 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/app/variables";
-@import "navigation/menu/menu";
-@import "elements/icon/icon";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'navigation/menu/menu';
+@import 'elements/icon/icon';
+@import 'forms/button/button';
 
 @mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
@@ -27,7 +28,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-header-host)} {
     @if $declare {
       display: flex;
       justify-content: space-between;

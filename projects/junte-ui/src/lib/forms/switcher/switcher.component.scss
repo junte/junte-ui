@@ -1,9 +1,10 @@
-@import "jnt-variables";
-@import "jnt-utils";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "layout/skeleton/skeleton";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-utils';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/skeleton/skeleton';
+@import 'forms/button/button';
 
 @mixin jnt-switcher($passed: (), $context: null, $strategy: 'changes') {
 
@@ -36,7 +37,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-switcher-host)} {
     @if $declare {
       @include reset-default();
       display: inline-block;
@@ -46,21 +47,22 @@
     min-width: map-get($vars, min-width);
 
     &[data-width='fluid'] {
-        @if $declare {
-          display: block;
-          flex: 1;
-        }
+      @if $declare {
+        display: block;
+        flex: 1;
       }
-      #{$wrapper} [data-options] {
-        [data-option] {
-          @if $declare {
+    }
+
+    #{$wrapper} [data-options] {
+      [data-option] {
+        @if $declare {
           background-color: $jnt-primary-background;
           color: $jnt-primary-text-color;
           user-select: none;
           cursor: pointer;
           padding: 0 $jnt-gutter-small;
 
-          &[data-selected="false"]:hover {
+          &[data-selected='false']:hover {
             background-color: $jnt-highlight-background;
           }
 
@@ -72,12 +74,13 @@
             color: $jnt-control-disabled-label-color;
             background-color: $jnt-control-disabled-background;
             pointer-events: none;
+
             &[data-selected='true'] {
               opacity: .65;
             }
           }
 
-          &[data-selected="false"]:focus {
+          &[data-selected='false']:focus {
             background-color: rgba($jnt-primary-light-color, .3);
           }
 
@@ -171,12 +174,13 @@
             min-height: 0;
           }
 
-          &[data-selected="true"] {
+          &[data-selected='true'] {
             @if map-has-key($option, active) {
               $active: map-get($option, active);
               color: map-get($active, color);
               background-color: map-get($active, background);
             }
+
             [data-icon] {
               @include jnt-icon((color: $jnt-white-color), '&');
             }

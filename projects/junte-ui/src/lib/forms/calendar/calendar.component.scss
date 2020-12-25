@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'forms/button/button';
 
 @mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -33,7 +34,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-calendar-host)} {
     @if $declare {
       @include reset-default();
       display: block;

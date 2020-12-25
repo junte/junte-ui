@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-app-page-header($passed: (), $context: null, $strategy: 'changes') {
 
@@ -26,7 +27,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-page-header-host)} {
     @if $declare {
       @include reset-default();
       display: block;

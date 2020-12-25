@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-form($passed: (), $context: null, $strategy: 'changes') {
 
@@ -20,7 +21,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-form-host)} {
     @if $declare {
       display: block;
       position: relative;

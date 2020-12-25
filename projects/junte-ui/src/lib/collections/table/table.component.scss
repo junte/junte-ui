@@ -1,12 +1,12 @@
-@import "jnt-variables";
+@import 'jnt-variables';
 @import 'jnt-hosts';
-@import "jnt-functions";
-@import "jnt-utils";
-@import "forms/button/button";
-@import "forms/input/input";
-@import "layout/responsive/responsive";
-@import "layout/card/card";
-@import "elements/icon/icon";
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'forms/button/button';
+@import 'forms/input/input';
+@import 'layout/responsive/responsive';
+@import 'layout/card/card';
+@import 'elements/icon/icon';
 
 @mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
@@ -28,7 +28,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-table-host)} {
     @if $declare {
       @include reset-default();
       display: block;

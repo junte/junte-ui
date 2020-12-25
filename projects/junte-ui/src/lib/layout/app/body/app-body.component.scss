@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-app-body($passed: (), $context: null, $strategy: 'changes') {
 
@@ -24,7 +25,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-body-host)} {
     @if $declare {
       display: block;
       box-sizing: border-box;

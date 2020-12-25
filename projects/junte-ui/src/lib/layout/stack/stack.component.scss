@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
@@ -13,6 +14,7 @@ $type-horizontal: 'horizontal';
 @mixin stack-spacing($gutter, $wrapper) {
   & {
     margin-top: -$gutter;
+
     > #{$wrapper}:not(router-outlet) {
       margin-top: $gutter;
     }
@@ -50,7 +52,7 @@ $type-horizontal: 'horizontal';
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-stack-host)} {
     @if $declare {
       display: flex;
       text-align: left;
@@ -108,6 +110,7 @@ $type-horizontal: 'horizontal';
             flex-direction: column;
             @include stack-gutters(margin-bottom, $map, $wrapper);
           }
+
           &[data-orientation = '#{$type-horizontal}'] {
             flex-direction: row;
             @include stack-gutters(margin-right, $map, $wrapper);

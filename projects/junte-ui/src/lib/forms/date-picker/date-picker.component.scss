@@ -1,4 +1,5 @@
 @import 'jnt-variables';
+@import 'jnt-hosts';
 @import 'layout/responsive/responsive';
 @import 'overlays/popover/popover';
 @import 'forms/calendar/calendar';
@@ -21,7 +22,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-date-picker-host)} {
     @if $declare {
       display: inline-block;
       min-width: 100px;

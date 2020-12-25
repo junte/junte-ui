@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "elements/avatar/common";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
 
 @mixin jnt-avatars-group($passed: (), $context: null, $strategy: 'changes') {
 
@@ -12,7 +13,8 @@
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
-  :host, #{$context} {
+
+  #{if($context, $context, $jnt-avatars-group-host)} {
     @if $declare {
       display: flex;
       flex-wrap: wrap-reverse;
@@ -88,6 +90,7 @@
             flex-direction: column;
             flex-wrap: wrap;
           }
+
           [data-avatar] {
             min-width: calc(#{map-get($map, avatar)} / 2);
             width: calc(#{map-get($map, avatar)} / 2);
@@ -100,12 +103,14 @@
                 border-left: none;
               }
             }
+
             &:nth-child(2) {
               @if $declare {
                 border-bottom: none;
                 border-left: none;
               }
             }
+
             &:nth-child(3) {
               width: map-get($map, avatar);
               height: map-get($map, avatar);
@@ -122,6 +127,7 @@
           @if $declare {
             flex-direction: column;
           }
+
           [data-avatar] {
             width: map-get($map, avatar);
             height: map-get($map, avatar);

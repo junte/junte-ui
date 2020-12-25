@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon';
 
 @mixin jnt-collapsible($passed: (), $context: null, $strategy: 'changes') {
 
@@ -19,7 +20,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-collapsible-host)} {
     @if $declare {
       display: block;
       background-color: $jnt-primary-background;
@@ -32,9 +33,11 @@
 
         [data-title] {
           padding: $jnt-gutter-normal $jnt-gutter-small;
+
           [data-icon] {
             transform: rotate(90deg);
           }
+
           span {
             writing-mode: vertical-rl;
           }

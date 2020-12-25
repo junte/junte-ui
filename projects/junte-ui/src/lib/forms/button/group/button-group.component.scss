@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'forms/button/button';
 
 @mixin jnt-button-group($passed: (), $context: null, $strategy: 'changes') {
 
@@ -21,7 +22,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-button-group-host)} {
     @if $declare {
       display: inline-flex;
       &[data-width='fluid'] {
@@ -46,7 +47,7 @@
 
 
     &:first-child {
-      @include jnt-button ((
+      @include jnt-button((
         corners: (
           top: (
             left: map-get($vars, corner)
@@ -62,7 +63,7 @@
     }
 
     &:last-child {
-      @include jnt-button ((
+      @include jnt-button((
         corners: (
           top: (
             right: map-get($vars, corner)

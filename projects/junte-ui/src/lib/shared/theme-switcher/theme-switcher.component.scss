@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "forms/switch/switch";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'forms/switch/switch';
 
 @mixin jnt-theme-switcher($passed: (), $context: null, $strategy: 'changes') {
 
@@ -13,7 +14,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-theme-switcher-host)} {
     @if $declare {
       display: inline-block;
     }

@@ -1,10 +1,11 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
-@import "forms/button/button";
-@import "overlays/popover/popover";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
+@import 'forms/button/button';
+@import 'overlays/popover/popover';
 
 @mixin card-padding($padding, $wrapper) {
   #{$wrapper} [data-main] {
@@ -84,7 +85,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-card-host)} {
     @if $declare {
       @include reset-default();
       display: inline-block;
@@ -108,7 +109,7 @@
     }
     border-radius: map-get($vars, corner);
 
-    &[data-width="fluid"] {
+    &[data-width='fluid'] {
       @if $declare {
         display: flex;
         flex: 1;

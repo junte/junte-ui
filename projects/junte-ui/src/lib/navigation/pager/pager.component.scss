@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
 
@@ -20,7 +21,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-pager-host)} {
     @if $declare {
       @include reset-default();
       display: block;
@@ -46,7 +47,7 @@
       }
     }
 
-    &[active="true"] {
+    &[active='true'] {
       @if $declare {
         pointer-events: none;
         background-color: $jnt-primary-color;
@@ -54,7 +55,7 @@
       }
     }
 
-    &[disabled="true"] {
+    &[disabled='true'] {
       @if $declare {
         cursor: default;
         pointer-events: none;

@@ -1,5 +1,6 @@
 @import "jnt-variables";
 @import "jnt-utils";
+@import "jnt-hosts";
 
 @mixin jnt-progress-bar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -21,7 +22,8 @@
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
-  :host, #{$context} {
+
+  #{if($context, $context, $jnt-progress-bar-host)} {
     @if $declare {
       @include reset-default();
       display: flex;

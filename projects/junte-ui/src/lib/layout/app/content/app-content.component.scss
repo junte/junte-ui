@@ -1,9 +1,10 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "layout/app/variables";
-@import "layout/responsive/responsive";
-@import "layout/app/body/app-body";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'layout/responsive/responsive';
+@import 'layout/app/body/app-body';
 
 @mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
@@ -30,7 +31,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-content-host)} {
     @if $declare {
       display: block;
       flex: auto;
@@ -76,7 +77,7 @@
 
     @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
 
-    &[data-with-footer="false"] {
+    &[data-with-footer='false'] {
       @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
     }
   }

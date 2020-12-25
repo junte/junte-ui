@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 @import 'elements/badge/badge';
 @import 'elements/icon/icon';
 @import 'layout/spinner/spinner';
@@ -394,7 +395,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-button-host)} {
     @if $declare {
       display: inline-flex;
       align-items: center;
@@ -494,6 +495,7 @@
       @if map-get($vars, color) {
         #{$wrapper} button {
           color: map-get($vars, color);
+
           [data-icon] {
             @include jnt-icon((color: map-get($vars, color)), '&');
           }
