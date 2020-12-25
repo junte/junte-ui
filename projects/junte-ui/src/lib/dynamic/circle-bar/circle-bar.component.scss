@@ -1,6 +1,8 @@
 @import 'jnt-variables';
 @import 'jnt-utils';
 @import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'dynamic/circle-bar/indicator-group';
 
 @mixin jnt-circle-bar($passed: (), $context: null, $strategy: 'changes') {
 
@@ -25,13 +27,15 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-circle-bar-host)} {
     @if $declare {
       @include reset-default();
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include jnt-circle-bar-indicator-group(());
     }
     width: map-get($vars, width);
     height: map-get($vars, height);

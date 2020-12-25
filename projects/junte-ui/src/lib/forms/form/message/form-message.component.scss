@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-form-message($passed: (), $context: null, $strategy: 'changes') {
 
@@ -13,7 +14,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-form-message-host)} {
     @if $declare {
       display: none;
       font-size: $jnt-font-size-tiny;

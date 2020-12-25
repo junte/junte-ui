@@ -1,9 +1,10 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
-@import "layout/spinner/spinner";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
+@import 'layout/spinner/spinner';
 
 @mixin select-size($size, $wrapper) {
   #{$wrapper} [data-select] {
@@ -85,7 +86,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-select-host)} {
     @if $declare {
       display: inline-block;
       position: relative;

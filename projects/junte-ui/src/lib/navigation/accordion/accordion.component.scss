@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 $accordion-marker-height: 2px;
 
@@ -22,7 +23,7 @@ $accordion-marker-height: 2px;
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-accordion-host)} {
     @if $declare {
       @include reset-default();
       display: block;

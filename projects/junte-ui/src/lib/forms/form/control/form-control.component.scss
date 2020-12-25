@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-form-control($passed: (), $context: null, $strategy: 'changes') {
 
@@ -18,7 +19,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-form-control-host)} {
     @if $declare {
       display: block;
     }

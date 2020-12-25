@@ -1,4 +1,5 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
 
 @mixin jnt-app-header-actions($passed: (), $context: null, $strategy: 'changes') {
 
@@ -8,7 +9,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-header-actions-host)} {
     @if $declare {
       position: relative;
       cursor: pointer;

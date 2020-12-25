@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-svg-icon($passed: (), $context: null, $strategy: 'changes') {
 
@@ -23,7 +24,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-svg-icon-host)} {
     @if $declare {
       display: inline-flex;
       line-height: 0;

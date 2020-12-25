@@ -1,6 +1,7 @@
 @import 'jnt-variables';
 @import 'layout/app/variables';
-@import "jnt-utils";
+@import 'jnt-utils';
+@import 'jnt-hosts';
 @import 'navigation/menu/menu';
 @import 'layout/responsive/responsive';
 @import 'forms/button/button';
@@ -42,7 +43,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-aside-host)} {
     @if $declare {
       display: block;
       box-sizing: border-box;
@@ -124,7 +125,8 @@
             active: (
               underline: false,
               background-color: $jnt-secondary-background,
-              color: $jnt-primary-color
+              color: $jnt-primary-color,
+              shadow: inset 4px 0px 0px $jnt-primary-color
             ),
             focus: (
               outline: null,
@@ -134,7 +136,8 @@
               color: $jnt-primary-text-color
             ),
             icon: (
-              color: $jnt-primary-text-light-color
+              color: $jnt-primary-text-light-color,
+              spacing: $jnt-gutter-small
             ),
             height: 50px
           )

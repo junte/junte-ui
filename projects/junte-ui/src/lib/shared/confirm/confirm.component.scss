@@ -1,4 +1,5 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
 
 @mixin jnt-confirm($passed: (), $context: null, $strategy: 'changes') {
 
@@ -12,7 +13,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-confirm-host)} {
     @if $declare {
       display: block;
     }

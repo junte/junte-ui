@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/badge/badge";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/badge/badge';
+@import 'elements/icon/icon';
 
 @mixin link-outline($scheme, $wrapper) {
   &[data-orphan='true'] {
@@ -35,7 +36,7 @@
 
   @if map-has-key($scheme, hover) {
     $hover: map-get($scheme, hover);
-    &[data-active="false"] {
+    &[data-active='false'] {
       #{$wrapper} [data-link] {
         &:hover {
           color: map-get($hover, color);
@@ -49,7 +50,7 @@
     }
   }
 
-  &[data-active="true"] {
+  &[data-active='true'] {
     @if map-has-key($scheme, active) {
       $active: map-get($scheme, active);
       background-color: map-get($active, background-color);
@@ -208,7 +209,7 @@
         color: map-get($scheme, inverse-color);
       }
 
-      &[data-active="true"] {
+      &[data-active='true'] {
         [data-title] {
           span {
             border-bottom: 1px solid map-get($scheme, inverse-color);
@@ -333,12 +334,12 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-link-host)} {
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
       max-width: 100%;
-      &[data-disabled="true"] {
+      &[data-disabled='true'] {
         [data-link] {
           opacity: .65;
           pointer-events: none;
@@ -356,7 +357,7 @@
         cursor: pointer;
         width: 100%;
 
-        &[data-active="true"] {
+        &[data-active='true'] {
           cursor: default;
         }
 
@@ -382,9 +383,11 @@
           display: flex;
           align-items: center;
           width: 100%;
+
           [data-title] {
             display: flex;
             align-items: center;
+
             [data-icon] {
               line-height: 1;
             }

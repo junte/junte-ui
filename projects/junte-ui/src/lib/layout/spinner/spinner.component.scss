@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin spinner-size($size) {
   width: $size;
@@ -69,7 +70,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-spinner-host)} {
     display: block;
 
     @if map-has-key($vars, sizes) {

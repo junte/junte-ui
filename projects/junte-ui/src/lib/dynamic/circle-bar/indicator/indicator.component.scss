@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-circle-bar-indicator($passed: (), $context: null, $strategy: 'changes') {
 
@@ -20,7 +21,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-indicator-host)} {
     @if $declare {
       height: 100%;
       width: 100%;

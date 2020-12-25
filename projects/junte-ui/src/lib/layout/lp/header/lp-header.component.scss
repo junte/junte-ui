@@ -1,10 +1,11 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "navigation/menu/menu";
-@import "layout/responsive/responsive";
-@import "layout/grid/container/container";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'navigation/menu/menu';
+@import 'layout/responsive/responsive';
+@import 'layout/grid/container/container';
+@import 'forms/button/button';
 
 @mixin jnt-lp-header($passed: (), $context: null, $strategy: 'changes') {
 
@@ -74,7 +75,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-lp-header-host)} {
     @if $declare {
       display: flex;
       box-sizing: border-box;
@@ -100,7 +101,9 @@
     @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
       display: flex;
       justify-content: space-between;
-    };
+    }
+  ;
+
     &[data-desktop] {
       [data-menu] {
         @if $declare {
@@ -115,6 +118,7 @@
         }
       }
     }
+
     &[data-tablet] {
       [data-menu] {
         @if $declare {

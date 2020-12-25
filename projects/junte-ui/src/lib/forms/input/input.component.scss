@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "layout/spinner/spinner";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/spinner/spinner';
 
 @mixin input-size($size, $wrapper) {
   & {
@@ -115,7 +116,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-input-host)} {
     @if $declare {
       display: inline-flex;
       background-color: $jnt-control-background;
@@ -230,7 +231,7 @@
       }
     }
 
-    &[data-textAlign="right"] {
+    &[data-textAlign='right'] {
       #{$wrapper} input, #{$wrapper} textarea {
         @if $declare {
           text-align: right;
@@ -238,7 +239,7 @@
       }
     }
 
-    &[data-textAlign="left"] {
+    &[data-textAlign='left'] {
       #{$wrapper} input, #{$wrapper} textarea {
         @if $declare {
           text-align: left;
@@ -310,15 +311,15 @@
           min-width: 0;
         }
 
-        &[type="number"]::-webkit-outer-spin-button,
-        &[type="number"]::-webkit-inner-spin-button {
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
           @if $declare {
             -webkit-appearance: none;
             margin: 0;
           }
         }
 
-        &[type="number"] {
+        &[type='number'] {
           @if $declare {
             -moz-appearance: textfield;
           }

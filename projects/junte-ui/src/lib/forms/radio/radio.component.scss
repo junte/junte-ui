@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 @import 'elements/icon/icon';
 
 @mixin radio-size($size, $wrapper) {
@@ -93,8 +94,11 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
+  #{if($context, $context, $jnt-radio-host)} {
+    @if $declare {
+      display: block;
+    }
+
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -105,7 +109,7 @@
     }
 
     &[data-checked='true'] {
-    #{$wrapper} [data-switch] {
+      #{$wrapper} [data-switch] {
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
           @if map-has-key($switch, checked) {

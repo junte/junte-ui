@@ -102,7 +102,8 @@ $tab-marker-height: 4px;
         active: (
           underline: false,
           background-color: null,
-          color: $jnt-primary-light-color
+          color: $jnt-primary-light-color,
+          shadow: null
         ),
         focus: (
           outline: null,
@@ -153,7 +154,7 @@ $tab-marker-height: 4px;
                   padding: map-get($title, padding)
                 )
               )
-            ), '&');
+            ));
 
             @if map-has-key($title, active) {
               $active: map-get($title, active);
@@ -169,7 +170,7 @@ $tab-marker-height: 4px;
                     )
                   )
                 )
-              ), '&');
+              ));
             }
 
             @if map-has-key($title, orphan) {
@@ -182,7 +183,8 @@ $tab-marker-height: 4px;
                     )
                   )
                 )
-              ), '&');
+              ));
+
               @if map-has-key($orphan, hover) {
                 $hover: map-get($orphan, hover);
                 @include jnt-link((
@@ -196,7 +198,7 @@ $tab-marker-height: 4px;
                       )
                     )
                   )
-                ), '&');
+                ));
               }
             }
 
@@ -208,7 +210,7 @@ $tab-marker-height: 4px;
                   color: map-get($icon, color),
                   size: map-get($icon, size),
                 )
-              ), '&');
+              ));
             }
 
             @if map-has-key($title, toggle) {
@@ -219,7 +221,7 @@ $tab-marker-height: 4px;
                   margin-left: map-get($toggle, margin-left),
                   color: map-get($toggle, color)
                 )
-              ), '&');
+              ));
             }
 
             @if map-has-key($title, hover) {
@@ -233,7 +235,7 @@ $tab-marker-height: 4px;
                     )
                   )
                 )
-              ), '&');
+              ));
             }
 
             @if map-has-key($title, focus) {
@@ -375,7 +377,7 @@ $tab-marker-height: 4px;
       right: 0;
       display: grid;
       place-items: center;
-      background-color: rgba($jnt-white-color, .85);
+      background-color: rgba($jnt-primary-background, .85);
       z-index: 1;
     }
   }
@@ -428,15 +430,16 @@ $tab-marker-height: 4px;
 
     [data-item] {
       position: relative;
-    }
 
-    [data-link] {
-      @if $declare {
-        user-select: none;
-        @include jnt-link((
-          overflow: true,
-          display: block
-        ), '&');
+      [data-link] {
+        @if $declare {
+          user-select: none;
+          width: 100%;
+          @include jnt-link((
+            overflow: true,
+            display: block
+          ), '&');
+        }
       }
     }
   }
@@ -540,7 +543,8 @@ $tab-marker-height: 4px;
                     underline: map-get($active, underline),
                     background-color: map-get($active, background-color),
                     color: map-get($active, color),
-                    border-color: map-get($active, border-color)
+                    border-color: map-get($active, border-color),
+                    shadow: map-get($active, shadow)
                   )
                 )
               )

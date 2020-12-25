@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-switch($passed: (), $context: null, $strategy: 'changes') {
 
@@ -88,7 +89,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-switch-host)} {
     @if $declare {
       display: inline-flex;
       align-items: center;
@@ -100,18 +101,22 @@
           #{$wrapper} form {
             min-width: map-get($map, width);
             width: map-get($map, width);
+
             [data-switch] {
               min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
               height: map-get($map, height);
               transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
+
               [data-on], [data-off] {
                 width: calc(#{map-get($map, width)} - #{map-get($vars, padding)} -
                 (#{map-get($map, height)} - #{map-get($vars, padding)} * 2) -
                 #{map-get($vars, padding)} * 2);
               }
+
               [data-slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
+
                 [data-icon] {
                   @if map-has-key($map, icon) {
                     $icon: map-get($map, icon);
@@ -121,6 +126,7 @@
                   }
                 }
               }
+
               @if map-has-key($map, tag) {
                 $label: map-get($map, tag);
                 span {
@@ -128,10 +134,12 @@
                 }
               }
             }
+
             input:checked + [data-switch] {
               transform: translateX(0);
             }
           }
+
           @if map-has-key($map, label) {
             $label: map-get($map, label);
             #{$wrapper} label {
@@ -179,6 +187,7 @@
                 $slider: map-get($background, slider);
                 background-color: map-get($slider, on);
               }
+
               [data-icon] {
                 @if map-has-key($background, icon) {
                   $icon-bg: map-get($background, icon);
@@ -233,6 +242,7 @@
             $slider: map-get($background, slider);
             background-color: map-get($slider, off);
           }
+
           [data-icon] {
             @if map-has-key($background, icon) {
               $icon-bg: map-get($background, icon);

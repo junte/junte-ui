@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-grid-col($passed: (), $context: null, $strategy: 'changes') {
 
@@ -15,7 +16,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-col-host)} {
     @if $declare {
       display: block;
       box-sizing: border-box;
@@ -35,7 +36,7 @@
     }
 
     @for $i from 1 through map-get($vars, grid-columns) {
-      &[data-span = "#{$i}"] {
+      &[data-span = '#{$i}'] {
         $width: $i/map-get($vars, grid-columns);
         flex: 0 0 percentage($width);
         max-width: percentage($width);

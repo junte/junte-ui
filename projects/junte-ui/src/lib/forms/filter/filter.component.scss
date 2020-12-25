@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-filter($passed: (), $context: null, $strategy: 'changes') {
 
@@ -18,7 +19,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-filter-host)} {
     @if $declare {
       display: flex;
       position: relative;

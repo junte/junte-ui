@@ -1,17 +1,14 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'dynamic/circle-bar/indicator';
 
 @mixin jnt-circle-bar-indicator-group($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: (
-    width: null,
-    height: null,
-    fill: null
-  );
-
+  $defs: ();
   $vars: $passed;
   $declare: false;
-
   $wrapper: null;
+
   @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
@@ -21,7 +18,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-indicator-group-host)} {
     @if $declare {
       left: 0;
       right: 0;
@@ -30,11 +27,15 @@
       margin: auto;
       position: absolute;
     }
+  }
 
-    @for $i from 1 through 3 {
-      @for $j from 0 through 3 - 1 {
-        &[data-groups='#{$i}'][data-index='#{$j}'] {
-          @if $declare {
+  :host {
+    @if $declare {
+      @include jnt-circle-bar-indicator((), '&');
+
+      @for $i from 1 through 3 {
+        @for $j from 0 through 3 - 1 {
+          &[data-groups='#{$i}'][data-index='#{$j}'] {
             $size: percentage(1 - ($j / $i) * .5);
             width: $size;
             height: $size;

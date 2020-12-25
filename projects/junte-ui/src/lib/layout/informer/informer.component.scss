@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-informer($passed: (), $context: null, $strategy: 'changes') {
 
@@ -28,7 +29,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-informer-host)} {
     @if $declare {
       &[data-placement='fixed'] {
         position: fixed;

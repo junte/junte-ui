@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @keyframes jnt-pulse {
   0% {
@@ -32,7 +33,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-dot-host)} {
     @if $declare {
       display: inline-block;
       border-radius: 50%;
@@ -41,6 +42,7 @@
     min-height: map-get($vars, size);
     width: map-get($vars, size);
     height: map-get($vars, size);
+
     &[data-features*='pulse'] {
       animation: jnt-pulse 1.5s infinite;
     }

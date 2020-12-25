@@ -72,3 +72,32 @@ In project:
 #### Info about current publish registry:
 - `cd projects/junte-ui`
 - `npm config list`
+
+@include jnt-button();
+[jnt-button-host] [data-icon][jnt-icon-host][child-of=jnt-button-host] {
+
+}
+
+<div _ng-host-xxx data-blue-div data-blue>
+  <jnt-button data-blue-button _ng-host-xxx host="jnt-button-host" [scheme]="ui.scheme.secondary">
+    <jnt-icon data-icon host="jnt-icon-host" child-of="jnt-button-host"></jnt-icon>
+  </jnt-button>
+</div>
+
+$jnt-ng-deep: true;
+[data-blue-button] {
+  @include jnt-button((color: blue), '&');
+}
+
+[data-blue][scheme='secondary'] ::ng-deep [data-icon][jnt-icon-host][child-of=jnt-button-host] {
+
+}
+
+$jnt-ng-deep: true;
+[data-blue-div] {
+@include jnt-button((color: blue));
+}
+
+[data-blue-div] [jnt-button-host][scheme='secondary'] ::ng-deep [data-icon][jnt-icon-host][child-of=jnt-button-host] {
+
+}

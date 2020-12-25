@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/app/variables";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
 
 @mixin jnt-app-footer($passed: (), $context: null, $strategy: 'changes') {
 
@@ -23,7 +24,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-footer-host)} {
     @if $declare {
       display: flex;
       align-items: center;

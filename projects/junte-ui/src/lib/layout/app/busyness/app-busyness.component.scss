@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 @import 'layout/app/variables';
 @import 'layout/spinner';
 
@@ -26,7 +27,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-busyness-host)} {
     position: map-get($vars, position);
     @if $declare {
       top: 0;

@@ -1,4 +1,5 @@
 @import 'jnt-variables';
+@import 'jnt-hosts';
 @import 'layout/responsive/responsive';
 
 @mixin jnt-app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
@@ -28,7 +29,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-app-header-userbar-host)} {
     @if $declare {
       position: relative;
       cursor: pointer;

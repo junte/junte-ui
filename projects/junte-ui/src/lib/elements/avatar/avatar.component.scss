@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/avatar/common";
-@import "elements/icon/icon";
-@import "elements/dot/dot";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
+@import 'elements/icon/icon';
+@import 'elements/dot/dot';
 
 @mixin avatar-size($size, $wrapper) {
   min-width: map-get($size, avatar);
@@ -62,7 +63,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-avatar-host)} {
     @if $declare {
       display: block;
       position: relative;

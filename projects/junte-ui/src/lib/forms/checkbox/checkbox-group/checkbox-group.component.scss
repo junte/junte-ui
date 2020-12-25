@@ -1,5 +1,6 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-checkbox-group($passed: (), $context: null, $strategy: 'changes') {
 
@@ -18,7 +19,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-checkbox-group-host)} {
     @if $declare {
       display: block;
     }

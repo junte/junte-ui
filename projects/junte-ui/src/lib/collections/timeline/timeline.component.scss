@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-timeline($passed: (), $context: null, $strategy: 'changes') {
 
@@ -25,7 +26,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-timeline-host)} {
     @if $declare {
       @include reset-default();
       display: block;
@@ -37,6 +38,7 @@
       $sizes: map-get($vars, sizes);
       [data-mark] {
         width: map-get($sizes, mark);
+
         [data-icon] {
           @include jnt-icon((size: map-get($sizes, icon)), '&');
         }
@@ -52,6 +54,7 @@
       }
 
     }
+
     [data-mark] {
       @if $declare {
         display: flex;
@@ -83,6 +86,7 @@
         }
       }
     }
+
     &:last-child {
       [data-line] {
         @if $declare {
@@ -91,7 +95,7 @@
           }
         }
       }
-     }
+    }
 
     [data-title] {
       @if $declare {

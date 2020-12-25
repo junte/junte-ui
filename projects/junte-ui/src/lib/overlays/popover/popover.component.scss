@@ -1,6 +1,7 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
-@import "jnt-utils";
+@import 'jnt-utils';
+@import 'jnt-hosts';
 
 @mixin popover-padding($padding) {
   & {
@@ -36,7 +37,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-popover-host)} {
     @if $declare {
       @include reset-default();
       position: absolute;

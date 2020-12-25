@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/avatar/common";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
 
 @mixin jnt-avatars-list($passed: (), $context: null, $strategy: 'changes') {
 
@@ -16,7 +17,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-avatars-list-host)} {
     @if $declare {
       display: flex;
       position: relative;

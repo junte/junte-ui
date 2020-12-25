@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-utils";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-block($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
@@ -53,7 +54,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-block-host)} {
     @if $declare {
       @include reset-default();
       display: inline-flex;
@@ -67,7 +68,7 @@
     border-radius: map-get($vars, corner);
     background-color: map-get($vars, background);
 
-    &[data-width="fluid"] {
+    &[data-width='fluid'] {
       @if $declare {
         display: flex;
         flex: 1;
