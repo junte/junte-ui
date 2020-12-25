@@ -34,11 +34,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      @include jnt-circle-bar-indicator-group(());
     }
     width: map-get($vars, width);
     height: map-get($vars, height);
+  }
+
+  #{$context} #{$wrapper} [data-group] {
+    @include jnt-circle-bar-indicator-group((), '&');
   }
 
   #{$context} #{$wrapper} [data-content] {
