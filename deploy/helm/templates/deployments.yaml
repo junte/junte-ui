@@ -19,8 +19,8 @@ spec:
         image: {{ .Values.image.name }}:{{ .Values.image.tag }}
         resources:
           limits:
-            memory: 100Mi
-            cpu: 10m
+            memory: 200Mi
+            cpu: 100m 
         readinessProbe:
           httpGet:
             path: /
