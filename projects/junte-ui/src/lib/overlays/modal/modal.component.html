@@ -14,11 +14,11 @@
       <span data-text>{{options.title.text}}</span>
     </jnt-stack>
 
-    <jnt-button data-close
-                *ngIf="!options.hold"
+    <jnt-button *ngIf="!options.hold"
                 [scheme]="ui.scheme.secondary"
-                [size]="ui.size.small"
                 [outline]="ui.outline.transparent"
+                [size]="ui.size.small"
+                [shape]="ui.shape.circle"
                 [icon]="ui.icons.close"
                 (click)="close()">
     </jnt-button>
