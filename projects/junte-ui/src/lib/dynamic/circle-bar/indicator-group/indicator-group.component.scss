@@ -26,12 +26,6 @@
       bottom: 0;
       margin: auto;
       position: absolute;
-    }
-  }
-
-  :host {
-    @if $declare {
-      @include jnt-circle-bar-indicator((), '&');
 
       @for $i from 1 through 3 {
         @for $j from 0 through 3 - 1 {
@@ -43,6 +37,10 @@
         }
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-indicator] {
+    @include jnt-circle-bar-indicator((), '&');
   }
 }
 
