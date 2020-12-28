@@ -137,17 +137,17 @@ export class LocalUI {
       ghost: 'ghost:svg:layout:stroked',
       transparent: 'transparent:svg:layout:stroked',
     // sizes
-      tiny: 'tiny:svg:layout:filled',
-      small: 'small:svg:layout:filled',
-      normal: 'normal:svg:layout:filled',
-      large: 'large:svg:layout:filled',
+      tiny: 'tiny:svg:layout:stroked',
+      small: 'small:svg:layout:stroked',
+      normal: 'normal:svg:layout:stroked',
+      large: 'large:svg:layout:stroked',
     // type
       text: 'text:svg:layout:stroked',
       number: 'number:svg:layout:stroked',
       password: 'password:svg:layout:stroked',
       stroke: {
         thin: 'thin:svg:layout:filled',
-        normal: 'normal:svg:layout:filled',
+        normal: 'normall:svg:layout:filled',
         bold: 'bold:svg:layout:filled',
       },
       hover: 'hover:svg:layout:stroked',
