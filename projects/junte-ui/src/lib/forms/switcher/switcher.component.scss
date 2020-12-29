@@ -86,11 +86,14 @@
 
           [data-title] {
             flex: 1;
+            min-width: 0;
 
             [data-label] {
               flex: 0 1 auto;
               line-height: 1;
               white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
           }
         }
@@ -104,6 +107,7 @@
           #{$wrapper} [data-scroll] {
             max-height: map-get($vertical, max-height);
             overflow-y: auto;
+            overflow-x: hidden;
 
             &[data-windows='true'] {
               @include jnt-scrollbar();
