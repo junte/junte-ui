@@ -53,21 +53,23 @@
   &[data-active='true'] {
     @if map-has-key($scheme, active) {
       $active: map-get($scheme, active);
-      background-color: map-get($active, background-color);
-      box-shadow: map-get($active, shadow);
-      [data-title] {
-        color: map-get($active, color);
+      #{$wrapper} [data-link] {
+        background-color: map-get($active, background-color);
+        box-shadow: map-get($active, shadow);
+        [data-title] {
+          color: map-get($active, color);
 
-        [data-icon] {
-          @include jnt-icon((color: map-get($active, color)), '&');
-        }
-
-        span {
-          @if map-get($active, underline) == true {
-            border-bottom: 1px solid map-get($active, underline-color);
+          [data-icon] {
+            @include jnt-icon((color: map-get($active, color)), '&');
           }
-          @if map-get($active, underline) == false {
-            border: none;
+
+          span {
+            @if map-get($active, underline) == true {
+              border-bottom: 1px solid map-get($active, underline-color);
+            }
+            @if map-get($active, underline) == false {
+              border: none;
+            }
           }
         }
       }
