@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { StackModule } from '../../layout/stack/stack.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
@@ -29,7 +30,8 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
     ResponsiveModule,
     ButtonModule,
     AccordionModule,
-    SpinnerModule
+    SpinnerModule,
+    StackModule
   ],
   exports: [
     GanttComponent,

@@ -66,6 +66,12 @@
                                        [value]="ui.width.fluid"></jnt-switcher-option>
                 </jnt-switcher>
               </jnt-form-item>
+
+                <jnt-button-group [scheme]="ui.scheme.secondary">
+                  <jnt-button [icon]="ui.icons.reload"></jnt-button>
+                  <jnt-button (click)="add()" [icon]="ui.icons.add"></jnt-button>
+                  <jnt-button (click)="remove()" [icon]="ui.icons.delete"></jnt-button>
+                </jnt-button-group>
             </jnt-stack>
           </form>
 
@@ -80,51 +86,45 @@
                              [loading]="progress.loading || progress.add || progress.remove || progress.reload"
                              [width]="widthControl.value"
                              [type]="ganttTypeControl.value === 'month' ? ui.gantt.type.month : ui.gantt.type.year">
-                    <ng-template #toolsTemplate>
-                      <jnt-button-group [scheme]="ui.scheme.secondary">
-                        <jnt-button [icon]="ui.icons.reload" (click)="reload()"></jnt-button>
-                        <jnt-button (click)="add()" [icon]="ui.icons.add"></jnt-button>
-                        <jnt-button (click)="remove()" [icon]="ui.icons.delete"></jnt-button>
-                      </jnt-button-group>
-                    </ng-template>
-                    <ng-template #ganttTitleTemplate>
+                    <ng-template #titleTemplate>
                       <strong>Test custom title</strong>
                     </ng-template>
                     <jnt-gantt-line *ngFor="let request of requests"
                                     [title]="request.createdBy.login">
-                      <jnt-gantt-line-period *ngFor="let period of request.periods"
-                                             [from]="period.from"
-                                             [to]="period.to">
-                        <ng-template #indicatorMonth let-current="current" let-today="today">
-                          <div [attr.accepting]="period['status'] === statuses.accepting"
-                               [attr.accepted]="period['status'] === statuses.accepted"
-                               [attr.declined]="period['status'] === statuses.declined"
-                               [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
-                               [attr.self-expense]="period['selfExpense']"
-                               [attr.short]="period['to'] | dfnsDifferenceInDays:period['from'] < 3"
-                               [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
-                               [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
-                          <span label>
-                          {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
-                        </span>
-                          </div>
-                        </ng-template>
+                      <ng-container *ngFor="let period of request.periods">
+                        <jnt-gantt-line-period [from]="period.from"
+                                               [to]="period.to">
+                          <ng-template #indicatorMonthTemplate let-current="current" let-today="today">
+                            <div [attr.accepting]="period['status'] === statuses.accepting"
+                                 [attr.accepted]="period['status'] === statuses.accepted"
+                                 [attr.declined]="period['status'] === statuses.declined"
+                                 [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
+                                 [attr.self-expense]="period['selfExpense']"
+                                 [attr.short]="period['to'] | dfnsDifferenceInDays:period['from'] < 3"
+                                 [attr.over-from]="(period['from'] | fullMonth) < (current | fullMonth)"
+                                 [attr.over-to]="(period['to'] | fullMonth) > (current | fullMonth)" period>
+                              <span label>
+                                {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
+                              </span>
+                            </div>
+                          </ng-template>
 
-                        <ng-template #indicatorYear let-current="current" let-today="today">
-                          <div [attr.accepting]="period['status'] === statuses.accepting"
-                               [attr.accepted]="period['status'] === statuses.accepted"
-                               [attr.declined]="period['status'] === statuses.declined"
-                               [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
-                               [attr.self-expense]="period['selfExpense']"
-                               [attr.short]="period['to'] | dfnsDifferenceInMonths:period['from'] < 2"
-                               [attr.over-from]="(period['from'] | dfnsGetYear) < (current | dfnsGetYear)"
-                               [attr.over-to]="(period['to'] | dfnsGetYear) > (current | dfnsGetYear)" period>
+                          <ng-template #indicatorYearTemplate let-current="current" let-today="today">
+                            <div [attr.accepting]="period['status'] === statuses.accepting"
+                                 [attr.accepted]="period['status'] === statuses.accepted"
+                                 [attr.declined]="period['status'] === statuses.declined"
+                                 [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
+                                 [attr.self-expense]="period['selfExpense']"
+                                 [attr.short]="period['to'] | dfnsDifferenceInMonths:period['from'] < 2"
+                                 [attr.over-from]="(period['from'] | dfnsGetYear) < (current | dfnsGetYear)"
+                                 [attr.over-to]="(period['to'] | dfnsGetYear) > (current | dfnsGetYear)" period>
                             <span label>
                               {{(period['to'] | dfnsDifferenceInDays:period['from']) + 1 }} days
                             </span>
-                          </div>
-                        </ng-template>
-                      </jnt-gantt-line-period>
+                            </div>
+                          </ng-template>
+                        </jnt-gantt-line-period>
+                      </ng-container>
                     </jnt-gantt-line>
                   </jnt-gantt>
                 </jnt-form>
