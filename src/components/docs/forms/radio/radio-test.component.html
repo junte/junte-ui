@@ -35,40 +35,52 @@
                                          [align]="ui.align.center"
                                          [cols]="colsControl.value"
                                          [size]="sizeControl.value">
-                          <jnt-radio label="Spiderman" [value]="hero.spiderman">
+                          <jnt-radio label="Spiderman"
+                                     i18n-label="@@label.spiderman"
+                                     [value]="hero.spiderman">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <strong>Spiderman</strong>
+                              <strong i18n="@@label.spiderman">Spiderman</strong>
                             </ng-template>
                           </jnt-radio>
-                          <jnt-radio label="Ironman" [value]="hero.ironman">
+                          <jnt-radio label="Ironman"
+                                     i18n-label="@@label.ironman"
+                                     [value]="hero.ironman">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <jnt-input placeholder="Test"></jnt-input>
+                              <jnt-input placeholder="Test" i18n-placeholder="@@label.test"></jnt-input>
                             </ng-template>
                           </jnt-radio>
-                          <jnt-radio label="Captain America" [value]="hero.captainAmerica">
+                          <jnt-radio label="Captain America"
+                                     i18n-label="@@label.captain_america"
+                                     [value]="hero.captainAmerica">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <jnt-checkbox label="Captain America"></jnt-checkbox>
+                              <jnt-checkbox label="Captain America" i18n-label="@@label.captain_america"></jnt-checkbox>
                             </ng-template>
                           </jnt-radio>
                           <ng-container *ngIf="colsControl.value > 1">
                             <jnt-radio label="Thanos"
+                                       i18n-label="@@label.thanos"
                                        [value]="hero.thanos">
                             </jnt-radio>
                             <jnt-radio label="Deadpool"
+                                       i18n-label="@@label.deadpool"
                                        [value]="hero.deadpool">
                             </jnt-radio>
                             <jnt-radio label="Blackwidow"
+                                       i18n-label="@@label.blackwidow"
                                        [value]="hero.blackwidow">
                             </jnt-radio>
                             <jnt-radio label="Hulk"
+                                       i18n-label="@@label.hulk"
                                        [value]="hero.hulk">
                             </jnt-radio>
                             <jnt-radio label="Thor"
+                                       i18n-label="@@label.thor"
                                        [value]="hero.thor">
                             </jnt-radio>
                           </ng-container>
                         </jnt-radio-group>
-                        <jnt-form-message [validator]="ui.validator.required">
+                        <jnt-form-message [validator]="ui.validator.required"
+                                          i18n="@@message.please_select_the_hero">
                           Please select the hero
                         </jnt-form-message>
                       </jnt-form-control>
@@ -110,7 +122,7 @@
               <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="size">Size</jnt-form-label>
+                  <jnt-form-label for="size" i18n="@@label.size">Size</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
@@ -143,6 +155,7 @@
                   <jnt-form-control>
                     <jnt-select formControlName="orientation"
                                 placeholder="Vertical"
+                                i18n-placeholder="@@label.vertical"
                                 [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
@@ -214,6 +227,7 @@
                 <jnt-form-item>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="adapted"
+                                  i18n-label="@@label.adapted"
                                   label="Adapted"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -222,7 +236,9 @@
                   <jnt-form-label i18n="@@label.state">State
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="disable" label="Disabled"></jnt-checkbox>
+                    <jnt-checkbox formControlName="disable"
+                                  i18n-label="@@label.disabled"
+                                  label="Disabled"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
@@ -230,7 +246,9 @@
                   <jnt-form-label i18n="@@label.custom">Custom template
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="custom" label="Custom template"></jnt-checkbox>
+                    <jnt-checkbox formControlName="custom"
+                                  i18n-label="@@label.custom_template"
+                                  label="Custom template"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 

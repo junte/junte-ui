@@ -22,6 +22,7 @@
                   <jnt-form [formGroup]="form">
                     <jnt-date-picker formControlName="flightDate"
                                      placeholder="Please enter the date"
+                                     i18n-placeholder="@@label.please_enter_the_date"
                                      [type]="typeControl.value"
                                      [features]="clearControl.value ? [ui.feature.allowEmpty] : null">
                     </jnt-date-picker>
@@ -47,7 +48,7 @@
                   <jnt-form-control>
                     <jnt-select formControlName="type"
                                 placeholder="Type"
-                                i18n-placeholder="@@label.text"
+                                i18n-placeholder="@@label.type"
                                 [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Date"
                                          i18n-label="@@label.date"
@@ -68,7 +69,9 @@
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.state">State</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="disable" label="Disabled"
+                    <jnt-checkbox formControlName="disable"
+                                  label="Disabled"
+                                  i18n-label="@@label.disabled"
                                   [value]="false"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -76,7 +79,9 @@
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.features">Features</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="clear" label="Clear"></jnt-checkbox>
+                    <jnt-checkbox formControlName="clear"
+                                  i18n-label="@@label.clear"
+                                  label="Clear"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>

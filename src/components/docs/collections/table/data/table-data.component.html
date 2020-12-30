@@ -8,6 +8,7 @@
 
         <ng-template *ngIf="(sections |includes: tableSections.actions)" #tableActionsTemplate>
           <jnt-button text="Reset"
+                      i18n-text="@@action.reset"
                       [icon]="ui.icons.cancel"
                       [outline]="ui.outline.transparent"
                       (click)="form.reset()"></jnt-button>

@@ -10,9 +10,15 @@
 
   <jnt-stack [align]="ui.align.stretch">
 
-    <div teaser>
-      <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
-      <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
+    <div teaser [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        <p>Grid is a modern and flexible approach to display elements depending on device width.</p>
+        <p>Please, use <b>rows</b> and <b>cols</b> to organize elements.</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        <p> Grid - это современный и гибкий подход к отображению элементов в зависимости от ширины устройства. </p>
+        <p> Используйте <b> rows </b> и <b> cols </b> для организации элементов. </p>
+      </ng-container>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">

@@ -21,10 +21,12 @@
                 <h3>How to do work safely?</h3>
                 <jnt-timeline>
                   <jnt-timeline-item title="Preparing suit"
+                                     i18n-title="@@label.preparing_suit"
                                      [color]="colorControl.value"
                                      [icon]="iconControl.value ? ui.icons.radioUnchecked : null">
                     <ng-template #timelineItemContentTemplate>
-                      <p>First you need is to design and build Iron Man suit for working</p>
+                      <p
+                        i18n="@@message.first_you_need_is_to_design_and_build_iron_man_suit_for_working">First you need is to design and build Iron Man suit for working</p>
                       <iframe giphy src="https://giphy.com/embed/lRpvmChZEteVIFgQtV"
                               width="480"
                               height="270"
@@ -32,10 +34,12 @@
                     </ng-template>
                   </jnt-timeline-item>
                   <jnt-timeline-item title="Creating energy source"
+                                     i18n-title="@@label.creating_energy_source"
                                      [color]="colorControl.value"
                                      [icon]="localUi.icons.radio">
                     <ng-template #timelineItemContentTemplate>
-                      <p>You suit need energy so you must create nuclear reactor</p>
+                      <p
+                        i18n="@@message.you_suit_need_energy_so_you_must_create_nuclear_reactor">You suit need energy so you must create nuclear reactor</p>
                       <app-code-highlight [language]="languages.bash"
                                           [style.background-color]="ui.color.white">ng g c nuclearReactor</app-code-highlight>
                       <iframe giphy src="https://giphy.com/embed/xDyB4KAU7Y6qc"
@@ -45,10 +49,11 @@
                     </ng-template>
                   </jnt-timeline-item>
                   <jnt-timeline-item title="Putting on suit you have built"
+                                     i18n-title="@@label.putting_on_suit_you_have_built"
                                      [color]="colorControl.value ? colorControl.value : 'ui.color.red'"
                                      [icon]="iconControl.value ? localUi.icons.radio : null">
                     <ng-template #timelineItemContentTemplate>
-                      <p>Success! Now you can put on your suit</p>
+                      <p i18n="@@message.success_now_you_can_put_on_your_suit">Success! Now you can put on your suit</p>
                       <iframe giphy src="https://giphy.com/embed/VjT6Xa56ib1Qs"
                               width="480"
                               height="208"
@@ -56,6 +61,7 @@
                     </ng-template>
                   </jnt-timeline-item>
                   <jnt-timeline-item title="Starting work"
+                                     i18n-title="@@label.starting_work"
                                      [color]="colorControl.value"
                                      [icon]="iconControl.value ? localUi.icons.radio : null">
                     <ng-template #timelineItemContentTemplate>
@@ -101,7 +107,8 @@
                 scss="collections/timeline"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
-          <jnt-accordion-section title="Component template">
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="timeline-test.template.html">
                 <!-- @formatter:off-->

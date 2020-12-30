@@ -24,7 +24,8 @@
                                   contentTemplate: confirmPopover,
                                   trigger: ui.trigger.click
                                 }"
-                                text="Open in popover">
+                                text="Open in popover"
+                                i18n-text="@@action.open_in_popover">
                     </jnt-button>
                     <ng-template #confirmPopover>
 
@@ -40,6 +41,7 @@
                   </ng-container>
                   <ng-container *ngIf="usingControl.value === usingType.modal">
                     <jnt-button [jntModal]="{content: confirmModal, title: {text: 'Modal title'}}"
+                                i18n-text="@@action.open.in.modal"
                                 text="Open in modal">
                     </jnt-button>
                     <ng-template #confirmModal>
@@ -80,10 +82,12 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="using">
                     <jnt-switcher-option label="Popover"
+                                         i18n-label="@@label.popover"
                                          [icon]="localUi.icons.popover"
                                          [value]="usingType.popover">
                     </jnt-switcher-option>
                     <jnt-switcher-option label="Modal"
+                                         i18n-label="@@label.modal"
                                          [icon]="localUi.icons.modal"
                                          [value]="usingType.modal">
                     </jnt-switcher-option>
@@ -96,10 +100,12 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="content">
                     <jnt-switcher-option label="Message"
+                                         i18n-label="@@label.message"
                                          [icon]="localUi.icons.message"
                                          [value]="contentType.message">
                     </jnt-switcher-option>
                     <jnt-switcher-option label="Template"
+                                         i18n-label="@@label.template"
                                          [icon]="localUi.icons.template"
                                          [value]="contentType.template">
                     </jnt-switcher-option>

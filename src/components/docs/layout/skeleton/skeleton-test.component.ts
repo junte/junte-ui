@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SkeletonComponent, UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import {Language} from '../../../../enums/language';
 
 export enum Sketch {
   User = 'user',
@@ -21,6 +22,7 @@ export class SkeletonTestComponent implements OnInit {
   ui = UI;
   sketch = Sketch;
   localUi = LocalUI;
+  language = Language;
   types = {skeleton: SkeletonComponent};
 
   @ViewChild('code') code: TabComponent;
@@ -33,7 +35,8 @@ export class SkeletonTestComponent implements OnInit {
     animation: this.animationControl,
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import {
@@ -13,6 +13,7 @@ import {
   UI, BreakpointService,
   AppPageHeaderComponent
 } from 'junte-ui';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-layout-test',
@@ -23,6 +24,7 @@ export class AppLayoutTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
 
   types = {
     app: AppLayoutComponent,
@@ -62,7 +64,8 @@ export class AppLayoutTestComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder,
-              public breakpoint: BreakpointService) {
+              public breakpoint: BreakpointService,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

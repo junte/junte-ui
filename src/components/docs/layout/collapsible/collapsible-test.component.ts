@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { CollapsibleComponent, TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-collapsible-test',
@@ -13,6 +14,7 @@ export class CollapsibleTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {collapsible: CollapsibleComponent};
 
   @ViewChild('code')
@@ -30,7 +32,8 @@ export class CollapsibleTestComponent implements OnInit {
     orientation: this.orientationControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

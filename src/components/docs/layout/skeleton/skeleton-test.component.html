@@ -12,7 +12,14 @@
   <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
-      <p>Skeleton provides a placeholder for future content which will be loaded soon.</p>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          Skeleton provides a placeholder for future content which will be loaded soon.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Скелет предоставляет заполнитель для будущего контента, который скоро будет загружен.
+        </ng-container>
+      </p>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">
@@ -89,6 +96,7 @@
                                            i18n-label="@@label.horizontal_post"
                                            [key]="sketch.HorizontalPost"></jnt-select-option>
                         <jnt-select-option label="Cards"
+                                           i18n-label="@@label.cards"
                                            [key]="sketch.Cards"></jnt-select-option>
                       </jnt-select>
                     </jnt-form-control>

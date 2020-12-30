@@ -56,12 +56,14 @@
                                  [loading]="loadingControl.value"
                                  [icon]="iconsControl.value ? ui.icons.home : null"
                                  [disabled]="disabledControl.value"
-                                 title="Home">
+                                 title="Home"
+                                 i18n-title="@@label.home">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
                   </jnt-menu-item>
 
                   <jnt-menu-item [link]="['/components/navigation/link']"
-                                 title="Link">
+                                 title="Link"
+                                 i18n-title="@@label.link">
                   </jnt-menu-item>
 
                 </jnt-menu>
@@ -78,12 +80,16 @@
                   </jnt-form-label>
                   <jnt-select formControlName="style"
                               placeholder="Default"
+                              i18n-placeholder="@@label.default"
                               [features]="[ui.feature.allowEmpty]">
                     <jnt-select-option label="Default"
+                                       i18n-label="@@label.default"
                                        [key]="ui.menu.style.default"></jnt-select-option>
                     <jnt-select-option label="Tabs"
+                                       i18n-label="@@label.tabs"
                                        [key]="ui.menu.style.tabs"></jnt-select-option>
                     <jnt-select-option label="Tags"
+                                       i18n-label="@@label.tags"
                                        [key]="ui.menu.style.tags"></jnt-select-option>
                   </jnt-select>
                 </jnt-form-item>

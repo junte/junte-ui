@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ColComponent, ContainerComponent, RowComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-grid-test',
@@ -12,6 +13,7 @@ export class GridTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {container: ContainerComponent, row: RowComponent, col: ColComponent};
 
   @ViewChild('code') code: TabComponent;
@@ -32,7 +34,8 @@ export class GridTestComponent implements OnInit {
     gutter: this.gutterControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

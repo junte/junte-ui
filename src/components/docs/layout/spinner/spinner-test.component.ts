@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import { SpinnerComponent } from 'junte-ui';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-spinner-test',
@@ -14,6 +15,7 @@ export class SpinnerTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {spinner: SpinnerComponent};
 
   @ViewChild('code') code: TabComponent;
@@ -25,7 +27,8 @@ export class SpinnerTestComponent implements OnInit {
     size: this.sizeControl,
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

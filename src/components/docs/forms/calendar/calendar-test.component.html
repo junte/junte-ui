@@ -81,15 +81,25 @@
                   <jnt-form-control>
                     <jnt-switcher formControlName="month"
                                   [features]="ui.feature.allowEmpty">
-                      <jnt-switcher-option label="March" [value]="months.march"></jnt-switcher-option>
-                      <jnt-switcher-option label="May" [value]="months.may"></jnt-switcher-option>
-                      <jnt-switcher-option label="July" [value]="months.july"></jnt-switcher-option>
-                      <jnt-switcher-option label="April" [value]="months.april"></jnt-switcher-option>
+                      <jnt-switcher-option label="March"
+                                           i18n-label="@@label.march_month"
+                                           [value]="months.march"></jnt-switcher-option>
+                      <jnt-switcher-option label="May"
+                                           i18n-label="@@label.may_month"
+                                           [value]="months.may"></jnt-switcher-option>
+                      <jnt-switcher-option label="July"
+                                           i18n-label="@@label.july_month"
+                                           [value]="months.july"></jnt-switcher-option>
+                      <jnt-switcher-option label="April"
+                                           i18n-label="@@label.april_month"
+                                           [value]="months.april"></jnt-switcher-option>
                     </jnt-switcher>
                   </jnt-form-control>
                 </jnt-form-item>
 
-                <jnt-button text="Today" (click)="flightDateControl.setValue(now)"></jnt-button>
+                <jnt-button text="Today"
+                            i18n-text="@@action.today"
+                            (click)="flightDateControl.setValue(now)"></jnt-button>
 
                 <jnt-form-item>
                   <jnt-form-label for="type"

@@ -35,7 +35,7 @@
 
                   <ng-template #contentTemplate>
                     <jnt-stack [orientation]="ui.orientation.vertical">
-                      <span>It is custom content!</span>
+                      <span i18n="@@label.it_is_custom_content">It is custom content!</span>
                       <jnt-stack [orientation]="ui.orientation.horizontal">
                         <jnt-button text="Ok"
                                     i18n-text="@@action.ok"></jnt-button>
@@ -59,9 +59,11 @@
                                   i18n="@@label.trigger_type">Trigger type</jnt-form-label>
                   <jnt-switcher formControlName="trigger">
                     <jnt-switcher-option label="Hover"
+                                         i18n-label="@@label.hover"
                                          [icon]="localUi.icons.hover"
                                          [value]="triggerType.hover"></jnt-switcher-option>
                     <jnt-switcher-option label="Click"
+                                         i18n-label="@@label.click"
                                          [icon]="localUi.icons.click"
                                          [value]="triggerType.click"></jnt-switcher-option>
                   </jnt-switcher>
@@ -72,9 +74,11 @@
                                   i18n="@@label.content_type">Content type</jnt-form-label>
                   <jnt-switcher formControlName="type">
                     <jnt-switcher-option label="Default"
+                                         i18n-label="@@label.default"
                                          [icon]="localUi.icons.left"
                                          [value]="contentType.default"></jnt-switcher-option>
                     <jnt-switcher-option label="Custom"
+                                         i18n-label="@@label.custom"
                                          [icon]="localUi.icons.template"
                                          [value]="contentType.custom"></jnt-switcher-option>
                   </jnt-switcher>
@@ -85,18 +89,23 @@
                                   i18n="@@label.layout">Layout</jnt-form-label>
                   <jnt-select formControlName="layout">
                     <jnt-select-option label="Top"
+                                       i18n-label="@@label.top"
                                        [icon]="localUi.icons.position.top"
                                        [key]="ui.position.top"></jnt-select-option>
                     <jnt-select-option label="Right"
+                                       i18n-label="@@label.right"
                                        [icon]="localUi.icons.end"
                                        [key]="ui.position.right"></jnt-select-option>
                     <jnt-select-option label="Left"
+                                       i18n-label="@@label.left"
                                        [icon]="localUi.icons.start"
                                        [key]="ui.position.left"></jnt-select-option>
                     <jnt-select-option label="Bottom"
+                                       i18n-label="@@label.bottom"
                                        [icon]="localUi.icons.position.bottom"
                                        [key]="ui.position.bottom"></jnt-select-option>
                     <jnt-select-option label="Right Bottom"
+                                       i18n-label="@@label.right_bottom"
                                        [icon]="localUi.icons.position.bottom"
                                        [key]="ui.position.rightBottom"></jnt-select-option>
                   </jnt-select>
