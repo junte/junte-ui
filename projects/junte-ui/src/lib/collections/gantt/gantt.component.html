@@ -1,12 +1,12 @@
-<ng-template #skeletonTemplate>
-  <ng-container *ngIf="loading; else noDataTemplate">
+<ng-template #noDataTemplate>
+  <ng-container *ngIf="loading; else emptyDataTemplate">
     <tr data-loading>
       <td [attr.colspan]="(current | jntGetDaysInMonth) + 2">
         <jnt-skeleton [type]="ui.skeleton.type.text" [lines]="8"></jnt-skeleton>
       </td>
     </tr>
   </ng-container>
-  <ng-template #noDataTemplate>
+  <ng-template #emptyDataTemplate>
     <tr data-nodata>
       <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
         <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
@@ -71,38 +71,54 @@
       </thead>
       <tbody>
 
-      <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
+      <ng-container *ngIf="lines?.length > 0; else noDataTemplate">
         <ng-container *ngFor="let line of lines">
-          <tr *ngFor="let period of line.periods; let i = index">
-            <ng-container *ngIf="i === 0">
-              <td data-gutter [attr.rowspan]="line.periods.length"></td>
-              <td data-title [attr.rowspan]="line.periods.length">
+
+          <ng-template #emptyYearPeriodsTabletTemplate>
+            <tr>
+              <td data-gutter></td>
+              <td data-title>
                 <ng-container
                   *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
               </td>
-            </ng-container>
-
-            <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
-              <td *ngFor="let d of start | betweenMonths:from | pop"></td>
-              <td [attr.colspan]="(from | betweenMonths:to).length">
-                <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
-                  <ng-container  *ngTemplateOutlet="period.indicatorYearTemplate;
-                    context: {period: period, current: current, today: today}">
-                  </ng-container>
-                </ng-container>
+              <td data-day *ngFor="let day of (current | datesInMonth)">
               </td>
-              <td *ngFor="let d of to | betweenMonths:end | pop"></td>
-            </ng-template>
+            </tr>
+          </ng-template>
 
-            <ng-container *ngTemplateOutlet="periodTemplate;context:
-              {start: current | jntStartOfYear,
-                end: current | jntEndOfYear,
-                period: period,
-                current: current,
-                from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
-                to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
-            </ng-container>
-          </tr>
+          <ng-container *ngIf="line.periods?.length > 0; else emptyYearPeriodsTabletTemplate">
+            <tr *ngFor="let period of line.periods; let i = index">
+              <ng-container *ngIf="i === 0">
+                <td data-gutter [attr.rowspan]="line.periods.length"></td>
+                <td data-title [attr.rowspan]="line.periods.length">
+                  <ng-container
+                    *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
+                </td>
+              </ng-container>
+
+              <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end"
+                           let-period="period">
+                <td *ngFor="let d of start | betweenMonths:from | pop"></td>
+                <td [attr.colspan]="(from | betweenMonths:to).length">
+                  <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
+                    <ng-container *ngTemplateOutlet="period.indicatorYearTemplate;
+                      context: {period: period, current: current, today: today}">
+                    </ng-container>
+                  </ng-container>
+                </td>
+                <td *ngFor="let d of to | betweenMonths:end | pop"></td>
+              </ng-template>
+
+              <ng-container *ngTemplateOutlet="periodTemplate;context:
+                {start: current | jntStartOfYear,
+                  end: current | jntEndOfYear,
+                  period: period,
+                  current: current,
+                  from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
+                  to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
+              </ng-container>
+            </tr>
+          </ng-container>
         </ng-container>
       </ng-container>
 
@@ -113,71 +129,85 @@
   <!-- mobile version for year type -->
 
   <ng-container *jntFor="ui.breakpoint.mobile">
-    <jnt-accordion *ngIf="!!lines?.length">
-      <jnt-accordion-section *ngFor="let line of lines" [title]="line.title">
-        <ng-template #accordionContentTemplate>
-          <div>
-            <ng-container *ngIf="toolsTemplate">
-              <ng-container *ngTemplateOutlet="toolsTemplate"></ng-container>
-            </ng-container>
-          </div>
-          <div data-controls>
-            <div data-month>
-              <jnt-button [icon]="ui.icons.chevronLeft"
-                          [outline]="ui.outline.transparent"
-                          [scheme]="ui.scheme.secondary"
-                          [size]="ui.size.small"
-                          (click)="current = subYears(current, 1)">
-              </jnt-button>
-              <div>
-                {{current | jntFormat: 'yyyy'}}
-              </div>
-              <jnt-button [icon]="ui.icons.chevronRight"
-                          [outline]="ui.outline.transparent"
-                          [scheme]="ui.scheme.secondary"
-                          [size]="ui.size.small"
-                          (click)="current = addYears(current, 1)">
-              </jnt-button>
-            </div>
-          </div>
-          <table cellpadding="3" [cellSpacing]="0" data-mobile>
-            <tbody>
-            <tr *ngFor="let month of (current | jntStartOfYear | betweenMonths:(current | jntEndOfYear))"
-                [attr.current]="month">
-              <td data-day>{{month | monthName}}</td>
-              <ng-container *ngFor="let period of line.periods; let i = index">
+    <jnt-stack [align]="ui.align.stretch">
+      <ng-container *ngIf="toolsTemplate">
+        <ng-container *ngTemplateOutlet="toolsTemplate"></ng-container>
+      </ng-container>
 
-                <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
-                  <ng-container *ngIf="!(month | isWithinInterval:(from | jntStartOfMonth):(to | jntEndOfMonth))">
-                    <td></td>
-                  </ng-container>
-                  <ng-container *ngIf="from | jntIsSameMonth:month">
-                    <td [attr.rowspan]="(from | betweenMonths:to).length">
-                      <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
-                        <ng-container  *ngTemplateOutlet="period.indicatorYearTemplate;
-                                                          context: {period: period, current: current, today: today}">
-                        </ng-container>
+      <jnt-accordion *ngIf="lines?.length > 0">
+        <jnt-accordion-section *ngFor="let line of lines" [title]="line.title">
+          <ng-template #accordionContentTemplate>
+
+            <table cellpadding="3" [cellSpacing]="0" data-mobile>
+              <tbody>
+
+              <ng-template #emptyYearPeriodsMobileTemplate>
+                <tr data-nodata>
+                  <td [attr.colspan]="(current | jntGetDaysInMonth) + 1">
+                    <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
+                  </td>
+                </tr>
+              </ng-template>
+
+              <ng-container *ngIf="line.periods?.length > 0; else emptyYearPeriodsMobileTemplate">
+                <div data-controls>
+                  <div data-month>
+                    <jnt-button [icon]="ui.icons.chevronLeft"
+                                [outline]="ui.outline.transparent"
+                                [size]="ui.size.small"
+                                (click)="current = subYears(current, 1)">
+                    </jnt-button>
+                    <div>
+                      {{current | jntFormat: 'yyyy'}}
+                    </div>
+                    <jnt-button [icon]="ui.icons.chevronRight"
+                                [outline]="ui.outline.transparent"
+                                [size]="ui.size.small"
+                                (click)="current = addYears(current, 1)">
+                    </jnt-button>
+                  </div>
+                </div>
+
+                <tr *ngFor="let month of (current | jntStartOfYear | betweenMonths:(current | jntEndOfYear))"
+                    [attr.current]="month">
+                  <td data-day>{{month | monthName}}</td>
+                  <ng-container *ngFor="let period of line.periods; let i = index">
+
+                    <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end"
+                                 let-period="period">
+                      <ng-container *ngIf="!(month | isWithinInterval:(from | jntStartOfMonth):(to | jntEndOfMonth))">
+                        <td></td>
                       </ng-container>
-                    </td>
+                      <ng-container *ngIf="from | jntIsSameMonth:month">
+                        <td [attr.rowspan]="(from | betweenMonths:to).length">
+                          <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
+                            <ng-container *ngTemplateOutlet="period.indicatorYearTemplate;
+                                                              context: {period: period, current: current, today: today}">
+                            </ng-container>
+                          </ng-container>
+                        </td>
+                      </ng-container>
+                    </ng-template>
+
+                    <ng-container *ngTemplateOutlet="periodTemplate;context:
+                        { start: current | jntStartOfYear,
+                          end: current | jntEndOfYear,
+                          period: period,
+                          current: current,
+                          from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
+                          to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
+                    </ng-container>
+
                   </ng-container>
-                </ng-template>
-
-                <ng-container *ngTemplateOutlet="periodTemplate;context:
-                    { start: current | jntStartOfYear,
-                      end: current | jntEndOfYear,
-                      period: period,
-                      current: current,
-                      from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
-                      to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
-                </ng-container>
-
+                </tr>
               </ng-container>
-            </tr>
-            </tbody>
-          </table>
-        </ng-template>
-      </jnt-accordion-section>
-    </jnt-accordion>
+              </tbody>
+            </table>
+
+          </ng-template>
+        </jnt-accordion-section>
+      </jnt-accordion>
+    </jnt-stack>
 
   </ng-container>
 </ng-template>
@@ -230,41 +260,56 @@
       <tbody>
       <div data-current-line #currentLine></div>
 
-      <ng-container *ngIf="!!lines?.length; else skeletonTemplate">
+      <ng-container *ngIf="lines?.length > 0; else noDataTemplate">
         <ng-container *ngFor="let line of lines">
 
-          <tr *ngFor="let period of line.periods; let i = index">
-
-            <ng-container *ngIf="i === 0">
-              <td data-gutter [attr.rowspan]="line.periods.length"></td>
-              <td data-title [attr.rowspan]="line.periods.length">
+          <ng-template #emptyMonthPeriodsTabletTemplate>
+            <tr>
+              <td data-gutter></td>
+              <td data-title>
                 <ng-container
                   *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
               </td>
-            </ng-container>
-
-            <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
-              <td *ngFor="let d of start | betweenDays:from | pop"></td>
-              <td [attr.colspan]="(from | betweenDays:to).length">
-                <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
-                  <ng-container  *ngTemplateOutlet="period.indicatorMonthTemplate;
-                    context: {period: period, current: current, today: today}">
-                  </ng-container>
-                </ng-container>
+              <td data-day *ngFor="let day of (current | datesInMonth)">
               </td>
-              <td *ngFor="let d of to | betweenDays:end | pop"></td>
-            </ng-template>
+            </tr>
+          </ng-template>
 
-            <ng-container *ngTemplateOutlet="periodTemplate;context:
-              {start: current | jntStartOfMonth,
-                end: current | jntEndOfMonth,
-                period: period,
-                current: current,
-                from: [[period.from, current | jntStartOfMonth] | jntMax, current | jntEndOfMonth] | jntMin,
-                to: [[period.to, current | jntEndOfMonth] | jntMin, current | jntStartOfMonth] | jntMax}">
-            </ng-container>
+          <ng-container *ngIf="line.periods?.length > 0; else emptyMonthPeriodsTabletTemplate">
+            <tr *ngFor="let period of line.periods; let i = index">
 
-          </tr>
+              <ng-container *ngIf="i === 0">
+                <td data-gutter [attr.rowspan]="line.periods.length"></td>
+                <td data-title [attr.rowspan]="line.periods.length">
+                  <ng-container
+                    *ngTemplateOutlet="line.titleTemplate || lineTitleDefaultTemplate; context: {title: line.title}"></ng-container>
+                </td>
+              </ng-container>
+
+              <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end"
+                           let-period="period">
+                <td *ngFor="let d of start | betweenDays:from | pop"></td>
+                <td [attr.colspan]="(from | betweenDays:to).length">
+                  <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
+                    <ng-container *ngTemplateOutlet="period.indicatorMonthTemplate;
+                      context: {period: period, current: current, today: today}">
+                    </ng-container>
+                  </ng-container>
+                </td>
+                <td *ngFor="let d of to | betweenDays:end | pop"></td>
+              </ng-template>
+
+              <ng-container *ngTemplateOutlet="periodTemplate;context:
+                {start: current | jntStartOfMonth,
+                  end: current | jntEndOfMonth,
+                  period: period,
+                  current: current,
+                  from: [[period.from, current | jntStartOfMonth] | jntMax, current | jntEndOfMonth] | jntMin,
+                  to: [[period.to, current | jntEndOfMonth] | jntMin, current | jntStartOfMonth] | jntMax}">
+              </ng-container>
+
+            </tr>
+          </ng-container>
         </ng-container>
 
       </ng-container>
@@ -275,7 +320,7 @@
   <!-- mobile version for month type -->
 
   <ng-container *jntFor="ui.breakpoint.mobile">
-    <jnt-accordion *ngIf="!!lines?.length">
+    <jnt-accordion *ngIf="lines?.length > 0">
       <jnt-accordion-section *ngFor="let line of lines" [title]="line.title">
         <ng-template #accordionContentTemplate>
           <div>
@@ -304,42 +349,56 @@
           </div>
           <table cellpadding="3" [cellSpacing]="0" data-mobile>
             <tbody>
-            <tr *ngFor="let day of (current | datesInMonth)">
-              <td data-day
-                  [attr.data-current]="day | jntIsToday"
-                  [attr.data-weekend]="day | jntIsWeekend"
-                  #calendarDay>
-                {{day | jntGetDate}}
-              </td>
-              <ng-container *ngFor="let period of line.periods; let i = index">
 
-                <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
+              <ng-template #emptyMonthPeriodsMobileTemplate>
+                <tr data-nodata>
+                  <td>
+                    <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
+                  </td>
+                </tr>
+              </ng-template>
 
-                  <ng-container *ngIf="!(day | isWithinInterval:(from | jntStartOfDay):(to | jntEndOfDay))">
-                    <td></td>
-                  </ng-container>
-                  <ng-container *ngIf="from | isSameDay:day">
-                    <td [attr.rowspan]="(from | betweenDays:to).length">
-                      <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
-                        <ng-container  *ngTemplateOutlet="period.indicatorMonthTemplate;
-                           context: {period: period, current: current, today: today}">
-                        </ng-container>
+              <ng-container *ngIf="line.periods?.length > 0; else emptyMonthPeriodsMobileTemplate">
+
+                <tr *ngFor="let day of (current | datesInMonth)">
+                  <td data-day
+                      [attr.data-current]="day | jntIsToday"
+                      [attr.data-weekend]="day | jntIsWeekend"
+                      #calendarDay>
+                    {{day | jntGetDate}}
+                  </td>
+                  <ng-container *ngFor="let period of line.periods; let i = index">
+
+                    <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end"
+                                 let-period="period">
+
+                      <ng-container *ngIf="!(day | isWithinInterval:(from | jntStartOfDay):(to | jntEndOfDay))">
+                        <td></td>
                       </ng-container>
-                    </td>
+                      <ng-container *ngIf="from | isSameDay:day">
+                        <td [attr.rowspan]="(from | betweenDays:to).length">
+                          <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
+                            <ng-container *ngTemplateOutlet="period.indicatorMonthTemplate;
+                               context: {period: period, current: current, today: today}">
+                            </ng-container>
+                          </ng-container>
+                        </td>
+                      </ng-container>
+                    </ng-template>
+
+                    <ng-container *ngTemplateOutlet="periodTemplate;context:
+                       {start: current | jntStartOfMonth,
+                        end: current | jntEndOfMonth,
+                        period: period,
+                        current: current,
+                        from: [[period.from, current | jntStartOfMonth] | jntMax, current | jntEndOfMonth] | jntMin,
+                        to: [[period.to, current | jntEndOfMonth] | jntMin, current | jntStartOfMonth] | jntMax}">
+                    </ng-container>
+
                   </ng-container>
-                </ng-template>
-
-                <ng-container *ngTemplateOutlet="periodTemplate;context:
-                   {start: current | jntStartOfMonth,
-                    end: current | jntEndOfMonth,
-                    period: period,
-                    current: current,
-                    from: [[period.from, current | jntStartOfMonth] | jntMax, current | jntEndOfMonth] | jntMin,
-                    to: [[period.to, current | jntEndOfMonth] | jntMin, current | jntStartOfMonth] | jntMax}">
-                </ng-container>
-
+                </tr>
               </ng-container>
-            </tr>
+
             </tbody>
           </table>
         </ng-template>

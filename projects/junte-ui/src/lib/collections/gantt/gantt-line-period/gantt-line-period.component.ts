@@ -23,13 +23,13 @@ export class GanttLinePeriodComponent {
     selector: '#indicatorMonthTemplate',
     description: 'indicator template'
   })
-  @ContentChild('indicatorMonth')
+  @ContentChild('indicatorMonthTemplate')
   indicatorMonthTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#indicatorYearTemplate',
     description: 'indicator year template'
   })
-  @ContentChild('indicatorYear')
+  @ContentChild('indicatorYearTemplate')
   indicatorYearTemplate: TemplateRef<any>;
 }
