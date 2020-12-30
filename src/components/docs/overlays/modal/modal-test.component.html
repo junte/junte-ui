@@ -31,6 +31,7 @@
                                         hold: closingControl.value,
                                         maxWidth: widthControl.value, maxHeight: heightControl.value}"
                                 [width]="ui.width.fluid"
+                                i18n-text="@@action.open_in_directive"
                                 text="Open in directive">
                     </jnt-button>
                   </jnt-col>
@@ -107,9 +108,11 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="type">
                     <jnt-switcher-option label="Template"
+                                         i18n-label="@@label.template"
                                          [icon]="localUi.icons.template"
                                          [value]="contentType.templateRef"></jnt-switcher-option>
                     <jnt-switcher-option label="Component"
+                                         i18n-label="@@label.component"
                                          [icon]="localUi.icons.component"
                                          [value]="contentType.componentRef"></jnt-switcher-option>
                   </jnt-switcher>

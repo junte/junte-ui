@@ -27,6 +27,7 @@
               <ng-template #document let-height="height">
                 <jnt-card data-card
                           title="Card title"
+                          i18n-title="@@label.card_title"
                           [color]="colorControl.value"
                           [width]="widthControl.value"
                           [padding]="paddingControl.value"
@@ -66,8 +67,12 @@
                   </ng-template>
                   <ng-template *ngIf="actionsControl.value" #cardActionsTemplate let-hide="hide">
                     <jnt-menu [orientation]="ui.orientation.vertical">
-                      <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
-                      <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
+                      <jnt-menu-item title="Edit"
+                                     i18n-title="@@label.edit"
+                                     (click)="hide()"></jnt-menu-item>
+                      <jnt-menu-item title="Copy"
+                                     i18n-title="@@label.copy"
+                                     (click)="hide()"></jnt-menu-item>
                     </jnt-menu>
                   </ng-template>
                 </jnt-card>
@@ -181,20 +186,24 @@
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="clickable"
+                                    i18n-label="@@label.clickable"
                                     label="Clickable"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="adapted"
+                                    i18n-label="@@label.adapted"
                                     label="Adapted"></jnt-checkbox>
                     </jnt-col>
 
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="icon"
+                                    i18n-label="@@label.icon"
                                     label="Icon"></jnt-checkbox>
                     </jnt-col>
 
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="actions"
+                                    i18n-label="@@label.actions"
                                     label="Actions"></jnt-checkbox>
                     </jnt-col>
 
@@ -205,15 +214,18 @@
 
                     <jnt-col [span]="12">
                       <jnt-form-item>
-                        <jnt-form-label for="picture">Picture
+                        <jnt-form-label for="picture" i18n="@@label.picture">Picture
                         </jnt-form-label>
                         <jnt-switcher formControlName="picture"
                                       placeholder="url"
+                                      i18n-placeholder="@@label.url"
                                       [features]="[ui.feature.allowEmpty]">
                           <jnt-switcher-option label="Url"
+                                               i18n-label="@@label.url"
                                                value="url"
                                                [icon]="localUi.icons.component"></jnt-switcher-option>
                           <jnt-switcher-option label="Template"
+                                               i18n-label="@@label.template"
                                                value="template"
                                                [icon]="localUi.icons.template"></jnt-switcher-option>
                         </jnt-switcher>
@@ -222,15 +234,18 @@
 
                     <jnt-col [span]="12">
                       <jnt-form-item>
-                        <jnt-form-label for="position">Picture position
+                        <jnt-form-label for="position" i18n="@@label.position">Picture position
                         </jnt-form-label>
                         <jnt-switcher formControlName="position"
                                       placeholder="Left"
+                                      i18n-placeholder="@@label.left"
                                       [features]="[ui.feature.allowEmpty]">
                           <jnt-switcher-option label="Left"
+                                               i18n-label="@@label.left"
                                                [icon]="localUi.icons.start"
                                                [value]="ui.position.left"></jnt-switcher-option>
                           <jnt-switcher-option label="Right"
+                                               i18n-label="@@label.right"
                                                [icon]="localUi.icons.end"
                                                [value]="ui.position.right"></jnt-switcher-option>
                         </jnt-switcher>

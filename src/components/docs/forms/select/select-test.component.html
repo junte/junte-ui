@@ -52,6 +52,7 @@
                     </jnt-select>
                     <ng-template #optionsHeaderTemplate let-query="query" let-close="close">
                       <jnt-button text="Close"
+                                  i18n-text="@@action.close"
                                   [icon]="ui.icons.add"
                                   (click)="close()"></jnt-button>
                     </ng-template>
@@ -59,6 +60,7 @@
                       <jnt-stack [align]="ui.align.center">
                         <p>Hero <b>{{query}}</b> not found</p>
                         <jnt-button text="Create"
+                                    i18n-text="@@action.create"
                                     [icon]="ui.icons.add"
                                     (click)="close()"></jnt-button>
                       </jnt-stack>
@@ -156,6 +158,7 @@
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="icon"
+                                    i18n-label="@@label.icon"
                                     label="Icon"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
@@ -171,6 +174,7 @@
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="loading"
+                                    i18n-label="@@label.loading"
                                     label="Loading"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>

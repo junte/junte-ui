@@ -1,43 +1,60 @@
 <jnt-container>
   <h1>Junte <span>UI</span></h1>
 
-  <h2>Very strong
+  <h2 i18n="@@message.very_strong_framework">Very strong
     <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
     framework!
   </h2>
 
-  <h5><b>Junte UI</b> is a collection of quality UI components for Angular
+  <h5 i18n="@@message.junte_ui_is_a_collection_of_quality_ui_components_for_angular_with_design_system_in_figma">
+    <b>Junte UI</b> is a collection of quality UI components for Angular
     <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
     with design system in Figma
     <jnt-icon [icon]="ui.icons.figma"></jnt-icon>
   </h5>
 
-  <p>We love Angular and we want to implement all beautiful apps from
+  <p i18n="@@message.we_love_angular_and_we_want_to_implement_all_beautiful_apps_from">We love Angular and we want to implement all beautiful apps from
     <jnt-link source="https://dribbble.com/" title="dribbble.com"
               target="_blank"
               [icon]="ui.icons.dribbble"></jnt-link>
   </p>
-  <p>We believe in brilliant 💎 code & design! When it's combined together we are seeing awesome solutions!</p>
-  <p>Using our common design system you can build brilliant design and prototype of your app and then easily
-    move into the code!</p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We believe in brilliant 💎 code & design! When it's combined together we are seeing awesome solutions!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Мы верим в блестящий код и дизайн! Когда все вместе, мы видим потрясающие решения!
+    </ng-container>
+  </p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Using our common design system you can build brilliant design and prototype of your app and then easily
+      move into the code!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Используя нашу общую систему дизайна, вы можете создать блестящий дизайн и прототип своего приложения, а затем легко
+      перейти в код!
+    </ng-container>
+  </p>
 
   <h3 i18n="@@label.compability">Compatibility</h3>
-  <p>
+  <p i18n="@@message.or_higher">
     <jnt-link source="https://angular.io/guide/releases#support-policy-and-schedule"
               target="_blank" title="Angular 9">
     </jnt-link>
     or higher 🚀
   </p>
-  <p>Modern browsers and Internet Explorer 11+</p>
+  <p i18n="@@message.modern_browsers_and_internet_explorer_11">Modern browsers and Internet Explorer 11+</p>
 
   <img src="https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg">
 
-  <h3>How to install</h3>
+  <h3 i18n="@@label.how_to_install">How to install</h3>
 
   <jnt-timeline>
-    <jnt-timeline-item title="Installation Angular CLI">
+    <jnt-timeline-item title="Installation Angular CLI"
+                       i18n-title="@@label.installation_angular_cli">
       <ng-template #timelineItemContentTemplate>
-        <app-code-highlight [language]="languages.bash">
+        <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->
 <![CDATA[
 sudo npm install -g @angular/cli
@@ -47,10 +64,12 @@ sudo npm install -g @angular/cli
       </ng-template>
     </jnt-timeline-item>
 
-    <jnt-timeline-item title="Create a new Project">
+    <jnt-timeline-item title="Create a new Project"
+                       i18n-title="@@label.create_a_new_project">
       <ng-template #timelineItemContentTemplate>
-        <p>A new project can be created using Angular CLI tools.</p>
-        <app-code-highlight [language]="languages.bash">
+        <p i18n="@@message.a_new_project_can_be_created_using_angular_cli_tools">
+          A new project can be created using Angular CLI tools.</p>
+        <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->
 <![CDATA[
 ng new junte-ui-test --style=scss --routing=false
@@ -61,12 +80,12 @@ cd junte-ui-test
       </ng-template>
     </jnt-timeline-item>
 
-    <jnt-timeline-item title="Installation Junte UI">
+    <jnt-timeline-item title="Installation Junte UI" i18n-title="@@label.installation_junte_ui">
       <ng-template #timelineItemContentTemplate>
-        <p>Install <b>Junte UI</b> package
+        <p i18n="@@label.install_junte_ui_package">Install <b>Junte UI</b> package
           <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
         </p>
-        <app-code-highlight [language]="languages.bash">
+        <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->
 <![CDATA[
 npm install @junte/ui  --save-dev
@@ -76,11 +95,12 @@ npm install @junte/ui  --save-dev
       </ng-template>
     </jnt-timeline-item>
 
-    <jnt-timeline-item title="Import Junte UI module">
+    <jnt-timeline-item title="Import Junte UI module"
+                       i18n-title="@@label.import_junte_ui_module">
       <ng-template #timelineItemContentTemplate>
-        <p>Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
+        <p i18n="@@message.import_junte_ui_browser_animations_modules_into_your_app_module_in">Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
           <code>src/app/app.module.ts</code></p>
-        <app-code-highlight [language]="languages.typescript">
+        <app-code-highlight [language]="highlight.language.typescript">
           <!-- @formatter:off-->
 <![CDATA[
 import { BrowserModule } from '@angular/platform-browser';
@@ -105,9 +125,9 @@ export class AppModule { }
 ]]>
           <!-- @formatter:on-->
         </app-code-highlight>
-        <p>Import <code>Popover</code> & <code>Modal</code> into your app component in
+        <p i18n="@@message.import_popover_and_modal_into_your_app_component_in">Import <code>Popover</code> & <code>Modal</code> into your app component in
           <code>src/app/app.component.ts</code></p>
-        <app-code-highlight [language]="languages.typescript">
+        <app-code-highlight [language]="highlight.language.typescript">
           <!-- @formatter:off-->
 <![CDATA[
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
@@ -142,9 +162,9 @@ export class AppComponent implements AfterViewInit {
           ]]>
           <!-- @formatter:on-->
         </app-code-highlight>
-        <p>Add <code>Popover</code> & <code>Modal</code> into your app component in
+        <p i18n="@@message.add_popover_modal_into your app component in">Add <code>Popover</code> & <code>Modal</code> into your app component in
           <code>src/app/app.component.html</code></p>
-        <app-code-highlight [language]="languages.bash">
+        <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->
           <![CDATA[
           <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
@@ -156,10 +176,10 @@ export class AppComponent implements AfterViewInit {
       </ng-template>
     </jnt-timeline-item>
 
-    <jnt-timeline-item title="Import styles & assets">
+    <jnt-timeline-item title="Import styles & assets" i18n-title="@@label.import_styles_and_assets">
       <ng-template #timelineItemContentTemplate>
-        <p>Install the font using the command</p>
-          <app-code-highlight [language]="languages.bash">
+        <p i18n="@@message.install_the_font_using_the_command">Install the font using the command</p>
+          <app-code-highlight [language]="highlight.language.bash">
 
             <!-- @formatter:off-->
 <![CDATA[
@@ -167,8 +187,8 @@ npm i @openfonts/open-sans_cyrillic
 ]]>
             <!-- @formatter:on-->
           </app-code-highlight>
-        <p>Import styles and assets in <code>angular.json</code></p>
-        <app-code-highlight [language]="languages.json">
+        <p i18n="@@message.import_styles_and_assets_in">Import styles and assets in <code>angular.json</code></p>
+        <app-code-highlight [language]="highlight.language.json">
           <pre>
 
           <!-- @formatter:off-->
@@ -204,9 +224,10 @@ npm i @openfonts/open-sans_cyrillic
           </pre>
         </app-code-highlight>
 
-        <p>Import the styles into the global app styles <code>src/styles.scss</code></p>
+        <p i18n="@@message.import_the_styles_into_the_global_app_styles">
+          Import the styles into the global app styles <code>src/styles.scss</code></p>
 
-        <app-code-highlight [language]="languages.css">
+        <app-code-highlight [language]="highlight.language.css">
           <pre>
 <![CDATA[
 /* You can add global styles to this file, and also import other style files */
@@ -223,8 +244,8 @@ body {
     </pre>
   </app-code-highlight>
 
-  <p>Bingo 👏 Start your project.</p>
-  <app-code-highlight [language]="languages.bash">
+  <p i18n="@@message.bingo_start_your_project">Bingo 👏 Start your project.</p>
+  <app-code-highlight [language]="highlight.language.bash">
     <!-- @formatter:off-->
 <![CDATA[
 ng serve
@@ -232,16 +253,20 @@ ng serve
     <!-- @formatter:on-->
   </app-code-highlight>
 
-  <p>It is a very fast but rude installation with importing all components & assets.</p>
+  <p i18n="@@message.it_is_a_very_fast_but_rude_installation_with_importing_all_components_and_assets">
+    It is a very fast but rude installation with importing all components & assets.</p>
       </ng-template>
     </jnt-timeline-item>
 
-    <jnt-timeline-item title="How to try">
+    <jnt-timeline-item title="How to try"
+                       i18n-title="@@label.how_to_try">
       <ng-template #timelineItemContentTemplate>
-        <p>You can go to research all components specifications.</p>
+        <p i18n="@@message.you_can_go_to_research_all_components_specifications">
+          You can go to research all components specifications.</p>
 
-        <p>For fast test add link to <code>UI</code> enum in <code>src/app/app.component.ts</code></p>
-        <app-code-highlight [language]="languages.typescript">
+        <p i18n="@@message.for_fast_test_add_link_to_ui_enum_in">
+          For fast test add link to <code>UI</code> enum in <code>src/app/app.component.ts</code></p>
+        <app-code-highlight [language]="highlight.language.typescript">
           <!-- @formatter:off-->
 <![CDATA[
 import { Component } from '@angular/core';
@@ -258,9 +283,9 @@ export class AppComponent {
           <!-- @formatter:on-->
         </app-code-highlight>
 
-        <p>Add <code>jnt-button</code> in to your <code>src/app/app.component.html</code></p>
+        <p i18n="@@message.add_jnt_button_in_to_your">Add <code>jnt-button</code> in to your <code>src/app/app.component.html</code></p>
 
-        <app-code-highlight [language]="languages.html">
+        <app-code-highlight [language]="highlight.language.html">
           <!-- @formatter:off-->
 <![CDATA[
 <jnt-button text="Click on me"
@@ -271,27 +296,29 @@ export class AppComponent {
           <!-- @formatter:on-->
         </app-code-highlight>
 
-        <p>You should see the button 😎</p>
+        <p i18n="@@message.you_should_see_the_button">You should see the button 😎</p>
       </ng-template>
     </jnt-timeline-item>
   </jnt-timeline>
 
-  <p>Problems 🙀? Please, add an issue here 👉 <jnt-link
+  <p i18n="@@message.problems_please_add_an_issue_here">Problems 🙀? Please, add an issue here 👉 <jnt-link
     title="Issues tracker"
+    i18n-title="@@label.issues_tracker"
     [outline]="ui.outline.ghost"
     source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link>
   </p>
 
   <jnt-stack [align]="ui.align.start">
-    <h2>Polyfills</h2>
-    <p>Include this polyfills to <code>polyfills.ts</code> for correct library working:</p>
+    <h2 i18n="@@label.polyfills">Polyfills</h2>
+    <p i18n="@@message.include_this_polyfills_to_for_correct_library_working">
+    Include this polyfills to <code>polyfills.ts</code> for correct library working:</p>
     <jnt-stack [orientation]="ui.orientation.horizontal">
-      <h3>Event.path</h3>
-      <jnt-label label="Safary"></jnt-label>
+      <h3 i18n="@@label.event">Event.path</h3>
+      <jnt-label label="Safary" i18n-label="@@label.safary"></jnt-label>
     </jnt-stack>
 
-    <p>Add file <code>src/polyfills/event-path.js</code></p>
-    <app-code-highlight [language]="languages.typescript" file="src/polyfills/event-path">
+    <p i18n="@@message.add_file">Add file <code>src/polyfills/event-path.js</code></p>
+    <app-code-highlight [language]="highlight.language.typescript" file="src/polyfills/event-path">
 <![CDATA[
 if (!('path' in Event.prototype)) {
   Object.defineProperty(Event.prototype, 'path', {
@@ -312,6 +339,6 @@ if (!('path' in Event.prototype)) {
     }
   });
 }]]></app-code-highlight>
-    <span>Add <code>import 'import './polyfills/event-path';'</code> to your <code>polyfills.ts</code> in src</span>
+    <span i18n="@@message.add_import_to_your_polyfills_in_src">Add <code>import 'import './polyfills/event-path';'</code> to your <code>polyfills.ts</code> in src</span>
   </jnt-stack>
 </jnt-container>

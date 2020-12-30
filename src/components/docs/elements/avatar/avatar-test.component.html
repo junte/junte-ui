@@ -21,7 +21,10 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-row>
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Elon Musk" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                    <jnt-block title="Elon Musk"
+                               i18n-title="@@label.elon_musk"
+                               [padding]="ui.gutter.normal"
+                               [width]="ui.width.fluid">
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatar [size]="sizeControl.value"
                                     [shape]="shapeControl.value"
@@ -36,7 +39,10 @@
                   </jnt-col>
 
                   <jnt-col [desktop]="6" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                    <jnt-block title="Inventors"
+                               i18n-title="@@label.inventors"
+                               [padding]="ui.gutter.normal"
+                               [width]="ui.width.fluid">
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-list [size]="sizeControl.value">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
@@ -65,7 +71,10 @@
                   </jnt-col>
 
                   <jnt-col [desktop]="3" [tablet]="12" [mobile]="12">
-                    <jnt-block title="Inventors" [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                    <jnt-block title="Inventors"
+                               i18n-title="@@label.inventors"
+                               [padding]="ui.gutter.normal"
+                               [width]="ui.width.fluid">
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-group [size]="sizeControl.value" [total]="10">
                           <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
@@ -111,15 +120,19 @@
                                 i18n-placeholder="@@label.normal"
                                 [features]="ui.feature.allowEmpty">
                       <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.tiny"
                                          [key]="ui.size.tiny"></jnt-select-option>
                       <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
                                          [icon]="localUi.icons.small"
                                          [key]="ui.size.small"></jnt-select-option>
                       <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normall"
                                          [icon]="localUi.icons.normal"
                                          [key]="ui.size.normal"></jnt-select-option>
                       <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
                                          [icon]="localUi.icons.large"
                                          [key]="ui.size.large"></jnt-select-option>
                     </jnt-select>
@@ -133,6 +146,7 @@
                   <jnt-form-control>
                     <jnt-select formControlName="shape"
                                 placeholder="Circle"
+                                i18n-placeholder="@@label.circle"
                                 [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Circle"
                                          i18n-label="@@label.circle"

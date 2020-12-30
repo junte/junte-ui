@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { AccordionSectionComponent, TabComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-accordion-test',
@@ -14,6 +15,7 @@ export class AccordionTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {section: AccordionSectionComponent};
 
   @ViewChild('code') code: TabComponent;
@@ -26,7 +28,8 @@ export class AccordionTestComponent implements OnInit {
     state: this.stateControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

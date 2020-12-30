@@ -28,11 +28,19 @@
                                  [gutter]="ui.gutter.small"
                                  [align]="ui.align.center">
                         <jnt-icon data-filter-icon [icon]="ui.icons.home"></jnt-icon>
-                        <p>We’re determined to examine filters from your profile’s <b> data </b>,
-                          You see <b> personalized </b> job offers.</p>
+                        <p [ngSwitch]="locale">
+                          <ng-container *ngSwitchDefault>
+                            We’re determined to examine filters from your profile’s <b> data </b>,
+                            You see <b> personalized </b> job offers.
+                          </ng-container>
+                          <ng-container *ngSwitchCase="language.ru">
+                            Мы намерены изучить фильтры на основе <b> данных </b> вашего профиля,
+                            Вы видите <b> персонализированные </b> предложения о работе.
+                          </ng-container>
+                        </p>
                       </jnt-stack>
                     </ng-template>
-                    <ng-template #collapsibleContentTemplate>
+                    <ng-template #collapsibleContentTemplate i18n="@@message.your_personal_filters_are_here">
                       Your personal filters are here
                     </ng-template>
                   </jnt-collapsible>
@@ -48,6 +56,7 @@
                     </jnt-form-label>
                     <jnt-select formControlName="orientation"
                                 placeholder="Horizontal"
+                                i18n-placeholder="@@label.horizontal"
                                 [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Horizontal"
                                          i18n-label="@@label.horizontal"
@@ -62,6 +71,7 @@
                   <jnt-form-item>
                     <jnt-form-label>Features</jnt-form-label>
                     <jnt-checkbox formControlName="title"
+                                  i18n-label="@@label.custom_title"
                                   label="Custom title"></jnt-checkbox>
                   </jnt-form-item>
 

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LinkComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
+import {Language} from '../../../../enums/language';
 
 enum SourceType {
   external = 'external',
@@ -18,6 +19,7 @@ export class LinkTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sourceType = SourceType;
+  language = Language;
   types = {link: LinkComponent};
 
   schemeControl = this.fb.control(null);
@@ -41,7 +43,8 @@ export class LinkTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

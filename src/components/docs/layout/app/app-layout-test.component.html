@@ -12,8 +12,16 @@
   <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
-      <p>Each WEB application requires base components for working:
-        logo, main menu, user bar, side menu, breadcrumbs, footer, etc.</p>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          Each WEB application requires base components for working:
+          logo, main menu, user bar, side menu, breadcrumbs, footer, etc.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Каждое WEB-приложение требует для работы базовых компонентов:
+          логотип, главное меню, панель пользователя, боковое меню, хлебные крошки, нижний колонтитул и т. д.
+        </ng-container>
+      </p>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">
@@ -204,20 +212,29 @@
 
                       <jnt-menu [orientation]="ui.orientation.vertical"
                                 [spacing]="ui.size.small">
-                        <jnt-menu-item title="General" [icon]="localUi.icons.general">
+                        <jnt-menu-item title="General"
+                                       i18n-title="@@label.general"
+                                       [icon]="localUi.icons.general">
                           <jnt-sub-menu>
-                            <jnt-sub-menu-item title="About"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="About"
+                                               i18n-title="@@label.about"></jnt-sub-menu-item>
                             <jnt-sub-menu-item title="Education"
+                                               i18n-title="@@label.education"
                                            [icon]="ui.icons.knowledge"></jnt-sub-menu-item>
                           </jnt-sub-menu>
                         </jnt-menu-item>
 
-                        <jnt-menu-item title="Profession" [icon]="localUi.icons.certificate">
+                        <jnt-menu-item title="Profession"
+                                       i18n-title="@@label.profession"
+                                       [icon]="localUi.icons.certificate">
                           <jnt-sub-menu>
                             <jnt-sub-menu-item title="Skills"
+                                               i18n-title="@@label.skills"
                                            [icon]="ui.icons.skull"></jnt-sub-menu-item>
-                            <jnt-sub-menu-item title="Experience"></jnt-sub-menu-item>
-                            <jnt-sub-menu-item title="Certificates"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="Experience"
+                                               i18n-title="@@label.experience"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="Certificates"
+                                               i18n-title="@@label.certificates"></jnt-sub-menu-item>
                           </jnt-sub-menu>
                         </jnt-menu-item>
                       </jnt-menu>

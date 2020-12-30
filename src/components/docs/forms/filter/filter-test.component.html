@@ -34,12 +34,16 @@
                           <jnt-form-control>
                             <jnt-select formControlName="skills"
                                         placeholder="Select skills"
+                                        i18n-placeholder="@@label.select_skills"
                                         [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="Immortality"
+                                                 i18n-label="@@label.immortality"
                                                  [key]="skills.immortality"></jnt-select-option>
                               <jnt-select-option label="Fly"
+                                                 i18n-label="@@label.fly"
                                                  [key]="skills.fly"></jnt-select-option>
                               <jnt-select-option label="Climbing walls"
+                                                 i18n-label="@@label.climbing"
                                                  [key]="skills.climbing_walls"></jnt-select-option>
                             </jnt-select>
                           </jnt-form-control>
@@ -48,16 +52,20 @@
 
                       <jnt-col [tablet]="4" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="sources">Sources</jnt-form-label>
+                          <jnt-form-label for="sources" i18n="@@label.sources">Sources</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="sources"
                                         placeholder="Select source"
+                                        i18n-placeholder="@@label.select_sources"
                                         [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="Technologies"
+                                                 i18n-label="@@label.technologies"
                                                  [key]="sources.technologies"></jnt-select-option>
                               <jnt-select-option label="Acquired"
+                                                 i18n-label="@@label.acquired"
                                                  [key]="sources.acquired"></jnt-select-option>
                               <jnt-select-option label="Congenital"
+                                                 i18n-label="@@label.congenital"
                                                  [key]="sources.congenital"></jnt-select-option>
                             </jnt-select>
                           </jnt-form-control>
@@ -66,16 +74,20 @@
 
                       <jnt-col [tablet]="4" [mobile]="12">
                         <jnt-form-item>
-                          <jnt-form-label for="worlds">Worlds</jnt-form-label>
+                          <jnt-form-label for="worlds" i18n="@@label.worlds">Worlds</jnt-form-label>
                           <jnt-form-control>
                             <jnt-select formControlName="worlds"
                                         placeholder="Select world"
+                                        i18n-placeholder="@@label.select_world"
                                         [features]="[ui.feature.allowEmpty]">
                               <jnt-select-option label="DC"
+                                                 i18n-label="@@label.dc"
                                                  [key]="worlds.dc"></jnt-select-option>
                               <jnt-select-option label="Marvel"
+                                                 i18n-label="@@label.marvel"
                                                  [key]="worlds.marvel"></jnt-select-option>
                               <jnt-select-option label="XMan"
+                                                 i18n-label="@@label.xman"
                                                  [key]="worlds.xman"></jnt-select-option>
                             </jnt-select>
                           </jnt-form-control>
@@ -88,14 +100,17 @@
                                   [selected]="!!skillsControl?.value"
                                   (clear)="skillsControl.setValue(null)"
                                   placeholder="Pick a skills"
+                                  i18n-placeholder="@@label.pick_a_skills"
                                   [label]="skillsControl.value"></jnt-filter>
                       <jnt-filter [control]="sourcesControl"
                                   [icon]="iconControl.value ? ui.icons.time : null"
                                   placeholder="Pick a source"
+                                  i18n-placeholder="@@label.pick_a_source"
                                   [label]="sourcesControl.value"></jnt-filter>
                       <jnt-filter [control]="worldsControl"
                                   [icon]="iconControl.value ? ui.icons.cloud : null"
                                   placeholder="Pick a world"
+                                  i18n-placeholder="@@label.pick_a_world"
                                   [label]="worldsControl.value"></jnt-filter>
                     </jnt-stack>
 
@@ -123,6 +138,7 @@
           <jnt-col [tablet]="3">
             <jnt-form [formGroup]="builder">
               <jnt-checkbox formControlName="icon"
+                            i18n-label="@@label.icon"
                             label="Icon"></jnt-checkbox>
             </jnt-form>
           </jnt-col>

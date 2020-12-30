@@ -41,11 +41,13 @@
                                         [mode]="modeControl.value"
                                         [orientation]="orientationControl.value">
                             <jnt-switcher-option label="No one"
+                                                 i18n-label="@@label.no_one"
                                                  [value]="null"
                                                  [disabled]="disabledOptionControl.value"
                                                  [icon]="ui.icons.sad">
                             </jnt-switcher-option>
                             <jnt-switcher-option label="Spiderman"
+                                                 i18n-label="@@label.spiderman"
                                                  [value]="hero.spiderman"
                                                  [disabled]="disabledOptionControl.value"
                                                  [icon]="iconControl.value ? localUi.icons.spiderman : null">
@@ -71,7 +73,9 @@
                                 </ng-template>
                               </ng-container>
                             </jnt-switcher-option>
-                            <jnt-switcher-option label="Ironman" [value]="hero.ironman"
+                            <jnt-switcher-option label="Ironman"
+                                                 i18n-label="@@label.ironman"
+                                                 [value]="hero.ironman"
                                                  [icon]="iconControl.value ? localUi.icons.ironman : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.yellow"></jnt-dot>
@@ -95,7 +99,9 @@
                                 </ng-template>
                               </ng-container>
                             </jnt-switcher-option>
-                            <jnt-switcher-option label="Captain America" [value]="hero.captainAmerica"
+                            <jnt-switcher-option label="Captain America"
+                                                 i18n-label="@@label.captain_america"
+                                                 [value]="hero.captainAmerica"
                                                  [icon]="iconControl.value ? localUi.icons.capitan : null">
                               <jnt-dot *ngIf="dotControl.value"
                                        [color]="ui.color.blue100"></jnt-dot>
@@ -121,7 +127,8 @@
                             </jnt-switcher-option>
                           </jnt-switcher>
 
-                          <jnt-form-message [validator]="ui.validator.required">
+                          <jnt-form-message [validator]="ui.validator.required"
+                                            i18n="@@message.please_select_the_hero">
                             Please select the hero
                           </jnt-form-message>
                         </jnt-form-control>
@@ -257,6 +264,7 @@
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="indicator"
+                                    i18n-label="@@label.count_indicator"
                                     label="Count indicator"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
@@ -271,14 +279,17 @@
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="height"
+                                    i18n-label="@@label.height_limit"
                                     label="Height limit"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="selectAll"
+                                    i18n-label="@@label.select_all"
                                     label="Select all"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="adapted"
+                                    i18n-label="@@label.adapted"
                                     label="Adapted"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
@@ -296,11 +307,13 @@
 
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="disabledOption"
+                                    i18n-label="@@label.disabled_option"
                                     label="Disabled option"></jnt-checkbox>
                     </jnt-col>
 
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="loading"
+                                    i18n-label="@@label.loading"
                                     label="Loading"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>

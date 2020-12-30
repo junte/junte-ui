@@ -38,6 +38,7 @@
                             <jnt-icon data-icon [icon]="ui.icons.checked"></jnt-icon>
                             <div>Your request is approved</div>
                             <jnt-button text="Ok"
+                                        i18n-text="@@action.ok"
                                         [scheme]="ui.scheme.success"
                                         (click)="state.ok = false"></jnt-button>
                           </jnt-stack>
@@ -46,10 +47,13 @@
                     </ng-container>
                     <jnt-container #page>
                       <ng-template #defaultButton>
-                        <jnt-button (click)="add()" text="Add error"></jnt-button>
+                        <jnt-button (click)="add()"
+                                    i18n-text="@@action.add_error"
+                                    text="Add error"></jnt-button>
                       </ng-template>
                       <jnt-button *ngIf="contentControl.value; else defaultButton"
                                   text="Show info"
+                                  i18n-text="@@action.show_info"
                                   (click)="state.ok = true"></jnt-button>
                     </jnt-container>
                   </jnt-block>
@@ -74,6 +78,7 @@
                   </jnt-form-item>
                   <jnt-form-item>
                     <jnt-checkbox formControlName="content"
+                                  i18n-label="@@label.custom_content"
                                   label="Custom content"></jnt-checkbox>
                   </jnt-form-item>
                 </jnt-stack>

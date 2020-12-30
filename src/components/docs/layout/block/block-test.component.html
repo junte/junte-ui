@@ -12,7 +12,8 @@
   <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
-      <p>Block is a grouping of elements related to one piece of functionality on the page.</p>
+      <p i18n="@@message.block_is_a_grouping_of_elements_related_to_one_piece_of_functionality_on_the_page">
+        Block is a grouping of elements related to one piece of functionality on the page.</p>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">
@@ -53,7 +54,7 @@
                     <ng-template *ngIf="headerControl.value" #blockHeaderTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
                         <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
-                        <span>Schedule</span>
+                        <span i18n="@@label.schedule">Schedule</span>
                       </jnt-stack>
                     </ng-template>
                   </jnt-block>
@@ -150,7 +151,7 @@
                     </jnt-form-label>
                     <jnt-switcher formControlName="width"
                                   placeholder="Default"
-                                  i18n-primary="@@label.default"
+                                  i18n-placeholder="@@label.default"
                                   [features]="[ui.feature.allowEmpty]">
                       <jnt-switcher-option label="Default"
                                            i18n-label="@@label.default"
@@ -201,10 +202,12 @@
                       </jnt-col>
                       <jnt-col [span]="6">
                         <jnt-checkbox formControlName="adapted"
+                                      i18n-label="@@label.adapted"
                                       label="Adapted"></jnt-checkbox>
                       </jnt-col>
                       <jnt-col [span]="6">
                         <jnt-checkbox formControlName="help"
+                                      i18n-label="@@label.help"
                                       label="Help"></jnt-checkbox>
                       </jnt-col>
                     </jnt-row>

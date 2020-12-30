@@ -6,18 +6,44 @@
     figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2178%3A2452">
   </app-resources>
 
-  <p>We use <b>SASS constants</b> for implementing simple customizing common components styles. You can redefine
-    everything in your project.</p>
-  <p>We tried to create a final and sufficient list of constants for implementing themes including
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We use <b>SASS constants</b> for implementing simple customizing common components styles. You can redefine
+      everything in your project.
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Мы используем <b> константы SASS </b> для реализации простой настройки общих стилей компонентов. Вы можете переопределить
+      все в вашем проекте.
+    </ng-container>
+  </p>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We tried to create a final and sufficient list of constants for implementing themes including
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Мы попытались создать окончательный и достаточный список констант для реализации тем, включая
+    </ng-container>
     <jnt-label [color]="ui.color.black"
                label="black theme 😎"
                i18n-label="@@label.black_theme"></jnt-label>
   </p>
-  <p>These constants are fully synchronized with our global style in the design system.</p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      These constants are fully synchronized with our global style in the design system.
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Эти константы полностью синхронизированы с нашим глобальным стилем в дизайн-системе.
+    </ng-container>
+  </p>
 
   <h2 i18n="@@label.variables">Variables</h2>
 
-  <p>Constants are described in the common file
+  <p i18n="@@message.constants_are_described_in_the_common_file">
+    Constants are described in the common file
     <jnt-link [icon]="ui.icons.link"
               source="https://gitlab.com/junte/junte-ui/blob/master/projects/junte-ui/src/lib/assets/styles/_jnt-variables.scss"
               target="_blank"
@@ -27,12 +53,12 @@
   <table>
     <thead>
     <tr>
-      <th>Variable</th>
-      <th>Value</th>
-      <th>Preview</th>
+      <th i18n="@@label.variable">Variable</th>
+      <th i18n="@@label.value">Value</th>
+      <th i18n="@@label.preview">Preview</th>
     </tr>
     <tr>
-      <th colspan="3">Palette</th>
+      <th colspan="3" i18n="@@label.palette">Palette</th>
     </tr>
     <tbody>
     <tr>

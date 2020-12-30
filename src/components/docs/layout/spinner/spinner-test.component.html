@@ -12,7 +12,14 @@
   <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
-      <p>Spinner displays loading data or performing some processing.</p>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          Spinner displays loading data or performing some processing.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Spinner отображает загрузку данных или выполнение некоторой обработки.
+        </ng-container>
+      </p>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">

@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { StackComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { Language } from '../../shared/code-highlight/enum';
+import {Language as HighlightLanguage} from '../../shared/code-highlight/enum';
+import {Language} from '../../../../enums/language';
 
 @Component({
   selector: 'app-stack-test',
@@ -14,6 +15,7 @@ export class StackTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  highlight = {language: HighlightLanguage};
 
   types = {stack: StackComponent};
 
@@ -35,7 +37,8 @@ export class StackTestComponent implements OnInit {
     wrap: this.wrapControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

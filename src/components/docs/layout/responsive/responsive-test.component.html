@@ -15,9 +15,10 @@
       <ng-template #tabContentTemplate>
         <app-browser-preview preview>
           <ng-template #document let-width="width" let-height="height">
-            <p>Please change you device width in
+            <p i18n="@@message.please_change_you_device_width_in">Please change you device width in
               <jnt-link [outline]="ui.outline.ghost"
                         title="developers tools"
+                        i18n-title="@@label.developer_tools"
                         [icon]="ui.icons.chevronDown"
                         [jntPopover]="{
                           contentTemplate: youtubeTemplate,

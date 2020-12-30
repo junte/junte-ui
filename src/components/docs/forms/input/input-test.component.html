@@ -23,10 +23,12 @@
                 <jnt-form [formGroup]="form">
                   <jnt-stack [gutter]="ui.gutter.small">
                     <ng-template #textTemplate>
-                      <div>Write <b>yes</b> here if you are happy</div>
+                      <div i18n="@@message.write_yes_here_if_you_are_happy">Write <b>yes</b> here if you are happy</div>
                     </ng-template>
                     <ng-container *ngIf="!!maskControl.value else textTemplate">
-                      <jnt-button text="Set phone to mask" (click)="test()"></jnt-button>
+                      <jnt-button text="Set phone to mask"
+                                  i18n-text="@@action.set_phone_mask"
+                                  (click)="test()"></jnt-button>
                       <div>Mask: +7(___) ___-__-__</div>
                       <div>Value: {{inputControl.value || 'null'}}</div>
                     </ng-container>
@@ -50,6 +52,7 @@
                                [features]="[allowEmptyControl.value ? ui.feature.allowEmpty : null,
                                             multilineControl.value ? ui.feature.multiline : null]  | filterEmpty"
                                placeholder="Yes or no?"
+                               i18n-placeholder="@@label.yes_or_no"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
                     </jnt-input>
 
@@ -194,12 +197,15 @@
                   </jnt-form-label>
                   <jnt-switcher formControlName="states">
                     <jnt-switcher-option label="Loading"
+                                         i18n-label="@@label.loading"
                                          [icon]="ui.icons.animated.spinner"
                                          [value]="ui.state.loading"></jnt-switcher-option>
                     <jnt-switcher-option label="Warning"
+                                         i18n-label="@@label.warning"
                                          [icon]="ui.icons.warning"
                                          [value]="ui.state.warning"></jnt-switcher-option>
                     <jnt-switcher-option label="Checked"
+                                         i18n-label="@@label.checked"
                                          [icon]="ui.icons.checked"
                                          [value]="ui.state.checked"></jnt-switcher-option>
                   </jnt-switcher>
@@ -214,10 +220,12 @@
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="readonly"
+                                    i18n-label="@@label.readonly"
                                     label="Readonly"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="autocomplete"
+                                    i18n-label="@@label.autocomplete"
                                     label="Autocomplete"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
@@ -245,11 +253,13 @@
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="allowEmpty"
+                                    i18n-label="@@label.allow_empty"
                                     label="Allow empty"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-form-item>
                         <jnt-checkbox formControlName="multiline"
+                                      i18n-label="@@label.multiline"
                                       label="Multiline"></jnt-checkbox>
                       </jnt-form-item>
                     </jnt-col>
@@ -267,7 +277,7 @@
                 <jnt-row [align]="ui.align.center">
                   <jnt-col [span]="4">
                     <jnt-form-item>
-                      <jnt-form-label>Min</jnt-form-label>
+                      <jnt-form-label i18n="@@label.min">Min</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="min" [type]="ui.input.type.number"></jnt-input>
                       </jnt-form-control>
@@ -275,7 +285,7 @@
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-form-item>
-                      <jnt-form-label>Max</jnt-form-label>
+                      <jnt-form-label i18n="@@label.max">Max</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="max" [type]="ui.input.type.number"></jnt-input>
                       </jnt-form-control>
@@ -283,7 +293,7 @@
                   </jnt-col>
                   <jnt-col [span]="4">
                     <jnt-form-item>
-                      <jnt-form-label for="steps">Step</jnt-form-label>
+                      <jnt-form-label for="steps" i18n="@@label.step">Step</jnt-form-label>
                       <jnt-form-control>
                         <jnt-input formControlName="steps" [type]="ui.input.type.number"></jnt-input>
                       </jnt-form-control>

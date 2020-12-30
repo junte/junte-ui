@@ -33,32 +33,40 @@
                             </ng-template>
                           </jnt-checkbox>
                           <jnt-checkbox label="Ironman"
+                                        i18n-label="@@label.ironman"
                                         [value]="hero.ironman">
                             <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
                               <jnt-input placeholder="Ironman custom template"></jnt-input>
                             </ng-template>
                           </jnt-checkbox>
                           <jnt-checkbox label="Captain America"
+                                        i18n-label="@@label.captain_america"
                                         [value]="hero.captainAmerica">
                             <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
-                              <jnt-checkbox label="Captain America custom template"></jnt-checkbox>
+                              <jnt-checkbox label="Captain America custom template"
+                                            i18n-label="@@label.captain_america_custom_template"></jnt-checkbox>
                             </ng-template>
                           </jnt-checkbox>
 
                           <ng-container *ngIf="colsControl.value > 1">
                             <jnt-checkbox label="Thanos"
+                                          i18n-label="@@label.thanos"
                                           [value]="hero.thanos">
                             </jnt-checkbox>
                             <jnt-checkbox label="Deadpool"
+                                          i18n-label="@@label.deadpool"
                                           [value]="hero.deadpool">
                             </jnt-checkbox>
                             <jnt-checkbox label="Blackwidow"
+                                          i18n-label="@@label.blackwidow"
                                           [value]="hero.blackwidow">
                             </jnt-checkbox>
                             <jnt-checkbox label="Hulk"
+                                          i18n-label="@@label.hulk"
                                           [value]="hero.hulk">
                             </jnt-checkbox>
                             <jnt-checkbox label="Thor"
+                                          i18n-label="@@label.thor"
                                           [value]="hero.thor">
                             </jnt-checkbox>
                           </ng-container>
@@ -114,17 +122,22 @@
                   <jnt-form-control>
                     <jnt-select formControlName="size"
                                 placeholder="Normal"
+                                i18n-placeholder="@@label.normal"
                                 [features]="[ui.feature.allowEmpty]">
                       <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
                                          [icon]="localUi.icons.tiny"
                                          [key]="ui.size.tiny"></jnt-select-option>
                       <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
                                          [icon]="localUi.icons.small"
                                          [key]="ui.size.small"></jnt-select-option>
                       <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
                                          [icon]="localUi.icons.normal"
                                          [key]="ui.size.normal"></jnt-select-option>
                       <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
                                          [icon]="localUi.icons.large"
                                          [key]="ui.size.large"></jnt-select-option>
                     </jnt-select>
@@ -150,7 +163,9 @@
                   <jnt-form-label i18n="@@label.state">State
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="disable" label="Disabled"></jnt-checkbox>
+                    <jnt-checkbox formControlName="disable"
+                                  label="Disabled"
+                                  i18n-label="@@label.disabled"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
@@ -158,7 +173,9 @@
                   <jnt-form-label i18n="@@label.custom">Custom template
                   </jnt-form-label>
                   <jnt-form-control>
-                    <jnt-checkbox formControlName="custom" label="Custom template"></jnt-checkbox>
+                    <jnt-checkbox formControlName="custom"
+                                  label="Custom template"
+                                  i18n-label="@@label.custom_template"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>

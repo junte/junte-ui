@@ -38,7 +38,9 @@
                   </jnt-progress-bar>
 
                   <div>
-                    <jnt-button text="Add 80% color" (click)="added = true"></jnt-button>
+                    <jnt-button text="Add 80% color"
+                                i18n-text="@@action.add_80%_color"
+                                (click)="added = true"></jnt-button>
                   </div>
                 </jnt-stack>
               </ng-template>
@@ -48,7 +50,7 @@
             <jnt-form [formGroup]="builder" builder>
              <jnt-stack [align]="ui.align.stretch">
               <jnt-form-item>
-                <jnt-form-label for="value">Value</jnt-form-label>
+                <jnt-form-label for="value" i18n="@@label.value">Value</jnt-form-label>
                 <jnt-form-control>
                   <jnt-input formControlName="value" [type]="ui.input.type.number"></jnt-input>
                 </jnt-form-control>

@@ -8,10 +8,17 @@
     gitlab="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack">
   </app-resources>
 
-  <div teaser>
-    <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
-      layout) and similar space (gutter) between elements.</p>
-    <p>The stack is the most popular pattern for aligning elements in views.</p>
+  <div teaser [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      <p>A stack organizes a <b>list of elements</b> in one vertical or horizontal line using common layout rules (flex
+        layout) and similar space (gutter) between elements.</p>
+      <p>The stack is the most popular pattern for aligning elements in views.</p>
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      <p> Стек организует <b> список элементов </b> в одну вертикальную или горизонтальную линию с использованием общих правил компоновки (flex
+        макет) и аналогичное пространство (желоб) между элементами. </p>
+      <p> Стек - самый популярный шаблон для выравнивания элементов на видах. </p>
+    </ng-container>
   </div>
 
   <jnt-tabs [features]="[ui.feature.adapted]">
@@ -121,7 +128,7 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label for="spacing">Spacing</jnt-form-label>
+                  <jnt-form-label for="spacing" i18n="@@label.spacing">Spacing</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="spacing"
                                 placeholder="None"
