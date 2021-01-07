@@ -40,9 +40,9 @@
 
           <thead>
           <tr>
-            <th *ngIf="!!rowActionsTemplate"></th>
+            <th data-actions *ngIf="!!rowActionsTemplate"></th>
             <th *ngFor="let column of columns"
-                [class.sortable]="!!column.orderBy"
+                [attr.data-sortable]="!!column.orderBy"
                 [style.text-align]="column.align"
                 [style.width]="column.width"
                 (click)="column.orderBy ? sorting(column.orderBy) : null">
@@ -59,7 +59,7 @@
           <tbody>
           <ng-container *ngIf="source.length; else noDataTemplate">
             <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-              <td *ngIf="!!rowActionsTemplate" data-action>
+              <td *ngIf="!!rowActionsTemplate" data-actions>
                 <jnt-button data-trigger
                             [outline]="ui.outline.transparent"
                             [icon]="ui.icons.actions"
