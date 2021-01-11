@@ -6,7 +6,7 @@
   <div data-message>{{message}}</div>
 </ng-template>
 
-<jnt-stack [orientation]="ui.orientation.horizontal">
+<jnt-stack [orientation]="ui.orientation.horizontal" [justify]="ui.justify.between">
   <jnt-button [type]="ui.button.type.submit"
               [text]="'action.ok' | translate"
               (click)="ok.emit()"></jnt-button>
