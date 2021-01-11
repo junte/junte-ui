@@ -107,12 +107,6 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @ContentChild('tableFiltersTemplate')
   filtersTemplate: TemplateRef<any>;
 
-  @HostBinding('attr.data-has-header')
-  get hasHeader() {
-    return this.features.includes(Feature.search) || this.features.includes(Feature.reload) ||
-      !!this.actionsTemplate || !!this.filtersTemplate;
-  }
-
   onChange: (filter: DefaultSearchFilter) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;

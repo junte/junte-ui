@@ -1,8 +1,7 @@
 <form [formGroup]="form">
-  <jnt-stack [align]="ui.align.stretch">
+  <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.none">
     <ng-container *jntMinFor="ui.breakpoint.desktop">
-      <jnt-stack *ngIf="(features | includes : [ui.feature.reload, ui.feature.search]) || !!actionsTemplate"
-                 [attr.data-fill]="!!filtersTemplate"
+      <jnt-stack data-feature *ngIf="(features | includes : [ui.feature.reload, ui.feature.search]) || !!actionsTemplate"
                  [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
                  [justify]="ui.justify.between">
@@ -26,7 +25,7 @@
         </jnt-input>
       </jnt-stack>
 
-      <div *ngIf="!!filtersTemplate">
+      <div data-filters *ngIf="!!filtersTemplate">
         <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
       </div>
     </ng-container>
