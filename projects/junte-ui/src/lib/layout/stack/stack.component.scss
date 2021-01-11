@@ -100,18 +100,23 @@ $type-horizontal: 'horizontal';
       &[data-wrap='reverse'] {
         flex-wrap: wrap-reverse;
       }
+
+      &[data-orientation = '#{$type-vertical}'] {
+        flex-direction: column;
+      }
+      &[data-orientation = '#{$type-horizontal}'] {
+        flex-direction: row;
+      }
     }
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
         &[data-gutter = '#{$gutter}'] {
           &[data-orientation = '#{$type-vertical}'] {
-            flex-direction: column;
             @include stack-gutters(margin-bottom, $map, $wrapper);
           }
 
           &[data-orientation = '#{$type-horizontal}'] {
-            flex-direction: row;
             @include stack-gutters(margin-right, $map, $wrapper);
           }
         }
