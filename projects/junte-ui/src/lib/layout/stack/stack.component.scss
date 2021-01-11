@@ -25,7 +25,6 @@ $type-horizontal: 'horizontal';
 
   $defs: (
     gutters: (
-      none: $jnt-gutter-none,
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
       normal: $jnt-gutter-normal,
@@ -120,6 +119,9 @@ $type-horizontal: 'horizontal';
           &[data-orientation = '#{$type-horizontal}'] {
             @include stack-spacing($map, $wrapper);
           }
+        }
+        &[data-padding='#{$gutter}'] {
+          padding: $map;
         }
       }
     }

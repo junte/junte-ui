@@ -21,6 +21,9 @@ export class StackComponent {
   @HostBinding('attr.data-spacing')
   _spacing: Gutter;
 
+  @HostBinding('attr.data-padding')
+  _padding: Gutter = Gutter.none;
+
   @HostBinding('attr.data-align')
   _align: FlexAlign = FlexAlign.start;
 
@@ -68,6 +71,21 @@ export class StackComponent {
   })
   @Input() set spacing(spacing: Gutter) {
     this._spacing = spacing;
+  }
+
+  @PropertyApi({
+    description: 'Padding for stack',
+    path: 'ui.gutter',
+    options: [Gutter.none,
+      Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.big,
+      Gutter.large,
+      Gutter.huge]
+  })
+  @Input() set padding(padding: Gutter) {
+    this._padding = padding || Gutter.none;
   }
 
   @PropertyApi({
