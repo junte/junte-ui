@@ -104,7 +104,7 @@
       </div>
 
       <jnt-stack *jntMaxFor="ui.breakpoint.tablet" [align]="ui.align.stretch">
-        <jnt-stack data-fill="true" [align]="ui.align.stretch">
+        <jnt-stack data-feature [align]="ui.align.stretch">
           <jnt-stack *ngIf="(features | includes : ui.feature.reload) || !!actionsTemplate"
                      [orientation]="ui.orientation.horizontal" [wrap]="ui.wrap.wrap">
             <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
