@@ -96,29 +96,27 @@
                 </td>
               </ng-container>
 
-              <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end"
-                           let-period="period">
-                <td *ngFor="let d of start | betweenMonths:from | pop"></td>
-                <td [attr.colspan]="(from | betweenMonths:to).length">
-                  <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
-                    <ng-container *ngTemplateOutlet="period.indicatorYearTemplate;
-                      context: {period: period, current: current, today: today}">
-                    </ng-container>
+            <ng-template #periodTemplate let-from="from" let-to="to" let-start="start" let-end="end" let-period="period">
+              <td *ngFor="let d of start | betweenMonths:from | pop"></td>
+              <td [attr.colspan]="(from | betweenMonths:to).length">
+                <ng-container *ngIf="!((period.to | jntIsBefore:start) || (period.from | jntIsAfter:end))">
+                  <ng-container  *ngTemplateOutlet="period.indicatorYearTemplate;
+                    context: {period: period, current: current, today: today}">
                   </ng-container>
-                </td>
-                <td *ngFor="let d of to | betweenMonths:end | pop"></td>
-              </ng-template>
+                </ng-container>
+              </td>
+              <td *ngFor="let d of to | betweenMonths:end | pop"></td>
+            </ng-template>
 
-              <ng-container *ngTemplateOutlet="periodTemplate;context:
-                {start: current | jntStartOfYear,
-                  end: current | jntEndOfYear,
-                  period: period,
-                  current: current,
-                  from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
-                  to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
-              </ng-container>
-            </tr>
-          </ng-container>
+            <ng-container *ngTemplateOutlet="periodTemplate;context:
+              {start: current | jntStartOfYear,
+                end: current | jntEndOfYear,
+                period: period,
+                current: current,
+                from: [[period.from, current | jntStartOfYear] | jntMax, current | jntEndOfYear] | jntMin,
+                to: [[period.to, current | jntEndOfYear] | jntMin, current | jntStartOfYear] | jntMax}">
+            </ng-container>
+          </tr>
         </ng-container>
       </ng-container>
 

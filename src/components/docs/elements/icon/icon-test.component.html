@@ -121,6 +121,14 @@
                 <!-- @formatter:off-->
 <![CDATA[
 <jnt-icon [icon]="]]>ui.{{iconControl.value.path}}.{{iconControl.value.name}}<![CDATA[" ]]>
+  <ng-container *ngIf="sizeControl.value">
+    <![CDATA[
+    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="strokeControl.value">
+    <![CDATA[
+    [stroke]="ui.stroke.]]>{{strokeControl.value}}<![CDATA["]]>
+  </ng-container>
   <![CDATA[>
 </jnt-icon>
 ]]>
