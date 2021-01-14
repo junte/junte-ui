@@ -79,12 +79,8 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 breadcrumbs.push(new Breadcrumb({route, title: crumb}));
               }
             } else if (!!crumb && typeof crumb === 'object') {
-              let title: string;
-              if (typeof crumb.label === 'string') {
-                title = crumb.label;
-              } else {
-                title = crumb(route.snapshot.data);
-              }
+              const title = typeof crumb.label === 'string'
+                ? crumb.label : crumb.label(route.snapshot.data);
               if (!!title) {
                 breadcrumbs.push(new Breadcrumb({
                   route,
