@@ -18,7 +18,8 @@
   <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
   <ul #selectedList>
     <ng-container *ngIf="selected.length">
-      <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null">
+      <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null"
+      [attr.data-with-template]="!!optionTemplate">
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
