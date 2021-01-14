@@ -20,7 +20,7 @@ export class BadgeTestComponent implements OnInit {
   overflowControl = this.fb.control(null);
   valueControl = this.fb.control(5);
   colorControl = this.fb.control(UI.color.purple);
-  textControl = this.fb.control(true);
+  textControl = this.fb.control(false);
 
   builder = this.fb.group({
     position: this.positionControl,
@@ -36,6 +36,17 @@ export class BadgeTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    this.textControl.valueChanges
+      .subscribe(value => {
+        if (value) {
+          this.overflowControl.disable();
+          this.valueControl.disable();
+        } else {
+          this.overflowControl.enable();
+          this.valueControl.enable();
+        }
+      });
   }
 
 }
