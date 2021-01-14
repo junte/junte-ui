@@ -19,7 +19,7 @@ import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { DeviceService } from '../../layout/responsive/device.service';
 
 const PADDING_SIZE = 8;
-const DROPDOWN_PADDING_SIZE = 0;
+const DROPDOWN_PADDING_SIZE = 4;
 
 export class PopoverOptions {
 
