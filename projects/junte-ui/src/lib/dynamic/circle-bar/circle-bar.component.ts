@@ -20,7 +20,7 @@ export class CircleBarComponent {
     selector: '#circleBarContentTemplate',
     description: 'Circle bar content template'
   })
-  @ContentChild(TemplateRef)
+  @ContentChild('circleBarContentTemplate')
   circleBarContentTemplate: TemplateRef<any>;
 
 }
