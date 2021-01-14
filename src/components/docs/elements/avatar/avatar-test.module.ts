@@ -15,6 +15,7 @@ import {
     LinkModule,
     SelectModule,
     StackModule,
+    SwitcherModule,
     TabsModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
@@ -29,6 +30,7 @@ import { AvatarTestComponent } from './avatar-test.component';
         LinkModule,
         StackModule,
         TabsModule,
+        SwitcherModule,
         GridModule,
         BlockModule,
         AvatarModule,

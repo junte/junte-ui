@@ -76,6 +76,25 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="color" i18n="@@label.background_color">Color</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-color-picker formControlName="color"></jnt-color-picker>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="4">
+                      <jnt-checkbox formControlName="text"
+                                    label="Text"
+                                    i18n-label="@@label.text"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="value"
                                   i18n="@@label.value">Value</jnt-form-label>
                   <jnt-switcher formControlName="value">
@@ -98,24 +117,6 @@
                   </jnt-switcher>
                 </jnt-form-item>
 
-                <jnt-form-item>
-                  <jnt-form-label for="color" i18n="@@label.background_color">Color</jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-color-picker formControlName="color"></jnt-color-picker>
-                  </jnt-form-control>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-label i18n="@@label.features">Features
-                  </jnt-form-label>
-                  <jnt-row>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="text"
-                                    label="Text"
-                                    i18n-label="@@label.text"></jnt-checkbox>
-                    </jnt-col>
-                  </jnt-row>
-                </jnt-form-item>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -144,11 +145,11 @@
 <![CDATA[
 <jnt-badge
 ]]>
-  <ng-container *ngIf="valueControl.value">
+  <ng-container *ngIf="!textControl.value">
     <![CDATA[
     [value]="]]>{{valueControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="overflowControl.value">
+  <ng-container *ngIf="!textControl.value && overflowControl.value">
     <![CDATA[
     [overflow]="]]>{{overflowControl.value}}<![CDATA["]]>
   </ng-container>

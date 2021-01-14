@@ -3,6 +3,12 @@ import { FormBuilder } from '@angular/forms';
 import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
 import { LocalUI } from '../../../../enums/local-ui';
 
+export enum Sketches {
+  icon = 'icon',
+  initials = 'initials',
+  image = 'image'
+}
+
 @Component({
   selector: 'app-avatar-test',
   templateUrl: './avatar-test.component.html',
@@ -12,6 +18,7 @@ export class AvatarTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  sketches = Sketches;
   types = {
     avatar: AvatarComponent,
     list: AvatarsListComponent,
@@ -22,17 +29,13 @@ export class AvatarTestComponent implements OnInit {
 
   sizeControl = this.fb.control(null);
   shapeControl = this.fb.control(null);
-  iconControl = this.fb.control(true);
-  textControl = this.fb.control(false);
-  imageControl = this.fb.control(true);
   dotControl = this.fb.control(false);
+  sketchControl = this.fb.control(this.sketches.image);
 
   builder = this.fb.group({
     size: this.sizeControl,
     shape: this.shapeControl,
-    icon: this.iconControl,
-    text: this.textControl,
-    image: this.imageControl,
+    sketch: this.sketchControl,
     dot: this.dotControl,
   });
 
