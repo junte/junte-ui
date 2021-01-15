@@ -30,10 +30,10 @@ export class GanttTestComponent implements OnInit {
   requests = [];
   now = new Date();
   statuses = GanttRequestStatuses;
-  ganttType = GanttTypes;
+  ganttTypes = GanttTypes;
   progress = {loading: true, add: false, remove: false, reload: false};
 
-  ganttTypeControl = this.fb.control(GanttTypes.month);
+  ganttTypeControl = this.fb.control(this.ganttTypes.month);
   widthControl = this.fb.control(null);
 
   builder = this.fb.group({
@@ -85,15 +85,16 @@ export class GanttTestComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.requests = this.ganttTypeControl.value === GanttTypes.month ? this.monthArray : this.yearArray;
+      this.requests = this.ganttTypeControl.value === this.ganttTypes.month ? this.monthArray : this.yearArray;
       this.progress.loading = false;
     }, 3000);
     this.ganttTypeControl.valueChanges.subscribe(value => {
-      if (value === GanttTypes.month) {
+      if (value === this.ganttTypes.month) {
         this.requests = this.monthArray;
       } else {
         this.requests = this.yearArray;
       }
+      console.log(this.requests);
     });
   }
 

@@ -6,14 +6,26 @@
     framework!
   </h2>
 
-  <h5 i18n="@@message.junte_ui_is_a_collection_of_quality_ui_components_for_angular_with_design_system_in_figma">
-    <b>Junte UI</b> is a collection of quality UI components for Angular
+  <h5 [ngSwitch]="locale">
+    <b>Junte UI</b>
+    <ng-container *ngSwitchDefault>
+      is a collection of quality UI components for Angular
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      это коллекция качественных UI компонентов для Angular
+    </ng-container>
     <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
     with design system in Figma
     <jnt-icon [icon]="ui.icons.figma"></jnt-icon>
   </h5>
 
-  <p i18n="@@message.we_love_angular_and_we_want_to_implement_all_beautiful_apps_from">We love Angular and we want to implement all beautiful apps from
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We love Angular and we want to implement all beautiful apps from
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Мы любим Angular и хотим реализовать все прекрасные приложения
+    </ng-container>
     <jnt-link source="https://dribbble.com/" title="dribbble.com"
               target="_blank"
               [icon]="ui.icons.dribbble"></jnt-link>
@@ -38,13 +50,26 @@
   </p>
 
   <h3 i18n="@@label.compability">Compatibility</h3>
-  <p i18n="@@message.or_higher">
+  <p [ngSwitch]="locale">
     <jnt-link source="https://angular.io/guide/releases#support-policy-and-schedule"
               target="_blank" title="Angular 9">
     </jnt-link>
-    or higher 🚀
+    <ng-container *ngSwitchDefault>
+      or higher 🚀
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      или выше 🚀
+    </ng-container>
+
   </p>
-  <p i18n="@@message.modern_browsers_and_internet_explorer_11">Modern browsers and Internet Explorer 11+</p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Modern browsers and Internet Explorer 11+
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Современные браузеры и Internet Explorer 11+
+    </ng-container>
+  </p>
 
   <img src="https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg">
 
@@ -67,8 +92,14 @@ sudo npm install -g @angular/cli
     <jnt-timeline-item title="Create a new Project"
                        i18n-title="@@label.create_a_new_project">
       <ng-template #timelineItemContentTemplate>
-        <p i18n="@@message.a_new_project_can_be_created_using_angular_cli_tools">
-          A new project can be created using Angular CLI tools.</p>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            A new project can be created using Angular CLI tools.
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Новый проект может быть создан с помощью Angular CLI
+          </ng-container>
+        </p>
         <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->
 <![CDATA[
@@ -82,7 +113,13 @@ cd junte-ui-test
 
     <jnt-timeline-item title="Installation Junte UI" i18n-title="@@label.installation_junte_ui">
       <ng-template #timelineItemContentTemplate>
-        <p i18n="@@label.install_junte_ui_package">Install <b>Junte UI</b> package
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Install <b>Junte UI</b> package
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Установите пакет <b>Junte UI</b>
+          </ng-container>
           <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
         </p>
         <app-code-highlight [language]="highlight.language.bash">
@@ -98,8 +135,15 @@ npm install @junte/ui  --save-dev
     <jnt-timeline-item title="Import Junte UI module"
                        i18n-title="@@label.import_junte_ui_module">
       <ng-template #timelineItemContentTemplate>
-        <p i18n="@@message.import_junte_ui_browser_animations_modules_into_your_app_module_in">Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
-          <code>src/app/app.module.ts</code></p>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте <code>Junte UI</code> & <code>Browser Animations</code> модули в свой app модуль в файле
+          </ng-container>
+          <code>src/app/app.module.ts</code>
+        </p>
         <app-code-highlight [language]="highlight.language.typescript">
           <!-- @formatter:off-->
 <![CDATA[
@@ -125,8 +169,15 @@ export class AppModule { }
 ]]>
           <!-- @formatter:on-->
         </app-code-highlight>
-        <p i18n="@@message.import_popover_and_modal_into_your_app_component_in">Import <code>Popover</code> & <code>Modal</code> into your app component in
-          <code>src/app/app.component.ts</code></p>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import <code>Popover</code> & <code>Modal</code> into your app component in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте <code>Popover</code> & <code>Modal</code> в свой app компонент в файле
+          </ng-container>
+          <code>src/app/app.component.ts</code>
+        </p>
         <app-code-highlight [language]="highlight.language.typescript">
           <!-- @formatter:off-->
 <![CDATA[
@@ -162,7 +213,13 @@ export class AppComponent implements AfterViewInit {
           ]]>
           <!-- @formatter:on-->
         </app-code-highlight>
-        <p i18n="@@message.add_popover_modal_into your app component in">Add <code>Popover</code> & <code>Modal</code> into your app component in
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Add <code>Popover</code> & <code>Modal</code> into your app component in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Добавьте <code>Popover</code> & <code>Modal</code> в свой app компонент в файле
+          </ng-container>
           <code>src/app/app.component.html</code></p>
         <app-code-highlight [language]="highlight.language.bash">
           <!-- @formatter:off-->

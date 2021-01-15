@@ -40,10 +40,10 @@
                 <jnt-switcher formControlName="ganttType">
                   <jnt-switcher-option label="Month"
                                        i18n-label="@@label.month"
-                                       [value]="ganttType.month"></jnt-switcher-option>
+                                       [value]="ganttTypes.month"></jnt-switcher-option>
                   <jnt-switcher-option label="Year"
                                        i18n-label="@@label.year"
-                                       [value]="ganttType.year"></jnt-switcher-option>
+                                       [value]="ganttTypes.year"></jnt-switcher-option>
                 </jnt-switcher>
               </jnt-form-item>
 
@@ -85,7 +85,7 @@
                              formControlName="ganttDate"
                              [loading]="progress.loading || progress.add || progress.remove || progress.reload"
                              [width]="widthControl.value"
-                             [type]="ganttTypeControl.value === 'month' ? ui.gantt.type.month : ui.gantt.type.year">
+                             [type]="ganttTypeControl.value">
                     <ng-template #titleTemplate>
                       <strong>Test custom title</strong>
                     </ng-template>
