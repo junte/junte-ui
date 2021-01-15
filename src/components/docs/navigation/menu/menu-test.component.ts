@@ -52,6 +52,7 @@ export class MenuTestComponent implements OnInit {
 
     this.styleControl.valueChanges.subscribe(value => {
       if (value === UI.menu.style.tabs) {
+        this.orientationControl.setValue(UI.orientation.horizontal);
         this.orientationControl.disable();
       } else {
         this.orientationControl.enable();

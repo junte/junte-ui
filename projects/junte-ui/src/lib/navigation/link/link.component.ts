@@ -5,7 +5,6 @@ import { Context } from '../../core/enums/context';
 import { Feature } from '../../core/enums/feature';
 import { Outline } from '../../core/enums/outline';
 import { Position } from '../../core/enums/position';
-import { Scheme } from '../../core/enums/scheme';
 import { UI } from '../../core/enums/ui';
 import { UrlMatching } from '../../core/enums/url';
 import { BadgeComponent } from '../../elements/badge/badge.component';
@@ -36,9 +35,6 @@ export class LinkComponent {
   @HostBinding('attr.data-context')
   _context: Context = Context.text;
 
-  @HostBinding('attr.data-scheme')
-  _scheme = Scheme.primary;
-
   @HostBinding('attr.data-outline')
   _outline = Outline.transparent;
 
@@ -46,6 +42,8 @@ export class LinkComponent {
   get withTitle() {
     return !!this.title;
   }
+
+  @Input() collapsed: boolean;
 
   // TODO: we must find better solution
   @HostBinding('attr.data-active')
@@ -62,16 +60,6 @@ export class LinkComponent {
   @Input() disabled = false;
 
   @PropertyApi({
-    description: 'Link color scheme',
-    path: 'ui.schemes',
-    default: Scheme.primary,
-    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail]
-  })
-  @Input() set scheme(scheme: Scheme) {
-    this._scheme = scheme || Scheme.primary;
-  }
-
-  @PropertyApi({
     description: 'Link outline',
     path: 'ui.outline',
     default: Outline.transparent,
@@ -85,7 +73,8 @@ export class LinkComponent {
 
   @PropertyApi({
     description: 'Icon for link',
-    type: 'string'
+    type: 'string',
+    name: 'icon'
   })
   @Input('icon')
   set __icon__(icon: string | Icon) {

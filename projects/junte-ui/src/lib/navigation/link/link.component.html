@@ -22,12 +22,13 @@
 </ng-template>
 
 <ng-template #linkTemplate>
-  <span data-title>
+  <span data-title *ngIf="!!icon || !!title">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
-    <span [innerHTML]="title | sanitizeHtml"></span>
+    <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right" [icon]="icon?.icon"></jnt-icon>
   </span>
-  <ng-container *ngIf="badges.length">
+  <div data-empty *ngIf="collapsed && !icon"></div>
+  <ng-container *ngIf="!!badges.length">
     <jnt-badge data-badge *ngFor="let badge of badges"
                [color]="badge.color"
                [value]="badge.value"
@@ -35,7 +36,7 @@
                [position]="ui.position.inline">
     </jnt-badge>
   </ng-container>
-  <jnt-icon *ngIf="!!features && features.includes(ui.feature.dropdown)"
+  <jnt-icon *ngIf="features | includes : ui.feature.dropdown"
             [icon]="ui.icons.selectClose" data-toggle>
   </jnt-icon>
 </ng-template>
