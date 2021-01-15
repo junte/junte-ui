@@ -81,7 +81,7 @@ $tab-marker-height: 4px;
         )
       ),
       title: (
-        padding: 0 $jnt-gutter-normal,
+        padding: 0 $jnt-gutter-small,
         border-bottom: 1px solid $jnt-muted-color
       ),
       item: (
@@ -242,13 +242,9 @@ $tab-marker-height: 4px;
               $focus: map-get($title, focus);
               [data-link] {
                 @include jnt-link((
-                  schemes: (
-                    primary: (
-                      focus: (
-                        outline: map-get($focus, outline),
-                        shadow: map-get($focus, shadow)
-                      )
-                    )
+                  focus: (
+                    outline: map-get($focus, outline),
+                    shadow: map-get($focus, shadow)
                   )
                 ), '&');
               }
@@ -391,6 +387,7 @@ $tab-marker-height: 4px;
       display: flex;
       align-items: center;
       user-select: none;
+      height: 100%;
 
       [data-link] {
         width: 100%;
@@ -469,9 +466,10 @@ $tab-marker-height: 4px;
         $title: map-get($sub, title);
         > [data-section] {
           padding: map-get($title, padding);
+          border-bottom: map-get($title, border-bottom);
 
           span {
-            border-bottom: map-get($title, border-bottom);
+            flex: 1;
           }
         }
       }
@@ -523,13 +521,9 @@ $tab-marker-height: 4px;
           @if map-has-key($item, focus) {
             $focus: map-get($item, focus);
             @include jnt-link((
-              schemes: (
-                primary: (
-                  focus: (
-                    outline: map-get($focus, outline),
-                    shadow: map-get($focus, shadow)
-                  )
-                )
+              focus: (
+                outline: map-get($focus, outline),
+                shadow: map-get($focus, shadow)
               )
             ), '&');
           }

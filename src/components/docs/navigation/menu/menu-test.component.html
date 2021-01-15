@@ -19,20 +19,22 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <jnt-menu [orientation]="orientationControl.value" [spacing]="spacingControl.value"
+                <jnt-menu [orientation]="orientationControl.value"
+                          [spacing]="spacingControl.value"
                           [style]="styleControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [text]="'text'" [color]="ui.color.blue100"></jnt-badge>
 
-                    <jnt-sub-menu *ngIf="!styleControl.value">
-                      <jnt-sub-menu-item title="Document" [icon]="ui.icons.save"
+                    <jnt-sub-menu *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <jnt-sub-menu-item title="Document"
+                                         [icon]="iconsControl.value ? ui.icons.save : null"
                                          [loading]="loadingControl.value"
                                          [link]="['/components/navigation/menu']"
                                          i18n-title="@@label.document"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Message"
-                                         [icon]="ui.icons.animated.success"
+                                         [icon]="iconsControl.value ? ui.icons.animated.success : null"
                                          i18n-title="@@label.message"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Home"
                                          i18n-title="@@label.home"></jnt-sub-menu-item>
@@ -44,8 +46,10 @@
                                  [title]="'Text'">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
 
-                    <jnt-sub-menu *ngIf="!styleControl.value">
-                      <jnt-sub-menu-item title="Test" [icon]="ui.icons.calendar"></jnt-sub-menu-item>
+                    <jnt-sub-menu *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <jnt-sub-menu-item title="Test"
+                                         [icon]="iconsControl.value ? ui.icons.calendar : null">
+                      </jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
                       <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
                     </jnt-sub-menu>
@@ -177,12 +181,12 @@
                   <jnt-form-label i18n="@@label.features">Features
                   </jnt-form-label>
                   <jnt-row>
-                    <jnt-col [span]="4">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="icons"
                                     label="Icons"
                                     i18n-label="@@label.icons"></jnt-checkbox>
                     </jnt-col>
-                    <jnt-col [span]="4">
+                    <jnt-col [span]="6">
                       <jnt-checkbox formControlName="badges"
                                     label="Badges"
                                     i18n-label="@@label.badges"></jnt-checkbox>
@@ -216,77 +220,76 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="menu-test.component.html">
                 <!-- @formatter:off-->
-<![CDATA[
-<jnt-menu
-]]>
-  <ng-container *ngIf="orientationControl.value && styleControl.value !== ui.menu.style.tabs">
-    <![CDATA[
-    [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="styleControl.value">
-    <![CDATA[
-    [style]="ui.menu.style.]]>{{styleControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="spacingControl.value">
-    <![CDATA[
-    [spacing]="ui.size.]]>{{spacingControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="collapsedControl.value">
-    <![CDATA[
-    [collapsed]="]]>{{collapsedControl.value}}<![CDATA["]]>
-  </ng-container>
-  <![CDATA[>
-  <jnt-menu-item
-    title="Text"
-  ]]>
-    <ng-container *ngIf="iconsControl.value">
-      <![CDATA[
-      [icon]="ui.icons.calendar"]]>
-    </ng-container>
-    <ng-container *ngIf="loadingControl.value">
-      <![CDATA[
-      [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
-    </ng-container>
-    <ng-container *ngIf="disabledControl.value">
-      <![CDATA[
-      [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
-    </ng-container>
-    <![CDATA[>]]>
-    <ng-container *ngIf="badgesControl.value">
-      <![CDATA[
-      <jnt-badge [text]="'text'"></jnt-badge>
-      ]]>
-    </ng-container>
-    <ng-container *ngIf="styleControl.value === ui.menu.style.default">
-      <![CDATA[
-      <jnt-sub-menu>
-        ]]>
-        <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
-          <![CDATA[
-          <jnt-sub-menu-item title="Document"
-                             ]]>
+                <![CDATA[
+                <jnt-menu
+                  ]]>
+                  <ng-container *ngIf="orientationControl.value && styleControl.value !== ui.menu.style.tabs">
+                    <![CDATA[
+                    [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="styleControl.value">
+                    <![CDATA[
+                    [style]="ui.menu.style.]]>{{styleControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="spacingControl.value">
+                    <![CDATA[
+                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="collapsedControl.value">
+                    <![CDATA[
+                    [collapsed]="]]>{{collapsedControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                  <jnt-menu-item
+                    title="Text"
+                    ]]>
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.calendar"]]>
+                    </ng-container>
+                    <ng-container *ngIf="loadingControl.value">
+                      <![CDATA[
+                      [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="disabledControl.value">
+                      <![CDATA[
+                      [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="badgesControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <![CDATA[
+                      <jnt-sub-menu>
+                        ]]>
+                        <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                          <![CDATA[
+                          <jnt-sub-menu-item title="]]>{{title}}<![CDATA["]]>
 
-            <ng-container *ngIf="iconsControl.value">
-              <![CDATA[
-              [icon]="ui.icons.save"]]>
-            </ng-container>
+                            <ng-container *ngIf="iconsControl.value">
+                              <![CDATA[
+                              [icon]="ui.icons.save"]]>
+                            </ng-container>
 
-            <ng-container *ngIf="loadingControl.value">
-              <![CDATA[
-              [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
-            </ng-container>
-            <![CDATA[>]]>
+                            <ng-container *ngIf="loadingControl.value">
+                              <![CDATA[
+                              [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                            </ng-container>
+                            <![CDATA[>]]>
 
-            <![CDATA[
-          </jnt-sub-menu-item>
-          ]]>
-        </ng-container>
-        <![CDATA[
-      </jnt-sub-menu>]]>
-    </ng-container>
-    <![CDATA[
-  </jnt-menu-item>
-</jnt-menu>]]>
+                            <![CDATA[
+                          </jnt-sub-menu-item>
+                          ]]>
+                        </ng-container>
+                        <![CDATA[
+                      </jnt-sub-menu>]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-menu-item>
+                </jnt-menu>]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>
