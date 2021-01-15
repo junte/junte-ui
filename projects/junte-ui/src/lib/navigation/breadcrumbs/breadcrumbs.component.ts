@@ -73,29 +73,29 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       if (route.routeConfig && route.routeConfig.data) {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
-          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(crumb => {
-            if (typeof crumb === 'string') {
-              if (!!crumb) {
+          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb])
+            .filter(crumb => !!crumb)
+            .forEach(crumb => {
+              if (typeof crumb === 'string') {
                 breadcrumbs.push(new Breadcrumb({route, title: crumb}));
+              } else if (typeof crumb === 'object') {
+                const title = typeof crumb.label === 'string'
+                  ? crumb.label : crumb.label(route.snapshot.data);
+                if (!!title) {
+                  breadcrumbs.push(new Breadcrumb({
+                    route,
+                    title,
+                    url: crumb.url,
+                    disabled: crumb.disabled
+                  }));
+                }
+              } else {
+                const title = crumb(route.snapshot.data);
+                if (!!title) {
+                  breadcrumbs.push(new Breadcrumb({route, title}));
+                }
               }
-            } else if (!!crumb && typeof crumb === 'object') {
-              const title = typeof crumb.label === 'string'
-                ? crumb.label : crumb.label(route.snapshot.data);
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb({
-                  route,
-                  title,
-                  url: crumb.url,
-                  disabled: crumb.disabled
-                }));
-              }
-            } else {
-              const title = crumb(route.snapshot.data);
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb({route, title}));
-              }
-            }
-          });
+            });
         }
       }
 
