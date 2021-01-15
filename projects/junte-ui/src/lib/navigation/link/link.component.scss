@@ -106,11 +106,6 @@
         cursor: pointer;
         width: 100%;
 
-        &[data-active='true'] {
-          cursor: default;
-          pointer-events: none;
-        }
-
         &:focus {
           outline: none;
         }
@@ -224,6 +219,14 @@
               background: if(map-get($vars, inverse-color), map-get($vars, inverse-color) !important, null),
               color: if(map-get($vars, color), map-get($vars, color) !important, null)
             ), '&');
+          }
+
+          &[data-active='true'] {
+            [data-title] {
+              span {
+                border-bottom: 1px solid map-get($vars, inverse-color);
+              }
+            }
           }
         }
 
