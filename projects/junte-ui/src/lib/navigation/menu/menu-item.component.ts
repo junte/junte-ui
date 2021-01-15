@@ -1,5 +1,4 @@
-import { Component, ContentChild, ContentChildren, QueryList } from '@angular/core';
-import { BadgeComponent } from '../../elements/badge/badge.component';
+import { Component, ContentChild } from '@angular/core';
 import { AbstractMenuItem } from './abstract-menu-item';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
@@ -11,7 +10,4 @@ export class MenuItemComponent extends AbstractMenuItem {
 
   @ContentChild(SubMenuComponent)
   submenu: SubMenuComponent;
-
-  @ContentChildren(BadgeComponent)
-  badges: QueryList<BadgeComponent>;
 }

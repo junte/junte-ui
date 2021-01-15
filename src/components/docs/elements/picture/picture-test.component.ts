@@ -4,6 +4,11 @@ import { PictureComponent, TabComponent, UI } from 'junte-ui';
 import { Fit } from 'projects/junte-ui/src/lib/core/enums/fit';
 import { LocalUI } from 'src/enums/local-ui';
 
+export enum Sketches {
+  icon = 'icon',
+  image = 'image'
+}
+
 @Component({
   selector: 'app-picture-test',
   templateUrl: './picture-test.component.html',
@@ -13,6 +18,7 @@ export class PictureTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  sketches = Sketches;
   types = {picture: PictureComponent};
   fit = Fit;
 
@@ -20,6 +26,7 @@ export class PictureTestComponent implements OnInit {
 
   imageControl = this.fb.control(true);
   iconControl = this.fb.control(false);
+  typeControl = this.fb.control(this.sketches.image);
   fitControl = this.fb.control(null);
   positionControl = this.fb.control(null);
   widthControl = this.fb.control(300);
@@ -28,6 +35,7 @@ export class PictureTestComponent implements OnInit {
   builder = this.fb.group({
     image: this.imageControl,
     icon: this.iconControl,
+    type: this.typeControl,
     fit: this.fitControl,
     position: this.positionControl,
     width: this.widthControl,

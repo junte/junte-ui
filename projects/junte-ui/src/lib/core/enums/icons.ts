@@ -382,8 +382,8 @@ export const icons = {
   animated: {
     runningMan: 'running-man:animated:default:animated',
     success: 'success:animated:default:animated',
-    settings: 'settings:animated:default:animated|colored',
-    bell: 'bell:animated:default:animated',
+    settings: 'settings:animated:default:animated|filled',
+    bell: 'bell:animated:default:animated|filled',
     reload: 'reload:animated:default:animated|filled',
     spinner: 'spinner:animated:default:animated|stroked',
     // recording: 'recording:animated:default:animated',

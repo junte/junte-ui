@@ -24,13 +24,13 @@
           <jnt-spinner></jnt-spinner>
         </div>
         <jnt-link data-link
+                  [collapsed]="collapsed"
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
                   [context]="ui.context.box"
                   [matching]="item.matching"
                   [source]="!item.submenu ? item.link?.source : null"
                   [fragment]="item.link?.fragment"
-                  [scheme]="item.scheme"
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
                   [disabled]="item.disabled"
@@ -58,9 +58,15 @@
              [attr.data-collapsed]="collapsed">
           <ng-container *ngIf="!!item.submenu">
             <div data-section *ngIf="!headless">
-              <span>
-                {{item.title}}
-              </span>
+              <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+                <span>{{item.title}}</span>
+                <jnt-badge *ngFor="let badge of item.badges"
+                           [value]="badge.value"
+                           [text]="badge.text"
+                           [position]="ui.position.inline"
+                           [color]="badge.color">
+                </jnt-badge>
+              </jnt-stack>
             </div>
             <div data-item *ngFor="let subItem of item.submenu.items">
               <div *ngIf="subItem.loading" data-spinner>
@@ -74,7 +80,6 @@
                         [source]="subItem.link?.source"
                         [fragment]="subItem.link?.fragment"
                         [disabled]="subItem.disabled"
-                        [scheme]="subItem.scheme"
                         [target]="subItem.target"
                         (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
                 <jnt-badge *ngFor="let badge of subItem.badges"

@@ -73,28 +73,38 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       if (route.routeConfig && route.routeConfig.data) {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
-          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(crumb => {
-            if (typeof crumb === 'string') {
-              if (!!crumb) {
-                breadcrumbs.push(new Breadcrumb({route, title: crumb}));
+          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb])
+            .filter(crumb => !!crumb)
+            .forEach(crumb => {
+              switch(typeof crumb) {
+                case 'string': {
+                  breadcrumbs.push(new Breadcrumb({route, title: crumb}));
+                  break;
+                }
+                case 'object': {
+                  const title = typeof crumb.label === 'string'
+                    ? crumb.label : crumb.label(route.snapshot.data);
+                  if (!!title) {
+                    breadcrumbs.push(new Breadcrumb({
+                      route,
+                      title,
+                      url: crumb.url,
+                      disabled: crumb.disabled
+                    }));
+                  }
+                  break;
+                }
+                case 'function': {
+                  const title = crumb(route.snapshot.data);
+                  if (!!title) {
+                    breadcrumbs.push(new Breadcrumb({route, title}));
+                  }
+                  break;
+                }
+                default:
+                  throw new Error('wrong breadcrump type');
               }
-            } else if (!!crumb && typeof crumb === 'object') {
-              const title = crumb.label;
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb({
-                  route,
-                  title,
-                  url: crumb.url,
-                  disabled: crumb.disabled
-                }));
-              }
-            } else {
-              const title = crumb(route.snapshot.data);
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb({route, title}));
-              }
-            }
-          });
+            });
         }
       }
 
