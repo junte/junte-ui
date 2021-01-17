@@ -157,9 +157,7 @@
   <form [formGroup]="form">
     <jnt-gantt formControlName="gantt" [type]="ui.gantt.type.]]>{{ganttTypeControl.value}}<![CDATA[" title="Super" [loading]="loading">
     <ng-template #toolsTemplate>
-      <jnt-button-group>
-        <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
-      </jnt-button-group>
+      <jnt-button text="Reload" [icon]="ui.icons.reload"></jnt-button>
     </ng-template>
     <ng-template #ganttTitleTemplate>
       <strong>Test custom title</strong>
@@ -169,21 +167,26 @@
         [from]="request.from"
         [to]="request.to"
         [title]="request.createdBy.login">
-    <ng-template ]]>{{ganttTypeControl.value === 'month' ? '#indicator' : '#indicatorYear'}}<![CDATA[ let-period="period" let-current="current" let-today="today">
-      <div [attr.accepting]="period['status'] === statuses.accepting"
-        [attr.accepted]="period['status'] === statuses.accepted"
-        [attr.declined]="period['status'] === statuses.declined"
-        [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
-        [attr.self-expense]="period['selfExpense']"
-        [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
-        [attr.over-from]="(period['from'] | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[) < (current | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[)"
-        [attr.over-to]="(period['to'] | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[) > (current | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[)" period>
-        <span label> ]]>
-          {{ <![CDATA[ (period['to'] | dfnsDifferenceInDays:period['from']) + 1 ]]> }} <![CDATA[ days
-        </span>
-      </div>
-      </ng-template>
-    </jnt-gantt-line>
+        <ng-container *ngFor="let period of request.periods">
+          <jnt-gantt-line-period [from]="period.from"
+                                 [to]="period.to">
+            <ng-template ]]>{{ganttTypeControl.value === 'month' ? '#indicatorMonthTemplate' : '#indicatorYearTemplate'}}<![CDATA[ let-current="current" let-today="today">
+              <div [attr.accepting]="period['status'] === statuses.accepting"
+                [attr.accepted]="period['status'] === statuses.accepted"
+                [attr.declined]="period['status'] === statuses.declined"
+                [attr.used]="(period['to'] | dfnsDifferenceInDays:today) < 0"
+                [attr.self-expense]="period['selfExpense']"
+                [attr.short]="(period['to'] | after: current) - (period['from'] | before: current) < 3"
+                [attr.over-from]="(period['from'] | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[) < (current | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[)"
+                [attr.over-to]="(period['to'] | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[) > (current | ]]>{{ganttTypeControl.value === 'month' ? 'fullMonth' : 'dfnsGetYear'}}<![CDATA[)" period>
+                <span label> ]]>
+                  {{ <![CDATA[ (period['to'] | dfnsDifferenceInDays:period['from']) + 1 ]]> }} <![CDATA[ days
+                </span>
+              </div>
+            </ng-template>
+          </jnt-gantt-line-period>
+        </ng-container>
+      </jnt-gantt-line>
     </jnt-gantt>
   </form>
 ]]>

@@ -22,20 +22,19 @@
                [icon]="localUi.icons.preview">
         <ng-template #tabContentTemplate>
           <jnt-row>
-
             <jnt-col [tablet]="8">
               <app-browser-preview preview>
                 <ng-template #document>
                   <p [ngSwitch]="locale">
                     <ng-container *ngSwitchDefault>
                       In this text we try to test link as inline element
-                      <jnt-link [scheme]="schemeControl.value"
-                                [outline]="outlineControl.value"
+                      <jnt-link [outline]="outlineControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.link,
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
                                 [target]="targetControl.value"
-                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
+                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' :
+                                          sourceControl.value == sourceType.local ? ['./', {param: 1}] : null"
                                 title="Link here"
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
@@ -45,8 +44,7 @@
                     </ng-container>
                     <ng-container *ngSwitchCase="language.ru">
                       В этом тексте мы пытаемся протестировать ссылку как встроенный элемент
-                      <jnt-link [scheme]="schemeControl.value"
-                                [outline]="outlineControl.value"
+                      <jnt-link [outline]="outlineControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.link,
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
@@ -63,8 +61,7 @@
                   <p [ngSwitch]="locale">
                     <ng-container *ngSwitchDefault>
                       Also it is very important to test a link with SVG icons
-                      <jnt-link [scheme]="schemeControl.value"
-                                [outline]="outlineControl.value"
+                      <jnt-link [outline]="outlineControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.figma,
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
@@ -79,8 +76,7 @@
                     </ng-container>
                     <ng-container *ngSwitchCase="language.ru">
                       Также очень важно протестировать ссылку с помощью значков SVG.
-                      <jnt-link [scheme]="schemeControl.value"
-                                [outline]="outlineControl.value"
+                      <jnt-link [outline]="outlineControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.figma,
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
@@ -101,34 +97,6 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.align.stretch">
-
-                  <jnt-form-item>
-                    <jnt-form-label for="scheme"
-                                    i18n="@@label.scheme">Scheme</jnt-form-label>
-                    <jnt-form-control>
-                      <jnt-select formControlName="scheme"
-                                  placeholder="Primary"
-                                  i18n-placeholder="@@label.primary"
-                                  [features]="[ui.feature.allowEmpty]">
-                        <jnt-select-option label="Primary"
-                                           i18n-label="@@label.primary"
-                                           [icon]="localUi.icons.primary"
-                                           [key]="ui.scheme.primary"></jnt-select-option>
-                        <jnt-select-option label="Secondary"
-                                           i18n-label="@@label.secondary"
-                                           [icon]="localUi.icons.secondary"
-                                           [key]="ui.scheme.secondary"></jnt-select-option>
-                        <jnt-select-option label="Success"
-                                           i18n-label="@@label.secondary"
-                                           [icon]="localUi.icons.success"
-                                           [key]="ui.scheme.success"></jnt-select-option>
-                        <jnt-select-option label="Fail"
-                                           i18n-label="@@label.fail"
-                                           [icon]="localUi.icons.fail"
-                                           [key]="ui.scheme.fail"></jnt-select-option>
-                      </jnt-select>
-                    </jnt-form-control>
-                  </jnt-form-item>
 
                   <jnt-form-item>
                     <jnt-form-label for="outline"
@@ -175,7 +143,9 @@
                     <jnt-form-label for="source"
                                     i18n="@@label.source">Source</jnt-form-label>
                     <jnt-form-control>
-                      <jnt-select formControlName="source" [features]="ui.feature.allowEmpty">
+                      <jnt-select formControlName="source"
+                                  placeholder="None"
+                                  [features]="[ui.feature.allowEmpty]">
                         <jnt-select-option label="External link"
                                            i18n-label="@@label.external_link"
                                            [icon]="localUi.icons.link"
@@ -270,19 +240,10 @@
 <![CDATA[
 <jnt-link title="Link"
 ]]>
-  <ng-container *ngIf="schemeControl.value">
-    <![CDATA[
-    [scheme]="ui.scheme.]]>{{schemeControl.value}}<![CDATA["]]>
-    </ng-container>
 
   <ng-container *ngIf="outlineControl.value">
     <![CDATA[
     [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-  </ng-container>
-
-  <ng-container *ngIf="iconControl.value">
-    <![CDATA[
-    [icon]="ui.icons.search"]]>
   </ng-container>
 
   <ng-container *ngIf="sourceControl.value == sourceType.external">
@@ -302,7 +263,7 @@
 
   <ng-container *ngIf="targetControl.value">
     <![CDATA[
-    target="]]>{{targetControl.value}}<![CDATA["]]>
+    [target]="ui.target.]]>{{targetControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="iconControl.value && !positionControl.value">
     <![CDATA[

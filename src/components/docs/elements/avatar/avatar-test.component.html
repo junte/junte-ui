@@ -28,10 +28,10 @@
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatar [size]="sizeControl.value"
                                     [shape]="shapeControl.value"
-                                    [icon]="iconControl.value ? ui.icons.user : null"
-                                    [name]="textControl.value ? 'Elon' : null"
-                                    [surname]="textControl.value ? 'Mask' : null"
-                                    [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                                    [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                    [name]="sketchControl.value === sketches.initials ? 'Elon' : null"
+                                    [surname]="sketchControl.value === sketches.initials ? 'Mask' : null"
+                                    [image]="sketchControl.value === sketches.image ? 'assets/images/elon.jpeg' : null">
                           <jnt-dot [color]="ui.color.green" *ngIf="dotControl.value"></jnt-dot>
                         </jnt-avatar>
                       </jnt-stack>
@@ -45,25 +45,25 @@
                                [width]="ui.width.fluid">
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-list [size]="sizeControl.value">
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Mark' : null"
-                                      [surname]="textControl.value ? 'Zuckerberg' : null"
-                                      [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Mark' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Zuckerberg' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/mark.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Bill' : null"
-                                      [surname]="textControl.value ? 'Gates' : null"
-                                      [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Bill' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Gates' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/bill.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Steve' : null"
-                                      [surname]="textControl.value ? 'Jobs' : null"
-                                      [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Steve' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Jobs' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/steve.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Elon' : null"
-                                      [surname]="textControl.value ? 'Mask' : null"
-                                      [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Elon' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Mask' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/elon.jpeg' : null">
                           </jnt-avatar>
                         </jnt-avatars-list>
                       </jnt-stack>
@@ -77,25 +77,25 @@
                                [width]="ui.width.fluid">
                       <jnt-stack [align]="ui.align.center">
                         <jnt-avatars-group [size]="sizeControl.value" [total]="10">
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Mark' : null"
-                                      [surname]="textControl.value ? 'Zuckerberg' : null"
-                                      [image]="imageControl.value ? 'assets/images/mark.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Mark' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Zuckerberg' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/mark.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Bill' : null"
-                                      [surname]="textControl.value ? 'Gates' : null"
-                                      [image]="imageControl.value ? 'assets/images/bill.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Bill' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Gates' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/bill.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Steve' : null"
-                                      [surname]="textControl.value ? 'Jobs' : null"
-                                      [image]="imageControl.value ? 'assets/images/steve.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Steve' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Jobs' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/steve.jpeg' : null">
                           </jnt-avatar>
-                          <jnt-avatar [icon]="iconControl.value ? ui.icons.user : null"
-                                      [name]="textControl.value ? 'Elon' : null"
-                                      [surname]="textControl.value ? 'Mask' : null"
-                                      [image]="imageControl.value ? 'assets/images/elon.jpeg' : null">
+                          <jnt-avatar [icon]="sketchControl.value === sketches.icon ? ui.icons.user : null"
+                                      [name]="sketchControl.value === sketches.initials ? 'Elon' : null"
+                                      [surname]="sketchControl.value === sketches.initials ? 'Mask' : null"
+                                      [image]="sketchControl.value === sketches.image ? 'assets/images/elon.jpeg' : null">
                           </jnt-avatar>
                         </jnt-avatars-group>
                       </jnt-stack>
@@ -163,22 +163,19 @@
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.features">Features
                   </jnt-form-label>
+                  <jnt-switcher formControlName="sketch">
+                    <jnt-switcher-option label="Icon"
+                                         i18n-label="@@label.icon"
+                                         [value]="sketches.icon"></jnt-switcher-option>
+                    <jnt-switcher-option label="Initials"
+                                         i18n-label="@@label.initials"
+                                         [value]="sketches.initials"></jnt-switcher-option>
+                    <jnt-switcher-option label="Image"
+                                         i18n-label="@@label.image"
+                                         [value]="sketches.image"></jnt-switcher-option>
+                  </jnt-switcher>
                   <jnt-row>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="icon"
-                                    label="Icon"
-                                    i18n-label="@@label.icon"></jnt-checkbox>
-                    </jnt-col>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="text"
-                                    label="Text"
-                                    i18n-label="@@label.text"></jnt-checkbox>
-                    </jnt-col>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="image"
-                                    label="Image"
-                                    i18n-label="@@label.image"></jnt-checkbox>
-                    </jnt-col>
+
                     <jnt-col [span]="4">
                       <jnt-checkbox formControlName="dot"
                                     label="Dot"
@@ -223,20 +220,23 @@
                     <![CDATA[
                     [shape]="ui.shape.]]>{{shapeControl.value}}<![CDATA["]]>
                   </ng-container>
-                  <ng-container *ngIf="iconControl.value">
-                    <![CDATA[
-                    [icon]="ui.icons.user"]]>
+                  <ng-container [ngSwitch]="sketchControl.value">
+                    <ng-container *ngSwitchCase="sketches.icon">
+                      <![CDATA[
+                      [icon]="ui.icons.user"]]>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="sketches.initials">
+                      <![CDATA[
+                      name="Name"
+                      surname="Surname"
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="sketches.image">
+                      <![CDATA[
+                      image="assets/images/bob.jpeg"]]>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="textControl.value">
-                    <![CDATA[
-                    name="Name"
-                    surname="Surname"
-                    ]]>
-                  </ng-container>
-                  <ng-container *ngIf="imageControl.value">
-                    <![CDATA[
-                    image="assets/images/bob.jpeg"]]>
-                  </ng-container>
+
                   <![CDATA[>]]>
                   <ng-container *ngIf="dotControl.value">
                     <![CDATA[
@@ -268,17 +268,21 @@
                     <![CDATA[
                     <jnt-avatar
                       ]]>
-                      <ng-container *ngIf="iconControl.value">
-                        <![CDATA[
-                        [icon]="ui.icons.user"]]>
-                      </ng-container>
-                      <ng-container *ngIf="textControl.value">
-                        <![CDATA[
-                        text="User"]]>
-                      </ng-container>
-                      <ng-container *ngIf="imageControl.value">
-                        <![CDATA[
-                        image="assets/images/bob.jpeg"]]>
+                      <ng-container [ngSwitch]="sketchControl.value">
+                        <ng-container *ngSwitchCase="sketches.icon">
+                          <![CDATA[
+                          [icon]="ui.icons.user"]]>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="sketches.initials">
+                          <![CDATA[
+                          name="Name"
+                          surname="Surname"
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="sketches.image">
+                          <![CDATA[
+                          image="assets/images/bob.jpeg"]]>
+                        </ng-container>
                       </ng-container>
                       <![CDATA[>
                     </jnt-avatar>
@@ -309,17 +313,21 @@
                     <![CDATA[
                     <jnt-avatar
                       ]]>
-                      <ng-container *ngIf="iconControl.value">
-                        <![CDATA[
-                        [icon]="ui.icons.user"]]>
-                      </ng-container>
-                      <ng-container *ngIf="textControl.value">
-                        <![CDATA[
-                        text="User"]]>
-                      </ng-container>
-                      <ng-container *ngIf="imageControl.value">
-                        <![CDATA[
-                        image="assets/images/bob.jpeg"]]>
+                      <ng-container [ngSwitch]="sketchControl.value">
+                        <ng-container *ngSwitchCase="sketches.icon">
+                          <![CDATA[
+                          [icon]="ui.icons.user"]]>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="sketches.initials">
+                          <![CDATA[
+                          name="Name"
+                          surname="Surname"
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="sketches.image">
+                          <![CDATA[
+                          image="assets/images/bob.jpeg"]]>
+                        </ng-container>
                       </ng-container>
                       <![CDATA[>
                     </jnt-avatar>

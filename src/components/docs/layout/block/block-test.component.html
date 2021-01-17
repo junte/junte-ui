@@ -201,9 +201,14 @@
                                       i18n-label="@@label.footer"></jnt-checkbox>
                       </jnt-col>
                       <jnt-col [span]="6">
-                        <jnt-checkbox formControlName="adapted"
-                                      i18n-label="@@label.adapted"
-                                      label="Adapted"></jnt-checkbox>
+                        <ng-template #adaptedTemplate>
+                          <p>This is used for adapting layout.</p>
+                        </ng-template>
+                        <jnt-checkbox formControlName="adapted">
+                          <ng-template #checkboxLabelTemplate>
+                            <div [jntPopover]="{contentTemplate: adaptedTemplate, position: ui.position.top}">Adapted</div>
+                          </ng-template>
+                        </jnt-checkbox>
                       </jnt-col>
                       <jnt-col [span]="6">
                         <jnt-checkbox formControlName="help"

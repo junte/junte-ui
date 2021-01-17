@@ -378,7 +378,9 @@
           background-color: $jnt-secondary-background;
           border-radius: $jnt-corner-small;
           margin-bottom: $jnt-gutter-tiny;
-          line-height: 1;
+          &[data-with-template='false'] {
+            line-height: 1;
+          }
         }
 
         [data-empty-options] {
@@ -583,7 +585,7 @@
           }
 
           &[data-selected=true] {
-            color: $jnt-primary-light-color;
+            opacity: 0.75;
           }
 
           &:hover {

@@ -9,5 +9,4 @@ export class SubMenuComponent {
 
   @ContentChildren(SubMenuItemComponent)
   items: QueryList<SubMenuItemComponent>;
-  
 }

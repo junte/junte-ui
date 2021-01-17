@@ -33,6 +33,7 @@
                 <div axis1 [attr.type]="typeControl.value"></div>
                 <div axis2 [attr.type]="typeControl.value"></div>
                 <jnt-stack stack [orientation]="typeControl.value"
+                           [padding]="paddingControl.value"
                            [spacing]="spacingControl.value"
                            [gutter]="gutterControl.value"
                            [align]="alignControl.value"
@@ -131,6 +132,44 @@
                   <jnt-form-label for="spacing" i18n="@@label.spacing">Spacing</jnt-form-label>
                   <jnt-form-control>
                     <jnt-select formControlName="spacing"
+                                placeholder="None"
+                                i18n-placeholder="@@label.none"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="None"
+                                         i18n-label="@@label.none"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.gutter.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.gutter.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.gutter.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.gutter.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.gutter.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.gutter.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="padding" i18n="@@label.padding">Padding</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="padding"
                                 placeholder="None"
                                 i18n-placeholder="@@label.none"
                                 [features]="[ui.feature.allowEmpty]">
@@ -298,6 +337,10 @@
   <ng-container *ngIf="spacingControl.value">
     <![CDATA[
     [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="paddingControl.value">
+    <![CDATA[
+    [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="alignControl.value">
     <![CDATA[
