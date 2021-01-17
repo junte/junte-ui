@@ -42,8 +42,15 @@
 
   <h2 i18n="@@label.variables">Variables</h2>
 
-  <p i18n="@@message.constants_are_described_in_the_common_file">
-    Constants are described in the common file
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Constants are described in the common file
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Константы описаны в общем файле
+    </ng-container>
+
     <jnt-link [icon]="ui.icons.link"
               source="https://gitlab.com/junte/junte-ui/blob/master/projects/junte-ui/src/lib/assets/styles/_jnt-variables.scss"
               target="_blank"
