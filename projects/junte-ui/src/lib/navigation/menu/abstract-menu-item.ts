@@ -19,7 +19,6 @@ export abstract class AbstractMenuItem {
   link: Link;
 
   _scheme: Scheme = Scheme.primary;
-  _matching: UrlMatching = UrlMatching.fullMatch;
 
   @HostBinding('attr.opened')
   opened = false;
