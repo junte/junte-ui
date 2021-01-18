@@ -330,6 +330,7 @@
       background-color: $jnt-control-background;
       box-sizing: border-box;
       position: relative;
+      transition: border-color .3s;
       @include for-mobile() {
         border-color: transparent;
         border-radius: calc(#{$jnt-corner-small} - 1px);
@@ -343,6 +344,10 @@
           color: map-get($icon, color),
         ), '&');
       }
+    }
+
+    &:hover {
+      border-color: $jnt-primary-color;
     }
 
     &:focus {
