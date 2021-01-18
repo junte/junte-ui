@@ -17,7 +17,7 @@ export class LabelTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
-  colorControl = this.fb.control(UI.color.purple);
+  colorControl = this.fb.control(UI.color.primary);
   iconControl = this.fb.control(true);
   dotControl = this.fb.control(false);
   outlineControl = this.fb.control(null);
