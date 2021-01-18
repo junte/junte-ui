@@ -23,7 +23,7 @@ export class TimelineItemComponent {
     type: 'string | Color',
   })
   @Input()
-  color: string = Color.purpleLight;
+  color: string = Color.primary;
 
   @PropertyApi({
     description: 'Icon',
