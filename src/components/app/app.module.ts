@@ -97,9 +97,9 @@ providers.push({
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        lineNumbersLoader: () => import('highlightjs-line-numbers.js'),
-        languages: getHighlightLanguages()
+        // coreLibraryLoader: () => import('highlight.js/lib/core'),
+        // lineNumbersLoader: () => import('highlightjs-line-numbers.js'),
+        // languages: getHighlightLanguages()
       }
     }],
   bootstrap: [
