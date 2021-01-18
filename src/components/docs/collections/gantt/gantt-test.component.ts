@@ -30,10 +30,10 @@ export class GanttTestComponent implements OnInit {
   requests = [];
   now = new Date();
   statuses = GanttRequestStatuses;
-  ganttTypes = GanttTypes;
+  ganttType = GanttTypes;
   progress = {loading: true, add: false, remove: false, reload: false};
 
-  ganttTypeControl = this.fb.control(this.ganttTypes.month);
+  ganttTypeControl = this.fb.control(GanttTypes.month);
   widthControl = this.fb.control(null);
 
   builder = this.fb.group({

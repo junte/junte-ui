@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ContentChild,
   ContentChildren,
@@ -38,7 +37,7 @@ import { GanttLineComponent } from './gantt-line/gantt-line.component';
     }
   ]
 })
-export class GanttComponent implements AfterViewInit, ControlValueAccessor {
+export class GanttComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-gantt-host';
 
