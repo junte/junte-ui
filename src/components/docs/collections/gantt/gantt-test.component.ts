@@ -85,16 +85,15 @@ export class GanttTestComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.requests = this.ganttTypeControl.value === this.ganttTypes.month ? this.monthArray : this.yearArray;
+      this.requests = this.ganttTypeControl.value === GanttTypes.month ? this.monthArray : this.yearArray;
       this.progress.loading = false;
     }, 3000);
     this.ganttTypeControl.valueChanges.subscribe(value => {
-      if (value === this.ganttTypes.month) {
+      if (value === GanttTypes.month) {
         this.requests = this.monthArray;
       } else {
         this.requests = this.yearArray;
       }
-      console.log(this.requests);
     });
   }
 
