@@ -23,7 +23,14 @@
                 <jnt-form [formGroup]="form">
                   <jnt-stack [gutter]="ui.gutter.small">
                     <ng-template #textTemplate>
-                      <div i18n="@@message.write_yes_here_if_you_are_happy">Write <b>yes</b> here if you are happy</div>
+                      <div [ngSwitch]="locale">
+                        <ng-container *ngSwitchDefault>
+                          Write <b>yes</b> here if you are happy
+                        </ng-container>
+                        <ng-container *ngSwitchCase="language.ru">
+                          Напишите <b>yes</b> если Вы счастливы
+                        </ng-container>
+                      </div>
                     </ng-template>
                     <ng-container *ngIf="!!maskControl.value else textTemplate">
                       <jnt-button text="Set phone to mask"

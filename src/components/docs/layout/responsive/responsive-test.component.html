@@ -15,7 +15,13 @@
       <ng-template #tabContentTemplate>
         <app-browser-preview preview>
           <ng-template #document let-width="width" let-height="height">
-            <p i18n="@@message.please_change_you_device_width_in">Please change you device width in
+            <p [ngSwitch]="locale">
+              <ng-container *ngSwitchDefault>
+                Please change you device width in
+              </ng-container>
+              <ng-container *ngSwitchCase="language.ru">
+                Пожалуйста, измените ширину своего устройства в
+              </ng-container>
               <jnt-link [outline]="ui.outline.ghost"
                         title="developers tools"
                         i18n-title="@@label.developer_tools"

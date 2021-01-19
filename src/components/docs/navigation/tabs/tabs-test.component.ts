@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TabComponent, TabsComponent, UI } from 'junte-ui';
+import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -12,6 +13,7 @@ export class TabsTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  language = Language;
   types = {tabs: TabsComponent, tab: TabComponent};
 
   outlineControl = this.fb.control(null);
@@ -28,7 +30,8 @@ export class TabsTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {
