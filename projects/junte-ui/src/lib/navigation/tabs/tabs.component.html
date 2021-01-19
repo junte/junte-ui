@@ -4,7 +4,8 @@
              [gutter]="ui.gutter.small"
              [align]="ui.align.center">
     <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
-    <jnt-stack [orientation]="ui.orientation.horizontal"
+    <jnt-stack *ngIf="!!tab.title || !!tab.badges.length"
+               [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center">
       <span>{{tab.title}}</span>
       <jnt-stack *ngIf="tab.badges.length"

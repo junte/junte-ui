@@ -27,7 +27,7 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document>
-                  <jnt-tabs [outline]="outlineControl.value" [features]="adaptedControl.value ? [ui.feature.adapted] : null">
+                  <jnt-tabs [features]="adaptedControl.value ? [ui.feature.adapted] : null">
                     <jnt-tab title="Personal"
                              i18n-title="@@label.personal"
                              [icon]="iconsControl.value ? ui.icons.calendar : null">
@@ -75,26 +75,6 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.align.stretch">
-
-                  <jnt-form-item>
-                    <jnt-form-label for="outline"
-                                    i18n="@@label.background">Background</jnt-form-label>
-                    <jnt-form-control>
-                      <jnt-select formControlName="outline"
-                                  placeholder="Fill"
-                                  i18n-placeholder="@@label.fill"
-                                  [features]="[ui.feature.allowEmpty]">
-                        <jnt-select-option label="Transparent"
-                                           i18n-label="@@label.transparent"
-                                           [icon]="localUi.icons.transparent"
-                                           [key]="ui.outline.transparent"></jnt-select-option>
-                        <jnt-select-option label="Fill"
-                                           i18n-label="@@label.fill"
-                                           [icon]="localUi.icons.fill"
-                                           [key]="ui.outline.fill"></jnt-select-option>
-                      </jnt-select>
-                    </jnt-form-control>
-                  </jnt-form-item>
 
                   <jnt-form-item>
                     <jnt-form-label i18n="@@label.features">Features
@@ -147,10 +127,6 @@
 <![CDATA[
 <jnt-tabs
 ]]>
-  <ng-container *ngIf="outlineControl.value">
-    <![CDATA[
-    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-  </ng-container>
   <ng-container *ngIf="adaptedControl.value">
     <![CDATA[
     [features]="[ui.feature.adapted]" ]]>
@@ -236,7 +212,7 @@
       </jnt-tab>
 
       <jnt-tab title="Design system"
-               i18n-title="@@label.system" [icon]="ui.icons.figma" [padding]="ui.gutter.none">
+               i18n-title="@@label.system" [icon]="ui.icons.figma">
         <ng-template #tabContentTemplate>
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/22t4knZgF50" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
