@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
@@ -13,7 +14,8 @@ import { TabsComponent } from './tabs.component';
     IconModule,
     StackModule,
     BadgeModule,
-    ResponsiveModule
+    ResponsiveModule,
+    ArrayPipesModule
   ],
   declarations: [
     TabsComponent,

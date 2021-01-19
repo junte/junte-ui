@@ -31,17 +31,18 @@
        [attr.data-active]="i === active"
        (click)="active = i; $event.preventDefault()">
     <div data-tab>
-      <ng-container *ngIf="(!!features && !features.includes(ui.feature.adapted)) || !features; else adaptedTemplate">
-        <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
-      </ng-container>
-      <ng-template #adaptedTemplate>
+      <ng-template #defaultTemplate>
+          <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
+      </ng-template>
+
+      <ng-container *ngIf="features | includes : ui.feature.adapted; else defaultTemplate">
         <ng-container *jntMinFor="ui.breakpoint.tablet">
           <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
         </ng-container>
         <ng-container *jntFor="ui.breakpoint.mobile">
           <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
         </ng-container>
-      </ng-template>
+      </ng-container>
       <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
     </div>
   </a>
