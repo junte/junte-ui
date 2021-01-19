@@ -14,6 +14,7 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { isEqual } from '../../../core/utils/equal';
 import { CheckboxComponent } from '../checkbox.component';
 
@@ -25,7 +26,8 @@ import { CheckboxComponent } from '../checkbox.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxGroupComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 

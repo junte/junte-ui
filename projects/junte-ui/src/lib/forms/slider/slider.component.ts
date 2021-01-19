@@ -10,6 +10,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { map } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -27,7 +28,8 @@ const DEFAULT_STEP = 1;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SliderComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SliderComponent implements OnInit, ControlValueAccessor {

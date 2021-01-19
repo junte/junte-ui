@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LoggerModule } from 'ngx-logger';
 import { LpFooterComponent } from './footer/lp-footer.component';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -17,7 +16,6 @@ import { LpSlideComponent } from './slide/lp-slide.component';
 @NgModule({
   imports: [
     CommonModule,
-    LoggerModule,
     StackModule,
     ButtonModule,
     MenuModule,

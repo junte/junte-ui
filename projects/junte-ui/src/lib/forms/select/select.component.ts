@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
@@ -83,7 +84,8 @@ const SEARCH_DELAY = 100;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {

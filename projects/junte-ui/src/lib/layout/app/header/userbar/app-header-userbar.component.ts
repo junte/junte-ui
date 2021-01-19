@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../../../core/logger/providers';
 import { ContentApi, MethodApi } from '../../../../core/decorators/api';
 import { UI } from '../../../../core/enums/ui';
 import { PopoverInstance } from '../../../../overlays/popover/popover.service';
@@ -7,7 +8,8 @@ import { BreakpointService } from '../../../responsive/breakpoint.service';
 
 @Component({
   selector: 'jnt-app-header-userbar',
-  templateUrl: './app-header-userbar.encapsulated.html'
+  templateUrl: './app-header-userbar.encapsulated.html',
+  providers: [...LOGGER_PROVIDERS]
 })
 export class AppHeaderUserbarComponent {
 

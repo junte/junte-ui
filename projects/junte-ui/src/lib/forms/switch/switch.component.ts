@@ -1,6 +1,7 @@
 import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -13,7 +14,8 @@ import { UI } from '../../core/enums/ui';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitchComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SwitchComponent implements ControlValueAccessor, OnInit {

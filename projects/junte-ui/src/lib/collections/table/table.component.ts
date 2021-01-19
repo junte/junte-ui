@@ -17,6 +17,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
@@ -36,7 +37,9 @@ const FILTER_DELAY = 500;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TableComponent),
       multi: true
-    }, ...I18N_PROVIDERS
+    },
+    ...I18N_PROVIDERS,
+    ...LOGGER_PROVIDERS
   ]
 })
 export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {

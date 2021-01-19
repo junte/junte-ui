@@ -18,6 +18,7 @@ import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Height } from '../../core/enums/height';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { FormControlComponent } from './control/form-control.component';
 
 @Component({
@@ -45,6 +46,9 @@ import { FormControlComponent } from './control/form-control.component';
         ),
       ]
     ),
+  ],
+  providers: [
+    ...LOGGER_PROVIDERS
   ]
 })
 export class FormComponent implements OnInit {

@@ -1,9 +1,8 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { ShortcutsModule } from './core/directives/shortcuts';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_DEFAULT_CONFIG, JunteUIConfig } from './config';
 import { SelectableModule } from './core/directives/selectable';
+import { ShortcutsModule } from './core/directives/shortcuts';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';
@@ -54,12 +53,8 @@ export class JunteUiModule {
           provide: JunteUIConfig,
           useFactory: configFactory,
           deps: [CONFIG_TOKEN]
-        },
-        LoggerModule.forRoot({
-          level: NgxLoggerLevel.DEBUG
-        }).providers
+        }
       ]
     };
   }
-
 }
