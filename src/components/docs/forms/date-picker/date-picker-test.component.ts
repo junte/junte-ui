@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DatePickerComponent, TabComponent, UI } from 'junte-ui';
-import { NGXLogger } from 'ngx-logger';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -32,12 +31,11 @@ export class DatePickerTestComponent implements OnInit {
     flightDate: this.flightDateControl
   });
 
-  constructor(private fb: FormBuilder,
-              private logger: NGXLogger) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe(data => this.logger.debug('form was changed', data));
+    this.form.valueChanges.subscribe(data => console.log('form was changed', data));
 
     this.disableControl.valueChanges.subscribe(disabled =>
       disabled ? this.flightDateControl.disable({emitEvent: false})
