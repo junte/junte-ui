@@ -13,6 +13,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { filter, map, distinctUntilChanged } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { Key } from '../../core/enums/keyboard';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
@@ -35,7 +36,8 @@ const DEFAULT_NUMBER = 0;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class InputComponent implements OnInit, ControlValueAccessor {

@@ -11,9 +11,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { State } from '../../core/enums/state';
 import { PropertyApi } from '../../core/decorators/api';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
 import { ChartIndicatorComponent } from './chart-indicator';
 
@@ -25,7 +26,8 @@ import { ChartIndicatorComponent } from './chart-indicator';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ChartComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class ChartComponent implements ControlValueAccessor {

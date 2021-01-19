@@ -25,6 +25,7 @@ import {
   subYears
 } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
@@ -54,7 +55,8 @@ enum ViewType {
       useExisting: forwardRef(() => CalendarComponent),
       multi: true
     },
-    ...I18N_PROVIDERS
+    ...I18N_PROVIDERS,
+    ...LOGGER_PROVIDERS
   ]
 })
 export class CalendarComponent implements ControlValueAccessor, OnInit {
@@ -158,22 +160,22 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   }
 
   add() {
-    if(this.view === ViewType.date) {
+    if (this.view === ViewType.date) {
       this.period = addMonths(this.period, 1);
     } else if (this.view === ViewType.month) {
-      this.period = addYears(this.period, 1)
+      this.period = addYears(this.period, 1);
     } else {
-      this.period = addYears(this.period, 12)
+      this.period = addYears(this.period, 12);
     }
   }
 
   sub() {
-    if(this.view === ViewType.date) {
+    if (this.view === ViewType.date) {
       this.period = subMonths(this.period, 1);
     } else if (this.view === ViewType.month) {
-      this.period = subYears(this.period, 1)
+      this.period = subYears(this.period, 1);
     } else {
-      this.period = subYears(this.period, 12)
+      this.period = subYears(this.period, 12);
     }
   }
 
