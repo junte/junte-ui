@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
   TabComponent,
@@ -6,7 +6,8 @@ import {
   TimelineItemComponent,
   UI
 } from 'junte-ui';
-import { Language } from '../../shared/code-highlight/enum';
+import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
+import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -18,7 +19,8 @@ export class TimelineTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  languages = Language;
+  language = Language;
+  highlight = {language: HighlightLanguage};
   types = {timeline: TimelineComponent, item: TimelineItemComponent};
 
   @ViewChild('code') code: TabComponent;
@@ -31,7 +33,8 @@ export class TimelineTestComponent implements OnInit {
     color: this.colorControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {
