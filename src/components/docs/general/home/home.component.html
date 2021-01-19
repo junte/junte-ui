@@ -1,9 +1,17 @@
 <jnt-container>
   <h1>Junte <span>UI</span></h1>
 
-  <h2 i18n="@@message.very_strong_framework">Very strong
-    <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
-    framework!
+  <h2 [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Very strong
+      <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
+      framework!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Очень крутой
+      <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
+      фреймворк!
+    </ng-container>
   </h2>
 
   <h5 [ngSwitch]="locale">
@@ -236,15 +244,22 @@ export class AppComponent implements AfterViewInit {
     <jnt-timeline-item title="Import styles & assets"
                        i18n-title="@@label.import_styles_and_assets">
       <ng-template #timelineItemContentTemplate>
-        <p i18n="@@message.install_the_font_using_the_command">Install the font using the command</p>
-          <app-code-highlight [language]="highlight.language.bash">
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Install the font using the command
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Установите шрифт используя команду
+          </ng-container>
+        </p>
+        <app-code-highlight [language]="highlight.language.bash">
 
             <!-- @formatter:off-->
 <![CDATA[
 npm i @openfonts/open-sans_cyrillic
 ]]>
             <!-- @formatter:on-->
-          </app-code-highlight>
+        </app-code-highlight>
         <p [ngSwitch]="locale">
           <ng-container *ngSwitchDefault>
             Import styles and assets in
@@ -294,9 +309,10 @@ npm i @openfonts/open-sans_cyrillic
             Import the styles into the global app styles
           </ng-container>
           <ng-container *ngSwitchCase="language.ru">
-            Импортируйте стили в глобальные стили приложения в файле
+            Импортируйте стили в глобальный файл стилей приложения
           </ng-container>
-          <code>src/styles.scss</code></p>
+          <code>src/styles.scss</code>
+        </p>
 
         <app-code-highlight [language]="highlight.language.css">
           <pre>
