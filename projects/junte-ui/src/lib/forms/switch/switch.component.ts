@@ -30,6 +30,9 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
+  @HostBinding('attr.data-focused')
+  focused = false;
+
   get checked() {
     return this.switchControl.value;
   }
