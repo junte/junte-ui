@@ -40,14 +40,14 @@
                         </p>
                       </jnt-stack>
                     </ng-template>
-                    <ng-template #collapsibleContentTemplate [ngSwitch]="locale">
+                    <div #collapsibleContentTemplate [ngSwitch]="locale">
                       <ng-container *ngSwitchDefault>
                         Your personal filters are here
                       </ng-container>
                       <ng-container *ngSwitchCase="language.ru">
                         Ваши личные фильтры находятся здесь
                       </ng-container>>
-                    </ng-template>
+                    </div>
                   </jnt-collapsible>
                 </ng-template>
               </app-browser-preview>
