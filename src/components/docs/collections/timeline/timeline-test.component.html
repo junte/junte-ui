@@ -2,7 +2,7 @@
 
   <jnt-app-page-header [icon]="localUi.icons.timeline"
                        title="Timeline"
-                       i18n-title="@@label.Timeline"></jnt-app-page-header>
+                       i18n-title="@@label.timeline"></jnt-app-page-header>
 
   <app-resources
     gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/timeline"
@@ -18,15 +18,28 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
-                <h3>How to do work safely?</h3>
+                <h3 [ngSwitch]="locale">
+                  <ng-container *ngSwitchDefault>
+                    How to do work safely?
+                  </ng-container>
+                  <ng-container *ngSwitchCase="language.ru">
+                    Как безопасно выполнять свою работу?
+                  </ng-container>
+                </h3>
                 <jnt-timeline>
                   <jnt-timeline-item title="Preparing suit"
                                      i18n-title="@@label.preparing_suit"
                                      [color]="colorControl.value"
                                      [icon]="iconControl.value ? ui.icons.radioUnchecked : null">
                     <ng-template #timelineItemContentTemplate>
-                      <p
-                        i18n="@@message.first_you_need_is_to_design_and_build_iron_man_suit_for_working">First you need is to design and build Iron Man suit for working</p>
+                      <p [ngSwitch]="locale">
+                        <ng-container *ngSwitchDefault>
+                          First you need is to design and build Iron Man suit for working
+                        </ng-container>
+                        <ng-container *ngSwitchCase="language.ru">
+                          Первое, что Вам нужно  - это спроектировать и создать костюм Железного Человека для работы
+                        </ng-container>
+                      </p>
                       <iframe giphy src="https://giphy.com/embed/lRpvmChZEteVIFgQtV"
                               width="480"
                               height="270"
@@ -38,9 +51,15 @@
                                      [color]="colorControl.value"
                                      [icon]="localUi.icons.radio">
                     <ng-template #timelineItemContentTemplate>
-                      <p
-                        i18n="@@message.you_suit_need_energy_so_you_must_create_nuclear_reactor">You suit need energy so you must create nuclear reactor</p>
-                      <app-code-highlight [language]="languages.bash"
+                      <p [ngSwitch]="locale">
+                        <ng-container *ngSwitchDefault>
+                          You suit need energy so you must create nuclear reactor
+                        </ng-container>
+                        <ng-container *ngSwitchCase="language.ru">
+                          Вашему костюму нужна энергия, так что придётся создать яденый реактор
+                        </ng-container>
+                      </p>
+                      <app-code-highlight [language]="highlight.language.bash"
                                           [style.background-color]="ui.color.white">ng g c nuclearReactor</app-code-highlight>
                       <iframe giphy src="https://giphy.com/embed/xDyB4KAU7Y6qc"
                               width="480"
@@ -49,11 +68,18 @@
                     </ng-template>
                   </jnt-timeline-item>
                   <jnt-timeline-item title="Putting on suit you have built"
-                                     i18n-title="@@label.putting_on_suit_you_have_built"
+                                     i18n-title="@@label.putting_on_suit"
                                      [color]="colorControl.value ? colorControl.value : 'ui.color.red'"
                                      [icon]="iconControl.value ? localUi.icons.radio : null">
                     <ng-template #timelineItemContentTemplate>
-                      <p i18n="@@message.success_now_you_can_put_on_your_suit">Success! Now you can put on your suit</p>
+                      <p [ngSwitch]="locale">
+                        <ng-container *ngSwitchDefault>
+                          Success! Now you can put on your suit
+                        </ng-container>
+                        <ng-container *ngSwitchCase="language.ru">
+                          Успех! Теперь Вы можете надеть свой костюм
+                        </ng-container>
+                      </p>
                       <iframe giphy src="https://giphy.com/embed/VjT6Xa56ib1Qs"
                               width="480"
                               height="208"
@@ -65,7 +91,14 @@
                                      [color]="colorControl.value"
                                      [icon]="iconControl.value ? localUi.icons.radio : null">
                     <ng-template #timelineItemContentTemplate>
-                      <p>Now you are ready for doing your work safely!</p>
+                      <p [ngSwitch]="locale">
+                      <ng-container *ngSwitchDefault>
+                        Now you are ready for doing your work safely!
+                      </ng-container>
+                      <ng-container *ngSwitchCase="language.ru">
+                        Теперь Вы готовы безопасно выполнять свою работу!
+                      </ng-container>
+                      </p>
                       <iframe giphy src="https://giphy.com/embed/bCvO8biVh8WyI"
                               width="480"
                               height="411"
@@ -81,7 +114,8 @@
               <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
-                  <jnt-form-label for="color">Сolor</jnt-form-label>
+                  <jnt-form-label for="color"
+                                  i18n="@@label.color">Сolor</jnt-form-label>
                   <jnt-form-control>
                     <jnt-color-picker formControlName="color"></jnt-color-picker>
                   </jnt-form-control>
