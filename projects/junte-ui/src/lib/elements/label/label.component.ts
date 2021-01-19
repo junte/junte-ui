@@ -18,7 +18,8 @@ export class LabelComponent {
 
   @HostBinding('style.background-color')
   @HostBinding('style.border-color')
-  _color: string = Color.purple;
+  @HostBinding('attr.data-color')
+  _color: string = Color.primary;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
@@ -44,7 +45,7 @@ export class LabelComponent {
     default: 'purple'
   })
   @Input() set color(color: string) {
-    this._color = color || Color.purple;
+    this._color = color || Color.primary;
   }
 
   get color() {

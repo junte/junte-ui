@@ -74,7 +74,7 @@
       <jnt-menu-item title="Layout"
                      i18n-title="@@label.layout"
                      [icon]="localUi.icons.layout">
-        <jnt-badge [value]="categories.layout.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.layout.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Stack"
                              i18n-title="@@label.stack"
@@ -122,7 +122,7 @@
       <jnt-menu-item title="Navigation"
                      i18n-title="@@label.navigation"
                      [icon]="localUi.icons.navigation">
-        <jnt-badge [value]="categories.navigation.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.navigation.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Link"
                              i18n-title="@@label.link"
@@ -154,7 +154,7 @@
       <jnt-menu-item title="Elements"
                      i18n-title="@@label.ui_elements"
                      [icon]="localUi.icons.elements">
-        <jnt-badge [value]="categories.elements.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.elements.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Icon"
                              i18n-title="@@label.icon"
@@ -186,7 +186,7 @@
       <jnt-menu-item title="Forms"
                      i18n-title="@@label.forms"
                      [icon]="localUi.icons.forms">
-        <jnt-badge [value]="categories.forms.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.forms.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Button"
                              i18n-title="@@label.button"
@@ -251,11 +251,10 @@
         </jnt-sub-menu>
       </jnt-menu-item>
 
-
       <jnt-menu-item title="Collections"
                      i18n-title="@@label.collections"
                      [icon]="localUi.icons.collections">
-        <jnt-badge [value]="categories.collections.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.collections.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Gantt"
                              i18n-title="@@label.gantt"
@@ -275,7 +274,7 @@
       <jnt-menu-item title="Overlays"
                      i18n-title="@@label.overlays"
                      [icon]="localUi.icons.overlays">
-        <jnt-badge [value]="categories.overlays.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.overlays.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Modal"
                              i18n-title="@@label.modal"
@@ -293,7 +292,7 @@
       <jnt-menu-item title="Dynamic Data"
                      i18n-title="@@label.dynamic_data"
                      [icon]="localUi.icons.dynamic">
-        <jnt-badge [value]="categories.dynamic_data.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.dynamic_data.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Progress bar"
                              i18n-title="@@label.progress_bar"
@@ -321,7 +320,7 @@
       <jnt-menu-item title="Other"
                      i18n-title="@@label.other"
                      [icon]="localUi.icons.other">
-        <jnt-badge [value]="categories.other.components.length" [color]="ui.color.paleNavy"></jnt-badge>
+        <jnt-badge [value]="categories.other.components.length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Animations"
                              i18n-title="@@label.animations"
@@ -357,8 +356,8 @@
 
   <jnt-app-content [aside]="aside">
     <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
-    <jnt-app-body [@moveFromRight]="animate(o)">
-      <router-outlet #o="outlet"></router-outlet>
+    <jnt-app-body>
+      <router-outlet></router-outlet>
     </jnt-app-body>
     <jnt-app-footer>
       <app-footer></app-footer>

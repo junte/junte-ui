@@ -24,7 +24,7 @@ export class TimelineTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   iconControl = this.fb.control(false);
-  colorControl = this.fb.control(this.ui.color.purpleLight);
+  colorControl = this.fb.control(this.ui.color.primary);
 
   builder = this.fb.group({
     icon: this.iconControl,
