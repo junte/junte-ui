@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BlockComponent, TabComponent, UI } from 'junte-ui';
-import { Language } from '../../shared/code-highlight/enum';
+import { Language as HighlightLanguage } from 'src/components/docs/shared/code-highlight/enum';
+import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,6 +15,8 @@ export class BlockTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  highlight = {language: HighlightLanguage};
+
   types = {block: BlockComponent};
 
   @ViewChild('block')
@@ -44,7 +47,8 @@ export class BlockTestComponent implements OnInit {
     help: this.helpControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

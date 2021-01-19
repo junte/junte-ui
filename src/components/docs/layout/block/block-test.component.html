@@ -12,8 +12,14 @@
   <jnt-stack [align]="ui.align.stretch">
 
     <div teaser>
-      <p i18n="@@message.block_is_a_grouping_of_elements_related_to_one_piece_of_functionality_on_the_page">
-        Block is a grouping of elements related to one piece of functionality on the page.</p>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          Block is a grouping of elements related to one piece of functionality on the page.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Блок - это группа элементов, связанных с одной функциональностью на странице.
+        </ng-container>
+      </p>
     </div>
 
     <jnt-tabs [features]="[ui.feature.adapted]">
@@ -247,7 +253,7 @@
             <jnt-accordion-section title="Component template"
                                    i18n-title="@@label.component_template">
               <ng-template #accordionContentTemplate>
-                <app-code-highlight file="block-test.component.ts" [language]="language.typescript">
+                <app-code-highlight file="block-test.component.ts" [language]="highlight.language.typescript">
                   <![CDATA[
                   import { ViewChild } from '@angular/core';
 

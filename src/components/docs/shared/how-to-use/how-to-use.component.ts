@@ -1,5 +1,6 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { Language } from '../code-highlight/enum';
+import { Component, ContentChild, Inject, Input, LOCALE_ID, TemplateRef } from '@angular/core';
+import { Language as HighlightLanguage } from '../code-highlight/enum';
+import { Language } from '../../../../enums/language';
 
 @Component({
   selector: 'app-how-to-use',
@@ -9,6 +10,7 @@ import { Language } from '../code-highlight/enum';
 export class HowToUseComponent {
 
   language = Language;
+  highlight = {language: HighlightLanguage};
 
   @Input()
   test: { selector: string, type: string };
@@ -18,5 +20,8 @@ export class HowToUseComponent {
 
   @ContentChild('behaviourTemplate')
   behaviourTemplate: TemplateRef<any>;
+
+  constructor(@Inject(LOCALE_ID) public locale: string) {
+  }
 
 }
