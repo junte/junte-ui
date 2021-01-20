@@ -1,6 +1,6 @@
 export const icons = {
-  signin: 'signin:svg:default:main|stroked',
-  signout: 'signout:svg:default:main|stroked',
+  login: 'login:svg:default:main|stroked',
+  logout: 'logout:svg:default:main|stroked',
   share: 'share:svg:default:main|stroked',
   power: 'power:svg:default:main|stroked',
   dashboard: 'dashboard:svg:default:main|stroked|other',
