@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
@@ -83,7 +84,8 @@ const SEARCH_DELAY = 100;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
@@ -170,15 +172,6 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @Input()
   icon: string;
 
-  @ViewChild('queryInput', {static: true})
-  queryInput: ElementRef<HTMLInputElement>;
-
-  @ViewChild('selectedList', {static: true})
-  selectedList: ElementRef<HTMLUListElement>;
-
-  @ViewChild('query')
-  query: ElementRef<HTMLInputElement>;
-
   @PropertyApi({
     description: 'Select state',
     path: 'ui.state',
@@ -212,7 +205,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
-  @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
+  @ViewChild('optionsTemplate')
+  optionsTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Selected value',
@@ -309,30 +303,17 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @Input()
   loader = null;
 
-  @HostListener('document:click', ['$event.path'])
-  clickOutside(path: HTMLElement[]) {
-    if (!!this.reference.popover && this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
-      this.close();
-    }
-  }
+  @ViewChild('queryRef')
+  queryRef: ElementRef<HTMLInputElement>;
 
-  @HostListener('click', ['$event'])
-  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
-    switch (this.mode) {
-      case SelectMode.single:
-        break;
-      case SelectMode.multiple:
-        if (target === this.selectedList.nativeElement) {
-          this.opened ? this.close() : this.open();
-        }
-        break;
-    }
-  }
+  @ViewChild('selectedRef')
+  selectedRef: ElementRef<HTMLUListElement>;
 
-  @HostListener('blur')
-  blurred() {
-    this.onTouched();
-  }
+  @ViewChild('layoutRef', {read: ElementRef})
+  layoutRef: ElementRef<HTMLElement>;
+
+  @ViewChild('iconRef', {read: ElementRef, static: false})
+  iconRef: ElementRef;
 
   onChange: (value: Key | Key[]) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -387,7 +368,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       tap(query => {
         this.logger.debug('query has been changed');
         this.loading = !!query && !!this.loader;
-        const input = this.queryInput.nativeElement;
+        const input = this.queryRef.nativeElement;
         if (!!query && query.length > 0) {
           const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
           this.renderer.setStyle(input, 'width', width + 'px');
@@ -421,8 +402,43 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     }
   }
 
-  private picked(elements: HTMLElement[]) {
-    return elements.indexOf(this.hostRef.nativeElement) !== -1;
+  @HostListener('document:click', ['$event.path'])
+  onClickOutside(path: HTMLElement[]) {
+    const picked = (elements: HTMLElement[]) => elements.indexOf(this.hostRef.nativeElement) !== -1;
+    if (!!this.reference.popover && this.opened && !picked(path) && !this.reference.popover.picked(path)) {
+      this.close();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  onFocus({target}: { target: HTMLElement, path: HTMLElement[] }) {
+    switch (this.mode) {
+      case SelectMode.single:
+        break;
+      case SelectMode.multiple:
+        if (target === this.selectedRef.nativeElement) {
+          this.opened ? this.close() : this.open();
+        }
+        break;
+    }
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this.onTouched();
+  }
+
+  @HostListener('click', ['$event'])
+  onClick({target}: { target: HTMLElement }) {
+    // TODO: think about iconRef
+    const elements = [
+      this.layoutRef.nativeElement,
+      this.selectedRef.nativeElement,
+      this.iconRef?.nativeElement
+    ];
+    if (elements.includes(target)) {
+      this.open();
+    }
   }
 
   trackOption(index: number, option: IOption) {
@@ -466,7 +482,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   open() {
     this.opened = true;
-    const input = this.queryInput.nativeElement;
+    const input = this.queryRef.nativeElement;
     const checking = () => {
       const style = getComputedStyle(input);
       if (style.display !== 'none') {

@@ -14,6 +14,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
 import { UI } from '../../core/enums/ui';
@@ -67,7 +68,9 @@ export type ImageCroppedData = {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ImageCropperComponent),
       multi: true
-    }, ...I18N_PROVIDERS
+    },
+    ...I18N_PROVIDERS,
+    ...LOGGER_PROVIDERS
   ]
 })
 export class ImageCropperComponent implements OnInit, ControlValueAccessor {

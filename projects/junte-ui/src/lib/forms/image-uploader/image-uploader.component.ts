@@ -4,6 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
 import { UI } from '../../core/enums/ui';
@@ -31,7 +32,8 @@ enum Pages {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ImageUploaderComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class ImageUploaderComponent implements ControlValueAccessor {

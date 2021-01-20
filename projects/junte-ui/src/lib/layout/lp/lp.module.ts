@@ -17,7 +17,7 @@ import { LpSlideComponent } from './slide/lp-slide.component';
 @NgModule({
   imports: [
     CommonModule,
-    LoggerModule,
+    LoggerModule.forChild(),
     StackModule,
     ButtonModule,
     MenuModule,

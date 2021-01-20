@@ -3,6 +3,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { Feature } from '../../core/enums/feature';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
@@ -32,7 +33,8 @@ enum Meridian {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatePickerComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class DatePickerComponent implements OnInit, ControlValueAccessor {

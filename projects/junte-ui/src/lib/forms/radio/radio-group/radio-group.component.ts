@@ -13,6 +13,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { merge, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Breakpoint } from '../../../core/enums/breakpoint';
 import { Feature } from '../../../core/enums/feature';
@@ -32,10 +33,10 @@ import { RadioComponent } from '../radio.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioGroupComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
-
 export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor {
 
   ui = UI;

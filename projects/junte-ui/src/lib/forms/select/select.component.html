@@ -11,12 +11,12 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack data-select [orientation]="ui.orientation.horizontal"
+<jnt-stack #layoutRef data-select [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.tiny" [align]="ui.align.center"
            tabindex="0">
   <div *ngIf="!!label" data-label>{{label}}</div>
-  <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
-  <ul #selectedList>
+  <jnt-icon #iconRef *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
+  <ul #selectedRef>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null"
       [attr.data-with-template]="!!optionTemplate">
@@ -35,7 +35,7 @@
     </ng-container>
 
     <li data-query [formGroup]="form" (click)="opened ? close() : open()">
-      <input #queryInput [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
+      <input #queryRef [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
              formControlName="query">
     </li>
   </ul>

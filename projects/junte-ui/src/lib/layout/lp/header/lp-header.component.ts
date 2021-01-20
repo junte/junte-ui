@@ -1,12 +1,14 @@
 import { ChangeDetectorRef, Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { UI } from '../../../core/enums/ui';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
 import { PopoverInstance } from '../../../overlays/popover/popover.service';
 
 @Component({
   selector: 'jnt-lp-header',
-  templateUrl: './lp-header.encapsulated.html'
+  templateUrl: './lp-header.encapsulated.html',
+  providers: [...LOGGER_PROVIDERS]
 })
 export class LpHeaderComponent {
 

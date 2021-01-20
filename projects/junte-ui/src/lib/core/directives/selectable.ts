@@ -16,6 +16,7 @@ import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../decorators/api';
 import { Feature } from '../enums/feature';
 import { UI } from '../enums/ui';
+import { LOGGER_PROVIDERS } from '../logger/providers';
 
 enum SelectMode {
   single = 'single',
@@ -58,7 +59,9 @@ export function eventEmitterFactory() {
     {
       provide: SELECTABLE_SIGNALS,
       useFactory: eventEmitterFactory
-    }]
+    },
+    ...LOGGER_PROVIDERS
+  ]
 })
 export class SelectableDirective implements OnInit, ControlValueAccessor {
 

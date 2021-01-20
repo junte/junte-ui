@@ -5,10 +5,10 @@ import { Language } from '../../shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 
-enum Skills {
+enum Abilities {
   immortality = 'Immortality',
-  fly = 'Fly',
-  climbing_walls = 'Climbing walls'
+  fly = 'Fly ability',
+  crawling_walls = 'Crawling on walls'
 }
 
 enum Sources {
@@ -17,7 +17,7 @@ enum Sources {
   congenital = 'Congenital'
 }
 
-enum Worlds {
+enum Universes {
   dc = 'DC',
   marvel = 'Marvel',
   xman = 'XMan'
@@ -26,9 +26,9 @@ enum Worlds {
 class FilterHero {
   constructor(public id: Hero,
               public name: string,
-              public skills: Skills,
+              public abilities: Abilities,
               public source: Sources,
-              public world: Worlds) {
+              public universe: Universes) {
   }
 }
 
@@ -41,20 +41,20 @@ export class FilterTestComponent implements OnInit {
 
   localUi = LocalUI;
   ui = UI;
-  skills = Skills;
+  abilities = Abilities;
   sources = Sources;
-  worlds = Worlds;
+  universes = Universes;
   hero = Hero;
   language = Language;
   types = {filter: FilterComponent};
 
   heroes = [
-    new FilterHero(Hero.batman, 'Batman', Skills.immortality, Sources.technologies, Worlds.dc),
-    new FilterHero(Hero.ironman, 'Ironman', Skills.fly, Sources.technologies, Worlds.marvel),
-    new FilterHero(Hero.spiderman, 'Spiderman', Skills.climbing_walls, Sources.acquired, Worlds.marvel),
-    new FilterHero(Hero.wolverine, 'Wolverine', Skills.climbing_walls, Sources.congenital, Worlds.xman),
-    new FilterHero(Hero.superman, 'Superman', Skills.fly, Sources.congenital, Worlds.dc),
-    new FilterHero(Hero.captainAmerica, 'Captain America', Skills.immortality, Sources.acquired, Worlds.marvel),
+    new FilterHero(Hero.batman, 'Batman', Abilities.immortality, Sources.technologies, Universes.dc),
+    new FilterHero(Hero.ironman, 'Ironman', Abilities.fly, Sources.technologies, Universes.marvel),
+    new FilterHero(Hero.spiderman, 'Spiderman', Abilities.crawling_walls, Sources.acquired, Universes.marvel),
+    new FilterHero(Hero.wolverine, 'Wolverine', Abilities.crawling_walls, Sources.congenital, Universes.xman),
+    new FilterHero(Hero.superman, 'Superman', Abilities.fly, Sources.congenital, Universes.dc),
+    new FilterHero(Hero.captainAmerica, 'Captain America', Abilities.immortality, Sources.acquired, Universes.marvel),
   ];
 
   iconControl = new FormControl(false);
@@ -64,15 +64,15 @@ export class FilterTestComponent implements OnInit {
   });
 
   filteredControl = new FormControl([Hero.batman, Hero.ironman, Hero.spiderman, Hero.wolverine, Hero.superman, Hero.captainAmerica]);
-  skillsControl = new FormControl(null);
+  abilitiesControl = new FormControl(null);
   sourcesControl = new FormControl(null);
-  worldsControl = new FormControl(null);
+  universesControl = new FormControl(null);
 
   form = this.fb.group({
     filtered: this.filteredControl,
-    skills: this.skillsControl,
+    abilities: this.abilitiesControl,
     sources: this.sourcesControl,
-    worlds: this.worldsControl
+    universes: this.universesControl
   });
 
   @ViewChild('code') code: TabComponent;
@@ -83,9 +83,9 @@ export class FilterTestComponent implements OnInit {
   ngOnInit(): void {
     this.form.valueChanges.subscribe(() => {
       this.filteredControl.setValue(this.heroes
-          .filter(hero => !!this.skillsControl.value ? hero.skills === this.skillsControl.value : true)
+          .filter(hero => !!this.abilitiesControl.value ? hero.abilities === this.abilitiesControl.value : true)
           .filter(hero => !!this.sourcesControl.value ? hero.source === this.sourcesControl.value : true)
-          .filter(hero => !!this.worldsControl.value ? hero.world === this.worldsControl.value : true)
+          .filter(hero => !!this.universesControl.value ? hero.universe === this.universesControl.value : true)
           .map(hero => hero.id),
         {emitEvent: false});
     });
