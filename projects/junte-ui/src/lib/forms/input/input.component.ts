@@ -50,7 +50,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   private _mask: string;
   private _type: InputType = InputType.text;
-  private _placeholder: string = '';
+  private _placeholder = '';
 
   inputControl = this.fb.control(null);
   formattedControl = this.fb.control(null);
@@ -58,12 +58,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl,
     formatted: this.formattedControl
   });
-
-  @ViewChild('valueInput', {read: ElementRef, static: false})
-  valueInput: ElementRef;
-
-  @ViewChild('maskedInput', {read: ElementRef, static: false})
-  maskedInput: ElementRef;
 
   @HostBinding('attr.data-focused')
   focused = false;
@@ -274,14 +268,23 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.tabindex')
   tabindex = 1;
 
+  @ViewChild('valueRef', {read: ElementRef, static: false})
+  valueRef: ElementRef<HTMLInputElement>;
+
+  @ViewChild('maskedRef', {read: ElementRef, static: false})
+  maskedRef: ElementRef<HTMLInputElement>;
+
+  @ViewChild('layoutRef', {read: ElementRef})
+  layoutRef: ElementRef<HTMLElement>;
+
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger,
-              private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {
@@ -290,11 +293,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
     this.formattedControl.valueChanges.pipe(
       distinctUntilChanged(),
-      filter(() => !!this.maskedInput),
+      filter(() => !!this.maskedRef),
       map(formatted => !!formatted ? formatted : this.mask)
     ).subscribe(formatted => {
       const position = formatted.indexOf(DIGIT_MASK_CHAR);
-      this.maskedInput.nativeElement.setSelectionRange(position, position);
+      this.maskedRef.nativeElement.setSelectionRange(position, position);
 
       let cleared = {input: null, formatted: null};
       for (let i = 0; i < this.mask.length; i++) {
@@ -316,7 +319,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     const chars = !!value ? value.replace(/\D/gi, '') : '';
     let formatted = this.mask;
     const length = this.mask.split(DIGIT_MASK_CHAR).length - 1;
-    for (let char of chars) {
+    for (const char of chars) {
       formatted = formatted.replace(DIGIT_MASK_CHAR, char);
     }
 
@@ -409,10 +412,17 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   focus() {
-    if (!!this.valueInput) {
-      this.valueInput.nativeElement.focus();
-    } else if (!!this.maskedInput) {
-      this.maskedInput.nativeElement.focus();
+    if (!!this.valueRef) {
+      this.valueRef.nativeElement.focus();
+    } else if (!!this.maskedRef) {
+      this.maskedRef.nativeElement.focus();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  onClick({target}: { target: HTMLElement }) {
+    if ([this.layoutRef.nativeElement].includes(target)) {
+      this.focus();
     }
   }
 }
