@@ -81,7 +81,7 @@
                         [fragment]="subItem.link?.fragment"
                         [disabled]="subItem.disabled"
                         [target]="subItem.target"
-                        (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
+                        (click)="selected.emit(subItem); subItem.click.emit(); reference.popover?.hide();">
                 <jnt-badge *ngFor="let badge of subItem.badges"
                            [value]="badge.value"
                            [text]="badge.text"
