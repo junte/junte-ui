@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { LoggerConfig, LoggerModule } from 'ngx-logger';
 import { JunteUIConfig } from '../../config';
 
@@ -13,5 +14,6 @@ export const LOGGER_PROVIDERS = [
     useFactory: loggerConfigFactory,
     deps: [JunteUIConfig]
   },
+  DatePipe,
   ...LoggerModule.forChild().providers
 ];
