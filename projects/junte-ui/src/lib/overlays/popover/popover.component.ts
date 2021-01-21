@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,6 +9,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -20,6 +22,12 @@ import { DeviceService } from '../../layout/responsive/device.service';
 
 const PADDING_SIZE = 8;
 const DROPDOWN_PADDING_SIZE = 4;
+const ANIMATION_DURATION = 300;
+
+enum State {
+  opened = 'opened',
+  closed = 'closed'
+}
 
 export class PopoverOptions {
 
@@ -55,7 +63,15 @@ class PopoverPosition {
 @Component({
   selector: 'jnt-popover',
   templateUrl: './popover.encapsulated.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('collapse', [
+        state('open', style({opacity: '1'})),
+        state('close', style({opacity: '0'})),
+        transition('open <=> close', [animate('.3s ease-in-out')]),
+      ]
+    )
+  ]
 })
 export class PopoverComponent {
 
@@ -63,6 +79,12 @@ export class PopoverComponent {
 
   options = new PopoverOptions();
   target: HTMLElement;
+  state: State;
+
+  @HostBinding('@collapse')
+  get collapse() {
+    return this.state === State.opened ? 'open' : 'close';
+  }
 
   @HostBinding('attr.host')
   readonly host = 'jnt-popover-host';
@@ -282,7 +304,7 @@ export class PopoverComponent {
   }
 
   // TODO: options to type with optionals?.
-  show({nativeElement: target}: { nativeElement: HTMLElement }, options: Partial<PopoverOptions> = {}): void {
+  show({nativeElement: target}: { nativeElement: HTMLElement }, options: Partial<PopoverOptions> = {}): Observable<any> {
     this.target = target;
     this.options = new PopoverOptions(options);
     this.minWidth = this.options.minWidth || (this.options.behaviour === Behaviour.dropdown
@@ -298,7 +320,14 @@ export class PopoverComponent {
     this.renderer.setAttribute(this.hostRef.nativeElement, 'data-dropdown',
       this.options.behaviour === Behaviour.dropdown ? 'true' : 'false');
     this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'block');
+    this.state = State.opened;
     this.cd.detectChanges();
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next();
+        observer.complete();
+      }, ANIMATION_DURATION);
+    });
   }
 
   picked(elements: HTMLElement[]): boolean {
@@ -317,7 +346,7 @@ export class PopoverComponent {
     this.renderer.removeStyle(host, 'top');
     this.renderer.removeStyle(host, 'left');
     this.renderer.setStyle(host, 'width', this.breakpoint.current === Breakpoint.mobile
-      && (this.position === Position.top || this.position === Position.bottom) ? '100%' : 'auto');
+    && (this.position === Position.top || this.position === Position.bottom) ? '100%' : 'auto');
     const position = this.getPosition();
     const rect = this.target.getBoundingClientRect();
     let left = position.left - position.shiftX;
@@ -357,11 +386,18 @@ export class PopoverComponent {
     this.cd.detectChanges();
   }
 
-  hide(): void {
-    this.observers.target.disconnect();
-    this.observers.host.disconnect();
-    this.options = new PopoverOptions();
-    this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'none');
-    this.cd.detectChanges();
+  hide(): Observable<any> {
+    return new Observable(observer => {
+      this.state = State.closed;
+      setTimeout(() => {
+        this.observers.target.disconnect();
+        this.observers.host.disconnect();
+        this.options = new PopoverOptions();
+        this.renderer.setStyle(this.hostRef.nativeElement, 'display', 'none');
+        this.cd.detectChanges();
+        observer.next();
+        observer.complete();
+      }, ANIMATION_DURATION);
+    });
   }
 }

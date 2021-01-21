@@ -28,8 +28,8 @@ export class PopoverService {
   show(target: ElementRef, options: Partial<PopoverOptions>): PopoverInstance {
     this.checkRegistration();
     this.target = target;
-    this.popover.show(target, options);
-    this.attached.emit(target);
+    this.popover.show(target, options)
+      .subscribe(() => this.attached.emit(target));
 
     return {
       hide: () => this.hide(target),
@@ -40,8 +40,8 @@ export class PopoverService {
 
   private hide(target: ElementRef = null) {
     if (!this.target || this.target === target) {
-      this.popover.hide();
-      this.attached.emit(null);
+      this.popover.hide()
+        .subscribe(() => this.attached.emit(null));
     }
   }
 

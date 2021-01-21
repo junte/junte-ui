@@ -1,15 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  NgZone,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, NgZone, OnDestroy, Output, Renderer2 } from '@angular/core';
 import { filter, takeWhile } from 'rxjs/operators';
 import { Triggers } from '../../core/enums/triggers';
 import { PopoverOptions } from './popover.component';
@@ -19,11 +8,11 @@ import { PopoverInstance, PopoverService } from './popover.service';
   selector: '[jntPopover]',
   exportAs: 'jntPopover'
 })
-export class PopoverDirective implements OnInit, OnDestroy {
+export class PopoverDirective implements OnDestroy {
 
   private options: PopoverOptions;
   private _instance: PopoverInstance;
-  private destroyed = false;
+  private hid = false;
   private listeners: Function[] = [];
 
   set instance(instance: PopoverInstance) {
@@ -70,49 +59,53 @@ export class PopoverDirective implements OnInit, OnDestroy {
               private zone: NgZone) {
   }
 
-  ngOnInit() {
-    this.popover.attached.pipe(
-      takeWhile((() => !this.destroyed)),
-      filter(target => !!this.instance && target !== this.hostRef)
-    ).subscribe(() => this.instance = null);
-
-    this.zone.runOutsideAngular(() => {
-      this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
-        if (!!this.instance && this.options.trigger === Triggers.hover && !this.picked(path)) {
-          this.hide(path);
-        }
-      }));
-      this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
-        if (!!this.instance && this.options.trigger === Triggers.click && !this.picked(path)) {
-          this.hide(path);
-        }
-      }));
-    });
-  }
-
   ngOnDestroy() {
-    this.destroyed = true;
+    this.hid = true;
     if (!!this.instance) {
       this.instance.hide();
-      this.instance = null;
     }
     this.listeners.forEach(listener => listener());
   }
 
-  private picked(elements: HTMLElement[]) {
-    return elements.indexOf(this.hostRef.nativeElement) !== -1;
+  private picked(path: HTMLElement[]) {
+    return path.indexOf(this.hostRef.nativeElement) !== -1;
   }
 
   private show() {
     if ((this.options.content || this.options.contentTemplate) && !this.options.disabled) {
       this.instance = this.popover.show(this.hostRef, this.options);
+
+      this.popover.attached.pipe(
+        takeWhile((() => !this.hid)),
+        filter(() => !!this.instance)
+      ).subscribe(target => {
+        if (!target) {
+          this.instance = null;
+        } else if (target !== this.hostRef) {
+          this.hide();
+        }
+      });
+
+      this.zone.runOutsideAngular(() => {
+        this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
+          if (!!this.instance && this.options.trigger === Triggers.hover && !this.picked(path)) {
+            this.hide(path);
+          }
+        }));
+        this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
+          if (!!this.instance && this.options.trigger === Triggers.click && !this.picked(path)) {
+            this.hide(path);
+          }
+        }));
+      });
     }
   }
 
   private hide(path: HTMLElement[] = []) {
     if (!!this.instance && !this.instance.picked(path)) {
       this.instance.hide();
-      this.instance = null;
+      this.hid = true;
+      this.listeners.forEach(listener => listener());
     }
   }
 }
