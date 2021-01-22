@@ -5,8 +5,8 @@ import { Breakpoint } from '../../core/enums/breakpoint';
 export class BreakpointService {
 
   private queries = {
-    [Breakpoint.mobile]: window.matchMedia(`(max-width: 768px)`),
-    [Breakpoint.tablet]: window.matchMedia(`(min-width: 769px) and (max-width: 992px)`),
+    [Breakpoint.mobile]: window.matchMedia(`(max-width: 767px)`),
+    [Breakpoint.tablet]: window.matchMedia(`(min-width: 768px) and (max-width: 992px)`),
     [Breakpoint.desktop]: window.matchMedia(`(min-width: 993px) and (max-width: 1200px)`),
     [Breakpoint.wide]: window.matchMedia(`(min-width: 1201px)`)
   };
