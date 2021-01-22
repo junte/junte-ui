@@ -44,4 +44,10 @@ export class TableColumnComponent {
   @Input()
   orderBy: string;
 
+  @PropertyApi({
+    description: 'Column showing indicator',
+    type: 'boolean',
+  })
+  @Input()
+  disabled: boolean;
 }

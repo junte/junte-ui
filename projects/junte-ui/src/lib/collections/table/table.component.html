@@ -145,7 +145,7 @@
           <jnt-card *ngFor="let row of source; let i = index">
             <table data-line cellpadding="0" cellspacing="0">
               <ng-container *ngFor="let column of columns">
-                <tr *ngIf="!!column.tableCellTemplate">
+                <tr *ngIf="!column.disabled">
                   <td>
                     <b *ngIf="!!column.title">{{column.title}}</b>
                   </td>
