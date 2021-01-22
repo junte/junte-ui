@@ -91,6 +91,7 @@
       display: inline-block;
       position: relative;
       min-height: 40px;
+      max-width: 100%;
       box-sizing: border-box;
 
       &[data-height='fluid'] {
@@ -241,6 +242,8 @@
     [data-main] {
       @if $declare {
         flex: 1;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       [data-header] {
@@ -253,6 +256,7 @@
       [data-content] {
         @if $declare {
           flex: 1;
+          overflow: hidden;
         }
       }
 
