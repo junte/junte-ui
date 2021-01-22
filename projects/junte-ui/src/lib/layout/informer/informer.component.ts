@@ -4,11 +4,11 @@ import {
   ElementRef,
   EventEmitter,
   HostBinding,
-  Input, OnDestroy,
+  Input, OnDestroy, OnInit,
   Output,
   QueryList,
   Renderer2,
-  TemplateRef
+  TemplateRef, ViewChild
 } from '@angular/core';
 import { Context } from '../../core/enums/context';
 import { Gutter } from '../../core/enums/gutter';
@@ -30,10 +30,13 @@ export class InformerMessageComponent {
   selector: 'jnt-informer',
   templateUrl: './informer.encapsulated.html'
 })
-export class InformerComponent implements OnDestroy {
+export class InformerComponent implements OnDestroy, OnInit {
 
   ui = UI;
   _backdrop: ElementRef<HTMLElement>;
+
+  @ViewChild('button', {read: ElementRef, static: false})
+  button: ElementRef;
 
   @HostBinding('attr.data-outer')
   _outer: Gutter;
@@ -117,5 +120,9 @@ export class InformerComponent implements OnDestroy {
     if (!!this.backdrop) {
       this.render.removeStyle(this.backdrop.nativeElement, 'filter');
     }
+  }
+
+  ngOnInit() {
+    this.button?.nativeElement.focus();
   }
 }
