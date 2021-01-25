@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ContentChild,
@@ -25,6 +26,19 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
       multi: true
     },
     ...LOGGER_PROVIDERS
+  ],
+  animations: [
+    trigger('scale', [
+        transition(':enter', [
+          style({transform: 'scale(0)'}),
+          animate('.3s', style({transform: 'scale(1)'})),
+        ]),
+        transition(':leave', [
+          style({transform: 'scale(1)'}),
+          animate('.3s', style({transform: 'scale(0)'})),
+        ])
+      ]
+    )
   ]
 })
 export class CheckboxComponent implements ControlValueAccessor, OnInit {
