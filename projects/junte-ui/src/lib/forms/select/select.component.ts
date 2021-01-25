@@ -20,8 +20,6 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
-import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
@@ -31,7 +29,9 @@ import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
@@ -499,17 +499,26 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         placement: this.placement,
         padding: UI.gutter.small
       });
-      this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
-        .subscribe(() => this.close());
+      this.popover.attached.pipe(
+        takeWhile(() => !this.destroyed),
+        filter(t => !!t && t !== this.hostRef)
+      ).subscribe(() => this.close());
     }
   }
 
   close() {
-    this.opened = false;
     this.queryControl.setValue(null);
     if (!!this.reference.popover) {
+      let closed = false;
+      this.popover.attached.pipe(
+        takeWhile(() => !closed),
+        filter(target => !target)
+      ).subscribe(() => {
+        this.opened = false;
+        this.reference.popover = null;
+        closed = true;
+      });
       this.reference.popover.hide();
-      this.reference.popover = null;
     }
   }
 
