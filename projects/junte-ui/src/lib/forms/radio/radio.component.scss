@@ -210,6 +210,9 @@
 
     [data-switch] {
       @if $declare {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
         box-sizing: border-box;
         text-align: center;
@@ -226,10 +229,7 @@
       [data-indicator] {
         @if $declare {
           display: inline-block;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          transform-origin: center;
           transition: all .3s;
           border-radius: 50%;
           @if map-has-key($vars, indicator) {
