@@ -35,9 +35,6 @@ export class InformerComponent implements OnDestroy, OnInit {
   ui = UI;
   _backdrop: ElementRef<HTMLElement>;
 
-  @ViewChild('button', {read: ElementRef, static: false})
-  button: ElementRef;
-
   @HostBinding('attr.data-outer')
   _outer: Gutter;
 
@@ -111,7 +108,11 @@ export class InformerComponent implements OnDestroy, OnInit {
   @ContentChild('informerContentTemplate')
   contentTemplate: TemplateRef<any>;
 
-  @Output() ok = new EventEmitter();
+  @ViewChild('buttonRef', {read: ElementRef, static: false})
+  buttonRef: ElementRef;
+
+  @Output()
+  ok = new EventEmitter();
 
   constructor(private render: Renderer2) {
   }
@@ -123,6 +124,6 @@ export class InformerComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.button?.nativeElement.focus();
+    setTimeout(() => this.buttonRef?.nativeElement.focus(), 2000);
   }
 }
