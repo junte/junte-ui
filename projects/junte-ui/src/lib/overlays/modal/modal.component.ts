@@ -3,20 +3,20 @@ import {
   Component,
   ComponentRef,
   ElementRef,
-  EventEmitter,
   HostBinding,
   Input,
-  Output,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { DeviceService } from '../../layout/responsive/device.service';
 import { MethodApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
+import { ModalService } from './modal.service';
 
 const ANIMATION_CLOSE_DURATION = 300;
 const BACKDROP_FILTER = 'blur(5px)';
@@ -114,9 +114,7 @@ enum Display {
   ]
 })
 
-export class ModalComponent {
-
-  private _opened: boolean;
+export class ModalComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-modal-host';
 
@@ -128,9 +126,6 @@ export class ModalComponent {
   @Input()
   backdrop: ElementRef;
 
-  @Output()
-  opened$ = new EventEmitter<boolean>();
-
   @ViewChild('container', {read: ViewContainerRef})
   container;
 
@@ -138,13 +133,13 @@ export class ModalComponent {
   display = Display.none;
 
   @Input()
-  set opened(opened: boolean) {
-    this._opened = opened;
-    this.opened$.emit(opened);
-  }
+  opened: boolean;
 
-  get opened() {
-    return this._opened;
+  constructor(private modalService: ModalService,
+              private breakpoint: BreakpointService,
+              public device: DeviceService,
+              private renderer: Renderer2,
+              private hostRef: ElementRef) {
   }
 
   @HostBinding('attr.data-windows')
@@ -163,10 +158,8 @@ export class ModalComponent {
     }
   }
 
-  constructor(private renderer: Renderer2,
-              private hostRef: ElementRef,
-              private breakpoint: BreakpointService,
-              public device: DeviceService) {
+  ngOnInit() {
+    this.modalService.register(this);
   }
 
   start(event: AnimationEvent) {
