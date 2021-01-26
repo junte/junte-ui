@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { PropertyApi } from '../../core/decorators/api';
@@ -17,7 +18,14 @@ interface Icon {
 
 @Component({
   selector: 'jnt-link',
-  templateUrl: './link.encapsulated.html'
+  templateUrl: './link.encapsulated.html',
+  animations: [
+    trigger('rotate', [
+      state('opened', style({transform: 'rotate(-180deg)'})),
+      state('closed', style({transform: 'rotate(0)'})),
+      transition('opened <=> closed', [animate('.4s ease')])
+    ])
+  ]
 })
 export class LinkComponent {
 
@@ -44,6 +52,7 @@ export class LinkComponent {
   }
 
   @Input() collapsed: boolean;
+  @Input() opened: boolean;
 
   // TODO: we must find better solution
   @HostBinding('attr.data-active')

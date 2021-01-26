@@ -1,3 +1,4 @@
+import { trigger, style, state, transition, animate } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Gutter } from '../../core/enums/gutter';
@@ -10,7 +11,14 @@ import { MenuItemComponent } from './menu-item.component';
 
 @Component({
   selector: 'jnt-menu',
-  templateUrl: './menu.encapsulated.html'
+  templateUrl: './menu.encapsulated.html',
+  animations: [
+    trigger('collapse', [
+      state('void', style({height: 0, opacity: '0'})),
+      state('*', style({height: '*', opacity: '1'})),
+      transition('void <=> *', [animate('.3s ease')])
+    ])
+  ]
 })
 export class MenuComponent {
 
