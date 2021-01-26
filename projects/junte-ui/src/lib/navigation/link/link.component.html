@@ -37,6 +37,8 @@
     </jnt-badge>
   </ng-container>
   <jnt-icon *ngIf="features | includes : ui.feature.dropdown"
+            [@rotate]="opened ? 'opened' : 'closed'"
+            [attr.data-opened]="opened"
             [icon]="ui.icons.selectClose" data-toggle>
   </jnt-icon>
 </ng-template>

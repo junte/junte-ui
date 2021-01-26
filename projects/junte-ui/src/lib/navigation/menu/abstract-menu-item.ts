@@ -88,6 +88,20 @@ export abstract class AbstractMenuItem {
   active: boolean;
 
   @PropertyApi({
+    description: 'Menu item query params',
+    type: '{[k: string]: any}'
+  })
+  @Input()
+  queryParams: {[k: string]: any};
+
+  @PropertyApi({
+    description: 'Fragment for link #anchor',
+    default: 'null',
+  })
+  @Input()
+  fragment: string;
+
+  @PropertyApi({
     description: 'Output event for click on menu item'
   })
   @Output()
