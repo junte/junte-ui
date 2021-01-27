@@ -2,6 +2,7 @@ import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BlockComponent, TabComponent, UI } from 'junte-ui';
 import { Language as HighlightLanguage } from 'src/components/docs/shared/code-highlight/enum';
+import { CATEGORIES } from 'src/consts';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -16,6 +17,7 @@ export class BlockTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   highlight = {language: HighlightLanguage};
+  categories = CATEGORIES;
 
   types = {block: BlockComponent};
 

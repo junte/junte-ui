@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalService, ShortcutsDirective, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -16,6 +17,7 @@ export class ShortcutsTestComponent {
   language = Language;
   actions = {anonym: 'Anonym', bound: 'Bound'};
   types = {shortcuts: ShortcutsDirective};
+  categories = CATEGORIES;
   value: string;
   keys = Object.keys(UI.keyboard.key);
   modifiers = Object.keys(UI.keyboard.modifier);

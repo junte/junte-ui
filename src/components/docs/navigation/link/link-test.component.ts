@@ -1,6 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LinkComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -21,6 +22,7 @@ export class LinkTestComponent implements OnInit {
   sourceType = SourceType;
   language = Language;
   types = {link: LinkComponent};
+  categories = CATEGORIES;
 
   schemeControl = this.fb.control(null);
   outlineControl = this.fb.control(null);

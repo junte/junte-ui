@@ -2,6 +2,7 @@ import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { AccordionSectionComponent, TabComponent } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -17,6 +18,7 @@ export class AccordionTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {section: AccordionSectionComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

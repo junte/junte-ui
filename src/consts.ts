@@ -240,6 +240,12 @@ export const CATEGORIES = {
         link: 'switch',
         teaser: $localize`:@@message.switch_teaser:Teaser will be filled soon`
       },
+      slider: {
+        name: 'Slider',
+        icon: LocalUI.icons.slider,
+        link: 'slider',
+        teaser: $localize`:@@message.slider_teaser:Teaser will be filled soon`
+      },
       switcher: {
         name: 'Switcher',
         icon: LocalUI.icons.switcher,
@@ -381,6 +387,12 @@ export const CATEGORIES = {
         icon: LocalUI.icons.confirm,
         link: 'confirm',
         teaser: $localize`:@@message.confirm_teaser:Teaser will be filled soon`
+      },
+      animations: {
+        name: 'Animations',
+        icon: LocalUI.icons.animations,
+        link: 'animations',
+        teaser: $localize`:@@message.animations_teaser:Teaser will be filled soon`
       },
       message: {
         name: 'Message',

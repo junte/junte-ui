@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InformerComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -14,6 +15,7 @@ export class InformerTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {informer: InformerComponent};
+  categories = CATEGORIES;
   errors: string[] = [];
   language = Language;
 

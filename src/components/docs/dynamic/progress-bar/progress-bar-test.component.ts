@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { ProgressBarComponent } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -15,6 +16,7 @@ export class ProgressBarTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {progress: ProgressBarComponent};
+  categories = CATEGORIES;
   added = false;
 
   @ViewChild('code') code: TabComponent;

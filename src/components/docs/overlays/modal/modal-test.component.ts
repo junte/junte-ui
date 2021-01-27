@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { ModalTestFactoryComponent } from './test.component';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -31,6 +32,7 @@ export class ModalTestComponent implements OnInit {
   size = Size;
   contentType = ContentType;
   types = {modal: ModalComponent, options: ModalOptions};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

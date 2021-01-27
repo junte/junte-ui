@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DatePeriodComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,6 +15,7 @@ export class DatePeriodTestComponent {
   localUi = LocalUI;
   format = 'yyyy-MM-dd';
   types = {period: DatePeriodComponent};
+  categories = CATEGORIES;
 
   startControl = this.fb.control(new Date);
   endControl = this.fb.control(new Date);

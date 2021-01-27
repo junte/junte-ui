@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, CheckboxComponent, CheckboxGroupComponent, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { CATEGORIES } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -17,6 +18,7 @@ export class CheckboxTestComponent implements OnInit {
   language = Language;
   hero = Hero;
   types = {checkbox: CheckboxComponent, group: CheckboxGroupComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
