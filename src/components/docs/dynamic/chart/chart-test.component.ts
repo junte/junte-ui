@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ChartComponent, ChartIndicatorComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -15,6 +16,7 @@ export class ChartTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  categories = CATEGORIES;
   hero = Hero;
 
   heroes = [

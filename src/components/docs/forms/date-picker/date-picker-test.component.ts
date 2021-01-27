@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DatePickerComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,6 +14,7 @@ export class DatePickerTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {flightDate: DatePickerComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

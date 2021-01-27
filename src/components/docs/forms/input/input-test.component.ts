@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit, ViewChild } from '
 import { FormBuilder } from '@angular/forms';
 import { InputComponent, TabComponent, UI } from 'junte-ui';
 import { InputType } from 'projects/junte-ui/src/lib/forms/input/enums';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
 import { Language } from '../../../../enums/language';
@@ -19,6 +20,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   inputType = InputType;
   language = Language;
   highlight = {language: HighlightLanguage};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

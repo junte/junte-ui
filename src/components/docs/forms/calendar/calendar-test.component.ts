@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { setDate, setMonth, setYear } from 'date-fns';
 import { CalendarComponent, Period, TabComponent, UI } from 'junte-ui';
 import { combineLatest } from 'rxjs';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Months {
@@ -23,6 +24,7 @@ export class CalendarTestComponent implements OnInit {
   localUi = LocalUI;
   months = Months;
   types = {calendar: CalendarComponent};
+  categories = CATEGORIES;
   now = new Date();
 
   @ViewChild('code') code: TabComponent;

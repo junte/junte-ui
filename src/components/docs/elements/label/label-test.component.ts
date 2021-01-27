@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LabelComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,6 +14,7 @@ export class LabelTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {label: LabelComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

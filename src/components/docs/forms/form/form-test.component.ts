@@ -9,6 +9,7 @@ import {
   TabComponent,
   UI
 } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
 import sdk from '@stackblitz/sdk';
@@ -35,6 +36,7 @@ export class FormTestComponent implements OnInit {
     message: FormMessageComponent,
     item: FormItemComponent
   };
+  categories = CATEGORIES;
   language = Language;
   gender = Gender;
   countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco', 'Ukraine'];

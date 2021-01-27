@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum UsingType {
@@ -25,6 +26,7 @@ export class ConfirmTestComponent  implements OnInit {
   usingType = UsingType;
   contentType = ContentType;
   types = {confirm: ConfirmComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

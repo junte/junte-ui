@@ -4,6 +4,7 @@ import { UI } from 'junte-ui';
 import { CircleBarComponent } from 'junte-ui';
 import { BarIndicatorComponent } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -16,6 +17,7 @@ export class CircleBarTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {indicator: BarIndicatorComponent, bar: CircleBarComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

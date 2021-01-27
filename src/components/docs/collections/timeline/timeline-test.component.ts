@@ -6,6 +6,7 @@ import {
   TimelineItemComponent,
   UI
 } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
@@ -22,6 +23,7 @@ export class TimelineTestComponent implements OnInit {
   language = Language;
   highlight = {language: HighlightLanguage};
   types = {timeline: TimelineComponent, item: TimelineItemComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

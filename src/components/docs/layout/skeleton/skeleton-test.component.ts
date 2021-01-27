@@ -2,6 +2,7 @@ import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SkeletonComponent, UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -24,6 +25,7 @@ export class SkeletonTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {skeleton: SkeletonComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 

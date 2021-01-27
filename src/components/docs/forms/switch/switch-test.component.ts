@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SwitchComponent, TabComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -14,6 +15,7 @@ export class SwitchTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {switch: SwitchComponent};
+  categories = CATEGORIES;
   language = Language;
 
   @ViewChild('code') code: TabComponent;

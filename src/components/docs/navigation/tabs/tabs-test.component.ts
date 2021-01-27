@@ -1,6 +1,7 @@
 import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TabComponent, TabsComponent, UI } from 'junte-ui';
+import { CATEGORIES } from 'src/consts';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -15,6 +16,7 @@ export class TabsTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {tabs: TabsComponent, tab: TabComponent};
+  categories = CATEGORIES;
 
   outlineControl = this.fb.control(null);
   iconsControl = this.fb.control(true);

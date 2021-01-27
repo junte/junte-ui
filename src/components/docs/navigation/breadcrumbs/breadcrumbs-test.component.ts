@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { CATEGORIES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -12,4 +13,5 @@ export class BreadcrumbsTestComponent {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  categories = CATEGORIES;
 }

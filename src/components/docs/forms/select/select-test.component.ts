@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { CATEGORIES } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -17,6 +18,7 @@ export class SelectTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {select: SelectComponent , option: SelectOptionComponent};
+  categories = CATEGORIES;
 
   @ViewChild('code') code: TabComponent;
 
