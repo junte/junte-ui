@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <div data-label *ngIf="!!label">{{label}}</div>
   <jnt-stack #layoutRef data-content [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small" [align]="ui.align.center">
@@ -74,4 +74,4 @@
       </button>
     </div>
   </jnt-stack>
-</form>
+</ng-container>
