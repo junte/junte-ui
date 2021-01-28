@@ -1,6 +1,6 @@
 import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { TabComponent, UI, ForDirective, ForMinDirective, ForMaxDirective } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
@@ -18,7 +18,7 @@ export class ResponsiveTestComponent {
   selectorType = SelectorType;
   language = Language;
   highlight = {language: HighlightLanguage};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   types = {for: ForDirective, min: ForMinDirective, max: ForMaxDirective};
 

@@ -2,7 +2,7 @@ import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { CollapsibleComponent, TabComponent } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -17,7 +17,7 @@ export class CollapsibleTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {collapsible: CollapsibleComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code')
   code: TabComponent;

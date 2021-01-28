@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MenuComponent, MenuItemComponent, UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 enum SourceType {
@@ -21,7 +21,7 @@ export class MenuTestComponent implements OnInit {
   localUi = LocalUI;
   sourceType = SourceType;
   types = {menu: MenuComponent, menuItem: MenuItemComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
 

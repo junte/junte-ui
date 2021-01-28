@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TimerComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,7 +13,7 @@ export class TimerTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
   seconds = 9;
   minutes = 0;
   hours = 0;

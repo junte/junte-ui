@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, SwitcherComponent, SwitcherOptionComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Hero } from 'src/enums/hero';
 import { Language } from '../../shared/code-highlight/enum';
@@ -19,7 +19,7 @@ export class SwitcherTestComponent implements OnInit {
   hero = Hero;
   language = Language;
   types = {switcher: SwitcherComponent, option: SwitcherOptionComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
