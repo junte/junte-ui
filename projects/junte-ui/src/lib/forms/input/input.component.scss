@@ -139,13 +139,13 @@
       }
 
       &[data-with-icon='true'] {
-        #{$wrapper} form [data-content] {
+        #{$wrapper} [data-content] {
           padding: $jnt-gutter-small;
         }
       }
 
       &[data-size=#{$jnt-size-small-name}] {
-        #{$wrapper} form [data-content] {
+        #{$wrapper} [data-content] {
           padding: $jnt-gutter-tiny $jnt-gutter-normal;
         }
       }
@@ -179,8 +179,8 @@
               background-color: $jnt-control-disabled-background;
               pointer-events: none;
 
-              #{$wrapper} form input,
-              #{$wrapper} form textarea {
+              #{$wrapper} input,
+              #{$wrapper} textarea {
                 color: $jnt-control-disabled-label-color;
                 background-color: $jnt-control-disabled-background;
                 pointer-events: none;
@@ -255,8 +255,8 @@
 
     &[data-state='loading'] {
       &,
-      #{$wrapper} form [data-content] input,
-      #{$wrapper} form [data-content] textarea {
+      #{$wrapper} [data-content] input,
+      #{$wrapper} [data-content] textarea {
         @if $declare {
           background-color: $jnt-control-disabled-background;
           color: $jnt-control-disabled-label-color;
@@ -277,116 +277,136 @@
     }
   }
 
-  #{$context} #{$wrapper} form {
+  #{$context} #{$wrapper} [data-content] {
     @if $declare {
-      display: flex;
       flex: 1;
-      position: relative;
       max-width: 100%;
+      box-sizing: border-box;
+      padding: $jnt-gutter-small $jnt-gutter-normal;
     }
 
-    &:focus {
+    [data-label-icon] {
+      @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+    }
+
+    input, textarea {
       @if $declare {
-        outline: 0;
+        color: $jnt-primary-text-color;
+        background-color: $jnt-control-background;
+        border: 0;
+        padding: 0;
+        font-family: inherit;
+        resize: none;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        min-width: 0;
+      }
+
+      &[type='number']::-webkit-outer-spin-button,
+      &[type='number']::-webkit-inner-spin-button {
+        @if $declare {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      &[type='number'] {
+        @if $declare {
+          -moz-appearance: textfield;
+        }
+      }
+
+      &:focus {
+        @if $declare {
+          outline: 0;
+        }
+      }
+
+      &:read-only {
+        @if $declare {
+          pointer-events: none;
+        }
       }
     }
 
-    [data-content] {
+    [data-warning] {
       @if $declare {
-        flex: 1;
-        max-width: 100%;
-        box-sizing: border-box;
-        padding: $jnt-gutter-small $jnt-gutter-normal;
+        [data-icon] {
+          @include jnt-icon((color: $jnt-fail-color), '&');
+        }
+      }
+    }
+
+    [data-checked] {
+      @if $declare {
+        [data-icon] {
+          @include jnt-icon((color: $jnt-success-color), '&');
+        }
+      }
+    }
+
+    [data-loading] {
+      @if $declare {
+        [data-spinner] {
+          @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
+        }
+      }
+    }
+
+    [data-view], [data-reset] {
+      @if $declare {
+        border: 0;
+        background-color: transparent;
+        color: $jnt-primary-text-light-color;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        display: flex;
       }
 
-      [data-label-icon] {
+      &:focus {
+        @if $declare {
+          outline: 0;
+        }
+      }
+
+      [data-icon] {
         @include jnt-icon((color: $jnt-primary-text-light-color), '&');
       }
 
-      input, textarea {
-        @if $declare {
-          color: $jnt-primary-text-color;
-          background-color: $jnt-control-background;
-          border: 0;
-          padding: 0;
-          font-family: inherit;
-          resize: none;
-          position: relative;
-          display: inline-block;
-          width: 100%;
-          min-width: 0;
-        }
-
-        &[type='number']::-webkit-outer-spin-button,
-        &[type='number']::-webkit-inner-spin-button {
-          @if $declare {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-        }
-
-        &[type='number'] {
-          @if $declare {
-            -moz-appearance: textfield;
-          }
-        }
-
-        &:focus {
-          @if $declare {
-            outline: 0;
-          }
-        }
-
-        &:read-only {
-          @if $declare {
-            pointer-events: none;
-          }
+      &:hover {
+        [data-icon] {
+          @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
         }
       }
+    }
+  }
 
-      [data-warning] {
-        @if $declare {
-          [data-icon] {
-            @include jnt-icon((color: $jnt-fail-color), '&');
-          }
-        }
-      }
+  [data-arrows] {
+    @if $declare {
+      height: 100%;
+      margin-left: $jnt-gutter-small;
+    }
 
-      [data-checked] {
-        @if $declare {
-          [data-icon] {
-            @include jnt-icon((color: $jnt-success-color), '&');
-          }
-        }
-      }
-
-      [data-loading] {
-        @if $declare {
-          [data-spinner] {
-            @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
-          }
-        }
-      }
-
-      [data-view], [data-reset] {
-        @if $declare {
-          border: 0;
-          background-color: transparent;
-          color: $jnt-primary-text-light-color;
-          cursor: pointer;
-          padding: 0;
-          line-height: 1;
-          display: flex;
-        }
-
-        &:focus {
-          @if $declare {
-            outline: 0;
-          }
-        }
+    button {
+      @if $declare {
+        padding: 0;
+        margin: 0;
+        min-height: 50%;
+        border: 0;
+        border-radius: $jnt-corner-small;
+        cursor: pointer;
+        background-color: transparent;
+        color: $jnt-primary-text-light-color;
+        display: flex;
 
         [data-icon] {
           @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+        }
+
+        &:focus {
+          outline: 0;
         }
 
         &:hover {
@@ -394,48 +414,13 @@
             @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
           }
         }
-      }
-    }
 
-    [data-arrows] {
-      @if $declare {
-        height: 100%;
-        margin-left: $jnt-gutter-small;
-      }
+        &:first-child {
+          align-items: flex-start;
+        }
 
-      button {
-        @if $declare {
-          padding: 0;
-          margin: 0;
-          min-height: 50%;
-          border: 0;
-          border-radius: $jnt-corner-small;
-          cursor: pointer;
-          background-color: transparent;
-          color: $jnt-primary-text-light-color;
-          display: flex;
-
-          [data-icon] {
-            @include jnt-icon((color: $jnt-primary-text-light-color), '&');
-          }
-
-          &:focus {
-            outline: 0;
-          }
-
-          &:hover {
-            [data-icon] {
-              @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
-            }
-          }
-
-          &:first-child {
-            align-items: flex-start;
-          }
-
-          &:last-child {
-            align-items: flex-end;
-          }
+        &:last-child {
+          align-items: flex-end;
         }
       }
     }
