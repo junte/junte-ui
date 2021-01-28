@@ -5,10 +5,12 @@ import {
   AccordionModule,
   AppLayoutModule,
   AvatarModule,
+  BadgeModule,
   CheckboxModule,
   FormModule,
   GridModule,
   IconModule,
+  LabelModule,
   LinkModule,
   SelectModule,
   StackModule,
@@ -35,7 +37,9 @@ import { SwitchTestComponent } from './switch-test.component';
     SwitchModule,
     CheckboxModule,
     SharedModule,
-    AppLayoutModule
+    AppLayoutModule,
+    BadgeModule,
+    LabelModule
   ],
   exports: [
     SwitchTestComponent
