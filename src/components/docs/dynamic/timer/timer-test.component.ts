@@ -20,6 +20,9 @@ export class TimerTestComponent implements OnInit {
   days = 0;
   finished = 0;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/chart';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A70';
+
   @ViewChild('timer')
   timer: TimerComponent;
 

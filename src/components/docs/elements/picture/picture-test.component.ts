@@ -24,6 +24,8 @@ export class PictureTestComponent implements OnInit {
   handbook = HANDBOOK;
   fit = Fit;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/picture';
+
   @ViewChild('code') code: TabComponent;
 
   imageControl = this.fb.control(true);

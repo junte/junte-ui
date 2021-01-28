@@ -3,10 +3,26 @@
   <jnt-app-page-header [icon]="localUi.icons.stack"
                        title="Stack"
                        i18n-title="@@label.stack"
-                       [teaser]="handbook.layout.components.stack.teaser"></jnt-app-page-header>
-  <app-resources
-    gitlab="https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack">
-  </app-resources>
+                       [teaser]="handbook.layout.components.stack.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
 
   <div teaser [ngSwitch]="locale">
     <ng-container *ngSwitchDefault>

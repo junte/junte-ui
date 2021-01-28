@@ -17,6 +17,8 @@ export class AnimationsTestComponent {
   localUi = LocalUI;
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/other/animations';
+
   @ViewChild('code') code: TabComponent;
 
   enterTimingControl = this.fb.control(1);

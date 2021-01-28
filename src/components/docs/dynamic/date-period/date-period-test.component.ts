@@ -17,6 +17,9 @@ export class DatePeriodTestComponent {
   types = {period: DatePeriodComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/date-period';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5857%3A2331';
+
   startControl = this.fb.control(new Date);
   endControl = this.fb.control(new Date);
   currentControl = this.fb.control(null);

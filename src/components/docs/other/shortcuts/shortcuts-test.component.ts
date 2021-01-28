@@ -22,6 +22,8 @@ export class ShortcutsTestComponent {
   keys = Object.keys(UI.keyboard.key);
   modifiers = Object.keys(UI.keyboard.modifier);
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/shortcuts';
+
   @ViewChild('code') code: TabComponent;
 
   keyControl = this.fb.control(UI.keyboard.key.enter);

@@ -3,11 +3,17 @@
   <jnt-app-page-header [icon]="localUi.icons.slider"
                        title="Slider"
                        i18n-title="@@label.slider"
-                       [teaser]="handbook.forms.components.slider.teaser"></jnt-app-page-header>
+                       [teaser]="handbook.forms.components.slider.teaser">
 
-  <app-resources
-    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/slider">
-  </app-resources>
+    <ng-template #headerActionsTemplate>
+      <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+      </jnt-link>
+    </ng-template>
+  </jnt-app-page-header>
 
   <jnt-tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"

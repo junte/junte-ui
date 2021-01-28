@@ -19,6 +19,8 @@ export class StackTestComponent implements OnInit {
   highlight = {language: HighlightLanguage};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/layout/stack';
+
   types = {stack: StackComponent};
 
   @ViewChild('code') code: TabComponent;

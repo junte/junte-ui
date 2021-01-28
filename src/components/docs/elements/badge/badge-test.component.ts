@@ -16,6 +16,9 @@ export class BadgeTestComponent implements OnInit {
   types = {badge: BadgeComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/badge';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2089%3A34';
+
   @ViewChild('code') code: TabComponent;
 
   positionControl = this.fb.control(null);

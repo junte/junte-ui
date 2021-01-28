@@ -38,6 +38,10 @@ export class FormTestComponent implements OnInit {
   };
   handbook = HANDBOOK;
   language = Language;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/form';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1291%3A2727';
+
   gender = Gender;
   countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco', 'Ukraine'];
   pets: string[] = ['cat', 'dog', 'fish', 'parrot'];

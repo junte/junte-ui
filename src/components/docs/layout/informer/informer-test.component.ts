@@ -19,6 +19,9 @@ export class InformerTestComponent implements OnInit {
   errors: string[] = [];
   language = Language;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/informer';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9331%3A146';
+
   state = {ok: false};
 
   @ViewChild('page', {read: ElementRef, static: false})

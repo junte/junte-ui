@@ -19,6 +19,9 @@ export class ChartTestComponent implements OnInit {
   handbook = HANDBOOK;
   hero = Hero;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/chart';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A70';
+
   heroes = [
     {
       id: 1, name: 'spiderman', title: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 9981,

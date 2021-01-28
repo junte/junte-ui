@@ -18,6 +18,8 @@ export class ImageUploaderTestComponent {
   handbook = HANDBOOK;
   avatar: UploadImageData;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-uploader';
+
   @ViewChild('code') code: TabComponent;
 
   shapeControl = this.fb.control(UI.shape.circle);

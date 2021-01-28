@@ -17,6 +17,9 @@ export class PagerTestComponent implements OnInit {
   types = {pager: PagerComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/pager';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1472%3A3614';
+
   countControl = this.fb.control(50);
   pageSizeControl = this.fb.control(15);
   modeControl = this.fb.control(UI.pager.mode.offset);

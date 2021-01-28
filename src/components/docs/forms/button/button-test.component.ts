@@ -16,6 +16,9 @@ export class ButtonTestComponent implements OnInit {
   types = {button: ButtonComponent, group: ButtonGroupComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/button';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A0';
+
   @ViewChild('code') code: TabComponent;
 
   schemeControl = this.fb.control(null);

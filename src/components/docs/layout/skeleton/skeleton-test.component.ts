@@ -27,6 +27,9 @@ export class SkeletonTestComponent implements OnInit {
   types = {skeleton: SkeletonComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/skeleton';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1270%3A539';
+
   @ViewChild('code') code: TabComponent;
 
   sketchControl = this.fb.control(Sketch.User);

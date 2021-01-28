@@ -19,6 +19,9 @@ export class CircleBarTestComponent implements OnInit {
   types = {indicator: BarIndicatorComponent, bar: CircleBarComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/circlebar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554';
+
   @ViewChild('code') code: TabComponent;
 
   likesControl = this.fb.control(50);

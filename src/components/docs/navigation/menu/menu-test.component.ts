@@ -23,6 +23,9 @@ export class MenuTestComponent implements OnInit {
   types = {menu: MenuComponent, menuItem: MenuItemComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/menu';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780';
+
   @ViewChild('code') code: TabComponent;
 
   orientationControl = this.fb.control(null);

@@ -22,6 +22,9 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   highlight = {language: HighlightLanguage};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=700%3A0';
+
   @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(null);

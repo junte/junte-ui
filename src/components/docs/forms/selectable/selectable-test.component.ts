@@ -20,6 +20,8 @@ export class SelectableTestComponent implements OnInit {
   handbook = HANDBOOK;
   hero = Hero;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/selectable';
+
   @ViewChild('code') code: TabComponent;
 
   modeControl = this.fb.control(UI.select.mode.single);

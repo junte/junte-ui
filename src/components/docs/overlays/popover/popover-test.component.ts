@@ -24,6 +24,9 @@ export class PopoverTestComponent {
   triggerType = Triggers;
   contentType = ContentType;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/popover';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=56%3A9';
+
   titleControl = this.fb.control(true);
   triggerControl = this.fb.control(Triggers.hover);
   contentTypeControl = this.fb.control(ContentType.default);

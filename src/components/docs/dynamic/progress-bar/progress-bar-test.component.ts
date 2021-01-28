@@ -19,6 +19,9 @@ export class ProgressBarTestComponent implements OnInit {
   handbook = HANDBOOK;
   added = false;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/progress-bar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A69';
+
   @ViewChild('code') code: TabComponent;
 
   valueControl = this.fb.control(50);

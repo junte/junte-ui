@@ -24,6 +24,9 @@ export class LinkTestComponent implements OnInit {
   types = {link: LinkComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/link';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1080%3A1554';
+
   schemeControl = this.fb.control(null);
   outlineControl = this.fb.control(null);
   sourceControl = this.fb.control(SourceType.local);

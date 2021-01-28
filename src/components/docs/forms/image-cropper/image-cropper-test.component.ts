@@ -17,6 +17,8 @@ export class ImageCropperTestComponent {
   types = {imageCropper: ImageCropperComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-cropper';
+
   @ViewChild('code') code: TabComponent;
 
   urlControl = this.fb.control('assets/images/elon.jpeg');
