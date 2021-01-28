@@ -21,12 +21,18 @@
             <app-browser-preview>
               <ng-template #document>
                 <form [formGroup]="form">
-                  <jnt-stack>
+                  <jnt-stack [align]="ui.align.stretch">
                     <jnt-switch formControlName="switch"
                                 [size]="sizeControl.value"
-                                [label]="labelControl.value ? 'Are you happy?' : null"
+                                [label]="'Are you happy?'"
                                 [icons]="iconsControl.value ? {on: ui.icons.smile, off: ui.icons.sad} : null"
                                 [tags]="tagsControl.value ? {on: 'Yes', off: 'No'} : null">
+                      <ng-template #switchLabelTemplate *ngIf="labelControl.value">
+                        <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+                          <span>Show heroes</span>
+                          <jnt-label label="200 likes"></jnt-label>
+                        </jnt-stack>
+                      </ng-template>
                     </jnt-switch>
 
                     <iframe giphy *ngIf="switchControl.value;else unHappyTemplate"
@@ -87,7 +93,7 @@
                   <jnt-row>
                     <jnt-col [span]="6">
                       <jnt-checkbox formControlName="label"
-                                    label="Label"
+                                    label="Custom label"
                                     i18n-label="@@label.label"></jnt-checkbox>
                     </jnt-col>
                     <jnt-col [span]="6">
@@ -146,7 +152,7 @@
     [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
   </ng-container>
 
-  <ng-container *ngIf="labelControl.value">
+  <ng-container *ngIf="!labelControl.value">
     <![CDATA[
     label="Are you happy?"]]>
   </ng-container>
@@ -161,7 +167,17 @@
     [tags]="{on: 'Yes', off: 'No'}"]]>
   </ng-container>
 
-  <![CDATA[>
+  <![CDATA[>]]>
+  <ng-container *ngIf="labelControl.value">
+    <![CDATA[
+    <ng-template #switchLabelTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+        <span>Show heroes</span>
+        <jnt-label label="200 likes"></jnt-label>
+      </jnt-stack>
+    </ng-template>]]>
+  </ng-container>
+  <![CDATA[
   </jnt-switch>
   ]]>
               </app-code-highlight>

@@ -21,7 +21,7 @@ export class SwitchTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
-  labelControl = this.fb.control(true);
+  labelControl = this.fb.control(false);
   iconsControl = this.fb.control(true);
   tagsControl = this.fb.control(true);
   disabledControl = this.fb.control(false);

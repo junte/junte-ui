@@ -22,4 +22,10 @@
     </jnt-stack>
   </form>
 </div>
-<label *ngIf="label">{{label}}</label>
+<label>
+  <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
+</label>
+
+<ng-template #labelDefaultTemplate>
+  <ng-container *ngIf="label">{{label}}</ng-container>
+</ng-template>
