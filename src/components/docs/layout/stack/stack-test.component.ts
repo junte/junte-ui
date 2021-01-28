@@ -1,7 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { StackComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language as HighlightLanguage} from '../../shared/code-highlight/enum';
 import {Language} from '../../../../enums/language';
@@ -17,7 +17,7 @@ export class StackTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   highlight = {language: HighlightLanguage};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   types = {stack: StackComponent};
 

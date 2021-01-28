@@ -1,7 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import { SpinnerComponent } from 'junte-ui';
@@ -18,7 +18,7 @@ export class SpinnerTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {spinner: SpinnerComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
 

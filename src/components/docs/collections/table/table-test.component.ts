@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { serialize } from '@junte/serialize-ts';
 import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { TableSections, TableState, TableStateUpdate } from './data/table-data.types';
 
@@ -20,7 +20,7 @@ export class TableTestComponent implements OnInit {
   localUi = LocalUI;
   sections = TableSections;
   types = {table: TableComponent, column: TableColumnComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
 

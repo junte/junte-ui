@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { FilterComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
@@ -48,7 +48,7 @@ export class FilterTestComponent implements OnInit {
   hero = Hero;
   language = Language;
   types = {filter: FilterComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   heroes = [
     new FilterHero(Hero.batman, 'Batman', Abilities.immortality, Sources.technologies, Universes.dc),

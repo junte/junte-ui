@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ButtonComponent, ButtonGroupComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,7 +14,7 @@ export class ButtonTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {button: ButtonComponent, group: ButtonGroupComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
 

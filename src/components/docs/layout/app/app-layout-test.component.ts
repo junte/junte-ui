@@ -1,5 +1,5 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import {
@@ -25,7 +25,7 @@ export class AppLayoutTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
   language = Language;
 
   types = {

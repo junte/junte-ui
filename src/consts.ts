@@ -39,7 +39,7 @@ switch (CURRENT_LANGUAGE) {
 }
 
 
-export const CATEGORIES = {
+export const HANDBOOK = {
   layout: {
     name: 'Layout',
     icon: LocalUI.icons.layout,

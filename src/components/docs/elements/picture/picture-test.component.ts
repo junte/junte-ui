@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PictureComponent, TabComponent, UI } from 'junte-ui';
 import { Fit } from 'projects/junte-ui/src/lib/core/enums/fit';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Sketches {
@@ -21,7 +21,7 @@ export class PictureTestComponent implements OnInit {
   localUi = LocalUI;
   sketches = Sketches;
   types = {picture: PictureComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
   fit = Fit;
 
   @ViewChild('code') code: TabComponent;

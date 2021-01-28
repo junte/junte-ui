@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { TabComponent, UI } from 'junte-ui';
 import { PagerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 
 @Component({
   selector: 'app-pager-test',
@@ -15,7 +15,7 @@ export class PagerTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {pager: PagerComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   countControl = this.fb.control(50);
   pageSizeControl = this.fb.control(15);

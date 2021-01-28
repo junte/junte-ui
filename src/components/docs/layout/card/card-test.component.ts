@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import sdk from '@stackblitz/sdk';
 import {CardComponent, TabComponent, UI} from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import {LocalUI} from 'src/enums/local-ui';
 
 enum Types {
@@ -20,7 +20,7 @@ export class CardTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   type = Types;
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code')
   code: TabComponent;

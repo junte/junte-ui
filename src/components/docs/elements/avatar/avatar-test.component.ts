@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from '../../../../enums/local-ui';
 
 export enum Sketches {
@@ -25,7 +25,7 @@ export class AvatarTestComponent implements OnInit {
     list: AvatarsListComponent,
     group: AvatarsGroupComponent
   };
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   @ViewChild('code') code: TabComponent;
 

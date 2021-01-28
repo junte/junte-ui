@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PopoverComponent, Position, TabComponent, Triggers, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum ContentType {
@@ -19,7 +19,7 @@ export class PopoverTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {popover: PopoverComponent};
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
   keys = Object.keys;
   triggerType = Triggers;
   contentType = ContentType;
