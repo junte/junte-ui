@@ -16,6 +16,9 @@ export class DotTestComponent implements OnInit {
   types = {dot: DotComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/dot';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9331%3A0';
+
   @ViewChild('code') code: TabComponent;
 
   colorControl = this.fb.control(UI.color.primary);

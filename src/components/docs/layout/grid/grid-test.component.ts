@@ -18,6 +18,8 @@ export class GridTestComponent implements OnInit {
   types = {container: ContainerComponent, row: RowComponent, col: ColComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/grid';
+
   @ViewChild('code') code: TabComponent;
 
   spacingControl = this.fb.control(null);

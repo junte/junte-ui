@@ -20,6 +20,9 @@ export class SelectTestComponent implements OnInit {
   types = {select: SelectComponent , option: SelectOptionComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A219';
+
   @ViewChild('code') code: TabComponent;
 
   selected = {heroes: []};

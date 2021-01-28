@@ -16,6 +16,9 @@ export class LabelTestComponent implements OnInit {
   types = {label: LabelComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/label';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=187%3A0';
+
   @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);

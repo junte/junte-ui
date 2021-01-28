@@ -25,6 +25,9 @@ export class TimelineTestComponent implements OnInit {
   types = {timeline: TimelineComponent, item: TimelineItemComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/timeline';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=6587%3A0';
+
   @ViewChild('code') code: TabComponent;
 
   iconControl = this.fb.control(false);

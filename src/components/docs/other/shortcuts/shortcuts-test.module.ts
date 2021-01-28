@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule, FormModule, InputModule, LayoutModule, SelectModule, ShortcutsModule, TabsModule } from 'junte-ui';
+import { AccordionModule, FormModule, InputModule, LayoutModule, LinkModule, SelectModule, ShortcutsModule, TabsModule } from 'junte-ui';
 import { SharedModule } from 'src/components/docs/shared/shared.module';
 import { ShortcutsTestComponent } from './shortcuts-test.component';
 
@@ -14,6 +14,7 @@ import { ShortcutsTestComponent } from './shortcuts-test.component';
     LayoutModule,
     TabsModule,
     InputModule,
+    LinkModule,
     ReactiveFormsModule,
     SelectModule,
     AccordionModule,

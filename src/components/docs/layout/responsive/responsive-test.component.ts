@@ -20,6 +20,8 @@ export class ResponsiveTestComponent {
   highlight = {language: HighlightLanguage};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/responsive';
+
   types = {for: ForDirective, min: ForMinDirective, max: ForMaxDirective};
 
   @ViewChild('code') code: TabComponent;

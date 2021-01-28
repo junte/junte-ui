@@ -50,6 +50,9 @@ export class FilterTestComponent implements OnInit {
   types = {filter: FilterComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/filters';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9210%3A0';
+
   heroes = [
     new FilterHero(Hero.batman, 'Batman', Abilities.immortality, Sources.technologies, Universes.dc),
     new FilterHero(Hero.ironman, 'Ironman', Abilities.fly, Sources.technologies, Universes.marvel),

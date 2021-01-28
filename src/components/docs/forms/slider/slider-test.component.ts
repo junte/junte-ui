@@ -16,6 +16,8 @@ export class SliderTestComponent implements OnInit {
   types = {slider: SliderComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/slider';
+
   @ViewChild('code')
   code: TabComponent;
 

@@ -19,6 +19,9 @@ export class BlockTestComponent implements OnInit {
   highlight = {language: HighlightLanguage};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/block';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2389%3A4155';
+
   types = {block: BlockComponent};
 
   @ViewChild('block')

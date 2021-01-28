@@ -21,6 +21,9 @@ export class SwitcherTestComponent implements OnInit {
   types = {switcher: SwitcherComponent, option: SwitcherOptionComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switcher';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997';
+
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
 

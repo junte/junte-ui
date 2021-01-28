@@ -27,6 +27,9 @@ export class CalendarTestComponent implements OnInit {
   handbook = HANDBOOK;
   now = new Date();
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/calendar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1824%3A3416';
+
   @ViewChild('code') code: TabComponent;
 
   period: Period;

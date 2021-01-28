@@ -34,6 +34,9 @@ export class ModalTestComponent implements OnInit {
   types = {modal: ModalComponent, options: ModalOptions};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/modal';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1709%3A3466';
+
   @ViewChild('code') code: TabComponent;
 
   widthControl = this.fb.control(Size.large);

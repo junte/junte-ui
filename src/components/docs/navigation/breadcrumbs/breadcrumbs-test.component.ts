@@ -14,4 +14,8 @@ export class BreadcrumbsTestComponent {
   localUi = LocalUI;
   language = Language;
   handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/breadcrumbs';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=780%3A31';
+
 }

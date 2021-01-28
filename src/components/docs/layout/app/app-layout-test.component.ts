@@ -28,6 +28,9 @@ export class AppLayoutTestComponent implements OnInit {
   handbook = HANDBOOK;
   language = Language;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/app';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611';
+
   types = {
     app: AppLayoutComponent,
     header: AppHeaderComponent,

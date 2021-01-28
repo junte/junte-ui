@@ -16,6 +16,9 @@ export class IconTestComponent implements OnInit {
   icon = IconComponent;
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/icon';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=32%3A95';
+
 
   @ViewChild('code') code: TabComponent;
 

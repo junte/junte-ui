@@ -16,6 +16,9 @@ export class DatePickerTestComponent implements OnInit {
   types = {flightDate: DatePickerComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/date-picker';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=7455%3A19';
+
   @ViewChild('code') code: TabComponent;
 
   typeControl = this.fb.control(false);

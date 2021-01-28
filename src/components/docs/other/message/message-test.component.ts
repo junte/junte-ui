@@ -16,6 +16,9 @@ export class MessageTestComponent implements OnInit {
   types = {message: MessageComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/shared/message';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5930%3A29';
+
   @ViewChild('code') code: TabComponent;
 
   schemeControl = this.fb.control(null);

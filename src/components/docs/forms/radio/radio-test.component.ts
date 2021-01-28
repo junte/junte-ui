@@ -20,6 +20,9 @@ export class RadioTestComponent implements OnInit {
   types = {radio: RadioComponent, group: RadioGroupComponent};
   handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/radio';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2782';
+
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
 
