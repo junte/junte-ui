@@ -6,10 +6,10 @@ import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-components',
-  templateUrl: './components.component.html',
-  styleUrls: ['./components.component.scss']
+  templateUrl: './handbook.component.html',
+  styleUrls: ['./handbook.component.scss']
 })
-export class ComponentsComponent {
+export class HandbookComponent {
 
   ui = UI;
   localUi = LocalUI;
