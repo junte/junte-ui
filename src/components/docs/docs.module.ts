@@ -14,7 +14,7 @@ import {
   ThemeSwitcherModule
 } from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
-import { ComponentsModule } from 'src/components/docs/components/components.module';
+import { HandbookModule } from 'src/components/docs/handbook/handbook.module';
 import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 import { AppFooterModule } from '../footer/app-footer.module';
 import { OutletModule } from '../outlet/outlet.module';
@@ -44,7 +44,7 @@ import { ModalTestModule } from './overlays/modal/modal-test.module';
         DocsRoutingModule,
         ModalTestModule,
         ResponsiveModule,
-        ComponentsModule,
+        HandbookModule,
         AnalyticsDirectivesModule,
         MenuModule
     ],
