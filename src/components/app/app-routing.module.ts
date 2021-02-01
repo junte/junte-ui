@@ -43,7 +43,8 @@ const routes: Routes = [
     preloadingStrategy: DelayedModulePreloading,
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled',
-    scrollOffset: [0, 64]
+    scrollOffset: [0, 64],
+    initialNavigation: 'enabled'
   })],
   providers: [DelayedModulePreloading],
   exports: [RouterModule]
