@@ -3,7 +3,7 @@ import { i18nEn, i18nRu, localeEnUs as jntEn, localeRu as jntRu } from 'junte-ui
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from './enums/language';
 
-export const PRELOADING_DELAY = 5000;
+export const PRELOADING_DELAY = 1000;
 
 export const CURRENT_LANGUAGE = (() => {
   const base = document.querySelector('base')

@@ -20,6 +20,7 @@ import {
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { ButtonTestComponent } from './button-test.component';
+import { ButtonBenchmarkComponent } from './benchmark/button-benchmark.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { ButtonTestComponent } from './button-test.component';
     ButtonTestComponent
   ],
   declarations: [
-    ButtonTestComponent
+    ButtonTestComponent,
+    ButtonBenchmarkComponent
   ],
 })
 export class ButtonTestModule {

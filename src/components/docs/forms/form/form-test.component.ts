@@ -9,6 +9,7 @@ import {
   TabComponent,
   UI
 } from 'junte-ui';
+import { Benchmark } from 'src/components/docs/shared/benchmark/benchmark';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';

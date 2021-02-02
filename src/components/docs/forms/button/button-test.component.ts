@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ButtonComponent, ButtonGroupComponent, TabComponent, UI } from 'junte-ui';
+import { Benchmark } from 'src/components/docs/shared/benchmark/benchmark';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
