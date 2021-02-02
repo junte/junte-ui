@@ -1,4 +1,4 @@
-import { trigger, style, state, transition, animate } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Gutter } from '../../core/enums/gutter';

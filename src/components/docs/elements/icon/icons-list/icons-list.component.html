@@ -5,8 +5,9 @@
       <ng-template #accordionContentTemplate>
         <div formControlName="icon" data-icon *ngFor="let icon of (tag.icons | getIcons)"
              [jntSelectable]="{value: {value: icon.icon, path: tag.path, name: icon.name}}">
-        <jnt-icon [icon]="icon.icon"
-                  [attr.title]="icon.name"></jnt-icon>
+          <jnt-icon [icon]="icon.icon"
+                    [attr.title]="icon.name">
+          </jnt-icon>
         </div>
       </ng-template>
     </jnt-accordion-section>

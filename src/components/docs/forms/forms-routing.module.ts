@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DotBenchmarkComponent } from 'src/components/docs/elements/dot/benchmark/dot-benchmark.component';
+import { ButtonBenchmarkComponent } from 'src/components/docs/forms/button/benchmark/button-benchmark.component';
 import { SliderTestComponent } from './slider/slider-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
@@ -23,8 +25,19 @@ export const routes: Routes = [
     children: [
       {
         path: 'button',
-        component: ButtonTestComponent,
-        data: {breadcrumb: 'Button', animation: 'Button'}
+        data: {breadcrumb: 'Button'},
+        children: [
+          {
+            path: '',
+            component: ButtonTestComponent,
+            data: {animation: 'Button'}
+          },
+          {
+            path: 'benchmark',
+            component: ButtonBenchmarkComponent,
+            data: {breadcrumb: 'Benchmark'}
+          }
+        ]
       },
       {
         path: 'form',
