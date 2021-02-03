@@ -138,7 +138,7 @@ export class FormComponent implements OnInit {
 
   private check(form: FormGroup | FormArray): AbstractControl[] {
     this.logger.debug('check form');
-    let errors = [];
+    let errors: AbstractControl[] = [];
     for (const key in form.controls) {
       const control = form.controls[key];
 
@@ -150,7 +150,7 @@ export class FormComponent implements OnInit {
         }
       }
     }
-    this.logger.debug('controls have errors = ', errors.map(e => e.name));
+    this.logger.debug('controls have errors = ', errors.map(e => e));
     return errors;
   }
 
