@@ -28,7 +28,6 @@ export class PagerComponent implements ControlValueAccessor {
   private _count: number;
   private _pageSize = DEFAULT_PAGE_SIZE;
   private _selectedPage = DEFAULT_PAGE;
-  private size = 3;
 
   pages: number[];
 
@@ -39,6 +38,13 @@ export class PagerComponent implements ControlValueAccessor {
   get visible() {
     return this.pagesCount > 1 ? 'visible' : 'collapse';
   }
+
+  @PropertyApi({
+    description: 'Pager size',
+    type: 'number',
+  })
+  @Input()
+  size = 3;
 
   @PropertyApi({
     description: 'Items count for pager',

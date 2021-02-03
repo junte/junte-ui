@@ -22,11 +22,13 @@ export class PagerTestComponent implements OnInit {
 
   countControl = this.fb.control(50);
   pageSizeControl = this.fb.control(15);
+  pagerSizeControl = this.fb.control(3);
   modeControl = this.fb.control(UI.pager.mode.offset);
   builder = this.fb.group({
     count: this.countControl,
     pageSize: this.pageSizeControl,
-    mode: this.modeControl
+    mode: this.modeControl,
+    pagerSize: this.pagerSizeControl
   });
 
   offsetControl = this.fb.control(null);
