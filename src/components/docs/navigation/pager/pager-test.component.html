@@ -50,6 +50,7 @@
                     </jnt-block>
                     <jnt-pager [count]="countControl.value"
                                [mode]="modeControl.value"
+                               [size]="pagerSizeControl.value"
                                [pageSize]="pageSizeControl.value"
                                [formControl]="form.get(modeControl.value === ui.pager.mode.offset ? 'offset' : 'page')">
                     </jnt-pager>
@@ -104,6 +105,20 @@
                 </jnt-form-control>
               </jnt-form-item>
 
+              <jnt-form-item>
+                <jnt-form-label for="pagerSize" i18n="@@label.page_size">
+                  Pager size
+                </jnt-form-label>
+                <jnt-form-control>
+                  <jnt-switcher formControlName="pagerSize">
+                    <jnt-switcher-option *ngFor="let size of [1,2,3]"
+                                         [label]="size.toString()"
+                                         [value]="size">
+                    </jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-control>
+              </jnt-form-item>
+
             </jnt-form>
           </jnt-col>
         </jnt-row>
@@ -139,6 +154,10 @@
   <ng-container *ngIf="pageSizeControl.value">
     <![CDATA[
     [pageSize]="]]>{{pageSizeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="pagerSizeControl.value">
+    <![CDATA[
+    [size]="]]>{{pagerSizeControl.value}}<![CDATA["]]>
   </ng-container>
   <ng-container *ngIf="modeControl.value">
     <![CDATA[
