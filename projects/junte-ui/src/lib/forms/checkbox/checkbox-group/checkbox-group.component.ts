@@ -11,6 +11,12 @@ import {
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { Breakpoint } from '../../../core/enums/breakpoint';
+import { Feature } from '../../../core/enums/feature';
+import { FlexAlign } from '../../../core/enums/flex';
+import { Gutter } from '../../../core/enums/gutter';
+import { Orientation } from '../../../core/enums/orientation';
+import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
@@ -38,6 +44,9 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-group-host';
 
+  private _orientation: Orientation = Orientation.vertical;
+  private _spacing: Gutter = Gutter.small;
+  private _align: FlexAlign = FlexAlign.start;
   private _size: Size = Size.normal;
   private selectedItems = [];
 
@@ -45,6 +54,35 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   form = this.fb.group({
     checkboxes: this.checkboxesControl
   });
+
+  @PropertyApi({
+    description: 'Defined main axis of elements align',
+    path: 'ui.orientation',
+    default: Orientation.vertical,
+    options: [Orientation.vertical, Orientation.horizontal]
+  })
+  @Input()
+  set orientation(orientation: Orientation) {
+    this._orientation = orientation || Orientation.vertical;
+  }
+
+  get orientation() {
+    return this.breakpoint.current === Breakpoint.mobile && this.features?.includes(Feature.adapted) ?
+      Orientation.vertical : this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Align in radio group',
+    path: 'ui.align'
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align || FlexAlign.start;
+  }
+
+  get align() {
+    return this._align;
+  }
 
   @PropertyApi({
     description: 'Count of cols in checkbox group',
@@ -69,6 +107,35 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
     return this._size;
   }
 
+  @PropertyApi({
+    description: 'Spacing between radio item',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.large,
+      Gutter.big,
+      Gutter.huge],
+    default: Gutter.normal
+  })
+  @Input()
+  set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.small;
+  }
+
+  get spacing() {
+    return this._spacing;
+  }
+
+  @PropertyApi({
+    description: 'Adapted radio group on mobile view',
+    path: 'ui.feature',
+    options: [Feature.adapted]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
   @ContentChildren(CheckboxComponent)
   checkboxes: QueryList<CheckboxComponent>;
 
@@ -79,6 +146,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
+              private breakpoint: BreakpointService,
               private logger: NGXLogger) {
   }
 
