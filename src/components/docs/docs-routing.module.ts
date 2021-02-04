@@ -16,7 +16,7 @@ export const routes: Routes = [
       {
         path: 'docs',
         pathMatch: 'full',
-        redirectTo: 'general'
+        redirectTo: 'handbook/general'
       },
       {
         path: 'team',
@@ -25,14 +25,9 @@ export const routes: Routes = [
           .then(m => m.TeamModule))
       },
       {
-        path: 'general',
-        loadChildren: () => loadChildren(import('./general/general.module')
-          .then(m => m.GeneralModule))
-      },
-      {
         path: 'handbook',
         data: {breadcrumb: 'Handbook', animation: 'Components'},
-        loadChildren: () => loadChildren(import('src/components/docs/handbook/handbook.module')
+        loadChildren: () => loadChildren(import('./handbook/handbook.module')
           .then(m => m.HandbookModule))
       }
     ]
