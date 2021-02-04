@@ -56,6 +56,55 @@ $jnt-primary-background-dark: #241741;
   display: block;
 }
 
+@include jnt-lp-header((position: absolute), null)
+
+[data-partners]{
+  background-color: $jnt-secondary-background;
+  h3 {
+    text-align: center;
+    font-weight: $jnt-font-weight-semi-bold;
+    color: $jnt-primary-text-dark-color;
+    margin-top: $jnt-gutter-huge;
+    position: relative;
+    padding-bottom: 48px;
+
+    span {
+      color: $jnt-primary-light-color;
+    }
+  }
+  [data-blocks] {
+    [data-block] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $jnt-secondary-background;
+      border-radius: 16px;
+      padding: $jnt-gutter-tiny;
+      border: 2px solid $jnt-white-color;
+      margin-right: 24px;
+      min-width: 205px;
+      min-height: 85px;
+
+      a {
+        line-height: 1;
+      }
+
+      [data-label-sponsor] {
+        @include jnt-label(
+            (
+              background: $jnt-primary-light-color,
+              font-size: $jnt-font-size-base,
+              border: none !important),
+            '&');
+        position: absolute;
+        top: 140px;
+        left: 160px;
+        height: 24px;
+        font-weight: $jnt-font-weight-base;
+      }
+    }
+  }
+}
 // TODO: that is this?
 @include jnt-grid-container(()) {
   display: flex;
@@ -143,6 +192,7 @@ $jnt-primary-background-dark: #241741;
 
 [about] {
   background-color: $jnt-secondary-background;
+  z-index: 1;
   @include for-mobile() {
     @include jnt-lp-slide((
       padding: (
@@ -283,7 +333,7 @@ $jnt-primary-background-dark: #241741;
   [bottom] {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -100px;
     width: 835px;
     height: 600px;
 
@@ -304,6 +354,9 @@ $jnt-primary-background-dark: #241741;
         width: 100%;
         height: auto;
       }
+    }
+    [wave][top] {
+      bottom: -60px;
     }
 
     [planet][top] {

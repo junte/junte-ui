@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { IconComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,7 +14,10 @@ export class IconTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   icon = IconComponent;
+  handbook = HANDBOOK;
 
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/icon';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=32%3A95';
 
   @ViewChild('code') code: TabComponent;
 

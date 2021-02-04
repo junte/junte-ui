@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { setDate, setMonth, setYear } from 'date-fns';
 import { CalendarComponent, Period, TabComponent, UI } from 'junte-ui';
 import { combineLatest } from 'rxjs';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Months {
@@ -23,7 +24,11 @@ export class CalendarTestComponent implements OnInit {
   localUi = LocalUI;
   months = Months;
   types = {calendar: CalendarComponent};
+  handbook = HANDBOOK;
   now = new Date();
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/calendar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1824%3A3416';
 
   @ViewChild('code') code: TabComponent;
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { FilterComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
@@ -47,6 +48,10 @@ export class FilterTestComponent implements OnInit {
   hero = Hero;
   language = Language;
   types = {filter: FilterComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/filters';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9210%3A0';
 
   heroes = [
     new FilterHero(Hero.batman, 'Batman', Abilities.immortality, Sources.technologies, Universes.dc),

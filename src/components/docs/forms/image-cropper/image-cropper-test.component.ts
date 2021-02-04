@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,6 +15,9 @@ export class ImageCropperTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {imageCropper: ImageCropperComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-cropper';
 
   @ViewChild('code') code: TabComponent;
 

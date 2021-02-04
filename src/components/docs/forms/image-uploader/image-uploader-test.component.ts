@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ImageUploaderComponent, TabComponent, UI, UploadImageData } from 'junte-ui';
 import { of } from 'rxjs';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,7 +15,10 @@ export class ImageUploaderTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {imageUploader: ImageUploaderComponent};
+  handbook = HANDBOOK;
   avatar: UploadImageData;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-uploader';
 
   @ViewChild('code') code: TabComponent;
 

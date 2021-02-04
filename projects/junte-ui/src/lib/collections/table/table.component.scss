@@ -150,7 +150,7 @@
 
         th {
           &[data-actions] {
-            width: 50px;
+            width: 72px;
           }
 
           &[data-sortable=true] {
@@ -163,7 +163,6 @@
     tbody tr {
       @if $declare {
         border-bottom: 1px solid $jnt-muted-color;
-        background-color: $jnt-primary-background;
         transition: all .3s;
       }
 
@@ -202,6 +201,8 @@
 
       td {
         @if $declare {
+          background-color: $jnt-primary-background;
+          color: $jnt-primary-text-color;
           &[data-actions] {
             text-align: center;
 

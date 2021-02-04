@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MenuComponent, MenuItemComponent, UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 enum SourceType {
@@ -20,6 +21,10 @@ export class MenuTestComponent implements OnInit {
   localUi = LocalUI;
   sourceType = SourceType;
   types = {menu: MenuComponent, menuItem: MenuItemComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/menu';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780';
 
   @ViewChild('code') code: TabComponent;
 

@@ -1,12 +1,18 @@
 <jnt-container>
   <jnt-app-page-header title="Animations"
                        i18n-title="@@label.animations"
-                       [icon]="localUi.icons.animations">
-  </jnt-app-page-header>
+                       [icon]="localUi.icons.animations"
+                       [teaser]="handbook.other.components.animations.teaser">
 
-  <app-resources
-    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/other/animations">
-  </app-resources>
+    <ng-template #headerActionsTemplate>
+      <jnt-link [icon]="ui.icons.gitlab"
+                [outline]="ui.outline.ghost"
+                [source]="gitlab"
+                target="_blank" title="GitLab"
+                i18n-title="@@action.gitlab">
+      </jnt-link>
+    </ng-template>
+  </jnt-app-page-header>
 
   <jnt-tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"

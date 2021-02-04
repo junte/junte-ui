@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ButtonComponent, ButtonGroupComponent, TabComponent, UI } from 'junte-ui';
+import { Benchmark } from 'src/components/docs/shared/benchmark/benchmark';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,6 +15,10 @@ export class ButtonTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {button: ButtonComponent, group: ButtonGroupComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/button';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A0';
 
   @ViewChild('code') code: TabComponent;
 

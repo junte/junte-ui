@@ -3,6 +3,7 @@
 @import 'jnt-hosts';
 @import 'layout/app/variables';
 @import 'navigation/menu/menu';
+@import 'navigation/link/link';
 @import 'elements/icon/icon';
 @import 'forms/button/button';
 
@@ -38,6 +39,20 @@
       left: 0;
       right: 0;
       z-index: 3;
+
+      @include jnt-link((
+        color: $jnt-white-color,
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-white-color,
+        corner: $jnt-corner-small,
+        active: (
+          color: $jnt-white-color,
+          underline: true,
+          underline-color: $jnt-white-color,
+          background-color: transparent,
+          shadow: none
+        ),
+      ));
     }
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
@@ -65,6 +80,7 @@
               ),
               padding: $jnt-gutter-small,
               hover: (
+                color: $jnt-white-color,
                 background-color: rgba($jnt-primary-light-color, .5)
               )
             )

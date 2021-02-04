@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalService, ShortcutsDirective, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -16,9 +17,12 @@ export class ShortcutsTestComponent {
   language = Language;
   actions = {anonym: 'Anonym', bound: 'Bound'};
   types = {shortcuts: ShortcutsDirective};
+  handbook = HANDBOOK;
   value: string;
   keys = Object.keys(UI.keyboard.key);
   modifiers = Object.keys(UI.keyboard.modifier);
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/shortcuts';
 
   @ViewChild('code') code: TabComponent;
 

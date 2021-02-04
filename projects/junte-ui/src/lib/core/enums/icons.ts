@@ -1,4 +1,7 @@
 export const icons = {
+  login: 'login:svg:default:main|stroked',
+  logout: 'logout:svg:default:main|stroked',
+  share: 'share:svg:default:main|stroked',
   power: 'power:svg:default:main|stroked',
   dashboard: 'dashboard:svg:default:main|stroked|other',
   settings: 'settings:svg:default:main|stroked|other',
@@ -57,8 +60,6 @@ export const icons = {
   pause: 'pause:svg:default:other|stroked',
   play: 'play:svg:default:other|stroked',
   // internet
-  signin: 'signin:svg:default:other|stroked',
-  signout: 'signout:svg:default:other|stroked',
   link: 'link:svg:default:other|stroked',
   email: 'email:svg:default:other|stroked',
   anchor: 'anchor:svg:default:other|stroked',

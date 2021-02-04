@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as faker from 'faker';
 import { GanttComponent, GanttLineComponent, GanttTypes, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from '../../../../enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
 
@@ -23,6 +24,7 @@ export class GanttTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {gantt: GanttComponent, line: GanttLineComponent};
+  handbook = HANDBOOK;
 
   gitlab = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262';

@@ -1,6 +1,7 @@
 import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
@@ -21,7 +22,8 @@ import { SwitcherOptionComponent } from './switcher-option.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitcherComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SwitcherComponent implements ControlValueAccessor {

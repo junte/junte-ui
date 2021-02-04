@@ -1,18 +1,45 @@
-import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  Component,
+  ContentChild,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  TemplateRef
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
 @Component({
   selector: 'jnt-checkbox',
   templateUrl: './checkbox.encapsulated.html',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CheckboxComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CheckboxComponent),
+      multi: true
+    },
+    ...LOGGER_PROVIDERS
+  ],
+  animations: [
+    trigger('scale', [
+        transition(':enter', [
+          style({transform: 'scale(0)'}),
+          animate('.3s', style({transform: 'scale(1)'})),
+        ]),
+        transition(':leave', [
+          style({transform: 'scale(1)'}),
+          animate('.3s', style({transform: 'scale(0)'})),
+        ])
+      ]
+    )
+  ]
 })
 export class CheckboxComponent implements ControlValueAccessor, OnInit {
 

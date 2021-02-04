@@ -15,5 +15,5 @@ export const moveFromRight = trigger('moveFromRight', [
       ], {optional: true}),
     ]),
     query(':enter, :leave', animateChild(), {optional: true}),
-  ], {params: {enterTiming: '10', leaveTiming: '10', enterDelay: '0', leaveDelay: '0'}})
+  ], {params: {enterTiming: '.8', leaveTiming: '.8', enterDelay: '0', leaveDelay: '0'}})
 ]);

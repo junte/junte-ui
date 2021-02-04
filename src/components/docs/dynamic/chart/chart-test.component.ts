@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ChartComponent, ChartIndicatorComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -15,7 +16,11 @@ export class ChartTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
+  handbook = HANDBOOK;
   hero = Hero;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/chart';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A70';
 
   heroes = [
     {

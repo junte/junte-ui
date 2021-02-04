@@ -4,7 +4,8 @@
            [wrap]="ui.wrap.wrap">
   <ng-container *ngFor="let item of items">
     <div data-top>
-      <div data-item (click)="toggle(item)"
+      <div data-item [attr.data-active]="item.opened && orientation === ui.orientation.vertical"
+                      (click)="!item.disabled ? toggle(item) : null"
            [jntPopover]="{
               context: this.context,
               contentTemplate: submenuTemplate,
@@ -16,7 +17,7 @@
                 : ui.trigger.hover,
               behaviour: ui.behaviour.dropdown,
               placement: placement,
-              disabled: !item.submenu || (!collapsed && orientation !== ui.orientation.horizontal)
+              disabled: item.disabled || !item.submenu || (!collapsed && orientation !== ui.orientation.horizontal)
             }"
            (attached)="reference.popover = $event"
            (removed)="reference.popover = null">
@@ -25,12 +26,14 @@
         </div>
         <jnt-link data-link
                   [collapsed]="collapsed"
+                  [opened]="item.opened && orientation === ui.orientation.vertical"
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
                   [context]="ui.context.box"
                   [matching]="item.matching"
                   [source]="!item.submenu ? item.link?.source : null"
-                  [fragment]="item.link?.fragment"
+                  [fragment]="item.fragment"
+                  [queryParams]="item.queryParams"
                   [outline]="ui.outline.transparent"
                   [target]="item.target"
                   [disabled]="item.disabled"
@@ -47,8 +50,10 @@
         </jnt-link>
       </div>
 
-      <ng-container *ngIf="!collapsed && orientation === ui.orientation.vertical && item.opened">
-        <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
+      <ng-container *ngIf="!collapsed && orientation === ui.orientation.vertical">
+        <div data-sub-animate *ngIf="item.opened" [@collapse]="item.opened">
+          <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
+        </div>
       </ng-container>
 
       <ng-template #submenuTemplate let-headless=headless>
@@ -78,10 +83,11 @@
                         [icon]="subItem.icon"
                         [matching]="subItem.matching"
                         [source]="subItem.link?.source"
-                        [fragment]="subItem.link?.fragment"
+                        [fragment]="subItem.fragment"
+                        [queryParams]="subItem.queryParams"
                         [disabled]="subItem.disabled"
                         [target]="subItem.target"
-                        (click)="selected.emit(item); item.click.emit(); reference.popover?.hide();">
+                        (click)="selected.emit(subItem); subItem.click.emit(); reference.popover?.hide();">
                 <jnt-badge *ngFor="let badge of subItem.badges"
                            [value]="badge.value"
                            [text]="badge.text"

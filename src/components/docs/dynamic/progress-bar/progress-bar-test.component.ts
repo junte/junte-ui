@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { TabComponent } from 'junte-ui';
 import { ProgressBarComponent } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -15,7 +16,11 @@ export class ProgressBarTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {progress: ProgressBarComponent};
+  handbook = HANDBOOK;
   added = false;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/dynamic/progress-bar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2616%3A69';
 
   @ViewChild('code') code: TabComponent;
 

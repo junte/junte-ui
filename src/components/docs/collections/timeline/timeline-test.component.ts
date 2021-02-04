@@ -6,6 +6,7 @@ import {
   TimelineItemComponent,
   UI
 } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
@@ -22,11 +23,15 @@ export class TimelineTestComponent implements OnInit {
   language = Language;
   highlight = {language: HighlightLanguage};
   types = {timeline: TimelineComponent, item: TimelineItemComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/timeline';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=6587%3A0';
 
   @ViewChild('code') code: TabComponent;
 
   iconControl = this.fb.control(false);
-  colorControl = this.fb.control(this.ui.color.purpleLight);
+  colorControl = this.fb.control(this.ui.color.primary);
 
   builder = this.fb.group({
     icon: this.iconControl,

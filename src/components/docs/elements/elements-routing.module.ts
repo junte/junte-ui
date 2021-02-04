@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DotBenchmarkComponent } from 'src/components/docs/elements/dot/benchmark/dot-benchmark.component';
+import { ButtonBenchmarkComponent } from 'src/components/docs/forms/button/benchmark/button-benchmark.component';
+import { ButtonTestComponent } from 'src/components/docs/forms/button/button-test.component';
 import { AvatarTestComponent } from './avatar/avatar-test.component';
 import { BadgeTestComponent } from './badge/badge-test.component';
 import { DotTestComponent } from './dot/dot-test.component';
@@ -39,8 +42,19 @@ export const routes: Routes = [
       },
       {
         path: 'dot',
-        component: DotTestComponent,
-        data: {breadcrumb: 'Dot', animation: 'Dot'}
+        data: {breadcrumb: 'Dot'},
+        children: [
+          {
+            path: '',
+            component: DotTestComponent,
+            data: {animation: 'Dot'}
+          },
+          {
+            path: 'benchmark',
+            component: DotBenchmarkComponent,
+            data: {breadcrumb: 'Benchmark'}
+          }
+        ]
       }
     ]
   }

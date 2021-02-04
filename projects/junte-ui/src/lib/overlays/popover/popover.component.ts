@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding,
+  HostBinding, OnInit,
   Renderer2,
   TemplateRef,
   ViewChild
@@ -17,6 +17,7 @@ import { Position } from '../../core/enums/position';
 import { Triggers } from '../../core/enums/triggers';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { DeviceService } from '../../layout/responsive/device.service';
+import { PopoverService } from './popover.service';
 
 const PADDING_SIZE = 8;
 const DROPDOWN_PADDING_SIZE = 4;
@@ -57,7 +58,7 @@ class PopoverPosition {
   templateUrl: './popover.encapsulated.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PopoverComponent {
+export class PopoverComponent implements OnInit {
 
   private observers = {target: this.createObserver(), host: this.createObserver()};
 
@@ -86,11 +87,16 @@ export class PopoverComponent {
   @ViewChild('arrow')
   arrow: ElementRef;
 
-  constructor(private renderer: Renderer2,
-              private hostRef: ElementRef,
-              private cd: ChangeDetectorRef,
+  constructor(private popoverService: PopoverService,
               private breakpoint: BreakpointService,
-              public device: DeviceService) {
+              public device: DeviceService,
+              private renderer: Renderer2,
+              private hostRef: ElementRef,
+              private cd: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
+    this.popoverService.register(this);
   }
 
   private createObserver() {
@@ -317,7 +323,7 @@ export class PopoverComponent {
     this.renderer.removeStyle(host, 'top');
     this.renderer.removeStyle(host, 'left');
     this.renderer.setStyle(host, 'width', this.breakpoint.current === Breakpoint.mobile
-      && (this.position === Position.top || this.position === Position.bottom) ? '100%' : 'auto');
+    && (this.position === Position.top || this.position === Position.bottom) ? '100%' : 'auto');
     const position = this.getPosition();
     const rect = this.target.getBoundingClientRect();
     let left = position.left - position.shiftX;

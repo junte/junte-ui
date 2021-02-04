@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { serialize } from '@junte/serialize-ts';
 import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { TableSections, TableState, TableStateUpdate } from './data/table-data.types';
 
@@ -19,6 +20,10 @@ export class TableTestComponent implements OnInit {
   localUi = LocalUI;
   sections = TableSections;
   types = {table: TableComponent, column: TableColumnComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/table';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1270%3A541';
 
   @ViewChild('code') code: TabComponent;
 

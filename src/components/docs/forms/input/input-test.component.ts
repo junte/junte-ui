@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InputComponent, TabComponent, UI } from 'junte-ui';
 import { InputType } from 'projects/junte-ui/src/lib/forms/input/enums';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
-import { Language } from '../../shared/code-highlight/enum';
+import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
+import { Language } from '../../../../enums/language';
 
 @Component({
   selector: 'app-input-test',
@@ -15,8 +17,13 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   ui = UI;
   localUi = LocalUI;
   input = InputComponent;
-  language = Language;
   inputType = InputType;
+  language = Language;
+  highlight = {language: HighlightLanguage};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=700%3A0';
 
   @ViewChild('code') code: TabComponent;
 
@@ -65,7 +72,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     input: this.inputControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              @Inject(LOCALE_ID) public locale: string) {
   }
 
   ngOnInit() {

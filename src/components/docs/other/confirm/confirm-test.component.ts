@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum UsingType {
@@ -25,6 +26,10 @@ export class ConfirmTestComponent  implements OnInit {
   usingType = UsingType;
   contentType = ContentType;
   types = {confirm: ConfirmComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/shared/confirm';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=7771%3A1';
 
   @ViewChild('code') code: TabComponent;
 

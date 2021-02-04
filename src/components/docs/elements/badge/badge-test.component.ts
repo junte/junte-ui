@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BadgeComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -13,13 +14,17 @@ export class BadgeTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {badge: BadgeComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/badge';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2089%3A34';
 
   @ViewChild('code') code: TabComponent;
 
   positionControl = this.fb.control(null);
   overflowControl = this.fb.control(null);
   valueControl = this.fb.control(5);
-  colorControl = this.fb.control(UI.color.purple);
+  colorControl = this.fb.control(UI.color.primary);
   textControl = this.fb.control(false);
 
   builder = this.fb.group({

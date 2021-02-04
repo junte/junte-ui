@@ -2,11 +2,19 @@
 
   <jnt-app-page-header [icon]="localUi.icons.responsive"
                        title="Responsive"
-                       i18n-title="@@label.responsive"></jnt-app-page-header>
+                       i18n-title="@@label.responsive"
+                       [teaser]="handbook.layout.components.responsive.teaser">
 
-  <app-resources
-    gitlab="https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/responsive">
-  </app-resources>
+    <ng-template #headerActionsTemplate>
+      <jnt-link [icon]="ui.icons.gitlab"
+                [outline]="ui.outline.ghost"
+                [source]="gitlab"
+                target="_blank" title="GitLab"
+                i18n-title="@@action.gitlab">
+      </jnt-link>
+
+    </ng-template>
+  </jnt-app-page-header>
 
   <jnt-tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
@@ -15,7 +23,13 @@
       <ng-template #tabContentTemplate>
         <app-browser-preview preview>
           <ng-template #document let-width="width" let-height="height">
-            <p i18n="@@message.please_change_you_device_width_in">Please change you device width in
+            <p [ngSwitch]="locale">
+              <ng-container *ngSwitchDefault>
+                Please change you device width in
+              </ng-container>
+              <ng-container *ngSwitchCase="language.ru">
+                Пожалуйста, измените ширину своего устройства в
+              </ng-container>
               <jnt-link [outline]="ui.outline.ghost"
                         title="developers tools"
                         i18n-title="@@label.developer_tools"

@@ -330,6 +330,7 @@
       background-color: $jnt-control-background;
       box-sizing: border-box;
       position: relative;
+      transition: border-color .3s;
       @include for-mobile() {
         border-color: transparent;
         border-radius: calc(#{$jnt-corner-small} - 1px);
@@ -343,6 +344,10 @@
           color: map-get($icon, color),
         ), '&');
       }
+    }
+
+    &:hover {
+      border-color: $jnt-primary-color;
     }
 
     &:focus {
@@ -360,6 +365,8 @@
         flex-wrap: wrap;
         padding: 0;
         margin: 0 0 (-$jnt-gutter-tiny);
+        min-width: 0;
+        max-width: 100%;
       }
 
       @if map-has-key($vars, chips) {
@@ -378,6 +385,8 @@
           background-color: $jnt-secondary-background;
           border-radius: $jnt-corner-small;
           margin-bottom: $jnt-gutter-tiny;
+          max-width: 100%;
+          box-sizing: border-box;
           &[data-with-template='false'] {
             line-height: 1;
           }

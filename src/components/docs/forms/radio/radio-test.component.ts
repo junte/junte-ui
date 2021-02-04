@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, RadioComponent, RadioGroupComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -17,6 +18,10 @@ export class RadioTestComponent implements OnInit {
   hero = Hero;
   localUi = LocalUI;
   types = {radio: RadioComponent, group: RadioGroupComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/radio';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2782';
 
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;

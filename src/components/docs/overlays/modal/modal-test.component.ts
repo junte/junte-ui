@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { ModalTestFactoryComponent } from './test.component';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -31,6 +32,10 @@ export class ModalTestComponent implements OnInit {
   size = Size;
   contentType = ContentType;
   types = {modal: ModalComponent, options: ModalOptions};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/modal';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1709%3A3466';
 
   @ViewChild('code') code: TabComponent;
 

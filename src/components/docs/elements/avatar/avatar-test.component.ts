@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from '../../../../enums/local-ui';
 
 export enum Sketches {
@@ -24,6 +25,10 @@ export class AvatarTestComponent implements OnInit {
     list: AvatarsListComponent,
     group: AvatarsGroupComponent
   };
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/avatar';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=791%3A0';
 
   @ViewChild('code') code: TabComponent;
 

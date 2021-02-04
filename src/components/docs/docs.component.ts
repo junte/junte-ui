@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Breakpoint, BreakpointService, moveFromRight, UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -19,7 +19,7 @@ export enum Theme {
 })
 export class DocsComponent implements OnInit {
 
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
   analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;

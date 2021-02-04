@@ -9,11 +9,11 @@
       <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-spinner *ngIf="section.state === ui.state.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
-        <jnt-icon data-chevron [icon]="active == i ? ui.icons.chevronUp : ui.icons.chevronRight"></jnt-icon>
+        <jnt-icon data-chevron [icon]="ui.icons.chevronRight" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
       </jnt-stack>
 
     </a>
-    <div *ngIf="active == i" data-content>
+    <div *ngIf="active == i" data-content [@collapse]>
       <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>
     </div>
   </ng-container>

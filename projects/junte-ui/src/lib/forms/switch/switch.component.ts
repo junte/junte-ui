@@ -1,7 +1,8 @@
-import { Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { PropertyApi } from '../../core/decorators/api';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 
@@ -13,7 +14,8 @@ import { UI } from '../../core/enums/ui';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitchComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SwitchComponent implements ControlValueAccessor, OnInit {
@@ -29,6 +31,9 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  @HostBinding('attr.data-focused')
+  focused = false;
 
   get checked() {
     return this.switchControl.value;
@@ -63,6 +68,13 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @Input() set size(size: Size) {
     this._size = size || Size.normal;
   }
+
+  @ContentApi({
+    selector: '#switchLabelTemplate',
+    description: 'Switch label template'
+  })
+  @ContentChild('switchLabelTemplate')
+  labelTemplate: TemplateRef<any>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');

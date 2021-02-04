@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoggerModule } from 'ngx-logger';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
@@ -29,7 +28,6 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     ButtonModule,
     ArrayPipesModule,
     StackModule,
-    LoggerModule,
     ResponsiveModule
   ],
   entryComponents:

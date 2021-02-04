@@ -14,7 +14,7 @@ export class BadgeComponent {
   @HostBinding('attr.data-position')
   _position: Position = Position.rightTop;
 
-  _color: string = Color.purple;
+  _color: string = Color.primary;
 
   private _overflow = null;
 
@@ -48,8 +48,9 @@ export class BadgeComponent {
     type: 'string',
     default: 'ui.color.primary'
   })
+  @HostBinding('attr.data-color')
   @Input() set color(color: string) {
-    this._color = color || Color.purple;
+    this._color = color || Color.primary;
   }
 
   get color() {

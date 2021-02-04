@@ -1,12 +1,12 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <div data-label *ngIf="!!label">{{label}}</div>
-  <jnt-stack data-content [orientation]="ui.orientation.horizontal"
+  <jnt-stack #layoutRef data-content [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small" [align]="ui.align.center">
     <jnt-icon data-label-icon *ngIf="!!icon && !label && !(features | includes : ui.feature.multiline)"
               [icon]="icon">
     </jnt-icon>
 
-    <input #maskedInput *ngIf="!!mask; else inputTemplate"
+    <input #maskedRef *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
            type="tel"
            [name]="name"
@@ -27,7 +27,7 @@
                 (focusout)="focused = false">
       </textarea>
       <ng-template #singleLineTemplate>
-        <input #valueInput
+        <input #valueRef
                formControlName="input"
                [name]="name"
                [type]="type === ui.input.type.password && view.password.display ? ui.input.type.text : type"
@@ -74,4 +74,4 @@
       </button>
     </div>
   </jnt-stack>
-</form>
+</ng-container>

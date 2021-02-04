@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SwitchComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -14,12 +15,16 @@ export class SwitchTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   types = {switch: SwitchComponent};
+  handbook = HANDBOOK;
   language = Language;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switch';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2784';
 
   @ViewChild('code') code: TabComponent;
 
   sizeControl = this.fb.control(null);
-  labelControl = this.fb.control(true);
+  labelControl = this.fb.control(false);
   iconsControl = this.fb.control(true);
   tagsControl = this.fb.control(true);
   disabledControl = this.fb.control(false);

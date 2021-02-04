@@ -1,4 +1,5 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import {
@@ -24,7 +25,11 @@ export class AppLayoutTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
+  handbook = HANDBOOK;
   language = Language;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/app';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1910%3A2611';
 
   types = {
     app: AppLayoutComponent,

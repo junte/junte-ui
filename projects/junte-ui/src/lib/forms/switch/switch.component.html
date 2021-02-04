@@ -1,20 +1,31 @@
-<form [formGroup]="form">
-  <input type="checkbox" formControlName="switch">
-  <jnt-stack data-switch [orientation]="ui.orientation.horizontal"
-             [gutter]="ui.gutter.tiny"
-             [align]="ui.align.center"
-             [justify]="ui.justify.center">
-    <span data-on *ngIf="tags?.on">{{tags.on}}</span>
+<div data-wrapper>
+  <form [formGroup]="form">
+    <input type="checkbox"
+           formControlName="switch"
+           (focusin)="focused = true"
+           (focusout)="focused = false">
+    <jnt-stack data-switch [orientation]="ui.orientation.horizontal"
+               [gutter]="ui.gutter.tiny"
+               [align]="ui.align.center"
+               [justify]="ui.justify.center">
+      <span data-on *ngIf="tags?.on">{{tags.on}}</span>
 
-    <div data-slider>
-      <jnt-icon *ngIf="icons?.on && checked"
-                [icon]="icons.on"></jnt-icon>
-      <jnt-icon *ngIf="icons?.off && !checked"
-                [icon]="icons.off"></jnt-icon>
+      <div data-slider>
+        <jnt-icon *ngIf="icons?.on && checked"
+                  [icon]="icons.on"></jnt-icon>
+        <jnt-icon *ngIf="icons?.off && !checked"
+                  [icon]="icons.off"></jnt-icon>
 
-    </div>
+      </div>
 
-    <span data-off *ngIf="tags?.off">{{tags.off}}</span>
-  </jnt-stack>
-</form>
-<label *ngIf="label">{{label}}</label>
+      <span data-off *ngIf="tags?.off">{{tags.off}}</span>
+    </jnt-stack>
+  </form>
+</div>
+<label>
+  <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
+</label>
+
+<ng-template #labelDefaultTemplate>
+  <ng-container *ngIf="label">{{label}}</ng-container>
+</ng-template>

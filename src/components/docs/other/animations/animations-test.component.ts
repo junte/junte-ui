@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { moveFromRight, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -14,6 +15,9 @@ export class AnimationsTestComponent {
 
   ui = UI;
   localUi = LocalUI;
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/other/animations';
 
   @ViewChild('code') code: TabComponent;
 

@@ -1,6 +1,6 @@
 <jnt-container>
   <jnt-stack [align]="ui.align.stretch">
-    <div *ngFor="let category of categories | keyvalue">
+    <div *ngFor="let category of handbook | keyvalue">
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
         <h1>
@@ -9,22 +9,22 @@
           </span>
           <span>{{category.value.name}}</span>
         </h1>
-        <jnt-label [label]="category.value.components.length + '  components'"></jnt-label>
+        <jnt-label [label]="(category.value.components | keyvalue).length + '  components'"></jnt-label>
       </jnt-stack>
       <jnt-row [align]="ui.align.stretch">
-        <jnt-col *ngFor="let component of category.value.components"
+        <jnt-col *ngFor="let component of category.value.components | keyvalue"
                  [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
           <jnt-card data-card [features]="[ui.feature.clickable]"
                     [width]="ui.width.fluid"
-                    (selected)="router.navigate([category.value.link, component.link], {relativeTo: route})">
+                    (selected)="router.navigate([category.value.link, component.value.link], {relativeTo: route})">
             <ng-template #cardTitleTemplate>
               <jnt-stack [orientation]="ui.orientation.horizontal"
                          [align]="ui.align.center">
-                <jnt-icon [icon]="component.icon"></jnt-icon>
-                <span data-name>{{component.name}}</span>
+                <jnt-icon [icon]="component.value.icon"></jnt-icon>
+                <span data-name>{{component.value.name}}</span>
               </jnt-stack>
             </ng-template>
-            <span>{{component.teaser}}</span>
+            <span>{{component.value.teaser}}</span>
           </jnt-card>
         </jnt-col>
       </jnt-row>

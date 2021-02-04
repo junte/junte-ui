@@ -18,6 +18,7 @@ import { MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Height } from '../../core/enums/height';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { FormControlComponent } from './control/form-control.component';
 
 @Component({
@@ -45,6 +46,9 @@ import { FormControlComponent } from './control/form-control.component';
         ),
       ]
     ),
+  ],
+  providers: [
+    ...LOGGER_PROVIDERS
   ]
 })
 export class FormComponent implements OnInit {
@@ -134,7 +138,7 @@ export class FormComponent implements OnInit {
 
   private check(form: FormGroup | FormArray): AbstractControl[] {
     this.logger.debug('check form');
-    let errors = [];
+    let errors: AbstractControl[] = [];
     for (const key in form.controls) {
       const control = form.controls[key];
 
@@ -146,7 +150,7 @@ export class FormComponent implements OnInit {
         }
       }
     }
-    this.logger.debug('controls have errors = ', errors.map(e => e.name));
+    this.logger.debug('controls have errors = ', errors.map(e => e));
     return errors;
   }
 

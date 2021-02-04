@@ -1,6 +1,7 @@
 import { Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PagerMode } from './enums';
@@ -11,11 +12,14 @@ export const DEFAULT_PAGE = 1;
 @Component({
   selector: 'jnt-pager',
   templateUrl: './pager.encapsulated.html',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PagerComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PagerComponent),
+      multi: true
+    },
+    ...LOGGER_PROVIDERS
+  ]
 })
 export class PagerComponent implements ControlValueAccessor {
 
@@ -24,7 +28,6 @@ export class PagerComponent implements ControlValueAccessor {
   private _count: number;
   private _pageSize = DEFAULT_PAGE_SIZE;
   private _selectedPage = DEFAULT_PAGE;
-  private size = 3;
 
   pages: number[];
 
@@ -35,6 +38,13 @@ export class PagerComponent implements ControlValueAccessor {
   get visible() {
     return this.pagesCount > 1 ? 'visible' : 'collapse';
   }
+
+  @PropertyApi({
+    description: 'Pager size',
+    type: 'number',
+  })
+  @Input()
+  size = 3;
 
   @PropertyApi({
     description: 'Items count for pager',

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -17,6 +18,10 @@ export class SelectTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {select: SelectComponent , option: SelectOptionComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=114%3A219';
 
   @ViewChild('code') code: TabComponent;
 

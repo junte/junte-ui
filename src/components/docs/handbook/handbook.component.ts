@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UI } from 'junte-ui';
-import { CATEGORIES } from 'src/consts';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-components',
-  templateUrl: './components.component.html',
-  styleUrls: ['./components.component.scss']
+  templateUrl: './handbook.component.html',
+  styleUrls: ['./handbook.component.scss']
 })
-export class ComponentsComponent {
+export class HandbookComponent {
 
   ui = UI;
   localUi = LocalUI;
-  categories = CATEGORIES;
+  handbook = HANDBOOK;
 
   constructor(public router: Router,
               public route: ActivatedRoute) {

@@ -5,6 +5,14 @@
   display: block;
 }
 
+:host-context([theme='esanum']) {
+  svg {
+    [data-head] {
+      fill: #005461;
+    }
+  }
+}
+
 [wrapper] {
   position: relative;
 }
@@ -74,4 +82,8 @@ svg {
   display: block;
   width: auto;
   height: 50px;
+
+  [data-head] {
+    fill: $jnt-primary-color;
+  }
 }

@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { addMonths, addYears, subMonths, subYears } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { delay, filter, map } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
@@ -34,7 +35,8 @@ import { GanttLineComponent } from './gantt-line/gantt-line.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => GanttComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class GanttComponent implements ControlValueAccessor {
@@ -119,7 +121,6 @@ export class GanttComponent implements ControlValueAccessor {
   @ViewChild('currentLine')
   currentLine: ElementRef;
 
-  sections = this.lines;
   today = today();
   error: Error;
 

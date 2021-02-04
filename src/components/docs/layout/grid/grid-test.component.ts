@@ -1,6 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ColComponent, ContainerComponent, RowComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -15,6 +16,9 @@ export class GridTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   types = {container: ContainerComponent, row: RowComponent, col: ColComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/grid';
 
   @ViewChild('code') code: TabComponent;
 

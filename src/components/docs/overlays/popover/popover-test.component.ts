@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PopoverComponent, Position, TabComponent, Triggers, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum ContentType {
@@ -18,9 +19,13 @@ export class PopoverTestComponent {
   ui = UI;
   localUi = LocalUI;
   types = {popover: PopoverComponent};
+  handbook = HANDBOOK;
   keys = Object.keys;
   triggerType = Triggers;
   contentType = ContentType;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/popover';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=56%3A9';
 
   titleControl = this.fb.control(true);
   triggerControl = this.fb.control(Triggers.hover);

@@ -11,7 +11,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'components'
+        redirectTo: 'handbook'
       },
       {
         path: 'docs',
@@ -30,10 +30,10 @@ export const routes: Routes = [
           .then(m => m.GeneralModule))
       },
       {
-        path: 'components',
-        data: {breadcrumb: 'Components', animation: 'Components'},
-        loadChildren: () => loadChildren(import('./components/components.module')
-          .then(m => m.ComponentsModule))
+        path: 'handbook',
+        data: {breadcrumb: 'Handbook', animation: 'Components'},
+        loadChildren: () => loadChildren(import('src/components/docs/handbook/handbook.module')
+          .then(m => m.HandbookModule))
       }
     ]
   }

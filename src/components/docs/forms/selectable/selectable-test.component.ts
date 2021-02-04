@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SelectableDirective, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/docs/shared/code-highlight/enum';
+import { HANDBOOK } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -16,7 +17,10 @@ export class SelectableTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   selectable = SelectableDirective;
+  handbook = HANDBOOK;
   hero = Hero;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/selectable';
 
   @ViewChild('code') code: TabComponent;
 

@@ -13,7 +13,8 @@ export class DotComponent {
   @HostBinding('attr.host') readonly host = 'jnt-dot-host';
 
   @HostBinding('style.background-color')
-  _color: string = Color.purple;
+  @HostBinding('attr.data-color')
+  _color: string = Color.primary;
 
   @PropertyApi({
     description: 'Dot color',
@@ -21,7 +22,7 @@ export class DotComponent {
     default: 'orange',
   })
   @Input() set color(color: string) {
-    this._color = color || Color.purple;
+    this._color = color || Color.primary;
   }
 
   @PropertyApi({

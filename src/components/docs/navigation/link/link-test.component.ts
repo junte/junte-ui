@@ -1,6 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LinkComponent, TabComponent, UI } from 'junte-ui';
+import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
 
@@ -21,6 +22,10 @@ export class LinkTestComponent implements OnInit {
   sourceType = SourceType;
   language = Language;
   types = {link: LinkComponent};
+  handbook = HANDBOOK;
+
+  gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/link';
+  figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1080%3A1554';
 
   schemeControl = this.fb.control(null);
   outlineControl = this.fb.control(null);

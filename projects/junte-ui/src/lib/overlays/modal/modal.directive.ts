@@ -8,7 +8,8 @@ import { ModalService } from './modal.service';
 })
 export class ModalDirective {
 
-  @Input('jntModal') options: Partial<ModalOptions>;
+  @Input('jntModal')
+  options: Partial<ModalOptions>;
 
   constructor(private modal: ModalService) {
 

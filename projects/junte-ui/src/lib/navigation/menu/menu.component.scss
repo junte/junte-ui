@@ -12,6 +12,7 @@ $tab-marker-height: 4px;
       item: (
         corner: $jnt-corner-small,
         font-size: $jnt-font-size-base,
+        background: transparent,
         height: null,
         padding: $jnt-gutter-small $jnt-gutter-normal,
         orphan: (
@@ -36,10 +37,11 @@ $tab-marker-height: 4px;
         toggle: (
           toggle: true,
           margin-left: $jnt-gutter-small,
-          color: $jnt-primary-text-color
+          color: $jnt-primary-text-color,
+          open-color: $jnt-primary-text-dark-color
         ),
         hover: (
-          color: null,
+          color: $jnt-primary-light-color,
           background-color: $jnt-highlight-background
         ),
         active: (
@@ -47,7 +49,14 @@ $tab-marker-height: 4px;
           background-color: null,
           color: $jnt-primary-light-color,
           underline-color: $jnt-primary-light-color,
-          shadow: null
+          shadow: null,
+          divider: false,
+          divider-width: null,
+          divider-corner: null,
+          divider-color: null
+        ),
+        opened: (
+          background: null
         ),
         styles: (
           tags: (
@@ -72,7 +81,7 @@ $tab-marker-height: 4px;
     ),
     sub: (
       width: 200px,
-      background-color: $jnt-primary-background,
+      background: null,
       shadow: $jnt-shadow-normal,
       corner: $jnt-corner-small,
       collapsed: (
@@ -103,7 +112,11 @@ $tab-marker-height: 4px;
           underline: false,
           background-color: null,
           color: $jnt-primary-light-color,
-          shadow: null
+          shadow: null,
+          divider: false,
+          divider-width: null,
+          divider-corner: null,
+          divider-color: null
         ),
         focus: (
           outline: null,
@@ -142,18 +155,15 @@ $tab-marker-height: 4px;
         [data-item] {
           @if map-has-key($vars, top) {
             $title: map-get(map-get($vars, top), item);
+            background-color: map-get($title, background);
             @include jnt-link((
               height: map-get($title, height),
               corner: map-get($title, corner),
               font-size: map-get($title, font-size),
               text-transform: map-get($title, text-transform),
               font-weight: map-get($title, font-weight),
-              outlines: (
-                transparent: (
-                  color: map-get($title, color),
-                  padding: map-get($title, padding)
-                )
-              )
+              color: map-get($title, color),
+              padding: map-get($title, padding)
             ));
 
             @if map-has-key($title, active) {
@@ -166,7 +176,11 @@ $tab-marker-height: 4px;
                       background-color: map-get($active, background-color),
                       color: map-get($active, color),
                       underline-color: map-get($active, border-color),
-                      shadow: map-get($active, shadow)
+                      shadow: map-get($active, shadow),
+                      divider: map-get($active, divider),
+                      divider-width: map-get($active, divider-width),
+                      divider-corner: map-get($active, divider-corner),
+                      divider-color: map-get($active, divider-color)
                     )
                   )
                 )
@@ -187,18 +201,20 @@ $tab-marker-height: 4px;
 
               @if map-has-key($orphan, hover) {
                 $hover: map-get($orphan, hover);
-                @include jnt-link((
-                  outlines: (
-                    transparent: (
-                      orphan: (
-                        hover: (
-                          color: map-get($hover, color),
-                          background-color: map-get($hover, background-color)
+                &[data-active=false] {
+                  @include jnt-link((
+                    outlines: (
+                      transparent: (
+                        orphan: (
+                          hover: (
+                            color: map-get($hover, color),
+                            background-color: map-get($hover, background-color)
+                          )
                         )
                       )
                     )
-                  )
-                ));
+                  ));
+                }
               }
             }
 
@@ -215,27 +231,32 @@ $tab-marker-height: 4px;
 
             @if map-has-key($title, toggle) {
               $toggle: map-get($title, toggle);
-              @include jnt-link((
-                toggle: (
-                  toggle: map-get($toggle, toggle),
-                  margin-left: map-get($toggle, margin-left),
-                  color: map-get($toggle, color)
-                )
-              ));
+              [data-outline] {
+                @include jnt-link((
+                  toggle: (
+                    toggle: map-get($toggle, toggle),
+                    margin-left: map-get($toggle, margin-left),
+                    color: map-get($toggle, color),
+                    open-color: map-get($toggle, open-color)
+                  )
+                ));
+              }
             }
 
             @if map-has-key($title, hover) {
               $hover: map-get($title, hover);
-              @include jnt-link((
-                outlines: (
-                  transparent: (
-                    hover: (
-                      color: map-get($hover, color),
-                      background-color: map-get($hover, background-color)
+              &[data-active=false] {
+                @include jnt-link((
+                  outlines: (
+                    transparent: (
+                      hover: (
+                        color: map-get($hover, color),
+                        background-color: map-get($hover, background-color)
+                      )
                     )
                   )
-                )
-              ));
+                ));
+              }
             }
 
             @if map-has-key($title, focus) {
@@ -247,6 +268,13 @@ $tab-marker-height: 4px;
                     shadow: map-get($focus, shadow)
                   )
                 ), '&');
+              }
+            }
+
+            @if map-has-key($title, opened) {
+              $opened: map-get($title, opened);
+              &[data-active=true] {
+                background-color: map-get($opened, background);
               }
             }
 
@@ -379,23 +407,32 @@ $tab-marker-height: 4px;
   }
 
   #{$context} #{$wrapper} [data-top] {
-    position: relative;
-    white-space: nowrap;
-    box-sizing: border-box;
+    @if $declare {
+      position: relative;
+      white-space: nowrap;
+      box-sizing: border-box;
 
-    [data-item] {
-      display: flex;
-      align-items: center;
-      user-select: none;
-      height: 100%;
+      [data-item] {
+        display: flex;
+        align-items: center;
+        user-select: none;
+        transition: background-color .3s ease;
+        height: 100%;
 
-      [data-link] {
-        width: 100%;
-        @include jnt-link((
-          overflow: true
-        ), '&');
+        [data-link] {
+          width: 100%;
+          @include jnt-link((
+            overflow: true
+          ), '&');
+        }
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-sub-animate] {
+    align-items: stretch;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   #{$context} #{$wrapper} [data-sub] {
@@ -404,6 +441,7 @@ $tab-marker-height: 4px;
       display: none;
       align-items: stretch;
       flex-direction: column;
+      overflow: hidden;
 
       &[data-opened='true'],
       &[data-orientation='horizontal'],
@@ -415,6 +453,7 @@ $tab-marker-height: 4px;
     > [data-section] {
       @if $declare {
         user-select: none;
+        margin-bottom: $jnt-gutter-normal;
       }
 
       span {
@@ -444,6 +483,7 @@ $tab-marker-height: 4px;
   #{$context} #{$wrapper} [data-sub] {
     @if map-has-key($vars, sub) {
       $sub: map-get($vars, sub);
+      background-color: map-get($sub, background);
       &[data-collapsed='true'] {
         @if map-has-key($sub, collapsed) {
           $collapsed: map-get($sub, collapsed);
@@ -538,7 +578,11 @@ $tab-marker-height: 4px;
                     background-color: map-get($active, background-color),
                     color: map-get($active, color),
                     border-color: map-get($active, border-color),
-                    shadow: map-get($active, shadow)
+                    shadow: map-get($active, shadow),
+                    divider: map-get($active, divider),
+                    divider-width: map-get($active, divider-width),
+                    divider-corner: map-get($active, divider-corner),
+                    divider-color: map-get($active, divider-color)
                   )
                 )
               )
