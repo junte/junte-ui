@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AnimationsTestModule } from 'src/components/docs/other/animations/animations-test.module';
 import { loadChildren } from 'src/utils/routing';
-import { AnimationsTestComponent } from './animations/animations-test.component';
 import { ShortcutsTestComponent } from './shortcuts/shortcuts-test.component';
 import { ConfirmTestComponent } from './confirm/confirm-test.component';
 import { MessageTestComponent } from './message/message-test.component';
