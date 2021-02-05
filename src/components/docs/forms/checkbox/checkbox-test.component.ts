@@ -16,9 +16,10 @@ export class CheckboxTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  hero = Hero;
+  heroEnum = Hero;
   types = {checkbox: CheckboxComponent, group: CheckboxGroupComponent};
   handbook = HANDBOOK;
+  heroes: {label: string, value: string, i18n:string}[] = [];
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/checkbox';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2779';
@@ -52,6 +53,25 @@ export class CheckboxTestComponent implements OnInit {
       disabled ? this.heroesControl.disable({emitEvent: false}) : this.heroesControl.enable({emitEvent: false}));
 
     this.builder.valueChanges.subscribe(() => this.code.flash());
+
+    this.heroesControl.patchValue([Hero.ironman]);
+    setTimeout(() => this.heroes = [
+      {
+        label: 'Spiderman',
+        value: Hero.spiderman,
+        i18n: '@@label.spiderman'
+      },
+      {
+        label: 'Ironman',
+        value: Hero.ironman,
+        i18n: '@@label.ironman'
+      },
+      {
+        label: 'Captain America',
+        value: Hero.captainAmerica,
+        i18n: '@@label.captain_america'
+      }
+    ], 1000)
   }
 
   submit() {
