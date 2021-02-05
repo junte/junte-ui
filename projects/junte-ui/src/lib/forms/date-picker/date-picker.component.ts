@@ -178,8 +178,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         for (const char of value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        const parsed = parse(output, this.type === DatePickerType.date
-          ? 'P' : 'p', new Date(0),
+        const parsed = parse(output, this.type === DatePickerType.date ? 'P' : 'p', new Date(0),
           {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           if (this.type === DatePickerType.date) {

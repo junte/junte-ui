@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DatePickerComponent, TabComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -31,7 +31,7 @@ export class DatePickerTestComponent implements OnInit {
     clear: this.clearControl
   });
 
-  flightDateControl = this.fb.control(null);
+  flightDateControl = this.fb.control(null, Validators.required);
   form = this.fb.group({
     flightDate: this.flightDateControl
   });

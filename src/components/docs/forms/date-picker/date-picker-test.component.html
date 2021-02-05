@@ -34,13 +34,28 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-stack [align]="ui.align.stretch">
-                  <jnt-form [formGroup]="form">
-                    <jnt-date-picker formControlName="flightDate"
-                                     placeholder="Please enter the date"
-                                     i18n-placeholder="@@label.please_enter_the_date"
-                                     [type]="typeControl.value"
-                                     [features]="clearControl.value ? [ui.feature.allowEmpty] : null">
-                    </jnt-date-picker>
+                  <jnt-form [formGroup]="form" (submitted)="form.reset()">
+                    <jnt-stack>
+                      <jnt-form-item>
+                        <jnt-form-control name="flightDate">
+                          <jnt-date-picker formControlName="flightDate"
+                                           placeholder="Please enter the date"
+                                           i18n-placeholder="@@label.please_enter_the_date"
+                                           [type]="typeControl.value"
+                                           [features]="clearControl.value ? [ui.feature.allowEmpty] : null">
+                          </jnt-date-picker>
+                          <jnt-form-message [validator]="ui.validator.required"
+                                            i18n="@@message.this_field_is_required">
+                            This field is required
+                          </jnt-form-message>
+                        </jnt-form-control>
+                      </jnt-form-item>
+                      <jnt-form-item>
+                        <jnt-form-control>
+                          <jnt-button text="Reset" [type]="ui.button.type.submit"></jnt-button>
+                        </jnt-form-control>
+                      </jnt-form-item>
+                    </jnt-stack>
                   </jnt-form>
                   <jnt-stack *ngIf="!!flightDateControl.value"
                              [orientation]="ui.orientation.horizontal"
