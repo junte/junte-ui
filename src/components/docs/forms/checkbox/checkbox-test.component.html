@@ -41,48 +41,47 @@
                         <jnt-checkbox-group formControlName="heroes"
                                             [cols]="colsControl.value"
                                             [size]="sizeControl.value">
-                          <jnt-checkbox label="Spiderman"
-                                        [value]="hero.spiderman">
+                          <jnt-checkbox *ngFor="let hero of heroes"
+                                        [label]="hero.label"
+                                        i18n-label="{{hero.i18n}}"
+                                        [value]="hero.value">
                             <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
-                              <strong>Spiderman custom template</strong>
-                            </ng-template>
-                          </jnt-checkbox>
-                          <jnt-checkbox label="Ironman"
-                                        i18n-label="@@label.ironman"
-                                        [value]="hero.ironman">
-                            <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
-                              <jnt-input placeholder="Ironman custom template"></jnt-input>
-                            </ng-template>
-                          </jnt-checkbox>
-                          <jnt-checkbox label="Captain America"
-                                        i18n-label="@@label.captain_america"
-                                        [value]="hero.captainAmerica">
-                            <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
-                              <jnt-checkbox label="Captain America custom template"
-                                            i18n-label="@@label.captain_america_custom_template"></jnt-checkbox>
+                              <ng-container [ngSwitch]="hero.value">
+                                <ng-container *ngSwitchCase="heroEnum.spiderman">
+                                  <strong>Spiderman custom template</strong>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="heroEnum.ironman">
+                                  <jnt-input placeholder="Ironman custom template"></jnt-input>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="heroEnum.captainAmerica">
+                                  <jnt-checkbox label="Captain America custom template"
+                                                i18n-label="@@label.captain_america_custom_template">
+                                  </jnt-checkbox>
+                                </ng-container>
+                              </ng-container>
                             </ng-template>
                           </jnt-checkbox>
 
                           <ng-container *ngIf="colsControl.value > 1">
                             <jnt-checkbox label="Thanos"
                                           i18n-label="@@label.thanos"
-                                          [value]="hero.thanos">
+                                          [value]="heroEnum.thanos">
                             </jnt-checkbox>
                             <jnt-checkbox label="Deadpool"
                                           i18n-label="@@label.deadpool"
-                                          [value]="hero.deadpool">
+                                          [value]="heroEnum.deadpool">
                             </jnt-checkbox>
                             <jnt-checkbox label="Blackwidow"
                                           i18n-label="@@label.blackwidow"
-                                          [value]="hero.blackwidow">
+                                          [value]="heroEnum.blackwidow">
                             </jnt-checkbox>
                             <jnt-checkbox label="Hulk"
                                           i18n-label="@@label.hulk"
-                                          [value]="hero.hulk">
+                                          [value]="heroEnum.hulk">
                             </jnt-checkbox>
                             <jnt-checkbox label="Thor"
                                           i18n-label="@@label.thor"
-                                          [value]="hero.thor">
+                                          [value]="heroEnum.thor">
                             </jnt-checkbox>
                           </ng-container>
                         </jnt-checkbox-group>
@@ -93,11 +92,11 @@
                         </jnt-form-message>
                       </jnt-form-control>
                       <jnt-avatars-list *ngIf="colsControl.value <= 1" [size]="ui.size.large">
-                        <jnt-avatar *ngIf="heroesControl.value | includes:hero.spiderman"
+                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.spiderman"
                                     image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroesControl.value | includes:hero.ironman"
+                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.ironman"
                                     image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroesControl.value | includes:hero.captainAmerica"
+                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.captainAmerica"
                                     image="assets/images/heroes/captain.svg"></jnt-avatar>
                         <jnt-avatar *ngIf="!heroesControl.value?.length"
                                     [icon]="ui.icons.question"></jnt-avatar>

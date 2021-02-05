@@ -10,18 +10,16 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { distinctUntilChanged, map } from 'rxjs/operators';
+import { PropertyApi } from '../../../core/decorators/api';
 import { Breakpoint } from '../../../core/enums/breakpoint';
 import { Feature } from '../../../core/enums/feature';
 import { FlexAlign } from '../../../core/enums/flex';
 import { Gutter } from '../../../core/enums/gutter';
 import { Orientation } from '../../../core/enums/orientation';
-import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
-import { PropertyApi } from '../../../core/decorators/api';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
-import { isEqual } from '../../../core/utils/equal';
+import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -153,27 +151,28 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   ngAfterViewInit() {
     this.update();
     this.checkboxes.changes.subscribe(() => this.update());
-
-    this.checkboxesControl.valueChanges.pipe(
-      map(checkboxes => this.checkboxes
-        .filter((_, i) => checkboxes[i])
-        .map(checkbox => checkbox.value)),
-      distinctUntilChanged((a, b) => isEqual(a, b))
-    ).subscribe(selectedItems => {
-      this.selectedItems = selectedItems;
-      this.onChange(selectedItems);
-    });
   }
 
   update() {
     if (!!this.checkboxes) {
       this.checkboxesControl.reset([], {emitEvent: false});
       this.checkboxes.forEach((checkbox, i) => {
-        const control = this.checkboxesControl.get(i.toString());
+        let control = this.checkboxesControl.get(i.toString());
         if (!!control) {
           control.setValue(this.selectedItems.includes(checkbox.value), {emitEvent: false});
         } else {
-          this.checkboxesControl.push(new FormControl(this.selectedItems.includes(checkbox.value)));
+          control = new FormControl(this.selectedItems.includes(checkbox.value));
+          this.checkboxesControl.controls.push(control);
+          const index = this.checkboxesControl.length - 1;
+          control.valueChanges.subscribe(value => {
+            const checkbox = this.checkboxes.toArray()[index].value;
+            if (value) {
+              this.selectedItems.push(checkbox);
+            } else {
+              this.selectedItems.splice(this.selectedItems.indexOf(checkbox), 1);
+            }
+            this.onChange(this.selectedItems);
+          });
         }
       });
     }
