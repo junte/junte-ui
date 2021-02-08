@@ -5,7 +5,7 @@ import { delay, mergeMap } from 'rxjs/operators';
 import { PRELOADING_DELAY } from 'src/consts';
 import { loadChildren } from 'src/utils/routing';
 
-export function docsMatcher() {
+export function handbookMatcher() {
   return {consumed: []};
 }
 
@@ -27,10 +27,10 @@ const routes: Routes = [
       .then(m => m.HomeModule))
   },
   {
-    matcher: docsMatcher,
+    matcher: handbookMatcher,
     data: {breadcrumb: 'Junte UI'},
-    loadChildren: () => loadChildren(import('../docs/docs.module')
-      .then(m => m.DocsModule))
+    loadChildren: () => loadChildren(import('src/components/handbook/handbook.module')
+      .then(m => m.HandbookModule))
   },
   {
     path: '**',
