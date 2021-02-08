@@ -66,9 +66,14 @@
     font-size: map-get($vars, font-size);
     background: map-get($vars, background);
 
+    &[data-color='primary'] {
+      background: $jnt-primary-color !important;
+      border-color: $jnt-primary-color !important;
+    }
+
     &[data-color='secondary'] {
-      background: $jnt-secondary-color;
-      border-color: $jnt-secondary-color;
+      background: $jnt-secondary-color !important;
+      border-color: $jnt-secondary-color !important;
     }
 
     @if map-has-key($vars, sizes) {
