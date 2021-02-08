@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from 'ngx-clipboard';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -15,10 +16,11 @@ import { InputComponent } from './input.component';
     IconModule,
     SpinnerModule,
     StackModule,
-    ArrayPipesModule
+    ArrayPipesModule,
+    ClipboardModule
   ],
   exports: [
-    InputComponent,
+    InputComponent
   ],
   entryComponents: [
     InputComponent

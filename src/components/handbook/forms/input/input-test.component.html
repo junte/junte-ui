@@ -72,7 +72,8 @@
                                [step]="stepControl.value"
                                [autocomplete]="autocompleteControl.value ? ui.input.autocomplete.on : ui.input.autocomplete.off"
                                [features]="[allowEmptyControl.value ? ui.feature.allowEmpty : null,
-                                            multilineControl.value ? ui.feature.multiline : null]  | filterEmpty"
+                                            multilineControl.value ? ui.feature.multiline : null,
+                                            copyControl.value ? ui.feature.copy : null]  | filterEmpty"
                                placeholder="Yes or no?"
                                i18n-placeholder="@@label.yes_or_no"
                                [mask]="maskControl.value ? '+7(___) ___-__-__' : null">
@@ -280,12 +281,19 @@
                     </jnt-col>
                     <jnt-col [span]="4">
                       <jnt-form-item>
+                        <jnt-checkbox formControlName="copy"
+                                      i18n-label="@@label.copy"
+                                      label="Copy"></jnt-checkbox>
+                      </jnt-form-item>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-form-item>
                         <jnt-checkbox formControlName="multiline"
                                       i18n-label="@@label.multiline"
                                       label="Multiline"></jnt-checkbox>
                       </jnt-form-item>
                     </jnt-col>
-                    <jnt-col [span]="4">
+                    <jnt-col [span]="6">
                       <jnt-form-item>
                         <jnt-form-control>
                           <jnt-input formControlName="rows" [type]="ui.input.type.number"
@@ -429,7 +437,8 @@ export class InputTestComponent implements OnInit {
     <![CDATA[
     [features]="[]]>{{[
         allowEmptyControl.value ? ui.feature.allowEmpty : null,
-        multilineControl.value ? ui.feature.multiline : null
+        multilineControl.value ? ui.feature.multiline : null,
+        copyControl.value ? ui.feature.copy : null
   ] | filterEmpty | join}}<![CDATA[]"]]>
    </ng-container>
 <ng-container *ngIf="maskControl.value">

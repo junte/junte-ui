@@ -47,6 +47,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ui = UI;
   view = {password: {display: false}};
+  copied = false;
 
   private _mask: string;
   private _type: InputType = InputType.text;
@@ -250,9 +251,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Button for reset input; Allow multiple lines in input',
+    description: 'Button for reset input; Allow multiple lines in input; Copy button',
     path: 'ui.feature',
-    options: [Feature.allowEmpty, Feature.multiline],
+    options: [Feature.allowEmpty, Feature.multiline, Feature.copy],
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -424,5 +425,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if ([this.layoutRef.nativeElement].includes(target)) {
       this.focus();
     }
+  }
+
+  copy() {
+    this.copied = true;
+    setTimeout(() => this.copied = false, 2100);
   }
 }

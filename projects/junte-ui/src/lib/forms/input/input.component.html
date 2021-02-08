@@ -60,6 +60,13 @@
       <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
     </button>
 
+    <button data-copy *ngIf="features | includes: ui.feature.copy" tabindex="-1"
+            ngxClipboard
+            [cbContent]="inputControl.value || formattedControl.value"
+            (cbOnSuccess)="copy()">
+      <jnt-icon [icon]="copied ? ui.icons.animated.success : ui.icons.copy"></jnt-icon>
+    </button>
+
     <button data-reset *ngIf="features | includes: ui.feature.allowEmpty" tabindex="-1"
             (click)="clear($event)">
       <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>

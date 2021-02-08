@@ -12,5 +12,6 @@ export enum Feature {
   today = 'today',
   marks = 'marks',
   multiline = 'multiline',
-  pulse = 'pulse'
+  pulse = 'pulse',
+  copy = 'copy'
 }
