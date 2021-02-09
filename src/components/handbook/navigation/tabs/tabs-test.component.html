@@ -48,9 +48,21 @@
             <jnt-col [tablet]="8">
               <app-browser-preview>
                 <ng-template #document>
-                  <jnt-tabs [outline]="outlineControl.value" [features]="adaptedControl.value ? [ui.feature.adapted] : null">
+                  <ng-template #titleTemplate let-hero=hero>
+                    <jnt-stack data-custom-title
+                               [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <jnt-avatar [image]="hero.avatar"
+                                  [size]="ui.size.tiny"></jnt-avatar>
+                      <div>{{hero.name}}</div>
+                    </jnt-stack>
+                  </ng-template>
+                  <jnt-tabs [outline]="outlineControl.value"
+                            [features]="adaptedControl.value ? [ui.feature.adapted] : null">
                     <jnt-tab title="Personal"
                              i18n-title="@@label.personal"
+                             [titleTemplate]="titleControl.value ? tab1TitleTemplate : null"
                              [icon]="iconsControl.value ? ui.icons.calendar : null">
                       <jnt-badge *ngIf="badgesControl.value"
                                  [value]="5"></jnt-badge>
@@ -58,9 +70,13 @@
                         <jnt-skeleton [lines]="5"
                                       [animated]="false"></jnt-skeleton>
                       </ng-template>
+                      <ng-template #tab1TitleTemplate>
+                        <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[0]}"></ng-container>
+                      </ng-template>
                     </jnt-tab>
                     <jnt-tab title="Security"
                              i18n-title="@@label.security"
+                             [titleTemplate]="titleControl.value ? tab2TitleTemplate : null"
                              [icon]="iconsControl.value ? ui.icons.lock : null">
                       <jnt-badge *ngIf="badgesControl.value"
                                  [text]="'5h'"></jnt-badge>
@@ -73,9 +89,13 @@
                                         [animated]="false"></jnt-skeleton>
                         </jnt-stack>
                       </ng-template>
+                      <ng-template #tab2TitleTemplate>
+                        <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[1]}"></ng-container>
+                      </ng-template>
                     </jnt-tab>
                     <jnt-tab title="Settings"
                              i18n-title="@@label.settings"
+                             [titleTemplate]="titleControl.value ? tab3TitleTemplate : null"
                              [icon]="iconsControl.value ? ui.icons.animated.settings : null">
                       <jnt-badge *ngIf="badgesControl.value"
                                  [text]="100 | currency"></jnt-badge>
@@ -88,6 +108,9 @@
                                         [animated]="false"></jnt-skeleton>
                         </jnt-stack>
                       </ng-template>
+                      <ng-template #tab3TitleTemplate>
+                        <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[2]}"></ng-container>
+                      </ng-template>
                     </jnt-tab>
                   </jnt-tabs>
                 </ng-template>
@@ -99,7 +122,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="outline"
-                                    i18n="@@label.background">Background</jnt-form-label>
+                                    i18n="@@label.background">Background
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="outline"
                                   placeholder="Fill"
@@ -136,6 +160,11 @@
                                       i18n-label="@@label.adapted"
                                       label="Adapted"></jnt-checkbox>
                       </jnt-col>
+                      <jnt-col [span]="4">
+                        <jnt-checkbox formControlName="title"
+                                      i18n-label="@@label.title"
+                                      label="Custom title"></jnt-checkbox>
+                      </jnt-col>
                     </jnt-row>
                   </jnt-form-item>
 
@@ -147,8 +176,8 @@
       </jnt-tab>
 
       <jnt-tab #code title="Code"
-             i18n-title="@@label.code"
-             [icon]="localUi.icons.code">
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"
@@ -165,74 +194,122 @@
               <ng-template #accordionContentTemplate>
                 <app-code-highlight>
                   <!-- @formatter:off-->
-<![CDATA[
-<jnt-tabs
-]]>
-  <ng-container *ngIf="outlineControl.value">
-    <![CDATA[
-    [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-  </ng-container>
-  <ng-container *ngIf="adaptedControl.value">
-    <![CDATA[
-    [features]="[ui.feature.adapted]" ]]>
-  </ng-container>
-  <![CDATA[>
-  <jnt-tab title="Personal"
-    ]]>
-  <ng-container *ngIf="iconsControl.value">
-    <![CDATA[
-    [icon]="ui.icons.calendar"]]>
-  </ng-container>
-    <![CDATA[>]]>
-  <ng-container *ngIf="badgesControl.value">
-    <![CDATA[
-    <jnt-badge [value]="5"></jnt-badge>
-    ]]>
-  </ng-container>
-  <![CDATA[
-  <ng-template #tabContentTemplate>
-    ...
-  </ng-template>
-</jnt-tab>
+                  <![CDATA[
+                  <jnt-tabs
+                    ]]>
+                    <ng-container *ngIf="outlineControl.value">
+                      <![CDATA[
+                      [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="adaptedControl.value">
+                      <![CDATA[
+                      [features]="[ui.feature.adapted]" ]]>
+                    </ng-container>
+                    <![CDATA[>
+                    <jnt-tab title="Personal"
+                             ]]>
+                      <ng-container *ngIf="iconsControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.calendar"]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        [titleTemplate]="titleTemplate" ]]>
+                      </ng-container>
+                      <![CDATA[>]]>
+                      <ng-container *ngIf="badgesControl.value">
+                        <![CDATA[
+                        <jnt-badge [value]="5"></jnt-badge>
+                        ]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        <ng-template #titleTemplate>
+                          <jnt-stack [orientation]="ui.orientation.horizontal"
+                                     [gutter]="ui.gutter.small"
+                                     [align]="ui.align.center">
+                            <jnt-avatar></jnt-avatar>
+                            <div>Spiderman</div>
+                          </jnt-stack>
+                        </ng-template>
+                        ]]>
+                      </ng-container>
+                      <![CDATA[
+                      <ng-template #tabContentTemplate>
+                        ...
+                      </ng-template>
+                    </jnt-tab>
 
-<jnt-tab title="Security"
-]]>
-  <ng-container *ngIf="iconsControl.value">
-    <![CDATA[
-    [icon]="ui.icons.lock"]]>
-  </ng-container>
-  <![CDATA[>]]>
-  <ng-container *ngIf="badgesControl.value">
-    <![CDATA[
-    <jnt-badge [value]="5"></jnt-badge>
-    ]]>
-  </ng-container>
-  <![CDATA[
-  <ng-template #tabContentTemplate>
-    ....
-  </ng-template>
-</jnt-tab>
+                    <jnt-tab title="Security"
+                             ]]>
+                      <ng-container *ngIf="iconsControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.lock"]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        [titleTemplate]="titleTemplate" ]]>
+                      </ng-container>
+                      <![CDATA[>]]>
+                      <ng-container *ngIf="badgesControl.value">
+                        <![CDATA[
+                        <jnt-badge [value]="5"></jnt-badge>
+                        ]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        <ng-template #titleTemplate>
+                          <jnt-stack [orientation]="ui.orientation.horizontal"
+                                     [gutter]="ui.gutter.small"
+                                     [align]="ui.align.center">
+                            <jnt-avatar></jnt-avatar>
+                            <div>Ironman</div>
+                          </jnt-stack>
+                        </ng-template>
+                        ]]>
+                      </ng-container>
+                      <![CDATA[
+                      <ng-template #tabContentTemplate>
+                        ....
+                      </ng-template>
+                    </jnt-tab>
 
-<jnt-tab title="Settings"
-]]>
-  <ng-container *ngIf="iconsControl.value">
-    <![CDATA[
-    [icon]="ui.icons.settings"]]>
-  </ng-container>
-  <![CDATA[>]]>
-  <ng-container *ngIf="badgesControl.value">
-    <![CDATA[
-    <jnt-badge [value]="5"></jnt-badge>
-    ]]>
-  </ng-container>
-  <![CDATA[
-  <ng-template #tabContentTemplate>
-    ....
-  </ng-template>
-</jnt-tab>
+                    <jnt-tab title="Settings"
+                             ]]>
+                      <ng-container *ngIf="iconsControl.value">
+                        <![CDATA[
+                        [icon]="ui.icons.settings"]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        [titleTemplate]="titleTemplate" ]]>
+                      </ng-container>
+                      <![CDATA[>]]>
+                      <ng-container *ngIf="badgesControl.value">
+                        <![CDATA[
+                        <jnt-badge [value]="5"></jnt-badge>
+                        ]]>
+                      </ng-container>
+                      <ng-container *ngIf="titleControl.value">
+                        <![CDATA[
+                        <ng-template #titleTemplate>
+                          <jnt-stack [orientation]="ui.orientation.horizontal"
+                                     [gutter]="ui.gutter.small"
+                                     [align]="ui.align.center">
+                            <jnt-avatar></jnt-avatar>
+                            <div>Captain America</div>
+                          </jnt-stack>
+                        </ng-template>
+                        ]]>
+                      </ng-container>
+                      <![CDATA[
+                      <ng-template #tabContentTemplate>
+                        ....
+                      </ng-template>
+                    </jnt-tab>
 
-</jnt-tabs>
-]]>
+                  </jnt-tabs>
+                  ]]>
                   <!-- @formatter:on-->
                 </app-code-highlight>
               </ng-template>

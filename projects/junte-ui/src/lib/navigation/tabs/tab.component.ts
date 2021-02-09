@@ -19,6 +19,13 @@ export class TabComponent {
   @Input() title: string;
 
   @PropertyApi({
+    description: 'Title template of tab',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  titleTemplate: TemplateRef<any>;
+
+  @PropertyApi({
     description: 'Icon for tab',
     type: 'string'
   })

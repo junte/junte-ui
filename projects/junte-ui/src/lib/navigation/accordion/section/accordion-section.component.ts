@@ -35,4 +35,7 @@ export class AccordionSectionComponent {
   @ContentChild('accordionContentTemplate')
   accordionContentTemplate: TemplateRef<any>;
 
+  @ContentChild('accordionTitleTemplate')
+  accordionTitleTemplate: TemplateRef<any>;
+
 }
