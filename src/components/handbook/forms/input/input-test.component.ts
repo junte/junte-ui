@@ -45,6 +45,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   transformControl = this.fb.control(null);
   allowEmptyControl = this.fb.control(false);
   autocompleteControl = this.fb.control(false);
+  copyControl = this.fb.control(false);
 
   builder = this.fb.group({
     type: this.typeControl,
@@ -64,7 +65,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     max: this.maxControl,
     transform: this.transformControl,
     allowEmpty: this.allowEmptyControl,
-    autocomplete: this.autocompleteControl
+    autocomplete: this.autocompleteControl,
+    copy: this.copyControl
   });
 
   inputControl = this.fb.control(null);
