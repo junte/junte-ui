@@ -16,6 +16,12 @@ import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
+enum AnimationState {
+  default = 'default',
+  checked = 'checked',
+  unchecked = 'unchecked'
+}
+
 @Component({
   selector: 'jnt-checkbox',
   templateUrl: './checkbox.encapsulated.html',
@@ -29,6 +35,7 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
   ],
   animations: [
     trigger('scale', [
+      transition(`* => ${AnimationState.default}`, []),
         transition(':enter', [
           style({transform: 'scale(0)'}),
           animate('.3s', style({transform: 'scale(1)'})),
@@ -44,6 +51,7 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+  animate = AnimationState.default;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-host';
@@ -102,7 +110,10 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {
     this.checkboxControl.valueChanges
-      .subscribe(value => this.onChange(value));
+      .subscribe(checked => {
+        this.animate = checked ? AnimationState.checked : AnimationState.unchecked;
+        this.onChange(checked);
+      });
   }
 
   writeValue(value: boolean) {

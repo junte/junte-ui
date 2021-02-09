@@ -3,6 +3,12 @@ import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, Q
 import { UI } from '../../core/enums/ui';
 import { AccordionSectionComponent } from './section/accordion-section.component';
 
+enum AnimationState {
+  default = 'default',
+  opened = 'opened',
+  closed = 'closed'
+}
+
 @Component({
   selector: 'jnt-accordion',
   templateUrl: './accordion.encapsulated.html',
@@ -14,8 +20,9 @@ import { AccordionSectionComponent } from './section/accordion-section.component
       ]
     ),
     trigger('collapse', [
-      transition(':enter', [style({height: 0}), animate('.3s', style({height: '*'}))]),
-      transition(':leave', [style({height: '*'}), animate('.3s', style({height: 0}))]),
+        transition(`* => ${AnimationState.default}`, []),
+        transition(':enter', [style({height: 0}), animate('.3s', style({height: '*'}))]),
+        transition(':leave', [style({height: '*'}), animate('.3s', style({height: 0}))]),
       ]
     )
   ]
@@ -23,6 +30,7 @@ import { AccordionSectionComponent } from './section/accordion-section.component
 export class AccordionComponent {
 
   ui = UI;
+  animate = AnimationState.default;
 
   @HostBinding('attr.host') readonly host = 'jnt-accordion-host';
 
@@ -34,5 +42,17 @@ export class AccordionComponent {
 
   @Output()
   changed = new EventEmitter<number>();
+
+  setActive(index: number, event: Event) {
+    if (this.active === index) {
+      this.active = null;
+      this.animate = AnimationState.closed;
+    } else {
+      this.active = index;
+      this.animate = AnimationState.opened;
+    }
+    this.changed.emit(this.active);
+    event.preventDefault();
+  }
 
 }

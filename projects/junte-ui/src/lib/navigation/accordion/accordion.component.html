@@ -1,7 +1,7 @@
 <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.none">
   <ng-container *ngFor="let section of sections; let i = index;">
     <a href="#" data-title
-       (click)="active == i ? active = null : active = i;changed.emit(active); $event.preventDefault()"
+       (click)="setActive(i, $event)"
        [attr.active]="active == i">
       <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
       <span>{{section.title}}</span>
@@ -13,7 +13,7 @@
       </jnt-stack>
 
     </a>
-    <div *ngIf="active == i" data-content [@collapse]>
+    <div *ngIf="active == i" data-content [@collapse]=animate>
       <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>
     </div>
   </ng-container>
