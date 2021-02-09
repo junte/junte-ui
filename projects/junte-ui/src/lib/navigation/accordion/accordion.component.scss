@@ -38,16 +38,14 @@ $accordion-marker-height: 2px;
     @if $declare {
       border-bottom: $accordion-marker-height solid $jnt-secondary-color;
       padding: ($jnt-gutter-small + $accordion-marker-height) 0;
-      color: $jnt-primary-text-color;
-      display: flex;
-      align-items: center;
       cursor: pointer;
-      line-height: 1.6;
       user-select: none;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: inherit;
 
       &[active='true'] {
-        color: $jnt-primary-light-color;
         border-color: $jnt-primary-light-color;
 
         [data-chevron] {
@@ -55,20 +53,29 @@ $accordion-marker-height: 2px;
         }
       }
 
-      &:hover {
-        &[active='false'] {
-          color: $jnt-primary-light-color;
+      &[data-with-template='false'] {
+        color: $jnt-primary-text-color;
+        line-height: 1.6;
 
-          [data-chevron] {
-            @include jnt-icon((color: $jnt-primary-light-color), '&');
+        &[active='true'] {
+          color: $jnt-primary-light-color;
+        }
+
+        &:hover {
+          &[active='false'] {
+            color: $jnt-primary-light-color;
+
+            [data-chevron] {
+              @include jnt-icon((color: $jnt-primary-light-color), '&');
+            }
           }
         }
-      }
-    }
 
-    span {
-      @if $declare {
-        margin: 0 $jnt-gutter-tiny;
+        span {
+          @if $declare {
+            margin: 0 $jnt-gutter-tiny;
+          }
+        }
       }
     }
 

@@ -2,9 +2,17 @@
   <ng-container *ngFor="let section of sections; let i = index;">
     <a href="#" data-title
        (click)="setActive(i, $event)"
+       [attr.data-with-template]="!!section.accordionTitleTemplate"
        [attr.active]="active == i">
-      <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
-      <span>{{section.title}}</span>
+
+      <ng-container *ngIf="section.accordionTitleTemplate; else defaultTemplate">
+        <ng-container *ngTemplateOutlet="section.accordionTitleTemplate"></ng-container>
+      </ng-container>
+
+      <ng-template #defaultTemplate>
+        <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
+        <span>{{section.title}}</span>
+      </ng-template>
 
       <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-spinner *ngIf="section.state === ui.state.loading" [size]="ui.size.small"></jnt-spinner>

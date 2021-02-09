@@ -33,6 +33,22 @@
           <jnt-col [tablet]="8">
             <app-browser-preview>
               <ng-template #document>
+                <ng-template #titleTemplate let-hero=hero>
+                  <jnt-stack data-custom-title
+                             [orientation]="ui.orientation.horizontal"
+                             [align]="ui.align.center"
+                             [justify]="ui.justify.between">
+                    <jnt-stack [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <jnt-avatar [image]="hero.avatar"
+                                  [size]="ui.size.tiny"></jnt-avatar>
+                      <div>{{hero.name}}</div>
+                    </jnt-stack>
+                    <jnt-label [label]="hero.likes + ' likes'"
+                               [color]="ui.color.green"></jnt-label>
+                  </jnt-stack>
+                </ng-template>
                 <jnt-accordion>
                   <jnt-accordion-section title="Spiderman"
                                          i18n-title="@@label.spiderman"
@@ -46,13 +62,17 @@
                           Silver Age of Comic Books.
                         </ng-container>
                         <ng-container *ngSwitchCase="language.ru">
-                          Человек-паук - вымышленный супергерой, созданный писателем-редактором Стэном Ли и писателем-художником Стивом.
+                          Человек-паук - вымышленный супергерой, созданный писателем-редактором Стэном Ли и
+                          писателем-художником Стивом.
                           Дитко. Впервые он появился в антологическом комиксе Amazing Fantasy # 15 (август 1962 г.) в
                           Серебряный век комиксов.
                         </ng-container>
                       </p>
                       <iframe giphy src="https://giphy.com/embed/yFqLQzipdekuI" width="480" height="313"
                               frameBorder="0"></iframe>
+                    </ng-template>
+                    <ng-template #accordionTitleTemplate *ngIf="titleControl.value">
+                      <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[0]}"></ng-container>
                     </ng-template>
                   </jnt-accordion-section>
                   <jnt-accordion-section title="Ironman"
@@ -61,15 +81,19 @@
                     <ng-template #accordionContentTemplate>
                       <p [ngSwitch]="locale">
                         <ng-container *ngSwitchDefault>
-                          Iron Man is a fictional superhero appearing in American comic books published by Marvel Comics.
-                          The character was co-created by writer and editor Stan Lee, developed by scripter Larry Lieber,
+                          Iron Man is a fictional superhero appearing in American comic books published by Marvel
+                          Comics.
+                          The character was co-created by writer and editor Stan Lee, developed by scripter Larry
+                          Lieber,
                           and designed by artists Don Heck and Jack Kirby. The character made his first appearance in
                           Tales of Suspense #39 (cover dated March 1963), and received his own title in Iron Man #1 (May
                           1968).
                         </ng-container>
                         <ng-container *ngSwitchCase="language.ru">
-                          Железный Человек - вымышленный супергерой, появляющийся в американских комиксах, издаваемых Marvel Comics.
-                          Персонаж был создан в соавторстве с писателем и редактором Стэном Ли, а разработкой - сценаристом Ларри Либером.
+                          Железный Человек - вымышленный супергерой, появляющийся в американских комиксах, издаваемых
+                          Marvel Comics.
+                          Персонаж был создан в соавторстве с писателем и редактором Стэном Ли, а разработкой -
+                          сценаристом Ларри Либером.
                           и разработан художниками Доном Хеком и Джеком Кирби. Персонаж впервые появился в
                           Tales of Suspense # 39 (обложка от марта 1963 г.) и получил свой титул в Iron Man # 1 (май
                           1968).
@@ -77,6 +101,9 @@
                       </p>
                       <iframe giphy src="https://giphy.com/embed/wEgs1cd7vDTt6" width="480" height="198"
                               frameBorder="0"></iframe>
+                    </ng-template>
+                    <ng-template #accordionTitleTemplate *ngIf="titleControl.value">
+                      <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[1]}"></ng-container>
                     </ng-template>
                   </jnt-accordion-section>
                   <jnt-accordion-section title="Captain America"
@@ -86,19 +113,25 @@
                       <p [ngSwitch]="locale">
                         <ng-container *ngSwitchDefault>
                           Captain America is a fictional superhero appearing in American comic books published by Marvel
-                          Comics. Created by cartoonists Joe Simon and Jack Kirby, the character first appeared in Captain
+                          Comics. Created by cartoonists Joe Simon and Jack Kirby, the character first appeared in
+                          Captain
                           America Comics #1 (cover dated March 1941) from Timely Comics, a predecessor of Marvel
                           Comics.
                         </ng-container>
                         <ng-container *ngSwitchCase="language.ru">
-                          Капитан Америка - вымышленный супергерой, появляющийся в американских комиксах, изданных Marvel.
-                          Комиксы. Созданный карикатуристами Джо Саймоном и Джеком Кирби, персонаж впервые появился в Капитане.
+                          Капитан Америка - вымышленный супергерой, появляющийся в американских комиксах, изданных
+                          Marvel.
+                          Комиксы. Созданный карикатуристами Джо Саймоном и Джеком Кирби, персонаж впервые появился в
+                          Капитане.
                           America Comics # 1 (обложка от марта 1941 г.) от Timely Comics, предшественника Marvel
                           Комиксы.
                         </ng-container>
                       </p>
                       <iframe giphy src="https://giphy.com/embed/aShBCHV3Cu6FG" width="480" height="204"
                               frameBorder="0"></iframe>
+                    </ng-template>
+                    <ng-template #accordionTitleTemplate *ngIf="titleControl.value">
+                      <ng-container *ngTemplateOutlet="titleTemplate; context: {hero: heroes[2]}"></ng-container>
                     </ng-template>
                   </jnt-accordion-section>
                 </jnt-accordion>
@@ -134,6 +167,13 @@
                                   label="Icon"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="title"
+                                  i18n-label="@@label.title"
+                                  label="Custom title"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -159,54 +199,93 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="accordion-test.template.html">
                 <!-- @formatter:off-->
-<![CDATA[
-<jnt-accordion>
-  <jnt-accordion-section title="Gitlab" ]]>
-    <ng-container *ngIf="iconControl.value">
-      <![CDATA[
-      [icon]="ui.icons.gitlab"]]>
-    </ng-container>
-    <ng-container *ngIf="stateControl.value">
-      <![CDATA[
-      [state]="]]>{{stateControl.value}}<![CDATA["]]>
-    </ng-container>
-    <![CDATA[>]]>
-    <![CDATA[
-    <ng-template #accordionContentTemplate>
-      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
-      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
-      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
-      and higher levels of efficiency in a single application across the DevOps lifecycle.
-    </ng-template>
-  </jnt-accordion-section>
-  <jnt-accordion-section title="Figma" ]]>
-    <ng-container *ngIf="iconControl.value">
-      <![CDATA[
-      [icon]="ui.icons.figma"]]>
-    </ng-container>
-    <![CDATA[>]]>
-    <![CDATA[
-    <ng-template #accordionContentTemplate>
-      Figma is the only platform that brings together powerful design features you already love and a
-      more efficient workflow to boot.
-    </ng-template>
-  </jnt-accordion-section>
-  <jnt-accordion-section title="Git" ]]>
-    <ng-container *ngIf="iconControl.value">
-      <![CDATA[
-      [icon]="ui.icons.github"]]>
-    </ng-container>
-    <![CDATA[>]]>
-    <![CDATA[
-    <ng-template #accordionContentTemplate>
-      Git is a distributed version-control system for tracking changes in source code during software
-      development. It is designed for coordinating work among programmers, but it can be used to track
-      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
-      non-linear workflows.
-    </ng-template>
-  </jnt-accordion-section>
-</jnt-accordion>
-]]>
+                <![CDATA[
+                <jnt-accordion>
+                  <jnt-accordion-section title="Gitlab" ]]>
+                    <ng-container *ngIf="iconControl.value && !titleControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.gitlab"]]>
+                    </ng-container>
+                    <ng-container *ngIf="stateControl.value">
+                      <![CDATA[
+                      [state]="]]>{{stateControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="titleControl.value">
+                      <![CDATA[
+                      <ng-template #accordionTitleTemplate>
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.align.center">
+                          <jnt-avatar></jnt-avatar>
+                          <div>Spiderman</div>
+                          <jnt-label></jnt-label>
+                        </jnt-stack>
+                      </ng-template>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                    <ng-template #accordionContentTemplate>
+                      GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique
+                      and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced
+                      together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility
+                      and higher levels of efficiency in a single application across the DevOps lifecycle.
+                    </ng-template>
+                  </jnt-accordion-section>
+                  <jnt-accordion-section title="Figma" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.figma"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="titleControl.value">
+                      <![CDATA[
+                      <ng-template #accordionTitleTemplate>
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.align.center">
+                          <jnt-avatar></jnt-avatar>
+                          <div>Spiderman</div>
+                          <jnt-label></jnt-label>
+                        </jnt-stack>
+                      </ng-template>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                    <ng-template #accordionContentTemplate>
+                      Figma is the only platform that brings together powerful design features you already love and a
+                      more efficient workflow to boot.
+                    </ng-template>
+                  </jnt-accordion-section>
+                  <jnt-accordion-section title="Git" ]]>
+                    <ng-container *ngIf="iconControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.github"]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="titleControl.value">
+                      <![CDATA[
+                      <ng-template #accordionTitleTemplate>
+                        <jnt-stack [orientation]="ui.orientation.horizontal"
+                                   [gutter]="ui.gutter.small"
+                                   [align]="ui.align.center">
+                          <jnt-avatar></jnt-avatar>
+                          <div>Spiderman</div>
+                          <jnt-label></jnt-label>
+                        </jnt-stack>
+                      </ng-template>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                    <ng-template #accordionContentTemplate>
+                      Git is a distributed version-control system for tracking changes in source code during software
+                      development. It is designed for coordinating work among programmers, but it can be used to track
+                      changes in any set of files. Its goals include speed, data integrity, and support for distributed,
+                      non-linear workflows.
+                    </ng-template>
+                  </jnt-accordion-section>
+                </jnt-accordion>
+                ]]>
                 <!-- @formatter:on-->
               </app-code-highlight>
             </ng-template>

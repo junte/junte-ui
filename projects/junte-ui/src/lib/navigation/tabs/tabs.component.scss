@@ -62,6 +62,7 @@ $tab-marker-height: 4px;
         position: relative;
         text-decoration: none;
         display: block;
+        color: inherit;
         &:after {
           content: '';
           position: absolute;
@@ -74,7 +75,7 @@ $tab-marker-height: 4px;
         }
 
         &:hover {
-          [data-tab] {
+          [data-tab][data-with-template='false'] {
             color: $jnt-primary-light-color;
 
             [data-label] [data-icon] {
@@ -90,7 +91,7 @@ $tab-marker-height: 4px;
       }
 
       &[data-active='true'] {
-        [data-tab] {
+        [data-tab][data-with-template='false'] {
           @if $declare {
             color: $jnt-primary-light-color;
           }
@@ -110,17 +111,19 @@ $tab-marker-height: 4px;
 
       [data-tab] {
         @if $declare {
-          padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal;
           cursor: pointer;
-          color: $jnt-primary-text-color;
-          font-size: $jnt-font-size-base;
-          line-height: 1.6;
           position: relative;
           user-select: none;
           max-width: 100%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal;
+          &[data-with-template='false'] {
+            color: $jnt-primary-text-color;
+            font-size: $jnt-font-size-base;
+            line-height: 1.6;
+          }
         }
 
         [data-label] {

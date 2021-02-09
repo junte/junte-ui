@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
   AppLayoutModule,
+  AvatarModule,
   BadgeModule,
   CheckboxModule,
   FormModule,
   GridModule,
   IconModule,
+  LabelModule,
   LinkModule,
   SelectModule,
   SkeletonModule,
@@ -34,7 +36,9 @@ import { TabsTestComponent } from './tabs-test.component';
     SelectModule,
     CheckboxModule,
     SharedModule,
-    AppLayoutModule
+    AppLayoutModule,
+    AvatarModule,
+    LabelModule
   ],
   exports: [
     TabsTestComponent
