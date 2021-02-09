@@ -1,6 +1,7 @@
 <form [formGroup]="form">
   <input formControlName="radio" type="radio" [attr.custom]="!!labelTemplate">
-  <div data-switch><span *ngIf="radioControl.value" data-indicator [@scale]></span></div>
+  <div data-switch><span data-indicator *ngIf="radioControl.value"
+                         [@scale]="animate"></span></div>
   <ng-template #labelDefaultTemplate>
     <label *ngIf="label">{{label}}</label>
   </ng-template>

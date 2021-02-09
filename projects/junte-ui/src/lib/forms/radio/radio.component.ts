@@ -16,6 +16,12 @@ import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
+enum AnimationState {
+  default = 'default',
+  checked = 'checked',
+  unchecked = 'unchecked'
+}
+
 @Component({
   selector: 'jnt-radio',
   templateUrl: './radio.encapsulated.html',
@@ -29,13 +35,14 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
   ],
   animations: [
     trigger('scale', [
+        transition(`* => ${AnimationState.default}`, []),
         transition(':enter', [
           style({transform: 'scale(0)'}),
-          animate('.3s', style({transform: 'scale(1)'})),
+          animate('.3s', style({transform: 'scale(1)'}))
         ]),
         transition(':leave', [
           style({transform: 'scale(1)'}),
-          animate('.3s', style({transform: 'scale(0)'})),
+          animate('.3s', style({transform: 'scale(0)'}))
         ])
       ]
     )
@@ -44,6 +51,7 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+  animate = AnimationState.default;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-radio-host';
@@ -107,7 +115,11 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {
     this.radioControl.valueChanges
-      .subscribe(() => this.onChange(true));
+      .subscribe(checked => {
+        this.animate = checked ? AnimationState.checked : AnimationState.unchecked;
+        // TODO: check this
+        this.onChange(true);
+      });
   }
 
   writeValue(value: boolean) {
