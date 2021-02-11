@@ -45,6 +45,9 @@
     footer: (
       padding: 0
     ),
+    content: (
+      width: null
+    ),
     picture: (
       padding: 0,
       corner: null,
@@ -256,7 +259,10 @@
       [data-content] {
         @if $declare {
           flex: 1;
-          overflow: hidden;
+        }
+        @if map-has-key($vars, content) {
+          $content: map-get($vars, content);
+          max-width: map-get($content, width);
         }
       }
 
