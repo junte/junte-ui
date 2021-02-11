@@ -19,7 +19,7 @@
   <ul #selectedRef>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null"
-      [attr.data-with-template]="!!optionTemplate">
+          [attr.data-with-template]="!!optionTemplate">
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
@@ -34,9 +34,10 @@
       </li>
     </ng-container>
 
-    <li data-query [formGroup]="form" (click)="opened ? close() : open()">
-      <input #queryRef [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
-             formControlName="query">
+    <li data-query [formGroup]="form" (click)="opened && !queryControl.value ? close() : open()">
+      <input #queryRef formControlName="query"
+             [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
+             (keydown)="createOption(queryControl.value, $event)">
     </li>
   </ul>
   <div data-loading *ngIf="state === ui.state.loading">

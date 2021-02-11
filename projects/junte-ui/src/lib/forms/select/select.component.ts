@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { DeviceService } from '../../layout/responsive/device.service';
@@ -301,7 +301,14 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     type: 'function'
   })
   @Input()
-  loader = null;
+  loader: (query: string) => Observable<(Object & { icon: string })[]> = null;
+
+  @PropertyApi({
+    description: 'Select creator',
+    type: 'function'
+  })
+  @Input()
+  creator: (query: string, close: Function) => Observable<null> | null = null;
 
   @ViewChild('queryRef')
   queryRef: ElementRef<HTMLInputElement>;
@@ -514,11 +521,20 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   writeValue(value: Key | Key[]) {
-    if (this.mode === SelectMode.multiple && !value) {
+    if (this.mode === SelectMode.multiple && !Array.isArray(value)) {
       throw new Error('Wrong value form multiple select mode');
     }
 
     this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
+  }
+
+  createOption(query, event: KeyboardEvent) {
+    if (!!query && event.key === 'Enter' && !!this.creator) {
+      const complete = this.creator(query, this.close.bind(this));
+      if (!!complete) {
+        complete.subscribe(() => this.queryControl.setValue(null));
+      }
+    }
   }
 
   setDisabledState(disabled: boolean) {

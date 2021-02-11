@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
-import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { debounceTime, delay } from 'rxjs/operators';
 import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -17,7 +17,7 @@ export class SelectTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  types = {select: SelectComponent , option: SelectOptionComponent};
+  types = {select: SelectComponent, option: SelectOptionComponent};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/select';
@@ -26,6 +26,7 @@ export class SelectTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   selected = {heroes: []};
+  created = {heroes: []};
 
   modeControl = this.fb.control(null);
   sizeControl = this.fb.control(null);
@@ -67,8 +68,8 @@ export class SelectTestComponent implements OnInit {
     this.builder.valueChanges.subscribe(() => this.code.flash());
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectControl.disable({emitEvent: false}) : this.selectControl.enable({emitEvent: false}));
-    this.modeControl.valueChanges.subscribe(mode => this.selectControl
-      .setValue(mode === UI.select.mode.single ? [] : null));
+    this.modeControl.valueChanges.pipe(debounceTime(500)).subscribe(mode => this.selectControl
+      .setValue(mode === UI.select.mode.single ? null : []));
   }
 
   trackHero(index, hero: { id: number }) {
@@ -81,5 +82,15 @@ export class SelectTestComponent implements OnInit {
         || hero.name.toLowerCase().includes(query.toLowerCase())));
       observable.complete();
     }).pipe(delay(1000));
+  }
+
+  createHero(name: string, close: Function): Observable<null> {
+    const id = this.created.heroes.length + 100;
+    this.created.heroes.push({id, name});
+    const selected = this.selectControl.value;
+    selected.push(id);
+    this.selectControl.setValue(selected);
+    close();
+    return of(null);
   }
 }

@@ -53,8 +53,14 @@
                                 [optionsHeaderTemplate]="optionsHeaderTemplate"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null"
                                 [state]="loadingControl.value ? ui.state.loading : null"
+                                [creator]="createHero.bind(this)"
                                 (selected)="selected.heroes.push($event)">
                       <jnt-select-option *ngFor="let h of selected.heroes;trackBy:trackHero"
+                                         [label]="h.name"
+                                         [key]="h.id"
+                                         [value]="h">
+                      </jnt-select-option>
+                      <jnt-select-option *ngFor="let h of created.heroes;trackBy:trackHero"
                                          [label]="h.name"
                                          [key]="h.id"
                                          [value]="h">
@@ -87,11 +93,12 @@
                         <jnt-stack [orientation]="ui.orientation.horizontal"
                                    [gutter]="ui.gutter.small"
                                    [align]="ui.align.center">
-                          <jnt-avatar [image]="hero.avatar"
+                          <jnt-avatar [icon]="ui.icons.question"
+                                      [image]="hero.avatar"
                                       [size]="selected ? ui.size.tiny : ui.size.small"></jnt-avatar>
                           <div>{{hero.name}}</div>
                         </jnt-stack>
-                        <jnt-label [label]="hero.likes + ' likes'"
+                        <jnt-label *ngIf="hero.likes > 0" [label]="hero.likes + ' likes'"
                                    [color]="ui.color.green"></jnt-label>
                       </jnt-stack>
                     </ng-template>
