@@ -8,21 +8,25 @@
     <jnt-icon [icon]="ui.icons.first"></jnt-icon>
   </a>
   <a title="Previous"
+     [attr.data-href]="'?page=' + (selectedPage - 1)"
      [attr.disabled]="selectedPage === 1"
      (click)="setPage(selectedPage - 1)"
      data-page="1">
     <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
   </a>
   <a *ngFor="let page of pages"
+     [attr.data-href]="'?page=' + page"
      (click)="setPage(page)"
      [attr.active]="page === selectedPage"
      tabindex="0">{{page}}</a>
   <a title="Next"
+     [attr.data-href]="'?page=' + (selectedPage + 1)"
      [attr.disabled]="selectedPage >= pagesCount"
      (click)="setPage(selectedPage + 1)">
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
   </a>
   <a title="Last"
+     [attr.data-href]="'?page=' + (pagesCount)"
      (click)="setPage(pagesCount)"
      [attr.disabled]="selectedPage >= pagesCount">
     <jnt-icon [icon]="ui.icons.last"></jnt-icon>
