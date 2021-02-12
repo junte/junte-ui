@@ -50,10 +50,12 @@ $tab-marker-height: 4px;
           color: $jnt-primary-light-color,
           underline-color: $jnt-primary-light-color,
           shadow: null,
-          divider: false,
-          divider-width: null,
-          divider-corner: null,
-          divider-color: null
+          divider: (
+            display: false,
+            divider-width: null,
+            divider-corner: null,
+            divider-color: null
+          )
         ),
         opened: (
           background: null
@@ -113,10 +115,12 @@ $tab-marker-height: 4px;
           background-color: null,
           color: $jnt-primary-light-color,
           shadow: null,
-          divider: false,
-          divider-width: null,
-          divider-corner: null,
-          divider-color: null
+          divider: (
+            display: false,
+            divider-width: null,
+            divider-corner: null,
+            divider-color: null
+          )
         ),
         focus: (
           outline: null,
@@ -177,14 +181,27 @@ $tab-marker-height: 4px;
                       color: map-get($active, color),
                       underline-color: map-get($active, border-color),
                       shadow: map-get($active, shadow),
-                      divider: map-get($active, divider),
-                      divider-width: map-get($active, divider-width),
-                      divider-corner: map-get($active, divider-corner),
-                      divider-color: map-get($active, divider-color)
                     )
                   )
                 )
               ));
+              @if map-has-key($active, divider) {
+                $divider: map-get($active, divider);
+                @include jnt-link((
+                  outlines: (
+                    transparent: (
+                      active: (
+                        divider: (
+                          display: map-get($divider, display),
+                          divider-width: map-get($divider, divider-width),
+                          divider-corner: map-get($divider, divider-corner),
+                          divider-color: map-get($divider, divider-color)
+                        )
+                      )
+                    )
+                  )
+                ));
+              }
             }
 
             @if map-has-key($title, orphan) {
@@ -557,7 +574,6 @@ $tab-marker-height: 4px;
               )
             ), '&');
           }
-
           @if map-has-key($item, focus) {
             $focus: map-get($item, focus);
             @include jnt-link((
@@ -579,14 +595,27 @@ $tab-marker-height: 4px;
                     color: map-get($active, color),
                     border-color: map-get($active, border-color),
                     shadow: map-get($active, shadow),
-                    divider: map-get($active, divider),
-                    divider-width: map-get($active, divider-width),
-                    divider-corner: map-get($active, divider-corner),
-                    divider-color: map-get($active, divider-color)
                   )
                 )
               )
             ), '&');
+            @if map-has-key($active, divider) {
+              $divider: map-get($active, divider);
+              @include jnt-link((
+                outlines: (
+                  transparent: (
+                    active: (
+                      divider: (
+                        display: map-get($divider, display),
+                        divider-width: map-get($divider, divider-width),
+                        divider-corner: map-get($divider, divider-corner),
+                        divider-color: map-get($divider, divider-color)
+                      )
+                    )
+                  )
+                )
+              ), '&');
+            }
           }
         }
       }
