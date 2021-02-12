@@ -18,7 +18,7 @@
     corner: $jnt-corner-small,
     background: $jnt-primary-color,
     font-size: inherit,
-    border: 1px solid,
+    border: 1px solid $jnt-primary-color,
     color: null,
     dot: (
       size: 10px
@@ -65,11 +65,6 @@
     border-radius: map-get($vars, corner);
     font-size: map-get($vars, font-size);
     background: map-get($vars, background);
-
-    &[data-color='primary'] {
-      background: $jnt-primary-color !important;
-      border-color: $jnt-primary-color !important;
-    }
 
     &[data-color='secondary'] {
       background: $jnt-secondary-color !important;
