@@ -1,14 +1,12 @@
 <jnt-stack [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.small"
            [justify]="ui.justify.center">
-  <a [attr.data-href]="'?page=' + 1"
-     [attr.disabled]="selectedPage === 1"
+  <a [attr.disabled]="selectedPage === 1"
      (click)="setPage(1)"
      title="First">
     <jnt-icon [icon]="ui.icons.first"></jnt-icon>
   </a>
   <a title="Previous"
-     [attr.data-href]="'?page=' + (selectedPage - 1)"
      [attr.disabled]="selectedPage === 1"
      (click)="setPage(selectedPage - 1)"
      data-page="1">
@@ -20,13 +18,11 @@
      [attr.active]="page === selectedPage"
      tabindex="0">{{page}}</a>
   <a title="Next"
-     [attr.data-href]="'?page=' + (selectedPage + 1)"
      [attr.disabled]="selectedPage >= pagesCount"
      (click)="setPage(selectedPage + 1)">
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
   </a>
   <a title="Last"
-     [attr.data-href]="'?page=' + (pagesCount)"
      (click)="setPage(pagesCount)"
      [attr.disabled]="selectedPage >= pagesCount">
     <jnt-icon [icon]="ui.icons.last"></jnt-icon>
