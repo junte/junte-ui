@@ -46,7 +46,8 @@
       padding: 0
     ),
     content: (
-      width: null
+      width: null,
+      overflow: null
     ),
     picture: (
       padding: 0,
@@ -263,6 +264,7 @@
         @if map-has-key($vars, content) {
           $content: map-get($vars, content);
           max-width: map-get($content, width);
+          overflow: map-get($content, overflow);
         }
       }
 
