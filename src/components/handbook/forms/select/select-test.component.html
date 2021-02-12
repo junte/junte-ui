@@ -39,6 +39,8 @@
                     <jnt-select formControlName="select"
                                 [keyField]="'id'"
                                 [labelField]="'name'"
+                                [groupField]="'universe'"
+                                [groupFieldKey]="'id'"
                                 placeholder="Select your hero"
                                 i18n-placeholder="@@label.select_your_hero"
                                 [mode]="modeControl.value"
@@ -52,6 +54,7 @@
                                 [emptyOptionsTemplate]="emptyOptionsTemplate"
                                 [optionsHeaderTemplate]="optionsHeaderTemplate"
                                 [optionTemplate]="templateControl.value ? heroOptionTemplate : null"
+                                [groupTemplate]="universeTemplate"
                                 [state]="loadingControl.value ? ui.state.loading : null"
                                 [creator]="createHero.bind(this)"
                                 (selected)="selected.heroes.push($event)">
@@ -71,6 +74,9 @@
                                          [value]="h">
                       </jnt-select-option>
                     </jnt-select>
+                    <ng-template #universeTemplate let-hero="value">
+                      <b>{{hero.universe.name}}</b>
+                    </ng-template>
                     <ng-template #optionsHeaderTemplate let-query="query" let-close="close">
                       <jnt-button text="Close"
                                   i18n-text="@@action.close"

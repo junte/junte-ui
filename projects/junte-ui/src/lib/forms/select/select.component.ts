@@ -52,25 +52,29 @@ export class SelectOptionComponent {
     description: 'Icon for select option',
     type: 'string'
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Key for select option',
     type: 'number | string'
   })
-  @Input() key: Key;
+  @Input()
+  key: Key;
 
   @PropertyApi({
     description: 'Label name for select option',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Value for select option',
     type: 'any'
   })
-  @Input() value: any;
+  @Input()
+  value: any;
 
 }
 
@@ -133,6 +137,22 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   })
   @Input()
   keyField = 'key';
+
+  @PropertyApi({
+    description: 'Group field',
+    type: 'string',
+    default: 'null'
+  })
+  @Input()
+  groupField = null;
+
+  @PropertyApi({
+    description: 'Group field key',
+    type: 'string',
+    default: 'null'
+  })
+  @Input()
+  groupFieldKey = null;
 
   @PropertyApi({
     description: 'Select placeholder',
@@ -207,6 +227,9 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @ViewChild('optionsTemplate')
   optionsTemplate: TemplateRef<any>;
+
+  @Input()
+  groupTemplate: TemplateRef<any>;
 
   @PropertyApi({
     description: 'Selected value',

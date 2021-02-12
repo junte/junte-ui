@@ -56,9 +56,9 @@ export class SelectTestComponent implements OnInit {
   });
 
   heroes = [
-    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
-    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
-    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
+    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381, universe: {id: 1, name: 'Marvel'}},
+    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412, universe: {id: 1, name: 'Marvel'}},
+    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221, universe: {id: 2, name: 'Star Trek'}}
   ];
 
   constructor(private fb: FormBuilder) {
