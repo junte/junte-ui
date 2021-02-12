@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AccordionModule,
-  AppLayoutModule,
+  AppLayoutModule, ArrayPipesModule,
   AvatarModule,
   BlockModule,
   ButtonModule,
@@ -47,7 +47,8 @@ import { SelectableTestComponent } from './selectable-test.component';
     InputModule,
     LabelModule,
     SelectableModule,
-    AppLayoutModule
+    AppLayoutModule,
+    ArrayPipesModule
   ]
 })
 export class SelectableTestModule {

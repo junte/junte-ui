@@ -29,8 +29,8 @@
                   <jnt-stack [align]="ui.align.center">
                     <jnt-stack [orientation]="ui.orientation.horizontal">
                       <jnt-card data-hero *ngFor="let hero of heroes"
-                                 formControlName="selectable"
-                                 [jntSelectable]="{
+                                formControlName="selectable"
+                                [jntSelectable]="{
                                   value: hero.id,
                                   mode: modeControl.value,
                                   enabled: !disabledControl.value,
@@ -46,21 +46,18 @@
                         <ng-template #emptyTemplate>
                           <jnt-avatar [size]="ui.size.large" [icon]="ui.icons.question"></jnt-avatar>
                         </ng-template>
-                        <jnt-avatars-list *ngIf="!!selectableControl.value?.length; else emptyTemplate"
+                        <jnt-avatars-list *ngIf="selectableControl.value?.length > 0; else emptyTemplate"
                                           [size]="ui.size.large">
-                          <ng-container [ngSwitch]="h" *ngFor="let h of selectableControl.value">
-                            <jnt-avatar *ngSwitchCase="hero.spiderman"
-                                        image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                            <jnt-avatar *ngSwitchCase="hero.ironman"
-                                        image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                            <jnt-avatar *ngSwitchCase="hero.captainAmerica"
-                                        image="assets/images/heroes/captain.svg"></jnt-avatar>
-                            <jnt-avatar *ngSwitchDefault [icon]="ui.icons.question"></jnt-avatar>
-                          </ng-container>
+                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.spiderman"
+                                      image="assets/images/heroes/spiderman.svg"></jnt-avatar>
+                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.ironman"
+                                      image="assets/images/heroes/ironman.svg"></jnt-avatar>
+                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.captainAmerica"
+                                      image="assets/images/heroes/captain.svg"></jnt-avatar>
                         </jnt-avatars-list>
                       </jnt-stack>
                     </ng-template>
-                    <ng-container *ngIf="modeControl.value === ui.select.mode.single else multipleTemplate"
+                    <ng-container *ngIf="modeControl.value === ui.select.mode.single; else multipleTemplate"
                                   [ngSwitch]="selectableControl.value">
                       <jnt-avatar *ngSwitchCase="hero.spiderman"
                                   [size]="ui.size.large"

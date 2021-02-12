@@ -1,16 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Directive,
-  EventEmitter,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Inject,
-  InjectionToken,
-  Input,
-  NgModule,
-  OnInit
-} from '@angular/core';
+import { Directive, EventEmitter, forwardRef, HostBinding, HostListener, Input, NgModule, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../decorators/api';
@@ -32,6 +21,7 @@ class Config {
   value: any;
   enabled: true;
   features: Feature[];
+  group: string;
 
   constructor(defs: any = null) {
     if (!!defs) {
@@ -40,12 +30,28 @@ class Config {
   }
 }
 
-const SELECTABLE_SIGNALS = new InjectionToken('selectable_signals');
+export class SelectableHub {
 
-const hub = new EventEmitter();
+  groups: { [key: string]: EventEmitter<any> } = {};
 
-export function eventEmitterFactory() {
-  return hub;
+  bind(key: string): EventEmitter<any> {
+    if (!this.groups[key]) {
+      this.groups[key] = new EventEmitter<any>();
+    }
+    return this.groups[key];
+  }
+
+  emit(key: string, state: any) {
+    console.log(key);
+    this.bind(key).emit(state);
+  }
+
+}
+
+const SELECTABLE_HUB = new SelectableHub();
+
+export function eventEmitterFactory(): SelectableHub {
+  return SELECTABLE_HUB;
 }
 
 @Directive({
@@ -57,7 +63,7 @@ export function eventEmitterFactory() {
       multi: true
     },
     {
-      provide: SELECTABLE_SIGNALS,
+      provide: SelectableHub,
       useFactory: eventEmitterFactory
     },
     ...LOGGER_PROVIDERS
@@ -68,7 +74,8 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   config: Config = new Config({
     mode: SelectMode.single,
     enabled: true,
-    features: []
+    features: [],
+    group: 'default'
   });
 
   @HostBinding('attr.data-disabled')
@@ -89,12 +96,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
     default: '{}'
   })
   @Input('jntSelectable')
-  set configure(config: {
-    mode?: SelectMode,
-    value: any,
-    enabled?: boolean,
-    features?: Feature[]
-  }) {
+  set configure(config: Partial<Config>) {
     Object.assign(this.config, config);
   }
 
@@ -106,12 +108,13 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(@Inject(SELECTABLE_SIGNALS) private signals: EventEmitter<any>,
+  constructor(private hub: SelectableHub,
               private logger: NGXLogger) {
   }
 
   ngOnInit() {
-    this.signals.subscribe(state => this.state = state);
+    this.hub.bind(this.config.group)
+      .subscribe(state => this.state = state);
   }
 
   writeValue(value: any | any[]) {
@@ -154,7 +157,7 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
         this.onChange(this.state);
         break;
     }
-    this.signals.emit(this.state);
+    this.hub.emit(this.config.group, this.state);
   }
 
 }
@@ -171,4 +174,5 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   ]
 })
 export class SelectableModule {
+
 }
