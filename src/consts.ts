@@ -49,61 +49,61 @@ export const HANDBOOK = {
         name: 'Stack',
         icon: LocalUI.icons.between,
         link: 'stack',
-        teaser: $localize`:@@message.stack_teaser:The stack is the most popular pattern for aligning elements in views`
+        teaser: $localize`:@@message.stack_teaser:arrange elements in axis`
       },
       grid: {
         name: 'Grid',
         icon: LocalUI.icons.grid,
         link: 'grid',
-        teaser: $localize`:@@message.grid_teaser:Grid is a modern and flexible approach to display elements depending on device width`
+        teaser: $localize`:@@message.grid_teaser:arrange elements in grid`
       },
       block: {
         name: 'Block',
         icon: LocalUI.icons.block,
         link: 'block',
-        teaser: $localize`:@@message.block_teaser:Block is a grouping of elements related to one piece of functionality on the page`
+        teaser: $localize`:@@message.block_teaser:grouping elements`
       },
       card: {
         name: 'Card',
         icon: LocalUI.icons.card,
         link: 'card',
-        teaser: $localize`:@@message.card_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.card_teaser:elements list`
       },
       responsive: {
         name: 'Responsive',
         icon: LocalUI.icons.responsive,
         link: 'responsive',
-        teaser: $localize`:@@message.responsive_teaser:Responsive that makes web pages render well on a variety of devices and window or screen sizes`
+        teaser: $localize`:@@message.responsive_teaser:display elements depending on device size`
       },
       skeleton: {
         name: 'Skeleton',
         icon: LocalUI.icons.skeleton,
         link: 'skeleton',
-        teaser: $localize`:@@message.skeleton_teaser:Skeleton provides a placeholder for future content which will be loaded soon`
+        teaser: $localize`:@@message.skeleton_teaser:element preview`
       },
       spinner: {
         name: 'Spinner',
         icon: LocalUI.icons.spinner,
         link: 'spinner',
-        teaser: $localize`:@@message.spinner_teaser:Spinner displays loading data or performing some processing`
+        teaser: $localize`:@@message.spinner_teaser:show processing`
       },
       application: {
         name: 'Application',
         icon: LocalUI.icons.layout,
         link: 'application',
-        teaser: $localize`:@@message.application_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.application_teaser:layout of whole app`
       },
       informer: {
         name: 'Informer',
         icon: LocalUI.icons.informer,
         link: 'informer',
-        teaser: $localize`:@@message.informer_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.informer_teaser:show overlay messages`
       },
       collapsible: {
         name: 'Collapsible',
         icon: LocalUI.icons.collapsible,
         link: 'collapsible',
-        teaser: $localize`:@@message.collapsible_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.collapsible_teaser:shorting a content`
       }
     }
   },
@@ -116,19 +116,19 @@ export const HANDBOOK = {
         name: 'Link',
         icon: LocalUI.icons.link,
         link: 'link',
-        teaser: $localize`:@@message.link_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.link_teaser:go to to page`
       },
       menu: {
         name: 'Menu',
         icon: LocalUI.icons.menu,
         link: 'menu',
-        teaser: $localize`:@@message.menu_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.menu_teaser:multiple links`
       },
       tabs: {
         name: 'Tabs',
         icon: LocalUI.icons.tabs,
         link: 'tabs',
-        teaser: $localize`:@@message.tabs_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.tabs_teaser:subpages for elements`
       },
       pager: {
         name: 'Pager',
