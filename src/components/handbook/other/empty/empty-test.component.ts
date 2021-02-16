@@ -21,7 +21,7 @@ export class EmptyTestComponent implements OnInit {
 
   @ViewChild('code') code: TabComponent;
 
-  messageControl = this.fb.control(true);
+  messageControl = this.fb.control(false);
   descriptionControl = this.fb.control(true);
   imageControl = this.fb.control(true);
 

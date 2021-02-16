@@ -36,13 +36,14 @@
                 <jnt-empty message="No data was found">
                   <ng-container *ngIf="messageControl.value">
                     <ng-template #messageTemplate>
-                      <h4>No data was found</h4>
+                      <h4>No data was found
                       <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
+                      </h4>
                     </ng-template>
                   </ng-container>
                   <ng-container *ngIf="descriptionControl.value">
                     <ng-template #descriptionTemplate>
-                      <p>Please check your request</p>
+                      <div>Please check your request</div>
                     </ng-template>
                   </ng-container>
                 </jnt-empty>

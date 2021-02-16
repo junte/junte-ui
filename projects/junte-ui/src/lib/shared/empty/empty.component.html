@@ -1,15 +1,20 @@
 <jnt-stack data-empty [align]="ui.align.center">
 
   <ng-container *ngTemplateOutlet="imageTemplate || defaultImage"></ng-container>
-  <div *ngIf="!!message || !!messageTemplate" data-title>
-    <div data-text *ngIf="!!message && !messageTemplate">{{message}}</div>
-    <ng-container *ngIf="!!messageTemplate">
+  <jnt-stack [align]="ui.align.center" [gutter]="ui.gutter.tiny">
+    <ng-container *ngIf="!!messageTemplate; else defaultTemplate">
       <ng-container *ngTemplateOutlet="messageTemplate"></ng-container>
     </ng-container>
-  </div>
-  <ng-container *ngIf="descriptionTemplate">
-    <ng-container *ngTemplateOutlet="descriptionTemplate"></ng-container>
-  </ng-container>
+    <ng-template #defaultTemplate>
+      <div data-message>{{message}}</div>
+    </ng-template>
+
+    <ng-container *ngIf="descriptionTemplate">
+      <div data-description>
+        <ng-container *ngTemplateOutlet="descriptionTemplate"></ng-container>
+      </div>
+    </ng-container>
+  </jnt-stack>
 
   <ng-template #defaultImage>
     <svg width="108" height="116" viewBox="0 0 108 116" fill="none" xmlns="http://www.w3.org/2000/svg">
