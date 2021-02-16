@@ -5,6 +5,7 @@
        [attr.data-with-template]="!!section.accordionTitleTemplate"
        [attr.active]="active == i">
 
+      <jnt-icon data-chevron [icon]="ui.icons.chevronRight" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
       <ng-container *ngIf="section.accordionTitleTemplate; else defaultTemplate">
         <ng-container *ngTemplateOutlet="section.accordionTitleTemplate"></ng-container>
       </ng-container>
@@ -17,7 +18,6 @@
       <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-spinner *ngIf="section.state === ui.state.loading" [size]="ui.size.small"></jnt-spinner>
         <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
-        <jnt-icon data-chevron [icon]="ui.icons.chevronRight" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
       </jnt-stack>
 
     </a>

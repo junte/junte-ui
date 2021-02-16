@@ -45,11 +45,24 @@ $accordion-marker-height: 2px;
       align-items: center;
       color: inherit;
 
+      [data-chevron] {
+        @include jnt-icon((size: 24px), '&');
+        margin-right: $jnt-gutter-small;
+      }
+
       &[active='true'] {
         border-color: $jnt-primary-light-color;
 
         [data-chevron] {
           @include jnt-icon((color: $jnt-primary-light-color), '&');
+        }
+      }
+
+      &:hover {
+        &[active='false'] {
+          [data-chevron] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
+          }
         }
       }
 
@@ -64,10 +77,6 @@ $accordion-marker-height: 2px;
         &:hover {
           &[active='false'] {
             color: $jnt-primary-light-color;
-
-            [data-chevron] {
-              @include jnt-icon((color: $jnt-primary-light-color), '&');
-            }
           }
         }
 
@@ -86,10 +95,6 @@ $accordion-marker-height: 2px;
 
         [data-warning] {
           @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
-        }
-
-        [data-chevron] {
-          @include jnt-icon((size: $jnt-font-size-tiny), '&');
         }
       }
     }
