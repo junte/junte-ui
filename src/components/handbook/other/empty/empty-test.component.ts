@@ -23,12 +23,12 @@ export class EmptyTestComponent implements OnInit {
 
   messageControl = this.fb.control(true);
   descriptionControl = this.fb.control(true);
-  imageControl = this.fb.control(true);
+  customControl = this.fb.control(false);
 
   builder = this.fb.group({
     message: this.messageControl,
     description: this.descriptionControl,
-    image: this.imageControl
+    custom: this.customControl
   });
 
   constructor(private fb: FormBuilder) {
@@ -37,6 +37,15 @@ export class EmptyTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
+
+    this.descriptionControl.valueChanges
+      .subscribe(value => {
+        if (value) {
+          this.customControl.enable({emitEvent: false});
+        } else {
+          this.customControl.disable({emitEvent: false});
+        }
+      });
   }
 
 }

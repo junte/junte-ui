@@ -34,9 +34,8 @@
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
                 <jnt-empty [message]="messageControl.value ? 'No data was found' : null"
-                           [description]="!descriptionControl.value ? 'Please check your request' : null">
-
-                  <ng-container *ngIf="descriptionControl.value">
+                           [description]="descriptionControl.value ? 'Please check your request' : null">
+                  <ng-container *ngIf="customControl.value">
                     <ng-template #descriptionTemplate>
                       <div>Please check your request
                         <jnt-icon [icon]="ui.icons.information"></jnt-icon>
@@ -63,6 +62,9 @@
                 <jnt-form-item>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="description"
+                                  label="Description"
+                                  i18n-label="@@label.description"></jnt-checkbox>
+                    <jnt-checkbox formControlName="custom"
                                   label="Description custom template"
                                   i18n-label="@@label.description_template"></jnt-checkbox>
                   </jnt-form-control>
