@@ -22,9 +22,11 @@ export class MessageTestComponent implements OnInit {
   @ViewChild('code') code: TabComponent;
 
   schemeControl = this.fb.control(null);
+  iconControl = this.fb.control(true);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
+    icon: this.iconControl
   });
 
   constructor(private fb: FormBuilder) {

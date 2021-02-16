@@ -1,1 +1,6 @@
-<ng-content></ng-content>
+<jnt-stack [orientation]="ui.orientation.horizontal">
+  <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
+  <div>
+    <ng-content></ng-content>
+  </div>
+</jnt-stack>
