@@ -400,6 +400,12 @@ export const HANDBOOK = {
         link: 'message',
         teaser: $localize`:@@message.message_teaser:Teaser will be filled soon`
       },
+      empty: {
+        name: 'Empty',
+        icon: LocalUI.icons.message,
+        link: 'message',
+        teaser: $localize`:@@message.empty_teaser:Teaser will be filled soon`
+      },
       shortcuts: {
         name: 'Shortcuts',
         link: 'shortcuts',
