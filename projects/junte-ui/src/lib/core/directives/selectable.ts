@@ -62,10 +62,6 @@ export function eventEmitterFactory(): SelectableHub {
       useExisting: forwardRef(() => SelectableDirective),
       multi: true
     },
-    {
-      provide: SelectableHub,
-      useFactory: eventEmitterFactory
-    },
     ...LOGGER_PROVIDERS
   ]
 })
@@ -168,6 +164,12 @@ export class SelectableDirective implements OnInit, ControlValueAccessor {
   ],
   imports: [
     CommonModule
+  ],
+  providers: [
+    {
+      provide: SelectableHub,
+      useFactory: eventEmitterFactory
+    }
   ],
   exports: [
     SelectableDirective
