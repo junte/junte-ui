@@ -21,10 +21,14 @@
     <ng-template #inputTemplate>
       <textarea *ngIf="features | includes: ui.feature.multiline; else singleLineTemplate"
                 formControlName="input"
+                [name]="name"
                 [placeholder]="placeholder"
                 [attr.rows]="rows"
+                [readonly]="readonly ? readonly : null"
                 (focusin)="focused = true"
-                (focusout)="focused = false">
+                (focusout)="focused = false"
+                (keydown)="keydown($event)"
+                (keyup)="keyup()">
       </textarea>
       <ng-template #singleLineTemplate>
         <input #valueRef
