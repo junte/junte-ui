@@ -2,18 +2,19 @@
 
   <ng-container *ngTemplateOutlet="imageTemplate || defaultImage"></ng-container>
   <jnt-stack [align]="ui.align.center" [gutter]="ui.gutter.tiny">
-    <ng-container *ngIf="!!messageTemplate; else defaultTemplate">
-      <ng-container *ngTemplateOutlet="messageTemplate"></ng-container>
-    </ng-container>
-    <ng-template #defaultTemplate>
+    <ng-container *ngIf="!!message">
       <div data-message>{{message}}</div>
-    </ng-template>
-
-    <ng-container *ngIf="descriptionTemplate">
-      <div data-description>
-        <ng-container *ngTemplateOutlet="descriptionTemplate"></ng-container>
-      </div>
     </ng-container>
+
+    <div data-description>
+      <ng-container *ngIf="!!descriptionTemplate; else defaultTemplate">
+        <ng-container *ngTemplateOutlet="descriptionTemplate"></ng-container>
+      </ng-container>
+      <ng-template #defaultTemplate>
+        <div>{{description}}</div>
+      </ng-template>
+    </div>
+
   </jnt-stack>
 
   <ng-template #defaultImage>

@@ -18,19 +18,19 @@ export class EmptyComponent {
   @Input()
   message: string;
 
+  @PropertyApi({
+    description: 'Description of empty data',
+    type: 'string'
+  })
+  @Input()
+  description: string;
+
   @ContentApi({
     selector: '#imageTemplate',
     description: 'image template'
   })
   @ContentChild('imageTemplate')
   imageTemplate: TemplateRef<any>;
-
-  @ContentApi({
-    selector: '#messageTemplate',
-    description: 'image template'
-  })
-  @ContentChild('messageTemplate')
-  messageTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#descriptionTemplate',

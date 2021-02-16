@@ -33,17 +33,14 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <jnt-empty message="No data was found">
-                  <ng-container *ngIf="messageControl.value">
-                    <ng-template #messageTemplate>
-                      <h4>No data was found
-                      <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
-                      </h4>
-                    </ng-template>
-                  </ng-container>
+                <jnt-empty [message]="messageControl.value ? 'No data was found' : null"
+                           [description]="!descriptionControl.value ? 'Please check your request' : null">
+
                   <ng-container *ngIf="descriptionControl.value">
                     <ng-template #descriptionTemplate>
-                      <div>Please check your request</div>
+                      <div>Please check your request
+                        <jnt-icon [icon]="ui.icons.information"></jnt-icon>
+                      </div>
                     </ng-template>
                   </ng-container>
                 </jnt-empty>
@@ -54,19 +51,19 @@
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.align.stretch">
                 <jnt-form-item>
-                  <jnt-form-label i18n="@@label.message">Message
+                  <jnt-form-label i18n="@@label.message">Features
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="message"
-                                  label="Custom template"
-                                  i18n-label="@@label.message_template"></jnt-checkbox>
+                                  label="Message"
+                                  i18n-label="@@label.message"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="description"
-                                  label="Description"
+                                  label="Description custom template"
                                   i18n-label="@@label.description_template"></jnt-checkbox>
                   </jnt-form-control>
                 </jnt-form-item>
