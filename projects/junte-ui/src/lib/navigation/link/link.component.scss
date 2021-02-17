@@ -433,6 +433,10 @@
       }
     }
 
+    [data-badge][data-collapsed='true'] {
+      @include jnt-badge((size: 16px, font-size: 10px, positions: (rightTop: (right: $jnt-gutter-tiny, top: $jnt-gutter-tiny, transform: none))), '&');
+    }
+
     border-radius: map-get($vars, corner);
     padding: if(map-get($vars, padding), map-get($vars, padding) !important, null);
     height: map-get($vars, height);
