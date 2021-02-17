@@ -1,1 +1,7 @@
-<app-section *ngFor="let section of handbook | keyvalue: originalOrder" [section]="section.value"></app-section>
+<jnt-stack [align]="ui.align.stretch"
+           [gutter]="ui.gutter.huge">
+  <app-section *ngFor="let section of handbook | keyvalue: originalOrder"
+               [section]="section.value">
+  </app-section>
+</jnt-stack>
+

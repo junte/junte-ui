@@ -2,6 +2,7 @@ import { KeyValue } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HANDBOOK } from 'src/consts';
+import {UI} from 'junte-ui';
 
 @Component({
   selector: 'app-components',
@@ -10,6 +11,7 @@ import { HANDBOOK } from 'src/consts';
 })
 export class IndexComponent {
 
+  ui = UI;
   handbook = HANDBOOK;
 
   originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {

@@ -49,7 +49,7 @@ export const HANDBOOK = {
         name: 'Stack',
         icon: LocalUI.icons.between,
         link: 'stack',
-        teaser: $localize`:@@message.stack_teaser:arrange elements in axis`
+        teaser: $localize`:@@message.stack_teaser:arrange elements on axis`
       },
       grid: {
         name: 'Grid',
@@ -73,13 +73,13 @@ export const HANDBOOK = {
         name: 'Responsive',
         icon: LocalUI.icons.responsive,
         link: 'responsive',
-        teaser: $localize`:@@message.responsive_teaser:display elements depending on device size`
+        teaser: $localize`:@@message.responsive_teaser:adjust UI based on device size`
       },
       skeleton: {
         name: 'Skeleton',
         icon: LocalUI.icons.skeleton,
         link: 'skeleton',
-        teaser: $localize`:@@message.skeleton_teaser:element preview`
+        teaser: $localize`:@@message.skeleton_teaser:show element contour`
       },
       spinner: {
         name: 'Spinner',
@@ -116,37 +116,37 @@ export const HANDBOOK = {
         name: 'Link',
         icon: LocalUI.icons.link,
         link: 'link',
-        teaser: $localize`:@@message.link_teaser:go to to page`
+        teaser: $localize`:@@message.link_teaser:transition between pages`
       },
       menu: {
         name: 'Menu',
         icon: LocalUI.icons.menu,
         link: 'menu',
-        teaser: $localize`:@@message.menu_teaser:multiple links`
+        teaser: $localize`:@@message.menu_teaser:group multiple links`
       },
       tabs: {
         name: 'Tabs',
         icon: LocalUI.icons.tabs,
         link: 'tabs',
-        teaser: $localize`:@@message.tabs_teaser:subpages for elements`
+        teaser: $localize`:@@message.tabs_teaser:organize content by sub pages`
       },
       pager: {
         name: 'Pager',
         icon: LocalUI.icons.pager,
         link: 'pager',
-        teaser: $localize`:@@message.pager_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.pager_teaser:rewind elements list`
       },
       breadcrumbs: {
         name: 'Breadcrumbs',
         icon: LocalUI.icons.breadcrumbs,
         link: 'breadcrumbs',
-        teaser: $localize`:@@message.breadcrumbs_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.breadcrumbs_teaser:current app page's location`
       },
       accordion: {
         name: 'Accordion',
         icon: LocalUI.icons.accordion,
         link: 'accordion',
-        teaser: $localize`:@@message.accordion_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.accordion_teaser:toggle the display of sections of content`
       }
     }
   },
@@ -159,37 +159,37 @@ export const HANDBOOK = {
         name: 'Icon',
         icon: LocalUI.icons.icon,
         link: 'icon',
-        teaser: $localize`:@@message.icon_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.icon_teaser:UI associative signs`
       },
       avatar: {
         name: 'Avatar',
         icon: LocalUI.icons.avatar,
         link: 'avatar',
-        teaser: $localize`:@@message.avatar_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.avatar_teaser:user profile picture`
       },
       picture: {
         name: 'Picture',
         icon: LocalUI.icons.picture,
         link: 'picture',
-        teaser: $localize`:@@message.picture_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.picture_teaser:image with display rules`
       },
       badge: {
         name: 'Badge',
         icon: LocalUI.icons.badge,
         link: 'badge',
-        teaser: $localize`:@@message.badge_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.badge_teaser:highlight a numerical marks`
       },
       label: {
         name: 'Label',
         icon: LocalUI.icons.label,
         link: 'label',
-        teaser: $localize`:@@message.label_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.label_teaser:highlight short text pieces`
       },
       dot: {
         name: 'Dot',
         icon: LocalUI.icons.dot,
         link: 'dot',
-        teaser: $localize`:@@message.dot_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.dot_teaser:colored indicator for elements`
       }
     }
   },
@@ -202,91 +202,91 @@ export const HANDBOOK = {
         name: 'Button',
         icon: LocalUI.icons.button,
         link: 'button',
-        teaser: $localize`:@@message.button_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.button_teaser:process user clicks`
       },
       form: {
         name: 'Form',
         icon: LocalUI.icons.forms,
         link: 'form',
-        teaser: $localize`:@@message.form_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.form_teaser:input data from user`
       },
       input: {
         name: 'Input',
         icon: LocalUI.icons.input,
         link: 'input',
-        teaser: $localize`:@@message.input_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.input_teaser:text input field`
       },
       checkbox: {
         name: 'Checkbox',
         icon: LocalUI.icons.checkbox,
         link: 'checkbox',
-        teaser: $localize`:@@message.checkbox_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.checkbox_teaser:multiple select options`
       },
       radio: {
         name: 'Radio',
         icon: LocalUI.icons.radio,
         link: 'radio',
-        teaser: $localize`:@@message.radio_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.radio_teaser:single select options`
       },
       select: {
         name: 'Select',
         icon: LocalUI.icons.select,
         link: 'select',
-        teaser: $localize`:@@message.select_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.select_teaser:select data from options list`
       },
       switch: {
         name: 'Switch',
         icon: LocalUI.icons.switch,
         link: 'switch',
-        teaser: $localize`:@@message.switch_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.switch_teaser:toggles two choices`
       },
       slider: {
         name: 'Slider',
         icon: LocalUI.icons.slider,
         link: 'slider',
-        teaser: $localize`:@@message.slider_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.slider_teaser:input value by sliding`
       },
       switcher: {
         name: 'Switcher',
         icon: LocalUI.icons.switcher,
         link: 'switcher',
-        teaser: $localize`:@@message.switcher_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.switcher_teaser:universal options selector`
       },
       calendar: {
         name: 'Calendar',
         icon: LocalUI.icons.calendar,
         link: 'calendar',
-        teaser: $localize`:@@message.calendar_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.calendar_teaser:select date in calendar`
       },
       datePicker: {
         name: 'Date Picker',
         icon: LocalUI.icons.datePicker,
         link: 'date-picker',
-        teaser: $localize`:@@message.date_picker_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.date_picker_teaser:select a date or time`
       },
       selectable: {
         name: 'Selectable',
         icon: LocalUI.icons.selectable,
         link: 'selectable',
-        teaser: $localize`:@@message.selectable_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.selectable_teaser:select custom options`
       },
       filter: {
         name: 'Filter',
         icon: LocalUI.icons.filter,
         link: 'filter',
-        teaser: $localize`:@@message.filter_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.filter_teaser:filtering data`
       },
       imageCropper: {
         name: 'Image Cropper',
         icon: LocalUI.icons.cropper,
         link: 'image-cropper',
-        teaser: $localize`:@@message.image_cropper_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.image_cropper_teaser:crop image by user`
       },
       imageUploader: {
         name: 'Image Uploader',
         icon: LocalUI.icons.imageUploader,
         link: 'image-uploader',
-        teaser: $localize`:@@message.image_uploader_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.image_uploader_teaser:upload image to server`
       }
     }
   },
@@ -299,19 +299,19 @@ export const HANDBOOK = {
         name: 'Gantt',
         icon: LocalUI.icons.gantt,
         link: 'gantt',
-        teaser: $localize`:@@message.gantt_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.gantt_teaser:organize monthly planning`
       },
       table: {
         name: 'Table',
         icon: LocalUI.icons.table,
         link: 'table',
-        teaser: $localize`:@@message.table_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.table_teaser:show element in table`
       },
       timeline: {
         name: 'Timeline',
         icon: LocalUI.icons.timeline,
         link: 'timeline',
-        teaser: $localize`:@@message.timeline_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.timeline_teaser:display steps`
       }
     }
   },
@@ -324,13 +324,13 @@ export const HANDBOOK = {
         name: 'Modal',
         icon: LocalUI.icons.modal,
         link: 'modal',
-        teaser: $localize`:@@message.modal_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.modal_teaser:display content in window`
       },
       popover: {
         name: 'Popover',
         icon: LocalUI.icons.popover,
         link: 'popover',
-        teaser: $localize`:@@message.popover_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.popover_teaser:display content over element`
       }
     }
   },
@@ -343,31 +343,31 @@ export const HANDBOOK = {
         name: 'Progress bar',
         icon: LocalUI.icons.progressBar,
         link: 'progress-bar',
-        teaser: $localize`:@@message.progress_bar_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.progress_bar_teaser:show progress indicator`
       },
       circleBar: {
         name: 'Circle bar',
         icon: LocalUI.icons.circleBar,
         link: 'circle-bar',
-        teaser: $localize`:@@message.circle_bar_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.circle_bar_teaser:chart for metrics`
       },
       chart: {
         name: 'Chart',
         icon: LocalUI.icons.chart,
         link: 'chart',
-        teaser: $localize`:@@message.chart_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.chart_teaser:pieces diagram`
       },
       datePeriod: {
         name: 'Date Period',
         icon: LocalUI.icons.datePeriod,
         link: 'date-period',
-        teaser: $localize`:@@message.date_period_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.date_period_teaser:interval of two days`
       },
       timer: {
         name: 'Timer',
         icon: LocalUI.icons.timer,
         link: 'timer',
-        teaser: $localize`:@@message.timer_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.timer_teaser:time countdown`
       }
     }
   },
@@ -380,36 +380,36 @@ export const HANDBOOK = {
         name: 'Pipes',
         icon: LocalUI.icons.pipes,
         link: 'pipes',
-        teaser: $localize`:@@message.pipes_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.pipes_teaser:special pipes`
       },
       confirm: {
         name: 'Confirm',
         icon: LocalUI.icons.confirm,
         link: 'confirm',
-        teaser: $localize`:@@message.confirm_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.confirm_teaser:confirm user action`
       },
       animations: {
         name: 'Animations',
         icon: LocalUI.icons.animations,
         link: 'animations',
-        teaser: $localize`:@@message.animations_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.animations_teaser:animate pages transitions`
       },
       message: {
         name: 'Message',
         icon: LocalUI.icons.message,
         link: 'message',
-        teaser: $localize`:@@message.message_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.message_teaser:text message for user`
       },
       empty: {
         name: 'Empty',
         icon: LocalUI.icons.message,
         link: 'empty',
-        teaser: $localize`:@@message.empty_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.empty_teaser:nothing to display`
       },
       shortcuts: {
         name: 'Shortcuts',
         link: 'shortcuts',
-        teaser: $localize`:@@message.shortcuts_teaser:Teaser will be filled soon`
+        teaser: $localize`:@@message.shortcuts_teaser:keyboard user interaction`
       }
     }
   }

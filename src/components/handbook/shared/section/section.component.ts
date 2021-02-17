@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from 'junte-ui';
+import {Component, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UI} from 'junte-ui';
 
 @Component({
   selector: 'app-section',
@@ -11,7 +11,8 @@ export class SectionComponent {
 
   ui = UI;
 
-  @Input() section: any;
+  @Input()
+  section: any;
 
   constructor(public router: Router,
               public route: ActivatedRoute) {
