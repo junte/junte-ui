@@ -34,32 +34,18 @@
           <jnt-col [tablet]="8">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <ng-container
-                  *ngIf="positionControl.value === ui.position.inline || !positionControl.value; else positionTemplate">
-                  <jnt-stack [orientation]="ui.orientation.horizontal"
-                             [align]="ui.align.center">
-                    <div block>
-                      <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
-                    </div>
+                <jnt-stack [orientation]="ui.orientation.horizontal"
+                           [align]="ui.align.center">
+                  <div block>
+                    <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
                     <jnt-badge [value]="valueControl.value"
                                [text]="textControl.value ? '100$' : null"
                                [overflow]="overflowControl.value ? overflowControl.value : null"
                                [position]="positionControl.value"
                                [color]="colorControl.value">
                     </jnt-badge>
-                  </jnt-stack>
-                </ng-container>
-                <ng-template #positionTemplate>
-                  <jnt-badge [value]="valueControl.value"
-                             [text]="textControl.value ? '100$' : null"
-                             [overflow]="overflowControl.value ? overflowControl.value : null"
-                             [position]="positionControl.value"
-                             [color]="colorControl.value">
-                    <div block>
-                      <jnt-icon [icon]="ui.icons.bell"></jnt-icon>
-                    </div>
-                  </jnt-badge>
-                </ng-template>
+                  </div>
+                </jnt-stack>
               </ng-template>
             </app-browser-preview>
           </jnt-col>

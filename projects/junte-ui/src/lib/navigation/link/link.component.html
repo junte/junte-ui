@@ -30,13 +30,14 @@
   <div data-empty *ngIf="collapsed && !icon"></div>
   <ng-container *ngIf="!!badges.length">
     <jnt-badge data-badge *ngFor="let badge of badges"
+               [attr.data-collapsed]="collapsed"
                [color]="badge.color"
                [value]="badge.value"
                [text]="badge.text"
-               [position]="ui.position.inline">
+               [position]="collapsed ? ui.position.rightTop : ui.position.inline">
     </jnt-badge>
   </ng-container>
-  <jnt-icon *ngIf="features | includes : ui.feature.dropdown"
+  <jnt-icon *ngIf="(features | includes : ui.feature.dropdown) && !collapsed"
             [@rotate]="opened ? 'opened' : 'closed'"
             [attr.data-opened]="opened"
             [icon]="ui.icons.selectClose" data-toggle>
