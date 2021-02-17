@@ -403,7 +403,7 @@ export const HANDBOOK = {
       empty: {
         name: 'Empty',
         icon: LocalUI.icons.message,
-        link: 'message',
+        link: 'empty',
         teaser: $localize`:@@message.empty_teaser:Teaser will be filled soon`
       },
       shortcuts: {

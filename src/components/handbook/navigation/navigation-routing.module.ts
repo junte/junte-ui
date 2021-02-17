@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NavigationTestComponent } from './navigation-test.component';
 import { AccordionTestComponent } from 'src/components/handbook/navigation/accordion/accordion-test.component';
 import { LinkTestComponent } from 'src/components/handbook/navigation/link/link-test.component';
 import { MenuTestComponent } from 'src/components/handbook/navigation/menu/menu-test.component';
@@ -11,6 +12,10 @@ export const routes: Routes = [
     path: '',
     data: {breadcrumb: 'Navigation'},
     children: [
+      {
+        path: '',
+        component: NavigationTestComponent,
+      },
       {
         path: 'link',
         component: LinkTestComponent,

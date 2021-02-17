@@ -1,8 +1,7 @@
+import { KeyValue } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
-import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
   selector: 'app-components',
@@ -11,9 +10,11 @@ import { LocalUI } from 'src/enums/local-ui';
 })
 export class IndexComponent {
 
-  ui = UI;
-  localUi = LocalUI;
   handbook = HANDBOOK;
+
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+    return 0;
+  };
 
   constructor(public router: Router,
               public route: ActivatedRoute) {

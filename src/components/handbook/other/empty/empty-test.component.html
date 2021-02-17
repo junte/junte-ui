@@ -35,7 +35,7 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-empty [message]="messageControl.value ? 'No data was found' : null"
                            [description]="descriptionControl.value ? 'Please check your request' : null">
-                  <ng-container *ngIf="customControl.value">
+                  <ng-container *ngIf="customControl.value && descriptionControl.value">
                     <ng-template #descriptionTemplate>
                       <div>Please check your request
                         <jnt-icon [icon]="ui.icons.information"></jnt-icon>
@@ -52,24 +52,16 @@
                 <jnt-form-item>
                   <jnt-form-label i18n="@@label.message">Features
                   </jnt-form-label>
-                  <jnt-form-control>
                     <jnt-checkbox formControlName="message"
                                   label="Message"
                                   i18n-label="@@label.message"></jnt-checkbox>
-                  </jnt-form-control>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-control>
                     <jnt-checkbox formControlName="description"
                                   label="Description"
                                   i18n-label="@@label.description"></jnt-checkbox>
                     <jnt-checkbox formControlName="custom"
                                   label="Description custom template"
                                   i18n-label="@@label.description_template"></jnt-checkbox>
-                  </jnt-form-control>
                 </jnt-form-item>
-
               </jnt-stack>
             </jnt-form>
           </jnt-col>

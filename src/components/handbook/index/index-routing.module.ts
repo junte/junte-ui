@@ -14,11 +14,6 @@ export const routes: Routes = [
       .then(m => m.GeneralModule))
   },
   {
-    path: 'general',
-    loadChildren: () => loadChildren(import('../general/general.module')
-      .then(m => m.GeneralModule))
-  },
-  {
     path: 'layout',
     loadChildren: () => loadChildren(import('../layout/layout-test.module')
       .then(m => m.LayoutTestModule))
@@ -55,9 +50,13 @@ export const routes: Routes = [
   },
   {
     path: 'other',
-    loadChildren: () => loadChildren(import('../other/other.module')
-      .then(m => m.OtherModule))
+    loadChildren: () => loadChildren(import('../other/other-test.module')
+      .then(m => m.OtherTestModule))
   },
+  {
+    path: '**',
+    redirectTo: '/'
+  }
 ];
 
 @NgModule({

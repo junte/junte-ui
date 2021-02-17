@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutResolver } from 'src/components/handbook/layout/app/app-layout-test.resolvers';
+import { LayoutTestComponent } from './layout-test.component';
 import { AppLayoutTestComponent } from './app/app-layout-test.component';
 import { BlockTestComponent } from './block/block-test.component';
 import { CardTestComponent } from './card/card-test.component';

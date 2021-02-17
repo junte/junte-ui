@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OtherTestComponent } from './other-test.component';
 import { loadChildren } from 'src/utils/routing';
 import { ShortcutsTestComponent } from './shortcuts/shortcuts-test.component';
 import { ConfirmTestComponent } from './confirm/confirm-test.component';
@@ -12,6 +13,10 @@ export const routes: Routes = [
     path: '',
     data: {breadcrumb: 'Other'},
     children: [
+      {
+        path: '',
+        component: OtherTestComponent,
+      },
       {
         path: 'animations',
         loadChildren: () => loadChildren(import('./animations/animations-test.module')
