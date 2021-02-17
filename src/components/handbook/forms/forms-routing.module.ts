@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DotBenchmarkComponent } from 'src/components/handbook/elements/dot/benchmark/dot-benchmark.component';
-import { ButtonBenchmarkComponent } from 'src/components/handbook/forms/button/benchmark/button-benchmark.component';
+import { ButtonBenchmarkComponent } from './button/benchmark/button-benchmark.component';
+import { FormsTestComponent } from './forms-test.component';
 import { SliderTestComponent } from './slider/slider-test.component';
 import { ButtonTestComponent } from './button/button-test.component';
 import { CalendarTestComponent } from './calendar/calendar-test.component';
@@ -23,6 +23,10 @@ export const routes: Routes = [
     path: '',
     data: {breadcrumb: 'Forms'},
     children: [
+      {
+        path: '',
+        component: FormsTestComponent
+      },
       {
         path: 'button',
         data: {breadcrumb: 'Button'},

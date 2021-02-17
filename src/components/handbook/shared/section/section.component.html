@@ -1,0 +1,30 @@
+<jnt-container>
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-stack [orientation]="ui.orientation.horizontal"
+               [align]="ui.align.center">
+      <h1>
+        <span data-thumbnail>
+          <jnt-icon [icon]="section.icon"></jnt-icon>
+        </span>
+        <span>{{section.name}}</span>
+      </h1>
+    </jnt-stack>
+    <jnt-row [align]="ui.align.stretch">
+      <jnt-col *ngFor="let component of section.components | keyvalue"
+               [mobile]="12" [tablet]="6" [desktop]="4" [wide]="3">
+        <jnt-card data-card [features]="[ui.feature.clickable]"
+                  [width]="ui.width.fluid"
+                  (selected)="router.navigate(['/handbook', section.link, component.value.link], {relativeTo: route})">
+          <ng-template #cardTitleTemplate>
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [align]="ui.align.center">
+              <jnt-icon [icon]="component.value.icon"></jnt-icon>
+              <span data-name>{{component.value.name}}</span>
+            </jnt-stack>
+          </ng-template>
+          <span>{{component.value.teaser}}</span>
+        </jnt-card>
+      </jnt-col>
+    </jnt-row>
+  </jnt-stack>
+</jnt-container>

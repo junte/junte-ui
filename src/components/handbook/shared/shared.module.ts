@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SectionModule } from './section/section.module';
 import { BrowserPreviewModule } from './browser-preview/browser-preview.module';
 import { CodeHighlightModule } from './code-highlight/code-highlight.module';
 import { ComponentApiComponentModule } from './component-api/component-api.module';
@@ -13,7 +14,8 @@ import { ResourcesModule } from './resources/resources.module';
     ComponentApiComponentModule,
     HowToUseModule,
     ColorPickerModule,
-    ResourcesModule
+    ResourcesModule,
+    SectionModule
   ]
 })
 export class SharedModule {

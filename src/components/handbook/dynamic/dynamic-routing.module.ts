@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DynamicTestComponent } from './dynamic-test.component';
 import { ChartTestComponent } from './chart/chart-test.component';
 import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
@@ -11,6 +12,10 @@ export const routes: Routes = [
     path: '',
     data: {breadcrumb: 'Dynamic'},
     children: [
+      {
+        path: '',
+        component: DynamicTestComponent,
+      },
       {
         path: 'progress-bar',
         component: ProgressBarTestComponent,
