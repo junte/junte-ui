@@ -1,8 +1,7 @@
 import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { OtherModule } from './other/other.module';
 import { CollectionsModule } from './collections/collections.module';
 import { JUNTE_DEFAULT_CONFIG, JunteUIConfig } from './config';
-import { SelectableModule } from './core/directives/selectable';
-import { ShortcutsModule } from './core/directives/shortcuts';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';
@@ -24,7 +23,7 @@ export function configFactory(config: JunteUIConfig) {
 @NgModule({
   exports: [
     SharedModule,
-
+    OtherModule,
     LayoutModule,
     NavigationModule,
     ElementsModule,
@@ -34,9 +33,7 @@ export function configFactory(config: JunteUIConfig) {
     DynamicModule,
     ArrayPipesModule,
     ColorPipesModule,
-    TextPipesModule,
-    SelectableModule,
-    ShortcutsModule
+    TextPipesModule
   ]
 })
 export class JunteUiModule {
