@@ -5,7 +5,7 @@
        [attr.data-with-template]="!!section.accordionTitleTemplate"
        [attr.active]="active == i">
 
-      <jnt-icon data-chevron [icon]="ui.icons.chevronRight" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
+      <jnt-icon data-chevron [icon]="ui.icons.selectOpen" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
       <ng-container *ngIf="section.accordionTitleTemplate; else defaultTemplate">
         <ng-container *ngTemplateOutlet="section.accordionTitleTemplate"></ng-container>
       </ng-container>
