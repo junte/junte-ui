@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CardModule, GridModule, IconModule, LabelModule, StackModule } from 'junte-ui';
+import { AppLayoutModule, CardModule, GridModule, IconModule, LabelModule, StackModule } from 'junte-ui';
 import { SectionModule } from '../shared/section/section.module';
 import { ModalTestModule } from './modal/modal-test.module';
 import { ModalTestFactoryComponent } from './modal/test.component';
@@ -22,7 +22,8 @@ import { PopoverTestModule } from './popover/popover-test.module';
     SectionModule,
     OverlaysRoutingModule,
     ModalTestModule,
-    PopoverTestModule
+    PopoverTestModule,
+    AppLayoutModule
   ],
   entryComponents: [
     ModalTestFactoryComponent

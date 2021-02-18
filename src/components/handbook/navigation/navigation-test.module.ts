@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { SectionModule } from '../shared/section/section.module';
 import { AccordionTestModule } from './accordion/accordion-test.module';
 import { BreadcrumbsTestModule } from './breadcrumbs/breadcrumbs-test.module';
@@ -17,7 +18,9 @@ import { TabsTestModule } from './tabs/tabs-test.module';
   imports: [
     CommonModule,
     NavigationRoutingModule,
-    SectionModule
+    SectionModule,
+    GridModule,
+    AppLayoutModule
   ],
   exports: [
     BreadcrumbsTestModule,

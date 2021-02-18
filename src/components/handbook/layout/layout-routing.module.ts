@@ -19,6 +19,10 @@ export const routes: Routes = [
     data: {breadcrumb: 'Layout'},
     children: [
       {
+        path: '',
+        component: LayoutTestComponent,
+      },
+      {
         path: 'grid',
         component: GridTestComponent,
         data: {breadcrumb: 'Grid', animation: 'Grid'}

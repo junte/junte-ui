@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { SectionModule } from '../shared/section/section.module';
 import { CollectionsRoutingModule } from './collections-routing.module';
 import { CollectionsTestComponent } from './collections-test.component';
@@ -14,7 +15,9 @@ import { TimelineTestModule } from './timeline/timeline-test.module';
   imports: [
     CommonModule,
     CollectionsRoutingModule,
-    SectionModule
+    SectionModule,
+    AppLayoutModule,
+    GridModule
   ],
   exports: [
     GanttTestModule,
