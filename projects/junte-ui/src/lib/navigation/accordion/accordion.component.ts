@@ -14,8 +14,8 @@ enum AnimationState {
   templateUrl: './accordion.encapsulated.html',
   animations: [
     trigger('rotate', [
-        state('open', style({transform: 'rotate(-90deg)'})),
-        state('close', style({transform: 'rotate(0)'})),
+        state('open', style({transform: 'rotate(180deg)'})),
+        state('close', style({transform: 'rotate(90deg)'})),
         transition('open <=> close', [animate('.3s ease-in-out')]),
       ]
     ),
