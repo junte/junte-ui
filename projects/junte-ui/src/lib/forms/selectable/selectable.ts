@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Directive, EventEmitter, forwardRef, HostBinding, HostListener, Input, NgModule, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { PropertyApi } from '../decorators/api';
-import { Feature } from '../enums/feature';
-import { UI } from '../enums/ui';
-import { LOGGER_PROVIDERS } from '../logger/providers';
+import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
+import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
 enum SelectMode {
   single = 'single',

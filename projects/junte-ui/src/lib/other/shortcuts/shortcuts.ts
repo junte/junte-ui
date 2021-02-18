@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Directive, HostListener, Input, NgModule } from '@angular/core';
-import { PropertyApi } from '../decorators/api';
-import { Key, Modifier } from '../enums/keyboard';
+import { PropertyApi } from '../../core/decorators/api';
+import { Key, Modifier } from '../../core/enums/keyboard';
 
 interface Shortcut {
   key: Key;

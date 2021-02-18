@@ -13,3 +13,4 @@ export * from './switcher/public_api';
 export * from './filter/public_api';
 export * from './image-cropper/public_api';
 export * from './image-uploader/public_api';
+export * from './selectable/public_api';
