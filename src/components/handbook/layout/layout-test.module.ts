@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { SectionModule } from '../shared/section/section.module';
 import { CollectionsTestModule } from '../collections/collections-test.module';
 import { AppLayoutTestModule } from './app/app-layout-test.module';
@@ -22,7 +23,9 @@ import { StackTestModule } from './stack/stack-test.module';
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    SectionModule
+    SectionModule,
+    AppLayoutModule,
+    GridModule
   ],
   exports: [
     AppLayoutTestModule,

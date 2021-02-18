@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { SectionModule } from 'src/components/handbook/shared/section/section.module';
 import { AvatarTestModule } from './avatar/avatar-test.module';
 import { BadgeTestModule } from './badge/badge-test.module';
@@ -17,7 +18,9 @@ import { PictureTestModule } from './picture/picture-test.module';
   imports: [
     CommonModule,
     ElementsRoutingModule,
-    SectionModule
+    SectionModule,
+    AppLayoutModule,
+    GridModule
   ],
   exports: [
     AvatarTestModule,

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { ImageUploaderTestModule } from 'src/components/handbook/forms/image-uploader/image-uploader-test.module';
 import { SliderTestModule } from 'src/components/handbook/forms/slider/slider-test.module';
 import { SectionModule } from '../shared/section/section.module';
@@ -26,7 +27,9 @@ import { SwitcherTestModule } from './switcher/switcher-test.module';
   imports: [
     CommonModule,
     FormsRoutingModule,
-    SectionModule
+    SectionModule,
+    AppLayoutModule,
+    GridModule
   ],
   exports: [
     ButtonTestModule,

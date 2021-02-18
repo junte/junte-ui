@@ -1,7 +1,15 @@
-<jnt-stack [align]="ui.align.stretch"
-           [gutter]="ui.gutter.huge">
-  <app-section *ngFor="let section of handbook | keyvalue: originalOrder"
-               [section]="section.value">
-  </app-section>
-</jnt-stack>
+<jnt-container>
+  <jnt-stack [align]="ui.align.stretch"
+             [gutter]="ui.gutter.huge">
+    <ng-container *ngFor="let section of handbook | keyvalue: originalOrder">
+        <h2>
+          <span data-thumbnail>
+            <jnt-icon [icon]="section.value.icon"></jnt-icon>
+          </span>
+          <span>{{section.value.name}}</span>
+        </h2>
+      <app-section [section]="section.value"></app-section>
+    </ng-container>
+  </jnt-stack>
+</jnt-container>
 

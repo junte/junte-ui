@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppLayoutModule, GridModule } from 'junte-ui';
 import { SectionModule } from '../shared/section/section.module';
 import { AnimationsTestModule } from './animations/animations-test.module';
 import { ConfirmTestModule } from './confirm/confirm-test.module';
@@ -17,7 +18,9 @@ import { ShortcutsTestModule } from './shortcuts/shortcuts-test.module';
   imports: [
     CommonModule,
     OtherRoutingModule,
-    SectionModule
+    SectionModule,
+    AppLayoutModule,
+    GridModule
   ],
   exports: [
     ConfirmTestModule,
