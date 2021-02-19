@@ -7,6 +7,8 @@ export const i18nRu = {
   },
   action: {
     reload: 'Обновить',
+    upload: 'Загрузить',
+    today: 'Сегодня',
     hide_sidebar: 'Скрыть панель',
     ok: 'Ок',
     cancel: 'Отмена',

@@ -7,11 +7,13 @@ import { ButtonModule } from '../button/button.module';
 import { FormModule } from '../form/form.module';
 import { ImageCropperModule } from '../image-cropper/image-cropper.module';
 import { ImageUploaderComponent } from './image-uploader.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     PictureModule,
     ImageCropperModule,
     FormModule,

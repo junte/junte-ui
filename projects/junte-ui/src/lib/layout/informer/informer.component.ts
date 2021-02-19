@@ -18,6 +18,7 @@ import { Gutter } from '../../core/enums/gutter';
 import { Placement } from '../../core/enums/placement';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { ButtonComponent } from '../../forms/button/public_api';
 
 @Component({
@@ -33,7 +34,10 @@ export class InformerMessageComponent {
 
 @Component({
   selector: 'jnt-informer',
-  templateUrl: './informer.encapsulated.html'
+  templateUrl: './informer.encapsulated.html',
+  providers: [
+    ...I18N_PROVIDERS
+  ]
 })
 export class InformerComponent implements AfterViewInit, OnDestroy {
 

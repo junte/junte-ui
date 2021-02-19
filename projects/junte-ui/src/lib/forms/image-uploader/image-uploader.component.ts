@@ -4,6 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
@@ -33,6 +34,7 @@ enum Pages {
       useExisting: forwardRef(() => ImageUploaderComponent),
       multi: true
     },
+    ...I18N_PROVIDERS,
     ...LOGGER_PROVIDERS
   ]
 })
