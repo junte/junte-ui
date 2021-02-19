@@ -130,6 +130,7 @@ export class CardComponent {
   @PropertyApi({
     description: 'Padding for card',
     path: 'ui.gutter',
+    default: Gutter.normal,
     options: [Gutter.none,
       Gutter.tiny,
       Gutter.small,
