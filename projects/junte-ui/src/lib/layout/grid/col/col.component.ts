@@ -45,7 +45,7 @@ export class ColComponent {
   @PropertyApi({
     description: 'Number of cells to occupy on screen < 768px',
     type: 'number: 1...12',
-    default: '6'
+    default: '12'
   })
   @Input() set mobile(mobile: number) {
     this._mobile = mobile;
@@ -54,7 +54,7 @@ export class ColComponent {
   @PropertyApi({
     description: 'Number of cells to occupy on screen >= 768px',
     type: 'number: 1...12',
-    default: '3'
+    default: '6'
   })
   @Input() set tablet(tablet: number) {
     this._tablet = tablet;
