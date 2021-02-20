@@ -415,3 +415,103 @@ export const HANDBOOK = {
   }
 };
 
+enum Abilities {
+  immortality = 'Immortality',
+  fly = 'Fly ability',
+  strength = 'Superhuman strength'
+}
+
+enum Sources {
+  technologies = 'Technologies',
+  acquired = 'Acquired',
+  congenital = 'Congenital'
+}
+
+enum Universes {
+  dc = 'DC',
+  marvel = 'Marvel',
+  xmen = 'X-Men'
+}
+
+export const HEROES = {
+  captain: {
+    name: 'Captain America',
+    avatar: 'assets/images/heroes/captain.svg',
+    universe: Universes.marvel,
+    ability: Abilities.immortality,
+    source: Sources.acquired,
+    likes: 221
+  },
+  spiderman: {
+    name: 'Spiderman',
+    avatar: 'assets/images/heroes/spiderman.svg',
+    universe: Universes.marvel,
+    ability: Abilities.strength,
+    source: Sources.acquired,
+    likes: 357
+  },
+  ironman: {
+    name: 'Ironman',
+    avatar: 'assets/images/heroes/ironman.svg',
+    universe: Universes.marvel,
+    ability: Abilities.fly,
+    source: Sources.technologies,
+    likes: 417
+  },
+  superman: {
+    name: 'Superman',
+    avatar: 'assets/images/heroes/superman.svg',
+    universe: Universes.dc,
+    ability: Abilities.immortality,
+    source: Sources.congenital,
+    likes: 483
+  },
+  batman: {
+    name: 'Batman America',
+    avatar: 'assets/images/heroes/batman.svg',
+    universe: Universes.dc,
+    ability: Abilities.fly,
+    source: Sources.technologies,
+    likes: 452
+  },
+  deadpool: {
+    name: 'Deadpool',
+    avatar: 'assets/images/heroes/deadpool.svg',
+    universe: Universes.xmen,
+    ability: Abilities.immortality,
+    source: Sources.acquired,
+    likes: 436
+  },
+  wolverine: {
+    name: 'Wolverine',
+    avatar: 'assets/images/heroes/wolverine.svg',
+    universe: Universes.xmen,
+    ability: Abilities.immortality,
+    source: Sources.acquired,
+    likes: 362
+  },
+  hulk: {
+    name: 'Hulk',
+    avatar: 'assets/images/heroes/hulk.svg',
+    universe: Universes.marvel,
+    ability: Abilities.strength,
+    source: Sources.acquired,
+    likes: 372
+  },
+  thor: {
+    name: 'Thor',
+    avatar: 'assets/images/heroes/thor.svg',
+    universe: Universes.marvel,
+    ability: Abilities.strength,
+    source: Sources.congenital,
+    likes: 460
+  },
+  thanos: {
+    name: 'Thanos',
+    avatar: 'assets/images/heroes/thanos.svg',
+    universe: Universes.marvel,
+    ability: Abilities.strength,
+    source: Sources.congenital,
+    likes: 256
+  }
+}
