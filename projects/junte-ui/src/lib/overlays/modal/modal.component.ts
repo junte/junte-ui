@@ -36,6 +36,7 @@ export class ModalOptions {
   maxWidth = '800';
   maxHeight = '600';
   hold = false;
+  closeOutside = true;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
