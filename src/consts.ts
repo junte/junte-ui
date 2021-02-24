@@ -417,8 +417,9 @@ export const HANDBOOK = {
 
 enum Abilities {
   immortality = 'Immortality',
-  fly = 'Fly ability',
-  strength = 'Superhuman strength'
+  fly = 'Fly',
+  strength = 'Superhuman strength',
+  intellect = 'Genius Intellect'
 }
 
 enum Sources {
@@ -454,7 +455,7 @@ export const HEROES = {
     name: 'Ironman',
     avatar: 'assets/images/heroes/ironman.svg',
     universe: Universes.marvel,
-    ability: Abilities.fly,
+    ability: Abilities.intellect,
     source: Sources.technologies,
     likes: 417
   },
@@ -462,15 +463,15 @@ export const HEROES = {
     name: 'Superman',
     avatar: 'assets/images/heroes/superman.svg',
     universe: Universes.dc,
-    ability: Abilities.immortality,
+    ability: Abilities.fly,
     source: Sources.congenital,
     likes: 483
   },
   batman: {
-    name: 'Batman America',
+    name: 'Batman',
     avatar: 'assets/images/heroes/batman.svg',
     universe: Universes.dc,
-    ability: Abilities.fly,
+    ability: Abilities.intellect,
     source: Sources.technologies,
     likes: 452
   },
@@ -498,11 +499,11 @@ export const HEROES = {
     source: Sources.acquired,
     likes: 372
   },
-  thor: {
-    name: 'Thor',
-    avatar: 'assets/images/heroes/thor.svg',
-    universe: Universes.marvel,
-    ability: Abilities.strength,
+  wonder: {
+    name: 'Wonder Woman',
+    avatar: 'assets/images/heroes/wonder.svg',
+    universe: Universes.dc,
+    ability: Abilities.fly,
     source: Sources.congenital,
     likes: 460
   },

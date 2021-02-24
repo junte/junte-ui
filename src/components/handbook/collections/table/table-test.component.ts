@@ -49,12 +49,12 @@ export class TableTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(({first, offset, job, q}) => {
+    this.route.params.subscribe(({first, offset, ability, q}) => {
       this.state = {
         first: !!+first && +first !== DEFAULT_FIRST ? +first : undefined,
         offset: +offset > 0 ? +offset : 0,
         q: q || null,
-        job: job || null
+        ability: ability || null
       };
     });
 

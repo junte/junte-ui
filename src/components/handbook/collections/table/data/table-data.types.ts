@@ -13,7 +13,7 @@ export interface TableState {
   q: string;
   first: number;
   offset: number;
-  job: string;
+  ability: string;
 
 }
 
@@ -30,7 +30,7 @@ export class TableStateUpdate {
   q: string;
 
   @Field()
-  job: string;
+  ability: string;
 
   constructor(defs: Partial<TableState> = null) {
     if (!!defs) {
@@ -53,7 +53,7 @@ export class DataFilter {
   offset: number;
 
   @Field()
-  job: string;
+  ability: string;
 
   constructor(defs: Partial<DataFilter> = null) {
     if (!!defs) {
