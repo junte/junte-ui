@@ -41,7 +41,8 @@ export class ModalTestComponent implements OnInit {
 
   widthControl = this.fb.control(Size.large);
   heightControl = this.fb.control(Size.normal);
-  closingControl = this.fb.control(false);
+  holdControl = this.fb.control(false);
+  closeOutsideControl = this.fb.control(true);
   titleControl = this.fb.control(true);
   iconControl = this.fb.control(false);
   footerControl = this.fb.control(false);
@@ -50,11 +51,12 @@ export class ModalTestComponent implements OnInit {
   builder = this.fb.group({
     width: this.widthControl,
     height: this.heightControl,
-    closing: this.closingControl,
+    hold: this.holdControl,
     title: this.titleControl,
     icon: this.iconControl,
     footer: this.footerControl,
     type: this.typeControl,
+    closeOutside: this.closeOutsideControl
   });
 
   selectControl = this.fb.control(null);
@@ -89,7 +91,8 @@ export class ModalTestComponent implements OnInit {
     const options = new ModalOptions({
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
-      hold: this.closingControl.value,
+      hold: this.holdControl.value,
+      closeOutside: this.closeOutsideControl.value,
       title: {
         text: this.titleControl.value ? 'Modal' : null,
         icon: this.iconControl.value ? UI.icons.settings : null
@@ -104,7 +107,8 @@ export class ModalTestComponent implements OnInit {
     const options = new ModalOptions({
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
-      hold: this.closingControl.value,
+      hold: this.holdControl.value,
+      closeOutside: this.closeOutsideControl.value,
       title: {
         text: this.titleControl.value ? 'Calendar' : null,
         icon: this.iconControl.value ? UI.icons.calendar : null
