@@ -1,24 +1,29 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { fake } from 'faker';
 import { TableComponent, UI } from 'junte-ui';
 import { of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
+import { HEROES } from 'src/consts';
 import { DataFilter, TableSections, TableState, TableStateUpdate } from './table-data.types';
 
 const DEFAULT_DELAY = 1000;
 export const DEFAULT_FIRST = 10;
 
-const MOCK_DATA = [];
-for (let i = 0; i < Math.random() * (300 - 50) + 50; i++) {
-  MOCK_DATA.push({
+const HEROES_ARRAY = Object.values(HEROES);
+
+const HEROES_DATA = [];
+for (let i = 0; i < 150; i++) {
+  let k = Math.floor(Math.random() * (10 - 0) + 0);
+  HEROES_DATA.push({
     id: i + 1,
-    person: fake('{{name.firstName}} {{name.lastName}}'),
-    job: fake('{{name.jobArea}}')
+    hero: HEROES_ARRAY[k].name,
+    ability: HEROES_ARRAY[k].ability,
+    avatar: HEROES_ARRAY[k].avatar
   });
 }
 
-const MOCK_JOBS = [...new Set(MOCK_DATA.map(d => d.job))];
+const HEROES_ABILITIES = [...new Set(HEROES_DATA.map(d => d.ability))];
+
 
 @Component({
   selector: 'app-table-data',
@@ -29,7 +34,7 @@ export class TableDataComponent implements OnInit {
 
   ui = UI;
   tableSections = TableSections;
-  jobs = MOCK_JOBS;
+  abilities = HEROES_ABILITIES;
 
   tableControl = this.fb.control({
     first: [DEFAULT_FIRST],
@@ -39,7 +44,7 @@ export class TableDataComponent implements OnInit {
   });
   form = this.fb.group({
     table: this.tableControl,
-    job: [null]
+    ability: [null]
   });
 
   @Input()
@@ -50,17 +55,17 @@ export class TableDataComponent implements OnInit {
 
   previous = JSON.stringify([DEFAULT_FIRST, null, null]);
 
-  @Input() set state({first, offset, q, job}: TableState) {
+  @Input() set state({first, offset, q, ability}: TableState) {
     this.form.patchValue({
       table: {
         q: q || null,
         first: first || DEFAULT_FIRST,
         offset: offset || 0
       },
-      job: job || null
+      ability: ability || null
     }, {emitEvent: false});
 
-    this.previous = JSON.stringify([first || DEFAULT_FIRST, q, job]);
+    this.previous = JSON.stringify([first || DEFAULT_FIRST, q, ability]);
   }
 
   @Output()
@@ -76,19 +81,19 @@ export class TableDataComponent implements OnInit {
   ngOnInit() {
     this.table.fetcher = () => this.fetchData();
 
-    this.form.valueChanges.pipe(tap(({table: {first, q}, job}) => {
-      const reset = JSON.stringify([first, q, job]);
+    this.form.valueChanges.pipe(tap(({table: {first, q}, ability}) => {
+      const reset = JSON.stringify([first, q, ability]);
       if (this.previous !== reset) {
         this.tableControl.patchValue({first, offset: 0, q: q}, {emitEvent: false});
       }
       this.previous = reset;
     })).subscribe(() => {
-      const {table: {offset, first, q}, job} = this.form.getRawValue();
+      const {table: {offset, first, q}, ability} = this.form.getRawValue();
       this.filtered.emit(new TableStateUpdate({
         first: first !== DEFAULT_FIRST ? first : undefined,
         offset: offset > 0 ? offset : undefined,
         q: q || undefined,
-        job: job || undefined
+        ability: ability || undefined
       }));
       this.load();
     });
@@ -97,21 +102,21 @@ export class TableDataComponent implements OnInit {
   }
 
   private load() {
-    const {table: {q, first, offset}, job} = this.form.getRawValue();
-    this.filter = new DataFilter({q, first, offset, job});
+    const {table: {q, first, offset}, ability} = this.form.getRawValue();
+    this.filter = new DataFilter({q, first, offset, ability});
     this.table.load();
   }
 
   private fetchData() {
-    const {q, first, offset, job} = this.filter;
-    let results = MOCK_DATA;
+    const {q, first, offset, ability} = this.filter;
+    let results = HEROES_DATA;
     if (!!q) {
-      results = results.filter(({person}) => person.toLowerCase()
+      results = results.filter(({hero}) => hero.toLowerCase()
         .indexOf(q.toLowerCase()) !== -1);
     }
 
-    if (!!job) {
-      results = results.filter(result => job === result.job);
+    if (!!ability) {
+      results = results.filter(result => ability === result.ability);
     }
 
     return of({

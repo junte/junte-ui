@@ -15,12 +15,13 @@
         </ng-template>
 
         <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
-          <jnt-select formControlName="job"
-                      placeholder="Select job"
-                      i18n-placeholder="@@label.select_job">
-            <jnt-select-option *ngFor="let job of jobs"
-                               [label]="job"
-                               [key]="job"></jnt-select-option>
+          <jnt-select formControlName="ability"
+                      placeholder="Select ability"
+                      i18n-placeholder="@@label.select_ability"
+                      [features]="[ui.feature.allowEmpty]">
+            <jnt-select-option *ngFor="let ability of abilities"
+                               [label]="ability"
+                               [key]="ability"></jnt-select-option>
           </jnt-select>
         </ng-template>
 
@@ -30,19 +31,26 @@
           </ng-template>
         </jnt-table-column>
 
-        <jnt-table-column title="Person"
-                          i18n-title="@@label.person"
-                          sort="person">
-          <ng-template #tableCellTemplate let-person="person">
-            {{person}}
+        <jnt-table-column title="Hero"
+                          i18n-title="@@label.hero"
+                          sort="hero">
+          <ng-template #tableCellTemplate let-hero="hero" let-avatar="avatar">
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <jnt-avatar [icon]="ui.icons.question"
+                          [image]="avatar"
+                          [size]="ui.size.small"></jnt-avatar>
+              <div>{{hero}}</div>
+            </jnt-stack>
           </ng-template>
         </jnt-table-column>
 
-        <jnt-table-column title="Job"
-                          i18n-title="@@label.job"
-                          sort="job">
-          <ng-template #tableCellTemplate let-job="job">
-            {{job}}
+        <jnt-table-column title="Ability"
+                          i18n-title="@@label.ability"
+                          sort="ability">
+          <ng-template #tableCellTemplate let-ability="ability">
+            {{ability}}
           </ng-template>
         </jnt-table-column>
 
