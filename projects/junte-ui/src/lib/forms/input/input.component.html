@@ -20,6 +20,7 @@
 
     <ng-template #inputTemplate>
       <textarea *ngIf="features | includes: ui.feature.multiline; else singleLineTemplate"
+                #valueRef
                 formControlName="input"
                 [name]="name"
                 [placeholder]="placeholder"
