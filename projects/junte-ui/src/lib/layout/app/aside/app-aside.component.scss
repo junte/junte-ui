@@ -52,7 +52,7 @@
       bottom: 0;
       z-index: 2;
 
-      @include for-mobile() {
+      @include max-for-tablet() {
         &[data-opened='true'] {
           width: 100%;
 
@@ -251,7 +251,7 @@
       @include jnt-icon((color: $jnt-primary-text-light-color, size: 20px), '&');
     }
 
-    @include for-mobile() {
+    @include max-for-tablet() {
       @if $declare {
         display: none;
       }

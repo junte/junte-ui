@@ -1,6 +1,6 @@
 <div data-drawer [attr.data-collapsed]="collapsed
-  && breakpoint.current !== ui.breakpoint.mobile">
-  <jnt-button *jntFor="ui.breakpoint.mobile"
+  && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet">
+  <jnt-button *jntMaxFor="ui.breakpoint.tablet"
               [scheme]="ui.scheme.secondary"
               [icon]="ui.icons.menu"
               (click)="toggle()" data-burger>
@@ -17,7 +17,7 @@
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate;
         context: {
-          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile,
+          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet,
           toggle: toggle.bind(this)
         }">
         </ng-container>
@@ -25,7 +25,7 @@
       <jnt-menu data-menu *ngIf="!!menu"
                 context="popover-aside-sub-menu"
                 [orientation]="ui.orientation.vertical"
-                [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile"
+                [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet"
                 [placement]="ui.placement.fixed"
                 [spacing]="menu.spacing"
                 (selected)="toggle()">
