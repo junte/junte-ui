@@ -57,9 +57,12 @@
                               <jnt-select-option label="Fly ability"
                                                  i18n-label="@@label.fly"
                                                  [key]="abilities.fly"></jnt-select-option>
-                              <jnt-select-option label="Crawling on walls"
-                                                 i18n-label="@@label.crawling"
-                                                 [key]="abilities.crawling_walls"></jnt-select-option>
+                              <jnt-select-option label="Superhuman strength"
+                                                 i18n-label="@@label.superhuman_strength"
+                                                 [key]="abilities.strength"></jnt-select-option>
+                              <jnt-select-option label="Genius Intellect"
+                                                 i18n-label="@@label.genius_intellect"
+                                                 [key]="abilities.intellect"></jnt-select-option>
                             </jnt-select>
                           </jnt-form-control>
                         </jnt-form-item>
@@ -101,9 +104,9 @@
                               <jnt-select-option label="Marvel"
                                                  i18n-label="@@label.marvel"
                                                  [key]="universes.marvel"></jnt-select-option>
-                              <jnt-select-option label="XMan"
-                                                 i18n-label="@@label.xman"
-                                                 [key]="universes.xman"></jnt-select-option>
+                              <jnt-select-option label="X-Men"
+                                                 i18n-label="@@label.xmen"
+                                                 [key]="universes.xmen"></jnt-select-option>
                             </jnt-select>
                           </jnt-form-control>
                         </jnt-form-item>
@@ -129,7 +132,7 @@
                                   [label]="universesControl.value"></jnt-filter>
                     </jnt-stack>
 
-                    <jnt-avatars-list [max]="6">
+                    <jnt-avatars-list [max]="12">
                       <jnt-avatar *ngIf="filteredControl.value | includes:hero.spiderman"
                                   image="assets/images/heroes/spiderman.svg"></jnt-avatar>
                       <jnt-avatar *ngIf="filteredControl.value | includes:hero.ironman"
@@ -142,6 +145,12 @@
                                   image="assets/images/heroes/wolverine.svg"></jnt-avatar>
                       <jnt-avatar *ngIf="filteredControl.value | includes:hero.superman"
                                   image="assets/images/heroes/superman.svg"></jnt-avatar>
+                      <jnt-avatar *ngIf="filteredControl.value | includes:hero.wonder"
+                                  image="assets/images/heroes/wonder.svg"></jnt-avatar>
+                      <jnt-avatar *ngIf="filteredControl.value | includes:hero.thanos"
+                                  image="assets/images/heroes/thanos.svg"></jnt-avatar>
+                      <jnt-avatar *ngIf="filteredControl.value | includes:hero.hulk"
+                                  image="assets/images/heroes/hulk.svg"></jnt-avatar>
                       <jnt-avatar *ngIf="!filteredControl.value?.length"
                                   [icon]="ui.icons.question"></jnt-avatar>
                     </jnt-avatars-list>

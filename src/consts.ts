@@ -415,20 +415,35 @@ export const HANDBOOK = {
   }
 };
 
-enum Abilities {
+export enum Hero {
+  spiderman = 'Spiderman',
+  ironman = 'Ironman',
+  captainAmerica = 'Captain America',
+  thanos = 'Thanos',
+  deadpool = 'Deadpool',
+  blackwidow = 'Blackwidow',
+  hulk = 'Hulk',
+  thor = 'Thor',
+  batman = 'Batman',
+  wolverine = 'Wolverine',
+  superman = 'Superman',
+  wonder = 'Wonder Woman'
+}
+
+export enum Abilities {
   immortality = 'Immortality',
   fly = 'Fly',
   strength = 'Superhuman strength',
   intellect = 'Genius Intellect'
 }
 
-enum Sources {
+export enum Sources {
   technologies = 'Technologies',
   acquired = 'Acquired',
   congenital = 'Congenital'
 }
 
-enum Universes {
+export enum Universes {
   dc = 'DC',
   marvel = 'Marvel',
   xmen = 'X-Men'
@@ -436,7 +451,7 @@ enum Universes {
 
 export const HEROES = {
   captain: {
-    name: 'Captain America',
+    name: Hero.captainAmerica,
     avatar: 'assets/images/heroes/captain.svg',
     universe: Universes.marvel,
     ability: Abilities.immortality,
@@ -444,7 +459,7 @@ export const HEROES = {
     likes: 221
   },
   spiderman: {
-    name: 'Spiderman',
+    name: Hero.spiderman,
     avatar: 'assets/images/heroes/spiderman.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
@@ -452,7 +467,7 @@ export const HEROES = {
     likes: 357
   },
   ironman: {
-    name: 'Ironman',
+    name: Hero.ironman,
     avatar: 'assets/images/heroes/ironman.svg',
     universe: Universes.marvel,
     ability: Abilities.intellect,
@@ -460,7 +475,7 @@ export const HEROES = {
     likes: 417
   },
   superman: {
-    name: 'Superman',
+    name: Hero.superman,
     avatar: 'assets/images/heroes/superman.svg',
     universe: Universes.dc,
     ability: Abilities.fly,
@@ -468,7 +483,7 @@ export const HEROES = {
     likes: 483
   },
   batman: {
-    name: 'Batman',
+    name: Hero.batman,
     avatar: 'assets/images/heroes/batman.svg',
     universe: Universes.dc,
     ability: Abilities.intellect,
@@ -476,7 +491,7 @@ export const HEROES = {
     likes: 452
   },
   deadpool: {
-    name: 'Deadpool',
+    name: Hero.deadpool,
     avatar: 'assets/images/heroes/deadpool.svg',
     universe: Universes.xmen,
     ability: Abilities.immortality,
@@ -484,7 +499,7 @@ export const HEROES = {
     likes: 436
   },
   wolverine: {
-    name: 'Wolverine',
+    name: Hero.wolverine,
     avatar: 'assets/images/heroes/wolverine.svg',
     universe: Universes.xmen,
     ability: Abilities.immortality,
@@ -492,7 +507,7 @@ export const HEROES = {
     likes: 362
   },
   hulk: {
-    name: 'Hulk',
+    name: Hero.hulk,
     avatar: 'assets/images/heroes/hulk.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
@@ -500,15 +515,15 @@ export const HEROES = {
     likes: 372
   },
   wonder: {
-    name: 'Wonder Woman',
-    avatar: 'assets/images/heroes/wonder.svg',
-    universe: Universes.dc,
+    name: Hero.wonder,
+    avatar: 'assets/images/heroes/thor.svg',
+    universe: Universes.marvel,
     ability: Abilities.fly,
     source: Sources.congenital,
     likes: 460
   },
   thanos: {
-    name: 'Thanos',
+    name: Hero.thanos,
     avatar: 'assets/images/heroes/thanos.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
