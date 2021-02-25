@@ -121,7 +121,7 @@ export class ButtonComponent {
   @PropertyApi({
     description: 'Button color scheme',
     path: 'ui.scheme',
-    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail, Scheme.accent],
     default: Scheme.primary
   })
   @Input()
