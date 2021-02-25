@@ -37,6 +37,7 @@
                 <jnt-stack>
                   <div block>
                     <jnt-icon [icon]="iconControl.value.value"
+                              [modifier]="modifierControl.value"
                               [size]="sizeControl.value"
                               [stroke]="strokeControl.value"></jnt-icon>
                   </div>
@@ -107,6 +108,28 @@
                   </jnt-form-control>
                 </jnt-form-item>
 
+                <jnt-form-item>
+                  <jnt-form-label for="modifier"
+                                  i18n="@@label.stroke">Modifier
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="modifier"
+                                placeholder="None"
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Add"
+                                         i18n-label="@@label.add"
+                                         [key]="ui.icon.modifier.add"></jnt-select-option>
+                      <jnt-select-option label="Edit"
+                                         i18n-label="@@label.edit"
+                                         [key]="ui.icon.modifier.edit"></jnt-select-option>
+                      <jnt-select-option label="Delete"
+                                         i18n-label="@@label.delete"
+                                         [key]="ui.icon.modifier.delete"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
                 <app-icons-list path="icons" [icons]="ui.icons"
                                 (selected)="iconControl.setValue($event)"></app-icons-list>
               </jnt-stack>
@@ -143,6 +166,10 @@
   <ng-container *ngIf="strokeControl.value">
     <![CDATA[
     [stroke]="ui.stroke.]]>{{strokeControl.value}}<![CDATA["]]>
+  </ng-container>
+  <ng-container *ngIf="modifierControl.value">
+    <![CDATA[
+    [modifier]="ui.icon.modifier.]]>{{modifierControl.value}}<![CDATA["]]>
   </ng-container>
   <![CDATA[>
 </jnt-icon>

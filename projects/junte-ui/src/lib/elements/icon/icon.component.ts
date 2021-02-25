@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { IconModifier } from '../../core/enums/icon-modifier';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { Stroke } from '../../core/enums/stroke';
@@ -15,6 +16,7 @@ export class IconComponent {
   @HostBinding('attr.host') readonly host = 'jnt-icon-host';
 
   iconType = IconType;
+  iconModifier = IconModifier;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.auto;
@@ -76,5 +78,18 @@ export class IconComponent {
   })
   @Input()
   color = null;
+
+  @HostBinding('attr.data-has-color')
+  get hasColor() {
+    return !!this.color;
+  }
+
+  @PropertyApi({
+    description: 'Modifier for icon: add, edit, delete',
+    path: 'ui.icon.modifier',
+    options: [IconModifier.add, IconModifier.edit, IconModifier.delete]
+  })
+  @Input()
+  modifier: IconModifier;
 
 }

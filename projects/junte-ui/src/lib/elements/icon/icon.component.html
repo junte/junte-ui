@@ -14,5 +14,30 @@
                      [iconset]="iconset"
                      [color]="color"
                      [tags]="tags"></jnt-animated-icon>
+  <ng-container *ngIf="!!modifier">
+    <ng-container [ngSwitch]="modifier">
+      <svg data-modifier *ngSwitchCase="iconModifier.delete" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path data-filled d="M5.00166 10.0042C2.23951 10.0042 -0.000427246 7.76423 -0.000427246
+              5.00208C-0.000427246 2.23993 2.23951 0 5.00166 0C7.76481 0 10.0037
+              2.23993 10.0037 5.00208C10.0037 7.76423 7.76481 10.0042 5.00166 10.0042" [attr.fill]="color"/>
+        <path d="M3.00085 5.00204H7.00252" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <svg data-modifier *ngSwitchCase="iconModifier.add" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path data-filled d="M5.00166 10.0042C2.23951 10.0042 -0.000427246 7.76423 -0.000427246
+              5.00208C-0.000427246 2.23993 2.23951 0 5.00166 0C7.76481
+              0 10.0037 2.23993 10.0037 5.00208C10.0037 7.76423 7.76481 10.0042 5.00166 10.0042" [attr.fill]="color"/>
+        <path d="M3.00085 5.00204H7.00252" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5.00167 7.00289V3.00122" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <svg data-modifier *ngSwitchCase="iconModifier.edit" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path data-filled d="M5.00166 10.0042C2.23951 10.0042 -0.000427246 7.76423 -0.000427246
+              5.00208C-0.000427246 2.23993 2.23951 0 5.00166 0C7.76481 0 10.0037 2.23993
+              10.0037 5.00208C10.0037 7.76423 7.76481 10.0042 5.00166 10.0042" [attr.fill]="color"/>
+        <path d="M4.8 6.99995L7.5 4.29994L5.7 2.49994L3 5.19995V6.99995H4.8Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </ng-container>
+  </ng-container>
 </ng-container>
 

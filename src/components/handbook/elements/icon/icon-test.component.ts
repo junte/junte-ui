@@ -31,10 +31,12 @@ export class IconTestComponent implements OnInit {
 
   sizeControl = this.fb.control(null);
   strokeControl = this.fb.control(null);
+  modifierControl = this.fb.control(null);
   builder = this.fb.group({
     icon: this.iconControl,
     size: this.sizeControl,
-    stroke: this.strokeControl
+    stroke: this.strokeControl,
+    modifier: this.modifierControl
   });
 
   constructor(private fb: FormBuilder) {
