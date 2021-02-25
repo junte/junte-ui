@@ -2,6 +2,7 @@
 @import 'jnt-functions';
 @import 'jnt-hosts';
 @import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
@@ -31,7 +32,7 @@
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
 
-    @include for-mobile() {
+    @include max-for-tablet() {
       &[data-with-aside='true'] {
         @if $declare {
           min-height: $app-aside-burger-height;
