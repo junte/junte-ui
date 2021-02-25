@@ -143,6 +143,7 @@ export class LocalUI {
       secondary: 'secondary:svg:layout:stroked',
       success: 'success:svg:layout:stroked',
       fail: 'fail:svg:layout:stroked',
+      accent: 'accent:svg:layout:stroked',
 
     // outline
       fill: 'fill:svg:layout:stroked',

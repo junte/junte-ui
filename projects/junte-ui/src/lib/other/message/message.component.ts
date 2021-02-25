@@ -29,7 +29,8 @@ export class MessageComponent {
     options: [Scheme.primary,
       Scheme.secondary,
       Scheme.success,
-      Scheme.fail]
+      Scheme.fail,
+      Scheme.accent]
   })
   @Input() set scheme(scheme: Scheme) {
     this._scheme = scheme || Scheme.primary;
