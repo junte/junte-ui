@@ -380,6 +380,7 @@ export const icons = {
   github: 'github:svg:apps:apps',
   figma: 'figma:svg:apps:apps',
   stackblitz: 'stackblitz:svg:apps:apps',
+  benchmark: 'benchmark:svg:apps:apps',
   animated: {
     runningMan: 'running-man:animated:default:animated',
     success: 'success:animated:default:animated',
