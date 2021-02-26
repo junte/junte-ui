@@ -27,7 +27,7 @@
            [wrap]="ui.wrap.wrap"
            [spacing]="ui.gutter.small"
            [gutter]="ui.gutter.none">
-  <a href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
+  <a #links href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
        (click)="active = i; $event.preventDefault()">
     <div data-tab [attr.data-with-template]="!!tab.titleTemplate">
@@ -51,6 +51,9 @@
       <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
     </div>
   </a>
+  <div data-line #lineRef
+       [@move]="{value: 'void', params: {distance: distance}}"
+       (@move.start)="setWidth(active)"></div>
 </jnt-stack>
 
 <ng-container *ngFor="let tab of tabs;let i = index">

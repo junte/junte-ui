@@ -55,6 +55,19 @@ $tab-marker-height: 4px;
       border-top-left-radius: $jnt-corner-normal;
       border-top-right-radius: $jnt-corner-normal;
       border-bottom: 2px solid $jnt-secondary-color;
+      position: relative;
+    }
+
+    [data-line] {
+      @if $declare {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: $tab-marker-height;
+        border-radius: 5px;
+        background-color: $jnt-primary-light-color;
+      }
     }
 
     [data-wrapper] {
@@ -63,16 +76,6 @@ $tab-marker-height: 4px;
         text-decoration: none;
         display: block;
         color: inherit;
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          right: 0;
-          height: $tab-marker-height;
-          border-radius: 5px;
-          display: none;
-        }
 
         &:hover {
           [data-tab][data-with-template='false'] {
@@ -81,11 +84,6 @@ $tab-marker-height: 4px;
             [data-label] [data-icon] {
               @include jnt-icon((color: $jnt-primary-light-color), '&');
             }
-          }
-
-          &:after {
-            display: block;
-            background-color: $jnt-secondary-dark-color;
           }
         }
       }
@@ -100,18 +98,14 @@ $tab-marker-height: 4px;
             @include jnt-icon((color: $jnt-primary-light-color), '&');
           }
         }
-
-        &:after {
-          @if $declare {
-            display: block;
-            background-color: $jnt-primary-light-color;
-          }
-        }
       }
 
       [data-tab] {
         @if $declare {
           cursor: pointer;
+          color: $jnt-primary-text-color;
+          font-size: $jnt-font-size-base;
+          line-height: 1.6;
           position: relative;
           user-select: none;
           max-width: 100%;
