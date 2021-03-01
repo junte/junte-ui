@@ -24,17 +24,13 @@ interface Icon {
         state(
           'void',
           style({
-            opacity: 0,
-            width: '200px',
-            height: '200px'
+            opacity: 0
           })
         ),
         state(
           '*',
           style({
-            opacity: 1,
-            width: '*',
-            height: '*'
+            opacity: 1
           })
         ),
         transition(
