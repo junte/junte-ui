@@ -15,6 +15,14 @@ export class PopoverService {
   private target: ElementRef;
   attached = new EventEmitter<ElementRef>();
 
+  constructor() {
+    document.addEventListener('scroll', () => {
+      if (!!this.popover) {
+        this.popover.update();
+      }
+    }, true);
+  }
+
   register(popover: PopoverComponent): void {
     this.popover = popover;
   }
