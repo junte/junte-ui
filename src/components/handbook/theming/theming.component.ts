@@ -1,6 +1,6 @@
 import {Component, Inject, LOCALE_ID} from '@angular/core';
 import {UI} from 'junte-ui';
-import {Language} from '../../../../enums/language';
+import {Language} from 'src/enums/language';
 
 @Component({
   selector: 'app-theming',

@@ -9,9 +9,19 @@ export const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: 'general',
-    loadChildren: () => loadChildren(import('../general/general.module')
-      .then(m => m.GeneralModule))
+    path: 'home',
+    loadChildren: () => loadChildren(import('../home/home.module')
+      .then(m => m.HomeModule))
+  },
+  {
+    path: 'theming',
+    loadChildren: () => loadChildren(import('../theming/theming.module')
+      .then(m => m.ThemingModule))
+  },
+  {
+    path: 'typography',
+    loadChildren: () => loadChildren(import('../typography/typography.module')
+      .then(m => m.TypographyModule))
   },
   {
     path: 'layout',

@@ -14,7 +14,10 @@ import {
   ThemeSwitcherModule
 } from 'junte-ui';
 import { HighlightModule } from 'ngx-highlightjs';
+import { HomeModule } from './home/home.module';
 import { IndexModule } from 'src/components/handbook/index/index.module';
+import { ThemingModule } from './theming/theming.module';
+import { TypographyModule } from 'src/components/handbook/typography/typography.module';
 import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
 import { AppFooterModule } from '../footer/app-footer.module';
 import { OutletModule } from '../outlet/outlet.module';
@@ -24,30 +27,30 @@ import { HandbookComponent } from 'src/components/handbook/handbook.component';
 import { ModalTestModule } from './overlays/modal/modal-test.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HighlightModule,
-        OutletModule,
-        AppLayoutModule,
-        MenuModule,
-        BreadcrumbsModule,
-        ThemeSwitcherModule,
-        PopoverModule,
-        ModalModule,
-        StackModule,
-        BadgeModule,
-        TranslateModule,
-        SelectLangModule,
-        AppFooterModule,
-        HandbookRoutingModule,
-        ModalTestModule,
-        ResponsiveModule,
-        IndexModule,
-        AnalyticsDirectivesModule,
-        MenuModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HighlightModule,
+    OutletModule,
+    AppLayoutModule,
+    MenuModule,
+    BreadcrumbsModule,
+    ThemeSwitcherModule,
+    PopoverModule,
+    ModalModule,
+    StackModule,
+    BadgeModule,
+    TranslateModule,
+    SelectLangModule,
+    AppFooterModule,
+    HandbookRoutingModule,
+    ModalTestModule,
+    ResponsiveModule,
+    IndexModule,
+    AnalyticsDirectivesModule,
+    MenuModule
+  ],
   declarations: [
     HandbookComponent
   ]
