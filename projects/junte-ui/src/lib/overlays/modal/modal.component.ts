@@ -203,7 +203,9 @@ export class ModalComponent implements OnInit {
     this.hostRef.nativeElement.scrollTop = 0;
     setTimeout(() => {
       this.content = null;
-      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      if (!!this.backdrop) {
+        this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      }
     }, ANIMATION_CLOSE_DURATION);
   }
 }
