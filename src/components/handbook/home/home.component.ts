@@ -1,7 +1,7 @@
 import {Component, Inject, LOCALE_ID} from '@angular/core';
 import {UI} from 'junte-ui';
 import {Language as HighlightLanguage} from 'src/components/handbook/shared/code-highlight/enum';
-import {Language} from '../../../../enums/language';
+import {Language} from 'src/enums/language';
 
 @Component({
   selector: 'app-home',

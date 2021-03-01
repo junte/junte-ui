@@ -3,10 +3,10 @@ import { UI } from 'junte-ui';
 
 @Component({
   selector: 'app-typography-test',
-  templateUrl: './typography-test.component.html',
-  styleUrls: ['./typography-test.component.scss']
+  templateUrl: './typography.component.html',
+  styleUrls: ['./typography.component.scss']
 })
-export class TypographyTestComponent implements OnInit {
+export class TypographyComponent implements OnInit {
   ui = UI;
   constructor() { }
 

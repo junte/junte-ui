@@ -47,24 +47,18 @@
 
   <jnt-app-aside #aside>
     <jnt-menu [spacing]="ui.gutter.none">
-      <jnt-menu-item title="General"
-                     i18n-title="@@label.general"
-                     [icon]="localUi.icons.general">
-        <jnt-sub-menu>
-          <jnt-sub-menu-item title="Home"
-                             i18n-title="@@label.home"
-                             [link]="['/handbook/general/home']"
-                             [icon]="localUi.icons.home"></jnt-sub-menu-item>
-          <jnt-sub-menu-item title="Theming"
-                             i18n-title="@@label.theming"
-                             [link]="['/handbook/general/theming']"
-                             [icon]="localUi.icons.theming"></jnt-sub-menu-item>
-          <jnt-sub-menu-item title="Typography"
-                             i18n-title="@@label.typography"
-                             [link]="['/handbook/general/typography']"
-                             [icon]="localUi.icons.typography"></jnt-sub-menu-item>
-        </jnt-sub-menu>
-      </jnt-menu-item>
+      <jnt-menu-item title="Home"
+                     i18n-title="@@label.home"
+                     [link]="['/handbook/home']"
+                     [icon]="localUi.icons.home"></jnt-menu-item>
+      <jnt-menu-item title="Theming"
+                     i18n-title="@@label.theming"
+                     [link]="['/handbook/theming']"
+                     [icon]="localUi.icons.theming"></jnt-menu-item>
+      <jnt-menu-item title="Typography"
+                     i18n-title="@@label.typography"
+                     [link]="['/handbook/typography']"
+                     [icon]="localUi.icons.typography"></jnt-menu-item>
 
       <jnt-menu-item title="Layout"
                      i18n-title="@@label.layout"

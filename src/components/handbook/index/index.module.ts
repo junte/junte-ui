@@ -4,6 +4,7 @@ import { CollectionsTestModule } from 'src/components/handbook/collections/colle
 import { DynamicTestModule } from 'src/components/handbook/dynamic/dynamic-test.module';
 import { ElementsTestModule } from 'src/components/handbook/elements/elements-test.module';
 import { FormsTestModule } from 'src/components/handbook/forms/forms-test.module';
+import { HomeModule } from 'src/components/handbook/home/home.module';
 import { IndexRoutingModule } from 'src/components/handbook/index/index-routing.module';
 import { IndexComponent } from 'src/components/handbook/index/index.component';
 import { JunteUiModule } from 'junte-ui';
@@ -12,6 +13,8 @@ import { NavigationTestModule } from 'src/components/handbook/navigation/navigat
 import { OtherTestModule } from 'src/components/handbook/other/other-test.module';
 import { OverlaysTestModule } from 'src/components/handbook/overlays/overlays-test.module';
 import { SectionModule } from 'src/components/handbook/shared/section/section.module';
+import { ThemingModule } from 'src/components/handbook/theming/theming.module';
+import { TypographyModule } from 'src/components/handbook/typography/typography.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { SectionModule } from 'src/components/handbook/shared/section/section.mo
     FormsTestModule,
     OtherTestModule,
     DynamicTestModule,
-    OverlaysTestModule
+    OverlaysTestModule,
+    ThemingModule,
+    TypographyModule,
+    HomeModule
   ]
 })
 export class IndexModule { }

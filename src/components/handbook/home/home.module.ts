@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GridModule, IconModule, LabelModule, LinkModule, StackModule, TimelineModule } from 'junte-ui';
-import { CodeHighlightModule } from 'src/components/handbook/shared/code-highlight/code-highlight.module';
+import { HomeRoutingModule } from './home-routing.module';
+import { CodeHighlightModule } from '../shared/code-highlight/code-highlight.module';
 import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HomeRoutingModule,
     LinkModule,
     IconModule,
     GridModule,
