@@ -31,59 +31,35 @@
       <ng-template #tabContentTemplate>
         <jnt-row>
 
-          <jnt-col [tablet]="8">
+          <jnt-col [tablet]="9">
             <app-browser-preview preview>
               <ng-template #document let-width="width" let-height="height">
-                <jnt-block #block title="Your heroes">
+                <jnt-block #block title="Your heroes" i18n-title="Your heroes">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
                     <jnt-stack [orientation]="ui.orientation.horizontal">
-                      <jnt-form-control name="heroes">
-                        <jnt-checkbox-group formControlName="heroes"
+                      <jnt-form-control name="hero">
+                        <jnt-checkbox-group formControlName="hero"
                                             [cols]="colsControl.value"
                                             [size]="sizeControl.value">
-                          <jnt-checkbox *ngFor="let hero of heroes"
-                                        [label]="hero.label"
-                                        i18n-label="{{hero.i18n}}"
-                                        [value]="hero.value">
+                          <jnt-checkbox *ngFor="let hero of heroes | keyvalue: originalOrder | slice:0:6"
+                                        [label]="!customControl.value ? hero.value.name : null"
+                                        [value]="hero.value.name">
                             <ng-template *ngIf="customControl.value" #checkboxLabelTemplate>
-                              <ng-container [ngSwitch]="hero.value">
-                                <ng-container *ngSwitchCase="heroEnum.spiderman">
-                                  <strong>Spiderman custom template</strong>
-                                </ng-container>
-                                <ng-container *ngSwitchCase="heroEnum.ironman">
-                                  <jnt-input placeholder="Ironman custom template"></jnt-input>
-                                </ng-container>
-                                <ng-container *ngSwitchCase="heroEnum.captainAmerica">
-                                  <jnt-checkbox label="Captain America custom template"
-                                                i18n-label="@@label.captain_america_custom_template">
-                                  </jnt-checkbox>
-                                </ng-container>
-                              </ng-container>
+                              <jnt-stack [orientation]="ui.orientation.horizontal" data-custom
+                                         [align]="ui.align.center"
+                                         [justify]="ui.justify.between">
+                                <jnt-stack [orientation]="ui.orientation.horizontal"
+                                           [gutter]="ui.gutter.small"
+                                           [align]="ui.align.center">
+                                  <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                                  <span data-hero i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
+                                </jnt-stack>
+                                <jnt-label data-universe [label]="hero.value.universe"
+                                           [color]="hero.value.universe === 'Marvel' ? ui.color.red : hero.value.universe === 'DC' ? ui.color.black : ui.color.yellow"></jnt-label>
+                              </jnt-stack>
                             </ng-template>
                           </jnt-checkbox>
 
-                          <ng-container *ngIf="colsControl.value > 1">
-                            <jnt-checkbox label="Thanos"
-                                          i18n-label="@@label.thanos"
-                                          [value]="heroEnum.thanos">
-                            </jnt-checkbox>
-                            <jnt-checkbox label="Deadpool"
-                                          i18n-label="@@label.deadpool"
-                                          [value]="heroEnum.deadpool">
-                            </jnt-checkbox>
-                            <jnt-checkbox label="Blackwidow"
-                                          i18n-label="@@label.blackwidow"
-                                          [value]="heroEnum.blackwidow">
-                            </jnt-checkbox>
-                            <jnt-checkbox label="Hulk"
-                                          i18n-label="@@label.hulk"
-                                          [value]="heroEnum.hulk">
-                            </jnt-checkbox>
-                            <jnt-checkbox label="Thor"
-                                          i18n-label="@@label.thor"
-                                          [value]="heroEnum.thor">
-                            </jnt-checkbox>
-                          </ng-container>
                         </jnt-checkbox-group>
 
                         <jnt-form-message [validator]="ui.validator.required"
@@ -91,14 +67,20 @@
                           Please select any hero
                         </jnt-form-message>
                       </jnt-form-control>
-                      <jnt-avatars-list *ngIf="colsControl.value <= 1" [size]="ui.size.large">
-                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.spiderman"
-                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.ironman"
-                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroesControl.value | includes:heroEnum.captainAmerica"
-                                    image="assets/images/heroes/captain.svg"></jnt-avatar>
-                        <jnt-avatar *ngIf="!heroesControl.value?.length"
+                      <jnt-avatars-list *ngIf="colsControl.value <= 1" [size]="ui.size.large" [max]="6">
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.spiderman.name"
+                                    [image]="heroes.spiderman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.superman.name"
+                                    [image]="heroes.superman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.captain.name"
+                                    [image]="heroes.captain.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.batman.name"
+                                    [image]="heroes.batman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.ironman.name"
+                                    [image]="heroes.ironman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.wolverine.name"
+                                    [image]="heroes.wolverine.avatar"></jnt-avatar>
+                        <jnt-avatar *ngIf="!heroControl.value?.length"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </jnt-avatars-list>
                     </jnt-stack>
@@ -125,7 +107,7 @@
             </app-browser-preview>
           </jnt-col>
 
-          <jnt-col [tablet]="4">
+          <jnt-col [tablet]="3">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.align.stretch">
 
@@ -166,7 +148,7 @@
                     <jnt-select formControlName="cols"
                                 placeholder="1"
                                 [features]="[ui.feature.allowEmpty]">
-                      <jnt-select-option *ngFor="let col of [1,2,3,4]"
+                      <jnt-select-option *ngFor="let col of [1,2,3]"
                                          [label]="col"
                                          [key]="col"></jnt-select-option>
                     </jnt-select>

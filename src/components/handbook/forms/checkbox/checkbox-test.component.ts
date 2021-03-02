@@ -1,8 +1,9 @@
+import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BlockComponent, CheckboxComponent, CheckboxGroupComponent, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
-import { HANDBOOK } from 'src/consts';
+import { HANDBOOK, HEROES } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -16,13 +17,14 @@ export class CheckboxTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  heroEnum = Hero;
   types = {checkbox: CheckboxComponent, group: CheckboxGroupComponent};
   handbook = HANDBOOK;
-  heroes: {label: string, value: string, i18n:string}[] = [];
+  heroes = HEROES;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/checkbox';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2779';
+
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
 
   @ViewChild('code') code: TabComponent;
   @ViewChild('block') block: BlockComponent;
@@ -39,10 +41,10 @@ export class CheckboxTestComponent implements OnInit {
     custom: this.customControl
   });
 
-  heroesControl = this.fb.control([Hero.spiderman], Validators.required);
+  heroControl = this.fb.control([Hero.spiderman], Validators.required);
 
   form = this.fb.group({
-    heroes: this.heroesControl
+    hero: this.heroControl
   });
 
   constructor(private fb: FormBuilder) {
@@ -50,28 +52,11 @@ export class CheckboxTestComponent implements OnInit {
 
   ngOnInit() {
     this.disableControl.valueChanges.subscribe(disabled =>
-      disabled ? this.heroesControl.disable({emitEvent: false}) : this.heroesControl.enable({emitEvent: false}));
+      disabled ? this.heroControl.disable({emitEvent: false}) : this.heroControl.enable({emitEvent: false}));
 
     this.builder.valueChanges.subscribe(() => this.code.flash());
 
-    this.heroesControl.patchValue([Hero.ironman]);
-    setTimeout(() => this.heroes = [
-      {
-        label: 'Spiderman',
-        value: Hero.spiderman,
-        i18n: '@@label.spiderman'
-      },
-      {
-        label: 'Ironman',
-        value: Hero.ironman,
-        i18n: '@@label.ironman'
-      },
-      {
-        label: 'Captain America',
-        value: Hero.captainAmerica,
-        i18n: '@@label.captain_america'
-      }
-    ], 1000)
+    this.heroControl.patchValue([Hero.ironman]);
   }
 
   submit() {
@@ -80,6 +65,6 @@ export class CheckboxTestComponent implements OnInit {
   }
 
   set() {
-    this.heroesControl.setValue([Hero.captainAmerica]);
+    this.heroControl.setValue([Hero.captainAmerica]);
   }
 }
