@@ -31,7 +31,7 @@
       <ng-template #tabContentTemplate>
         <jnt-row>
 
-          <jnt-col [tablet]="8">
+          <jnt-col [tablet]="9">
             <app-browser-preview preview>
               <ng-template #document>
 
@@ -50,49 +50,49 @@
                                          [align]="ui.align.center"
                                          [cols]="colsControl.value"
                                          [size]="sizeControl.value">
-                          <jnt-radio label="Spiderman"
-                                     i18n-label="@@label.spiderman"
-                                     [value]="hero.spiderman">
+                          <jnt-radio *ngFor="let hero of heroes | keyvalue: originalOrder | slice:0:3"
+                                     [label]="hero.value.name"
+                                     i18n-label="{{hero.value.i18n}}"
+                                     [value]="hero.value.name">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <strong i18n="@@label.spiderman">Spiderman</strong>
+                              <jnt-stack [orientation]="ui.orientation.horizontal"  data-custom
+                                         [align]="ui.align.center"
+                                         [justify]="ui.justify.between">
+                                <jnt-stack [orientation]="ui.orientation.horizontal"
+                                           [gutter]="ui.gutter.small"
+                                           [align]="ui.align.center">
+                                  <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                                  <span i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
+                                </jnt-stack>
+                                <ng-container *ngIf="orientationControl.value != ui.orientation.horizontal">
+                                  <jnt-label [label]="hero.value.universe"
+                                             [color]="hero.value.universe === 'Marvel' ? ui.color.red : hero.value.universe === 'DC' ? ui.color.black : ui.color.yellow"></jnt-label>
+                                </ng-container>
+                              </jnt-stack>
                             </ng-template>
                           </jnt-radio>
-                          <jnt-radio label="Ironman"
-                                     i18n-label="@@label.ironman"
-                                     [value]="hero.ironman">
-                            <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <jnt-input placeholder="Test" i18n-placeholder="@@label.test"></jnt-input>
-                            </ng-template>
-                          </jnt-radio>
-                          <jnt-radio label="Captain America"
-                                     i18n-label="@@label.captain_america"
-                                     [value]="hero.captainAmerica">
-                            <ng-template *ngIf="customControl.value" #radioLabelTemplate>
-                              <jnt-checkbox label="Captain America" i18n-label="@@label.captain_america"></jnt-checkbox>
-                            </ng-template>
-                          </jnt-radio>
-                          <ng-container *ngIf="colsControl.value > 1">
-                            <jnt-radio label="Thanos"
-                                       i18n-label="@@label.thanos"
-                                       [value]="hero.thanos">
-                            </jnt-radio>
-                            <jnt-radio label="Deadpool"
-                                       i18n-label="@@label.deadpool"
-                                       [value]="hero.deadpool">
-                            </jnt-radio>
-                            <jnt-radio label="Blackwidow"
-                                       i18n-label="@@label.blackwidow"
-                                       [value]="hero.blackwidow">
-                            </jnt-radio>
-                            <jnt-radio label="Hulk"
-                                       i18n-label="@@label.hulk"
-                                       [value]="hero.hulk">
-                            </jnt-radio>
-                            <jnt-radio label="Thor"
-                                       i18n-label="@@label.thor"
-                                       [value]="hero.thor">
+                          <ng-container *ngIf="orientationControl.value != ui.orientation.horizontal || colsControl.value > 1">
+                            <jnt-radio *ngFor="let hero of heroes | keyvalue: originalOrder | slice:3:6"
+                                       [label]="hero.value.name"
+                                       i18n-label="{{hero.value.i18n}}"
+                                       [value]="hero.value.name">
+                              <ng-template *ngIf="customControl.value" #radioLabelTemplate>
+                                <jnt-stack [orientation]="ui.orientation.horizontal"  data-custom
+                                           [align]="ui.align.center"
+                                           [justify]="ui.justify.between">
+                                  <jnt-stack [orientation]="ui.orientation.horizontal"
+                                             [gutter]="ui.gutter.small"
+                                             [align]="ui.align.center">
+                                    <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                                    <span i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
+                                  </jnt-stack>
+                                  <jnt-label [label]="hero.value.universe"
+                                             [color]="hero.value.universe === 'Marvel' ? ui.color.red : hero.value.universe === 'DC' ? ui.color.black : ui.color.yellow"></jnt-label>
+                                </jnt-stack>
+                              </ng-template>
                             </jnt-radio>
                           </ng-container>
+
                         </jnt-radio-group>
                         <jnt-form-message [validator]="ui.validator.required"
                                           i18n="@@message.please_select_the_hero">
@@ -101,15 +101,24 @@
                       </jnt-form-control>
 
                       <ng-container *ngIf="colsControl.value <= 1" [ngSwitch]="heroControl.value">
-                        <jnt-avatar *ngSwitchCase="hero.spiderman"
+                        <jnt-avatar *ngSwitchCase="heroes.spiderman.name"
                                     [size]="ui.size.large"
-                                    image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                        <jnt-avatar *ngSwitchCase="hero.ironman"
+                                    [image]="heroes.spiderman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="heroes.ironman.name"
                                     [size]="ui.size.large"
-                                    image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                        <jnt-avatar *ngSwitchCase="hero.captainAmerica"
+                                    [image]="heroes.ironman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="heroes.captain.name"
                                     [size]="ui.size.large"
-                                    image="assets/images/heroes/captain.svg"></jnt-avatar>
+                                    [image]="heroes.captain.avatar"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="heroes.batman.name"
+                                    [size]="ui.size.large"
+                                    [image]="heroes.batman.avatar"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="heroes.wolverine.name"
+                                    [size]="ui.size.large"
+                                    [image]="heroes.wolverine.avatar"></jnt-avatar>
+                        <jnt-avatar *ngSwitchCase="heroes.superman.name"
+                                    [size]="ui.size.large"
+                                    [image]="heroes.superman.avatar"></jnt-avatar>
                         <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
                                     [icon]="ui.icons.question"></jnt-avatar>
                       </ng-container>
@@ -132,7 +141,7 @@
             </app-browser-preview>
           </jnt-col>
 
-          <jnt-col [tablet]="4">
+          <jnt-col [tablet]="3">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.align.stretch">
 
@@ -232,7 +241,7 @@
                     <jnt-select formControlName="cols"
                                 placeholder="1"
                                 [features]="[ui.feature.allowEmpty]">
-                      <jnt-select-option *ngFor="let col of [1,2,3,4]"
+                      <jnt-select-option *ngFor="let col of [1,2,3]"
                                          [label]="col"
                                          [key]="col"></jnt-select-option>
                     </jnt-select>

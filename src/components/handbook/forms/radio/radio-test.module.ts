@@ -2,20 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    AccordionModule, AppLayoutModule,
-    AvatarModule,
-    BlockModule,
-    ButtonModule,
-    CheckboxModule,
-    FormModule,
-    GridModule,
-    IconModule,
-    InputModule,
-    LinkModule,
-    RadioModule,
-    SelectModule,
-    StackModule,
-    TabsModule
+  AccordionModule, AppLayoutModule,
+  AvatarModule, BadgeModule,
+  BlockModule,
+  ButtonModule,
+  CheckboxModule,
+  FormModule,
+  GridModule,
+  IconModule,
+  InputModule,
+  LabelModule,
+  LinkModule,
+  RadioModule,
+  SelectModule,
+  StackModule,
+  TabsModule
 } from 'junte-ui';
 import { SharedModule } from '../../shared/shared.module';
 import { RadioTestComponent } from './radio-test.component';
@@ -26,6 +27,7 @@ import { RadioTestComponent } from './radio-test.component';
         FormsModule,
         ReactiveFormsModule,
         IconModule,
+        BadgeModule,
         LinkModule,
         StackModule,
         TabsModule,
@@ -34,6 +36,7 @@ import { RadioTestComponent } from './radio-test.component';
         AccordionModule,
         ButtonModule,
         GridModule,
+        LabelModule,
         SharedModule,
         RadioModule,
         AvatarModule,
