@@ -4,19 +4,24 @@
 $jnt-ng-deep: true;
 
 [data-card] {
-  min-width: 300px;
+  min-width: 400px;
   @include for-mobile() {
     min-width: 100%;
     max-width: 100%;
   }
 
   [data-header] {
-    color: $jnt-primary-color;
-    font-size: $jnt-font-size-normal;
+    color: $jnt-primary-text-light-color;
+    font-size: $jnt-font-size-small;
     @include jnt-icon((size: 20px), '&');
   }
 
   [data-title] {
+    font-size: $jnt-font-size-normal;
+  }
+
+  [data-followers] {
+    color: $jnt-primary-text-light-color;
     font-size: $jnt-font-size-normal;
   }
 }

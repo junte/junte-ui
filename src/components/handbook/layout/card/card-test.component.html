@@ -41,8 +41,8 @@
             <app-browser-preview>
               <ng-template #document let-height="height">
                 <jnt-card data-card
-                          title="Card title"
-                          i18n-title="@@label.card_title"
+                          title="Captain America"
+                          i18n-title="@@label.captain_america"
                           [color]="colorControl.value"
                           [width]="widthControl.value"
                           [padding]="paddingControl.value"
@@ -52,7 +52,7 @@
                             url: null, template: cardPictureTemplate,
                             position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left
                           } : pictureControl.value === type.url ? {
-                            url: 'assets/images/placeholder.jpg',
+                            url: 'assets/images/heroes/captain.png',
                             position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left
                           } : null"
                           [features]="[
@@ -63,22 +63,35 @@
                     <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                   </jnt-stack>
                   <ng-template *ngIf="headerControl.value" #cardHeaderTemplate>
-                    <jnt-stack data-header [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
-                      <jnt-icon [icon]="ui.icons.dashboard"></jnt-icon>
-                      <span>Card header</span>
+                    <jnt-stack data-header [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <span>{{today | date:'yyyy-MM-dd'}}</span>
                     </jnt-stack>
                   </ng-template>
                   <ng-template *ngIf="titleControl.value" #cardTitleTemplate>
-                    <jnt-stack data-title [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
-                      <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
-                      <span>Edit card</span>
+                    <jnt-stack data-title [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <jnt-avatar [image]="heroes.captain.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                      <span i18n="{{heroes.captain.name}}">{{heroes.captain.name}}</span>
                     </jnt-stack>
                   </ng-template>
                   <ng-template #cardPictureTemplate>
-                    <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
+                    <jnt-avatar image="assets/images/heroes/captain.jpg"></jnt-avatar>
                   </ng-template>
                   <ng-template *ngIf="footerControl.value" #cardFooterTemplate>
-                    Card footer
+                    <jnt-stack data-title [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [justify]="ui.justify.between"
+                               [align]="ui.align.center">
+                      <jnt-stack [orientation]="ui.orientation.horizontal"
+                                 [align]="ui.align.center">
+                        <jnt-avatar [size]="ui.size.tiny"></jnt-avatar>
+                        <span data-followers>89 followers</span>
+                      </jnt-stack>
+                      <jnt-label label="{{heroes.captain.likes}} likes" [color]="ui.color.green"></jnt-label>
+                    </jnt-stack>
                   </ng-template>
                   <ng-template *ngIf="actionsControl.value" #cardActionsTemplate let-hide="hide">
                     <jnt-menu [orientation]="ui.orientation.vertical">
