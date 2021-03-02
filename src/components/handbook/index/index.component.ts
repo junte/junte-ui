@@ -14,9 +14,7 @@ export class IndexComponent {
   ui = UI;
   handbook = HANDBOOK;
 
-  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
-    return 0;
-  };
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
 
   constructor(public router: Router,
               public route: ActivatedRoute) {

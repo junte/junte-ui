@@ -452,6 +452,7 @@ export enum Universes {
 export const HEROES = {
   captain: {
     name: Hero.captainAmerica,
+    i18n: '@@label.captain_america',
     avatar: 'assets/images/heroes/captain.svg',
     universe: Universes.marvel,
     ability: Abilities.immortality,
@@ -460,54 +461,61 @@ export const HEROES = {
   },
   spiderman: {
     name: Hero.spiderman,
+    i18n: '@@label.spiderman',
     avatar: 'assets/images/heroes/spiderman.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
     source: Sources.acquired,
     likes: 357
   },
-  ironman: {
-    name: Hero.ironman,
-    avatar: 'assets/images/heroes/ironman.svg',
-    universe: Universes.marvel,
-    ability: Abilities.intellect,
-    source: Sources.technologies,
-    likes: 417
-  },
   superman: {
     name: Hero.superman,
+    i18n: '@@label.superman',
     avatar: 'assets/images/heroes/superman.svg',
     universe: Universes.dc,
     ability: Abilities.fly,
     source: Sources.congenital,
     likes: 483
   },
+  ironman: {
+    name: Hero.ironman,
+    i18n: '@@label.ironman',
+    avatar: 'assets/images/heroes/ironman.svg',
+    universe: Universes.marvel,
+    ability: Abilities.intellect,
+    source: Sources.technologies,
+    likes: 417
+  },
   batman: {
     name: Hero.batman,
+    i18n: '@@label.batman',
     avatar: 'assets/images/heroes/batman.svg',
     universe: Universes.dc,
     ability: Abilities.intellect,
     source: Sources.technologies,
     likes: 452
   },
-  deadpool: {
-    name: Hero.deadpool,
-    avatar: 'assets/images/heroes/deadpool.svg',
-    universe: Universes.xmen,
-    ability: Abilities.immortality,
-    source: Sources.acquired,
-    likes: 436
-  },
   wolverine: {
     name: Hero.wolverine,
+    i18n: '@@label.wolverine',
     avatar: 'assets/images/heroes/wolverine.svg',
     universe: Universes.xmen,
     ability: Abilities.immortality,
     source: Sources.acquired,
     likes: 362
   },
+  deadpool: {
+    name: Hero.deadpool,
+    i18n: '@@label.deadpool',
+    avatar: 'assets/images/heroes/deadpool.svg',
+    universe: Universes.marvel,
+    ability: Abilities.immortality,
+    source: Sources.acquired,
+    likes: 436
+  },
   hulk: {
     name: Hero.hulk,
+    i18n: '@@label.hulk',
     avatar: 'assets/images/heroes/hulk.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
@@ -516,7 +524,8 @@ export const HEROES = {
   },
   wonder: {
     name: Hero.wonder,
-    avatar: 'assets/images/heroes/thor.svg',
+    i18n: '@@label.wonder_woman',
+    avatar: 'assets/images/heroes/wonder.svg',
     universe: Universes.marvel,
     ability: Abilities.fly,
     source: Sources.congenital,
@@ -524,6 +533,7 @@ export const HEROES = {
   },
   thanos: {
     name: Hero.thanos,
+    i18n: '@@label.thanos',
     avatar: 'assets/images/heroes/thanos.svg',
     universe: Universes.marvel,
     ability: Abilities.strength,
