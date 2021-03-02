@@ -15,7 +15,7 @@
         <jnt-stack [gutter]="spacing"
                    [orientation]="orientation"
                    [spacing]="spacing"
-                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.start">
+                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.stretch">
           <ng-container *ngFor="let item of radios; let i = index">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </ng-container>
