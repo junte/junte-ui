@@ -19,7 +19,7 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, finalize, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, finalize, takeUntil, tap } from 'rxjs/operators';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
