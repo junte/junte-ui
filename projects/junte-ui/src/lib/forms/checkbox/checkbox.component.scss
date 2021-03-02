@@ -51,7 +51,8 @@
       )
     ),
     label: (
-      color: $jnt-control-switch-label-color
+      color: $jnt-control-switch-label-color,
+      overflow: false
     ),
     switch: (
       background: $jnt-control-background,
@@ -78,6 +79,7 @@
   #{if($context, $context, $jnt-checkbox-host)} {
     @if $declare {
       display: block;
+      max-width: 100%;
     }
 
     @if map-has-key($vars, sizes) {
@@ -168,14 +170,17 @@
     }
   }
 
-  #{$context} #{$wrapper} [label] {
+  #{$context} #{$wrapper} [data-label] {
     @if $declare {
-      padding-left: $jnt-control-gutter;
-      user-select: none;
+      flex: 1;
     }
     @if map-has-key($vars, label) {
       $label: map-get($vars, label);
-      color: map-get($label, color);
+      @if map-get($label, overflow) == true {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
   }
 
@@ -204,6 +209,19 @@
     [data-icon] {
       @if $declare {
         border-radius: 2px;
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-checkbox] {
+    max-width: 100%;
+
+    label {
+      user-select: none;
+      flex: 1;
+      @if map-has-key($vars, label) {
+        $label: map-get($vars, label);
+        color: map-get($label, color);
       }
     }
   }
