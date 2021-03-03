@@ -115,7 +115,7 @@
       height: 100%;
     }
 
-    &:checked + [data-switch] {
+    &:checked + [data-checkbox] > [data-switch] {
       @if map-has-key($vars, switch) {
         $switch: map-get($vars, switch);
         @if map-has-key($switch, active) {
@@ -129,10 +129,10 @@
       @if $declare {
         cursor: default;
         pointer-events: none;
-        & ~ label {
+        & ~ [data-checkbox] > label {
           color: $jnt-control-disabled-label-color;
         }
-        & + [data-switch] {
+        & + [data-checkbox] > [data-switch] {
           background-color: $jnt-control-disabled-background;
           border-color: $jnt-control-disabled-border-color;
 
@@ -144,7 +144,7 @@
     }
 
     &:focus {
-      & + [data-switch] {
+      & + [data-checkbox] > [data-switch] {
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
           @if map-has-key($switch, active) {
@@ -158,7 +158,7 @@
     }
 
     &:hover {
-      & + [data-switch] {
+      & + [data-checkbox] > [data-switch] {
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
           @if map-has-key($switch, active) {
@@ -166,20 +166,6 @@
             border-color: map-get($active, color);
           }
         }
-      }
-    }
-  }
-
-  #{$context} #{$wrapper} [data-label] {
-    @if $declare {
-      flex: 1;
-    }
-    @if map-has-key($vars, label) {
-      $label: map-get($vars, label);
-      @if map-get($label, overflow) == true {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
       }
     }
   }
@@ -223,6 +209,11 @@
       @if map-has-key($vars, label) {
         $label: map-get($vars, label);
         color: map-get($label, color);
+        @if map-get($label, overflow) == true {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
