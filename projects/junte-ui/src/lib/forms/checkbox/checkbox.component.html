@@ -9,8 +9,6 @@
     <ng-template #labelDefaultTemplate>
       <label *ngIf="label">{{label}}</label>
     </ng-template>
-    <div data-label>
-      <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
-    </div>
+    <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
   </jnt-stack>
 </form>
