@@ -10,7 +10,7 @@ export enum Size {
   tiny = 200,
   small = 400,
   normal = 600,
-  large = 800
+  large = 700
 }
 
 export enum ContentType {
