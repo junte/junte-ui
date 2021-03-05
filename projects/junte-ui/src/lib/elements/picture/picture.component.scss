@@ -10,6 +10,7 @@
     corner: null,
     border: null,
     cursor: default,
+    min-height: 50px,
     placeholder: (
       color: rgba($jnt-primary-color, .4),
       size: 30px
@@ -37,6 +38,7 @@
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
     cursor: map-get($vars, cursor);
+    min-height: map-get($vars, min-height);
 
     &[data-has-src='false'] {
       background-color: map-get($vars, background-color);
