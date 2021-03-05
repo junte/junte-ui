@@ -99,10 +99,10 @@ export class GanttComponent implements ControlValueAccessor {
   loading = false;
 
   @ContentApi({
-    selector: '#toolsTemplate',
+    selector: '#ganttToolsTemplate',
     description: 'Tools template'
   })
-  @ContentChild('toolsTemplate')
+  @ContentChild('ganttToolsTemplate')
   toolsTemplate: TemplateRef<any>;
 
   @ContentApi({

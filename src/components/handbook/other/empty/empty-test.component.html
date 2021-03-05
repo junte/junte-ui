@@ -36,7 +36,7 @@
                 <jnt-empty [message]="messageControl.value ? 'No data was found' : null"
                            [description]="descriptionControl.value ? 'Please check your request' : null">
                   <ng-container *ngIf="customControl.value && descriptionControl.value">
-                    <ng-template #descriptionTemplate>
+                    <ng-template #emptyDescriptionTemplate>
                       <div>Please check your request
                         <jnt-icon [icon]="ui.icons.information"></jnt-icon>
                       </div>
@@ -104,7 +104,7 @@
   </ng-container>
   <ng-container *ngIf="descriptionControl.value">
     <![CDATA[
-    <ng-template #descriptionTemplate>
+    <ng-template #emptyDescriptionTemplate>
       <p>Please check your request</p>
     </ng-template>
     ]]>
