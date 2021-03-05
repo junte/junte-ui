@@ -15,3 +15,16 @@ h2 {
   display: flex;
   align-items: center;
 }
+
+[data-name] {
+  font-size: $jnt-h4-font-size;
+  color: $jnt-primary-light-color;
+}
+
+[data-card] {
+  height: 100%;
+
+  [data-icon] {
+    @include jnt-icon((size: 30px, color: $jnt-primary-light-color), '&');
+  }
+}
