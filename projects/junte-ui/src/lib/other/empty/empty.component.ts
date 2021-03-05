@@ -26,17 +26,17 @@ export class EmptyComponent {
   description: string;
 
   @ContentApi({
-    selector: '#imageTemplate',
+    selector: '#emptyImageTemplate',
     description: 'image template'
   })
-  @ContentChild('imageTemplate')
+  @ContentChild('emptyImageTemplate')
   imageTemplate: TemplateRef<any>;
 
   @ContentApi({
-    selector: '#descriptionTemplate',
+    selector: '#emptyDescriptionTemplate',
     description: 'image template'
   })
-  @ContentChild('descriptionTemplate')
+  @ContentChild('emptyDescriptionTemplate')
   descriptionTemplate: TemplateRef<any>;
 
 }
