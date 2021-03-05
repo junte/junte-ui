@@ -36,7 +36,10 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-block #block title="Your heroes" i18n-title="Your heroes">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
-                    <jnt-stack [orientation]="ui.orientation.horizontal">
+                    <jnt-stack [orientation]="colsControl.value <= 1 ? ui.orientation.horizontal : ui.orientation.vertical"
+                               [wrap]="ui.wrap.wrap"
+                               [gutter]="ui.gutter.big"
+                               [align]="ui.align.stretch">
                       <jnt-form-control name="hero">
                         <jnt-checkbox-group formControlName="hero"
                                             [cols]="colsControl.value"
@@ -54,8 +57,8 @@
                                   <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
                                   <span data-hero i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
                                 </jnt-stack>
-                                <jnt-label data-universe [label]="hero.value.universe"
-                                           [color]="hero.value.universe === 'Marvel' ? ui.color.red : hero.value.universe === 'DC' ? ui.color.black : ui.color.yellow"></jnt-label>
+                                <jnt-label data-universe [label]="hero.value.universe.name"
+                                           [color]="hero.value.universe.color"></jnt-label>
                               </jnt-stack>
                             </ng-template>
                           </jnt-checkbox>
@@ -67,22 +70,24 @@
                           Please select any hero
                         </jnt-form-message>
                       </jnt-form-control>
-                      <jnt-avatars-list *ngIf="colsControl.value <= 1" [size]="ui.size.large" [max]="6">
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.spiderman.name"
-                                    [image]="heroes.spiderman.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.superman.name"
-                                    [image]="heroes.superman.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.captain.name"
-                                    [image]="heroes.captain.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.batman.name"
-                                    [image]="heroes.batman.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.ironman.name"
-                                    [image]="heroes.ironman.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="heroControl.value | includes:heroes.wolverine.name"
-                                    [image]="heroes.wolverine.avatar"></jnt-avatar>
-                        <jnt-avatar *ngIf="!heroControl.value?.length"
-                                    [icon]="ui.icons.question"></jnt-avatar>
-                      </jnt-avatars-list>
+                      <jnt-stack *ngIf="heroControl.value.length" [align]="ui.align.center">
+                        <jnt-avatars-list [size]="breakpoint.current !== ui.breakpoint.mobile ? ui.size.large : ui.size.normal" [max]="6">
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.spiderman.name"
+                                      [image]="heroes.spiderman.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.superman.name"
+                                      [image]="heroes.superman.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.captain.name"
+                                      [image]="heroes.captain.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.batman.name"
+                                      [image]="heroes.batman.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.ironman.name"
+                                      [image]="heroes.ironman.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="heroControl.value | includes:heroes.wolverine.name"
+                                      [image]="heroes.wolverine.avatar"></jnt-avatar>
+                          <jnt-avatar *ngIf="!heroControl.value?.length"
+                                      [icon]="ui.icons.question"></jnt-avatar>
+                        </jnt-avatars-list>
+                      </jnt-stack>
                     </jnt-stack>
 
                     <ng-template #formFooterTemplate>
@@ -166,7 +171,7 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
-                  <jnt-form-label i18n="@@label.custom_template">Custom template
+                  <jnt-form-label i18n="@@label.custom_template">Features
                   </jnt-form-label>
                   <jnt-form-control>
                     <jnt-checkbox formControlName="custom"

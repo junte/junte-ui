@@ -1,5 +1,5 @@
 import { enUS as dfnsEnUS, ru as dfnsRu } from 'date-fns/locale';
-import { i18nEn, i18nRu, localeEnUs as jntEn, localeRu as jntRu } from 'junte-ui';
+import { i18nEn, i18nRu, localeEnUs as jntEn, localeRu as jntRu, UI } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from './enums/language';
 
@@ -454,7 +454,10 @@ export const HEROES = {
     name: Hero.captainAmerica,
     i18n: '@@label.captain_america',
     avatar: 'assets/images/heroes/captain.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.immortality,
     source: Sources.acquired,
     likes: 221
@@ -463,7 +466,10 @@ export const HEROES = {
     name: Hero.spiderman,
     i18n: '@@label.spiderman',
     avatar: 'assets/images/heroes/spiderman.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.strength,
     source: Sources.acquired,
     likes: 357
@@ -472,7 +478,10 @@ export const HEROES = {
     name: Hero.superman,
     i18n: '@@label.superman',
     avatar: 'assets/images/heroes/superman.svg',
-    universe: Universes.dc,
+    universe: {
+      name: Universes.dc,
+      color: UI.color.black
+    },
     ability: Abilities.fly,
     source: Sources.congenital,
     likes: 483
@@ -481,7 +490,10 @@ export const HEROES = {
     name: Hero.ironman,
     i18n: '@@label.ironman',
     avatar: 'assets/images/heroes/ironman.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.intellect,
     source: Sources.technologies,
     likes: 417
@@ -490,7 +502,10 @@ export const HEROES = {
     name: Hero.batman,
     i18n: '@@label.batman',
     avatar: 'assets/images/heroes/batman.svg',
-    universe: Universes.dc,
+    universe: {
+      name: Universes.dc,
+      color: UI.color.black
+    },
     ability: Abilities.intellect,
     source: Sources.technologies,
     likes: 452
@@ -499,7 +514,10 @@ export const HEROES = {
     name: Hero.wolverine,
     i18n: '@@label.wolverine',
     avatar: 'assets/images/heroes/wolverine.svg',
-    universe: Universes.xmen,
+    universe: {
+      name: Universes.xmen,
+      color: UI.color.yellow
+    },
     ability: Abilities.immortality,
     source: Sources.acquired,
     likes: 362
@@ -508,7 +526,10 @@ export const HEROES = {
     name: Hero.deadpool,
     i18n: '@@label.deadpool',
     avatar: 'assets/images/heroes/deadpool.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.immortality,
     source: Sources.acquired,
     likes: 436
@@ -517,7 +538,10 @@ export const HEROES = {
     name: Hero.hulk,
     i18n: '@@label.hulk',
     avatar: 'assets/images/heroes/hulk.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.strength,
     source: Sources.acquired,
     likes: 372
@@ -526,7 +550,10 @@ export const HEROES = {
     name: Hero.wonder,
     i18n: '@@label.wonder_woman',
     avatar: 'assets/images/heroes/wonder.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.fly,
     source: Sources.congenital,
     likes: 460
@@ -535,7 +562,10 @@ export const HEROES = {
     name: Hero.thanos,
     i18n: '@@label.thanos',
     avatar: 'assets/images/heroes/thanos.svg',
-    universe: Universes.marvel,
+    universe: {
+      name: Universes.marvel,
+      color: UI.color.red
+    },
     ability: Abilities.strength,
     source: Sources.congenital,
     likes: 256

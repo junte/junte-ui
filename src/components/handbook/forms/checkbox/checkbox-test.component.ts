@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BlockComponent, CheckboxComponent, CheckboxGroupComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, BreakpointService, CheckboxComponent, CheckboxGroupComponent, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
 import { HANDBOOK, HEROES } from 'src/consts';
 import { Hero } from 'src/enums/hero';
@@ -41,13 +41,14 @@ export class CheckboxTestComponent implements OnInit {
     custom: this.customControl
   });
 
-  heroControl = this.fb.control([Hero.spiderman], Validators.required);
+  heroControl = this.fb.control([this.heroes.captain.name], Validators.required);
 
   form = this.fb.group({
     hero: this.heroControl
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              public breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class CheckboxTestComponent implements OnInit {
 
     this.builder.valueChanges.subscribe(() => this.code.flash());
 
-    this.heroControl.patchValue([Hero.ironman]);
+    this.heroControl.patchValue([this.heroes.captain.name]);
   }
 
   submit() {
@@ -65,6 +66,6 @@ export class CheckboxTestComponent implements OnInit {
   }
 
   set() {
-    this.heroControl.setValue([Hero.captainAmerica]);
+    this.heroControl.setValue([this.heroes.captain.name]);
   }
 }
