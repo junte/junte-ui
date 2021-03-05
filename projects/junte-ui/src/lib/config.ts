@@ -19,6 +19,7 @@ export class JunteUIConfig {
   hash?: string;
   i18n?: any;
   logger?: any;
+  modal?: {animation: boolean};
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   locale?: {
     ui?: LocaleUI,
@@ -31,6 +32,7 @@ export const JUNTE_DEFAULT_CONFIG = {
   hash: format(new Date(), 'ddLLyyyy'),
   i18n: i18nEn,
   logger: NgxLoggerLevel.DEBUG,
+  modal: {animation: true},
   weekStartsOn: 0,
   locale: {
     ui: jntEn,
