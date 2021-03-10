@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { AccordionSectionComponent } from './section/accordion-section.component';
 
@@ -30,13 +31,19 @@ enum AnimationState {
 export class AccordionComponent {
 
   ui = UI;
-  animate = AnimationState.default;
 
   @HostBinding('attr.host') readonly host = 'jnt-accordion-host';
+
+  animate = AnimationState.default;
 
   @ContentChildren(AccordionSectionComponent)
   sections: QueryList<AccordionSectionComponent>;
 
+  @PropertyApi({
+    description: 'Accordion active section',
+    type: 'number',
+    default: '0'
+  })
   @Input()
   active = 0;
 

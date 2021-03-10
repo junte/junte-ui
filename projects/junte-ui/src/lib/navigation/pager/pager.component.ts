@@ -25,14 +25,13 @@ export class PagerComponent implements ControlValueAccessor {
 
   ui = UI;
 
+  @HostBinding('attr.host') readonly host = 'jnt-pager-host';
+
   private _count: number;
   private _pageSize = DEFAULT_PAGE_SIZE;
   private _selectedPage = DEFAULT_PAGE;
 
   pages: number[];
-
-  @HostBinding('attr.host')
-  readonly host = 'jnt-pager-host';
 
   @HostBinding('style.visibility')
   get visible() {

@@ -20,7 +20,6 @@
                   i18n-title="@@action.figma">
         </jnt-link>
       </jnt-stack>
-
     </ng-template>
   </jnt-app-page-header>
 
@@ -146,7 +145,7 @@
                                   i18n="@@label.states">States
                   </jnt-form-label>
                   <jnt-switcher formControlName="state"
-                                [features]="ui.feature.allowEmpty">
+                                [features]="[ui.feature.allowEmpty]">
                     <jnt-switcher-option label="Loading"
                                          i18n-label="@@label.loading"
                                          [icon]="ui.icons.animated.spinner"
@@ -191,7 +190,7 @@
             <ng-template #accordionContentTemplate>
               <app-how-to-use
                 [test]="{selector:'accordion-test', type: 'AccordionTestComponent'}"
-                scss="collections/accordion"></app-how-to-use>
+                scss="navigation/accordion"></app-how-to-use>
             </ng-template>
           </jnt-accordion-section>
           <jnt-accordion-section title="Component template"
@@ -208,7 +207,7 @@
                     </ng-container>
                     <ng-container *ngIf="stateControl.value">
                       <![CDATA[
-                      [state]="]]>{{stateControl.value}}<![CDATA["]]>
+                      [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
                     </ng-container>
                     <![CDATA[>]]>
                     <ng-container *ngIf="titleControl.value">
@@ -296,8 +295,12 @@
 
     <jnt-tab title="API" [icon]="localUi.icons.api">
       <ng-template #tabContentTemplate>
-        <app-component-api selector="jnt-accordion-section"
-                           [target]="types.section"></app-component-api>
+        <jnt-stack [align]="ui.align.stretch">
+          <app-component-api selector="jnt-accordion"
+                             [target]="types.accordion"></app-component-api>
+          <app-component-api selector="jnt-accordion-section"
+                             [target]="types.section"></app-component-api>
+        </jnt-stack>
       </ng-template>
     </jnt-tab>
   </jnt-tabs>

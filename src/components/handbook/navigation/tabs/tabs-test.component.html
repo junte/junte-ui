@@ -58,8 +58,7 @@
                       <div>{{hero.name}}</div>
                     </jnt-stack>
                   </ng-template>
-                  <jnt-tabs [outline]="outlineControl.value"
-                            [features]="adaptedControl.value ? [ui.feature.adapted] : null">
+                  <jnt-tabs [features]="adaptedControl.value ? [ui.feature.adapted] : null">
                     <jnt-tab title="Personal"
                              i18n-title="@@label.personal"
                              [titleTemplate]="titleControl.value ? tab1TitleTemplate : null"
@@ -119,48 +118,26 @@
             <jnt-col [tablet]="4">
               <jnt-form [formGroup]="builder">
                 <jnt-stack [align]="ui.align.stretch">
-
-                  <jnt-form-item>
-                    <jnt-form-label for="outline"
-                                    i18n="@@label.background">Background
-                    </jnt-form-label>
-                    <jnt-form-control>
-                      <jnt-select formControlName="outline"
-                                  placeholder="Fill"
-                                  i18n-placeholder="@@label.fill"
-                                  [features]="[ui.feature.allowEmpty]">
-                        <jnt-select-option label="Transparent"
-                                           i18n-label="@@label.transparent"
-                                           [icon]="localUi.icons.transparent"
-                                           [key]="ui.outline.transparent"></jnt-select-option>
-                        <jnt-select-option label="Fill"
-                                           i18n-label="@@label.fill"
-                                           [icon]="localUi.icons.fill"
-                                           [key]="ui.outline.fill"></jnt-select-option>
-                      </jnt-select>
-                    </jnt-form-control>
-                  </jnt-form-item>
-
                   <jnt-form-item>
                     <jnt-form-label i18n="@@label.features">Features
                     </jnt-form-label>
                     <jnt-row>
-                      <jnt-col [span]="4">
+                      <jnt-col [span]="6">
                         <jnt-checkbox formControlName="icons"
                                       label="Icons"
                                       i18n-label="@@label.icons"></jnt-checkbox>
                       </jnt-col>
-                      <jnt-col [span]="4">
+                      <jnt-col [span]="6">
                         <jnt-checkbox formControlName="badges"
                                       label="Badges"
                                       i18n-label="@@label.badges"></jnt-checkbox>
                       </jnt-col>
-                      <jnt-col [span]="4">
+                      <jnt-col [span]="6">
                         <jnt-checkbox formControlName="adapted"
                                       i18n-label="@@label.adapted"
                                       label="Adapted"></jnt-checkbox>
                       </jnt-col>
-                      <jnt-col [span]="4">
+                      <jnt-col [span]="6">
                         <jnt-checkbox formControlName="title"
                                       i18n-label="@@label.title"
                                       label="Custom title"></jnt-checkbox>
@@ -197,10 +174,6 @@
                   <![CDATA[
                   <jnt-tabs
                     ]]>
-                    <ng-container *ngIf="outlineControl.value">
-                      <![CDATA[
-                      [outline]="ui.outline.]]>{{outlineControl.value}}<![CDATA["]]>
-                    </ng-container>
                     <ng-container *ngIf="adaptedControl.value">
                       <![CDATA[
                       [features]="[ui.feature.adapted]" ]]>
@@ -334,7 +307,7 @@
       </jnt-tab>
 
       <jnt-tab title="Design system"
-               i18n-title="@@label.system" [icon]="ui.icons.figma" [padding]="ui.gutter.none">
+               i18n-title="@@label.system" [icon]="ui.icons.figma">
         <ng-template #tabContentTemplate>
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/22t4knZgF50" frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

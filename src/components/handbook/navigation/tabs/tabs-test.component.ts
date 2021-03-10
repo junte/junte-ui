@@ -27,14 +27,12 @@ export class TabsTestComponent implements OnInit {
     {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
   ];
 
-  outlineControl = this.fb.control(null);
   iconsControl = this.fb.control(true);
   badgesControl = this.fb.control(true);
   adaptedControl = this.fb.control(true);
   titleControl = this.fb.control(false);
 
   builder = this.fb.group({
-    outline: this.outlineControl,
     icons: this.iconsControl,
     badges: this.badgesControl,
     adapted: this.adaptedControl,
