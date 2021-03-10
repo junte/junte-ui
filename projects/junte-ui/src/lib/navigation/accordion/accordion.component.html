@@ -19,7 +19,6 @@
         <jnt-spinner *ngIf="section.state === ui.state.loading"></jnt-spinner>
         <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
       </jnt-stack>
-
     </a>
     <div *ngIf="active == i" data-content [@collapse]=animate>
       <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>

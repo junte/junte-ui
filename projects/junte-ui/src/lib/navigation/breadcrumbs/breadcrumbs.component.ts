@@ -76,7 +76,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
           (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb])
             .filter(crumb => !!crumb)
             .forEach(crumb => {
-              switch(typeof crumb) {
+              switch (typeof crumb) {
                 case 'string': {
                   breadcrumbs.push(new Breadcrumb({route, title: crumb}));
                   break;

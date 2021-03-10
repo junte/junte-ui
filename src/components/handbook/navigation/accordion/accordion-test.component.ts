@@ -1,6 +1,6 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { AccordionComponent, UI } from 'junte-ui';
 import { AccordionSectionComponent, TabComponent } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -17,7 +17,7 @@ export class AccordionTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  types = {section: AccordionSectionComponent};
+  types = {accordion: AccordionComponent, section: AccordionSectionComponent};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/accordion';

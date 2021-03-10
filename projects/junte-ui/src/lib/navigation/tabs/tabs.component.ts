@@ -13,7 +13,6 @@ import {
 } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
-import { Outline } from '../../core/enums/outline';
 import { UI } from '../../core/enums/ui';
 import { TabComponent } from './tab.component';
 
@@ -60,19 +59,6 @@ export class TabsComponent {
 
   @HostBinding('attr.host')
   readonly host = 'jnt-tabs-host';
-
-  @HostBinding('attr.data-outline')
-  _outline: Outline = Outline.fill;
-
-  @PropertyApi({
-    description: 'there is/no background for the content',
-    path: 'ui.outline',
-    default: Outline.fill,
-    options: [Outline.fill, Outline.transparent]
-  })
-  @Input() set outline(outline: Outline) {
-    this._outline = outline || Outline.fill;
-  }
 
   @PropertyApi({
     description: 'Adapted tabs on mobile view',

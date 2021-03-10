@@ -8,7 +8,12 @@ $accordion-marker-height: 2px;
 
 @mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: ();
+  $defs: (
+    background: $jnt-primary-background,
+    padding: $jnt-gutter-normal,
+    corner: $jnt-corner-normal,
+    border: 1px solid $jnt-page-background
+  );
 
   $vars: $passed;
   $declare: false;
@@ -27,11 +32,12 @@ $accordion-marker-height: 2px;
     @if $declare {
       @include reset-default();
       display: block;
-      background-color: $jnt-primary-background;
-      padding: $jnt-gutter-normal;
-      border-radius: $jnt-corner-normal;
-      border: 1px solid $jnt-page-background;
     }
+
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
   }
 
   #{$context} #{$wrapper} [data-title] {

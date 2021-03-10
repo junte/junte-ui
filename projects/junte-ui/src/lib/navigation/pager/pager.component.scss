@@ -21,10 +21,12 @@
       active: (
         background: $jnt-primary-color,
         color: $jnt-white-color,
-        divider: false,
-        divider-height: null,
-        divider-corner: null,
-        divider-color: null
+        divider: (
+          display: false,
+          height: null,
+          corner: null,
+          color: null
+        )
       )
     ),
     arrows: (
@@ -92,22 +94,25 @@
 
       @if map-has-key($page, active) {
         $active: map-get($page, active);
-        @if map-get($active, divider) == true {
-          &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: map-get($active, divider-height);
-            border-radius: map-get($active, divider-corner);
-            background-color: map-get($active, divider-color);
-            width: 100%;
-            display: none;
+        @if map-has-key($active, divider) {
+          $divider: map-get($active, divider);
+          @if map-get($divider, display) == true {
+            &:after {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              height: map-get($divider, height);
+              border-radius: map-get($divider, corner);
+              background-color: map-get($divider, color);
+              width: 100%;
+              display: none;
+            }
           }
         }
       }
-      &[active='true'] {
+      &[data-active='true'] {
         @if $declare {
           pointer-events: none;
         }
@@ -115,16 +120,19 @@
           $active: map-get($page, active);
           background-color: map-get($active, background);
           color: map-get($active, color);
-          @if map-get($active, divider) == true {
-            &:after {
-              display: block;
+          @if map-has-key($active, divider) {
+            $divider: map-get($active, divider);
+            @if map-get($divider, display) == true {
+              &:after {
+                display: block;
+              }
             }
           }
         }
       }
     }
 
-    &[disabled='true'] {
+    &[data-disabled='true'] {
       @if $declare {
         cursor: default;
         pointer-events: none;

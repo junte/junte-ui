@@ -55,13 +55,13 @@ export class MenuTestComponent implements OnInit {
     this.builder.valueChanges
       .subscribe(() => this.code.flash());
 
-    this.styleControl.valueChanges.subscribe(value => {
-      if (value === UI.menu.style.tabs) {
-        this.orientationControl.setValue(UI.orientation.horizontal);
-        this.orientationControl.disable();
-      } else {
-        this.orientationControl.enable();
-      }
-    });
+    // this.styleControl.valueChanges.subscribe(value => {
+    //   if (value === UI.menu.style.tabs) {
+    //     this.orientationControl.setValue(UI.orientation.horizontal);
+    //     this.orientationControl.disable();
+    //   } else {
+    //     this.orientationControl.enable();
+    //   }
+    // });
   }
 }
