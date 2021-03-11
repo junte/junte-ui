@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -89,10 +90,11 @@ export class PopoverComponent implements OnInit {
 
   constructor(private popoverService: PopoverService,
               private breakpoint: BreakpointService,
-              public device: DeviceService,
+              private logger: NGXLogger,
               private renderer: Renderer2,
               private hostRef: ElementRef,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              public device: DeviceService) {
   }
 
   ngOnInit() {
@@ -313,7 +315,7 @@ export class PopoverComponent implements OnInit {
 
   update(): void {
     if (!this.target) {
-      console.error('target is not defined');
+      this.logger.warn('target is not defined');
       return;
     }
 
