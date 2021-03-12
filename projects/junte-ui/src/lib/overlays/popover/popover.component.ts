@@ -9,6 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -57,7 +58,8 @@ class PopoverPosition {
 @Component({
   selector: 'jnt-popover',
   templateUrl: './popover.encapsulated.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [...LOGGER_PROVIDERS]
 })
 export class PopoverComponent implements OnInit {
 

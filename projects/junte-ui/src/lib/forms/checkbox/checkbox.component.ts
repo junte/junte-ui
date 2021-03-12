@@ -1,17 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import {
-  Component,
-  ContentChild,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit,
-  TemplateRef
-} from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
+import { FlexAlign } from '../../core/enums/flex';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
@@ -59,6 +51,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
 
+  _align: FlexAlign = FlexAlign.center;
+
   @PropertyApi({
     description: 'Label name for checkbox',
     type: 'string'
@@ -84,6 +78,25 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input()
   set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  @PropertyApi({
+    description: 'Align by vertical for checkbox',
+    path: 'ui.align',
+    options: [
+      FlexAlign.center,
+      FlexAlign.start,
+      FlexAlign.end
+    ],
+    default: FlexAlign.center
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align || FlexAlign.center;
+  }
+
+  get align() {
+    return this._align;
   }
 
   @PropertyApi({
