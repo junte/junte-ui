@@ -129,11 +129,8 @@
         padding: $jnt-gutter-normal;
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
-        overflow: auto;
-
-        &[data-windows='true'] {
-          @include jnt-scrollbar();
-        }
+        overflow: scroll;
+        @include jnt-scrollbar();
         @include for-mobile() {
           overflow: visible;
           max-height: none !important;

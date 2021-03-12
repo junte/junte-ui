@@ -29,7 +29,7 @@
              [gutter]="ui.gutter.none">
     <a #links href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
-       (click)="active = i; $event.preventDefault()">
+       (click)="active = i; changed.emit(i); $event.preventDefault()">
       <div data-tab [attr.data-with-template]="!!tab.titleTemplate">
         <ng-container *ngIf="tab.titleTemplate; else defaultTitleTemplate">
           <ng-container *ngTemplateOutlet="tab.titleTemplate"></ng-container>
