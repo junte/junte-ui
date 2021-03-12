@@ -9,6 +9,7 @@
                    [wrap]="ui.wrap.wrap">
           <jnt-checkbox *ngFor="let item of checkboxes; let i = index"
                         [formControlName]="i"
+                        [align]="item.align"
                         [size]="size"
                         [label]="item.label"
                         [value]="item.value">
