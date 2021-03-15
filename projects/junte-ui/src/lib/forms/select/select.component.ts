@@ -521,7 +521,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     const focusQuery = () => {
       const style = getComputedStyle(input);
       if (style.display !== 'none') {
-        input.focus();
+        setTimeout(() => input.focus());
       } else {
         setTimeout(() => focusQuery(), CHECKING_INTERVAL);
       }
