@@ -113,7 +113,7 @@ export class FormComponent implements OnInit {
   @MethodApi({description: 'show success animation'})
   success() {
     this._state.success = true;
-    setTimeout(() => this._state.success = false, 2100);
+    setTimeout(() => this._state.success = false, 2000);
   }
 
   constructor(private logger: NGXLogger) {
