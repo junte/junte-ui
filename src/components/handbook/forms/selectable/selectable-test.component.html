@@ -26,18 +26,30 @@
             <app-browser-preview preview>
               <ng-template #document>
                 <form [formGroup]="selectableForm">
-                  <jnt-stack [align]="ui.align.center">
+                  <jnt-stack [align]="ui.align.center"
+                             [gutter]="ui.gutter.big">
                     <jnt-stack [orientation]="ui.orientation.horizontal">
-                      <jnt-card data-hero *ngFor="let hero of heroes"
-                                formControlName="selectable"
-                                [jntSelectable]="{
-                                  value: hero.id,
-                                  mode: modeControl.value,
-                                  enabled: !disabledControl.value,
-                                  features: allowEmptyControl.value ? [ui.feature.allowEmpty] : []
-                                }">
-                        <div>{{hero.name}}</div>
-                      </jnt-card>
+                      <jnt-row>
+                        <jnt-col *ngFor="let hero of heroes | keyvalue: originalOrder | slice:1:7"
+                                 [desktop]="4"
+                                 [mobile]="6">
+                          <jnt-card data-hero
+                                    formControlName="selectable"
+                                    [jntSelectable]="{
+                                      value: hero.value.code,
+                                      mode: modeControl.value,
+                                      enabled: !disabledControl.value,
+                                      features: allowEmptyControl.value ? [ui.feature.allowEmpty] : []
+                                    }">
+                            <jnt-stack [orientation]="ui.orientation.horizontal"
+                                       [gutter]="ui.gutter.small"
+                                       [align]="ui.align.center">
+                              <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                              <span data-hero i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
+                            </jnt-stack>
+                          </jnt-card>
+                        </jnt-col>
+                      </jnt-row>
                     </jnt-stack>
                     <ng-template #multipleTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
@@ -46,30 +58,24 @@
                         <ng-template #emptyTemplate>
                           <jnt-avatar [size]="ui.size.large" [icon]="ui.icons.question"></jnt-avatar>
                         </ng-template>
-                        <jnt-avatars-list *ngIf="selectableControl.value?.length > 0; else emptyTemplate"
-                                          [size]="ui.size.large">
-                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.spiderman"
-                                      image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.ironman"
-                                      image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                          <jnt-avatar *ngIf="selectableControl.value | includes:hero.captainAmerica"
-                                      image="assets/images/heroes/captain.svg"></jnt-avatar>
-                        </jnt-avatars-list>
+
+                        <jnt-stack *ngIf="selectableControl.value?.length" [align]="ui.align.center">
+                          <jnt-avatars-list *ngIf="selectableControl.value?.length > 0; else emptyTemplate"
+                                            [size]="breakpoint.current !== ui.breakpoint.mobile ? ui.size.large : ui.size.normal"
+                                            [max]="6">
+                            <ng-container *ngFor="let code of selectableControl.value">
+                              <jnt-avatar [size]="ui.size.large"
+                                          [image]="heroes[code].avatar"></jnt-avatar>
+                            </ng-container>
+                          </jnt-avatars-list>
+                        </jnt-stack>
                       </jnt-stack>
                     </ng-template>
                     <ng-container *ngIf="modeControl.value === ui.select.mode.single; else multipleTemplate"
                                   [ngSwitch]="selectableControl.value">
-                      <jnt-avatar *ngSwitchCase="hero.spiderman"
-                                  [size]="ui.size.large"
-                                  image="assets/images/heroes/spiderman.svg"></jnt-avatar>
-                      <jnt-avatar *ngSwitchCase="hero.ironman"
-                                  [size]="ui.size.large"
-                                  image="assets/images/heroes/ironman.svg"></jnt-avatar>
-                      <jnt-avatar *ngSwitchCase="hero.captainAmerica"
-                                  [size]="ui.size.large"
-                                  image="assets/images/heroes/captain.svg"></jnt-avatar>
-                      <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
-                                  [icon]="ui.icons.question"></jnt-avatar>
+                      <jnt-avatar [size]="ui.size.large"
+                                  [icon]="ui.icons.question"
+                                  [image]="selectableControl.value ? heroes[selectableControl.value].avatar : null" ></jnt-avatar>
                     </ng-container>
                   </jnt-stack>
                 </form>

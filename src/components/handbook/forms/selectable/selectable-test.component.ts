@@ -1,9 +1,9 @@
+import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SelectableDirective, TabComponent, UI } from 'junte-ui';
+import { BreakpointService, SelectableDirective, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
-import { HANDBOOK } from 'src/consts';
-import { Hero } from 'src/enums/hero';
+import { HANDBOOK, HEROES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
 @Component({
@@ -18,9 +18,11 @@ export class SelectableTestComponent implements OnInit {
   language = Language;
   selectable = SelectableDirective;
   handbook = HANDBOOK;
-  hero = Hero;
+  heroes = HEROES;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/selectable';
+
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
 
   @ViewChild('code') code: TabComponent;
 
@@ -39,17 +41,16 @@ export class SelectableTestComponent implements OnInit {
     selectable: this.selectableControl
   });
 
-  heroes = [
-    {id: Hero.spiderman, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381},
-    {id: Hero.ironman, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412},
-    {id: Hero.captainAmerica, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
-  ];
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              public breakpoint: BreakpointService) {
   }
 
   ngOnInit() {
     this.builder.valueChanges.subscribe(() => this.code.flash());
+   this.modeControl.valueChanges.subscribe(() => {
+     this.selectableControl.reset();
+     this.modeControl.value ? this.modeControl.value : this.modeControl.setValue(this.ui.select.mode.single);
+   });
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectableControl.disable({emitEvent: false}) : this.selectableControl.enable({emitEvent: false}));
   }
