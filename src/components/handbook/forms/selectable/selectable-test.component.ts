@@ -47,10 +47,10 @@ export class SelectableTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges.subscribe(() => this.code.flash());
-   this.modeControl.valueChanges.subscribe(() => {
+    this.modeControl.valueChanges.subscribe(() => {
      this.selectableControl.reset();
      this.modeControl.value ? this.modeControl.value : this.modeControl.setValue(this.ui.select.mode.single);
-   });
+    });
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectableControl.disable({emitEvent: false}) : this.selectableControl.enable({emitEvent: false}));
   }
