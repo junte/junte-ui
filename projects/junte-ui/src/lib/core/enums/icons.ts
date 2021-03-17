@@ -381,6 +381,7 @@ export const icons = {
   dribbble: 'dribbble:svg:apps:apps',
   github: 'github:svg:apps:apps',
   figma: 'figma:svg:apps:apps',
+  google: 'google:svg:apps:apps',
   stackblitz: 'stackblitz:svg:apps:apps',
   benchmark: 'benchmark:svg:apps:apps',
   animated: {
