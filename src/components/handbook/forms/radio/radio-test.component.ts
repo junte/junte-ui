@@ -46,7 +46,7 @@ export class RadioTestComponent implements OnInit {
     adapted: this.adaptedControl
   });
 
-  heroControl = this.fb.control(this.heroes.captain.name, Validators.required);
+  heroControl = this.fb.control(this.heroes.captain.code, Validators.required);
 
   form = this.fb.group({
     hero: this.heroControl
@@ -63,13 +63,17 @@ export class RadioTestComponent implements OnInit {
       value > 1 ? this.orientationControl.disable() : this.orientationControl.enable());
 
     this.orientationControl.valueChanges.subscribe(value =>
-      value === this.ui.orientation.horizontal ? this.heroControl.setValue(this.heroes.captain.name) : null);
+      value === this.ui.orientation.horizontal ? this.heroControl.setValue(this.heroes.captain.code) : null);
 
   }
 
   submit() {
     this.block.success();
     setTimeout(() => this.form.reset(), 3000);
+  }
+
+  setHero() {
+    this.heroControl.setValue(this.heroes.superman.code);
   }
 
 }

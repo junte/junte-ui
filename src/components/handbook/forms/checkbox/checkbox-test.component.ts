@@ -41,7 +41,7 @@ export class CheckboxTestComponent implements OnInit {
     custom: this.customControl
   });
 
-  heroControl = this.fb.control([this.heroes.captain.name], Validators.required);
+  heroControl = this.fb.control([this.heroes.captain.code], Validators.required);
 
   form = this.fb.group({
     hero: this.heroControl
@@ -57,7 +57,6 @@ export class CheckboxTestComponent implements OnInit {
 
     this.builder.valueChanges.subscribe(() => this.code.flash());
 
-    this.heroControl.patchValue([this.heroes.captain.name]);
   }
 
   submit() {
@@ -65,7 +64,7 @@ export class CheckboxTestComponent implements OnInit {
     setTimeout(() => this.form.reset(), 3000);
   }
 
-  set() {
-    this.heroControl.setValue([this.heroes.captain.name]);
+  setHero() {
+    this.heroControl.setValue([this.heroes.superman.code]);
   }
 }
