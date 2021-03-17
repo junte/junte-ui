@@ -3,13 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding, OnInit,
+  HostBinding,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
@@ -58,8 +57,7 @@ class PopoverPosition {
 @Component({
   selector: 'jnt-popover',
   templateUrl: './popover.encapsulated.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [...LOGGER_PROVIDERS]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverComponent implements OnInit {
 
@@ -92,7 +90,6 @@ export class PopoverComponent implements OnInit {
 
   constructor(private popoverService: PopoverService,
               private breakpoint: BreakpointService,
-              private logger: NGXLogger,
               private renderer: Renderer2,
               private hostRef: ElementRef,
               private cd: ChangeDetectorRef,
@@ -317,7 +314,6 @@ export class PopoverComponent implements OnInit {
 
   update(): void {
     if (!this.target) {
-      this.logger.warn('target is not defined');
       return;
     }
 
