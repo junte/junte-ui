@@ -54,7 +54,7 @@
                           <jnt-radio *ngFor="let hero of heroes | keyvalue: originalOrder | slice:0:3"
                                      [label]="hero.value.name"
                                      i18n-label="{{hero.value.i18n}}"
-                                     [value]="hero.value.name">
+                                     [value]="hero.value.code">
                             <ng-template *ngIf="customControl.value" #radioLabelTemplate>
                               <jnt-stack [orientation]="ui.orientation.horizontal"  data-custom
                                          [align]="ui.align.center"
@@ -76,7 +76,7 @@
                             <jnt-radio *ngFor="let hero of heroes | keyvalue: originalOrder | slice:3:6"
                                        [label]="hero.value.name"
                                        i18n-label="{{hero.value.i18n}}"
-                                       [value]="hero.value.name">
+                                       [value]="hero.value.code">
                               <ng-template *ngIf="customControl.value" #radioLabelTemplate>
                                 <jnt-stack [orientation]="ui.orientation.horizontal"  data-custom
                                            [align]="ui.align.center"
@@ -102,33 +102,20 @@
                       </jnt-form-control>
 
                       <jnt-stack *ngIf="heroControl.value.length" [align]="ui.align.center">
-                        <ng-container [ngSwitch]="heroControl.value">
-                          <jnt-avatar *ngSwitchCase="heroes.spiderman.name"
+                        <ng-container *ngFor="let hero of heroes | keyvalue">
+                          <jnt-avatar *ngIf="heroControl.value === hero.value.code"
                                       [size]="ui.size.large"
-                                      [image]="heroes.spiderman.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchCase="heroes.ironman.name"
-                                      [size]="ui.size.large"
-                                      [image]="heroes.ironman.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchCase="heroes.captain.name"
-                                      [size]="ui.size.large"
-                                      [image]="heroes.captain.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchCase="heroes.batman.name"
-                                      [size]="ui.size.large"
-                                      [image]="heroes.batman.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchCase="heroes.wolverine.name"
-                                      [size]="ui.size.large"
-                                      [image]="heroes.wolverine.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchCase="heroes.superman.name"
-                                      [size]="ui.size.large"
-                                      [image]="heroes.superman.avatar"></jnt-avatar>
-                          <jnt-avatar *ngSwitchDefault [size]="ui.size.large"
-                                      [icon]="ui.icons.question"></jnt-avatar>
+                                      [image]="hero.value.avatar"></jnt-avatar>
                         </ng-container>
                       </jnt-stack>
                     </jnt-stack>
                     <ng-template #formFooterTemplate>
                       <jnt-stack [orientation]="ui.orientation.horizontal"
                                  [justify]="ui.justify.between">
+                        <jnt-button text="Set superman"
+                                    i18n-text="@@action.set_superman"
+                                    (click)="setHero()">
+                        </jnt-button>
                         <jnt-button text="Submit"
                                     i18n-text="@@action.submit"
                                     [type]="ui.button.type.submit"></jnt-button>
@@ -266,15 +253,15 @@
                   <jnt-form-label i18n="@@label.features">Features
                   </jnt-form-label>
                   <jnt-row>
-                    <jnt-col [span]="5">
-                      <jnt-checkbox formControlName="adapted"
-                                    i18n-label="@@label.adapted"
-                                    label="Adapted"></jnt-checkbox>
-                    </jnt-col>
                     <jnt-col [span]="7">
                       <jnt-checkbox formControlName="custom"
                                     i18n-label="@@label.custom_template"
                                     label="Custom template"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="5">
+                      <jnt-checkbox formControlName="adapted"
+                                    i18n-label="@@label.adapted"
+                                    label="Adapted"></jnt-checkbox>
                     </jnt-col>
                   </jnt-row>
                 </jnt-form-item>

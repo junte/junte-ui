@@ -451,6 +451,7 @@ export enum Universes {
 
 export const HEROES = {
   captain: {
+    code: 'captain',
     name: Hero.captainAmerica,
     i18n: '@@label.captain_america',
     avatar: 'assets/images/heroes/captain.svg',
@@ -463,6 +464,7 @@ export const HEROES = {
     likes: 221
   },
   spiderman: {
+    code: 'spiderman',
     name: Hero.spiderman,
     i18n: '@@label.spiderman',
     avatar: 'assets/images/heroes/spiderman.svg',
@@ -475,6 +477,7 @@ export const HEROES = {
     likes: 357
   },
   superman: {
+    code: 'superman',
     name: Hero.superman,
     i18n: '@@label.superman',
     avatar: 'assets/images/heroes/superman.svg',
@@ -487,6 +490,7 @@ export const HEROES = {
     likes: 483
   },
   ironman: {
+    code: 'ironman',
     name: Hero.ironman,
     i18n: '@@label.ironman',
     avatar: 'assets/images/heroes/ironman.svg',
@@ -499,6 +503,7 @@ export const HEROES = {
     likes: 417
   },
   batman: {
+    code: 'batman',
     name: Hero.batman,
     i18n: '@@label.batman',
     avatar: 'assets/images/heroes/batman.svg',
@@ -511,6 +516,7 @@ export const HEROES = {
     likes: 452
   },
   wolverine: {
+    code: 'wolverine',
     name: Hero.wolverine,
     i18n: '@@label.wolverine',
     avatar: 'assets/images/heroes/wolverine.svg',
@@ -523,6 +529,7 @@ export const HEROES = {
     likes: 362
   },
   deadpool: {
+    code: 'deadpool',
     name: Hero.deadpool,
     i18n: '@@label.deadpool',
     avatar: 'assets/images/heroes/deadpool.svg',
@@ -535,6 +542,7 @@ export const HEROES = {
     likes: 436
   },
   hulk: {
+    code: 'hulk',
     name: Hero.hulk,
     i18n: '@@label.hulk',
     avatar: 'assets/images/heroes/hulk.svg',
@@ -547,6 +555,7 @@ export const HEROES = {
     likes: 372
   },
   wonder: {
+    code: 'wonder',
     name: Hero.wonder,
     i18n: '@@label.wonder_woman',
     avatar: 'assets/images/heroes/wonder.svg',
@@ -559,6 +568,7 @@ export const HEROES = {
     likes: 460
   },
   thanos: {
+    code: 'thanos',
     name: Hero.thanos,
     i18n: '@@label.thanos',
     avatar: 'assets/images/heroes/thanos.svg',
