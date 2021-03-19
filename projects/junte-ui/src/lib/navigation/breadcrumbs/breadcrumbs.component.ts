@@ -19,8 +19,9 @@ class Breadcrumb {
   }
 }
 
+// TODO: Remove jnt-breadcrumb!
 @Component({
-  selector: 'jnt-breadcrumb',
+  selector: 'jnt-breadcrumb, jnt-breadcrumbs',
   templateUrl: './breadcrumbs.encapsulated.html'
 })
 
