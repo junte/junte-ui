@@ -27,7 +27,8 @@ const HEROES_ABILITIES = [...new Set(HEROES_DATA.map(d => d.ability))];
 
 @Component({
   selector: 'app-table-data',
-  templateUrl: 'table-data.component.html'
+  templateUrl: 'table-data.component.html',
+  styleUrls: ['./table-data.component.scss']
 })
 
 export class TableDataComponent implements OnInit {
