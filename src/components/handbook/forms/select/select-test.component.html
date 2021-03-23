@@ -37,10 +37,10 @@
                 <form [formGroup]="form">
                   <jnt-form-item>
                     <jnt-select formControlName="select"
-                                [keyField]="'id'"
+                                [keyField]="'code'"
                                 [labelField]="'name'"
                                 [groupField]="'universe'"
-                                [groupFieldKey]="'id'"
+                                [groupFieldKey]="'name'"
                                 placeholder="Select your hero"
                                 i18n-placeholder="@@label.select_your_hero"
                                 [mode]="modeControl.value"
@@ -60,17 +60,17 @@
                                 (selected)="selected.heroes.push($event)">
                       <jnt-select-option *ngFor="let h of selected.heroes;trackBy:trackHero"
                                          [label]="h.name"
-                                         [key]="h.id"
+                                         [key]="h.code"
                                          [value]="h">
                       </jnt-select-option>
                       <jnt-select-option *ngFor="let h of created.heroes;trackBy:trackHero"
                                          [label]="h.name"
-                                         [key]="h.id"
+                                         [key]="h.code"
                                          [value]="h">
                       </jnt-select-option>
                       <jnt-select-option *ngFor="let h of heroes;trackBy:trackHero"
                                          [label]="h.name"
-                                         [key]="h.id"
+                                         [key]="h.code"
                                          [value]="h">
                       </jnt-select-option>
                     </jnt-select>

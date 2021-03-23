@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
 import { debounceTime, delay } from 'rxjs/operators';
-import { HANDBOOK } from 'src/consts';
+import { HANDBOOK, HEROES } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -55,11 +55,7 @@ export class SelectTestComponent implements OnInit {
     select: this.selectControl
   });
 
-  heroes = [
-    {id: 1, name: 'Spiderman', avatar: 'assets/images/heroes/spiderman.svg', likes: 381, universe: {id: 1, name: 'Marvel'}},
-    {id: 2, name: 'Ironman', avatar: 'assets/images/heroes/ironman.svg', likes: 412, universe: {id: 1, name: 'Marvel'}},
-    {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221, universe: {id: 2, name: 'Star Trek'}}
-  ];
+  heroes = Object.values(HEROES).slice(0, 3);
 
   constructor(private fb: FormBuilder) {
   }
@@ -72,8 +68,8 @@ export class SelectTestComponent implements OnInit {
       .setValue(mode === UI.select.mode.single ? null : []));
   }
 
-  trackHero(index, hero: { id: number }) {
-    return hero.id;
+  trackHero(index, hero: { code: string }) {
+    return hero.code;
   }
 
   search() {
