@@ -15,7 +15,7 @@
       height: map-get($size, icon);
     }
   }
-  #{$wrapper} form input {
+  #{$wrapper} input {
     &[custom='true'] {
       width: map-get($size, indicator);
     }
@@ -78,7 +78,9 @@
 
   #{if($context, $context, $jnt-checkbox-host)} {
     @if $declare {
-      display: block;
+      display: flex;
+      align-items: center;
+      position: relative;
       max-width: 100%;
     }
 
@@ -89,14 +91,6 @@
           @include checkbox-size($map, $wrapper);
         }
       }
-    }
-  }
-
-  #{$context} #{$wrapper} form {
-    @if $declare {
-      display: flex;
-      align-items: center;
-      position: relative;
     }
   }
 

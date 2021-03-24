@@ -14,7 +14,7 @@
     width: map-get($size, icon);
     height: map-get($size, icon);
   }
-  #{$wrapper} form input {
+  #{$wrapper} input {
     &[custom='true'] {
       width: map-get($size, indicator);
     }
@@ -96,7 +96,9 @@
 
   #{if($context, $context, $jnt-radio-host)} {
     @if $declare {
-      display: block;
+      display: flex;
+      align-items: center;
+      position: relative;
     }
 
     @if map-has-key($vars, sizes) {
@@ -121,136 +123,128 @@
     }
   }
 
-  #{$context} #{$wrapper} form {
+  #{$context} #{$wrapper} input {
     @if $declare {
-      display: flex;
-      align-items: center;
-      position: relative;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      cursor: pointer;
+      opacity: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    input {
+    &:disabled {
       @if $declare {
-        position: absolute;
-        top: 0;
-        z-index: 1;
-        cursor: pointer;
-        opacity: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      &:disabled {
-        @if $declare {
-          cursor: default;
-          pointer-events: none;
-        }
-
-        @if map-has-key($vars, switch) {
-          $switch: map-get($vars, switch);
-          @if map-has-key($switch, disabled) {
-            $disabled: map-get($switch, disabled);
-            & + [data-switch] {
-              background-color: map-get($disabled, background-color);
-              border-color: map-get($disabled, border-color);
-            }
-          }
-        }
-
-        & ~ label {
-          @if map-has-key($vars, label) {
-            $label: map-get($vars, label);
-            @if map-has-key($label, disabled) {
-              $disabled: map-get($label, disabled);
-              color: map-get($disabled, color);
-            }
-          }
-        }
-
-        & + [data-switch] {
-          @if map-has-key($vars, indicator) {
-            $indicator: map-get($vars, indicator);
-            @if map-has-key($indicator, disabled) {
-              $disabled: map-get($indicator, disabled);
-              > [data-indicator] {
-                background-color: map-get($disabled, background-color);
-              }
-            }
-          }
-        }
-      }
-
-      &:focus {
-        & + [data-switch] {
-          @if map-has-key($vars, switch) {
-            $switch: map-get($vars, switch);
-            @if map-has-key($switch, focus) {
-              $focus: map-get($switch, focus);
-              box-shadow: map-get($focus, shadow);
-            }
-          }
-        }
-      }
-
-      &:hover {
-        & + [data-switch] {
-          @if map-has-key($vars, switch) {
-            $switch: map-get($vars, switch);
-            @if map-has-key($switch, hover) {
-              $hover: map-get($switch, hover);
-              border-color: map-get($hover, border-color);
-            }
-          }
-        }
-      }
-    }
-
-    [data-switch] {
-      @if $declare {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        box-sizing: border-box;
-        text-align: center;
-        border-radius: 50%;
-        transition: all .3s;
+        cursor: default;
+        pointer-events: none;
       }
 
       @if map-has-key($vars, switch) {
         $switch: map-get($vars, switch);
-        background-color: map-get($switch, background-color);
-        border: if(map-get($switch, border-color), 1px solid map-get($switch, border-color), null);
+        @if map-has-key($switch, disabled) {
+          $disabled: map-get($switch, disabled);
+          & + [data-switch] {
+            background-color: map-get($disabled, background-color);
+            border-color: map-get($disabled, border-color);
+          }
+        }
       }
 
-      [data-indicator] {
-        @if $declare {
-          display: inline-block;
-          transform-origin: center;
-          transition: all .3s;
-          border-radius: 50%;
-          @if map-has-key($vars, indicator) {
-            $indicator: map-get($vars, indicator);
-            background-color: map-get($indicator, background-color);
+      & ~ label {
+        @if map-has-key($vars, label) {
+          $label: map-get($vars, label);
+          @if map-has-key($label, disabled) {
+            $disabled: map-get($label, disabled);
+            color: map-get($disabled, color);
+          }
+        }
+      }
+
+      & + [data-switch] {
+        @if map-has-key($vars, indicator) {
+          $indicator: map-get($vars, indicator);
+          @if map-has-key($indicator, disabled) {
+            $disabled: map-get($indicator, disabled);
+            > [data-indicator] {
+              background-color: map-get($disabled, background-color);
+            }
           }
         }
       }
     }
 
-    [label] {
+    &:focus {
+      & + [data-switch] {
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, focus) {
+            $focus: map-get($switch, focus);
+            box-shadow: map-get($focus, shadow);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      & + [data-switch] {
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, hover) {
+            $hover: map-get($switch, hover);
+            border-color: map-get($hover, border-color);
+          }
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-switch] {
+    @if $declare {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-sizing: border-box;
+      text-align: center;
+      border-radius: 50%;
+      transition: all .3s;
+    }
+
+    @if map-has-key($vars, switch) {
+      $switch: map-get($vars, switch);
+      background-color: map-get($switch, background-color);
+      border: if(map-get($switch, border-color), 1px solid map-get($switch, border-color), null);
+    }
+
+    [data-indicator] {
       @if $declare {
-        user-select: none;
-        white-space: nowrap;
-        flex: 1;
+        display: inline-block;
+        transform-origin: center;
+        transition: all .3s;
+        border-radius: 50%;
+        @if map-has-key($vars, indicator) {
+          $indicator: map-get($vars, indicator);
+          background-color: map-get($indicator, background-color);
+        }
       }
-      @if map-has-key($vars, label) {
-        $label: map-get($vars, label);
-        padding-left: map-get($label, gutter);
-        color: map-get($label, color);
-      }
+    }
+  }
+
+  #{$context} #{$wrapper} [label] {
+    @if $declare {
+      user-select: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    @if map-has-key($vars, label) {
+      $label: map-get($vars, label);
+      padding-left: map-get($label, gutter);
+      color: map-get($label, color);
     }
   }
 }
