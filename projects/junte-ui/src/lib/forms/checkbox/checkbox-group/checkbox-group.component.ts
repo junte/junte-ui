@@ -44,7 +44,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   private _orientation: Orientation = Orientation.vertical;
   private _spacing: Gutter = Gutter.small;
-  private _align: FlexAlign = FlexAlign.start;
+  private _align: FlexAlign;
   private _size: Size = Size.normal;
   private selectedItems = [];
 
@@ -75,7 +75,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   })
   @Input()
   set align(align: FlexAlign) {
-    this._align = align || FlexAlign.start;
+    this._align = align;
   }
 
   get align() {
