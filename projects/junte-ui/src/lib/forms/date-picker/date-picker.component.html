@@ -1,4 +1,4 @@
-<jnt-form [formGroup]="form">
+<ng-container [formGroup]="form">
   <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="mobile ? ui.gutter.none : ui.gutter.normal">
     <ng-container *ngIf="type === datePickerType.date || type === datePickerType.dateTime">
       <jnt-input *jntMinFor="ui.breakpoint.tablet"
@@ -109,4 +109,4 @@
     <ng-container *ngTemplateOutlet="calendarTemplate"></ng-container>
     <ng-container *ngTemplateOutlet="timeTemplate"></ng-container>
   </ng-container>
-</jnt-form>
+</ng-container>
