@@ -84,7 +84,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 }
                 case 'object': {
                   const title = typeof crumb.label === 'string'
-                    ? crumb.label : crumb.label(route.snapshot.data);
+                    ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
@@ -96,14 +96,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                   break;
                 }
                 case 'function': {
-                  const title = crumb(route.snapshot.data);
+                  const title = crumb(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({route, title}));
                   }
                   break;
                 }
                 default:
-                  throw new Error('wrong breadcrump type');
+                  throw new Error(`wrong breadcrumb type: ${typeof crumb}`);
               }
             });
         }
