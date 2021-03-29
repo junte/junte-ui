@@ -42,6 +42,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     return !!this.aside;
   }
 
+  @HostBinding('style.display') get display() {
+    return this.breadcrumbs.length > 0 ? 'block' : 'none';
+  }
+
   @PropertyApi({
     description: 'Support burger button for mobile devices',
     type: 'AppAsideComponent'
