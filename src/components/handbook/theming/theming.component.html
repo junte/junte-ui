@@ -1,0 +1,1286 @@
+<jnt-container>
+
+  <h1 i18n="@@label.theming">Theming</h1>
+
+  <app-resources
+    figma="https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2178%3A2452">
+  </app-resources>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We use <b>SASS constants</b> for implementing simple customizing common components styles. You can redefine
+      everything in your project.
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Мы используем <b> константы SASS </b> для реализации простой настройки общих стилей компонентов. Вы можете переопределить
+      все в вашем проекте.
+    </ng-container>
+  </p>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We tried to create a final and sufficient list of constants for implementing themes including
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Мы попытались создать окончательный и достаточный список констант для реализации тем, включая
+    </ng-container>
+    <jnt-label [color]="ui.color.black"
+               label="black theme 😎"
+               i18n-label="@@label.black_theme"></jnt-label>
+  </p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      These constants are fully synchronized with our global style in the design system.
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Эти константы полностью синхронизированы с нашим глобальным стилем в дизайн-системе.
+    </ng-container>
+  </p>
+
+  <h2 i18n="@@label.variables">Variables</h2>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Constants are described in the common file
+    </ng-container>
+
+    <ng-container *ngSwitchCase="language.ru">
+      Константы описаны в общем файле
+    </ng-container>
+
+    <jnt-link [icon]="ui.icons.link"
+              source="https://gitlab.com/junte/junte-ui/blob/master/projects/junte-ui/src/lib/assets/styles/_jnt-variables.scss"
+              target="_blank"
+              title="_variables.scss"></jnt-link>
+  </p>
+
+  <table>
+    <thead>
+    <tr>
+      <th i18n="@@label.variable">Variable</th>
+      <th i18n="@@label.value">Value</th>
+      <th i18n="@@label.preview">Preview</th>
+    </tr>
+    <tr>
+      <th colspan="3" i18n="@@label.palette">Palette</th>
+    </tr>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-white-color</code>
+      </td>
+      <td>
+        <code>#FFFFFF</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.white"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-black-color</code>
+      </td>
+      <td>
+        <code>#000000</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.black"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-teal-color</code>
+      </td>
+      <td>
+        <code>#1D2932</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.teal"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-yellow-color</code>
+      </td>
+      <td>
+        <code>#F8DB42</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.yellow"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-orange-color</code>
+      </td>
+      <td>
+        <code>#EE8030</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.orange"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-blue-color</code>
+      </td>
+      <td>
+        <code>#E7F5FF</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.blue"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-blue-100-color</code>
+      </td>
+      <td>
+        <code>#E6E9FA</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.blue100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-green-color</code>
+      </td>
+      <td>
+        <code>#00CCB1</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.green"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-green-dark-color</code>
+      </td>
+      <td>
+        <code>#00B89F</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.greenDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-red-color</code>
+      </td>
+      <td>
+        <code>#FF6262</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.red"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-red-dark-color</code>
+      </td>
+      <td>
+        <code>#DE5B5B</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.redDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-purple-color</code>
+      </td>
+      <td>
+        <code>#3949AB</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purple"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-purple-dark-color</code>
+      </td>
+      <td>
+        <code>#00227B</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purpleDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-purple-light-color</code>
+      </td>
+      <td>
+        <code>#6F74DD</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purpleLight"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-purple-lighten-color</code>
+      </td>
+      <td>
+        <code>#C4C9E7</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purpleLighten"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-magenta-dark-color</code>
+      </td>
+      <td>
+        <code>#933183</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.magentaDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-100-color</code>
+      </td>
+      <td>
+        <code>#F5F5F5</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-200-color</code>
+      </td>
+      <td>
+        <code>#F7F7F7</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray200"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-300-color</code>
+      </td>
+      <td>
+        <code>#F0F0F0</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray300"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-400-color</code>
+      </td>
+      <td>
+        <code>#E9E9E9</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray400"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-pale-navy-color</code>
+      </td>
+      <td>
+        <code>#F3F4FC</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.paleNavy"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-600-color</code>
+      </td>
+      <td>
+        <code>#C4C4C4</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray600"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-700-color</code>
+      </td>
+      <td>
+        <code>#D0D0D0</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray700"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-800-color</code>
+      </td>
+      <td>
+        <code>#828282</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray800"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-900-color</code>
+      </td>
+      <td>
+        <code>#4F4F4F</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gray-dark-color</code>
+      </td>
+      <td>
+        <code>#343434</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.grayDark"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Schemes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-primary-color</code>
+      </td>
+      <td>
+        <code>$jnt-purple-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purple"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-dark-color</code>
+      </td>
+      <td>
+        <code>$jnt-purple-dark-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purpleDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-light-color</code>
+      </td>
+      <td>
+        <code>$jnt-purple-light-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.purpleLight"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-secondary-color</code>
+      </td>
+      <td>
+        <code>$jnt-pale-navy-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.paleNavy"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-secondary-dark-color</code>
+      </td>
+      <td>
+        <code>$jnt-blue-100-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.blue100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-success-color</code>
+      </td>
+      <td>
+        <code>$jnt-green-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.green"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-success-dark-color</code>
+      </td>
+      <td>
+        <code>$jnt-green-dark-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.greenDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-warning-color</code>
+      </td>
+      <td>
+        <code>$jnt-orange-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.orange"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-fail-color</code>
+      </td>
+      <td>
+        <code>$jnt-red-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.red"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-fail-dark-color</code>
+      </td>
+      <td>
+        <code>$jnt-red-dark-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.redDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-accent-color</code>
+      </td>
+      <td>
+        <code>$jnt-magenta-dark-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.magentaDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-muted-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-400-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray400"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Background</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-primary-background</code>
+      </td>
+      <td>
+        <code>$jnt-white-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.white"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-secondary-background</code>
+      </td>
+      <td>
+        <code>$jnt-pale-navy-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.paleNavy"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-page-background</code>
+      </td>
+      <td>
+        <code>$jnt-gray-200-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray200"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-highlight-background</code>
+      </td>
+      <td>
+        <code>$jnt-gray-300-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray300"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Gutters</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-gutter-base</code>
+      </td>
+      <td>
+        <code>4px</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-tiny</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.tiny">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-small</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base * 2</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-normal</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base * 4</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.normal">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-big</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base * 6</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.big">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-large</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base * 8</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.large">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-gutter-huge</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-base * 12</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.huge">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Corners</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-corner-base</code>
+      </td>
+      <td>
+        <code>4px</code>
+      </td>
+      <td>
+        <div block corner-small></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-corner-small</code>
+      </td>
+      <td>
+        <code>$jnt-corner-base</code>
+      </td>
+      <td>
+        <div block corner-small></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-corner-normal</code>
+      </td>
+      <td>
+        <code>$jnt-corner-base * 2</code>
+      </td>
+      <td>
+        <div block corner-normal></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-corner-large</code>
+      </td>
+      <td>
+        <code>$jnt-corner-base * 10</code>
+      </td>
+      <td>
+        <div block corner-large></div>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Shadows</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-shadow-light</code>
+      </td>
+      <td>
+        <code>0px 4px 10px rgba($jnt-black-color, .15)</code>
+      </td>
+      <td>
+        <div shadow light></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-shadow-normal</code>
+      </td>
+      <td>
+        <code>0px 2px 8px rgba($jnt-black-color, .25)</code>
+      </td>
+      <td>
+        <div shadow normal></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-shadow-primary</code>
+      </td>
+      <td>
+        <code>0px 2px 8px rgba($jnt-primary-color, .25)</code>
+      </td>
+      <td>
+        <div shadow primary></div>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Outline shadows</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-outline-shadow-small</code>
+      </td>
+      <td>
+        <code>0px 0px 0px 2px</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-outline-shadow-normal</code>
+      </td>
+      <td>
+        <code>0px 0px 0px 4px</code>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">
+        Grid break points
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-grid-gutter</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-normal</code>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-mobile-breakpoint</code>
+      </td>
+      <td>
+        <code>0</code>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-tablet-breakpoint</code>
+      </td>
+      <td>
+        <code>768px</code>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-desktop-breakpoint</code>
+      </td>
+      <td>
+        <code>992px</code>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-wide-breakpoint</code>
+      </td>
+      <td>
+        <code>1200px</code>
+      </td>
+      <td></td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-primary-text-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-900-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-text-dark-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-dark-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.grayDark"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-text-light-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-800-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray800"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-primary-text-inverse-color</code>
+      </td>
+      <td>
+        <code>$jnt-white-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.white"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Typography</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-font-size-tiny</code>
+      </td>
+      <td>
+        <code>11px</code>
+      </td>
+      <td style="font-size: 11px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-small</code>
+      </td>
+      <td>
+        <code>13px</code>
+      </td>
+      <td style="font-size: 13px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-base</code>
+      </td>
+      <td>
+        <code>14px</code>
+      </td>
+      <td style="font-size: 14px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-normal</code>
+      </td>
+      <td>
+        <code>16px</code>
+      </td>
+      <td style="font-size: 16px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-big</code>
+      </td>
+      <td>
+        <code>24px</code>
+      </td>
+      <td style="font-size: 24px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-large</code>
+      </td>
+      <td>
+        <code>32px</code>
+      </td>
+      <td style="font-size: 32px">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-size-huge</code>
+      </td>
+      <td>
+        <code>48px</code>
+      </td>
+      <td style="font-size: 48px">Lorem ipsum</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-light</code>
+      </td>
+      <td>
+        <code>300</code>
+      </td>
+      <td style="font-weight: 300">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-base</code>
+      </td>
+      <td>
+        <code>400</code>
+      </td>
+      <td style="font-weight: 400">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-semi-bold</code>
+      </td>
+      <td>
+        <code>600</code>
+      </td>
+      <td style="font-weight: 600">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-bold</code>
+      </td>
+      <td>
+        <code>700</code>
+      </td>
+      <td style="font-weight: 700">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-weight-extra-bold</code>
+      </td>
+      <td>
+        <code>800</code>
+      </td>
+      <td style="font-weight: 800">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-line-height-small</code>
+      </td>
+      <td>
+        <code>1</code>
+      </td>
+      <td style="line-height: 1">
+        Lorem ipsum dolor <br> Lorem ipsum dolor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-line-height-base</code>
+      </td>
+      <td>
+        <code>1.5</code>
+      </td>
+      <td style="line-height: 1.5">
+        Lorem ipsum dolor <br> Lorem ipsum dolor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>line-height-large</code>
+      </td>
+      <td>
+        <code>2.5</code>
+      </td>
+      <td style="line-height: 2.5">
+        Lorem ipsum dolor <br> Lorem ipsum dolor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-font-family-base</code>
+      </td>
+      <td>Open Sans</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-h1-font-size</code>
+      </td>
+      <td>
+        <code>font-size-base * 4.85</code>
+      </td>
+      <td style="font-size: 67.9px">H1</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$h2-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base * 3</code>
+      </td>
+      <td style="font-size: 42px">H2</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-h3-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base * 1.85</code>
+      </td>
+      <td style="font-size: 25.9px">H3</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-h4-font-size</code>
+      </td>
+      <td>
+        <code>$font-size-base * 1.28</code>
+      </td>
+      <td style="font-size: 17.92px">H4</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-h5-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base * 1.2</code>
+      </td>
+      <td style="font-size: 16.8px">H5</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-h6-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base</code>
+      </td>
+      <td style="font-size: 14px">H6</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-headings-margin-bottom</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-normal</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.normal">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Form control</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-control-gutter</code>
+      </td>
+      <td>
+        <code>$jnt-gutter-small</code>
+      </td>
+      <td>
+        <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small">
+          <div block></div>
+          <div block></div>
+        </jnt-stack>
+      </td>
+    <tr>
+      <td>
+        <code>$jnt-control-border-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-700-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray700"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-switch-label-color</code>
+      </td>
+      <td>
+        <code>$jnt-primary-text-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-background</code>
+      </td>
+      <td>
+        <code>$jnt-primary-background</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.white"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-disabled-border-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-600-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray600"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-disabled-indicator-icon-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-800-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray800"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-disabled-label-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-800-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray800"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-disabled-background</code>
+      </td>
+      <td>
+        <code>$jnt-gray-100-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray100"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-field-label-background</code>
+      </td>
+      <td>
+        <code>$jnt-gray-500-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.paleNavy"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-field-label-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-800-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray800"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-control-field-label-border-color</code>
+      </td>
+      <td>
+        <code>$jnt-gray-600-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray600"></jnt-label>
+      </td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr>
+      <th colspan="3">Layout</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code>$jnt-body-color</code>
+      </td>
+      <td>
+        <code>$jnt-primary-text-color</code>
+      </td>
+      <td>
+        <jnt-label [color]="ui.color.gray900"></jnt-label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-app-layout-font-family</code>
+      </td>
+      <td>
+        <code>$jnt-font-family-base</code>
+      </td>
+      <td>
+        Open Sans
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-lp-layout-font-family</code>
+      </td>
+      <td>
+        'Montserrat', sans-serif
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-font-weight</code>
+      </td>
+      <td>
+        <code>$jnt-font-weight-base</code>
+      </td>
+      <td style="font-weight: 400">Lorem ipsum dolor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-line-height</code>
+      </td>
+      <td>
+        <code>$jnt-line-height-base</code>
+      </td>
+      <td style="line-height: 1.5">
+        Lorem ipsum dolor <br> Lorem ipsum dolor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>$jnt-body-font-size</code>
+      </td>
+      <td>
+        <code>$jnt-font-size-base</code>
+      </td>
+      <td style="font-size: 14px">Lorem ipsum dolor</td>
+    </tr>
+  </table>
+
+</jnt-container>

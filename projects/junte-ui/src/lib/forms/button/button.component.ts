@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, HostBinding, Input, Output, QueryList, ViewChild } from '@angular/core';
 import { Shape } from '../../core/enums/shape';
 import { PropertyApi } from '../../core/decorators/api';
 import { Outline } from '../../core/enums/outline';
@@ -24,17 +24,13 @@ interface Icon {
         state(
           'void',
           style({
-            opacity: 0,
-            width: '200px',
-            height: '200px'
+            opacity: 0
           })
         ),
         state(
           '*',
           style({
-            opacity: 1,
-            width: '*',
-            height: '*'
+            opacity: 1
           })
         ),
         transition(
@@ -114,14 +110,14 @@ export class ButtonComponent {
   })
   @Input('icon')
   set _icon(icon: string | Icon) {
-    this.icon =  <Icon>(typeof icon === 'string'
+    this.icon = <Icon>(typeof icon === 'string'
       ? {icon: icon, position: Position.left} : icon);
   }
 
   @PropertyApi({
     description: 'Button color scheme',
     path: 'ui.scheme',
-    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
+    options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail, Scheme.accent],
     default: Scheme.primary
   })
   @Input()
@@ -215,4 +211,12 @@ export class ButtonComponent {
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
+
+  @ViewChild('buttonRef', {read: ElementRef})
+  buttonRef: ElementRef<HTMLButtonElement>;
+
+  focus() {
+    this.buttonRef.nativeElement.focus();
+  }
+
 }

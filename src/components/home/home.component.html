@@ -8,17 +8,10 @@
       </form>
     </ng-template>
     <jnt-menu data-menu [spacing]="ui.gutter.large">
-      <jnt-menu-item
-        title="Tutorial"
-        i18n-title="@@label.tutorial"
-        [icon]="localUi.icons.top.documentation"
-        [link]="['docs']">
-      </jnt-menu-item>
       <jnt-menu-item title="Handbook"
                      i18n-title="@@label.handbook"
-                     [icon]="localUi.icons.top.components"
-                     [link]="['/handbook']"
-                     [matching]="ui.matching.wildcard">
+                     [icon]="localUi.icons.top.documentation"
+                     [link]="['handbook']">
       </jnt-menu-item>
       <jnt-menu-item
         [title]="'Team'"
@@ -641,7 +634,7 @@
           <jnt-link tutorial title="Tutorial here"
                     [icon]="ui.icons.arrowRight"
                     [outline]="ui.outline.fill"
-                    [source]="['/general']"></jnt-link>
+                    [source]="['/handbook/home']"></jnt-link>
         </jnt-stack>
 
       </jnt-stack>

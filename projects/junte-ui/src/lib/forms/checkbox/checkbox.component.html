@@ -1,12 +1,17 @@
-<form [formGroup]="form">
+<ng-template #labelDefaultTemplate>
+  <label *ngIf="label">{{label}}</label>
+</ng-template>
+
+<ng-container [formGroup]="form">
   <input formControlName="checkbox" type="checkbox" [attr.custom]="!!labelTemplate">
-  <div data-switch>
-    <div *ngIf="checkboxControl.value" data-icon [@scale]></div>
-  </div>
-  <ng-template #labelDefaultTemplate>
-    <label *ngIf="label">{{label}}</label>
-  </ng-template>
-  <div label>
-    <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
-  </div>
-</form>
+  <jnt-stack data-checkbox [orientation]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.small"
+             [align]="align">
+    <div data-switch>
+      <div *ngIf="checkboxControl.value" data-icon [@scale]="animate"></div>
+    </div>
+    <div data-label *ngIf="!!labelTemplate; else labelDefaultTemplate">
+      <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+    </div>
+  </jnt-stack>
+</ng-container>

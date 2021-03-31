@@ -78,6 +78,7 @@ import '@angular/localize/init';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 import 'junte-ui/polyfills/event-path';  // Included with Junte-UI.
+import 'junte-ui/polyfills/element-children';  // Included with Junte-UI.
 
 
 /***************************************************************************************************

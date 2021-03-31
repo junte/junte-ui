@@ -53,10 +53,12 @@
           color: null,
           underline-color: $jnt-primary-color,
           shadow: null,
-          divider: false,
-          divider-width: null,
-          divider-corner: null,
-          divider-color: null
+          divider: (
+            display: false,
+            divider-width: null,
+            divider-corner: null,
+            divider-color: null
+          )
         ),
         orphan: (
           color: $jnt-primary-text-light-color,
@@ -354,33 +356,37 @@
             }
           }
 
-
           @if map-has-key($map, active) {
             $active: map-get($map, active);
-            @if map-get($active, divider) == true {
-              #{$wrapper} [data-link] {
-                &:after {
-                  content: '';
-                  position: absolute;
-                  left: 0;
-                  bottom: 0;
-                  width: map-get($active, divider-width);
-                  border-radius: map-get($active, divider-corner);
-                  background-color: map-get($active, divider-color);
-                  height: 100%;
-                  display: none;
+            @if map-has-key($active, divider) {
+              $divider: map-get($active, divider);
+              @if map-get($divider, display) == true {
+                #{$wrapper} [data-link] {
+                  &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: map-get($divider, divider-width);
+                    border-radius: map-get($divider, divider-corner);
+                    background-color: map-get($divider, divider-color);
+                    height: 100%;
+                    display: none;
+                  }
                 }
               }
             }
-
             &[data-active='true'] {
               #{$wrapper} [data-link] {
                 background-color: map-get($active, background-color);
                 box-shadow: map-get($active, shadow);
 
-                @if map-get($active, divider) == true {
-                  &:after {
-                    display: block;
+                @if map-has-key($active, divider) {
+                  $divider: map-get($active, divider);
+                  @if map-get($divider, display) == true {
+                    &:after {
+                      display: block;
+                    }
                   }
                 }
 
@@ -420,10 +426,15 @@
         margin-left: map-get($toggle, margin-left);
         margin-right: 0;
         @include jnt-icon((color: map-get($toggle, color)), '&');
+
         &[data-opened=true] {
           @include jnt-icon((color: map-get($toggle, open-color)), '&');
         }
       }
+    }
+
+    [data-badge][data-collapsed='true'] {
+      @include jnt-badge((size: 16px, font-size: 10px, positions: (rightTop: (right: $jnt-gutter-tiny, top: $jnt-gutter-tiny, transform: none))), '&');
     }
 
     border-radius: map-get($vars, corner);

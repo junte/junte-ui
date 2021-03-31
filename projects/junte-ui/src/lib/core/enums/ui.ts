@@ -17,6 +17,7 @@ import { Gutter } from './gutter';
 import { Height } from './height';
 import { icons } from './icons';
 import { Key, Modifier } from './keyboard';
+import { IconModifier } from './icon-modifier';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
 import { Placement } from './placement';
@@ -73,4 +74,5 @@ export class UI {
   static gantt = {type: GanttTypes};
   static menu = {style: MenuStyle};
   static keyboard = {key: Key, modifier: Modifier};
+  static icon = {modifier: IconModifier};
 }

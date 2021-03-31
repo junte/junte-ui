@@ -39,14 +39,12 @@
                   [disabled]="item.disabled"
                   [features]="!!item.submenu ? [ui.feature.dropdown] : null"
                   (click)="item.click.emit(); !item.submenu ? selected.emit(item) : null">
-          <ng-container *ngIf="!collapsed">
             <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"
                        [text]="badge.text"
-                       [position]="ui.position.inline"
+                       [position]="badge.position"
                        [color]="badge.color">
             </jnt-badge>
-          </ng-container>
         </jnt-link>
       </div>
 

@@ -16,3 +16,11 @@ export class GetOptionPipe implements PipeTransform {
     return options.persisted[key];
   }
 }
+
+@Pipe({name: 'trackGroup'})
+export class TrackGroupPipe implements PipeTransform {
+  transform(curr: IOption, prev: IOption, groupField: string, groupFieldKey: string): boolean {
+    return !prev || (!!groupFieldKey ? curr.value[groupField]?.[groupFieldKey] !== prev.value[groupField]?.[groupFieldKey]
+      : curr.value[groupField] !== prev.value[groupField]);
+  }
+}

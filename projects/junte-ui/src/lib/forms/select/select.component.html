@@ -19,7 +19,7 @@
   <ul #selectedRef>
     <ng-container *ngIf="selected.length">
       <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null"
-      [attr.data-with-template]="!!optionTemplate">
+          [attr.data-with-template]="!!optionTemplate">
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
@@ -34,9 +34,10 @@
       </li>
     </ng-container>
 
-    <li data-query [formGroup]="form" (click)="opened ? close() : open()">
-      <input #queryRef [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
-             formControlName="query">
+    <li data-query [formGroup]="form" (click)="opened && !queryControl.value ? close() : open()">
+      <input #queryRef formControlName="query"
+             [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
+             (keydown)="createOption(queryControl.value, $event)">
     </li>
   </ul>
   <div data-loading *ngIf="state === ui.state.loading">
@@ -73,13 +74,19 @@
             <ng-container *ngTemplateOutlet="optionsHeaderTemplate;context: {close: close.bind(this)}"></ng-container>
           </div>
           <ul [attr.data-windows]="device.platform.windows">
-            <li *ngFor="let o of options;trackBy:trackOption"
-                [attr.data-selected]="selected | includes:o.key"
-                (click)="toggle(o)">
-              <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-              : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value}">
+            <ng-container *ngFor="let o of options;let i = index;trackBy:trackOption">
+              <ng-container *ngIf="!!groupField">
+                <ng-container *ngIf="o | trackGroup:(i > 0 ? options[i-1] : null):groupField:groupFieldKey">
+                  <ng-container *ngTemplateOutlet="groupTemplate;context: {icon: o.icon, label: o.label, value: o.value}"></ng-container>
+                </ng-container>
               </ng-container>
-            </li>
+              <li data-option [attr.data-selected]="selected | includes:o.key"
+                  (click)="toggle(o)">
+                <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+              : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value}">
+                </ng-container>
+              </li>
+            </ng-container>
           </ul>
         </jnt-stack>
       </ng-container>

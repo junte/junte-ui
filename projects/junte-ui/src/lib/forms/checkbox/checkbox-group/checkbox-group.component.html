@@ -1,14 +1,15 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <ng-container formArrayName="checkboxes">
     <ng-container *ngIf="!!checkboxesControl.length">
       <ng-container *ngIf="cols <= 1; else colTemplate">
         <jnt-stack [gutter]="spacing"
                    [orientation]="orientation"
                    [spacing]="spacing"
-                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.start"
+                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.stretch"
                    [wrap]="ui.wrap.wrap">
           <jnt-checkbox *ngFor="let item of checkboxes; let i = index"
                         [formControlName]="i"
+                        [align]="align"
                         [size]="size"
                         [label]="item.label"
                         [value]="item.value">
@@ -34,6 +35,6 @@
       </ng-template>
     </ng-container>
   </ng-container>
-</form>
+</ng-container>
 
 

@@ -41,7 +41,7 @@
 
 </jnt-block>
 <div *ngIf="!!opened" #backdrop data-overlay
-     (click)="!options.hold ? close() : null"
+     (click)="!options.hold && options.closeOutside ? close() : null"
      [@.disabled]="mobile"
      [@blackout]="opened"></div>
 

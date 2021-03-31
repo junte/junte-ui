@@ -32,29 +32,24 @@ $tab-marker-height: 4px;
       border-top-left-radius: $jnt-corner-normal;
       border-top-right-radius: $jnt-corner-normal;
       border: 1px solid $jnt-page-background;
-
-      &[data-outline='#{$jnt-outline-fill-name}'] {
-        [data-content] {
-          background-color: $jnt-primary-background;
-          box-sizing: border-box;
-          border-bottom-left-radius: $jnt-corner-normal;
-          border-bottom-right-radius: $jnt-corner-normal;
-        }
-      }
-
-      &[data-outline='#{$jnt-outline-transparent-name}'] {
-        [data-content] {
-          background-color: transparent;
-        }
+      [data-content] {
+        background-color: $jnt-primary-background;
+        box-sizing: border-box;
+        border-bottom-left-radius: $jnt-corner-normal;
+        border-bottom-right-radius: $jnt-corner-normal;
       }
     }
+  }
+
+  #{$context} [data-scroll] {
+    overflow-x: auto;
   }
 
   #{$context} [data-tabs] {
     @if $declare {
       border-top-left-radius: $jnt-corner-normal;
       border-top-right-radius: $jnt-corner-normal;
-      border-bottom: 2px solid $jnt-secondary-color;
+      position: relative;
     }
 
     [data-wrapper] {
@@ -62,35 +57,21 @@ $tab-marker-height: 4px;
         position: relative;
         text-decoration: none;
         display: block;
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          right: 0;
-          height: $tab-marker-height;
-          border-radius: 5px;
-          display: none;
-        }
+        color: inherit;
 
         &:hover {
-          [data-tab] {
+          [data-tab][data-with-template='false'] {
             color: $jnt-primary-light-color;
 
             [data-label] [data-icon] {
               @include jnt-icon((color: $jnt-primary-light-color), '&');
             }
           }
-
-          &:after {
-            display: block;
-            background-color: $jnt-secondary-dark-color;
-          }
         }
       }
 
       &[data-active='true'] {
-        [data-tab] {
+        [data-tab][data-with-template='false'] {
           @if $declare {
             color: $jnt-primary-light-color;
           }
@@ -99,18 +80,10 @@ $tab-marker-height: 4px;
             @include jnt-icon((color: $jnt-primary-light-color), '&');
           }
         }
-
-        &:after {
-          @if $declare {
-            display: block;
-            background-color: $jnt-primary-light-color;
-          }
-        }
       }
 
       [data-tab] {
         @if $declare {
-          padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal;
           cursor: pointer;
           color: $jnt-primary-text-color;
           font-size: $jnt-font-size-base;
@@ -121,6 +94,12 @@ $tab-marker-height: 4px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal;
+          &[data-with-template='false'] {
+            color: $jnt-primary-text-color;
+            font-size: $jnt-font-size-base;
+            line-height: 1.6;
+          }
         }
 
         [data-label] {
@@ -153,6 +132,27 @@ $tab-marker-height: 4px;
             width: 50px;
           }
         }
+      }
+    }
+  }
+
+  #{$context} [data-way] {
+    width: 100%;
+    min-width: 100%;
+    height: 2px;
+    background-color: $jnt-secondary-color;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+
+    [data-line] {
+      @if $declare {
+        position: absolute;
+        top: -2px;
+        left: 0;
+        height: $tab-marker-height;
+        border-radius: 5px;
+        background-color: $jnt-primary-light-color;
       }
     }
   }

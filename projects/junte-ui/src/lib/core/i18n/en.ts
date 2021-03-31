@@ -7,6 +7,8 @@ export const i18nEn = {
   },
   action: {
     reload: 'Reload',
+    upload: 'Upload',
+    today: 'Today',
     hide_sidebar: 'Hide sidebar',
     ok: 'Ok',
     cancel: 'Cancel',

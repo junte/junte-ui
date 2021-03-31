@@ -2,12 +2,24 @@
 @import 'jnt-functions';
 @import 'jnt-hosts';
 @import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     padding: 0 0 0 $jnt-gutter-normal,
-    margin: $jnt-gutter-small 0 $jnt-gutter-small 0
+    margin: $jnt-gutter-small 0 $jnt-gutter-small 0,
+    breadcrumb: (
+      max-width: null,
+      font-size: $jnt-font-size-small,
+      color: $jnt-primary-text-light-color,
+      hover: (
+        color: $jnt-primary-color
+      ),
+      last: (
+        color: $jnt-primary-text-dark-color
+      ),
+    )
   );
 
   $vars: $passed;
@@ -31,7 +43,7 @@
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
 
-    @include for-mobile() {
+    @include max-for-tablet() {
       &[data-with-aside='true'] {
         @if $declare {
           min-height: $app-aside-burger-height;
@@ -44,41 +56,50 @@
 
   #{$context} #{$wrapper} a {
     @if $declare {
-      color: $jnt-primary-text-light-color;
-      font-size: 12px;
       text-decoration: none;
       user-select: none;
       white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
-      &:hover {
-        color: $jnt-primary-color;
-      }
-
-      &[data-disabled='true'] {
-        opacity: .5;
+      &[data-disabled='true'], &:last-of-type {
         pointer-events: none;
         cursor: default;
       }
+    }
 
-      &:last-of-type {
-        color: $jnt-primary-text-dark-color;
-        pointer-events: none;
-        cursor: default;
+    @if map-has-key($vars, breadcrumb) {
+      $breadcrumb: map-get($vars, breadcrumb);
+      max-width: map-get($breadcrumb, max-width);
+      font-size: map-get($breadcrumb, font-size);
+      color: map-get($breadcrumb, color);
+
+      @if map-has-key($breadcrumb, hover) {
+        $hover: map-get($breadcrumb, hover);
+        &:hover {
+          color: map-get($hover, color);
+        }
+      }
+
+      @if map-has-key($breadcrumb, last) {
+        $last: map-get($breadcrumb, last);
+        &:last-of-type {
+          color: map-get($last, color);
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-icon] {
     @if $declare {
-      @include jnt-icon((
-        color: $jnt-primary-text-light-color,
-        size: 8px
-      ), '&');
-
       &:last-child {
         display: none;
       }
     }
+    @include jnt-icon((
+      color: map-get($vars, color),
+      size: 8px
+    ), '&');
   }
 }
 

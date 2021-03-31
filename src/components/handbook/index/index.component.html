@@ -1,0 +1,52 @@
+<jnt-container>
+  <jnt-stack [align]="ui.align.stretch"
+             [gutter]="ui.gutter.huge">
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <jnt-card data-card [features]="[ui.feature.clickable]"
+                [width]="ui.width.fluid"
+                (selected)="router.navigate(['/handbook/home'], {relativeTo: route})">
+        <ng-template #cardTitleTemplate>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <jnt-icon [icon]="localUi.icons.home"></jnt-icon>
+            <span data-name i18n-title="@@label.home">Home</span>
+          </jnt-stack>
+        </ng-template>
+        <span>Home page teaser</span>
+      </jnt-card>
+      <jnt-card data-card [features]="[ui.feature.clickable]"
+                [width]="ui.width.fluid"
+                (selected)="router.navigate(['/handbook/theming'], {relativeTo: route})">
+        <ng-template #cardTitleTemplate>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <jnt-icon [icon]="localUi.icons.theming"></jnt-icon>
+            <span data-name i18n-title="@@label.theming">Theming</span>
+          </jnt-stack>
+        </ng-template>
+        <span>Theming page teaser</span>
+      </jnt-card>
+      <jnt-card data-card [features]="[ui.feature.clickable]"
+                [width]="ui.width.fluid"
+                (selected)="router.navigate(['/handbook/typography'], {relativeTo: route})">
+        <ng-template #cardTitleTemplate>
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <jnt-icon [icon]="localUi.icons.typography"></jnt-icon>
+            <span data-name i18n-title="@@label.typography">Typography</span>
+          </jnt-stack>
+        </ng-template>
+        <span>Typography page teaser</span>
+      </jnt-card>
+    </jnt-stack>
+    <ng-container *ngFor="let section of handbook | keyvalue: originalOrder">
+        <h2>
+          <span data-thumbnail>
+            <jnt-icon [icon]="section.value.icon"></jnt-icon>
+          </span>
+          <span>{{section.value.name}}</span>
+        </h2>
+      <app-section [section]="section.value"></app-section>
+    </ng-container>
+  </jnt-stack>
+</jnt-container>

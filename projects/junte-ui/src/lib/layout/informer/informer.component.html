@@ -6,8 +6,9 @@
       <div *ngFor="let m of messages">{{m.message}}</div>
     </jnt-stack>
 
-    <jnt-button [scheme]="ui.scheme.success"
-                (click)="ok.emit()" text="Ok"></jnt-button>
+    <jnt-button #okRef [scheme]="ui.scheme.success"
+                (click)="ok.emit()"
+                [text]="'action.ok' | translate"></jnt-button>
   </jnt-stack>
 </ng-template>
 

@@ -1,4 +1,3 @@
-<ng-content></ng-content>
 <div data-text [style.background-color]="(['primary', 'secondary'] | includes:color) ? null : color"
      [style.color]="color | textBrightness">
   {{!!text ? text : (overflow === null || overflow > value ? value : overflow + '+')}}

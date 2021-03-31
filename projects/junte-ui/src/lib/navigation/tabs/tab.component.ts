@@ -1,6 +1,5 @@
 import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
-import { Gutter } from '../../core/enums/gutter';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 
 @Component({
@@ -9,7 +8,6 @@ import { BadgeComponent } from '../../elements/badge/badge.component';
 })
 export class TabComponent {
 
-  private _padding: Gutter = Gutter.normal;
   state = {flash: false};
 
   @PropertyApi({
@@ -19,30 +17,17 @@ export class TabComponent {
   @Input() title: string;
 
   @PropertyApi({
+    description: 'Title template of tab',
+    type: 'TemplateRef<any>'
+  })
+  @Input()
+  titleTemplate: TemplateRef<any>;
+
+  @PropertyApi({
     description: 'Icon for tab',
     type: 'string'
   })
   @Input() icon: string;
-
-  @PropertyApi({
-    description: 'Padding in tab',
-    path: 'ui.gutter',
-    default: Gutter.normal,
-    options: [Gutter.none,
-      Gutter.tiny,
-      Gutter.small,
-      Gutter.normal,
-      Gutter.big,
-      Gutter.large,
-      Gutter.huge]
-  })
-  @Input() set padding(padding: Gutter) {
-    this._padding = padding || Gutter.normal;
-  }
-
-  get padding() {
-    return this._padding;
-  }
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;

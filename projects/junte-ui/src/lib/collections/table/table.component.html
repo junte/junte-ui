@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.none">
     <ng-container *jntMinFor="ui.breakpoint.desktop">
       <jnt-stack data-feature *ngIf="(features | includes : [ui.feature.reload, ui.feature.search]) || !!actionsTemplate"
@@ -178,4 +178,4 @@
       </ng-container>
     </jnt-stack>
   </jnt-stack>
-</form>
+</ng-container>

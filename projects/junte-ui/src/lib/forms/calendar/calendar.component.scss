@@ -12,8 +12,8 @@
     day: (
       padding: null,
       selected: (
-        background-color: $jnt-primary-light-color,
-        color: $jnt-white-color
+        background-color: null,
+        color: null
       )
     ),
     metrics: (
@@ -58,7 +58,6 @@
   #{$wrapper} #{$context} table {
     table-layout: map-get($vars, layout);
     @if $declare {
-      table-layout: auto;
       border-collapse: collapse;
       border-spacing: 0;
       width: 100%;
@@ -147,6 +146,10 @@
               box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
               inset 0px -1px 0px $jnt-secondary-dark-color;
 
+              &[data-selected-day='true'] {
+                box-shadow: inset 0 0 0 2px $jnt-primary-light-color;
+              }
+
               &:last-child {
                 box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
               }
@@ -179,23 +182,8 @@
 
         &[data-current-week='true'] {
           @if $declare {
-            [data-day], [data-metric], [data-divider] {
-              box-shadow: inset 0 2px 0 0 $jnt-primary-light-color,
-              inset 0 -2px 0 0 $jnt-primary-light-color !important;
-
-              &:first-child {
-                border-top-left-radius: $jnt-corner-small;
-                border-bottom-left-radius: $jnt-corner-small;
-                box-shadow: inset 1px 1px 0 1px $jnt-primary-light-color,
-                inset 1px -1px 0 1px $jnt-primary-light-color !important;
-              }
-
-              &:last-child {
-                border-top-right-radius: $jnt-corner-small;
-                border-bottom-right-radius: $jnt-corner-small;
-                box-shadow: inset -2px -2px 0 0 $jnt-primary-light-color,
-                inset 0 2px 0 0 $jnt-primary-light-color !important;
-              }
+            [data-day][data-today='false'], [data-metric] {
+              background-color: $jnt-secondary-dark-color !important;
             }
           }
         }
@@ -221,7 +209,7 @@
 
               &:nth-child(6),
               &:nth-child(7) {
-                background-color: $jnt-secondary-dark-color;
+                background-color: $jnt-secondary-color;
               }
 
               &[data-selected-day='false'][data-today='false']:hover,
@@ -232,7 +220,7 @@
               }
 
               &:focus {
-                box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
+                box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
                 outline: 0;
               }
 

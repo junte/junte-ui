@@ -19,8 +19,9 @@ class Breadcrumb {
   }
 }
 
+// TODO: Remove jnt-breadcrumb!
 @Component({
-  selector: 'jnt-breadcrumb',
+  selector: 'jnt-breadcrumb, jnt-breadcrumbs',
   templateUrl: './breadcrumbs.encapsulated.html'
 })
 
@@ -39,6 +40,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   @HostBinding('attr.data-with-aside')
   get withAside() {
     return !!this.aside;
+  }
+
+  @HostBinding('style.display') get display() {
+    return this.breadcrumbs.length > 0 ? 'block' : 'none';
   }
 
   @PropertyApi({
@@ -76,14 +81,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
           (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb])
             .filter(crumb => !!crumb)
             .forEach(crumb => {
-              switch(typeof crumb) {
+              switch (typeof crumb) {
                 case 'string': {
                   breadcrumbs.push(new Breadcrumb({route, title: crumb}));
                   break;
                 }
                 case 'object': {
                   const title = typeof crumb.label === 'string'
-                    ? crumb.label : crumb.label(route.snapshot.data);
+                    ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
@@ -95,14 +100,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                   break;
                 }
                 case 'function': {
-                  const title = crumb(route.snapshot.data);
+                  const title = crumb(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({route, title}));
                   }
                   break;
                 }
                 default:
-                  throw new Error('wrong breadcrump type');
+                  throw new Error(`wrong breadcrumb type: ${typeof crumb}`);
               }
             });
         }

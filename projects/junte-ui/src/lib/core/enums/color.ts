@@ -16,6 +16,7 @@ export enum Color {
   purpleDark = '#00227B',
   purpleLight = '#6F74DD',
   purpleLighten = '#C4C9E7',
+  magentaDark = '#933183',
   gray = '#C4C4C4',
   gray100 = '#F5F5F5',
   gray200 = '#F7F7F7',

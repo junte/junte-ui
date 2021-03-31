@@ -50,20 +50,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Output()
   removed = new EventEmitter();
 
-  @HostListener('mouseenter')
-  mouseEnter() {
-    if (this.options.trigger === Triggers.hover) {
-      this.show();
-    }
-  }
-
-  @HostListener('click')
-  click() {
-    if (this.options.trigger === Triggers.click) {
-      !this.instance ? this.show() : this.hide();
-    }
-  }
-
   constructor(private popover: PopoverService,
               private hostRef: ElementRef,
               private renderer: Renderer2,
@@ -97,6 +83,20 @@ export class PopoverDirective implements OnInit, OnDestroy {
       this.instance = null;
     }
     this.listeners.forEach(listener => listener());
+  }
+
+  @HostListener('mouseenter')
+  mouseEnter() {
+    if (this.options.trigger === Triggers.hover) {
+      this.show();
+    }
+  }
+
+  @HostListener('click')
+  click() {
+    if (this.options.trigger === Triggers.click) {
+      !this.instance ? this.show() : this.hide();
+    }
   }
 
   private picked(elements: HTMLElement[]) {

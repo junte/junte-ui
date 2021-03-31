@@ -20,11 +20,15 @@
 
     <ng-template #inputTemplate>
       <textarea *ngIf="features | includes: ui.feature.multiline; else singleLineTemplate"
+                #valueRef
                 formControlName="input"
+                [name]="name"
                 [placeholder]="placeholder"
                 [attr.rows]="rows"
+                [readonly]="readonly ? readonly : null"
                 (focusin)="focused = true"
-                (focusout)="focused = false">
+                (focusout)="focused = false"
+                (keyup)="keyup()">
       </textarea>
       <ng-template #singleLineTemplate>
         <input #valueRef
@@ -56,20 +60,30 @@
     </div>
 
     <button data-view *ngIf="type === ui.input.type.password"
+            type="button"
             (click)="view.password.display = !view.password.display" tabindex="-1">
       <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
     </button>
 
+    <button data-copy *ngIf="features | includes: ui.feature.copy" tabindex="-1"
+            ngxClipboard
+            type="button"
+            [cbContent]="inputControl.value || formattedControl.value"
+            (cbOnSuccess)="copy()">
+      <jnt-icon [icon]="copied ? ui.icons.animated.success : ui.icons.copy"></jnt-icon>
+    </button>
+
     <button data-reset *ngIf="features | includes: ui.feature.allowEmpty" tabindex="-1"
+            type="button"
             (click)="clear($event)">
       <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>
     </button>
 
     <div data-arrows *ngIf="type === ui.input.type.number">
-      <button [disabled]="inputControl.disabled" (click)="setNumber(step || 1)" tabindex="-1">
+      <button type="button" [disabled]="inputControl.disabled" (click)="setNumber(step || 1)" tabindex="-1">
         <jnt-icon [icon]="ui.icons.smallUp"></jnt-icon>
       </button>
-      <button [disabled]="inputControl.disabled" (click)="setNumber(-step || -1)" tabindex="-1">
+      <button type="button" [disabled]="inputControl.disabled" (click)="setNumber(-step || -1)" tabindex="-1">
         <jnt-icon [icon]="ui.icons.smallDown"></jnt-icon>
       </button>
     </div>

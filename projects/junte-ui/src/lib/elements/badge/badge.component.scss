@@ -3,10 +3,11 @@
 @import 'jnt-hosts';
 
 @mixin badge-position($position, $wrapper) {
-  #{$wrapper} [data-text] {
+  & {
     position: map-get($position, position);
     left: map-get($position, left);
     right: map-get($position, right);
+    top: map-get($position, top);
     transform: map-get($position, transform);
   }
 }
@@ -23,11 +24,13 @@
       rightTop: (
         position: absolute,
         right: 0,
+        top: 0,
         transform: translate(50%, -50%)
       ),
       leftTop: (
         position: absolute,
         left: 0,
+        top: 0,
         transform: translate(-50%, -50%)
       ),
       inline: (
@@ -52,7 +55,6 @@
   #{if($context, $context, $jnt-badge-host)} {
     @if $declare {
       display: inline-flex;
-      position: relative;
       text-align: center;
     }
 
@@ -75,7 +77,6 @@
 
   #{$wrapper} #{$context} [data-text] {
     @if $declare {
-      top: 0;
       display: inline-block;
       text-align: center;
       padding: 0 3px;

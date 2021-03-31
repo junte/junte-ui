@@ -8,7 +8,12 @@ $accordion-marker-height: 2px;
 
 @mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: ();
+  $defs: (
+    background: $jnt-primary-background,
+    padding: $jnt-gutter-normal,
+    corner: $jnt-corner-normal,
+    border: 1px solid $jnt-page-background
+  );
 
   $vars: $passed;
   $declare: false;
@@ -27,27 +32,31 @@ $accordion-marker-height: 2px;
     @if $declare {
       @include reset-default();
       display: block;
-      background-color: $jnt-primary-background;
-      padding: $jnt-gutter-normal;
-      border-radius: $jnt-corner-normal;
-      border: 1px solid $jnt-page-background;
     }
+
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
   }
 
   #{$context} #{$wrapper} [data-title] {
     @if $declare {
       border-bottom: $accordion-marker-height solid $jnt-secondary-color;
       padding: ($jnt-gutter-small + $accordion-marker-height) 0;
-      color: $jnt-primary-text-color;
-      display: flex;
-      align-items: center;
       cursor: pointer;
-      line-height: 1.6;
       user-select: none;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: inherit;
+
+      [data-chevron] {
+        @include jnt-icon((size: 24px), '&');
+        margin-right: $jnt-gutter-small;
+      }
 
       &[active='true'] {
-        color: $jnt-primary-light-color;
         border-color: $jnt-primary-light-color;
 
         [data-chevron] {
@@ -57,18 +66,31 @@ $accordion-marker-height: 2px;
 
       &:hover {
         &[active='false'] {
-          color: $jnt-primary-light-color;
-
           [data-chevron] {
             @include jnt-icon((color: $jnt-primary-light-color), '&');
           }
         }
       }
-    }
 
-    span {
-      @if $declare {
-        margin: 0 $jnt-gutter-tiny;
+      &[data-with-template='false'] {
+        color: $jnt-primary-text-color;
+        line-height: 1.6;
+
+        &[active='true'] {
+          color: $jnt-primary-light-color;
+        }
+
+        &:hover {
+          &[active='false'] {
+            color: $jnt-primary-light-color;
+          }
+        }
+
+        span {
+          @if $declare {
+            margin: 0 $jnt-gutter-tiny;
+          }
+        }
       }
     }
 
@@ -78,11 +100,7 @@ $accordion-marker-height: 2px;
         line-height: 1;
 
         [data-warning] {
-          @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
-        }
-
-        [data-chevron] {
-          @include jnt-icon((size: $jnt-font-size-tiny), '&');
+          @include jnt-icon((color: $jnt-fail-color, size: 24px), '&');
         }
       }
     }

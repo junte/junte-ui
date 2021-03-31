@@ -11,6 +11,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { JunteUIConfig } from '../../config';
 import { MethodApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
@@ -36,10 +37,10 @@ export class ModalOptions {
   maxWidth = '800';
   maxHeight = '600';
   hold = false;
+  closeOutside = true;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
-  animation = true;
 
   constructor(defs: Partial<ModalOptions> = null) {
     Object.assign(this, defs);
@@ -139,7 +140,8 @@ export class ModalComponent implements OnInit {
               private breakpoint: BreakpointService,
               public device: DeviceService,
               private renderer: Renderer2,
-              private hostRef: ElementRef) {
+              private hostRef: ElementRef,
+              private config: JunteUIConfig) {
   }
 
   @HostBinding('attr.data-windows')
@@ -181,7 +183,7 @@ export class ModalComponent implements OnInit {
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
-      if (!this.mobile && this.options.animation) {
+      if (!this.mobile && this.config.modal.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -194,7 +196,7 @@ export class ModalComponent implements OnInit {
     this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
       this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
-      if (!this.mobile && this.options.animation) {
+      if (!this.mobile && this.config.modal.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -202,7 +204,9 @@ export class ModalComponent implements OnInit {
     this.hostRef.nativeElement.scrollTop = 0;
     setTimeout(() => {
       this.content = null;
-      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      if (!!this.backdrop) {
+        this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      }
     }, ANIMATION_CLOSE_DURATION);
   }
 }

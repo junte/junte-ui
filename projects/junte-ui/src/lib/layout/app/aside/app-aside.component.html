@@ -1,13 +1,13 @@
 <div data-drawer [attr.data-collapsed]="collapsed
-  && breakpoint.current !== ui.breakpoint.mobile">
-  <jnt-button *jntFor="ui.breakpoint.mobile"
+  && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet">
+  <jnt-button *jntMaxFor="ui.breakpoint.tablet"
               [scheme]="ui.scheme.secondary"
               [icon]="ui.icons.menu"
               (click)="toggle()" data-burger>
   </jnt-button>
 
   <div data-scroll [attr.data-windows]="device.platform.windows">
-    <button (click)="collapsed = !collapsed">
+    <button type="button" (click)="collapsed = !collapsed">
       <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
         <jnt-icon data-icon [icon]="collapsed ? ui.icons.doubleChevronRight: ui.icons.doubleChevronLeft"></jnt-icon>
         <span *ngIf="!collapsed">{{'action.hide_sidebar' | translate}}</span>
@@ -17,7 +17,7 @@
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate;
         context: {
-          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile,
+          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet,
           toggle: toggle.bind(this)
         }">
         </ng-container>
@@ -25,7 +25,7 @@
       <jnt-menu data-menu *ngIf="!!menu"
                 context="popover-aside-sub-menu"
                 [orientation]="ui.orientation.vertical"
-                [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile"
+                [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet"
                 [placement]="ui.placement.fixed"
                 [spacing]="menu.spacing"
                 (selected)="toggle()">

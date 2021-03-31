@@ -105,6 +105,7 @@ export class LocalUI {
       shortcut: 'shortcut:svg:layout:stroked',
       slider: 'slider:svg:layout:stroked',
       animations: 'animations:svg:layout:stroked',
+      empty: 'empty:svg:layout:stroked',
     // layout
      padding: {
        tiny: 'padding-tiny:svg:layout:stroked',
@@ -143,6 +144,7 @@ export class LocalUI {
       secondary: 'secondary:svg:layout:stroked',
       success: 'success:svg:layout:stroked',
       fail: 'fail:svg:layout:stroked',
+      accent: 'accent:svg:layout:stroked',
 
     // outline
       fill: 'fill:svg:layout:stroked',

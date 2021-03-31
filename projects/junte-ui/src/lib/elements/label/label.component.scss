@@ -18,7 +18,7 @@
     corner: $jnt-corner-small,
     background: $jnt-primary-color,
     font-size: inherit,
-    border: 1px solid,
+    border: 1px solid $jnt-primary-color,
     color: null,
     dot: (
       size: 10px
@@ -67,8 +67,8 @@
     background: map-get($vars, background);
 
     &[data-color='secondary'] {
-      background: $jnt-secondary-color;
-      border-color: $jnt-secondary-color;
+      background: $jnt-secondary-color !important;
+      border-color: $jnt-secondary-color !important;
     }
 
     @if map-has-key($vars, sizes) {

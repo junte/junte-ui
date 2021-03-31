@@ -1,0 +1,447 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.card"
+                       title="Card"
+                       i18n-title="@@label.card"
+                       [teaser]="handbook.layout.components.card.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-stack [align]="ui.align.stretch">
+    <div teaser>
+      <p></p>
+    </div>
+  </jnt-stack>
+
+  <jnt-tabs [features]="[ui.feature.adapted]" (changed)="selected($event)">
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document let-height="height">
+                <jnt-card data-card
+                          title="Captain America"
+                          i18n-title="@@label.captain_america"
+                          [color]="colorControl.value"
+                          [width]="widthControl.value"
+                          [padding]="paddingControl.value"
+                          [state]="stateControl.value"
+                          [icon]="iconControl.value ? ui.icons.menu : null"
+                          [picture]="pictureControl.value === type.template ? {
+                            url: null, template: cardPictureTemplate,
+                            position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left
+                          } : pictureControl.value === type.url ? {
+                            url: 'assets/images/heroes/captain.jpg',
+                            position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left
+                          } : null"
+                          [features]="[
+                            clickableControl.value ? ui.feature.clickable : null,
+                            adaptedControl.value ? ui.feature.adapted : null
+                          ]">
+                  <jnt-stack data-content [orientation]="ui.orientation.horizontal">
+                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                  </jnt-stack>
+                  <ng-template *ngIf="headerControl.value" #cardHeaderTemplate>
+                    <jnt-stack data-header [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <span>{{today | date:'yyyy-MM-dd'}}</span>
+                    </jnt-stack>
+                  </ng-template>
+                  <ng-template *ngIf="titleControl.value" #cardTitleTemplate>
+                    <jnt-stack data-title [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [align]="ui.align.center">
+                      <jnt-avatar [image]="heroes.captain.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                      <span i18n="{{heroes.captain.name}}">{{heroes.captain.name}}</span>
+                    </jnt-stack>
+                  </ng-template>
+                  <ng-template #cardPictureTemplate>
+                    <jnt-avatar image="assets/images/heroes/captain.jpg"></jnt-avatar>
+                  </ng-template>
+                  <ng-template *ngIf="footerControl.value" #cardFooterTemplate>
+                    <jnt-stack data-title [orientation]="ui.orientation.horizontal"
+                               [gutter]="ui.gutter.small"
+                               [justify]="ui.justify.between"
+                               [align]="ui.align.center">
+                      <jnt-stack [orientation]="ui.orientation.horizontal"
+                                 [align]="ui.align.center">
+                        <jnt-avatar [size]="ui.size.tiny"></jnt-avatar>
+                        <span data-followers>89 followers</span>
+                      </jnt-stack>
+                      <jnt-label label="{{heroes.captain.likes}} likes" [color]="ui.color.green"></jnt-label>
+                    </jnt-stack>
+                  </ng-template>
+                  <ng-template *ngIf="actionsControl.value" #cardActionsTemplate let-hide="hide">
+                    <jnt-menu [orientation]="ui.orientation.vertical">
+                      <jnt-menu-item title="Edit"
+                                     i18n-title="@@label.edit"
+                                     (click)="hide()"></jnt-menu-item>
+                      <jnt-menu-item title="Copy"
+                                     i18n-title="@@label.copy"
+                                     (click)="hide()"></jnt-menu-item>
+                    </jnt-menu>
+                  </ng-template>
+                </jnt-card>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="padding"
+                                  i18n="@@label.padding">Padding
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="padding"
+                                placeholder="Normal"
+                                i18n-placeholder="@@label.normal"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="None"
+                                         i18n-label="@@label.none"
+                                         [key]="ui.gutter.none"></jnt-select-option>
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.padding.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.padding.small"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.padding.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.padding.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.padding.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.padding.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="width"
+                                  i18n="@@label.width">Width
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="width"
+                                placeholder="Default"
+                                i18n-primary="@@label.default"
+                                [features]="[ui.feature.allowEmpty]">
+                    <jnt-switcher-option label="Default"
+                                         i18n-label="@@label.default"
+                                         [icon]="localUi.icons.default"
+                                         [value]="ui.width.default"></jnt-switcher-option>
+                    <jnt-switcher-option label="Fluid"
+                                         i18n-label="@@label.fluid"
+                                         [icon]="localUi.icons.fluid"
+                                         [value]="ui.width.fluid"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="state"
+                                  i18n="@@label.states">States
+                  </jnt-form-label>
+                  <jnt-switcher formControlName="state"
+                                [features]="[ui.feature.allowEmpty]">
+                    <jnt-switcher-option label="Loading"
+                                         i18n-label="@@label.loading"
+                                         [icon]="ui.icons.animated.spinner"
+                                         [value]="ui.state.loading"></jnt-switcher-option>
+                    <jnt-switcher-option label="Error"
+                                         i18n-label="@@label.error"
+                                         [icon]="ui.icons.warning"
+                                         [value]="ui.state.error"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="color">Indicator color</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-color-picker formControlName="color"></jnt-color-picker>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.features">Features</jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="12">
+                      <jnt-checkbox formControlName="title"
+                                    label="Title template"
+                                    i18n-label="@@label.title"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="header"
+                                    label="Header"
+                                    i18n-label="@@label.header"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="footer"
+                                    label="Footer"
+                                    i18n-label="@@label.footer"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="clickable"
+                                    i18n-label="@@label.clickable"
+                                    label="Clickable"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="adapted"
+                                    i18n-label="@@label.adapted"
+                                    label="Adapted"></jnt-checkbox>
+                    </jnt-col>
+
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="icon"
+                                    i18n-label="@@label.icon"
+                                    label="Icon"></jnt-checkbox>
+                    </jnt-col>
+
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="actions"
+                                    i18n-label="@@label.actions"
+                                    label="Actions"></jnt-checkbox>
+                    </jnt-col>
+
+                    <!--                    <jnt-col [span]="6">-->
+                    <!--                      <jnt-checkbox formControlName="picture"-->
+                    <!--                                    label="Picture"></jnt-checkbox>-->
+                    <!--                    </jnt-col>-->
+
+                    <jnt-col [span]="12">
+                      <jnt-form-item>
+                        <jnt-form-label for="picture" i18n="@@label.picture">Picture
+                        </jnt-form-label>
+                        <jnt-switcher formControlName="picture"
+                                      placeholder="url"
+                                      i18n-placeholder="@@label.url"
+                                      [features]="[ui.feature.allowEmpty]">
+                          <jnt-switcher-option label="Url"
+                                               i18n-label="@@label.url"
+                                               value="url"
+                                               [icon]="localUi.icons.component"></jnt-switcher-option>
+                          <jnt-switcher-option label="Template"
+                                               i18n-label="@@label.template"
+                                               value="template"
+                                               [icon]="localUi.icons.template"></jnt-switcher-option>
+                        </jnt-switcher>
+                      </jnt-form-item>
+                    </jnt-col>
+
+                    <jnt-col [span]="12">
+                      <jnt-form-item>
+                        <jnt-form-label for="position" i18n="@@label.position">Picture position
+                        </jnt-form-label>
+                        <jnt-switcher formControlName="position"
+                                      placeholder="Left"
+                                      i18n-placeholder="@@label.left"
+                                      [features]="[ui.feature.allowEmpty]">
+                          <jnt-switcher-option label="Left"
+                                               i18n-label="@@label.left"
+                                               [icon]="localUi.icons.start"
+                                               [value]="ui.position.left"></jnt-switcher-option>
+                          <jnt-switcher-option label="Right"
+                                               i18n-label="@@label.right"
+                                               [icon]="localUi.icons.end"
+                                               [value]="ui.position.right"></jnt-switcher-option>
+                        </jnt-switcher>
+                      </jnt-form-item>
+                    </jnt-col>
+
+                  </jnt-row>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'card-test', type: 'CardTestComponent'}"
+                scss="layout/card"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="card-test.template.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-card
+                  ]]>
+                  <ng-container *ngIf="!titleControl.value">
+                    title="Card title"
+                  </ng-container>
+                  <ng-container *ngIf="paddingControl.value">
+                    <![CDATA[
+                    [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="widthControl.value">
+                    <![CDATA[
+                    [width]="ui.width.]]>{{widthControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="stateControl.value">
+                    <![CDATA[
+                    [state]="ui.state.]]>{{stateControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="adaptedControl.value && clickableControl.value; else only">
+                    <![CDATA[
+                    [features]="[ui.feature.adapted, ui.feature.clickable]"]]>
+                  </ng-container>
+                  <ng-template #only>
+                    <ng-container *ngIf="clickableControl.value">
+                      <![CDATA[
+                      [features]="[ui.feature.clickable]"]]>
+                    </ng-container>
+                    <ng-container *ngIf="adaptedControl.value">
+                      <![CDATA[
+                      [features]="[ui.feature.adapted]"]]>
+                    </ng-container>
+                  </ng-template>
+                  <ng-container *ngIf="iconControl.value">
+                    <![CDATA[
+                    [icon]="ui.icons.menu"]]>
+                  </ng-container>
+                  <ng-container *ngIf="colorControl.value">
+                    <![CDATA[
+                    color="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.url && !positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.template && !positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{template: cardPictureTemplate, width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.url && !!positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{url: 'assets/images/steve.jpeg', position: ]]>{{
+                    positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}
+                    <![CDATA[, width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.template && !!positionControl.value">
+                    <![CDATA[
+                    [picture]="]]><![CDATA[{template: cardPictureTemplate, position: ]]>{{
+                    positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}
+                    <![CDATA[, width: 70, height: 70}]]><![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="titleControl.value">
+                    <![CDATA[
+                    <ng-template #cardTitleTemplate>
+                      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+                        <jnt-icon [icon]="ui.icons.edit"></jnt-icon>
+                        <span>Edit card</span>
+                      </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="footerControl.value">
+                    <![CDATA[
+                    <ng-template #cardFooterTemplate>
+                      Card footer
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="actionsControl.value">
+                    <![CDATA[
+                    <ng-template #cardActionsTemplate let-hide="hide">
+                      <jnt-menu [orientation]="ui.orientation.vertical">
+                        <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
+                        <jnt-menu-item title="Copy" (click)="hide()"></jnt-menu-item>
+                      </jnt-menu>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="pictureControl.value === type.template">
+                    <![CDATA[
+                    <ng-template #cardPictureTemplate>
+                      <jnt-avatar image="assets/images/elon.jpeg"></jnt-avatar>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <ng-container *ngIf="headerControl.value">
+                    <![CDATA[
+                    <ng-template #cardHeaderTemplate>
+                      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+                        <jnt-icon [icon]="ui.icons.dashboard"></jnt-icon>
+                        <span>Card header</span>
+                      </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                  <jnt-stack [orientation]="ui.orientation.horizontal">
+                    <jnt-skeleton [type]="ui.skeleton.type.image" [animated]="false"></jnt-skeleton>
+                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                  </jnt-stack>
+                </jnt-card>
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-card"
+                           [target]="types.card"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #examples title="Examples"
+             i18n-title="@@label.examples"
+             [icon]="ui.icons.stackblitz">
+      <ng-template #tabContentTemplate>
+        <div #example></div>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
+
+</jnt-container>

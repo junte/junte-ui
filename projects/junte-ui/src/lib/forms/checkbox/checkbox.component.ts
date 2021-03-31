@@ -1,20 +1,18 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import {
-  Component,
-  ContentChild,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit,
-  TemplateRef
-} from '@angular/core';
+import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
+import { FlexAlign } from '../../core/enums/flex';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+
+enum AnimationState {
+  default = 'default',
+  checked = 'checked',
+  unchecked = 'unchecked'
+}
 
 @Component({
   selector: 'jnt-checkbox',
@@ -29,6 +27,7 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
   ],
   animations: [
     trigger('scale', [
+      transition(`* => ${AnimationState.default}`, []),
         transition(':enter', [
           style({transform: 'scale(0)'}),
           animate('.3s', style({transform: 'scale(1)'})),
@@ -44,12 +43,15 @@ import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ui = UI;
+  animate = AnimationState.default;
 
   @HostBinding('attr.host')
   readonly host = 'jnt-checkbox-host';
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  _align: FlexAlign = FlexAlign.center;
 
   @PropertyApi({
     description: 'Label name for checkbox',
@@ -79,6 +81,25 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   }
 
   @PropertyApi({
+    description: 'Align by vertical for checkbox',
+    path: 'ui.align',
+    options: [
+      FlexAlign.center,
+      FlexAlign.start,
+      FlexAlign.end
+    ],
+    default: FlexAlign.center
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align || FlexAlign.center;
+  }
+
+  get align() {
+    return this._align;
+  }
+
+  @PropertyApi({
     description: 'Value for checkbox',
     type: 'any'
   })
@@ -102,7 +123,10 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {
     this.checkboxControl.valueChanges
-      .subscribe(value => this.onChange(value));
+      .subscribe(checked => {
+        this.animate = checked ? AnimationState.checked : AnimationState.unchecked;
+        this.onChange(checked);
+      });
   }
 
   writeValue(value: boolean) {

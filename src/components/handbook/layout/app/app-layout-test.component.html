@@ -1,0 +1,490 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.layout"
+                       title="Application"
+                       i18n-title="@@label.application"
+                       [teaser]="handbook.layout.components.application.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-stack [align]="ui.align.stretch">
+
+    <div teaser>
+      <p [ngSwitch]="locale">
+        <ng-container *ngSwitchDefault>
+          Each WEB application requires base components for working:
+          logo, main menu, user bar, side menu, breadcrumbs, footer, etc.
+        </ng-container>
+        <ng-container *ngSwitchCase="language.ru">
+          Каждое WEB-приложение требует для работы базовых компонентов:
+          логотип, главное меню, панель пользователя, боковое меню, хлебные крошки, нижний колонтитул и т. д.
+        </ng-container>
+      </p>
+    </div>
+
+    <jnt-tabs [features]="[ui.feature.adapted]">
+
+      <jnt-tab title="Preview"
+               i18n-title="@@label.preview"
+               [icon]="localUi.icons.preview">
+        <ng-template #tabContentTemplate>
+          <jnt-stack>
+            <jnt-form [formGroup]="builder">
+
+              <jnt-form-item>
+                <jnt-form-label i18n="@@label.features">Features
+                </jnt-form-label>
+                <jnt-row>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="busyness"
+                                  label="Busyness"
+                                  i18n-label="@@label.busyness"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="header"
+                                  label="Header"
+                                  i18n-label="@@label.header"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="logo"
+                                  label="Logo"
+                                  i18n-label="@@label.logo"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="menu"
+                                  label="Menu"
+                                  i18n-label="@@label.menu"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="action"
+                                  label="Actions"
+                                  i18n-label="@@label.action"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="userMenu"
+                                  label="User bar"
+                                  i18n-label="@@label.userMenu"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="aside"
+                                  label="Aside"
+                                  i18n-label="@@label.aside"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="footer"
+                                  label="Footer"
+                                  i18n-label="@@label.footer"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="pageHeader"
+                                  label="Page header"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [span]="4">
+                    <jnt-checkbox formControlName="breadcrumbs"
+                                  label="Breadcrumbs"></jnt-checkbox>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-form-item>
+            </jnt-form>
+
+            <app-browser-preview preview>
+              <ng-template #document let-height="height">
+                <jnt-app-layout>
+                  <jnt-app-busyness *ngIf="busynessControl.value" data-busyness></jnt-app-busyness>
+                  <jnt-app-header *ngIf="headerControl.value">
+                    <ng-template #headerLogoTemplate *ngIf="logoControl.value">
+                      <img height="30"
+                           [src]="breakpoint.current === ui.breakpoint.mobile ? 'assets/images/linkedin-logo-small.svg' : 'assets/images/linkedin-logo.svg'">
+                    </ng-template>
+
+                    <jnt-menu #headerTopMenu *ngIf="menuControl.value">
+                      <jnt-menu-item title="Home"
+                                     i18n-title="@@label.home"
+                                     [icon]="ui.icons.home"></jnt-menu-item>
+                      <jnt-menu-item title="My network"
+                                     i18n-title="@@label.my_network"
+                                     [icon]="localUi.icons.network"></jnt-menu-item>
+                      <jnt-menu-item title="Jobs"
+                                     i18n-title="@@label.jobs"
+                                     [icon]="localUi.icons.jobs"></jnt-menu-item>
+                      <jnt-menu-item title="Messages"
+                                     i18n-title="@@label.messages"
+                                     [icon]="ui.icons.messages"></jnt-menu-item>
+                    </jnt-menu>
+
+                    <ng-template #headerActionsTemplate *ngIf="actionControl.value">
+                      <jnt-app-header-actions actions>
+                        <jnt-app-header-action>
+                          <ng-template #actionLabelTemplate>
+                            <jnt-icon [icon]="ui.icons.animated.bell"></jnt-icon>
+                          </ng-template>
+                          <ng-template #actionContentTemplate>
+                            <jnt-stack>
+                              <p>You have 5 new messages</p>
+                              <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                            </jnt-stack>
+                          </ng-template>
+                        </jnt-app-header-action>
+                        <jnt-app-header-action>
+                          <ng-template #actionLabelTemplate>
+                            <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
+                          </ng-template>
+                          <ng-template #actionContentTemplate>
+                            <jnt-stack [align]="ui.align.stretch">
+                              <p>Your personal events calendar</p>
+                              <jnt-calendar></jnt-calendar>
+                            </jnt-stack>
+                          </ng-template>
+                        </jnt-app-header-action>
+                      </jnt-app-header-actions>
+                    </ng-template>
+
+                    <ng-template #headerUserbarTemplate *ngIf="userMenuControl.value" let-hide="hide">
+                      <jnt-app-header-userbar [context]="{header: {hide: hide}}">
+                        <span data-name>Elon Musk</span>
+                        <ng-template #userbarAvatarTemplate>
+                          <jnt-avatar [size]="ui.size.small"
+                                      image="assets/images/elon.jpeg"></jnt-avatar>
+                        </ng-template>
+                        <ng-template #userbarMenuTemplate let-hide="hide">
+                          <jnt-menu data-usermenu
+                                    [orientation]="ui.orientation.vertical"
+                                    (selected)="hide()">
+                            <jnt-menu-item title="Profile"
+                                           i18n-title="@@label.profile"
+                                           [link]="['/components/layout/stack']"
+                                           [icon]="ui.icons.profile"></jnt-menu-item>
+                            <jnt-menu-item title="Settings"
+                                           i18n-title="@@label.settings"
+                                           [link]="['/components/layout/application']"
+                                           [icon]="ui.icons.animated.settings"></jnt-menu-item>
+                            <jnt-menu-item title="Logout"
+                                           i18n-title="@@label.logout"
+                                           [link]="['/components/layout/grid']"
+                                           [icon]="ui.icons.home"></jnt-menu-item>
+                          </jnt-menu>
+                        </ng-template>
+                      </jnt-app-header-userbar>
+                    </ng-template>
+                  </jnt-app-header>
+
+                  <ng-template #withoutAsideTemplate let-aside="aside">
+                    <jnt-app-content [aside]="aside">
+                      <jnt-app-body>
+                        <jnt-breadcrumb *ngIf="breadcrumbsControl.value" [aside]="aside"></jnt-breadcrumb>
+                        <jnt-container>
+                          <jnt-app-page-header *ngIf="pageHeaderControl.value"
+                                               [icon]="localUi.icons.layout"
+                                               title="Junte UI"
+                                               teaser="Angular UI framework"
+                                               i18n-title="@@label.application"></jnt-app-page-header>
+                          <jnt-block [width]="ui.width.fluid">
+                            <jnt-skeleton [lines]="8" [animated]="false"></jnt-skeleton>
+                          </jnt-block>
+                        </jnt-container>
+                      </jnt-app-body>
+                      <jnt-app-footer *ngIf="footerControl.value">
+                        <p>
+                          <small>No any rights are not reserved! 2099 &copy;</small>
+                        </p>
+                      </jnt-app-footer>
+                    </jnt-app-content>
+                  </ng-template>
+
+                  <ng-container *ngIf="asideControl.value; else withoutAsideTemplate">
+                    <jnt-app-aside #aside>
+                      <ng-template let-collapsed="collapsed" #asideContentTemplate>
+                        <div data-aside>
+                          <jnt-stack [align]="ui.align.center">
+                            <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
+                                        [image]="'assets/images/elon.jpeg'"></jnt-avatar>
+                            <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
+                                       [align]="ui.align.center">
+                              <div>Elon Musk</div>
+                              <jnt-label label="CEO of SpaceX"
+                                         [color]="ui.color.paleNavy"></jnt-label>
+                            </jnt-stack>
+                          </jnt-stack>
+                        </div>
+                      </ng-template>
+
+                      <jnt-menu [orientation]="ui.orientation.vertical"
+                                [spacing]="ui.size.small">
+                        <jnt-menu-item title="General"
+                                       i18n-title="@@label.general"
+                                       [icon]="localUi.icons.general">
+                          <jnt-sub-menu>
+                            <jnt-sub-menu-item title="About"
+                                               i18n-title="@@label.about"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="Education"
+                                               i18n-title="@@label.education"
+                                           [icon]="ui.icons.knowledge"></jnt-sub-menu-item>
+                          </jnt-sub-menu>
+                        </jnt-menu-item>
+
+                        <jnt-menu-item title="Profession"
+                                       i18n-title="@@label.profession"
+                                       [icon]="localUi.icons.certificate">
+                          <jnt-sub-menu>
+                            <jnt-sub-menu-item title="Skills"
+                                               i18n-title="@@label.skills"
+                                           [icon]="ui.icons.skull"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="Experience"
+                                               i18n-title="@@label.experience"></jnt-sub-menu-item>
+                            <jnt-sub-menu-item title="Certificates"
+                                               i18n-title="@@label.certificates"></jnt-sub-menu-item>
+                          </jnt-sub-menu>
+                        </jnt-menu-item>
+                      </jnt-menu>
+                    </jnt-app-aside>
+                    <ng-container *ngTemplateOutlet="withoutAsideTemplate;context: {aside: aside}"></ng-container>
+                  </ng-container>
+
+                </jnt-app-layout>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab #code title="Code"
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
+        <ng-template #tabContentTemplate>
+          <jnt-accordion [active]="1">
+            <jnt-accordion-section title="How to start"
+                                   i18n-title="@@label.how_to_start">
+              <ng-template #accordionContentTemplate>
+                <app-how-to-use
+                  [test]="{selector:'layout-test', type: 'AppLayoutTestComponent'}"
+                  scss="layout/app"></app-how-to-use>
+              </ng-template>
+            </jnt-accordion-section>
+            <jnt-accordion-section title="Component template"
+                                   i18n-title="@@label.component_template">
+              <ng-template #accordionContentTemplate>
+                <app-code-highlight file="app-layout-test.template.html">
+                  <![CDATA[
+                  <jnt-app-layout [position]="ui.placement.fixed">
+                    ]]>
+                    <ng-container *ngIf="busynessControl.value">
+                      <![CDATA[
+                      <jnt-app-busyness></jnt-app-busyness>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="headerControl.value">
+                      <![CDATA[
+                      <jnt-app-header>]]>
+                        <ng-container *ngIf="logoControl.value">
+                          <![CDATA[
+                          <ng-template #headerLogoTemplate>
+                            <img>
+                          </ng-template>
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngIf="menuControl.value">
+                          <![CDATA[
+                          <jnt-menu #headerTopMenu>
+                            <jnt-menu-item [icon]="ui.icons.home"
+                                           title="Home"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="My network"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="Jobs"></jnt-menu-item>
+                            <jnt-menu-item
+                              title="Messages"></jnt-menu-item>
+                          </jnt-menu>
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngIf="actionControl.value">
+                          <![CDATA[
+                          <ng-template #headerActionsTemplate>
+                            <jnt-app-header-actions>
+                              <jnt-app-header-action>
+                                <ng-template #actionLabelTemplate>
+                                  <jnt-icon [icon]="ui.icons.animated.bell"></jnt-icon>
+                                </ng-template>
+                                <ng-template #actionContentTemplate>
+                                  <jnt-stack>
+                                    <p>You have 5 new messages</p>
+                                    <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
+                                  </jnt-stack>
+                                </ng-template>
+                              </jnt-app-header-action>
+                              <jnt-app-header-action>
+                                <ng-template #actionLabelTemplate>
+                                  <jnt-icon [icon]="ui.icons.calendar"></jnt-icon>
+                                </ng-template>
+                                <ng-template #actionContentTemplate>
+                                  <jnt-stack>
+                                    <p>Your personal events calendar</p>
+                                    <jnt-calendar></jnt-calendar>
+                                  </jnt-stack>
+                                </ng-template>
+                              </jnt-app-header-action>
+                            </jnt-app-header-actions>
+                          </ng-template>
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngIf="userMenuControl.value">
+                          <![CDATA[
+                          <ng-template #headerUserbarTemplate let-hide="hide">
+                            <jnt-app-header-userbar [context]="{header: {hide: hide}}">
+                              <ng-template #userbarAvatarTemplate>
+                                <jnt-avatar [size]="ui.size.small"></jnt-avatar>
+                              </ng-template>
+                              <ng-template #userbarMenuTemplate let-hide="hide">
+                                <jnt-menu [orientation]="ui.orientation.vertical"
+                                          [spacing]="ui.gutter.small"
+                                          (selected)="hide()">
+                                  <jnt-menu-item title="Profile"
+                                                 [icon]="ui.icons.profile"
+                                                 [link]="['/profile']"></jnt-menu-item>
+                                  <jnt-menu-item title="Settings"
+                                                 [icon]="ui.icons.animated.settings"
+                                                 [link]="['/settings']"></jnt-menu-item>
+                                  <jnt-menu-item title="Logout"
+                                                 [icon]="ui.icons.home"
+                                                 [link]="['/logout']"></jnt-menu-item>
+                                </jnt-menu>
+                              </ng-template>
+                            </jnt-app-header-userbar>
+                          </ng-template>
+                          ]]>
+                        </ng-container>
+                        <![CDATA[
+                      </jnt-app-header>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="asideControl.value">
+                      <![CDATA[
+                      <jnt-app-aside #aside>
+                        <ng-template let-collapsed="collapsed" #asideContentTemplate>
+                          <jnt-stack [align]="ui.align.stretch">
+                            <jnt-stack [align]="ui.align.center">
+                              <jnt-avatar [size]="collapsed ? ui.size.small : ui.size.large"
+                              ></jnt-avatar>
+                              <jnt-stack *ngIf="!collapsed" [gutter]="ui.gutter.tiny"
+                                         [align]="ui.align.center">
+                                <div>Elon Musk</div>
+                                <jnt-label label="CEO of SpaceX"
+                                           [color]="ui.color.paleNavy"></jnt-label>
+                              </jnt-stack>
+                            </jnt-stack>
+
+                            <jnt-menu [orientation]="ui.orientation.vertical"
+                                      [spacing]="ui.size.small">
+                              <jnt-menu-item title="General" [icon]="localUi.icons.general">
+                                <jnt-sub-menu>
+                                  <jnt-sub-menu-item title="About"></jnt-sub-menu-item>
+                                  <jnt-sub-menu-item title="Education"
+                                                     [icon]="ui.icons.knowledge"></jnt-sub-menu-item>
+                                </jnt-sub-menu>
+                              </jnt-menu-item>
+
+                              <jnt-menu-item title="Profession" [icon]="localUi.icons.certificate">
+                                <jnt-sub-menu>
+                                  <jnt-sub-menu-item title="Skills"
+                                                     [icon]="ui.icons.skull"></jnt-sub-menu-item>
+                                  <jnt-sub-menu-item title="Experience"></jnt-sub-menu-item>
+                                  <jnt-sub-menu-item title="Certificates"></jnt-sub-menu-item>
+                                </jnt-sub-menu>
+                              </jnt-menu-item>
+                            </jnt-menu>
+                          </jnt-stack>
+                        </ng-template>
+                      </jnt-app-aside>
+                      ]]>
+                    </ng-container>
+                    <![CDATA[
+                    <jnt-app-content
+                      ]]>
+                      <ng-container *ngIf="asideControl.value">
+                        <![CDATA[ [aside]="aside"]]>
+                      </ng-container>
+                      <![CDATA[>
+                      <jnt-app-body>]]>
+                        <ng-container *ngIf="breadcrumbsControl.value">
+                          <![CDATA[
+                          <jnt-breadcrumb ]]>
+                            <ng-container *ngIf="asideControl.value">
+                              <![CDATA[ [aside]="aside"]]>
+                            </ng-container>
+                            <![CDATA[>
+                          </jnt-breadcrumb>
+                          ]]>
+                        </ng-container>
+                        <ng-container *ngIf="pageHeaderControl.value">
+                          <![CDATA[
+                          <jnt-app-page-header [icon]="localUi.icons.layout"
+                                               title="Junte UI"
+                                               teaser="Angular UI framework"></jnt-app-page-header>
+                          ]]>
+                        </ng-container>
+                        <![CDATA[
+                      </jnt-app-body>
+                      ]]>
+                      <ng-container *ngIf="footerControl.value">
+                        <![CDATA[
+                        <jnt-app-footer>
+                          <small>Junte 2008 - 2020<br> Any rights are NOT reserved, use this as you want ;-)</small>
+                        </jnt-app-footer>
+                        ]]>
+                      </ng-container>
+                      <![CDATA[
+                    </jnt-app-content>
+                  </jnt-app-layout>
+                  ]]>
+                </app-code-highlight>
+              </ng-template>
+            </jnt-accordion-section>
+          </jnt-accordion>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="API" [icon]="localUi.icons.api">
+        <ng-template #tabContentTemplate>
+          <jnt-stack [align]="ui.align.stretch">
+            <app-component-api selector="jnt-app-layout" [target]="types.app"></app-component-api>
+            <app-component-api selector="jnt-app-header" [target]="types.header"></app-component-api>
+            <app-component-api selector="jnt-app-header" [target]="types.header"></app-component-api>
+            <app-component-api selector="jnt-app-header-userbar" [target]="types.userbar"></app-component-api>
+            <app-component-api selector="jnt-app-header-actions" [target]="types.actions"></app-component-api>
+            <app-component-api selector="jnt-app-header-action" [target]="types.action"></app-component-api>
+            <app-component-api selector="jnt-app-content" [target]="types.content"></app-component-api>
+            <app-component-api selector="jnt-app-page-header" [target]="types.pageHeader"></app-component-api>
+          </jnt-stack>
+        </ng-template>
+      </jnt-tab>
+
+      <jnt-tab title="Design system"
+               i18n-title="@@label.system" [icon]="ui.icons.figma">
+        <ng-template #tabContentTemplate>
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/yKIp2EGu6DY" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </ng-template>
+      </jnt-tab>
+
+    </jnt-tabs>
+
+  </jnt-stack>
+
+</jnt-container>

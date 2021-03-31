@@ -3,7 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostBinding, OnInit,
+  HostBinding,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild
@@ -89,10 +90,10 @@ export class PopoverComponent implements OnInit {
 
   constructor(private popoverService: PopoverService,
               private breakpoint: BreakpointService,
-              public device: DeviceService,
               private renderer: Renderer2,
               private hostRef: ElementRef,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              public device: DeviceService) {
   }
 
   ngOnInit() {
@@ -313,7 +314,6 @@ export class PopoverComponent implements OnInit {
 
   update(): void {
     if (!this.target) {
-      console.error('target is not defined');
       return;
     }
 

@@ -8,7 +8,7 @@ import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { ButtonModule } from '../button/button.module';
-import { GetOptionPipe, GetOptionsPipe } from './pipes';
+import { GetOptionPipe, GetOptionsPipe, TrackGroupPipe } from './pipes';
 import { SelectComponent, SelectOptionComponent } from './select.component';
 
 @NgModule({
@@ -16,7 +16,8 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
     SelectComponent,
     SelectOptionComponent,
     GetOptionsPipe,
-    GetOptionPipe
+    GetOptionPipe,
+    TrackGroupPipe
   ],
   imports: [
     CommonModule,
