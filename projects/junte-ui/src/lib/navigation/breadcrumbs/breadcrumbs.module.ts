@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { GetUrlPipe } from './breadcrumbs.pipes';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
@@ -11,7 +12,8 @@ import { BreadcrumbsComponent } from './breadcrumbs.component';
     StackModule
   ],
   declarations: [
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    GetUrlPipe
   ],
   exports: [
     BreadcrumbsComponent
