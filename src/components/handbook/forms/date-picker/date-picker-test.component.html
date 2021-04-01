@@ -50,11 +50,18 @@
                           </jnt-form-message>
                         </jnt-form-control>
                       </jnt-form-item>
-                      <jnt-form-item>
-                        <jnt-form-control>
-                          <jnt-button text="Reset" [type]="ui.button.type.submit"></jnt-button>
-                        </jnt-form-control>
-                      </jnt-form-item>
+                      <jnt-stack [orientation]="ui.orientation.horizontal">
+                        <jnt-form-item>
+                          <jnt-form-control>
+                            <jnt-button text="Reset" (click)="flightDateControl.reset(today)"></jnt-button>
+                          </jnt-form-control>
+                        </jnt-form-item>
+                        <jnt-form-item>
+                          <jnt-form-control>
+                            <jnt-button text="Submit" [type]="ui.button.type.submit"></jnt-button>
+                          </jnt-form-control>
+                        </jnt-form-item>
+                      </jnt-stack>
                     </jnt-stack>
                   </jnt-form>
                   <jnt-stack *ngIf="!!flightDateControl.value"
