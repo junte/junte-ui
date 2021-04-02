@@ -75,6 +75,10 @@ export const icons = {
   // programming
   code: 'code:svg:default:other|stroked',
   bug: 'bug:svg:default:other|stroked',
+  junte: 'junte:svg:default:other',
+  junteCircle: 'junte-circle:svg:default:other',
+  junteStroke: 'junte-stroke:svg:default:other|stroked',
+  junteStrokeCircle: 'junte-circle-stroke:svg:default:other|stroked',
   // social
   like: 'like:svg:default:other|stroked',
   dislike: 'dislike:svg:default:other|stroked',
