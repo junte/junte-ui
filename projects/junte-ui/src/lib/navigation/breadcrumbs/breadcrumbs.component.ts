@@ -90,8 +90,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                   const title = typeof crumb.label === 'string'
                     ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
                   console.log(crumb.url);
-                  const url = !crumb.url ? ['.'] : typeof crumb.url === 'string' ? [crumb.url] : Array.isArray(crumb.url)
-                    ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
+                  const url = !crumb.url
+                    ? ['.'] : typeof crumb.url === 'string'
+                      ? [crumb.url] : Array.isArray(crumb.url)
+                        ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
