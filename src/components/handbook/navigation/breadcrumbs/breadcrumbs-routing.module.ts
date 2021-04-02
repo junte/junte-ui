@@ -10,6 +10,10 @@ export function getLabel(data: any) {
   return data.obj.label;
 }
 
+export function getUrl(data: any) {
+  return ['..', 'page-2-new', {id: 1}];
+}
+
 const routes: Routes = [
   {
     path: '',
@@ -23,9 +27,13 @@ const routes: Routes = [
         resolve: {obj: BreadcrumbResolver},
         children: [
           {
+            path: 'page-2-new',
+            component: BreadCrumbTest2Component,
+          },
+          {
             path: 'page-2',
             component: BreadCrumbTest2Component,
-            data: {breadcrumb: 'Second page'},
+            data: {breadcrumb: {label: 'Second page', url: getUrl}},
             children: [
               {
                 path: 'page-3',

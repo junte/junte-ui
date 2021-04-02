@@ -12,7 +12,7 @@ class Breadcrumb {
   route: ActivatedRoute;
   title = null;
   disabled = false;
-  url = '.';
+  url: string[] = ['.'];
 
   constructor(defs = null) {
     Object.assign(this, defs);
@@ -89,11 +89,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 case 'object': {
                   const title = typeof crumb.label === 'string'
                     ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
+                  console.log(crumb.url);
+                  const url = !crumb.url ? ['.'] : typeof crumb.url === 'string' ? [crumb.url] : Array.isArray(crumb.url)
+                    ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
                       title,
-                      url: crumb.url,
+                      url,
                       disabled: crumb.disabled
                     }));
                   }
