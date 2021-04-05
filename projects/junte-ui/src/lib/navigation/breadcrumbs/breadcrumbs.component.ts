@@ -121,4 +121,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.titleService.setTitle(metaTitle);
     this.metaService.updateTag({name: 'description', content: metaTitle});
   }
+
+  go(crumb: Breadcrumb, event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate([crumb.url], {relativeTo: crumb.route})
+      .then();
+  }
 }
