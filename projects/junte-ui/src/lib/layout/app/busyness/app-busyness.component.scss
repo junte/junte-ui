@@ -8,6 +8,7 @@
 
   $defs: (
     position: fixed,
+    z-index: 4,
     background: (
       from: $jnt-secondary-background,
       to: $jnt-purple-lighten-color
@@ -33,7 +34,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 4;
+      z-index: map-get($vars, z-index);
       margin: 0;
 
       @include for-mobile() {
