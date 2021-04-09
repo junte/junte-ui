@@ -7,8 +7,8 @@
   <ng-container *ngFor="let crumb of breadcrumbs">
     <a (click)="go(crumb, $event)"
        [href]="crumb.route.snapshot | getUrl"
-       [attr.data-disabled]="crumb.disabled">
-      {{crumb.title}}
+       [attr.data-disabled]="crumb.disabled"
+       [innerHTML]="crumb.title">
     </a>
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
   </ng-container>
