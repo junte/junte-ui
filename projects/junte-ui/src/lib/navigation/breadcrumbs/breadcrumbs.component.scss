@@ -44,6 +44,17 @@
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
 
+    &[data-wrap='nowrap'] {
+      [data-breadcrumbs] {
+        @include jnt-no-scrollbar();
+        overflow: auto;
+      }
+
+      [data-right-fader] {
+        display: block;
+      }
+    }
+
     @include max-for-tablet() {
       &[data-with-aside='true'] {
         @if $declare {

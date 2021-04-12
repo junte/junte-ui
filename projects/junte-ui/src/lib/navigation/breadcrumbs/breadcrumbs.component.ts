@@ -43,6 +43,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     return !!this.aside;
   }
 
+  @Input()
   @HostBinding('attr.data-wrap')
   wrap: FlexWrap = FlexWrap.wrap
 
