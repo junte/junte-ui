@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { FlexWrap } from '../../core/enums/flex';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
@@ -42,8 +43,12 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     return !!this.aside;
   }
 
-  @HostBinding('style.display') get display() {
-    return this.breadcrumbs.length > 0 ? 'block' : 'none';
+  @HostBinding('attr.data-wrap')
+  wrap: FlexWrap = FlexWrap.wrap
+
+  @HostBinding('style.display')
+  get display() {
+    return this.breadcrumbs.length > 0 ? 'flex' : 'none';
   }
 
   @PropertyApi({

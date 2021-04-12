@@ -1,13 +1,14 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
 @import 'jnt-hosts';
+@import 'jnt-utils';
 @import 'elements/icon/icon';
 @import 'layout/responsive/responsive';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    padding: 0 0 0 $jnt-gutter-normal,
+    padding: 0 $jnt-gutter-normal 0 $jnt-gutter-normal,
     margin: $jnt-gutter-small 0 $jnt-gutter-small 0,
     breadcrumb: (
       max-width: null,
@@ -38,7 +39,7 @@
   #{if($context, $context, $jnt-breadcrumbs-host)} {
     @if $declare {
       display: flex;
-      align-items: center;
+      position: relative;
     }
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
@@ -51,11 +52,34 @@
           padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
         }
       }
+
+      &[data-wrap='nowrap'] {
+        [data-breadcrumbs] {
+          overflow: auto;
+
+          @include jnt-no-scrollbar();
+        }
+
+        [data-right-fader] {
+          display: block;
+        }
+      }
     }
+  }
+
+  [data-right-fader] {
+    display: none;
+    position: absolute;
+    background: linear-gradient(90deg, hsla(0, 0%, 92.2%, 0) 0, #ebebeb);
+    height: 100%;
+    width: 15%;
+    top: 0;
+    right: 0;
   }
 
   #{$context} #{$wrapper} a {
     @if $declare {
+      display: block;
       text-decoration: none;
       user-select: none;
       white-space: nowrap;
