@@ -43,3 +43,20 @@
     display:none;
   }
 }
+
+@mixin jnt-no-scrollbar() {
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    margin-right: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: unset;
+    border-radius: unset;
+    margin-right: 0;
+  }
+}
+
