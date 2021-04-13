@@ -49,7 +49,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.display')
   get display() {
-    return this.breadcrumbs.length > 0 ? 'flex' : 'none';
+    return this.breadcrumbs.length > 1 ? 'flex' : 'none';
   }
 
   @PropertyApi({
