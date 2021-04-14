@@ -100,7 +100,9 @@
       @if map-has-key($breadcrumb, last) {
         $last: map-get($breadcrumb, last);
         &:last-of-type {
-          color: map-get($last, color);
+          a {
+            color: map-get($last, color);
+          }
         }
       }
 
