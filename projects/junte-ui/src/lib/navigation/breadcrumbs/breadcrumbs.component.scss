@@ -44,6 +44,11 @@
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
 
+    [data-breadcrumb]:last-of-type {
+      pointer-events: none;
+      cursor: default;
+    }
+
     &[data-wrap='nowrap'] {
       [data-breadcrumbs] {
         @include jnt-no-scrollbar();
@@ -88,38 +93,43 @@
     right: 0;
   }
 
-  #{$context} #{$wrapper} a {
-    @if $declare {
-      display: block;
-      text-decoration: none;
-      user-select: none;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-
-      &[data-disabled='true'], &:last-of-type {
-        pointer-events: none;
-        cursor: default;
-      }
-    }
-
+  #{$context} #{$wrapper} [data-breadcrumb] {
     @if map-has-key($vars, breadcrumb) {
       $breadcrumb: map-get($vars, breadcrumb);
-      max-width: map-get($breadcrumb, max-width);
-      font-size: map-get($breadcrumb, font-size);
-      color: map-get($breadcrumb, color);
-
-      @if map-has-key($breadcrumb, hover) {
-        $hover: map-get($breadcrumb, hover);
-        &:hover {
-          color: map-get($hover, color);
-        }
-      }
 
       @if map-has-key($breadcrumb, last) {
         $last: map-get($breadcrumb, last);
         &:last-of-type {
-          color: map-get($last, color);
+          a {
+            color: map-get($last, color);
+          }
+        }
+      }
+
+      a {
+        @if $declare {
+          display: block;
+          text-decoration: none;
+          user-select: none;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          &[data-disabled='true'] {
+            pointer-events: none;
+            cursor: default;
+          }
+        }
+
+        max-width: map-get($breadcrumb, max-width);
+        font-size: map-get($breadcrumb, font-size);
+        color: map-get($breadcrumb, color);
+
+        @if map-has-key($breadcrumb, hover) {
+          $hover: map-get($breadcrumb, hover);
+          &:hover {
+            color: map-get($hover, color);
+          }
         }
       }
     }
