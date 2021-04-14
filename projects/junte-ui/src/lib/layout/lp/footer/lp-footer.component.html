@@ -1,1 +1,33 @@
-<ng-content></ng-content>
+<ng-template #menuTemplate let-menu="menu" let-orientation="orientation" let-spacing="spacing">
+  <div data-menu *ngIf="!!menu">
+    <jnt-menu [orientation]="orientation"
+              [spacing]="spacing">
+      <jnt-menu-item *ngFor="let item of menu.items"
+                     [title]="item.title"
+                     [icon]="item.icon"
+                     [matching]="item.matching"
+                     [target]="item.target"
+                     [link]="item.link"
+                     [disabled]="item.disabled">
+      </jnt-menu-item>
+    </jnt-menu>
+  </div>
+</ng-template>
+
+<jnt-container data-container>
+  <jnt-stack [orientation]="ui.orientation.horizontal"
+             [align]="ui.align.center"
+             [justify]="ui.justify.between">
+    <div data-copyright *ngIf="footerCopyrightTemplate">
+      <ng-container *ngTemplateOutlet="footerCopyrightTemplate"></ng-container>
+    </div>
+
+    <ng-container *ngTemplateOutlet="menuTemplate;
+      context:{menu: menu, orientation: ui.orientation.horizontal, spacing: ui.gutter.normal}">
+    </ng-container>
+
+    <div data-content *ngIf="contentTemplate">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+  </jnt-stack>
+</jnt-container>

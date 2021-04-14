@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, HostListener, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { UI } from '../../../core/enums/ui';
@@ -18,6 +18,9 @@ export class LpHeaderComponent {
 
   reference: { popover: PopoverInstance } = {popover: null};
 
+  @HostBinding('attr.data-scrolled')
+  scrolled = false;
+
   @ContentChild('headerLogoTemplate')
   headerLogoTemplate: TemplateRef<any>;
 
@@ -33,9 +36,18 @@ export class LpHeaderComponent {
   @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
+  @HostListener('window:scroll')
+  onPageScroll() {
+    const offset = window.pageYOffset
+      || document.documentElement.scrollTop
+      || document.body.scrollTop || 0;
+    this.scrolled = offset > 0;
+  }
+
   constructor(private logger: NGXLogger,
               public cd: ChangeDetectorRef) {
   }
+
 
   hide() {
     this.logger.debug('hide header dropdown');

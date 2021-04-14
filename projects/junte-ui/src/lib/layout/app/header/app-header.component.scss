@@ -63,31 +63,34 @@
       @if $declare {
         display: flex;
         align-items: center;
-        @include jnt-menu((
-          top: (
-            item: (
-              corner: $jnt-corner-small,
-              color: $jnt-white-color,
-              active: (
-                color: $jnt-white-color,
-                underline: true,
-                underline-color: $jnt-white-color,
-                background-color: transparent,
-                shadow: none
-              ),
-              icon: (
-                color: $jnt-white-color
-              ),
-              padding: $jnt-gutter-small,
-              hover: (
-                color: $jnt-white-color,
-                background-color: rgba($jnt-primary-light-color, .5)
-              )
-            )
-          )
-        ));
       }
     }
+
+    @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+
+    @include jnt-menu((
+      top: (
+        item: (
+          corner: $jnt-corner-small,
+          color: $jnt-white-color,
+          active: (
+            color: $jnt-white-color,
+            underline: true,
+            underline-color: $jnt-white-color,
+            background-color: transparent,
+            shadow: none
+          ),
+          icon: (
+            color: $jnt-white-color
+          ),
+          padding: $jnt-gutter-small,
+          hover: (
+            color: $jnt-white-color,
+            background-color: rgba($jnt-primary-light-color, .5)
+          )
+        )
+      )
+    ));
   }
 
   hr {
