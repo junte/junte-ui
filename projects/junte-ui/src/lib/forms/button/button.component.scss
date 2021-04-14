@@ -550,10 +550,7 @@
           @if map-has-key($map, spinner) {
             $spinner: map-get($map, spinner);
             #{$wrapper} [data-loading] {
-              width: map-get($spinner, size);
-              min-width: map-get($spinner, size);
-              height: map-get($spinner, size);
-              min-height: map-get($spinner, size);
+              @include jnt-spinner((size: map-get($spinner, size)), '&');
             }
           }
           @if map-has-key($map, icon) {
