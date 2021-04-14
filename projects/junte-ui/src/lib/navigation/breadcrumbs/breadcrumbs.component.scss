@@ -107,6 +107,20 @@
       }
 
       a {
+        @if $declare {
+          display: block;
+          text-decoration: none;
+          user-select: none;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          &[data-disabled='true'] {
+            pointer-events: none;
+            cursor: default;
+          }
+        }
+
         max-width: map-get($breadcrumb, max-width);
         font-size: map-get($breadcrumb, font-size);
         color: map-get($breadcrumb, color);
@@ -116,22 +130,6 @@
           &:hover {
             color: map-get($hover, color);
           }
-        }
-      }
-    }
-
-    a {
-      @if $declare {
-        display: block;
-        text-decoration: none;
-        user-select: none;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-
-        &[data-disabled='true'] {
-          pointer-events: none;
-          cursor: default;
         }
       }
     }
