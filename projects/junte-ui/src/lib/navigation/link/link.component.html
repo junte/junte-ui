@@ -1,6 +1,8 @@
 <ng-container *ngIf="external; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else emptySourceTemplate">
-    <a data-link [href]="source" [target]="'_' + target">
+    <a data-link [href]="source"
+       [target]="'_' + target"
+       [attr.data-active]="active">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-container>
