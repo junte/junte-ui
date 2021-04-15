@@ -15,6 +15,8 @@ interface Icon {
   position: Position;
 }
 
+type LinkSource = string | (string | { [key: string]: string | number })[];
+
 @Component({
   selector: 'jnt-link',
   templateUrl: './link.encapsulated.html',
@@ -33,11 +35,11 @@ export class LinkComponent {
   ui = UI;
   icon: Icon;
 
-  private _source: string | any[];
+  private _source: LinkSource;
   private _target: LinkTarget = LinkTarget.self;
   private _matching: UrlMatching = UrlMatching.fullMatch;
 
-  externalLink = false;
+  external = false;
 
   @HostBinding('attr.data-context')
   _context: Context = Context.text;
@@ -108,17 +110,17 @@ export class LinkComponent {
     type: '{[k: string]: any}'
   })
   @Input()
-  queryParams: {[k: string]: any};
+  queryParams: { [k: string]: any };
 
   @PropertyApi({
     description: 'Link source',
-    type: 'string | string[]'
+    type: 'string | (string | { [key: string]: string | number })[]'
   })
   @Input()
-  set source(source: string | string[]) {
+  set source(source: LinkSource) {
+    this._source = source;
     if (!!source) {
-      this.externalLink = !Array.isArray(source);
-      this._source = source;
+      this.external = !Array.isArray(source);
     } else {
       this._orphan = true;
     }

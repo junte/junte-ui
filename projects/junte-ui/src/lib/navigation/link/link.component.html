@@ -1,4 +1,4 @@
-<ng-container *ngIf="externalLink; else internalLinkTemplate">
+<ng-container *ngIf="external; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else emptySourceTemplate">
     <a data-link [href]="source" [target]="'_' + target">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
