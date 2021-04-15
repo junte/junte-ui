@@ -12,7 +12,8 @@
 </ng-container>
 
 <ng-template #internalLinkTemplate>
-  <a data-link #link="routerLinkActive" routerLinkActive [attr.data-active]="link.isActive"
+  <a data-link #link="routerLinkActive" routerLinkActive
+     [attr.data-active]="(!!source && link.isActive) || active"
      [routerLink]="source"
      [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
      [queryParams]="queryParams"

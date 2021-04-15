@@ -4,7 +4,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { Breakpoint, BreakpointService, PopoverComponent, UI } from 'junte-ui';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
-import { Theme } from 'src/components/handbook/handbook.component';
+import { Theme } from 'src/components/site/site.component';
 
 enum Version {
   stable,

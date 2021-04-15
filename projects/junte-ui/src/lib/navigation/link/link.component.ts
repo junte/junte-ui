@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Context } from '../../core/enums/context';
 import { Feature } from '../../core/enums/feature';
@@ -38,7 +37,7 @@ export class LinkComponent {
   private _target: LinkTarget = LinkTarget.self;
   private _matching: UrlMatching = UrlMatching.fullMatch;
 
-  externalLink = true;
+  externalLink = false;
 
   @HostBinding('attr.data-context')
   _context: Context = Context.text;
@@ -51,14 +50,14 @@ export class LinkComponent {
     return !!this.title;
   }
 
-  @Input() collapsed: boolean;
-  @Input() opened: boolean;
+  @Input()
+  collapsed: boolean;
 
-  // TODO: we must find better solution
-  @HostBinding('attr.data-active')
-  get linkActive(): boolean {
-    return !!this.linkRef ? this.linkRef.isActive : false;
-  }
+  @Input()
+  opened: boolean;
+
+  @Input()
+  active: boolean;
 
   @PropertyApi({
     description: 'Disable link',
@@ -66,7 +65,8 @@ export class LinkComponent {
     default: 'false'
   })
   @HostBinding('attr.data-disabled')
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @PropertyApi({
     description: 'Link outline',
@@ -76,7 +76,8 @@ export class LinkComponent {
       Outline.ghost,
       Outline.fill]
   })
-  @Input() set outline(outline: Outline) {
+  @Input()
+  set outline(outline: Outline) {
     this._outline = outline || Outline.transparent;
   }
 
@@ -91,7 +92,8 @@ export class LinkComponent {
       ? {icon: icon, position: Position.left} : icon) as Icon;
   }
 
-  @HostBinding('attr.data-position') get position() {
+  @HostBinding('attr.data-position')
+  get position() {
     return !!this.icon ? this.icon.position : null;
   }
 
@@ -188,9 +190,6 @@ export class LinkComponent {
   set context(context: Context) {
     this._context = context || Context.text;
   }
-
-  @ViewChild(RouterLinkActive)
-  linkRef: RouterLinkActive;
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;

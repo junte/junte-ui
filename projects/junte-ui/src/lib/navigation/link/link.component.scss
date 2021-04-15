@@ -289,17 +289,15 @@
           }
         }
 
-        &[data-active='true'] {
-          [data-title] {
-            @if map-has-key($vars, active) {
-              $active: map-get($vars, active);
-              span {
-                @if map-get($active, underline) == true {
-                  border-bottom: 1px solid map-get($active, underline-color);
-                }
-                @if map-get($active, underline) == false {
-                  border: none;
-                }
+        &[data-active='true'] [data-title] {
+          @if map-has-key($vars, active) {
+            $active: map-get($vars, active);
+            span {
+              @if map-get($active, underline) == true {
+                border-bottom: 1px solid map-get($active, underline-color);
+              }
+              @if map-get($active, underline) == false {
+                border: none;
               }
             }
           }
@@ -342,15 +340,13 @@
 
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
-            &[data-active='false'] {
-              #{$wrapper} [data-link] {
-                &:hover {
-                  color: map-get($hover, color);
-                  background-color: map-get($hover, background-color);
+            #{$wrapper} [data-link][data-active='false'] {
+              &:hover {
+                color: map-get($hover, color);
+                background-color: map-get($hover, background-color);
 
-                  [data-icon] {
-                    @include jnt-icon((color: map-get($hover, color)), '&');
-                  }
+                [data-icon] {
+                  @include jnt-icon((color: map-get($hover, color)), '&');
                 }
               }
             }
@@ -376,34 +372,32 @@
                 }
               }
             }
-            &[data-active='true'] {
-              #{$wrapper} [data-link] {
-                background-color: map-get($active, background-color);
-                box-shadow: map-get($active, shadow);
+            #{$wrapper} [data-link][data-active='true'] {
+              background-color: map-get($active, background-color);
+              box-shadow: map-get($active, shadow);
 
-                @if map-has-key($active, divider) {
-                  $divider: map-get($active, divider);
-                  @if map-get($divider, display) == true {
-                    &:after {
-                      display: block;
-                    }
+              @if map-has-key($active, divider) {
+                $divider: map-get($active, divider);
+                @if map-get($divider, display) == true {
+                  &:after {
+                    display: block;
                   }
                 }
+              }
 
-                [data-title] {
-                  color: map-get($active, color);
+              [data-title] {
+                color: map-get($active, color);
 
-                  [data-icon] {
-                    @include jnt-icon((color: map-get($active, color)), '&');
+                [data-icon] {
+                  @include jnt-icon((color: map-get($active, color)), '&');
+                }
+
+                span {
+                  @if map-get($active, underline) == true {
+                    border-bottom: 1px solid map-get($active, underline-color);
                   }
-
-                  span {
-                    @if map-get($active, underline) == true {
-                      border-bottom: 1px solid map-get($active, underline-color);
-                    }
-                    @if map-get($active, underline) == false {
-                      border: none;
-                    }
+                  @if map-get($active, underline) == false {
+                    border: none;
                   }
                 }
               }

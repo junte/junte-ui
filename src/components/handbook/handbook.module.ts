@@ -1,58 +1,41 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import {
-  AppLayoutModule,
-  BadgeModule,
-  BreadcrumbsModule,
-  MenuModule,
-  ModalModule,
-  PopoverModule,
-  ResponsiveModule,
-  StackModule,
-  ThemeSwitcherModule
-} from 'junte-ui';
-import { HighlightModule } from 'ngx-highlightjs';
-import { HomeModule } from './home/home.module';
-import { IndexModule } from 'src/components/handbook/index/index.module';
-import { ThemingModule } from './theming/theming.module';
-import { TypographyModule } from 'src/components/handbook/typography/typography.module';
-import { AnalyticsDirectivesModule } from 'src/directives/analytics.module';
-import { AppFooterModule } from '../footer/app-footer.module';
-import { OutletModule } from '../outlet/outlet.module';
-import { SelectLangModule } from '../select-lang/select-lang.module';
+import { CommonModule } from '@angular/common';
+import { CollectionsTestModule } from 'src/components/handbook/collections/collections-test.module';
+import { DynamicTestModule } from 'src/components/handbook/dynamic/dynamic-test.module';
+import { ElementsTestModule } from 'src/components/handbook/elements/elements-test.module';
+import { FormsTestModule } from 'src/components/handbook/forms/forms-test.module';
+import { HomeModule } from 'src/components/handbook/home/home.module';
 import { HandbookRoutingModule } from 'src/components/handbook/handbook-routing.module';
-import { HandbookComponent } from 'src/components/handbook/handbook.component';
-import { ModalTestModule } from './overlays/modal/modal-test.module';
+import { IndexComponent } from 'src/components/handbook/index/index.component';
+import { JunteUiModule } from 'junte-ui';
+import { LayoutTestModule } from 'src/components/handbook/layout/layout-test.module';
+import { NavigationTestModule } from 'src/components/handbook/navigation/navigation-test.module';
+import { OtherTestModule } from 'src/components/handbook/other/other-test.module';
+import { OverlaysTestModule } from 'src/components/handbook/overlays/overlays-test.module';
+import { SectionModule } from 'src/components/handbook/shared/section/section.module';
+import { ThemingModule } from 'src/components/handbook/theming/theming.module';
+import { TypographyModule } from 'src/components/handbook/typography/typography.module';
 
 @NgModule({
+  declarations: [
+    IndexComponent
+  ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HighlightModule,
-    OutletModule,
-    AppLayoutModule,
-    MenuModule,
-    BreadcrumbsModule,
-    ThemeSwitcherModule,
-    PopoverModule,
-    ModalModule,
-    StackModule,
-    BadgeModule,
-    TranslateModule,
-    SelectLangModule,
-    AppFooterModule,
+    JunteUiModule,
     HandbookRoutingModule,
-    ModalTestModule,
-    ResponsiveModule,
-    IndexModule,
-    AnalyticsDirectivesModule,
-    MenuModule
-  ],
-  declarations: [
-    HandbookComponent
+    SectionModule,
+    LayoutTestModule,
+    NavigationTestModule,
+    CollectionsTestModule,
+    ElementsTestModule,
+    FormsTestModule,
+    OtherTestModule,
+    DynamicTestModule,
+    OverlaysTestModule,
+    ThemingModule,
+    TypographyModule,
+    HomeModule
   ]
 })
 export class HandbookModule {

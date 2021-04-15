@@ -12,7 +12,7 @@
                      i18n-title="@@label.handbook"
                      [icon]="localUi.icons.top.documentation"
                      [matching]="ui.matching.wildcard"
-                     [link]="['/handbook']">
+                     [link]="['/handbook/home']">
       </jnt-menu-item>
       <jnt-menu-item title="Team"
                      i18n-title="@@label.team"
@@ -62,6 +62,8 @@
 
       <jnt-menu-item title="Layout"
                      i18n-title="@@label.layout"
+                     [link]="['/handbook/layout']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.layout">
         <jnt-badge [value]="(handbook.layout.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
@@ -110,8 +112,11 @@
 
       <jnt-menu-item title="Navigation"
                      i18n-title="@@label.navigation"
+                     [link]="['/handbook/navigation']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.navigation">
-        <jnt-badge [value]="(handbook.navigation.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.navigation.components | keyvalue).length"
+                   [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Link"
                              i18n-title="@@label.link"
@@ -142,6 +147,8 @@
 
       <jnt-menu-item title="Elements"
                      i18n-title="@@label.ui_elements"
+                     [link]="['/handbook/ui-elements']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.elements">
         <jnt-badge [value]="(handbook.elements.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
@@ -174,6 +181,8 @@
 
       <jnt-menu-item title="Forms"
                      i18n-title="@@label.forms"
+                     [link]="['/handbook/forms']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.forms">
         <jnt-badge [value]="(handbook.forms.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
@@ -242,8 +251,11 @@
 
       <jnt-menu-item title="Collections"
                      i18n-title="@@label.collections"
+                     [link]="['/handbook/collections']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.collections">
-        <jnt-badge [value]="(handbook.collections.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.collections.components | keyvalue).length"
+                   [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Gantt"
                              i18n-title="@@label.gantt"
@@ -262,6 +274,8 @@
 
       <jnt-menu-item title="Overlays"
                      i18n-title="@@label.overlays"
+                     [link]="['/handbook/overlays']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.overlays">
         <jnt-badge [value]="(handbook.overlays.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
@@ -280,8 +294,11 @@
 
       <jnt-menu-item title="Dynamic Data"
                      i18n-title="@@label.dynamic_data"
+                     [link]="['/handbook/dynamic-data']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.dynamic">
-        <jnt-badge [value]="(handbook.dynamic_data.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.dynamic_data.components | keyvalue).length"
+                   [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Progress bar"
                              i18n-title="@@label.progress_bar"
@@ -308,6 +325,8 @@
 
       <jnt-menu-item title="Other"
                      i18n-title="@@label.other"
+                     [link]="['/handbook/other']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.other">
         <jnt-badge [value]="(handbook.other.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
         <jnt-sub-menu>
