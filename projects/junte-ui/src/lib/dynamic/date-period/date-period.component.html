@@ -36,7 +36,6 @@
     <div *ngIf="!!end" data-line data-right></div>
   </div>
   <div *ngIf="!!start && !!end" data-days>
-    {{start <= end ? (end | jntDifferenceInCalendarDays:start) + 1 : 0}}
-    {{(start <= end ? (end | jntDifferenceInCalendarDays:start) + 1 : 0) | i18nPlural: daysMapping}}
+    {{end | jntFormatDistance:start}}
   </div>
 </ng-template>
