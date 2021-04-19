@@ -19,9 +19,8 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, finalize, takeUntil, tap } from 'rxjs/operators';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
-import { DeviceService } from '../../layout/responsive/device.service';
+import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
+import { progress } from '../../core/utils/rxjs';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
@@ -31,7 +30,9 @@ import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
@@ -113,7 +114,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   options: Options = {persisted: {}, found: {}};
   changes = {selected: 0, options: 0};
   selected: Key[] = [];
-  loading: boolean;
+  progress = {options$: new Subject<boolean>()};
 
   queryControl = this.fb.control({value: null, disabled: true});
   form = this.fb.group(
@@ -187,7 +188,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   @PropertyApi({
     description: 'Icon for select',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   icon: string;
@@ -371,7 +372,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
       if (!!this.loader) {
         this.fetcher = this.loader(query)
-          .pipe(finalize(() => this.loading = false))
+          .pipe(progress(this.progress.options$))
           .subscribe(objects => {
             this.options.found = {};
             objects.forEach((o, index) => {
@@ -398,10 +399,10 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       }
     };
 
-    this.queryControl.valueChanges.pipe(distinctUntilChanged(),
+    this.queryControl.valueChanges.pipe(
+      distinctUntilChanged(),
       tap(query => {
         this.logger.debug('query has been changed');
-        this.loading = !!query && !!this.loader;
         const input = this.queryRef.nativeElement;
         if (!!query && query.length > 0) {
           const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
@@ -532,7 +533,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
         contentTemplate: this.optionsTemplate,
         behaviour: Behaviour.dropdown,
         placement: this.placement,
-        padding: UI.gutter.small,
+        padding: UI.gutter.small
       });
     }
   }
