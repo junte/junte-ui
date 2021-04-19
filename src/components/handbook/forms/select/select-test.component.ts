@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { SelectComponent, SelectOptionComponent, TabComponent, UI } from 'junte-ui';
 import { Observable, of } from 'rxjs';
-import { debounceTime, delay } from 'rxjs/operators';
+import { debounceTime, delay, finalize, tap } from 'rxjs/operators';
 import { HANDBOOK } from 'src/consts';
-import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
+import { Language } from '../../shared/code-highlight/enum';
 
 @Component({
   selector: 'app-select-test',
@@ -47,7 +47,7 @@ export class SelectTestComponent implements OnInit {
     loader: this.loaderControl,
     template: this.templateControl,
     icon: this.iconControl,
-    loading: this.loadingControl,
+    loading: this.loadingControl
   });
 
   selectControl = this.fb.control(null);
@@ -81,7 +81,10 @@ export class SelectTestComponent implements OnInit {
       observable.next(this.heroes.filter(hero => !query
         || hero.name.toLowerCase().includes(query.toLowerCase())));
       observable.complete();
-    }).pipe(delay(1000));
+    }).pipe(
+      tap(() => this.loadingControl.patchValue(true)),
+      finalize(() => this.loadingControl.patchValue(false)),
+      delay(2000));
   }
 
   createHero(name: string, close: Function): Observable<null> {

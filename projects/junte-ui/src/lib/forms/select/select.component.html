@@ -49,10 +49,10 @@
 </jnt-stack>
 
 <ng-template #optionsTemplate>
-  <div data-options *ngIf="opened" [attr.data-loading]="loading">
+  <div data-options *ngIf="opened" [attr.data-loading]="progress.options$ | async">
     <ng-template #noOptionsTemplate>
       <div data-skeleton>
-        <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
+        <jnt-skeleton *ngIf="progress.options$ | async; else optionsNotFoundTemplate"
                       [type]="ui.skeleton.type.text" [lines]="5"></jnt-skeleton>
       </div>
       <ng-template #optionsNotFoundTemplate>
@@ -66,7 +66,7 @@
     <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
     | getOptions:changes.selected:changes.options) as options">
       <ng-container *ngIf="options.length;else noOptionsTemplate">
-        <div data-loading *ngIf="loading">
+        <div data-loading *ngIf="progress.options$ | async">
           <jnt-spinner data-spinner></jnt-spinner>
         </div>
         <jnt-stack [align]="ui.align.stretch">
