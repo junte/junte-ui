@@ -3,8 +3,9 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { FlexWrap } from '../../core/enums/flex';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
+import { FlexWrap } from '../../core/enums/flex';
 import { UI } from '../../core/enums/ui';
 import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 
@@ -45,7 +46,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   @Input()
   @HostBinding('attr.data-wrap')
-  wrap: FlexWrap = FlexWrap.wrap
+  wrap: FlexWrap = FlexWrap.wrap;
 
   @HostBinding('style.display')
   get display() {
@@ -58,6 +59,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   })
   @Input()
   aside: AppAsideComponent;
+
+  @PropertyApi({
+    description: 'Set page title based on breadcrumb title',
+    path: 'ui.feature',
+    options: [Feature.pageTitle]
+  })
+  @Input()
+  features: Feature[] = [Feature.pageTitle];
 
   constructor(public router: Router,
               private titleService: Title,
@@ -124,8 +133,10 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.breadcrumbs = breadcrumbs;
 
     const metaTitle = this.breadcrumbs.map(crumb => crumb.title).join(' · ');
-    this.titleService.setTitle(metaTitle);
-    this.metaService.updateTag({name: 'description', content: metaTitle});
+    if (this.features.includes(UI.feature.pageTitle)) {
+      this.titleService.setTitle(metaTitle);
+      this.metaService.updateTag({name: 'description', content: metaTitle});
+    }
   }
 
   go(crumb: Breadcrumb, event: MouseEvent) {
