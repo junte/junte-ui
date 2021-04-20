@@ -318,25 +318,10 @@ $tab-marker-height: 4px;
             color: $jnt-primary-text-color
           ), '&');
 
-          &:after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            border-radius: 5px;
-            background-color: transparent;
-          }
-
           &:hover {
             @include jnt-link((
               color: $jnt-primary-light-color
             ), '&');
-
-            &:after {
-              background-color: $jnt-secondary-dark-color;
-            }
           }
 
           &[data-active='true'] {
@@ -350,10 +335,6 @@ $tab-marker-height: 4px;
                 )
               )
             ), '&');
-
-            &:after {
-              background-color: $jnt-primary-light-color;
-            }
           }
         }
       }

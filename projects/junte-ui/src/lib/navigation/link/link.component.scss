@@ -137,7 +137,7 @@
         }
       }
 
-      &[data-context='box'] {
+      &[data-context='box'], &[data-context='menu'] {
         #{$wrapper} [data-link] {
           display: flex;
           align-items: center;
@@ -150,6 +150,17 @@
             [data-icon] {
               line-height: 1;
             }
+          }
+        }
+      }
+
+      &[data-context='menu'][data-outline='transparent'] {
+        [data-link][data-active=true] {
+          [data-title] span {
+            border-bottom: none;
+          }
+          [data-line] {
+            display: block !important;
           }
         }
       }
@@ -472,6 +483,17 @@
       [data-badge] {
         margin-left: map-get($badge, margin-left);
       }
+    }
+
+    [data-line] {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: $tab-marker-height;
+      border-radius: 5px;
+      background-color: $jnt-primary-light-color;
+      display: none;
     }
   }
 }

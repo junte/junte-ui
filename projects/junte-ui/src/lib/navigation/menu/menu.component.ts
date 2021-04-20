@@ -52,6 +52,10 @@ export class MenuComponent {
     this._style = style || MenuStyle.default;
   }
 
+  get style() {
+    return this._style;
+  }
+
   @PropertyApi({
     description: 'Menu orientation',
     path: 'ui.orientation',
