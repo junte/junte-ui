@@ -30,7 +30,7 @@
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
                   [active]="item.active"
-                  [context]="ui.context.box"
+                  [context]="style === ui.menu.style.tabs ? ui.context.menu : ui.context.box"
                   [matching]="item.matching"
                   [source]="item.link"
                   [fragment]="item.fragment"
