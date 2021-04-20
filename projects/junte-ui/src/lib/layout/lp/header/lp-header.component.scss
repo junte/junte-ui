@@ -39,7 +39,7 @@
           )
         )
       ),
-      tablet: (
+      mobile: (
         top: (
           item: (
             color: $jnt-primary-color,
@@ -134,7 +134,7 @@
       }
     }
 
-    &[data-tablet] {
+    &[data-mobile] {
       [data-menu] {
         @if $declare {
           display: flex;
@@ -143,7 +143,7 @@
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
-            map-get($menu, tablet)
+            map-get($menu, mobile)
           ), '&');
         }
       }
