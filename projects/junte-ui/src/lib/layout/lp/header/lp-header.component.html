@@ -40,8 +40,54 @@
   </jnt-container>
 </ng-container>
 
-<ng-container *jntMaxFor="ui.breakpoint.tablet">
-  <jnt-container data-container data-tablet>
+<ng-container *jntFor="ui.breakpoint.tablet">
+  <jnt-container data-container data-desktop>
+    <div data-logo *ngIf="headerLogoTemplate">
+      <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
+    </div>
+
+    <ng-container *ngTemplateOutlet="menuTemplate;
+    context: {menu: menu, orientation: ui.orientation.horizontal, spacing: ui.gutter.normal}">
+    </ng-container>
+
+    <jnt-stack data-actions
+               [orientation]="ui.orientation.horizontal"
+               [gutter]="ui.gutter.small"
+               [align]="ui.align.stretch">
+      <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+      <jnt-button data-burger
+                  *ngIf="!!headerUserbarTemplate || !!contentTemplate"
+                  [icon]="!!reference.popover ? ui.icons.closeSmall : ui.icons.menu"
+                  [outline]="ui.outline.transparent"
+                  [jntPopover]="{
+                  contentTemplate: dropdownTemplate,
+                  trigger: ui.trigger.click,
+                  placement: ui.placement.fixed
+                }"
+                  (attached)="reference.popover = $event; cd.detectChanges()"
+                  (removed)="reference.popover = null; cd.detectChanges()">
+      </jnt-button>
+      <ng-template #dropdownTemplate>
+        <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+          <ng-container *ngIf="!!headerUserbarTemplate">
+            <ng-container *ngTemplateOutlet="headerUserbarTemplate;
+            context: {hide: this.hide.bind(this)}">
+            </ng-container>
+            <hr *ngIf="!!contentTemplate">
+          </ng-container>
+          <div data-content *ngIf="!!contentTemplate">
+            <ng-container *ngTemplateOutlet="contentTemplate;
+            context: {hide: this.hide.bind(this)}">
+            </ng-container>
+          </div>
+        </jnt-stack>
+      </ng-template>
+    </jnt-stack>
+  </jnt-container>
+</ng-container>
+
+<ng-container *jntFor="ui.breakpoint.mobile">
+  <jnt-container data-container data-mobile>
     <div data-logo *ngIf="headerLogoTemplate">
       <ng-container *ngTemplateOutlet="headerLogoTemplate"></ng-container>
     </div>
@@ -51,7 +97,7 @@
                [align]="ui.align.stretch">
       <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
       <jnt-button data-burger
-                  [icon]="!!reference.popover ? ui.icons.cancel : ui.icons.menu"
+                  [icon]="!!reference.popover ? ui.icons.closeSmall : ui.icons.menu"
                   [outline]="ui.outline.transparent"
                   [jntPopover]="{
                     contentTemplate: dropdownTemplate,
