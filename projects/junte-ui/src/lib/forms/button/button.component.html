@@ -1,4 +1,4 @@
-<button #buttonRef [type]="type" [disabled]="disabled || loading">
+<button #buttonRef [type]="type" [disabled]="disabled || loading" [attr.aria-label]="ariaLabel">
   <jnt-spinner data-loading *ngIf="loading" [@appear]="loading"></jnt-spinner>
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [align]="ui.align.center"

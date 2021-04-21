@@ -203,6 +203,13 @@ export class ButtonComponent {
   text: string;
 
   @PropertyApi({
+    description: 'Aria-label for button',
+    type: 'string',
+  })
+  @Input()
+  ariaLabel: string;
+
+  @PropertyApi({
     description: 'Click event',
     path: 'EventEmitter'
   })
