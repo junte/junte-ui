@@ -45,7 +45,7 @@ export class FormControlComponent implements AfterViewInit {
 
   check() {
     this.messages.forEach(message =>
-      message.active = !!(this.control.hasError(message.validator) && this.control.dirty));
+      message.active = !!(this.control?.hasError(message.validator) && this.control?.dirty));
   }
 
   get control(): AbstractControl {
