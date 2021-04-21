@@ -7,10 +7,10 @@ import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Size {
-  tiny = 200,
-  small = 400,
-  normal = 600,
-  large = 700
+  tiny = '200px',
+  small = '400px',
+  normal = '600px',
+  large = '700px'
 }
 
 export enum ContentType {
