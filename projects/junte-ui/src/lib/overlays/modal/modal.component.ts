@@ -34,8 +34,8 @@ interface ModalTitle {
 
 export class ModalOptions {
 
-  maxWidth = '800';
-  maxHeight = '600';
+  maxWidth = '800px';
+  maxHeight = '600px';
   hold = false;
   closeOutside = true;
   title?: ModalTitle;
