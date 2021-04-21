@@ -26,6 +26,15 @@
 @mixin jnt-modal($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    padding: (
+      top: $jnt-gutter-normal,
+      left: $jnt-gutter-normal,
+      right: $jnt-gutter-normal,
+      bottom: $jnt-gutter-normal
+    ),
+    title: (
+      padding: $jnt-gutter-normal
+    ),
     z-index: (
       overlay: 1,
       modal: 2
@@ -110,10 +119,14 @@
     }
 
     [data-title] {
+      @if map-has-key($vars, title) {
+        $title: map-get($vars, title);
+        padding: map-get($title, padding);
+      }
+
       @if $declare {
         border-top-left-radius: $jnt-corner-normal;
         border-top-right-radius: $jnt-corner-normal;
-        padding: $jnt-gutter-normal;
         background-color: $jnt-page-background;
         font-size: 18px;
 
@@ -125,8 +138,14 @@
     }
 
     [data-content] {
+      @if map-has-key($vars, padding) {
+        $padding: map-get($vars, padding);
+        padding-top: map-get($padding, top);
+        padding-left: map-get($padding, left);
+        padding-bottom: map-get($padding, bottom);
+        padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+      }
       @if $declare {
-        padding: $jnt-gutter-normal ($jnt-gutter-normal - $jnt-scrollbar-width) $jnt-gutter-normal $jnt-gutter-normal;
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
         overflow: scroll;
