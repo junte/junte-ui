@@ -49,9 +49,10 @@ export class FormControlComponent implements AfterViewInit {
   }
 
   get control(): AbstractControl {
-    return this.parent instanceof FormGroupName
+    return !!this.parent?.control &&
+    (this.parent instanceof FormGroupName
     || this.parent instanceof FormGroupDirective
-    || this.parent instanceof FormArrayName
+    || this.parent instanceof FormArrayName)
       ? this.parent.control.get(this.name) : null;
   }
 
