@@ -3,6 +3,7 @@
 @import 'jnt-hosts';
 @import 'layout/app/variables';
 @import 'navigation/link/link';
+@import 'navigation/menu/menu';
 
 @mixin jnt-lp-footer($passed: (), $context: null, $strategy: 'changes') {
 
@@ -10,7 +11,6 @@
     background: $jnt-white-color,
     height: $lp-footer-height,
     padding: 0 $jnt-gutter-big,
-    container-width: null,
     menu: (
       top: (
         item: (
@@ -61,21 +61,13 @@
     background-color: map-get($vars, background);
     min-height: map-get($vars, height);
     padding: map-get($vars, padding);
-  }
 
-  #{$context} #{$wrapper} [data-container] {
-    @include jnt-grid-container((width: map-get($vars, container-width)), '&');
+    @include jnt-link((color: $jnt-primary-text-color, icon: (color: $jnt-primary-text-color)));
 
-    [data-menu] {
-      @if map-has-key($vars, menu) {
-        @include jnt-menu((
-          map-get($vars, menu)
-        ));
-      }
-    }
-
-    [data-copyright] {
-      @include jnt-link((color: $jnt-primary-text-color, icon: (color: $jnt-primary-text-color)));
+    @if map-has-key($vars, menu) {
+      @include jnt-menu((
+        map-get($vars, menu)
+      ));
     }
   }
 }

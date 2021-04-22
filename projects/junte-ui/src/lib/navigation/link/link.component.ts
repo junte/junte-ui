@@ -59,7 +59,7 @@ export class LinkComponent {
   opened: boolean;
 
   @Input()
-  active: boolean;
+  active = false;
 
   @PropertyApi({
     description: 'Disable link',

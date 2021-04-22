@@ -34,7 +34,8 @@ export abstract class AbstractMenuItem {
     type: 'boolean',
     default: 'false'
   })
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @PropertyApi({
     description: 'Menu item title',
@@ -75,7 +76,7 @@ export abstract class AbstractMenuItem {
     type: 'boolean'
   })
   @Input()
-  active: boolean;
+  active = false;
 
   @PropertyApi({
     description: 'Menu item query params',
