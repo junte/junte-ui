@@ -1,6 +1,6 @@
 <jnt-lp-layout>
 
-  <jnt-lp-header>
+  <jnt-lp-header #header>
     <ng-template #headerLogoTemplate>
       <form data-logo [formGroup]="themeForm">
         <img [src]="'assets/images/logo-lp' + (themeControl.value ? '-light' : '-dark') + '.svg'" alt="logo">
@@ -33,7 +33,8 @@
     </jnt-menu>
   </jnt-lp-header>
 
-  <jnt-lp-slide about [height]="breakpoint.current === point.mobile ? ui.height.default : ui.height.screen">
+  <jnt-lp-slide about [header]="header"
+                [height]="breakpoint.current === point.mobile ? ui.height.default : ui.height.screen">
     <div *jntMinFor="ui.breakpoint.tablet" top>
       <ng-container *jntMinFor="ui.breakpoint.desktop">
         <svg wave width="900" height="482" viewBox="0 0 900 482" xmlns="http://www.w3.org/2000/svg">

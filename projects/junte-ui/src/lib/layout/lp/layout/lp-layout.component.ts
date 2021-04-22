@@ -1,5 +1,4 @@
-import { Component, ContentChild, HostBinding } from '@angular/core';
-import { LpHeaderComponent } from '../header/lp-header.component';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'jnt-lp-layout',
@@ -8,11 +7,5 @@ import { LpHeaderComponent } from '../header/lp-header.component';
 export class LpLayoutComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-lp-layout-host';
-
-  @ContentChild(LpHeaderComponent) lpHeader: LpHeaderComponent;
-
-  @HostBinding('attr.data-with-lp-header') get withLpHeader() {
-    return !!this.lpHeader;
-  }
 
 }

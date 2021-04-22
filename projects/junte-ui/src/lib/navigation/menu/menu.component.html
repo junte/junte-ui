@@ -1,7 +1,7 @@
 <jnt-stack [orientation]="style === ui.menu.style.tabs ? ui.orientation.horizontal : orientation"
            [gutter]="spacing"
            [align]="ui.align.stretch"
-           [wrap]="ui.wrap.wrap">
+           [wrap]="wrap">
   <ng-container *ngFor="let item of items">
     <div data-top>
       <div data-item [attr.data-active]="item.opened && orientation === ui.orientation.vertical"

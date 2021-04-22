@@ -2,6 +2,7 @@
 @import 'jnt-functions';
 @import 'jnt-hosts';
 @import 'elements/label/label';
+@import 'layout/app/variables';
 
 @mixin jnt-lp-slide($passed: (), $context: null, $strategy: 'changes') {
 
@@ -44,6 +45,13 @@
     &[data-height='default'] {
       @if $declare {
         height: auto !important;
+      }
+    }
+
+    &[data-with-header="true"] {
+      padding-top: $lp-header-height;
+      @include max-for-tablet() {
+        padding-top: $lp-header-height-mobile;
       }
     }
   }

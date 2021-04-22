@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
+import { FlexWrap } from '../../core/enums/flex';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
 import { Placement } from '../../core/enums/placement';
@@ -37,6 +38,9 @@ export class MenuComponent {
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
 
+  @HostBinding('attr.data-wrap')
+  _wrap: FlexWrap = FlexWrap.wrap;
+
   @HostBinding('attr.data-collapsed')
   @Input()
   collapsed = false;
@@ -69,6 +73,21 @@ export class MenuComponent {
 
   get orientation() {
     return this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Menu items wrap',
+    path: 'ui.wrap',
+    default: FlexWrap.wrap,
+    options: [FlexWrap.wrap, FlexWrap.noWrap]
+  })
+  @Input()
+  set wrap(wrap: FlexWrap) {
+    this._wrap = wrap || FlexWrap.wrap;
+  }
+
+  get wrap() {
+    return this._wrap;
   }
 
   @PropertyApi({

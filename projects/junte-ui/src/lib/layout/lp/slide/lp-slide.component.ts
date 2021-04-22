@@ -1,4 +1,5 @@
 import { Component, HostBinding, HostListener, Input } from '@angular/core';
+import { LpHeaderComponent } from '../header/lp-header.component';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Height } from '../../../core/enums/height';
 
@@ -28,6 +29,17 @@ export class LpSlideComponent {
 
   get height() {
     return this._height;
+  }
+
+  @PropertyApi({
+    description: 'Link to LP header',
+    type: 'LpHeaderComponent'
+  })
+  @Input() header: LpHeaderComponent;
+
+  @HostBinding('attr.data-with-header')
+  get withHeader() {
+    return !!this.header;
   }
 
   @HostListener('window:resize')

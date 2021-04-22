@@ -88,7 +88,7 @@
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
                                 [target]="targetControl.value"
-                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
+                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['handbook/navigation/menu', {param: 1}]"
                                 title="Link here"
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
