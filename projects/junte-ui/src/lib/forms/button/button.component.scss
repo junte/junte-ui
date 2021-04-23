@@ -89,45 +89,6 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$jnt-scheme-secondary-name}] {
-    #{$wrapper} button {
-      color: map-get($scheme, inverse-color);
-      border-color: map-get($scheme, color);
-
-      [data-loading] {
-        @include jnt-spinner((
-          color: map-get($scheme, inverse-color)
-        ), '&');
-      }
-
-      [data-icon] {
-        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
-      }
-
-      &:hover {
-        background-color: map-get($scheme, inverse-color);
-        color: map-get($scheme, color);
-
-        [data-icon] {
-          @include jnt-icon((color: map-get($scheme, color)), '&');
-        }
-
-        [data-badge] {
-          @include jnt-badge((
-            background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
-            color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
-          ), '&');
-        }
-      }
-
-      [data-badge] {
-        @include jnt-badge((
-          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
-          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
-        ), '&');
-      }
-    }
-  }
 }
 
 @mixin button-transparent($scheme, $wrapper) {
@@ -173,32 +134,6 @@
         background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
         color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
       ), '&');
-    }
-  }
-  &[data-scheme=#{$jnt-scheme-secondary-name}] {
-    #{$wrapper} button {
-      color: map-get($scheme, inverse-color);
-
-      [data-loading] {
-        @include jnt-spinner((
-          color: map-get($scheme, inverse-color)
-        ), '&');
-      }
-
-      [data-icon] {
-        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
-      }
-
-      &:hover {
-        color: map-get($scheme, inverse-color);
-      }
-
-      [data-badge] {
-        @include jnt-badge((
-          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
-          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
-        ), '&');
-      }
     }
   }
 }
@@ -291,7 +226,7 @@
       ),
       secondary: (
         color: $jnt-secondary-color,
-        inverse-color: $jnt-primary-text-color,
+        inverse-color: $jnt-white-color,
         hover-color: $jnt-secondary-dark-color,
         focus: (
           shadow: 0 1px 5px $jnt-secondary-color

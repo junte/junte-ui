@@ -135,13 +135,13 @@
     &[data-opened='true'] {
       @include for-mobile() {
         @if $declare {
-          box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+          box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
         }
       }
 
       [data-select] {
         @if $declare {
-          box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+          box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
           border-color: $jnt-primary-color;
           @include for-mobile() {
             box-shadow: none;
@@ -598,7 +598,7 @@
           }
 
           &:hover {
-            background-color: $jnt-highlight-background;
+            background-color: $jnt-secondary-background;
           }
         }
       }

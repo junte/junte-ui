@@ -78,34 +78,16 @@
     }
 
     thead {
-      [data-arrow] {
+
+      [data-arrow], [data-date] {
         @if $declare {
-          @include jnt-button((
-            sizes: (
-              small: (
-                height: 28px,
-                padding-without-text: 0 $jnt-gutter-tiny,
-                icon: (
-                  size: 16px
-                )
-              )
-            )
-          ), '&');
+          @extend %button;
         }
       }
 
       [data-date] {
         @if $declare {
-          @include jnt-button((
-            font-weight: $jnt-font-weight-semi-bold,
-            sizes: (
-              small: (
-                height: 28px,
-                font-size: 14px,
-                padding: 0 $jnt-gutter-tiny
-              )
-            )
-          ), '&');
+          width: 100%;
         }
       }
 
@@ -143,15 +125,15 @@
         td {
           @if $declare {
             &[data-day] {
-              box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color,
-              inset 0px -1px 0px $jnt-secondary-dark-color;
+              box-shadow: inset -1px 0px 0px $jnt-highlight-background,
+              inset 0px -1px 0px $jnt-highlight-background;
 
               &[data-selected-day='true'] {
                 box-shadow: inset 0 0 0 2px $jnt-primary-light-color;
               }
 
               &:last-child {
-                box-shadow: inset 0px -1px 0px $jnt-secondary-dark-color;
+                box-shadow: inset 0px -1px 0px $jnt-highlight-background;
               }
             }
 
@@ -166,7 +148,7 @@
           @if $declare {
             td {
               &[data-day] {
-                box-shadow: inset -1px 0px 0px $jnt-secondary-dark-color;
+                box-shadow: inset -1px 0px 0px $jnt-highlight-background;
 
                 &:last-child {
                   box-shadow: none;
@@ -183,7 +165,7 @@
         &[data-current-week='true'] {
           @if $declare {
             [data-day][data-today='false'], [data-metric] {
-              background-color: $jnt-secondary-dark-color !important;
+              background-color: $jnt-highlight-background !important;
             }
           }
         }
@@ -209,13 +191,13 @@
 
               &:nth-child(6),
               &:nth-child(7) {
-                background-color: $jnt-secondary-color;
+                background-color: $jnt-secondary-background;
               }
 
               &[data-selected-day='false'][data-today='false']:hover,
               &[data-selected-month='false']:hover,
               &[data-selected-year='false']:hover {
-                background-color: $jnt-highlight-background;
+                background-color: $jnt-secondary-background;
                 color: $jnt-primary-text-dark-color;
               }
 
@@ -224,10 +206,9 @@
                 outline: 0;
               }
 
-              &[data-current-month='false'] {
-                [data-default] {
-                  color: $jnt-primary-text-light-color;
-                }
+              &[data-current-month='false'][data-today='false'] {
+                color: $jnt-primary-text-light-color;
+
                 > * {
                   opacity: .3;
                 }
@@ -263,7 +244,7 @@
 
           &[data-metric] {
             @if $declare {
-              background-color: $jnt-secondary-color;
+              background-color: $jnt-secondary-background;
             }
           }
         }

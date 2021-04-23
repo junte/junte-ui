@@ -19,7 +19,7 @@ $tab-marker-height: 4px;
           color: $jnt-primary-text-color,
           hover: (
             color: $jnt-primary-text-color,
-            background-color: $jnt-highlight-background
+            background-color: $jnt-secondary-background
           )
         ),
         color: $jnt-primary-text-color,
@@ -42,7 +42,7 @@ $tab-marker-height: 4px;
         ),
         hover: (
           color: $jnt-primary-light-color,
-          background-color: $jnt-highlight-background
+          background-color: $jnt-secondary-background
         ),
         active: (
           underline: true,
@@ -74,7 +74,7 @@ $tab-marker-height: 4px;
             ),
             hover: (
               color: null,
-              background-color: $jnt-secondary-dark-color,
+              background-color: $jnt-highlight-background,
               border-color: null
             )
           )
@@ -108,7 +108,7 @@ $tab-marker-height: 4px;
         ),
         hover: (
           color: null,
-          background-color: $jnt-highlight-background
+          background-color: $jnt-secondary-background
         ),
         active: (
           underline: false,
@@ -307,7 +307,7 @@ $tab-marker-height: 4px;
 
     &[data-style='tabs'] {
       @if $declare {
-        border-bottom: 2px solid $jnt-secondary-color;
+        border-bottom: 2px solid $jnt-secondary-background;
       }
 
       #{$wrapper} [data-link] {

@@ -27,5 +27,8 @@ export enum Color {
   gray700 = '#D0D0D0',
   gray800 = '#828282',
   gray900 = '#4F4F4F',
-  grayDark = '#343434'
+  grayDark = '#343434',
+  aqua = '#45BFDA',
+  aquaDark = '#008EA8',
+  aquaLight = '#80F2FF',
 }

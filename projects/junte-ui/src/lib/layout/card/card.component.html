@@ -49,18 +49,16 @@
 
 </jnt-stack>
 
-<jnt-button *ngIf="!!cardActionsTemplate"
+<button *ngIf="!!cardActionsTemplate"
             data-action
-            [scheme]="ui.scheme.secondary"
-            [size]="ui.size.small"
-            [icon]="ui.icons.actions"
             (attached)="popover = $event"
             [jntPopover]="{
               contentTemplate: dropdownTemplate,
               position: ui.position.right,
               trigger: ui.trigger.click
             }">
-</jnt-button>
+  <jnt-icon [icon]="ui.icons.actions"></jnt-icon>
+</button>
 
 <ng-template #dropdownTemplate>
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>
