@@ -20,6 +20,7 @@ import { AppHeaderActionsComponent } from './header/actions/app-header-actions.c
 import { AppHeaderComponent } from './header/app-header.component';
 import { AppHeaderUserbarComponent } from './header/userbar/app-header-userbar.component';
 import { AppPageHeaderComponent } from './page-header/app-page-header.component';
+import { AppPageMetaDirective } from './page-meta/app-page-meta.directive';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { AppPageHeaderComponent } from './page-header/app-page-header.component'
     AppContentComponent,
     AppFooterComponent,
     AppBusynessComponent,
-    AppPageHeaderComponent
+    AppPageHeaderComponent,
+    AppPageMetaDirective
   ],
   entryComponents: [
     AppLayoutComponent,
@@ -66,7 +68,8 @@ import { AppPageHeaderComponent } from './page-header/app-page-header.component'
     AppContentComponent,
     AppFooterComponent,
     AppBusynessComponent,
-    AppPageHeaderComponent
+    AppPageHeaderComponent,
+    AppPageMetaDirective
   ]
 })
 export class AppLayoutModule {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { loadChildren } from 'src/utils/routing';
 import { SiteComponent } from 'src/components/site/site.component';
+import { loadChildren } from 'src/utils/routing';
 
 export const routes: Routes = [
   {
