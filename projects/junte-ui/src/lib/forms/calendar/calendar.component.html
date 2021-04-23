@@ -3,37 +3,23 @@
     <thead>
     <tr>
       <td>
-        <jnt-button data-arrow [icon]="ui.icons.chevronLeft"
-                    [outline]="ui.outline.transparent"
-                    [scheme]="ui.scheme.secondary"
-                    [size]="ui.size.small"
-                    (click)="sub()">
-        </jnt-button>
+        <button data-arrow (click)="sub()">
+          <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+        </button>
       </td>
       <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
-        <jnt-button data-date [outline]="ui.outline.transparent"
-                    [scheme]="ui.scheme.secondary"
-                    [size]="ui.size.small"
-                    text="{{period | jntFormat: 'LLLL'}}, {{period | jntFormat: 'yyyy'}}"></jnt-button>
+        <button data-date>{{period | jntFormat: 'LLLL'}}, {{period | jntFormat: 'yyyy'}}</button>
       </td>
       <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
-        <jnt-button data-date [outline]="ui.outline.transparent"
-                    [scheme]="ui.scheme.secondary"
-                    [size]="ui.size.small"
-                    [width]="ui.width.fluid"
-                    text="{{period | jntFormat: 'yyyy'}}">
-        </jnt-button>
+        <button data-date>{{period | jntFormat: 'yyyy'}}</button>
       </td>
       <td *ngIf="view === viewType.year" colspan="2" data-year>
         {{(period | jntGetYear) - 4}} - {{(period | jntGetYear) + 7}}
       </td>
       <td>
-        <jnt-button data-arrow [icon]="ui.icons.chevronRight"
-                    [outline]="ui.outline.transparent"
-                    [scheme]="ui.scheme.secondary"
-                    [size]="ui.size.small"
-                    (click)="add()">
-        </jnt-button>
+        <button data-arrow (click)="add()">
+          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+        </button>
       </td>
       <td data-divider *ngIf="metrics.length"></td>
       <td data-metrics *ngIf="metrics.length"

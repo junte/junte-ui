@@ -13,18 +13,6 @@
   }
 }
 
-@mixin card-fill($scheme, $wrapper) {
-  & {
-    background-color: map-get($scheme, background-color);
-  }
-  #{$wrapper} [data-indicator] {
-    border-color: map-get($scheme, background-color);
-  }
-  #{$wrapper} [data-action] {
-    @include jnt-button((border: 2px solid map-get($scheme, background-color)), '&');
-  }
-}
-
 @mixin jnt-card($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     shadow: null,
@@ -187,6 +175,10 @@
       top: -12px;
       right: 0;
       z-index: 2;
+      @include jnt-icon((
+        size: 16px,
+        color: $jnt-primary-light-color
+      ), '&');
     }
   }
 
@@ -199,33 +191,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      @include jnt-icon((
-        size: 16px,
-        color: $jnt-primary-light-color
-      ), '&');
     }
     border: 2px solid map-get($vars, background);
   }
 
   #{$context} #{$wrapper} [data-action] {
-    @include jnt-button((
-      without-text-corner: $jnt-corner-normal,
-      border: if(map-get($vars, background), 2px solid map-get($vars, background), null),
-      schemes: (
-        secondary: (
-          inverse-color: $jnt-primary-color
-        )
-      ),
-      sizes: (
-        small: (
-          height: 36px,
-          padding-without-text: 0 $jnt-gutter-small,
-          icon: (
-            size: 16px
-          )
-        )
-      )
-    ), '&');
+    @extend %button;
+    background-color: $jnt-secondary-background;
+    border-radius: $jnt-corner-normal;
+    border: if(map-get($vars, background), 2px solid map-get($vars, background), null);
+    height: 36px;
+    padding: 0 $jnt-gutter-small;
   }
 
   #{$context} #{$wrapper} [data-card] {
