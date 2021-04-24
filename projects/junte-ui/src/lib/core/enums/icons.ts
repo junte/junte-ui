@@ -29,6 +29,7 @@ export const icons = {
   reload: 'reload:svg:default:main|stroked',
   cut: 'cut:svg:default:main|stroked',
   move: 'move:svg:default:main|stroked',
+  drag: 'drag:svg:default:main|filled',
   close: 'close:svg:default:main|stroked',
   closeSmall: 'close-small:svg:default:main|stroked',
   expand: 'expand:svg:default:main|stroked',

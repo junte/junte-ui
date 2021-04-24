@@ -84,6 +84,13 @@ export class CardComponent {
   }
 
   @ContentApi({
+    selector: '#cardDragTemplate',
+    description: 'Card drag template'
+  })
+  @ContentChild('cardDragTemplate')
+  dragTemplate: TemplateRef<any>;
+
+  @ContentApi({
     selector: '#cardHeaderTemplate',
     description: 'Card header template'
   })

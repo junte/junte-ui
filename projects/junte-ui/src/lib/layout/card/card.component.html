@@ -11,7 +11,11 @@
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.none"
            [align]="ui.align.stretch">
-  <div data-line *ngIf="color" [style.background-color]="color"></div>
+  <div data-line *ngIf="!!color" [style.background-color]="color"></div>
+
+  <div data-drag *ngIf="!!dragTemplate">
+    <ng-container *ngTemplateOutlet="dragTemplate;context: {icon: ui.icons.drag}"></ng-container>
+  </div>
 
   <jnt-stack data-main [align]="ui.align.stretch">
     <div *ngIf="!!headerTemplate" data-header>

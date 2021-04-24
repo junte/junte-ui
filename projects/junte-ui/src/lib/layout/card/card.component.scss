@@ -8,7 +8,7 @@
 @import 'overlays/popover/popover';
 
 @mixin card-padding($padding, $wrapper) {
-  #{$wrapper} [data-main] {
+  #{$wrapper} > [data-card] > [data-main] {
     padding: $padding;
   }
 }
@@ -89,14 +89,27 @@
       &[data-height='fluid'] {
         display: flex;
 
-        #{$wrapper} [data-card],
-        #{$wrapper} [data-body] {
+        #{$wrapper} > [data-card],
+        #{$wrapper} > [data-card] > [data-body] {
           flex: 1;
         }
 
-        #{$wrapper} [data-content] {
+        #{$wrapper} > [data-card] > [data-main] > [data-body] > [data-content] {
           display: flex;
           flex-direction: column;
+        }
+      }
+
+      #{$wrapper} > [data-card] > [data-drag] > {
+        #{'button'} {
+          height: 100%;
+          border: none;
+          background-color: $jnt-gray-400-color;
+          &:not([disabled]) {
+            cursor: move;
+          }
+
+          @include jnt-icon((size: 18px, color: $jnt-primary-light-color));
         }
       }
     }
@@ -158,7 +171,7 @@
     }
 
     &[data-has-icon='true'] {
-      #{$wrapper} [data-main] {
+      #{$wrapper} > [data-card] > [data-main] {
         @if $declare {
           padding-top: $jnt-gutter-big;
         }

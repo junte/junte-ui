@@ -62,6 +62,11 @@
                   <jnt-stack data-content [orientation]="ui.orientation.horizontal">
                     <jnt-skeleton [lines]="5" [animated]="false"></jnt-skeleton>
                   </jnt-stack>
+                  <ng-template #cardDragTemplate let-icon="icon">
+                    <button>
+                      <jnt-icon [icon]="icon"></jnt-icon>
+                    </button>
+                  </ng-template>
                   <ng-template *ngIf="headerControl.value" #cardHeaderTemplate>
                     <jnt-stack data-header [orientation]="ui.orientation.horizontal"
                                [gutter]="ui.gutter.small"
