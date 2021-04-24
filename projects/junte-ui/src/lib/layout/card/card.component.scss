@@ -104,16 +104,23 @@
         #{'button'} {
           height: 100%;
           border: none;
-          background-color: $jnt-gray-400-color;
+          background: transparent;
+          padding: 1px;
           &:not([disabled]) {
             cursor: move;
           }
 
-          @include jnt-icon((size: 18px, color: $jnt-primary-light-color));
+          @include jnt-icon((size: 14px, color: $jnt-primary-light-color));
         }
       }
     }
     border-radius: map-get($vars, corner);
+
+    #{$wrapper} > [data-card] > [data-drag] > {
+      #{'button'} {
+        border-right: map-get($vars, border);
+      }
+    }
 
     &[data-width='fluid'] {
       @if $declare {
