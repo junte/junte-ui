@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { format, Locale } from 'date-fns';
 import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { NgxLoggerLevel } from 'ngx-logger';
+import { SwitchStyle } from './core/enums/style';
 import { i18nEn } from './core/i18n/en';
 import { localeEnUs as jntEn } from './core/locale/en';
 
@@ -19,7 +20,11 @@ export class JunteUIConfig {
   hash?: string;
   i18n?: any;
   logger?: any;
-  modal?: {animation: boolean};
+  modal?: { animation: boolean };
+  switch?: {
+    style?: SwitchStyle,
+    icons?: { on: string, off: string }
+  };
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   locale?: {
     ui?: LocaleUI,
@@ -33,6 +38,10 @@ export const JUNTE_DEFAULT_CONFIG = {
   i18n: i18nEn,
   logger: NgxLoggerLevel.DEBUG,
   modal: {animation: true},
+  switch: {
+    style: SwitchStyle.default,
+    icons: { on: null, off: null }
+  },
   weekStartsOn: 0,
   locale: {
     ui: jntEn,

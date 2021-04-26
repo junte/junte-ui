@@ -27,7 +27,7 @@ import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
 import { Stroke } from './stroke';
-import { MenuStyle } from './style';
+import { MenuStyle, SwitchStyle } from './style';
 import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { Triggers } from './triggers';
@@ -75,4 +75,5 @@ export class UI {
   static menu = {style: MenuStyle};
   static keyboard = {key: Key, modifier: Modifier};
   static icon = {modifier: IconModifier};
+  static switch = {style: SwitchStyle};
 }

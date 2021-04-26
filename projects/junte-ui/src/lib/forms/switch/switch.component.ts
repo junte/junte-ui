@@ -1,6 +1,8 @@
 import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { SwitchStyle } from '../../core/enums/style';
+import { JunteUIConfig } from '../../config';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
@@ -23,6 +25,7 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.host') readonly host = 'jnt-switch-host';
 
   ui = UI;
+  styles = SwitchStyle;
 
   switchControl = this.fb.control(false);
   form = this.fb.group({
@@ -76,13 +79,22 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @ContentChild('switchLabelTemplate')
   labelTemplate: TemplateRef<any>;
 
+  get onIcon() {
+    return this.icons?.on || this.config.switch.icons.on;
+  }
+
+  get offIcon() {
+    return this.icons?.off || this.config.switch.icons.off;
+  }
+
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger,
+  constructor(public config: JunteUIConfig,
+              private logger: NGXLogger,
               private fb: FormBuilder) {
   }
 
