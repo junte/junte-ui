@@ -1,15 +1,15 @@
 import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
-import { DeviceService } from '../../layout/responsive/device.service';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { SelectMode } from '../select/enums';
 import { Key } from '../select/model';
 import { SwitcherOptionComponent } from './switcher-option.component';
@@ -156,7 +156,8 @@ export class SwitcherComponent implements ControlValueAccessor {
       throw new Error('Wrong value form multiple select mode');
     }
 
-    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
+    this.selected = (this.mode === SelectMode.single
+      ? ((value ?? null) !== null ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {

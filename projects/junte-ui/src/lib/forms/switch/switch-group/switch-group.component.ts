@@ -21,22 +21,22 @@ import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
-import { CheckboxComponent } from '../checkbox.component';
+import { SwitchComponent } from '../switch.component';
 
 @Component({
-  selector: 'jnt-checkbox-group',
-  templateUrl: './checkbox-group.encapsulated.html',
+  selector: 'jnt-switch-group',
+  templateUrl: './switch-group.encapsulated.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxGroupComponent),
+      useExisting: forwardRef(() => SwitchGroupComponent),
       multi: true
     },
     ...LOGGER_PROVIDERS
   ]
 })
 
-export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewInit {
+export class SwitchGroupComponent implements ControlValueAccessor, AfterViewInit {
 
   ui = UI;
 
@@ -49,9 +49,9 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   private _size: Size = Size.normal;
   private selectedItems = [];
 
-  checkboxesControl = this.fb.array([]);
+  switchesControl = this.fb.array([]);
   form = this.fb.group({
-    checkboxes: this.checkboxesControl
+    switches: this.switchesControl
   });
 
   @PropertyApi({
@@ -109,12 +109,14 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   @PropertyApi({
     description: 'Spacing between radio item',
     path: 'ui.gutter',
-    options: [Gutter.tiny,
+    options: [
+      Gutter.tiny,
       Gutter.small,
       Gutter.normal,
       Gutter.large,
       Gutter.big,
-      Gutter.huge],
+      Gutter.huge
+    ],
     default: Gutter.normal
   })
   @Input()
@@ -135,8 +137,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   @Input()
   features: Feature[] = [];
 
-  @ContentChildren(CheckboxComponent)
-  checkboxes: QueryList<CheckboxComponent>;
+  @ContentChildren(SwitchComponent)
+  switches: QueryList<SwitchComponent>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -152,22 +154,22 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   ngAfterViewInit() {
     this.update();
-    this.checkboxes.changes.subscribe(() => this.update());
+    this.switches.changes.subscribe(() => this.update());
   }
 
   update() {
-    if (!!this.checkboxes) {
-      this.checkboxesControl.reset([], {emitEvent: false});
-      this.checkboxes.forEach((checkbox, i) => {
-        let control = this.checkboxesControl.get(i.toString());
+    if (!!this.switches) {
+      this.switchesControl.reset([], {emitEvent: false});
+      this.switches.forEach((checkbox, i) => {
+        let control = this.switchesControl.get(i.toString());
         if (!!control) {
           control.setValue(this.selectedItems.includes(checkbox.value), {emitEvent: false});
         } else {
           control = new FormControl(this.selectedItems.includes(checkbox.value));
-          this.checkboxesControl.controls.push(control);
-          const index = this.checkboxesControl.length - 1;
+          this.switchesControl.controls.push(control);
+          const index = this.switchesControl.length - 1;
           control.valueChanges.subscribe(value => {
-            const checkbox = this.checkboxes.toArray()[index].value;
+            const checkbox = this.switches.toArray()[index].value;
             if (value) {
               this.selectedItems.push(checkbox);
             } else {
@@ -177,8 +179,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
           });
         }
       });
-      this.cd.detectChanges();
     }
+    this.cd.detectChanges();
   }
 
   writeValue(value: any) {
@@ -191,7 +193,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.checkboxesControl.disable({emitEvent: false})
-      : this.checkboxesControl.enable({emitEvent: false});
+    isDisabled ? this.switchesControl.disable({emitEvent: false})
+      : this.switchesControl.enable({emitEvent: false});
   }
 }

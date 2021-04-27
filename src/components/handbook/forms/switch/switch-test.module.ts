@@ -14,6 +14,7 @@ import {
   LinkModule,
   SelectModule,
   StackModule,
+  SwitcherModule,
   SwitchModule,
   TabsModule
 } from 'junte-ui';
@@ -39,14 +40,15 @@ import { SwitchTestComponent } from './switch-test.component';
     SharedModule,
     AppLayoutModule,
     BadgeModule,
-    LabelModule
+    LabelModule,
+    SwitcherModule
   ],
   exports: [
     SwitchTestComponent
   ],
   declarations: [
     SwitchTestComponent
-  ],
+  ]
 })
 export class SwitchTestModule {
 }
