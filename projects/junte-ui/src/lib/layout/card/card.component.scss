@@ -216,7 +216,7 @@
   }
 
   #{$context} #{$wrapper} [data-action] {
-    @extend %button;
+    @include button-default();
     background-color: $jnt-secondary-background;
     border-radius: $jnt-corner-normal;
     border: if(map-get($vars, background), 2px solid map-get($vars, background), null);
