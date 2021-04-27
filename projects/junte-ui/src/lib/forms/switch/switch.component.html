@@ -6,7 +6,7 @@
            (focusout)="focused = false">
     <jnt-stack data-switch [orientation]="ui.orientation.horizontal"
                [gutter]="config.switch.style === styles.hipster ? ui.gutter.normal : ui.gutter.tiny"
-               [align]="ui.align.center"
+               [align]="align"
                [justify]="ui.justify.center">
       <ng-container *ngIf="config.switch.style === styles.default; else hipsterOnTemplate">
         <span data-on *ngIf="tags?.on">{{tags.on}}</span>

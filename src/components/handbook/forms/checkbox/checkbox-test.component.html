@@ -36,7 +36,8 @@
               <ng-template #document let-width="width" let-height="height">
                 <jnt-block #block title="Your heroes" i18n-title="Your heroes">
                   <jnt-form [formGroup]="form" (submitted)="submit()">
-                    <jnt-stack [orientation]="(colsControl.value <= 1 && breakpoint.current !== ui.breakpoint.mobile) ? ui.orientation.horizontal : ui.orientation.vertical"
+                    <jnt-stack [orientation]="(colsControl.value <= 1 && breakpoint.current !== ui.breakpoint.mobile)
+                      ? ui.orientation.horizontal : ui.orientation.vertical"
                                [wrap]="ui.wrap.wrap"
                                [gutter]="ui.gutter.big"
                                [align]="ui.align.stretch">
@@ -70,7 +71,8 @@
                         </jnt-form-message>
                       </jnt-form-control>
                       <jnt-stack *ngIf="heroControl.value?.length" [align]="ui.align.center">
-                        <jnt-avatars-list [size]="breakpoint.current !== ui.breakpoint.mobile ? ui.size.large : ui.size.normal" [max]="6">
+                        <jnt-avatars-list [size]="breakpoint.current !== ui.breakpoint.mobile
+                          ? ui.size.large : ui.size.normal" [max]="6">
                           <ng-container *ngFor="let code of heroControl.value">
                             <jnt-avatar [size]="ui.size.large"
                                         [image]="heroes[code].avatar"></jnt-avatar>

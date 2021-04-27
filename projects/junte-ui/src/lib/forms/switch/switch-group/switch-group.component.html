@@ -1,0 +1,40 @@
+<ng-container [formGroup]="form">
+  <ng-container formArrayName="switches">
+    <ng-container *ngIf="!!switchesControl.length">
+      <ng-container *ngIf="cols <= 1; else colTemplate">
+        <jnt-stack [gutter]="spacing"
+                   [orientation]="orientation"
+                   [spacing]="spacing"
+                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.stretch"
+                   [wrap]="ui.wrap.wrap">
+          <jnt-switch *ngFor="let item of switches; let i = index"
+                      [formControlName]="i"
+                      [align]="align"
+                      [size]="size"
+                      [label]="item.label"
+                      [value]="item.value">
+            <ng-template *ngIf="!!item.labelTemplate" #switchLabelTemplate>
+              <ng-container *ngTemplateOutlet="item.labelTemplate"></ng-container>
+            </ng-template>
+          </jnt-switch>
+        </jnt-stack>
+      </ng-container>
+      <ng-template #colTemplate>
+        <jnt-row>
+          <jnt-col *ngFor="let item of switches; let i = index" [tablet]="(12 / cols) | trunc">
+            <jnt-switch [formControlName]="i"
+                        [size]="size"
+                        [label]="item.label"
+                        [value]="item.value">
+              <ng-template *ngIf="!!item.labelTemplate" #switchLabelTemplate>
+                <ng-container *ngTemplateOutlet="item.labelTemplate"></ng-container>
+              </ng-template>
+            </jnt-switch>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+
