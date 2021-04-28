@@ -438,10 +438,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     }
   }
 
-  @HostListener('document:click', ['$event.path'])
-  onClickOutside(path: HTMLElement[]) {
-    const picked = (arr: HTMLElement[]) => arr.indexOf(this.hostRef.nativeElement) !== -1;
-    if (!!this.reference.popover && this.opened && !picked(path) && !this.reference.popover.picked(path)) {
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const path = event.composedPath();
+    const picked = path.indexOf(this.hostRef.nativeElement) !== -1;
+    if (!!this.reference.popover && this.opened && !picked && !this.reference.popover.picked(path)) {
       this.close();
     }
   }

@@ -4,7 +4,7 @@ import { PopoverComponent, PopoverOptions } from './popover.component';
 // TODO: move to interface and check ngc warnings
 export class PopoverInstance {
   hide: () => void;
-  picked: (path: HTMLElement[]) => boolean;
+  picked: (path: Object[]) => boolean;
   update: () => void;
 }
 
@@ -41,7 +41,7 @@ export class PopoverService {
 
     return {
       hide: () => this.hide(target),
-      picked: (path: HTMLElement[]) => this.popover.picked(path),
+      picked: (path: Object[]) => this.popover.picked(path),
       update: () => this.popover.update()
     };
   }
