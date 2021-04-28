@@ -162,7 +162,7 @@
     }
 
     &[data-focused='true'] {
-      #{$wrapper} [data-wrapper] {
+      #{$wrapper} [data-form] {
         outline: 0;
         @if map-has-key($vars, focus) {
           $focus: map-get($vars, focus);
@@ -173,153 +173,159 @@
   }
 
   #{$context} #{$wrapper} [data-wrapper] {
-    border-radius: map-get($vars, corner);
-    line-height: 1;
+    flex: 1;
 
-    form {
-      @if $declare {
-        display: inline-flex;
-        align-items: center;
-        position: relative;
-        //for Safari
-        -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-      }
+    [data-form] {
       border-radius: map-get($vars, corner);
+      line-height: 1;
 
-      input {
+      form {
         @if $declare {
-          position: absolute;
-          top: 0;
-          z-index: 1;
-          cursor: pointer;
-          opacity: 0;
-          bottom: 0;
-          right: 0;
-          left: 0;
-          margin: 0;
-          width: 100%;
-          height: 100%;
+          display: inline-flex;
+          align-items: center;
+          position: relative;
+          // for Safari
+          -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
         }
+        border-radius: map-get($vars, corner);
 
-        &:checked {
-          & + [data-switch] {
-            @if map-has-key($vars, background) {
-              $background: map-get($vars, background);
-              background-color: map-get($background, on);
-              [data-slider] {
-                @if map-has-key($background, slider) {
-                  $slider: map-get($background, slider);
-                  background-color: map-get($slider, on);
+        input {
+          @if $declare {
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          &:checked {
+            & + [data-switch] {
+              @if map-has-key($vars, background) {
+                $background: map-get($vars, background);
+                background-color: map-get($background, on);
+                [data-slider] {
+                  @if map-has-key($background, slider) {
+                    $slider: map-get($background, slider);
+                    background-color: map-get($slider, on);
+                  }
+                }
+                [data-icon] {
+                  @if map-has-key($background, icon) {
+                    $icon-bg: map-get($background, icon);
+                    @include jnt-icon((
+                      color: map-get($icon-bg, on)
+                    ), '&');
+                  }
                 }
               }
-              [data-icon] {
-                @if map-has-key($background, icon) {
-                  $icon-bg: map-get($background, icon);
-                  @include jnt-icon((
-                    color: map-get($icon-bg, on)
-                  ), '&');
+            }
+          }
+
+          &:hover {
+            @if map-has-key($vars, hover) {
+              $hover: map-get($vars, hover);
+              & + [data-switch] {
+                background-color: map-get($hover, off);
+              }
+              &:checked {
+                & + [data-switch] {
+                  background-color: map-get($hover, on);
+                }
+              }
+            }
+          }
+
+          &:disabled {
+            @if $declare {
+              cursor: default;
+            }
+            @if map-has-key($vars, disabled) {
+              $disabled: map-get($vars, disabled);
+              & + [data-switch] {
+                background-color: map-get($disabled, off);
+              }
+              &:checked {
+                & + [data-switch] {
+                  background-color: map-get($disabled, on);
                 }
               }
             }
           }
         }
 
-        &:hover {
-          @if map-has-key($vars, hover) {
-            $hover: map-get($vars, hover);
-            & + [data-switch] {
-              background-color: map-get($hover, off);
-            }
-            &:checked {
-              & + [data-switch] {
-                background-color: map-get($hover, on);
-              }
-            }
-          }
-        }
-
-        &:disabled {
+        [data-switch] {
           @if $declare {
-            cursor: default;
-          }
-          @if map-has-key($vars, disabled) {
-            $disabled: map-get($vars, disabled);
-            & + [data-switch] {
-              background-color: map-get($disabled, off);
-            }
-            &:checked {
-              & + [data-switch] {
-                background-color: map-get($disabled, on);
-              }
-            }
-          }
-        }
-      }
-
-      [data-switch] {
-        @if $declare {
-          display: flex;
-        }
-        @if map-has-key($vars, background) {
-          $background: map-get($vars, background);
-          background-color: map-get($background, off);
-          [data-on] {
-            @if $declare {
-              box-sizing: border-box;
-              text-align: right;
-            }
-            padding-left: calc(#{map-get($vars, padding)} * 2);
-          }
-          [data-off] {
-            @if $declare {
-              box-sizing: border-box;
-              text-align: left;
-            }
-            padding-right: calc(#{map-get($vars, padding)} * 2);
-          }
-          [data-slider] {
-            @if map-has-key($background, slider) {
-              $slider: map-get($background, slider);
-              background-color: map-get($slider, off);
-            }
-          }
-          [data-icon] {
-            @if map-has-key($background, icon) {
-              $icon-bg: map-get($background, icon);
-              @include jnt-icon((
-                color: map-get($icon-bg, off)
-              ), '&');
-            }
-          }
-        }
-        @if $declare {
-          transition: transform .4s ease-out, background-color .4s;
-        }
-
-        [data-slider] {
-          @if $declare {
-            border-radius: 50%;
             display: flex;
-            align-items: center;
-            justify-content: center;
           }
-        }
-
-        span {
+          @if map-has-key($vars, background) {
+            $background: map-get($vars, background);
+            background-color: map-get($background, off);
+            [data-on] {
+              @if $declare {
+                box-sizing: border-box;
+                text-align: right;
+              }
+              padding-left: calc(#{map-get($vars, padding)} * 2);
+            }
+            [data-off] {
+              @if $declare {
+                box-sizing: border-box;
+                text-align: left;
+              }
+              padding-right: calc(#{map-get($vars, padding)} * 2);
+            }
+            [data-slider] {
+              @if map-has-key($background, slider) {
+                $slider: map-get($background, slider);
+                background-color: map-get($slider, off);
+              }
+            }
+            [data-icon] {
+              @if map-has-key($background, icon) {
+                $icon-bg: map-get($background, icon);
+                @include jnt-icon((
+                  color: map-get($icon-bg, off)
+                ), '&');
+              }
+            }
+          }
           @if $declare {
-            color: $jnt-white-color;
+            transition: transform .4s ease-out, background-color .4s;
+          }
+
+          [data-slider] {
+            @if $declare {
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+
+          span {
+            @if $declare {
+              color: $jnt-white-color;
+            }
           }
         }
       }
     }
-  }
 
-  #{$context} #{$wrapper} label {
-    @if $declare {
-      margin-left: $jnt-gutter-small;
-      flex: 1;
+    label {
+      @if $declare {
+        margin-left: $jnt-gutter-small;
+        flex: 1;
+      }
     }
   }
+
+
 }
 
 @if $jnt-debug {
