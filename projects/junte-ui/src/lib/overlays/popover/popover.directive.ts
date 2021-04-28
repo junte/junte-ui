@@ -63,12 +63,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
     ).subscribe(() => this.instance = null);
 
     this.zone.runOutsideAngular(() => {
-      this.listeners.push(this.renderer.listen('document', 'mousemove', ({path}) => {
+      this.listeners.push(this.renderer.listen('document', 'mousemove', (e: Event) => {
+        const path = e.composedPath();
         if (!!this.instance && this.options.trigger === Triggers.hover && !this.picked(path)) {
           this.hide(path);
         }
       }));
-      this.listeners.push(this.renderer.listen('document', 'click', ({path}) => {
+      this.listeners.push(this.renderer.listen('document', 'click', (e: Event) => {
+        const path = e.composedPath();
         if (!!this.instance && this.options.trigger === Triggers.click && !this.picked(path)) {
           this.hide(path);
         }
@@ -99,7 +101,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
   }
 
-  private picked(elements: HTMLElement[]) {
+  private picked(elements: Object[]) {
     return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
 
@@ -109,7 +111,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
   }
 
-  private hide(path: HTMLElement[] = []) {
+  private hide(path: Object[] = []) {
     if (!!this.instance && !this.instance.picked(path)) {
       this.instance.hide();
       this.instance = null;

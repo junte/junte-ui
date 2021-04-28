@@ -308,7 +308,7 @@ export class PopoverComponent implements OnInit {
     this.cd.detectChanges();
   }
 
-  picked(elements: HTMLElement[]): boolean {
+  picked(elements: Object[]): boolean {
     return elements.indexOf(this.hostRef.nativeElement) !== -1;
   }
 

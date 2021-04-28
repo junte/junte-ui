@@ -77,7 +77,6 @@ import '@angular/localize/init';
  * Zone JS is required by default for Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
-import 'junte-ui/polyfills/event-path';  // Included with Junte-UI.
 import 'junte-ui/polyfills/element-children';  // Included with Junte-UI.
 
 
