@@ -41,8 +41,8 @@ export class SwitchTestComponent implements OnInit {
   tagsControl = this.fb.control(true);
   disabledControl = this.fb.control(false);
   colsControl = this.fb.control(null);
-  customControl = this.fb.control(false);
   typeControl = this.fb.control(SwitchType.single);
+  alignControl = this.fb.control(UI.align.center);
 
   builder = this.fb.group({
     size: this.sizeControl,
@@ -51,8 +51,8 @@ export class SwitchTestComponent implements OnInit {
     tags: this.tagsControl,
     disabled: this.disabledControl,
     cols: this.colsControl,
-    custom: this.customControl,
-    type: this.typeControl
+    type: this.typeControl,
+    align: this.alignControl
   });
 
   switchControl = this.fb.control(false);

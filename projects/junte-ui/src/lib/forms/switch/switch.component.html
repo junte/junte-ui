@@ -1,43 +1,47 @@
-<div data-wrapper>
-  <form [formGroup]="form">
-    <input type="checkbox"
-           formControlName="switch"
-           (focusin)="focused = true"
-           (focusout)="focused = false">
-    <jnt-stack data-switch [orientation]="ui.orientation.horizontal"
-               [gutter]="config.switch.style === styles.hipster ? ui.gutter.normal : ui.gutter.tiny"
-               [align]="align"
-               [justify]="ui.justify.center">
-      <ng-container *ngIf="config.switch.style === styles.default; else hipsterOnTemplate">
-        <span data-on *ngIf="tags?.on">{{tags.on}}</span>
-      </ng-container>
+<jnt-stack data-wrapper
+           [orientation]="ui.orientation.horizontal"
+           [gutter]="ui.gutter.small"
+           [align]="align">
+  <div data-form>
+    <form [formGroup]="form">
+      <input type="checkbox"
+             formControlName="switch"
+             (focusin)="focused = true"
+             (focusout)="focused = false">
+      <jnt-stack data-switch [orientation]="ui.orientation.horizontal"
+                 [gutter]="config.switch.style === styles.hipster ? ui.gutter.normal : ui.gutter.tiny"
+                 [align]="ui.align.center"
+                 [justify]="ui.justify.center">
+        <ng-container *ngIf="config.switch.style === styles.default; else hipsterOnTemplate">
+          <span data-on *ngIf="tags?.on">{{tags.on}}</span>
+        </ng-container>
 
-      <ng-template #hipsterOnTemplate>
-        <jnt-icon *ngIf="onIcon" [icon]="onIcon"></jnt-icon>
-      </ng-template>
+        <ng-template #hipsterOnTemplate>
+          <jnt-icon *ngIf="onIcon" [icon]="onIcon"></jnt-icon>
+        </ng-template>
 
-      <div data-slider>
-        <jnt-icon *ngIf="onIcon && checked"
-                  [icon]="onIcon"></jnt-icon>
-        <jnt-icon *ngIf="offIcon && !checked"
-                  [icon]="offIcon"></jnt-icon>
+        <div data-slider>
+          <jnt-icon *ngIf="onIcon && checked"
+                    [icon]="onIcon"></jnt-icon>
+          <jnt-icon *ngIf="offIcon && !checked"
+                    [icon]="offIcon"></jnt-icon>
+        </div>
 
-      </div>
+        <ng-container *ngIf="config.switch.style === styles.default; else hipsterOffTemplate">
+          <span data-off *ngIf="tags?.off">{{tags.off}}</span>
+        </ng-container>
 
-      <ng-container *ngIf="config.switch.style === styles.default; else hipsterOffTemplate">
-        <span data-off *ngIf="tags?.off">{{tags.off}}</span>
-      </ng-container>
+        <ng-template #hipsterOffTemplate>
+          <jnt-icon *ngIf="offIcon" [icon]="offIcon"></jnt-icon>
+        </ng-template>
+      </jnt-stack>
+    </form>
+  </div>
+  <label>
+    <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
+  </label>
 
-      <ng-template #hipsterOffTemplate>
-        <jnt-icon *ngIf="offIcon" [icon]="offIcon"></jnt-icon>
-      </ng-template>
-    </jnt-stack>
-  </form>
-</div>
-<label>
-  <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
-</label>
-
-<ng-template #labelDefaultTemplate>
-  <ng-container *ngIf="label">{{label}}</ng-container>
-</ng-template>
+  <ng-template #labelDefaultTemplate>
+    <ng-container *ngIf="label">{{label}}</ng-container>
+  </ng-template>
+</jnt-stack>
