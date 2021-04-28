@@ -61,7 +61,8 @@ export class CheckboxTestComponent implements OnInit {
       disabled ? this.heroControl.disable({emitEvent: false})
         : this.heroControl.enable({emitEvent: false}));
 
-    this.builder.valueChanges.subscribe(() => this.code.flash());
+    this.builder.valueChanges
+      .subscribe(() => this.code.flash());
   }
 
   submit() {
