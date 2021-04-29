@@ -6,6 +6,7 @@
 @import 'navigation/link/link';
 @import 'elements/icon/icon';
 @import 'forms/button/button';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
@@ -39,20 +40,6 @@
       left: 0;
       right: 0;
       z-index: 3;
-
-      @include jnt-link((
-        color: $jnt-white-color,
-        inverse-color: $jnt-white-color,
-        hover-color: $jnt-white-color,
-        corner: $jnt-corner-small,
-        active: (
-          color: $jnt-white-color,
-          underline: true,
-          underline-color: $jnt-white-color,
-          background-color: transparent,
-          shadow: none
-        ),
-      ));
     }
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
@@ -66,7 +53,9 @@
       }
     }
 
-    @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+    @include min-for-desktop() {
+      @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+    }
 
     @include jnt-menu((
       top: (
