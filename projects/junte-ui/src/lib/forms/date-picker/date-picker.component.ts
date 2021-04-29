@@ -3,13 +3,13 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { format as formatDate, parse } from 'date-fns';
 import { NGXLogger } from 'ngx-logger';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
-import { Feature } from '../../core/enums/feature';
 import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
+import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
@@ -201,7 +201,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
         for (const char of this.timeControl.value) {
           output = output.replace(DIGIT_MASK_CHAR, char);
         }
-        const parsed = parse(output, 'Pp', new Date(),
+        const parsed = parse(output, `dd.MM.yyyy, HH:mm 'Uhr'`, new Date(),
           {locale: this.config.locale.dfns});
         if (parsed instanceof Date && !isNaN(parsed.getTime())) {
           this.onChange(parsed);
