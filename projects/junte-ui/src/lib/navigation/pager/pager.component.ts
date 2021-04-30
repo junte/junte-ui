@@ -83,6 +83,9 @@ export class PagerComponent implements ControlValueAccessor {
   @Input()
   mode: PagerMode = PagerMode.offset;
 
+  @Input()
+  link: string = '?page={{page}}';
+
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
