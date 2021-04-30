@@ -24,14 +24,20 @@
   </a>
 </ng-template>
 
+<ng-template #defaultTitleTemplate>
+  <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
+</ng-template>
+
 <ng-template #linkTemplate>
   <span data-title *ngIf="!!icon || !!title">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
-    <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
+    <span *ngIf="!!contentTemplate; else defaultTitleTemplate">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </span>
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right" [icon]="icon?.icon"></jnt-icon>
   </span>
   <div data-empty *ngIf="collapsed && !icon"></div>
-  <ng-container *ngIf="!!badges.length">
+  <ng-container *ngIf="badges.length > 0">
     <jnt-badge data-badge *ngFor="let badge of badges"
                [attr.data-collapsed]="collapsed"
                [color]="badge.color"

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, HostBinding, Input, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Context } from '../../core/enums/context';
 import { Feature } from '../../core/enums/feature';
@@ -195,4 +195,7 @@ export class LinkComponent {
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
+
+  @ContentChild('linkContentTemplate')
+  contentTemplate: TemplateRef<any>;
 }
