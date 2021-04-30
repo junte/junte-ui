@@ -1,5 +1,7 @@
 <form [formGroup]="form">
-  <jnt-select formControlName="lang" [allowEmpty]="false" select>
+  <jnt-select formControlName="lang"
+              [width]="ui.width.fluid"
+              [placement]="ui.placement.fixed">
     <jnt-select-option [icon]="ui.icons.unitedStatesOfAmerica"
                        label="EN"
                        i18n-label="@@label.en"

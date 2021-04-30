@@ -16,16 +16,17 @@ import {
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter as filtering, finalize } from 'rxjs/operators';
+import { debounceTime, filter as filtering, finalize } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { ContentApi, MethodApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
-import { isEqual } from '../../core/utils/equal';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
-import { TableColumnComponent } from './column/table-column.component';
-import { DEFAULT_FIRST, DEFAULT_OFFSET, DefaultSearchFilter } from './types';
+import { TableColumnComponent } from './table-column';
+import { DefaultSearchFilter } from './types';
 
+const FIRST = 10;
 const FILTER_DELAY = 500;
 
 @Component({
@@ -36,30 +37,30 @@ const FILTER_DELAY = 500;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TableComponent),
       multi: true
-    }, ...I18N_PROVIDERS
+    },
+    ...I18N_PROVIDERS,
+    ...LOGGER_PROVIDERS
   ]
 })
 export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   ui = UI;
 
-  private count: number;
   private subscriptions = {fetcher: new Subscription()};
   popover: PopoverComponent;
 
   progress = {loading: false};
-  source: any[] = [];
+  source: Object[] = [];
+  count: number;
 
-  q = this.fb.control(null);
-  orderBy = this.fb.control(null);
-  pageSize = this.fb.control(DEFAULT_FIRST);
-  page = this.fb.control((DEFAULT_OFFSET / DEFAULT_FIRST) + 1);
+  orderByControl = this.fb.control(null);
+  firstControl = this.fb.control(FIRST);
 
   form = this.fb.group({
-    q: this.q,
-    orderBy: this.orderBy,
-    page: this.page,
-    pageSize: this.pageSize
+    q: [null],
+    orderBy: this.orderByControl,
+    first: this.firstControl,
+    offset: [0]
   });
 
   @HostBinding('attr.host') readonly host = 'jnt-table-host';
@@ -67,20 +68,23 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @PropertyApi({
     description: 'Table features',
     path: 'ui.feature',
-    options: [Feature.search]
+    options: [Feature.search, Feature.reload]
   })
-  @Input() features: Feature[] = [];
+  @Input()
+  features: Feature[] = [];
 
   @PropertyApi({
     description: 'Table fetch function',
     type: 'Function'
   })
-  @Input() fetcher: Function;
+  @Input()
+  fetcher: Function;
 
   @PropertyApi({
     description: 'Output event of reload table'
   })
-  @Output() reloaded = new EventEmitter<any>();
+  @Output()
+  reloaded = new EventEmitter<any>();
 
   @ContentChildren(TableColumnComponent)
   columns: QueryList<TableColumnComponent>;
@@ -90,25 +94,21 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
     description: 'table row actions template'
   })
   @ContentChild('tableRowActionsTemplate')
-  tableRowActionsTemplate: TemplateRef<any>;
+  rowActionsTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#tableActionsTemplate',
     description: 'table actions template'
   })
   @ContentChild('tableActionsTemplate')
-  tableActionsTemplate: TemplateRef<any>;
+  actionsTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#tableFiltersTemplate',
     description: 'table filters template'
   })
   @ContentChild('tableFiltersTemplate')
-  tableFiltersTemplate: TemplateRef<any>;
-
-  get pagesCount() {
-    return Math.ceil(this.count / this.pageSize.value);
-  }
+  filtersTemplate: TemplateRef<any>;
 
   onChange: (filter: DefaultSearchFilter) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -121,17 +121,9 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   }
 
   ngOnInit() {
-    this.form.valueChanges.pipe(
-      filtering(() => !!this.fetcher),
-      debounceTime(FILTER_DELAY),
-      distinctUntilChanged((val1, val2) => isEqual(val1, val2))
-    ).subscribe(state => {
-      this.onChange({
-        q: state.q,
-        sort: state.orderBy,
-        first: state.pageSize,
-        offset: (state.page - 1) * state.pageSize
-      });
+    this.form.valueChanges.pipe(filtering(() => !!this.fetcher),
+      debounceTime(FILTER_DELAY)).subscribe(({q, orderBy, first, offset}) => {
+      this.onChange({q, orderBy, first, offset});
     });
   }
 
@@ -155,16 +147,12 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @MethodApi({description: 'sorting data table by field'})
   sorting(field: string) {
-    this.orderBy.setValue(this.orderBy.value === field ? `-${field}` : field);
+    this.orderByControl.setValue(this.orderByControl.value === field ? `-${field}` : field);
   }
 
-  writeValue({q, sort, first, offset}: DefaultSearchFilter) {
-    this.form.patchValue({
-      q,
-      orderBy: sort,
-      pageSize: first,
-      page: Math.floor(offset / first) + 1
-    });
+  writeValue({q, orderBy, first, offset}: DefaultSearchFilter) {
+    this.form.patchValue({q, orderBy, first, offset},
+      {emitEvent: false});
   }
 
   hideActions() {

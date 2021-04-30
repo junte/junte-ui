@@ -1,50 +1,78 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin spinner-size($size) {
   width: $size;
   min-width: $size;
   height: $size;
   min-height: $size;
+  line-height: $size;
 }
 
-@keyframes jnt-spin {
+@keyframes spinner-dash1 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 90;
+  }
   100% {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spinner-dash2 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 90;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spinner-rotate {
+  0% {
+    transform: rotate(0turn);
+  }
+  50% {
+    transform: rotate(1.05turn);
+  }
+  100% {
+    transform: rotate(2turn);
   }
 }
 
 @mixin jnt-spinner($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    color: $jnt-primary-color,
     size: null,
     sizes: (
-      small: 1rem,
-      normal: 2rem,
-      large: 3rem
-    ),
+      small: 16px,
+      normal: 24px,
+      large: 32px
+    )
   );
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: inline-block;
-    border-radius: 50%;
-    border: 1px solid;
-    border-right-color: transparent !important;
-    animation: jnt-spin .5s infinite linear;
-    @if map-get($vars, size) != null {
-      width: if(map-get($vars, size), map-get($vars, size) !important, null);
-      min-width: if(map-get($vars, size), map-get($vars, size) !important, null);
-      height: if(map-get($vars, size), map-get($vars, size) !important, null);
-      min-height: if(map-get($vars, size), map-get($vars, size) !important, null);
-    }
+  #{if($context, $context, $jnt-spinner-host)} {
+    display: block;
 
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
@@ -53,6 +81,32 @@
           @include spinner-size($map);
         }
       }
+    }
+
+    &[data-size] {
+      @include spinner-size(map-get($vars, size));
+    }
+  }
+
+  svg {
+    animation: spinner-rotate 1.5s linear infinite;
+    width: 100%;
+    height: 100%;
+
+    [data-stroke-spinner1] {
+      stroke: map-get($vars, color);
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: spinner-dash1 1.5s ease-in-out infinite;
+    }
+
+    [data-stroke-spinner2] {
+      stroke: map-get($vars, color);
+      stroke-dasharray: 90;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: spinner-dash2 1.5s ease-in-out infinite;
     }
   }
 }

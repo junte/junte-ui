@@ -3,3 +3,8 @@ export enum IconType {
   svg = 'svg',
   animated = 'animated'
 }
+
+export enum IconTag {
+  stroked = 'stroked',
+  filled = 'filled'
+}

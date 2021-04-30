@@ -1,39 +1,47 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-app-header-action($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    width: 400px,
-    height: 400px
   );
 
   $vars: $passed;
   $declare: false;
+
+  $wrapper: null;
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
-  :host, #{$context} {
-    position: relative;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    padding: 0 $jnt-gutter-normal;
+  #{if($context, $context, $jnt-app-header-action-host)} {
+    @if $declare {
+      position: relative;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
 
-    @include jnt-icon((size: 20px, color: $jnt-white-color));
+      @include jnt-icon((size: 20px, color: $jnt-white-color));
 
-    &:hover {
-      background-color: $jnt-primary-color;
+      &:hover {
+        background-color: $jnt-primary-color;
+      }
     }
   }
 
   [data-label] {
-    display: flex;
-    align-items: center;
+    @if $declare {
+      display: flex;
+      align-items: center;
+      padding: 0 $jnt-gutter-normal;
+    }
   }
 
 }

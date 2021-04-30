@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "elements/dot/dot";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'elements/dot/dot';
 
 @mixin label-size($size, $wrapper) {
   padding: map-get($size, padding);
@@ -12,18 +13,15 @@
   }
 }
 
-@mixin jnt-label($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-label($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
     background: $jnt-primary-color,
     font-size: inherit,
+    border: 1px solid $jnt-primary-color,
     color: null,
-    border: none,
-    icon: (
-      margin-right: $jnt-gutter-small
-    ),
     dot: (
-      size: 10px,
+      size: 10px
     ),
     sizes: (
       small: (
@@ -43,7 +41,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -52,22 +50,25 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-label-host)} {
     @if $declare {
       display: inline-block;
       box-sizing: border-box;
+      &[data-outline='ghost'] {
+        background-color: transparent !important;
+      }
       [data-text] {
         white-space: nowrap;
       }
     }
-
     border: map-get($vars, border);
     border-radius: map-get($vars, corner);
     font-size: map-get($vars, font-size);
     background: map-get($vars, background);
 
-    #{$wrapper} [data-text] {
-      color: if(map-get($vars, color), map-get($vars, color) !important, null);
+    &[data-color='secondary'] {
+      background: $jnt-secondary-color !important;
+      border-color: $jnt-secondary-color !important;
     }
 
     @if map-has-key($vars, sizes) {
@@ -78,20 +79,20 @@
       }
     }
 
-    @if map-has-key($vars, icon) {
-      $icon: map-get($vars, icon);
-      #{$wrapper} [data-icon] {
-        margin-right: map-get($icon, margin-right);
-        line-height: 1;
-      }
-    }
-
     @if map-has-key($vars, dot) {
       $dot: map-get($vars, dot);
       #{$wrapper} [data-dot] {
         @include jnt-dot((size: map-get($dot, size)), '&');
       }
     }
+  }
+
+  #{$context} #{$wrapper} [data-icon] {
+    line-height: 1;
+  }
+
+  #{$context} #{$wrapper} [data-text] {
+    color: if(map-get($vars, color), map-get($vars, color) !important, null);
   }
 }
 

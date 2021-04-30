@@ -1,23 +1,32 @@
-import { Component, ElementRef, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { filter, map, distinctUntilChanged } from 'rxjs/operators';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+import { Key } from '../../core/enums/keyboard';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
-import { InputScheme, InputType } from './enums';
+import { Width } from '../../core/enums/width';
+import { InputAutocomplete, InputScheme, InputType } from './enums';
 
-const BACKSPACE = 'Backspace';
-const LEFT_ARROW = 'ArrowLeft';
-const RIGHT_ARROW = 'ArrowRight';
-const TAB = 'Tab';
-const ENTER = 'Enter';
-const UNIDENTIFIED = 'Unidentified';
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const DEFAULT_NUMBER = 0;
 
 @Component({
   selector: 'jnt-input',
@@ -27,20 +36,22 @@ const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-input-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-input-host';
 
   ui = UI;
-  inputType = InputType;
-  inputState = State;
-  feature = Feature;
   view = {password: {display: false}};
+  copied = false;
 
   private _mask: string;
+  private _type: InputType = InputType.text;
+  private _placeholder = '';
 
   inputControl = this.fb.control(null);
   formattedControl = this.fb.control(null);
@@ -48,9 +59,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     input: this.inputControl,
     formatted: this.formattedControl
   });
-
-  @ViewChild('input', {read: ElementRef, static: false})
-  input: ElementRef;
 
   @HostBinding('attr.data-focused')
   focused = false;
@@ -61,35 +69,53 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostBinding('attr.data-scheme')
   _scheme: InputScheme = InputScheme.normal;
 
-  _type: InputType = InputType.text;
-
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
+
+  @HostBinding('attr.data-with-icon')
+  get withIcon() {
+    return !!this.icon;
+  }
 
   @PropertyApi({
     description: 'Icon for input',
     type: 'string',
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Label for input',
     type: 'string',
   })
-  @Input() label: string;
+  @Input()
+  label: string;
+
+  @PropertyApi({
+    description: 'Name for input',
+    type: 'string'
+  })
+  @Input()
+  name: string = null;
 
   @PropertyApi({
     description: 'Text transform for input',
-    type: 'TextTransform',
+    path: 'ui.text.transform',
     options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
   })
-  @Input() transform: TextTransform;
+  @Input()
+  transform: TextTransform;
 
   @PropertyApi({
     description: 'Auto complete for input',
-    type: 'string',
+    path: 'ui.input.autocomplete',
+    options: [InputAutocomplete.on, InputAutocomplete.off]
   })
-  @Input() autocomplete: string;
+  @Input()
+  autocomplete: InputAutocomplete = InputAutocomplete.off;
 
   @PropertyApi({
     description: 'Input text align',
@@ -98,38 +124,37 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     options: [TextAlign.left, TextAlign.right]
   })
   @HostBinding('attr.data-textAlign')
-  @Input() textAlign: TextAlign = TextAlign.left;
-
-  @PropertyApi({
-    description: 'Input placeholder',
-    type: 'string',
-  })
-  @Input() placeholder = '';
+  @Input()
+  textAlign: TextAlign = TextAlign.left;
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() min: number = null;
+  @Input()
+  min: number = null;
 
   @PropertyApi({
     description: 'Maximum number value that can be entered. For input with typeControl = number',
     type: 'number',
   })
-  @Input() max: number = null;
+  @Input()
+  max: number = null;
 
   @PropertyApi({
     description: 'Step for entered value. For input with typeControl = number',
     type: 'number',
   })
-  @Input() step = 1;
+  @Input()
+  step = 1;
 
   @PropertyApi({
     description: 'Used to specify that the input field is read-only',
     type: 'boolean',
     default: 'false'
   })
-  @Input() readonly = false;
+  @Input()
+  readonly = false;
 
   @PropertyApi({
     description: 'Input scheme',
@@ -137,8 +162,22 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: InputScheme.normal,
     options: [InputScheme.normal, InputScheme.success, InputScheme.failed]
   })
-  @Input() set scheme(scheme: InputScheme) {
+  @Input()
+  set scheme(scheme: InputScheme) {
     this._scheme = scheme || InputScheme.normal;
+  }
+
+  @PropertyApi({
+    description: 'Input placeholder',
+    type: 'string',
+  })
+  @Input()
+  set placeholder(placeholder: string) {
+    this._placeholder = placeholder || '';
+  }
+
+  get placeholder() {
+    return this._placeholder;
   }
 
   @PropertyApi({
@@ -147,7 +186,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: InputType.text,
     options: [InputType.text, InputType.number, InputType.password]
   })
-  @Input() set type(type: InputType) {
+  @Input()
+  set type(type: InputType) {
     this._type = type || InputType.text;
   }
 
@@ -161,8 +201,19 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     default: Size.normal,
     options: [Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  @PropertyApi({
+    description: 'Input width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
   }
 
   @PropertyApi({
@@ -171,22 +222,16 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     options: [State.loading, State.warning, State.checked]
   })
   @HostBinding('attr.data-state')
-  @Input() state: State;
-
-  @PropertyApi({
-    description: 'Allow multiple lines in input',
-    type: 'boolean',
-    default: 'false',
-  })
-  @HostBinding('attr.data-multiline')
-  @Input() multiline = false;
+  @Input()
+  state: State;
 
   @PropertyApi({
     description: 'Max rows for multiline mode',
-    type: 'int',
+    type: 'number',
     default: 5,
   })
-  @Input() rows = 5;
+  @Input()
+  rows = 5;
 
   @PropertyApi({
     description: 'Mask pattern where _ - is digit',
@@ -197,7 +242,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   set mask(mask: string) {
     this._mask = mask;
     if (!!mask) {
-      this.formattedControl.setValue(mask);
+      this.form.setValue(this.masking(this.inputControl.value || ''));
     }
   }
 
@@ -206,9 +251,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Button for reset input',
+    description: 'Button for reset input; Allow multiple lines in input; Copy button',
     path: 'ui.feature',
-    options: [Feature.clear],
+    options: [Feature.allowEmpty, Feature.multiline, Feature.copy],
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -218,64 +263,92 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     description: 'Click event',
     path: 'EventEmitter'
   })
-  @Output() click = new EventEmitter<any>();
+  @Output()
+  click = new EventEmitter<any>();
 
-  @HostBinding('attr.tabindex') tabindex = 1;
+  @HostBinding('attr.tabindex')
+  tabindex = 1;
+
+  @ViewChild('valueRef', {read: ElementRef, static: false})
+  valueRef: ElementRef<HTMLInputElement>;
+
+  @ViewChild('maskedRef', {read: ElementRef, static: false})
+  maskedRef: ElementRef<HTMLInputElement>;
+
+  @ViewChild('layoutRef', {read: ElementRef})
+  layoutRef: ElementRef<HTMLElement>;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
+  @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger,
-              private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private logger: NGXLogger) {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(value =>
-        this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
+    this.inputControl.valueChanges.subscribe(value =>
+      this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
 
-    this.formattedControl.valueChanges
-      .subscribe(formatted => {
-        if (!!this.input) {
-          const position = formatted.indexOf(DIGIT_MASK_CHAR);
-          this.input.nativeElement.setSelectionRange(position, position);
+    this.formattedControl.valueChanges.pipe(
+      distinctUntilChanged(),
+      filter(() => !!this.maskedRef),
+      map(formatted => !!formatted ? formatted : this.mask)
+    ).subscribe(formatted => {
+      const position = formatted.indexOf(DIGIT_MASK_CHAR);
+      this.maskedRef.nativeElement.setSelectionRange(position, position);
+
+      let cleared = {input: null, formatted: null};
+      for (let i = 0; i < this.mask.length; i++) {
+        if (this.mask.charAt(i) !== formatted.charAt(i)) {
+          cleared = this.masking(formatted.substr(i));
+          break;
         }
-      });
+      }
+      if (cleared.input !== this.inputControl.value || cleared.formatted !== this.formattedControl.value) {
+        this.form.setValue(cleared);
+      }
+    });
   }
 
   private masking(value: string = null): {
     input: string,
     formatted: string
   } {
-    let i, j = 0;
-    const chars = !!value ? value.replace(/\D/gi, '') : (value || '');
-    let formatted = '';
-    for (i = 0; i < this.mask.length; i++) {
-      const char = this.mask.charAt(i);
-      formatted += char === DIGIT_MASK_CHAR ? (chars.charAt(j++) || DIGIT_MASK_CHAR) : char;
-      if (j >= chars.length) {
-        break;
-      }
+    const chars = !!value ? value.replace(/\D/gi, '') : '';
+    let formatted = this.mask;
+    const length = this.mask.split(DIGIT_MASK_CHAR).length - 1;
+    for (const char of chars) {
+      formatted = formatted.replace(DIGIT_MASK_CHAR, char);
     }
-    formatted += this.mask.substr(i + 1);
+
     return {
-      input: chars.substr(0, j) || null, formatted
+      input: chars.substr(0, length) || null,
+      formatted: formatted !== this.mask ? formatted : null
     };
   }
 
+  pasteMask(event: ClipboardEvent) {
+    event.preventDefault();
+    const text = event.clipboardData.getData('text');
+    const data = this.masking(text);
+    this.form.setValue(data);
+  }
+
   keydownMask(event: KeyboardEvent) {
-    let value = this.inputControl.value || '';
+    const value = this.inputControl.value || '';
     let data;
 
     if (DIGIT_KEYS.includes(event.key)) {
       data = this.masking(value + event.key);
-    } else if (event.key === BACKSPACE || event.key === UNIDENTIFIED) {
+    } else if (event.key === Key.backspace) {
       data = this.masking(value.substr(0, value.length - 1));
-    } else if (event.key === TAB
-      || event.key === LEFT_ARROW
-      || event.key === RIGHT_ARROW) {
+    } else if (event.key === Key.tab
+      || event.key === Key.arrowLeft
+      || event.key === Key.arrowRight
+      || (event.ctrlKey || event.metaKey) && event.key === Key.v) {
       return;
     }
     event.preventDefault();
@@ -286,11 +359,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   keydown(event: KeyboardEvent) {
     if (this.type === InputType.number) {
-      if (this.inputControl.value && this.inputControl.value.length === 1 && event.key === BACKSPACE) {
+      if (this.inputControl.value && this.inputControl.value.length === 1 && event.key === Key.backspace) {
         this.inputControl.setValue(null);
       }
     }
-    if (event.key === ENTER) {
+    if (event.key === Key.enter) {
       event.preventDefault();
     }
   }
@@ -314,24 +387,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  blur() {
-    this.onTouched();
-    if (this.type === InputType.number) {
-      if (this.inputControl.value === '' || this.inputControl.value === null) {
-        this.inputControl.setValue(null);
-        return;
-      }
-
-      if (this.min !== null && +this.inputControl.value < this.min) {
-        this.inputControl.setValue(this.min);
-      }
-
-      if (this.max != null && +this.inputControl.value > this.max) {
-        this.inputControl.setValue(this.max);
-      }
-    }
-  }
-
   writeValue(value) {
     this.form.patchValue(!!this.mask ? this.masking(value) : {input: value}, {emitEvent: false});
   }
@@ -340,21 +395,40 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.disabled = disabled;
   }
 
-  up() {
-    let number = +this.inputControl.value;
+  setNumber(step: number) {
     if (this.inputControl.value === '' || this.inputControl.value === null) {
+      this.inputControl.setValue(DEFAULT_NUMBER);
+    } else {
+      let number = +this.inputControl.value + step;
+      number = this.max !== undefined && this.max !== null ? Math.min(number, this.max) : number;
+      number = this.min !== undefined && this.min !== null ? Math.max(number, this.min) : number;
       this.inputControl.setValue(number);
-    } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.setValue(number + +this.step) : this.inputControl.setValue(++number);
     }
   }
 
-  down() {
-    let number = +this.inputControl.value;
-    if (this.inputControl.value === '' || this.inputControl.value === null) {
-      this.inputControl.setValue(number);
-    } else if (this.max === null || number < this.max) {
-      this.step ? this.inputControl.setValue(number - +this.step) : this.inputControl.setValue(--number);
+  clear(event: MouseEvent) {
+    this.inputControl.setValue(null);
+    this.formattedControl.setValue(this.mask);
+    event.stopPropagation();
+  }
+
+  focus() {
+    if (!!this.valueRef) {
+      this.valueRef.nativeElement.focus();
+    } else if (!!this.maskedRef) {
+      this.maskedRef.nativeElement.focus();
     }
+  }
+
+  @HostListener('click', ['$event'])
+  onClick({target}: { target: HTMLElement }) {
+    if ([this.layoutRef.nativeElement].includes(target)) {
+      this.focus();
+    }
+  }
+
+  copy() {
+    this.copied = true;
+    setTimeout(() => this.copied = false, 2100);
   }
 }

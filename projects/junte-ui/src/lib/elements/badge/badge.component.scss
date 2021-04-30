@@ -1,11 +1,13 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin badge-position($position) {
-  [data-text] {
+@mixin badge-position($position, $wrapper) {
+  & {
     position: map-get($position, position);
     left: map-get($position, left);
     right: map-get($position, right);
+    top: map-get($position, top);
     transform: map-get($position, transform);
   }
 }
@@ -22,12 +24,14 @@
       rightTop: (
         position: absolute,
         right: 0,
-        transform: translate(50%, -50%),
+        top: 0,
+        transform: translate(50%, -50%)
       ),
       leftTop: (
         position: absolute,
         left: 0,
-        transform: translate(-50%, -50%),
+        top: 0,
+        transform: translate(-50%, -50%)
       ),
       inline: (
         position: static
@@ -38,17 +42,20 @@
   $vars: $passed;
   $declare: false;
 
+  $wrapper: null;
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-badge-host)} {
     @if $declare {
-      display: inline-block;
-      position: relative;
+      display: inline-flex;
       text-align: center;
-      vertical-align: middle;
     }
 
     border: map-get($vars, border);
@@ -56,22 +63,26 @@
     @if map-has-key($vars, positions) {
       @each $position, $map in map-get($vars, positions) {
         &[data-position='#{$position}'] {
-          @include badge-position($map);
+          @include badge-position($map, $wrapper);
         }
+      }
+    }
+
+    &[data-color='secondary'] {
+      #{$wrapper} [data-text] {
+        background: $jnt-secondary-color;
       }
     }
   }
 
-  #{$context} [data-text] {
+  #{$wrapper} #{$context} [data-text] {
     @if $declare {
-      top: 0;
       display: inline-block;
       text-align: center;
       padding: 0 3px;
       box-sizing: border-box;
       white-space: nowrap;
     }
-
     color: map-get($vars, color);
     background: map-get($vars, background);
     font-size: map-get($vars, font-size);

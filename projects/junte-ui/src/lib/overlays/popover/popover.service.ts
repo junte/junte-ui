@@ -1,10 +1,10 @@
 import { ElementRef, EventEmitter, Injectable } from '@angular/core';
-import { PopoverComponent } from './popover.component';
+import { PopoverComponent, PopoverOptions } from './popover.component';
 
 // TODO: move to interface and check ngc warnings
 export class PopoverInstance {
   hide: () => void;
-  picked: (path: HTMLElement[]) => boolean;
+  picked: (path: Object[]) => boolean;
   update: () => void;
 }
 
@@ -14,6 +14,14 @@ export class PopoverService {
   private popover: PopoverComponent;
   private target: ElementRef;
   attached = new EventEmitter<ElementRef>();
+
+  constructor() {
+    document.addEventListener('scroll', () => {
+      if (!!this.popover) {
+        this.popover.update();
+      }
+    }, true);
+  }
 
   register(popover: PopoverComponent): void {
     this.popover = popover;
@@ -25,7 +33,7 @@ export class PopoverService {
     }
   }
 
-  show(target: ElementRef, options: Object): PopoverInstance {
+  show(target: ElementRef, options: Partial<PopoverOptions>): PopoverInstance {
     this.checkRegistration();
     this.target = target;
     this.popover.show(target, options);
@@ -33,7 +41,7 @@ export class PopoverService {
 
     return {
       hide: () => this.hide(target),
-      picked: (path: HTMLElement[]) => this.popover.picked(path),
+      picked: (path: Object[]) => this.popover.picked(path),
       update: () => this.popover.update()
     };
   }

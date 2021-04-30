@@ -1,0 +1,64 @@
+<p [ngSwitch]="locale">
+  <ng-container *ngSwitchDefault>
+    Create the component by the command in terminal
+  </ng-container>
+  <ng-container *ngSwitchCase="language.ru">
+    Создайте компонент с помощью команды в терминале
+  </ng-container>
+</p>
+<app-code-highlight>
+<![CDATA[
+ng g c ]]>{{test.selector}}<![CDATA[
+]]>
+</app-code-highlight>
+<p [ngSwitch]="locale">
+  <ng-container *ngSwitchDefault>
+    Add link to <code>UI </code> enum in component behaviour
+  </ng-container>
+  <ng-container *ngSwitchCase="language.ru">
+    Добавьте ссылку на  <code>UI </code> enum в поведенческом компоненте
+  </ng-container>
+  <code>{{test.selector}}.component.ts</code>
+</p>
+
+<ng-template #customBehaviourTemplate>
+  <app-code-highlight [language]="highlight.language.typescript"
+                      file="{{test.selector}}.component.ts">
+    <ng-container *ngTemplateOutlet="behaviourTemplate"></ng-container>
+  </app-code-highlight>
+</ng-template>
+
+<app-code-highlight *ngIf="!behaviourTemplate; else customBehaviourTemplate"
+                    [language]="highlight.language.typescript"
+                    file="{{test.selector}}.component.ts">
+  <!-- @formatter:off-->
+<![CDATA[
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+
+@Component({
+  selector: 'app-]]>{{test.selector}}<![CDATA[',
+  templateUrl: './]]>{{test.selector}}<![CDATA[.component.html',
+  styleUrls: ['./]]>{{test.selector}}<![CDATA[.component.scss']
+})
+export class ]]>{{test.type}}<![CDATA[ {
+  ui = UI; // link to junte UI enum
+}]]>
+  <!-- @formatter:on-->
+</app-code-highlight>
+
+<ng-container *ngIf="!!scss">
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Add component's style to main app styles file
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Добавьте стили компонента в главный файл стилей своего приложения
+    </ng-container>
+    <code>style.scss</code>
+  </p>
+  <app-code-highlight [language]="highlight.language.css" file="src/styles.scss">
+    <![CDATA[
+    @import "@junte/ui/lib/assets/styles/]]>{{scss}}<![CDATA[";]]>
+  </app-code-highlight>
+</ng-container>

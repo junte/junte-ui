@@ -1,22 +1,69 @@
-@import "jnt-variables";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-app-header-userbar($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    position: relative;
-    cursor: pointer;
-    display: block;
-    align-items: stretch;
-    @include max-for-tablet() {
-      padding: 0;
+  $defs: (
+    padding: 0 $jnt-gutter-normal,
+    hover: (
+      background: $jnt-primary-color
+    ),
+    dropdown: (
+      max-width: 320px,
+      width: null,
+      padding: null
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-app-header-userbar-host)} {
+    @if $declare {
+      position: relative;
+      cursor: pointer;
+      display: block;
+      align-items: stretch;
+      @include max-for-tablet() {
+        [data-user] {
+          padding: 0;
+        }
+      }
     }
     @include min-for-desktop() {
-      padding: 0 $jnt-gutter-normal;
-      display: flex;
-      &:hover {
-        background-color: $jnt-primary-color;
+      @if $declare {
+        display: flex;
       }
+      &:hover {
+        @if map-has-key($vars, hover) {
+          $hover: map-get($vars, hover);
+          background-color: map-get($hover, background);
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-user] {
+    padding: map-get($vars, padding);
+  }
+
+  #{$context} #{$wrapper} [data-content] {
+    @if map-has-key($vars, dropdown) {
+      $dropdown: map-get($vars, dropdown);
+      max-width: map-get($dropdown, max-width);
+      width: map-get($dropdown, width);
+      padding: map-get($dropdown, padding);
     }
   }
 }

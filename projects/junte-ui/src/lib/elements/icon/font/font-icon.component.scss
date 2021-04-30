@@ -1,18 +1,20 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin jnt-font-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-font-icon($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     color: null,
-    font-size: null
+    size: null,
+    line-height: null
   );
 
   $vars: $passed;
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -21,7 +23,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-font-icon-host)} {
     @if $declare {
       display: inline-block;
       font-weight: $jnt-font-weight-base;
@@ -29,8 +31,9 @@
         animation: jnt-rotate .6s linear infinite;
       }
     }
-    font-size: map-get($vars, font-size);
+    font-size: map-get($vars, size);
     color: map-get($vars, color);
+    line-height: map-get($vars, line-height);
   }
 }
 

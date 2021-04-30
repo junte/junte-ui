@@ -1,0 +1,31 @@
+@import 'jnt-variables';
+@import 'jnt-hosts';
+
+@mixin jnt-confirm($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-confirm-host)} {
+    @if $declare {
+      display: block;
+    }
+  }
+
+  #{$context} [data-message] {
+    @if $declare {
+      margin-bottom: $jnt-gutter-normal;
+    }
+  }
+}
+
+@if $jnt-debug {
+  @debug 'message compiled';
+}

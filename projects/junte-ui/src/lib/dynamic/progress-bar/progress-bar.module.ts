@@ -1,34 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { ProgressLineComponent } from './line/progress-line.component';
+import { GetColorPipe } from './pipes';
 import { ProgressBarComponent } from './progress-bar.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ArrayPipesModule
   ],
   exports: [
-    ProgressBarComponent
+    ProgressBarComponent,
+    ProgressLineComponent
   ],
   entryComponents: [
     ProgressBarComponent
   ],
   declarations: [
-    ProgressBarComponent
+    ProgressBarComponent,
+    ProgressLineComponent,
+    GetColorPipe
   ]
 })
 export class ProgressBarModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<ProgressBarModule> {
-    return {
-      ngModule: ProgressBarModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

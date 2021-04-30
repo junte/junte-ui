@@ -1,14 +1,14 @@
 import * as fs from 'fs';
 import * as gulp from 'gulp';
-// import * as debug from 'gulp-debug';
 import { Gulpclass, SequenceTask, Task } from 'gulpclass';
 import * as map from 'map-stream';
 import * as path from 'path';
 import 'reflect-metadata';
 
 const argument = require('minimist')(process.argv.slice(2));
-const styleFiles = './src/lib/assets/styles/**/*.scss';
-const buildFiles = './src/lib/**/build.json';
+const BASE_FILES = './src/lib/assets/styles/*.scss';
+const COMPONENTS_FILES = './src/lib/assets/styles/**/*.scss';
+const BUILD_FILES = './src/lib/**/build.json';
 
 class Component {
   constructor(public section: string, public name: string) {
@@ -37,8 +37,8 @@ export class Gulpfile {
     imports = imports.filter(file => !file.includes('jnt-variables')
       && !file.includes(`${section}/${to.replace('.scss', '').replace('_', '')}`));
 
-    const clean = file => file.replace(/";|';/, '').replace(/@import ["|']/, "@import '../").split('/');
-    imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + "';")))];
+    const clean = file => file.replace(/";|';/, '').replace(/@import ["|']/, '@import \'../').split('/');
+    imports = [...(new Set(imports.map(file => clean(file).slice(0, 3).join('/') + '\';')))];
 
     let cleared = content
       .replace(/@import.*$/gm, '')
@@ -48,7 +48,7 @@ export class Gulpfile {
   }
 
   @Task()
-  componentsStyle() {
+  mixins() {
     return gulp.src(['./src/lib/assets/styles/_jnt-mixins.scss'])
       .pipe(map((file, cb) => {
         const contents = [];
@@ -60,8 +60,7 @@ export class Gulpfile {
 
   @Task()
   styles() {
-    return gulp.src([buildFiles])
-      // .pipe(debug())
+    return gulp.src([BUILD_FILES])
       .pipe(map((file, cb) => {
         const composition = (JSON.parse(file.contents.toString()) as Builder).composition;
         if (!!composition) {
@@ -89,18 +88,26 @@ export class Gulpfile {
       }));
   }
 
+  @Task()
+  base() {
+    return gulp.src([BASE_FILES])
+      .pipe(gulp.dest('../../dist/junte-ui/lib/assets/styles'));
+  }
+
   @SequenceTask()
-  build() {
-    const tasks = ['styles', 'componentsStyle'];
+  build(done) {
+    const tasks = ['styles', 'mixins'];
     if (argument.watch) {
       tasks.push('watch');
     }
+    done();
     return tasks;
   }
 
   @Task()
-  watch() {
-    return gulp.watch([styleFiles, buildFiles],
-      {ignoreInitial: true}, gulp.series('styles'));
+  watch(done) {
+    done();
+    return gulp.watch([BASE_FILES, COMPONENTS_FILES, BUILD_FILES],
+      {ignoreInitial: true}, gulp.series('styles', 'base', 'mixins'));
   }
 }

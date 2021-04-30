@@ -1,16 +1,20 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "navigation/menu/menu";
-@import "layout/responsive/responsive";
-@import "layout/grid/container/container";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'navigation/menu/menu';
+@import 'layout/responsive/responsive';
+@import 'layout/grid/container/container';
+@import 'forms/button/button';
 
-@mixin jnt-lp-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-lp-header($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     position: fixed,
-    background: transparent,
+    background: (
+      default: transparent,
+      onScroll: $jnt-white-color
+    ),
     padding: $jnt-gutter-large 0 $jnt-gutter-huge 0,
     mobile-padding: $jnt-gutter-big 0,
     height: $lp-header-height,
@@ -25,21 +29,17 @@
             text-transform: uppercase,
             font-weight: $jnt-font-weight-semi-bold,
             active: (
-              color: $jnt-white-color
+              color: $jnt-primary-light-color,
+              underline: false
             ),
-            icon: (
-              size: $jnt-font-size-normal
-            ),
-            padding: (
-              inner: $jnt-gutter-small,
-            ),
+            padding: $jnt-gutter-small,
             hover: (
-              background-color: rgba($jnt-secondary-dark-color, .5),
-            ),
-          ),
-        ),
+              background-color: rgba($jnt-highlight-background, .5)
+            )
+          )
+        )
       ),
-      tablet: (
+      mobile: (
         top: (
           item: (
             color: $jnt-primary-color,
@@ -51,26 +51,23 @@
             icon: (
               size: $jnt-font-size-normal
             ),
-            padding: (
-              outer: $jnt-gutter-small $jnt-gutter-normal,
-              inner: $jnt-gutter-small,
-            ),
-          ),
-        ),
+            padding: $jnt-gutter-small $jnt-gutter-normal
+          )
+        )
       ),
       burger: (
         icon: (
-          size: 24px,
-        ),
-      ),
-    ),
+          size: 40px
+        )
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -79,18 +76,33 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    background-color: map-get($vars, background);
+  #{if($context, $context, $jnt-lp-header-host)} {
+    @if $declare {
+      display: flex;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      transition: background-color .5s ease;
+    }
+    @if map-has-key($vars, background) {
+      $bg: map-get($vars, background);
+      background-color: map-get($bg, default);
+    }
+
+    @if map-get($vars, position) == fixed {
+      &[data-scrolled=true] {
+        @if map-has-key($vars, background) {
+          $bg: map-get($vars, background);
+          background-color: map-get($bg, onScroll);
+        }
+      }
+    }
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
     height: map-get($vars, height);
     position: map-get($vars, position);
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
 
     @include max-for-tablet() {
       min-height: map-get($vars, mobile-height);
@@ -100,30 +112,38 @@
   }
 
   #{$context} #{$wrapper} [data-container] {
-    @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
+    @include jnt-grid-container((width: map-get($vars, container-width)), '&') {
       display: flex;
       justify-content: space-between;
-    };
+    }
+
+    @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))));
+
     &[data-desktop] {
       [data-menu] {
-        display: flex;
-        align-items: center;
+        @if $declare {
+          display: flex;
+          align-items: center;
+        }
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
             map-get($menu, desktop)
-          ), '&');
+          ));
         }
       }
     }
-    &[data-tablet] {
+
+    &[data-mobile] {
       [data-menu] {
-        display: flex;
-        align-items: center;
+        @if $declare {
+          display: flex;
+          align-items: center;
+        }
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
-            map-get($menu, tablet)
+            map-get($menu, mobile)
           ), '&');
         }
       }
@@ -131,11 +151,13 @@
   }
 
   #{$context} #{$wrapper} [data-logo] {
-    display: flex;
-    align-items: center;
-    margin-right: $jnt-gutter-huge;
-    & > * {
-      display: block;
+    @if $declare {
+      display: flex;
+      align-items: center;
+      margin-right: $jnt-gutter-huge;
+      & > * {
+        display: block;
+      }
     }
   }
 
@@ -150,12 +172,16 @@
   }
 
   #{$context} #{$wrapper} [data-actions] {
-    margin-left: auto;
+    @if $declare {
+      margin-left: auto;
+    }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    display: flex;
-    align-items: center;
+    @if $declare {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 

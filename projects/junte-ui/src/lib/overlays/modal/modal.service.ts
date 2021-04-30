@@ -1,12 +1,10 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { ModalComponent, ModalContent } from './modal.component';
+import { Injectable } from '@angular/core';
+import { ModalComponent, ModalContent, ModalOptions } from './modal.component';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
 
   private modal: ModalComponent;
-
-  opened$ = new EventEmitter<boolean>();
 
   private checkRegistration() {
     if (!this.modal) {
@@ -16,10 +14,9 @@ export class ModalService {
 
   register(modal: ModalComponent) {
     this.modal = modal;
-    this.modal.opened$.subscribe(opened => this.opened$.emit(opened));
   }
 
-  open(content?: ModalContent, options: Object = {}) {
+  open(content?: ModalContent, options: Partial<ModalOptions> = {}) {
     this.checkRegistration();
     // TODO: use merge options
     this.modal.open(content, options);
@@ -29,4 +26,5 @@ export class ModalService {
     this.checkRegistration();
     this.modal.close();
   }
+
 }

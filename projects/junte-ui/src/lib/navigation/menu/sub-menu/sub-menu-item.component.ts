@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AbstractMenuItemComponent } from '../abstract-menu-item.component';
+import { AbstractMenuItem } from '../abstract-menu-item';
 
 @Component({
   selector: 'jnt-sub-menu-item',
   template: ''
 })
-export class SubMenuItemComponent extends AbstractMenuItemComponent {
+export class SubMenuItemComponent extends AbstractMenuItem {
 }

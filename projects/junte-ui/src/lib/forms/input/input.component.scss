@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "layout/spinner/spinner";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/spinner/spinner';
 
 @mixin input-size($size, $wrapper) {
   & {
@@ -9,49 +10,62 @@
     min-height: map-get($size, height);
     height: map-get($size, height);
 
-    &[data-multiline='true'] {
+    &[data-features*='multiline'] {
       height: auto;
     }
   }
   #{$wrapper} [data-spinner] {
     @include jnt-spinner((
-      size: map-get($size, state-icon),
+      size: map-get($size, state-icon)
     ), '&');
   }
-  #{$wrapper} [data-warning], #{$wrapper} [data-checked] {
+  #{$wrapper} [data-warning],
+  #{$wrapper} [data-checked],
+  #{$wrapper} [data-reset] [data-icon],
+  #{$wrapper} [data-copy] [data-icon],
+  #{$wrapper} [data-view] [data-icon] {
     [data-icon] {
       @include jnt-icon((
-        size: map-get($size, state-icon),
+        size: map-get($size, state-icon)
       ), '&');
     }
   }
 }
 
-@mixin jnt-input($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-input($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    width: null,
+    border-color: null,
+    hover: (
+      border-color: null
+    ),
+    focus: (
+      border-color: null,
+      shadow: null
+    ),
     sizes: (
       small: (
-        font-size: 11px,
-        height: 30px,
-        icon: 12px,
-        chevron: 8px,
-        state-icon: 16px,
+        font-size: 14px,
+        height: 32px,
+        icon: 24px,
+        chevron: 10px,
+        state-icon: 24px
       ),
       normal: (
         font-size: 14px,
-        height: 38px,
-        icon: 14px,
+        height: 40px,
+        icon: 24px,
         chevron: 10px,
-        state-icon: 18px,
+        state-icon: 24px
       ),
       large: (
-        font-size: 16px,
-        height: 50px,
-        icon: 16px,
-        chevron: 12px,
-        state-icon: 20px,
-      ),
+        font-size: 14px,
+        height: 48px,
+        icon: 24px,
+        chevron: 10px,
+        state-icon: 24px
+      )
     ),
     scheme: (
       normal: (
@@ -61,11 +75,11 @@
         ),
         focus: (
           border-color: $jnt-primary-color,
-          shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color,
+          shadow: $jnt-outline-shadow-normal $jnt-highlight-background
         ),
         disabled: (
           border-color: $jnt-control-disabled-border-color
-        ),
+        )
       ),
       success: (
         border-color: $jnt-success-color,
@@ -75,7 +89,7 @@
         focus: (
           border-color: $jnt-success-color,
           shadow: $jnt-outline-shadow-normal rgba($jnt-success-color, .5)
-        ),
+        )
       ),
       failed: (
         border-color: $jnt-fail-color,
@@ -85,16 +99,16 @@
         focus: (
           border-color: $jnt-fail-color,
           shadow: $jnt-outline-shadow-normal rgba($jnt-fail-color, .5)
-        ),
-      ),
-    ),
+        )
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -103,21 +117,42 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    width: 100%;
-    background-color: $jnt-control-background;
-    color: $jnt-primary-text-color;
-    border-radius: $jnt-corner-small;
-    border: 1px solid;
-    line-height: 1;
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: border-color .3s;
+  #{if($context, $context, $jnt-input-host)} {
+    @if $declare {
+      display: inline-flex;
+      background-color: $jnt-control-background;
+      color: $jnt-primary-text-color;
+      border-radius: $jnt-corner-small;
+      border-width: 1px;
+      border-style: solid;
+      line-height: 1;
+      box-sizing: border-box;
+      overflow: hidden;
+      transition: border-color .3s;
 
-    &:focus {
-      outline: 0;
+      &[data-width='fluid'] {
+        display: flex;
+        flex: 1;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      &[data-with-icon='true'] {
+        #{$wrapper} [data-content] {
+          padding: $jnt-gutter-small;
+        }
+      }
+
+      &[data-size=#{$jnt-size-small-name}] {
+        #{$wrapper} [data-content] {
+          padding: $jnt-gutter-tiny $jnt-gutter-normal;
+        }
+      }
     }
+
+    width: map-get($vars, width);
 
     @if map-has-key($vars, scheme) {
       $schemes: map-get($vars, scheme);
@@ -145,8 +180,8 @@
               background-color: $jnt-control-disabled-background;
               pointer-events: none;
 
-              #{$wrapper} form input,
-              #{$wrapper} form textarea {
+              #{$wrapper} input,
+              #{$wrapper} textarea {
                 color: $jnt-control-disabled-label-color;
                 background-color: $jnt-control-disabled-background;
                 pointer-events: none;
@@ -163,17 +198,33 @@
       }
     }
 
+    &[data-scheme] {
+      border-color: map-get($vars, border-color);
+      @if map-has-key($vars, hover) {
+        $hover: map-get($vars, hover);
+        &:hover {
+          border-color: map-get($hover, border-color);
+        }
+      }
+      @if map-has-key($vars, focus) {
+        $focus: map-get($vars, focus);
+        &[data-focused='true'] {
+          box-shadow: map-get($focus, shadow);
+          border-color: map-get($focus, border-color);
+          outline: 0;
+        }
+      }
+    }
+
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
         &[data-size = '#{$size}'] {
           @include input-size($map, $wrapper);
 
-          #{$wrapper} [data-label-icon],
-          #{$wrapper} [data-reset] [data-icon] {
+          #{$wrapper} [data-label-icon] {
             @include jnt-icon((
               size: map-get($map, icon),
-              color: $jnt-primary-text-light-color,
             ), '&');
           }
 
@@ -187,55 +238,60 @@
       }
     }
 
-    &[data-textAlign="right"] {
+    &[data-textAlign='right'] {
       #{$wrapper} input, #{$wrapper} textarea {
-        text-align: right;
+        @if $declare {
+          text-align: right;
+        }
       }
     }
 
-    &[data-textAlign="left"] {
+    &[data-textAlign='left'] {
       #{$wrapper} input, #{$wrapper} textarea {
-        text-align: left;
+        @if $declare {
+          text-align: left;
+        }
       }
     }
 
     &[data-state='loading'] {
       &,
-      #{$wrapper} form [data-content] input,
-      #{$wrapper} form [data-content] textarea {
-        background-color: $jnt-control-disabled-background;
-        color: $jnt-control-disabled-label-color;
-        pointer-events: none;
+      #{$wrapper} [data-content] input,
+      #{$wrapper} [data-content] textarea {
+        @if $declare {
+          background-color: $jnt-control-disabled-background;
+          color: $jnt-control-disabled-label-color;
+          pointer-events: none;
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-label] {
-    background-color: $jnt-control-field-label-background;
-    padding: $jnt-control-field-label-padding;
-    display: flex;
-    align-items: center;
-    color: $jnt-control-field-label-color;
-    white-space: nowrap;
+    @if $declare {
+      background-color: $jnt-control-field-label-background;
+      padding: $jnt-control-field-label-padding;
+      display: flex;
+      align-items: center;
+      color: $jnt-control-field-label-color;
+      white-space: nowrap;
+    }
   }
 
-  #{$context} #{$wrapper} form {
-    display: flex;
-    flex: 1;
-    position: relative;
-    max-width: 100%;
-
-    &:focus {
-      outline: 0;
-    }
-
-    [data-content] {
+  #{$context} #{$wrapper} [data-content] {
+    @if $declare {
       flex: 1;
       max-width: 100%;
       box-sizing: border-box;
-      padding: $jnt-gutter-small $jnt-gutter-small $jnt-gutter-small $jnt-gutter-normal;
+      padding: $jnt-gutter-small $jnt-gutter-normal;
+    }
 
-      input, textarea {
+    [data-label-icon] {
+      @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+    }
+
+    input, textarea {
+      @if $declare {
         color: $jnt-primary-text-color;
         background-color: $jnt-control-background;
         border: 0;
@@ -246,59 +302,126 @@
         display: inline-block;
         width: 100%;
         min-width: 0;
+      }
 
-        &:focus {
+      &[type='number']::-webkit-outer-spin-button,
+      &[type='number']::-webkit-inner-spin-button {
+        @if $declare {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      &[type='number'] {
+        @if $declare {
+          -moz-appearance: textfield;
+        }
+      }
+
+      &:focus {
+        @if $declare {
           outline: 0;
         }
+      }
 
-        &:read-only {
+      &[readonly='true'] {
+        @if $declare {
           pointer-events: none;
-        }
-      }
-
-      [data-warning] {
-        color: $jnt-fail-color;
-      }
-
-      [data-checked] {
-        color: $jnt-success-color;
-      }
-
-      [data-loading] {
-        line-height: .8;
-      }
-
-      [data-view], [data-reset] {
-        border: 0;
-        background-color: transparent;
-        color: $jnt-primary-color;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-
-        &:focus {
-          outline: 0;
         }
       }
     }
 
-    [data-arrows] {
-      display: flex;
-      flex-direction: column;
+    [data-warning] {
+      @if $declare {
+        [data-icon] {
+          @include jnt-icon((color: $jnt-fail-color), '&');
+        }
+      }
+    }
 
-      button {
-        flex: 1;
-        padding: 0 $jnt-gutter-small;
-        height: 50%;
+    [data-checked] {
+      @if $declare {
+        [data-icon] {
+          @include jnt-icon((color: $jnt-success-color), '&');
+        }
+      }
+    }
+
+    [data-loading] {
+      @if $declare {
+        [data-spinner] {
+          @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
+        }
+      }
+    }
+
+    [data-view], [data-reset], [data-copy] {
+      @if $declare {
+        border: 0;
+        background-color: transparent;
+        color: $jnt-primary-text-light-color;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        display: flex;
+      }
+
+      &:focus {
+        @if $declare {
+          outline: 0;
+        }
+      }
+
+      [data-icon] {
+        @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+      }
+
+      &:hover {
+        [data-icon] {
+          @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
+        }
+      }
+    }
+  }
+
+  [data-arrows] {
+    @if $declare {
+      height: 100%;
+      margin-left: $jnt-gutter-small;
+    }
+
+    button {
+      @if $declare {
+        padding: 0;
+        margin: 0;
+        min-height: 50%;
         border: 0;
         border-radius: $jnt-corner-small;
         cursor: pointer;
-        line-height: 0;
         background-color: transparent;
         color: $jnt-primary-text-light-color;
+        display: flex;
+
+        [data-icon] {
+          @include jnt-icon((color: $jnt-primary-text-light-color), '&');
+        }
 
         &:focus {
           outline: 0;
+        }
+
+        &:hover {
+          [data-icon] {
+            @include jnt-icon((color: $jnt-primary-text-dark-color), '&');
+          }
+        }
+
+        &:first-child {
+          align-items: flex-start;
+        }
+
+        &:last-child {
+          align-items: flex-end;
         }
       }
     }

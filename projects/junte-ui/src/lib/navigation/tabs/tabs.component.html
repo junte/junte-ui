@@ -1,10 +1,11 @@
 <ng-template #tabTemplate let-tab="tab">
   <jnt-stack data-label
              [orientation]="ui.orientation.horizontal"
-             [gutter]="ui.gutter.tiny"
+             [gutter]="ui.gutter.small"
              [align]="ui.align.center">
     <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
-    <jnt-stack [orientation]="ui.orientation.horizontal"
+    <jnt-stack *ngIf="!!tab.title || !!tab.badges.length"
+               [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center">
       <span>{{tab.title}}</span>
       <jnt-stack *ngIf="tab.badges.length"
@@ -22,25 +23,42 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.small" data-tabs>
-  <div data-tab *ngFor="let tab of tabs;let i = index"
+<div data-scroll>
+  <jnt-stack data-tabs
+             [orientation]="ui.orientation.horizontal"
+             [gutter]="ui.gutter.none">
+    <a #links href="#" data-wrapper *ngFor="let tab of tabs;let i = index"
        [attr.data-active]="i === active"
-       (click)="active = i"
-       tabindex="0">
-    <ng-container *ngIf="(!!features && !features.includes(feature.adapted)) || !features; else adaptedTemplate">
-      <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
-    </ng-container>
-    <ng-template #adaptedTemplate>
-      <ng-container *jntMinFor="ui.breakpoint.tablet">
-        <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
-      </ng-container>
-      <ng-container *jntFor="ui.breakpoint.mobile">
-        <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
-      </ng-container>
-    </ng-template>
-    <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
+       (click)="active = i; changed.emit(i); $event.preventDefault()">
+      <div data-tab [attr.data-with-template]="!!tab.titleTemplate">
+        <ng-container *ngIf="tab.titleTemplate; else defaultTitleTemplate">
+          <ng-container *ngTemplateOutlet="tab.titleTemplate"></ng-container>
+        </ng-container>
+        <ng-template #defaultTitleTemplate>
+          <ng-template #noAdaptedTemplate>
+            <ng-container *ngTemplateOutlet="tabTemplate; context: {tab: tab}"></ng-container>
+          </ng-template>
+          <ng-container *ngIf="features | includes : ui.feature.adapted; else noAdaptedTemplate">
+            <ng-container *jntMinFor="ui.breakpoint.tablet">
+              <ng-container *ngTemplateOutlet="noAdaptedTemplate"></ng-container>
+            </ng-container>
+            <ng-container *jntFor="ui.breakpoint.mobile">
+              <jnt-icon *ngIf="tab.icon" [icon]="tab.icon"></jnt-icon>
+            </ng-container>
+          </ng-container>
+        </ng-template>
+        <div *ngIf="tab.state.flash" [@flash]="tab.state.flash" data-ripple></div>
+      </div>
+    </a>
+  </jnt-stack>
+
+  <div data-way>
+    <div data-line #lineRef
+         [@move]="{value: 'void', params: {distance: distance}}"
+         (@move.start)="setWidth(active)"></div>
   </div>
-</jnt-stack>
+</div>
+
 <ng-container *ngFor="let tab of tabs;let i = index">
   <div data-content *ngIf="i === active && tab.tabContentTemplate"
        [attr.data-padding]="tab.padding">

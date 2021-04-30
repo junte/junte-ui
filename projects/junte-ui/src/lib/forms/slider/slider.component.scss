@@ -1,0 +1,51 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+
+$slider-height: 16px;
+$slided-height: 4px;
+
+:host {
+  display: flex;
+  align-items: center;
+  height: $slider-height;
+  width: 100%;
+  position: relative;
+}
+
+[data-slided] {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: $slided-height;
+  background: $jnt-primary-color;
+}
+
+[data-pointer] {
+  position: relative;
+  left: 0;
+  width: $slider-height;
+  height: $slider-height;
+  border-radius: 50%;
+  z-index: 1;
+  background-color: $jnt-primary-color;
+}
+
+form {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 2;
+
+  input {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    cursor: pointer;
+
+    &[type=range]::-moz-range-thumb {
+      background: $jnt-white-color;
+    }
+  }
+}

@@ -1,73 +1,83 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
-@import "layout/spinner/spinner";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
+@import 'layout/spinner/spinner';
 
 @mixin select-size($size, $wrapper) {
   #{$wrapper} [data-select] {
     font-size: map-get($size, font-size);
     min-height: map-get($size, height);
+    padding: map-get($size, padding);
 
     [data-spinner] {
       @include jnt-spinner((
-        size: map-get($size, state-icon),
+        size: map-get($size, state-icon)
       ), '&');
+    }
+
+    > [data-icon] {
+      @include jnt-icon((size: map-get($size, state-icon)), '&');
     }
   }
 }
 
-@mixin jnt-select($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-select($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     icon: (
-      color: $jnt-primary-text-color,
+      color: $jnt-primary-text-color
     ),
     chips: (
-      width: 'default',
+      width: 'default'
     ),
     sizes: (
       small: (
-        font-size: 11px,
-        height: 30px,
+        padding: 2px $jnt-gutter-small,
+        font-size: 14px,
+        height: 32px,
         chips: (
-          padding: 2px $jnt-gutter-large 2px $jnt-gutter-small
+          padding: 1px $jnt-gutter-tiny 1px $jnt-gutter-small
         ),
         input: (
-          padding: 2px 0 2px $jnt-gutter-small
+          padding: 0 0 0 $jnt-gutter-small
         ),
-        state-icon: 16px,
+        state-icon: 24px
       ),
       normal: (
+        padding: $jnt-gutter-tiny $jnt-gutter-small,
         font-size: 14px,
-        height: 38px,
+        height: 40px,
         chips: (
-          padding: 3px $jnt-gutter-large 3px $jnt-gutter-small
+          padding: 3px $jnt-gutter-tiny 3px $jnt-gutter-small
         ),
         input: (
           padding: 3px 0 3px $jnt-gutter-small
         ),
-        state-icon: 18px,
+        state-icon: 24px
       ),
       large: (
-        font-size: 16px,
-        height: 50px,
+        padding: $jnt-gutter-tiny $jnt-gutter-small,
+        font-size: 14px,
+        height: 48px,
         chips: (
-          padding: $jnt-gutter-small $jnt-gutter-large $jnt-gutter-small $jnt-gutter-small
+          padding: 3px $jnt-gutter-tiny 3px $jnt-gutter-small
         ),
         input: (
           padding: $jnt-gutter-small 0 $jnt-gutter-small $jnt-gutter-small
         ),
-        state-icon: 20px,
-      ),
-    ),
+        state-icon: 24px
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -76,15 +86,23 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: inline-block;
-    position: relative;
-    min-width: 70px;
-    color: $jnt-primary-text-color;
-    line-height: $jnt-line-height-base;
+  #{if($context, $context, $jnt-select-host)} {
+    @if $declare {
+      display: inline-block;
+      position: relative;
+      min-width: 70px;
+      color: $jnt-primary-text-color;
+      line-height: $jnt-line-height-base;
+      &[data-width='fluid'] {
+        display: block;
+        flex: 1;
+      }
+    }
     @include for-mobile() {
-      border: 1px solid $jnt-control-border-color;
-      border-radius: $jnt-corner-small;
+      @if $declare {
+        border: 1px solid $jnt-control-border-color;
+        border-radius: $jnt-corner-small;
+      }
     }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
@@ -116,35 +134,48 @@
 
     &[data-opened='true'] {
       @include for-mobile() {
-        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+        @if $declare {
+          box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
+        }
       }
 
       [data-select] {
-        box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
-        border-color: $jnt-primary-color;
-        @include for-mobile() {
-          box-shadow: none;
-          border-color: transparent;
-          border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+        @if $declare {
+          box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
+          border-color: $jnt-primary-color;
+          @include for-mobile() {
+            box-shadow: none;
+            border-color: transparent;
+            border-radius: calc(#{$jnt-corner-small - 1px}) calc(#{$jnt-corner-small - 1px}) 0 0;
+          }
         }
       }
     }
 
     &[data-mode='single'] {
+      [data-select] ul,
+      [data-select] ul li {
+        margin-right: 0;
+      }
+
       [data-select] ul {
         li {
-          background-color: $jnt-primary-background;
-          margin-left: -$jnt-gutter-tiny;
+          @if $declare {
+            background-color: $jnt-primary-background;
+            margin-left: -$jnt-gutter-tiny;
+          }
         }
       }
 
-      &[data-opened='true'][data-search='true'] [data-select] {
+      &[data-opened='true'][data-features*='search'] [data-select] {
         ul {
           li {
-            display: none;
+            @if $declare {
+              display: none;
 
-            &[data-query] {
-              display: flex;
+              &[data-query] {
+                display: flex;
+              }
             }
           }
         }
@@ -152,73 +183,111 @@
 
       &[data-empty='false'] {
         [data-select] ul {
-          flex: 1;
+          @if $declare {
+            flex: 1;
 
-          li {
-            width: 100%;
+            li {
+              width: 100%;
+            }
           }
         }
 
         [data-query] {
-          display: none;
-        }
-      }
-
-      &[data-empty='true'] {
-        [data-select] ul li[data-query] {
-          padding-right: 0;
-        }
-      }
-
-      &[data-allow-empty='false'] {
-        [data-select] ul li {
-          padding-right: $jnt-gutter-small;
-
-          button[data-close] {
+          @if $declare {
             display: none;
           }
         }
       }
 
-      &[data-search='false'] {
+      &[data-empty='true'] {
+        [data-select] ul li[data-query] {
+          @if $declare {
+            padding-right: $jnt-gutter-small;
+          }
+        }
+      }
+
+      &[data-features*='allowEmpty'] {
         [data-select] ul li {
-          margin-right: 0;
+          button[data-close] {
+            @if $declare {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      &:not([data-features*='allowEmpty']) {
+        [data-select] ul li {
+          @if $declare {
+            padding-right: 0;
+          }
+        }
+      }
+
+      &[data-features*='search'] {
+        [data-select] ul li {
+          @if $declare {
+            margin-right: 0;
+          }
         }
       }
     }
 
     &[data-mode='multiple'] {
-      &[data-empty='false'][data-search='false'] {
+      &[data-empty='false']:not([data-features*='search']) {
         [data-query] {
-          display: none;
+          @if $declare {
+            display: none;
+          }
+        }
+      }
+
+      [data-select] ul li {
+        button[data-close] {
+          @if $declare {
+            display: flex;
+          }
         }
       }
     }
 
-    &[data-disabled='true'], &[data-state='loading'] {
+    &[data-disabled='true'] {
       [data-select] {
-        background-color: $jnt-control-disabled-background;
-        border-color: $jnt-control-disabled-border-color;
-        pointer-events: none;
+        @if $declare {
+          background-color: $jnt-control-disabled-background;
+          border-color: $jnt-control-disabled-border-color;
+          pointer-events: none;
+        }
 
         ul li {
-          background-color: $jnt-control-disabled-background;
-          color: $jnt-control-disabled-border-color;
-          opacity: .8;
+          @if $declare {
+            background-color: $jnt-control-disabled-background;
+            color: $jnt-control-disabled-border-color;
+            opacity: .8;
+          }
 
           &[data-query] {
-            background-color: transparent;
+            @if $declare {
+              background-color: transparent;
+            }
           }
         }
 
         [data-close], [data-toggle] {
-          color: $jnt-control-disabled-border-color;
+          [data-icon] {
+            @if $declare {
+              @include jnt-icon((color: $jnt-control-disabled-border-color), '&');
+            }
+          }
         }
       }
 
       &[data-mode='multiple'][data-empty='false'] {
         [data-select] ul li {
-          background-color: $jnt-muted-color;
+          @if $declare {
+            background-color: $jnt-muted-color;
+          }
         }
       }
     }
@@ -226,226 +295,311 @@
     &[data-empty='false'] {
       &[data-opened='false'] {
         [data-query] {
-          display: none;
+          @if $declare {
+            display: none;
+          }
         }
       }
     }
 
-    &[data-search='false'] {
+    &:not([data-features*='search']) {
       [data-select] ul li {
-        cursor: default;
+        @if $declare {
+          cursor: default;
+        }
       }
     }
 
     &[data-empty='true'], &[data-mode='single'] {
       [data-select] ul li[data-query] {
-        flex: 1;
+        @if $declare {
+          flex: 1;
 
-        input {
-          width: 100%;
+          input {
+            width: 100%;
+          }
         }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-select] {
-    border: 1px solid $jnt-control-border-color;
-    border-radius: $jnt-corner-small;
-    background-color: $jnt-control-background;
-    padding: $jnt-gutter-tiny $jnt-gutter-small;
-    box-sizing: border-box;
-    position: relative;
-    @include for-mobile() {
-      border-color: transparent;
-      border-radius: calc(#{$jnt-corner-small} - 1px);
+    @if $declare {
+      border: 1px solid $jnt-control-border-color;
+      border-radius: $jnt-corner-small;
+      background-color: $jnt-control-background;
+      box-sizing: border-box;
+      position: relative;
+      transition: border-color .3s;
+      @include for-mobile() {
+        border-color: transparent;
+        border-radius: calc(#{$jnt-corner-small} - 1px);
+      }
     }
 
     > [data-icon] {
       @if map-has-key($vars, icon) {
         $icon: map-get($vars, icon);
         @include jnt-icon((
-          color: map-get($icon, color)
+          color: map-get($icon, color),
         ), '&');
       }
     }
 
+    &:hover {
+      border-color: $jnt-primary-color;
+    }
+
     &:focus {
-      outline: 0;
+      @if $declare {
+        outline: 0;
+      }
     }
 
     ul {
-      flex: 1;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0;
-      margin: 0 0 (-$jnt-gutter-tiny);
+      @if $declare {
+        flex: 1;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0 0 (-$jnt-gutter-tiny);
+        min-width: 0;
+        max-width: 100%;
+      }
 
       @if map-has-key($vars, chips) {
         $chips: map-get($vars, chips);
         @if map-get($chips, width) == 'fluid' {
           flex-direction: column;
+          align-items: stretch;
         }
       }
 
       li {
-        display: flex;
-        align-items: center;
-        position: relative;
-        background-color: $jnt-secondary-background;
-        border-radius: $jnt-corner-small;
-        margin-bottom: $jnt-gutter-tiny;
-
-        [data-icon] {
-          line-height: 0;
+        @if $declare {
+          display: flex;
+          align-items: center;
+          position: relative;
+          background-color: $jnt-secondary-background;
+          border-radius: $jnt-corner-small;
+          margin-bottom: $jnt-gutter-tiny;
+          max-width: 100%;
+          box-sizing: border-box;
+          &[data-with-template='false'] {
+            line-height: 1;
+          }
         }
 
         [data-empty-options] {
-          width: 50px;
-          height: 10px;
-          background-color: $jnt-primary-text-light-color;
+          @if $declare {
+            width: 50px;
+            height: 10px;
+            background-color: $jnt-primary-text-light-color;
+          }
         }
 
         [data-close] {
-          border: 0;
-          background-color: transparent;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 0 $jnt-gutter-small;
-          color: $jnt-primary-text-light-color;
-          right: 0;
+          @if $declare {
+            border: 0;
+            background-color: transparent;
+            padding: 0 0 0 $jnt-gutter-small;
+            color: $jnt-primary-text-light-color;
+            margin: 0;
+            right: 0;
+            display: none;
+            cursor: pointer;
+            font: $jnt-font-weight-base $jnt-font-size-base $jnt-font-family-base;
+            line-height: 100%;
+            margin-left: auto;
 
-          &:focus {
-            outline: 0;
-          }
+            &:focus {
+              outline: 0;
+            }
 
-          & > [data-icon] {
-            @include jnt-icon((
-              size: 11px
-            ), '&');
+            & > [data-icon] {
+              @include jnt-icon((
+                color: $jnt-primary-text-light-color,
+                size: 24px
+              ), '&');
+            }
+
+            &:hover {
+              & > [data-icon] {
+                @include jnt-icon((
+                  color: $jnt-primary-text-dark-color,
+                ), '&');
+              }
+            }
           }
         }
 
         &:not(:last-child) {
-          margin-right: $jnt-gutter-tiny;
+          @if $declare {
+            margin-right: $jnt-gutter-tiny;
+          }
         }
 
         &[data-query] {
-          background-color: transparent;
+          @if $declare {
+            background-color: transparent;
+          }
 
           input {
-            width: 20px;
-            border: none;
-            background-color: transparent;
-            color: $jnt-primary-text-color;
-            line-height: $jnt-line-height-base;
-            font-family: inherit;
-            padding: 0;
+            @if $declare {
+              width: 20px;
+              border: none;
+              background-color: transparent;
+              color: $jnt-primary-text-color;
+              line-height: $jnt-line-height-base;
+              font-family: inherit;
+              padding: 0;
+              margin: 0;
 
-            &::placeholder {
-              padding-left: 1px;
-            }
+              &::placeholder {
+                padding-left: 1px;
+              }
 
-            &:focus {
-              outline: none;
+              &:focus {
+                outline: none;
+              }
             }
           }
         }
       }
     }
 
-    >[data-loading] {
-      line-height: .8;
+    > [data-loading] {
+      @if $declare {
+        line-height: .8;
+      }
     }
 
     [data-toggle] {
-      border: 0;
-      background-color: transparent;
-      padding: 0 $jnt-gutter-tiny;
-      color: $jnt-primary-text-light-color;
-      align-self: stretch;
-      display: flex;
-      align-items: center;
+      @if $declare {
+        border: 0;
+        background-color: transparent;
+        padding: 0;
+        color: $jnt-primary-text-light-color;
+        margin: 0;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
 
-      &:focus {
-        outline: 0;
-      }
+        &:focus {
+          outline: 0;
+        }
 
-      & > [data-icon] {
-        @include jnt-icon((
-          size: 11px
-        ), '&');
+        & > [data-icon] {
+          @include jnt-icon((
+            color: $jnt-primary-text-light-color,
+            size: 24px
+          ), '&');
+        }
+
+        &:hover {
+          & > [data-icon] {
+            @include jnt-icon((
+              color: $jnt-primary-text-dark-color
+            ), '&');
+          }
+        }
       }
+    }
+
+    [data-spinner] {
+      @include jnt-spinner((color: $jnt-primary-text-light-color), '&');
     }
   }
 
   #{$context} #{$wrapper} [data-options] {
     @include for-mobile() {
-      background-color: $jnt-control-background;
-      border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
+      @if $declare {
+        background-color: $jnt-control-background;
+        border-radius: 0 0 calc(#{$jnt-corner-small} - 1px) calc(#{$jnt-corner-small} - 1px);
+      }
     }
 
     &[data-loading='true'] {
-      min-height: 100px;
-      height: auto;
+      @if $declare {
+        min-height: 100px;
+        height: auto;
+      }
     }
 
     [data-skeleton] {
-      padding: $jnt-gutter-small;
+      @if $declare {
+        padding: $jnt-gutter-small;
+      }
     }
 
     [data-empty-options] {
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @if $declare {
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      [data-icon] {
-        font-size: 50px;
-        color: $jnt-primary-text-light-color;
+        [data-icon] {
+          @include jnt-icon((color: $jnt-muted-color, size: 50px), '&');
+        }
       }
     }
 
     [data-options-header] {
-      padding: $jnt-gutter-small $jnt-gutter-small 0 $jnt-gutter-small;
+      @if $declare {
+        padding: $jnt-gutter-small $jnt-gutter-small 0 $jnt-gutter-small;
+      }
     }
 
     [data-loading] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba($jnt-primary-background, .5);
+      @if $declare {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($jnt-primary-background, .5);
+
+        [data-spinner] {
+          @include jnt-spinner((color: $jnt-primary-light-color, size: 50px), '&');
+        }
+      }
     }
 
     ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      max-height: 200px;
-      overflow-y: scroll;
+      @if $declare {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 200px;
+        overflow-y: auto;
 
-      li {
-        cursor: pointer;
-        padding: $jnt-gutter-small $jnt-gutter-normal;
-        border-left: 2px solid transparent;
-
-        [data-icon] {
-          line-height: 0;
+        &[data-windows='true'] {
+          @include jnt-scrollbar();
         }
 
-        &[data-selected=true] {
-          opacity: .5;
-        }
+        li[data-option] {
+          cursor: pointer;
+          padding: $jnt-gutter-small $jnt-gutter-normal;
+          border-radius: $jnt-corner-small;
 
-        &:hover {
-          background-color: $jnt-secondary-background;
-          border-color: $jnt-primary-color;
+          [data-icon] {
+            line-height: 0;
+          }
+
+          &[data-selected=true] {
+            opacity: 0.75;
+          }
+
+          &:hover {
+            background-color: $jnt-secondary-background;
+          }
         }
       }
     }

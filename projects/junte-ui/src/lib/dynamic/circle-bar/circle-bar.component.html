@@ -1,4 +1,5 @@
-<jnt-bar-indicator-group *ngFor="let group of groups; let index = index"
+<jnt-bar-indicator-group data-group
+                         *ngFor="let group of groups; let index = index"
                          [index]="index"
                          [groups]="groups.length">
   <jnt-bar-indicator *ngFor="let indicator of group.indicators"

@@ -1,6 +1,9 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'layout/responsive/responsive';
 
 @keyframes jnt-scale-in {
   0% {
@@ -20,9 +23,18 @@
   }
 }
 
-@mixin jnt-modal($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-modal($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    padding: (
+      top: $jnt-gutter-normal,
+      left: $jnt-gutter-normal,
+      right: $jnt-gutter-normal,
+      bottom: $jnt-gutter-normal
+    ),
+    title: (
+      padding: $jnt-gutter-normal
+    ),
     z-index: (
       overlay: 1,
       modal: 2
@@ -33,7 +45,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -42,29 +54,46 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    @include for-mobile() {
-      position: fixed;
-      z-index: 2;
-      width: 100%;
-      max-width: 100%;
-      max-height: 100vh;
-      overflow-y: auto;
-      padding: $jnt-gutter-small;
-      box-sizing: border-box;
+  #{if($context, $context, $jnt-modal-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+      &:not([data-user-agent*='firefox']) {
+        [data-modal] [data-content] {
+          @if map-has-key($vars, padding) {
+            $padding: map-get($vars, padding);
+            padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+          }
+        }
+      }
+      @include for-mobile() {
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: $jnt-gutter-small;
+        box-sizing: border-box;
+
+        &[data-user-agent*='window'] {
+          @include jnt-scrollbar();
+        }
+      }
     }
   }
 
-  #{$context} [data-overlay] {
-    position: fixed;
-    background-color: rgba(0, 0, 0, .4);
-    width: 100%;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
+  #{$context} #{$wrapper} [data-overlay] {
+    @if $declare {
+      position: fixed;
+      background-color: rgba(0, 0, 0, .4);
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
 
     @if map-has-key($vars, z-index) {
       $z-index: map-get($vars, z-index);
@@ -72,13 +101,15 @@
     }
   }
 
-  #{$context} [data-modal] {
-    transform: scale(1);
-    position: fixed;
-    min-width: max-content;
-    max-width: 100%;
-    max-height: 100%;
-    top: 100%;
+  #{$context} #{$wrapper} [data-modal] {
+    @if $declare {
+      transform: scale(1);
+      position: fixed;
+      min-width: min-content;
+      max-width: 100%;
+      max-height: 100%;
+      top: 100%;
+    }
 
     @if map-has-key($vars, z-index) {
       $z-index: map-get($vars, z-index);
@@ -86,51 +117,56 @@
     }
 
     @include for-mobile() {
-      min-width: 100%;
-      position: relative;
-      top: 0 !important;
-      left: 0 !important;
-      transform: none !important;
+      @if $declare {
+        min-width: 100%;
+        position: relative;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+      }
     }
 
     [data-title] {
-      border-top-left-radius: $jnt-corner-normal;
-      border-top-right-radius: $jnt-corner-normal;
-      padding: $jnt-gutter-normal;
-      background-color: $jnt-page-background;
-      font-size: 18px;
+      @if map-has-key($vars, title) {
+        $title: map-get($vars, title);
+        padding: map-get($title, padding);
+      }
 
-      [data-close] {
-        background-color: transparent;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        &:focus {
-          outline: 0;
+      @if $declare {
+        border-top-left-radius: $jnt-corner-normal;
+        border-top-right-radius: $jnt-corner-normal;
+        background-color: $jnt-page-background;
+        font-size: 18px;
+
+        [data-text] {
+          color: $jnt-primary-text-color;
+          font-weight: $jnt-font-weight-bold;
         }
-      }
 
-      [data-icon] {
-        @include jnt-icon ((
-          color: $jnt-primary-text-color,
-          size: 18px,
-        ), '&');
-      }
-
-      [data-text] {
-        color: $jnt-primary-text-color;
-        font-weight: $jnt-font-weight-bold;
+        button {
+          @include button-default();
+        }
       }
     }
 
     [data-content] {
-      padding: $jnt-gutter-normal;
-      font-size: $jnt-font-size-base;
-      box-sizing: border-box;
-      overflow: auto;
-      @include for-mobile() {
-        overflow: visible;
-        max-height: none !important;
+      @if map-has-key($vars, padding) {
+        $padding: map-get($vars, padding);
+        padding-top: map-get($padding, top);
+        padding-left: map-get($padding, left);
+        padding-bottom: map-get($padding, bottom);
+        padding-right: map-get($padding, right);
+      }
+      @if $declare {
+        font-size: $jnt-font-size-base;
+        box-sizing: border-box;
+        overflow: scroll;
+        @include jnt-scrollbar();
+        @include for-mobile() {
+          overflow: visible;
+          max-height: none !important;
+          max-width: 100% !important;
+        }
       }
     }
 

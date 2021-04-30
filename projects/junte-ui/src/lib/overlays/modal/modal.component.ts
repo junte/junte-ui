@@ -3,19 +3,21 @@ import {
   Component,
   ComponentRef,
   ElementRef,
-  EventEmitter,
   HostBinding,
   Input,
-  Output,
+  OnInit,
   Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
+import { JunteUIConfig } from '../../config';
 import { MethodApi } from '../../core/decorators/api';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { UI } from '../../core/enums/ui';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
+import { ModalService } from './modal.service';
 
 const ANIMATION_CLOSE_DURATION = 300;
 const BACKDROP_FILTER = 'blur(5px)';
@@ -31,17 +33,19 @@ interface ModalTitle {
 }
 
 export class ModalOptions {
-  maxWidth = '800';
-  maxHeight = '600';
+
+  maxWidth = '800px';
+  maxHeight = '600px';
   hold = false;
+  closeOutside = true;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
   content?: TemplateRef<any>;
-  animation = true;
 
-  constructor(defs: any = null) {
+  constructor(defs: Partial<ModalOptions> = null) {
     Object.assign(this, defs);
   }
+
 }
 
 export type ModalContent = TemplateRef<any> | ComponentRef<any>;
@@ -111,9 +115,7 @@ enum Display {
   ]
 })
 
-export class ModalComponent {
-
-  private _opened: boolean;
+export class ModalComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-modal-host';
 
@@ -125,9 +127,6 @@ export class ModalComponent {
   @Input()
   backdrop: ElementRef;
 
-  @Output()
-  opened$ = new EventEmitter<boolean>();
-
   @ViewChild('container', {read: ViewContainerRef})
   container;
 
@@ -135,14 +134,18 @@ export class ModalComponent {
   display = Display.none;
 
   @Input()
-  set opened(opened: boolean) {
-    this._opened = opened;
-    this.opened$.emit(opened);
+  opened: boolean;
+
+  constructor(private modalService: ModalService,
+              private breakpoint: BreakpointService,
+              public device: DeviceService,
+              private renderer: Renderer2,
+              private hostRef: ElementRef,
+              private config: JunteUIConfig) {
   }
 
-  get opened() {
-    return this._opened;
-  }
+  @HostBinding('attr.data-user-agent')
+  deviceTags = this.device.tags;
 
   set content(content: ModalContent) {
     this.contentTemplate = null;
@@ -155,9 +158,8 @@ export class ModalComponent {
     }
   }
 
-  constructor(private renderer: Renderer2,
-              private hostRef: ElementRef,
-              private breakpoint: BreakpointService) {
+  ngOnInit() {
+    this.modalService.register(this);
   }
 
   start(event: AnimationEvent) {
@@ -174,12 +176,12 @@ export class ModalComponent {
 
   // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
-  open(content: ModalContent, options: Object = {}) {
+  open(content: ModalContent, options: Partial<ModalOptions> = {}) {
     this.options = new ModalOptions(options);
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
-      if (!this.mobile && this.options.animation) {
+      if (!this.mobile && this.config.modal.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-in .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -192,7 +194,7 @@ export class ModalComponent {
     this.renderer.removeStyle(document.body, 'overflow');
     if (!!this.backdrop) {
       this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
-      if (!this.mobile && this.options.animation) {
+      if (!this.mobile && this.config.modal.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation', 'jnt-scale-out ' + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
       }
     }
@@ -200,7 +202,9 @@ export class ModalComponent {
     this.hostRef.nativeElement.scrollTop = 0;
     setTimeout(() => {
       this.content = null;
-      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      if (!!this.backdrop) {
+        this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
+      }
     }, ANIMATION_CLOSE_DURATION);
   }
 }

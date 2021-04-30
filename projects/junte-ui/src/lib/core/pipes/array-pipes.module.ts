@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FilterEmptyPipe } from './array/filter-empty.pipe';
 import { MockArrayPipe } from './array/mock-array.pipe';
 import { JoinPipe } from './array/join.pipe';
 import { PopPipe } from './array/pop.pipe';
@@ -10,7 +11,8 @@ import { IncludesPipe } from './array/includes.pipe';
     MockArrayPipe,
     JoinPipe,
     IncludesPipe,
-    PopPipe
+    PopPipe,
+    FilterEmptyPipe
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { IncludesPipe } from './array/includes.pipe';
     MockArrayPipe,
     JoinPipe,
     IncludesPipe,
-    PopPipe
+    PopPipe,
+    FilterEmptyPipe
   ]
 })
 export class ArrayPipesModule {

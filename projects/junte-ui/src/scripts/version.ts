@@ -5,19 +5,18 @@ import * as map from 'map-stream';
 import * as path from 'path';
 import 'reflect-metadata';
 
-const versionFile = 'VERSION';
-const packageFile = 'package.json';
+const VERSION_FILE = 'VERSION';
+const PACKAGE_FILE = 'package.json';
 
 @Gulpclass()
 export class Gulpfile {
 
   @Task()
   version() {
-    return gulp.src([packageFile])
+    return gulp.src([PACKAGE_FILE])
       .pipe(map((file, cb) => {
         let content = file.contents.toString();
-        let version = fs.readFileSync(`${path.dirname(file.path)}/${versionFile}`).toString().trim();
-
+        const version = fs.readFileSync(`${path.dirname(file.path)}/${VERSION_FILE}`).toString().trim();
         if (!!version) {
           content = content.replace('"version": "0.0.0"', `"version": "${version}"`);
           file.contents = Buffer.from(content);
@@ -28,7 +27,7 @@ export class Gulpfile {
   }
 
   @SequenceTask()
-  build() {
+  inject() {
     return ['version'];
   }
 }

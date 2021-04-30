@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Fit } from '../../core/enums/fit';
 import { Position } from '../../core/enums/position';
@@ -16,6 +16,11 @@ export class PictureComponent {
 
   _src: string;
   _icon = UI.icons.image;
+
+  @HostBinding('attr.data-has-src')
+  get hasSrc() {
+    return !!this._src;
+  }
 
   @HostBinding('attr.data-fit')
   _fit: Fit = Fit.width;
@@ -40,9 +45,8 @@ export class PictureComponent {
     description: 'Path to image on picture',
     type: 'string'
   })
-  @HostBinding('style.background-image')
   @Input() set src(src: string) {
-    this._src = !!src ? 'url(' + src + ')' : null;
+    this._src = src || null;
   }
 
   get src() {
@@ -50,20 +54,32 @@ export class PictureComponent {
   }
 
   @PropertyApi({
-    description: 'Picture width',
+    description: 'Picture title',
     type: 'string',
-    default: '200px'
+  })
+  @HostBinding('attr.title')
+  @Input() title: string;
+
+  @PropertyApi({
+    description: 'Picture alt',
+    type: 'string',
+  })
+  @HostBinding('attr.alt')
+  @Input() alt: string;
+
+  @PropertyApi({
+    description: 'Picture width',
+    type: 'string'
   })
   @HostBinding('style.width')
-  @Input() width = '200px';
+  @Input() width;
 
   @PropertyApi({
     description: 'Picture height',
-    type: 'string',
-    default: '100px'
+    type: 'string'
   })
   @HostBinding('style.height')
-  @Input() height = '100px';
+  @Input() height;
 
   @PropertyApi({
     description: 'Image size in relation to width or height',
@@ -84,5 +100,8 @@ export class PictureComponent {
   @Input() set position(position: Position) {
     this._position = position || Position.center;
   }
+
+  @ContentChild('pictureCopyrightTemplate')
+  pictureCopyrightTemplate: TemplateRef<any>;
 
 }

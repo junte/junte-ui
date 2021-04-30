@@ -1,0 +1,82 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'layout/spinner/spinner';
+
+@mixin jnt-app-busyness($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    position: fixed,
+    z-index: 4,
+    background: (
+      from: $jnt-secondary-background,
+      to: $jnt-purple-lighten-color
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-app-busyness-host)} {
+    position: map-get($vars, position);
+    @if $declare {
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: map-get($vars, z-index);
+      margin: 0;
+
+      @include for-mobile() {
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($jnt-secondary-background, 0.5);
+      }
+    }
+  }
+
+  [data-loader] {
+    @if $declare {
+      animation-name: jnt-app-business-loading;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      height: $jnt-gutter-tiny;
+      width: 100%;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      background-color: $jnt-secondary-background;
+    }
+    @if map-has-key($vars, background) {
+      $background: map-get($vars, background);
+      background: map-get($background, from) linear-gradient(90deg, map-get($background, from) 25%, map-get($background, to) 37%, map-get($background, from) 63%);
+    }
+  }
+}
+
+@keyframes jnt-app-business-loading {
+  0% {
+    width: 0;
+  }
+  10% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@if $jnt-debug {
+  @debug 'app-busyness compiled';
+}

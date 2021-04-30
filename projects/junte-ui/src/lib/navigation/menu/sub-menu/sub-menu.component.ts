@@ -6,6 +6,7 @@ import { SubMenuItemComponent } from './sub-menu-item.component';
   template: ''
 })
 export class SubMenuComponent {
+
   @ContentChildren(SubMenuItemComponent)
   items: QueryList<SubMenuItemComponent>;
 }

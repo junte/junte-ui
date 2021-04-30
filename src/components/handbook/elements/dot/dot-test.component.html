@@ -1,0 +1,113 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.dot"
+                       title="Dot"
+                       i18n-title="@@label.dot"
+                       [teaser]="handbook.elements.components.dot.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+        <jnt-link [outline]="ui.outline.ghost"
+                  [source]="['benchmark']"
+                  title="Benchmark"
+                  i18n-title="@@action.benchmark">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-dot data-dot
+                         [color]="colorControl.value"
+                         [features]="pulseControl.value ? [ui.feature.pulse] : null">
+                </jnt-dot>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-label for="color" i18n="@@label.background_color">Color</jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-color-picker formControlName="color"></jnt-color-picker>
+                  </jnt-form-control>
+                </jnt-form-item>
+                <jnt-form-item>
+                  <jnt-checkbox formControlName="pulse" label="Pulse" i18n-label="@@label.pulse"></jnt-checkbox>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'dot-test', type: 'DotTestComponent'}"
+                scss="elements/dot"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="dot-test.component.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-dot ]]>
+                  <ng-container *ngIf="colorControl.value">
+                    <![CDATA[
+                    color="]]>{{colorControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="pulseControl.value">
+                    <![CDATA[
+                    [features]="[ui.feature.pulse]"]]>
+                  </ng-container>
+                  <![CDATA[>
+                </jnt-dot>
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-dot" [target]="types.dot"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+</jnt-container>

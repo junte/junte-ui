@@ -1,19 +1,29 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
+import { FlexWrap } from '../../core/enums/flex';
 import { UI } from '../../core/enums/ui';
+import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 
 class Breadcrumb {
-  constructor(public route: ActivatedRoute,
-              public title = null,
-              public url = '.') {
+
+  route: ActivatedRoute;
+  title = null;
+  disabled = false;
+  url = '.';
+
+  constructor(defs = null) {
+    Object.assign(this, defs);
   }
 }
 
+// TODO: Remove jnt-breadcrumb!
 @Component({
-  selector: 'jnt-breadcrumb',
+  selector: 'jnt-breadcrumb, jnt-breadcrumbs',
   templateUrl: './breadcrumbs.encapsulated.html'
 })
 
@@ -24,9 +34,39 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   private routerState$ = new BehaviorSubject<RouterState>(this.router.routerState);
   private subscriptions: Subscription[] = [];
 
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: Breadcrumb[] = [];
 
-  @HostBinding('attr.host') readonly host = 'jnt-breadcrumbs-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-breadcrumbs-host';
+
+  @HostBinding('attr.data-with-aside')
+  get withAside() {
+    return !!this.aside;
+  }
+
+  @Input()
+  @HostBinding('attr.data-wrap')
+  wrap: FlexWrap = FlexWrap.wrap;
+
+  @HostBinding('style.display')
+  get display() {
+    return this.breadcrumbs.length > 1 ? 'flex' : 'none';
+  }
+
+  @PropertyApi({
+    description: 'Support burger button for mobile devices',
+    type: 'AppAsideComponent'
+  })
+  @Input()
+  aside: AppAsideComponent;
+
+  @PropertyApi({
+    description: 'Set page title based on breadcrumb title',
+    path: 'ui.feature',
+    options: [Feature.pageTitle]
+  })
+  @Input()
+  features: Feature[] = [Feature.pageTitle];
 
   constructor(public router: Router,
               private titleService: Title,
@@ -53,23 +93,38 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       if (route.routeConfig && route.routeConfig.data) {
         if (route.routeConfig.data.breadcrumb) {
           const breadcrumb = route.routeConfig.data.breadcrumb;
-          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb]).forEach(b => {
-            if (typeof b === 'string') {
-              if (!!b) {
-                breadcrumbs.push(new Breadcrumb(route, b));
+          (Array.isArray(breadcrumb) ? breadcrumb : [breadcrumb])
+            .filter(crumb => !!crumb)
+            .forEach(crumb => {
+              switch (typeof crumb) {
+                case 'string': {
+                  breadcrumbs.push(new Breadcrumb({route, title: crumb}));
+                  break;
+                }
+                case 'object': {
+                  const title = typeof crumb.label === 'string'
+                    ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
+                  if (!!title) {
+                    breadcrumbs.push(new Breadcrumb({
+                      route,
+                      title,
+                      url: crumb.url,
+                      disabled: crumb.disabled
+                    }));
+                  }
+                  break;
+                }
+                case 'function': {
+                  const title = crumb(route.snapshot.data, route.snapshot);
+                  if (!!title) {
+                    breadcrumbs.push(new Breadcrumb({route, title}));
+                  }
+                  break;
+                }
+                default:
+                  throw new Error(`wrong breadcrumb type: ${typeof crumb}`);
               }
-            } else if (b !== null && typeof b === 'object') {
-              const title = b.label;
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb(route, title, b.url));
-              }
-            } else {
-              const title = b(route.snapshot.data);
-              if (!!title) {
-                breadcrumbs.push(new Breadcrumb(route, title, '.'));
-              }
-            }
-          });
+            });
         }
       }
 
@@ -78,7 +133,15 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.breadcrumbs = breadcrumbs;
 
     const metaTitle = this.breadcrumbs.map(crumb => crumb.title).join(' · ');
-    this.titleService.setTitle(metaTitle);
-    this.metaService.updateTag({name: 'description', content: metaTitle});
+    if (this.features.includes(UI.feature.pageTitle)) {
+      this.titleService.setTitle(metaTitle);
+      this.metaService.updateTag({name: 'description', content: metaTitle});
+    }
+  }
+
+  go(crumb: Breadcrumb, event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate([crumb.url], {relativeTo: crumb.route})
+      .then();
   }
 }

@@ -1,0 +1,220 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.popover"
+                       title="Popover"
+                       i18n-title="@@label.popover"
+                       [teaser]="handbook.overlays.components.popover.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document let-height="height">
+                <jnt-stack [orientation]="ui.orientation.vertical">
+
+                  <jnt-button [jntPopover]="{
+                                title: titleControl.value ? 'Title' : null,
+                                trigger: triggerControl.value,
+                                content: contentTypeControl.value === 'default' ? 'Any text' : null,
+                                contentTemplate: contentTypeControl.value === 'custom' ? contentTemplate : null,
+                                position: layoutControl.value,
+                                behaviour: dropdownControl.value ? ui.behaviour.dropdown : null,
+                                features: [ui.feature.smarty]
+                              }"
+                              [text]="triggerControl.value == ui.trigger.click ? 'Click me' : 'Hover on me'"
+                              i18n-text="@@action.click_me">
+                  </jnt-button>
+
+                  <ng-template #contentTemplate>
+                    <jnt-stack [orientation]="ui.orientation.vertical">
+                      <span i18n="@@label.it_is_custom_content">It is custom content!</span>
+                      <jnt-stack [orientation]="ui.orientation.horizontal">
+                        <jnt-button text="Ok"
+                                    i18n-text="@@action.ok"></jnt-button>
+                        <jnt-button text="Cancel"
+                                    i18n-text="@@action.cancel"></jnt-button>
+                      </jnt-stack>
+                    </jnt-stack>
+                  </ng-template>
+
+                </jnt-stack>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="trigger"
+                                  i18n="@@label.trigger_type">Trigger type</jnt-form-label>
+                  <jnt-switcher formControlName="trigger">
+                    <jnt-switcher-option label="Hover"
+                                         i18n-label="@@label.hover"
+                                         [icon]="localUi.icons.hover"
+                                         [value]="triggerType.hover"></jnt-switcher-option>
+                    <jnt-switcher-option label="Click"
+                                         i18n-label="@@label.click"
+                                         [icon]="localUi.icons.click"
+                                         [value]="triggerType.click"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.content_type">Content type</jnt-form-label>
+                  <jnt-switcher formControlName="type">
+                    <jnt-switcher-option label="Default"
+                                         i18n-label="@@label.default"
+                                         [icon]="localUi.icons.left"
+                                         [value]="contentType.default"></jnt-switcher-option>
+                    <jnt-switcher-option label="Custom template"
+                                         i18n-label="@@label.custom_template"
+                                         [icon]="localUi.icons.template"
+                                         [value]="contentType.custom"></jnt-switcher-option>
+                  </jnt-switcher>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="layout"
+                                  i18n="@@label.layout">Layout</jnt-form-label>
+                  <jnt-select formControlName="layout">
+                    <jnt-select-option label="Top"
+                                       i18n-label="@@label.top"
+                                       [icon]="localUi.icons.position.top"
+                                       [key]="ui.position.top"></jnt-select-option>
+                    <jnt-select-option label="Right"
+                                       i18n-label="@@label.right"
+                                       [icon]="localUi.icons.end"
+                                       [key]="ui.position.right"></jnt-select-option>
+                    <jnt-select-option label="Left"
+                                       i18n-label="@@label.left"
+                                       [icon]="localUi.icons.start"
+                                       [key]="ui.position.left"></jnt-select-option>
+                    <jnt-select-option label="Bottom"
+                                       i18n-label="@@label.bottom"
+                                       [icon]="localUi.icons.position.bottom"
+                                       [key]="ui.position.bottom"></jnt-select-option>
+                    <jnt-select-option label="Right Bottom"
+                                       i18n-label="@@label.right_bottom"
+                                       [icon]="localUi.icons.position.bottom"
+                                       [key]="ui.position.rightBottom"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="title"
+                                  label="Title"
+                                  i18n-label="@@label.title"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-control>
+                    <jnt-checkbox formControlName="dropdown"
+                                  label="Dropdown"
+                                  i18n-label="@@label.dropdown"></jnt-checkbox>
+                  </jnt-form-control>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'popover-test', type: 'PopoverTestComponent'}"
+                scss="overlays/popover"></app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="popover-test.template.html">
+                <!-- @formatter:off-->
+<![CDATA[
+  <jnt-button [jntPopover]="{]]>
+    <ng-container *ngIf="titleControl.value">
+      <![CDATA[title: 'Title',]]>
+    </ng-container>
+    <![CDATA[
+    trigger:]]> {{triggerControl.value === 'click' ? 'ui.trigger.click' : 'ui.trigger.hover'}}<![CDATA[, ]]>
+
+    <ng-container *ngIf="contentTypeControl.value === 'default'">
+      <![CDATA[content: 'Any text',]]>
+    </ng-container>
+    <ng-container *ngIf="contentTypeControl.value === 'custom'">
+      <![CDATA[contentTemplate: contentTemplate,]]>
+    </ng-container>
+    <![CDATA[
+    position: ui.position.]]>{{layoutControl.value}}<![CDATA[}"
+    text="Click me">
+  </jnt-button>
+]]>
+
+<ng-container *ngIf="contentTypeControl.value === 'custom'">
+  <![CDATA[
+  <ng-template #contentTemplate>
+    <jnt-stack [orientation]="ui.orientation.vertical">
+      <span>It is custom content!</span>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-button text="Ok"
+                    i18n-text="@@action.ok"></jnt-button>
+        <jnt-button text="Cancel"
+                    i18n-text="@@action.cancel"></jnt-button>
+      </jnt-stack>
+    </jnt-stack>
+  </ng-template>
+  ]]>
+</ng-container>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <app-component-api selector="jnt-popover" [target]="types.popover"></app-component-api>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+</jnt-container>

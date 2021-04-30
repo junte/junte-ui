@@ -1,4 +1,4 @@
-export * from './avatars-group/avatars-group.component';
-export * from './avatars-list/avatars-list.component';
-export * from './avatar.component';
-export * from './avatar.module';
+export { AvatarsGroupComponent } from './avatars-group/avatars-group.component';
+export { AvatarsListComponent } from './avatars-list/avatars-list.component';
+export { AvatarComponent } from './avatar.component';
+export { AvatarModule } from './avatar.module';

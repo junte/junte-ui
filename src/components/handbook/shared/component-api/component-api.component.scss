@@ -1,0 +1,45 @@
+@import 'jnt-variables';
+
+:host-context([theme='dark']) {
+  table th {
+    background-color: $jnt-gray-dark-color;
+  }
+}
+
+:host-context([theme='esanum']) {
+  table th {
+    background-color: #E5F6F7;
+  }
+}
+
+:host {
+  display: block;
+  overflow-x: auto;
+}
+
+table[api] {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Oxygen Mono', monospace;
+
+  td, th {
+    padding: $jnt-gutter-small;
+    border: 1px solid $jnt-gray-700-color;
+  }
+
+  th {
+    background-color: $jnt-secondary-background;
+  }
+
+  td:nth-child(1) {
+    width: 20%;
+  }
+
+  td:nth-child(4) {
+    width: 20%;
+  }
+
+  td:nth-child(3) {
+    width: 40%;
+  }
+}

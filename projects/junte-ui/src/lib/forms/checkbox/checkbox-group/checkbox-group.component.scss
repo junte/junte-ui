@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin jnt-checkbox-group($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-checkbox-group($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
 
@@ -9,7 +10,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -18,8 +19,10 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
+  #{if($context, $context, $jnt-checkbox-group-host)} {
+    @if $declare {
+      display: block;
+    }
   }
 
 }

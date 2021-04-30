@@ -1,103 +1,107 @@
-<table>
-  <thead>
-  <tr>
-    <td>
-      <jnt-button data-arrow [icon]="ui.icons.chevronLeft"
-                  [outline]="ui.outline.transparent"
-                  [size]="ui.size.small"
-                  (click)="view === viewType.date ? period = subMonths(period, 1) : view === viewType.month ?
-                  period = subYears(period, 1) : period = subYears(period, 12)">
-      </jnt-button>
-    </td>
-    <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
-      <jnt-button data-date [outline]="ui.outline.transparent"
-                  [size]="ui.size.small"
-                  text="{{period | dfnsFormat: 'LLLL'}}, {{period | dfnsFormat: 'yyyy'}}"></jnt-button>
-    </td>
-    <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
-      <jnt-button data-date [outline]="ui.outline.transparent"
-                  [size]="ui.size.small"
-                  [width]="ui.width.fluid"
-                  text="{{period | dfnsFormat: 'yyyy'}}">
-      </jnt-button>
-
-    </td>
-    <td *ngIf="view === viewType.year" colspan="2" data-year>
-      {{getYear(period) - 4}} - {{getYear(period) + 7}}
-    </td>
-    <td>
-      <jnt-button data-arrow [icon]="ui.icons.chevronRight"
-                  [outline]="ui.outline.transparent"
-                  [size]="ui.size.small"
-                  (click)="view === viewType.date ? period = addMonths(period, 1) : view === viewType.month ?
-                  period = addYears(period, 1) : period = addYears(period, 12)">
-      </jnt-button>
-    </td>
-    <td *ngIf="metrics.length"
-        [translate]="'label.metrics'"
-        [attr.colspan]="metrics.length">
-      Metrics
-    </td>
-  </tr>
-  <tr *ngIf="view === viewType.date; else empty" data-days>
-    <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | dfnsWeekdayName:'x2'}}</th>
-
-    <th *ngFor="let m of metrics">
-      {{m.title}}
-    </th>
-  </tr>
-
-  <ng-template #empty>
-    <tr data-days>
-      <th *ngFor="let col of [1,2,3,4]"></th>
-    </tr>
-  </ng-template>
-  </thead>
-
-  <tbody>
-  <ng-container *ngIf="view === viewType.date">
-    <tr *ngFor="let w of weeks"
-        [attr.data-current-week]="(current | dfnsStartOfWeek) | dfnsIsEqual: (w.date | dfnsStartOfWeek)">
-      <td data-day *ngFor="let d of w.days"
-          [attr.data-current-month]="(d | dfnsStartOfMonth) | dfnsIsEqual: (period | dfnsStartOfMonth)"
-          [attr.data-selected-day]="(d | dfnsStartOfDay) | dfnsIsEqual: (current | dfnsStartOfDay)"
-          (click)="select(d)" tabindex="0">
-        <ng-container
-          *ngTemplateOutlet="!!calendarDayTemplate ? calendarDayTemplate: defaultDayTemplate;context:{date: d}">
-        </ng-container>
+<jnt-stack [align]="ui.align.stretch">
+  <table>
+    <thead>
+    <tr>
+      <td>
+        <button data-arrow (click)="sub()">
+          <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
+        </button>
       </td>
-
-      <td data-metric *ngFor="let m of metrics;let i = index;">
-        <ng-container *ngTemplateOutlet="calendarMetricTemplate;context:{metric: i, date: w.date}">
-        </ng-container>
+      <td *ngIf="view === viewType.date" (click)="view = viewType.month" colspan="5">
+        <button data-date>{{period | jntFormat: 'LLLL'}}, {{period | jntFormat: 'yyyy'}}</button>
+      </td>
+      <td *ngIf="view === viewType.month" (click)="view = viewType.year" colspan="2">
+        <button data-date>{{period | jntFormat: 'yyyy'}}</button>
+      </td>
+      <td *ngIf="view === viewType.year" colspan="2" data-year>
+        {{(period | jntGetYear) - 4}} - {{(period | jntGetYear) + 7}}
+      </td>
+      <td>
+        <button data-arrow (click)="add()">
+          <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
+        </button>
+      </td>
+      <td data-divider *ngIf="metrics.length"></td>
+      <td data-metrics *ngIf="metrics.length"
+          [translate]="'label.metrics'"
+          [attr.colspan]="metrics.length">
+        Metrics
       </td>
     </tr>
-  </ng-container>
+    <tr data-days *ngIf="view === viewType.date; else empty">
+      <th *ngFor="let weekDay of [0,1,2,3,4,5,6]">{{weekDay | jntWeekdayName:'x2'}}</th>
 
-  <ng-container *ngIf="view === viewType.month">
-    <tr *ngFor="let row of months">
-      <td data-day-extend *ngFor="let month of row"
-          [attr.data-selected-month]="(month | dfnsStartOfMonth) | dfnsIsEqual: (current | dfnsStartOfMonth)"
-          (click)="period = month; view = viewType.date">
-        {{month | dfnsFormat: 'LLL'}}
-      </td>
+      <th data-divider *ngIf="!!metrics.length"></th>
+
+      <th data-metric *ngFor="let m of metrics">
+        {{m.title}}
+      </th>
     </tr>
-  </ng-container>
 
-  <ng-container *ngIf="view === viewType.year">
-    <tr *ngFor="let row of years">
-      <td data-day-extend *ngFor="let year of row"
-          [attr.data-selected-year]="(year | dfnsStartOfYear) | dfnsIsEqual: (current | dfnsStartOfYear)"
-          (click)="period = year; view = viewType.month">
-        {{year | dfnsFormat: 'yyyy'}}
-      </td>
-    </tr>
-  </ng-container>
+    <ng-template #empty>
+      <tr data-days>
+        <th *ngFor="let col of [1,2,3,4]"></th>
+      </tr>
+    </ng-template>
+    </thead>
 
-  </tbody>
-</table>
+    <tbody>
+    <ng-container *ngIf="view === viewType.date">
+      <tr *ngFor="let w of weeks"
+          [attr.data-current-week]="(current | jntStartOfWeek) | jntIsEqual: (w.date | jntStartOfWeek)">
+        <td data-day *ngFor="let d of w.days"
+            [attr.data-today]="d | jntIsToday"
+            [attr.data-current-month]="(d | jntStartOfMonth) | jntIsEqual: (period | jntStartOfMonth)"
+            [attr.data-selected-day]="(d | jntStartOfDay) | jntIsEqual: (current | jntStartOfDay)"
+            (click)="select(d)" tabindex="0">
+          <ng-container *ngTemplateOutlet="!!dayTemplate ? dayTemplate: defaultDayTemplate;context:{date: d}">
+          </ng-container>
+        </td>
+
+        <td data-divider *ngIf="!!metrics.length"></td>
+
+        <td data-metric *ngFor="let m of metrics;let i = index;">
+          <ng-container *ngTemplateOutlet="metricTemplate;context:{metric: i, date: w.date}">
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="view === viewType.month">
+      <tr *ngFor="let row of months">
+        <td data-day data-day-extend *ngFor="let month of row"
+            [attr.data-current-month]="month | jntIsThisMonth"
+            [attr.data-selected-month]="(month | jntStartOfMonth) | jntIsEqual: (current | jntStartOfMonth)"
+            (click)="period = month; view = viewType.date">
+          {{month | jntFormat: 'LLL'}}
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="view === viewType.year">
+      <tr *ngFor="let row of years">
+        <td data-day data-day-extend data-year *ngFor="let year of row"
+            [attr.data-current-year]="year | jntIsThisYear"
+            [attr.data-selected-year]="(year | jntStartOfYear) | jntIsEqual: (current | jntStartOfYear)"
+            (click)="period = year; view = viewType.month">
+          {{year | jntFormat: 'yyyy'}}
+        </td>
+      </tr>
+    </ng-container>
+
+    </tbody>
+  </table>
+  <jnt-stack *ngIf="features | includes : ui.feature.today" [align]="ui.align.center">
+    <jnt-button [scheme]="ui.scheme.secondary"
+                [size]="ui.size.small"
+                [icon]="ui.icons.today"
+                [text]="'action.today' | translate"
+                (click)="today()">
+    </jnt-button>
+  </jnt-stack>
+</jnt-stack>
 
 <ng-template #defaultDayTemplate let-date="date">
-  <div data-default>{{date | dfnsGetDate}}</div>
+  <div data-default>{{date | jntGetDate}}</div>
 </ng-template>
 

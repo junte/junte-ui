@@ -11,13 +11,14 @@ import { UI } from '../../../core/enums/ui';
 })
 export class FormItemComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-item-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-item-host';
 
   ui = UI;
 
-  _orientation: Orientation = Orientation.vertical;
-  _align: FlexAlign = FlexAlign.stretch;
-  _gutter: Gutter = Gutter.tiny;
+  private _orientation: Orientation = Orientation.vertical;
+  private _align: FlexAlign = FlexAlign.stretch;
+  private _gutter: Gutter = Gutter.tiny;
 
   @PropertyApi({
     description: 'Form item orientation',
@@ -26,7 +27,8 @@ export class FormItemComponent {
     options: [Orientation.horizontal, Orientation.vertical]
   })
   @HostBinding('attr.data-orientation')
-  @Input() set orientation(type: Orientation) {
+  @Input()
+  set orientation(type: Orientation) {
     this._orientation = type || Orientation.vertical;
   }
 
@@ -38,13 +40,16 @@ export class FormItemComponent {
     description: 'Align of elements in form item',
     path: 'ui.align',
     default: FlexAlign.stretch,
-    options: [FlexAlign.start,
+    options: [
+      FlexAlign.start,
       FlexAlign.center,
       FlexAlign.end,
       FlexAlign.baseline,
-      FlexAlign.stretch]
+      FlexAlign.stretch
+    ]
   })
-  @Input() set align(align: FlexAlign) {
+  @Input()
+  set align(align: FlexAlign) {
     this._align = align || FlexAlign.stretch;
   }
 
@@ -56,14 +61,17 @@ export class FormItemComponent {
     description: 'Space between elements in form item',
     path: 'ui.gutter',
     default: Gutter.tiny,
-    options: [Gutter.tiny,
+    options: [
+      Gutter.tiny,
       Gutter.small,
       Gutter.normal,
       Gutter.big,
       Gutter.large,
-      Gutter.huge]
+      Gutter.huge
+    ]
   })
-  @Input() set gutter(gutter: Gutter) {
+  @Input()
+  set gutter(gutter: Gutter) {
     this._gutter = gutter || Gutter.tiny;
   }
 

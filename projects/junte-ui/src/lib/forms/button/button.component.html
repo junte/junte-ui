@@ -1,13 +1,14 @@
-<button [type]="type" [disabled]="disabled || loading">
+<button #buttonRef [type]="type" [disabled]="disabled || loading" [attr.aria-label]="ariaLabel">
   <jnt-spinner data-loading *ngIf="loading" [@appear]="loading"></jnt-spinner>
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [align]="ui.align.center"
              [gutter]="ui.gutter.small">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left"
               [@visibility]="loading  ? 'hide' : 'show'"
-              [icon]="icon?.icon"></jnt-icon>
+              [icon]="icon?.icon">
+    </jnt-icon>
 
-    <div *ngIf="!!text" data-text
+    <div data-text *ngIf="!!text"
          [@visibility]="loading  ? 'hide' : 'show'">
       {{text}}
     </div>
@@ -26,7 +27,8 @@
 
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right"
               [@visibility]="loading  ? 'hide' : 'show'"
-              [icon]="icon?.icon"></jnt-icon>
+              [icon]="icon?.icon">
+    </jnt-icon>
 
     <div data-empty *ngIf="!icon && !badges.length && !text" [@visibility]="loading  ? 'hide' : 'show'"></div>
   </jnt-stack>

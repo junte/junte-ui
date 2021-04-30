@@ -1,4 +1,7 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { Height } from '../../core/enums/height';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { BreakpointService } from '../responsive/breakpoint.service';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { Gutter } from '../../core/enums/gutter';
@@ -30,10 +33,11 @@ export class CardComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-card-host';
 
-  cardState = State;
-  feature = Feature;
   picture: Picture;
   popover: PopoverComponent;
+
+  @HostBinding('attr.data-height')
+  _height: Height = Height.default;
 
   @HostBinding('attr.data-has-color')
   get hasColor() {
@@ -56,6 +60,16 @@ export class CardComponent {
   title: string;
 
   @PropertyApi({
+    description: 'Height of card',
+    path: 'ui.height',
+    options: [Height.default, Height.fluid],
+    default: Height.default
+  })
+  @Input() set height(height: Height) {
+    this._height = height || Height.default;
+  }
+
+  @PropertyApi({
     description: 'Picture on card',
     type: 'string'
   })
@@ -68,6 +82,13 @@ export class CardComponent {
       this.picture = null;
     }
   }
+
+  @ContentApi({
+    selector: '#cardDragTemplate',
+    description: 'Card drag template'
+  })
+  @ContentChild('cardDragTemplate')
+  dragTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#cardHeaderTemplate',
@@ -92,7 +113,7 @@ export class CardComponent {
 
   @ContentApi({
     selector: '#cardActionsTemplate',
-    description: 'card actions template'
+    description: 'Card actions template'
   })
   @ContentChild('cardActionsTemplate')
   cardActionsTemplate: TemplateRef<any>;
@@ -116,6 +137,7 @@ export class CardComponent {
   @PropertyApi({
     description: 'Padding for card',
     path: 'ui.gutter',
+    default: Gutter.normal,
     options: [Gutter.none,
       Gutter.tiny,
       Gutter.small,
@@ -140,9 +162,9 @@ export class CardComponent {
   width: Width = Width.default;
 
   @PropertyApi({
-    description: 'Сlickable card',
+    description: 'Сlickable card; Adapted card on mobile view',
     path: 'ui.feature',
-    options: [Feature.clickable]
+    options: [Feature.clickable, Feature.adapted]
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -162,12 +184,15 @@ export class CardComponent {
   })
   @Output() selected = new EventEmitter<any>();
 
-  @HostBinding('attr.tabindex')
-  get tabindex() {
-    return !!this.features && this.features.includes(Feature.clickable) ? 1 : null;
-  }
-
   hideActions() {
     this.popover.hide();
   }
+
+  get mobile() {
+    return this.breakpoint.current === Breakpoint.mobile;
+  }
+
+  constructor(private breakpoint: BreakpointService) {
+  }
+
 }

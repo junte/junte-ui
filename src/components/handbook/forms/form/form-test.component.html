@@ -1,0 +1,475 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.form"
+                       title="Form"
+                       i18n-title="@@label.form"
+                       [teaser]="handbook.forms.components.form.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+
+          <jnt-form [formGroup]="builder">
+            <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+
+              <jnt-form-item>
+                <jnt-form-control>
+                  <jnt-checkbox formControlName="title"
+                                i18n-label="@@label.title"
+                                label="Title"></jnt-checkbox>
+                </jnt-form-control>
+              </jnt-form-item>
+
+              <jnt-form-item [orientation]="ui.orientation.horizontal"
+                             [gutter]="ui.gutter.small"
+                             [align]="ui.align.center">
+                <jnt-form-label for="state">States
+                </jnt-form-label>
+                <jnt-switcher formControlName="state"
+                              [features]="ui.feature.allowEmpty">
+                  <jnt-switcher-option label="Loading"
+                                       i18n-label="@@label.loading"
+                                       [icon]="ui.icons.animated.spinner"
+                                       [value]="ui.state.loading"></jnt-switcher-option>
+                  <jnt-switcher-option label="Error"
+                                       i18n-label="@@label.error"
+                                       [icon]="ui.icons.warning"
+                                       [value]="ui.state.error"></jnt-switcher-option>
+                </jnt-switcher>
+              </jnt-form-item>
+
+              <jnt-button [scheme]="ui.scheme.success"
+                          text="Success"
+                          i18n-text="@@action.success"
+                          (click)="formTest.success()"></jnt-button>
+
+            </jnt-stack>
+          </jnt-form>
+
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <jnt-block [padding]="ui.gutter.normal" [width]="ui.width.fluid">
+                <jnt-form #formTest [formGroup]="form"
+                          [title]="titleControl.value ? 'Registration' : null"
+                          [state]="stateControl.value"
+                          (checked)="errors = $event"
+                          (submitted)="submit()">
+
+                  <jnt-stack [align]="ui.align.stretch">
+
+                    <jnt-message *ngIf="errors | includes:form.get('personals').get('deep').get('firstName')"
+                                 [scheme]="ui.scheme.fail">First Name error
+                    </jnt-message>
+
+                    <ng-container formGroupName="personals">
+                      <jnt-row formGroupName="deep">
+                        <jnt-col [tablet]="6" [mobile]="12">
+                          <jnt-form-item>
+                            <jnt-form-label for="firstName"
+                                            i18n="@@label.your_name">Your Name</jnt-form-label>
+                            <jnt-form-control name="firstName">
+                              <jnt-input formControlName="firstName" [type]="ui.input.type.text"></jnt-input>
+                              <jnt-form-message [validator]="ui.validator.required">
+                                This field is required
+                              </jnt-form-message>
+                            </jnt-form-control>
+                          </jnt-form-item>
+                        </jnt-col>
+
+                        <jnt-col [tablet]="6" [mobile]="12">
+                          <jnt-form-item>
+                            <jnt-form-label for="lastName"
+                                            i18n="@@label.your_last_name">Your Last name
+                            </jnt-form-label>
+                            <jnt-form-control name="lastName">
+                              <jnt-input formControlName="lastName" [type]="ui.input.type.text"></jnt-input>
+                            </jnt-form-control>
+                          </jnt-form-item>
+                        </jnt-col>
+                      </jnt-row>
+                      <jnt-form-item>
+                        <jnt-form-control name="phone">
+                          <jnt-input formControlName="phone"
+                                     name="phone"
+                                     i18n-name="@@label.phone"
+                                     [autocomplete]="ui.input.autocomplete.on"
+                                     mask="+7(___) ___-__-__"></jnt-input>
+                          <jnt-form-message [validator]="ui.validator.required"
+                                            i18n="@@message.this_field_is_required">
+                            This field is required
+                          </jnt-form-message>
+                          <jnt-form-message validator="phone" i18n="@@message.bad_phone_number">
+                            Bad phone number
+                          </jnt-form-message>
+                        </jnt-form-control>
+                      </jnt-form-item>
+                    </ng-container>
+
+                    <ng-container formGroupName="children">
+                      <ng-container formGroupName="0">
+                        <jnt-form-item>
+                          <jnt-form-label for="name" i18n="@@label.children">Children</jnt-form-label>
+                          <jnt-form-control name="name">
+                            <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
+                            <jnt-form-message [validator]="ui.validator.required"
+                                              i18n="@@message.this_field_is_required">
+                              This field is required
+                            </jnt-form-message>
+                          </jnt-form-control>
+                        </jnt-form-item>
+                      </ng-container>
+                      <ng-container formGroupName="1">
+                        <jnt-form-item>
+                          <jnt-form-label for="name" i18n="@@label.children">Children</jnt-form-label>
+                          <jnt-form-control name="name">
+                            <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
+                            <jnt-form-message [validator]="ui.validator.required" i18n="@@message.this_field_is_required">
+                              This field is required
+                            </jnt-form-message>
+                          </jnt-form-control>
+                        </jnt-form-item>
+                      </ng-container>
+                    </ng-container>
+
+                    <jnt-form-item>
+                      <jnt-form-label for="password"
+                                      i18n="@@label.password">Password
+                      </jnt-form-label>
+                      <jnt-form-control name="password">
+                        <jnt-input formControlName="password" [type]="ui.input.type.password"></jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+
+                    <jnt-form-item>
+                      <jnt-form-label for="gender"
+                                      i18n="@@label.gender">Gender
+                      </jnt-form-label>
+                      <jnt-radio-group formControlName="gender">
+                        <jnt-stack [orientation]="ui.orientation.horizontal">
+                          <jnt-radio label="Man"
+                                     i18n-label="@@label.man"
+                                     [value]="gender.man"></jnt-radio>
+                          <jnt-radio label="Woman"
+                                     i18n-label="@@label.woman"
+                                     [value]="gender.woman"></jnt-radio>
+                        </jnt-stack>
+                      </jnt-radio-group>
+                    </jnt-form-item>
+
+                    <jnt-row>
+                      <jnt-col [tablet]="6" [mobile]="12">
+                        <jnt-form-item>
+                          <jnt-form-label for="birthday"
+                                          i18n="@@label.birthday">Birthday
+                          </jnt-form-label>
+                          <jnt-date-picker formControlName="birthday"></jnt-date-picker>
+                        </jnt-form-item>
+                      </jnt-col>
+
+                      <jnt-col [tablet]="6" [mobile]="12">
+                        <jnt-form-item>
+                          <jnt-form-label for="country"
+                                          i18n="@@label.country">Country
+                          </jnt-form-label>
+                          <jnt-form-control>
+                            <jnt-select formControlName="country"
+                                        placeholder="Country"
+                                        i18n-placeholder="@@label.country"
+                                        [features]="[ui.feature.search]">
+                              <jnt-select-option *ngFor="let country of countries" [label]="country"
+                                                 [key]="country"></jnt-select-option>
+                            </jnt-select>
+                          </jnt-form-control>
+                        </jnt-form-item>
+                      </jnt-col>
+
+                    </jnt-row>
+
+                    <jnt-form-item>
+                      <jnt-form-label for="status"
+                                      i18n="@@label.marital_status">Marital Status
+                      </jnt-form-label>
+                      <jnt-switcher formControlName="status">
+                        <jnt-switcher-option *ngFor="let stat of status" [label]="stat"
+                                             [value]="stat"></jnt-switcher-option>
+                      </jnt-switcher>
+                    </jnt-form-item>
+
+                    <jnt-form-item>
+                      <jnt-form-label for="pets"
+                                      i18n="@@label.your_pets">Your pets:
+                      </jnt-form-label>
+                      <jnt-form-control>
+                        <jnt-checkbox-group formControlName="pets">
+                          <jnt-stack [orientation]="ui.orientation.horizontal">
+                            <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
+                          </jnt-stack>
+                        </jnt-checkbox-group>
+                      </jnt-form-control>
+                    </jnt-form-item>
+
+                    <jnt-form-item>
+                      <jnt-form-control>
+                        <jnt-switch formControlName="notification"
+                                    i18n-label="@@label.enable_notifications"
+                                    label="Enable notifications"></jnt-switch>
+                      </jnt-form-control>
+                    </jnt-form-item>
+
+                    <ng-template #formFooterTemplate>
+                      <jnt-button text="Save"
+                                  i18n-text="@@action.save"
+                                  [icon]="ui.icons.save"
+                                  [type]="ui.button.type.submit"
+                                  save></jnt-button>
+                    </ng-template>
+
+                  </jnt-stack>
+                </jnt-form>
+              </jnt-block>
+            </ng-template>
+          </app-browser-preview>
+
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'form-test', type: 'FormTestComponent'}"
+                scss="forms/form">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+                  <![CDATA[
+                  import { Component } from '@angular/core';
+                  import { UI } from '@junte/ui';
+                  import { FormBuilder, Validators } from '@angular/forms';
+
+                  enum Gender {
+                  man = 'man',
+                  woman = 'woman'
+                  }
+
+                  @Component({
+                  selector: 'app-form-test',
+                  templateUrl: './form-test.component.html',
+                  styleUrls: ['./form-test.component.scss']
+                  })
+
+                  gender = Gender;
+                  countries: string[] = ['Russia', 'Australia', 'Austria', 'Brazil', 'Germany', 'Latvia', 'Monaco',
+                  'Ukraine'];
+                  pets: string[] = ['cat', 'dog', 'fish', 'parrot'];
+                  status: string[] = ['married', 'not married', 'is actively looking'];
+
+                  nameControl = this.fb.control(null);
+                  lastNameControl = this.fb.control(null);
+                  emailControl = this.fb.control(null);
+                  passwordControl = this.fb.control(null);
+                  genderControl = this.fb.control(Gender.man);
+                  birthdayControl = this.fb.control(new Date());
+                  countryControl = this.fb.control(this.countries[0]);
+                  notificationControl = this.fb.control(true);
+                  petsControl = this.fb.control(null);
+                  statusControl = this.fb.control(this.status[0]);
+
+                  form = this.fb.group({
+                  name: this.nameControl,
+                  lastName: this.lastNameControl,
+                  email: this.emailControl,
+                  password: this.passwordControl,
+                  gender: this.genderControl,
+                  birthday: this.birthdayControl,
+                  country: this.countryControl,
+                  notification: this.notificationControl,
+                  pets: this.petsControl,
+                  status: this.statusControl,
+                  });
+
+                  constructor(private fb: FormBuilder) {
+                  }
+                  ]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="form-test.template.html">
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-form [formGroup]="form" ]]>
+
+  <ng-container *ngIf="!!titleControl.value">
+    <![CDATA[
+    title="Registration"]]>
+  </ng-container>
+  <ng-container *ngIf="!!stateControl.value">
+    <![CDATA[
+    [state]="]]>{{stateControl.value}}<![CDATA["]]>
+  </ng-container>
+    <![CDATA[>
+    <jnt-stack [align]="ui.align.stretch">
+
+      <jnt-row>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="name">Your Name</jnt-form-label>
+            <jnt-form-control>
+              <jnt-input formControlName="name" [type]="ui.input.type.text"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="lastName">Your Last name</jnt-form-label>
+            <jnt-form-control>
+              <jnt-input formControlName="lastName" [type]="ui.input.type.text"></jnt-input>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+      </jnt-row>
+
+
+      <jnt-form-item>
+        <jnt-form-label for="email">Your E-mail</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input formControlName="email" [type]="ui.input.type.text"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="password">Password</jnt-form-label>
+        <jnt-form-control>
+          <jnt-input formControlName="password" [type]="ui.input.type.password"></jnt-input>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="gender">Gender</jnt-form-label>
+        <jnt-radio-group formControlName="gender">
+          <jnt-stack [orientation]="ui.orientation.horizontal">
+            <jnt-radio label="Man" [value]="gender.man"></jnt-radio>
+            <jnt-radio label="Woman" [value]="gender.woman"></jnt-radio>
+          </jnt-stack>
+        </jnt-radio-group>
+      </jnt-form-item>
+
+      <jnt-row>
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="birthday">Birthday</jnt-form-label>
+            <jnt-date-picker formControlName="birthday"></jnt-date-picker>
+          </jnt-form-item>
+        </jnt-col>
+
+        <jnt-col [tablet]="6" [mobile]="12">
+          <jnt-form-item>
+            <jnt-form-label for="country">Country</jnt-form-label>
+              <jnt-form-control>
+                <jnt-select formControlName="country" placeholder="Country"
+                            [features]="[ui.feature.search]">
+                <jnt-select-option *ngFor="let country of countries" [label]="country"
+                                   [key]="country"></jnt-select-option>
+                </jnt-select>
+            </jnt-form-control>
+          </jnt-form-item>
+        </jnt-col>
+      </jnt-row>
+
+      <jnt-form-item>
+        <jnt-form-label for="status">Marital Status</jnt-form-label>
+        <jnt-switcher formControlName="status">
+          <jnt-switcher-option *ngFor="let stat of status" [label]="stat"
+                               [value]="stat"></jnt-switcher-option>
+        </jnt-switcher>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-label for="pets">Your pets:</jnt-form-label>
+          <jnt-form-control>
+            <jnt-checkbox-group formControlName="pets">
+              <jnt-stack [orientation]="ui.orientation.horizontal">
+                <jnt-checkbox *ngFor="let pet of pets" [label]="pet" [value]="pet"></jnt-checkbox>
+              </jnt-stack>
+            </jnt-checkbox-group>
+          </jnt-form-control>
+      </jnt-form-item>
+
+      <jnt-form-item>
+        <jnt-form-control>
+          <jnt-switch formControlName="notification" label="Enable notifications"></jnt-switch>
+        </jnt-form-control>
+      </jnt-form-item>
+
+      <ng-template #formFooterTemplate>
+        <jnt-button text="Save" [icon]="ui.icons.save" [type]="ui.button.type.submit"
+                    save></jnt-button>
+      </ng-template>
+
+    </jnt-stack>
+</jnt-form>
+]]>
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <app-component-api selector="jnt-form" [target]="types.form"></app-component-api>
+          <app-component-api selector="jnt-form-control" [target]="types.control"></app-component-api>
+          <app-component-api selector="jnt-form-label" [target]="types.label"></app-component-api>
+          <app-component-api selector="jnt-form-message" [target]="types.message"></app-component-api>
+          <app-component-api selector="jnt-form-item" [target]="types.item"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #examples title="Examples"
+             i18n-title="@@label.examples"
+             [icon]="ui.icons.stackblitz">
+      <ng-template #tabContentTemplate>
+        <div #example></div>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
+
+</jnt-container>

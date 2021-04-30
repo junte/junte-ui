@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
-@mixin jnt-switch($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-switch($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     corner: 35px,
@@ -17,7 +18,18 @@
       icon: (
         on: $jnt-primary-color,
         off: $jnt-gray-600-color
-      ),
+      )
+    ),
+    hover: (
+      on: null,
+      off: null
+    ),
+    focus: (
+      shadow: $jnt-outline-shadow-normal $jnt-highlight-background
+    ),
+    disabled: (
+      on: rgba($jnt-primary-color, .5),
+      off: rgba($jnt-gray-600-color, .5)
     ),
     sizes: (
       tiny: (
@@ -31,7 +43,7 @@
         ),
         icon: (
           size: 11px
-        ),
+        )
       ),
       small: (
         width: 45px,
@@ -44,7 +56,7 @@
         ),
         icon: (
           size: 12px
-        ),
+        )
       ),
       normal: (
         width: 57px,
@@ -57,7 +69,7 @@
         ),
         icon: (
           size: 16px
-        ),
+        )
       ),
       large: (
         width: 70px,
@@ -70,7 +82,7 @@
         ),
         icon: (
           size: 18px
-        ),
+        )
       )
     )
   );
@@ -79,7 +91,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -88,9 +100,11 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: inline-flex;
-    align-items: center;
+  #{if($context, $context, $jnt-switch-host)} {
+    @if $declare {
+      display: inline-flex;
+      align-items: center;
+    }
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -98,27 +112,32 @@
           #{$wrapper} form {
             min-width: map-get($map, width);
             width: map-get($map, width);
+
             [data-switch] {
               min-width: calc(#{map-get($map, width)} + (#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2));
               height: map-get($map, height);
               transform: translateX(calc((#{map-get($map, width)} - (#{map-get($map, height)} - #{map-get($vars, padding)}) - #{$jnt-gutter-tiny} / 2) * (-1)));
+
               [data-on], [data-off] {
                 width: calc(#{map-get($map, width)} - #{map-get($vars, padding)} -
                 (#{map-get($map, height)} - #{map-get($vars, padding)} * 2) -
                 #{map-get($vars, padding)} * 2);
               }
+
               [data-slider] {
                 width: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
                 height: calc(#{map-get($map, height)} - #{map-get($vars, padding)} * 2);
-                [data-icon] {
-                  @if map-has-key($map, icon) {
-                    $icon: map-get($map, icon);
-                    @include jnt-icon((
-                      size: map-get($icon, size),
-                    ), '&');
-                  }
+              }
+
+              [data-icon] {
+                @if map-has-key($map, icon) {
+                  $icon: map-get($map, icon);
+                  @include jnt-icon((
+                    size: map-get($icon, size)
+                  ), '&');
                 }
               }
+
               @if map-has-key($map, tag) {
                 $label: map-get($map, tag);
                 span {
@@ -126,10 +145,12 @@
                 }
               }
             }
+
             input:checked + [data-switch] {
               transform: translateX(0);
             }
           }
+
           @if map-has-key($map, label) {
             $label: map-get($map, label);
             #{$wrapper} label {
@@ -139,112 +160,172 @@
         }
       }
     }
+
+    &[data-focused='true'] {
+      #{$wrapper} [data-form] {
+        outline: 0;
+        @if map-has-key($vars, focus) {
+          $focus: map-get($vars, focus);
+          box-shadow: map-get($focus, shadow);
+        }
+      }
+    }
   }
 
-  #{$context} #{$wrapper} form {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: map-get($vars, corner);
-    //for Safari
-    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  #{$context} #{$wrapper} [data-wrapper] {
+    flex: 1;
 
-    input {
-      position: absolute;
-      top: 0;
-      z-index: 1;
-      cursor: pointer;
-      opacity: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
+    [data-form] {
+      border-radius: map-get($vars, corner);
+      line-height: 1;
 
-      &:checked {
-        & + [data-switch] {
-          @if map-has-key($vars, background) {
-            $background: map-get($vars, background);
-            background-color: map-get($background, on);
-            [data-slider] {
-              @if map-has-key($background, slider) {
-                $slider: map-get($background, slider);
-                background-color: map-get($slider, on);
+      form {
+        @if $declare {
+          display: inline-flex;
+          align-items: center;
+          position: relative;
+          // for Safari
+          -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+        }
+        border-radius: map-get($vars, corner);
+
+        input {
+          @if $declare {
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          &:checked {
+            & + [data-switch] {
+              @if map-has-key($vars, background) {
+                $background: map-get($vars, background);
+                background-color: map-get($background, on);
+                [data-slider] {
+                  @if map-has-key($background, slider) {
+                    $slider: map-get($background, slider);
+                    background-color: map-get($slider, on);
+                  }
+                }
+                [data-icon] {
+                  @if map-has-key($background, icon) {
+                    $icon-bg: map-get($background, icon);
+                    @include jnt-icon((
+                      color: map-get($icon-bg, on)
+                    ), '&');
+                  }
+                }
               }
-              [data-icon] {
-                @if map-has-key($background, icon) {
-                  $icon-bg: map-get($background, icon);
-                  @include jnt-icon((
-                    color: map-get($icon-bg, on)
-                  ), '&');
+            }
+          }
+
+          &:hover {
+            @if map-has-key($vars, hover) {
+              $hover: map-get($vars, hover);
+              & + [data-switch] {
+                background-color: map-get($hover, off);
+              }
+              &:checked {
+                & + [data-switch] {
+                  background-color: map-get($hover, on);
+                }
+              }
+            }
+          }
+
+          &:disabled {
+            @if $declare {
+              cursor: default;
+            }
+            @if map-has-key($vars, disabled) {
+              $disabled: map-get($vars, disabled);
+              & + [data-switch] {
+                background-color: map-get($disabled, off);
+              }
+              &:checked {
+                & + [data-switch] {
+                  background-color: map-get($disabled, on);
                 }
               }
             }
           }
         }
-      }
 
-      &:disabled {
-        cursor: default;
-        & + [data-switch] {
-          opacity: .5;
-        }
-        &:checked {
-          & + [data-switch] {
-            opacity: .5;
+        [data-switch] {
+          @if $declare {
+            display: flex;
           }
-        }
-      }
-    }
+          @if map-has-key($vars, background) {
+            $background: map-get($vars, background);
+            background-color: map-get($background, off);
+            [data-on] {
+              @if $declare {
+                box-sizing: border-box;
+                text-align: right;
+              }
+              padding-left: calc(#{map-get($vars, padding)} * 2);
+            }
+            [data-off] {
+              @if $declare {
+                box-sizing: border-box;
+                text-align: left;
+              }
+              padding-right: calc(#{map-get($vars, padding)} * 2);
+            }
+            [data-slider] {
+              @if map-has-key($background, slider) {
+                $slider: map-get($background, slider);
+                background-color: map-get($slider, off);
+              }
+            }
+            [data-icon] {
+              @if map-has-key($background, icon) {
+                $icon-bg: map-get($background, icon);
+                @include jnt-icon((
+                  color: map-get($icon-bg, off)
+                ), '&');
+              }
+            }
+          }
+          @if $declare {
+            transition: transform .4s ease-out, background-color .4s;
+          }
 
-    [data-switch] {
-      display: flex;
-      @if map-has-key($vars, background) {
-        $background: map-get($vars, background);
-        background-color: map-get($background, off);
-        [data-on] {
-          box-sizing: border-box;
-          padding-left: calc(#{map-get($vars, padding)} * 2);
-        }
-        [data-off] {
-          box-sizing: border-box;
-          padding-right: calc(#{map-get($vars, padding)} * 2);
-        }
-        [data-slider] {
-          @if map-has-key($background, slider) {
-            $slider: map-get($background, slider);
-            background-color: map-get($slider, off);
+          [data-slider] {
+            @if $declare {
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           }
-          [data-icon] {
-            @if map-has-key($background, icon) {
-              $icon-bg: map-get($background, icon);
-              @include jnt-icon((
-                color: map-get($icon-bg, off)
-              ), '&');
+
+          span {
+            @if $declare {
+              color: $jnt-white-color;
             }
           }
         }
       }
-      transition: transform .4s ease-out, background-color .4s;
+    }
 
-      [data-slider] {
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      span {
-        color: $jnt-white-color;
+    label {
+      @if $declare {
+        margin-left: $jnt-gutter-small;
+        flex: 1;
       }
     }
   }
 
-  #{$context} #{$wrapper} label {
-    margin-left: $jnt-gutter-small;
-  }
+
 }
 
 @if $jnt-debug {

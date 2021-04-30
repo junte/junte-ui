@@ -1,2 +1,2 @@
-export * from './icon.component';
-export * from './icon.module';
+export { IconComponent } from './icon.component';
+export { IconModule } from './icon.module';

@@ -1,19 +1,21 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin jnt-svg-icon($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-svg-icon($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     width: null,
     height: null,
-    fill: null
+    color: $jnt-primary-text-color,
+    stroke: 1.5px
   );
 
   $vars: $passed;
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -22,24 +24,61 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-svg-icon-host)} {
     @if $declare {
       display: inline-flex;
       line-height: 0;
-      svg {
-        width: 100%;
-        height: 100%;
-        [data-mock] {
-          opacity: .5;
+
+      &[data-tags*='stroked'] {
+        &[data-stroke='thin'] {
+          svg {
+            stroke-width: 1px;
+          }
+        }
+
+        &[data-stroke='bold'] {
+          svg {
+            stroke-width: 2px;
+          }
+        }
+
+        svg {
+          shape-rendering: geometricPrecision;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+
+          path, line, rect, circle {
+            vector-effect: non-scaling-stroke;
+          }
         }
       }
     }
-    fill: map-get($vars, fill);
+
+    $color: map-get($vars, color);
+
+    &[data-tags*='stroked'] {
+      svg {
+        stroke-width: map-get($vars, stroke);
+      }
+    }
+
+    &[data-has-color='false'] {
+      &[data-tags*='stroked'] {
+        svg {
+          stroke: $color;
+        }
+      }
+
+      &[data-tags*='filled'] svg {
+        fill: $color;
+      }
+    }
+
     width: map-get($vars, width);
     height: map-get($vars, height);
   }
 }
 
 @if $jnt-debug {
-  @debug 'svg-icon compiled';
+  @debug 'svg icon compiled';
 }

@@ -1,0 +1,59 @@
+@import 'jnt-variables';
+@import 'elements/icon';
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+:host-context([theme='esanum']) {
+  h3 {
+    color: #005461;
+  }
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h3 {
+  color: $jnt-primary-color;
+}
+
+h1 {
+  span {
+    border: 3px solid $jnt-primary-text-color;
+    border-radius: $jnt-corner-normal;
+    padding: 0 $jnt-gutter-small;
+    background: $jnt-secondary-background;
+    color: $jnt-green-dark-color;
+  }
+}
+
+h2 [arnold] {
+  @include jnt-icon((
+    size: 48px
+  ), '&');
+}
+
+p {
+  jnt-icon {
+    @include jnt-icon((
+      size: 16px
+    ), '&');
+  }
+}
+
+h5 {
+  jnt-icon {
+    @include jnt-icon((
+      size: 20px
+    ), '&');
+  }
+}
+
+app-code-highlight::ng-deep {
+  pre {
+    background-color: $jnt-white-color;
+  }
+}

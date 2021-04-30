@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
+import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
-import { ChartIndicatorComponent } from './chart-indicator.component';
+import { ChartIndicatorComponent } from './chart-indicator';
 import { ChartComponent } from './chart.component';
 import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
 
@@ -11,7 +11,8 @@ import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
   imports: [
     CommonModule,
     ColorPipesModule,
-    IconModule
+    IconModule,
+    SkeletonModule
   ],
   exports: [
     ChartComponent,
@@ -29,17 +30,4 @@ import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
   ]
 })
 export class ChartModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<ChartModule> {
-    return {
-      ngModule: ChartModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

@@ -1,8 +1,9 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'forms/button/button';
 
-@mixin jnt-button-group($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-button-group($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large
@@ -12,7 +13,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -21,54 +22,59 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    &[data-width='fluid'] {
-      width: 100%;
-      #{$wrapper} [data-button] {
+  #{if($context, $context, $jnt-button-group-host)} {
+    @if $declare {
+      display: inline-flex;
+      &[data-width='fluid'] {
+        display: flex;
         flex: 1;
+
+        #{$wrapper} [data-button] {
+          flex: 1;
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-button] {
-
-    @include jnt-button ((
-      padding: 0 $jnt-gutter-normal,
-      corner: 0,
-      without-text-corner: 0,
-    ), '&');
+    @if $declare {
+      @include jnt-button((
+        padding: 0 $jnt-gutter-normal,
+        corner: 0,
+        without-text-corner: 0
+      ), '&');
+    }
 
 
     &:first-child {
-      @include jnt-button ((
+      @include jnt-button((
         corners: (
           top: (
-            left: map-get($vars, corner),
+            left: map-get($vars, corner)
           ),
           bottom: (
-            left: map-get($vars, corner),
-          ),
+            left: map-get($vars, corner)
+          )
         ),
         borders: (
-          right: 0,
-        ),
+          right: 0
+        )
       ), '&');
     }
 
     &:last-child {
-      @include jnt-button ((
+      @include jnt-button((
         corners: (
           top: (
-            right: map-get($vars, corner),
+            right: map-get($vars, corner)
           ),
           bottom: (
-            right: map-get($vars, corner),
-          ),
+            right: map-get($vars, corner)
+          )
         ),
         borders: (
-          left: 0,
-        ),
+          left: 0
+        )
       ), '&');
     }
   }

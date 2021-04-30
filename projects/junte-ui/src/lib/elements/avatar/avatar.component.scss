@@ -1,18 +1,23 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/avatar/common";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
+@import 'elements/icon/icon';
+@import 'elements/dot/dot';
 
 @mixin avatar-size($size, $wrapper) {
-  min-width: map-get($size, avatar-size);
-  width: map-get($size, avatar-size);
-  min-height: map-get($size, avatar-size);
-  height: map-get($size, avatar-size);
+  min-width: map-get($size, avatar);
+  width: map-get($size, avatar);
+  min-height: map-get($size, avatar);
+  height: map-get($size, avatar);
   #{$wrapper} [data-icon] {
-    @include jnt-icon((size: map-get($size, icon-size)), '&');
+    @include jnt-icon((size: map-get($size, icon)), '&');
   }
   #{$wrapper} [data-text] {
-    font-size: map-get($size, font-size);
+    font-size: map-get($size, font);
+  }
+  #{$wrapper} [data-dot] {
+    @include jnt-dot((size: map-get($size, dot)), '&');
   }
 }
 
@@ -22,7 +27,7 @@
   }
 }
 
-@mixin jnt-avatar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-avatar($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     shapes: (
@@ -36,19 +41,20 @@
     border: null,
     background: $jnt-secondary-background,
     icon: (
-      color: rgba($jnt-primary-color, .4),
+      color: $jnt-primary-light-color
     ),
     text: (
       color: $jnt-primary-color,
-      font-weight: $jnt-font-weight-bold,
+      font-weight: $jnt-font-weight-bold
     ),
+    sizes: $sizes
   );
 
   $vars: $passed;
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -57,11 +63,14 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    position: relative;
-    box-sizing: border-box;
+  #{if($context, $context, $jnt-avatar-host)} {
+    @if $declare {
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+    }
     border: map-get($vars, border);
+    $sizes: map-get($vars, sizes);
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
         @include avatar-size($map, $wrapper);
@@ -78,17 +87,19 @@
   }
 
   #{$wrapper} #{$context} [data-wrapper] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 0;
+    @if $declare {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      min-width: 100%;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+    }
     background-color: map-get($vars, background);
-    box-sizing: border-box;
-    overflow: hidden;
-    min-width: 100%;
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
 
     [data-text] {
       @if map-has-key($vars, text) {
@@ -106,15 +117,19 @@
     }
 
     [data-image] {
-      width: 100%;
-      height: 100%;
+      @if $declare {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
   #{$wrapper} #{$context} [data-dot] {
-    position: absolute;
-    top: -2px;
-    right: -2px;
+    @if $declare {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+    }
   }
 }
 

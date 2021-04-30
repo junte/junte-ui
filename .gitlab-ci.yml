@@ -1,12 +1,14 @@
-image: docker:18
+image: registry.gitlab.com/junte/docker-hub/docker:19
 variables:
   DOCKER_CACHE_IMAGE: $CI_REGISTRY_IMAGE/cache
   DOCKER_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}
   DOCKER_TEST_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_test
   DOCKER_BUILD_IMAGE: $CI_REGISTRY_IMAGE/tmp:${CI_PIPELINE_ID}_${CI_COMMIT_SHA}_build
+  GIT_DEPTH: 5
 
 stages:
   - build
+  - test
   - publish
   - deploy
   - publish_npm
@@ -14,7 +16,7 @@ stages:
 build:
   stage: build
   services:
-    - docker:dind
+    - registry.gitlab.com/junte/docker-hub/docker:19-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_CACHE_IMAGE || true
@@ -32,11 +34,14 @@ build:
     - docker push $DOCKER_CACHE_IMAGE
     - docker push $DOCKER_BUILD_IMAGE
 
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+
 .base_publish:
   stage: publish
   services:
-    - docker:dind
-  dependencies: []
+    - registry.gitlab.com/junte/docker-hub/docker:19-dind
+  dependencies: [ ]
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker pull $DOCKER_IMAGE
@@ -68,7 +73,7 @@ publish_stable:
 .base_deploy:
   image: curlimages/curl:7.72.0
   stage: deploy
-  dependencies: []
+  dependencies: [ ]
   script:
     - curl -k -X POST -d "component=${DEPLOYER_COMPONENT}&key=${DEPLOYER_KEY}&tag=${CI_PIPELINE_ID}" ${DEPLOYER_HOST}
 
@@ -99,14 +104,15 @@ deploy_production:
 .base_publish_npm:
   image: $DOCKER_BUILD_IMAGE
   stage: deploy
-  dependencies: []
+  dependencies: [ ]
   allow_failure: true
-  before_script:
-    - cd /src/projects/junte-ui
-    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
 publish_npm_master:
   extends: .base_publish_npm
+  before_script:
+    - cd /src/projects/junte-ui
+    - npm config set @junte:registry https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set //gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken ${CI_JOB_TOKEN}
   script:
     - npm run publish
   only:
@@ -115,6 +121,8 @@ publish_npm_master:
 publish_npm_rc:
   extends: .base_publish_npm
   script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish:rc
   only:
     - rc
@@ -122,6 +130,8 @@ publish_npm_rc:
 publish_npm_prod:
   extends: .base_publish_npm
   script:
+    - cd /src/projects/junte-ui
+    - npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
     - npm run publish:prod
   only:
     - prod

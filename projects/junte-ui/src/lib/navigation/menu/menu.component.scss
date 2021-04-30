@@ -1,92 +1,140 @@
 @import 'jnt-variables';
+@import 'jnt-hosts';
 @import 'jnt-functions';
 @import 'navigation/link/link';
 
-@mixin jnt-menu($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+$tab-marker-height: 4px;
+
+@mixin jnt-menu($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     top: (
       item: (
         corner: $jnt-corner-small,
+        font-size: $jnt-font-size-base,
+        background: transparent,
         height: null,
-        orphan-color: $jnt-primary-text-color,
-        orphan-hover-color: $jnt-primary-text-dark-color,
-        color: null,
+        padding: $jnt-gutter-small $jnt-gutter-normal,
+        orphan: (
+          color: $jnt-primary-text-color,
+          hover: (
+            color: $jnt-primary-text-color,
+            background-color: $jnt-secondary-background
+          )
+        ),
+        color: $jnt-primary-text-color,
         text-transform: null,
         font-weight: $jnt-font-weight-base,
         icon: (
           spacing: $jnt-gutter-small,
-          size: 18px
+          color: $jnt-primary-text-color,
+          size: 24px,
         ),
         focus: (
           outline: null,
-          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
-        ),
-        padding: (
-          inner: $jnt-gutter-small !important,
-          outer: 0,
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color
         ),
         toggle: (
           toggle: true,
           margin-left: $jnt-gutter-small,
-          margin-right: $jnt-gutter-normal,
+          color: $jnt-primary-text-color,
+          open-color: $jnt-primary-text-dark-color
         ),
         hover: (
-          background-color: $jnt-highlight-background,
+          color: $jnt-primary-light-color,
+          background-color: $jnt-secondary-background
         ),
         active: (
           underline: true,
           background-color: null,
-          color: null,
-          border-color: $jnt-primary-color,
+          color: $jnt-primary-light-color,
+          underline-color: $jnt-primary-light-color,
+          shadow: null,
+          divider: (
+            display: false,
+            divider-width: null,
+            divider-corner: null,
+            divider-color: null
+          )
         ),
-      ),
+        opened: (
+          background: null
+        ),
+        styles: (
+          tags: (
+            padding: $jnt-gutter-tiny $jnt-gutter-normal,
+            color: $jnt-primary-light-color,
+            corner: 19px,
+            border: 1px solid $jnt-white-color,
+            active: (
+              underline: false,
+              color: $jnt-white-color,
+              background-color: $jnt-primary-light-color,
+              border-color: $jnt-primary-light-color
+            ),
+            hover: (
+              color: null,
+              background-color: $jnt-highlight-background,
+              border-color: null
+            )
+          )
+        )
+      )
     ),
     sub: (
       width: 200px,
-      background-color: $jnt-primary-background,
+      background: null,
       shadow: $jnt-shadow-normal,
       corner: $jnt-corner-small,
       collapsed: (
         item: (
-          padding: $jnt-gutter-small $jnt-gutter-normal,
-        ),
+          padding: $jnt-gutter-small $jnt-gutter-normal
+        )
       ),
       title: (
-        padding: 0 $jnt-gutter-normal,
-        border-bottom: 1px solid $jnt-muted-color,
+        padding: 0 $jnt-gutter-small,
+        border-bottom: 1px solid $jnt-muted-color
       ),
       item: (
-        padding: $jnt-gutter-small $jnt-gutter-normal !important,
+        padding: $jnt-gutter-small $jnt-gutter-normal,
         height: null,
-        color: null,
+        color: $jnt-primary-text-color,
+        corner: $jnt-corner-small,
+        font-size: $jnt-font-size-base,
         icon: (
-          margin-right: $jnt-gutter-small,
-          sizes: null
+          spacing: $jnt-gutter-small,
+          color: $jnt-primary-text-color,
+          size: 24px
         ),
         hover: (
-          background-color: $jnt-highlight-background,
-          border-left-color: $jnt-primary-color,
+          color: null,
+          background-color: $jnt-secondary-background
         ),
         active: (
-          underline: true,
+          underline: false,
           background-color: null,
-          color: null,
-          border-color: $jnt-primary-color,
+          color: $jnt-primary-light-color,
+          shadow: null,
+          divider: (
+            display: false,
+            divider-width: null,
+            divider-corner: null,
+            divider-color: null
+          )
         ),
         focus: (
           outline: null,
-          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color,
-        ),
-      ),
-    ),
+          shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color
+        )
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -95,160 +143,336 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-menu-host)} {
     @if $declare {
       display: block;
 
       &[data-orientation='vertical'] {
-        #{$wrapper} [top] {
+        #{$wrapper} [data-top] {
           width: 100%;
         }
       }
+    }
 
+    &[data-style='default'] {
       #{$wrapper} [data-top] {
-        position: relative;
-        white-space: nowrap;
-        box-sizing: border-box;
-
-        &[data-disabled="true"] {
-          opacity: .65;
-          pointer-events: none;
-          cursor: default;
-        }
-
         [data-item] {
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          user-select: none;
+          @if map-has-key($vars, top) {
+            $title: map-get(map-get($vars, top), item);
+            background-color: map-get($title, background);
+            @include jnt-link((
+              height: map-get($title, height),
+              corner: map-get($title, corner),
+              font-size: map-get($title, font-size),
+              text-transform: map-get($title, text-transform),
+              font-weight: map-get($title, font-weight),
+              color: map-get($title, color),
+              padding: map-get($title, padding)
+            ));
 
-          &[data-loading='true'] {
-            opacity: .7;
-            pointer-events: none;
+            @if map-has-key($title, active) {
+              $active: map-get($title, active);
+              @include jnt-link((
+                outlines: (
+                  transparent: (
+                    active: (
+                      underline: map-get($active, underline),
+                      background-color: map-get($active, background-color),
+                      color: map-get($active, color),
+                      underline-color: map-get($active, border-color),
+                      shadow: map-get($active, shadow),
+                    )
+                  )
+                )
+              ));
+              @if map-has-key($active, divider) {
+                $divider: map-get($active, divider);
+                @include jnt-link((
+                  outlines: (
+                    transparent: (
+                      active: (
+                        divider: (
+                          display: map-get($divider, display),
+                          divider-width: map-get($divider, divider-width),
+                          divider-corner: map-get($divider, divider-corner),
+                          divider-color: map-get($divider, divider-color)
+                        )
+                      )
+                    )
+                  )
+                ));
+              }
+            }
+
+            @if map-has-key($title, orphan) {
+              $orphan: map-get($title, orphan);
+              @include jnt-link((
+                outlines: (
+                  transparent: (
+                    orphan: (
+                      color: map-get($orphan, color)
+                    )
+                  )
+                )
+              ));
+
+              @if map-has-key($orphan, hover) {
+                $hover: map-get($orphan, hover);
+                &[data-active=false] {
+                  @include jnt-link((
+                    outlines: (
+                      transparent: (
+                        orphan: (
+                          hover: (
+                            color: map-get($hover, color),
+                            background-color: map-get($hover, background-color)
+                          )
+                        )
+                      )
+                    )
+                  ));
+                }
+              }
+            }
+
+            @if map-has-key($title, icon) {
+              $icon: map-get($title, icon);
+              @include jnt-link((
+                icon: (
+                  spacing: map-get($icon, spacing),
+                  color: map-get($icon, color),
+                  size: map-get($icon, size),
+                )
+              ));
+            }
+
+            @if map-has-key($title, toggle) {
+              $toggle: map-get($title, toggle);
+              [data-outline] {
+                @include jnt-link((
+                  toggle: (
+                    toggle: map-get($toggle, toggle),
+                    margin-left: map-get($toggle, margin-left),
+                    color: map-get($toggle, color),
+                    open-color: map-get($toggle, open-color)
+                  )
+                ));
+              }
+            }
+
+            @if map-has-key($title, hover) {
+              $hover: map-get($title, hover);
+              &[data-active=false] {
+                @include jnt-link((
+                  outlines: (
+                    transparent: (
+                      hover: (
+                        color: map-get($hover, color),
+                        background-color: map-get($hover, background-color)
+                      )
+                    )
+                  )
+                ));
+              }
+            }
+
+            @if map-has-key($title, focus) {
+              $focus: map-get($title, focus);
+              [data-link] {
+                @include jnt-link((
+                  focus: (
+                    outline: map-get($focus, outline),
+                    shadow: map-get($focus, shadow)
+                  )
+                ), '&');
+              }
+            }
+
+            @if map-has-key($title, opened) {
+              $opened: map-get($title, opened);
+              &[data-active=true] {
+                background-color: map-get($opened, background);
+              }
+            }
+
+            [data-spinner] {
+              @if $declare {
+                margin-right: $jnt-gutter-tiny;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &[data-style='tabs'] {
+      @if $declare {
+        border-bottom: 2px solid $jnt-secondary-background;
+      }
+
+      #{$wrapper} [data-link] {
+        @if $declare {
+          @include jnt-link((
+            height: 44px,
+            padding: $jnt-gutter-small $jnt-gutter-normal ($jnt-gutter-small + $tab-marker-height) $jnt-gutter-normal,
+            color: $jnt-primary-text-color
+          ), '&');
+
+          &:hover {
+            @include jnt-link((
+              color: $jnt-primary-light-color
+            ), '&');
           }
 
-          [data-link] {
-            width: 100%;
+          &[data-active='true'] {
             @include jnt-link((
-              overflow: true,
-              display: block,
+              outlines: (
+                transparent: (
+                  active: (
+                    underline: false,
+                    color: $jnt-primary-light-color
+                  )
+                )
+              )
             ), '&');
+          }
+        }
+      }
+    }
+
+    &[data-style='tags'] {
+      #{$wrapper} [data-link] {
+        @if map-has-key($vars, top) {
+          $title: map-get(map-get($vars, top), item);
+          @if map-has-key($title, styles) {
+            $styles: map-get($title, styles);
+            @if map-has-key($styles, tags) {
+              $tags: map-get($styles, tags);
+              @include jnt-link((
+                padding: map-get($tags, padding),
+                color: map-get($tags, color),
+                border: map-get($tags, border),
+                corner: map-get($tags, corner)
+              ), '&');
+              &[data-active='true'] {
+                @if map-has-key($tags, active) {
+                  $active: map-get($tags, active);
+                  @include jnt-link((
+                    outlines: (
+                      transparent: (
+                        active: (
+                          underline: map-get($active, underline),
+                          color: map-get($active, color),
+                          background-color: map-get($active, background-color),
+                          border-color: map-get($active, border-color)
+                        )
+                      )
+                    )
+                  ), '&');
+                }
+              }
+              &[data-active='false']:hover {
+                @if map-has-key($tags, hover) {
+                  $hover: map-get($tags, hover);
+                  @include jnt-link((
+                    hover: (
+                      color: map-get($hover, color),
+                      background-color: map-get($hover, background-color),
+                      border-color: map-get($hover, border-color)
+                    )
+                  ), '&');
+                }
+              }
+            }
           }
         }
       }
     }
   }
 
-  #{$wrapper} [data-sub] {
-    width: 100%;
-    display: none;
-    align-items: stretch;
-    flex-direction: column;
-
-    &[data-opened='true'],
-    &[data-orientation='horizontal'],
-    &[data-orientation='vertical'][data-collapsed='true'] {
-      display: flex;
-    }
-
-    > [data-section] {
-      user-select: none;
-
-      span {
-        display: block;
-        padding: $jnt-gutter-normal 0;
-      }
-    }
-
-    [data-link] {
-      user-select: none;
-      @include jnt-link((
-        overflow: true,
-        display: block,
-      ), '&');
+  [data-spinner] {
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: grid;
+      place-items: center;
+      background-color: rgba($jnt-primary-background, .85);
+      z-index: 1;
     }
   }
 
   #{$context} #{$wrapper} [data-top] {
+    @if $declare {
+      position: relative;
+      white-space: nowrap;
+      box-sizing: border-box;
+
+      [data-item] {
+        display: flex;
+        align-items: center;
+        user-select: none;
+        transition: background-color .3s ease;
+        height: 100%;
+
+        [data-link] {
+          width: 100%;
+          @include jnt-link((
+            overflow: true
+          ), '&');
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-sub-animate] {
+    align-items: stretch;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #{$context} #{$wrapper} [data-sub] {
+    @if $declare {
+      width: 100%;
+      display: none;
+      align-items: stretch;
+      flex-direction: column;
+      overflow: hidden;
+
+      &[data-opened='true'],
+      &[data-orientation='horizontal'],
+      &[data-orientation='vertical'][data-collapsed='true'] {
+        display: flex;
+      }
+    }
+
+    > [data-section] {
+      @if $declare {
+        user-select: none;
+        margin-bottom: $jnt-gutter-normal;
+      }
+
+      span {
+        @if $declare {
+          display: block;
+          padding: $jnt-gutter-normal 0;
+        }
+      }
+    }
+
     [data-item] {
-      @if map-has-key($vars, top) {
-        $title: map-get(map-get($vars, top), item);
-        border-radius: map-get($title, corner);
-        @include jnt-link((
-          height: map-get($title, height),
-          orphan-color: map-get($title, orphan-color),
-          orphan-hover-color: map-get($title, orphan-hover-color),
-          color: map-get($title, color),
-          text-transform: map-get($title, text-transform),
-          font-weight: map-get($title, font-weight),
-        ), '&');
+      position: relative;
 
-        @if map-has-key($title, active) {
-          $active: map-get($title, active);
+      [data-link] {
+        @if $declare {
+          user-select: none;
+          width: 100%;
           @include jnt-link((
-            active: (
-              underline: map-get($active, underline),
-              background-color: map-get($active, background-color),
-              color: map-get($active, color),
-              border-color: map-get($active, border-color),
-            ),
+            overflow: true,
+            display: block
           ), '&');
-        }
-
-        @if map-has-key($title, icon) {
-          $icon: map-get($title, icon);
-          @include jnt-link((
-            icon: (
-              spacing: map-get($icon, spacing),
-              size: map-get($icon, size)
-            ),
-          ), '&');
-        }
-
-        @if map-has-key($title, padding) {
-          $padding: map-get($title, padding);
-          padding: map-get($padding, outer);
-          [data-link] {
-            @include jnt-link((
-              padding: map-get($padding, inner),
-            ), '&');
-          }
-        }
-
-        @if map-has-key($title, toggle) {
-          $toggle: map-get($title, toggle);
-          @if map-get($toggle, toggle) == false {
-            [data-toggle] {
-              display: none;
-            }
-          }
-          [data-toggle] {
-            margin-left: map-get($toggle, margin-left);
-            margin-right: map-get($toggle, margin-right);
-          }
-        }
-
-        @if map-has-key($title, hover) {
-          $hover: map-get($title, hover);
-          &:hover {
-            background-color: map-get($hover, background-color);
-          }
-        }
-
-        @if map-has-key($title, focus) {
-          $focus: map-get($title, focus);
-          [data-link] {
-            @include jnt-link((
-              schemes: (
-                primary: (
-                  focus: (
-                    outline: map-get($focus, outline),
-                    shadow: map-get($focus, shadow),
-                  ),
-                ),
-              ),
-            ), '&');
-          }
         }
       }
     }
@@ -257,14 +481,19 @@
   #{$context} #{$wrapper} [data-sub] {
     @if map-has-key($vars, sub) {
       $sub: map-get($vars, sub);
+      background-color: map-get($sub, background);
       &[data-collapsed='true'] {
         @if map-has-key($sub, collapsed) {
           $collapsed: map-get($sub, collapsed);
           @if map-has-key($collapsed, item) {
             $item: map-get($collapsed, item);
-            [data-link] {
+            [data-item] [data-link] {
               @include jnt-link((
-                padding: map-get($item, padding),
+                outlines: (
+                  transparent: (
+                    padding: map-get($item, padding)
+                  )
+                )
               ), '&');
             }
           }
@@ -275,62 +504,99 @@
         $title: map-get($sub, title);
         > [data-section] {
           padding: map-get($title, padding);
+          border-bottom: map-get($title, border-bottom);
 
           span {
-            border-bottom: map-get($title, border-bottom);
+            flex: 1;
           }
         }
       }
 
       @if map-has-key($sub, item) {
         $item: map-get($sub, item);
-        [data-link] {
+        [data-item] [data-link] {
           @include jnt-link((
             height: map-get($item, height),
-            padding: map-get($item, padding),
-            color: map-get($item, color),
+            corner: map-get($item, corner),
+            font-size: map-get($item, font-size),
+            outlines: (
+              transparent: (
+                padding: map-get($item, padding),
+                color: map-get($item, color)
+              )
+            )
           ), '&');
           @if map-has-key($item, icon) {
             $icon: map-get($item, icon);
             @include jnt-link((
               icon: (
-                margin-right: map-get($icon, margin-right),
-                sizes: map-get($icon, sizes)
-              ),
+                spacing: map-get($icon, spacing),
+                size: map-get($icon, size),
+                color: map-get($icon, color)
+              )
             ), '&');
           }
           @if map-has-key($item, hover) {
             $hover: map-get($item, hover);
-            &:hover {
-              background-color: map-get($hover, background-color);
-              border-left-color: map-get($hover, border-left-color);
-            }
+            @include jnt-link((
+              outlines: (
+                transparent: (
+                  hover: (
+                    background-color: map-get($hover, background-color),
+                    color: map-get($hover, color)
+                  ),
+                  orphan: (
+                    hover: (
+                      background-color: map-get($hover, background-color),
+                      color: map-get($hover, color)
+                    )
+                  )
+                )
+              )
+            ), '&');
           }
-
           @if map-has-key($item, focus) {
             $focus: map-get($item, focus);
             @include jnt-link((
-              schemes: (
-                primary: (
-                  focus: (
-                    outline: map-get($focus, outline),
-                    shadow: map-get($focus, shadow),
-                  ),
-                ),
-              ),
+              focus: (
+                outline: map-get($focus, outline),
+                shadow: map-get($focus, shadow)
+              )
             ), '&');
           }
 
           @if map-has-key($item, active) {
             $active: map-get($item, active);
             @include jnt-link((
-              active: (
-                underline: map-get($active, underline),
-                background-color: map-get($active, background-color),
-                color: map-get($active, color),
-                border-color: map-get($active, border-color)
-              ),
+              outlines: (
+                transparent: (
+                  active: (
+                    underline: map-get($active, underline),
+                    background-color: map-get($active, background-color),
+                    color: map-get($active, color),
+                    border-color: map-get($active, border-color),
+                    shadow: map-get($active, shadow),
+                  )
+                )
+              )
             ), '&');
+            @if map-has-key($active, divider) {
+              $divider: map-get($active, divider);
+              @include jnt-link((
+                outlines: (
+                  transparent: (
+                    active: (
+                      divider: (
+                        display: map-get($divider, display),
+                        divider-width: map-get($divider, divider-width),
+                        divider-corner: map-get($divider, divider-corner),
+                        divider-color: map-get($divider, divider-color)
+                      )
+                    )
+                  )
+                )
+              ), '&');
+            }
           }
         }
       }

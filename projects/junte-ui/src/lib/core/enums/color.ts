@@ -1,4 +1,6 @@
 export enum Color {
+  primary = 'primary',
+  secondary = 'secondary',
   white = '#FFFFFF',
   black = '#000000',
   blue = '#E7F5FF',
@@ -14,6 +16,7 @@ export enum Color {
   purpleDark = '#00227B',
   purpleLight = '#6F74DD',
   purpleLighten = '#C4C9E7',
+  magentaDark = '#933183',
   gray = '#C4C4C4',
   gray100 = '#F5F5F5',
   gray200 = '#F7F7F7',
@@ -24,5 +27,8 @@ export enum Color {
   gray700 = '#D0D0D0',
   gray800 = '#828282',
   gray900 = '#4F4F4F',
-  grayDark = '#343434'
+  grayDark = '#343434',
+  aqua = '#45BFDA',
+  aquaDark = '#008EA8',
+  aquaLight = '#80F2FF',
 }

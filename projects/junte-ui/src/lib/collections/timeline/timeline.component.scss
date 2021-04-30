@@ -1,8 +1,10 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
-@mixin jnt-timeline($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-timeline($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -15,7 +17,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -24,8 +26,11 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
+  #{if($context, $context, $jnt-timeline-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+    }
   }
 
   #{$wrapper} #{$context} [data-lines] {
@@ -33,6 +38,7 @@
       $sizes: map-get($vars, sizes);
       [data-mark] {
         width: map-get($sizes, mark);
+
         [data-icon] {
           @include jnt-icon((size: map-get($sizes, icon)), '&');
         }
@@ -48,48 +54,68 @@
       }
 
     }
+
     [data-mark] {
-      display: flex;
-      justify-content: center;
-      [data-circle] {
-        border-radius: 50%;
-        color: $jnt-white-color;
+      @if $declare {
         display: flex;
         justify-content: center;
-        align-items: center;
-        font-size: $jnt-font-size-big;
-      }
-      [data-icon] {
-        line-height: 1;
+        [data-circle] {
+          border-radius: 50%;
+          color: $jnt-white-color;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: $jnt-font-size-big;
+          &[data-color='primary'] {
+            background-color: $jnt-primary-color;
+          }
+          &[data-color='secondary'] {
+            background-color: $jnt-secondary-color;
+          }
+        }
+        [data-icon] {
+          line-height: 1;
+        }
       }
     }
 
     [data-line] {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      div {
-        width: 1px;
-        border-left: 4px dotted $jnt-primary-light-color;
+      @if $declare {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        div {
+          width: 10px;
+          background: radial-gradient($jnt-primary-light-color 2px, transparent 1px);
+          background-size: 10px 10px;
+          background-repeat: repeat-y;
+        }
       }
     }
+
     &:last-child {
-       [data-line] {
-         div {
-           display: none;
-         }
-       }
-     }
+      [data-line] {
+        @if $declare {
+          div {
+            display: none;
+          }
+        }
+      }
+    }
 
     [data-title] {
-      font-size: $jnt-font-size-big;
-      display: flex;
-      align-items: center;
+      @if $declare {
+        font-size: $jnt-font-size-big;
+        display: flex;
+        align-items: center;
+      }
     }
 
     [data-content] {
-      padding: $jnt-gutter-tiny 0;
-      flex: 1;
+      @if $declare {
+        padding: $jnt-gutter-tiny 0;
+        flex: 1;
+      }
     }
 
   }

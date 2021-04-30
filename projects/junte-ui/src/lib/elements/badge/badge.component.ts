@@ -12,11 +12,11 @@ export class BadgeComponent {
   @HostBinding('attr.host') readonly host = 'jnt-badge-host';
 
   @HostBinding('attr.data-position')
-  _position: Position = Position.rightTop;
+  _position: Position = Position.inline;
 
-  _color: string = Color.purple;
+  _color: string = Color.primary;
 
-  private _overflow = 99;
+  private _overflow = null;
 
   @PropertyApi({
     description: 'Text to show in badge',
@@ -36,7 +36,7 @@ export class BadgeComponent {
     default: '99'
   })
   @Input() set overflow(overflow: number) {
-    this._overflow = overflow || 99;
+    this._overflow = overflow || null;
   }
 
   get overflow() {
@@ -48,8 +48,9 @@ export class BadgeComponent {
     type: 'string',
     default: 'ui.color.primary'
   })
+  @HostBinding('attr.data-color')
   @Input() set color(color: string) {
-    this._color = color || Color.purple;
+    this._color = color || Color.primary;
   }
 
   get color() {

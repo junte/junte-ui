@@ -1,9 +1,23 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
 
 @mixin jnt-radio-group($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: block;
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-radio-group-host)} {
+    @if $declare {
+      display: block;
+      width: 100%;
+    }
   }
 }
 

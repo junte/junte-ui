@@ -1,0 +1,342 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.menu"
+                       title="Menu"
+                       i18n-title="@@label.menu"
+                       [teaser]="handbook.navigation.components.menu.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview>
+              <ng-template #document>
+                <jnt-menu [orientation]="orientationControl.value"
+                          [spacing]="spacingControl.value"
+                          [style]="styleControl.value"
+                          [collapsed]="collapsedControl.value">
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
+                                 [title]="'Text'">
+                    <jnt-badge *ngIf="badgesControl.value" [text]="'text'" [color]="ui.color.blue100"></jnt-badge>
+
+                    <jnt-sub-menu *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <jnt-sub-menu-item title="Document"
+                                         [icon]="iconsControl.value ? ui.icons.save : null"
+                                         [loading]="loadingControl.value"
+                                         [link]="['/handbook/navigation/menu']"
+                                         i18n-title="@@label.document"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Message"
+                                         [icon]="iconsControl.value ? ui.icons.animated.success : null"
+                                         i18n-title="@@label.message"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Home"
+                                         i18n-title="@@label.home"></jnt-sub-menu-item>
+                    </jnt-sub-menu>
+
+                  </jnt-menu-item>
+
+                  <jnt-menu-item [icon]="iconsControl.value ? ui.icons.animated.success : null"
+                                 [title]="'Text'">
+                    <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
+
+                    <jnt-sub-menu *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <jnt-sub-menu-item title="Test"
+                                         [icon]="iconsControl.value ? ui.icons.calendar : null">
+                      </jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
+                      <jnt-sub-menu-item title="Test"></jnt-sub-menu-item>
+                    </jnt-sub-menu>
+
+                  </jnt-menu-item>
+
+                  <jnt-menu-item title="Home"
+                                 i18n-title="@@label.home"
+                                 [link]="['/handbook/navigation/menu']"
+                                 [fragment]="'test'"
+                                 [loading]="loadingControl.value"
+                                 [icon]="iconsControl.value ? ui.icons.home : null"
+                                 [disabled]="disabledControl.value">
+                    <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
+                  </jnt-menu-item>
+
+                  <jnt-menu-item [link]="['/handbook/navigation/link']"
+                                 title="Link"
+                                 i18n-title="@@label.link">
+                  </jnt-menu-item>
+
+                </jnt-menu>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="style"
+                                  i18n="@@label.style">Style
+                  </jnt-form-label>
+                  <jnt-select formControlName="style"
+                              placeholder="Default"
+                              i18n-placeholder="@@label.default"
+                              [features]="[ui.feature.allowEmpty]">
+                    <jnt-select-option label="Default"
+                                       i18n-label="@@label.default"
+                                       [key]="ui.menu.style.default"></jnt-select-option>
+                    <jnt-select-option label="Tabs"
+                                       i18n-label="@@label.tabs"
+                                       [key]="ui.menu.style.tabs"></jnt-select-option>
+                    <jnt-select-option label="Tags"
+                                       i18n-label="@@label.tags"
+                                       [key]="ui.menu.style.tags"></jnt-select-option>
+                  </jnt-select>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="orientation"
+                                  i18n="@@label.orientation">Orientation
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="orientation"
+                                placeholder="Horizontal"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Horizontal"
+                                         i18n-label="@@label.horizontal"
+                                         [icon]="localUi.icons.horizontal"
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
+                      <jnt-select-option label="Vertical"
+                                         i18n-label="@@label.vertical"
+                                         [icon]="localUi.icons.vertical"
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="spacing"
+                                  i18n="@@label.spacing_between_items">Spacing between items
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="spacing"
+                                placeholder="None"
+                                i18n-placeholder="@@label.none"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Tiny"
+                                         i18n-label="@@label.tiny"
+                                         [icon]="localUi.icons.gutter.tiny"
+                                         [key]="ui.gutter.tiny"></jnt-select-option>
+                      <jnt-select-option label="Small"
+                                         i18n-label="@@label.small"
+                                         [icon]="localUi.icons.gutter.tiny"
+                                         [key]="ui.gutter.small"></jnt-select-option>
+                      <jnt-select-option label="Normal"
+                                         i18n-label="@@label.normal"
+                                         [icon]="localUi.icons.gutter.normal"
+                                         [key]="ui.gutter.normal"></jnt-select-option>
+                      <jnt-select-option label="Large"
+                                         i18n-label="@@label.large"
+                                         [icon]="localUi.icons.gutter.large"
+                                         [key]="ui.gutter.large"></jnt-select-option>
+                      <jnt-select-option label="Big"
+                                         i18n-label="@@label.big"
+                                         [icon]="localUi.icons.gutter.big"
+                                         [key]="ui.gutter.big"></jnt-select-option>
+                      <jnt-select-option label="Huge"
+                                         i18n-label="@@label.huge"
+                                         [icon]="localUi.icons.gutter.huge"
+                                         [key]="ui.gutter.huge"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.state">State
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="collapsed"
+                                    label="Collapsed"
+                                    i18n-label="@@label.collapsed"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="loading"
+                                    label="Loading"
+                                    i18n-label="@@label.loading"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="disabled"
+                                    label="Disabled"
+                                    i18n-label="@@label.disabled"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label i18n="@@label.features">Features
+                  </jnt-form-label>
+                  <jnt-row>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="icons"
+                                    label="Icons"
+                                    i18n-label="@@label.icons"></jnt-checkbox>
+                    </jnt-col>
+                    <jnt-col [span]="6">
+                      <jnt-checkbox formControlName="badges"
+                                    label="Badges"
+                                    i18n-label="@@label.badges"></jnt-checkbox>
+                    </jnt-col>
+                  </jnt-row>
+                </jnt-form-item>
+
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'menu-test', type: 'MenuTestComponent'}"
+                scss="navigation/menu">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="menu-test.component.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-menu
+                  ]]>
+                  <ng-container *ngIf="orientationControl.value && styleControl.value !== ui.menu.style.tabs">
+                    <![CDATA[
+                    [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="styleControl.value">
+                    <![CDATA[
+                    [style]="ui.menu.style.]]>{{styleControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="spacingControl.value">
+                    <![CDATA[
+                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="collapsedControl.value">
+                    <![CDATA[
+                    [collapsed]="]]>{{collapsedControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <![CDATA[>
+                  <jnt-menu-item
+                    title="Text"
+                    ]]>
+                    <ng-container *ngIf="iconsControl.value">
+                      <![CDATA[
+                      [icon]="ui.icons.calendar"]]>
+                    </ng-container>
+                    <ng-container *ngIf="loadingControl.value">
+                      <![CDATA[
+                      [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <ng-container *ngIf="disabledControl.value">
+                      <![CDATA[
+                      [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
+                    </ng-container>
+                    <![CDATA[>]]>
+                    <ng-container *ngIf="badgesControl.value">
+                      <![CDATA[
+                      <jnt-badge [value]="5"></jnt-badge>
+                      ]]>
+                    </ng-container>
+                    <ng-container *ngIf="!styleControl.value || styleControl.value === ui.menu.style.default">
+                      <![CDATA[
+                      <jnt-sub-menu>
+                        ]]>
+                        <ng-container *ngFor="let title of ['Theming', 'Layout', 'Navigation']">
+                          <![CDATA[
+                          <jnt-sub-menu-item title="]]>{{title}}<![CDATA["]]>
+
+                            <ng-container *ngIf="iconsControl.value">
+                              <![CDATA[
+                              [icon]="ui.icons.save"]]>
+                            </ng-container>
+
+                            <ng-container *ngIf="loadingControl.value">
+                              <![CDATA[
+                              [loading]="]]>{{loadingControl.value}}<![CDATA["]]>
+                            </ng-container>
+                            <![CDATA[>]]>
+
+                            <![CDATA[
+                          </jnt-sub-menu-item>
+                          ]]>
+                        </ng-container>
+                        <![CDATA[
+                      </jnt-sub-menu>]]>
+                    </ng-container>
+                    <![CDATA[
+                  </jnt-menu-item>
+                </jnt-menu>]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <app-component-api title="Menu"
+                             i18n-title="@@label.menu"
+                             selector="jnt-menu"
+                             [target]="types.menu"></app-component-api>
+          <app-component-api title="Menu item"
+                             i18n-title="@@label.menu_item"
+                             selector="jnt-menu-item"
+                             [target]="types.menuItem"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="Design system"
+             i18n-title="@@label.system" [icon]="ui.icons.figma">
+      <ng-template #tabContentTemplate>
+        <iframe width="100%" height="500" src="https://www.youtube.com/embed/f-NbsqKEX3k" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+</jnt-container>
+
+

@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { DateFnsModule } from 'ngx-date-fns';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { ButtonModule } from '../button/button.module';
 import { CalendarComponent } from './calendar.component';
 import { WeekMetricComponent } from './week/week-metric.component';
@@ -16,8 +15,8 @@ import { WeekMetricComponent } from './week/week-metric.component';
     TranslateModule,
     IconModule,
     StackModule,
-    DateFnsModule,
     ArrayPipesModule,
+    DatePipesModule,
     ButtonModule
   ],
   declarations: [
@@ -31,21 +30,7 @@ import { WeekMetricComponent } from './week/week-metric.component';
   exports: [
     CalendarComponent,
     WeekMetricComponent
-  ],
-  providers: [...JUNTE_MODULE_PROVIDES]
+  ]
 })
 export class CalendarModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<CalendarModule> {
-    return {
-      ngModule: CalendarModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }
-      ]
-    };
-  }
-
 }

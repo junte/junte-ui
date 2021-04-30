@@ -1,25 +1,11 @@
-@import "jnt-variables";
-@import "jnt-functions";
-
-@mixin col-padding($padding) {
-  & {
-    padding-left: $padding;
-    padding-right: $padding;
-  }
-}
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-grid-col($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    grid-columns: 12,
-    padding: (
-      tiny: $jnt-gutter-tiny,
-      small: $jnt-gutter-small,
-      normal: $jnt-gutter-normal,
-      big: $jnt-gutter-big,
-      large: $jnt-gutter-large,
-      huge: $jnt-gutter-huge,
-    ),
+    grid-columns: 12
   );
 
   $vars: $passed;
@@ -30,18 +16,11 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
-
-    @if map-has-key($vars, padding) {
-      $padding: map-get($vars, padding);
-      @each $padding, $map in $padding {
-        &[data-padding = '#{$padding}'] {
-          @include col-padding($map);
-        }
-      }
+  #{if($context, $context, $jnt-col-host)} {
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
     }
 
     @each $breakpoints, $value in $jnt-grid-breakpoints {
@@ -57,7 +36,7 @@
     }
 
     @for $i from 1 through map-get($vars, grid-columns) {
-      &[data-span = "#{$i}"] {
+      &[data-span = '#{$i}'] {
         $width: $i/map-get($vars, grid-columns);
         flex: 0 0 percentage($width);
         max-width: percentage($width);

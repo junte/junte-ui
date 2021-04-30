@@ -1,2 +1,2 @@
-export * from './theme-switcher.component';
-export * from './theme-switcher.module';
+export { ThemeSwitcherComponent } from './theme-switcher.component';
+export { ThemeSwitcherModule } from './theme-switcher.module';

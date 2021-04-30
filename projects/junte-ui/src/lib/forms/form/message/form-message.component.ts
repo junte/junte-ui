@@ -8,8 +8,15 @@ import { PropertyApi } from '../../../core/decorators/api';
 })
 export class FormMessageComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-message-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-message-host';
 
+  @HostBinding('attr.data-hidden')
+  get hidden() {
+    return !this.active;
+  }
+
+  @Input()
   active = false;
 
   @HostBinding('style.display')
@@ -20,9 +27,13 @@ export class FormMessageComponent {
   @PropertyApi({
     description: 'Validation type error',
     path: 'ui.validator',
-    options: [Validator.required, Validator.minLength]
+    options: [
+      Validator.required,
+      Validator.minLength,
+      Validator.min,
+      Validator.max
+    ]
   })
   @Input()
   validator: Validator = null;
-
 }

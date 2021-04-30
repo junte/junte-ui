@@ -1,0 +1,500 @@
+<jnt-container>
+  <h1>Junte <span>UI</span></h1>
+
+  <h2 [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Very strong
+      <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
+      framework!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Очень крутой
+      <jnt-icon arnold [icon]="ui.icons.arnold"></jnt-icon>
+      фреймворк!
+    </ng-container>
+  </h2>
+
+  <h5 [ngSwitch]="locale">
+    <b>Junte UI</b>
+    <ng-container *ngSwitchDefault>
+      is a collection of quality UI components for Angular
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      это коллекция качественных UI компонентов для Angular
+    </ng-container>
+    <jnt-icon [icon]="ui.icons.angular"></jnt-icon>
+    with design system in Figma
+    <jnt-icon [icon]="ui.icons.figma"></jnt-icon>
+  </h5>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We love Angular and we want to implement all beautiful apps from
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Мы любим Angular и хотим реализовать все прекрасные приложения
+    </ng-container>
+    <jnt-link source="https://dribbble.com/" title="dribbble.com"
+              target="_blank"
+              [icon]="ui.icons.dribbble"></jnt-link>
+  </p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      We believe in brilliant 💎 code & design! When it's combined together we are seeing awesome solutions!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Мы верим в блестящий код и дизайн! Когда все вместе, мы видим потрясающие решения!
+    </ng-container>
+  </p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Using our common design system you can build brilliant design and prototype of your app and then easily
+      move into the code!
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Используя нашу общую систему дизайна, вы можете создать блестящий дизайн и прототип своего приложения, а затем легко
+      перейти в код!
+    </ng-container>
+  </p>
+
+  <h3 i18n="@@label.compability">Compatibility</h3>
+  <p [ngSwitch]="locale">
+    <jnt-link source="https://angular.io/guide/releases#support-policy-and-schedule"
+              target="_blank" title="Angular 9">
+    </jnt-link>
+    <ng-container *ngSwitchDefault>
+      or higher 🚀
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      или выше 🚀
+    </ng-container>
+
+  </p>
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Modern browsers and Internet Explorer 11+
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Современные браузеры и Internet Explorer 11+
+    </ng-container>
+  </p>
+
+  <img src="https://gitlab.com/junte/junte-ui/badges/master/pipeline.svg">
+
+  <h3 i18n="@@label.how_to_install">How to install</h3>
+
+  <jnt-timeline>
+    <jnt-timeline-item title="Installation Angular CLI"
+                       i18n-title="@@label.installation_angular_cli">
+      <ng-template #timelineItemContentTemplate>
+        <app-code-highlight [language]="highlight.language.bash">
+          <!-- @formatter:off-->
+<![CDATA[
+sudo npm install -g @angular/cli
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
+
+    <jnt-timeline-item title="Create a new Project"
+                       i18n-title="@@label.create_a_new_project">
+      <ng-template #timelineItemContentTemplate>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            A new project can be created using Angular CLI tools.
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Новый проект может быть создан с помощью Angular CLI
+          </ng-container>
+        </p>
+        <app-code-highlight [language]="highlight.language.bash">
+          <!-- @formatter:off-->
+<![CDATA[
+ng new junte-ui-test --style=scss --routing=false
+cd junte-ui-test
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
+
+    <jnt-timeline-item title="Installation Junte UI" i18n-title="@@label.installation_junte_ui">
+      <ng-template #timelineItemContentTemplate>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Install <b>Junte UI</b> package
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Установите пакет <b>Junte UI</b>
+          </ng-container>
+          <jnt-link source="https://gitlab.com/junte/junte-ui" target="_blank" title="npm"></jnt-link>
+        </p>
+        <app-code-highlight [language]="highlight.language.bash">
+          <!-- @formatter:off-->
+<![CDATA[
+npm install @junte/ui  --save-dev
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
+
+    <jnt-timeline-item title="Import Junte UI module"
+                       i18n-title="@@label.import_junte_ui_module">
+      <ng-template #timelineItemContentTemplate>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import <code>Junte UI</code> & <code>Browser Animations</code> modules into your app module in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте <code>Junte UI</code> & <code>Browser Animations</code> модули в свой app модуль в файле
+          </ng-container>
+          <code>src/app/app.module.ts</code>
+        </p>
+        <app-code-highlight [language]="highlight.language.typescript">
+          <!-- @formatter:off-->
+<![CDATA[
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { JunteUiModule } from '@junte/ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    JunteUiModule.forRoot(),
+    BrowserAnimationsModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import <code>Popover</code> & <code>Modal</code> into your app component in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте <code>Popover</code> & <code>Modal</code> в свой app компонент в файле
+          </ng-container>
+          <code>src/app/app.component.ts</code>
+        </p>
+        <app-code-highlight [language]="highlight.language.typescript">
+          <!-- @formatter:off-->
+<![CDATA[
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import { ModalComponent, ModalService, PopoverComponent, PopoverService, UI} from "@junte/ui";
+import {FormBuilder} from "@angular/forms";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+          styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements AfterViewInit {
+
+    ui = UI;
+
+    title = 'junte-ui-test';
+
+  @ViewChild('popover', {static: true}) popover: PopoverComponent;
+  @ViewChild('modal', {static: true}) modal: ModalComponent;
+  @ViewChild('layout', {read: ElementRef, static: true}) backdrop: ElementRef<HTMLElement>;
+
+  constructor(private modalService: ModalService,
+              private popoverService: PopoverService,
+              private builder: FormBuilder) {
+          }
+
+          ngAfterViewInit() {
+          this.modalService.register(this.modal);
+          this.popoverService.register(this.popover);
+          }
+}
+          ]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Add <code>Popover</code> & <code>Modal</code> into your app component in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Добавьте <code>Popover</code> & <code>Modal</code> в свой app компонент в файле
+          </ng-container>
+          <code>src/app/app.component.html</code></p>
+        <app-code-highlight [language]="highlight.language.bash">
+          <!-- @formatter:off-->
+          <![CDATA[
+          <jnt-modal #modal [backdrop]="backdrop"></jnt-modal>
+          backdrop
+          <jnt-popover #popover></jnt-popover>
+          ]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+      </ng-template>
+    </jnt-timeline-item>
+
+    <jnt-timeline-item title="Import styles & assets"
+                       i18n-title="@@label.import_styles_and_assets">
+      <ng-template #timelineItemContentTemplate>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Install the font using the command
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Установите шрифт используя команду
+          </ng-container>
+        </p>
+        <app-code-highlight [language]="highlight.language.bash">
+
+            <!-- @formatter:off-->
+<![CDATA[
+npm i @openfonts/open-sans_cyrillic
+]]>
+            <!-- @formatter:on-->
+        </app-code-highlight>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import styles and assets in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте styles и assets в файле
+          </ng-container>
+          <code>angular.json</code></p>
+        <app-code-highlight [language]="highlight.language.json">
+          <pre>
+
+          <!-- @formatter:off-->
+<![CDATA[
+{
+  "options": {
+    "assets": [
+      {
+        "glob": "**/*",
+        "input": "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/",
+        "output": "./assets/fonts/icons/"
+      },
+      {
+        "glob": "**/*",
+        "input": "node_modules/@junte/ui/lib/assets/icons/animated/",
+        "output": "./assets/icons/animated/"
+      },
+      {
+        "glob": "**/*",
+        "input": "node_modules/@junte/ui/lib/assets/icons/svg/",
+        "output": "./assets/icons/svg/"
+      }
+    ],
+    "styles": [
+      "src/styles.scss",
+      "node_modules/@junte/ui/lib/assets/fonts/junte-ui-icons-default/junte-ui-icons-default-font.scss",
+      "node_modules/@openfonts/open-sans_cyrillic/index.css"
+    ]
+  }
+}
+]]>
+            <!-- @formatter:on-->
+          </pre>
+        </app-code-highlight>
+
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Import the styles into the global app styles
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Импортируйте стили в глобальный файл стилей приложения
+          </ng-container>
+          <code>src/styles.scss</code>
+        </p>
+
+        <app-code-highlight [language]="highlight.language.css">
+          <pre>
+<![CDATA[
+/* You can add global styles to this file, and also import other style files */
+@import "~@junte/ui/lib/assets/styles/jnt-all";
+@import "~@junte/ui/lib/assets/styles/jnt-common";
+body {
+  font-family: $jnt-font-family-base;
+  font-weight: $jnt-font-weight-light;
+  font-size: $jnt-font-size-normal;
+  color: $jnt-primary-text-color;
+  margin: 20px;
+}
+]]>
+    </pre>
+  </app-code-highlight>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Bingo 👏 Start your project.
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Бинго 👏 Запускайте ваш проект.
+    </ng-container>
+  </p>
+  <app-code-highlight [language]="highlight.language.bash">
+    <!-- @formatter:off-->
+<![CDATA[
+ng serve
+]]>
+    <!-- @formatter:on-->
+  </app-code-highlight>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      It is a very fast but rude installation with importing all components & assets.
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Это очень быстрая, но грубая установка с импортированием всех компонентов и ассетов.
+    </ng-container>
+  </p>
+
+      </ng-template>
+    </jnt-timeline-item>
+
+    <jnt-timeline-item title="How to try"
+                       i18n-title="@@label.how_to_try">
+      <ng-template #timelineItemContentTemplate>
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            You can go to research all components specifications.
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Вы можете исследовать все спецификации компонентов.
+          </ng-container>
+        </p>
+
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            For fast test add link to <code>UI</code> enum in
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Для быстрого тестирования добавьте ссылку на <code>UI</code> enum в файле
+          </ng-container>
+          <code>src/app/app.component.ts</code></p>
+        <app-code-highlight [language]="highlight.language.typescript">
+          <!-- @formatter:off-->
+<![CDATA[
+import { Component } from '@angular/core';
+import { UI } from '@junte/ui';
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+    ui = UI; // link to junte UI enum
+}
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            Add <code>jnt-button</code> in to your
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Добавьте <code>jnt-button</code> в ваш
+          </ng-container>
+          <code>src/app/app.component.html</code>
+         </p>
+
+        <app-code-highlight [language]="highlight.language.html">
+          <!-- @formatter:off-->
+<![CDATA[
+<jnt-button text="Click on me"
+    [icon]="ui.icons.user">
+    <jnt-badge [value]="5"></jnt-badge>
+</jnt-button>
+]]>
+          <!-- @formatter:on-->
+        </app-code-highlight>
+
+        <p [ngSwitch]="locale">
+          <ng-container *ngSwitchDefault>
+            You should see the button 😎
+          </ng-container>
+          <ng-container *ngSwitchCase="language.ru">
+            Вы должны увидеть кнопку 😎
+          </ng-container>
+        </p>
+      </ng-template>
+    </jnt-timeline-item>
+  </jnt-timeline>
+
+  <p [ngSwitch]="locale">
+    <ng-container *ngSwitchDefault>
+      Problems 🙀? Please, add an issue here 👉
+    </ng-container>
+    <ng-container *ngSwitchCase="language.ru">
+      Проблемы 🙀? Пожалуйста, добавьте их здесь 👉
+    </ng-container>
+    <jnt-link
+    title="Issues tracker"
+    i18n-title="@@label.issues_tracker"
+    [outline]="ui.outline.ghost"
+    source="https://gitlab.com/junte/junte-ui/-/issues"></jnt-link>
+  </p>
+
+  <jnt-stack [align]="ui.align.start">
+    <h2 i18n="@@label.polyfills">Polyfills</h2>
+    <p [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        Include this polyfills to <code>polyfills.ts</code> for correct library working:
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Добавьте эти полифиллы <code>polyfills.ts</code> для корректной работы библиотеки:
+      </ng-container>
+    </p>
+    <jnt-stack [orientation]="ui.orientation.horizontal">
+      <h3>Event.path</h3>
+      <jnt-label label="Safary" i18n-label="@@label.safary"></jnt-label>
+    </jnt-stack>
+
+    <p [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        Add file
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Добавьте файл
+      </ng-container>
+      <code>src/polyfills/event-path.js</code>
+     </p>
+    <app-code-highlight [language]="highlight.language.typescript" file="src/polyfills/event-path">
+<![CDATA[
+if (!('path' in Event.prototype)) {
+  Object.defineProperty(Event.prototype, 'path', {
+    get: function () {
+      var path = [];
+      var current = this.target;
+      while (current) {
+        path.push(current);
+        current = current.parentElement;
+      }
+      if (path.indexOf(window) === -1 && path.indexOf(document) === -1) {
+        path.push(document);
+      }
+      if (path.indexOf(window) === -1) {
+        path.push(window);
+      }
+      return path;
+    }
+  });
+}]]></app-code-highlight>
+    <span [ngSwitch]="locale">
+      <ng-container *ngSwitchDefault>
+        Add <code>import './polyfills/event-path';</code> to your <code>src/polyfills.ts</code>
+      </ng-container>
+      <ng-container *ngSwitchCase="language.ru">
+        Добавьте <code>import './polyfills/event-path';</code> в свой <code>src/polyfills.ts</code>
+      </ng-container>
+    </span>
+  </jnt-stack>
+</jnt-container>

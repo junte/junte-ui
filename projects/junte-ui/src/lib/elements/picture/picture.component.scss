@@ -1,14 +1,16 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
-@mixin jnt-picture($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-picture($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     background-color: $jnt-secondary-background,
     corner: null,
     border: null,
     cursor: default,
+    min-height: 50px,
     placeholder: (
       color: rgba($jnt-primary-color, .4),
       size: 30px
@@ -19,7 +21,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -28,47 +30,74 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-color: map-get($vars, background-color);
+  #{if($context, $context, $jnt-picture-host)} {
+    @if $declare {
+      display: flex;
+      overflow: hidden;
+    }
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
     cursor: map-get($vars, cursor);
+    min-height: map-get($vars, min-height);
+
+    &[data-has-src='false'] {
+      background-color: map-get($vars, background-color);
+    }
 
     &[data-fit='width'] {
-      background-size: 100% auto;
+      img {
+        @if $declare {
+          width: 100%;
+          height: auto;
+        }
+      }
     }
 
     &[data-fit='height'] {
-      background-size: auto 100%;
+      img {
+        @if $declare {
+          width: auto;
+          height: 100%;
+        }
+      }
     }
 
     &[data-position='center'] {
-      background-position: center;
+      @if $declare {
+        justify-content: center;
+        align-items: center;
+      }
     }
 
     &[data-position='left'] {
-      background-position: left;
+      @if $declare {
+        justify-content: flex-start;
+      }
     }
 
     &[data-position='right'] {
-      background-position: right;
+      @if $declare {
+        justify-content: flex-end;
+      }
     }
 
     &[data-position='bottom'] {
-      background-position: bottom;
+      @if $declare {
+        align-items: flex-end;
+      }
     }
 
     &[data-position='top'] {
-      background-position: top;
+      @if $declare {
+        align-items: flex-start;
+      }
     }
   }
 
   #{$wrapper} #{$context} [data-icon] {
-    line-height: 1;
+    @if $declare {
+      line-height: 1;
+    }
     @if map-has-key($vars, placeholder) {
       $placeholder: map-get($vars, placeholder);
       @include jnt-icon((color: map-get($placeholder, color), size: map-get($placeholder, size)), '&');

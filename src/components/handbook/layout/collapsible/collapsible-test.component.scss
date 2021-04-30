@@ -1,0 +1,12 @@
+@import 'jnt-variables';
+@import 'elements/icon';
+@import '../../component';
+$jnt-ng-deep: true;
+
+:host {
+  display: block;
+}
+
+[data-filter-icon] {
+  @include jnt-icon((size: 34px, color: $jnt-success-color), '&');
+}

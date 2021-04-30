@@ -1,5 +1,6 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
 @import 'elements/icon/icon';
 
 @mixin radio-size($size, $wrapper) {
@@ -13,7 +14,7 @@
     width: map-get($size, icon);
     height: map-get($size, icon);
   }
-  #{$wrapper} form input {
+  #{$wrapper} input {
     &[custom='true'] {
       width: map-get($size, indicator);
     }
@@ -23,7 +24,7 @@
   }
 }
 
-@mixin jnt-radio($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-radio($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     sizes: (
@@ -40,21 +41,51 @@
       normal: (
         indicator: 18px,
         icon: 10px,
-        font-size: 14px,
+        font-size: 14px
       ),
       large: (
         indicator: 24px,
         icon: 14px,
         font-size: 16px
-      ),
+      )
     ),
+    switch: (
+      background-color: $jnt-control-background,
+      border-color: $jnt-control-border-color,
+      checked: (
+        border-color: $jnt-primary-color
+      ),
+      disabled: (
+        background-color: $jnt-control-disabled-background,
+        border-color: $jnt-control-disabled-border-color
+      ),
+      focus: (
+        shadow: $jnt-outline-shadow-normal $jnt-highlight-background
+      ),
+      hover: (
+        border-color: $jnt-primary-color
+      )
+    ),
+    indicator: (
+      background-color: $jnt-primary-color,
+      disabled: (
+        background-color: $jnt-control-disabled-indicator-icon-color
+      )
+    ),
+    label: (
+      gutter: $jnt-control-gutter,
+      color: $jnt-control-switch-label-color,
+      disabled: (
+        color: $jnt-control-disabled-label-color
+      )
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -63,7 +94,13 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-radio-host)} {
+    @if $declare {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
     @if map-has-key($vars, sizes) {
       $sizes: map-get($vars, sizes);
       @each $size, $map in $sizes {
@@ -72,14 +109,22 @@
         }
       }
     }
+
+    &[data-checked='true'] {
+      #{$wrapper} [data-switch] {
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, checked) {
+            $checked: map-get($switch, checked);
+            border-color: map-get($checked, border-color);
+          }
+        }
+      }
+    }
   }
 
-  #{$context} #{$wrapper} form {
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    input {
+  #{$context} #{$wrapper} input {
+    @if $declare {
       position: absolute;
       top: 0;
       z-index: 1;
@@ -91,67 +136,115 @@
       margin: 0;
       width: 100%;
       height: 100%;
+    }
 
-      &:checked + [data-switch] {
-        border-color: $jnt-primary-color;
-      }
-
-      &:disabled {
+    &:disabled {
+      @if $declare {
         cursor: default;
         pointer-events: none;
+      }
 
-        & ~ label {
-          color: $jnt-control-disabled-label-color;
-        }
-
-        & + [data-switch] {
-          background-color: $jnt-control-disabled-background;
-          border-color: $jnt-control-disabled-border-color;
-
-          > [data-indicator] {
-            background-color: $jnt-control-disabled-indicator-icon-color;
+      @if map-has-key($vars, switch) {
+        $switch: map-get($vars, switch);
+        @if map-has-key($switch, disabled) {
+          $disabled: map-get($switch, disabled);
+          & + [data-switch] {
+            background-color: map-get($disabled, background-color);
+            border-color: map-get($disabled, border-color);
           }
         }
       }
 
-      &:focus {
-        & + [data-switch] {
-          box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+      & ~ label {
+        @if map-has-key($vars, label) {
+          $label: map-get($vars, label);
+          @if map-has-key($label, disabled) {
+            $disabled: map-get($label, disabled);
+            color: map-get($disabled, color);
+          }
         }
       }
 
-      &:hover {
-        & + [data-switch] {
-          border-color: $jnt-primary-color;
+      & + [data-switch] {
+        @if map-has-key($vars, indicator) {
+          $indicator: map-get($vars, indicator);
+          @if map-has-key($indicator, disabled) {
+            $disabled: map-get($indicator, disabled);
+            > [data-indicator] {
+              background-color: map-get($disabled, background-color);
+            }
+          }
         }
       }
     }
 
-    [data-switch] {
+    &:focus {
+      & + [data-switch] {
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, focus) {
+            $focus: map-get($switch, focus);
+            box-shadow: map-get($focus, shadow);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      & + [data-switch] {
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, hover) {
+            $hover: map-get($switch, hover);
+            border-color: map-get($hover, border-color);
+          }
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-switch] {
+    @if $declare {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
-      background-color: $jnt-control-background;
-      border: 1px solid $jnt-control-border-color;
       box-sizing: border-box;
       text-align: center;
       border-radius: 50%;
       transition: all .3s;
-
-      [data-indicator] {
-        display: inline-block;
-        background-color: $jnt-primary-color;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: all .3s;
-        border-radius: 50%;
-      }
     }
 
-    [label] {
-      padding-left: $jnt-control-gutter;
-      color: $jnt-control-switch-label-color;
+    @if map-has-key($vars, switch) {
+      $switch: map-get($vars, switch);
+      background-color: map-get($switch, background-color);
+      border: if(map-get($switch, border-color), 1px solid map-get($switch, border-color), null);
+    }
+
+    [data-indicator] {
+      @if $declare {
+        display: inline-block;
+        transform-origin: center;
+        transition: all .3s;
+        border-radius: 50%;
+        @if map-has-key($vars, indicator) {
+          $indicator: map-get($vars, indicator);
+          background-color: map-get($indicator, background-color);
+        }
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [label] {
+    @if $declare {
       user-select: none;
+      white-space: nowrap;
+      flex: 1;
+    }
+    @if map-has-key($vars, label) {
+      $label: map-get($vars, label);
+      padding-left: map-get($label, gutter);
+      color: map-get($label, color);
     }
   }
 }

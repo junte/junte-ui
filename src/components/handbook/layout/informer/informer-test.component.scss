@@ -1,0 +1,12 @@
+@import '../../component';
+@import "jnt-variables";
+@import "elements/icon";
+$jnt-ng-deep: true;
+
+[data-content] {
+  color: $jnt-white-color;
+  font-size: $jnt-font-size-large;
+  [data-icon] {
+    @include jnt-icon((size: 32px, color: $jnt-success-color), '&');
+  }
+}

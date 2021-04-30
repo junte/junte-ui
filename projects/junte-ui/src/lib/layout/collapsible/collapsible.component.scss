@@ -1,23 +1,23 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'jnt-utils';
 
-@mixin jnt-collapsible($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-collapsible($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: ();
-
-  :host, #{$context} {
-    display: block;
-    background-color: $jnt-primary-background;
-    padding: $jnt-gutter-normal;
-    border-radius: $jnt-corner-normal;
-    border: 1px solid $jnt-page-background;
-  }
+  $defs: (
+    background: $jnt-primary-background,
+    padding: $jnt-gutter-normal,
+    corner: $jnt-corner-normal,
+    border: 1px solid $jnt-page-background
+  );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -26,42 +26,107 @@
     $declare: true;
   }
 
-  #{$context} #{$wrapper} [data-title] {
-    padding: $jnt-gutter-small $jnt-gutter-normal;
-    background-color: $jnt-secondary-dark-color;
-    border-radius: $jnt-corner-normal;
-    color: $jnt-primary-text-color;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1.6;
+  #{if($context, $context, $jnt-collapsible-host)} {
 
-    &[active='true'] {
-      background-color: $jnt-primary-light-color;
-      color: $jnt-white-color;
-    }
+    @if $declare {
+      @include reset-default();
+      display: block;
 
-    &:hover {
-      &[active='false'] {
-        color: $jnt-primary-light-color;
+      &[data-orientation='vertical'] {
+        display: flex;
+
+        [data-title] {
+          padding: $jnt-gutter-normal $jnt-gutter-small;
+          border-bottom: none;
+
+          span {
+            writing-mode: vertical-rl;
+          }
+        }
+
+        [data-content] {
+          padding: 0 0 0 $jnt-gutter-normal;
+        }
       }
 
-      box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
+      &[data-opened='true'] {
+        [data-title] {
+          border-color: $jnt-primary-light-color;
+
+          [data-chevron] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
+          }
+
+          &[data-with-template='false'] {
+            color: $jnt-primary-light-color;
+            @include jnt-icon((color: $jnt-primary-light-color));
+          }
+        }
+      }
+
+      &[data-opened='false'] {
+        [data-title]:hover {
+          [data-chevron] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
+          }
+
+          &[data-with-template='false'] {
+            color: $jnt-primary-light-color;
+            @include jnt-icon((color: $jnt-primary-light-color));
+          }
+        }
+      }
     }
 
-    &:focus {
-      outline: 0;
-      box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
+  }
+
+  #{$context} #{$wrapper} [data-title] {
+    @if $declare {
+      border-bottom: $accordion-marker-height solid $jnt-secondary-background;
+      padding: ($jnt-gutter-small + $accordion-marker-height) 0;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: inherit;
+
+      [data-chevron] {
+        @include jnt-icon((size: 24px), '&');
+        margin-right: $jnt-gutter-small;
+      }
+
+      &[data-with-template='false'] {
+        color: $jnt-primary-text-color;
+        line-height: 1.6;
+
+        span {
+          margin: 0 $jnt-gutter-tiny;
+        }
+      }
     }
 
-    span {
-      margin: 0 $jnt-gutter-tiny;
+    [data-state] {
+      @if $declare {
+        margin-left: auto;
+        line-height: 1;
+
+        [data-warning] {
+          @include jnt-icon((color: $jnt-fail-color, size: 24px), '&');
+        }
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    padding: $jnt-gutter-normal 0;
+    @if $declare {
+      padding: $jnt-gutter-normal 0;
+      flex: 1;
+    }
   }
 
 }

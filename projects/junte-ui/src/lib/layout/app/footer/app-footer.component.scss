@@ -1,17 +1,72 @@
-@import "jnt-variables";
-@import "layout/app/variables";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'navigation/menu/menu';
+@import 'navigation/link/link';
 
 @mixin jnt-app-footer($passed: (), $context: null, $strategy: 'changes') {
-  :host, #{$context}  {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 0 0 auto;
-    box-sizing: border-box;
-    background-color: $jnt-primary-dark-color;
-    padding: 0 $jnt-gutter-big;
-    min-height: $app-footer-height;
-    color: $jnt-white-color;
+
+  $defs: (
+    background: $jnt-primary-dark-color,
+    height: $app-footer-height,
+    padding: 0 $jnt-gutter-big
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-app-footer-host)} {
+    @if $declare {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      color: $jnt-white-color;
+    }
+    background-color: map-get($vars, background);
+    min-height: map-get($vars, height);
+    padding: map-get($vars, padding);
+
+    @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+
+    @include jnt-menu((
+      top: (
+        item: (
+          corner: $jnt-corner-small,
+          color: $jnt-white-color,
+          orphan: (
+            color: $jnt-white-color
+          ),
+          active: (
+            color: $jnt-white-color,
+            underline: true,
+            underline-color: $jnt-white-color,
+            background-color: transparent,
+            shadow: none
+          ),
+          icon: (
+            color: $jnt-white-color
+          ),
+          padding: $jnt-gutter-small,
+          hover: (
+            color: $jnt-white-color,
+            background-color: rgba($jnt-primary-light-color, .5)
+          )
+        )
+      )
+    ));
   }
 }
 

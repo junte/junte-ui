@@ -1,0 +1,74 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'navigation/link/link';
+@import 'navigation/menu/menu';
+
+@mixin jnt-lp-footer($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    background: $jnt-white-color,
+    height: $lp-footer-height,
+    padding: 0 $jnt-gutter-big,
+    menu: (
+      top: (
+        item: (
+          corner: $jnt-corner-small,
+          color: $jnt-primary-text-color,
+          active: (
+            color: $jnt-primary-light-color,
+            underline: false,
+            underline-color: $jnt-primary-light-color,
+            background-color: transparent,
+            shadow: none
+          ),
+          icon: (
+            color: $jnt-primary-color
+          ),
+          padding: $jnt-gutter-small,
+          hover: (
+            color: $jnt-primary-color,
+            background-color: $jnt-highlight-background
+          )
+        )
+      )
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-lp-footer-host)} {
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+    }
+    background-color: map-get($vars, background);
+    min-height: map-get($vars, height);
+    padding: map-get($vars, padding);
+
+    @include jnt-link((color: $jnt-primary-text-color, icon: (color: $jnt-primary-text-color)));
+
+    @if map-has-key($vars, menu) {
+      @include jnt-menu((
+        map-get($vars, menu)
+      ));
+    }
+  }
+}
+
+@if $jnt-debug {
+  @debug 'lp-footer compiled';
+}
+

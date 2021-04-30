@@ -1,14 +1,22 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/badge/badge";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/badge/badge';
+@import 'elements/icon/icon';
+@import 'layout/spinner/spinner';
 
 @mixin button-fill($scheme, $wrapper) {
   #{$wrapper} button {
     color: map-get($scheme, inverse-color);
     background-color: map-get($scheme, color);
 
-    [data-icon][tag='colored'] {
+    [data-loading] {
+      @include jnt-spinner((
+        color: $jnt-white-color
+      ), '&');
+    }
+
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
     }
 
@@ -16,8 +24,12 @@
       background-color: map-get($scheme, hover-color);
     }
 
-    &:focus {
-      box-shadow: 0 1px 5px map-get($scheme, color);
+    @if map-has-key($scheme, focus) {
+      $focus: map-get($scheme, focus);
+
+      &:focus {
+        box-shadow: map-get($focus, shadow);
+      }
     }
 
     [data-badge] {
@@ -36,7 +48,13 @@
     background-color: transparent;
     border: 1px solid map-get($scheme, color);
 
-    [data-icon][tag='colored'] {
+    [data-loading] {
+      @include jnt-spinner((
+        color: map-get($scheme, color)
+      ), '&');
+    }
+
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
     }
 
@@ -44,7 +62,7 @@
       background-color: map-get($scheme, color);
       color: map-get($scheme, inverse-color);
 
-      [data-icon][tag='colored'] {
+      [data-icon] {
         @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
       }
 
@@ -56,8 +74,12 @@
       }
     }
 
-    &:focus {
-      box-shadow: 0 1px 5px #{map-get($scheme, color)};
+    @if map-has-key($scheme, focus) {
+      $focus: map-get($scheme, focus);
+
+      &:focus {
+        box-shadow: map-get($focus, shadow);
+      }
     }
 
     [data-badge] {
@@ -67,49 +89,34 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$jnt-scheme-secondary-name}] {
-    #{$wrapper} button {
-      color: map-get($scheme, inverse-color);
-      border-color: map-get($scheme, inverse-color);
-
-      [data-icon][tag='colored'] {
-        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
-      }
-
-      &:hover {
-        background-color: map-get($scheme, inverse-color);
-        color: map-get($scheme, color);
-
-        [data-icon][tag='colored'] {
-          @include jnt-icon((color: map-get($scheme, color)), '&');
-        }
-
-        [data-badge] {
-          @include jnt-badge((
-            background: if(map-get($scheme, color), map-get($scheme, color) !important, null),
-            color: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null)
-          ), '&');
-        }
-      }
-
-      [data-badge] {
-        @include jnt-badge((
-          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
-          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
-        ), '&');
-      }
-    }
-  }
 }
 
 @mixin button-transparent($scheme, $wrapper) {
+
+  &[data-shape='circle'] {
+    #{$wrapper} button {
+      &:focus {
+        @if map-has-key($scheme, focus) {
+          $focus: map-get($scheme, focus);
+          outline: 0;
+          box-shadow: map-get($focus, shadow);
+        }
+      }
+    }
+  }
 
   #{$wrapper} button {
     color: map-get($scheme, color);
     background-color: transparent;
     border-color: transparent;
 
-    [data-icon][tag='colored'] {
+    [data-loading] {
+      @include jnt-spinner((
+        color: map-get($scheme, color)
+      ), '&');
+    }
+
+    [data-icon] {
       @include jnt-icon((color: map-get($scheme, color)), '&');
     }
 
@@ -129,26 +136,6 @@
       ), '&');
     }
   }
-  &[data-scheme=#{$jnt-scheme-secondary-name}] {
-    #{$wrapper} button {
-      color: map-get($scheme, inverse-color);
-
-      [data-icon][tag='colored'] {
-        @include jnt-icon((color: map-get($scheme, inverse-color)), '&');
-      }
-
-      &:hover {
-        color: map-get($scheme, inverse-color);
-      }
-
-      [data-badge] {
-        @include jnt-badge((
-          background: if(map-get($scheme, inverse-color), map-get($scheme, inverse-color) !important, null),
-          color: if(map-get($scheme, color), map-get($scheme, color) !important, null)
-        ), '&');
-      }
-    }
-  }
 }
 
 @mixin button-size($size, $wrapper) {
@@ -157,27 +144,59 @@
     height: map-get($size, height);
     font-size: map-get($size, font-size);
   }
-  &[data-with-text="false"] {
+  &[data-with-text='false'] {
     #{$wrapper} button {
       padding: map-get($size, padding-without-text);
+    }
+
+    &[data-shape='circle'] {
+      #{$wrapper} button {
+        @if map-has-key($size, icon) {
+          $icon: map-get($size, icon);
+          padding: 0 #{calc((#{map-get($size, height)} - #{map-get($icon, size)}) / 2)};
+        }
+      }
+
+      &[data-outline='ghost'] {
+        #{$wrapper} button {
+          @if map-has-key($size, icon) {
+            $icon: map-get($size, icon);
+            padding: 0 #{calc((#{map-get($size, height)} - #{map-get($icon, size)}) / 2 - 1px)};
+          }
+        }
+      }
+    }
+  }
+  &[data-outline='transparent'] {
+    &[data-shape='square'] {
+      #{$wrapper} button {
+        padding-left: $jnt-gutter-small;
+        padding-right: $jnt-gutter-small;
+        border-radius: 0;
+      }
     }
   }
 }
 
-@mixin jnt-button($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-button($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     corner: $jnt-corner-large,
     border: null,
+    background: null,
+    hover-background: null,
+    color: null,
+    hover-color: null,
+    shadow: null,
     corners: (
       top: (
         left: null,
-        right: null,
+        right: null
       ),
       bottom: (
         left: null,
-        right: null,
-      ),
+        right: null
+      )
     ),
     borders: (
       right: null,
@@ -190,7 +209,7 @@
     padding: null,
     font-weight: $jnt-font-weight-base,
     disabled: (
-      opacity: .65,
+      opacity: .65
     ),
     icon: (
       margin: $jnt-gutter-small,
@@ -201,79 +220,103 @@
         color: $jnt-primary-color,
         inverse-color: $jnt-white-color,
         hover-color: $jnt-primary-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-primary-color
+        )
       ),
       secondary: (
         color: $jnt-secondary-color,
-        inverse-color: $jnt-gray-900-color,
-        hover-color: $jnt-blue-100-color
+        inverse-color: $jnt-white-color,
+        hover-color: $jnt-secondary-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-secondary-color
+        )
       ),
       success: (
         color: $jnt-success-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-success-dark-color
+        hover-color: $jnt-success-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-success-color
+        )
       ),
       fail: (
         color: $jnt-fail-color,
         inverse-color: $jnt-white-color,
-        hover-color: $jnt-fail-dark-color
+        hover-color: $jnt-fail-dark-color,
+        focus: (
+          shadow: 0 1px 5px $jnt-fail-color
+        )
+      ),
+      accent: (
+        color: $jnt-accent-color,
+        inverse-color: $jnt-white-color,
+        hover-color: darken($jnt-accent-color, 5%),
+        focus: (
+          shadow: 0 1px 5px $jnt-accent-color
+        )
       ),
     ),
     sizes: (
       tiny: (
-        padding: 0 20px,
-        padding-without-text: 0 7px,
-        font-size: 10px,
+        padding: 0 $jnt-gutter-normal,
+        padding-without-text: 0 $jnt-gutter-tiny,
+        font-size: 12px,
         height: 24px,
         badge: (
-          size: 18px,
+          size: 20px
         ),
         icon: (
-          size: 12px,
+          size: 16px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 8px
-        ),
+        )
       ),
       small: (
-        padding: 0 50px,
-        padding-without-text: 0 10px,
-        font-size: 12px,
-        height: 30px,
+        padding: 0 $jnt-gutter-normal,
+        padding-without-text: 0 $jnt-gutter-small,
+        font-size: 14px,
+        height: 32px,
         badge: (
-          size: 24px,
+          size: 24px
         ),
         icon: (
-          size: 14px,
+          size: 16px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 12px
         )
       ),
       normal: (
-        padding: 0 38px,
-        padding-without-text: 0 13px,
+        padding: 0 $jnt-gutter-big,
+        padding-without-text: 0 $jnt-gutter-small,
         font-size: 14px,
-        height: 38px,
+        height: 40px,
         badge: (
-          size: 24px,
+          size: 24px
         ),
         icon: (
-          size: 14px,
+          size: 24px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 16px
         )
       ),
       large: (
-        padding: 0 36px,
-        padding-without-text: 0 18px,
-        font-size: 16px,
-        height: 50px,
+        padding: 0 $jnt-gutter-large,
+        padding-without-text: 0 12px,
+        font-size: 14px,
+        height: 48px,
         badge: (
-          size: 24px,
+          size: 24px
         ),
         icon: (
-          size: 20px,
+          size: 24px,
+          stroke: 1.5px
         ),
         spinner: (
           size: 18px
@@ -286,7 +329,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -295,7 +338,7 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-button-host)} {
     @if $declare {
       display: inline-flex;
       align-items: center;
@@ -335,7 +378,15 @@
         }
       }
       &[data-width='fluid'] {
-        width: 100%;
+        &[data-shape='square'] {
+          display: flex;
+          flex: 1;
+        }
+      }
+      &[data-shape='circle'][data-with-text='false'] {
+        #{$wrapper} button {
+          border-radius: 50%;
+        }
       }
     }
 
@@ -344,10 +395,14 @@
         $disabled: map-get($vars, disabled);
         opacity: map-get($disabled, opacity);
       }
-      pointer-events: none;
+      @if $declare {
+        pointer-events: none;
+      }
 
       #{$wrapper} button {
-        cursor: default;
+        @if $declare {
+          cursor: default;
+        }
       }
     }
 
@@ -369,6 +424,52 @@
       }
     }
 
+    &[data-scheme][data-outline] {
+      @if map-get($vars, background) {
+        #{$wrapper} button {
+          background: map-get($vars, background);
+        }
+      }
+      @if map-get($vars, hover-background) {
+        #{$wrapper} button:hover {
+          background: map-get($vars, hover-background);
+        }
+      }
+      @if map-get($vars, color) {
+        #{$wrapper} button {
+          color: map-get($vars, color);
+
+          [data-icon] {
+            @include jnt-icon((color: map-get($vars, color)), '&');
+          }
+        }
+      }
+
+      @if map-get($vars, hover-color) {
+        #{$wrapper} button:hover {
+          color: map-get($vars, hover-color);
+
+          [data-icon] {
+            @include jnt-icon((color: map-get($vars, hover-color)), '&');
+          }
+        }
+      }
+    }
+
+    &[data-scheme][data-outline=#{$jnt-outline-transparent-name}] {
+      @if map-get($vars, color) {
+        #{$wrapper} button:focus {
+          outline: map-get($vars, color) auto 1px;
+        }
+
+        &[data-shape='circle'] {
+          #{$wrapper} button:focus {
+            box-shadow: 0 1px 5px map-get($vars, color);
+          }
+        }
+      }
+    }
+
     @if map-has-key($vars, sizes) {
       @each $size, $map in map-get($vars, sizes) {
         &[data-size='#{$size}'] {
@@ -384,17 +485,15 @@
           @if map-has-key($map, spinner) {
             $spinner: map-get($map, spinner);
             #{$wrapper} [data-loading] {
-              width: map-get($spinner, size);
-              min-width: map-get($spinner, size);
-              height: map-get($spinner, size);
-              min-height: map-get($spinner, size);
+              @include jnt-spinner((size: map-get($spinner, size)), '&');
             }
           }
           @if map-has-key($map, icon) {
             $icon: map-get($map, icon);
             #{$wrapper} [data-icon] {
               @include jnt-icon((
-                size: map-get($icon, size)
+                size: map-get($icon, size),
+                stroke: map-get($icon, stroke)
               ), '&');
             }
           }
@@ -402,7 +501,7 @@
       }
     }
 
-    &[data-with-text="false"] {
+    &[data-with-text='false'] {
       #{$wrapper} button {
         border-radius: map-get($vars, without-text-corner);
         @if map-has-key($vars, corners) {
@@ -419,6 +518,10 @@
             border-bottom-left-radius: map-get($bottom, left);
           }
         }
+
+        [data-icon] {
+          line-height: 1;
+        }
       }
     }
   }
@@ -426,6 +529,7 @@
   #{$context} #{$wrapper} button {
     border-radius: map-get($vars, corner);
     border: map-get($vars, border);
+    box-shadow: map-get($vars, shadow);
     text-transform: map-get($vars, text-transform);
     font-weight: map-get($vars, font-weight);
     @if map-has-key($vars, icon) {
@@ -462,9 +566,11 @@
     }
 
     [data-empty] {
-      width: 50px;
-      height: 10px;
-      background-color: $jnt-primary-text-light-color;
+      @if $declare {
+        width: 50px;
+        height: 10px;
+        background-color: $jnt-primary-text-light-color;
+      }
     }
   }
 }

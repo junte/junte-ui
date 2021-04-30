@@ -1,2 +1,2 @@
-export * from './link.component';
-export * from './link.module';
+export { LinkComponent } from './link.component';
+export { LinkModule } from './link.module';

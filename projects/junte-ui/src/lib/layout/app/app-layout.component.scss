@@ -1,32 +1,43 @@
-@import "jnt-variables";
-@import "layout/app/variables";
-@import "layout/app/content/app-content";
-@import "layout/app/aside/app-aside";
-@import "layout/app/header/app-header";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'layout/app/content/app-content';
+@import 'layout/app/aside/app-aside';
+@import 'layout/app/header/app-header';
 
-@mixin jnt-app-layout($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-layout($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: block;
-    overflow-x: hidden;
-    position: relative;
-    font-family: $jnt-app-layout-font-family;
+  $vars: $passed;
+  $declare: false;
 
-    &[data-with-header='false'] {
-      @include jnt-app-content((padding: 0));
-      @include jnt-app-aside((padding: 0));
-    }
+  @if $passed == () or $strategy == 'merge' {
+    $declare: true;
+  }
 
-    &[data-position='default'] {
-      @include jnt-app-body((height: 0 !important));
-    }
+  #{if($context, $context, $jnt-app-layout-host)} {
+    @if $declare {
+      display: block;
+      overflow-x: hidden;
+      position: relative;
+      font-family: $jnt-app-layout-font-family;
 
-    &[data-position='fixed'] {
-      >, > * > jnt-app-header {
-        @include jnt-app-header((position: fixed));
+      &[data-with-header='false'] {
+        @include jnt-app-content((padding: (top: 0)));
+        @include jnt-app-aside((padding: 0));
       }
-      >, > * >, > * > * >, > * > * > * > {
-        @include jnt-app-aside((position: fixed));
+
+      &[data-position='default'] {
+        @include jnt-app-body((height: 0 !important));
+      }
+
+      &[data-position='fixed'] {
+        >, > * > jnt-app-header {
+          @include jnt-app-header((position: fixed));
+        }
+
+        >, > * >, > * > * >, > * > * > * > {
+          @include jnt-app-aside((position: fixed));
+        }
       }
     }
   }

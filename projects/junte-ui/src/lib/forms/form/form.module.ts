@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { IconModule } from '../../elements/icon/icon.module';
 import { LabelModule } from '../../elements/label/label.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -18,7 +17,6 @@ import { FormItemComponent } from './item/form-item.component';
 import { FormLabelComponent } from './label/form-label.component';
 import { FormMessageComponent } from './message/form-message.component';
 import { FieldTouchedHasErrorPipe } from './pipes';
-
 
 @NgModule({
   imports: [
@@ -61,17 +59,4 @@ import { FieldTouchedHasErrorPipe } from './pipes';
   ]
 })
 export class FormModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<FormModule> {
-    return {
-      ngModule: FormModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

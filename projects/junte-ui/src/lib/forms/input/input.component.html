@@ -1,76 +1,91 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <div data-label *ngIf="!!label">{{label}}</div>
-  <jnt-stack data-content [orientation]="ui.orientation.horizontal"
+  <jnt-stack #layoutRef data-content [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small" [align]="ui.align.center">
-    <jnt-icon data-label-icon *ngIf="!!icon && !label && !multiline"
-              [icon]="icon"></jnt-icon>
+    <jnt-icon data-label-icon *ngIf="!!icon && !label && !(features | includes : ui.feature.multiline)"
+              [icon]="icon">
+    </jnt-icon>
 
-    <input #input *ngIf="!!mask; else inputTemplate"
+    <input #maskedRef *ngIf="!!mask; else inputTemplate"
            formControlName="formatted"
            type="tel"
+           [name]="name"
            (focusin)="focused = true"
            (focusout)="focused = false"
-           (blur)="blur()"
-           [placeholder]="placeholder"
+           [placeholder]="mask"
            [readonly]="readonly ? readonly : null"
+           [autocomplete]="autocomplete"
+           (paste)="pasteMask($event)"
            (keydown)="keydownMask($event)">
 
     <ng-template #inputTemplate>
-      <input *ngIf="!multiline; else textareaTemplate"
-             formControlName="input"
-             [type]="type === inputType.password && view.password.display ? inputType.text : type"
-             [placeholder]="placeholder"
-             [readonly]="readonly ? readonly : null"
-             [autocomplete]="autocomplete"
-             [min]="min"
-             [max]="max"
-             (focusin)="focused = true"
-             (focusout)="focused = false"
-             (blur)="blur()"
-             (keydown)="keydown($event)"
-             (keyup)="keyup()">
-    </ng-template>
-
-    <ng-template #textareaTemplate>
-      <textarea formControlName="input"
+      <textarea *ngIf="features | includes: ui.feature.multiline; else singleLineTemplate"
+                #valueRef
+                formControlName="input"
+                [name]="name"
                 [placeholder]="placeholder"
                 [attr.rows]="rows"
+                [readonly]="readonly ? readonly : null"
                 (focusin)="focused = true"
-                (focusout)="focused = false">
+                (focusout)="focused = false"
+                (keyup)="keyup()">
       </textarea>
+      <ng-template #singleLineTemplate>
+        <input #valueRef
+               formControlName="input"
+               [name]="name"
+               [type]="type === ui.input.type.password && view.password.display ? ui.input.type.text : type"
+               [placeholder]="placeholder"
+               [readonly]="readonly ? readonly : null"
+               [autocomplete]="autocomplete"
+               [min]="min"
+               [max]="max"
+               (focusin)="focused = true"
+               (focusout)="focused = false"
+               (keydown)="keydown($event)"
+               (keyup)="keyup()">
+      </ng-template>
     </ng-template>
 
-    <div data-loading *ngIf="state === inputState.loading">
+    <div data-loading *ngIf="state === ui.state.loading">
       <jnt-spinner data-spinner></jnt-spinner>
     </div>
 
-    <div data-warning *ngIf="state === inputState.warning">
+    <div data-warning *ngIf="state === ui.state.warning">
       <jnt-icon [icon]="ui.icons.warning"></jnt-icon>
     </div>
 
-    <div data-checked *ngIf="state === inputState.checked">
+    <div data-checked *ngIf="state === ui.state.checked">
       <jnt-icon [icon]="ui.icons.checked"></jnt-icon>
     </div>
 
-    <button data-view *ngIf="type === inputType.password"
+    <button data-view *ngIf="type === ui.input.type.password"
+            type="button"
             (click)="view.password.display = !view.password.display" tabindex="-1">
       <jnt-icon [icon]="view.password.display ? ui.icons.viewHide : ui.icons.view"></jnt-icon>
     </button>
 
-    <button data-reset *ngIf="!!features && features.includes(feature.clear)"
-            (click)="inputControl.reset()">
-      <jnt-icon [icon]="ui.icons.cancel"></jnt-icon>
+    <button data-copy *ngIf="features | includes: ui.feature.copy" tabindex="-1"
+            ngxClipboard
+            type="button"
+            [cbContent]="inputControl.value || formattedControl.value"
+            (cbOnSuccess)="copy()">
+      <jnt-icon [icon]="copied ? ui.icons.animated.success : ui.icons.copy"></jnt-icon>
     </button>
 
+    <button data-reset *ngIf="features | includes: ui.feature.allowEmpty" tabindex="-1"
+            type="button"
+            (click)="clear($event)">
+      <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>
+    </button>
+
+    <div data-arrows *ngIf="type === ui.input.type.number">
+      <button type="button" [disabled]="inputControl.disabled" (click)="setNumber(step || 1)" tabindex="-1">
+        <jnt-icon [icon]="ui.icons.smallUp"></jnt-icon>
+      </button>
+      <button type="button" [disabled]="inputControl.disabled" (click)="setNumber(-step || -1)" tabindex="-1">
+        <jnt-icon [icon]="ui.icons.smallDown"></jnt-icon>
+      </button>
+    </div>
   </jnt-stack>
-
-  <div data-arrows *ngIf="type === inputType.number">
-    <button [disabled]="inputControl.disabled" (click)="up()" tabindex="-1">
-      <jnt-icon [icon]="ui.icons.chevronUp"></jnt-icon>
-    </button>
-    <button [disabled]="inputControl.disabled" (click)="down()" tabindex="-1">
-      <jnt-icon [icon]="ui.icons.chevronDown"></jnt-icon>
-    </button>
-  </div>
-
-</form>
+</ng-container>

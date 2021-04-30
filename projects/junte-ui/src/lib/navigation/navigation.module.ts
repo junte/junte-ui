@@ -1,5 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../config';
+import { NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.module';
 import { LinkModule } from './link/link.module';
@@ -18,17 +17,4 @@ import { TabsModule } from './tabs/tabs.module';
   ]
 })
 export class NavigationModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<NavigationModule> {
-    return {
-      ngModule: NavigationModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

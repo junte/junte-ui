@@ -1,6 +1,12 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'forms/button/button';
+@import 'forms/input/input';
+@import 'layout/responsive/responsive';
+@import 'layout/card/card';
+@import 'elements/icon/icon';
 
 @mixin jnt-table($passed: (), $context: null, $strategy: 'changes') {
 
@@ -11,122 +17,226 @@
 
   $vars: $passed;
   $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
 
   @if $passed == () or $strategy == 'merge' {
     $vars: recursive-map-merge($defs, $passed);
     $declare: true;
   }
 
-  :host {
-    display: block;
-    min-width: map-get($vars, min-width);
-    padding: $jnt-gutter-normal;
+  #{if($context, $context, $jnt-table-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+      padding: 0 $jnt-gutter-normal $jnt-gutter-normal $jnt-gutter-normal;
+    }
+
+    @include min-for-desktop() {
+      min-width: map-get($vars, min-width);
+    }
 
     @include jnt-button((
       sizes: (
         schemes: (
           secondary: (
             inverse-color: $jnt-gray-800-color
-          ),
+          )
         ),
         normal: (
           padding: 0 $jnt-gutter-small,
-        ),
-      ),
+        )
+      )
     ), '&');
 
-    [data-table] {
+    @include jnt-card((border: 1px solid $jnt-gray-700-color));
+
+  }
+
+  #{$wrapper} #{$context} [data-feature] {
+    background-color: $jnt-secondary-background;
+    margin-left: -$jnt-gutter-normal;
+    margin-right: -$jnt-gutter-normal;
+    padding: $jnt-gutter-small $jnt-gutter-normal;
+  }
+
+  #{$wrapper} #{$context} [data-filters] {
+    padding: $jnt-gutter-normal 0;
+  }
+
+  #{$wrapper} #{$context} [data-table] {
+    @if $declare {
       margin-left: -$jnt-gutter-normal;
       margin-right: -$jnt-gutter-normal;
     }
+  }
 
-    table {
+  #{$wrapper} #{$context} [data-search] {
+    @include min-for-desktop() {
+      @include jnt-input((width: 400px), '&');
+    }
+  }
+
+  #{$wrapper} #{$context} [data-nodata] {
+    @if $declare {
+      @include jnt-icon((color: $jnt-muted-color, size: 80px), '&');
+    }
+  }
+
+  #{$wrapper} #{$context} [data-line] {
+    @if $declare {
+      tr {
+        td {
+          vertical-align: top;
+          padding: $jnt-gutter-normal $jnt-gutter-small;
+        }
+
+        &:not(:last-child) {
+          td {
+            border-bottom: 1px solid $jnt-muted-color;
+          }
+        }
+
+        &:first-child {
+          td {
+            padding-top: 0;
+          }
+        }
+
+        &:last-child {
+          td {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} [data-spinner] {
+    @if $declare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba($jnt-secondary-background, .6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s;
+      z-index: 1;
+    }
+
+    [data-icon] {
+      @if $declare {
+        color: $jnt-primary-text-light-color;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} table {
+    @if $declare {
       width: 100%;
       border-collapse: collapse;
       position: relative;
+    }
 
-      [data-spinner] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba($jnt-secondary-background, .6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all .3s;
-        z-index: 1;
-
-        [data-icon] {
-          color: $jnt-primary-text-light-color;
-        }
-      }
-
-      thead {
+    thead {
+      @if $declare {
         background-color: $jnt-secondary-background;
 
-        .sortable {
-          cursor: pointer;
+        th {
+          &[data-actions] {
+            width: 72px;
+          }
+
+          &[data-sortable=true] {
+            cursor: pointer;
+          }
         }
       }
+    }
 
-      tbody tr {
+    tbody tr {
+      @if $declare {
         border-bottom: 1px solid $jnt-muted-color;
-        background-color: $jnt-primary-background;
         transition: all .3s;
+      }
 
-        &[data-nodata] {
-          height: map-get($vars, min-height);
+      &[data-nodata] {
+        height: map-get($vars, min-height);
+        @if $declare {
           pointer-events: none;
           border-bottom: 0;
+        }
 
-          td {
+        td {
+          @if $declare {
             vertical-align: middle;
             text-align: center;
 
             [data-icon] {
-              font-size: 80px;
-              color: $jnt-muted-color;
+              @include jnt-icon((color: $jnt-muted-color, size: 80px), '&');
             }
           }
         }
+      }
 
-        &[data-loading] {
-          height: map-get($vars, min-height);
+      &[data-loading] {
+        height: map-get($vars, min-height);
+        @if $declare {
           pointer-events: none;
           border-bottom: 0;
         }
+      }
 
-        &:hover {
-          background-color: $jnt-highlight-background;
+      &:hover {
+        @if $declare {
+          background-color: $jnt-secondary-background;
         }
+      }
 
-        td {
-          &[data-action] {
-            width: 50px;
+      td {
+        @if $declare {
+          background-color: $jnt-primary-background;
+          color: $jnt-primary-text-color;
+          &[data-actions] {
             text-align: center;
 
             [data-trigger] {
               @include jnt-button((
                 sizes: (
                   normal: (
-                    padding: 0 $jnt-gutter-normal,
-                  ),
-                ),
+                    padding: 0 $jnt-gutter-normal
+                  )
+                )
               ), '&');
             }
           }
         }
       }
+    }
 
-      td, th {
+    th {
+      @if $declare {
         padding: $jnt-gutter-normal;
         box-sizing: border-box;
       }
     }
 
-    [data-pagination] {
+    td {
+      @if $declare {
+        padding: $jnt-gutter-small $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  #{$wrapper} #{$context} [data-pagination] {
+    @if $declare {
       display: flex;
       justify-content: center;
       align-items: center;

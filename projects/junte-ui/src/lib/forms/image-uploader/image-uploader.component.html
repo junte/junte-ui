@@ -1,0 +1,38 @@
+<ng-template #defaultImageTemplate let-image="image">
+    <jnt-picture [src]="image"
+                 [fit]="ui.fit.width"
+                 width="{{width}}px"
+                 height="{{height}}px"></jnt-picture>
+</ng-template>
+
+<ng-container [ngSwitch]="page">
+    <ng-container *ngSwitchCase="pages.view">
+        <input data-select-file type="file" (change)="crop($event)">
+        <ng-container *ngTemplateOutlet="imageTemplate
+          || defaultImageTemplate;context: {image: image}">
+        </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="pages.crop">
+        <jnt-form [formGroup]="form" data-cropper
+                  [state]="progress.uploading ? ui.state.loading : null">
+            <jnt-form-item>
+                <jnt-form-control name="cropping">
+                    <jnt-image-cropper formControlName="cropping" [shape]="shape"
+                                       [url]="sketch"></jnt-image-cropper>
+                </jnt-form-control>
+            </jnt-form-item>
+            <ng-template #formFooterTemplate>
+                <jnt-stack [orientation]="ui.orientation.horizontal"
+                           [justify]="ui.justify.between">
+                    <jnt-button [text]="'action.cancel' | translate"
+                                [icon]="ui.icons.cancel"
+                                [scheme]="ui.scheme.secondary"
+                                (click)="cancel()"></jnt-button>
+                    <jnt-button [text]="'action.upload' | translate"
+                                [icon]="ui.icons.save"
+                                (click)="upload()"></jnt-button>
+                </jnt-stack>
+            </ng-template>
+        </jnt-form>
+    </ng-container>
+</ng-container>

@@ -1,7 +1,7 @@
 <ng-template #content>
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [align]="ui.align.center">
-    <ng-container *ngTemplateOutlet="userbarAvatarTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="userbarAvatarTemplate;context: {opened: !!reference.popover}"></ng-container>
     <ng-content></ng-content>
   </jnt-stack>
 </ng-template>
@@ -10,16 +10,24 @@
   <jnt-stack data-user
              [jntPopover]="{
                contentTemplate: userMenuDropdownTemplate,
-               trigger: ui.trigger.hover
+               trigger: ui.trigger.hover,
+               placement: ui.placement.fixed,
+               position: ui.position.rightBottom,
+               padding: ui.gutter.small,
+               minWidth: '200px',
+               context: 'app-header-userbar-menu'
              }"
-             (attached)="reference.popover = $event"
+             (attached)="reference.popover = $event; cd.detectChanges()"
+             (removed)="reference.popover = null; cd.detectChanges()"
              [orientation]="ui.orientation.horizontal"
              [align]="ui.align.center">
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </jnt-stack>
 
   <ng-template #userMenuDropdownTemplate>
-    <ng-container *ngTemplateOutlet="userbarMenuTemplate;context: {hide: hide.bind(this)}"></ng-container>
+    <div data-content>
+      <ng-container *ngTemplateOutlet="userbarMenuTemplate;context: {hide: hide.bind(this)}"></ng-container>
+    </div>
   </ng-template>
 </ng-container>
 

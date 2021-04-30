@@ -1,5 +1,6 @@
-import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { ContentApi } from '../../../core/decorators/api';
 import { UI } from '../../../core/enums/ui';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
@@ -7,7 +8,8 @@ import { PopoverInstance } from '../../../overlays/popover/popover.service';
 
 @Component({
   selector: 'jnt-app-header',
-  templateUrl: './app-header.encapsulated.html'
+  templateUrl: './app-header.encapsulated.html',
+  providers: [...LOGGER_PROVIDERS]
 })
 export class AppHeaderComponent {
 
@@ -25,13 +27,13 @@ export class AppHeaderComponent {
   headerLogoTemplate: TemplateRef<any>;
 
   @ContentApi({
-    selector: '#headerMenuTemplate',
-    description: 'Menu template'
+    selector: '#headerContentTemplate',
+    description: 'Header content template'
   })
-  @ContentChild('contentTemplate')
+  @ContentChild('headerContentTemplate')
   contentTemplate: TemplateRef<any>;
 
-  @ContentChild(MenuComponent)
+  @ContentChild('headerTopMenu')
   menu: MenuComponent;
 
   @ContentApi({
@@ -48,7 +50,8 @@ export class AppHeaderComponent {
   @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger,
+              public cd: ChangeDetectorRef) {
   }
 
   hide() {
@@ -58,5 +61,4 @@ export class AppHeaderComponent {
       this.reference.popover = null;
     }
   }
-
 }

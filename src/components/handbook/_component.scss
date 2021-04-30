@@ -1,0 +1,71 @@
+@import 'jnt-variables';
+@import 'elements/icon';
+$jnt-ng-deep: true;
+
+:host-context([theme='dark']) {
+  [block] {
+    background-color: $jnt-gray-dark-color;
+  }
+
+  [data-thumbnail] {
+    background-color: $jnt-gray-dark-color;
+  }
+}
+
+:host-context([theme='esanum']) {
+  [block] {
+    border-color: #005461;
+    color: #005461;
+  }
+}
+
+:host {
+  display: block;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+}
+
+[data-thumbnail] {
+  display: inline-flex;
+  background: $jnt-white-color;
+  border-radius: $jnt-corner-normal;
+  padding: $jnt-gutter-small $jnt-gutter-normal;
+  margin-right: $jnt-gutter-normal;
+
+  [data-icon] {
+    @include jnt-icon((
+      size: 30px
+    ), '&');
+  }
+}
+
+[giphy] {
+  border-radius: $jnt-corner-normal;
+  pointer-events: none;
+  border: 2px solid $jnt-secondary-background;
+  max-width: 100%;
+}
+
+//
+//[teaser] {
+//  color: $jnt-primary-text-light-color;
+//}
+
+[block] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $jnt-primary-color;
+  font-weight: bold;
+  background-color: $jnt-primary-background;
+  box-sizing: border-box;
+  border: 2px solid $jnt-primary-color;
+  border-radius: $jnt-corner-normal;
+}
+
+[preview] {
+  width: 100%;
+}

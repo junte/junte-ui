@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UI } from 'junte-ui';
 import { Language } from 'src/enums/language';
-import { CURRENT_LANGUAGE } from '../../consts';
+import { CURRENT_LANGUAGE } from 'src/consts';
 
 @Component({
   selector: 'app-select-lang',

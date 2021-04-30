@@ -1,0 +1,228 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.table"
+                       title="Table"
+                       i18n-title="@@label.table"
+                       [teaser]="handbook.collections.components.table.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-stack [orientation]="ui.orientation.horizontal">
+        <jnt-link [icon]="ui.icons.gitlab"
+                  [outline]="ui.outline.ghost"
+                  [source]="gitlab"
+                  target="_blank" title="GitLab"
+                  i18n-title="@@action.gitlab">
+        </jnt-link>
+        <jnt-link [icon]="ui.icons.figma"
+                  [outline]="ui.outline.ghost"
+                  [source]="figma"
+                  target="_blank" title="Figma"
+                  i18n-title="@@action.figma">
+        </jnt-link>
+      </jnt-stack>
+
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <jnt-form [formGroup]="builder">
+              <jnt-form-item>
+                <jnt-form-label i18n="@@label.features">Features
+                </jnt-form-label>
+                <jnt-row>
+                  <jnt-col [tablet]="2" [mobile]="6">
+                    <jnt-checkbox formControlName="search"
+                                  label="Search"
+                                  i18n-label="@@label.search"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [tablet]="2" [mobile]="6">
+                    <jnt-checkbox formControlName="reload"
+                                  label="Reload"
+                                  i18n-label="@@label.reload"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [tablet]="2" [mobile]="6">
+                    <jnt-checkbox formControlName="filter"
+                                  label="Filter"
+                                  i18n-label="@@label.filter"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [tablet]="2" [mobile]="6">
+                    <jnt-checkbox formControlName="actions"
+                                  label="Actions"
+                                  i18n-label="@@label.actions"></jnt-checkbox>
+                  </jnt-col>
+                  <jnt-col [tablet]="2" [mobile]="6">
+                    <jnt-checkbox formControlName="rowActions"
+                                  label="Row actions"
+                                  i18n-label="@@label.rowActions"></jnt-checkbox>
+                  </jnt-col>
+                </jnt-row>
+              </jnt-form-item>
+          </jnt-form>
+
+          <app-browser-preview preview>
+            <ng-template #document let-width="width" let-height="height">
+              <app-table-data [state]="state"
+                              (filtered)="save($event)"
+                              [sections]="[
+                                actionsControl.value ? sections.actions : null,
+                                rowActionsControl.value ? sections.rowActions : null,
+                                reloadControl.value ? sections.reload : null,
+                                searchControl.value ? sections.search : null,
+                                filterControl.value ? sections.filter : null
+                              ]">
+              </app-table-data>
+            </ng-template>
+          </app-browser-preview>
+
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use
+                [test]="{selector:'table-test', type: 'TableTestComponent'}"
+                scss="collections/table">
+                <ng-template #behaviourTemplate>
+                  <!-- @formatter:off-->
+<![CDATA[
+  import { Component, OnInit } from '@angular/core';
+  import {UI} from "@junte/ui";
+
+  @Component({
+    selector: 'app-table-test',
+    templateUrl: './table-test.component.html',
+    styleUrls: ['./table-test.component.scss']
+  })
+
+
+  export class TableTestComponent implements OnInit {
+
+    ui = UI;
+
+    jobs = [
+      {
+        id: 0,
+        person: 'Ilon Mask',
+        job: 'director'
+      },
+      {
+        id: 1,
+        person: 'Tony Smith',
+        job: 'developer'
+      }
+    ];
+
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+  } ]]>
+                  <!-- @formatter:on-->
+                </ng-template>
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Component template"
+                                 i18n-title="@@label.component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="table-test.template.html">
+                <!-- @formatter:off-->
+<![CDATA[
+<jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
+  <jnt-form>
+    <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
+      <jnt-table #table formControlName="table" ]]>
+        <![CDATA[[features]="[]]>
+          <ng-container *ngIf="searchControl.value">ui.feature.search</ng-container>
+          <ng-container *ngIf="searchControl.value && reloadControl.value">, </ng-container>
+          <ng-container *ngIf="reloadControl.value">ui.feature.reload</ng-container>
+        <![CDATA[]"]]>
+        <![CDATA[>
+        <jnt-table-column title="#" sort="id">
+          <ng-template #tableCellTemplate let-id="id">
+            ]]>
+            {{<![CDATA[id]]>}}
+            <![CDATA[
+          </ng-template>
+        </jnt-table-column>
+        ]]>
+
+        <![CDATA[
+        <jnt-table-column title="Person"
+                          sort="person">
+          <ng-template #tableCellTemplate let-person="person">
+            ]]>
+            {{<![CDATA[person]]>}}
+            <![CDATA[
+          </ng-template>
+        </jnt-table-column>
+        <jnt-table-column title="Job"
+                          sort="job">
+          <ng-template #tableCellTemplate let-job="job">
+            ]]>
+            {{<![CDATA[job]]>}}
+            <![CDATA[
+          </ng-template>
+        </jnt-table-column>
+        ]]>
+        <ng-container *ngIf="actionsControl.value">
+          <![CDATA[
+          <ng-template #tableRowActionsTemplate let-row="row" let-hide="hide">
+            <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.size.small">
+              <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
+              <jnt-menu-item title="Delete" (click)="hide()"></jnt-menu-item>
+            </jnt-menu>
+          </ng-template>
+          ]]>
+        </ng-container>
+
+        <ng-container *ngIf="filterControl.value">
+          <![CDATA[
+          <ng-template #tableFiltersTemplate>
+            <jnt-select formControlName="job"
+                        placeholder="Select job">
+              <jnt-select-option *ngFor="let job of jobs" [label]="job" [key]="job"></jnt-select-option>
+            </jnt-select>
+          </ng-template>
+          ]]>
+        </ng-container>
+        <![CDATA[
+      </jnt-table>
+    </jnt-stack>
+  </jnt-form>
+</jnt-block>
+]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <app-component-api selector="jnt-table" [target]="types.table"></app-component-api>
+          <app-component-api selector="jnt-table-column" [target]="types.column"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+
+  </jnt-tabs>
+</jnt-container>
+

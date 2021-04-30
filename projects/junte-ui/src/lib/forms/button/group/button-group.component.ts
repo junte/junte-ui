@@ -13,7 +13,8 @@ import { ButtonComponent } from '../button.component';
 })
 export class ButtonGroupComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-button-group-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-button-group-host';
 
   ui = UI;
 
@@ -26,7 +27,8 @@ export class ButtonGroupComponent {
     options: [Size.tiny, Size.small, Size.normal, Size.large],
     default: Size.normal
   })
-  @Input() size: Size = Size.normal;
+  @Input()
+  size: Size = Size.normal;
 
   @PropertyApi({
     description: 'Button group color scheme',
@@ -34,7 +36,8 @@ export class ButtonGroupComponent {
     options: [Scheme.primary, Scheme.secondary, Scheme.success, Scheme.fail],
     default: Scheme.primary
   })
-  @Input() scheme: Scheme = Scheme.primary;
+  @Input()
+  scheme: Scheme = Scheme.primary;
 
   @PropertyApi({
     description: 'Button group outline',
@@ -42,7 +45,8 @@ export class ButtonGroupComponent {
     default: Outline.fill,
     options: [Outline.transparent, Outline.ghost, Outline.fill]
   })
-  @Input() outline: Outline = Outline.fill;
+  @Input()
+  outline: Outline = Outline.fill;
 
   @PropertyApi({
     description: 'Button group width',
@@ -51,5 +55,6 @@ export class ButtonGroupComponent {
     options: [Width.default, Width.fluid]
   })
   @HostBinding('attr.data-width')
-  @Input() width: Width = Width.default;
+  @Input()
+  width: Width = Width.default;
 }

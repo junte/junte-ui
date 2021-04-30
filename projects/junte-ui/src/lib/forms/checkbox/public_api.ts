@@ -1,3 +1,3 @@
-export * from './checkbox-group/checkbox-group.component';
-export * from './checkbox.component';
-export * from './checkbox.module';
+export { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
+export { CheckboxComponent } from './checkbox.component';
+export { CheckboxModule } from './checkbox.module';

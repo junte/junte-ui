@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { DotModule } from '../../elements/dot/dot.module';
@@ -40,17 +39,4 @@ import { SwitcherComponent } from './switcher.component';
   ]
 })
 export class SwitcherModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<SwitcherModule> {
-    return {
-      ngModule: SwitcherModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

@@ -1,0 +1,18 @@
+@import '../../component';
+@import 'elements/icon';
+@import 'layout/responsive';
+$jnt-ng-deep: true;
+
+[data-icon] {
+  @include jnt-icon((size: 400px), '&');
+}
+
+[video] {
+  height: 315px;
+  width: 560px;
+
+  @include for-mobile() {
+    height: 200px;
+    width: 100%;
+  }
+}

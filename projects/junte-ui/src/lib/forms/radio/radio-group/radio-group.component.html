@@ -1,32 +1,33 @@
-<form [formGroup]="form">
+<ng-container [formGroup]="form">
   <ng-container formArrayName="radios">
     <ng-template #radiosTemplate let-item="item" let-i="i">
       <jnt-radio [formControlName]="i"
                  [size]="size"
                  [label]="item.label"
-                 [value]="item.value"
-                 (click)="radiosControl.enabled ? select(item.value) : null">
-        {{item.labelTemplate}}
-        <ng-template *ngIf="!!item.labelTemplate" #labelTemplate>
+                 [value]="item.value">
+        <ng-template *ngIf="!!item.labelTemplate" #radioLabelTemplate>
           <ng-container *ngTemplateOutlet="item.labelTemplate"></ng-container>
         </ng-template>
       </jnt-radio>
     </ng-template>
     <ng-container *ngIf="!!radiosControl.length">
       <ng-container *ngIf="cols <= 1; else colTemplate">
-        <jnt-stack [gutter]="ui.gutter.small">
+        <jnt-stack [gutter]="spacing"
+                   [orientation]="orientation"
+                   [spacing]="spacing"
+                   [align]="orientation === ui.orientation.horizontal ? align: ui.align.stretch">
           <ng-container *ngFor="let item of radios; let i = index">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </ng-container>
         </jnt-stack>
       </ng-container>
       <ng-template #colTemplate>
-        <jnt-row>
-          <jnt-col *ngFor="let item of radios; let i = index" [tablet]="math.trunc(12 / cols)">
+        <jnt-row [align]="align">
+          <jnt-col *ngFor="let item of radios; let i = index" [tablet]="(12 / cols) | trunc">
             <ng-container *ngTemplateOutlet="radiosTemplate; context:{item: item, i: i}"></ng-container>
           </jnt-col>
         </jnt-row>
       </ng-template>
     </ng-container>
   </ng-container>
-</form>
+</ng-container>

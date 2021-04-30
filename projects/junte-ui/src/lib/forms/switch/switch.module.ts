@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { MathPipesModule } from '../../core/pipes/math-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
+import { GridModule } from '../../layout/grid/grid.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { SwitchGroupComponent } from './switch-group/switch-group.component';
 import { SwitchComponent } from './switch.component';
 
 @NgModule({
@@ -11,30 +14,23 @@ import { SwitchComponent } from './switch.component';
     CommonModule,
     IconModule,
     ReactiveFormsModule,
-    StackModule
+    StackModule,
+    GridModule,
+    ArrayPipesModule,
+    MathPipesModule
   ],
   exports: [
-    SwitchComponent
+    SwitchComponent,
+    SwitchGroupComponent
   ],
   entryComponents: [
-    SwitchComponent
+    SwitchComponent,
+    SwitchGroupComponent
   ],
   declarations: [
-    SwitchComponent
+    SwitchComponent,
+    SwitchGroupComponent
   ]
 })
 export class SwitchModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<SwitchModule> {
-    return {
-      ngModule: SwitchModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

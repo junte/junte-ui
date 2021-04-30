@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { IsSameDayPipe } from './gantt-pipes/is-same-day.pipe';
+import { IsWithinIntervalPipe } from './gantt-pipes/is-within-interval.pipe';
 import { BetweenMonthsPipe } from './gantt-pipes/between-months.pipe';
 import { BetweenDaysPipe } from './gantt-pipes/between-days.pipe';
 import { DatesInMonthPipe } from './gantt-pipes/dates-in-month.pipe';
@@ -16,14 +18,18 @@ import { MonthNamePipe } from './gantt-pipes/month-name.pipe';
     FullMonthPipe,
     DatesInMonthPipe,
     BetweenDaysPipe,
-    BetweenMonthsPipe
+    BetweenMonthsPipe,
+    IsWithinIntervalPipe,
+    IsSameDayPipe
   ],
   exports: [
     MonthNamePipe,
     FullMonthPipe,
     DatesInMonthPipe,
     BetweenDaysPipe,
-    BetweenMonthsPipe
+    BetweenMonthsPipe,
+    IsWithinIntervalPipe,
+    IsSameDayPipe
   ]
 })
 export class GanttPipesModule {

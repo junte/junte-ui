@@ -1,119 +1,157 @@
-@import "jnt-variables";
-@import "elements/avatar/common";
+@import 'jnt-variables';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
 
 @mixin jnt-avatars-group($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    overflow: hidden;
-    border-radius: 50%;
-    position: relative;
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-avatars-group-host)} {
+    @if $declare {
+      display: flex;
+      flex-wrap: wrap-reverse;
+      overflow: hidden;
+      border-radius: 50%;
+      position: relative;
+    }
 
     [data-avatar] {
-      overflow: hidden;
-      border: 1px solid $jnt-white-color;
-      box-sizing: border-box;
+      @if $declare {
+        overflow: hidden;
+        border: 1px solid $jnt-white-color;
+        box-sizing: border-box;
+      }
     }
 
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
-        height: map-get($map, avatar-size);
-        width: map-get($map, avatar-size);
+        height: map-get($map, avatar);
+        width: map-get($map, avatar);
 
         [data-overflow] {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: calc(#{map-get($map, avatar-size)} / 2);
-          height: calc(#{map-get($map, avatar-size)} / 2);
-          box-sizing: border-box;
-          position: absolute;
-          z-index: 1;
-          bottom: 0;
-          right: 0;
-          color: $jnt-white-color;
-          background-color: rgba(black, .5);
-          font-weight: 300;
-          font-size: calc(#{map-get($map, font-size)} / 2);
-          border-top: 1px solid $jnt-white-color;
-          border-left: 1px solid $jnt-white-color;
+          width: calc(#{map-get($map, avatar)} / 2);
+          height: calc(#{map-get($map, avatar)} / 2);
+          font-size: calc(#{map-get($map, font)} / 2);
+          @if $declare {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            right: 0;
+            color: $jnt-white-color;
+            background-color: rgba(black, .5);
+            font-weight: 300;
+            border-top: 1px solid $jnt-white-color;
+            border-left: 1px solid $jnt-white-color;
+          }
         }
 
         &[data-capacity='4'] {
           [data-avatar] {
-            min-width: calc(#{map-get($map, avatar-size)} / 2);
-            width: calc(#{map-get($map, avatar-size)} / 2);
-            min-height: calc(#{map-get($map, avatar-size)} / 2);
-            height: calc(#{map-get($map, avatar-size)} / 2);
+            min-width: calc(#{map-get($map, avatar)} / 2);
+            width: calc(#{map-get($map, avatar)} / 2);
+            min-height: calc(#{map-get($map, avatar)} / 2);
+            height: calc(#{map-get($map, avatar)} / 2);
 
-            &:nth-child(3) {
-              border-top: none;
-              border-left: none;
-            }
-            &:nth-child(4) {
-              border-top: none;
-              border-right: none;
-            }
-            &:nth-child(2) {
-              border-bottom: none;
-              border-right: none;
-            }
-            &:nth-child(1) {
-              border-bottom: none;
-              border-left: none;
+            @if $declare {
+              &:nth-child(3) {
+                border-top: none;
+                border-left: none;
+              }
+              &:nth-child(4) {
+                border-top: none;
+                border-right: none;
+              }
+              &:nth-child(2) {
+                border-bottom: none;
+                border-right: none;
+              }
+              &:nth-child(1) {
+                border-bottom: none;
+                border-left: none;
+              }
             }
           }
         }
 
         &[data-capacity='3'] {
-          flex-direction: column;
-          flex-wrap: wrap;
+          @if $declare {
+            flex-direction: column;
+            flex-wrap: wrap;
+          }
+
           [data-avatar] {
-            min-width: calc(#{map-get($map, avatar-size)} / 2);
-            width: calc(#{map-get($map, avatar-size)} / 2);
-            min-height: calc(#{map-get($map, avatar-size)} / 2);
-            height: calc(#{map-get($map, avatar-size)} / 2);
+            min-width: calc(#{map-get($map, avatar)} / 2);
+            width: calc(#{map-get($map, avatar)} / 2);
+            min-height: calc(#{map-get($map, avatar)} / 2);
+            height: calc(#{map-get($map, avatar)} / 2);
+
             &:nth-child(1) {
-              border-top: none;
-              border-left: none;
+              @if $declare {
+                border-top: none;
+                border-left: none;
+              }
             }
+
             &:nth-child(2) {
-              border-bottom: none;
-              border-left: none;
+              @if $declare {
+                border-bottom: none;
+                border-left: none;
+              }
             }
+
             &:nth-child(3) {
-              width: map-get($map, avatar-size);
-              height: map-get($map, avatar-size);
-              border-top: none;
-              border-right: none;
-              border-bottom: none;
+              width: map-get($map, avatar);
+              height: map-get($map, avatar);
+              @if $declare {
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+              }
             }
           }
         }
 
         &[data-capacity='2'] {
-          flex-direction: column;
+          @if $declare {
+            flex-direction: column;
+          }
+
           [data-avatar] {
-            width: map-get($map, avatar-size);
-            height: map-get($map, avatar-size);
-            transform: translateX(50%);
-            &:nth-child(1) {
-              border-top: none;
-              border-right: none;
-              border-bottom: none;
-            }
-            &:nth-child(2) {
-              border-top: none;
-              border-left: none;
-              border-bottom: none;
+            width: map-get($map, avatar);
+            height: map-get($map, avatar);
+            @if $declare {
+              transform: translateX(50%);
+              &:nth-child(1) {
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+              }
+              &:nth-child(2) {
+                border-top: none;
+                border-left: none;
+                border-bottom: none;
+              }
             }
           }
         }
 
         &[data-capacity='1'] {
           [data-avatar] {
-            border: none;
+            @if $declare {
+              border: none;
+            }
           }
         }
       }

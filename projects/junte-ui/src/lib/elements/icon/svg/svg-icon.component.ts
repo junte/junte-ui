@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { JunteUIConfig } from '../../../config';
+import { PropertyApi } from '../../../core/decorators/api';
+import { Stroke } from '../../../core/enums/stroke';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
+import { IconTag } from '../enums';
 
 const DEFAULT_ICONSET = 'default';
 
@@ -10,25 +14,14 @@ const DEFAULT_ICONSET = 'default';
   selector: 'jnt-svg-icon',
   templateUrl: './svg-icon.encapsulated.html'
 })
-export class SvgIconComponent implements OnInit, AfterViewInit {
+export class SvgIconComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-svg-icon-host';
 
+  private svg: HTMLElement;
+  private _color: string;
   private icon$ = new BehaviorSubject<string>(null);
   private iconset$ = new BehaviorSubject<string>(DEFAULT_ICONSET);
-  private source$ = new BehaviorSubject<string>(null);
-  private container$ = new BehaviorSubject<any>(null);
-
-  @ViewChild('svg', {static: true})
-  svg: ElementRef;
-
-  private set source(source: string) {
-    this.source$.next(source);
-  }
-
-  private get source() {
-    return this.source$.getValue();
-  }
 
   @Input()
   set iconset(iconset: string) {
@@ -49,16 +42,47 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
     return this.icon$.getValue();
   }
 
-  private set container(nativeElement: HTMLElement) {
-    this.container$.next(nativeElement);
+  @HostBinding('attr.data-stroke')
+  _stroke: Stroke = Stroke.normal;
+
+  @Input()
+  @HostBinding('attr.data-tags')
+  tags: string[];
+
+  @Input()
+  set stroke(stroke: Stroke) {
+    this._stroke = stroke || Stroke.normal;
   }
 
-  private get container() {
-    return this.container$.getValue();
+  get stroke() {
+    return this._stroke;
   }
 
-  constructor(private http: HttpClient,
+  @PropertyApi({
+    description: 'Color for icon',
+    type: '[ui.color]'
+  })
+  @Input()
+  set color(color: string) {
+    this._color = color;
+    if (!!this.svg) {
+      this.render();
+    }
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  @HostBinding('attr.data-has-color')
+  get hasColor() {
+    return !!this.color;
+  }
+
+  constructor(private config: JunteUIConfig,
+              private http: HttpClient,
               private cache: InMemoryCacheService,
+              private hostRef: ElementRef,
               private renderer: Renderer2) {
   }
 
@@ -67,36 +91,28 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
       .pipe(filter(([iconset, icon]) => !!iconset && !!icon),
         distinctUntilChanged())
       .subscribe(() => this.load());
-
-    combineLatest([this.container$, this.source$])
-      .pipe(filter(([container, source]) => !!container && !!source))
-      .subscribe(() => this.render());
   }
 
-  ngAfterViewInit() {
-    this.container = this.svg.nativeElement;
-  }
-
-  private render() {
-    this.renderer.setProperty(this.container, 'innerHTML', this.source);
-  }
-
-  private extract(iconset) {
-    const icon = iconset.querySelector(`[id=${this.icon}]`);
-    if (!icon) {
-      throw new Error(`icon [${this.icon}] not found`);
+  render() {
+    if (!!this.color) {
+      if (this.tags.includes(IconTag.stroked)) {
+        this.svg.setAttribute('stroke', this.color);
+      }
+      if (this.tags.includes(IconTag.filled)) {
+        this.svg.setAttribute('fill', this.color);
+      }
     }
-
-    this.source = icon.innerHTML;
+    const el = this.hostRef.nativeElement;
+    this.renderer.setProperty(el, 'innerHTML', this.svg.outerHTML);
   }
 
   private load() {
-    const path = `assets/icons/svg/${this.iconset}.xml`;
+    const path = `${this.config.assets}/icons/svg/${this.iconset}.xml?hash=${this.config.hash}`;
     const key = `${path}|${this.icon}`;
 
-    const source = this.cache.get(key);
-    if (source === undefined) {
-      let iconset$ = this.cache.get(path);
+    let icon = this.cache.get<HTMLElement>(key);
+    if (icon === undefined) {
+      let iconset$ = this.cache.get<BehaviorSubject<Document>>(path);
       if (iconset$ === undefined) {
         iconset$ = new BehaviorSubject<Document>(null);
         this.cache.set(path, iconset$);
@@ -105,9 +121,30 @@ export class SvgIconComponent implements OnInit, AfterViewInit {
           iconset$.next(new DOMParser().parseFromString(response, 'application/xml')));
       }
       iconset$.pipe(filter(iconset => !!iconset))
-        .subscribe(iconset => this.extract(iconset));
+        .subscribe(iconset => {
+          icon = iconset.querySelector(`[id=${this.icon}]`);
+          if (!icon) {
+            throw new Error(`icon [${this.icon}] not found`);
+          }
+
+          const encapsulate = (el: Element) => {
+            el.setAttribute('child-of', this.host);
+            for (let i = 0; i < el.children.length; i++) {
+              encapsulate(el.children[i]);
+            }
+          };
+
+          encapsulate(icon);
+          icon.setAttribute('width', '100%');
+          icon.setAttribute('height', '100%');
+          this.svg = icon;
+          this.render();
+
+          this.cache.set(key, icon);
+        });
     } else {
-      this.source = source;
+      this.svg = icon;
+      this.render();
     }
   }
 

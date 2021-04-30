@@ -1,21 +1,21 @@
 <ng-template #defaultTitleTemplate>
-    <jnt-stack [orientation]="ui.orientation.horizontal"
-               [gutter]="ui.gutter.small"
-               [align]="ui.align.center">
-        <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
-        <span>{{title}}</span>
-    </jnt-stack>
+  <jnt-stack
+    [orientation]="orientation === ui.orientation.vertical ? ui.orientation.vertical : ui.orientation.horizontal"
+    [gutter]="ui.gutter.small"
+    [align]="ui.align.center">
+    <jnt-icon *ngIf="!!icon" [icon]="icon"></jnt-icon>
+    <span>{{title}}</span>
+  </jnt-stack>
 </ng-template>
 
-<jnt-stack data-title tabindex="0"
-           [attr.active]="opened"
-           [orientation]="ui.orientation.horizontal"
-           [align]="ui.align.center"
-           [justify]="ui.justify.between"
-           (click)="opened = !opened">
-    <ng-container *ngTemplateOutlet="!!titleTemplate ? titleTemplate : defaultTitleTemplate"></ng-container>
-    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
-</jnt-stack>
+<a href="#" data-title
+   [attr.data-with-template]="!!titleTemplate"
+   (click)="opened = !opened; $event.preventDefault()">
+  <jnt-icon data-chevron *ngIf="orientation === ui.orientation.horizontal"
+            [icon]="ui.icons.selectOpen"
+            [@rotate]="opened ? 'open' : 'close'"></jnt-icon>
+  <ng-container *ngTemplateOutlet="!!titleTemplate ? titleTemplate : defaultTitleTemplate"></ng-container>
+</a>
 
 <div data-content *ngIf="opened">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>

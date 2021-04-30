@@ -1,5 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
 
 @mixin popover-padding($padding) {
   & {
@@ -7,26 +9,26 @@
   }
 }
 
-@mixin jnt-popover($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-popover($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    spacing: 14px,
+    spacing: 12px,
     padding: (
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
       normal: $jnt-gutter-normal,
       big: $jnt-gutter-big,
       large: $jnt-gutter-large,
-      huge: $jnt-gutter-huge,
+      huge: $jnt-gutter-huge
     ),
-    background: $jnt-primary-background,
+    background: $jnt-primary-background
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -35,84 +37,126 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    position: absolute;
-    z-index: 100;
-    user-select: text;
-    padding: map-get($vars, spacing);
-    display: none;
-
-    @include for-mobile() {
-      left: 0 !important;
-      width: 100%;
-      max-width: 100%;
-      max-height: 100vh;
-      overflow-y: auto;
+  #{if($context, $context, $jnt-popover-host)} {
+    @if $declare {
+      @include reset-default();
+      position: absolute;
+      z-index: 100;
+      user-select: text;
+      padding: 0;
+      display: none;
       box-sizing: border-box;
     }
 
+    @include for-mobile() {
+      @if $declare {
+        box-sizing: border-box;
+        max-width: 100%;
+        max-height: 100vh;
+      }
+    }
+
     [data-arrow] {
-      position: absolute;
+      @if $declare {
+        position: absolute;
+      }
       fill: map-get($vars, background);
+
+      [data-inner] {
+        filter: if($jnt-theme-type == 'light', url(#popover_marker_shadow-light), url(#popover_marker_shadow-dark));
+      }
+    }
+
+    &[data-dropdown='false'] {
+      padding: map-get($vars, spacing);
     }
 
     &[data-dropdown='true'] {
+      @if $declare {
 
-      &[data-placement='top'], &[data-placement='bottom'] {
-        padding: $jnt-gutter-tiny 0 0;
+        &[data-placement='bottom'], &[data-placement='rightBottom'] {
+          padding: $jnt-gutter-tiny 0 0;
+        }
+
+        &[data-placement='top'] {
+          padding: 0 0 $jnt-gutter-tiny;
+        }
+
+        &[data-placement='right'] {
+          padding: 0 0 0 $jnt-gutter-tiny;
+        }
+
+        &[data-placement='left'] {
+          padding: 0 $jnt-gutter-tiny 0 0;
+        }
+
+        [data-arrow] {
+          display: none;
+        }
       }
-
-      &[data-placement='left'], &[data-placement='right'] {
-        padding: 0 0 0 $jnt-gutter-tiny;
-      }
-
       @include for-mobile() {
         padding: $jnt-gutter-tiny map-get($vars, spacing) map-get($vars, spacing);
-      }
-
-      [data-arrow] {
-        display: none;
-      }
-
-      [data-wrapper] {
-        padding: $jnt-gutter-tiny 0;
       }
     }
 
     &[data-placement='top'] {
       [data-arrow] {
-        transform: translateX(-50%);
-        top: calc(100% - #{map-get($vars, spacing)});
+        @if $declare {
+          transform: translateX(-50%);
+          bottom: 0;
+        }
       }
     }
 
     &[data-placement='right'] {
       [data-arrow] {
-        transform: translateY(-50%) rotate(90deg);
-        right: calc(100% - #{map-get($vars, spacing)});
+        @if $declare {
+          transform: translateY(-50%) rotate(90deg);
+          left: 0;
+        }
       }
     }
 
     &[data-placement='bottom'] {
       [data-arrow] {
-        transform: translateX(-50%) rotate(180deg);
-        bottom: calc(100% - #{map-get($vars, spacing)});
+        @if $declare {
+          transform: translateX(-50%) rotate(180deg);
+          top: 0;
+        }
+      }
+    }
+
+    &[data-placement='rightBottom'] {
+      [data-arrow] {
+        @if $declare {
+          transform: translateX(-50%) rotate(180deg);
+          top: 0;
+        }
       }
     }
 
     &[data-placement='left'] {
       [data-arrow] {
-        transform: translateY(-50%) rotate(-90deg);
-        left: calc(100% - #{map-get($vars, spacing)});
+        @if $declare {
+          transform: translateY(-50%) rotate(-90deg);
+          right: 0;
+        }
       }
     }
   }
 
   #{$context} #{$wrapper} [data-wrapper] {
-    border-radius: $jnt-corner-small;
-    box-shadow: $jnt-shadow-normal;
+    @if $declare {
+      border-radius: $jnt-corner-small;
+      box-shadow: $jnt-shadow-normal;
+      overflow: auto;
+      box-sizing: border-box;
+
+      &[data-windows='true'] {
+        @include jnt-scrollbar();
+      }
+    }
     background-color: map-get($vars, background);
-    overflow: auto;
 
     @if map-has-key($vars, padding) {
       $padding: map-get($vars, padding);
@@ -124,11 +168,18 @@
     }
 
     [data-title] {
-      font-weight: $jnt-font-weight-bold;
-      margin-bottom: $jnt-gutter-normal;
+      @if $declare {
+        font-weight: $jnt-font-weight-bold;
+        margin-bottom: $jnt-gutter-normal;
+        color: $jnt-primary-text-color;
+      }
     }
+
     [data-content] {
-      max-width: 300px;
+      @if $declare {
+        max-width: 300px;
+        color: $jnt-primary-text-color;
+      }
     }
   }
 }

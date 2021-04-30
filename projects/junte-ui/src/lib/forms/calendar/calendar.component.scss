@@ -1,25 +1,31 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/icon/icon";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+@import 'forms/button/button';
 
-@mixin jnt-calendar($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-calendar($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    layout: fixed,
     day: (
       padding: null,
       selected: (
-        background-color: $jnt-primary-light-color,
-        color: $jnt-white-color,
-      ),
+        background-color: null,
+        color: null
+      )
     ),
+    metrics: (
+      width: null
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -28,171 +34,217 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    background-color: $jnt-primary-background;
+  #{if($context, $context, $jnt-calendar-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+      box-sizing: border-box;
+      background-color: $jnt-primary-background;
 
-    &[data-disabled='true'] {
-      cursor: default;
-      pointer-events: none;
+      &[data-disabled='true'] {
+        cursor: default;
+        pointer-events: none;
 
-      #{$wrapper} table {
-        tbody tr td, th {
-          color: $jnt-control-disabled-label-color;
-          background-color: $jnt-control-disabled-background;
+        #{$wrapper} table {
+          tbody tr td, th {
+            color: $jnt-control-disabled-label-color;
+            background-color: $jnt-control-disabled-background;
+          }
         }
       }
     }
   }
 
   #{$wrapper} #{$context} table {
-    table-layout: auto;
-    border-spacing: 0;
-    width: 100%;
+    table-layout: map-get($vars, layout);
+    @if $declare {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+    }
+
+    @if map-has-key($vars, metrics) and map-get(map-get($vars, metrics), width) {
+      $metrics: map-get($vars, metrics);
+      table-layout: fixed;
+      [data-metrics] {
+        width: map-get($metrics, width);
+      }
+    }
+
+    [data-divider] {
+      @if $declare {
+        width: 2px;
+      }
+    }
 
     thead {
-      [data-arrow] {
-        @include jnt-button((
-          sizes: (
-            small: (
-              height: 28px,
-              padding-without-text: 0 $jnt-gutter-tiny,
-              icon: (
-                size: 16px,
-              ),
-            )
-          )
-        ), '&');
+
+      [data-arrow], [data-date] {
+        @if $declare {
+          @include button-default();
+        }
       }
 
       [data-date] {
-        @include jnt-button((
-          sizes: (
-            small: (
-              height: 28px,
-              font-size: 14px,
-              padding: 0 $jnt-gutter-tiny,
-            )
-          )
-        ), '&');
+        @if $declare {
+          width: 100%;
+        }
       }
 
       [data-year] {
-        color: $jnt-control-disabled-label-color;
+        @if $declare {
+          color: $jnt-control-disabled-label-color;
+        }
       }
 
       [data-days] {
         > th {
-          padding: $jnt-gutter-normal $jnt-gutter-tiny;
-          color: $jnt-primary-text-light-color;
-          font-size: $jnt-font-size-small;
-          font-weight: $jnt-font-weight-bold;
+          @if $declare {
+            padding: $jnt-gutter-normal $jnt-gutter-tiny;
+            color: $jnt-primary-text-light-color;
+            font-weight: $jnt-font-weight-bold;
+          }
         }
       }
 
-      .sortable {
-        cursor: pointer;
+      [data-metrics] {
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
+      }
+
+      th[data-metric] {
+        @if $declare {
+          font-weight: $jnt-font-weight-semi-bold;
+        }
       }
     }
 
     tbody {
       tr {
-        &[data-current-week='true'] {
-          [data-day], [data-metric] {
-            border-top-color: $jnt-primary-light-color;
-            border-bottom-color: $jnt-primary-light-color;
+        td {
+          @if $declare {
+            &[data-day] {
+              box-shadow: inset -1px 0px 0px $jnt-highlight-background,
+              inset 0px -1px 0px $jnt-highlight-background;
 
-            &:first-child {
-              border-top-left-radius: $jnt-corner-small;
-              border-bottom-left-radius: $jnt-corner-small;
-              border-left-color: $jnt-primary-light-color;
+              &[data-selected-day='true'] {
+                box-shadow: inset 0 0 0 2px $jnt-primary-light-color;
+              }
+
+              &:last-child {
+                box-shadow: inset 0px -1px 0px $jnt-highlight-background;
+              }
             }
 
-            &:last-child {
-              border-top-right-radius: $jnt-corner-small;
-              border-bottom-right-radius: $jnt-corner-small;
-              border-right-color: $jnt-primary-light-color;
+            &[data-metric] {
+              box-shadow: inset -1px 0px 0px $jnt-white-color,
+              inset 0px -1px 0px $jnt-white-color;
+            }
+          }
+        }
+
+        &:last-child {
+          @if $declare {
+            td {
+              &[data-day] {
+                box-shadow: inset -1px 0px 0px $jnt-highlight-background;
+
+                &:last-child {
+                  box-shadow: none;
+                }
+              }
+
+              &[data-metric] {
+                box-shadow: inset -1px 0px 0px $jnt-white-color;
+              }
+            }
+          }
+        }
+
+        &[data-current-week='true'] {
+          @if $declare {
+            [data-day][data-today='false'], [data-metric] {
+              background-color: $jnt-highlight-background !important;
             }
           }
         }
 
         td {
-          min-width: 38px;
-          font-size: $jnt-font-size-small;
-          box-sizing: border-box;
-          border-top: 1px solid transparent;
-          border-bottom: 1px solid transparent;
-          user-select: none;
-          padding: 0;
+          @if $declare {
+            min-width: 38px;
+            font-size: $jnt-font-size-small;
+            box-sizing: border-box;
+            user-select: none;
+            padding: 0;
+          }
 
           [data-default] {
-            padding: $jnt-gutter-small $jnt-gutter-tiny;
-          }
-
-          &:first-child {
-            border-left: 1px solid transparent;
-          }
-
-          &:last-child {
-            border-right: 1px solid transparent;
+            @if $declare {
+              padding: $jnt-gutter-small $jnt-gutter-tiny;
+            }
           }
 
           &[data-day] {
-            cursor: pointer;
+            @if $declare {
+              cursor: pointer;
 
-            &:nth-child(6),
-            &:nth-child(7) {
-              background-color: $jnt-secondary-background;
-            }
+              &:nth-child(6),
+              &:nth-child(7) {
+                background-color: $jnt-secondary-background;
+              }
 
-            &:hover {
-              background-color: $jnt-highlight-background;
-              color: $jnt-primary-text-dark-color;
-            }
+              &[data-selected-day='false'][data-today='false']:hover,
+              &[data-selected-month='false']:hover,
+              &[data-selected-year='false']:hover {
+                background-color: $jnt-secondary-background;
+                color: $jnt-primary-text-dark-color;
+              }
 
-            &:focus {
-              box-shadow: inset $jnt-outline-shadow-small $jnt-primary-color;
-              outline: 0;
-            }
+              &:focus {
+                box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+                outline: 0;
+              }
 
-            &[data-current-month='false'] {
-              [data-default] {
-                color: $jnt-muted-color;
+              &[data-current-month='false'][data-today='false'] {
+                color: $jnt-primary-text-light-color;
+
+                > * {
+                  opacity: .3;
+                }
+              }
+
+              &[data-today='true'],
+              &[data-day-extend][data-current-month='true'],
+              &[data-year][data-current-year='true'] {
+                background-color: $jnt-primary-light-color;
+                color: $jnt-white-color;
+              }
+
+              &[data-day-extend] {
+                height: 68px;
               }
             }
 
             @if map-has-key($vars, day) {
               $day: map-get($vars, day);
-              padding: map-get($day, pdding);
+              padding: map-get($day, padding);
               &[data-selected-day='true'] {
-                @if map-has_key($day, selected) {
+                @if map-has-key($day, selected) {
                   $selected: map-get($day, selected);
                   background-color: map-get($selected, background-color);
                   color: map-get($selected, color);
+                  [data-default] {
+                    color: map-get($selected, color);
+                  }
                 }
               }
             }
           }
 
-          &[data-day-extend] {
-            cursor: pointer;
-            padding: $jnt-gutter-small $jnt-gutter-tiny;
-            height: 68px;
-
-            &:hover {
-              background-color: $jnt-highlight-background;
-              color: $jnt-primary-text-dark-color;
-            }
-
-            &:focus {
-              box-shadow: $jnt-shadow-primary;
-              outline: 1px solid $jnt-primary-light-color;
-            }
-
-            &[data-selected-year='true'], &[data-selected-month='true'] {
-              background-color: $jnt-primary-light-color;
-              color: $jnt-white-color;
+          &[data-metric] {
+            @if $declare {
+              background-color: $jnt-secondary-background;
             }
           }
         }
@@ -200,9 +252,11 @@
     }
 
     td, th {
-      vertical-align: middle;
-      text-align: center;
-      position: relative;
+      @if $declare {
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+      }
     }
   }
 }

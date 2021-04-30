@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { ChartIndicatorComponent } from './chart-indicator.component';
+import { Pipe, PipeTransform, QueryList } from '@angular/core';
+import { ChartIndicatorComponent } from './chart-indicator';
 
 @Pipe({name: 'percentToNumber'})
 export class PercentToNumberPipe implements PipeTransform {
@@ -10,7 +10,8 @@ export class PercentToNumberPipe implements PipeTransform {
 
 @Pipe({name: 'sumIndicators'})
 export class SumIndicatorsPipe implements PipeTransform {
-  transform(index: number, indicators: ChartIndicatorComponent[]): number {
-    return indicators.slice(0, index + 1).reduce((total, i) => total + i.value, 0);
+  transform(index: number, indicators: QueryList<ChartIndicatorComponent>): number {
+    return indicators.toArray().slice(0, index + 1)
+      .reduce((total, i) => total + i.value, 0);
   }
 }

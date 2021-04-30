@@ -1,0 +1,59 @@
+$jnt-theme-type: 'light';
+
+$jnt-red-color: #F25F5C;
+$jnt-purple-lighten-color: #BFE8EB;
+$jnt-primary-color: #005461;
+$jnt-primary-light-color: #407f89;
+$jnt-purple-light-color: #407f89;
+$jnt-primary-dark-color: #003e48;
+$jnt-primary-text-color: #444444;
+$jnt-primary-text-light-color: #737373;
+$jnt-white-color: white;
+$jnt-primary-background: $jnt-white-color;
+
+$jnt-secondary-color: #00A5AE;
+$jnt-secondary-dark-color: darken($jnt-secondary-color, 10%);
+$jnt-secondary-light-color: #7FD2D6;
+$jnt-secondary-background: #E5F6F7;
+$jnt-highlight-background: #BFE8EB;
+$jnt-success-color: #76A530;
+$jnt-success-dark-color: darken(#76A530, 10%);
+
+$jnt-corner-base: 5px;
+$corner-tiny: 2px;
+$jnt-corner-small: 3px;
+$jnt-corner-normal: 5px;
+$jnt-corner-large: 10px;
+
+$jnt-control-border-color: #a1a1a1;
+$jnt-control-disabled-border-color: #d0d0d0;
+$jnt-control-disabled-background: #ebebeb;
+$jnt-secondary-background: #E5F6F7;
+
+$jnt-gutter-base: 5px;
+$jnt-gutter-tiny: 5px;
+$jnt-gutter-small: 10px;
+$jnt-gutter-normal: 15px;
+$jnt-gutter-big: 20px;
+$jnt-gutter-large: 25px;
+$jnt-gutter-huge: 30px;
+$jnt-control-gutter: $jnt-gutter-small;
+
+$jnt-font-size-tiny: 10px;
+$jnt-font-size-small: 11px;
+$jnt-font-size-base: 13px;
+$jnt-font-size-normal: 15px;
+$jnt-font-size-big: 18px;
+$jnt-font-size-large: 23px;
+$jnt-font-size-huge: 30px;
+
+@import 'jnt-variables';
+
+[theme='esanum'] {
+  @import 'jnt-all';
+  @import 'highlight/gml';
+}
+
+@if $jnt-debug {
+  @debug 'esanum theme is compiled';
+}

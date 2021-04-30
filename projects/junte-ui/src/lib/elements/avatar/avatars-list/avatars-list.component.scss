@@ -1,6 +1,7 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/avatar/common";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/avatar/common';
 
 @mixin jnt-avatars-list($passed: (), $context: null, $strategy: 'changes') {
 
@@ -16,16 +17,18 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    position: relative;
-    box-sizing: border-box;
+  #{if($context, $context, $jnt-avatars-list-host)} {
+    @if $declare {
+      display: flex;
+      position: relative;
+      box-sizing: border-box;
+    }
     @each $size, $map in $sizes {
       &[data-size='#{$size}'] {
-        min-height: map-get($map, avatar-size);
+        min-height: map-get($map, avatar);
         @for $i from 1 through map-get($vars, avatar-count) {
           &[data-capacity='#{$i}'] {
-            min-width: calc(#{map-get($map, avatar-size)} / 2 * #{$i} + #{map-get($map, avatar-size)} / 2 + 2px);
+            min-width: calc(#{map-get($map, avatar)} / 2 * #{$i} + #{map-get($map, avatar)} / 2 + 2px);
           }
         }
       }
@@ -34,17 +37,19 @@
 
   @for $i from 0 through map-get($vars, avatar-count) {
     [data-avatar-index='#{$i}'] {
-      position: absolute;
-      border: 2px solid $jnt-primary-background;
-      cursor: pointer;
-      transition: border-color .5s, z-index .5s;
-      &:hover {
-        border-color: $jnt-purple-light-color;
-        z-index: 1;
+      @if $declare {
+        position: absolute;
+        border: 2px solid $jnt-primary-background;
+        cursor: pointer;
+        transition: border-color .5s, z-index .5s;
+        &:hover {
+          border-color: $jnt-purple-light-color;
+          z-index: 1;
+        }
       }
       @each $size, $map in $sizes {
         &[data-size='#{$size}'] {
-          left: calc(#{$i} * (#{map-get($map, avatar-size)} / 2));
+          left: calc(#{$i} * (#{map-get($map, avatar)} / 2));
         }
       }
     }

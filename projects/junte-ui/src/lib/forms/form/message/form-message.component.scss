@@ -1,11 +1,25 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-form-message($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: none;
-    font-size: $jnt-font-size-tiny;
-    color: $jnt-fail-color;
+  $defs: ();
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-form-message-host)} {
+    @if $declare {
+      display: none;
+      font-size: $jnt-font-size-tiny;
+      color: $jnt-fail-color;
+    }
   }
 }
 

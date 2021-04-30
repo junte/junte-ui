@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -40,17 +39,4 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
   ],
 })
 export class MenuModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<MenuModule> {
-    return {
-      ngModule: MenuModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

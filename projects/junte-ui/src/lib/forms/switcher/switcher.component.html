@@ -7,15 +7,17 @@
   <jnt-dot *ngIf="dot" [color]="dot.color"></jnt-dot>
   <jnt-icon *ngIf="icon" data-icon [icon]="icon"></jnt-icon>
 
-  <div *ngIf="marks" data-switch [attr.data-single]="mode === selectMode.single"><span *ngIf="selected"
-                                                                                       data-indicator></span></div>
+  <div data-switch *ngIf="!!features && features.includes(ui.feature.marks)"
+       [attr.data-single]="mode === ui.select.mode.single">
+    <span data-indicator *ngIf="selected"></span>
+  </div>
 
-  <jnt-stack [orientation]="ui.orientation.horizontal"
+  <jnt-stack *ngIf="label || badge" [orientation]="ui.orientation.horizontal"
              [justify]="ui.justify.between"
              [align]="ui.align.center"
              [gutter]="ui.gutter.small"
              data-title>
-    <div data-label>{{label}}</div>
+    <div data-label *ngIf="label">{{label}}</div>
     <jnt-badge *ngIf="badge"
                [position]="ui.position.inline"
                [color]="badge.color"
@@ -27,35 +29,49 @@
 </ng-template>
 
 <div data-switcher>
-  <div data-scroll>
-    <jnt-stack data-options [orientation]="orientation"
+  <div data-scroll [attr.data-windows]="device.platform.windows">
+    <jnt-stack data-options
+               [orientation]="breakpoint.current === ui.breakpoint.mobile && (features | includes : ui.feature.adapted) ?
+                              ui.orientation.vertical : orientation"
                [gutter]="ui.gutter.none"
                [align]="ui.align.stretch">
       <ng-container *ngIf="!loading; else loadingTemplate">
-        <jnt-stack data-option *ngFor="let option of options"
-                   [attr.data-with-template]="!!option.optionTemplate"
-                   [attr.data-selected]="option.value | check:selected:keyField:version"
-                   [attr.data-disabled]="option.disabled"
-                   (click)="select(option.value)"
-                   [orientation]="ui.orientation.horizontal"
-                   [align]="ui.align.center"
-                   [gutter]="ui.gutter.small"
-                   tabindex="0">
-          <ng-container
-            *ngTemplateOutlet="!!option.optionTemplate ? option.optionTemplate : optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
+        <ng-container *ngFor="let option of options">
+          <ng-container *ngIf="!!option.optionTemplate;else defaultOptionTemplate">
+            <div data-option data-custom-option tabindex="0"
+                 [attr.data-selected]="option.value | check:selected:keyField:version"
+                 [attr.data-disabled]="option.disabled"
+                 (click)="select(option.value)">
+              <ng-container
+                *ngTemplateOutlet="option.optionTemplate; context: {selected: option.value | check:selected:keyField:version }"></ng-container>
+            </div>
           </ng-container>
-        </jnt-stack>
+          <ng-template #defaultOptionTemplate>
+            <jnt-stack data-option tabindex="0"
+                       [orientation]="ui.orientation.horizontal"
+                       [align]="ui.align.center"
+                       [gutter]="ui.gutter.small"
+                       [attr.data-selected]="option.value | check:selected:keyField:version"
+                       [attr.data-disabled]="option.disabled"
+                       (click)="select(option.value)">
+              <ng-container
+                *ngTemplateOutlet="optionDefaultTemplate; context: {option: option, mode: mode, selected: option.value | check:selected:keyField:version }">
+              </ng-container>
+            </jnt-stack>
+          </ng-template>
+        </ng-container>
       </ng-container>
     </jnt-stack>
   </div>
 </div>
 
 <jnt-badge data-count
-           *ngIf="!!features && features.includes(feature.badge) && mode === selectMode.multiple && selected.length > 0"
+           *ngIf="!!features && features.includes(ui.feature.badge) && mode === ui.select.mode.multiple && selected.length > 0"
            [color]="ui.color.green"
            [value]="selected.length"></jnt-badge>
 
-<jnt-button data-button *ngIf="!!features && features.includes(feature.selectAll) && mode === selectMode.multiple"
+<jnt-button data-button
+            *ngIf="!!features && features.includes(ui.feature.selectAll) && mode === ui.select.mode.multiple"
             [text]="'action.select_all' | translate"
             [outline]="ui.outline.transparent"
             [size]="ui.size.tiny"

@@ -1,44 +1,86 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
-@mixin jnt-informer($passed: (), $context: null, $deep: false, $strategy: 'changes') {
-  :host {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    background: rgba($jnt-primary-color, .75);
-    padding: $jnt-gutter-normal;
+@mixin jnt-informer($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    outer: (
+      tiny: $jnt-gutter-tiny,
+      small: $jnt-gutter-small,
+      normal: $jnt-gutter-normal,
+      big: $jnt-gutter-big,
+      large: $jnt-gutter-large,
+      huge: $jnt-gutter-huge
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
   }
 
-  ul {
-    color: white;
-    margin: 0;
-    max-width: 350px;
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
 
-    li:not(:last-child) {
-      margin-bottom: $jnt-gutter-small;
+  #{if($context, $context, $jnt-informer-host)} {
+    @if $declare {
+      &[data-placement='fixed'] {
+        position: fixed;
+      }
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($jnt-primary-color, .75);
+      padding: $jnt-gutter-normal;
     }
 
-    &[data-single] {
-      padding: 0;
-      list-style: none;
-      font-size: 1.15em;
+    &[data-placement='absolute'] {
+      position: absolute;
 
-      li {
-        text-align: center;
+      @if map-has-key($vars, outer) {
+        $outer: map-get($vars, outer);
+        @each $outer, $map in $outer {
+          &[data-outer = '#{$outer}'] {
+            margin: -($map);
+          }
+        }
       }
     }
+
+    &[data-context='modal'] {
+      border-radius: $jnt-corner-normal;
+      top: $jnt-gutter-small;
+      right: $jnt-gutter-small;
+      left: $jnt-gutter-small;
+      bottom: $jnt-gutter-small;
+    }
   }
 
-  [data-icon] {
+  #{$context} #{$wrapper} [data-icon] {
     @include jnt-icon((color: $jnt-white-color, size: 50px), '&');
+  }
+
+  #{$context} #{$wrapper} [data-messages] {
+    @if $declare {
+      color: $jnt-white-color;
+      max-width: 350px;
+
+      &[data-single] {
+        font-size: $jnt-font-size-normal;
+      }
+    }
   }
 }
 

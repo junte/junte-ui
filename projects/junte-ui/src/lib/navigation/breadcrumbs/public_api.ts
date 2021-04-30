@@ -1,2 +1,2 @@
-export * from './breadcrumbs.component';
-export * from './breadcrumbs.module';
+export { BreadcrumbsComponent } from './breadcrumbs.component';
+export { BreadcrumbsModule } from './breadcrumbs.module';

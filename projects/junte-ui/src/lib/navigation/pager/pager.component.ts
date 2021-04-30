@@ -1,31 +1,37 @@
 import { Component, forwardRef, HostBinding, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { PagerMode } from './enums';
 
+export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE = 1;
+
 @Component({
   selector: 'jnt-pager',
   templateUrl: './pager.encapsulated.html',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PagerComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PagerComponent),
+      multi: true
+    },
+    ...LOGGER_PROVIDERS
+  ]
 })
 export class PagerComponent implements ControlValueAccessor {
 
   ui = UI;
 
-  private _pagesCount: number;
-  private _selectedPage = 1;
-  private size = 3;
+  @HostBinding('attr.host') readonly host = 'jnt-pager-host';
+
+  private _count: number;
+  private _pageSize = DEFAULT_PAGE_SIZE;
+  private _selectedPage = DEFAULT_PAGE;
 
   pages: number[];
-
-  @HostBinding('attr.host')
-  readonly host = 'jnt-pager-host';
 
   @HostBinding('style.visibility')
   get visible() {
@@ -33,20 +39,52 @@ export class PagerComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Pages count for pager',
+    description: 'Pager size',
     type: 'number',
   })
   @Input()
-  set pagesCount(pagesCount: number) {
-    this._pagesCount = pagesCount;
-    this.updatePages();
+  size = 3;
+
+  @PropertyApi({
+    description: 'Items count for pager',
+    type: 'number',
+  })
+  @Input()
+  set count(count: number) {
+    this._count = count;
+    this.render();
   }
 
+  get pagesCount() {
+    return Math.ceil(this._count / this.pageSize);
+  }
+
+  @PropertyApi({
+    description: 'Page size for pager',
+    type: 'number',
+    default: '10'
+  })
   @Input()
-  pageSize = 10;
+  set pageSize(pageSize: number) {
+    this._pageSize = pageSize;
+    this.render();
+  }
+
+  get pageSize() {
+    return this._pageSize;
+  }
+
+  @PropertyApi({
+    description: 'Mode for pager',
+    path: 'ui.pager.mode',
+    options: [PagerMode.offset, PagerMode.page],
+    default: PagerMode.offset
+  })
+  @Input()
+  mode: PagerMode = PagerMode.offset;
 
   @Input()
-  mode: PagerMode = PagerMode.page;
+  link: string = '?page=%page%';
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -54,13 +92,9 @@ export class PagerComponent implements ControlValueAccessor {
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  get pagesCount() {
-    return this._pagesCount;
-  }
-
   set selectedPage(page: number) {
     this._selectedPage = page;
-    this.updatePages();
+    this.render();
   }
 
   get selectedPage() {
@@ -71,11 +105,21 @@ export class PagerComponent implements ControlValueAccessor {
   }
 
   writeValue(value: number): void {
-    this.selectedPage = value;
+    switch (this.mode) {
+      case PagerMode.page:
+        this.logger.debug('set page ', value);
+        this.selectedPage = value;
+        break;
+      case PagerMode.offset:
+        const page = Math.ceil(value / this.pageSize) + 1;
+        this.logger.debug('set page ', page);
+        this.selectedPage = page;
+        break;
+    }
   }
 
   setPage(page: number) {
-    if (page >= 1 && page <= this.pagesCount) {
+    if (page >= DEFAULT_PAGE && page <= this.pagesCount) {
       switch (this.mode) {
         case PagerMode.page:
           this.onChange(page);
@@ -88,7 +132,7 @@ export class PagerComponent implements ControlValueAccessor {
     }
   }
 
-  updatePages() {
+  render() {
     const pages: number[] = [];
 
     let shift = Math.max(this.size - this.selectedPage + 1, 0);

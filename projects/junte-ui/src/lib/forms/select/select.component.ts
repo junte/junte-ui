@@ -18,15 +18,21 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, finalize, takeWhile, tap } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
+import { progress } from '../../core/utils/rxjs';
 import { PropertyApi } from '../../core/decorators/api';
+import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
+import { Placement } from '../../core/enums/placement';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
@@ -47,25 +53,29 @@ export class SelectOptionComponent {
     description: 'Icon for select option',
     type: 'string'
   })
-  @Input() icon: string;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Key for select option',
     type: 'number | string'
   })
-  @Input() key: Key;
+  @Input()
+  key: Key;
 
   @PropertyApi({
     description: 'Label name for select option',
     type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Value for select option',
     type: 'any'
   })
-  @Input() value: any;
+  @Input()
+  value: any;
 
 }
 
@@ -79,30 +89,32 @@ const SEARCH_DELAY = 100;
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-select-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-select-host';
 
   private reference: { popover: PopoverInstance } = {popover: null};
-  private destroyed = false;
+  private destroyed = new Subject();
+  private _features: Feature[] = [];
 
   ui = UI;
-  selectMode = SelectMode;
-  selectState = State;
 
   get mobile() {
     return this.breakpoint.current === Breakpoint.mobile;
   }
 
   private fetcher: Subscription;
+  private _placement: Placement = Placement.absolute;
 
   options: Options = {persisted: {}, found: {}};
   changes = {selected: 0, options: 0};
   selected: Key[] = [];
-  loading: boolean;
+  progress = {options$: new Subject<boolean>()};
 
   queryControl = this.fb.control({value: null, disabled: true});
   form = this.fb.group(
@@ -116,33 +128,56 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     type: 'string',
     default: 'label'
   })
-  @Input() labelField = 'label';
+  @Input()
+  labelField = 'label';
 
   @PropertyApi({
     description: 'Select key field',
     type: 'string',
     default: 'key'
   })
-  @Input() keyField = 'key';
+  @Input()
+  keyField = 'key';
+
+  @PropertyApi({
+    description: 'Group field',
+    type: 'string',
+    default: 'null'
+  })
+  @Input()
+  groupField = null;
+
+  @PropertyApi({
+    description: 'Group field key',
+    type: 'string',
+    default: 'null'
+  })
+  @Input()
+  groupFieldKey = null;
 
   @PropertyApi({
     description: 'Select placeholder',
     type: 'string'
   })
-  @Input() placeholder = '';
+  @Input()
+  placeholder = '';
 
   @PropertyApi({
     description: 'Select required',
     type: 'boolean',
     default: 'false'
   })
-  @Input() required = false;
+  @Input()
+  required = false;
 
   @HostBinding('attr.data-mode')
   _mode: SelectMode = SelectMode.single;
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
 
   @PropertyApi({
     description: 'Select label',
@@ -152,28 +187,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   label: string;
 
   @PropertyApi({
-    description: 'Select allow empty',
-    type: 'boolean',
-    default: 'true'
-  })
-  @HostBinding('attr.data-allow-empty')
-  @Input()
-  allowEmpty = true;
-
-  @PropertyApi({
     description: 'Icon for select',
-    type: 'string',
+    type: 'string'
   })
-  @Input() icon: string;
-
-  @ViewChild('queryInput', {static: true})
-  queryInput: ElementRef<HTMLInputElement>;
-
-  @ViewChild('selectedList', {static: true})
-  selectedList: ElementRef<HTMLUListElement>;
-
-  @ViewChild('query')
-  query: ElementRef<HTMLInputElement>;
+  @Input()
+  icon: string;
 
   @PropertyApi({
     description: 'Select state',
@@ -181,7 +199,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     options: [State.loading]
   })
   @HostBinding('attr.data-state')
-  @Input() state: State;
+  @Input()
+  state: State;
 
   @PropertyApi({
     description: 'Template for option',
@@ -207,11 +226,15 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @ContentChildren(SelectOptionComponent)
   optionsFromMarkup: QueryList<SelectOptionComponent>;
 
-  @ViewChild('optionsTemplate') optionsTemplate: TemplateRef<any>;
+  @ViewChild('optionsTemplate')
+  optionsTemplate: TemplateRef<any>;
+
+  @Input()
+  groupTemplate: TemplateRef<any>;
 
   @PropertyApi({
-    description: 'Output event of select',
-    type: 'Event Emitter'
+    description: 'Selected value',
+    type: '(selected)='
   })
   @Output('selected')
   updated = new EventEmitter<any>();
@@ -220,12 +243,28 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   opened = false;
 
   @PropertyApi({
+    description: 'Menu popover placement',
+    path: 'ui.placement',
+    default: Placement.absolute,
+    options: [Placement.absolute, Placement.fixed]
+  })
+  @Input()
+  set placement(placement: Placement) {
+    this._placement = placement || Placement.absolute;
+  }
+
+  get placement() {
+    return this._placement;
+  }
+
+  @PropertyApi({
     description: 'Select mode',
     path: 'ui.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
-  @Input() set mode(mode: SelectMode) {
+  @Input()
+  set mode(mode: SelectMode) {
     this._mode = mode || SelectMode.single;
   }
 
@@ -234,16 +273,21 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   @PropertyApi({
-    description: 'Select search',
-    type: 'boolean'
+    description: 'Select features',
+    path: 'ui.feature',
+    options: [Feature.search, Feature.multiplex, Feature.allowEmpty]
   })
-  @HostBinding('attr.data-search')
-  @Input() set search(search: boolean) {
-    search ? this.queryControl.enable({emitEvent: false}) : this.queryControl.disable({emitEvent: false});
+  @HostBinding('attr.data-features')
+  @Input()
+  set features(features: Feature[]) {
+    this._features = features || [];
+    this.features.includes(Feature.search)
+      ? this.queryControl.enable({emitEvent: false})
+      : this.queryControl.disable({emitEvent: false});
   }
 
-  get search() {
-    return !this.queryControl.disabled;
+  get features() {
+    return this._features;
   }
 
   @HostBinding('attr.data-disabled')
@@ -256,8 +300,19 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
+  }
+
+  @PropertyApi({
+    description: 'Select width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
   }
 
   @HostBinding('attr.data-empty')
@@ -269,38 +324,27 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
     description: 'Select loader',
     type: 'function'
   })
-  @Input() loader = null;
+  @Input()
+  loader: (query: string) => Observable<(Object & { icon: string })[]> = null;
 
   @PropertyApi({
-    description: 'Multiplex mode',
-    type: 'boolean'
+    description: 'Select creator',
+    type: 'function'
   })
-  @Input() multiplex = false;
+  @Input()
+  creator: (query: string, close: Function) => Observable<null> | null = null;
 
-  @HostListener('document:click', ['$event.path'])
-  clickOutside(path: HTMLElement[]) {
-    if (!!this.reference.popover && this.opened && !this.picked(path) && !this.reference.popover.picked(path)) {
-      this.close();
-    }
-  }
+  @ViewChild('queryRef')
+  queryRef: ElementRef<HTMLInputElement>;
 
-  @HostListener('click', ['$event'])
-  focused({target}: { target: HTMLElement, path: HTMLElement[] }) {
-    switch (this.mode) {
-      case SelectMode.single:
-        break;
-      case SelectMode.multiple:
-        if (target === this.selectedList.nativeElement) {
-          this.open();
-        }
-        break;
-    }
-  }
+  @ViewChild('selectedRef')
+  selectedRef: ElementRef<HTMLUListElement>;
 
-  @HostListener('blur')
-  blurred() {
-    this.onTouched();
-  }
+  @ViewChild('layoutRef', {read: ElementRef})
+  layoutRef: ElementRef<HTMLElement>;
+
+  @ViewChild('iconRef', {read: ElementRef, static: false})
+  iconRef: ElementRef;
 
   onChange: (value: Key | Key[]) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
@@ -312,10 +356,15 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
               private fb: FormBuilder,
               private popover: PopoverService,
               private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              private breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   ngOnInit() {
+    this.popover.attached.pipe(takeUntil((this.destroyed)),
+      filter(t => this.opened && !!t && t !== this.hostRef))
+      .subscribe(() => this.close());
+
     const loadOptions = (query: string) => {
       if (!!this.fetcher) {
         this.fetcher.unsubscribe();
@@ -323,7 +372,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
       if (!!this.loader) {
         this.fetcher = this.loader(query)
-          .pipe(finalize(() => this.loading = false))
+          .pipe(progress(this.progress.options$))
           .subscribe(objects => {
             this.options.found = {};
             objects.forEach((o, index) => {
@@ -350,11 +399,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       }
     };
 
-    this.queryControl.valueChanges.pipe(distinctUntilChanged(),
+    this.queryControl.valueChanges.pipe(
+      distinctUntilChanged(),
       tap(query => {
         this.logger.debug('query has been changed');
-        this.loading = !!query && !!this.loader;
-        const input = this.queryInput.nativeElement;
+        const input = this.queryRef.nativeElement;
         if (!!query && query.length > 0) {
           const width = Math.max((query.length + 1) * CHAR_WIDTH, MIN_WIDTH);
           this.renderer.setStyle(input, 'width', width + 'px');
@@ -381,15 +430,52 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   ngOnDestroy() {
-    this.destroyed = true;
+    this.destroyed.next();
+    this.destroyed.complete();
     if (!!this.reference.popover) {
       this.reference.popover.hide();
       this.reference.popover = null;
     }
   }
 
-  private picked(elements: HTMLElement[]) {
-    return elements.indexOf(this.hostRef.nativeElement) !== -1;
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const path = event.composedPath();
+    const picked = path.indexOf(this.hostRef.nativeElement) !== -1;
+    if (!!this.reference.popover && this.opened && !picked && !this.reference.popover.picked(path)) {
+      this.close();
+    }
+  }
+
+  @HostListener('click', ['$event'])
+  onFocus({target}: { target: HTMLElement, path: HTMLElement[] }) {
+    switch (this.mode) {
+      case SelectMode.single:
+        break;
+      case SelectMode.multiple:
+        if (target === this.selectedRef.nativeElement) {
+          this.opened ? this.close() : this.open();
+        }
+        break;
+    }
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this.onTouched();
+  }
+
+  @HostListener('click', ['$event'])
+  onClick({target}: { target: HTMLElement }) {
+    // TODO: think about iconRef
+    const elements = [
+      this.layoutRef.nativeElement,
+      this.selectedRef.nativeElement,
+      this.iconRef?.nativeElement
+    ];
+    if (elements.includes(target)) {
+      this.open();
+    }
   }
 
   trackOption(index: number, option: IOption) {
@@ -414,7 +500,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       this.selected = [option.key];
     }
 
-    if (this.mode !== SelectMode.multiple || !this.multiplex) {
+    if (this.mode !== SelectMode.multiple || !this.features.includes(Feature.multiplex)) {
       this.close();
     }
     this.onChange(this.mode === SelectMode.multiple ? this.selected : option.key);
@@ -423,7 +509,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   remove(key: Key) {
     const index = this.selected.findIndex(i => i === key);
-    if (index !== -1) {
+    if (index !== -1 && (this.mode === SelectMode.multiple || this.features.includes(Feature.allowEmpty))) {
       this.logger.debug(`option ${index} has been removed`);
       this.selected.splice(index, 1);
       this.changes.selected++;
@@ -433,23 +519,23 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
 
   open() {
     this.opened = true;
-    const input = this.queryInput.nativeElement;
-    const checking = () => {
+    const input = this.queryRef.nativeElement;
+    const focusQuery = () => {
       const style = getComputedStyle(input);
       if (style.display !== 'none') {
-        input.focus();
+        setTimeout(() => input.focus());
       } else {
-        setTimeout(() => checking(), CHECKING_INTERVAL);
+        setTimeout(() => focusQuery(), CHECKING_INTERVAL);
       }
     };
-    setTimeout(() => checking(), CHECKING_INTERVAL);
+    focusQuery();
     if (!this.mobile) {
       this.reference.popover = this.popover.show(this.hostRef, {
         contentTemplate: this.optionsTemplate,
-        features: [Feature.dropdown]
+        behaviour: Behaviour.dropdown,
+        placement: this.placement,
+        padding: UI.gutter.small
       });
-      this.popover.attached.pipe(takeWhile((() => !this.destroyed)), filter(t => !!t && t !== this.hostRef))
-        .subscribe(() => this.close());
     }
   }
 
@@ -463,11 +549,20 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   writeValue(value: Key | Key[]) {
-    if (this.mode === SelectMode.multiple && !value) {
+    if (this.mode === SelectMode.multiple && !Array.isArray(value)) {
       throw new Error('Wrong value form multiple select mode');
     }
 
     this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
+  }
+
+  createOption(query, event: KeyboardEvent) {
+    if (!!query && event.key === 'Enter' && !!this.creator) {
+      const complete = this.creator(query, this.close.bind(this));
+      if (!!complete) {
+        complete.subscribe(() => this.queryControl.setValue(null));
+      }
+    }
   }
 
   setDisabledState(disabled: boolean) {

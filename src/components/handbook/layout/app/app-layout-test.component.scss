@@ -1,0 +1,26 @@
+@import 'jnt-variables';
+@import '../../component';
+@import 'layout/responsive';
+@import 'layout/app';
+@import 'navigation/menu';
+$jnt-ng-deep: true;
+
+[preview] ::ng-deep > [wrapper] {
+  padding: 0 !important;
+}
+
+[data-aside] {
+  padding-top: $jnt-gutter-normal;
+}
+
+[data-name] {
+  color: $jnt-white-color;
+  @include max-for-tablet() {
+    color: $jnt-primary-color;
+  }
+}
+
+[data-busyness] {
+  display: flex !important;
+  @include jnt-app-busyness((position: absolute), '&');
+}

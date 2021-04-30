@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { TextPipesModule } from '../../core/pipes/text-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { LinkComponent } from './link.component';
-
 
 @NgModule({
   imports: [
@@ -15,7 +15,9 @@ import { LinkComponent } from './link.component';
     RouterModule,
     IconModule,
     BadgeModule,
-    StackModule
+    StackModule,
+    TextPipesModule,
+    ArrayPipesModule
   ],
   exports: [
     LinkComponent
@@ -28,17 +30,4 @@ import { LinkComponent } from './link.component';
   ]
 })
 export class LinkModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<LinkModule> {
-    return {
-      ngModule: LinkModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

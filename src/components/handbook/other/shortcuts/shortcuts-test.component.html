@@ -1,0 +1,196 @@
+<jnt-container>
+
+  <jnt-app-page-header [icon]="localUi.icons.shortcut"
+                       title="Shortcuts"
+                       i18n-title="@@label.shortcuts"
+                       [teaser]="handbook.other.components.shortcuts.teaser">
+
+    <ng-template #headerActionsTemplate>
+      <jnt-link [icon]="ui.icons.gitlab"
+                [outline]="ui.outline.ghost"
+                [source]="gitlab"
+                target="_blank" title="GitLab"
+                i18n-title="@@action.gitlab">
+      </jnt-link>
+    </ng-template>
+  </jnt-app-page-header>
+
+  <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tab title="Preview"
+             i18n-title="@@label.preview"
+             [icon]="localUi.icons.preview">
+      <ng-template #tabContentTemplate>
+        <jnt-row>
+          <jnt-col [tablet]="8">
+            <app-browser-preview preview>
+              <ng-template #document let-width="width" let-height="height">
+                <jnt-block title="Shortcuts"
+                           i18n-title="@@label.shortcuts"
+                           [width]="ui.width.fluid">
+                  <jnt-form [formGroup]="form">
+                    <jnt-form-item>
+                      <jnt-form-label for="boundAction" i18n="@@label.bound_action">Bound action</jnt-form-label>
+                      <jnt-form-control name="boundAction">
+                        <jnt-input formControlName="boundAction"
+                                   placeholder="Please, focus and press '{{keyControl.value}}' button"
+                                   [jntShortcuts]="[{
+                                      key: keyControl.value,
+                                      modifier: modifierControl.value,
+                                      action: boundAction.bind(this)
+                                   }]">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+
+                    <jnt-form-item>
+                      <jnt-form-label for="anonymAction">Anonymous function</jnt-form-label>
+                      <jnt-form-control name="anonymAction">
+                        <jnt-input formControlName="anonymAction"
+                                   placeholder="Please, focus and press '{{keyControl.value}}' button"
+                                   [jntShortcuts]="[{
+                                      key: keyControl.value,
+                                      modifier: modifierControl.value,
+                                      action: anonymAction
+                                   }]">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+
+                    <p>{{value}}</p>
+                  </jnt-form>
+                </jnt-block>
+              </ng-template>
+            </app-browser-preview>
+          </jnt-col>
+          <jnt-col [tablet]="4">
+            <jnt-form [formGroup]="builder">
+              <jnt-stack [align]="ui.align.stretch">
+
+                <jnt-form-item>
+                  <jnt-form-label for="key"
+                                  i18n="@@label.key">Key
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="key"
+                                placeholder="Key"
+                                i18n-placeholder="@@label.key"
+                                [features]="[ui.feature.allowEmpty]">
+                      <ng-container *ngFor="let key of keys">
+                        <jnt-select-option [label]="ui.keyboard.key[key]"
+                                           [key]="ui.keyboard.key[key]">
+                        </jnt-select-option>
+                      </ng-container>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="Modifier"
+                                  i18n="@@label.modifier">Modifier
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="modifier"
+                                placeholder="Modifier"
+                                i18n-placeholder="@@label.modifier"
+                                [features]="[ui.feature.allowEmpty]">
+                      <ng-container *ngFor="let modifier of modifiers">
+                        <jnt-select-option [label]="ui.keyboard.modifier[modifier]"
+                                           [key]="ui.keyboard.modifier[modifier]">
+                        </jnt-select-option>
+                      </ng-container>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+              </jnt-stack>
+            </jnt-form>
+          </jnt-col>
+        </jnt-row>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab #code title="Code"
+             i18n-title="@@label.code"
+             [icon]="localUi.icons.code">
+      <ng-template #tabContentTemplate>
+        <jnt-accordion [active]="1">
+          <jnt-accordion-section title="How to start"
+                                 i18n-title="@@label.how_to_start">
+            <ng-template #accordionContentTemplate>
+              <app-how-to-use [test]="{selector:'shortcuts-test', type: 'ShortcutsTestComponent'}">
+              </app-how-to-use>
+            </ng-template>
+          </jnt-accordion-section>
+          <jnt-accordion-section title="Shortcuts bound action component"
+                                 i18n-title="@@label.shortcuts_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="shortcuts-test.component.ts" [language]="language.typescript">
+                <!-- @formatter:off-->
+                <![CDATA[
+                boundAction() {
+                  this.value = `${this.actions.bound} action was called`;
+                };
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+
+
+              <app-code-highlight file="shortcuts-test.component.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-input placeholder="Please, focus and press ']]>{{keyControl.value}}<![CDATA[' button"
+                           [jntShortcuts]="[{
+                             key: ]]>{{keyControl.value}}<![CDATA[,
+                             modifier: ]]>{{modifierControl.value}}<![CDATA[,
+                             action: boundAction.bind(this)
+                           }]">
+                </jnt-input>
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+
+          </jnt-accordion-section>
+
+          <jnt-accordion-section title="Shortcuts anonym action component "
+                                 i18n-title="@@label.shortcuts_component_template">
+            <ng-template #accordionContentTemplate>
+              <app-code-highlight file="shortcuts-test.component.ts" [language]="language.typescript">
+                <!-- @formatter:off-->
+                <![CDATA[
+                anonymAction = () => {
+                  this.value = `${this.actions.anonym} action was called`;
+                };
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+
+              <app-code-highlight file="shortcuts-test.component.html">
+                <!-- @formatter:off-->
+                <![CDATA[
+                <jnt-input placeholder="Please, focus and press ']]>{{keyControl.value}}<![CDATA[' button"
+                           [jntShortcuts]="[{
+                             key: ]]>{{keyControl.value}}<![CDATA[,
+                             modifier: ]]>{{modifierControl.value}}<![CDATA[,
+                             action: anonymAction
+                           }]"
+                </jnt-input>
+                ]]>
+                <!-- @formatter:on-->
+              </app-code-highlight>
+            </ng-template>
+
+          </jnt-accordion-section>
+        </jnt-accordion>
+      </ng-template>
+    </jnt-tab>
+
+    <jnt-tab title="API" [icon]="localUi.icons.api">
+      <ng-template #tabContentTemplate>
+        <jnt-stack [align]="ui.align.stretch">
+          <app-component-api selector="jntShortcuts" [target]="types.shortcuts"></app-component-api>
+        </jnt-stack>
+      </ng-template>
+    </jnt-tab>
+  </jnt-tabs>
+
+</jnt-container>

@@ -1,3 +1,3 @@
-export * from './item/timeline-item.component';
-export * from './timeline.component';
-export * from './timeline.module';
+export { TimelineItemComponent } from './item/timeline-item.component';
+export { TimelineComponent } from './timeline.component';
+export { TimelineModule } from './timeline.module';

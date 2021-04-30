@@ -1,4 +1,4 @@
-export * from './week/week-metric.component';
-export * from './calendar.component';
-export * from './calendar.module';
-export * from './enums';
+export { WeekMetricComponent } from './week/week-metric.component';
+export { CalendarComponent } from './calendar.component';
+export { CalendarModule } from './calendar.module';
+export { Period } from './types';

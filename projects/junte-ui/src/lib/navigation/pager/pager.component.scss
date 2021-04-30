@@ -1,17 +1,48 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "jnt-reset";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
-@mixin jnt-pager($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-pager($passed: (), $context: null, $strategy: 'changes') {
 
-  $defs: ();
+  $defs: (
+    page: (
+      padding: 1px $jnt-gutter-small,
+      corner: $jnt-corner-small,
+      color: $jnt-primary-text-color,
+      hover: (
+        background: $jnt-secondary-background,
+        color: null
+      ),
+      focus: (
+        shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color
+      ),
+      active: (
+        background: $jnt-primary-color,
+        color: $jnt-white-color,
+        divider: (
+          display: false,
+          height: null,
+          corner: null,
+          color: null
+        )
+      )
+    ),
+    arrows: (
+      color: $jnt-primary-text-light-color,
+      size: 10px,
+      disabled: (
+        color: $jnt-muted-color
+      )
+    ),
+  );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -20,49 +51,111 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
+  #{if($context, $context, $jnt-pager-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+    }
   }
 
   #{$context} #{$wrapper} a {
     @if $declare {
-      @include jnt-reset();
-    }
-    padding: 1px $jnt-gutter-small;
-    border-radius: $jnt-corner-small;
-    transition: background-color .3s;
-    user-select: none;
-    cursor: pointer;
-
-    &:hover {
-      background-color: $jnt-highlight-background;
+      text-decoration: none;
+      transition: background-color .3s;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
     }
 
-    &:focus {
-      outline: 0;
-      box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+    @if map-has-key($vars, page) {
+      $page: map-get($vars, page);
+      padding: map-get($page, padding);
+      border-radius: map-get($page, corner);
+      color: map-get($page, color);
+      &:hover {
+        @if map-has-key($page, hover) {
+          $hover: map-get($page, hover);
+          background-color: map-get($hover, background);
+          color: map-get($hover, color);
+        }
+      }
+
+      &:focus {
+        @if $declare {
+          outline: 0;
+        }
+        @if map-has-key($page, focus) {
+          $focus: map-get($page, focus);
+          box-shadow: map-get($focus, shadow);
+        }
+      }
+
+      @if map-has-key($page, active) {
+        $active: map-get($page, active);
+        @if map-has-key($active, divider) {
+          $divider: map-get($active, divider);
+          @if map-get($divider, display) == true {
+            &:after {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              height: map-get($divider, height);
+              border-radius: map-get($divider, corner);
+              background-color: map-get($divider, color);
+              width: 100%;
+              display: none;
+            }
+          }
+        }
+      }
+      &[data-active='true'] {
+        @if $declare {
+          pointer-events: none;
+        }
+        @if map-has-key($page, active) {
+          $active: map-get($page, active);
+          background-color: map-get($active, background);
+          color: map-get($active, color);
+          @if map-has-key($active, divider) {
+            $divider: map-get($active, divider);
+            @if map-get($divider, display) == true {
+              &:after {
+                display: block;
+              }
+            }
+          }
+        }
+      }
     }
 
-    &[active="true"] {
-      pointer-events: none;
-      background-color: $jnt-primary-color;
-      color: $jnt-white-color;
-    }
-
-    &[disabled="true"] {
-      cursor: default;
-      pointer-events: none;
-
-      [data-icon] {
-        color: $jnt-muted-color;
+    &[data-disabled='true'] {
+      @if $declare {
+        cursor: default;
+        pointer-events: none;
+      }
+      @if map-has-key($vars, arrows) {
+        $arrows: map-get($vars, arrows);
+        @if map-has-key($arrows, disabled) {
+          $disabled: map-get($arrows, disabled);
+          [data-icon] {
+            @include jnt-icon((color: map-get($disabled, color)), '&');
+          }
+        }
       }
     }
 
     [data-icon] {
-      @include jnt-icon((
-        size: 10px
-      ), '&');
-      color: $jnt-primary-text-light-color;
+      @if map-has-key($vars, arrows) {
+        $arrows: map-get($vars, arrows);
+        @include jnt-icon((
+          color: map-get($arrows, color),
+          size: map-get($arrows, size)
+        ), '&');
+      }
     }
   }
 }

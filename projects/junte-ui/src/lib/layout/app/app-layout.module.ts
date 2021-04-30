@@ -1,24 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { MenuModule } from '../../navigation/menu/menu.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { ResponsiveModule } from '../responsive/responsive.module';
+import { SpinnerModule } from '../spinner/spinner.module';
 import { StackModule } from '../stack/stack.module';
 import { AppLayoutComponent } from './app-layout.component';
 import { AppAsideComponent } from './aside/app-aside.component';
 import { AppBodyComponent } from './body/app-body.component';
+import { AppBusynessComponent } from './busyness/app-busyness.component';
 import { AppContentComponent } from './content/app-content.component';
 import { AppFooterComponent } from './footer/app-footer.component';
 import { AppHeaderActionComponent } from './header/action/app-header-action.component';
 import { AppHeaderActionsComponent } from './header/actions/app-header-actions.component';
 import { AppHeaderComponent } from './header/app-header.component';
 import { AppHeaderUserbarComponent } from './header/userbar/app-header-userbar.component';
-import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
+import { AppPageHeaderComponent } from './page-header/app-page-header.component';
+import { AppPageMetaDirective } from './page-meta/app-page-meta.directive';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     MenuModule,
     ResponsiveModule,
     PopoverModule,
-    BadgeModule
+    BadgeModule,
+    SpinnerModule
   ],
   declarations: [
     AppLayoutComponent,
@@ -38,19 +41,21 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     AppHeaderActionComponent,
     AppHeaderActionsComponent,
     AppHeaderUserbarComponent,
-    AppSubHeaderComponent,
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    AppBusynessComponent,
+    AppPageHeaderComponent,
+    AppPageMetaDirective
   ],
   entryComponents: [
     AppLayoutComponent,
     AppHeaderComponent,
     AppHeaderActionsComponent,
     AppHeaderActionComponent,
-    AppSubHeaderComponent,
-    AppContentComponent
+    AppContentComponent,
+    AppBusynessComponent
   ],
   exports: [
     AppLayoutComponent,
@@ -58,25 +63,14 @@ import { AppSubHeaderComponent } from './sub-header/app-sub-header.component';
     AppHeaderActionComponent,
     AppHeaderActionsComponent,
     AppHeaderUserbarComponent,
-    AppSubHeaderComponent,
     AppAsideComponent,
     AppBodyComponent,
     AppContentComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    AppBusynessComponent,
+    AppPageHeaderComponent,
+    AppPageMetaDirective
   ]
 })
 export class AppLayoutModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<AppLayoutModule> {
-    return {
-      ngModule: AppLayoutModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

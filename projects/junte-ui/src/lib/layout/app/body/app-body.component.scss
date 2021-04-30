@@ -1,20 +1,22 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/responsive/responsive";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/responsive/responsive';
 
-@mixin jnt-app-body($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-body($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    height: calc(100vh - #{$app-footer-height} - #{$app-sub-header-height} - #{$app-header-height}),
-    padding: $jnt-gutter-big 0 $jnt-gutter-large 0,
-    background: $jnt-page-background
+    height: calc(100vh - #{$app-footer-height} - #{$app-header-height}),
+    padding: 0 0 $jnt-gutter-large 0,
+    background: $jnt-page-background,
+    margin: $jnt-gutter-small 0 0 0
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -23,16 +25,18 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    transform-style: preserve-3d;
+  #{if($context, $context, $jnt-app-body-host)} {
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+    }
     min-height: map-get($vars, height);
     padding: map-get($vars, padding);
     background-color: map-get($vars, background);
+    margin: map-get($vars, margin);
     @content;
   }
 }

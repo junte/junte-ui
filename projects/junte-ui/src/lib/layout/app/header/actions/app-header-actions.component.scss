@@ -1,12 +1,21 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-hosts';
 
 @mixin jnt-app-header-actions($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: stretch;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-app-header-actions-host)} {
+    @if $declare {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: stretch;
+    }
   }
 }
 

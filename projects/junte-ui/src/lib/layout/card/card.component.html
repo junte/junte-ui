@@ -2,23 +2,33 @@
   <jnt-icon [icon]="icon"></jnt-icon>
 </div>
 
-<jnt-stack data-card [orientation]="ui.orientation.horizontal" [gutter]="ui.gutter.none" [align]="ui.align.stretch">
-  <div data-line *ngIf="color" [style.background-color]="color"></div>
+<ng-template #cardImageTemplate>
+  <img data-image [src]="picture.url" [width]="picture.width" [height]="picture.height">
+</ng-template>
+
+<jnt-stack data-card
+           [attr.tabindex]="(features | includes : ui.feature.clickable) ? 1 : null"
+           [orientation]="ui.orientation.horizontal"
+           [gutter]="ui.gutter.none"
+           [align]="ui.align.stretch">
+  <div data-line *ngIf="!!color" [style.background-color]="color"></div>
+
+  <div data-drag *ngIf="!!dragTemplate">
+    <ng-container *ngTemplateOutlet="dragTemplate;context: {icon: ui.icons.drag}"></ng-container>
+  </div>
 
   <jnt-stack data-main [align]="ui.align.stretch">
     <div *ngIf="!!headerTemplate" data-header>
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
     <jnt-stack data-body
-               [orientation]="ui.orientation.horizontal"
-               (click)="!!features && features.includes(feature.clickable) ? selected.emit() : null">
+               [align]="ui.align.stretch"
+               [orientation]="(features | includes : ui.feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
+               (click)="!!features && features.includes(ui.feature.clickable) ? selected.emit() : null">
       <div data-picture *ngIf="!!picture && picture.position === ui.position.left">
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="picture.template"></ng-container>
         </ng-container>
-        <ng-template #cardImageTemplate>
-          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
-        </ng-template>
       </div>
       <div data-content>
         <div *ngIf="!!title || !!titleTemplate" data-title>
@@ -33,9 +43,6 @@
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
           <ng-container *ngTemplateOutlet="picture.template"></ng-container>
         </ng-container>
-        <ng-template #cardImageTemplate>
-          <img [src]="picture.url" [width]="picture.width" [height]="picture.height">
-        </ng-template>
       </div>
     </jnt-stack>
 
@@ -46,27 +53,25 @@
 
 </jnt-stack>
 
-<jnt-button *ngIf="!!cardActionsTemplate"
+<button *ngIf="!!cardActionsTemplate"
             data-action
-            [scheme]="ui.scheme.secondary"
-            [size]="ui.size.small"
-            [icon]="ui.icons.actions"
             (attached)="popover = $event"
             [jntPopover]="{
               contentTemplate: dropdownTemplate,
               position: ui.position.right,
               trigger: ui.trigger.click
             }">
-</jnt-button>
+  <jnt-icon [icon]="ui.icons.actions"></jnt-icon>
+</button>
 
 <ng-template #dropdownTemplate>
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>
 </ng-template>
 
-<div *ngIf="state === cardState.loading" data-load>
+<div *ngIf="state === ui.state.loading" data-load>
   <jnt-spinner [size]="ui.size.large"></jnt-spinner>
 </div>
-<div *ngIf="state === cardState.error" data-error>
+<div *ngIf="state === ui.state.error" data-error>
   <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
 </div>
 

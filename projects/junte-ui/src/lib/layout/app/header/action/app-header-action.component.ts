@@ -1,5 +1,5 @@
 import { Component, ContentChild, HostBinding, TemplateRef } from '@angular/core';
-import { PropertyApi } from '../../../../core/decorators/api';
+import { ContentApi } from '../../../../core/decorators/api';
 import { UI } from '../../../../core/enums/ui';
 
 @Component({
@@ -13,19 +13,17 @@ export class AppHeaderActionComponent {
 
   ui = UI;
 
-  @PropertyApi({
-    description: 'Action label template',
-    type: 'TemplateRef'
+  @ContentApi({
+    selector: '#actionLabelTemplate',
+    description: 'Action label template'
   })
-
   @ContentChild('actionLabelTemplate')
   actionLabelTemplate: TemplateRef<any>;
 
-  @PropertyApi({
-    description: 'Action content template',
-    type: 'TemplateRef'
+  @ContentApi({
+    selector: '#actionContentTemplate',
+    description: 'Action content template'
   })
-
   @ContentChild('actionContentTemplate')
   actionContentTemplate: TemplateRef<any>;
 }

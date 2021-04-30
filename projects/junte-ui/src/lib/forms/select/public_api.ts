@@ -1,2 +1,2 @@
-export * from './select.component';
-export * from './select.module';
+export { SelectComponent, SelectOptionComponent } from './select.component';
+export { SelectModule } from './select.module';

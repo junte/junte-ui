@@ -1,2 +1,2 @@
-export * from './pager.component';
-export * from './pager.module';
+export { PagerComponent } from './pager.component';
+export { PagerModule } from './pager.module';

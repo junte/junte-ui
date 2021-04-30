@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { JunteUIConfig } from '../../../config';
+import { PropertyApi } from '../../../core/decorators/api';
 import { InMemoryCacheService } from '../../../core/services/in-memory-cache.service';
+import { IconTag } from '../enums';
 
 const DEFAULT_ICONSET = 'default';
 
@@ -10,14 +13,14 @@ const DEFAULT_ICONSET = 'default';
   selector: 'jnt-animated-icon',
   templateUrl: './animated-icon.encapsulated.html'
 })
-export class AnimatedIconComponent implements OnInit, AfterViewInit {
+export class AnimatedIconComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-animated-icon-host';
 
+  private svg: HTMLElement;
+  private _color: string;
   private iconset$: BehaviorSubject<string> = new BehaviorSubject<string>(DEFAULT_ICONSET);
   private icon$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  private source$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  private nativeElement$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   @Input()
   set iconset(iconset: string) {
@@ -38,58 +41,85 @@ export class AnimatedIconComponent implements OnInit, AfterViewInit {
     return this.icon$.getValue();
   }
 
-  private set source(source: string) {
-    this.source$.next(source);
+  @PropertyApi({
+    description: 'Color for icon',
+    type: '[ui.color]'
+  })
+  @Input()
+  set color(color: string) {
+    this._color = color;
+    if (!!this.svg) {
+      this.render();
+    }
   }
 
-  private get source() {
-    return this.source$.getValue();
+  get color() {
+    return this._color;
   }
 
-  private set nativeElement(nativeElement: HTMLElement) {
-    this.nativeElement$.next(nativeElement);
+  @HostBinding('attr.data-has-color')
+  get hasColor() {
+    return !!this.color;
   }
 
-  private get nativeElement() {
-    return this.nativeElement$.getValue();
-  }
+  @Input()
+  @HostBinding('attr.data-tags')
+  tags: string[];
 
   constructor(private http: HttpClient,
               private renderer: Renderer2,
               private cache: InMemoryCacheService,
-              private hostRef: ElementRef) {
+              private hostRef: ElementRef,
+              private config: JunteUIConfig) {
   }
 
   ngOnInit() {
     combineLatest([this.iconset$, this.icon$])
       .pipe(filter(([iconset, icon]) => !!iconset && !!icon), distinctUntilChanged())
       .subscribe(() => this.load());
-
-    combineLatest([this.nativeElement$, this.source$])
-      .pipe(filter(([nativeElement, source]) => !!nativeElement && !!source))
-      .subscribe(() => this.render());
   }
 
-  ngAfterViewInit() {
-    this.nativeElement = this.hostRef.nativeElement;
-  }
-
-  private render() {
-    this.renderer.setProperty(this.nativeElement, 'innerHTML', this.source);
+  render() {
+    if (!!this.color) {
+      if (this.tags.includes(IconTag.stroked)) {
+        this.svg.setAttribute('stroke', this.color);
+      }
+      if (this.tags.includes(IconTag.filled)) {
+        this.svg.setAttribute('fill', this.color);
+      }
+    }
+    const el = this.hostRef.nativeElement;
+    this.renderer.setProperty(el, 'innerHTML', this.svg.outerHTML);
   }
 
   private load() {
-    const path = `assets/icons/animated/${this.iconset}/${this.icon}.svg`;
+    const path = `${this.config.assets}/icons/animated/${this.iconset}/${this.icon}.svg?hash=${this.config.hash}`;
 
-    const source = this.cache.get(path);
-    if (source === undefined) {
+    let icon = this.cache.get<HTMLElement>(path);
+    if (icon === undefined) {
       this.http.get(path, {responseType: 'text'})
-        .subscribe(response => {
-          this.source = response;
-          this.cache.set(path, response);
+        .pipe(map(resp => new DOMParser().parseFromString(resp, 'application/xml')))
+        .subscribe(file => {
+          icon = file.documentElement;
+          const encapsulate = (el: Element) => {
+            el.setAttribute('child-of', this.host);
+            for (let i = 0; i < el.children.length; i++) {
+              encapsulate(el.children[i]);
+            }
+          };
+
+          encapsulate(icon);
+          icon.setAttribute('width', '100%');
+          icon.setAttribute('height', '100%');
+          this.svg = icon;
+          this.render();
+
+          this.cache.set(path, icon);
         });
     } else {
-      this.source = source;
+      this.svg = icon;
+      this.render();
     }
   }
+
 }

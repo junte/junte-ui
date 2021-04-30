@@ -2,7 +2,7 @@
   <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
 </ng-template>
 
-<ng-template #optionDefaultTemplate let-query="query" let-icon="icon" let-label="label">
+<ng-template #optionDefaultTemplate let-icon="icon" let-label="label">
   <jnt-stack [orientation]="ui.orientation.horizontal"
              [gutter]="ui.gutter.small"
              [align]="ui.align.center">
@@ -11,46 +11,48 @@
   </jnt-stack>
 </ng-template>
 
-<jnt-stack data-select [orientation]="ui.orientation.horizontal"
+<jnt-stack #layoutRef data-select [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.tiny" [align]="ui.align.center"
            tabindex="0">
-  <div *ngIf="label" data-label>{{label}}</div>
-  <jnt-icon *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
-  <ul #selectedList>
+  <div *ngIf="!!label" data-label>{{label}}</div>
+  <jnt-icon #iconRef *ngIf="!!icon && !label" [icon]="icon"></jnt-icon>
+  <ul #selectedRef>
     <ng-container *ngIf="selected.length">
-      <li *ngFor="let key of selected" (click)="mode == selectMode.single ? open() : null">
+      <li *ngFor="let key of selected" (click)="mode == ui.select.mode.single ? (opened ? close() : open()) : null"
+          [attr.data-with-template]="!!optionTemplate">
         <ng-template #noOptionTemplate>
           <div data-empty></div>
         </ng-template>
-        <div *ngIf="(key | getOption:options:changes.selected:changes.options) as option;else noOptionTemplate">
+        <div *ngIf="(key | getOption:options:changes.selected:changes.options) as o;else noOptionTemplate">
           <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-            : optionDefaultTemplate;context: option">
+            : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value, selected: true}">
           </ng-container>
         </div>
         <button data-close type="button" (click)="remove(key)">
-          <jnt-icon [icon]="ui.icons.close"></jnt-icon>
+          <jnt-icon [icon]="ui.icons.closeSmall"></jnt-icon>
         </button>
       </li>
     </ng-container>
 
-    <li [formGroup]="form" (click)="open()" data-query>
-      <input #queryInput [placeholder]="mode != selectMode.multiple || !selected.length ? placeholder : ''"
-             formControlName="query">
+    <li data-query [formGroup]="form" (click)="opened && !queryControl.value ? close() : open()">
+      <input #queryRef formControlName="query"
+             [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
+             (keydown)="createOption(queryControl.value, $event)">
     </li>
   </ul>
-  <div data-loading *ngIf="state === selectState.loading">
+  <div data-loading *ngIf="state === ui.state.loading">
     <jnt-spinner data-spinner></jnt-spinner>
   </div>
   <button data-toggle type="button" (click)="opened ? close() : open()">
-    <jnt-icon [icon]="opened ? ui.icons.chevronUp : ui.icons.chevronDown"></jnt-icon>
+    <jnt-icon [icon]="opened ? ui.icons.selectOpen : ui.icons.selectClose"></jnt-icon>
   </button>
 </jnt-stack>
 
 <ng-template #optionsTemplate>
-  <div data-options *ngIf="opened" [attr.data-loading]="loading">
+  <div data-options *ngIf="opened" [attr.data-loading]="progress.options$ | async">
     <ng-template #noOptionsTemplate>
       <div data-skeleton>
-        <jnt-skeleton *ngIf="loading; else optionsNotFoundTemplate"
+        <jnt-skeleton *ngIf="progress.options$ | async; else optionsNotFoundTemplate"
                       [type]="ui.skeleton.type.text" [lines]="5"></jnt-skeleton>
       </div>
       <ng-template #optionsNotFoundTemplate>
@@ -64,21 +66,27 @@
     <ng-container *ngIf="((!!queryControl.value ? options.found : options.persisted)
     | getOptions:changes.selected:changes.options) as options">
       <ng-container *ngIf="options.length;else noOptionsTemplate">
-        <div data-loading *ngIf="loading">
-          <jnt-spinner></jnt-spinner>
+        <div data-loading *ngIf="progress.options$ | async">
+          <jnt-spinner data-spinner></jnt-spinner>
         </div>
         <jnt-stack [align]="ui.align.stretch">
           <div data-options-header *ngIf="!!optionsHeaderTemplate">
             <ng-container *ngTemplateOutlet="optionsHeaderTemplate;context: {close: close.bind(this)}"></ng-container>
           </div>
-          <ul>
-            <li *ngFor="let o of options;trackBy:trackOption"
-                [attr.data-selected]="selected | includes:o.key"
-                (click)="toggle(o)">
-              <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
-              : optionDefaultTemplate;context: o">
+          <ul [attr.data-windows]="device.platform.windows">
+            <ng-container *ngFor="let o of options;let i = index;trackBy:trackOption">
+              <ng-container *ngIf="!!groupField">
+                <ng-container *ngIf="o | trackGroup:(i > 0 ? options[i-1] : null):groupField:groupFieldKey">
+                  <ng-container *ngTemplateOutlet="groupTemplate;context: {icon: o.icon, label: o.label, value: o.value}"></ng-container>
+                </ng-container>
               </ng-container>
-            </li>
+              <li data-option [attr.data-selected]="selected | includes:o.key"
+                  (click)="toggle(o)">
+                <ng-container *ngTemplateOutlet="!!optionTemplate ? optionTemplate
+              : optionDefaultTemplate;context: {icon: o.icon, label: o.label, value: o.value}">
+                </ng-container>
+              </li>
+            </ng-container>
           </ul>
         </jnt-stack>
       </ng-container>

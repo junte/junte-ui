@@ -1,0 +1,80 @@
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+
+@mixin jnt-app-page-header($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    font-size: $jnt-page-header-font-size,
+    icon: (
+      color: $jnt-primary-text-color,
+      size: 30px
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-app-page-header-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+      margin-bottom: $jnt-gutter-normal;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-thumbnail] {
+    @if $declare {
+      line-height: 1;
+      border-radius: $jnt-corner-normal;
+      background: $jnt-primary-background;
+      padding: $jnt-gutter-normal;
+    }
+
+    [data-icon] {
+      @if map-has-key($vars, icon) {
+        $icon: map-get($vars, icon);
+        @include jnt-icon((
+          color: map-get($icon, color),
+          size: map-get($icon, size)
+        ), '&');
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-title] {
+    font-size: map-get($vars, font-size);
+    @if $declare {
+      font-weight: $jnt-font-weight-bold;
+      line-height: 1.2em;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-teaser] {
+    @if $declare {
+      font-size: .85em;
+      color: $jnt-primary-text-light-color;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-actions] {
+    @if $declare {
+      margin-left: auto;
+    }
+  }
+
+}
+
+

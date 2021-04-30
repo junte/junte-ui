@@ -1,6 +1,7 @@
 import { Component, forwardRef, HostBinding, HostListener, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { Theme } from '../../core/enums/theme';
 import { UI } from '../../core/enums/ui';
 
@@ -12,7 +13,8 @@ import { UI } from '../../core/enums/ui';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ThemeSwitcherComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class ThemeSwitcherComponent implements OnInit, ControlValueAccessor {

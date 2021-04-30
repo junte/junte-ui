@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin jnt-filter($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-filter($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
 
@@ -9,7 +10,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -18,30 +19,36 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    position: relative;
-    align-items: center;
-    min-height: 40px;
-    color: $jnt-primary-text-light-color;
-    padding: $jnt-gutter-small $jnt-gutter-normal;
-    border: 1px dashed $jnt-secondary-dark-color;
-    border-radius: $jnt-corner-normal;
-    line-height: 1em;
+  #{if($context, $context, $jnt-filter-host)} {
+    @if $declare {
+      display: flex;
+      position: relative;
+      align-items: center;
+      min-height: 40px;
+      color: $jnt-primary-text-light-color;
+      padding: $jnt-gutter-small $jnt-gutter-normal;
+      border: 1px dashed $jnt-highlight-background;
+      border-radius: $jnt-corner-normal;
+      line-height: 1em;
+    }
 
     &[data-active='true'] {
-      border-color: transparent;
-      background: $jnt-primary-light-color;
-      color: $jnt-white-color;
-      padding-right: $jnt-gutter-huge;
-      box-shadow: $jnt-shadow-normal;
+      @if $declare {
+        border-color: transparent;
+        background: $jnt-primary-light-color;
+        color: $jnt-white-color;
+        padding-right: $jnt-gutter-huge;
+        box-shadow: $jnt-shadow-normal;
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-reset] {
-    position: absolute;
-    top: $jnt-gutter-small;
-    right: $jnt-gutter-small;
+    @if $declare {
+      position: absolute;
+      top: $jnt-gutter-small;
+      right: $jnt-gutter-small;
+    }
   }
 
 }

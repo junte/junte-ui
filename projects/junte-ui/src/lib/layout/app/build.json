@@ -6,11 +6,13 @@
     "from": [
       "app/_variables.scss",
       "app/_app-layout.scss",
+      "app/busyness/_app-busyness.scss",
       "app/header/_app-header.scss",
+      "app/page-header/_app-page-header.scss",
       "app/header/action/_app-header-action.scss",
       "app/header/actions/_app-header-actions.scss",
       "app/header/userbar/_app-header-userbar.scss",
-      "app/sub-header/_app-sub-header.scss",
+      "app/page-header/_app-page-header.scss",
       "app/aside/_app-aside.scss",
       "app/body/_app-body.scss",
       "app/content/_app-content.scss",
@@ -48,6 +50,28 @@
       }
     },
     {
+      "host": "jnt-app-page-header-host",
+      "html": {
+        "from": "page-header/app-page-header.component.html",
+        "to": "page-header/app-page-header.encapsulated.html"
+      },
+      "scss": {
+        "from": "page-header/app-page-header.component.scss",
+        "to": "../../assets/styles/layout/app/page-header/_app-page-header.scss"
+      }
+    },
+    {
+      "host": "jnt-app-busyness-host",
+      "html": {
+        "from": "busyness/app-busyness.component.html",
+        "to": "busyness/app-busyness.encapsulated.html"
+      },
+      "scss": {
+        "from": "busyness/app-busyness.component.scss",
+        "to": "../../assets/styles/layout/app/busyness/_app-busyness.scss"
+      }
+    },
+    {
       "host": "jnt-app-header-action-host",
       "html": {
         "from": "header/action/app-header-action.component.html",
@@ -81,14 +105,14 @@
       }
     },
     {
-      "host": "jnt-app-sub-header-host",
+      "host": "jnt-app-page-header-host",
       "html": {
-        "from": "sub-header/app-sub-header.component.html",
-        "to": "sub-header/app-sub-header.encapsulated.html"
+        "from": "page-header/app-page-header.component.html",
+        "to": "page-header/app-page-header.encapsulated.html"
       },
       "scss": {
-        "from": "sub-header/app-sub-header.component.scss",
-        "to": "../../assets/styles/layout/app/sub-header/_app-sub-header.scss"
+        "from": "page-header/app-page-header.component.scss",
+        "to": "../../assets/styles/layout/app/page-header/_app-page-header.scss"
       }
     },
     {

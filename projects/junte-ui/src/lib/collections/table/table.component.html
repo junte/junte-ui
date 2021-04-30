@@ -1,37 +1,37 @@
-<form [formGroup]="form">
-  <jnt-stack [align]="ui.align.stretch">
-    <jnt-stack [orientation]="ui.orientation.horizontal"
-               [justify]="ui.justify.between"
-               [align]="ui.align.center"
-               [wrap]="ui.wrap.wrap">
-      <jnt-stack [orientation]="ui.orientation.horizontal"
+<ng-container [formGroup]="form">
+  <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.none">
+    <ng-container *jntMinFor="ui.breakpoint.desktop">
+      <jnt-stack data-feature *ngIf="(features | includes : [ui.feature.reload, ui.feature.search]) || !!actionsTemplate"
+                 [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center"
-                 [wrap]="ui.wrap.wrap">
-        <jnt-button data-button [text]="'action.reload' | translate"
-                    [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
-                    [outline]="ui.outline.transparent"
-                    [scheme]="ui.scheme.secondary"
-                    [disabled]="progress.loading"
-                    (click)="load(); reloaded.emit()">
-        </jnt-button>
-        <div>
-          <ng-container *ngTemplateOutlet="tableActionsTemplate"></ng-container>
-          <ng-container *ngTemplateOutlet="tableFiltersTemplate"></ng-container>
-        </div>
-      </jnt-stack>
-
-      <div>
-        <jnt-input *ngIf="features | includes : ui.feature.search"
+                 [justify]="ui.justify.between">
+        <jnt-stack *ngIf="(features | includes : ui.feature.reload) || !!actionsTemplate"
+                   [orientation]="ui.orientation.horizontal"
+                   [align]="ui.align.center">
+          <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
+                      [text]="'action.reload' | translate"
+                      [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
+                      [outline]="ui.outline.transparent"
+                      [disabled]="progress.loading"
+                      (click)="load(); reloaded.emit()">
+          </jnt-button>
+          <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+        </jnt-stack>
+        <jnt-input data-search *ngIf="features | includes : ui.feature.search"
                    formControlName="q"
                    [icon]="ui.icons.search"
+                   [features]="[ui.feature.allowEmpty]"
                    [placeholder]="'label.search' | translate">
         </jnt-input>
-      </div>
+      </jnt-stack>
 
-    </jnt-stack>
+      <div data-filters *ngIf="!!filtersTemplate">
+        <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+      </div>
+    </ng-container>
 
     <jnt-stack [align]="ui.align.stretch">
-      <div data-table>
+      <div *jntMinFor="ui.breakpoint.desktop" data-table>
         <table>
           <div data-spinner *ngIf="source.length && progress.loading">
             <jnt-spinner [size]="ui.size.large"></jnt-spinner>
@@ -39,15 +39,18 @@
 
           <thead>
           <tr>
-            <th *ngIf="!!tableRowActionsTemplate"></th>
+            <th data-actions *ngIf="!!rowActionsTemplate"></th>
             <th *ngFor="let column of columns"
-                [class.sortable]="!!column.sort"
-                (click)="column.sort ? sorting(column.sort) : null">
-        <span>
-          {{column.title}}
-          <i *ngIf="!!orderBy.value && (orderBy.value === '-' + column.sort || orderBy.value === column.sort)"
-             [innerHTML]="(orderBy.value === column.sort) ? '&#8593;' : '&#8595;'"></i>
-        </span>
+                [attr.data-sortable]="!!column.orderBy"
+                [style.text-align]="column.align"
+                [style.width]="column.width"
+                (click)="column.orderBy ? sorting(column.orderBy) : null">
+              <span>
+                {{column.title}}
+                <i *ngIf="!!orderByControl.value && (orderByControl.value === '-' + column.orderBy
+                    || orderByControl.value === column.orderBy)"
+                   [innerHTML]="(orderByControl.value === column.orderBy) ? '&#8593;' : '&#8595;'"></i>
+              </span>
             </th>
           </tr>
           </thead>
@@ -55,36 +58,42 @@
           <tbody>
           <ng-container *ngIf="source.length; else noDataTemplate">
             <tr *ngFor="let row of source; let i = index" [class.even]="!(i % 2)">
-              <td *ngIf="!!tableRowActionsTemplate" data-action>
+              <td *ngIf="!!rowActionsTemplate" data-actions>
                 <jnt-button data-trigger
                             [outline]="ui.outline.transparent"
                             [icon]="ui.icons.actions"
                             (attached)="popover = $event"
                             [jntPopover]="{
+                              context: 'table-row-action',
                               contentTemplate: dropdownTemplate,
-                              trigger: ui.trigger.click
+                              behaviour: ui.behaviour.dropdown,
+                              trigger: ui.trigger.click,
+                              padding: ui.gutter.small,
+                              minWidth: '150px'
                             }">
                 </jnt-button>
                 <ng-template #dropdownTemplate>
-                  <ng-container *ngTemplateOutlet="tableRowActionsTemplate;context: {row: row, hide: hideActions.bind(this)}"></ng-container>
+                  <ng-container *ngTemplateOutlet="rowActionsTemplate;
+                    context: {row: row, hide: hideActions.bind(this)}">
+                  </ng-container>
                 </ng-template>
               </td>
               <td *ngFor="let column of columns">
-                <ng-container *ngTemplateOutlet="column.tableCellTemplate;context:row"></ng-container>
+                <ng-container *ngTemplateOutlet="column.tableCellTemplate; context: row"></ng-container>
               </td>
             </tr>
           </ng-container>
           <ng-template #noDataTemplate>
             <ng-container *ngIf="!progress.loading; else skeletonTemplate">
               <tr data-nodata>
-                <td [attr.colspan]="!!tableRowActionsTemplate ? columns.length + 1 : columns.length">
+                <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
                   <jnt-icon [icon]="ui.icons.neutral"></jnt-icon>
                 </td>
               </tr>
             </ng-container>
             <ng-template #skeletonTemplate>
               <tr data-loading>
-                <td [attr.colspan]="!!tableRowActionsTemplate ? columns.length + 1 : columns.length">
+                <td [attr.colspan]="!!rowActionsTemplate ? columns.length + 1 : columns.length">
                   <jnt-skeleton [lines]="4"></jnt-skeleton>
                 </td>
               </tr>
@@ -94,10 +103,73 @@
         </table>
       </div>
 
-      <ng-container *ngIf="pagesCount > 1">
+      <jnt-stack *jntMaxFor="ui.breakpoint.tablet" [align]="ui.align.stretch">
+        <jnt-stack data-feature [align]="ui.align.stretch">
+          <jnt-stack *ngIf="(features | includes : ui.feature.reload) || !!actionsTemplate"
+                     [orientation]="ui.orientation.horizontal" [wrap]="ui.wrap.wrap">
+            <jnt-button data-button *ngIf="features | includes : ui.feature.reload"
+                        [text]="'action.reload' | translate"
+                        [icon]="progress.loading ? ui.icons.animated.reload : ui.icons.reload"
+                        [outline]="ui.outline.transparent"
+                        [disabled]="progress.loading"
+                        (click)="load(); reloaded.emit()">
+            </jnt-button>
+            <jnt-stack *ngIf="!!actionsTemplate" [orientation]="ui.orientation.horizontal" [wrap]="ui.wrap.wrap">
+              <ng-container *ngTemplateOutlet="actionsTemplate"></ng-container>
+            </jnt-stack>
+          </jnt-stack>
+          <jnt-input data-search *ngIf="features | includes : ui.feature.search"
+                     formControlName="q"
+                     [icon]="ui.icons.search"
+                     [features]="[ui.feature.allowEmpty]"
+                     [placeholder]="'label.search' | translate">
+          </jnt-input>
+          <ng-container *ngIf="!!filtersTemplate">
+            <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+          </ng-container>
+        </jnt-stack>
+        <ng-template #noDataCardTemplate>
+          <jnt-stack *ngIf="!progress.loading; else skeletonCardTemplate" [align]="ui.align.center">
+            <jnt-icon data-nodata [icon]="ui.icons.neutral"></jnt-icon>
+          </jnt-stack>
+          <ng-template #skeletonCardTemplate>
+            <ng-container *ngFor="let card of 5 | mockArray">
+              <jnt-skeleton [type]="ui.skeleton.type.card"></jnt-skeleton>
+            </ng-container>
+          </ng-template>
+        </ng-template>
+        <div data-spinner *ngIf="source.length && progress.loading">
+          <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+        </div>
+        <ng-container *ngIf="source.length; else noDataCardTemplate">
+          <jnt-card *ngFor="let row of source; let i = index">
+            <table data-line cellpadding="0" cellspacing="0">
+              <ng-container *ngFor="let column of columns">
+                <tr *ngIf="!!column.tableCellTemplate">
+                  <td>
+                    <b *ngIf="!!column.title">{{column.title}}</b>
+                  </td>
+                  <td>
+                    <ng-container *ngTemplateOutlet="column.tableCellTemplate; context: row"></ng-container>
+                  </td>
+                </tr>
+              </ng-container>
+            </table>
+            <ng-template *ngIf="!!rowActionsTemplate" #cardActionsTemplate let-hide="hide">
+              <ng-container *ngTemplateOutlet="rowActionsTemplate;
+                    context: {row: row, hide: hideActions.bind(this)}">
+              </ng-container>
+            </ng-template>
+          </jnt-card>
+        </ng-container>
+      </jnt-stack>
+
+      <ng-container *ngIf="!!count">
         <div data-pagination>
-          <jnt-pager [pagesCount]="pagesCount" formControlName="page" data-pages></jnt-pager>
-          <jnt-select formControlName="pageSize" [size]="ui.size.small" [allowEmpty]="false">
+          <jnt-pager data-pages formControlName="offset"
+                     [count]="count" [pageSize]="firstControl.value">
+          </jnt-pager>
+          <jnt-select *jntMinFor="ui.breakpoint.desktop" formControlName="first" [size]="ui.size.small">
             <jnt-select-option label="10" key="10"></jnt-select-option>
             <jnt-select-option label="20" key="20"></jnt-select-option>
             <jnt-select-option label="30" key="30"></jnt-select-option>
@@ -106,4 +178,4 @@
       </ng-container>
     </jnt-stack>
   </jnt-stack>
-</form>
+</ng-container>

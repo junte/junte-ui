@@ -1,0 +1,22 @@
+<jnt-form [formGroup]="form">
+  <jnt-stack [align]="ui.align.stretch">
+    <jnt-form-item>
+      <jnt-form-control>
+        <jnt-select formControlName="color"
+                    [optionTemplate]="colorOptionTemplate">
+          <ng-container *ngFor="let i of ui.color | keyvalue">
+            <jnt-select-option [label]="i.key | titlecase" [key]="i.value" [value]="i">
+            </jnt-select-option>
+          </ng-container>
+        </jnt-select>
+        <ng-template #colorOptionTemplate let-color="value">
+          <jnt-stack [orientation]="ui.orientation.horizontal"
+                     [align]="ui.align.center">
+            <jnt-dot class="dot" [color]="color.value"></jnt-dot>
+            {{color.key | titlecase}}
+          </jnt-stack>
+        </ng-template>
+      </jnt-form-control>
+    </jnt-form-item>
+  </jnt-stack>
+</jnt-form>

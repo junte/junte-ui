@@ -1,13 +1,19 @@
-<jnt-stack *ngIf="breadcrumbs?.length"
+<jnt-stack data-breadcrumbs
+           *ngIf="breadcrumbs.length > 1"
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.small"
-           [spacing]="ui.gutter.small"
-           [wrap]="ui.wrap.wrap"
+           [spacing]="ui.gutter.tiny"
+           [wrap]="wrap"
            [align]="ui.align.center">
   <ng-container *ngFor="let crumb of breadcrumbs">
-    <a (click)="router.navigate([crumb.url], {relativeTo: crumb.route})" href="javascript:;">
-      {{crumb.title}}
-    </a>
+    <div data-breadcrumb>
+      <a (click)="go(crumb, $event)"
+         [href]="crumb.route.snapshot | getUrl"
+         [attr.data-disabled]="crumb.disabled"
+         [innerHTML]="crumb.title">
+      </a>
+    </div>
     <jnt-icon [icon]="ui.icons.chevronRight"></jnt-icon>
   </ng-container>
 </jnt-stack>
+<div data-right-fader></div>

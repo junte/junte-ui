@@ -5,10 +5,6 @@ import { delay, mergeMap } from 'rxjs/operators';
 import { PRELOADING_DELAY } from 'src/consts';
 import { loadChildren } from 'src/utils/routing';
 
-export function docsMatcher() {
-  return {consumed: []};
-}
-
 export class DelayedModulePreloading implements PreloadingStrategy {
   preloadedModules: string[] = [];
 
@@ -22,20 +18,21 @@ export class DelayedModulePreloading implements PreloadingStrategy {
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     data: {breadcrumb: 'Home'},
     loadChildren: () => loadChildren(import('../home/home.module')
       .then(m => m.HomeModule))
   },
   {
-    matcher: docsMatcher,
+    path: '',
     data: {breadcrumb: 'Junte UI'},
-    loadChildren: () => loadChildren(import('../docs/docs.module')
-      .then(m => m.DocsModule))
+    loadChildren: () => loadChildren(import('../site/site.module')
+      .then(m => m.SiteModule))
   },
   {
     path: '**',
     redirectTo: '/'
-  },
+  }
 ];
 
 @NgModule({
@@ -43,10 +40,12 @@ const routes: Routes = [
     preloadingStrategy: DelayedModulePreloading,
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled',
-    scrollOffset: [0, 64]
+    scrollOffset: [0, 64],
+    initialNavigation: 'enabled'
   })],
   providers: [DelayedModulePreloading],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+
 }

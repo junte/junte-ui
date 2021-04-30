@@ -1,4 +1,23 @@
-<jnt-stack [align]="ui.align.stretch">
+<div *ngIf="state === ui.state.loading" data-state>
+  <jnt-spinner [size]="ui.size.large"></jnt-spinner>
+</div>
+<div *ngIf="state === ui.state.error" data-state>
+  <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
+</div>
+<div *ngIf="_state.success" [@success]="_state.success" data-state>
+  <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
+</div>
+
+<div data-help *ngIf="!!blockHelpTemplate"
+     [jntPopover]="{
+        contentTemplate: blockHelpTemplate,
+        trigger: ui.trigger.click,
+        position: breakpoint.current !== ui.breakpoint.mobile ? ui.position.right : ui.position.bottom
+     }">
+  <jnt-icon [icon]="ui.icons.question"></jnt-icon>
+</div>
+
+<jnt-stack data-block [align]="ui.align.stretch" [gutter]="spacing">
   <div *ngIf="!!title && !blockHeaderTemplate" data-title>
     {{title}}
   </div>
@@ -7,23 +26,9 @@
     <ng-container *ngTemplateOutlet="blockHeaderTemplate"></ng-container>
   </ng-container>
 
-  <hr *ngIf="!!title || !!blockHeaderTemplate">
-
   <div data-body>
     <ng-content></ng-content>
   </div>
-
-  <div *ngIf="state === blockState.loading" data-loading>
-    <jnt-spinner [size]="ui.size.large"></jnt-spinner>
-  </div>
-  <div *ngIf="state === blockState.error" data-error>
-    <jnt-icon [icon]="ui.icons.sad"></jnt-icon>
-  </div>
-  <div *ngIf="_state.success" [@success]="_state.success" data-success>
-    <jnt-icon [icon]="ui.icons.animated.success"></jnt-icon>
-  </div>
-
-  <hr *ngIf="!!blockFooterTemplate">
 
   <div *ngIf="!!blockFooterTemplate" data-footer>
     <ng-container *ngTemplateOutlet="blockFooterTemplate"></ng-container>

@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DateFnsModule } from 'ngx-date-fns';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
+import { StackModule } from '../../layout/stack/stack.module';
+import { SpinnerModule } from '../../layout/spinner/spinner.module';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
+import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
-import { GanttPipesModule } from './gantt-pipes.module';
-import { GanttLineComponent } from './gantt-line/gantt-line.component';
 import { GanttLinePeriodComponent } from './gantt-line-period/gantt-line-period.component';
+import { GanttLineComponent } from './gantt-line/gantt-line.component';
+import { GanttPipesModule } from './gantt-pipes.module';
 import { GanttComponent } from './gantt.component';
+import { AccordionModule } from '../../navigation/accordion/accordion.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,14 @@ import { GanttComponent } from './gantt.component';
     CommonModule,
     GanttPipesModule,
     ArrayPipesModule,
+    DatePipesModule,
     IconModule,
     SkeletonModule,
+    ResponsiveModule,
     ButtonModule,
-    DateFnsModule
+    AccordionModule,
+    SpinnerModule,
+    StackModule
   ],
   exports: [
     GanttComponent,
@@ -33,17 +40,4 @@ import { GanttComponent } from './gantt.component';
   ]
 })
 export class GanttModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<GanttModule> {
-    return {
-      ngModule: GanttModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

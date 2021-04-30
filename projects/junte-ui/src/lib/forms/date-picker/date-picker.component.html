@@ -1,18 +1,21 @@
-<jnt-form [formGroup]="form">
-  <jnt-stack [orientation]="ui.orientation.horizontal">
+<ng-container [formGroup]="form">
+  <jnt-stack [orientation]="ui.orientation.horizontal" [gutter]="mobile ? ui.gutter.none : ui.gutter.normal">
     <ng-container *ngIf="type === datePickerType.date || type === datePickerType.dateTime">
-      <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
+      <jnt-input *jntMinFor="ui.breakpoint.tablet"
+                 data-input data-date
                  formControlName="date"
                  [placeholder]="placeholder || ''"
                  [jntPopover]="{
                    contentTemplate: calendarTemplate,
                    trigger: ui.trigger.click,
-                   features: [ui.feature.dropdown],
+                   behaviour: ui.behaviour.dropdown,
                    minWidth: '300px'
                  }"
                  (attached)="reference.popover = $event"
                  [icon]="ui.icons.calendar"
-                 [mask]="config.masks.date">
+                 [mask]="config.locale.ui.masks.date"
+                 [width]="ui.width.fluid"
+                 [features]="features">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
@@ -20,35 +23,42 @@
                  [placeholder]="placeholder || ''"
                  [icon]="ui.icons.calendar"
                  (click)="calendarOpened = !calendarOpened"
-                 [mask]="config.masks.date">
+                 [mask]="config.locale.ui.masks.date"
+                 [width]="ui.width.fluid"
+                 [features]="features">
       </jnt-input>
     </ng-container>
 
     <ng-container *ngIf="type === datePickerType.time || type === datePickerType.dateTime">
-      <jnt-input *jntMinFor="ui.breakpoint.tablet" data-input
+      <jnt-input *jntMinFor="ui.breakpoint.tablet"
+                 data-input data-time
                  formControlName="time"
                  [icon]="ui.icons.time"
                  [jntPopover]="{
                    contentTemplate: timeTemplate,
                    trigger: ui.trigger.click,
-                   features: [ui.feature.dropdown],
+                   behaviour: ui.behaviour.dropdown,
+                   features: [ui.feature.smarty],
                    minWidth: '150px'
                  }"
                  (attached)="reference.popover = $event"
-                 [mask]="config.masks.time">
+                 [mask]="config.locale.ui.masks.time + (meridian || '')"
+                 [features]="features">
       </jnt-input>
 
       <jnt-input *jntFor="ui.breakpoint.mobile" data-input
                  formControlName="time"
                  [icon]="ui.icons.time"
-                 (click)="timeOpened = !timeOpened">
+                 (click)="timeOpened = !timeOpened"
+                 [mask]="config.locale.ui.masks.time + (meridian || '')"
+                 [features]="features">
       </jnt-input>
     </ng-container>
   </jnt-stack>
 
   <ng-template #calendarTemplate>
-    <jnt-stack data-calendar-dropdown [align]="ui.align.center">
-      <jnt-calendar data-calendar formControlName="calendar"></jnt-calendar>
+    <jnt-stack data-calendar-dropdown [align]="ui.align.stretch">
+      <jnt-calendar data-calendar [features]="[ui.feature.today]" formControlName="calendar"></jnt-calendar>
     </jnt-stack>
   </ng-template>
 
@@ -56,7 +66,7 @@
     <jnt-stack data-time-dropdown [orientation]="ui.orientation.horizontal"
                [align]="ui.align.center">
 
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small" data-time-col>
         <jnt-button [icon]="ui.icons.chevronUp"
                     [size]="ui.size.small"
                     (click)="hoursControl.setValue(+hoursControl.value + 1)">
@@ -71,7 +81,7 @@
         </jnt-button>
       </jnt-stack>
 
-      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small">
+      <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.small" data-time-col>
         <jnt-button [icon]="ui.icons.chevronUp"
                     [size]="ui.size.small"
                     (click)="minutesControl.setValue(+minutesControl.value + 1)">
@@ -85,6 +95,13 @@
                     (click)="minutesControl.setValue(+minutesControl.value - 1)">
         </jnt-button>
       </jnt-stack>
+
+      <jnt-stack *ngIf="config.locale.dfns.code !== 'ru'"
+                 [align]="ui.align.stretch"
+                 [gutter]="ui.gutter.small" data-time-col>
+        <jnt-button [text]="meridians.am" (click)="meridian = meridians.am"></jnt-button>
+        <jnt-button [text]="meridians.pm" (click)="meridian = meridians.pm"></jnt-button>
+      </jnt-stack>
     </jnt-stack>
   </ng-template>
 
@@ -92,4 +109,4 @@
     <ng-container *ngTemplateOutlet="calendarTemplate"></ng-container>
     <ng-container *ngTemplateOutlet="timeTemplate"></ng-container>
   </ng-container>
-</jnt-form>
+</ng-container>

@@ -1,6 +1,8 @@
-<ng-container *ngIf="externalLink; else internalLinkTemplate">
+<ng-container *ngIf="external; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else emptySourceTemplate">
-    <a data-link [href]="source" [target]="'_' + target">
+    <a data-link [href]="source"
+       [target]="'_' + target"
+       [attr.data-active]="active">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-container>
@@ -12,25 +14,42 @@
 </ng-container>
 
 <ng-template #internalLinkTemplate>
-  <a data-link [routerLink]="source" #link="routerLinkActive" routerLinkActive
-     [routerLinkActiveOptions]="{exact: matching === urlMatching.fullMatch}"
-     [attr.data-active]="link.isActive">
+  <a data-link #linkRef="routerLinkActive" routerLinkActive
+     [attr.data-active]="(!!source && linkRef.isActive) || active"
+     [routerLink]="source"
+     [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
+     [queryParams]="queryParams"
+     [fragment]="fragment">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>
 
+<ng-template #defaultTitleTemplate>
+  <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
+</ng-template>
+
 <ng-template #linkTemplate>
-  <span data-title>
+  <span data-title *ngIf="!!icon || !!title">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
-    <span>{{title}}</span>
+    <span *ngIf="!!contentTemplate; else defaultTitleTemplate">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </span>
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right" [icon]="icon?.icon"></jnt-icon>
   </span>
-  <ng-container *ngIf="badges.length">
+  <div data-empty *ngIf="collapsed && !icon"></div>
+  <ng-container *ngIf="badges.length > 0">
     <jnt-badge data-badge *ngFor="let badge of badges"
+               [attr.data-collapsed]="collapsed"
                [color]="badge.color"
                [value]="badge.value"
                [text]="badge.text"
-               [position]="ui.position.inline">
+               [position]="collapsed ? ui.position.rightTop : ui.position.inline">
     </jnt-badge>
   </ng-container>
+  <jnt-icon *ngIf="(features | includes : ui.feature.dropdown) && !collapsed"
+            [@rotate]="opened ? 'opened' : 'closed'"
+            [attr.data-opened]="opened"
+            [icon]="ui.icons.selectClose" data-toggle>
+  </jnt-icon>
+  <div data-line></div>
 </ng-template>

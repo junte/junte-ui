@@ -36,7 +36,7 @@ export class ForMobileDirective extends DeviceDirective {
   constructor(templateRef: TemplateRef<any>,
               viewContainerRef: ViewContainerRef,
               devices: DeviceService) {
-    super(templateRef, viewContainerRef, devices.isMobile);
+    super(templateRef, viewContainerRef, devices.mobile);
   }
 }
 
@@ -48,7 +48,7 @@ export class ForIOSPlatformDirective extends DeviceDirective {
   constructor(templateRef: TemplateRef<any>,
               viewContainerRef: ViewContainerRef,
               devices: DeviceService) {
-    super(templateRef, viewContainerRef, devices.platform.isIOS);
+    super(templateRef, viewContainerRef, devices.platform.iOS);
   }
 }
 
@@ -60,7 +60,7 @@ export class ForAndroidPlatformDirective extends DeviceDirective {
   constructor(templateRef: TemplateRef<any>,
               viewContainerRef: ViewContainerRef,
               devices: DeviceService) {
-    super(templateRef, viewContainerRef, devices.platform.isAndroid);
+    super(templateRef, viewContainerRef, devices.platform.android);
   }
 }
 
@@ -72,6 +72,6 @@ export class ForDesktopDirective extends DeviceDirective {
   constructor(templateRef: TemplateRef<any>,
               viewContainerRef: ViewContainerRef,
               devices: DeviceService) {
-    super(templateRef, viewContainerRef, devices.isDesktop);
+    super(templateRef, viewContainerRef, devices.desktop);
   }
 }

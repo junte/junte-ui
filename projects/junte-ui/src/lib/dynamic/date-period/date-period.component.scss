@@ -1,66 +1,142 @@
-@import "jnt-variables";
+@import 'jnt-variables';
+@import 'jnt-utils';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 @mixin jnt-date-period($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: flex;
-    flex-direction: column;
+  $defs: (
+    color: $jnt-primary-text-color,
+    bar: (
+      background: $jnt-muted-color
+    ),
+    line: (
+      background: $jnt-primary-color
+    ),
+    progress: (
+      background: $jnt-primary-color
+    ),
+    date: (
+      color: $jnt-primary-text-color
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
   }
 
-  [data-dates] {
-    margin-bottom: $jnt-gutter-tiny;
-    #{$context} [data-date] {
-      font-size: 12px;
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-date-period-host)} {
+    @if $declare {
+      @include reset-default();
       display: flex;
       flex-direction: column;
-      &[data-left] {
-        align-items: flex-start;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-dates] {
+    @if $declare {
+      margin-bottom: $jnt-gutter-tiny;
+    }
+
+    [data-date] {
+      @if $declare {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
       }
+      @if map-has-key($vars, date) {
+        $date: map-get($vars, date);
+        color: map-get($date, color);
+      }
+
+      &[data-left] {
+        @if $declare {
+          align-items: flex-start;
+        }
+      }
+
       &[data-right] {
-        align-items: flex-end;
-        margin-left: auto;
+        @if $declare {
+          align-items: flex-end;
+          margin-left: auto;
+        }
       }
     }
   }
 
-  #{$context} [data-bar] {
-    background-color: $jnt-muted-color;
-    min-height: 3px;
-    height: 3px;
-    border-radius: 1px;
-    box-sizing: border-box;
-    position: relative;
+  #{$context} #{$wrapper} [data-bar] {
+    @if map-has-key($vars, bar) {
+      $bar: map-get($vars, bar);
+      background-color: map-get($bar, background);
+    }
+    @if $declare {
+      min-height: 3px;
+      height: 3px;
+      border-radius: 1px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
     [data-line] {
-      position: absolute;
-      bottom: 0;
-      height: 6px;
-      width: 3px;
-      border-radius: 2px 2px 0 0;
-      background-color: $jnt-primary-color;
-      &[data-left] {
-        left: 0;
+      @if $declare {
+        position: absolute;
+        bottom: 0;
+        height: 6px;
+        width: 3px;
+        border-radius: 2px 2px 0 0;
       }
+      @if map-has-key($vars, line) {
+        $line: map-get($vars, line);
+        background-color: map-get($line, background);
+      }
+
+      &[data-left] {
+        @if $declare {
+          left: 0;
+        }
+      }
+
       &[data-right] {
-        right: 0;
+        @if $declare {
+          right: 0;
+        }
       }
     }
-    [data-progress] {
-      background-color: $jnt-primary-color;
-      height: 100%;
-      border-radius: 0 0 1px 1px;
-      width: 0;
-      max-width: 100%;
 
-      &[data-full] {
-        width: 100%;
+    [data-progress] {
+      @if map-has-key($vars, progress) {
+        $progress: map-get($vars, progress);
+        background-color: map-get($progress, background);
+      }
+      @if $declare {
+        height: 100%;
+        border-radius: 0 0 1px 1px;
+        width: 0;
+        max-width: 100%;
+
+        &[data-full] {
+          width: 100%;
+        }
       }
     }
   }
 
-  #{$context} [data-days] {
-    text-align: center;
-    margin-top: $jnt-gutter-small;
-    font-size: 12px;
+  #{$context} #{$wrapper} [data-days] {
+    @if $declare {
+      text-align: center;
+      margin-top: $jnt-gutter-small;
+      font-size: 12px;
+    }
+    color: map-get($vars, color);
   }
 }
 

@@ -1,101 +1,131 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
 
 @mixin jnt-chart($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: flex;
-    box-shadow: $jnt-shadow-normal;
-    border-radius: $jnt-corner-normal;
-    background-color: $jnt-secondary-background;
+  $defs: (
+    width: null,
+    height: null,
+    fill: null
+  );
+
+  $vars: $passed;
+  $declare: false;
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-chart-host)} {
+    @if $declare {
+      @include reset-default();
+      display: flex;
+    }
   }
 
   #{$context} [data-wrapper] {
-    flex: 1;
+    @if $declare {
+      flex: 1;
+    }
 
     table {
-      border-spacing: 0;
-      width: 100%;
+      @if $declare {
+        border-spacing: 0;
+        width: 100%;
+      }
+
       td, th {
-        text-align: left;
-        vertical-align: middle;
-        padding: 0 $jnt-gutter-small;
-        &:first-child {
-          padding: 0 $jnt-gutter-large;
+        @if $declare {
+          text-align: left;
+          vertical-align: middle;
+          padding: 0 $jnt-gutter-small;
+          &:first-child {
+            padding: 0 $jnt-gutter-large;
+          }
         }
       }
+
       thead {
-        background-color: $jnt-secondary-background;
-        th:first-child {
-          border-top-left-radius: $jnt-corner-normal;
-        }
-        th:last-child {
-          border-top-right-radius: $jnt-corner-normal;
+        @if $declare {
+          background-color: $jnt-secondary-background;
         }
       }
+
       tbody {
         tr {
-          cursor: pointer;
-          position: relative;
-          &:hover, &[selected='true'] {
-            td {
-              background-color: $jnt-purple-light-color;
-              color: $jnt-white-color;
+          @if $declare {
+            cursor: pointer;
+            position: relative;
+            &:hover, &[selected='true'] {
+              td {
+                background-color: $jnt-purple-light-color;
+                color: $jnt-white-color;
+              }
             }
-          }
-          &:not(:last-child) {
-            td:not(:last-child) {
-              border-bottom: 1px solid $jnt-muted-color;
-            }
-          }
-          &:last-child {
-            td:first-child {
-              border-bottom-left-radius: $jnt-corner-normal;
-            }
-          }
-          &[data-nodata] {
-            height: 200px;
-            pointer-events: none;
-            border-bottom: 0;
-            td {
-              vertical-align: middle;
-              text-align: center;
-              [data-icon] {
-                @include jnt-icon((
-                  color: $jnt-muted-color,
-                  size: 80px
-                ), '&');
+            &:not(:last-child) {
+              td:not(:last-child) {
+                border-bottom: 1px solid $jnt-muted-color;
               }
             }
             &:last-child {
-              td:last-child {
-                border-bottom-right-radius: $jnt-corner-normal;
+              td:first-child {
+                border-bottom-left-radius: $jnt-corner-normal;
+              }
+            }
+            &[data-nodata] {
+              height: 200px;
+              pointer-events: none;
+              border-bottom: 0;
+
+              td {
+                vertical-align: middle;
+                text-align: center;
+                padding: $jnt-gutter-normal;
+
+                [data-icon] {
+                  @include jnt-icon((
+                    color: $jnt-muted-color,
+                    size: 80px
+                  ), '&');
+                }
+              }
+
+              &:last-child {
+                td:last-child {
+                  border-bottom-right-radius: $jnt-corner-normal;
+                }
               }
             }
           }
         }
+
         td {
-          background-color: $jnt-primary-background;
-          box-sizing: border-box;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          min-width: 50px;
-          width: 50px;
-          max-width: 100px;
-          text-align: right;
-          user-select: none;
-          &:first-child {
-            text-align: left;
-            min-width: 150px;
-            width: 300px;
-          }
-          &:last-child {
-            color: $jnt-gray-900-color;
-            text-align: center;
-          }
-          [data-content] {
+          @if $declare {
+            background-color: $jnt-primary-background;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             overflow: hidden;
+            min-width: 50px;
+            width: 50px;
+            max-width: 100px;
+            text-align: right;
+            user-select: none;
+            &:first-child {
+              text-align: left;
+              min-width: 150px;
+              width: 300px;
+            }
+            &:last-child {
+              color: $jnt-gray-900-color;
+              text-align: center;
+            }
+            [data-content] {
+              overflow: hidden;
+            }
           }
         }
       }
@@ -103,11 +133,11 @@
   }
 
   #{$context} svg {
-    background-color: $jnt-secondary-background;
-    border-top-right-radius: $jnt-corner-normal;
-    border-bottom-right-radius: $jnt-corner-normal;
-    text {
-      fill: $jnt-white-color;
+    @if $declare {
+      background-color: $jnt-secondary-background;
+      text {
+        fill: $jnt-white-color;
+      }
     }
   }
 }

@@ -11,7 +11,8 @@ import { DotComponent } from '../dot/dot.component';
 })
 export class AvatarComponent {
 
-  @HostBinding('attr.host') readonly host = 'jnt-avatar-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-avatar-host';
 
   ui = UI;
 
@@ -30,7 +31,8 @@ export class AvatarComponent {
       Size.normal,
       Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
   }
 
@@ -40,7 +42,8 @@ export class AvatarComponent {
     default: Shape.circle,
     options: [Shape.circle, Shape.square]
   })
-  @Input() set shape(shape: Shape) {
+  @Input()
+  set shape(shape: Shape) {
     this._shape = shape || Shape.circle;
   }
 
@@ -49,19 +52,29 @@ export class AvatarComponent {
     type: 'string',
     default: 'ui.icons.user',
   })
-  @Input() icon: string = UI.icons.user;
+  @Input()
+  icon: string = UI.icons.user;
 
   @PropertyApi({
-    description: 'Text on avatar',
+    description: 'First char of name on avatar',
     type: 'string'
   })
-  @Input() text: string;
+  @Input()
+  name: string;
+
+  @PropertyApi({
+    description: 'First char of surname on avatar',
+    type: 'string'
+  })
+  @Input()
+  surname: string;
 
   @PropertyApi({
     description: 'Image on avatar',
     type: 'string'
   })
-  @Input() image: string;
+  @Input()
+  image: string;
 
   @ContentChild(DotComponent)
   dot: DotComponent;

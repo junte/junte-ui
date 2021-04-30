@@ -1,11 +1,14 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "layout/app/variables";
-@import "navigation/menu/menu";
-@import "elements/icon/icon";
-@import "forms/button/button";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'navigation/menu/menu';
+@import 'navigation/link/link';
+@import 'elements/icon/icon';
+@import 'forms/button/button';
+@import 'layout/responsive/responsive';
 
-@mixin jnt-app-header($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     position: absolute,
@@ -18,7 +21,7 @@
   $declare: false;
 
   $wrapper: null;
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -27,76 +30,96 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: flex;
-    justify-content: space-between;
-    flex: 0 0 auto;
-    box-sizing: border-box;
+  #{if($context, $context, $jnt-app-header-host)} {
+    @if $declare {
+      display: flex;
+      justify-content: space-between;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+    }
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
     position: map-get($vars, position);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
 
     > [data-menu] {
-      display: flex;
-      align-items: center;
-      @include jnt-menu((
-        top: (
-          item: (
-            color: $jnt-white-color,
-            active: (
-              color: $jnt-white-color,
-              underline: true,
-              border-color: $jnt-white-color,
-            ),
-            icon: (
-              size: $jnt-font-size-normal
-            ),
-            padding: (
-              outer: 0,
-              inner: $jnt-gutter-small,
-            ),
-            hover: (
-              background-color: rgba($jnt-primary-light-color, .5),
-            ),
-          ),
-        ),
-      ));
+      @if $declare {
+        display: flex;
+        align-items: center;
+      }
     }
+
+    @include min-for-desktop() {
+      @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+    }
+
+    @include jnt-menu((
+      top: (
+        item: (
+          corner: $jnt-corner-small,
+          color: $jnt-white-color,
+          active: (
+            color: $jnt-white-color,
+            underline: true,
+            underline-color: $jnt-white-color,
+            background-color: transparent,
+            shadow: none
+          ),
+          icon: (
+            color: $jnt-white-color
+          ),
+          padding: $jnt-gutter-small,
+          hover: (
+            color: $jnt-white-color,
+            background-color: rgba($jnt-primary-light-color, .5)
+          )
+        )
+      )
+    ));
   }
 
   hr {
-    width: 100%;
-    border: none;
-    height: 1px;
-    background: $jnt-secondary-color;
+    @if $declare {
+      width: 100%;
+      border: none;
+      height: 1px;
+      background: $jnt-secondary-background;
+    }
   }
 
   #{$context} #{$wrapper} [data-logo] {
-    display: flex;
-    align-items: center;
-    margin-right: $jnt-gutter-huge;
-    & > * {
-      display: block;
+    @if $declare {
+      display: flex;
+      align-items: center;
+      margin-right: $jnt-gutter-huge;
+      & > * {
+        display: block;
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-burger] {
-    @include jnt-button((schemes: (primary: (color: $jnt-white-color,
-      hover-color: $jnt-white-color)), icon: (size: 24px)), '&');
+    @if $declare {
+      @include jnt-button((color: $jnt-white-color,
+        hover-color: $jnt-white-color, icon: (size: 40px)), '&');
+    }
   }
 
   #{$context} #{$wrapper} [data-actions] {
-    margin-left: auto;
+    @if $declare {
+      margin-left: auto;
+    }
   }
 
   #{$context} #{$wrapper} [data-content] {
-    display: flex;
-    align-items: center;
+    @if $declare {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 

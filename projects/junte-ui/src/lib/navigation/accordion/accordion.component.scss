@@ -1,55 +1,115 @@
-@import "jnt-variables";
-@import "elements/icon/icon";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'elements/icon/icon';
+
+$accordion-marker-height: 2px;
 
 @mixin jnt-accordion($passed: (), $context: null, $strategy: 'changes') {
 
-  :host, #{$context} {
-    display: block;
-    background-color: $jnt-primary-background;
-    padding: $jnt-gutter-normal;
-    border-radius: $jnt-corner-normal;
-    border: 1px solid $jnt-page-background;
+  $defs: (
+    background: $jnt-primary-background,
+    padding: $jnt-gutter-normal,
+    corner: $jnt-corner-normal,
+    border: 1px solid $jnt-page-background
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
   }
 
-  #{$context} [data-section] {
-    [data-title] {
-      padding: $jnt-gutter-small $jnt-gutter-normal;
-      background-color: $jnt-secondary-dark-color;
-      border-radius: $jnt-corner-normal;
-      color: $jnt-primary-text-color;
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-accordion-host)} {
+    @if $declare {
+      @include reset-default();
+      display: block;
+    }
+
+    background-color: map-get($vars, background);
+    padding: map-get($vars, padding);
+    border-radius: map-get($vars, corner);
+    border: map-get($vars, border);
+  }
+
+  #{$context} #{$wrapper} [data-title] {
+    @if $declare {
+      border-bottom: $accordion-marker-height solid $jnt-secondary-background;
+      padding: ($jnt-gutter-small + $accordion-marker-height) 0;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
       display: flex;
       align-items: center;
-      cursor: pointer;
-      line-height: 1.6;
-      user-select: none;
-      &[active='true'] {
-        background-color: $jnt-primary-light-color;
-        color: $jnt-white-color;
-      }
-      &:hover {
-        &[active='false'] {
-          color: $jnt-primary-light-color;
-        }
-        box-shadow: inset $jnt-outline-shadow-small $jnt-secondary-dark-color;
+      color: inherit;
+
+      [data-chevron] {
+        @include jnt-icon((size: 24px), '&');
+        margin-right: $jnt-gutter-small;
       }
 
-      &:focus {
-        outline: 0;
-        box-shadow: inset $jnt-outline-shadow-small $jnt-primary-light-color;
+      &[active='true'] {
+        border-color: $jnt-primary-light-color;
+
+        [data-chevron] {
+          @include jnt-icon((color: $jnt-primary-light-color), '&');
+        }
       }
-      span {
-        margin: 0 $jnt-gutter-tiny;
+
+      &:hover {
+        &[active='false'] {
+          [data-chevron] {
+            @include jnt-icon((color: $jnt-primary-light-color), '&');
+          }
+        }
+      }
+
+      &[data-with-template='false'] {
+        color: $jnt-primary-text-color;
+        line-height: 1.6;
+
+        &[active='true'] {
+          color: $jnt-primary-light-color;
+        }
+
+        &:hover {
+          &[active='false'] {
+            color: $jnt-primary-light-color;
+          }
+        }
+
+        span {
+          @if $declare {
+            margin: 0 $jnt-gutter-tiny;
+          }
+        }
       }
     }
+
     [data-state] {
-      margin-left: auto;
-      line-height: 1;
-      [data-warning] {
-        @include jnt-icon((color: $jnt-fail-color, size: $jnt-font-size-normal), '&');
+      @if $declare {
+        margin-left: auto;
+        line-height: 1;
+
+        [data-warning] {
+          @include jnt-icon((color: $jnt-fail-color, size: 24px), '&');
+        }
       }
     }
-    [data-content] {
+  }
+
+  #{$context} #{$wrapper} [data-content] {
+    @if $declare {
       padding: $jnt-gutter-normal 0;
+      overflow: hidden;
     }
   }
 }

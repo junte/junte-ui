@@ -1,23 +1,25 @@
-@import "jnt-variables";
-@import "jnt-functions";
-@import "elements/label/label";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'elements/label/label';
+@import 'layout/app/variables';
 
-@mixin jnt-lp-slide($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-lp-slide($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     padding: (
       top: $jnt-gutter-large,
       right: 0,
       bottom: $jnt-gutter-huge,
-      left: 0,
-    ),
+      left: 0
+    )
   );
 
   $vars: $passed;
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -26,10 +28,12 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    box-sizing: border-box;
-    position: relative;
+  #{if($context, $context, $jnt-lp-slide-host)} {
+    @if $declare {
+      display: block;
+      box-sizing: border-box;
+      position: relative;
+    }
     @if map-has-key($vars, padding) {
       $space: map-get($vars, padding);
       padding-top: map-get($space, top);
@@ -39,7 +43,16 @@
     }
 
     &[data-height='default'] {
-      height: auto !important;
+      @if $declare {
+        height: auto !important;
+      }
+    }
+
+    &[data-with-header="true"] {
+      padding-top: $lp-header-height;
+      @include max-for-tablet() {
+        padding-top: $lp-header-height-mobile;
+      }
     }
   }
 }

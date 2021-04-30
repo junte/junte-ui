@@ -1,13 +1,20 @@
-@import "jnt-variables";
-@import "layout/app/variables";
-@import "layout/responsive/responsive";
-@import "layout/app/body/app-body";
-@import "layout/app/sub-header/app-sub-header";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-utils';
+@import 'jnt-hosts';
+@import 'layout/app/variables';
+@import 'layout/responsive/responsive';
+@import 'layout/app/body/app-body';
 
-@mixin jnt-app-content($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-app-content($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    padding: $app-header-height 0 0 0,
+    padding: (
+      top: $app-header-height,
+      left: 0,
+      bottom: 0,
+      right: 0
+    ),
     background: $jnt-page-background
   );
 
@@ -15,7 +22,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -24,41 +31,53 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    flex: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
+  #{if($context, $context, $jnt-app-content-host)} {
+    @if $declare {
+      display: block;
+      flex: auto;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+
+      &[data-windows='true'] {
+        @include jnt-scrollbar();
+      }
+    }
+    @if map-has-key($vars, padding) {
+      $padding: map-get($vars, padding);
+      padding-top: map-get($padding, top);
+      padding-left: map-get($padding, left);
+      padding-right: map-get($padding, right);
+      padding-bottom: map-get($padding, bottom);
+    }
     background-color: map-get($vars, background);
-    z-index: 1;
-    padding: map-get($vars, padding);
 
     &[data-with-aside='full'] {
-      padding-left: $app-aside-width;
+      @if $declare {
+        padding-left: $app-aside-width;
+      }
     }
 
     &[data-with-aside='collapsed'] {
-      padding-left: $app-aside-collapsed-width;
+      @if $declare {
+        padding-left: $app-aside-collapsed-width;
+      }
     }
 
-    &[data-with-aside='false'] {
-      @include jnt-app-sub-header((display-burger: false));
+    @include max-for-tablet() {
+      @if $declare {
+        padding-left: 0 !important;
+        &[data-with-breadcrumbs='false'][data-with-aside='true'] {
+          margin-top: $app-aside-burger-height;
+        }
+      }
     }
 
-    @include for-mobile() {
-      padding-left: 0 !important;
-    }
+    @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
 
-    &[data-with-sub-header="false"] {
-      @include jnt-app-body((height: calc(100vh - #{$app-footer-height} - #{$app-header-height})));
-    }
-
-    &[data-with-footer="false"] {
-      @include jnt-app-body((height: calc(100vh - #{$app-sub-header-height} - #{$app-header-height})));
-    }
-    &[data-with-sub-header="false"][data-with-footer="false"] {
+    &[data-with-footer='false'] {
       @include jnt-app-body((height: calc(100vh - #{$app-header-height})));
     }
   }

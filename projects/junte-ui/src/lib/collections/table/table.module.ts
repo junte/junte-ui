@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { MenuModule } from '../../navigation/menu/menu.module';
+import { ResponsiveModule } from '../../layout/responsive/responsive.module';
+import { CardModule } from '../../layout/card/card.module';
 import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
@@ -13,7 +15,7 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PagerModule } from '../../navigation/pager/pager.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
-import { TableColumnComponent } from './column/table-column.component';
+import { TableColumnComponent } from './table-column';
 import { TableComponent } from './table.component';
 
 @NgModule({
@@ -31,7 +33,10 @@ import { TableComponent } from './table.component';
     ArrayPipesModule,
     SelectModule,
     TranslateModule,
-    PopoverModule
+    PopoverModule,
+    CardModule,
+    ResponsiveModule,
+    MenuModule
   ],
   declarations: [
     TableComponent,
@@ -47,17 +52,4 @@ import { TableComponent } from './table.component';
   ]
 })
 export class TableModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<TableModule> {
-    return {
-      ngModule: TableModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

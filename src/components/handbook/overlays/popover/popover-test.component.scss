@@ -1,0 +1,25 @@
+@import '../../component';
+@import 'jnt-variables';
+
+:host-context([theme='dark']) {
+  [data-content] {
+    color: $jnt-white-color;
+  }
+}
+
+[placements] {
+  width: 50%;
+  align-self: center;
+
+  [stack] {
+    jnt-button:last-of-type {
+      margin: 0;
+    }
+  }
+}
+
+[resources] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

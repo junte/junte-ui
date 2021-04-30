@@ -1,0 +1,69 @@
+@import '../../component';
+@import 'jnt-variables';
+@import 'layout/responsive';
+@import 'forms/switcher';
+
+[period] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $jnt-gutter-tiny;
+  text-align: center;
+  border-radius: $jnt-corner-large;
+  background-color: $jnt-primary-color;
+  color: $jnt-white-color;
+  height: 40px;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include for-mobile() {
+    height: 100%;
+  }
+
+  &[accepting='true'] {
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  &[accepted='true'] {
+    background-color: $jnt-success-color;
+  }
+
+  &[declined='true'] {
+    background-color: $jnt-fail-color;
+  }
+
+  &[used='true'] {
+    background-color: $jnt-gray-600-color;
+  }
+
+  &[short='true'] {
+    [label] {
+      display: none;
+    }
+  }
+
+  &[over-from='true'] {
+    border-top-left-radius: 0;
+    @include min-for-tablet() {
+      border-bottom-left-radius: 0;
+    }
+    @include for-mobile() {
+      border-top-right-radius: 0;
+    }
+  }
+
+  &[over-to='true'] {
+    border-bottom-right-radius: 0;
+    @include min-for-tablet() {
+      border-top-right-radius: 0;
+    }
+    @include for-mobile() {
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &[self-expense='true'] {
+    border: 1px dashed $jnt-gray-800-color;
+  }
+}

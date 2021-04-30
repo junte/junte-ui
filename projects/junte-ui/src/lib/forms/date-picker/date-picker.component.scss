@@ -1,9 +1,11 @@
 @import 'jnt-variables';
+@import 'jnt-hosts';
 @import 'layout/responsive/responsive';
 @import 'overlays/popover/popover';
+@import 'forms/calendar/calendar';
 @import 'forms/input/input';
 
-@mixin jnt-date-picker($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-date-picker($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: ();
 
@@ -11,7 +13,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -20,19 +22,29 @@
     $declare: true;
   }
 
-  :host, #{$context} {
-    display: block;
-    @include for-mobile() {
-      border: 1px solid $jnt-control-border-color;
-      border-radius: $jnt-corner-small;
-      &[calendar-opened='true'] {
-        #{$wrapper} [data-calendar-dropdown] {
-          display: block;
-        }
+  #{if($context, $context, $jnt-date-picker-host)} {
+    @if $declare {
+      display: inline-block;
+      min-width: 100px;
+      &[data-width='fluid'] {
+        display: block;
+        flex: 1;
       }
-      &[time-opened='true'] {
-        #{$wrapper} [data-time-dropdown] {
-          display: block;
+    }
+    @include for-mobile() {
+      @if $declare {
+        border: 1px solid $jnt-control-border-color;
+        border-radius: $jnt-corner-small;
+        background-color: $jnt-control-background;
+        &[calendar-opened='true'] {
+          #{$wrapper} [data-calendar-dropdown] {
+            display: block;
+          }
+        }
+        &[time-opened='true'] {
+          #{$wrapper} [data-time-dropdown] {
+            display: flex;
+          }
         }
       }
     }
@@ -40,50 +52,81 @@
 
   @include for-mobile() {
     #{$context} #{$wrapper} [data-input] {
-      @include jnt-input((
-        scheme: (
-          normal: (
-            border-color: transparent,
-            hover: (
-              border-color: transparent
-            ),
-            focus: (
+      @if $declare {
+        flex: 1;
+        @include jnt-input((
+          scheme: (
+            normal: (
               border-color: transparent,
-              shadow: none
-            ),
+              hover: (
+                border-color: transparent
+              ),
+              focus: (
+                border-color: transparent,
+                shadow: none
+              )
+            )
           )
-        )
-      ), '&');
+        ), '&');
+      }
+    }
+  }
+
+  #{$context} #{$wrapper} [data-input] {
+    @if $declare {
+      @include min-for-tablet() {
+        &[data-date] {
+          flex: 1 1 auto;
+        }
+
+        &[data-time] {
+          flex: 0 4 auto;
+          min-width: 100px;
+        }
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-calendar-dropdown] {
-    flex: 1;
-    padding: $jnt-gutter-normal;
+    @if $declare {
+      flex: 1;
+    }
+
+    [data-calendar] {
+      @include jnt-calendar((layout: auto), '&');
+    }
 
     @include for-mobile() {
-      display: none;
+      @if $declare {
+        padding: $jnt-gutter-normal;
+        display: none;
+      }
     }
   }
 
   #{$context} #{$wrapper} [data-time-dropdown] {
-    width: 150px;
-    padding: $jnt-gutter-normal;
+    @if $declare {
+      padding: $jnt-gutter-normal;
 
-    @include for-mobile() {
-      display: none;
-    }
+      [data-time-col] {
+        width: 70px;
+      }
 
-    @include jnt-input((
-      sizes: (
-        small: (
-          chevron: 0
-        ),
-        normal: (
-          chevron: 0
+      @include for-mobile() {
+        display: none;
+      }
+
+      @include jnt-input((
+        sizes: (
+          small: (
+            chevron: 0
+          ),
+          normal: (
+            chevron: 0
+          )
         )
-      )
-    ), null, false, 'merge');
+      ));
+    }
   }
 }
 

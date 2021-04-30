@@ -1,13 +1,15 @@
-import { Component, ContentChildren, forwardRef, HostBinding, HostListener, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, forwardRef, HostBinding, HostListener, Input, Output, QueryList } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
-import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
 import { Orientation } from '../../core/enums/orientation';
 import { UI } from '../../core/enums/ui';
+import { Width } from '../../core/enums/width';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
 import { SelectMode } from '../select/enums';
 import { Key } from '../select/model';
 import { SwitcherOptionComponent } from './switcher-option.component';
@@ -20,18 +22,22 @@ import { SwitcherOptionComponent } from './switcher-option.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitcherComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 export class SwitcherComponent implements ControlValueAccessor {
 
-  @HostBinding('attr.host') readonly host = 'jnt-switcher-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-switcher-host';
 
   ui = UI;
-  selectMode = SelectMode;
-  feature = Feature;
 
-  _orientation: Orientation = Orientation.horizontal;
+  private _features: Feature[] = [];
+  private _orientation: Orientation = Orientation.horizontal;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
 
   @PropertyApi({
     description: 'Switcher orientation ',
@@ -45,7 +51,7 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   get orientation() {
-    return this.breakpoint.current === Breakpoint.mobile ? Orientation.vertical : this._orientation;
+    return this._orientation;
   }
 
   @PropertyApi({
@@ -68,8 +74,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   _mode: SelectMode = SelectMode.single;
 
   @PropertyApi({
-    description: 'Select mode',
-    path: 'ui.select',
+    description: 'Switcher mode',
+    path: 'ui.select.mode',
     default: SelectMode.single,
     options: [SelectMode.single, SelectMode.multiple]
   })
@@ -82,29 +88,19 @@ export class SwitcherComponent implements ControlValueAccessor {
   }
 
   @PropertyApi({
-    description: 'Select allow empty',
-    type: 'boolean',
-    default: 'true'
-  })
-  @HostBinding('attr.data-allow-empty')
-  @Input() allowEmpty = true;
-
-  @PropertyApi({
-    description: 'Add badge with the number of selected items; Select all item in switcher',
+    description: 'Add badge with the number of selected items; Select all item in switcher; Allow empty value in switcher; Adapted on mobile; Display marks',
     path: 'ui.feature',
-    options: [Feature.badge, Feature.selectAll]
+    default: '[ui.feature.adapted]',
+    options: [Feature.badge, Feature.selectAll, Feature.allowEmpty, Feature.adapted, Feature.marks]
   })
-  @HostBinding('attr.data-features')
   @Input()
-  features: Feature[] = [];
+  set features(features: Feature[]) {
+    this._features = features || [];
+  }
 
-  @PropertyApi({
-    description: 'Display marks',
-    type: 'boolean',
-    default: 'true'
-  })
-  @HostBinding('attr.data-allow-empty')
-  @Input() marks = false;
+  get features() {
+    return this._features;
+  }
 
   @PropertyApi({
     description: 'Display skeleton',
@@ -121,11 +117,27 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Input()
   loading = false;
 
+  @PropertyApi({
+    description: 'Input width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default, Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
+  }
+
+  @PropertyApi({
+    description: 'Selected value',
+    type: '(selected)='
+  })
+  @Output('selected')
+  updated = new EventEmitter<any>();
+
   @ContentChildren(SwitcherOptionComponent)
   options: QueryList<SwitcherOptionComponent>;
 
   selected: any[] = [];
-
   version = 0;
 
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
@@ -135,7 +147,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private logger: NGXLogger,
-              private breakpoint: BreakpointService) {
+              public breakpoint: BreakpointService,
+              public device: DeviceService) {
   }
 
   writeValue(value: any | any[]) {
@@ -143,7 +156,8 @@ export class SwitcherComponent implements ControlValueAccessor {
       throw new Error('Wrong value form multiple select mode');
     }
 
-    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
+    this.selected = (this.mode === SelectMode.single
+      ? ((value ?? null) !== null ? [value] : []) : value) as Key[];
   }
 
   setDisabledState(disabled: boolean) {
@@ -158,15 +172,17 @@ export class SwitcherComponent implements ControlValueAccessor {
           const same = !!this.keyField
             ? current[this.keyField] === value[this.keyField]
             : isEqual(current, value);
-          if (same && !this.allowEmpty) {
+          if (same && !this.features.includes(Feature.allowEmpty)) {
             return;
           }
 
           this.selected = same || value === null ? [] : [value];
           this.onChange(same ? null : value);
+          this.updated.emit(same ? null : value);
         } else {
           this.selected = value === null ? [] : [value];
           this.onChange(value);
+          this.updated.emit(value);
         }
 
         this.version++;
@@ -182,6 +198,7 @@ export class SwitcherComponent implements ControlValueAccessor {
         }
         this.version++;
         this.onChange(this.selected);
+        this.updated.emit(this.selected);
         break;
     }
   }
@@ -190,5 +207,6 @@ export class SwitcherComponent implements ControlValueAccessor {
     this.options.forEach(o => this.selected.push(o.value));
     this.version++;
     this.onChange(this.selected);
+    this.updated.emit(this.selected);
   }
 }

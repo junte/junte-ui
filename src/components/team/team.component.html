@@ -1,8 +1,10 @@
 <jnt-container>
 
+  <a [routerLink]="['home']">home</a>
+
   <p>We love❤️ everybody who helps us create better products.
     Please offer your merge requests
-    <jnt-link source="https://gitlab.com/junte/junte-ui/merge_requests"
+    <jnt-link source="//gitlab.com/junte/junte-ui/merge_requests"
               [icon]="ui.icons.gitlab"
               [outline]="ui.outline.ghost"
               target="_blank"
@@ -72,4 +74,60 @@
       </jnt-stack>
     </jnt-col>
   </jnt-row>
+  <p>You can find us here:</p>
+  <jnt-menu
+    [orientation]="ui.orientation.horizontal"
+    [style]="ui.menu.style.default"
+    [collapsed]="true">
+    <jnt-menu-item
+      target="_blank"
+      link="https://junte.team"
+      [icon]="localUi.icons.social.junteTeam">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://www.facebook.com/junte.team"
+      [icon]="localUi.icons.social.facebook">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://www.instagram.com/junte.team/"
+      [icon]="localUi.icons.social.instagram">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://twitter.com/JunteTeam"
+      [icon]="localUi.icons.social.twitter">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://www.youtube.com/channel/UCwdcdfD2Q-vK0SL4oWKiMPg/playlists"
+      [icon]="localUi.icons.social.youtube">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://www.linkedin.com/company/junte/"
+      [icon]="localUi.icons.social.linkedin">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://vk.com/junte"
+      [icon]="localUi.icons.social.vk">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://gitlab.com/junte"
+      [icon]="localUi.icons.social.gitlab">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://github.com/Junte"
+      [icon]="localUi.icons.social.github">
+    </jnt-menu-item>
+    <jnt-menu-item
+      target="_blank"
+      link="https://www.figma.com/@junte"
+      [icon]="localUi.icons.social.figma">
+    </jnt-menu-item>
+  </jnt-menu>
 </jnt-container>

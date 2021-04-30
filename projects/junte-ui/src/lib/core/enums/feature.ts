@@ -4,6 +4,15 @@ export enum Feature {
   badge = 'badge',
   dropdown = 'dropdown',
   selectAll = 'selectAll',
-  clear = 'clear',
-  search = 'search'
+  allowEmpty = 'allowEmpty',
+  search = 'search',
+  smarty = 'smarty',
+  reload = 'reload',
+  multiplex = 'multiplex',
+  today = 'today',
+  marks = 'marks',
+  multiline = 'multiline',
+  pulse = 'pulse',
+  copy = 'copy',
+  pageTitle = 'page-title',
 }

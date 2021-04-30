@@ -1,48 +1,57 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { OtherModule } from './other/other.module';
 import { CollectionsModule } from './collections/collections.module';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from './config';
-import { SelectableModule } from './core/directives/selectable';
+import { JUNTE_DEFAULT_CONFIG, JunteUIConfig } from './config';
 import { ArrayPipesModule } from './core/pipes/array-pipes.module';
 import { ColorPipesModule } from './core/pipes/color-pipes.module';
 import { TextPipesModule } from './core/pipes/text-pipes.module';
+import deepMerge from './core/utils/merge';
 import { DynamicModule } from './dynamic/dynamic.module';
 import { ElementsModule } from './elements/elements.module';
-import { UiFormsModule } from './forms/forms.module';
+import { FormsModule } from './forms/forms.module';
 import { LayoutModule } from './layout/layout.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { OverlaysModule } from './overlays/overlays.module';
 import { SharedModule } from './shared/shared.module';
 
+export let CONFIG_TOKEN = new InjectionToken('JunteUIModuleConfig');
+
+export function configFactory(config: JunteUIConfig) {
+  return deepMerge(JUNTE_DEFAULT_CONFIG, config);
+}
+
 @NgModule({
   exports: [
     SharedModule,
-
+    OtherModule,
     LayoutModule,
     NavigationModule,
     ElementsModule,
-    UiFormsModule,
+    FormsModule,
     CollectionsModule,
     OverlaysModule,
     DynamicModule,
     ArrayPipesModule,
     ColorPipesModule,
-    TextPipesModule,
-    SelectableModule
+    TextPipesModule
   ]
 })
 export class JunteUiModule {
 
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<JunteUiModule> {
+  static forRoot(config: JunteUIConfig = {}): ModuleWithProviders<JunteUiModule> {
     return {
       ngModule: JunteUiModule,
       providers: [
         {
-          provide: JunteUIModuleConfig,
+          provide: CONFIG_TOKEN,
           useValue: config
         },
-        ...JUNTE_MODULE_PROVIDES
+        {
+          provide: JunteUIConfig,
+          useFactory: configFactory,
+          deps: [CONFIG_TOKEN]
+        }
       ]
     };
   }
-
 }

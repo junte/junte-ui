@@ -1,11 +1,12 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
 $type-vertical: 'vertical';
 $type-horizontal: 'horizontal';
 
 @mixin stack-gutters($property, $gutter, $wrapper) {
-  & > #{$wrapper} :not(:last-child):not(router-outlet) {
+  & > #{$wrapper} :not(:last-child):not([data-hidden='true']):not(router-outlet) {
     #{$property}: $gutter;
   }
 }
@@ -13,23 +14,23 @@ $type-horizontal: 'horizontal';
 @mixin stack-spacing($gutter, $wrapper) {
   & {
     margin-top: -$gutter;
+
     > #{$wrapper}:not(router-outlet) {
       margin-top: $gutter;
     }
   }
 }
 
-@mixin jnt-stack($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-stack($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     gutters: (
-      none: $jnt-gutter-none,
       tiny: $jnt-gutter-tiny,
       small: $jnt-gutter-small,
       normal: $jnt-gutter-normal,
       big: $jnt-gutter-big,
       large: $jnt-gutter-large,
-      huge: $jnt-gutter-huge,
+      huge: $jnt-gutter-huge
     ),
     padding: null,
     border: null,
@@ -41,7 +42,7 @@ $type-horizontal: 'horizontal';
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -50,7 +51,7 @@ $type-horizontal: 'horizontal';
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-stack-host)} {
     @if $declare {
       display: flex;
       text-align: left;
@@ -99,17 +100,23 @@ $type-horizontal: 'horizontal';
       &[data-wrap='reverse'] {
         flex-wrap: wrap-reverse;
       }
+
+      &[data-orientation = '#{$type-vertical}'] {
+        flex-direction: column;
+      }
+      &[data-orientation = '#{$type-horizontal}'] {
+        flex-direction: row;
+      }
     }
     @if map-has-key($vars, gutters) {
       $gutters: map-get($vars, gutters);
       @each $gutter, $map in $gutters {
         &[data-gutter = '#{$gutter}'] {
           &[data-orientation = '#{$type-vertical}'] {
-            flex-direction: column;
             @include stack-gutters(margin-bottom, $map, $wrapper);
           }
+
           &[data-orientation = '#{$type-horizontal}'] {
-            flex-direction: row;
             @include stack-gutters(margin-right, $map, $wrapper);
           }
         }
@@ -117,6 +124,9 @@ $type-horizontal: 'horizontal';
           &[data-orientation = '#{$type-horizontal}'] {
             @include stack-spacing($map, $wrapper);
           }
+        }
+        &[data-padding='#{$gutter}'] {
+          padding: $map;
         }
       }
     }

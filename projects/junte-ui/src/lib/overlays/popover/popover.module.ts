@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { PopoverComponent } from './popover.component';
 import { PopoverDirective } from './popover.directive';
 
@@ -21,17 +20,4 @@ import { PopoverDirective } from './popover.directive';
   ]
 })
 export class PopoverModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<PopoverModule> {
-    return {
-      ngModule: PopoverModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

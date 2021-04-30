@@ -1,0 +1,32 @@
+<label *ngIf="!imagePosition.width && !imagePosition.height">
+  <jnt-icon [icon]="ui.icons.download"></jnt-icon>
+</label>
+
+<div #wrapper data-wrapper>
+  <img #image
+       *ngIf="!!url"
+       [src]="url"
+       (load)="inView()"
+       [style.top.px]="imagePosition.top"
+       [style.left.px]="imagePosition.left"
+       [style.transform]="transformStyle"
+       (mousedown)="startMove($event, moveTypes.Move)"
+       (touchstart)="startMove($event, moveTypes.Move)"/>
+
+  <div #cropper
+       data-cropper *ngIf="!!imagePosition.width && !!imagePosition.height"
+       [style.top]="'calc(50% - ' + area.height / 2 + 'px)'"
+       [style.left]="'calc(50% - ' + area.width / 2 + 'px)'"
+       [style.width.px]="area.width"
+       [style.height.px]="area.height"
+       tabindex="0">
+  </div>
+</div>
+
+<form [formGroup]="form" data-zoom [attr.data-disabled]="!imagePosition.width || !imagePosition.height || disabled">
+  <jnt-slider formControlName="zoom"
+              [min]="min"
+              [max]="max"
+              [step]="step">
+  </jnt-slider>
+</form>

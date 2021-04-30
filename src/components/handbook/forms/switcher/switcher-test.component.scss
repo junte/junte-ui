@@ -1,0 +1,24 @@
+@import '../../component';
+@import 'forms/switcher';
+@import 'layout/responsive';
+$jnt-ng-deep: true;
+
+[max-height='true'] {
+  @include jnt-switcher((
+    vertical: (
+      max-height: 100px
+    )
+  ), '&')
+}
+
+[data-block] {
+  max-width: 100%;
+  min-width: 455px;
+  @include for-mobile() {
+    min-width: 0;
+  }
+}
+
+[data-avatar] {
+  align-self: center;
+}

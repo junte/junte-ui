@@ -1,0 +1,89 @@
+@import 'jnt-variables';
+@import 'layout/responsive';
+
+:host {
+  display: block;
+}
+
+:host-context([theme='esanum']) {
+  svg {
+    [data-head] {
+      fill: #005461;
+    }
+  }
+}
+
+[wrapper] {
+  position: relative;
+}
+
+$padding: (
+  #{$jnt-gutter-none-name}: (
+    padding: $jnt-gutter-none
+  ),
+  #{$jnt-gutter-tiny-name}: (
+    padding: $jnt-gutter-tiny
+  ),
+  #{$jnt-gutter-small-name}: (
+    padding: $jnt-gutter-small
+  ),
+  #{$jnt-gutter-normal-name}: (
+    padding: $jnt-gutter-normal
+  ),
+  #{$jnt-gutter-big-name}: (
+    padding: $jnt-gutter-big
+  ),
+  #{$jnt-gutter-large-name}: (
+    padding: $jnt-gutter-large
+  ),
+  #{$jnt-gutter-huge-name}: (
+    padding: $jnt-gutter-huge
+  )
+);
+
+:host-context([theme='dark']) {
+  & {
+    background-color: #262626;
+  }
+}
+
+:host {
+  display: block;
+  position: relative;
+  border-radius: $jnt-corner-normal;
+  border: 1px solid $jnt-secondary-background;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: $jnt-page-background;
+  @each $padding, $map in $padding {
+    &[data-padding = '#{$padding}'] {
+      [wrapper] {
+        padding: map-get($map, padding);
+        @include for-mobile() {
+          padding: $jnt-gutter-tiny;
+        }
+      }
+    }
+  }
+
+  [wrapper] {
+    min-height: 300px;
+  }
+}
+
+[footer] {
+  height: 30px;
+  background-color: $jnt-muted-color;
+  border-bottom-left-radius: $jnt-corner-normal;
+  border-bottom-right-radius: $jnt-corner-normal;
+}
+
+svg {
+  display: block;
+  width: auto;
+  height: 50px;
+
+  [data-head] {
+    fill: $jnt-primary-color;
+  }
+}

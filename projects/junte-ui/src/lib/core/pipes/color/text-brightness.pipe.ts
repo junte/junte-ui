@@ -25,6 +25,12 @@ export function getTextBrightness(background: string): string {
 @Pipe({name: 'textBrightness'})
 export class TextBrightnessPipe implements PipeTransform {
   transform(color: string): string {
-    return getTextBrightness(color).toString();
+    if (color === 'primary') {
+      return BrightnessColors.light;
+    }
+    if (color === 'secondary') {
+      return BrightnessColors.dark;
+    }
+    return getTextBrightness(color);
   }
 }

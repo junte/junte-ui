@@ -1,7 +1,8 @@
-@import "jnt-variables";
-@import "jnt-functions";
+@import 'jnt-variables';
+@import 'jnt-functions';
+@import 'jnt-hosts';
 
-@mixin jnt-grid-container($passed: (), $context: null, $deep: false, $strategy: 'changes') {
+@mixin jnt-grid-container($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
     width: 1140px,
@@ -12,7 +13,7 @@
   $declare: false;
   $wrapper: null;
 
-  @if $deep {
+  @if $jnt-ng-deep {
     $wrapper: '::ng-deep';
   }
 
@@ -21,14 +22,14 @@
     $declare: true;
   }
 
-  :host, #{$context} {
+  #{if($context, $context, $jnt-container-host)} {
     @if $declare {
       display: block;
       position: relative;
       width: 100%;
       margin: 0 auto;
       box-sizing: border-box;
-      &[data-width="fluid"] {
+      &[data-width='fluid'] {
         max-width: 100%;
       }
     }

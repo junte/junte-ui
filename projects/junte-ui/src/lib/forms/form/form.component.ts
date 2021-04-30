@@ -13,9 +13,12 @@ import {
   TemplateRef
 } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 import { MethodApi, PropertyApi } from '../../core/decorators/api';
+import { Height } from '../../core/enums/height';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { FormControlComponent } from './control/form-control.component';
 
 @Component({
@@ -43,16 +46,22 @@ import { FormControlComponent } from './control/form-control.component';
         ),
       ]
     ),
+  ],
+  providers: [
+    ...LOGGER_PROVIDERS
   ]
 })
 export class FormComponent implements OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-form-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-form-host';
 
   ui = UI;
 
   _state = {success: false};
-  formState = State;
+
+  @HostBinding('attr.data-height')
+  _height: Height = Height.default;
 
   @PropertyApi({
     description: 'Name form group',
@@ -71,11 +80,20 @@ export class FormComponent implements OnInit {
   @PropertyApi({
     description: 'State of form',
     path: 'ui.state',
-    options: [State.error,
-      State.loading]
+    options: [State.error, State.loading]
   })
   @Input()
   state: State;
+
+  @PropertyApi({
+    description: 'Height of form',
+    path: 'ui.height',
+    options: [Height.default, Height.fluid],
+    default: Height.default
+  })
+  @Input() set height(height: Height) {
+    this._height = height || Height.default;
+  }
 
   @ContentChild('formTitleTemplate')
   titleTemplate: TemplateRef<any>;
@@ -83,11 +101,11 @@ export class FormComponent implements OnInit {
   @ContentChild('formFooterTemplate')
   footerTemplate: TemplateRef<any>;
 
-  @Output()
-  submitted = new EventEmitter();
-
   @ContentChildren(FormControlComponent, {descendants: true})
   controls: QueryList<FormControlComponent>;
+
+  @Output()
+  submitted = new EventEmitter();
 
   @Output()
   checked = new EventEmitter<AbstractControl[]>();
@@ -95,7 +113,10 @@ export class FormComponent implements OnInit {
   @MethodApi({description: 'show success animation'})
   success() {
     this._state.success = true;
-    setTimeout(() => this._state.success = false, 2100);
+    setTimeout(() => this._state.success = false, 2000);
+  }
+
+  constructor(private logger: NGXLogger) {
   }
 
   ngOnInit() {
@@ -108,21 +129,17 @@ export class FormComponent implements OnInit {
   }
 
   render() {
+    this.logger.debug('render form');
     if (!!this.controls) {
       this.controls.filter(component => !!component.name && !!component.messages.length)
-        .forEach(component => {
-          const control = component.getControl();
-          if (!!control) {
-            const messages = component.messages;
-            messages.forEach(message => message.active = !!(control.hasError(message.validator) && control.dirty));
-          }
-        });
+        .forEach(component => component.check());
     }
   }
 
   private check(form: FormGroup | FormArray): AbstractControl[] {
-    let errors = [];
-    Object.keys(form.controls).forEach((key: string) => {
+    this.logger.debug('check form');
+    let errors: AbstractControl[] = [];
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -132,12 +149,21 @@ export class FormComponent implements OnInit {
           errors.push(control);
         }
       }
-    });
+    }
+    this.logger.debug('controls have errors = ', errors.map(e => e));
     return errors;
   }
 
-  @HostListener('submit')
+  /**
+   * @deprecated please use submit() instead
+   */
   onSubmit() {
+    this.submit();
+  }
+
+  @HostListener('submit')
+  submit() {
+    this.logger.debug('submit form');
     if (!!this.form) {
       this.validate(this.form);
 
@@ -149,20 +175,25 @@ export class FormComponent implements OnInit {
   }
 
   private validate(form: FormGroup | FormArray) {
-    Object.keys(form.controls).forEach((key: string) => {
+    this.logger.debug('validate form');
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
         this.validate(control);
       } else {
         control.markAsDirty();
-        control.updateValueAndValidity();
+        control.updateValueAndValidity({emitEvent: false});
       }
-    });
+    }
+
+    this.render();
+    this.checked.emit(this.check(this.form));
   }
 
   private refresh(form: FormGroup | FormArray) {
-    Object.keys(form.controls).forEach((key: string) => {
+    this.logger.debug('refresh form');
+    for (const key in form.controls) {
       const control = form.controls[key];
 
       if (control instanceof FormGroup || control instanceof FormArray) {
@@ -170,6 +201,6 @@ export class FormComponent implements OnInit {
       } else {
         control.markAsPristine();
       }
-    });
+    }
   }
 }

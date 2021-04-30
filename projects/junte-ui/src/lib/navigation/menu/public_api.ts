@@ -1,5 +1,5 @@
-export * from './menu-item.component';
-export * from './menu.component';
-export * from './sub-menu/sub-menu.component';
-export * from './sub-menu/sub-menu-item.component';
-export * from './menu.module';
+export { MenuItemComponent } from './menu-item.component';
+export { MenuComponent } from './menu.component';
+export { SubMenuComponent } from './sub-menu/sub-menu.component';
+export { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
+export { MenuModule } from './menu.module';

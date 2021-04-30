@@ -1,6 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
-import { Gutter } from '../../../core/enums/gutter';
 
 enum Overrides {
   tablet,
@@ -43,13 +42,10 @@ export class ColComponent {
     return this.overrides.includes(Overrides.wide) ? this._wide : this.forDesktop;
   }
 
-  @HostBinding('attr.data-padding')
-  _padding: Gutter = Gutter.small;
-
   @PropertyApi({
     description: 'Number of cells to occupy on screen < 768px',
     type: 'number: 1...12',
-    default: '6'
+    default: '12'
   })
   @Input() set mobile(mobile: number) {
     this._mobile = mobile;
@@ -58,7 +54,7 @@ export class ColComponent {
   @PropertyApi({
     description: 'Number of cells to occupy on screen >= 768px',
     type: 'number: 1...12',
-    default: '3'
+    default: '6'
   })
   @Input() set tablet(tablet: number) {
     this._tablet = tablet;
@@ -92,21 +88,5 @@ export class ColComponent {
   })
   @HostBinding('attr.data-span')
   @Input() span = null;
-
-  @PropertyApi({
-    description: 'Padding in column',
-    path: 'ui.gutter',
-    default: Gutter.normal,
-    options: [Gutter.none,
-      Gutter.tiny,
-      Gutter.small,
-      Gutter.normal,
-      Gutter.big,
-      Gutter.large,
-      Gutter.huge]
-  })
-  @Input() set padding(padding: Gutter) {
-    this._padding = padding || Gutter.small;
-  }
 
 }

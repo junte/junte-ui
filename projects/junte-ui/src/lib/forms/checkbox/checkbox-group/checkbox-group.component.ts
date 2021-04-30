@@ -1,21 +1,26 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   forwardRef,
   HostBinding,
   HostListener,
   Input,
-  QueryList,
-  ViewChildren
+  QueryList
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PropertyApi } from '../../../core/decorators/api';
+import { Breakpoint } from '../../../core/enums/breakpoint';
+import { Feature } from '../../../core/enums/feature';
+import { FlexAlign } from '../../../core/enums/flex';
+import { Gutter } from '../../../core/enums/gutter';
+import { Orientation } from '../../../core/enums/orientation';
 import { Size } from '../../../core/enums/size';
 import { UI } from '../../../core/enums/ui';
-import { isEqual } from '../../../core/utils/equal';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
+import { BreakpointService } from '../../../layout/responsive/breakpoint.service';
 import { CheckboxComponent } from '../checkbox.component';
 
 @Component({
@@ -26,7 +31,8 @@ import { CheckboxComponent } from '../checkbox.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxGroupComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
 
@@ -35,11 +41,13 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   ui = UI;
 
   @HostBinding('attr.host')
-  readonly host = 'jnt-checkbox-group-host';
+  readonly host = 'jnt-switch-group-host';
 
+  private _orientation: Orientation = Orientation.vertical;
+  private _spacing: Gutter = Gutter.small;
+  private _align: FlexAlign;
   private _size: Size = Size.normal;
   private selectedItems = [];
-  math = Math;
 
   checkboxesControl = this.fb.array([]);
   form = this.fb.group({
@@ -47,11 +55,41 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   });
 
   @PropertyApi({
+    description: 'Defined main axis of elements align',
+    path: 'ui.orientation',
+    default: Orientation.vertical,
+    options: [Orientation.vertical, Orientation.horizontal]
+  })
+  @Input()
+  set orientation(orientation: Orientation) {
+    this._orientation = orientation || Orientation.vertical;
+  }
+
+  get orientation() {
+    return this.breakpoint.current === Breakpoint.mobile && this.features?.includes(Feature.adapted) ?
+      Orientation.vertical : this._orientation;
+  }
+
+  @PropertyApi({
+    description: 'Align in radio group',
+    path: 'ui.align'
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align;
+  }
+
+  get align() {
+    return this._align;
+  }
+
+  @PropertyApi({
     description: 'Count of cols in checkbox group',
     type: 'number',
     default: 1
   })
-  @Input() cols = 1;
+  @Input()
+  cols = 1;
 
   @PropertyApi({
     description: 'Size for checkbox in checkbox group',
@@ -68,8 +106,34 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
     return this._size;
   }
 
-  @ViewChildren(CheckboxComponent)
-  items: QueryList<CheckboxComponent>;
+  @PropertyApi({
+    description: 'Spacing between radio item',
+    path: 'ui.gutter',
+    options: [Gutter.tiny,
+      Gutter.small,
+      Gutter.normal,
+      Gutter.large,
+      Gutter.big,
+      Gutter.huge],
+    default: Gutter.normal
+  })
+  @Input()
+  set spacing(spacing: Gutter) {
+    this._spacing = spacing || Gutter.small;
+  }
+
+  get spacing() {
+    return this._spacing;
+  }
+
+  @PropertyApi({
+    description: 'Adapted radio group on mobile view',
+    path: 'ui.feature',
+    options: [Feature.adapted]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
 
   @ContentChildren(CheckboxComponent)
   checkboxes: QueryList<CheckboxComponent>;
@@ -81,34 +145,39 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
-              private logger: NGXLogger) {
+              private breakpoint: BreakpointService,
+              private logger: NGXLogger,
+              private cd: ChangeDetectorRef) {
   }
 
   ngAfterViewInit() {
     this.update();
     this.checkboxes.changes.subscribe(() => this.update());
-
-    this.checkboxesControl.valueChanges.pipe(
-      map(checkboxes => this.items
-        .filter((_, i) => checkboxes[i])
-        .map(checkbox => checkbox.value)),
-      distinctUntilChanged((a, b) => isEqual(a, b))
-    ).subscribe(selectedItems => {
-      this.selectedItems = selectedItems;
-      this.onChange(selectedItems);
-    });
   }
 
   update() {
     if (!!this.checkboxes) {
-      this.checkboxesControl.reset();
+      this.checkboxesControl.reset([], {emitEvent: false});
       this.checkboxes.forEach((checkbox, i) => {
-        if (this.checkboxesControl.length < i + 1) {
-          this.checkboxesControl.push(new FormControl(this.selectedItems.includes(checkbox.value)));
+        let control = this.checkboxesControl.get(i.toString());
+        if (!!control) {
+          control.setValue(this.selectedItems.includes(checkbox.value), {emitEvent: false});
         } else {
-          this.checkboxesControl.get(i.toString()).setValue(this.selectedItems.includes(checkbox.value));
+          control = new FormControl(this.selectedItems.includes(checkbox.value));
+          this.checkboxesControl.controls.push(control);
+          const index = this.checkboxesControl.length - 1;
+          control.valueChanges.subscribe(value => {
+            const checkbox = this.checkboxes.toArray()[index].value;
+            if (value) {
+              this.selectedItems.push(checkbox);
+            } else {
+              this.selectedItems.splice(this.selectedItems.indexOf(checkbox), 1);
+            }
+            this.onChange(this.selectedItems);
+          });
         }
       });
+      this.cd.detectChanges();
     }
   }
 
@@ -122,6 +191,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   }
 
   setDisabledState(isDisabled: boolean) {
-    isDisabled ? this.checkboxesControl.disable({emitEvent: false}) : this.checkboxesControl.enable({emitEvent: false});
+    isDisabled ? this.checkboxesControl.disable({emitEvent: false})
+      : this.checkboxesControl.enable({emitEvent: false});
   }
 }

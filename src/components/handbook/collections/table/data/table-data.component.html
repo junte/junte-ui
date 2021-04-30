@@ -1,0 +1,72 @@
+<jnt-block [width]="ui.width.fluid" [padding]="ui.gutter.none">
+  <jnt-form [formGroup]="form">
+    <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.normal">
+      <jnt-table #table [features]="[
+        (sections |includes: tableSections.search) ? ui.feature.search : null,
+        (sections |includes: tableSections.reload) ? ui.feature.reload : null
+      ]" formControlName="table">
+
+        <ng-template *ngIf="(sections |includes: tableSections.actions)" #tableActionsTemplate>
+          <jnt-button text="Reset"
+                      i18n-text="@@action.reset"
+                      [icon]="ui.icons.cancel"
+                      [outline]="ui.outline.transparent"
+                      (click)="tableControl.setValue({q: null, first: 10, offset: null})"></jnt-button>
+        </ng-template>
+
+        <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
+          <jnt-select data-search formControlName="ability"
+                      placeholder="Select ability"
+                      i18n-placeholder="@@label.select_ability"
+                      [features]="[ui.feature.allowEmpty]">
+            <jnt-select-option *ngFor="let ability of abilities"
+                               [label]="ability"
+                               [key]="ability"></jnt-select-option>
+          </jnt-select>
+        </ng-template>
+
+        <jnt-table-column title="#" sort="id" width="30px">
+          <ng-template #tableCellTemplate let-id="id">
+            {{id}}
+          </ng-template>
+        </jnt-table-column>
+
+        <jnt-table-column title="Hero"
+                          i18n-title="@@label.hero"
+                          sort="hero">
+          <ng-template #tableCellTemplate let-hero="hero" let-avatar="avatar">
+            <jnt-stack [orientation]="ui.orientation.horizontal"
+                       [gutter]="ui.gutter.small"
+                       [align]="ui.align.center">
+              <jnt-avatar [icon]="ui.icons.question"
+                          [image]="avatar"
+                          [size]="ui.size.small"></jnt-avatar>
+              <div>{{hero}}</div>
+            </jnt-stack>
+          </ng-template>
+        </jnt-table-column>
+
+        <jnt-table-column title="Ability"
+                          i18n-title="@@label.ability"
+                          sort="ability">
+          <ng-template #tableCellTemplate let-ability="ability">
+            {{ability}}
+          </ng-template>
+        </jnt-table-column>
+
+        <ng-template *ngIf="(sections |includes: tableSections.rowActions)"
+                     #tableRowActionsTemplate let-row="row" let-hide="hide">
+          <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.gutter.small">
+            <jnt-menu-item title="Edit"
+                           i18n-title="@@action.edit"
+                           (click)="hide()"></jnt-menu-item>
+            <jnt-menu-item title="Delete"
+                           i18n-title="@@action.delete"
+                           (click)="hide()"></jnt-menu-item>
+          </jnt-menu>
+        </ng-template>
+
+      </jnt-table>
+    </jnt-stack>
+  </jnt-form>
+</jnt-block>

@@ -1,4 +1,7 @@
-$jnt-debug: false;
+$jnt-debug: false !default;
+$jnt-ng-deep: false !default;
+
+$jnt-theme-type: 'light' !default;
 
 $jnt-white-color: white !default;
 $jnt-black-color: black !default;
@@ -14,10 +17,16 @@ $jnt-green-dark-color: #00B89F !default;
 $jnt-red-color: #FF6262 !default;
 $jnt-red-dark-color: #DE5B5B !default;
 
+$jnt-aqua-color: #45BFDA !default;
+$jnt-aqua-dark-color: #008EA8 !default;
+$jnt-aqua-light-color: #80F2FF !default;
+
 $jnt-purple-color: #3949AB !default;
 $jnt-purple-dark-color: #00227B !default;
 $jnt-purple-light-color: #6F74DD !default;
 $jnt-purple-lighten-color: #C4C9E7 !default;
+
+$jnt-magenta-dark-color: #933183 !default;
 
 $jnt-gray-100-color: #F5F5F5 !default;
 $jnt-gray-200-color: #F7F7F7 !default;
@@ -35,8 +44,9 @@ $jnt-primary-color: $jnt-purple-color !default;
 $jnt-primary-dark-color: $jnt-purple-dark-color !default;
 $jnt-primary-light-color: $jnt-purple-light-color !default;
 
-$jnt-secondary-color: $jnt-pale-navy-color !default;
-$jnt-secondary-dark-color: $jnt-blue-100-color !default;
+$jnt-secondary-color: $jnt-aqua-color !default;
+$jnt-secondary-dark-color: $jnt-aqua-dark-color !default;
+$jnt-secondary-light-color: $jnt-aqua-light-color !default;
 
 $jnt-success-color: $jnt-green-color !default;
 $jnt-success-dark-color: $jnt-green-dark-color !default;
@@ -45,6 +55,8 @@ $jnt-warning-color: $jnt-orange-color !default;
 
 $jnt-fail-color: $jnt-red-color !default;
 $jnt-fail-dark-color: $jnt-red-dark-color !default;
+
+$jnt-accent-color: $jnt-magenta-dark-color !default;
 
 $jnt-muted-color: $jnt-gray-400-color !default;
 
@@ -55,8 +67,8 @@ $jnt-outline-transparent-name: 'transparent';
 
 
 $jnt-primary-background: $jnt-white-color !default;
-$jnt-secondary-background: $jnt-secondary-color !default;
-$jnt-highlight-background: $jnt-gray-300-color !default;
+$jnt-secondary-background: $jnt-pale-navy-color !default;
+$jnt-highlight-background: $jnt-blue-100-color !default;
 
 $jnt-page-background: $jnt-gray-200-color !default;
 
@@ -87,7 +99,7 @@ $jnt-outline-shadow-normal: 0 0 0 4px;
 
 $jnt-grid-gutter: $jnt-gutter-normal !default;
 $jnt-mobile-breakpoint: 0;
-$jnt-tablet-breakpoint: 768px;
+$jnt-tablet-breakpoint: 767px;
 $jnt-desktop-breakpoint: 992px;
 $jnt-wide-breakpoint: 1200px;
 
@@ -121,7 +133,8 @@ $jnt-font-weight-extra-bold: 800 !default;
 
 $jnt-line-height-base: 1.5 !default;
 $jnt-line-height-large: 2.5 !default;
-$jnt-line-height-small: 1 !default;
+$jnt-line-height-small: 1.3 !default;
+$jnt-line-height-tiny: 1 !default;
 
 $jnt-font-family-base: "Open Sans", Tahoma !default;
 
@@ -132,8 +145,9 @@ $jnt-h4-font-size: $jnt-font-size-base * 1.28 !default;
 $jnt-h5-font-size: $jnt-font-size-base * 1.2 !default;
 $jnt-h6-font-size: $jnt-font-size-base;
 
+$jnt-page-header-font-size: 18px;
+$jnt-scrollbar-width: 16px;
 $jnt-headings-margin-bottom: $jnt-gutter-normal !default;
-
 
 $jnt-control-gutter: $jnt-gutter-small !default;
 $jnt-control-border-color: $jnt-gray-700-color !default;

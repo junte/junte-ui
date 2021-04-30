@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { JUNTE_MODULE_PROVIDES, JunteUIModuleConfig } from '../../config';
+import { NgModule } from '@angular/core';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { BlockModule } from '../../layout/block/block.module';
@@ -31,17 +30,4 @@ import { ModalDirective } from './modal.directive';
   ]
 })
 export class ModalModule {
-
-  static forRoot(config: JunteUIModuleConfig = {}): ModuleWithProviders<ModalModule> {
-    return {
-      ngModule: ModalModule,
-      providers: [
-        {
-          provide: JunteUIModuleConfig,
-          useValue: config
-        }, ...JUNTE_MODULE_PROVIDES
-      ]
-    };
-  }
-
 }

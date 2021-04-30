@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ContentChildren,
   EventEmitter,
@@ -13,9 +12,11 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { PropertyApi } from '../../core/decorators/api';
+import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
-import { ChartIndicatorComponent } from './chart-indicator.component';
+import { ChartIndicatorComponent } from './chart-indicator';
 
 @Component({
   selector: 'jnt-chart',
@@ -25,10 +26,11 @@ import { ChartIndicatorComponent } from './chart-indicator.component';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ChartComponent),
       multi: true
-    }
+    },
+    ...LOGGER_PROVIDERS
   ]
 })
-export class ChartComponent implements ControlValueAccessor, AfterContentInit {
+export class ChartComponent implements ControlValueAccessor {
 
   @HostBinding('attr.host') readonly host = 'jnt-chart-host';
 
@@ -37,32 +39,41 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   private _selected: number;
   private _widthMark = 100;
 
-  progress = {loading: false};
-  indicators: ChartIndicatorComponent[] = [];
-
   @Input() keyField: string;
 
   @PropertyApi({
     description: 'Title of the charts group',
     type: 'string'
   })
-  @Input() title: string;
+  @Input()
+  title: string;
 
   @PropertyApi({
     description: 'Name of metric for the charts',
     type: 'string'
   })
-  @Input() metric: string;
+  @Input()
+  metric: string;
+
+  @PropertyApi({
+    description: 'Chart state',
+    path: 'ui.state',
+    options: [State.loading]
+  })
+  @Input()
+  state: State;
 
   @ContentChildren(ChartIndicatorComponent)
-  indicatorsComponents: QueryList<ChartIndicatorComponent>;
+  indicators: QueryList<ChartIndicatorComponent>;
 
-  @Input() heightIndicator = 55;
+  @Input()
+  heightIndicator = 55;
 
-  @Input() widthPoligon = 50;
+  @Input()
+  widthPolygon = 50;
 
-  onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
-  onTouched: () => void = () => this.logger.error('value accessor is not registered');
+  onChange: (value: any) => void = () => this.logger.debug('value accessor is not registered');
+  onTouched: () => void = () => this.logger.debug('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
@@ -103,12 +114,6 @@ export class ChartComponent implements ControlValueAccessor, AfterContentInit {
   }
 
   constructor(private logger: NGXLogger) {
-  }
-
-  ngAfterContentInit() {
-    this.indicators = this.indicatorsComponents.toArray();
-    this.indicatorsComponents.changes
-      .subscribe((indicators: QueryList<ChartIndicatorComponent>) => this.indicators = indicators.toArray());
   }
 
   writeValue(value: any): void {
