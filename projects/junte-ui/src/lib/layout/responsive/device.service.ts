@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DeviceTag } from '../../core/enums/device-tag';
 
 @Injectable()
 export class DeviceService {
@@ -13,6 +14,10 @@ export class DeviceService {
     windows: !!navigator.userAgent.match(/Windows|Win32|Win64/i),
   };
 
+  browser = {
+    firefox: !!navigator.userAgent.match(/Firefox/i)
+  };
+
   mobile = !!navigator.userAgent.match(/Mobile/i)
     || this.platform.iOS
     || this.platform.android
@@ -20,4 +25,17 @@ export class DeviceService {
     || this.platform.windowsMobile;
 
   desktop = window.orientation === undefined;
+
+  tags = (() => {
+    const tags = [];
+    if (this.platform.windows) {
+      tags.push(DeviceTag.windows);
+    }
+    if (this.browser.firefox) {
+      tags.push(DeviceTag.firefox);
+    }
+
+    return tags;
+  })();
+
 }

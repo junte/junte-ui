@@ -144,10 +144,8 @@ export class ModalComponent implements OnInit {
               private config: JunteUIConfig) {
   }
 
-  @HostBinding('attr.data-windows')
-  get windows() {
-    return this.device.platform.windows;
-  }
+  @HostBinding('attr.data-user-agent')
+  deviceTags = this.device.tags;
 
   set content(content: ModalContent) {
     this.contentTemplate = null;

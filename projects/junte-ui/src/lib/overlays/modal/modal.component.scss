@@ -58,6 +58,14 @@
     @if $declare {
       @include reset-default();
       display: block;
+      &:not([data-user-agent*='firefox']) {
+        [data-modal] [data-content] {
+          @if map-has-key($vars, padding) {
+            $padding: map-get($vars, padding);
+            padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+          }
+        }
+      }
       @include for-mobile() {
         position: fixed;
         z-index: 2;
@@ -68,7 +76,7 @@
         padding: $jnt-gutter-small;
         box-sizing: border-box;
 
-        &[data-windows='true'] {
+        &[data-user-agent*='window'] {
           @include jnt-scrollbar();
         }
       }
@@ -147,7 +155,7 @@
         padding-top: map-get($padding, top);
         padding-left: map-get($padding, left);
         padding-bottom: map-get($padding, bottom);
-        padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+        padding-right: map-get($padding, right);
       }
       @if $declare {
         font-size: $jnt-font-size-base;
