@@ -44,11 +44,12 @@
                       <jnt-form-control name="hero">
                         <jnt-switch-group formControlName="hero"
                                           [cols]="colsControl.value"
+                                          [align]="alignControl.value"
                                           [size]="sizeControl.value">
                           <jnt-switch *ngFor="let hero of heroes | keyvalue: originalOrder | slice:0:6"
-                                      [label]="!customControl.value ? hero.value.name : null"
+                                      [label]="!labelControl.value ? hero.value.name : null"
                                       [value]="hero.value.code">
-                            <ng-template *ngIf="customControl.value" #switchLabelTemplate>
+                            <ng-template #switchLabelTemplate *ngIf="labelControl.value">
                               <jnt-stack [orientation]="ui.orientation.horizontal" data-custom
                                          [align]="ui.align.center"
                                          [justify]="ui.justify.between">
@@ -86,6 +87,7 @@
                              [align]="ui.align.stretch">
                     <jnt-switch formControlName="switch"
                                 [size]="sizeControl.value"
+                                [align]="alignControl.value"
                                 [label]="'Are you happy?'"
                                 [icons]="iconsControl.value ? {on: ui.icons.smile, off: ui.icons.sad} : null"
                                 [tags]="tagsControl.value ? {on: 'Yes', off: 'No'} : null">
@@ -165,6 +167,35 @@
                 </jnt-form-item>
 
                 <jnt-form-item>
+                  <jnt-form-label for="align"
+                                  i18n="@@label.align">Align
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="align"
+                                placeholder="Start"
+                                i18n-placeholder="@@label.start"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Start"
+                                         i18n-label="@@label.start"
+                                         [icon]="localUi.icons.start"
+                                         [key]="ui.align.start"></jnt-select-option>
+                      <jnt-select-option label="Center"
+                                         i18n-label="@@label.center"
+                                         [icon]="localUi.icons.center"
+                                         [key]="ui.align.center"></jnt-select-option>
+                      <jnt-select-option label="End"
+                                         i18n-label="@@label.end"
+                                         [icon]="localUi.icons.end"
+                                         [key]="ui.align.end"></jnt-select-option>
+                      <jnt-select-option label="Stretch"
+                                         i18n-label="@@label.scretch"
+                                         [icon]="localUi.icons.stretch"
+                                         [key]="ui.align.stretch"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="type"
                                   i18n="@@label.features">Features
                   </jnt-form-label>
@@ -194,16 +225,6 @@
                   <jnt-checkbox formControlName="disabled"
                                 label="Disabled"
                                 i18n-label="@@label.disabled"></jnt-checkbox>
-                </jnt-form-item>
-
-                <jnt-form-item>
-                  <jnt-form-label i18n="@@label.custom_template">Features
-                  </jnt-form-label>
-                  <jnt-form-control>
-                    <jnt-checkbox formControlName="custom"
-                                  label="Custom template"
-                                  i18n-label="@@label.custom_template"></jnt-checkbox>
-                  </jnt-form-control>
                 </jnt-form-item>
               </jnt-stack>
             </jnt-form>
