@@ -7,24 +7,25 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
-  Input, OnInit,
+  Input,
+  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { PropertyApi } from '../../core/decorators/api';
 import { Shape } from '../../core/enums/shape';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
 const CROPPER_SIZE = 200;
-const DEFAULT_SCALE = 1;
-const DEFAULT_MIN = 0.01;
-const DEFAULT_MAX = 5;
-const DEFAULT_STEP = 0.01;
+export const DEFAULT_SCALE = 1;
+export const DEFAULT_MIN = 0.01;
+export const DEFAULT_MAX = 5;
+export const DEFAULT_STEP = 0.01;
 
 export enum MoveTypes {
   Move = 'move',
@@ -96,23 +97,30 @@ export class ImageCropperComponent implements OnInit, ControlValueAccessor {
     zoom: [this.imagePosition.scale]
   });
 
-  @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
-  @ViewChild('image') image: ElementRef;
-  @ViewChild('cropper') cropper: ElementRef;
+  @ViewChild('wrapper', {static: true})
+  wrapper: ElementRef;
+
+  @ViewChild('image')
+  image: ElementRef;
+
+  @ViewChild('cropper')
+  cropper: ElementRef;
 
   @PropertyApi({
     description: 'Size of crop area',
     type: 'CropperPosition',
     default: '{width: 200, height: 200}'
   })
-  @Input() area = new CropperPosition();
+  @Input()
+  area = new CropperPosition();
 
   @PropertyApi({
     description: 'Min of cropping',
     type: 'number',
     default: '0.01'
   })
-  @Input() set min(min: number) {
+  @Input()
+  set min(min: number) {
     this._min = min || DEFAULT_MIN;
   }
 
@@ -125,8 +133,9 @@ export class ImageCropperComponent implements OnInit, ControlValueAccessor {
     type: 'number',
     default: '5'
   })
-  @Input() set max(max: number) {
-    this._max = max || DEFAULT_MAX
+  @Input()
+  set max(max: number) {
+    this._max = max || DEFAULT_MAX;
   }
 
   get max() {
@@ -138,7 +147,8 @@ export class ImageCropperComponent implements OnInit, ControlValueAccessor {
     type: 'number',
     default: '0.01'
   })
-  @Input() set step(step: number) {
+  @Input()
+  set step(step: number) {
     this._step = step || DEFAULT_STEP;
   }
 
@@ -151,7 +161,8 @@ export class ImageCropperComponent implements OnInit, ControlValueAccessor {
     type: 'string',
     default: null
   })
-  @Input() set url(url: SafeUrl | string) {
+  @Input()
+  set url(url: SafeUrl | string) {
     this._url = url;
     if (!!url) {
       this.moveStart = new MoveStart();
@@ -175,12 +186,16 @@ export class ImageCropperComponent implements OnInit, ControlValueAccessor {
     default: Shape.circle,
     options: [Shape.circle, Shape.square]
   })
-  @Input() set shape(shape: Shape) {
+  @Input()
+  set shape(shape: Shape) {
     this._shape = shape || Shape.circle;
   }
 
-  @Output() loaded = new EventEmitter<void>();
-  @Output() failed = new EventEmitter<void>();
+  @Output()
+  loaded = new EventEmitter<void>();
+
+  @Output()
+  failed = new EventEmitter<void>();
 
   onChange: (date: ImageCroppedData) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
