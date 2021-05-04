@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCropperComponent, TabComponent, UI } from 'junte-ui';
@@ -10,7 +10,7 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './image-cropper-test.component.html',
   styleUrls: ['./image-cropper-test.component.scss']
 })
-export class ImageCropperTestComponent {
+export class ImageCropperTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -19,7 +19,8 @@ export class ImageCropperTestComponent {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-cropper';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('code')
+  code: TabComponent;
 
   urlControl = this.fb.control('assets/images/elon.jpeg');
   shapeControl = this.fb.control(UI.shape.circle);
@@ -31,7 +32,7 @@ export class ImageCropperTestComponent {
     shape: this.shapeControl,
     min: this.minControl,
     max: this.maxControl,
-    step: this.stepControl,
+    step: this.stepControl
   });
 
   cropperControl = this.fb.control(null);
