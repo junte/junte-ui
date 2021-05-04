@@ -35,6 +35,7 @@ export class CardComponent {
 
   picture: Picture;
   popover: PopoverComponent;
+  focused = false;
 
   @HostBinding('attr.data-height')
   _height: Height = Height.default;
