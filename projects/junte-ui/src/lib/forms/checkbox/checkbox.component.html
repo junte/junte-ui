@@ -10,8 +10,8 @@
     <div data-switch>
       <div *ngIf="checkboxControl.value" data-icon [@scale]="animate"></div>
     </div>
-    <div data-label *ngIf="!!labelTemplate; else labelDefaultTemplate">
-      <ng-container *ngTemplateOutlet="labelTemplate"></ng-container>
+    <div data-label>
+      <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
     </div>
   </jnt-stack>
 </ng-container>

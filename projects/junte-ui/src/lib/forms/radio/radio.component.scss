@@ -19,7 +19,7 @@
       width: map-get($size, indicator);
     }
   }
-  #{$wrapper} [label] {
+  #{$wrapper} [data-label] {
     font-size: map-get($size, font-size);
   }
 }
@@ -75,6 +75,7 @@
     label: (
       gutter: $jnt-control-gutter,
       color: $jnt-control-switch-label-color,
+      overflow: false,
       disabled: (
         color: $jnt-control-disabled-label-color
       )
@@ -235,7 +236,7 @@
     }
   }
 
-  #{$context} #{$wrapper} [label] {
+  #{$context} #{$wrapper} [data-label] {
     @if $declare {
       user-select: none;
       white-space: nowrap;
@@ -245,6 +246,11 @@
       $label: map-get($vars, label);
       padding-left: map-get($label, gutter);
       color: map-get($label, color);
+      @if map-get($label, overflow) == true {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
