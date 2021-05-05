@@ -116,10 +116,6 @@ $tab-marker-height: 4px;
         width: 100%;
         position: relative;
 
-        &:focus {
-          outline: none;
-        }
-
         [data-title] {
           [data-icon], span {
             transition: color .2s;
@@ -163,6 +159,22 @@ $tab-marker-height: 4px;
           }
           [data-line] {
             display: block !important;
+          }
+        }
+      }
+    }
+
+    &[data-outline='transparent']:not([data-context='menu']) {
+      [data-link]:focus {
+        @if map-has-key($vars, focus) {
+          $focus: map-get($vars, focus);
+          @if map-get($focus, outline) != null {
+            outline: map-get($focus, outline);
+            outline-offset: map-get($focus, outline-offset);
+          }
+          @if map-get($focus, shadow) != null {
+            outline: 0;
+            box-shadow: map-get($focus, shadow);
           }
         }
       }
@@ -285,20 +297,6 @@ $tab-marker-height: 4px;
 
           [data-icon] {
             @include jnt-icon((color: map-get($vars, hover-color)), '&');
-          }
-        }
-
-        &:focus {
-          @if map-has-key($vars, focus) {
-            $focus: map-get($vars, focus);
-            @if map-get($focus, outline) != null {
-              outline: map-get($focus, outline);
-              outline-offset: map-get($focus, outline-offset);
-            }
-            @if map-get($focus, shadow) != null {
-              outline: 0;
-              box-shadow: map-get($focus, shadow);
-            }
           }
         }
 
