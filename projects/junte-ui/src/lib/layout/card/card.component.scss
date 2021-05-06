@@ -80,23 +80,20 @@
   #{if($context, $context, $jnt-card-host)} {
     @if $declare {
       @include reset-default();
-      display: inline-block;
+      display: inline-flex;
       position: relative;
       min-height: 40px;
       max-width: 100%;
       box-sizing: border-box;
 
       &[data-height='fluid'] {
-        display: flex;
+        height: 100%;
+      }
 
-        #{$wrapper} > [data-card],
-        #{$wrapper} > [data-card] > [data-body] {
-          flex: 1;
-        }
-
-        #{$wrapper} > [data-card] > [data-main] > [data-body] > [data-content] {
+      &[data-width='fluid'] {
+        @if $declare {
           display: flex;
-          flex-direction: column;
+          flex: 1;
         }
       }
 
@@ -120,17 +117,6 @@
     #{$wrapper} > [data-card] > [data-drag] > {
       #{'button'} {
         border-right: map-get($vars, border);
-      }
-    }
-
-    &[data-width='fluid'] {
-      @if $declare {
-        display: flex;
-        flex: 1;
-
-        #{$wrapper} [data-card] {
-          flex: 1;
-        }
       }
     }
 
@@ -235,6 +221,7 @@
     box-shadow: map-get($vars, shadow);
     @if $declare {
       overflow: hidden;
+      flex: 1;
     }
 
     [data-line] {
@@ -254,6 +241,12 @@
         @if map-has-key($vars, header) {
           $header: map-get($vars, header);
           padding: map-get($header, padding);
+        }
+      }
+
+      [data-body] {
+        @if $declare {
+          flex: 1;
         }
       }
 
