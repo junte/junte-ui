@@ -58,11 +58,13 @@
     @if $declare {
       @include reset-default();
       display: block;
-      &:not([data-user-agent*='firefox']) {
-        [data-modal] [data-content] {
-          @if map-has-key($vars, padding) {
-            $padding: map-get($vars, padding);
-            padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+      @include min-for-tablet() {
+        &:not([data-device-tags*='firefox']) {
+          [data-modal] [data-content] {
+            @if map-has-key($vars, padding) {
+              $padding: map-get($vars, padding);
+              padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+            }
           }
         }
       }
@@ -76,7 +78,7 @@
         padding: $jnt-gutter-small;
         box-sizing: border-box;
 
-        &[data-user-agent*='window'] {
+        &[data-device-tags*='window'] {
           @include jnt-scrollbar();
         }
       }
