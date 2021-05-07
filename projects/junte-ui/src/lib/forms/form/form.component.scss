@@ -21,6 +21,17 @@
     $declare: true;
   }
 
+  #{$jnt-modal-host} #{if($context, $context, $jnt-form-host)} {
+    form {
+      [data-loading], [data-error], [data-success] {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+
   #{if($context, $context, $jnt-form-host)} {
     @if $declare {
       display: block;
