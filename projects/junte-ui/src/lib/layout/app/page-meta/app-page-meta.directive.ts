@@ -15,7 +15,8 @@ function findLast(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
 
 type PageMeta = {
   title?: string,
-  description?: string
+  description?: string,
+  image?: string
 }
 
 @Directive({
@@ -71,10 +72,25 @@ export class AppPageMetaDirective {
       }
 
       if (!!meta.title) {
-        this.titleService.setTitle(meta.title);
+        this.titleService.setTitle(meta.title
+          .replace(/<br(\/)*>/, ' ')
+          .replace(/(<([^>]+)>|&\w+;)/ig, ''));
       }
+
       if (!!meta.description) {
-        this.metaService.updateTag({name: 'description', content: meta.description});
+        if (!this.metaService.getTag('name = "description"')) {
+          this.metaService.addTag({name: 'description', content: meta.description});
+        } else {
+          this.metaService.updateTag({name: 'description', content: meta.description});
+        }
+      }
+
+      if (!!meta.image) {
+        if (!this.metaService.getTag('name = "image"')) {
+          this.metaService.addTag({name: 'image', content: meta.image});
+        } else {
+          this.metaService.updateTag({name: 'image', content: meta.image});
+        }
       }
     }
   }
