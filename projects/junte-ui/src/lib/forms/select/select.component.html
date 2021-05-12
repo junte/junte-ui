@@ -37,6 +37,7 @@
     <li data-query [formGroup]="form" (click)="opened && !queryControl.value ? close() : open()">
       <input #queryRef formControlName="query"
              [placeholder]="mode != ui.select.mode.multiple || !selected.length ? placeholder : ''"
+             [autocomplete]="autocomplete"
              (keydown)="createOption(queryControl.value, $event)">
     </li>
   </ul>
