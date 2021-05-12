@@ -130,7 +130,7 @@
     }
 
     &[data-features*='clickable'] {
-      #{$wrapper} [data-body] {
+      #{$wrapper} [data-card] > [data-main] > [data-body] {
         @if $declare {
           cursor: pointer;
           &:focus {
@@ -158,7 +158,7 @@
 
     &[data-features*='adapted'] {
       @include for-mobile() {
-        #{$wrapper} [data-image] {
+        #{$wrapper} [data-card] > [data-main] > [data-body] > [data-picture] > [data-image] {
           @if $declare {
             width: 100%;
             height: auto;
@@ -224,72 +224,72 @@
       flex: 1;
     }
 
-    [data-line] {
+    > [data-line] {
       @if $declare {
         width: $jnt-gutter-small;
       }
     }
 
-    [data-main] {
+    > [data-main] {
       @if $declare {
         flex: 1;
         max-width: 100%;
         box-sizing: border-box;
       }
 
-      [data-header] {
+      > [data-header] {
         @if map-has-key($vars, header) {
           $header: map-get($vars, header);
           padding: map-get($header, padding);
         }
       }
 
-      [data-body] {
+      > [data-body] {
         @if $declare {
           flex: 1;
         }
-      }
 
-      [data-content] {
-        @if $declare {
-          flex: 1;
-        }
-        @if map-has-key($vars, content) {
-          $content: map-get($vars, content);
-          max-width: map-get($content, width);
-          overflow: map-get($content, overflow);
-        }
-      }
+        > [data-content] {
+          @if $declare {
+            flex: 1;
+          }
+          @if map-has-key($vars, content) {
+            $content: map-get($vars, content);
+            max-width: map-get($content, width);
+            overflow: map-get($content, overflow);
+          }
 
-      [data-picture] {
-        @if map-has-key($vars, picture) {
-          $picture: map-get($vars, picture);
-          padding: map-get($picture, padding);
-          img {
-            @if $declare {
-              display: block;
+          > [data-title] {
+            @if map-has-key($vars, title) {
+              $title: map-get($vars, title);
+              padding: map-get($title, padding);
+              margin: map-get($title, margin);
+              > [data-text] {
+                text-align: map-get($title, text-align);
+                font-weight: map-get($title, font-weight);
+                color: map-get($title, color);
+                font-size: map-get($title, font-size);
+              }
             }
-            border-radius: map-get($picture, corner);
-            border: map-get($picture, border);
+          }
+        }
+
+        > [data-picture] {
+          @if map-has-key($vars, picture) {
+            $picture: map-get($vars, picture);
+            padding: map-get($picture, padding);
+            img {
+              @if $declare {
+                display: block;
+              }
+              border-radius: map-get($picture, corner);
+              border: map-get($picture, border);
+            }
           }
         }
       }
 
-      [data-title] {
-        @if map-has-key($vars, title) {
-          $title: map-get($vars, title);
-          padding: map-get($title, padding);
-          margin: map-get($title, margin);
-          [data-text] {
-            text-align: map-get($title, text-align);
-            font-weight: map-get($title, font-weight);
-            color: map-get($title, color);
-            font-size: map-get($title, font-size);
-          }
-        }
-      }
-
-      [data-footer] {
+      > [data-footer] {
         @if map-has-key($vars, footer) {
           $footer: map-get($vars, footer);
           padding: map-get($footer, padding);
