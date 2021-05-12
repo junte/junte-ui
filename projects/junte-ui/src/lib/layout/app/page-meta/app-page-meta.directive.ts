@@ -64,7 +64,7 @@ export class AppPageMetaDirective {
           break;
         }
         case 'function': {
-          meta = routeMeta(snapshot);
+          meta = routeMeta(snapshot.data, snapshot);
           break;
         }
         default:
