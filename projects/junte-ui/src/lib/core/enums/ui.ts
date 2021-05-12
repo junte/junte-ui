@@ -69,7 +69,7 @@ export const UI = {
   skeleton: {type: SkeletonType},
   pager: {mode: PagerMode},
   input: {type: InputType, scheme: InputScheme, autocomplete: InputAutocomplete},
-  select: {mode: SelectMode},
+  select: {mode: SelectMode, autocomplete: InputAutocomplete},
   button: {type: ButtonType},
   gantt: {type: GanttTypes},
   menu: {style: MenuStyle},

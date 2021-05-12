@@ -20,6 +20,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
+import { InputAutocomplete } from '../input/enums';
 import { progress } from '../../core/utils/rxjs';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
@@ -289,6 +290,14 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   get features() {
     return this._features;
   }
+
+  @PropertyApi({
+    description: 'Auto complete for select',
+    path: 'ui.select.autocomplete',
+    options: [InputAutocomplete.on, InputAutocomplete.off]
+  })
+  @Input()
+  autocomplete: InputAutocomplete = InputAutocomplete.off;
 
   @HostBinding('attr.data-disabled')
   @Input()
