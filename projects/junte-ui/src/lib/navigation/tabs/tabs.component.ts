@@ -16,6 +16,8 @@ import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { TabComponent } from './tab.component';
 
+const CHECK_INTERVAL = 300;
+
 // @ts-ignore
 @Component({
   selector: 'jnt-tabs',
@@ -80,8 +82,15 @@ export class TabsComponent {
   setWidth(active: number) {
     const tab = this.links.toArray()[active];
     if (!!tab) {
-      this.renderer.setStyle(this.lineRef.nativeElement, 'width', tab.nativeElement.offsetWidth + 'px');
+      let check: () => void;
+      check = () => {
+        if (!!tab.nativeElement.offsetParent) {
+          this.renderer.setStyle(this.lineRef.nativeElement, 'width', tab.nativeElement.offsetWidth + 'px');
+        } else {
+          setTimeout(() => check(), CHECK_INTERVAL);
+        }
+      }
+      check();
     }
   }
-
 }
