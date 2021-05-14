@@ -162,7 +162,8 @@
       @if $declare {
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         @include jnt-scrollbar();
         @include for-mobile() {
           overflow: visible;
