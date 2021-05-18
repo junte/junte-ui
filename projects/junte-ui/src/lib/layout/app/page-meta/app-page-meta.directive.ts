@@ -83,6 +83,8 @@ export class AppPageMetaDirective {
         } else {
           this.metaService.updateTag({name: 'description', content: meta.description});
         }
+      } else {
+        this.metaService.removeTag('name = "description"');
       }
 
       if (!!meta.image) {
@@ -91,6 +93,8 @@ export class AppPageMetaDirective {
         } else {
           this.metaService.updateTag({name: 'image', content: meta.image});
         }
+      } else {
+        this.metaService.removeTag('name = "image"');
       }
     }
   }
