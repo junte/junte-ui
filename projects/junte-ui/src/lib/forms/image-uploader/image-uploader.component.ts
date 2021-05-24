@@ -53,8 +53,8 @@ export class ImageUploaderComponent implements ControlValueAccessor {
   progress = {uploading: false};
   page = Pages.view;
 
-  image: string;
   sketch: SafeUrl;
+  value: any;
 
   form = this.fb.group({
     cropping: []
@@ -66,6 +66,30 @@ export class ImageUploaderComponent implements ControlValueAccessor {
   })
   @Input()
   uploader: (data: UploadImageData) => Observable<string>;
+
+  @PropertyApi({
+    description: 'Image',
+    type: 'string',
+    default: ''
+  })
+  @Input()
+  image: string;
+
+  @PropertyApi({
+    description: 'Value field',
+    type: 'string',
+    default: ''
+  })
+  @Input()
+  valueField: string;
+
+  @PropertyApi({
+    description: 'Url field',
+    type: 'string',
+    default: ''
+  })
+  @Input()
+  urlField: string;
 
   @PropertyApi({
     description: 'Avatar shape',
@@ -156,10 +180,9 @@ export class ImageUploaderComponent implements ControlValueAccessor {
               private sanitizer: DomSanitizer) {
   }
 
-  writeValue(image: string) {
-    this.logger.debug('write value ', image);
-    this.image = image;
-
+  writeValue(value: string) {
+    this.logger.debug('write value ', value);
+    this.value = value;
   }
 
   crop({target}: { target: HTMLInputElement }) {
@@ -185,9 +208,15 @@ export class ImageUploaderComponent implements ControlValueAccessor {
     } as UploadImageData).pipe(
       finalize(() => this.progress.uploading = false),
       tap(image => this.logger.debug('image uploaded ', image))
-    ).subscribe(image => {
-      this.image = image;
-      this.onChange(image);
+    ).subscribe((obj: Object | string) => {
+      if (typeof obj === 'object') {
+        this.image = obj[this.urlField];
+        this.value = obj[this.valueField];
+      } else {
+        this.image = obj;
+        this.value = obj;
+      }
+      this.onChange(this.value);
       this.page = Pages.view;
     });
   }
