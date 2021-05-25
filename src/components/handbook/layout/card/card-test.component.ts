@@ -48,6 +48,7 @@ export class CardTestComponent implements OnInit {
   pictureControl = this.fb.control(null);
   colorControl = this.fb.control(null);
   positionControl = this.fb.control(null);
+  orientationControl = this.fb.control(null);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -62,7 +63,8 @@ export class CardTestComponent implements OnInit {
     actions: this.actionsControl,
     color: this.colorControl,
     picture: this.pictureControl,
-    position: this.positionControl
+    position: this.positionControl,
+    orientation: this.orientationControl
   });
 
   constructor(private fb: FormBuilder) {
