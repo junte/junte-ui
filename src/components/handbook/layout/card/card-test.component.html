@@ -47,6 +47,7 @@
                           [width]="widthControl.value"
                           [padding]="paddingControl.value"
                           [state]="stateControl.value"
+                          [orientation]="orientationControl.value"
                           [icon]="iconControl.value ? ui.icons.menu : null"
                           [picture]="pictureControl.value === type.template ? {
                             url: null, template: cardPictureTemplate,
@@ -115,6 +116,25 @@
           <jnt-col [tablet]="4">
             <jnt-form [formGroup]="builder">
               <jnt-stack [align]="ui.align.stretch">
+                <jnt-form-item>
+                  <jnt-form-label for="orientation"
+                                  i18n="@@label.orientation">Orientation
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="orientation"
+                                placeholder="Horizontal"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Horizontal"
+                                         i18n-label="@@label.horizontal"
+                                         [icon]="localUi.icons.horizontal"
+                                         [key]="ui.orientation.horizontal"></jnt-select-option>
+                      <jnt-select-option label="Vertical"
+                                         i18n-label="@@label.vertical"
+                                         [icon]="localUi.icons.vertical"
+                                         [key]="ui.orientation.vertical"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
 
                 <jnt-form-item>
                   <jnt-form-label for="padding"
@@ -321,6 +341,10 @@
                   <ng-container *ngIf="paddingControl.value">
                     <![CDATA[
                     [padding]="ui.gutter.]]>{{paddingControl.value}}<![CDATA["]]>
+                  </ng-container>
+                  <ng-container *ngIf="orientationControl.value">
+                    <![CDATA[
+                    [orientation]="ui.orientation.]]>{{orientationControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="widthControl.value">
                     <![CDATA[

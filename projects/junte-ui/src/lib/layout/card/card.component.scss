@@ -19,6 +19,7 @@
     corner: $jnt-corner-normal,
     border: 1px solid $jnt-page-background,
     background: $jnt-primary-background,
+    width: null,
     title: (
       padding: 0,
       margin: 0 0 $jnt-gutter-normal 0,
@@ -112,6 +113,7 @@
       }
     }
     border-radius: map-get($vars, corner);
+    width: map-get($vars, width);
 
     #{$wrapper} > [data-card] > [data-drag] > {
       #{'button'} {
@@ -151,6 +153,15 @@
         @if $declare {
           outline: 0;
           box-shadow: $jnt-outline-shadow-small $jnt-primary-light-color;
+        }
+      }
+    }
+
+    &[data-orientation='vertical'] {
+      #{$wrapper} [data-card] > [data-main] > [data-body] > [data-picture] > [data-image] {
+        @if $declare {
+          width: 100%;
+          height: auto;
         }
       }
     }

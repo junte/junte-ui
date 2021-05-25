@@ -24,7 +24,7 @@
     <jnt-stack data-body
                [attr.tabindex]="(features | includes : ui.feature.clickable) ? 1 : null"
                [align]="ui.align.stretch"
-               [orientation]="(features | includes : ui.feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
+               [orientation]="((features | includes : ui.feature.adapted) && mobile) || orientation === ui.orientation.vertical ? ui.orientation.vertical : ui.orientation.horizontal"
                (focusin)="focused = true"
                (focusout)="focused = false"
                (click)="!!features && features.includes(ui.feature.clickable) ? selected.emit() : null">
