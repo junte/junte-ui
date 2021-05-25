@@ -48,7 +48,7 @@ export class TabsComponent {
   @Input()
   set active(active: number) {
     this._active = active;
-    this.distance = this.links?.toArray()[this.active].nativeElement.offsetLeft;
+    setTimeout(() => this.distance = this.links?.toArray()[this.active].nativeElement.offsetLeft);
   }
 
   get active() {
