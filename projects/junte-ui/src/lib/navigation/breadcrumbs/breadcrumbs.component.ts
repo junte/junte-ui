@@ -104,11 +104,13 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 case 'object': {
                   const title = typeof crumb.label === 'string'
                     ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
+                  const url = typeof crumb.url === 'string'
+                    ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
                       title,
-                      url: crumb.url,
+                      url,
                       disabled: crumb.disabled
                     }));
                   }
