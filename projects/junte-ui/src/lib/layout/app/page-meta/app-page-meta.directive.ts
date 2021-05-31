@@ -44,6 +44,30 @@ export class AppPageMetaDirective {
     this.destroy$.complete();
   }
 
+  setMetaName(name: string, content: string) {
+    if (!!content) {
+      if (!this.metaService.getTag(`name = "${name}"`)) {
+        this.metaService.addTag({name, content: content});
+      } else {
+        this.metaService.updateTag({name, content: content});
+      }
+    } else {
+      this.metaService.removeTag(`name = "${name}"`);
+    }
+  }
+
+  setMetaProperty(property: string, content: string) {
+    if (!!content) {
+      if (!this.metaService.getTag(`property = "${property}"`)) {
+        this.metaService.addTag({property, content: content});
+      } else {
+        this.metaService.updateTag({property, content: content});
+      }
+    } else {
+      this.metaService.removeTag(`property = "${property}"`);
+    }
+  }
+
   build() {
     const root = this.router.routerState.snapshot.root;
     const snapshot: ActivatedRouteSnapshot = findLast(root).pathFromRoot
@@ -76,26 +100,14 @@ export class AppPageMetaDirective {
           .replace(/<br(\/)*>/, ' ')
           .replace(/(<([^>]+)>|&\w+;)/ig, ''));
       }
+      this.setMetaProperty('og:title', meta.title);
+      this.setMetaName('twitter:title', meta.title);
 
-      if (!!meta.description) {
-        if (!this.metaService.getTag('name = "description"')) {
-          this.metaService.addTag({name: 'description', content: meta.description});
-        } else {
-          this.metaService.updateTag({name: 'description', content: meta.description});
-        }
-      } else {
-        this.metaService.removeTag('name = "description"');
-      }
+      this.setMetaName('description', meta.description);
+      this.setMetaProperty('og:description', meta.description);
+      this.setMetaName('twitter:description', meta.description);
 
-      if (!!meta.image) {
-        if (!this.metaService.getTag('name = "image"')) {
-          this.metaService.addTag({name: 'image', content: meta.image});
-        } else {
-          this.metaService.updateTag({name: 'image', content: meta.image});
-        }
-      } else {
-        this.metaService.removeTag('name = "image"');
-      }
+      this.setMetaName('image', meta.image);
     }
   }
 }
