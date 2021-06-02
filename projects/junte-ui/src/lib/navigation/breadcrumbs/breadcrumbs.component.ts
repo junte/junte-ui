@@ -14,7 +14,7 @@ class Breadcrumb {
   route: ActivatedRoute;
   title = null;
   disabled = false;
-  url = '.';
+  url = ['.'];
 
   constructor(defs = null) {
     Object.assign(this, defs);
@@ -104,8 +104,11 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 case 'object': {
                   const title = typeof crumb.label === 'string'
                     ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
-                  const url = typeof crumb.url === 'string'
-                    ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
+                  let url = ['.'];
+                  if (!!crumb.url) {
+                    url = Array.isArray(crumb.url)
+                      ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
+                  }
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
@@ -143,7 +146,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
   go(crumb: Breadcrumb, event: MouseEvent) {
     event.preventDefault();
-    this.router.navigate([crumb.url], {relativeTo: crumb.route})
+    this.router.navigate(crumb.url, {relativeTo: crumb.route})
       .then();
   }
 }
