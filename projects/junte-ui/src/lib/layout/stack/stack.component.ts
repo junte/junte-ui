@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { Width } from '../../core/enums/width';
 import { PropertyApi } from '../../core/decorators/api';
 import { FlexAlign, FlexJustify, FlexWrap } from '../../core/enums/flex';
 import { Gutter } from '../../core/enums/gutter';
@@ -32,6 +33,20 @@ export class StackComponent {
 
   @HostBinding('attr.data-wrap')
   _wrap: FlexWrap = FlexWrap.noWrap;
+
+  @HostBinding('attr.data-width')
+  _width: Width = Width.default;
+
+  @PropertyApi({
+    description: 'Stack width',
+    path: 'ui.width',
+    default: Width.default,
+    options: [Width.default,
+      Width.fluid]
+  })
+  @Input() set width(width: Width) {
+    this._width = width || Width.default;
+  }
 
   @PropertyApi({
     description: 'Defined main axis of elements align',
