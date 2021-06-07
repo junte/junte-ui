@@ -1,27 +1,29 @@
 <jnt-stack [align]="ui.align.stretch" [gutter]="ui.gutter.none">
   <ng-container *ngFor="let section of sections; let i = index;">
-    <a href="#" data-title
-       (click)="setActive(i, $event)"
-       [attr.data-with-template]="!!section.accordionTitleTemplate"
-       [attr.active]="active == i">
+    <a href="#" data-header (click)="setActive(i, $event)">
+      <div data-title
+           [attr.data-with-template]="!!section.accordionTitleTemplate"
+           [attr.active]="active == i">
+        <jnt-icon data-chevron [icon]="ui.icons.selectOpen" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
+        <ng-container *ngIf="section.accordionTitleTemplate; else defaultTemplate">
+          <ng-container *ngTemplateOutlet="section.accordionTitleTemplate"></ng-container>
+        </ng-container>
 
-      <jnt-icon data-chevron [icon]="ui.icons.selectOpen" [@rotate]="active == i ? 'open' : 'close'"></jnt-icon>
-      <ng-container *ngIf="section.accordionTitleTemplate; else defaultTemplate">
-        <ng-container *ngTemplateOutlet="section.accordionTitleTemplate"></ng-container>
-      </ng-container>
+        <ng-template #defaultTemplate>
+          <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
+          <span>{{section.title}}</span>
+        </ng-template>
 
-      <ng-template #defaultTemplate>
-        <jnt-icon *ngIf="section.icon" [icon]="section.icon"></jnt-icon>
-        <span>{{section.title}}</span>
-      </ng-template>
-
-      <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
-        <jnt-spinner *ngIf="section.state === ui.state.loading"></jnt-spinner>
-        <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
-      </jnt-stack>
+        <jnt-stack data-state [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+          <jnt-spinner *ngIf="section.state === ui.state.loading"></jnt-spinner>
+          <jnt-icon data-warning *ngIf="section.state === ui.state.warning" [icon]="ui.icons.warning"></jnt-icon>
+        </jnt-stack>
+      </div>
     </a>
-    <div *ngIf="active == i" data-content [@collapse]=animate>
-      <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>
+    <div data-wrapper *ngIf="active == i" [@collapse]=animate>
+      <div data-content>
+        <ng-container *ngTemplateOutlet="section.accordionContentTemplate"></ng-container>
+      </div>
     </div>
   </ng-container>
 </jnt-stack>

@@ -10,7 +10,7 @@ $accordion-marker-height: 2px;
 
   $defs: (
     background: $jnt-primary-background,
-    padding: $jnt-gutter-normal,
+    padding: $jnt-gutter-normal 0,
     corner: $jnt-corner-normal,
     border: 1px solid $jnt-page-background
   );
@@ -40,21 +40,21 @@ $accordion-marker-height: 2px;
     border: map-get($vars, border);
   }
 
-  #{$context} #{$wrapper} [data-title] {
+  #{$context} #{$wrapper} [data-header] {
     @if $declare {
-      border-bottom: $accordion-marker-height solid $jnt-secondary-background;
-      padding: ($jnt-gutter-small + $accordion-marker-height) 0;
+      padding: 0 $jnt-gutter-normal;
       cursor: pointer;
       user-select: none;
       text-decoration: none;
+      color: inherit;
+    }
+
+    [data-title] {
+      flex: 1;
+      border-bottom: $accordion-marker-height solid $jnt-secondary-background;
+      padding: ($jnt-gutter-small + $accordion-marker-height) 0;
       display: flex;
       align-items: center;
-      color: inherit;
-
-      [data-chevron] {
-        @include jnt-icon((size: 24px), '&');
-        margin-right: $jnt-gutter-small;
-      }
 
       &[active='true'] {
         border-color: $jnt-primary-light-color;
@@ -92,24 +92,32 @@ $accordion-marker-height: 2px;
           }
         }
       }
-    }
 
-    [data-state] {
-      @if $declare {
-        margin-left: auto;
-        line-height: 1;
+      [data-chevron] {
+        @include jnt-icon((size: 24px), '&');
+        margin-right: $jnt-gutter-small;
+      }
 
-        [data-warning] {
-          @include jnt-icon((color: $jnt-fail-color, size: 24px), '&');
+      [data-state] {
+        @if $declare {
+          margin-left: auto;
+          line-height: 1;
+
+          [data-warning] {
+            @include jnt-icon((color: $jnt-fail-color, size: 24px), '&');
+          }
         }
       }
     }
   }
 
-  #{$context} #{$wrapper} [data-content] {
-    @if $declare {
-      padding: $jnt-gutter-normal 0;
-      overflow: hidden;
+  #{$context} #{$wrapper} [data-wrapper] {
+    overflow: hidden;
+    [data-content] {
+      @if $declare {
+        padding: $jnt-gutter-normal;
+        box-sizing: border-box;
+      }
     }
   }
 }
