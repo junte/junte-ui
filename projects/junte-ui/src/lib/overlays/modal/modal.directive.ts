@@ -1,6 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
-import { ModalOptions } from './modal.component';
 import { ModalService } from './modal.service';
+import { ModalOptions } from './modal.types';
 
 @Directive({
   selector: '[jntModal]',

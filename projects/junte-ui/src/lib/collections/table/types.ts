@@ -1,14 +1,11 @@
 export interface SearchFilter {
-
   q?: string;
   orderBy?: string;
   offset?: number;
   first?: number;
-
 }
 
 export class DefaultSearchFilter implements SearchFilter {
-
   q: string;
   orderBy: string;
   offset: number;
@@ -19,5 +16,4 @@ export class DefaultSearchFilter implements SearchFilter {
       Object.assign(this, defs);
     }
   }
-
 }

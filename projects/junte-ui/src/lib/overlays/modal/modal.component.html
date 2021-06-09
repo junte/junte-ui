@@ -3,18 +3,20 @@
            [@move]="opened ? 'visible' : 'hidden'"
            (@move.start)='start($event)'
            (@move.done)='done($event)'>
-  <jnt-stack data-title *ngIf="!!options.title"
+  <jnt-stack data-header
              [orientation]="ui.orientation.horizontal"
              [justify]="ui.justify.between"
              [align]="ui.align.center">
-    <jnt-stack [orientation]="ui.orientation.horizontal"
+    <jnt-stack data-title
+               *ngIf="!!options.title"
+               [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.small">
       <jnt-icon *ngIf="!!options.title.icon"
                 [icon]="options.title.icon"></jnt-icon>
       <span data-text>{{options.title.text}}</span>
     </jnt-stack>
 
-    <button *ngIf="!options.hold" (click)="close()">
+    <button *ngIf="!options.hold" (click)="close(modalClosedReason.user)">
       <jnt-icon [icon]="ui.icons.close"></jnt-icon>
     </button>
   </jnt-stack>
@@ -36,7 +38,8 @@
 
 </jnt-block>
 <div *ngIf="!!opened" #backdrop data-overlay
-     (click)="!options.hold && options.closeOutside ? close() : null"
+     (click)="!options.hold && options.closeOutside ? close(modalClosedReason.user) : null"
      [@.disabled]="mobile"
-     [@blackout]="opened"></div>
+     [@blackout]="opened">
+</div>
 

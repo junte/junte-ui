@@ -1,4 +1,3 @@
-import { Context } from './context';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -7,17 +6,19 @@ import { SelectMode } from '../../forms/select/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
+import { ModalScheme } from '../../overlays/modal/modal.enums';
 import { Behaviour } from './behaviour';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
+import { Context } from './context';
 import { Feature } from './feature';
 import { Fit } from './fit';
 import { FlexAlign, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
 import { Height } from './height';
+import { IconModifier } from './icon-modifier';
 import { icons } from './icons';
 import { Key, Modifier } from './keyboard';
-import { IconModifier } from './icon-modifier';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
 import { Placement } from './placement';
@@ -75,5 +76,6 @@ export const UI = {
   menu: {style: MenuStyle},
   keyboard: {key: Key, modifier: Modifier},
   icon: {modifier: IconModifier},
-  switch: {style: SwitchStyle}
+  switch: {style: SwitchStyle},
+  modal: {scheme: ModalScheme}
 };
