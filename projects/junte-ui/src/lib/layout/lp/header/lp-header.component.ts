@@ -1,4 +1,14 @@
-import { ChangeDetectorRef, Component, ContentChild, HostBinding, HostListener, TemplateRef } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import {
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  HostBinding,
+  NgZone,
+  OnInit,
+  Renderer2,
+  TemplateRef
+} from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { UI } from '../../../core/enums/ui';
@@ -10,11 +20,13 @@ import { PopoverInstance } from '../../../overlays/popover/popover.service';
   templateUrl: './lp-header.encapsulated.html',
   providers: [...LOGGER_PROVIDERS]
 })
-export class LpHeaderComponent {
+export class LpHeaderComponent implements OnInit {
 
   @HostBinding('attr.host') readonly host = 'jnt-lp-header-host';
 
   ui = UI;
+
+  private listeners: Function[] = [];
 
   reference: { popover: PopoverInstance } = {popover: null};
 
@@ -36,16 +48,30 @@ export class LpHeaderComponent {
   @ContentChild('headerActionsTemplate')
   headerActionsTemplate: TemplateRef<any>;
 
-  @HostListener('window:scroll')
-  onPageScroll() {
-    const offset = window.pageYOffset
-      || document.documentElement.scrollTop
-      || document.body.scrollTop || 0;
-    this.scrolled = offset > 0;
+  constructor(private logger: NGXLogger,
+              public cd: ChangeDetectorRef,
+              private scroller: ViewportScroller,
+              private renderer: Renderer2,
+              private zone: NgZone) {
   }
 
-  constructor(private logger: NGXLogger,
-              public cd: ChangeDetectorRef) {
+  ngOnInit() {
+    this.zone.runOutsideAngular(() => {
+      this.listeners.push(this.renderer.listen('window', 'scroll', () => {
+        const [, scrollY] = this.scroller.getScrollPosition();
+        if (scrollY > 0) {
+          if (!this.scrolled) {
+            this.scrolled = true;
+            this.cd.markForCheck();
+          }
+        } else {
+          if (this.scrolled) {
+            this.scrolled = false;
+            this.cd.markForCheck();
+          }
+        }
+      }));
+    });
   }
 
 
