@@ -10,6 +10,7 @@ export interface ModalTitle {
 export class ModalOptions {
   maxWidth? = '800px';
   maxHeight? = '600px';
+  width? = 'fit-content';
   hold? = false;
   closeOutside? = true;
   title?: ModalTitle;
