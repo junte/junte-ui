@@ -35,7 +35,7 @@
                                    placeholder="Please, focus and press '{{keyControl.value}}' button"
                                    [jntShortcuts]="[{
                                       key: keyControl.value,
-                                      modifier: modifierControl.value,
+                                      modifiers: [modifierControl.value],
                                       action: boundAction.bind(this)
                                    }]">
                         </jnt-input>
@@ -49,7 +49,7 @@
                                    placeholder="Please, focus and press '{{keyControl.value}}' button"
                                    [jntShortcuts]="[{
                                       key: keyControl.value,
-                                      modifier: modifierControl.value,
+                                      modifiers: [modifierControl.value],
                                       action: anonymAction
                                    }]">
                         </jnt-input>
@@ -140,7 +140,7 @@
                 <jnt-input placeholder="Please, focus and press ']]>{{keyControl.value}}<![CDATA[' button"
                            [jntShortcuts]="[{
                              key: ]]>{{keyControl.value}}<![CDATA[,
-                             modifier: ]]>{{modifierControl.value}}<![CDATA[,
+                             modifiers: ]]>[{{modifierControl.value}}]<![CDATA[,
                              action: boundAction.bind(this)
                            }]">
                 </jnt-input>
@@ -170,7 +170,7 @@
                 <jnt-input placeholder="Please, focus and press ']]>{{keyControl.value}}<![CDATA[' button"
                            [jntShortcuts]="[{
                              key: ]]>{{keyControl.value}}<![CDATA[,
-                             modifier: ]]>{{modifierControl.value}}<![CDATA[,
+                             modifiers: ]]>[{{modifierControl.value}}]<![CDATA[,
                              action: anonymAction
                            }]"
                 </jnt-input>

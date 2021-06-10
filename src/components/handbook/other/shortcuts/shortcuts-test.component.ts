@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModalService, ShortcutsDirective, TabComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
@@ -10,7 +10,7 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './shortcuts-test.component.html',
   styleUrls: ['./shortcuts-test.component.scss']
 })
-export class ShortcutsTestComponent {
+export class ShortcutsTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -24,7 +24,8 @@ export class ShortcutsTestComponent {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/shortcuts';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('code')
+  code: TabComponent;
 
   keyControl = this.fb.control(UI.keyboard.key.enter);
   modifierControl = this.fb.control(null);
@@ -37,7 +38,7 @@ export class ShortcutsTestComponent {
   form = this.fb.group({
     boundAction: [],
     anonymAction: []
-  })
+  });
 
   constructor(private modalService: ModalService,
               private fb: FormBuilder) {
@@ -50,7 +51,7 @@ export class ShortcutsTestComponent {
 
   anonymAction = () => {
     this.value = `${this.actions.anonym} action was called`;
-  };
+  }
 
   boundAction() {
     this.value = `${this.actions.bound} action was called`;
