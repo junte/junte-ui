@@ -5,8 +5,8 @@ import { Key, Modifier } from '../../core/enums/keyboard';
 
 interface Shortcut {
   key: Key;
-  modifier: Modifier;
   action: Function;
+  modifiers?: Modifier[];
 }
 
 @Directive({
@@ -16,7 +16,7 @@ export class ShortcutsDirective {
 
   @PropertyApi({
     description: 'Shortcuts array',
-    type: '[{key: ui.kayboard.key, modifier: ui.keyboard.modifier, action: Function}]',
+    type: '[{key: ui.kayboard.key, modifiers: [ui.keyboard.modifier], action: Function}]',
     default: '[]'
   })
   @Input('jntShortcuts')
@@ -25,10 +25,10 @@ export class ShortcutsDirective {
   @HostListener('keydown', ['$event'])
   select(event: KeyboardEvent) {
     const found = this.shortcuts.find(shortcut => shortcut.key === event.key);
-    if (!!found && (!found.modifier || (found.modifier === Modifier.altKey && event.altKey)
-      || (found.modifier === Modifier.ctrlKey && event.ctrlKey)
-      || (found.modifier === Modifier.shiftKey && event.shiftKey)
-      || (found.modifier === Modifier.metaKey && event.metaKey))) {
+    if (!!found && (found.modifiers?.length > 0 || (found.modifiers.includes(Modifier.altKey) && event.altKey)
+      || (found.modifiers.includes(Modifier.ctrlKey) && event.ctrlKey)
+      || (found.modifiers.includes(Modifier.shiftKey) && event.shiftKey)
+      || (found.modifiers.includes(Modifier.metaKey) && event.metaKey))) {
       found.action();
       event.preventDefault();
     }
