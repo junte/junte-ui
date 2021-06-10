@@ -21,7 +21,12 @@
     </button>
   </jnt-stack>
 
-  <div data-content [ngStyle]="{'max-height': options.maxHeight, 'max-width': options.maxWidth}"
+  <div data-content
+       [ngStyle]="{
+         'max-height': options.maxHeight,
+         'max-width': options.maxWidth,
+         'width': options.width
+       }"
        [attr.data-windows]="device.platform.windows">
     <ng-container #container>
       <ng-container *ngIf="!!contentTemplate">
