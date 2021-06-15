@@ -25,7 +25,7 @@ export class ShortcutsDirective {
   @HostListener('keydown', ['$event'])
   select(event: KeyboardEvent) {
     const found = this.shortcuts.find(shortcut => shortcut.key === event.key);
-    if (!!found && (found.modifiers?.length > 0 || (found.modifiers.includes(Modifier.altKey) && event.altKey)
+    if (!!found && (!found.modifiers?.length || (found.modifiers.includes(Modifier.altKey) && event.altKey)
       || (found.modifiers.includes(Modifier.ctrlKey) && event.ctrlKey)
       || (found.modifiers.includes(Modifier.shiftKey) && event.shiftKey)
       || (found.modifiers.includes(Modifier.metaKey) && event.metaKey))) {
