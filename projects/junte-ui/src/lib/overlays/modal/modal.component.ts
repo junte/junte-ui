@@ -44,6 +44,7 @@ export class ModalComponent implements OnInit {
   contentTemplate: TemplateRef<any>;
   options = new ModalOptions();
   mobile = this.breakpoint.current === Breakpoint.mobile;
+  animationTimer: any;
 
   @Input()
   backdrop: ElementRef;
@@ -103,9 +104,11 @@ export class ModalComponent implements OnInit {
   // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
   open(content: ModalContent, options: Partial<ModalOptions> = {}) {
+    clearTimeout(this.animationTimer);
     this.options = new ModalOptions(options);
     this.content = content;
     if (!!this.backdrop) {
+      this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
       this.renderer.setStyle(this.backdrop.nativeElement, 'filter', BACKDROP_FILTER);
       if (!this.mobile && this.config.modal.animation) {
         this.renderer.setStyle(this.backdrop.nativeElement, 'animation',
@@ -130,7 +133,8 @@ export class ModalComponent implements OnInit {
       this.opened = false;
       this.hostRef.nativeElement.scrollTop = 0;
 
-      setTimeout(() => {
+      // TODO: for future `this.timers.animation`
+      this.animationTimer = setTimeout(() => {
         this.content = null;
         if (!!this.backdrop) {
           this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
