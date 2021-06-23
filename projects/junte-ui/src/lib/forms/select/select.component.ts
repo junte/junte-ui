@@ -37,6 +37,7 @@ import { DeviceService } from '../../layout/responsive/device.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
+import { Key as Keyboard } from '../../core/enums/keyboard';
 
 const MIN_WIDTH = 20;
 const CHAR_WIDTH = 8;
@@ -566,7 +567,10 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   createOption(query, event: KeyboardEvent) {
-    if (!!query && event.key === 'Enter' && !!this.creator) {
+    if (event.key === Keyboard.enter) {
+      event.preventDefault();
+    }
+    if (!!query && event.key === Keyboard.enter && !!this.creator) {
       const complete = this.creator(query, this.close.bind(this));
       if (!!complete) {
         complete.subscribe(() => this.queryControl.setValue(null));
