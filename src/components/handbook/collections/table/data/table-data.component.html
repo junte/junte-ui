@@ -15,7 +15,7 @@
         </ng-template>
 
         <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
-          <jnt-select data-search formControlName="ability"
+          <jnt-select formControlName="ability"
                       placeholder="Select ability"
                       i18n-placeholder="@@label.select_ability"
                       [features]="[ui.feature.allowEmpty]">
