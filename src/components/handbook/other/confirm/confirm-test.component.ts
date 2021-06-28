@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ConfirmComponent, ModalService, TabComponent, UI } from 'junte-ui';
+import { ConfirmComponent, ModalService, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -31,7 +31,7 @@ export class ConfirmTestComponent  implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/shared/confirm';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=7771%3A1';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   usingControl = this.fb.control(UsingType.popover);
   contentControl = this.fb.control(ContentType.message);
@@ -47,7 +47,7 @@ export class ConfirmTestComponent  implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

@@ -9,7 +9,7 @@ import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { ButtonModule } from '../button/button.module';
 import { CheckSelectedPipe } from './pipes';
-import { SwitcherOptionComponent } from './switcher-option.component';
+import { SwitcherOptionDirective } from './switcher-option.directive';
 import { SwitcherComponent } from './switcher.component';
 
 @NgModule({
@@ -26,16 +26,15 @@ import { SwitcherComponent } from './switcher.component';
   ],
   declarations: [
     SwitcherComponent,
-    SwitcherOptionComponent,
+    SwitcherOptionDirective,
     CheckSelectedPipe
   ],
   entryComponents: [
-    SwitcherComponent,
-    SwitcherOptionComponent
+    SwitcherComponent
   ],
   exports: [
     SwitcherComponent,
-    SwitcherOptionComponent
+    SwitcherOptionDirective
   ]
 })
 export class SwitcherModule {

@@ -1,9 +1,9 @@
 import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
-  TabComponent,
+  TabsComponent,
   TimelineComponent,
-  TimelineItemComponent,
+  TimelineItemDirective,
   UI
 } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
@@ -22,13 +22,13 @@ export class TimelineTestComponent implements OnInit {
   localUi = LocalUI;
   language = Language;
   highlight = {language: HighlightLanguage};
-  types = {timeline: TimelineComponent, item: TimelineItemComponent};
+  types = {timeline: TimelineComponent, item: TimelineItemDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/timeline';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=6587%3A0';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   iconControl = this.fb.control(false);
   colorControl = this.fb.control(this.ui.color.primary);
@@ -44,7 +44,7 @@ export class TimelineTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

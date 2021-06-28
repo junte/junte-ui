@@ -1,7 +1,7 @@
 import {
   AfterContentInit,
   Component,
-  ContentChildren,
+  ContentChildren, Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -43,11 +43,10 @@ const MIN_WIDTH = 20;
 const CHAR_WIDTH = 8;
 const CHECKING_INTERVAL = 100;
 
-@Component({
-  selector: 'jnt-select-option',
-  template: ''
+@Directive({
+  selector: 'jnt-select-option'
 })
-export class SelectOptionComponent {
+export class SelectOptionDirective {
 
   ui = UI;
 
@@ -225,8 +224,8 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   @Input()
   optionsHeaderTemplate: TemplateRef<any>;
 
-  @ContentChildren(SelectOptionComponent)
-  optionsFromMarkup: QueryList<SelectOptionComponent>;
+  @ContentChildren(SelectOptionDirective)
+  optionsFromMarkup: QueryList<SelectOptionDirective>;
 
   @ViewChild('optionsTemplate')
   optionsTemplate: TemplateRef<any>;
@@ -427,7 +426,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   ngAfterContentInit() {
-    const convert = (options: SelectOptionComponent[]) => {
+    const convert = (options: SelectOptionDirective[]) => {
       this.options.persisted = {};
       options.forEach(({key, label, icon, value}, index) =>
         this.options.persisted[`${key}`] = {index, key, label, icon, value});

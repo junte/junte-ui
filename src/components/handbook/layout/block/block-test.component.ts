@@ -1,6 +1,6 @@
 import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BlockComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, TabsComponent, UI } from 'junte-ui';
 import { Language as HighlightLanguage } from 'src/components/handbook/shared/code-highlight/enum';
 import { HANDBOOK } from 'src/consts';
 import { Language } from '../../../../enums/language';
@@ -27,8 +27,7 @@ export class BlockTestComponent implements OnInit {
   @ViewChild('block')
   block: BlockComponent;
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   paddingControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
@@ -58,6 +57,6 @@ export class BlockTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 }

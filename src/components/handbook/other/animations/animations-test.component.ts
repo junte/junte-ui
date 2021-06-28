@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { moveFromRight, TabComponent, UI } from 'junte-ui';
+import { moveFromRight, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -19,7 +19,7 @@ export class AnimationsTestComponent {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/other/animations';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   enterTimingControl = this.fb.control(1);
   leaveTimingControl = this.fb.control(1);
@@ -34,7 +34,7 @@ export class AnimationsTestComponent {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   animate(outlet: RouterOutlet) {

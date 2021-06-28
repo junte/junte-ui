@@ -1,6 +1,6 @@
 import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TabComponent, TabsComponent, UI } from 'junte-ui';
+import { TabDirective, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { Language } from '../../../../enums/language';
 import { LocalUI } from 'src/enums/local-ui';
@@ -15,7 +15,7 @@ export class TabsTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  types = {tabs: TabsComponent, tab: TabComponent};
+  types = {tabs: TabsComponent, tab: TabDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/tabs';
@@ -39,7 +39,7 @@ export class TabsTestComponent implements OnInit {
     title: this.titleControl
   });
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder,
               @Inject(LOCALE_ID) public locale: string) {
@@ -47,6 +47,6 @@ export class TabsTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SliderComponent, TabComponent, UI } from 'junte-ui';
+import { SliderComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -18,8 +18,7 @@ export class SliderTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/slider';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   minControl = this.fb.control(0);
   maxControl = this.fb.control(100);
@@ -41,7 +40,7 @@ export class SliderTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

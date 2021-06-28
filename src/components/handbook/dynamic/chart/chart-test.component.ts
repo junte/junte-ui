@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ChartComponent, ChartIndicatorComponent, TabComponent, UI } from 'junte-ui';
+import { ChartComponent, ChartIndicatorDirective, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { Hero } from 'src/enums/hero';
 import { LocalUI } from 'src/enums/local-ui';
@@ -39,10 +39,10 @@ export class ChartTestComponent implements OnInit {
 
   types = {
     chart: ChartComponent,
-    chartIndicator: ChartIndicatorComponent
+    chartIndicator: ChartIndicatorDirective
   };
 
-  @ViewChild('code', {static: false}) code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   templateControl = this.fb.control(false);
 
@@ -60,7 +60,7 @@ export class ChartTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 

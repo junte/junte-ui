@@ -25,7 +25,7 @@ import { Width } from '../../core/enums/width';
 import { today } from '../../forms/calendar/utils';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { GanttTypes } from './enums';
-import { GanttLineComponent } from './gantt-line/gantt-line.component';
+import { GanttLineDirective } from './gantt-line/gantt-line.directive';
 
 @Component({
   selector: 'jnt-gantt',
@@ -112,8 +112,8 @@ export class GanttComponent implements ControlValueAccessor {
   @ContentChild('ganttTitleTemplate')
   titleTemplate: TemplateRef<any>;
 
-  @ContentChildren(GanttLineComponent, {descendants: true})
-  lines: QueryList<GanttLineComponent>;
+  @ContentChildren(GanttLineDirective, {descendants: true})
+  lines: QueryList<GanttLineDirective>;
 
   @ViewChildren('calendarDay')
   calendarDays: QueryList<ElementRef>;

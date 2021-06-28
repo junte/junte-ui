@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { InputComponent, TabComponent, UI } from 'junte-ui';
+import { InputComponent, TabsComponent, UI } from 'junte-ui';
 import { InputType } from 'projects/junte-ui/src/lib/forms/input/enums';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -12,7 +12,7 @@ import { Language } from '../../../../enums/language';
   templateUrl: './input-test.component.html',
   styleUrls: ['./input-test.component.scss']
 })
-export class InputTestComponent implements OnInit, AfterViewInit {
+export class InputTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -25,7 +25,7 @@ export class InputTestComponent implements OnInit, AfterViewInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/input';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=700%3A0';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   typeControl = this.fb.control(null);
   schemeControl = this.fb.control(null);
@@ -85,10 +85,8 @@ export class InputTestComponent implements OnInit, AfterViewInit {
     });
     this.reset(this.typeControl.value);
     this.typeControl.valueChanges.subscribe(type => this.reset(type));
-  }
-
-  ngAfterViewInit() {
-    this.builder.valueChanges.subscribe(() => this.code.flash());
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
   }
 
   test() {

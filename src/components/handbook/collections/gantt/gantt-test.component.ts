@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import * as faker from 'faker';
-import { GanttComponent, GanttLineComponent, GanttTypes, TabComponent, UI } from 'junte-ui';
+import { GanttComponent, GanttLineDirective, GanttTypes, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from '../../../../enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -23,7 +23,7 @@ export class GanttTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  types = {gantt: GanttComponent, line: GanttLineComponent};
+  types = {gantt: GanttComponent, line: GanttLineDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=5769%3A15262';
@@ -58,11 +58,36 @@ export class GanttTestComponent implements OnInit {
       login: faker.name.findName()
     },
     periods: [
-      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(23), to: faker.date.recent(-25), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true}
+      {
+        from: faker.date.recent(23),
+        to: faker.date.recent(-25),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(23),
+        to: faker.date.recent(-25),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(23),
+        to: faker.date.recent(-25),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(23),
+        to: faker.date.recent(-25),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(23),
+        to: faker.date.recent(-25),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      }
     ]
   }));
 
@@ -75,12 +100,27 @@ export class GanttTestComponent implements OnInit {
       login: faker.name.findName()
     },
     periods: [
-      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true},
-      {from: faker.date.recent(90), to: faker.date.recent(-80), status: faker.helpers.randomize(['accepting', 'accepted', 'declined']), selfExpense: true}
+      {
+        from: faker.date.recent(90),
+        to: faker.date.recent(-80),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(90),
+        to: faker.date.recent(-80),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      },
+      {
+        from: faker.date.recent(90),
+        to: faker.date.recent(-80),
+        status: faker.helpers.randomize(['accepting', 'accepted', 'declined']),
+        selfExpense: true
+      }
     ]
   }));
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder) {
   }
@@ -97,6 +137,9 @@ export class GanttTestComponent implements OnInit {
         this.requests = this.yearArray;
       }
     });
+
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
   }
 
   add() {

@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BlockComponent, RadioComponent, RadioGroupComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, RadioComponent, RadioGroupComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK, HEROES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -25,7 +25,7 @@ export class RadioTestComponent implements OnInit {
 
   originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
   @ViewChild('block') block: BlockComponent;
 
   sizeControl = this.fb.control(null);
@@ -64,6 +64,9 @@ export class RadioTestComponent implements OnInit {
 
     this.orientationControl.valueChanges.subscribe(value =>
       value === this.ui.orientation.horizontal ? this.heroControl.setValue(this.heroes.captain.code) : null);
+
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
 
   }
 

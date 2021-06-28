@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ModalService, ShortcutsDirective, TabComponent, UI } from 'junte-ui';
+import { ModalService, ShortcutsDirective, TabsComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -24,8 +24,7 @@ export class ShortcutsTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/shortcuts';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   keyControl = this.fb.control(UI.keyboard.key.enter);
   modifierControl = this.fb.control(null);
@@ -46,7 +45,7 @@ export class ShortcutsTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   anonymAction = () => {

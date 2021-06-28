@@ -1,13 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
 import { Color } from '../../../core/enums/color';
 import { UI } from '../../../core/enums/ui';
 
-@Component({
-  selector: 'jnt-progress-line',
-  template: ''
+@Directive({
+  selector: 'jnt-progress-line'
 })
-export class ProgressLineComponent {
+export class ProgressLineDirective {
 
   ui = UI;
 

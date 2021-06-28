@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
-import { AccordionSectionComponent } from './section/accordion-section.component';
+import { AccordionSectionDirective } from './section/accordion-section.directive';
 
 enum AnimationState {
   default = 'default',
@@ -36,8 +36,8 @@ export class AccordionComponent {
 
   animate = AnimationState.default;
 
-  @ContentChildren(AccordionSectionComponent)
-  sections: QueryList<AccordionSectionComponent>;
+  @ContentChildren(AccordionSectionDirective)
+  sections: QueryList<AccordionSectionDirective>;
 
   @PropertyApi({
     description: 'Accordion active section',

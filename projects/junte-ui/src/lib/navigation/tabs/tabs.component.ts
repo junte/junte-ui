@@ -14,7 +14,7 @@ import {
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
-import { TabComponent } from './tab.component';
+import { TabDirective } from './tab.directive';
 
 const CHECK_INTERVAL = 300;
 
@@ -70,8 +70,8 @@ export class TabsComponent {
   @Input()
   features: Feature[] = [];
 
-  @ContentChildren(TabComponent)
-  tabs: QueryList<TabComponent>;
+  @ContentChildren(TabDirective)
+  tabs: QueryList<TabDirective>;
 
   @ViewChildren('links')
   links: QueryList<ElementRef>;
@@ -92,5 +92,11 @@ export class TabsComponent {
       }
       check();
     }
+  }
+
+  flash(index: number) {
+    const tab = this.tabs.toArray()[index];
+    tab.state.flash = true;
+    setTimeout(() => tab.state.flash = false, 700);
   }
 }

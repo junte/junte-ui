@@ -1,5 +1,5 @@
 import { Component, Inject, LOCALE_ID, ViewChild } from '@angular/core';
-import { TabComponent, UI, ForDirective, ForMinDirective, ForMaxDirective } from 'junte-ui';
+import { TabDirective, UI, ForDirective, ForMinDirective, ForMaxDirective } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
 import { Language } from '../../../../enums/language';
@@ -24,7 +24,7 @@ export class ResponsiveTestComponent {
 
   types = {for: ForDirective, min: ForMinDirective, max: ForMaxDirective};
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('code') code: TabDirective;
 
   constructor(@Inject(LOCALE_ID) public locale: string) {
   }

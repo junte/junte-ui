@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MenuComponent, MenuItemComponent, UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
+import { MenuComponent, MenuItemDirective, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -20,13 +19,13 @@ export class MenuTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sourceType = SourceType;
-  types = {menu: MenuComponent, menuItem: MenuItemComponent};
+  types = {menu: MenuComponent, menuItem: MenuItemDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/navigation/menu';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2780';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   orientationControl = this.fb.control(null);
   spacingControl = this.fb.control(null);
@@ -53,7 +52,7 @@ export class MenuTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
 
     // this.styleControl.valueChanges.subscribe(value => {
     //   if (value === UI.menu.style.tabs) {

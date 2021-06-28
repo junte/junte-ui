@@ -9,12 +9,12 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { ButtonModule } from '../button/button.module';
 import { GetOptionPipe, GetOptionsPipe, TrackGroupPipe } from './pipes';
-import { SelectComponent, SelectOptionComponent } from './select.component';
+import { SelectComponent, SelectOptionDirective } from './select.component';
 
 @NgModule({
   declarations: [
     SelectComponent,
-    SelectOptionComponent,
+    SelectOptionDirective,
     GetOptionsPipe,
     GetOptionPipe,
     TrackGroupPipe
@@ -33,12 +33,11 @@ import { SelectComponent, SelectOptionComponent } from './select.component';
   ],
   entryComponents:
     [
-      SelectComponent,
-      SelectOptionComponent
+      SelectComponent
     ],
   exports: [
     SelectComponent,
-    SelectOptionComponent
+    SelectOptionDirective
   ]
 })
 export class SelectModule {
