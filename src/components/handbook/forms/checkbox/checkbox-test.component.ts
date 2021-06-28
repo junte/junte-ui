@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BlockComponent, BreakpointService, CheckboxComponent, CheckboxGroupComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, BreakpointService, CheckboxComponent, CheckboxGroupComponent, TabsComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
 import { HANDBOOK, HEROES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -26,8 +26,7 @@ export class CheckboxTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/checkbox';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2779';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   @ViewChild('block')
   block: BlockComponent;
@@ -62,7 +61,7 @@ export class CheckboxTestComponent implements OnInit {
         : this.heroControl.enable({emitEvent: false}));
 
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   submit() {

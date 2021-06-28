@@ -8,8 +8,8 @@ import { DatePipesModule } from '../../core/pipes/date-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ButtonModule } from '../../forms/button/button.module';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
-import { GanttLinePeriodComponent } from './gantt-line-period/gantt-line-period.component';
-import { GanttLineComponent } from './gantt-line/gantt-line.component';
+import { GanttLinePeriodDirective } from './gantt-line-period/gantt-line-period.directive';
+import { GanttLineDirective } from './gantt-line/gantt-line.directive';
 import { GanttPipesModule } from './gantt-pipes.module';
 import { GanttComponent } from './gantt.component';
 import { AccordionModule } from '../../navigation/accordion/accordion.module';
@@ -17,8 +17,8 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
 @NgModule({
   declarations: [
     GanttComponent,
-    GanttLineComponent,
-    GanttLinePeriodComponent
+    GanttLineDirective,
+    GanttLinePeriodDirective
   ],
   imports: [
     CommonModule,
@@ -35,8 +35,8 @@ import { AccordionModule } from '../../navigation/accordion/accordion.module';
   ],
   exports: [
     GanttComponent,
-    GanttLineComponent,
-    GanttLinePeriodComponent
+    GanttLineDirective,
+    GanttLinePeriodDirective
   ]
 })
 export class GanttModule {

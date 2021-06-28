@@ -1,12 +1,11 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { TextAlign } from '../../core/enums/text';
 
-@Component({
-  selector: 'jnt-table-column',
-  template: ``
+@Directive({
+  selector: 'jnt-table-column'
 })
-export class TableColumnComponent {
+export class TableColumnDirective {
 
   @ContentApi({
     selector: '#tableCellTemplate',

@@ -12,7 +12,7 @@ import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { SelectMode } from '../select/enums';
 import { Key } from '../select/model';
-import { SwitcherOptionComponent } from './switcher-option.component';
+import { SwitcherOptionDirective } from './switcher-option.directive';
 
 @Component({
   selector: 'jnt-switcher',
@@ -134,8 +134,8 @@ export class SwitcherComponent implements ControlValueAccessor {
   @Output('selected')
   updated = new EventEmitter<any>();
 
-  @ContentChildren(SwitcherOptionComponent)
-  options: QueryList<SwitcherOptionComponent>;
+  @ContentChildren(SwitcherOptionDirective)
+  options: QueryList<SwitcherOptionDirective>;
 
   selected: any[] = [];
   version = 0;

@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BreakpointService, SwitchComponent, SwitchGroupComponent, TabComponent, UI } from 'junte-ui';
+import { BreakpointService, SwitchComponent, SwitchGroupComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK, HEROES } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Language } from '../../shared/code-highlight/enum';
@@ -32,8 +32,7 @@ export class SwitchTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switch';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2784';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   sizeControl = this.fb.control(null);
   labelControl = this.fb.control(false);
@@ -76,6 +75,6 @@ export class SwitchTestComponent implements OnInit {
     });
 
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 }

@@ -1,3 +1,3 @@
 export { AccordionComponent } from './accordion.component';
-export { AccordionSectionComponent } from './section/accordion-section.component';
+export { AccordionSectionDirective } from './section/accordion-section.directive';
 export { AccordionModule } from './accordion.module';

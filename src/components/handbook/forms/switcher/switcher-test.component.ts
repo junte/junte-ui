@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { BlockComponent, SwitcherComponent, SwitcherOptionComponent, TabComponent, UI } from 'junte-ui';
+import { BlockComponent, SwitcherComponent, SwitcherOptionDirective, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { Hero } from 'src/enums/hero';
@@ -18,13 +18,13 @@ export class SwitcherTestComponent implements OnInit {
   localUi = LocalUI;
   hero = Hero;
   language = Language;
-  types = {switcher: SwitcherComponent, option: SwitcherOptionComponent};
+  types = {switcher: SwitcherComponent, option: SwitcherOptionDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/switcher';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=3074%3A11997';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
   @ViewChild('block') block: BlockComponent;
 
   modeControl = this.fb.control(null);
@@ -72,7 +72,7 @@ export class SwitcherTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
 
     this.templateControl.valueChanges
       .subscribe(value => {

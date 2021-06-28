@@ -15,7 +15,7 @@ import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PagerModule } from '../../navigation/pager/pager.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
-import { TableColumnComponent } from './table-column';
+import { TableColumnDirective } from './table-column.directive';
 import { TableComponent } from './table.component';
 
 @NgModule({
@@ -40,15 +40,14 @@ import { TableComponent } from './table.component';
   ],
   declarations: [
     TableComponent,
-    TableColumnComponent
+    TableColumnDirective
   ],
   entryComponents: [
-    TableComponent,
-    TableColumnComponent
+    TableComponent
   ],
   exports: [
     TableComponent,
-    TableColumnComponent
+    TableColumnDirective
   ]
 })
 export class TableModule {

@@ -1,7 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
-import { CollapsibleComponent, TabComponent } from 'junte-ui';
+import { TabsComponent, UI } from 'junte-ui';
+import { CollapsibleComponent } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
@@ -22,8 +22,7 @@ export class CollapsibleTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/informer';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9211%3A0';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   titleControl = this.fb.control(false);
   iconControl = this.fb.control(true);
@@ -43,7 +42,7 @@ export class CollapsibleTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
 
     this.titleControl.valueChanges.subscribe(value =>
       value ? this.iconControl.disable({emitEvent: false}) : this.iconControl.enable({emitEvent: false}));

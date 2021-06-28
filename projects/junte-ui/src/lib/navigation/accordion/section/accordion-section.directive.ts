@@ -1,13 +1,12 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../../core/decorators/api';
 import { State } from '../../../core/enums/state';
 import { UI } from '../../../core/enums/ui';
 
-@Component({
-  selector: 'jnt-accordion-section',
-  template: ''
+@Directive({
+  selector: 'jnt-accordion-section'
 })
-export class AccordionSectionComponent {
+export class AccordionSectionDirective {
 
   ui = UI;
 

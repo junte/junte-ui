@@ -1,11 +1,10 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 
-@Component({
-  selector: 'jnt-chart-indicator',
-  template: ``,
+@Directive({
+  selector: 'jnt-chart-indicator'
 })
-export class ChartIndicatorComponent {
+export class ChartIndicatorDirective {
 
   @PropertyApi({
     description: 'Label name of chart item indicator',

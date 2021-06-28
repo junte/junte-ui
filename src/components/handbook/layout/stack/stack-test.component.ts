@@ -1,6 +1,6 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { StackComponent, TabComponent, UI } from 'junte-ui';
+import { StackComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language as HighlightLanguage} from '../../shared/code-highlight/enum';
@@ -23,7 +23,7 @@ export class StackTestComponent implements OnInit {
 
   types = {stack: StackComponent};
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   typeControl = this.fb.control(null);
   gutterControl = this.fb.control(null);
@@ -49,7 +49,7 @@ export class StackTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

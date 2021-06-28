@@ -8,7 +8,7 @@ import { Placement } from '../../core/enums/placement';
 import { MenuStyle } from '../../core/enums/style';
 import { UI } from '../../core/enums/ui';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
-import { MenuItemComponent } from './menu-item.component';
+import { MenuItemDirective } from './menu-item.directive';
 
 @Component({
   selector: 'jnt-menu',
@@ -124,12 +124,12 @@ export class MenuComponent {
   context: string;
 
   @Output()
-  selected = new EventEmitter<MenuItemComponent>();
+  selected = new EventEmitter<MenuItemDirective>();
 
-  @ContentChildren(MenuItemComponent)
-  items: QueryList<MenuItemComponent>;
+  @ContentChildren(MenuItemDirective)
+  items: QueryList<MenuItemDirective>;
 
-  toggle(item: MenuItemComponent) {
+  toggle(item: MenuItemDirective) {
     if (!!item.submenu) {
       this.items.forEach(i => i.opened = i === item ? !item.opened : false);
     }

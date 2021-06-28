@@ -1,7 +1,7 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { AccordionComponent, UI } from 'junte-ui';
-import { AccordionSectionComponent, TabComponent } from 'junte-ui';
+import { AccordionComponent, TabsComponent, UI } from 'junte-ui';
+import { AccordionSectionDirective } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
@@ -17,7 +17,7 @@ export class AccordionTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   language = Language;
-  types = {accordion: AccordionComponent, section: AccordionSectionComponent};
+  types = {accordion: AccordionComponent, section: AccordionSectionDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/accordion';
@@ -29,7 +29,7 @@ export class AccordionTestComponent implements OnInit {
     {id: 3, name: 'Captain America', avatar: 'assets/images/heroes/captain.svg', likes: 221}
   ];
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   iconControl = this.fb.control(true);
   stateControl = this.fb.control(null);
@@ -47,7 +47,7 @@ export class AccordionTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

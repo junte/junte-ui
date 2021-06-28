@@ -1,12 +1,11 @@
-import { Component, ContentChild, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
+import { ContentChild, ContentChildren, Directive, Input, QueryList, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 
-@Component({
-  selector: 'jnt-tab',
-  template: ''
+@Directive({
+  selector: 'jnt-tab'
 })
-export class TabComponent {
+export class TabDirective {
 
   state = {flash: false};
 
@@ -34,9 +33,4 @@ export class TabComponent {
 
   @ContentChild('tabContentTemplate')
   tabContentTemplate: TemplateRef<any>;
-
-  flash() {
-    this.state.flash = true;
-    setTimeout(() => this.state.flash = false, 700);
-  }
 }

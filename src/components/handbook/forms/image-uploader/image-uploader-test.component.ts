@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CropperPosition, ImageUploaderComponent, TabComponent, UI, UploadImageData } from 'junte-ui';
+import { CropperPosition, ImageUploaderComponent, TabsComponent, UI, UploadImageData } from 'junte-ui';
 import { combineLatest, of } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 import { HANDBOOK } from 'src/consts';
@@ -22,8 +22,7 @@ export class ImageUploaderTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-uploader';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   shapeControl = this.fb.control(UI.shape.circle);
   minControl = this.fb.control(0.01);
@@ -50,7 +49,7 @@ export class ImageUploaderTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
 
     combineLatest([
       this.areaWidthControl.valueChanges.pipe(startWith(200)),

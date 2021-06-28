@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SelectableDirective, TabComponent, UI } from 'junte-ui';
+import { SelectableDirective, TabsComponent, UI } from 'junte-ui';
 import { Language } from 'src/components/handbook/shared/code-highlight/enum';
 import { HANDBOOK } from 'src/consts';
 import { Hero } from 'src/enums/hero';
@@ -22,7 +22,7 @@ export class SelectableTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/core/directives/selectable';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   modeControl = this.fb.control(UI.select.mode.single);
   disabledControl = this.fb.control(false);
@@ -49,7 +49,8 @@ export class SelectableTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.builder.valueChanges.subscribe(() => this.code.flash());
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
     this.disabledControl.valueChanges.subscribe(disabled =>
       disabled ? this.selectableControl.disable({emitEvent: false}) : this.selectableControl.enable({emitEvent: false}));
   }

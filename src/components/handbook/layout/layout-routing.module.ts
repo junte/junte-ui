@@ -14,7 +14,7 @@ import { SpinnerTestComponent } from './spinner/spinner-test.component';
 import { StackTestComponent } from './stack/stack-test.component';
 
 export function getTitleLabel({data}: { data }) {
-  return {title: data.title};
+  return {title: data?.title};
 }
 
 export const routes: Routes = [

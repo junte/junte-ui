@@ -1,14 +1,13 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 import { DotComponent } from '../../elements/dot/dot.component';
 
-@Component({
-  selector: 'jnt-switcher-option',
-  template: ''
+@Directive({
+  selector: 'jnt-switcher-option'
 })
 
-export class SwitcherOptionComponent {
+export class SwitcherOptionDirective {
 
   @PropertyApi({
     description: 'Text on switcher option',

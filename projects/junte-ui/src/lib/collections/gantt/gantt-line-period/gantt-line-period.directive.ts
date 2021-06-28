@@ -1,11 +1,10 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
 
-@Component({
-  selector: 'jnt-gantt-line-period',
-  template: ''
+@Directive({
+  selector: 'jnt-gantt-line-period'
 })
-export class GanttLinePeriodComponent {
+export class GanttLinePeriodDirective {
 
   @PropertyApi({
     description: 'From date',

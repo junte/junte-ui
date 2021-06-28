@@ -1,13 +1,12 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { ContentChild, Directive, Input, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../../core/decorators/api';
 import { Color } from '../../../core/enums/color';
 import { UI } from '../../../core/enums/ui';
 
-@Component({
-  selector: 'jnt-timeline-item',
-  template: ''
+@Directive({
+  selector: 'jnt-timeline-item'
 })
-export class TimelineItemComponent {
+export class TimelineItemDirective {
 
   ui = UI;
 

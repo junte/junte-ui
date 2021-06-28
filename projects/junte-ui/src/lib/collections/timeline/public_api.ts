@@ -1,3 +1,3 @@
-export { TimelineItemComponent } from './item/timeline-item.component';
+export { TimelineItemDirective } from './item/timeline-item.directive';
 export { TimelineComponent } from './timeline.component';
 export { TimelineModule } from './timeline.module';
