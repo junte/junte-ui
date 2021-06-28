@@ -1,5 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChild, ContentChildren, HostBinding, Input, QueryList, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ContentChildren,
+  HostBinding,
+  Input,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Context } from '../../core/enums/context';
 import { Feature } from '../../core/enums/feature';
@@ -20,6 +29,7 @@ type LinkSource = string | (string | { [key: string]: string | number })[];
 @Component({
   selector: 'jnt-link',
   templateUrl: './link.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('rotate', [
       state('opened', style({transform: 'rotate(-180deg)'})),
