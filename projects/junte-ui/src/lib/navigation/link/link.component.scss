@@ -153,7 +153,7 @@ $tab-marker-height: 4px;
       }
 
       &[data-context='menu'][data-outline='transparent'] {
-        [data-link][data-active=true] {
+        [data-link][data-active=true], [data-link][data-orphan='false'].active {
           [data-title] span {
             border-bottom: none;
           }
@@ -212,7 +212,7 @@ $tab-marker-height: 4px;
           box-shadow: 0 1px 5px map-get($vars, color);
         }
 
-        &[data-active='true'] {
+        &[data-active='true'], &.active[data-orphan='false'] {
           [data-title] {
             span {
               border-bottom: 1px solid map-get($vars, inverse-color);
@@ -254,7 +254,7 @@ $tab-marker-height: 4px;
             ), '&');
           }
 
-          &[data-active='true'] {
+          &[data-active='true'], &.active[data-orphan='false'] {
             [data-title] {
               span {
                 border-bottom: 1px solid map-get($vars, inverse-color);
@@ -267,7 +267,7 @@ $tab-marker-height: 4px;
           box-shadow: 0 1px 5px #{map-get($vars, color)};
         }
 
-        &[data-active='true'] {
+        &[data-active='true'], &.active[data-orphan='false'] {
           [data-title] {
             span {
               border-bottom: 1px solid map-get($vars, color);
@@ -300,7 +300,7 @@ $tab-marker-height: 4px;
           }
         }
 
-        &[data-active='true'] [data-title] {
+        &[data-active='true'] [data-title], &[data-orphan='false'].active [data-title] {
           @if map-has-key($vars, active) {
             $active: map-get($vars, active);
             span {
@@ -383,7 +383,7 @@ $tab-marker-height: 4px;
                 }
               }
             }
-            #{$wrapper} [data-link][data-active='true'] {
+            #{$wrapper} [data-link][data-active='true'], [data-link][data-orphan='false'].active {
               background-color: map-get($active, background-color);
               box-shadow: map-get($active, shadow);
 
