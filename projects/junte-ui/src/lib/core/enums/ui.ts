@@ -1,3 +1,4 @@
+import { ViewportType } from './viewport';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -77,5 +78,6 @@ export const UI = {
   keyboard: {key: Key, modifier: Modifier},
   icon: {modifier: IconModifier},
   switch: {style: SwitchStyle},
-  modal: {scheme: ModalScheme}
+  modal: {scheme: ModalScheme},
+  viewport: {type: ViewportType}
 };

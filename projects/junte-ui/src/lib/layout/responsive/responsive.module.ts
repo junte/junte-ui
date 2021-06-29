@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ViewportDirective, ViewportRuleDirective } from './viewport.directive';
 import { BreakpointService } from './breakpoint.service';
 import { ForAndroidPlatformDirective, ForDesktopDirective, ForIOSPlatformDirective, ForMobileDirective } from './device.directives';
 import { DeviceService } from './device.service';
@@ -12,7 +13,9 @@ import { ForDirective, ForMaxDirective, ForMinDirective } from './responsive.dir
     ForMobileDirective,
     ForIOSPlatformDirective,
     ForAndroidPlatformDirective,
-    ForDesktopDirective
+    ForDesktopDirective,
+    ViewportRuleDirective,
+    ViewportDirective
   ],
   exports: [
     ForDirective,
@@ -21,7 +24,9 @@ import { ForDirective, ForMaxDirective, ForMinDirective } from './responsive.dir
     ForMobileDirective,
     ForIOSPlatformDirective,
     ForAndroidPlatformDirective,
-    ForDesktopDirective
+    ForDesktopDirective,
+    ViewportRuleDirective,
+    ViewportDirective
   ],
   providers: [
     BreakpointService,
