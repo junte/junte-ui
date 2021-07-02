@@ -1,4 +1,3 @@
-import { ViewportType } from './viewport';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -7,7 +6,7 @@ import { SelectMode } from '../../forms/select/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
-import { ModalScheme } from '../../overlays/modal/modal.enums';
+import { ModalClosedReason, ModalScheme } from '../../overlays/modal/modal.enums';
 import { Behaviour } from './behaviour';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
@@ -35,6 +34,7 @@ import { Theme } from './theme';
 import { Triggers } from './triggers';
 import { UrlMatching } from './url';
 import { Validator } from './validator';
+import { ViewportType } from './viewport';
 import { Width } from './width';
 
 export const UI = {
@@ -78,6 +78,6 @@ export const UI = {
   keyboard: {key: Key, modifier: Modifier},
   icon: {modifier: IconModifier},
   switch: {style: SwitchStyle},
-  modal: {scheme: ModalScheme},
+  modal: {scheme: ModalScheme, closedReason: ModalClosedReason},
   viewport: {type: ViewportType}
 };
