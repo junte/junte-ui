@@ -580,4 +580,4 @@ export const HEROES = {
     source: Sources.congenital,
     likes: 256
   }
-}
+};

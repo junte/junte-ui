@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { moveFromRight, TabsComponent, UI } from 'junte-ui';
@@ -11,7 +11,7 @@ import { LocalUI } from 'src/enums/local-ui';
   styleUrls: ['./animations-test.component.scss'],
   animations: [moveFromRight]
 })
-export class AnimationsTestComponent {
+export class AnimationsTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;

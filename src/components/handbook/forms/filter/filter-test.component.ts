@@ -52,7 +52,8 @@ export class FilterTestComponent implements OnInit {
     icon: this.iconControl,
   });
 
-  filteredControl = new FormControl([Hero.batman, Hero.ironman, Hero.spiderman, Hero.wolverine, Hero.superman, Hero.captainAmerica, Hero.wonder, Hero.thanos, Hero.hulk]);
+  filteredControl = new FormControl([Hero.batman, Hero.ironman, Hero.spiderman, Hero.wolverine,
+    Hero.superman, Hero.captainAmerica, Hero.wonder, Hero.thanos, Hero.hulk]);
   abilitiesControl = new FormControl(null);
   sourcesControl = new FormControl(null);
   universesControl = new FormControl(null);

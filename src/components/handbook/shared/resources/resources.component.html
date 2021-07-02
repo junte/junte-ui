@@ -1,13 +1,13 @@
 <jnt-stack [orientation]="ui.orientation.horizontal">
   <jnt-link *ngIf="gitlab"
-            [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
+            [appAnalytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
             [icon]="ui.icons.gitlab"
             [outline]="ui.outline.ghost"
             [source]="gitlab"
             target="_blank" title="GitLab">
   </jnt-link>
   <jnt-link *ngIf="figma"
-            [analytics]="{ type: analyticsType.goal, goal: 'Figma' }"
+            [appAnalytics]="{ type: analyticsType.goal, goal: 'Figma' }"
             [icon]="ui.icons.figma"
             [outline]="ui.outline.ghost"
             [source]="figma"

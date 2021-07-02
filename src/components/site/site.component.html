@@ -37,7 +37,7 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
         <form [formGroup]="themeForm">
-          <jnt-theme-switcher [analytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
+          <jnt-theme-switcher [appAnalytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
                               formControlName="theme"></jnt-theme-switcher>
         </form>
         <app-select-lang></app-select-lang>
