@@ -22,12 +22,6 @@ export class RadioTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/radio';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=2570%3A2782';
-
-  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
-
-  @ViewChild('tabs') tabs: TabsComponent;
-  @ViewChild('block') block: BlockComponent;
-
   sizeControl = this.fb.control(null);
   disableControl = this.fb.control(false);
   colsControl = this.fb.control(1);
@@ -35,6 +29,9 @@ export class RadioTestComponent implements OnInit {
   orientationControl = this.fb.control(false);
   spacingControl = this.fb.control(false);
   adaptedControl = this.fb.control(false);
+
+  @ViewChild('tabs') tabs: TabsComponent;
+  @ViewChild('block') block: BlockComponent;
 
   builder = this.fb.group({
     size: this.sizeControl,
@@ -78,5 +75,7 @@ export class RadioTestComponent implements OnInit {
   setHero() {
     this.heroControl.setValue(this.heroes.superman.code);
   }
+
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => 0;
 
 }

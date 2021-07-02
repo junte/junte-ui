@@ -55,10 +55,10 @@ export class ImageCropperTestComponent implements OnInit {
   load(event: any) {
     if (!!event && !!event.target && !!event.target.files && !!event.target.files.length) {
       const fileReader = new FileReader();
-      let file = event.target.files[0];
-      fileReader.onload = (event: any) => {
+      const file = event.target.files[0];
+      fileReader.onload = (e: any) => {
         if (/image\/(png|jpg|jpeg|bmp|gif|tiff|webp|svg)/.test(file.type)) {
-          this.urlControl.setValue(this.sanitizer.bypassSecurityTrustResourceUrl(event.target.result));
+          this.urlControl.setValue(this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result));
         } else {
           this.urlControl.setValue('');
         }
