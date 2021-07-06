@@ -30,7 +30,7 @@
 </ng-template>
 
 <ng-template #linkTemplate>
-  <span data-title *ngIf="!!icon || !!title">
+  <span data-title *ngIf="!!icon || !!title || !!contentTemplate">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
     <span *ngIf="!!contentTemplate; else defaultTitleTemplate">
       <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
