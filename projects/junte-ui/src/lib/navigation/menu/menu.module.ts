@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
@@ -19,7 +20,8 @@ import { SubMenuDirective } from './sub-menu/sub-menu.directive';
     StackModule,
     BadgeModule,
     SpinnerModule,
-    PopoverModule
+    PopoverModule,
+    ArrayPipesModule
   ],
   exports: [
     MenuComponent,
