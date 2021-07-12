@@ -8,7 +8,7 @@
                       (click)="!item.disabled ? toggle(item) : null"
            [jntPopover]="{
               context: this.context,
-              contentTemplate: submenuTemplate,
+              contentTemplate: submenuPopoverTemplate,
               position: orientation === ui.orientation.vertical
                 ? ui.position.right
                 : ui.position.bottom,
@@ -51,17 +51,21 @@
 
       <ng-container *ngIf="!collapsed && orientation === ui.orientation.vertical">
         <div data-sub-animate *ngIf="item.opened" [@collapse]="item.opened">
-          <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
+          <ng-container *ngTemplateOutlet="submenuTemplate;context: {features: []}"></ng-container>
         </div>
       </ng-container>
 
-      <ng-template #submenuTemplate let-headless=headless>
+      <ng-template #submenuPopoverTemplate>
+        <ng-container *ngTemplateOutlet="submenuTemplate;context: {features: item.submenu.features}"></ng-container>
+      </ng-template>
+
+      <ng-template #submenuTemplate let-features=features>
         <div data-sub
              [attr.data-opened]="item.opened"
              [attr.data-orientation]="orientation"
              [attr.data-collapsed]="collapsed">
           <ng-container *ngIf="!!item.submenu">
-            <div data-section *ngIf="!headless">
+            <div data-section *ngIf="features | includes : ui.feature.title">
               <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
                 <span>{{item.title}}</span>
                 <jnt-badge *ngFor="let badge of item.badges"

@@ -58,6 +58,7 @@ $tab-marker-height: 4px;
           divider: (
             display: false,
             divider-width: null,
+            divider-height: 100%,
             divider-corner: null,
             divider-color: null
           )
@@ -377,7 +378,7 @@ $tab-marker-height: 4px;
                     width: map-get($divider, divider-width);
                     border-radius: map-get($divider, divider-corner);
                     background-color: map-get($divider, divider-color);
-                    height: 100%;
+                    height: map-get($divider, divider-height);
                     display: none;
                   }
                 }
