@@ -15,5 +15,6 @@ export enum Feature {
   pulse = 'pulse',
   copy = 'copy',
   pageTitle = 'page-title',
-  title = 'title'
+  title = 'title',
+  overflow = 'overflow'
 }

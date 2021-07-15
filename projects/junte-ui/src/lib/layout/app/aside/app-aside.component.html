@@ -27,7 +27,7 @@
                 [orientation]="ui.orientation.vertical"
                 [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet"
                 [placement]="ui.placement.fixed"
-                [spacing]="menu.spacing"
+                [gutter]="menu.gutter"
                 (selected)="toggle()">
         <jnt-menu-item *ngFor="let item of menu.items"
                        [title]="item.title"

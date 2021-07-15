@@ -230,7 +230,7 @@
                       </ng-template>
 
                       <jnt-menu [orientation]="ui.orientation.vertical"
-                                [spacing]="ui.size.small">
+                                [gutter]="ui.size.small">
                         <jnt-menu-item title="General"
                                        i18n-title="@@label.general"
                                        [icon]="localUi.icons.general">
@@ -356,7 +356,7 @@
                               </ng-template>
                               <ng-template #userbarMenuTemplate let-hide="hide">
                                 <jnt-menu [orientation]="ui.orientation.vertical"
-                                          [spacing]="ui.gutter.small"
+                                          [gutter]="ui.gutter.small"
                                           (selected)="hide()">
                                   <jnt-menu-item title="Profile"
                                                  [icon]="ui.icons.profile"
@@ -394,7 +394,7 @@
                             </jnt-stack>
 
                             <jnt-menu [orientation]="ui.orientation.vertical"
-                                      [spacing]="ui.size.small">
+                                      [gutter]="ui.size.small">
                               <jnt-menu-item title="General" [icon]="localUi.icons.general">
                                 <jnt-sub-menu>
                                   <jnt-sub-menu-item title="About"></jnt-sub-menu-item>

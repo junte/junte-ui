@@ -7,7 +7,7 @@
       </a>
     </ng-template>
 
-    <jnt-menu #headerTopMenu [spacing]="ui.gutter.normal">
+    <jnt-menu #headerTopMenu [gutter]="ui.gutter.normal">
       <jnt-menu-item title="Handbook"
                      i18n-title="@@label.handbook"
                      [icon]="localUi.icons.top.documentation"
@@ -46,7 +46,7 @@
   </jnt-app-header>
 
   <jnt-app-aside #aside>
-    <jnt-menu [spacing]="ui.gutter.none">
+    <jnt-menu [gutter]="ui.gutter.none">
       <jnt-menu-item title="Home"
                      i18n-title="@@label.home"
                      [link]="['/handbook/home']"

@@ -67,11 +67,16 @@ $tab-marker-height: 4px;
             color: $jnt-primary-light-color,
             corner: 19px,
             border: 1px solid $jnt-white-color,
+            background: null,
             active: (
               underline: false,
               color: $jnt-white-color,
               background-color: $jnt-primary-light-color,
-              border-color: $jnt-primary-light-color
+              border-color: $jnt-primary-light-color,
+              badge: (
+                color: null,
+                background: null
+              )
             ),
             hover: (
               color: null,
@@ -349,36 +354,55 @@ $tab-marker-height: 4px;
                 padding: map-get($tags, padding),
                 color: map-get($tags, color),
                 border: map-get($tags, border),
-                corner: map-get($tags, corner)
+                corner: map-get($tags, corner),
+                background: map-get($tags, background),
+                focus: (
+                  outline: 0
+                )
               ), '&');
-              &[data-active='true'] {
-                @if map-has-key($tags, active) {
-                  $active: map-get($tags, active);
+              @if map-has-key($tags, active) {
+                $active: map-get($tags, active);
+                @include jnt-link((
+                  outlines: (
+                    'transparent': (
+                      active: (
+                        underline: map-get($active, underline),
+                        color: map-get($active, color),
+                        background-color: map-get($active, background-color),
+                        border-color: map-get($active, border-color)
+                      )
+                    )
+                  )
+                ), '&');
+                @if map-has-key($active, badge) {
+                  $badge: map-get($active, badge);
                   @include jnt-link((
                     outlines: (
                       'transparent': (
                         active: (
-                          underline: map-get($active, underline),
-                          color: map-get($active, color),
-                          background-color: map-get($active, background-color),
-                          border-color: map-get($active, border-color)
+                          badge: (
+                            color: map-get($badge, color) !important,
+                            background: map-get($badge, background) !important
+                          )
                         )
                       )
                     )
                   ), '&');
                 }
               }
-              &[data-active='false']:hover {
-                @if map-has-key($tags, hover) {
-                  $hover: map-get($tags, hover);
-                  @include jnt-link((
-                    hover: (
-                      color: map-get($hover, color),
-                      background-color: map-get($hover, background-color),
-                      border-color: map-get($hover, border-color)
+              @if map-has-key($tags, hover) {
+                $hover: map-get($tags, hover);
+                @include jnt-link((
+                  outlines: (
+                    'transparent': (
+                      hover: (
+                        color: map-get($hover, color),
+                        background-color: map-get($hover, background-color),
+                        border-color: map-get($hover, border-color)
+                      )
                     )
-                  ), '&');
-                }
+                  )
+                ), '&');
               }
             }
           }
