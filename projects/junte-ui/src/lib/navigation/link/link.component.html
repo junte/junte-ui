@@ -13,10 +13,18 @@
   </ng-template>
 </ng-container>
 
+<ng-template #internalOrphanTemplate>
+  <a data-link [attr.data-active]="active"
+     [attr.data-orphan]="true">
+    <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
+  </a>
+</ng-template>
+
 <ng-template #internalLinkTemplate>
-  <a data-link routerLinkActive="active"
+  <a data-link *ngIf="!!source;else internalOrphanTemplate"
+     routerLinkActive="active"
      [attr.data-active]="active"
-     [attr.data-orphan]="!source"
+     [attr.data-orphan]="false"
      [routerLink]="source"
      [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
      [queryParams]="queryParams"
