@@ -7,7 +7,7 @@
         <input type="checkbox" formControlName="theme">
       </form>
     </ng-template>
-    <jnt-menu data-menu [spacing]="ui.gutter.large">
+    <jnt-menu data-menu [gutter]="ui.gutter.large">
       <jnt-menu-item title="Handbook"
                      i18n-title="@@label.handbook"
                      [icon]="localUi.icons.top.documentation"
@@ -534,7 +534,7 @@
 
             <p data-web-apps>Made with love for making beautiful WEB apps!</p>
             <jnt-menu [style]="ui.menu.style.tags"
-                      [spacing]="ui.gutter.normal">
+                      [gutter]="ui.gutter.normal">
               <jnt-menu-item title="Stable"
                              [active]="current == version.stable"
                              [link]="'https://www.junte-ui.com'">

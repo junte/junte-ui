@@ -35,7 +35,7 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [orientation]="orientationControl.value"
-                          [spacing]="spacingControl.value"
+                          [gutter]="spacingControl.value"
                           [style]="styleControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
@@ -249,7 +249,7 @@
                   </ng-container>
                   <ng-container *ngIf="spacingControl.value">
                     <![CDATA[
-                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+                    [gutter]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="collapsedControl.value">
                     <![CDATA[

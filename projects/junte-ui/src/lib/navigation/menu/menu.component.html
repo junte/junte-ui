@@ -1,6 +1,7 @@
 <jnt-stack [orientation]="style === ui.menu.style.tabs ? ui.orientation.horizontal : orientation"
-           [gutter]="spacing"
+           [gutter]="gutter"
            [align]="ui.align.stretch"
+           [spacing]="spacing"
            [wrap]="wrap">
   <ng-container *ngFor="let item of items">
     <div data-top>
@@ -44,6 +45,8 @@
                        [value]="badge.value"
                        [text]="badge.text"
                        [position]="badge.position"
+                       [overflow]="badge.overflow"
+                       [features]="badge.features"
                        [color]="badge.color">
             </jnt-badge>
         </jnt-link>
@@ -72,6 +75,8 @@
                            [value]="badge.value"
                            [text]="badge.text"
                            [position]="ui.position.inline"
+                           [features]="badge.features"
+                           [overflow]="badge.overflow"
                            [color]="badge.color">
                 </jnt-badge>
               </jnt-stack>
@@ -95,6 +100,8 @@
                 <jnt-badge *ngFor="let badge of subItem.badges"
                            [value]="badge.value"
                            [text]="badge.text"
+                           [features]="badge.features"
+                           [overflow]="badge.overflow"
                            [position]="ui.position.inline"
                            [color]="badge.color">
                 </jnt-badge>

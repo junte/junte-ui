@@ -27,6 +27,7 @@ export class MenuComponent {
 
   ui = UI;
 
+  private _gutter: Gutter = Gutter.none;
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
 
@@ -106,7 +107,22 @@ export class MenuComponent {
   }
 
   @PropertyApi({
-    description: 'Size of spacing between menu items',
+    description: 'Size of gutter between menu items',
+    path: 'ui.gutter',
+    default: Gutter.none,
+    options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
+  })
+  @Input()
+  set gutter(gutter: Gutter) {
+    this._gutter = gutter || Gutter.none;
+  }
+
+  get gutter() {
+    return this._gutter;
+  }
+
+  @PropertyApi({
+    description: 'Size of spacing between menu items then wrapping',
     path: 'ui.gutter',
     default: Gutter.none,
     options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]

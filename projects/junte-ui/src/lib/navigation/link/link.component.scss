@@ -19,6 +19,7 @@ $tab-marker-height: 4px;
     height: null,
     border: null,
     color: $jnt-primary-color,
+    background: null,
     inverse-color: $jnt-white-color,
     hover-color: $jnt-primary-dark-color,
     focus: (
@@ -61,6 +62,10 @@ $tab-marker-height: 4px;
             divider-height: 100%,
             divider-corner: null,
             divider-color: null
+          ),
+          badge: (
+            color: null,
+            background: null
           )
         ),
         orphan: (
@@ -352,7 +357,7 @@ $tab-marker-height: 4px;
 
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
-            #{$wrapper} [data-link][data-active='false'] {
+            #{$wrapper} [data-link][data-active='false']:not(.active), [data-link][data-orphan='true'] {
               &:hover {
                 color: map-get($hover, color);
                 background-color: map-get($hover, background-color);
@@ -413,6 +418,15 @@ $tab-marker-height: 4px;
                   }
                 }
               }
+              @if map-has-key($active, badge) {
+                $badge: map-get($active, badge);
+                [data-badge] {
+                  @include jnt-badge((
+                    background: map-get($badge, background),
+                    color: map-get($badge, color)
+                  ), '&');
+                }
+              }
             }
           }
         }
@@ -451,6 +465,7 @@ $tab-marker-height: 4px;
     text-transform: map-get($vars, text-transform);
     text-decoration: map-get($vars, text-decoration);
     text-align: map-get($vars, text-align);
+    background: map-get($vars, background);
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
 
     [data-title] {
