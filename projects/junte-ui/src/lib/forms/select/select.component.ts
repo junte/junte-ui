@@ -563,7 +563,7 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
       throw new Error('Wrong value form multiple select mode');
     }
 
-    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : (value || [])) as Key[];
+    this.selected = (!!value ? (this.mode === SelectMode.single ? [value] : value) : []) as Key[];
   }
 
   createOption(query, event: KeyboardEvent) {
