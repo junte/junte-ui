@@ -1,7 +1,8 @@
 import {
   AfterContentInit,
   Component,
-  ContentChildren, Directive,
+  ContentChildren,
+  Directive,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -20,24 +21,24 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { NGXLogger } from 'ngx-logger';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
-import { InputAutocomplete } from '../input/enums';
-import { progress } from '../../core/utils/rxjs';
 import { PropertyApi } from '../../core/decorators/api';
 import { Behaviour } from '../../core/enums/behaviour';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { Feature } from '../../core/enums/feature';
+import { Key as Keyboard } from '../../core/enums/keyboard';
 import { Placement } from '../../core/enums/placement';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+import { progress } from '../../core/utils/rxjs';
 import { BreakpointService } from '../../layout/responsive/breakpoint.service';
 import { DeviceService } from '../../layout/responsive/device.service';
 import { PopoverInstance, PopoverService } from '../../overlays/popover/popover.service';
+import { InputAutocomplete } from '../input/enums';
 import { SelectMode } from './enums';
 import { IOption, Key, Options } from './model';
-import { Key as Keyboard } from '../../core/enums/keyboard';
 
 const MIN_WIDTH = 20;
 const CHAR_WIDTH = 8;
@@ -558,11 +559,11 @@ export class SelectComponent implements OnInit, AfterContentInit, OnDestroy, Con
   }
 
   writeValue(value: Key | Key[]) {
-    if (this.mode === SelectMode.multiple && !Array.isArray(value)) {
+    if (this.mode === SelectMode.multiple && !Array.isArray(value || [])) {
       throw new Error('Wrong value form multiple select mode');
     }
 
-    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : value) as Key[];
+    this.selected = (this.mode === SelectMode.single ? (!!value ? [value] : []) : (value || [])) as Key[];
   }
 
   createOption(query, event: KeyboardEvent) {
