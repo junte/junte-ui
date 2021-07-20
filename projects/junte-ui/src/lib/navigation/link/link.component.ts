@@ -131,7 +131,9 @@ export class LinkComponent {
     this._source = source;
     if (!!source) {
       this.external = !Array.isArray(source);
+      this._orphan = false;
     } else {
+      this.external = false;
       this._orphan = true;
     }
   }
