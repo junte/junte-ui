@@ -39,7 +39,9 @@ $tab-marker-height: 4px;
       size: 18px
     ),
     badge: (
-      margin-left: $jnt-gutter-small
+      margin-left: $jnt-gutter-small,
+      color: null,
+      background: null
     ),
     outlines: (
       'transparent': (
@@ -357,7 +359,7 @@ $tab-marker-height: 4px;
 
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
-            #{$wrapper} [data-link][data-active='false']:not(.active), [data-link][data-orphan='true'] {
+            #{$wrapper} [data-link][data-active='false']:not(.active), [data-link][data-orphan='true'][data-active='false'] {
               &:hover {
                 color: map-get($hover, color);
                 background-color: map-get($hover, background-color);
@@ -498,6 +500,9 @@ $tab-marker-height: 4px;
       $badge: map-get($vars, badge);
       [data-badge] {
         margin-left: map-get($badge, margin-left);
+        @include jnt-badge((
+          color: if(map-get($badge, color), map-get($badge, color)!important, null),
+          background: if(map-get($badge, background), map-get($badge, background)!important, null)), '&');
       }
     }
 

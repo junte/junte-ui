@@ -15,6 +15,7 @@ $tab-marker-height: 4px;
         background: transparent,
         height: null,
         padding: $jnt-gutter-small $jnt-gutter-normal,
+        overflow: true,
         orphan: (
           color: $jnt-primary-text-color,
           hover: (
@@ -68,6 +69,11 @@ $tab-marker-height: 4px;
             corner: 19px,
             border: 1px solid $jnt-white-color,
             background: null,
+            badge: (
+              margin-left: $jnt-gutter-small,
+              color: null,
+              background: null
+            ),
             active: (
               underline: false,
               color: $jnt-white-color,
@@ -174,7 +180,8 @@ $tab-marker-height: 4px;
               text-transform: map-get($title, text-transform),
               font-weight: map-get($title, font-weight),
               color: map-get($title, color),
-              padding: map-get($title, padding)
+              padding: map-get($title, padding),
+              overflow: map-get($title, overflow)
             ));
 
             @if map-has-key($title, active) {
@@ -360,6 +367,16 @@ $tab-marker-height: 4px;
                   outline: 0
                 )
               ), '&');
+              @if map-has-key($tags, badge) {
+                $badge: map-get($tags, badge);
+                @include jnt-link((
+                  badge: (
+                    margin-left: map-get($badge, margin-left),
+                    color: map-get($badge, color),
+                    background: map-get($badge, background)
+                  ),
+                ), '&');
+              }
               @if map-has-key($tags, active) {
                 $active: map-get($tags, active);
                 @include jnt-link((
@@ -381,8 +398,8 @@ $tab-marker-height: 4px;
                       'transparent': (
                         active: (
                           badge: (
-                            color: map-get($badge, color) !important,
-                            background: map-get($badge, background) !important
+                            color: if(map-get($badge, color), map-get($badge, color) !important, null),
+                            background: if(map-get($badge, background), map-get($badge, background) !important, null)
                           )
                         )
                       )
@@ -440,9 +457,6 @@ $tab-marker-height: 4px;
 
         [data-link] {
           width: 100%;
-          @include jnt-link((
-            overflow: true
-          ), '&');
         }
       }
     }
